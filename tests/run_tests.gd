@@ -12,7 +12,12 @@ func _init() -> void:
 	for file in dir.get_files():
 		if not (file.begins_with("test_") and file.ends_with(".gd")):
 			continue
-		var suite = load("res://tests/" + file).new()
+		var script = load("res://tests/" + file)
+		if script == null or not script.can_instantiate():
+			failures += 1
+			printerr("FAIL %s  does not compile" % file)
+			continue
+		var suite = script.new()
 		for m in suite.get_method_list():
 			var name: String = m.name
 			if not name.begins_with("test_"):
