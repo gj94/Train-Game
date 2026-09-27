@@ -18,5 +18,5 @@
 
 ## Next
 - ~~Verify Godot MCP~~ → verified 2026-09-27: editor connects live (bridge + addon 1.2.1), 0 editor errors.
-- Verify Blender connector with Blender's MCP server started.
+- ~~Verify Blender connector~~ → verified 2026-09-27: reads the live scene (default Camera/Cube/Light).
 - Answer open decisions 2–6, then start Phase 1: track graph in `sim/` with tests.
