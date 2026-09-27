@@ -31,7 +31,8 @@
   per-hit gains now 0.8–1.34 (were 0.11–2.27). The take's per-position loudness (0.19/1.57/1.81/0.56) is kept
   only for reproducing the take (`groupGain`, `takePerspective`), not in the game. Take reproduction: level
   0.0 dB, tonal 0.49/0.35 dB, envelope 0.85. The take can't fix clang-vs-cling level → default clang +4 dB,
-  `,` / `.` adjust live (tell Claude the number). Game: `physical_icf_wheel1/2.wav`, `WHEEL_GAIN`. 1-car train.
+  `,` / `.` adjust live. **User tuned: clang +2 dB → default.** Game: `physical_icf_wheel1/2.wav`, `WHEEL_GAIN`.
+  Back to the full 8-car formation. TRACK_ONLY still on (whine/hum/squeal/hiss/horn off) until the user says.
 
 ### Playtest (sound v4 — physical)
 1. Cab at ~66 km/h: close to the take? The rhythm is now your own MEMU's axles over 13 m joints (not the ICF

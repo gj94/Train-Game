@@ -20,7 +20,7 @@ const Data := preload("res://game/physical_model_data.gd")
 ## wheel 2 = the second, right after it ("clang", heavier). Every bogie of every car uses it,
 ## so a car over a joint gives cling-clang ....... cling-clang.
 const KERNELS := "res://assets/sounds/lab/physical_icf_wheel%d.wav"
-const DEFAULT_CLANG_BALANCE_DB := 4.0   # clang louder than cling by this much; , / . adjust
+const DEFAULT_CLANG_BALANCE_DB := 2.0   # clang louder than cling by this much (user-tuned); , / . adjust
 const ROLLING := "res://assets/sounds/lab/physical_icf_rolling.wav"
 signal joint_hit(edge: String, joint: int, cls: int)   # every axle-over-joint hit (for the joint markers)
 
