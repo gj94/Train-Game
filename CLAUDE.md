@@ -35,6 +35,7 @@ Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
 ## Layout
 - `addons/godot_mcp/` — third-party MCP bridge addon (MIT). Don't edit; upgrade by re-running its installer.
 - `sim/` — pure simulation logic: track graph, switches, signals, interlocking, timetables, train physics. **No rendering, no scene-tree dependencies**, so it tests headless.
+- `game/` — rendering, cameras, HUD, input (main scene `game/main.tscn`). Built procedurally in code from the sim.
 - `tests/` — `test_*.gd` files extending RefCounted; `test_*` methods return `true` or a failure string.
 - `docs/` — design brief, progress log, asset licence register.
 - Rendering/scenes/UI go in their own folders and read from `sim/`, never the other way round.
@@ -43,6 +44,11 @@ Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
 - Small, testable increments. Commit after each working step with a clear message.
 - Write tests for interlocking and signal rules before expanding them.
 - Prefer shell + headless Godot over GUI clicking; screenshots only to verify visuals.
+- The game runs *embedded* in the editor window ("Train Game (DEBUG)"). Its MCPRuntime screenshot helper doesn't
+  connect, so capture the window with Win32 instead, and click inside the game view before sending keys (otherwise
+  they go to the embed toolbar).
+- Set project settings via the Godot MCP (`set_main_scene`, `update_project_settings`) while the editor is open —
+  it overwrites text edits to `project.godot`.
 - After each playable build, list exactly what the user should test. The user is the playtester.
 - No assets without a confirmed licence (CC0 preferred). Record every source in `docs/assets.md`.
 - Ask before large refactors or scope changes.
