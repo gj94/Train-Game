@@ -7,6 +7,7 @@ const TrainView := preload("res://game/train_view.gd")
 const CameraRig := preload("res://game/camera_rig.gd")
 const Hud := preload("res://game/hud.gd")
 const TrainAudio := preload("res://game/train_audio.gd")
+const AxleJoint := preload("res://game/axle_joint.gd")
 
 const HANDLE_RATE := 0.8   # handle travel per second while W/S held
 
@@ -34,9 +35,11 @@ func _ready() -> void:
 	add_child(cam)
 	cam.make_current()
 	audio = TrainAudio.new()
-	audio.position = Vector3(0, 1.5, -7.65)   # over the leading bogie
-	tv.cars[0].add_child(audio)
-	audio.setup(train, world)
+	add_child(audio)
+	# Axles of the 8-car MEMU as modelled by TrainView (21.3 m bodies, 0.6 m gaps, bogies 3 m in).
+	var axles := AxleJoint.rake_axles(tv.cars.size(), TrainView.CAR_LENGTH + TrainView.CAR_GAP,
+		TrainView.CAR_LENGTH, TrainView.BOGIE_INSET, 2.5)
+	audio.setup(train, world, cam, axles)
 	hud = Hud.new()
 	add_child(hud)
 	hud.toast("Welcome to Chennapuram. Press C to ask for the starter signal, then W to power up.")

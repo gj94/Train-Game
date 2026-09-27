@@ -12,8 +12,17 @@
   model `profiles/physical-icf.json`.
 - vs the take (trackside, 66 km/h): level +0.15 dB, 1/3-oct tonal balance 0.76 / 0.37 dB (mid/side), envelope
   correlation 0.85. Gap to "perfect": one averaged kernel per axle class; each real hit has its own spectrum.
-- Demos in the lab's `exports/` (A/B, onboard MEMU 66/100 km/h, onboard ICF). **Not yet ported to the game** —
-  waiting for the user's listening verdict.
+- Demos in the lab's `exports/` (A/B, onboard MEMU 66/100 km/h, onboard ICF). User: "AB is good" → **ported**.
+- Game port: `game/axle_joint.gd` (scheduler, tested), `game/train_audio.gd` (hits via AudioStreamPolyphonic with
+  late-start compensation inside the 17 ms kernel lead; per-wheel rolling loop), data exported by the lab's
+  `tools/physical-export-godot.js`. Listener = driver in the cab, camera in the overview (blended on Tab).
+  The WSOLA cab engine and procedural clacks were removed (in git history). 36 tests pass, 60 FPS at ×4.
+
+### Playtest (sound v4 — physical)
+1. Cab at ~66 km/h: close to the take? The rhythm is now your own MEMU's axles over 13 m joints (not the ICF
+   coach pattern), since you sit in the train. Overview close to the track: coaches passing = the take's pattern.
+2. Speed: slow pull-away vs 100 km/h — rhythm, loudness, rolling noise.
+3. Anything that sounds mechanical/repetitive (4 kernels cycling recorded loudness).
 
 ## 2026-09-28 — Track sound from the user's Railway Sound Lab
 - Source: `E:\ClaudeWS\railway-clang-simulator` (user's own Node.js lab; README explains both engines).
