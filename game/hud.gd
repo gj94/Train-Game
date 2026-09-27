@@ -4,7 +4,7 @@ extends CanvasLayer
 const HELP := """[b]Driving[/b] (works in both views)
 W / ↑   more power      S / ↓   less power / more brake
 X   coast (handle to 0)     Space   emergency brake (again at a stand: release)
-C   ask for the next signal to clear     R   change ends (stopped)
+C   ask for the next signal to clear     R   change ends (stopped)     H   horn
 
 [b]View[/b]
 Tab   cab ⇄ overview      F   follow train      1 / 2 / 3   jump to station

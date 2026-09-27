@@ -23,7 +23,7 @@ func _init() -> void:
 			if not name.begins_with("test_"):
 				continue
 			var result = suite.call(name)
-			if result == true:
+			if typeof(result) == TYPE_BOOL and result:
 				passes += 1
 			else:
 				failures += 1

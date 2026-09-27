@@ -131,3 +131,31 @@ func test_train_stops_at_buffer():
 	if not res.get("buffer", false) or t.speed != 0.0 or not is_equal_approx(t.head_s, 200.0):
 		return "expected stop at buffer (s=200), got s=%f speed=%f" % [t.head_s, t.speed]
 	return true
+
+
+func test_odometer_counts_travel_but_not_past_buffers():
+	var w := RailWorld.new()
+	w.graph = small_graph()
+	var t := Train.new("T", 40.0)
+	w.place_train(t, "e1", 150.0, 1)
+	t.advance(w.graph, 30.0)
+	if not is_equal_approx(t.odometer, 30.0):
+		return "after 30 m odometer %f" % t.odometer
+	t.advance(w.graph, 100.0)          # only 20 m left before the buffer
+	if not is_equal_approx(t.odometer, 50.0):
+		return "should stop counting at the buffer, odometer %f" % t.odometer
+	return true
+
+
+func test_curvature_zero_on_straight_and_positive_on_curve():
+	var w := RailWorld.new()
+	w.graph = small_graph()
+	var t := Train.new("T", 40.0)
+	w.place_train(t, "e1", 100.0, 1)
+	if w.curvature_at(t) > 0.0001:
+		return "straight track curvature %f" % w.curvature_at(t)
+	w.graph.switches.S.reversed = true
+	w.place_train(t, "e2", 5.0, 1)     # head 5 m past the switch: the 10 m span crosses the kink
+	if w.curvature_at(t) <= 0.001:
+		return "curve should have curvature, got %f" % w.curvature_at(t)
+	return true

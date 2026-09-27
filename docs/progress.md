@@ -1,5 +1,28 @@
 # Progress
 
+## 2026-09-27 — Train sound
+- `game/train_audio.gd`, attached over the leading bogie (3D, so quieter from the overview camera):
+  - rolling: CC0 BigSoundBank interior loop, volume + pitch follow speed;
+  - synthesized live: 3-phase traction whine (pitch ∝ speed, loudness ∝ power/brake handle), low-speed PWM
+    whistle, transformer hum, flange squeal on curves (from `RailWorld.curvature_at`), air-brake hiss;
+  - rail-joint clacks timed from `Train.odometer` as each nearby axle crosses a joint (13 m rails);
+  - horn on **H**.
+- 7 CC0 sounds downloaded (horns, pass-by, station, door beeps, 2 interiors); 3 not yet used.
+- Test runner fix: failures (String results) used to crash the runner in Godot 4.7.
+
+### Playtest (sound)
+1. Pull away with W: does the whine rise with speed and fade when you coast (X)? Clacks speed up?
+2. Brake (S) — hiss; emergency (Space) — big air dump. Horn (H).
+3. Tight curves at speed (Maruthur loop, Chennapuram platform 2): squeal?
+4. Tell me what's too loud / too quiet / annoying — levels are easy to tune in `train_audio.gd`.
+
+### Planned: WAP-7 express as a second train
+- Model: Sketchfab "WAP 7 Indian Locomotive Low Poly model" (knitro_vedant, CC BY) or its "New Design" version —
+  the user downloads it (Sketchfab needs a login; glTF format into `assets/`). Credit the author in docs/assets.md.
+- Coaches: build LHB coaches in Blender (tools/blender/) in the MEMU's style.
+- Indian loco horn: Freesound pack "Indian Railway" by sama66 (login needed; user downloads).
+- Game is offline personal use only (see memory) — personal-use / CC BY assets are fine.
+
 ## 2026-09-27 — Graphics upgrade (semi-realistic)
 - CC0 Poly Haven PBR textures + clear-sky HDRI, Quaternius palm (see `docs/assets.md`).
 - Lighting: HDRI ambient, AgX, SSAO, SSIL, glow, aerial fog, 4-split soft shadows, 8K shadow map, FXAA + MSAA.

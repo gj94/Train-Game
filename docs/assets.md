@@ -13,3 +13,10 @@ Every third-party asset must be listed here before it is committed. CC0 preferre
 | Kloofendal 43d Clear (Pure Sky) HDRI 2K — sky + ambient light | `assets/polyhaven/hdri/` | https://polyhaven.com/a/kloofendal_43d_clear_puresky | Poly Haven | CC0 | 2026-09-27 |
 | Palm Tree (glb + atlas texture) | `assets/models/palm_quaternius*` | https://poly.pizza/m/P0tgwyXBgr | Quaternius | CC0 1.0 | 2026-09-27 |
 | MEMU cars (CabCar / TrailerCar / MotorCar) | `assets/models/memu.glb` | built by `tools/blender/build_memu.py` | this project (Claude) | own work | 2026-09-27 |
+| Eurostar car (interior loop) → rolling sound | `assets/sounds/interior_eurostar_car.ogg` | https://bigsoundbank.com/eurostar-car-s0635.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
+| Train car (interior, stop + departure) | `assets/sounds/interior_train_car.ogg` | https://bigsoundbank.com/train-car-s2727.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
+| Train in Station #1 | `assets/sounds/station_train_in_station.ogg` | https://bigsoundbank.com/train-in-station-1-s2723.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
+| Passage of a train #6 | `assets/sounds/passby_train_6.ogg` | https://bigsoundbank.com/passage-of-a-train-6-s3416.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
+| Train horn #1 → horn (H) | `assets/sounds/horn_1.ogg` | https://bigsoundbank.com/train-horn-s0277.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
+| Train Horn #3 | `assets/sounds/horn_3.ogg` | https://bigsoundbank.com/train-horn-3-s2847.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
+| Train door beeps | `assets/sounds/door_beeps.ogg` | https://bigsoundbank.com/train-door-beeps-s3343.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |

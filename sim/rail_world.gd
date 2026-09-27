@@ -151,6 +151,17 @@ func speed_limit_for(train: Train) -> float:
 	return lim
 
 
+## Track curvature (1 / radius, in 1/m) under the leading end of a train,
+## measured over the `span` metres behind the head. 0 on straight track.
+func curvature_at(train: Train, span: float = 10.0) -> float:
+	var a := train.locate_behind(graph, 0.0)
+	var b := train.locate_behind(graph, minf(span, train.length))
+	var ta := graph.tangent(a.edge, a.s, a.dir)
+	var tb := graph.tangent(b.edge, b.s, b.dir)
+	var dist := minf(span, train.length)
+	return 0.0 if dist <= 0.0 else ta.angle_to(tb) / dist
+
+
 ## Why a switch can't be thrown right now, or "" if it can.
 func switch_lock_reason(node_id: String) -> String:
 	for sig in signals.values():

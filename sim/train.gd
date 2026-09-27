@@ -11,6 +11,7 @@ var length: float
 var path: Array = []
 var head_s := 0.0
 var speed := 0.0            # m/s, >= 0, towards the head
+var odometer := 0.0         # metres travelled in total (for sound: rail joints, etc.)
 
 ## Combined power/brake handle, like an EMU master controller:
 ## +1 full power, 0 coast, -1 full service brake.
@@ -62,6 +63,7 @@ func braking_distance() -> float:
 func advance(graph: TrackGraph, d: float) -> Dictionary:
 	var result := {entered = []}
 	var remaining := d
+	odometer += d
 	while remaining > 0.0:
 		var seg: Dictionary = path[0]
 		var end_s := graph.exit_s(seg.edge, seg.dir)
@@ -75,6 +77,7 @@ func advance(graph: TrackGraph, d: float) -> Dictionary:
 			if nxt.is_empty():
 				head_s = end_s
 				speed = 0.0
+				odometer -= remaining   # didn't actually travel past the buffer
 				result.buffer = true
 				break
 			path.push_front({edge = nxt.edge, dir = nxt.dir})

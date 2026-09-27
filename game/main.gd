@@ -6,6 +6,7 @@ const WorldView := preload("res://game/world_view.gd")
 const TrainView := preload("res://game/train_view.gd")
 const CameraRig := preload("res://game/camera_rig.gd")
 const Hud := preload("res://game/hud.gd")
+const TrainAudio := preload("res://game/train_audio.gd")
 
 const HANDLE_RATE := 0.8   # handle travel per second while W/S held
 
@@ -15,6 +16,7 @@ var wv
 var tv
 var cam
 var hud
+var audio
 var time_scale := 1
 var _last_event := 0
 
@@ -31,6 +33,10 @@ func _ready() -> void:
 	cam.follow_point = tv.head_position
 	add_child(cam)
 	cam.make_current()
+	audio = TrainAudio.new()
+	audio.position = Vector3(0, 1.5, -7.65)   # over the leading bogie
+	tv.cars[0].add_child(audio)
+	audio.setup(train, world)
 	hud = Hud.new()
 	add_child(hud)
 	hud.toast("Welcome to Chennapuram. Press C to ask for the starter signal, then W to power up.")
@@ -79,6 +85,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				_set_cab_visuals(cam.mode == CameraRig.Mode.CAB)
 			KEY_X:
 				train.controller = 0.0
+			KEY_H:
+				audio.horn()
 			KEY_SPACE:
 				if train.emergency:
 					_report(world.release_emergency(train.id), "Emergency brake released")
