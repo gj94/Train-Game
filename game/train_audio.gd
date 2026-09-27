@@ -23,6 +23,9 @@ const DEFAULT_TRACK_LEVEL := 1.2     # overall track-sound level (1.0 = the take
 const OVERVIEW_SIDE := 6.0           # overview listener: metres from the track, at the camera's focus
 const DRIVER := Vector2(2.0, 1.5)    # driver's ear: metres behind the head, metres to the side
 const SYNTH_RATE := 22050.0
+## Listening test: only the track sound (axle hits + rolling noise). Turns off the synthesized
+## traction whine / PWM whistle / hum / squeal / brake hiss and the horn.
+const TRACK_ONLY := true
 const BUS := "Train"
 
 var train: Train
@@ -87,7 +90,8 @@ func setup(t: Train, w: RailWorld, listener: Node3D, axles: Array) -> void:
 	gen.mix_rate = SYNTH_RATE
 	gen.buffer_length = 0.12
 	_synth = _player(gen)
-	_synth.play()
+	if not TRACK_ONLY:
+		_synth.play()
 	_playback = _synth.get_stream_playback()
 	_horn = _player(load("res://assets/sounds/horn_1.ogg"))
 
@@ -101,6 +105,8 @@ func _player(stream: AudioStream) -> AudioStreamPlayer:
 
 
 func horn() -> void:
+	if TRACK_ONLY:
+		return
 	_horn.volume_db = linear_to_db(maxf(0.0001, lerpf(minf(1.0, _overview_gain(0.0) * 2.0), 1.0, _cab_mix)))
 	_horn.play()
 
@@ -187,6 +193,8 @@ func _process(delta: float) -> void:
 	_cab_mix = move_toward(_cab_mix, 1.0 if _cab else 0.0, delta / 1.1)   # follows the camera blend
 
 	_track_sound(v, kmh)
+	if TRACK_ONLY:
+		return
 
 	# Traction: louder with handle deflection (power, or regenerative braking).
 	var traction := absf(train.controller) if not train.emergency else 0.0
