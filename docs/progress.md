@@ -1,7 +1,7 @@
 # Progress
 
 ## 2026-09-28 — Track sound from the user's Railway Sound Lab
-- Source: `E:\ClaudeWSailway-clang-simulator` (user's own Node.js lab; README explains both engines).
+- Source: `E:\ClaudeWS\railway-clang-simulator` (user's own Node.js lab; README explains both engines).
 - **Cab:** `game/calibrated_bed.gd` = GDScript port of `src/calibrated.js` (stereo WSOLA of the approved
   5 s synthetic take, rhythm ∝ speed/55, pitch constant). Runs at 22.05 kHz, ~6% of one core.
 - **Outside:** `game/rail_sounds.gd` = `src/synth.js` impact model with the 24 measured modes + 68 Hz body mode,
