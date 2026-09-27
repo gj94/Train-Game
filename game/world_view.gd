@@ -1,10 +1,18 @@
 extends RefCounted
-## Builds the static 3D world from a RailWorld: track, ground, scenery,
-## stations, signals and switch markers. Everything is procedural low-poly.
+## Builds the static 3D world from a RailWorld: terrain, track, overhead
+## electrification, scenery, stations, signals and switch markers.
+## Semi-realistic look: CC0 Poly Haven PBR textures + procedural geometry
+## (sources in docs/assets.md).
 
 const RAIL_TOP := 0.5
 const GAUGE_HALF := 0.84          # broad gauge (1676 mm)
 const SIGNAL_SIDE := 2.8          # signals stand left of the track (India runs on the left)
+const OHE_SPACING := 55.0
+const OHE_OFFSET := 3.3           # mast distance from track centre
+const CONTACT_HEIGHT := 5.6       # contact wire height above rail
+const PH := "res://assets/polyhaven/%s/%s_%s_2k.jpg"
+const PALM := "res://assets/models/palm_quaternius.glb"
+const HDRI := "res://assets/polyhaven/hdri/kloofendal_43d_clear_puresky_2k.hdr"
 
 var world: RailWorld
 var root: Node3D
@@ -13,6 +21,8 @@ var switch_markers := {}          # node id -> {label: Label3D, lamp: MeshInstan
 var labels: Array = []            # Label3D nodes to hide in cab view
 var _track_samples := PackedVector3Array()
 var _mats := {}
+var _noise_tex: NoiseTexture2D
+var _terrain_noise := FastNoiseLite.new()
 
 
 func build(w: RailWorld, parent: Node3D) -> void:
@@ -20,10 +30,23 @@ func build(w: RailWorld, parent: Node3D) -> void:
 	root = Node3D.new()
 	root.name = "World"
 	parent.add_child(root)
+	_noise_tex = NoiseTexture2D.new()
+	_noise_tex.width = 512
+	_noise_tex.height = 512
+	_noise_tex.seamless = true
+	var fnl := FastNoiseLite.new()
+	fnl.frequency = 0.012
+	fnl.fractal_octaves = 4
+	_noise_tex.noise = fnl
+	_terrain_noise.seed = 7
+	_terrain_noise.frequency = 0.0018
+	_terrain_noise.fractal_octaves = 5
+
 	_build_environment()
 	for eid in world.graph.edges:
 		_build_track(eid)
-	_build_ground()
+	_build_terrain()
+	_build_ohe()
 	_build_stations()
 	_build_scenery()
 	for sid in world.signals:
@@ -40,21 +63,61 @@ func mat(color: Color, emissive: bool = false) -> StandardMaterial3D:
 		return _mats[key]
 	var m := StandardMaterial3D.new()
 	m.albedo_color = color
-	m.roughness = 0.9
+	m.roughness = 0.85
 	if emissive:
 		m.emission_enabled = true
 		m.emission = color
-		m.emission_energy_multiplier = 3.0
+		m.emission_energy_multiplier = 4.0
 	_mats[key] = m
 	return m
 
 
+func ph_tex(asset: String, map: String) -> Texture2D:
+	return load(PH % [asset, asset, map])
+
+
+## Triplanar world-space PBR material from a Poly Haven texture set.
+## `metres` is the size of one texture repeat.
+func pbr(asset: String, metres: float, tint: Color = Color.WHITE) -> StandardMaterial3D:
+	var key := "pbr|%s|%s|%s" % [asset, metres, tint.to_html()]
+	if _mats.has(key):
+		return _mats[key]
+	var m := StandardMaterial3D.new()
+	m.albedo_texture = ph_tex(asset, "diff")
+	m.albedo_color = tint
+	m.normal_enabled = true
+	m.normal_texture = ph_tex(asset, "nor_gl")
+	m.roughness_texture = ph_tex(asset, "rough")
+	m.roughness_texture_channel = BaseMaterial3D.TEXTURE_CHANNEL_RED
+	m.uv1_triplanar = true
+	m.uv1_world_triplanar = true
+	m.uv1_scale = Vector3.ONE / metres
+	m.uv1_triplanar_sharpness = 4.0
+	m.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	_mats[key] = m
+	return m
+
+
+func steel() -> StandardMaterial3D:
+	if not _mats.has("steel"):
+		var m := StandardMaterial3D.new()
+		m.albedo_color = Color(0.42, 0.38, 0.34)
+		m.metallic = 0.85
+		m.roughness = 0.42
+		_mats["steel"] = m
+	return _mats["steel"]
+
+
 func box(size: Vector3, pos: Vector3, color: Color, parent: Node3D = null) -> MeshInstance3D:
+	return box_m(size, pos, mat(color), parent)
+
+
+func box_m(size: Vector3, pos: Vector3, material: Material, parent: Node3D = null) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
 	var bm := BoxMesh.new()
 	bm.size = size
 	mi.mesh = bm
-	mi.material_override = mat(color)
+	mi.material_override = material
 	mi.position = pos
 	(parent if parent else root).add_child(mi)
 	return mi
@@ -63,38 +126,57 @@ func box(size: Vector3, pos: Vector3, color: Color, parent: Node3D = null) -> Me
 # --- environment -------------------------------------------------------------
 
 func _build_environment() -> void:
-	var sky_mat := ProceduralSkyMaterial.new()
-	sky_mat.sky_top_color = Color(0.32, 0.55, 0.85)
-	sky_mat.sky_horizon_color = Color(0.78, 0.84, 0.88)
-	sky_mat.ground_horizon_color = Color(0.6, 0.62, 0.55)
+	var sky_mat := PanoramaSkyMaterial.new()
+	sky_mat.panorama = load(HDRI)
+	sky_mat.energy_multiplier = 1.0
 	var sky := Sky.new()
 	sky.sky_material = sky_mat
+	sky.radiance_size = Sky.RADIANCE_SIZE_256
 	var env := Environment.new()
 	env.background_mode = Environment.BG_SKY
 	env.sky = sky
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
-	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
+	env.ambient_light_energy = 0.9
+	env.reflected_light_source = Environment.REFLECTION_SOURCE_SKY
+	env.tonemap_mode = Environment.TONE_MAPPER_AGX
+	env.tonemap_exposure = 1.0
+	env.ssao_enabled = true
+	env.ssao_radius = 1.5
+	env.ssao_intensity = 1.6
+	env.ssil_enabled = true
+	env.glow_enabled = true
+	env.glow_intensity = 0.4
+	env.glow_bloom = 0.05
+	env.glow_hdr_threshold = 1.2
 	env.fog_enabled = true
-	env.fog_light_color = Color(0.8, 0.84, 0.86)
-	env.fog_density = 0.0006
-	env.fog_aerial_perspective = 0.5
+	env.fog_mode = Environment.FOG_MODE_EXPONENTIAL
+	env.fog_light_color = Color(0.74, 0.82, 0.9)
+	env.fog_density = 0.00035
+	env.fog_sky_affect = 0.15
+	env.fog_aerial_perspective = 0.6
+	env.adjustment_enabled = true
+	env.adjustment_saturation = 1.08
+	env.adjustment_contrast = 1.04
 	var we := WorldEnvironment.new()
 	we.environment = env
 	root.add_child(we)
 
 	var sun := DirectionalLight3D.new()
-	sun.light_color = Color(1.0, 0.95, 0.85)
-	sun.light_energy = 1.3
+	sun.light_color = Color(1.0, 0.94, 0.84)
+	sun.light_energy = 1.6
+	sun.light_angular_distance = 0.6          # soft shadow edges
 	sun.shadow_enabled = true
-	sun.directional_shadow_max_distance = 400.0
-	sun.rotation_degrees = Vector3(-50, -30, 0)
+	sun.shadow_blur = 1.2
+	sun.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS
+	sun.directional_shadow_max_distance = 700.0
+	sun.directional_shadow_blend_splits = true
+	sun.rotation_degrees = Vector3(-48, -35, 0)
 	root.add_child(sun)
 
 
 # --- track -------------------------------------------------------------------
 
-## Samples an edge every `step` metres: [{pos, right}] where right is the unit
-## vector to the right of travel a->b.
+## Samples an edge every `step` metres: [{pos, right, fwd, s}].
 func _samples(eid: String, step: float) -> Array:
 	var g := world.graph
 	var e: Dictionary = g.edges[eid]
@@ -103,7 +185,7 @@ func _samples(eid: String, step: float) -> Array:
 	for i in n + 1:
 		var s: float = e.length * i / n
 		var fwd := g.tangent(eid, s, 1)
-		out.append({pos = g.position(eid, s), right = fwd.cross(Vector3.UP).normalized(), fwd = fwd})
+		out.append({pos = g.position(eid, s), right = fwd.cross(Vector3.UP).normalized(), fwd = fwd, s = s})
 	return out
 
 
@@ -111,76 +193,167 @@ func _build_track(eid: String) -> void:
 	var pts := _samples(eid, 2.0)
 	for p in pts:
 		_track_samples.append(p.pos)
-	var lift := 0.002 * world.graph.edges.keys().find(eid)   # avoid z-fighting where tracks overlap
+	var lift := 0.003 * world.graph.edges.keys().find(eid)   # avoid z-fighting where tracks overlap
 
-	# Ballast: trapezoid cross-section.
-	var ballast := _extrude(pts, [Vector2(-2.3, 0.0), Vector2(-1.5, 0.3 + lift), Vector2(1.5, 0.3 + lift), Vector2(2.3, 0.0)])
-	_add_mesh(ballast, Color(0.52, 0.47, 0.42))
-	# Rails.
+	# Soil shoulder under and beside the ballast.
+	var shoulder := _extrude(pts, [Vector2(-4.2, 0.02 + lift), Vector2(4.2, 0.02 + lift)], true)
+	var sm := ShaderMaterial.new()
+	sm.shader = load("res://game/shaders/track_shoulder.gdshader")
+	sm.set_shader_parameter("soil_albedo", ph_tex("red_laterite_soil_stones", "diff"))
+	sm.set_shader_parameter("soil_normal", ph_tex("red_laterite_soil_stones", "nor_gl"))
+	sm.set_shader_parameter("gravel_albedo", ph_tex("gravel_floor_02", "diff"))
+	sm.set_shader_parameter("noise_tex", _noise_tex)
+	_add_mesh(shoulder, sm)
+
+	# Ballast: trapezoid cross-section, crushed grey granite.
+	var ballast := _extrude(pts, [Vector2(-2.4, 0.0), Vector2(-1.55, 0.3 + lift), Vector2(1.55, 0.3 + lift), Vector2(2.4, 0.0)])
+	_add_mesh(ballast, pbr("gravel_floor_02", 1.6, Color(0.82, 0.8, 0.78)))
+	# Rails: head, web and foot approximated by a narrow top and wider foot.
 	for side in [-GAUGE_HALF, GAUGE_HALF]:
-		var r := _extrude(pts, [Vector2(side - 0.04, 0.36), Vector2(side - 0.04, RAIL_TOP), Vector2(side + 0.04, RAIL_TOP), Vector2(side + 0.04, 0.36)])
-		_add_mesh(r, Color(0.45, 0.42, 0.4))
+		var r := _extrude(pts, [Vector2(side - 0.07, 0.34), Vector2(side - 0.02, 0.37), Vector2(side - 0.02, 0.45),
+			Vector2(side - 0.036, 0.46), Vector2(side - 0.036, RAIL_TOP), Vector2(side + 0.036, RAIL_TOP),
+			Vector2(side + 0.036, 0.46), Vector2(side + 0.02, 0.45), Vector2(side + 0.02, 0.37), Vector2(side + 0.07, 0.34)])
+		_add_mesh(r, steel())
 
-	# Sleepers (concrete).
+	# Concrete sleepers.
 	var sleeper := BoxMesh.new()
-	sleeper.size = Vector3(2.75, 0.14, 0.26)
-	var mm := MultiMesh.new()
-	mm.transform_format = MultiMesh.TRANSFORM_3D
-	mm.mesh = sleeper
+	sleeper.size = Vector3(2.75, 0.16, 0.26)
 	var e: Dictionary = world.graph.edges[eid]
-	var count := int(e.length / 0.8)
-	mm.instance_count = count
+	var xforms := []
+	var count := int(e.length / 0.65)
 	for i in count:
-		var s := (i + 0.5) * 0.8
-		var p := world.graph.position(eid, s)
-		var fwd := world.graph.tangent(eid, s, 1)
-		var basis := Basis.looking_at(fwd, Vector3.UP)   # local X runs across the track
-		mm.set_instance_transform(i, Transform3D(basis, p + Vector3(0, 0.32, 0)))
-	var mmi := MultiMeshInstance3D.new()
-	mmi.multimesh = mm
-	mmi.material_override = mat(Color(0.68, 0.66, 0.62))
-	root.add_child(mmi)
+		var s := (i + 0.5) * 0.65
+		var basis := Basis.looking_at(world.graph.tangent(eid, s, 1), Vector3.UP)
+		xforms.append(Transform3D(basis, world.graph.position(eid, s) + Vector3(0, 0.30 + lift, 0)))
+	_multimesh(sleeper, xforms, pbr("brushed_concrete", 1.2, Color(0.85, 0.83, 0.8)))
 
 
 ## Sweeps a 2D profile (x = right offset, y = height) along sample points.
-## Returns a flat-shaded ArrayMesh.
-func _extrude(pts: Array, profile: Array) -> ArrayMesh:
+## With `uvs`, UV.x runs 0..1 across the profile and UV.y is distance in metres.
+func _extrude(pts: Array, profile: Array, uvs: bool = false) -> ArrayMesh:
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var last := float(profile.size() - 1)
 	for i in pts.size() - 1:
 		var a: Dictionary = pts[i]
 		var b: Dictionary = pts[i + 1]
 		for j in profile.size() - 1:
 			var p0: Vector2 = profile[j]
 			var p1: Vector2 = profile[j + 1]
-			var a0: Vector3 = a.pos + a.right * p0.x + Vector3.UP * p0.y
-			var a1: Vector3 = a.pos + a.right * p1.x + Vector3.UP * p1.y
-			var b0: Vector3 = b.pos + b.right * p0.x + Vector3.UP * p0.y
-			var b1: Vector3 = b.pos + b.right * p1.x + Vector3.UP * p1.y
-			for v in [a0, b0, a1, a1, b0, b1]:
-				st.add_vertex(v)
+			var quad := [
+				[a.pos + a.right * p0.x + Vector3.UP * p0.y, Vector2(j / last, a.s)],
+				[b.pos + b.right * p0.x + Vector3.UP * p0.y, Vector2(j / last, b.s)],
+				[a.pos + a.right * p1.x + Vector3.UP * p1.y, Vector2((j + 1) / last, a.s)],
+				[b.pos + b.right * p1.x + Vector3.UP * p1.y, Vector2((j + 1) / last, b.s)],
+			]
+			for k in [0, 1, 2, 2, 1, 3]:
+				if uvs:
+					st.set_uv(quad[k][1])
+				st.add_vertex(quad[k][0])
 	st.generate_normals()
+	if not uvs:
+		return st.commit()
+	st.generate_tangents()
 	return st.commit()
 
 
-func _add_mesh(mesh: Mesh, color: Color) -> MeshInstance3D:
+func _add_mesh(mesh: Mesh, material: Material) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
 	mi.mesh = mesh
-	mi.material_override = mat(color)
+	mi.material_override = material
 	root.add_child(mi)
 	return mi
 
 
-# --- ground and scenery ------------------------------------------------------
+# --- overhead electrification (25 kV AC OHE) ---------------------------------
 
-func _build_ground() -> void:
-	var ground := MeshInstance3D.new()
-	var pm := PlaneMesh.new()
-	pm.size = Vector2(7000, 2400)
-	ground.mesh = pm
-	ground.material_override = mat(Color(0.36, 0.52, 0.24))
-	ground.position = Vector3(1860, -0.02, 0)
-	root.add_child(ground)
+func _build_ohe() -> void:
+	var masts := []
+	var arms := []
+	var mast_mat := pbr("brushed_concrete", 2.0, Color(0.75, 0.74, 0.72))
+	for eid in world.graph.edges:
+		var e: Dictionary = world.graph.edges[eid]
+		var pts := _samples(eid, 4.0)
+		# Contact wire and catenary (messenger) wire along the whole edge.
+		var h := RAIL_TOP + CONTACT_HEIGHT
+		_add_mesh(_extrude(pts, [Vector2(-0.012, h), Vector2(0.012, h), Vector2(0.012, h + 0.025), Vector2(-0.012, h + 0.025), Vector2(-0.012, h)]), mat(Color(0.35, 0.28, 0.2)))
+		_add_mesh(_extrude(pts, [Vector2(-0.01, h + 1.2), Vector2(0.01, h + 1.2), Vector2(0.01, h + 1.22), Vector2(-0.01, h + 1.22), Vector2(-0.01, h + 1.2)]), mat(Color(0.3, 0.3, 0.3)))
+		var n := int(e.length / OHE_SPACING)
+		for i in n + 1:
+			var s := minf(e.length - 6.0, 6.0 + i * OHE_SPACING)
+			if s < 0.0:
+				continue
+			var fwd := world.graph.tangent(eid, s, 1)
+			var right := fwd.cross(Vector3.UP).normalized()
+			var base := world.graph.position(eid, s) + right * OHE_OFFSET
+			if not _mast_site_ok(base):
+				continue
+			var basis := Basis.looking_at(fwd, Vector3.UP)
+			masts.append(Transform3D(basis, base + Vector3(0, 4.3, 0)))
+			# Cantilever arm reaching back over the track.
+			arms.append(Transform3D(basis, base - right * (OHE_OFFSET * 0.5) + Vector3(0, h + 0.6, 0)))
+	var mast := BoxMesh.new()
+	mast.size = Vector3(0.35, 8.6, 0.35)
+	_multimesh(mast, masts, mast_mat)
+	var arm := BoxMesh.new()
+	arm.size = Vector3(OHE_OFFSET + 0.4, 0.09, 0.09)
+	_multimesh(arm, arms, steel())
+
+
+## Keep masts off platforms and clear of other tracks.
+func _mast_site_ok(p: Vector3) -> bool:
+	for st in world.stations:
+		for r: Rect2 in st.platforms:
+			if r.grow(2.0).has_point(Vector2(p.x, p.z)):
+				return false
+	for i in range(0, _track_samples.size(), 2):
+		if Vector2(p.x - _track_samples[i].x, p.z - _track_samples[i].z).length_squared() < 2.9 * 2.9:
+			return false
+	return true
+
+
+# --- terrain -----------------------------------------------------------------
+
+## Flat around the railway, rising into hills (Western Ghats vibe) further out.
+func terrain_height(x: float, z: float) -> float:
+	var hill := smoothstep(420.0, 1100.0, absf(z))
+	var n := _terrain_noise.get_noise_2d(x, z) * 0.5 + 0.5
+	return hill * (20.0 + n * 190.0) - 0.03
+
+
+func _build_terrain() -> void:
+	var x0 := -1600.0
+	var x1 := 5400.0
+	var z0 := -1700.0
+	var z1 := 1700.0
+	var step := 25.0
+	var nx := int((x1 - x0) / step)
+	var nz := int((z1 - z0) / step)
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for j in nz + 1:
+		for i in nx + 1:
+			var x := x0 + i * step
+			var z := z0 + j * step
+			st.add_vertex(Vector3(x, terrain_height(x, z), z))
+	for j in nz:
+		for i in nx:
+			var a := j * (nx + 1) + i
+			var b := a + 1
+			var c := a + nx + 1
+			var d := c + 1
+			for idx in [a, b, c, c, b, d]:
+				st.add_index(idx)
+	st.generate_normals()
+	var sm := ShaderMaterial.new()
+	sm.shader = load("res://game/shaders/ground.gdshader")
+	sm.set_shader_parameter("grass_albedo", ph_tex("leafy_grass", "diff"))
+	sm.set_shader_parameter("grass_normal", ph_tex("leafy_grass", "nor_gl"))
+	sm.set_shader_parameter("grass_rough", ph_tex("leafy_grass", "rough"))
+	sm.set_shader_parameter("soil_albedo", ph_tex("red_laterite_soil_stones", "diff"))
+	sm.set_shader_parameter("soil_normal", ph_tex("red_laterite_soil_stones", "nor_gl"))
+	sm.set_shader_parameter("noise_tex", _noise_tex)
+	_add_mesh(st.commit(), sm)
 
 
 func _far_from_track(p: Vector3, clearance: float) -> bool:
@@ -189,7 +362,7 @@ func _far_from_track(p: Vector3, clearance: float) -> bool:
 		if Vector2(p.x - _track_samples[i].x, p.z - _track_samples[i].z).length_squared() < c2:
 			return false
 	for st in world.stations:
-		if p.distance_to(st.building) < 30.0:
+		if p.distance_to(st.building) < 32.0:
 			return false
 	return true
 
@@ -198,84 +371,83 @@ func _build_scenery() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 20260927
 
-	# Paddy fields: flat bright-green and water-tinted patches.
-	for i in 140:
-		var p := Vector3(rng.randf_range(-400, 4100), 0, rng.randf_range(-600, 600))
+	# Paddy fields: flooded / green rice plots with low earth bunds.
+	var paddy_green := pbr("leafy_grass", 3.0, Color(0.55, 1.0, 0.28))
+	var paddy_water := mat(Color(0.25, 0.33, 0.28))
+	paddy_water.metallic = 0.2
+	paddy_water.roughness = 0.08
+	var bund := pbr("red_laterite_soil_stones", 3.0)
+	for i in 150:
+		var p := Vector3(rng.randf_range(-400, 4100), 0, rng.randf_range(-420, 420))
 		if not _far_from_track(p, 40.0):
 			continue
-		var c := Color(0.55, 0.72, 0.3) if rng.randf() < 0.7 else Color(0.42, 0.55, 0.45)
-		var f := box(Vector3(rng.randf_range(40, 90), 0.05, rng.randf_range(30, 70)), p, c)
-		f.rotation.y = rng.randf_range(-0.2, 0.2)
+		var size := Vector3(rng.randf_range(40, 90), 0.06, rng.randf_range(30, 70))
+		var field := Node3D.new()
+		field.position = p
+		field.rotation.y = rng.randf_range(-0.2, 0.2)
+		root.add_child(field)
+		box_m(size, Vector3.ZERO, paddy_green if rng.randf() < 0.65 else paddy_water, field)
+		for side in [-1, 1]:
+			box_m(Vector3(size.x, 0.35, 0.8), Vector3(0, 0.1, side * size.z * 0.5), bund, field)
+			box_m(Vector3(0.8, 0.35, size.z), Vector3(side * size.x * 0.5, 0.1, 0), bund, field)
 
-	# Coconut palms (trunks + fronds in two MultiMeshes).
-	var trunks: Array = []
-	var fronds: Array = []
+	# Coconut palms (CC0 Quaternius model) in clumps, plenty near villages.
+	var palm_scene: PackedScene = load(PALM)
+	var palm_mesh: Mesh = null
+	var palm_scale := 1.0
+	var inst := palm_scene.instantiate()
+	for n in inst.find_children("*", "MeshInstance3D", true, false):
+		palm_mesh = n.mesh
+		palm_scale = (n as Node3D).transform.basis.get_scale().x
+		break
+	inst.free()
+	var palms := []
 	var placed := 0
-	while placed < 700:
-		var p := Vector3(rng.randf_range(-400, 4100), 0, rng.randf_range(-700, 700))
-		if not _far_from_track(p, 14.0):
-			continue
-		placed += 1
-		var h := rng.randf_range(7.0, 12.0)
-		var tb := Basis.from_euler(Vector3(rng.randf_range(-0.12, 0.12), 0, rng.randf_range(-0.12, 0.12)))
-		var up := tb.y
-		trunks.append(Transform3D(tb * Basis.from_scale(Vector3(1, h / 8.0, 1)), p + up * h * 0.5))
-		var top := p + up * h
-		var spin := rng.randf() * TAU
-		for k in 7:
-			var yaw := spin + k * TAU / 7.0
-			# Frond points outward along local -Z and droops downward.
-			var fb := Basis(Vector3.UP, yaw) * Basis(Vector3.RIGHT, -deg_to_rad(rng.randf_range(20, 40)))
-			fronds.append(Transform3D(fb, top + fb * Vector3(0, 0, -2.0)))
-	var trunk_mesh := CylinderMesh.new()
-	trunk_mesh.top_radius = 0.15
-	trunk_mesh.bottom_radius = 0.25
-	trunk_mesh.height = 8.0
-	trunk_mesh.radial_segments = 6
-	trunk_mesh.rings = 1
-	_multimesh(trunk_mesh, trunks, Color(0.45, 0.36, 0.26))
-	var frond_mesh := BoxMesh.new()
-	frond_mesh.size = Vector3(0.9, 0.08, 4.2)
-	_multimesh(frond_mesh, fronds, Color(0.22, 0.45, 0.16))
+	while placed < 1400:
+		var centre := Vector3(rng.randf_range(-400, 4100), 0, rng.randf_range(-650, 650))
+		var clump := rng.randi_range(3, 12)
+		for k in clump:
+			var p := centre + Vector3(rng.randf_range(-35, 35), 0, rng.randf_range(-35, 35))
+			if not _far_from_track(p, 12.0):
+				continue
+			p.y = terrain_height(p.x, p.z)
+			var s := palm_scale * rng.randf_range(2.9, 4.4)
+			var b := Basis(Vector3.UP, rng.randf() * TAU) * Basis.from_euler(Vector3(rng.randf_range(-0.08, 0.08), 0, rng.randf_range(-0.08, 0.08)))
+			palms.append(Transform3D(b.scaled(Vector3(s, s, s)), p))
+			placed += 1
+	if palm_mesh:
+		_multimesh(palm_mesh, palms, null)
 
-	# Round-crowned trees (mango / banyan-ish).
-	var crowns: Array = []
-	var tr2: Array = []
+	# Broadleaf trees (mango / banyan-ish): textured crowns.
+	var crowns := []
+	var trunks := []
 	placed = 0
-	while placed < 260:
+	while placed < 320:
 		var p := Vector3(rng.randf_range(-400, 4100), 0, rng.randf_range(-700, 700))
 		if not _far_from_track(p, 16.0):
 			continue
 		placed += 1
-		var r := rng.randf_range(2.5, 5.0)
-		tr2.append(Transform3D(Basis().scaled(Vector3(1.4, r / 6.0, 1.4)), p + Vector3(0, r * 0.5, 0)))
-		crowns.append(Transform3D(Basis().scaled(Vector3(r, r * 0.8, r)), p + Vector3(0, r * 1.5, 0)))
+		p.y = terrain_height(p.x, p.z)
+		var r := rng.randf_range(3.0, 6.0)
+		trunks.append(Transform3D(Basis().scaled(Vector3(1.6, r / 5.0, 1.6)), p + Vector3(0, r * 0.5, 0)))
+		for k in 3:
+			var off := Vector3(rng.randf_range(-r, r) * 0.45, rng.randf_range(0, r * 0.3), rng.randf_range(-r, r) * 0.45)
+			crowns.append(Transform3D(Basis().scaled(Vector3(r, r * 0.75, r) * rng.randf_range(0.7, 1.0)), p + Vector3(0, r * 1.5, 0) + off))
 	var crown_mesh := SphereMesh.new()
-	crown_mesh.radial_segments = 7
-	crown_mesh.rings = 4
+	crown_mesh.radial_segments = 10
+	crown_mesh.rings = 6
 	crown_mesh.radius = 1.0
 	crown_mesh.height = 2.0
-	_multimesh(crown_mesh, crowns, Color(0.2, 0.38, 0.15))
-	_multimesh(trunk_mesh, tr2, Color(0.35, 0.27, 0.2))
-
-	# Distant hills (Western Ghats vibe).
-	for i in 18:
-		var x := -600.0 + i * 280.0 + rng.randf_range(-80, 80)
-		for side in [-1, 1]:
-			var hill := MeshInstance3D.new()
-			var cm := CylinderMesh.new()
-			cm.top_radius = rng.randf_range(20, 60)
-			cm.bottom_radius = rng.randf_range(250, 400)
-			cm.height = rng.randf_range(80, 180)
-			cm.radial_segments = 7
-			cm.rings = 1
-			hill.mesh = cm
-			hill.material_override = mat(Color(0.3, 0.42, 0.28) if side < 0 else Color(0.34, 0.44, 0.3))
-			hill.position = Vector3(x, cm.height * 0.5 - 5, side * rng.randf_range(1000, 1300))
-			root.add_child(hill)
+	_multimesh(crown_mesh, crowns, pbr("leafy_grass", 1.5, Color(0.45, 0.7, 0.3)))
+	var trunk_mesh := CylinderMesh.new()
+	trunk_mesh.top_radius = 0.18
+	trunk_mesh.bottom_radius = 0.3
+	trunk_mesh.height = 5.0
+	trunk_mesh.radial_segments = 7
+	_multimesh(trunk_mesh, trunks, mat(Color(0.32, 0.25, 0.19)))
 
 
-func _multimesh(mesh: Mesh, xforms: Array, color: Color) -> void:
+func _multimesh(mesh: Mesh, xforms: Array, material: Material) -> void:
 	var mm := MultiMesh.new()
 	mm.transform_format = MultiMesh.TRANSFORM_3D
 	mm.mesh = mesh
@@ -284,41 +456,87 @@ func _multimesh(mesh: Mesh, xforms: Array, color: Color) -> void:
 		mm.set_instance_transform(i, xforms[i])
 	var mmi := MultiMeshInstance3D.new()
 	mmi.multimesh = mm
-	mmi.material_override = mat(color)
+	if material:
+		mmi.material_override = material
 	root.add_child(mmi)
 
 
 # --- stations ----------------------------------------------------------------
 
 func _build_stations() -> void:
+	var concrete := pbr("brushed_concrete", 2.5, Color(0.9, 0.88, 0.84))
+	var wall := pbr("plastered_wall", 3.0, Color(1.0, 0.9, 0.68))      # cream / ochre station walls
+	var roof := pbr("roof_tiles", 1.6, Color(1.0, 0.85, 0.75))          # Mangalore tiles
+	var steel_blue := mat(Color(0.28, 0.36, 0.5))
 	for st in world.stations:
 		for r: Rect2 in st.platforms:
 			var c := Vector3(r.position.x + r.size.x * 0.5, 0.45, r.position.y + r.size.y * 0.5)
-			box(Vector3(r.size.x, 0.9, r.size.y), c, Color(0.72, 0.7, 0.66))
-			# Yellow safety line along both edges.
-			for dz in [-r.size.y * 0.5 + 0.35, r.size.y * 0.5 - 0.35]:
-				box(Vector3(r.size.x, 0.02, 0.15), c + Vector3(0, 0.46, dz), Color(0.95, 0.8, 0.1))
-			# Shelter: posts + roof over the middle third.
-			var roof_len := r.size.x * 0.4
-			box(Vector3(roof_len, 0.25, r.size.y - 1.2), c + Vector3(0, 4.1, 0), Color(0.6, 0.25, 0.18))
-			for k in 6:
-				var x := -roof_len * 0.5 + 2.0 + k * (roof_len - 4.0) / 5.0
-				box(Vector3(0.2, 3.3, 0.2), c + Vector3(x, 2.1, 0), Color(0.35, 0.4, 0.5))
+			box_m(Vector3(r.size.x, 0.9, r.size.y), c, concrete)
+			# Coping stones and yellow safety line along both edges.
+			for side in [-1, 1]:
+				var dz: float = side * (r.size.y * 0.5 - 0.25)
+				box_m(Vector3(r.size.x, 0.06, 0.5), c + Vector3(0, 0.47, dz), pbr("brushed_concrete", 1.0, Color(1.0, 1.0, 0.97)))
+				box(Vector3(r.size.x, 0.02, 0.12), c + Vector3(0, 0.51, dz - side * 0.4), Color(0.95, 0.78, 0.1))
+			# Shelter: steel columns + tiled pitched roof over the middle.
+			var roof_len := r.size.x * 0.45
+			_gable(Vector3(roof_len, 0.9, r.size.y - 0.6), c + Vector3(0, 4.0, 0), roof)
+			for k in 7:
+				var x := -roof_len * 0.5 + 2.0 + k * (roof_len - 4.0) / 6.0
+				box_m(Vector3(0.22, 3.2, 0.22), c + Vector3(x, 2.05, 0), steel_blue)
+			# Benches.
+			for k in 4:
+				var x := -roof_len * 0.4 + k * roof_len * 0.27
+				box_m(Vector3(1.8, 0.45, 0.5), c + Vector3(x, 0.72, 0.9), mat(Color(0.45, 0.3, 0.2)))
 			# Name boards at both ends: yellow with black lettering.
 			for dx in [-r.size.x * 0.5 + 12.0, r.size.x * 0.5 - 12.0]:
 				_name_board(st.name, c + Vector3(dx, 0.45, 0))
-		# Station building: cream walls, terracotta roof.
+		# Station building: plastered walls, Mangalore-tile roof, veranda.
 		var b: Vector3 = st.building
-		box(Vector3(24, 5, 9), b + Vector3(0, 2.5, 0), Color(0.93, 0.88, 0.74))
-		box(Vector3(26, 0.5, 11), b + Vector3(0, 5.25, 0), Color(0.7, 0.3, 0.2))
-		box(Vector3(3, 3.2, 0.2), b + Vector3(0, 1.6, 4.55 * signf(-b.z)), Color(0.45, 0.3, 0.2))
-		_name_board(st.name, b + Vector3(0, 6.5, 0))
+		var front := signf(-b.z) if b.z != 0.0 else 1.0
+		box_m(Vector3(24, 4.8, 9), b + Vector3(0, 2.4, 0), wall)
+		box_m(Vector3(24.4, 0.5, 9.4), b + Vector3(0, 0.25, 0), concrete)
+		_gable(Vector3(27, 2.4, 13.5), b + Vector3(0, 4.8, front * 1.2), roof)
+		for k in 6:
+			box_m(Vector3(0.3, 4.4, 0.3), b + Vector3(-11 + k * 4.4, 2.4, front * 6.9), wall)
+		for k in 5:
+			box(Vector3(1.4, 2.4, 0.1), b + Vector3(-9 + k * 4.5, 1.7, front * 4.55), Color(0.28, 0.2, 0.14))
+		_name_board(st.name, b + Vector3(0, 7.2, front * 3.0))
+
+
+## A gable roof (triangular prism) with its ridge along X. `size.y` is the rise.
+func _gable(size: Vector3, pos: Vector3, material: Material) -> void:
+	var hx := size.x * 0.5
+	var hz := size.z * 0.5
+	var ridge := size.y
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var tris := [
+		# two roof slopes
+		[Vector3(-hx, 0, hz), Vector3(hx, 0, hz), Vector3(-hx, ridge, 0)],
+		[Vector3(hx, 0, hz), Vector3(hx, ridge, 0), Vector3(-hx, ridge, 0)],
+		[Vector3(hx, 0, -hz), Vector3(-hx, 0, -hz), Vector3(hx, ridge, 0)],
+		[Vector3(-hx, 0, -hz), Vector3(-hx, ridge, 0), Vector3(hx, ridge, 0)],
+		# gable ends
+		[Vector3(-hx, 0, -hz), Vector3(-hx, 0, hz), Vector3(-hx, ridge, 0)],
+		[Vector3(hx, 0, hz), Vector3(hx, 0, -hz), Vector3(hx, ridge, 0)],
+		# underside
+		[Vector3(-hx, 0, -hz), Vector3(hx, 0, -hz), Vector3(-hx, 0, hz)],
+		[Vector3(hx, 0, -hz), Vector3(hx, 0, hz), Vector3(-hx, 0, hz)],
+	]
+	for t in tris:
+		for v in t:
+			st.add_vertex(v)
+	st.generate_normals()
+	var mi := _add_mesh(st.commit(), material)
+	mi.position = pos
 
 
 func _name_board(text: String, base: Vector3) -> void:
-	box(Vector3(0.12, 2.2, 0.12), base + Vector3(-2.2, 1.1, 0), Color(0.2, 0.2, 0.2))
-	box(Vector3(0.12, 2.2, 0.12), base + Vector3(2.2, 1.1, 0), Color(0.2, 0.2, 0.2))
-	box(Vector3(5.6, 1.2, 0.1), base + Vector3(0, 2.6, 0), Color(0.98, 0.82, 0.1))
+	var post := mat(Color(0.15, 0.15, 0.15))
+	box_m(Vector3(0.12, 2.2, 0.12), base + Vector3(-2.2, 1.1, 0), post)
+	box_m(Vector3(0.12, 2.2, 0.12), base + Vector3(2.2, 1.1, 0), post)
+	box(Vector3(5.6, 1.2, 0.1), base + Vector3(0, 2.6, 0), Color(0.98, 0.8, 0.08))
+	box(Vector3(5.8, 1.4, 0.06), base + Vector3(0, 2.6, 0), Color(0.08, 0.08, 0.08))
 	for side in [1, -1]:
 		var l := Label3D.new()
 		l.text = text.to_upper()
@@ -345,28 +563,32 @@ func _build_signal(sid: String) -> void:
 	node.basis = Basis.looking_at(-fwd, Vector3.UP)
 	root.add_child(node)
 
-	box(Vector3(0.18, 5.2, 0.18), Vector3(0, 2.6, 0), Color(0.55, 0.55, 0.55), node)
-	box(Vector3(0.55, 1.55, 0.35), Vector3(0, 5.5, 0), Color(0.08, 0.08, 0.08), node)
-	# Aspect plate: black and white bands (Indian signal post marking).
+	box_m(Vector3(0.6, 0.4, 0.6), Vector3(0, 0.2, 0), pbr("brushed_concrete", 1.0), node)
+	box_m(Vector3(0.16, 5.4, 0.16), Vector3(0, 2.9, 0), steel(), node)
+	box(Vector3(0.6, 1.65, 0.3), Vector3(0, 5.6, 0), Color(0.05, 0.05, 0.05), node)
+	box(Vector3(0.9, 1.95, 0.04), Vector3(0, 5.6, 0.12), Color(0.03, 0.03, 0.03), node)    # backplate
+	# Signal post marking: white plate with black band.
 	box(Vector3(0.5, 0.3, 0.05), Vector3(0, 3.8, -0.12), Color(0.95, 0.95, 0.95), node)
+	box(Vector3(0.5, 0.08, 0.06), Vector3(0, 3.8, -0.12), Color(0.05, 0.05, 0.05), node)
 	var lamps := []
 	for k in 3:  # top to bottom: green, yellow, red
+		box(Vector3(0.4, 0.06, 0.25), Vector3(0, 6.24 - k * 0.5, -0.25), Color(0.05, 0.05, 0.05), node)   # hood
 		var lamp := MeshInstance3D.new()
 		var sm := SphereMesh.new()
 		sm.radius = 0.15
 		sm.height = 0.3
-		sm.radial_segments = 8
-		sm.rings = 4
+		sm.radial_segments = 12
+		sm.rings = 6
 		lamp.mesh = sm
-		lamp.position = Vector3(0, 6.0 - k * 0.48, -0.2)
+		lamp.position = Vector3(0, 6.1 - k * 0.5, -0.12)
 		node.add_child(lamp)
 		lamps.append(lamp)
 	signal_lamps[sid] = lamps
 
 	var label := Label3D.new()
 	label.text = sid
+	label.position = Vector3(0, 7.6, 0)
 	_style_marker_label(label)
-	label.position = Vector3(0, 7.4, 0)
 	node.add_child(label)
 	labels.append(label)
 
@@ -385,19 +607,19 @@ func _build_switch(nid: String) -> void:
 	var node := Node3D.new()
 	node.position = pos
 	root.add_child(node)
-	box(Vector3(1.0, 0.6, 0.6), Vector3(0, 0.3, 0), Color(0.3, 0.3, 0.32), node)
+	box_m(Vector3(1.0, 0.6, 0.6), Vector3(0, 0.3, 0), steel(), node)   # point machine
 	var lamp := MeshInstance3D.new()
 	var cm := CylinderMesh.new()
 	cm.top_radius = 0.45
 	cm.bottom_radius = 0.45
 	cm.height = 0.12
-	cm.radial_segments = 10
+	cm.radial_segments = 16
 	lamp.mesh = cm
 	lamp.position = Vector3(0, 0.66, 0)
 	node.add_child(lamp)
 	var label := Label3D.new()
-	_style_marker_label(label)
 	label.position = Vector3(0, 3.0, 0)
+	_style_marker_label(label)
 	node.add_child(label)
 	labels.append(label)
 	switch_markers[nid] = {label = label, lamp = lamp}
@@ -429,8 +651,8 @@ func _clickable(node: Node3D, size: Vector3, offset: Vector3, info: Dictionary) 
 # --- per-frame updates -------------------------------------------------------
 
 func update() -> void:
-	var dark := Color(0.12, 0.12, 0.12)
-	var colors := [Color(0.1, 1.0, 0.3), Color(1.0, 0.75, 0.05), Color(1.0, 0.08, 0.05)]
+	var dark := Color(0.1, 0.1, 0.1)
+	var colors := [Color(0.1, 1.0, 0.35), Color(1.0, 0.72, 0.05), Color(1.0, 0.08, 0.05)]
 	for sid in signal_lamps:
 		var a := world.aspect(sid)
 		var lit := 0 if a == RailWorld.Aspect.GREEN else (1 if a == RailWorld.Aspect.YELLOW else 2)
