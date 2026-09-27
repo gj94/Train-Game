@@ -47,6 +47,17 @@ Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
 - The game runs *embedded* in the editor window ("Train Game (DEBUG)"). Its MCPRuntime screenshot helper doesn't
   connect, so capture the window with Win32 instead, and click inside the game view before sending keys (otherwise
   they go to the embed toolbar).
+- Parse-check scripts with `& $g --headless --path . --check-only --script res://<file>.gd` — the MCP
+  `validate_scripts` tool misses errors (e.g. `var x := untyped.call()` "cannot infer type"). Values from untyped
+  vars (like `_wv` in train_view.gd) need an explicit type: `var m: Material = _wv.mat(...)`.
+- To drive/screenshot the game without touching the user's editor, launch it standalone:
+  `Start-Process <..._win64.exe> -ArgumentList '--path','"E:\ClaudeWS\train-game"'` (window "Train Game (DEBUG)").
+- Don't run headless Godot while the editor is importing (colliding imports get cancelled).
+- Blender models are built by scripts in `tools/blender/`, run in a *background* Blender
+  (`blender.exe --background --factory-startup --python tools/blender/build_memu.py`), never inside the
+  user's open Blender (deleting/rebuilding objects there crashed it once). Materials need
+  `use_backface_culling = True` or glTF exports them double-sided.
+- Downloads from Poly Haven: use curl (Python urllib gets 403); beware `\r` from Windows `py` output in shell loops.
 - Set project settings via the Godot MCP (`set_main_scene`, `update_project_settings`) while the editor is open —
   it overwrites text edits to `project.godot`.
 - After each playable build, list exactly what the user should test. The user is the playtester.

@@ -1,5 +1,19 @@
 # Progress
 
+## 2026-09-27 — Graphics upgrade (semi-realistic)
+- CC0 Poly Haven PBR textures + clear-sky HDRI, Quaternius palm (see `docs/assets.md`).
+- Lighting: HDRI ambient, AgX, SSAO, SSIL, glow, aerial fog, 4-split soft shadows, 8K shadow map, FXAA + MSAA.
+- World: terrain mesh with hills; grass/laterite ground shader; soil shoulders; textured ballast, steel rails,
+  concrete sleepers; 25 kV OHE masts + wires; Mangalore-tile roofs; paddy fields with bunds; palm clumps.
+- Train: new MEMU model from `tools/blender/build_memu.py` (background Blender → `assets/models/memu.glb`):
+  cab/trailer/motor cars, livery, windows, doors, bogies, pantographs, head/tail lamps; simple cab interior.
+
+### Playtest (graphics)
+1. Overview and cab: does it look "modern" enough? Anything that looks wrong or cheap?
+2. Cab view: is the windscreen framing / eye height comfortable? (right-drag to look around)
+3. Frame rate — is it smooth on your machine? (RTX 4090 laptop; if not, SSIL/shadows are the first to cut)
+4. Ideas still open: grass tufts near the track, station details (people, lights, signage), textured train livery.
+
 ## 2026-09-27 — Phase 1 first playable
 **Sim (`sim/`, 26 headless tests):**
 - `TrackGraph`: nodes / polyline edges / 3-way switches; facing + trailing moves; "trailing against" detection.

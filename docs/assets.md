@@ -12,3 +12,4 @@ Every third-party asset must be listed here before it is committed. CC0 preferre
 | Roof Tiles (2K) — Mangalore-style roofs | `assets/polyhaven/roof_tiles/` | https://polyhaven.com/a/roof_tiles | Poly Haven | CC0 | 2026-09-27 |
 | Kloofendal 43d Clear (Pure Sky) HDRI 2K — sky + ambient light | `assets/polyhaven/hdri/` | https://polyhaven.com/a/kloofendal_43d_clear_puresky | Poly Haven | CC0 | 2026-09-27 |
 | Palm Tree (glb + atlas texture) | `assets/models/palm_quaternius*` | https://poly.pizza/m/P0tgwyXBgr | Quaternius | CC0 1.0 | 2026-09-27 |
+| MEMU cars (CabCar / TrailerCar / MotorCar) | `assets/models/memu.glb` | built by `tools/blender/build_memu.py` | this project (Claude) | own work | 2026-09-27 |
