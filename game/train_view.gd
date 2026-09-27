@@ -1,5 +1,5 @@
 extends RefCounted
-## 8-car Indian Railways MEMU (model: assets/models/memu.glb, built by
+## Indian Railways MEMU (car count from the train length) (model: assets/models/memu.glb, built by
 ## tools/blender/build_memu.py) following a sim Train along the track.
 ## Car 0 is always the car at the train's head; both end cars are cab cars, so
 ## changing ends just re-assigns which physical end is "car 0".
@@ -37,7 +37,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
 			kind = "MotorCar"
 		var body: Node3D = template.get_node(kind).duplicate()
 		body.position = Vector3(0, RAIL_TOP, 0)
-		if i == n - 1:
+		if i == n - 1 and n > 1:
 			body.rotation.y = PI     # rear cab car faces backwards
 		car.add_child(body)
 		if kind == "CabCar":

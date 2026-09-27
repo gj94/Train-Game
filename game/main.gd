@@ -36,7 +36,7 @@ func _ready() -> void:
 	cam.make_current()
 	audio = TrainAudio.new()
 	add_child(audio)
-	# Axles of the 8-car MEMU as modelled by TrainView (21.3 m bodies, 0.6 m gaps, bogies 3 m in).
+	# Axles of the MEMU as modelled by TrainView (21.3 m bodies, 0.6 m gaps, bogies 3 m in).
 	var axles := AxleJoint.rake_axles(tv.cars.size(), TrainView.CAR_LENGTH + TrainView.CAR_GAP,
 		TrainView.CAR_LENGTH, TrainView.BOGIE_INSET, 2.5)
 	audio.setup(train, world, cam, axles)
@@ -71,6 +71,7 @@ func _process(delta: float) -> void:
 	var ns := world.next_signal(train)
 	hud.refresh({
 		train_id = train.id,
+		cars = tv.cars.size(),
 		speed = train.speed,
 		limit = world.speed_limit_for(train),
 		controller = train.controller,

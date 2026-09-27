@@ -8,7 +8,7 @@ extends RefCounted
 
 const CAR_LENGTH := 21.3
 const CAR_GAP := 0.6
-const CARS := 8
+const CARS := 1          # single car for sound testing (was 8)
 const TRACK_SPACING := 9.0
 
 

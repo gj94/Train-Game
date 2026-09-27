@@ -131,7 +131,7 @@ func refresh(s: Dictionary) -> void:
 	elif s.controller < -0.001:
 		handle = "[color=#ffaa55]Brake %d%%[/color]" % roundi(-s.controller * 100)
 	var lines := []
-	lines.append("[b]%s[/b]  8-car MEMU" % s.train_id)
+	lines.append("[b]%s[/b]  %d-car MEMU" % [s.train_id, s.cars])
 	lines.append("Speed [b]%d[/b] km/h   Limit %d km/h%s" % [kmh, lim, "  [color=#ff5544]OVERSPEED[/color]" if over else ""])
 	lines.append("Handle  " + handle)
 	if s.next_signal.is_empty():
