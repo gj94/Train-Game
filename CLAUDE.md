@@ -1,0 +1,48 @@
+# Train Game — Claude working notes
+
+3D low-poly train game: dispatcher + driver modes, jump into any cab and back.
+Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
+
+## Start / end of every session
+- **Start:** read `docs/design-brief.md` and `docs/progress.md`.
+- **End:** update `docs/progress.md` (what was done, what's next, what the user should playtest).
+
+## Stack
+- Godot 4.7.2 (standard build, GDScript). Windows 11. Project root = this folder.
+- Godot exe (not on PATH):
+  `C:\Users\Gokul Jayaraj\AppData\Local\Microsoft\WinGet\Packages\GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe\Godot_v4.7.2-stable_win64_console.exe`
+  (`..._win64.exe` without `_console` is the GUI build for the user.)
+- Blender 5.2: `C:\Program Files\Blender Foundation\Blender 5.2\blender.exe`
+- Node 24 LTS, Python 3.13 (use `py`, not `python`), git, gh.
+- Godot MCP: `godot-mcp-bridge@1.2.1` (project `.mcp.json`, port 6505) + addon `addons/godot_mcp`. Edits the live
+  editor tree (undo works) — needs the Godot editor open on this project. Diagnose with `npx.cmd godot-mcp-bridge@1.2.1 doctor`.
+  Use it for scene/editor work; keep `sim/` logic in plain scripts + headless tests.
+- Blender MCP connector (`mcp__Blender__*`) needs Blender open with the MCP add-on server started.
+- PowerShell execution policy blocks `npm.ps1`/`npx.ps1`; call `npm.cmd` / `npx.cmd` instead.
+
+## Commands (run from project root, `$g` = Godot console exe above)
+- Import / refresh: `& $g --headless --path . --import`
+- Tests: `& $g --headless --path . --script res://tests/run_tests.gd` (exit code 0 = all pass)
+- Open editor (user): `& "<...>_win64.exe" --path . -e`
+
+## Git
+- Branch `main`, no remote yet (gh is installed if a GitHub backup is wanted — ask first).
+- E: is **exFAT** (no file ownership), so the repo relies on a global `safe.directory` entry for `E:/ClaudeWS/train-game`.
+  If git reports "dubious ownership" (e.g. repo moved), ask the user to re-add it — don't change global git config yourself.
+- Author identity is set in the repo's local config. `.godot/` (import cache) and `export/` are ignored; `.uid` files are committed.
+- Commit after each working step; run the tests first.
+
+## Layout
+- `addons/godot_mcp/` — third-party MCP bridge addon (MIT). Don't edit; upgrade by re-running its installer.
+- `sim/` — pure simulation logic: track graph, switches, signals, interlocking, timetables, train physics. **No rendering, no scene-tree dependencies**, so it tests headless.
+- `tests/` — `test_*.gd` files extending RefCounted; `test_*` methods return `true` or a failure string.
+- `docs/` — design brief, progress log, asset licence register.
+- Rendering/scenes/UI go in their own folders and read from `sim/`, never the other way round.
+
+## Conventions
+- Small, testable increments. Commit after each working step with a clear message.
+- Write tests for interlocking and signal rules before expanding them.
+- Prefer shell + headless Godot over GUI clicking; screenshots only to verify visuals.
+- After each playable build, list exactly what the user should test. The user is the playtester.
+- No assets without a confirmed licence (CC0 preferred). Record every source in `docs/assets.md`.
+- Ask before large refactors or scope changes.
