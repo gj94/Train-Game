@@ -18,6 +18,13 @@
   `tools/physical-export-godot.js`. Listener = driver in the cab, camera in the overview (blended on Tab).
   The WSOLA cab engine and procedural clacks were removed (in git history). 36 tests pass, 60 FPS at ×4.
 
+- Feedback round 1: "too low in cab and when following; leading cab bogie only 'cling', no 'clang'".
+  Cause: the take's lead-bogie kernels are 9–13 dB quieter than the trail bogie's (microphone position in the
+  recording), and the cab sits over the lead bogie; overview used the camera (up to 260 m away) as listener.
+  Fix: per-class loudness equalised in the export (`CLASS_GAIN`, +10.8/+12.0/0/+7.6 dB) so distance decides;
+  overview listener = camera focus, 6 m beside the track, gentle zoom fade; default level up; hard limiter on
+  the Train bus; `[` / `]` adjust track sound in 2 dB steps (toast shows the level — tell Claude the number).
+
 ### Playtest (sound v4 — physical)
 1. Cab at ~66 km/h: close to the take? The rhythm is now your own MEMU's axles over 13 m joints (not the ICF
    coach pattern), since you sit in the train. Overview close to the track: coaches passing = the take's pattern.

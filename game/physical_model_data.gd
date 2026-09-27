@@ -11,6 +11,9 @@ const KERNEL_LEAD := 0.017415
 const KERNEL_SECONDS := 0.522449
 ## Multiply kernel / rolling playback by these to undo the 16-bit export normalisation.
 const KERNEL_GAIN := 0.499186
+## Per axle class: equalises each kernel's energy to the loudest (the take's trailing-bogie
+## "clang"), so distance to the listener — not the take's microphone position — sets loudness.
+const CLASS_GAIN := [3.4703, 3.9688, 1.0000, 2.3883]
 const ROLLING_GAIN := 0.245139
 ## Rolling noise radiated per wheel: level = sqrt(sum 1/(1+(d/NOISE_NEAR)^2) / NOISE_REF).
 const NOISE_NEAR := 3

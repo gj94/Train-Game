@@ -90,6 +90,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				train.controller = 0.0
 			KEY_H:
 				audio.horn()
+			KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
+				var db: float = audio.adjust_track_level(-2.0 if event.physical_keycode == KEY_BRACKETLEFT else 2.0)
+				hud.toast("Track sound %+.0f dB" % db)
 			KEY_SPACE:
 				if train.emergency:
 					_report(world.release_emergency(train.id), "Emergency brake released")

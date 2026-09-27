@@ -14,7 +14,8 @@ Cab: right-drag to look around
 [b]Dispatching[/b] (overview)
 Click a signal to clear it / put it back · click a switch marker to throw it
 
-T   time ×1 / ×2 / ×4      P   train protection on/off      F1   hide this help"""
+T   time ×1 / ×2 / ×4      P   train protection on/off      F1   hide this help
+[ / ]   track sound quieter / louder (2 dB steps)"""
 
 var _info: RichTextLabel
 var _speed: Label
