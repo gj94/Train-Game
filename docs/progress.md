@@ -1,5 +1,20 @@
 # Progress
 
+## 2026-09-28 — Physical (wheel-position) model of the approved take — JS in the lab first
+- Finding: the approved take = a fixed point on the track while an **ICF rake at ~66 km/h** rolls over a joint
+  (lead bogie clang-clang, long gap, trail bogie, then next coach's lead bogie across the coupling). Time ratios
+  match ICF geometry (22.297 / 14.783 / 2.896 m) to 3 digits; independent speed fit 66.01 km/h, all hits ±5 ms.
+  → game cab engine (`calibrated_bed.gd`) REFERENCE_SPEED 55 → **66** (user approved). Lab files untouched.
+- New lab files (not modifying existing ones): `src/physical-geometry.js`, `src/physical-analysis.js`,
+  `src/physical-model.js` (magnitude-domain NMF with fixed geometry events → 4 axle-class kernels via the lab's
+  phase reconstruction), `src/physical.js` (`AxleJointSynth`: every axle over every joint, fixed or onboard
+  listener, distance fade, per-wheel rolling noise), `src/physical-calibrate.js`, `tools/physical-*.js`,
+  model `profiles/physical-icf.json`.
+- vs the take (trackside, 66 km/h): level +0.15 dB, 1/3-oct tonal balance 0.76 / 0.37 dB (mid/side), envelope
+  correlation 0.85. Gap to "perfect": one averaged kernel per axle class; each real hit has its own spectrum.
+- Demos in the lab's `exports/` (A/B, onboard MEMU 66/100 km/h, onboard ICF). **Not yet ported to the game** —
+  waiting for the user's listening verdict.
+
 ## 2026-09-28 — Track sound from the user's Railway Sound Lab
 - Source: `E:\ClaudeWS\railway-clang-simulator` (user's own Node.js lab; README explains both engines).
 - **Cab:** `game/calibrated_bed.gd` = GDScript port of `src/calibrated.js` (stereo WSOLA of the approved

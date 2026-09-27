@@ -3,16 +3,16 @@ extends RefCounted
 ## (E:\ClaudeWS\railway-clang-simulator\src\calibrated.js).
 ##
 ## Pitch-preserving, stereo-linked WSOLA of the user's approved 5-second synthetic
-## take (assets/sounds/lab/calibrated_55kmh.wav), calibrated to 55 km/h: grains
+## take (assets/sounds/lab/calibrated_55kmh.wav — file name from the lab; really ~66 km/h): grains
 ## are read at their original rate while their source position advances at
-## speed / 55, so the rhythm follows speed and the metal's pitch does not.
+## speed / 66, so the rhythm follows speed and the metal's pitch does not.
 ## Search stays near the nominal position, so alignment can't drift the tempo.
 ##
 ## Differences from the JS: runs at half the source rate (22.05 kHz, the cab view
 ## low-passes at ~5 kHz anyway) to keep GDScript cost down; output is pulled in
 ## blocks by the game instead of an AudioWorklet.
 
-const REFERENCE_SPEED := 55.0
+const REFERENCE_SPEED := 66.0   # the take is an ICF rake at ~66 km/h (geometry fit in the lab, 2026-09-28)
 
 var rate: int
 var target_speed := 0.0      # km/h, set by the game
