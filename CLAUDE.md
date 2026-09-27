@@ -47,6 +47,9 @@ Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
 - The game runs *embedded* in the editor window ("Train Game (DEBUG)"). Its MCPRuntime screenshot helper doesn't
   connect, so capture the window with Win32 instead, and click inside the game view before sending keys (otherwise
   they go to the embed toolbar).
+- Train track sound is ported from the user's Railway Sound Lab (`E:\ClaudeWSailway-clang-simulator`, Node.js):
+  `game/calibrated_bed.gd` ← `src/calibrated.js`, `game/rail_sounds.gd` ← `src/synth.js` + `profiles/reference.json`.
+  Change sound behaviour there first if the user is tuning it in the lab, then re-port.
 - Parse-check scripts with `& $g --headless --path . --check-only --script res://<file>.gd` — the MCP
   `validate_scripts` tool misses errors (e.g. `var x := untyped.call()` "cannot infer type"). Values from untyped
   vars (like `_wv` in train_view.gd) need an explicit type: `var m: Material = _wv.mat(...)`.

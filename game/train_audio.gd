@@ -1,39 +1,46 @@
 extends Node3D
 ## Train sound, driven by the sim every frame. Attach under the leading car.
 ##
-## - Rolling: recorded interior loop (CC0, BigSoundBank); volume + pitch follow speed.
-## - Synth (AudioStreamGenerator): 3-phase traction inverter whine (pitch follows
-##   speed, loudness follows the power/brake handle), transformer hum, flange
-##   squeal on curves, air-brake hiss.
-## - Rail-joint clacks: modal-synthesis metal impacts (rail_sounds.gd), fired as
-##   each nearby axle crosses a joint (every JOINT_SPACING metres).
-## - Horn: recorded one-shot.
-## Everything goes through the "Train" bus: reverb + a cab low-pass, switched
-## between interior (cab) and exterior (overview) with set_interior().
+## Track sound comes from the user's Railway Sound Lab (E:\ClaudeWS\railway-clang-simulator):
+## - Cab: the approved calibrated take, time-stretched by speed (calibrated_bed.gd, WSOLA).
+## - Outside: the procedural model with measured resonances (rail_sounds.gd), one
+##   impact per axle per rail joint from the sim's odometer, plus synth.js's rolling
+##   bed (filtered noise with a sleeper-spacing pulse).
+## The two crossfade when the camera switches between cab and overview.
+## On top: 3-phase traction whine, PWM whistle, transformer hum, flange squeal,
+## air-brake hiss (synthesized), and the horn (CC0 recording).
+## Everything runs through the "Train" bus: reverb, plus a low-pass in the cab.
 
 const JOINT_SPACING := 13.0
-const MIX_RATE := 22050.0
-## Axle positions (metres behind the head) that the listener in the leading cab hears.
+const SYNTH_RATE := 22050.0
+## Axles of the leading car, metres behind the head (lead bogie, trailing bogie).
 const NEAR_AXLES := [1.75, 4.25]
-const FAR_AXLES := [17.05, 19.55, 23.65, 26.15]
+const FAR_AXLES := [17.05, 19.55]
 const RailSounds := preload("res://game/rail_sounds.gd")
+const CalibratedBed := preload("res://game/calibrated_bed.gd")
+const CALIBRATED_TAKE := "res://assets/sounds/lab/calibrated_55kmh.wav"
 const BUS := "Train"
+const RUMBLE := 0.3          # synth.js default "rumble"
 
 var train: Train
 var world: RailWorld
 
-var _rolling: AudioStreamPlayer3D
+var _bed                     # CalibratedBed
+var _bed_player: AudioStreamPlayer
+var _bed_playback: AudioStreamGeneratorPlayback
 var _synth: AudioStreamPlayer3D
 var _playback: AudioStreamGeneratorPlayback
-var _clicks_near: AudioStreamPlayer3D
-var _clicks_far: AudioStreamPlayer3D
+var _clacks_near: AudioStreamPlayer3D
+var _clacks_far: AudioStreamPlayer3D
 var _horn: AudioStreamPlayer3D
+var _reverb: AudioEffectReverb
+var _lowpass: AudioEffectLowPassFilter
 
+var _cab := false
+var _cab_mix := 0.0          # 0 = outside sound, 1 = cab sound (smoothed)
 var _last_odo := 0.0
 var _prev_controller := 0.0
 var _rng := RandomNumberGenerator.new()
-var _reverb: AudioEffectReverb
-var _lowpass: AudioEffectLowPassFilter
 
 # Smoothed synth parameters (updated per frame, read per sample).
 var _whine_amp := 0.0
@@ -41,10 +48,15 @@ var _whine_freq := 100.0
 var _carrier_amp := 0.0
 var _squeal_amp := 0.0
 var _hiss_amp := 0.0
-# Oscillator state.
+var _bed_amp := 0.0          # outside rolling bed level
+var _odo_now := 0.0
+# Oscillator / filter state.
 var _ph := [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 var _t := 0.0
-var _lp := 0.0
+var _lp_hiss := 0.0
+var _n_low := 0.0
+var _n_deep := 0.0
+var _n_mid := 0.0
 
 
 func setup(t: Train, w: RailWorld) -> void:
@@ -54,24 +66,30 @@ func setup(t: Train, w: RailWorld) -> void:
 	_prev_controller = t.controller
 	_make_bus()
 
-	var roll: AudioStreamOggVorbis = load("res://assets/sounds/interior_eurostar_car.ogg").duplicate()
-	roll.loop = true
-	_rolling = _player(roll, 18.0)
-	_rolling.volume_db = -80.0
-	_rolling.play()
+	# Cab: calibrated take (non-positional — you're sitting on top of it).
+	_bed = CalibratedBed.new(load(CALIBRATED_TAKE))
+	var bed_gen := AudioStreamGenerator.new()
+	bed_gen.mix_rate = _bed.rate
+	bed_gen.buffer_length = 0.15
+	_bed_player = AudioStreamPlayer.new()
+	_bed_player.stream = bed_gen
+	_bed_player.bus = BUS
+	add_child(_bed_player)
+	_bed_player.play()
+	_bed_playback = _bed_player.get_stream_playback()
 
 	var gen := AudioStreamGenerator.new()
-	gen.mix_rate = MIX_RATE
+	gen.mix_rate = SYNTH_RATE
 	gen.buffer_length = 0.12
 	_synth = _player(gen, 14.0)
 	_synth.play()
 	_playback = _synth.get_stream_playback()
 
-	var clacks := RailSounds.joint_impacts(4)
-	_clicks_near = _player(clacks, 14.0)
-	_clicks_near.max_polyphony = 8
-	_clicks_far = _player(clacks, 14.0)
-	_clicks_far.max_polyphony = 12
+	_clacks_near = _player(RailSounds.joint_impacts(4, 0), 14.0)
+	_clacks_near.max_polyphony = 8
+	_clacks_far = _player(RailSounds.joint_impacts(4, 2), 14.0)
+	_clacks_far.position = Vector3(0, 0, 15.3)     # trailing bogie of the same car
+	_clacks_far.max_polyphony = 8
 	_horn = _player(load("res://assets/sounds/horn_1.ogg"), 60.0)
 
 
@@ -105,16 +123,17 @@ func _make_bus() -> void:
 	set_interior(false)
 
 
-## Cab: small, damped steel-box reverb and muffled highs. Outside: open air
-## with a longer, thinner tail (ballast, cuttings, trees).
+## Cab: small, damped steel-box reverb and muffled highs; calibrated take.
+## Outside: open-air reverb; procedural clacks + rolling bed.
 func set_interior(cab: bool) -> void:
+	_cab = cab
 	var idx := AudioServer.get_bus_index(BUS)
 	if cab:
 		_reverb.room_size = 0.32
 		_reverb.damping = 0.55
 		_reverb.spread = 0.6
-		_reverb.wet = 0.28
-		_reverb.dry = 0.9
+		_reverb.wet = 0.22
+		_reverb.dry = 0.95
 		_reverb.predelay_msec = 12.0
 		_lowpass.cutoff_hz = 5200.0
 	else:
@@ -135,11 +154,18 @@ func _process(delta: float) -> void:
 	var kmh := v * 3.6
 	var r := clampf(v / train.max_speed, 0.0, 1.0)
 	var k := 1.0 - exp(-8.0 * delta)   # parameter smoothing factor
+	_cab_mix = move_toward(_cab_mix, 1.0 if _cab else 0.0, delta / 0.6)
+	var outside := 1.0 - _cab_mix
 
-	# Rolling loop.
-	var roll_gain := smoothstep(0.0, 7.0, v) * lerpf(0.55, 1.0, r)
-	_rolling.volume_db = linear_to_db(maxf(roll_gain, 0.0001))
-	_rolling.pitch_scale = lerpf(0.72, 1.3, r)
+	# Cab: calibrated take follows speed; silent at a stand (its own fade).
+	_bed.target_speed = kmh
+	_bed.target_volume = 0.8 * _cab_mix
+	var frames := _bed_playback.get_frames_available()
+	if frames > 0:
+		_bed_playback.push_buffer(_bed.process(frames))
+
+	# Outside rolling bed (synth.js): rumble * min(1.5, (v/100)^0.8).
+	_bed_amp = lerpf(_bed_amp, outside * RUMBLE * minf(1.5, pow(kmh / 100.0, 0.8)), k)
 
 	# Traction: louder with handle deflection (power, or regenerative braking).
 	var traction := absf(train.controller) if not train.emergency else 0.0
@@ -161,13 +187,20 @@ func _process(delta: float) -> void:
 	_hiss_amp *= exp(-1.6 * delta)
 	_prev_controller = train.controller
 
+	_odo_now = train.odometer
 	_fill_synth()
-	_rail_joints(r)
+	_rail_joints(kmh, outside)
 
 
 func _fill_synth() -> void:
 	var frames := _playback.get_frames_available()
-	var dt := 1.0 / MIX_RATE
+	var dt := 1.0 / SYNTH_RATE
+	var low_a := 1.0 - exp(-TAU * 180.0 / SYNTH_RATE)
+	var deep_a := 1.0 - exp(-TAU * 32.0 / SYNTH_RATE)
+	var mid_a := 1.0 - exp(-TAU * 1800.0 / SYNTH_RATE)
+	# Sleeper pulse (0.65 m spacing) and a slower undulation, from synth.js.
+	var sleeper := 0.8 + 0.12 * sin(TAU * _odo_now / 0.65) + 0.08 * sin(TAU * _odo_now / 2.8)
+	var bed := _bed_amp * sleeper
 	for i in frames:
 		_t += dt
 		var s := 0.0
@@ -185,37 +218,34 @@ func _fill_synth() -> void:
 		# Flange squeal: wavering high tone.
 		_ph[5] = fmod(_ph[5] + (3100.0 + 180.0 * sin(_t * 6.3)) * dt, 1.0)
 		s += _squeal_amp * sin(TAU * _ph[5]) * (0.7 + 0.3 * sin(_t * 23.0))
+		# Rolling bed (outside): low + deep noise with a little mid roughness.
+		var noise := _rng.randf_range(-1.0, 1.0)
+		_n_low += low_a * (noise - _n_low)
+		_n_deep += deep_a * (noise - _n_deep)
+		_n_mid += mid_a * (noise - _n_mid)
+		s += (_n_low * 1.7 + _n_deep * 1.5 + (_n_mid - _n_low) * 0.152) * bed
 		# Air hiss: low-passed white noise.
-		_lp = lerpf(_lp, _rng.randf_range(-1.0, 1.0), 0.35)
-		s += _hiss_amp * _lp
+		_lp_hiss = lerpf(_lp_hiss, _rng.randf_range(-1.0, 1.0), 0.35)
+		s += _hiss_amp * _lp_hiss
 		_playback.push_frame(Vector2(s, s))
 
 
-## Fire a click for every axle that crossed a rail joint since last frame.
-func _rail_joints(r: float) -> void:
+## Outside: one impact per axle per rail joint crossed since last frame.
+func _rail_joints(kmh: float, outside: float) -> void:
 	var odo := train.odometer
 	var moved := odo - _last_odo
-	if moved <= 0.0:
+	if moved <= 0.0 or moved > JOINT_SPACING * 2.0 or outside < 0.01:   # stopped, time skip, or in the cab
 		_last_odo = odo
 		return
-	if moved > JOINT_SPACING * 2.0:   # time skip / big jump: don't machine-gun
-		_last_odo = odo
-		return
-	var near_hits := 0
-	var far_hits := 0
 	for a in NEAR_AXLES:
-		near_hits += _joints_crossed(_last_odo - a, odo - a)
+		if _joints_crossed(_last_odo - a, odo - a) > 0:
+			_clacks_near.volume_db = linear_to_db(outside * RailSounds.hit_gain(kmh, floori((odo - a) / JOINT_SPACING)))
+			_clacks_near.play()
 	for a in FAR_AXLES:
-		far_hits += _joints_crossed(_last_odo - a, odo - a)
-	var gain := lerpf(0.35, 1.0, smoothstep(0.0, 0.5, r))
-	if near_hits > 0:
-		_clicks_near.volume_db = linear_to_db(gain)
-		_clicks_near.pitch_scale = _rng.randf_range(0.92, 1.08) * lerpf(0.9, 1.15, r)
-		_clicks_near.play()
-	if far_hits > 0:
-		_clicks_far.volume_db = linear_to_db(gain * 0.3)
-		_clicks_far.pitch_scale = _rng.randf_range(0.9, 1.05)
-		_clicks_far.play()
+		if _joints_crossed(_last_odo - a, odo - a) > 0:
+			# synth.js: the far bogie is heard through the body at 0.64.
+			_clacks_far.volume_db = linear_to_db(outside * 0.64 * RailSounds.hit_gain(kmh, floori((odo - a) / JOINT_SPACING)))
+			_clacks_far.play()
 	_last_odo = odo
 
 

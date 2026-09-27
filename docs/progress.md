@@ -1,5 +1,22 @@
 # Progress
 
+## 2026-09-28 — Track sound from the user's Railway Sound Lab
+- Source: `E:\ClaudeWSailway-clang-simulator` (user's own Node.js lab; README explains both engines).
+- **Cab:** `game/calibrated_bed.gd` = GDScript port of `src/calibrated.js` (stereo WSOLA of the approved
+  5 s synthetic take, rhythm ∝ speed/55, pitch constant). Runs at 22.05 kHz, ~6% of one core.
+- **Outside:** `game/rail_sounds.gd` = `src/synth.js` impact model with the 24 measured modes + 68 Hz body mode,
+  randomized contact pressure, flam 4–7 ms later, contact noise; pre-rendered (4 variants × 2 bogies, ~1 s at
+  startup) and fired per axle per rail joint with synth.js's speed gain and per-joint irregularity.
+  synth.js's rolling bed (noise + sleeper pulse) is synthesized live.
+- Cab ⇄ outside crossfade on Tab; "Train" bus reverb (+ cab low-pass). Eurostar loop no longer used.
+- `tools/audio/render_clack_demo.gd` renders the outside clacks to a WAV for auditioning.
+- Calibrated WAV must import uncompressed (`compress/mode=0`), a test checks it. 34 tests pass.
+
+### Playtest (sound v3)
+1. Cab (Tab): does it sound like your lab's calibrated simulator at the same speed? (55 km/h = the approved take)
+2. Overview: clack rhythm and metal tone vs your lab's studio model.
+3. Balance between track sound, motor whine, hum — any layer too loud/quiet?
+
 ## 2026-09-27 — Train sound
 - `game/train_audio.gd`, attached over the leading bogie (3D, so quieter from the overview camera):
   - rolling: CC0 BigSoundBank interior loop, volume + pitch follow speed;
