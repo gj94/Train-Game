@@ -120,6 +120,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _set_cab_visuals(cab: bool) -> void:
 	tv.set_cab_view(cab)
 	wv.set_labels_visible(not cab)
+	audio.set_interior(cab)
 
 
 func _pick(screen_pos: Vector2) -> void:

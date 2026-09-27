@@ -5,15 +5,19 @@ extends Node3D
 ## - Synth (AudioStreamGenerator): 3-phase traction inverter whine (pitch follows
 ##   speed, loudness follows the power/brake handle), transformer hum, flange
 ##   squeal on curves, air-brake hiss.
-## - Rail-joint clicks: synthesized "clack", fired as each nearby axle crosses a
-##   joint (every JOINT_SPACING metres), so the rhythm follows speed exactly.
+## - Rail-joint clacks: modal-synthesis metal impacts (rail_sounds.gd), fired as
+##   each nearby axle crosses a joint (every JOINT_SPACING metres).
 ## - Horn: recorded one-shot.
+## Everything goes through the "Train" bus: reverb + a cab low-pass, switched
+## between interior (cab) and exterior (overview) with set_interior().
 
 const JOINT_SPACING := 13.0
 const MIX_RATE := 22050.0
 ## Axle positions (metres behind the head) that the listener in the leading cab hears.
 const NEAR_AXLES := [1.75, 4.25]
 const FAR_AXLES := [17.05, 19.55, 23.65, 26.15]
+const RailSounds := preload("res://game/rail_sounds.gd")
+const BUS := "Train"
 
 var train: Train
 var world: RailWorld
@@ -28,6 +32,8 @@ var _horn: AudioStreamPlayer3D
 var _last_odo := 0.0
 var _prev_controller := 0.0
 var _rng := RandomNumberGenerator.new()
+var _reverb: AudioEffectReverb
+var _lowpass: AudioEffectLowPassFilter
 
 # Smoothed synth parameters (updated per frame, read per sample).
 var _whine_amp := 0.0
@@ -46,6 +52,7 @@ func setup(t: Train, w: RailWorld) -> void:
 	world = w
 	_last_odo = t.odometer
 	_prev_controller = t.controller
+	_make_bus()
 
 	var roll: AudioStreamOggVorbis = load("res://assets/sounds/interior_eurostar_car.ogg").duplicate()
 	roll.loop = true
@@ -60,12 +67,11 @@ func setup(t: Train, w: RailWorld) -> void:
 	_synth.play()
 	_playback = _synth.get_stream_playback()
 
-	var click := _make_click()
-	_clicks_near = _player(click, 14.0)
-	_clicks_near.max_polyphony = 6
-	_clicks_far = _player(click, 14.0)
-	_clicks_far.max_polyphony = 10
-	_clicks_far.volume_db = -9.0
+	var clacks := RailSounds.joint_impacts(4)
+	_clicks_near = _player(clacks, 14.0)
+	_clicks_near.max_polyphony = 8
+	_clicks_far = _player(clacks, 14.0)
+	_clicks_far.max_polyphony = 12
 	_horn = _player(load("res://assets/sounds/horn_1.ogg"), 60.0)
 
 
@@ -75,12 +81,51 @@ func _player(stream: AudioStream, unit_size: float) -> AudioStreamPlayer3D:
 	p.unit_size = unit_size
 	p.max_distance = 3000.0
 	p.doppler_tracking = AudioStreamPlayer3D.DOPPLER_TRACKING_DISABLED
+	p.bus = BUS
 	add_child(p)
 	return p
 
 
 func horn() -> void:
 	_horn.play()
+
+
+## Bus "Train": reverb (+ low-pass in the cab), created once.
+func _make_bus() -> void:
+	var idx := AudioServer.get_bus_index(BUS)
+	if idx == -1:
+		AudioServer.add_bus()
+		idx = AudioServer.bus_count - 1
+		AudioServer.set_bus_name(idx, BUS)
+		AudioServer.set_bus_send(idx, "Master")
+		AudioServer.add_bus_effect(idx, AudioEffectReverb.new())
+		AudioServer.add_bus_effect(idx, AudioEffectLowPassFilter.new())
+	_reverb = AudioServer.get_bus_effect(idx, 0)
+	_lowpass = AudioServer.get_bus_effect(idx, 1)
+	set_interior(false)
+
+
+## Cab: small, damped steel-box reverb and muffled highs. Outside: open air
+## with a longer, thinner tail (ballast, cuttings, trees).
+func set_interior(cab: bool) -> void:
+	var idx := AudioServer.get_bus_index(BUS)
+	if cab:
+		_reverb.room_size = 0.32
+		_reverb.damping = 0.55
+		_reverb.spread = 0.6
+		_reverb.wet = 0.28
+		_reverb.dry = 0.9
+		_reverb.predelay_msec = 12.0
+		_lowpass.cutoff_hz = 5200.0
+	else:
+		_reverb.room_size = 0.7
+		_reverb.damping = 0.35
+		_reverb.spread = 1.0
+		_reverb.wet = 0.2
+		_reverb.dry = 1.0
+		_reverb.predelay_msec = 45.0
+		_lowpass.cutoff_hz = 16000.0
+	AudioServer.set_bus_effect_enabled(idx, 1, cab)
 
 
 func _process(delta: float) -> void:
@@ -168,7 +213,7 @@ func _rail_joints(r: float) -> void:
 		_clicks_near.pitch_scale = _rng.randf_range(0.92, 1.08) * lerpf(0.9, 1.15, r)
 		_clicks_near.play()
 	if far_hits > 0:
-		_clicks_far.volume_db = linear_to_db(gain * 0.35)
+		_clicks_far.volume_db = linear_to_db(gain * 0.3)
 		_clicks_far.pitch_scale = _rng.randf_range(0.9, 1.05)
 		_clicks_far.play()
 	_last_odo = odo
@@ -176,24 +221,3 @@ func _rail_joints(r: float) -> void:
 
 static func _joints_crossed(from: float, to: float) -> int:
 	return maxi(0, floori(to / JOINT_SPACING) - floori(from / JOINT_SPACING))
-
-
-## A short "clack": thump + metallic tick + noise burst, 16-bit mono.
-func _make_click() -> AudioStreamWAV:
-	var n := int(MIX_RATE * 0.14)
-	var data := PackedByteArray()
-	data.resize(n * 2)
-	var rng := RandomNumberGenerator.new()
-	rng.seed = 42
-	for i in n:
-		var t := i / MIX_RATE
-		var s := 0.8 * sin(TAU * 68.0 * t) * exp(-t * 32.0)
-		s += 0.25 * sin(TAU * 1150.0 * t) * exp(-t * 90.0)
-		s += 0.35 * rng.randf_range(-1.0, 1.0) * exp(-t * 140.0)
-		data.encode_s16(i * 2, int(clampf(s, -1.0, 1.0) * 32000.0))
-	var wav := AudioStreamWAV.new()
-	wav.format = AudioStreamWAV.FORMAT_16_BITS
-	wav.mix_rate = int(MIX_RATE)
-	wav.stereo = false
-	wav.data = data
-	return wav
