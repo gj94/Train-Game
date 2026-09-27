@@ -40,6 +40,9 @@ func _ready() -> void:
 	var axles := AxleJoint.rake_axles(tv.cars.size(), TrainView.CAR_LENGTH + TrainView.CAR_GAP,
 		TrainView.CAR_LENGTH, TrainView.BOGIE_INSET, 2.5)
 	audio.setup(train, world, cam, axles)
+	# Rail-joint markers: yellow bars that flash red whenever an axle hits them (J toggles).
+	wv.build_joints(TrainAudio.JOINT_SPACING, TrainAudio.JOINT_OFFSET)
+	audio.joint_hit.connect(func(edge: String, k: int, _cls: int): wv.flash_joint(edge, k))
 	hud = Hud.new()
 	add_child(hud)
 	hud.toast("Welcome to Chennapuram. Press C to ask for the starter signal, then W to power up.")
@@ -57,9 +60,10 @@ func _physics_process(delta: float) -> void:
 		world.step(delta)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	tv.update()
 	wv.update()
+	wv.update_joints(delta)
 	for e in world.events:
 		if e.seq > _last_event:
 			_last_event = e.seq
@@ -101,7 +105,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_C:
 				_report(world.request_signal_ahead(train.id), "Signal cleared")
 			KEY_R:
-				_report(world.reverse_train(train.id), "Changed ends — you are now driving from the other cab")
+				var res := world.reverse_train(train.id)
+				if res.ok:
+					audio.reset_positions()
+				_report(res, "Changed ends — you are now driving from the other cab")
+			KEY_J:
+				wv.set_joints_visible(not wv.joints_visible())
+				hud.toast("Rail-joint markers " + ("on" if wv.joints_visible() else "off"))
 			KEY_F:
 				cam.follow = true
 				cam.set_mode(CameraRig.Mode.OVERVIEW)

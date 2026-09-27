@@ -18,7 +18,10 @@ const AxleJoint := preload("res://game/axle_joint.gd")
 const Data := preload("res://game/physical_model_data.gd")
 const KERNELS := "res://assets/sounds/lab/physical_icf_axle%d.wav"
 const ROLLING := "res://assets/sounds/lab/physical_icf_rolling.wav"
-const JOINT_SPACING := 13.0
+signal joint_hit(edge: String, joint: int, cls: int)   # every axle-over-joint hit (for the joint markers)
+
+const JOINT_SPACING := 13.0          # rail length: joints every 13 m on every track edge...
+const JOINT_OFFSET := 6.5            # ...starting 6.5 m in, so none sit on a switch or buffer
 const DEFAULT_TRACK_LEVEL := 1.2     # overall track-sound level (1.0 = the take's level); [ / ] adjust
 const OVERVIEW_SIDE := 6.0           # overview listener: metres from the track, at the camera's focus
 const DRIVER := Vector2(2.0, 1.5)    # driver's ear: metres behind the head, metres to the side
@@ -69,7 +72,7 @@ func setup(t: Train, w: RailWorld, listener: Node3D, axles: Array) -> void:
 	_make_bus()
 
 	_sched = AxleJoint.new()
-	_sched.setup(axles, JOINT_SPACING, t.odometer)
+	_sched.setup(axles, JOINT_SPACING, JOINT_OFFSET)
 	for c in 4:
 		_kernels.append(load(KERNELS % c))
 	var poly := AudioStreamPolyphonic.new()
@@ -92,7 +95,7 @@ func setup(t: Train, w: RailWorld, listener: Node3D, axles: Array) -> void:
 	_synth = _player(gen)
 	if not TRACK_ONLY:
 		_synth.play()
-	_playback = _synth.get_stream_playback()
+		_playback = _synth.get_stream_playback()
 	_horn = _player(load("res://assets/sounds/horn_1.ogg"))
 
 
@@ -109,6 +112,11 @@ func horn() -> void:
 		return
 	_horn.volume_db = linear_to_db(maxf(0.0001, lerpf(minf(1.0, _overview_gain(0.0) * 2.0), 1.0, _cab_mix)))
 	_horn.play()
+
+
+## After changing ends every axle is a different wheel: start tracking afresh.
+func reset_positions() -> void:
+	_sched.reset()
 
 
 ## Change the track-sound level by `db` decibels; returns the new level in dB (0 = the take's level).
@@ -222,7 +230,14 @@ func _process(delta: float) -> void:
 ## Axle-over-joint hits + wheel-radiated rolling noise.
 func _track_sound(v: float, kmh: float) -> void:
 	var impact := AxleJoint.impact_scale(kmh)
-	for h in _sched.advance(train.odometer, v):
+	# Where each axle's look-ahead point is on the track (kernels start KERNEL_LEAD early).
+	var ahead := Data.KERNEL_LEAD * v
+	var positions := []
+	for a in _sched.axles:
+		var loc := train.locate_behind(world.graph, maxf(0.0, a.x - ahead))
+		positions.append({edge = loc.edge, s = loc.s, dir = loc.dir, length = world.graph.edges[loc.edge].length})
+	for h in _sched.advance(positions, v):
+		joint_hit.emit(h.edge, h.joint, h.cls)
 		var g: float = h.gain * impact * track_level * Data.KERNEL_GAIN * Data.CLASS_GAIN[h.cls]
 		g *= lerpf(_overview_gain(h.x), AxleJoint.distance_gain(driver_distance(h.x)), _cab_mix)
 		if g < 0.001:

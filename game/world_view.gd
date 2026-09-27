@@ -12,6 +12,7 @@ const OHE_OFFSET := 3.3           # mast distance from track centre
 const CONTACT_HEIGHT := 5.6       # contact wire height above rail
 const PH := "res://assets/polyhaven/%s/%s_%s_2k.jpg"
 const PALM := "res://assets/models/palm_quaternius.glb"
+const AxleJoint := preload("res://game/axle_joint.gd")
 const HDRI := "res://assets/polyhaven/hdri/kloofendal_43d_clear_puresky_2k.hdr"
 
 var world: RailWorld
@@ -19,6 +20,9 @@ var root: Node3D
 var signal_lamps := {}            # signal id -> [green, yellow, red] MeshInstance3D
 var switch_markers := {}          # node id -> {label: Label3D, lamp: MeshInstance3D}
 var labels: Array = []            # Label3D nodes to hide in cab view
+var joint_markers := {}           # "edge|k" -> MeshInstance3D (rail-joint markers, J toggles)
+var _joint_root: Node3D
+var _flash := {}                  # "edge|k" -> seconds of red flash left
 var _track_samples := PackedVector3Array()
 var _mats := {}
 var _noise_tex: NoiseTexture2D
@@ -664,6 +668,58 @@ func update() -> void:
 		var locked := world.switch_lock_reason(nid) != ""
 		m.label.text = "%s  %s%s" % [nid, "R" if rev else "N", "  (locked)" if locked else ""]
 		m.lamp.material_override = mat(Color(1.0, 0.6, 0.1) if rev else Color(0.3, 0.8, 1.0), true)
+
+
+# --- rail-joint markers (where the track sound comes from) --------------------
+
+## A yellow bar across the rails at every rail joint the sound model uses.
+func build_joints(spacing: float, offset: float) -> void:
+	_joint_root = Node3D.new()
+	_joint_root.name = "RailJoints"
+	root.add_child(_joint_root)
+	var bar := BoxMesh.new()
+	bar.size = Vector3(2.6, 0.06, 0.18)
+	for eid in world.graph.edges:
+		var e: Dictionary = world.graph.edges[eid]
+		var ss := AxleJoint.joints_on_edge(e.length, spacing, offset)
+		for k in ss.size():
+			var s: float = ss[k]
+			var mi := MeshInstance3D.new()
+			mi.mesh = bar
+			mi.material_override = mat(Color(1.0, 0.8, 0.05), true)
+			mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			mi.basis = Basis.looking_at(world.graph.tangent(eid, s, 1), Vector3.UP)
+			mi.position = world.graph.position(eid, s) + Vector3(0, RAIL_TOP + 0.04, 0)
+			_joint_root.add_child(mi)
+			# Joint k counts from the edge start: keep the index even if a joint is skipped.
+			joint_markers["%s|%d" % [eid, roundi((s - offset) / spacing)]] = mi
+
+
+## Flash a joint red when an axle hits it.
+func flash_joint(edge: String, k: int) -> void:
+	var key := "%s|%d" % [edge, k]
+	if joint_markers.has(key):
+		_flash[key] = 0.35
+		joint_markers[key].material_override = mat(Color(1.0, 0.1, 0.05), true)
+		joint_markers[key].scale = Vector3(1.3, 3.0, 2.0)
+
+
+func update_joints(delta: float) -> void:
+	for key in _flash.keys():
+		_flash[key] -= delta
+		if _flash[key] <= 0.0:
+			_flash.erase(key)
+			joint_markers[key].material_override = mat(Color(1.0, 0.8, 0.05), true)
+			joint_markers[key].scale = Vector3.ONE
+
+
+func set_joints_visible(v: bool) -> void:
+	if _joint_root:
+		_joint_root.visible = v
+
+
+func joints_visible() -> bool:
+	return _joint_root != null and _joint_root.visible
 
 
 func set_labels_visible(v: bool) -> void:

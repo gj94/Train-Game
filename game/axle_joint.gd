@@ -2,57 +2,93 @@ extends RefCounted
 ## Axle-over-joint scheduler — port of the scheduling in the user's Sound Lab engine
 ## (railway-clang-simulator/src/physical.js, AxleJointSynth). Pure logic, no audio.
 ##
-## Every axle is a point `x` metres behind the train's head. Rail joints sit every
-## `joint_spacing` metres of travel. Feed it the train's odometer each frame; it returns
-## every axle-over-joint hit whose impact kernel should have started by now. Kernels
-## begin KERNEL_LEAD seconds before the wheel reaches the joint, so a hit reported a
-## few ms late can still land on time by starting the kernel `late` seconds in.
+## Rail joints are fixed on the track: on every edge at s = offset + k * spacing
+## (0 < s < length). Each frame the caller passes, for every axle, where its
+## "look-ahead point" is on the track: the axle itself moved forward by the kernel
+## lead distance, because impact kernels begin KERNEL_LEAD seconds before the wheel
+## reaches the joint. When that point passes a joint (in either direction), a hit is
+## reported; `late` says how far past the kernel start the frame is, so the kernel can
+## start that far in and the clang still lands on time.
 
 const Data := preload("res://game/physical_model_data.gd")
-const MAX_STEP := 40.0        # metres: bigger odometer jumps (teleports) are skipped, not machine-gunned
+const MAX_STEP := 40.0        # metres: bigger per-frame moves (teleports, changing ends) are skipped
 
 var axles: Array = []         # [{x, cls, car}]
 var joint_spacing := 13.0
-var odometer := 0.0
-var _next := PackedInt32Array()
+var joint_offset := 6.5
+var _prev: Array = []         # per axle: last {edge, s, dir, length} or null
 
 
-func setup(axle_list: Array, spacing: float, start_odometer: float) -> void:
+func setup(axle_list: Array, spacing: float, offset: float) -> void:
 	axles = axle_list
 	joint_spacing = spacing
-	_reset(start_odometer)
+	joint_offset = offset
+	reset()
 
 
-func _reset(odo: float) -> void:
-	odometer = odo
-	_next.resize(axles.size())
-	for i in axles.size():
-		_next[i] = floori((odo - axles[i].x) / joint_spacing) + 1
+## Forget previous positions (after a teleport or changing ends): no hits until the next move.
+func reset() -> void:
+	_prev = []
+	_prev.resize(axles.size())
 
 
-## Advance to `new_odometer` at `speed` m/s. Returns hits as
-## {axle, cls, x, joint, late (s past the kernel start), gain (recorded loudness)}.
-func advance(new_odometer: float, speed: float) -> Array:
+## Joint positions (s) on an edge of the given length.
+static func joints_on_edge(length: float, spacing: float, offset: float) -> PackedFloat32Array:
+	var out := PackedFloat32Array()
+	var s := offset
+	while s < length:
+		out.append(s)
+		s += spacing
+	return out
+
+
+## `positions`: per axle, {edge, s, dir, length} of its look-ahead point this frame.
+## Returns hits as {axle, cls, x, edge, joint (k on that edge), late (s), gain}.
+func advance(positions: Array, speed: float) -> Array:
 	var hits := []
-	if new_odometer - odometer > MAX_STEP or new_odometer < odometer:
-		_reset(new_odometer)
-		return hits
-	if speed <= 0.0:
-		odometer = new_odometer
-		return hits
-	var ahead := Data.KERNEL_LEAD * speed
 	for i in axles.size():
+		var now: Dictionary = positions[i]
+		var before = _prev[i]
+		_prev[i] = now
+		if before == null or speed <= 0.0:
+			continue
 		var a: Dictionary = axles[i]
-		while true:
-			var k := _next[i]
-			var start_at: float = k * joint_spacing + a.x - ahead   # odometer where the kernel starts
-			if start_at > new_odometer:
-				break
-			hits.append({axle = i, cls = a.cls, x = a.x, joint = k,
-				late = (new_odometer - start_at) / speed, gain = recorded_gain(a.cls, a.car + k)})
-			_next[i] = k + 1
-	odometer = new_odometer
+		if before.edge == now.edge:
+			if absf(now.s - before.s) > MAX_STEP:
+				continue
+			_crossings(hits, i, a, now.edge, before.s, now.s, now.length, 0.0, now.s, speed)
+		else:
+			# Moved onto the next edge: rest of the old edge, then the start of the new one.
+			var exit_s: float = before.length if before.dir > 0 else 0.0
+			var entry_s: float = 0.0 if now.dir > 0 else now.length
+			var on_new := absf(now.s - entry_s)
+			if absf(exit_s - before.s) + on_new > MAX_STEP:
+				continue
+			_crossings(hits, i, a, before.edge, before.s, exit_s, before.length, on_new, exit_s, speed)
+			_crossings(hits, i, a, now.edge, entry_s, now.s, now.length, 0.0, now.s, speed)
 	return hits
+
+
+## Joints between s0 and s1 (moving from s0 to s1) on one edge. `extra` = metres already
+## travelled beyond `end_s` (on a following edge), for the lateness.
+func _crossings(hits: Array, i: int, a: Dictionary, edge: String, s0: float, s1: float,
+		length: float, extra: float, end_s: float, speed: float) -> void:
+	var lo := minf(s0, s1)
+	var hi := maxf(s0, s1)
+	var k0 := floori((lo - joint_offset) / joint_spacing) + 1
+	var k1 := floori((hi - joint_offset) / joint_spacing)
+	for k in range(maxi(k0, 0), k1 + 1):
+		var sj := joint_offset + k * joint_spacing
+		if sj <= 0.0 or sj >= length:
+			continue
+		var past := absf(end_s - sj) + extra
+		hits.append({axle = i, cls = a.cls, x = a.x, edge = edge, joint = k,
+			late = past / speed, gain = recorded_gain(a.cls, joint_character(edge, k) + a.car)})
+
+
+## A fixed per-joint number, so each joint keeps its own loudness pattern.
+static func joint_character(edge: String, k: int) -> int:
+	return absi(hash(edge)) % 97 + k
 
 
 ## Recorded per-hit loudness for an axle class, cycled (like hitFor() in the JS).

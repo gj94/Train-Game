@@ -15,7 +15,7 @@ Cab: right-drag to look around
 Click a signal to clear it / put it back · click a switch marker to throw it
 
 T   time ×1 / ×2 / ×4      P   train protection on/off      F1   hide this help
-[ / ]   track sound quieter / louder (2 dB steps)"""
+[ / ]   track sound quieter / louder (2 dB steps)      J   rail-joint markers (flash red on each hit)"""
 
 var _info: RichTextLabel
 var _speed: Label
