@@ -10,13 +10,13 @@
 
 ## Open decisions (brief §7)
 1. ~~Engine~~ → Godot
-2. Setting (region / era)
-3. Signaling style
-4. Tone (arcade vs sim)
-5. Dispatcher view (3D, 2D schematic, both)
-6. First layout
+2. ~~Setting~~ → South India, present-day Indian Railways (era assumed, not stated by user)
+3. ~~Signaling~~ → simple 3-aspect colour-light (red / yellow / green)
+4. ~~Tone~~ → middle ground: believable physics and rules, forgiving HUD, optional auto-stop at red
+5. ~~Dispatcher view~~ → both: 2D schematic panel for control + 3D overview
+6. ~~First layout~~ → small fictional line: passing loop + terminus
 
 ## Next
 - ~~Verify Godot MCP~~ → verified 2026-09-27: editor connects live (bridge + addon 1.2.1), 0 editor errors.
 - ~~Verify Blender connector~~ → verified 2026-09-27: reads the live scene (default Camera/Cube/Light).
-- Answer open decisions 2–6, then start Phase 1: track graph in `sim/` with tests.
+- Start Phase 1: track graph in `sim/` with tests.

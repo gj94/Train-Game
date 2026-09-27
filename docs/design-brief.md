@@ -136,6 +136,9 @@ Plus, for either:
 
 ## 7. Open decisions (answer at start of new session)
 
+> **Decided 27 Sep 2026:** Godot 4.x · South India, present-day Indian Railways · simple 3-aspect colour-light ·
+> middle-ground tone · both 2D schematic + 3D overview · small fictional first layout (passing loop + terminus).
+
 1. **Engine:** Godot 4.x or Unity 6?
 2. **Setting:** country/region and era (affects signaling style, rolling stock, look)
 3. **Signaling style:** simple colour-light blocks, or a specific system (e.g. UK, German, US, Japanese)?
