@@ -25,6 +25,14 @@
   overview listener = camera focus, 6 m beside the track, gentle zoom fade; default level up; hard limiter on
   the Train bus; `[` / `]` adjust track sound in 2 dB steps (toast shows the level — tell Claude the number).
 
+- Round 2 (user's model): **one bogie = cling (1st wheel over the joint) + clang (2nd wheel)**, applied to both
+  bogies of every car → a car over a joint = cling-clang ......... cling-clang. Refit in the lab with 2 pooled
+  templates (1st/2nd wheel of any bogie): 1st is brighter (centroid 747 Hz), 2nd heavier (697 Hz, more <200 Hz);
+  per-hit gains now 0.8–1.34 (were 0.11–2.27). The take's per-position loudness (0.19/1.57/1.81/0.56) is kept
+  only for reproducing the take (`groupGain`, `takePerspective`), not in the game. Take reproduction: level
+  0.0 dB, tonal 0.49/0.35 dB, envelope 0.85. The take can't fix clang-vs-cling level → default clang +4 dB,
+  `,` / `.` adjust live (tell Claude the number). Game: `physical_icf_wheel1/2.wav`, `WHEEL_GAIN`. 1-car train.
+
 ### Playtest (sound v4 — physical)
 1. Cab at ~66 km/h: close to the take? The rhythm is now your own MEMU's axles over 13 m joints (not the ICF
    coach pattern), since you sit in the train. Overview close to the track: coaches passing = the take's pattern.

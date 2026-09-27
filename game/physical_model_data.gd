@@ -9,16 +9,19 @@ const REFERENCE_SPEED := 66.0060      # km/h
 ## Kernels start this long before the wheel actually hits the joint (seconds).
 const KERNEL_LEAD := 0.017415
 const KERNEL_SECONDS := 0.522449
+const KERNELS := 2
 ## Multiply kernel / rolling playback by these to undo the 16-bit export normalisation.
-const KERNEL_GAIN := 0.499186
-## Per axle class: equalises each kernel's energy to the loudest (the take's trailing-bogie
-## "clang"), so distance to the listener — not the take's microphone position — sets loudness.
-const CLASS_GAIN := [3.4703, 3.9688, 1.0000, 2.3883]
-const ROLLING_GAIN := 0.245139
+const KERNEL_GAIN := 0.444799
+## Kernels: WHEEL 1 = first wheel of a bogie over the joint ("cling", brighter),
+## WHEEL 2 = the second, right after it ("clang", heavier). These gains bring both to equal
+## energy; the game applies its own clang/cling balance on top.
+const WHEEL_GAIN := [1.0000, 1.9527]
+const ROLLING_GAIN := 0.247825
 ## Rolling noise radiated per wheel: level = sqrt(sum 1/(1+(d/NOISE_NEAR)^2) / NOISE_REF).
 const NOISE_NEAR := 3
 const NOISE_REF := 1.131272
 ## Distance (m) of the take's microphone from the joint: nearer = full level.
 const NEAR_DISTANCE := 3.0
-## Per-hit loudness recorded for axle classes 0..3 (lead bogie 1/2, trail bogie 1/2).
-const HITS := [[1.7392,1.849,0.3047,0.1071],[0.8335,0.8096,1.3569,2.2737],[1.0905,1.1224,0.7174,1.0697],[0.6169,0.1908,2.0791,1.1132]]
+## Per-hit loudness recorded for axle positions 0..3 (lead bogie wheel 1/2, trail bogie wheel 1/2),
+## normalised to mean 1 per position (the take's per-position loudness is left out: perspective).
+const HITS := [[1.0378,0.8299,0.9762,1.1561],[1.0057,0.954,1.076,0.9643],[1.0455,0.9902,0.9995,0.9648],[0.9938,0.7986,0.8665,1.3412]]

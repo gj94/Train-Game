@@ -123,8 +123,25 @@ func test_distance_fade():
 func test_exported_model_matches_the_fit():
 	if absf(Data.REFERENCE_SPEED - 66.0) > 0.5:
 		return "reference speed should be the fitted ~66 km/h, got %f" % Data.REFERENCE_SPEED
-	for c in 4:
-		var wav: AudioStreamWAV = load("res://assets/sounds/lab/physical_icf_axle%d.wav" % c)
+	if Data.KERNELS != 2 or Data.WHEEL_GAIN.size() != 2:
+		return "expected one bogie model: 2 kernels (cling = 1st wheel, clang = 2nd wheel)"
+	for w in Data.KERNELS:
+		var wav: AudioStreamWAV = load("res://assets/sounds/lab/physical_icf_wheel%d.wav" % (w + 1))
 		if wav == null or not wav.stereo or absf(wav.get_length() - Data.KERNEL_SECONDS) > 0.01:
-			return "kernel %d missing or wrong length" % c
+			return "wheel kernel %d missing or wrong length" % (w + 1)
+	return true
+
+
+func test_every_bogie_is_cling_then_clang():
+	# Positions 0/2 are the first wheel of the leading / trailing bogie, 1/3 the second.
+	var ax := AxleJoint.rake_axles(1, 21.9, 21.3, 3.0, 2.5)
+	var wheel := ax.map(func(a): return a.cls % 2)
+	return true if wheel == [0, 1, 0, 1] else "wheel-in-bogie order should be cling, clang, cling, clang: %s" % [wheel]
+
+
+func test_game_audio_scripts_compile():
+	for p in ["res://game/train_audio.gd", "res://game/main.gd", "res://game/world_view.gd"]:
+		var sc = load(p)
+		if sc == null or not sc.can_instantiate():
+			return "%s does not compile" % p
 	return true

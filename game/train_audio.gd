@@ -16,7 +16,11 @@ extends Node
 
 const AxleJoint := preload("res://game/axle_joint.gd")
 const Data := preload("res://game/physical_model_data.gd")
-const KERNELS := "res://assets/sounds/lab/physical_icf_axle%d.wav"
+## One bogie model: wheel 1 = the bogie's first wheel over the joint ("cling", brighter),
+## wheel 2 = the second, right after it ("clang", heavier). Every bogie of every car uses it,
+## so a car over a joint gives cling-clang ....... cling-clang.
+const KERNELS := "res://assets/sounds/lab/physical_icf_wheel%d.wav"
+const DEFAULT_CLANG_BALANCE_DB := 4.0   # clang louder than cling by this much; , / . adjust
 const ROLLING := "res://assets/sounds/lab/physical_icf_rolling.wav"
 signal joint_hit(edge: String, joint: int, cls: int)   # every axle-over-joint hit (for the joint markers)
 
@@ -36,7 +40,8 @@ var world: RailWorld
 var camera: Node3D                   # listener in overview
 
 var _sched                           # AxleJoint scheduler
-var _kernels: Array = []             # AudioStreamWAV per axle class
+var _kernels: Array = []             # AudioStreamWAV: [cling, clang]
+var clang_balance_db := DEFAULT_CLANG_BALANCE_DB
 var _track: AudioStreamPlayer
 var _track_pb: AudioStreamPlaybackPolyphonic
 var _rolling: AudioStreamPlayer
@@ -73,8 +78,8 @@ func setup(t: Train, w: RailWorld, listener: Node3D, axles: Array) -> void:
 
 	_sched = AxleJoint.new()
 	_sched.setup(axles, JOINT_SPACING, JOINT_OFFSET)
-	for c in 4:
-		_kernels.append(load(KERNELS % c))
+	for wheel in Data.KERNELS:
+		_kernels.append(load(KERNELS % (wheel + 1)))
 	var poly := AudioStreamPolyphonic.new()
 	poly.polyphony = 96
 	_track = _player(poly)
@@ -117,6 +122,12 @@ func horn() -> void:
 ## After changing ends every axle is a different wheel: start tracking afresh.
 func reset_positions() -> void:
 	_sched.reset()
+
+
+## Shift the clang (2nd wheel) against the cling (1st wheel) by `db`; returns the new balance.
+func adjust_clang_balance(db: float) -> float:
+	clang_balance_db = clampf(clang_balance_db + db, -12.0, 12.0)
+	return clang_balance_db
 
 
 ## Change the track-sound level by `db` decibels; returns the new level in dB (0 = the take's level).
@@ -238,11 +249,14 @@ func _track_sound(v: float, kmh: float) -> void:
 		positions.append({edge = loc.edge, s = loc.s, dir = loc.dir, length = world.graph.edges[loc.edge].length})
 	for h in _sched.advance(positions, v):
 		joint_hit.emit(h.edge, h.joint, h.cls)
-		var g: float = h.gain * impact * track_level * Data.KERNEL_GAIN * Data.CLASS_GAIN[h.cls]
+		var wheel: int = h.cls % 2          # 0 = first wheel of its bogie (cling), 1 = second (clang)
+		var g: float = h.gain * impact * track_level * Data.KERNEL_GAIN * Data.WHEEL_GAIN[wheel]
+		if wheel == 1:
+			g *= db_to_linear(clang_balance_db)
 		g *= lerpf(_overview_gain(h.x), AxleJoint.distance_gain(driver_distance(h.x)), _cab_mix)
 		if g < 0.001:
 			continue
-		_track_pb.play_stream(_kernels[h.cls], minf(h.late, Data.KERNEL_SECONDS - 0.02), linear_to_db(g), 1.0)
+		_track_pb.play_stream(_kernels[wheel], minf(h.late, Data.KERNEL_SECONDS - 0.02), linear_to_db(g), 1.0)
 	# Rolling noise from every wheel: driver (fixed distances) or camera.
 	var cab_d := PackedFloat32Array()
 	var cam_d := PackedFloat32Array()

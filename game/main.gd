@@ -98,6 +98,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
 				var db: float = audio.adjust_track_level(-2.0 if event.physical_keycode == KEY_BRACKETLEFT else 2.0)
 				hud.toast("Track sound %+.0f dB" % db)
+			KEY_COMMA, KEY_PERIOD:
+				var bal: float = audio.adjust_clang_balance(-1.0 if event.physical_keycode == KEY_COMMA else 1.0)
+				hud.toast("Clang (2nd wheel) vs cling (1st wheel): %+.0f dB" % bal)
 			KEY_SPACE:
 				if train.emergency:
 					_report(world.release_emergency(train.id), "Emergency brake released")
