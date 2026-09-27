@@ -17,6 +17,6 @@
 6. First layout
 
 ## Next
-- Verify in a new session with the Godot editor open: "MCP Connected" shows in Godot, and godot tools are available.
+- ~~Verify Godot MCP~~ → verified 2026-09-27: editor connects live (bridge + addon 1.2.1), 0 editor errors.
 - Verify Blender connector with Blender's MCP server started.
 - Answer open decisions 2–6, then start Phase 1: track graph in `sim/` with tests.
