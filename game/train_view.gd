@@ -18,6 +18,7 @@ var cars: Array = []            # Node3D per car (positioned on the track)
 var _front_lamps: Array = []    # lamps at the head of the train
 var _rear_lamps: Array = []     # lamps at the tail
 var _cab_interior: Node3D       # shown only in cab view
+var _destinations: Array = []
 var _wv                         # world_view, for materials
 
 
@@ -41,6 +42,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
 		if i == n - 1 and n > 1:
 			body.rotation.y = PI     # rear cab car faces backwards
 		car.add_child(body)
+		_add_identity(body, i, n)
 		if kind == "CabCar":
 			var lamps := body.find_children("Lamp_*", "", true, false)
 			if i == 0:
@@ -51,6 +53,41 @@ func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
 	template.free()
 	_build_cab_interior(cars[0])
 	update()
+
+
+## Crisp destination boards and running numbers on the existing MEMU model.
+func _add_identity(body: Node3D, index: int, count: int) -> void:
+	for side in [-1, 1]:
+		var number := Label3D.new()
+		number.text = "SR  %s%02d   •   MEMU" % ["6600" if train.id == "T1" else "6601", index + 1]
+		number.font_size = 64
+		number.pixel_size = 0.0045
+		number.modulate = Color("eddbb4")
+		number.outline_size = 0
+		number.position = Vector3(side * 1.845, 1.85, 0)
+		number.rotation.y = side * PI / 2
+		body.add_child(number)
+	if index != 0 and index != count - 1:
+		return
+	var destination := Label3D.new()
+	destination.text = train.destination.to_upper() if train.destination != "" else "MEMU LOCAL"
+	destination.font_size = 64
+	destination.pixel_size = 0.0028
+	destination.modulate = Color("ffcf74")
+	destination.outline_size = 0
+	destination.position = Vector3(0, 3.50, -10.327)
+	destination.rotation.y = PI
+	body.add_child(destination)
+	_destinations.append(destination)
+	if index == 0:
+		var headlight := SpotLight3D.new()
+		headlight.position = Vector3(0, 1.8, -10.75)
+		headlight.light_color = Color("fff1cd")
+		headlight.light_energy = 2.5
+		headlight.spot_range = 90
+		headlight.spot_angle = 24
+		headlight.shadow_enabled = true
+		body.add_child(headlight)
 
 
 ## Original Blender-built cab; instruments are a rendering of the simulation state.
@@ -70,6 +107,8 @@ func _point(back: float) -> Vector3:
 
 
 func update() -> void:
+	for label in _destinations:
+		label.text = train.destination.to_upper() if train.destination != "" else "MEMU LOCAL"
 	var step := CAR_LENGTH + CAR_GAP
 	for i in cars.size():
 		var front := _point(i * step + BOGIE_INSET)
@@ -100,3 +139,7 @@ func set_cab_view(on: bool) -> void:
 
 func head_position() -> Vector3:
 	return _point(0.0)
+
+
+func overview_position() -> Vector3:
+	return _point(train.length * 0.45)

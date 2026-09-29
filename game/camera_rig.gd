@@ -10,9 +10,9 @@ const BLEND_TIME := 1.1
 
 var mode := Mode.OVERVIEW
 var pivot := Vector3.ZERO
-var yaw := -0.6
-var pitch := -0.55
-var distance := 260.0
+var yaw := -0.65
+var pitch := -0.40
+var distance := 205.0
 var cab_fov := 70.0
 var follow := true
 
@@ -52,8 +52,8 @@ func toggle_mode() -> void:
 
 
 func jump_to(p: Vector3) -> void:
-	follow = false
 	set_mode(Mode.OVERVIEW)
+	follow = false
 	_from = global_transform
 	_blend = 0.0
 	pivot = p
@@ -66,10 +66,15 @@ func _target() -> Transform3D:
 		return t
 	var offset := Basis.from_euler(Vector3(pitch, yaw, 0)) * Vector3(0, 0, distance)
 	var pos := pivot + offset
-	return Transform3D(Basis.looking_at(pivot - pos, Vector3.UP), pos)
+	# Frame the railway in the open area above and left of the route desk.
+	var right := Basis(Vector3.UP, yaw).x
+	var target := pivot + right * distance * 0.12 - Vector3.UP * distance * 0.10
+	return Transform3D(Basis.looking_at(target - pos, Vector3.UP), pos)
 
 
 func _process(delta: float) -> void:
+	if mode == Mode.CAB and cab_transform.is_valid():
+		pivot = (cab_transform.call() as Transform3D).origin
 	if mode == Mode.OVERVIEW and follow and follow_point.is_valid():
 		pivot = pivot.lerp(follow_point.call(), 1.0 - exp(-4.0 * delta))
 	var target := _target()

@@ -1,11 +1,17 @@
 # Progress
 
-## 2026-09-30 — Station passing and dispatcher upgrade (in progress)
+## 2026-09-30 — Station passing, dispatcher and visual upgrade
 - Explicit entrance-to-exit route enumeration and atomic setting; occupied blocks and shared switch conflicts refused. Signal aspects require a set, clear route; routes retain an owner after signal passage.
 - Cancellation holds approach locks; points release after the owning train's tail clears the fouling zone independently of occupied berth release. Maruthur starters moved inside the loop clearance points.
 - Production automatic driving brakes for signals, buffers and lower speed limits. Two opposing eight-car MEMU services are available through `FirstLine.build_dispatch()`; drivers never set routes themselves.
 - Hard occupied-block boundary safeguard also applies with driver protection disabled. Long simulation steps are subdivided.
-- 53 headless tests pass, including a complete opposing meet and both terminal arrivals. Dispatcher UI and visual pass follow in this session.
+- Delivered a live schematic and route desk with entrance/exit selection, automatic point alignment, reservation/occupancy colours, refusal reasons, safe cancellation, service roster, AI/manual handoff, pause and scenario completion/restart.
+- Default game now starts the two-service Maruthur meet. Both MEMUs use the existing exterior and new detailed cab, as confirmed by the user. Selecting either train switches view/audio; Tab takes its cab, A hands control back to AI, C opens the route desk rather than clearing directly.
+- Graphics: world-texture mipmaps were previously disabled (causing distant shimmer/noise); enabled all 19 PBR/HDRI mip chains. Added station furniture, passengers, footbridge, street/village scenery, grass blades, revised foliage and flooded-field water; improved camera composition, lighting and label visibility. MEMUs have destination boards and headlights. 8× MSAA/high SSIL configured through the live Godot MCP; no performance-driven reductions.
+- **59 headless tests pass**, plus `tools/check_dispatch_ui.gd` full-scene integration: route buttons, selected cab/audio, cancellation, opposing meet, both terminal arrivals/completion, imported mipmaps. Graphical captures inspected overview, detailed cab and both trains at Maruthur; no runtime errors or safety events in that meet. Godot may still report the pre-existing audio playback shutdown leaks (now six for two trains).
+- Moved Chennapuram's turnout beyond the straight platform roads and checked the full-width train envelope against its island platform. Turnout clearance is a TrackGraph switch parameter, so other station loops can use the same interlocking without station-name rules.
+- Playtest guide and exact eight-route sequence: **`docs/dispatching.md`**. Set T1 through MRT-SE2 (loop), T2 through MRT-SW1 (main), then dispatch both onward after approach blocks clear. Check refused opposing routes, tail clearance, C route desk, Tab/A handoff, pause and completion/restart.
+- Next: user playtest of handling, visual quality and two-train audio balance. Recurring timetable, scoring, save/load and additional layouts remain future work. Blocks currently use conservative edge sections; turnout clearance distances are specific to this layout.
 
 ## 2026-09-30 — Detailed MEMU driving interior
 - User prioritised a more realistic interior. Replaced the box cab with an original Blender-built MEMU-inspired interior: formed green desk, analogue gauges, engraved controls, seats, fans, window hardware, wipers, headliner, footwell, radio, clipboard and rear equipment.
@@ -171,6 +177,6 @@ Godot · South India, present-day Indian Railways (era assumed) · simple 3-aspe
 middle-ground tone · both 2D schematic + 3D overview · small fictional first layout.
 
 ## Next
-- Playtest feedback on the first playable → fixes.
-- Phase 1 leftovers: speed-limit look-ahead / boards, horn + basic sounds, tidy label overlap.
-- Phase 2 start: second (AI) train with collision safety, then the 2D schematic dispatcher panel.
+- Playtest the two-train Maruthur meet using `docs/dispatching.md`, including manual handoff and audio balance.
+- Build on the dispatcher with recurring timetables, delay/scoring, save/load and further layouts after feedback.
+- Visual feedback on stations/scenery and the MEMU cab/exterior; approved sound synthesis stays sourced from the sibling lab.

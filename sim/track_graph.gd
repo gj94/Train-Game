@@ -10,7 +10,7 @@ extends RefCounted
 
 var nodes := {}     # id -> {pos: Vector3, edges: Array}
 var edges := {}     # id -> {id, a, b, points: PackedVector3Array, cum: PackedFloat32Array, length, speed_limit}
-var switches := {}  # node id -> {id, trunk, normal, reverse, reversed: bool}
+var switches := {}  # node id -> {id, trunk, normal, reverse, reversed: bool, clearance: metres}
 
 
 func add_node(id: String, pos: Vector3) -> void:
@@ -37,10 +37,10 @@ func add_edge(id: String, a: String, b: String, mid_points: Array = [], speed_li
 	nodes[b].edges.append(id)
 
 
-func add_switch(node_id: String, trunk: String, normal: String, reverse: String) -> void:
+func add_switch(node_id: String, trunk: String, normal: String, reverse: String, clearance: float = 12.0) -> void:
 	var ne: Array = nodes[node_id].edges
 	assert(ne.size() == 3 and trunk in ne and normal in ne and reverse in ne, "bad switch " + node_id)
-	switches[node_id] = {id = node_id, trunk = trunk, normal = normal, reverse = reverse, reversed = false}
+	switches[node_id] = {id = node_id, trunk = trunk, normal = normal, reverse = reverse, reversed = false, clearance = clearance}
 
 
 func exit_node(edge_id: String, dir: int) -> String:

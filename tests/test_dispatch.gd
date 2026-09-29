@@ -62,6 +62,56 @@ func test_no_route_means_red_even_with_empty_track():
 			return sid + " cleared without a route"
 	return true
 
+func test_ai_brakes_for_red_beyond_yellow():
+	var w := Small.small_world()
+	var t := Train.new("AI", 40)
+	w.place_train(t, "e0", 60, 1)
+	w.set_route("s0", "s1")
+	t.automatic = true
+	t.speed = 19.0
+	w.step(90)
+	if t.path[0].edge != "e1" or t.speed > 0.01:
+		return "AI did not stop in the next block"
+	if w.events.any(func(e): return e.kind == "spad"):
+		return "AI passed the downstream red"
+	return w.next_signal(t).id == "s1" and w.next_signal(t).distance >= 5
+
+func test_route_cannot_be_changed_while_reserved():
+	var w := Line.build()
+	w.set_route("MRT-HE", "MRT-SE2")
+	var result := w.set_route("MRT-HE", "MRT-SE1")
+	return not result.ok and w.graph.switches.MRT_1.reversed and w.signals["MRT-HE"].destination == "MRT-SE2"
+
+func test_tail_keeps_block_occupied_after_head_leaves():
+	var w := Small.small_world()
+	var t := Train.new("long", 140)
+	w.place_train(t, "e3", 20, 1)
+	return not w.set_route("s0", "s1").ok and w.occupancy().has("e1")
+
+func test_signal_query_honours_search_distance():
+	var w := Small.small_world()
+	var t := Train.new("T", 40)
+	w.place_train(t, "e0", 50, 1)
+	return w.next_signal(t, 20).is_empty() and w.next_signal(t, 40).id == "s0"
+
+func test_manually_driven_service_can_complete():
+	var w := Line.build()
+	var t: Train = w.trains.T1
+	t.destination = "Kadalur"
+	w.place_train(t, "kdp_plat", 212, 1)
+	w.step(0.05)
+	return t.service_complete and not t.automatic
+
+func test_terminal_platform_does_not_intersect_converging_track():
+	var w := Line.build()
+	var platform: Rect2 = w.stations[0].platforms[0]
+	for edge in ["cpm_p1", "cpm_p2"]:
+		for i in int(w.graph.edges[edge].length):
+			var p := w.graph.position(edge, i)
+			if platform.grow(1.83).has_point(Vector2(p.x, p.z)):
+				return "Full-width MEMU envelope intersects the platform on " + edge
+	return true
+
 func test_large_step_cannot_enter_occupied_block():
 	var w := Small.small_world()
 	var lead := Train.new("lead", 40)

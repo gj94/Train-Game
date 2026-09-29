@@ -23,16 +23,16 @@ static func build() -> RailWorld:
 
 	g.add_node("CPM_B1", Vector3(0, 0, 0))
 	g.add_node("CPM_B2", Vector3(0, 0, -TRACK_SPACING))
-	g.add_node("CPM_1", Vector3(320, 0, 0))
+	g.add_node("CPM_1", Vector3(440, 0, 0))
 	g.add_node("MRT_1", Vector3(1800, 0, 0))
 	g.add_node("MRT_2", Vector3(2200, 0, 0))
 	g.add_node("KDP_H", Vector3(3500, 0, 0))
 	g.add_node("KDP_B", Vector3(3720, 0, 0))
 
-	g.add_edge("cpm_p1", "CPM_B1", "CPM_1", straight(0, 320, 0), kmh.call(50))
+	g.add_edge("cpm_p1", "CPM_B1", "CPM_1", straight(0, 440, 0), kmh.call(50))
 	g.add_edge("cpm_p2", "CPM_B2", "CPM_1",
-		straight(0, 200, -TRACK_SPACING) + ease_between(200, 320, -TRACK_SPACING, 0), kmh.call(30))
-	g.add_edge("main_w", "CPM_1", "MRT_1", bow(320, 1800, -160), kmh.call(100))
+		straight(0, 320, -TRACK_SPACING) + ease_between(320, 440, -TRACK_SPACING, 0), kmh.call(30))
+	g.add_edge("main_w", "CPM_1", "MRT_1", bow(440, 1800, -160), kmh.call(100))
 	g.add_edge("mrt_main", "MRT_1", "MRT_2", straight(1800, 2200, 0), kmh.call(80))
 	g.add_edge("mrt_loop", "MRT_1", "MRT_2",
 		ease_between(1800, 1900, 0, TRACK_SPACING) + straight(1900, 2100, TRACK_SPACING)
@@ -40,13 +40,13 @@ static func build() -> RailWorld:
 	g.add_edge("main_e", "MRT_2", "KDP_H", bow(2200, 3500, 120), kmh.call(100))
 	g.add_edge("kdp_plat", "KDP_H", "KDP_B", straight(3500, 3720, 0), kmh.call(50))
 
-	g.add_switch("CPM_1", "main_w", "cpm_p1", "cpm_p2")
-	g.add_switch("MRT_1", "main_w", "mrt_main", "mrt_loop")
-	g.add_switch("MRT_2", "main_e", "mrt_main", "mrt_loop")
+	g.add_switch("CPM_1", "main_w", "cpm_p1", "cpm_p2", 105.0)
+	g.add_switch("MRT_1", "main_w", "mrt_main", "mrt_loop", 90.0)
+	g.add_switch("MRT_2", "main_e", "mrt_main", "mrt_loop", 90.0)
 
 	# Eastbound (+1)
-	w.add_signal("CPM-S1", "cpm_p1", 1)    # starter, platform 1
-	w.add_signal("CPM-S2", "cpm_p2", 1)    # starter, platform 2
+	w.add_signal("CPM-S1", "cpm_p1", 1, 130) # starters before the turnout clearance
+	w.add_signal("CPM-S2", "cpm_p2", 1, g.edges.cpm_p2.length - 310.0)
 	w.add_signal("MRT-HE", "main_w", 1)    # home, eastbound
 	w.add_signal("MRT-SE1", "mrt_main", 1, 100) # hold a full rake clear of the throat
 	w.add_signal("MRT-SE2", "mrt_loop", 1, 100)
@@ -59,9 +59,9 @@ static func build() -> RailWorld:
 	w.add_signal("CPM-H", "main_w", -1)
 
 	w.stations = [
-		{code = "CPM", name = "Chennapuram", platforms = [Rect2(20, -7.2, 210, 5.4)], building = Vector3(120, 0, -16)},
-		{code = "MRT", name = "Maruthur", platforms = [Rect2(1910, 1.8, 180, 5.4)], building = Vector3(2000, 0, -9)},
-		{code = "KDP", name = "Kadalur", platforms = [Rect2(3505, 1.8, 205, 5.4)], building = Vector3(3610, 0, 13)},
+		{code = "CPM", name = "Chennapuram", platforms = [Rect2(8, -7.1, 304, 5.2)], building = Vector3(120, 0, -23)},
+		{code = "MRT", name = "Maruthur", platforms = [Rect2(1906, 1.9, 190, 5.2)], building = Vector3(2000, 0, -16)},
+		{code = "KDP", name = "Kadalur", platforms = [Rect2(3505, 1.9, 210, 5.2)], building = Vector3(3610, 0, 13)},
 	]
 
 	var t := Train.new("T1", train_length())
@@ -76,11 +76,16 @@ static func build_dispatch() -> RailWorld:
 	east.automatic = true
 	east.service_name = "66001 · Coast local"
 	east.destination = "Kadalur"
+	east.head_s = 304.0
+	east.controller = -1.0
+	east.status = "Waiting for CPM-S1"
 	var west := Train.new("T2", train_length())
 	west.automatic = true
 	west.service_name = "66002 · Valley local"
 	west.destination = "Chennapuram"
-	w.place_train(west, "kdp_plat", 20.0, -1)
+	west.controller = -1.0
+	west.status = "Waiting for KDP-S"
+	w.place_train(west, "kdp_plat", 16.0, -1)
 	return w
 
 

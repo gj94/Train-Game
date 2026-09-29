@@ -6,10 +6,10 @@ extends RefCounted
 ## every edge up to and including the next edge that carries a signal in the
 ## same direction (or up to a buffer stop).
 ##
-## Clearing a signal locks its route: the switches in it can't be thrown and no
-## other signal can clear over the same edges. The signal returns to red when a
-## train passes it; each route edge is released once the train has run over it
-## and left it (sectional release).
+## set_route chooses the next signal / buffer and aligns and locks its points.
+## No other route may reserve the same block or throat. The signal returns to
+## red on passage. Points release after tail clearance; occupied blocks stay
+## reserved until vacated. No rendering or scene-tree dependencies.
 
 enum Aspect { RED, YELLOW, GREEN }
 
@@ -17,7 +17,7 @@ var graph := TrackGraph.new()
 var signals := {}        # route sections are immutable paths, independent of later point settings
 var trains := {}         # id -> Train
 var time := 0.0
-var protection := true   # auto emergency brake on passing a red signal
+var protection := true   # emergency intervention before passing a red signal
 var stations: Array = [] # layout data for rendering: {code, name, platforms: [Rect2 in x/z], building}
 
 var events: Array = []   # {seq, t, kind, text, train}
@@ -175,7 +175,7 @@ func switch_lock_reason(node_id: String) -> String:
 
 
 ## A berth may be occupied while the throat behind its tail is free.
-## Long station turnouts require a 90 m fouling clearance; small test points 12 m.
+## Station turnouts have long clearance zones; small test points use 12 m.
 func _train_near_switch(t: Train, node_id: String) -> bool:
 	var remaining := t.length
 	for i in t.path.size():
@@ -184,7 +184,7 @@ func _train_near_switch(t: Train, node_id: String) -> bool:
 		var start: float = t.head_s if i == 0 else graph.exit_s(seg.edge, seg.dir)
 		var covered := minf(remaining, t._available_behind(graph, i))
 		var end: float = start - seg.dir * covered
-		var zone := 90.0 if node_id.begins_with("MRT_") else 12.0
+		var zone: float = graph.switches[node_id].clearance
 		if (edge.a == node_id and minf(start, end) < zone) or (edge.b == node_id and maxf(start, end) > edge.length - zone):
 			return true
 		remaining -= covered
@@ -376,6 +376,9 @@ func step(dt: float) -> void:
 			if t.automatic:
 				_drive_automatic(t)
 			_step_train(t, slice)
+			if t.destination != "" and t.speed < 0.01 and distance_to_buffer(t, 15.0) < 12.0:
+				t.service_complete = true
+				t.status = "Arrived at " + t.destination
 		_release_routes()
 		remaining -= slice
 
@@ -391,6 +394,7 @@ func _drive_automatic(t: Train) -> void:
 	var stop_at := buffer - 7.0
 	var ns := next_signal(t)
 	t.status = "Running to " + t.destination
+	stop_at = minf(stop_at, _distance_to_red(t) - 6.0)
 	if not ns.is_empty() and aspect(ns.id) == Aspect.RED:
 		stop_at = minf(stop_at, ns.distance - 6.0)
 		if t.speed < 0.1:
@@ -413,10 +417,26 @@ func _drive_automatic(t: Train) -> void:
 		t.controller = clampf((target - t.speed) * 0.7, 0.0, 1.0)
 	else:
 		t.controller = 0.0
-	if buffer < 12.0 and t.speed < 0.01:
-		t.service_complete = true
-		t.status = "Arrived at " + t.destination
+	if t.service_complete:
 		t.controller = -1.0
+
+
+func _distance_to_red(t: Train) -> float:
+	var cur: Dictionary = t.path[0]
+	var from_s := t.head_s
+	var distance := 0.0
+	for i in 64:
+		for sid in _signals_on.get(_key(cur.edge, cur.dir), []):
+			var ahead: float = (signals[sid].s - from_s) * cur.dir
+			if ahead >= 0 and aspect(sid) == Aspect.RED:
+				return distance + ahead
+		distance += absf(graph.exit_s(cur.edge, cur.dir) - from_s)
+		var nxt := graph.next(cur.edge, cur.dir)
+		if nxt.is_empty() or distance > 5000:
+			return INF
+		cur = nxt
+		from_s = graph.entry_s(cur.edge, cur.dir)
+	return INF
 
 
 ## A hard block boundary prevents collisions even with driver protection off.
@@ -467,6 +487,11 @@ func _step_train(t: Train, dt: float) -> void:
 	var hit_speed := t.speed
 	var res := t.advance(graph, d)
 	for nxt in res.entered:
+		for sig in signals.values():
+			if sig.owner == t.id:
+				for r in sig.route:
+					if r.edge == nxt.edge:
+						r.seen = true
 		if nxt.against:
 			graph.switches[nxt.switch].reversed = not graph.switches[nxt.switch].reversed
 			_event("warning", "Train %s ran through switch %s set against it" % [t.id, nxt.switch], t.id)

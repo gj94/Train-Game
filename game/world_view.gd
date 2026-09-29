@@ -14,6 +14,7 @@ const PH := "res://assets/polyhaven/%s/%s_%s_2k.jpg"
 const PALM := "res://assets/models/palm_quaternius.glb"
 const AxleJoint := preload("res://game/axle_joint.gd")
 const HDRI := "res://assets/polyhaven/hdri/kloofendal_43d_clear_puresky_2k.hdr"
+const Details := preload("res://game/station_details.gd")
 
 var world: RailWorld
 var root: Node3D
@@ -27,6 +28,7 @@ var _track_samples := PackedVector3Array()
 var _mats := {}
 var _noise_tex: NoiseTexture2D
 var _terrain_noise := FastNoiseLite.new()
+var _fields: Array[Rect2] = []
 
 
 func build(w: RailWorld, parent: Node3D) -> void:
@@ -53,6 +55,7 @@ func build(w: RailWorld, parent: Node3D) -> void:
 	_build_ohe()
 	_build_stations()
 	_build_scenery()
+	Details.new().build(self)
 	for sid in world.signals:
 		_build_signal(sid)
 	for nid in world.graph.switches:
@@ -140,41 +143,41 @@ func _build_environment() -> void:
 	env.background_mode = Environment.BG_SKY
 	env.sky = sky
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
-	env.ambient_light_energy = 0.9
+	env.ambient_light_energy = 0.65
 	env.reflected_light_source = Environment.REFLECTION_SOURCE_SKY
 	env.tonemap_mode = Environment.TONE_MAPPER_AGX
 	env.tonemap_exposure = 1.0
 	env.ssao_enabled = true
 	env.ssao_radius = 1.5
-	env.ssao_intensity = 1.6
+	env.ssao_intensity = 1.1
 	env.ssil_enabled = true
 	env.glow_enabled = true
-	env.glow_intensity = 0.4
-	env.glow_bloom = 0.05
+	env.glow_intensity = 0.28
+	env.glow_bloom = 0.015
 	env.glow_hdr_threshold = 1.2
 	env.fog_enabled = true
 	env.fog_mode = Environment.FOG_MODE_EXPONENTIAL
-	env.fog_light_color = Color(0.74, 0.82, 0.9)
-	env.fog_density = 0.00035
+	env.fog_light_color = Color(0.78, 0.84, 0.85)
+	env.fog_density = 0.00018
 	env.fog_sky_affect = 0.15
 	env.fog_aerial_perspective = 0.6
 	env.adjustment_enabled = true
-	env.adjustment_saturation = 1.08
-	env.adjustment_contrast = 1.04
+	env.adjustment_saturation = 0.94
+	env.adjustment_contrast = 1.06
 	var we := WorldEnvironment.new()
 	we.environment = env
 	root.add_child(we)
 
 	var sun := DirectionalLight3D.new()
-	sun.light_color = Color(1.0, 0.94, 0.84)
-	sun.light_energy = 1.6
+	sun.light_color = Color(1.0, 0.88, 0.72)
+	sun.light_energy = 1.9
 	sun.light_angular_distance = 0.6          # soft shadow edges
 	sun.shadow_enabled = true
 	sun.shadow_blur = 1.2
 	sun.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS
 	sun.directional_shadow_max_distance = 700.0
 	sun.directional_shadow_blend_splits = true
-	sun.rotation_degrees = Vector3(-48, -35, 0)
+	sun.rotation_degrees = Vector3(-32, -42, 0)
 	root.add_child(sun)
 
 
@@ -361,12 +364,20 @@ func _build_terrain() -> void:
 
 
 func _far_from_track(p: Vector3, clearance: float) -> bool:
+	for field in _fields:
+		if field.has_point(Vector2(p.x, p.z)):
+			return false
 	var c2 := clearance * clearance
 	for i in range(0, _track_samples.size(), 4):
 		if Vector2(p.x - _track_samples[i].x, p.z - _track_samples[i].z).length_squared() < c2:
 			return false
 	for st in world.stations:
 		if p.distance_to(st.building) < 32.0:
+			return false
+		# Keep random trees out of the station street and house footprints.
+		var side := -1.0 if st.building.z < 0 else 1.0
+		var village_z: float = (p.z - st.building.z) * side
+		if absf(p.x - st.building.x) < 113 and village_z > 25 and village_z < 85:
 			return false
 	return true
 
@@ -376,16 +387,22 @@ func _build_scenery() -> void:
 	rng.seed = 20260927
 
 	# Paddy fields: flooded / green rice plots with low earth bunds.
-	var paddy_green := pbr("leafy_grass", 3.0, Color(0.55, 1.0, 0.28))
-	var paddy_water := mat(Color(0.25, 0.33, 0.28))
-	paddy_water.metallic = 0.2
-	paddy_water.roughness = 0.08
+	var paddy_green := pbr("leafy_grass", 3.0, Color(0.63, 0.80, 0.39))
+	var paddy_water := ShaderMaterial.new()
+	paddy_water.shader = load("res://game/shaders/paddy_water.gdshader")
 	var bund := pbr("red_laterite_soil_stones", 3.0)
 	for i in 150:
 		var p := Vector3(rng.randf_range(-400, 4100), 0, rng.randf_range(-420, 420))
-		if not _far_from_track(p, 40.0):
+		if not _far_from_track(p, 65.0):
+			continue
+		var in_village := false
+		for station in world.stations:
+			if absf(p.x - station.building.x) < 210 and absf(p.z - station.building.z) < 125:
+				in_village = true
+		if in_village:
 			continue
 		var size := Vector3(rng.randf_range(40, 90), 0.06, rng.randf_range(30, 70))
+		_fields.append(Rect2(Vector2(p.x - size.x * 0.6, p.z - size.z * 0.6), Vector2(size.x, size.z) * 1.2))
 		var field := Node3D.new()
 		field.position = p
 		field.rotation.y = rng.randf_range(-0.2, 0.2)
@@ -434,15 +451,15 @@ func _build_scenery() -> void:
 		p.y = terrain_height(p.x, p.z)
 		var r := rng.randf_range(3.0, 6.0)
 		trunks.append(Transform3D(Basis().scaled(Vector3(1.6, r / 5.0, 1.6)), p + Vector3(0, r * 0.5, 0)))
-		for k in 3:
-			var off := Vector3(rng.randf_range(-r, r) * 0.45, rng.randf_range(0, r * 0.3), rng.randf_range(-r, r) * 0.45)
-			crowns.append(Transform3D(Basis().scaled(Vector3(r, r * 0.75, r) * rng.randf_range(0.7, 1.0)), p + Vector3(0, r * 1.5, 0) + off))
+		for k in 9:
+			var off := Vector3(rng.randf_range(-r, r) * 0.6, rng.randf_range(-r * 0.2, r * 0.45), rng.randf_range(-r, r) * 0.6)
+			crowns.append(Transform3D(Basis().scaled(Vector3(r, r * 0.85, r) * rng.randf_range(0.35, 0.66)), p + Vector3(0, r * 1.5, 0) + off))
 	var crown_mesh := SphereMesh.new()
-	crown_mesh.radial_segments = 10
-	crown_mesh.rings = 6
+	crown_mesh.radial_segments = 16
+	crown_mesh.rings = 10
 	crown_mesh.radius = 1.0
 	crown_mesh.height = 2.0
-	_multimesh(crown_mesh, crowns, pbr("leafy_grass", 1.5, Color(0.45, 0.7, 0.3)))
+	_multimesh(crown_mesh, crowns, mat(Color("365a35")))
 	var trunk_mesh := CylinderMesh.new()
 	trunk_mesh.top_radius = 0.18
 	trunk_mesh.bottom_radius = 0.3
@@ -632,12 +649,13 @@ func _build_switch(nid: String) -> void:
 
 ## Constant on-screen size so ids stay readable from far away.
 func _style_marker_label(label: Label3D) -> void:
-	label.font_size = 28
-	label.pixel_size = 0.0012
-	label.fixed_size = true
+	label.font_size = 36
+	label.pixel_size = 0.025
+	label.fixed_size = false
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	label.no_depth_test = true
-	label.outline_size = 8
+	label.no_depth_test = false
+	label.outline_size = 5
+	label.visibility_range_end = 260.0
 
 
 func _clickable(node: Node3D, size: Vector3, offset: Vector3, info: Dictionary) -> void:

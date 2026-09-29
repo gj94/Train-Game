@@ -10,7 +10,7 @@ uniform sampler2D soil_normal : hint_normal, filter_linear_mipmap_anisotropic, r
 uniform sampler2D noise_tex : filter_linear, repeat_enable;
 
 uniform float tile = 3.5;                 // metres per texture repeat up close
-uniform vec3 grass_tint : source_color = vec3(0.62, 0.98, 0.38);
+uniform vec3 grass_tint : source_color = vec3(0.53, 0.70, 0.42);
 uniform float soil_amount : hint_range(0.0, 1.0) = 0.12;
 
 varying vec3 wpos;
@@ -21,7 +21,7 @@ void vertex() {
 
 vec3 sample3(sampler2D t, vec2 p, float far_mix) {
 	vec3 near_c = mix(texture(t, p / tile).rgb, texture(t, p / (tile * 3.7) + vec2(0.37, 0.71)).rgb, 0.45);
-	vec3 far_c = texture(t, p / (tile * 11.0) + vec2(0.13, 0.29)).rgb;
+	vec3 far_c = textureLod(t, p / (tile * 11.0) + vec2(0.13, 0.29), 3.0).rgb;
 	return mix(near_c, far_c, far_mix);
 }
 

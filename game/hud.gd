@@ -4,7 +4,7 @@ extends CanvasLayer
 const HELP := """[b]Driving[/b] (works in both views)
 W / ↑   more power      S / ↓   less power / more brake
 X   coast (handle to 0)     Space   emergency brake (again at a stand: release)
-C   ask for the next signal to clear     R   change ends (stopped)     H   horn
+C   open next signal's route desk     R   change ends (stopped)     H   horn
 
 [b]View[/b]
 Tab   cab ⇄ overview      F   follow train      1 / 2 / 3   jump to station
@@ -12,9 +12,11 @@ Overview: right-drag orbit · left-drag pan · wheel zoom
 Cab: right-drag to look around · wheel zoom
 
 [b]Dispatching[/b] (overview)
-Click a signal to clear it / put it back · click a switch marker to throw it
+Choose entrance + exit, then SET ROUTE · PUT TO RED cancels safely
+D   dispatch board · A   selected train AI/manual · select a service to follow
+Tab takes manual control of the selected train. A hands it back to AI.
 
-T   time ×1 / ×2 / ×4      P   train protection on/off      F1   hide this help
+T   time ×1 / ×2 / ×4      Esc   pause      P   protection on/off      F1   help
 [ / ]   track sound quieter / louder (2 dB steps)      J   rail-joint markers (flash red on each hit)
 , / .   clang (2nd wheel of each bogie) quieter / louder than the cling (1st wheel)"""
 
@@ -30,11 +32,11 @@ var _log_lines: Array = []
 
 func _ready() -> void:
 	_info = _rich(Vector2(16, 16), Vector2(430, 0), 18)
-	_mode = _label(Vector2(0, 14), 20)
+	_mode = _label(Vector2(0, 14), 17)
 	_mode.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
 	_mode.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_mode.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	_toast = _label(Vector2(0, 52), 20)
+	_toast = _label(Vector2(0, 52), 16)
 	_toast.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
 	_toast.offset_top = 52
 	_toast.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -47,8 +49,10 @@ func _ready() -> void:
 	_speed.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_log = _rich(Vector2(16, 0), Vector2(560, 150), 16)
 	_log.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
-	_log.offset_top = -166
-	_log.offset_bottom = -16
+	_log.offset_top = 240
+	_log.offset_bottom = 370
+	_log.set_anchor(SIDE_TOP, 0)
+	_log.set_anchor(SIDE_BOTTOM, 0)
 	_log.offset_right = 576
 	_help = _rich(Vector2.ZERO, Vector2(640, 0), 16)
 	_help.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
@@ -57,8 +61,9 @@ func _ready() -> void:
 	_help.offset_bottom = -16
 	_help.grow_vertical = Control.GROW_DIRECTION_BEGIN   # fit_content grows it upward
 	_help.text = HELP
+	_help.visible = false
 	var bg := StyleBoxFlat.new()
-	bg.bg_color = Color(0, 0, 0, 0.55)
+	bg.bg_color = Color(0.025, 0.062, 0.086, 0.90)
 	bg.set_content_margin_all(10)
 	bg.set_corner_radius_all(6)
 	for c in [_info, _help]:
@@ -121,9 +126,9 @@ func refresh(s: Dictionary) -> void:
 	var lim := roundi(s.limit * 3.6)
 	var over: bool = s.speed > s.limit + 3.0 / 3.6
 	_speed.text = "%d km/h" % kmh
-	_speed.visible = not s.cab
+	_speed.visible = false
 	_speed.add_theme_color_override("font_color", Color(1, 0.35, 0.3) if over else Color.WHITE)
-	_mode.text = ("CAB · %s" if s.cab else "OVERVIEW · %s") % s.train_id + ("   ×%d" % s.time_scale if s.time_scale > 1 else "")
+	_mode.text = ("CAB · %s" if s.cab else "DISPATCH · %s") % s.train_id + "   ×%d" % s.time_scale + ("   PAUSED" if s.paused else "")
 
 	var handle := "Coast"
 	if s.emergency:
@@ -133,7 +138,7 @@ func refresh(s: Dictionary) -> void:
 	elif s.controller < -0.001:
 		handle = "[color=#ffaa55]Brake %d%%[/color]" % roundi(-s.controller * 100)
 	var lines := []
-	lines.append("[b]%s[/b]  %d-car MEMU" % [s.train_id, s.cars])
+	lines.append("[color=#ffca72][b]%s  /  %d-CAR MEMU[/b][/color]   %s" % [s.train_id, s.cars, "AI DRIVER" if s.automatic else "MANUAL"])
 	lines.append("Speed [b]%d[/b] km/h   Limit %d km/h%s" % [kmh, lim, "  [color=#ff5544]OVERSPEED[/color]" if over else ""])
 	lines.append("Handle  " + handle)
 	if s.next_signal.is_empty():
@@ -143,5 +148,5 @@ func refresh(s: Dictionary) -> void:
 		lines.append("Next signal  [b]%s[/b]  %s  in %d m" % [s.next_signal.id, names[s.next_aspect], roundi(s.next_signal.distance)])
 	if s.buffer < 500.0:
 		lines.append("Buffer stop in %d m" % roundi(s.buffer))
-	lines.append("Protection %s" % ("on" if s.protection else "[color=#ffaa55]off[/color]"))
+	lines.append("Protection %s    [color=#94aeb8]F1 controls · D dispatch[/color]" % ("on" if s.protection else "[color=#ffaa55]off[/color]"))
 	_info.text = "\n".join(lines)

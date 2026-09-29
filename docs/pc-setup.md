@@ -29,6 +29,14 @@ powershell -ExecutionPolicy Bypass -File .\tools\godot.ps1 test
 powershell -ExecutionPolicy Bypass -File .\tools\godot.ps1 doctor
 ```
 
+Dispatcher scene integration check (after the headless test suite):
+
+```powershell
+& .\.local\godot\Godot_v4.7.2-stable_win64_console.exe --headless --path . --script res://tools/check_dispatch_ui.gd
+```
+
+The current two-train playtest and route sequence are in `docs/dispatching.md`.
+
 The execution-policy option applies only to the launched process. Do not import while another editor is importing.
 For a GUI executable without a console, use `.local/godot/Godot_v4.7.2-stable_win64.exe --path . --editor`.
 

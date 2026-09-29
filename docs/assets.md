@@ -2,6 +2,13 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-09-30 dispatch visual pass: station furniture, people, footbridge, village buildings,
+grass blades, procedural water shader, train labels and UI are original project code
+(`game/station_details.gd`, `game/shaders/paddy_water.gdshader`, `game/dispatcher.gd`).
+They reuse the registered PBR textures below; no additional downloaded assets. The existing
+MEMU exterior and detailed cab are used for both services. World texture import settings now
+generate mipmaps for stable distance rendering.
+
 | Asset | Path in project | Source URL | Author | Licence | Date added |
 |---|---|---|---|---|---|
 | Gravel Floor 02 (2K diff/nor_gl/rough) — ballast | `assets/polyhaven/gravel_floor_02/` | https://polyhaven.com/a/gravel_floor_02 | Poly Haven | CC0 | 2026-09-27 |
