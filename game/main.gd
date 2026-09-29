@@ -109,6 +109,8 @@ func _process(delta: float) -> void:
 		time_scale = time_scale,
 		automatic = train.automatic,
 		paused = paused,
+		world_clock = world.clock_text(),
+		world_day = world.clock_day(),
 	})
 
 
@@ -123,6 +125,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					_enter_cab()
 			KEY_D:
 				dispatcher.toggle()
+			KEY_M:
+				dispatcher.toggle_timetable()
 			KEY_A:
 				dispatcher.toggle_driver()
 			KEY_ESCAPE:

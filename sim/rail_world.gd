@@ -12,15 +12,18 @@ extends RefCounted
 ## reserved until vacated. No rendering or scene-tree dependencies.
 
 enum Aspect { RED, YELLOW, GREEN }
+const Clock := preload("res://sim/world_clock.gd")
+const Timetable := preload("res://sim/timetable.gd")
 
 var graph := TrackGraph.new()
 var signals := {}        # route sections are immutable paths, independent of later point settings
 var trains := {}         # id -> Train
 var time := 0.0
+var clock_start := 8.0 * 3600.0 # absolute world seconds at scenario start, day 1
 var protection := true   # emergency intervention before passing a red signal
 var stations: Array = [] # layout data for rendering: {code, name, platforms: [Rect2 in x/z], building}
 
-var events: Array = []   # {seq, t, kind, text, train}
+var events: Array = []   # {seq, t (elapsed), clock (absolute), kind, text, train}
 var _event_seq := 0
 var _signals_on := {}    # "edge|dir" -> [signal ids]
 
@@ -57,6 +60,31 @@ func place_train(train: Train, edge: String, s: float, dir: int) -> void:
 
 
 # --- queries ----------------------------------------------------------------
+
+func clock_seconds() -> float:
+	return clock_start + time
+
+func clock_text() -> String:
+	return Clock.format_time(clock_seconds())
+
+func clock_day() -> int:
+	return Clock.day(clock_seconds())
+
+## Atomic assignment: invalid data never replaces an existing working.
+func set_timetable(train_id: String, definition: Dictionary) -> Dictionary:
+	if not trains.has(train_id):
+		return {ok = false, reason = "Unknown train " + train_id}
+	var train: Train = trains[train_id]
+	if train.speed > 0.01:
+		return {ok = false, reason = "Stop the train before assigning a timetable"}
+	var schedule := Timetable.new()
+	var result := schedule.configure(definition, self, train)
+	if not result.ok:
+		return result
+	train.timetable = schedule
+	train.destination = schedule.stops[-1].name
+	train.service_complete = false
+	return result
 
 ## edge id -> train id, for every occupied edge.
 func occupancy() -> Dictionary:
@@ -346,12 +374,15 @@ func request_signal_ahead(train_id: String) -> Dictionary:
 ## Swap cabs (train must be stopped).
 func reverse_train(train_id: String) -> Dictionary:
 	var t: Train = trains[train_id]
+	if t.timetable != null and not t.timetable.complete():
+		return {ok = false, reason = "Finish the current timetable before changing ends"}
 	for sig in signals.values():
 		if sig.owner == train_id and sig.route.any(func(r): return not r.seen):
 			return {ok = false, reason = "Complete the movement into the reserved block before changing ends"}
 	if not t.reverse(graph):
 		return {ok = false, reason = "Stop the train before changing ends"}
 	t.service_complete = false
+	t.timetable = null # completed working stays complete; return movement is unscheduled
 	return {ok = true, reason = ""}
 
 
@@ -375,8 +406,14 @@ func step(dt: float) -> void:
 		for t in trains.values():
 			if t.automatic:
 				_drive_automatic(t)
+			var previous_distance: float = t.odometer
 			_step_train(t, slice)
-			if t.destination != "" and t.speed < 0.01 and distance_to_buffer(t, 15.0) < 12.0:
+			if t.timetable != null:
+				t.timetable.observe(t, clock_seconds(), t.odometer > previous_distance + 0.000001)
+				t.service_complete = t.timetable.complete()
+				if t.service_complete:
+					t.status = "Arrived at " + t.destination
+			elif t.destination != "" and t.speed < 0.01 and distance_to_buffer(t, 15.0) < 12.0:
 				t.service_complete = true
 				t.status = "Arrived at " + t.destination
 		_release_routes()
@@ -390,6 +427,28 @@ func _drive_automatic(t: Train) -> void:
 		t.status = "Emergency — release at stand"
 		t.controller = -1.0
 		return
+	var scheduled_stop := {}
+	if t.timetable != null:
+		var tt = t.timetable
+		if tt.complete():
+			t.status = "Timetable complete"
+			t.controller = -1.0
+			return
+		if tt.at_stop:
+			if clock_seconds() + 0.000001 < tt.release_time():
+				t.status = ("Departs " if tt.index == 0 else "Dwell until ") + Clock.format_time(tt.release_time())
+				t.controller = -1.0
+				return
+			var starter := next_signal(t)
+			if starter.is_empty() or aspect(starter.id) == Aspect.RED:
+				t.status = "Awaiting route" if starter.is_empty() else "Waiting for " + starter.id
+				t.controller = -1.0
+				return
+		scheduled_stop = tt.stop_ahead()
+		if tt.missed_stop:
+			t.status = "Missed stop: " + scheduled_stop.block
+			t.controller = -1.0
+			return
 	var buffer := distance_to_buffer(t)
 	var stop_at := buffer - 7.0
 	var ns := next_signal(t)
@@ -400,6 +459,23 @@ func _drive_automatic(t: Train) -> void:
 		if t.speed < 0.1:
 			t.status = "Waiting for " + ns.id
 	stop_at = minf(stop_at, _distance_to_obstruction(t) - 3.0)
+	if not scheduled_stop.is_empty():
+		var to_stop := _stop_distance(t.path[0].edge, t.path[0].dir, t.head_s, scheduled_stop, [])
+		if is_inf(to_stop):
+			t.controller = -1.0
+			t.status = "Cannot reach stop: " + scheduled_stop.block
+			return
+		stop_at = minf(stop_at, to_stop)
+		# A cleared route to the wrong platform is still wrong for this
+		# working. Stop at its entrance; never move points on the AI's behalf.
+		if not ns.is_empty() and signals[ns.id].cleared:
+			var route: Array = signals[ns.id].route
+			if not route.is_empty():
+				var last: Dictionary = route[-1]
+				var contains_stop := route.any(func(r): return r.edge == scheduled_stop.block and r.dir == scheduled_stop.direction)
+				if not contains_stop and is_inf(_stop_distance(last.edge, last.dir, graph.entry_s(last.edge, last.dir), scheduled_stop, [])):
+					stop_at = minf(stop_at, ns.distance - 6.0)
+					t.status = "Route must serve " + scheduled_stop.block
 	var target := minf(speed_limit_for(t) - 0.4, sqrt(maxf(0.0, 2.0 * t.service_decel * 0.65 * stop_at)))
 	var cur: Dictionary = t.path[0]
 	var distance := absf(graph.exit_s(cur.edge, cur.dir) - t.head_s)
@@ -419,6 +495,31 @@ func _drive_automatic(t: Train) -> void:
 		t.controller = 0.0
 	if t.service_complete:
 		t.controller = -1.0
+
+
+## Distance via track topology, allowing points beyond a red signal to be
+## set later. Actual movement still follows only dispatcher-set points.
+func _stop_distance(edge: String, dir: int, from_s: float, stop: Dictionary, visited: Array) -> float:
+	var key := _key(edge, dir)
+	if key in visited or visited.size() >= 64:
+		return INF
+	if edge == stop.block and dir == stop.direction:
+		var distance: float = (stop.s - from_s) * dir
+		return maxf(0.0, distance) if distance >= -1.1 else INF
+	var node := graph.exit_node(edge, dir)
+	var exits: Array = []
+	if graph.switches.has(node):
+		var sw: Dictionary = graph.switches[node]
+		exits = [sw.normal, sw.reverse] if edge == sw.trunk else [sw.trunk]
+	else:
+		for other in graph.nodes[node].edges:
+			if other != edge:
+				exits.append(other)
+	var best := INF
+	for next in exits:
+		var direction := 1 if graph.edges[next].a == node else -1
+		best = minf(best, _stop_distance(next, direction, graph.entry_s(next, direction), stop, visited + [key]))
+	return absf(graph.exit_s(edge, dir) - from_s) + best
 
 
 func _distance_to_red(t: Train) -> float:
@@ -539,7 +640,7 @@ func _release_routes() -> void:
 
 func _event(kind: String, text: String, train_id: String = "") -> void:
 	_event_seq += 1
-	events.append({seq = _event_seq, t = time, kind = kind, text = text, train = train_id})
+	events.append({seq = _event_seq, t = time, clock = clock_seconds(), kind = kind, text = text, train = train_id})
 	if events.size() > 50:
 		events.pop_front()
 

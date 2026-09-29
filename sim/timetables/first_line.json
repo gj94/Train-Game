@@ -1,0 +1,26 @@
+{
+  "world_start": "08:00:00",
+  "day": 1,
+  "services": {
+    "T1": {
+      "name": "66001 · Coast local",
+      "departure": "08:01:00",
+      "day": 1,
+      "stops": [
+        {"name": "Chennapuram", "block": "cpm_p1", "direction": 1, "minutes_from_origin": 0},
+        {"name": "Maruthur P2", "block": "mrt_loop", "direction": 1, "minutes_from_origin": 4, "dwell_minutes": 1},
+        {"name": "Kadalur", "block": "kdp_plat", "direction": 1, "minutes_from_origin": 8}
+      ]
+    },
+    "T2": {
+      "name": "66002 · Valley local",
+      "departure": "08:02:00",
+      "day": 1,
+      "stops": [
+        {"name": "Kadalur", "block": "kdp_plat", "direction": -1, "minutes_from_origin": 0},
+        {"name": "Maruthur P1", "block": "mrt_main", "direction": -1, "minutes_from_origin": 4, "dwell_minutes": 1},
+        {"name": "Chennapuram", "block": "cpm_p1", "direction": -1, "minutes_from_origin": 8}
+      ]
+    }
+  }
+}

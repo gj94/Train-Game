@@ -1,5 +1,16 @@
 # Progress
 
+## 2026-09-30 — Timetabled AI and 24-hour world clock
+- Added an independent 24-hour simulation clock with day counter; absolute timestamps keep overnight services ordered across midnight. Pause and time acceleration use the existing simulation clock. HUD, dispatcher and event log show world times.
+- Added validated per-train timetables: scheduled origin departure/day, block IDs, direction, minutes from origin, dwell and optional stopping coordinate. Invalid assignment preserves the existing timetable. Arrival offsets remain anchored to the booked origin time when trains run late.
+- AI waits for departure time and a dispatcher-set route, serves every block stop even under clear signals, waits for the booked intermediate departure and full actual dwell, then continues only with authority. Wrong-platform routes hold the train at the entrance for correction. Terminal arrival completes the service without restarting it at midnight.
+- Manual/AI handoff preserves timetable progress. Manual arrivals/departures are recorded when stops are served; unfinished workings cannot change ends. Completed services can reverse for an unscheduled return.
+- Default schedules now load from `sim/timetables/first_line.json`: world D1 08:00, T1 departs 08:01 via `mrt_loop`, T2 08:02 via `mrt_main`; Maruthur +4 min with 1 min dwell, final stop +8 min.
+- Added **M / TIMETABLE** to the dispatcher: selected service, stop/block, origin offset, planned arrival/departure, dwell, actual times, early/late/held status and overnight day suffix. Route controls remain available beside the timetable.
+- **74 headless tests pass** (15 timetable/clock cases), plus the expanded full-scene integration check covering timetable selection/cells, no early departure under green, two-service completion, actual arrivals and midnight display. Graphical captures inspected the timetable at startup, Maruthur and completion at 1600×900. Full meet had no safety events. Godot MCP launch reports zero errors; the known six audio playback shutdown leaks remain in the headless scene check.
+- Playtest: **`docs/dispatching.md`** for routes, **`docs/timetables.md`** for format and overnight example. Set origin routes early and check 08:01/08:02 departures; set onward routes before dwell ends and check 08:06/08:07 releases; hold a train late and check full dwell plus fixed booked times. Check **M**, **Tab/A**, **Esc**, **T** and midnight rollover.
+- Next: user playtest of timetable pacing, handling, graphics and audio. Daily recurrence, an in-game schedule editor, scoring, save/load and additional layouts remain future work. Finished scene launched through Godot MCP for playtesting.
+
 ## 2026-09-30 — Station passing, dispatcher and visual upgrade
 - Explicit entrance-to-exit route enumeration and atomic setting; occupied blocks and shared switch conflicts refused. Signal aspects require a set, clear route; routes retain an owner after signal passage.
 - Cancellation holds approach locks; points release after the owning train's tail clears the fouling zone independently of occupied berth release. Maruthur starters moved inside the loop clearance points.

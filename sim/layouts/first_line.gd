@@ -10,6 +10,8 @@ const CAR_LENGTH := 21.3
 const CAR_GAP := 0.6
 const CARS := 8
 const TRACK_SPACING := 9.0
+const Clock := preload("res://sim/world_clock.gd")
+const TIMETABLE_FILE := "res://sim/timetables/first_line.json"
 
 
 static func train_length() -> float:
@@ -86,6 +88,13 @@ static func build_dispatch() -> RailWorld:
 	west.controller = -1.0
 	west.status = "Waiting for KDP-S"
 	w.place_train(west, "kdp_plat", 16.0, -1)
+	var plan: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(TIMETABLE_FILE))
+	w.clock_start = (int(plan.day) - 1) * Clock.DAY + Clock.parse_time(plan.world_start)
+	for id in plan.services:
+		var definition: Dictionary = plan.services[id]
+		var result := w.set_timetable(id, definition)
+		assert(result.ok, "Invalid %s timetable: %s" % [id, result.reason])
+		w.trains[id].service_name = definition.name
 	return w
 
 

@@ -1,5 +1,6 @@
 extends CanvasLayer
 ## Driver/dispatcher HUD, built in code.
+const Clock := preload("res://sim/world_clock.gd")
 
 const HELP := """[b]Driving[/b] (works in both views)
 W / ↑   more power      S / ↓   less power / more brake
@@ -14,6 +15,7 @@ Cab: right-drag to look around · wheel zoom
 [b]Dispatching[/b] (overview)
 Choose entrance + exit, then SET ROUTE · PUT TO RED cancels safely
 D   dispatch board · A   selected train AI/manual · select a service to follow
+M   timetable: blocks, minutes from origin, planned/actual times and dwell
 Tab takes manual control of the selected train. A hands it back to AI.
 
 T   time ×1 / ×2 / ×4      Esc   pause      P   protection on/off      F1   help
@@ -107,8 +109,8 @@ func toast(text: String) -> void:
 
 func log_event(e: Dictionary) -> void:
 	var color := "ff6655" if e.kind == "spad" else "ffcc55"
-	var mins := int(e.t / 60.0)
-	_log_lines.append("[color=#aaaaaa]%02d:%02d[/color]  [color=#%s]%s[/color]" % [mins, int(e.t) % 60, color, e.text])
+	var stamp := Clock.format_time(e.get("clock", e.t))
+	_log_lines.append("[color=#aaaaaa]%s[/color]  [color=#%s]%s[/color]" % [stamp, color, e.text])
 	if _log_lines.size() > 6:
 		_log_lines.pop_front()
 	_log.text = "\n".join(_log_lines)
@@ -128,7 +130,7 @@ func refresh(s: Dictionary) -> void:
 	_speed.text = "%d km/h" % kmh
 	_speed.visible = false
 	_speed.add_theme_color_override("font_color", Color(1, 0.35, 0.3) if over else Color.WHITE)
-	_mode.text = ("CAB · %s" if s.cab else "DISPATCH · %s") % s.train_id + "   ×%d" % s.time_scale + ("   PAUSED" if s.paused else "")
+	_mode.text = ("CAB · %s" if s.cab else "DISPATCH · %s") % s.train_id + "   D%d %s   ×%d" % [s.world_day, s.world_clock, s.time_scale] + ("   PAUSED" if s.paused else "")
 
 	var handle := "Coast"
 	if s.emergency:

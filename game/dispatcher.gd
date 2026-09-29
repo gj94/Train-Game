@@ -7,6 +7,7 @@ signal pause_requested
 signal restart_requested
 signal result_message(result: Dictionary, success: String)
 const Map := preload("res://game/dispatch_map.gd")
+const TimetableView := preload("res://game/timetable_view.gd")
 var world: RailWorld
 var selected_train := "T1"
 var source := "CPM-S1"
@@ -22,6 +23,11 @@ var _clock: Label
 var _objective: Label
 var _restart: Button
 var _timer := 0.0
+var _timetable: Control
+var _table_button: Button
+var _board_heading: Label
+var _legend: Label
+var timetable_open := false
 
 func setup(w: RailWorld) -> void:
 	world = w
@@ -85,9 +91,11 @@ func setup(w: RailWorld) -> void:
 	bottom.add_child(map_col)
 	var title := HBoxContainer.new()
 	map_col.add_child(title)
-	var heading := _label(title, "DISPATCH BOARD", 17, Color("ffca72"))
-	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_label(title, "RED occupied    MINT reserved    GREY free    • Click entrance, then exit", 14, Color("adbec4"))
+	_board_heading = _label(title, "DISPATCH BOARD", 17, Color("ffca72"))
+	_board_heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_legend = _label(title, "RED occupied    MINT reserved    GREY free", 14, Color("adbec4"))
+	_table_button = _button(title, "TIMETABLE [M]", toggle_timetable)
+	_table_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	var pause_button := _button(title, "PAUSE / RUN [Esc]", func(): pause_requested.emit())
 	pause_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_restart = _button(title, "RESTART SERVICES", func(): restart_requested.emit())
@@ -98,6 +106,10 @@ func setup(w: RailWorld) -> void:
 	map_col.add_child(_map)
 	_map.signal_selected.connect(func(id): select_signal(id))
 	_map.destination_selected.connect(_select_destination)
+	_timetable = TimetableView.new()
+	_timetable.world = world
+	map_col.add_child(_timetable)
+	_timetable.visible = false
 	_objective = _label(map_col, "", 14, Color("d5e2e5"))
 	select_signal(source, true)
 
@@ -183,6 +195,16 @@ func set_open(value: bool) -> void:
 func toggle() -> void:
 	_root.visible = not _root.visible
 
+func toggle_timetable() -> void:
+	timetable_open = not timetable_open
+	_root.visible = true
+	_map.visible = not timetable_open
+	_timetable.visible = timetable_open
+	_legend.visible = not timetable_open
+	_board_heading.text = "SERVICE TIMETABLE" if timetable_open else "DISPATCH BOARD"
+	_table_button.text = "TRACK MAP [M]" if timetable_open else "TIMETABLE [M]"
+	_refresh()
+
 func _process(delta: float) -> void:
 	_timer += delta
 	if _timer > 0.15 and world != null:
@@ -199,7 +221,7 @@ func _refresh() -> void:
 		_reason.text = "%s → %s\n%s" % [source, sig.destination.replace("BUFFER:", ""), "Train " + sig.owner + " / tail release" if sig.owner != "" else ("Approach lock held" if sig.cancel_pending else "Route locked • signal " + ["RED", "YELLOW", "GREEN"][world.aspect(source)])]
 	else:
 		_reason.text = "Ready • points will align and lock" if reason == "" else reason
-	_clock.text = "%02d:%02d:%02d   •   %d / 2 arrived" % [8 + int(world.time / 3600), int(world.time / 60) % 60, int(world.time) % 60, world.trains.values().filter(func(t): return t.service_complete).size()]
+	_clock.text = "%s  ·  D%d  ·  %d/%d" % [world.clock_text(), world.clock_day(), world.trains.values().filter(func(t): return t.service_complete).size(), world.trains.size()]
 	for id in _roster:
 		var t: Train = world.trains[id]
 		_roster[id].text = "%s%s   %s   %d km/h\n%s · %s" % ["● " if id == selected_train else "", id, "AI" if t.automatic else "MANUAL", roundi(t.speed * 3.6), t.destination, t.status if t.automatic else "You have control"]
@@ -208,7 +230,10 @@ func _refresh() -> void:
 	_map.selected = source
 	_map.destination = target
 	_map.queue_redraw()
-	_objective.text = "MEET AT MARUTHUR  •  Send T1 to P2 / loop and T2 to P1 / main. Set their onward routes once both approach blocks clear.    D hide board"
+	_timetable.refresh(selected_train)
+	_objective.text = "MEET AT MARUTHUR  •  Route T1 into P2 / loop and T2 into P1 / main. Check M for each service's departure, stop blocks and timings.    D hide"
+	if timetable_open:
+		_objective.text = "AI waits for departure time, completes each block stop and dwell, then waits for a dispatcher route. Arrival / departure times use a 24-hour clock."
 	_restart.visible = world.trains.values().all(func(t): return t.service_complete)
 	if _restart.visible:
 		_objective.text = "SERVICES COMPLETE  •  Both trains arrived. Restart services for another meet, or select a train and change ends at a stand."
