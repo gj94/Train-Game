@@ -6,6 +6,7 @@ signal drive_requested
 signal pause_requested
 signal restart_requested
 signal scenario_requested
+signal lhb_requested
 signal result_message(result: Dictionary, success: String)
 const Map := preload("res://game/dispatch_map.gd")
 const TimetableView := preload("res://game/timetable_view.gd")
@@ -29,6 +30,7 @@ var _table_button: Button
 var _board_heading: Label
 var _legend: Label
 var _scenario_button: Button
+var _lhb_button: Button
 var timetable_open := false
 
 func setup(w: RailWorld) -> void:
@@ -96,9 +98,12 @@ func setup(w: RailWorld) -> void:
 	_board_heading = _label(title, "DISPATCH BOARD", 17, Color("ffca72"))
 	_board_heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_legend = _label(title, "RED occupied    MINT reserved    GREY free", 14, Color("adbec4"))
-	_scenario_button = _button(title, "MEMU MEET  [F2]" if world.trains.T1.stock_kind == "wap7" else "DRIVE WAP-7 30306  [F2]", func(): scenario_requested.emit())
+	_scenario_button = _button(title, "MEMU [F2]" if world.trains.T1.stock_kind == "wap7" else "WAP-7 [F2]", func(): scenario_requested.emit())
 	_scenario_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_scenario_button.tooltip_text = "Switch scenario and restart at Chennapuram"
+	_lhb_button = _button(title, "MEMU [F3]" if world.trains.T1.stock_kind == "lhb" else "LHB [F3]", func(): lhb_requested.emit())
+	_lhb_button.size_flags_horizontal = Control.SIZE_SHRINK_END
+	_lhb_button.tooltip_text = "Drive WAP-7 with six detailed LHB coaches; V enters a passenger coach"
 	_table_button = _button(title, "TIMETABLE [M]", toggle_timetable)
 	_table_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	var pause_button := _button(title, "PAUSE / RUN [Esc]", func(): pause_requested.emit())
@@ -239,8 +244,12 @@ func _refresh() -> void:
 	_objective.text = "MEET AT MARUTHUR  •  Route T1 into P2 / loop and T2 into P1 / main. Check M for each service's departure, stop blocks and timings.    D hide"
 	if world.trains.T1.stock_kind == "wap7":
 		_objective.text = "WAP-7 LIGHT ENGINE  •  Drive 30306 to Kadalur. Initial route cleared to Maruthur main. C opens onward routes; R changes cabs at a stand. F2 returns to MEMUs."
+	elif world.trains.T1.stock_kind == "lhb":
+		_objective.text = "SOUTHERN COAST EXPRESS  •  WAP-7 + B1–B4 (3A) + A1–A2 (2A). C sets onward routes. V passenger · PgUp/PgDn coach · ←/→ bay · Home seat · B berths."
 	if timetable_open:
 		_objective.text = "AI waits for departure time, completes each block stop and dwell, then waits for a dispatcher route. Arrival / departure times use a 24-hour clock."
 	_restart.visible = world.trains.values().all(func(t): return t.service_complete)
 	if _restart.visible:
 		_objective.text = "ARRIVED  •  Change ends with R, set the return routes and drive Cab 2, or restart the scenario." if world.trains.T1.stock_kind == "wap7" else "SERVICES COMPLETE  •  Both trains arrived. Restart services for another meet, or select a train and change ends at a stand."
+		if world.trains.T1.stock_kind == "lhb":
+			_objective.text = "ARRIVED AT KADALUR  •  All six coaches are in the platform. Explore with V, or RESTART SERVICES. A locomotive run-round is required for a return working."

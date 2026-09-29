@@ -7,7 +7,7 @@ It now includes both driving interiors and a playable light-engine scenario.
 
 ## Drive it
 
-1. Run the game, then press **F2**, or choose **DRIVE WAP-7 30306** on the dispatch
+1. Run the game, then press **F2**, or choose **WAP-7 [F2]** on the dispatch
    board. This restarts in Cab 1 at Chennapuram. The initial route is cleared to
    Maruthur's main-line starter. F2 switches back to the two-MEMU meet.
 2. Hold **W / Up** to increase power. **S / Down** moves the combined handle back
@@ -27,6 +27,10 @@ It now includes both driving interiors and a playable light-engine scenario.
 Direct launch: `Godot_v4.7.2-stable_win64.exe --path . -- --wap7` using the executable
 under `.local/godot/`. This scenario is one locomotive without coaches; the
 existing eight-car MEMU meet remains available and unchanged.
+
+For the locomotive hauling six detailed passenger coaches, press **F3** and see
+[LHB coaches and passenger controls](lhb.md). The complete assembled Blender rake
+is `art/lhb/wap7_lhb_rake.blend`.
 
 ## Open and inspect
 

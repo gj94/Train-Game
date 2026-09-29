@@ -21,6 +21,7 @@ var automatic := false
 var service_name := "MEMU local"
 var stock_kind := "memu"       # simulation identity; rendering resolves its own assets
 var cab_end := 1               # physical driving end, preserved when the head reverses
+var can_change_ends := true    # a single locomotive + coaches needs a run-round instead
 var destination := ""
 var service_complete := false
 var status := "Manual driving"
@@ -130,7 +131,7 @@ func locate_behind(graph: TrackGraph, back: float) -> Dictionary:
 
 ## Swap ends: the tail becomes the head. Only allowed at a stand.
 func reverse(graph: TrackGraph) -> bool:
-	if speed > 0.01:
+	if speed > 0.01 or not can_change_ends:
 		return false
 	var tail := locate_behind(graph, length)
 	var new_path := []

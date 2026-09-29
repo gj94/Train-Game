@@ -53,6 +53,7 @@ var _lowpass: AudioEffectLowPassFilter
 
 var track_level := DEFAULT_TRACK_LEVEL
 var _cab := false
+var interior_listener := DRIVER     # passenger views supply their actual position in the rake
 var _cab_mix := 0.0                  # 0 = camera is the listener, 1 = driver is (smoothed)
 var _prev_controller := 0.0
 var _rng := RandomNumberGenerator.new()
@@ -178,8 +179,8 @@ func set_interior(cab: bool) -> void:
 
 
 ## Distance from the driver's ear to a point `x` metres behind the head, on the track.
-static func driver_distance(x: float) -> float:
-	return Vector2(x - DRIVER.x, DRIVER.y).length()
+static func driver_distance(x: float, listener: Vector2 = DRIVER) -> float:
+	return Vector2(x - listener.x, listener.y).length()
 
 
 ## Distance from the overview listener (beside the track at the camera's focus) to a point
@@ -253,7 +254,7 @@ func _track_sound(v: float, kmh: float) -> void:
 		var g: float = h.gain * impact * track_level * Data.KERNEL_GAIN * Data.WHEEL_GAIN[wheel]
 		if wheel == 1:
 			g *= db_to_linear(clang_balance_db)
-		g *= lerpf(_overview_gain(h.x), AxleJoint.distance_gain(driver_distance(h.x)), _cab_mix)
+		g *= lerpf(_overview_gain(h.x), AxleJoint.distance_gain(driver_distance(h.x, interior_listener)), _cab_mix)
 		if g < 0.001:
 			continue
 		_track_pb.play_stream(_kernels[wheel], minf(h.late, Data.KERNEL_SECONDS - 0.02), linear_to_db(g), 1.0)
@@ -261,7 +262,7 @@ func _track_sound(v: float, kmh: float) -> void:
 	var cab_d := PackedFloat32Array()
 	var cam_d := PackedFloat32Array()
 	for a in _sched.axles:
-		cab_d.append(driver_distance(a.x))
+		cab_d.append(driver_distance(a.x, interior_listener))
 		if _cab_mix < 0.999:
 			cam_d.append(_overview_distance(a.x))
 	var level := AxleJoint.rolling_level(cab_d) if _cab_mix >= 0.999 else \

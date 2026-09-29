@@ -12,6 +12,8 @@ Tab   cab ⇄ overview      F   follow train      1 / 2 / 3   jump to station
 Overview: right-drag orbit · left-drag pan · wheel zoom
 Cab: right-drag to look around · wheel zoom
 F2   switch between WAP-7 light engine and MEMU meet (restarts scenario)
+F3   WAP-7 + LHB passenger rake / MEMU meet (restarts scenario)
+LHB: V passenger/cab · PgUp/PgDn coach · ←/→ bay · Home aisle/seat · B middle berths
 
 [b]Dispatching[/b] (overview)
 Choose entrance + exit, then SET ROUTE · PUT TO RED cancels safely
@@ -132,6 +134,8 @@ func refresh(s: Dictionary) -> void:
 	_speed.visible = false
 	_speed.add_theme_color_override("font_color", Color(1, 0.35, 0.3) if over else Color.WHITE)
 	_mode.text = ("CAB · %s" if s.cab else "DISPATCH · %s") % s.train_id + "   D%d %s   ×%d" % [s.world_day, s.world_clock, s.time_scale] + ("   PAUSED" if s.paused else "")
+	if not s.get("passenger", "").is_empty():
+		_mode.text = s.passenger + "   ·   " + s.world_clock + ("   PAUSED" if s.paused else "")
 
 	var handle := "Coast"
 	if s.emergency:
@@ -142,6 +146,8 @@ func refresh(s: Dictionary) -> void:
 		handle = "[color=#ffaa55]Brake %d%%[/color]" % roundi(-s.controller * 100)
 	var lines := []
 	var stock := "WAP-7 30306 · CAB %d" % s.cab_end if s.get("stock_kind", "memu") == "wap7" else "%d-CAR MEMU" % s.cars
+	if s.get("stock_kind", "memu") == "lhb":
+		stock = "WAP-7 + 6 LHB"
 	lines.append("[color=#ffca72][b]%s  /  %s[/b][/color]   %s" % [s.train_id, stock, "AI DRIVER" if s.automatic else "MANUAL"])
 	lines.append("Speed [b]%d[/b] km/h   Limit %d km/h%s" % [kmh, lim, "  [color=#ff5544]OVERSPEED[/color]" if over else ""])
 	lines.append("Handle  " + handle)
@@ -153,4 +159,6 @@ func refresh(s: Dictionary) -> void:
 	if s.buffer < 500.0:
 		lines.append("Buffer stop in %d m" % roundi(s.buffer))
 	lines.append("Protection %s    [color=#94aeb8]F1 controls · D dispatch[/color]" % ("on" if s.protection else "[color=#ffaa55]off[/color]"))
+	if not s.get("passenger", "").is_empty():
+		lines.append("[color=#94aeb8]PgUp/PgDn coach · ←/→ bay · Home seat · B berths[/color]")
 	_info.text = "\n".join(lines)

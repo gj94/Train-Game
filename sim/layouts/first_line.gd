@@ -119,6 +119,23 @@ static func build_wap7() -> RailWorld:
 	return w
 
 
+## Short passenger formation fits every platform on the existing test line.
+## A run-round is not simulated, so this service is an outbound working.
+static func build_lhb() -> RailWorld:
+	var profile := preload("res://sim/stock/lhb_consist.gd")
+	var w := build_wap7()
+	var t: Train = w.trains.T1
+	t.stock_kind = "lhb"
+	t.length = profile.LENGTH
+	t.mass = profile.MASS
+	t.max_accel = .65
+	t.service_decel = .80
+	t.can_change_ends = false
+	t.service_name = "12603 · Southern Coast Express"
+	t.status = "WAP-7 + six LHB coaches"
+	return w
+
+
 # --- geometry helpers: points strictly between the ends ----------------------
 
 const STEP := 5.0

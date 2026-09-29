@@ -5,6 +5,7 @@ const FirstLine := preload("res://sim/layouts/first_line.gd")
 const WorldView := preload("res://game/world_view.gd")
 const TrainView := preload("res://game/train_view.gd")
 const Wap7View := preload("res://game/wap7_train_view.gd")
+const LhbView := preload("res://game/lhb_train_view.gd")
 const CameraRig := preload("res://game/camera_rig.gd")
 const Hud := preload("res://game/hud.gd")
 const TrainAudio := preload("res://game/train_audio.gd")
@@ -27,24 +28,32 @@ var paused := false
 var time_scale := 1
 var _last_event := 0
 var wap7_drive := false
+var lhb_drive := false
 
 
 func _ready() -> void:
 	wap7_drive = get_tree().get_meta("wap7_drive", "--wap7" in OS.get_cmdline_user_args())
-	world = FirstLine.build_wap7() if wap7_drive else FirstLine.build_dispatch()
+	lhb_drive = get_tree().get_meta("lhb_drive", "--lhb" in OS.get_cmdline_user_args())
+	world = FirstLine.build_lhb() if lhb_drive else (FirstLine.build_wap7() if wap7_drive else FirstLine.build_dispatch())
 	train = world.trains.T1
 	wv = WorldView.new()
 	wv.build(world, self)
 	for t in world.trains.values():
-		var view = Wap7View.new() if t.stock_kind == "wap7" else TrainView.new()
+		var view: RefCounted
+		match t.stock_kind:
+			"lhb": view = LhbView.new()
+			"wap7": view = Wap7View.new()
+			_: view = TrainView.new()
 		view.build(t, world.graph, self, wv)
 		train_views[t.id] = view
 	tv = train_views[train.id]
 	cam = CameraRig.new()
 	cam.cab_transform = tv.cab_transform
 	cam.follow_point = tv.overview_position
-	if wap7_drive:
-		cam.distance = 34.0
+	if lhb_drive:
+		cam.passenger_transform = tv.passenger_transform
+	if wap7_drive or lhb_drive:
+		cam.distance = 155.0 if lhb_drive else 34.0
 		cam.cab_fov = 76.0
 		cam.cab_yaw_limit = PI
 	add_child(cam)
@@ -53,6 +62,8 @@ func _ready() -> void:
 		var axles: Array = Wap7View.sound_axles() if t.stock_kind == "wap7" else AxleJoint.rake_axles(
 			train_views[t.id].cars.size(), TrainView.CAR_LENGTH + TrainView.CAR_GAP,
 			TrainView.CAR_LENGTH, TrainView.BOGIE_INSET, 2.5)
+		if t.stock_kind == "lhb":
+			axles = LhbView.sound_axles()
 		var sound := TrainAudio.new()
 		add_child(sound)
 		sound.setup(t, world, cam, axles)
@@ -73,12 +84,16 @@ func _ready() -> void:
 	dispatcher.pause_requested.connect(_toggle_pause)
 	dispatcher.restart_requested.connect(func(): get_tree().reload_current_scene())
 	dispatcher.scenario_requested.connect(_switch_scenario)
+	dispatcher.lhb_requested.connect(_switch_lhb)
 	dispatcher.result_message.connect(_report)
-	if wap7_drive:
+	if lhb_drive:
+		_enter_cab()
+		hud.toast("WAP-7 + LHB · W power / S brake · V passenger · Tab exterior · F1 controls")
+	elif wap7_drive:
 		_enter_cab()
 		hud.toast("WAP-7 30306 · W power / S brake · Tab exterior · C onward routes · F2 MEMU meet")
 	else:
-		hud.toast("Two services are waiting. Set their routes from the dispatch board. F2 drives the WAP-7.")
+		hud.toast("Set routes from the dispatch board. F2 drives WAP-7; F3 adds LHB coaches.")
 
 
 func _physics_process(delta: float) -> void:
@@ -99,6 +114,8 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	for view in train_views.values():
 		view.update()
+	if lhb_drive and cam.mode == CameraRig.Mode.PASSENGER:
+		audio.interior_listener = tv.passenger_audio_position()
 	wv.update()
 	wv.update_joints(delta)
 	for e in world.events:
@@ -120,6 +137,7 @@ func _process(delta: float) -> void:
 		buffer = world.distance_to_buffer(train, 600.0),
 		protection = world.protection,
 		cab = cam.mode == CameraRig.Mode.CAB,
+		passenger = tv.passenger_name() if lhb_drive and cam.mode == CameraRig.Mode.PASSENGER else "",
 		time_scale = time_scale,
 		automatic = train.automatic,
 		paused = paused,
@@ -132,7 +150,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.physical_keycode:
 			KEY_TAB:
-				if cam.mode == CameraRig.Mode.CAB:
+				if cam.mode != CameraRig.Mode.OVERVIEW:
 					cam.set_mode(CameraRig.Mode.OVERVIEW)
 					_set_cab_visuals(false)
 				else:
@@ -188,6 +206,29 @@ func _unhandled_input(event: InputEvent) -> void:
 				hud.toggle_help()
 			KEY_F2:
 				_switch_scenario()
+			KEY_F3:
+				_switch_lhb()
+			KEY_V:
+				if lhb_drive:
+					if cam.mode == CameraRig.Mode.PASSENGER:
+						_enter_cab()
+					else:
+						_enter_passenger()
+			KEY_PAGEUP, KEY_PAGEDOWN:
+				if lhb_drive and cam.mode == CameraRig.Mode.PASSENGER:
+					tv.change_passenger_coach(1 if event.physical_keycode == KEY_PAGEDOWN else -1)
+					cam._look = Vector2.ZERO
+			KEY_LEFT, KEY_RIGHT:
+				if lhb_drive and cam.mode == CameraRig.Mode.PASSENGER:
+					tv.change_passenger_bay(1 if event.physical_keycode == KEY_RIGHT else -1)
+			KEY_HOME:
+				if lhb_drive and cam.mode == CameraRig.Mode.PASSENGER:
+					tv.passenger_seat = not tv.passenger_seat
+					cam._look = Vector2.ZERO
+			KEY_B:
+				if lhb_drive:
+					tv.toggle_berths()
+					hud.toast("3A middle berths " + ("lowered for sleeping" if tv.berths_deployed else "folded for seating"))
 			KEY_1, KEY_2, KEY_3:
 				var idx: int = event.physical_keycode - KEY_1
 				if idx < world.stations.size():
@@ -201,6 +242,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _set_cab_visuals(cab: bool) -> void:
 	tv.set_cab_view(cab)
+	audio.interior_listener = TrainAudio.DRIVER
+	if lhb_drive:
+		tv.set_passenger_view(false)
 	wv.set_labels_visible(not cab)
 	for sound in train_audio.values():
 		if sound != audio:
@@ -214,6 +258,17 @@ func _enter_cab() -> void:
 	train.controller = 0.0
 	cam.set_mode(CameraRig.Mode.CAB)
 	_set_cab_visuals(true)
+
+
+func _enter_passenger() -> void:
+	# Looking around as a passenger preserves the current driver's controls.
+	_set_cab_visuals(false)
+	tv.set_passenger_view(true)
+	cam.set_mode(CameraRig.Mode.PASSENGER)
+	wv.set_labels_visible(false)
+	audio.set_interior(true)
+	dispatcher.set_open(false)
+	hud.toast("PgUp/PgDn coach · ←/→ bay · Home aisle/seat · B middle berths · right-drag look")
 
 
 func _toggle_pause() -> void:
@@ -260,4 +315,11 @@ func _report(result: Dictionary, ok_text: String) -> void:
 
 func _switch_scenario() -> void:
 	get_tree().set_meta("wap7_drive", not wap7_drive)
+	get_tree().set_meta("lhb_drive", false)
+	get_tree().call_deferred("reload_current_scene")
+
+
+func _switch_lhb() -> void:
+	get_tree().set_meta("lhb_drive", not lhb_drive)
+	get_tree().set_meta("wap7_drive", false)
 	get_tree().call_deferred("reload_current_scene")

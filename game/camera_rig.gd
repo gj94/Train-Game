@@ -4,7 +4,7 @@ extends Camera3D
 ##            optionally following the train.
 ## CAB      — driver's seat in the leading cab (right-drag to look around).
 
-enum Mode { OVERVIEW, CAB }
+enum Mode { OVERVIEW, CAB, PASSENGER }
 
 const BLEND_TIME := 1.1
 
@@ -18,6 +18,7 @@ var cab_yaw_limit := 2.6
 var follow := true
 
 var cab_transform: Callable     # () -> Transform3D
+var passenger_transform: Callable
 var follow_point: Callable      # () -> Vector3
 
 var _blend := 1.0
@@ -61,6 +62,10 @@ func jump_to(p: Vector3) -> void:
 
 
 func _target() -> Transform3D:
+	if mode == Mode.PASSENGER and passenger_transform.is_valid():
+		var t: Transform3D = passenger_transform.call()
+		t.basis = t.basis * Basis.from_euler(Vector3(_look.y, _look.x, 0))
+		return t
 	if mode == Mode.CAB and cab_transform.is_valid():
 		var t: Transform3D = cab_transform.call()
 		t.basis = t.basis * Basis.from_euler(Vector3(_look.y, _look.x, 0))
@@ -74,12 +79,14 @@ func _target() -> Transform3D:
 
 
 func _process(delta: float) -> void:
+	if mode == Mode.PASSENGER and passenger_transform.is_valid():
+		pivot = (passenger_transform.call() as Transform3D).origin
 	if mode == Mode.CAB and cab_transform.is_valid():
 		pivot = (cab_transform.call() as Transform3D).origin
 	if mode == Mode.OVERVIEW and follow and follow_point.is_valid():
 		pivot = pivot.lerp(follow_point.call(), 1.0 - exp(-4.0 * delta))
 	var target := _target()
-	var target_fov := cab_fov if mode == Mode.CAB else 55.0
+	var target_fov := cab_fov if mode != Mode.OVERVIEW else 55.0
 	if _blend < 1.0:
 		_blend = minf(1.0, _blend + delta / BLEND_TIME)
 		var t := smoothstep(0.0, 1.0, _blend)
@@ -99,9 +106,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				drag_moved = 0.0
 		elif not mb.pressed and mb.button_index == _dragging:
 			_dragging = 0
-			if mb.button_index == MOUSE_BUTTON_RIGHT and mode == Mode.CAB:
+			if mb.button_index == MOUSE_BUTTON_RIGHT and mode != Mode.OVERVIEW:
 				_look = Vector2.ZERO
-		if mode == Mode.CAB and mb.pressed:
+		if mode != Mode.OVERVIEW and mb.pressed:
 			if mb.button_index == MOUSE_BUTTON_WHEEL_UP:
 				cab_fov = maxf(38.0, cab_fov - 4.0)
 			elif mb.button_index == MOUSE_BUTTON_WHEEL_DOWN:

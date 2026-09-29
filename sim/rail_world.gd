@@ -374,6 +374,8 @@ func request_signal_ahead(train_id: String) -> Dictionary:
 ## Swap cabs (train must be stopped).
 func reverse_train(train_id: String) -> Dictionary:
 	var t: Train = trains[train_id]
+	if not t.can_change_ends:
+		return {ok = false, reason = "This LHB rake needs a locomotive run-round. Restart the service for another trip."}
 	if t.timetable != null and not t.timetable.complete():
 		return {ok = false, reason = "Finish the current timetable before changing ends"}
 	for sig in signals.values():
