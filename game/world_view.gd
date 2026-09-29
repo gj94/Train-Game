@@ -407,7 +407,10 @@ func _build_scenery() -> void:
 		field.position = p
 		field.rotation.y = rng.randf_range(-0.2, 0.2)
 		root.add_child(field)
-		box_m(size, Vector3.ZERO, paddy_green if rng.randf() < 0.65 else paddy_water, field)
+		var field_material: Material = paddy_green
+		if rng.randf() >= 0.65:
+			field_material = paddy_water
+		box_m(size, Vector3.ZERO, field_material, field)
 		for side in [-1, 1]:
 			box_m(Vector3(size.x, 0.35, 0.8), Vector3(0, 0.1, side * size.z * 0.5), bund, field)
 			box_m(Vector3(0.8, 0.35, size.z), Vector3(side * size.x * 0.5, 0.1, 0), bund, field)

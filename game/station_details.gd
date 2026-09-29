@@ -34,7 +34,7 @@ func _station(station: Dictionary) -> void:
 		# Individual coping / painted platform fascia.
 		for x in range(int(r.position.x), int(r.end.x), 3):
 			for edge_z in [r.position.y, r.end.y]:
-				_box(Vector3(2.8, 0.34, 0.06), Vector3(x + 1.4, 0.62, edge_z), Color("f0e8d2") if (x / 3) % 2 == 0 else Color("884e3f"))
+				_box(Vector3(2.8, 0.34, 0.06), Vector3(x + 1.4, 0.62, edge_z), Color("f0e8d2") if int(x / 3.0) % 2 == 0 else Color("884e3f"))
 		# Real benches, kiosk, bins, posters, station clock and lamp standards.
 		for x in range(int(r.position.x + 24), int(r.end.x - 15), 28):
 			_box(Vector3(2.4, 0.12, 0.6), Vector3(x, 1.45, z), teal)
@@ -53,7 +53,7 @@ func _station(station: Dictionary) -> void:
 		_box(Vector3(4.6, 0.45, 1.7), kiosk + Vector3(0, 2.85, 0), teal)
 		for side in [-1, 1]:
 			_box(Vector3(3.4, 1.0, 0.08), kiosk + Vector3(0, 1.5, 0.78 * side), Color("29363b"))
-			_text("TEA  •  COFFEE", kiosk + Vector3(0, 2.86, 0.87 * side), 0.24, Color("f5e5b8"), 0 if side > 0 else PI)
+			_text("TEA  •  COFFEE", kiosk + Vector3(0, 2.86, 0.87 * side), 0.24, Color("f5e5b8"), 0.0 if side > 0 else PI)
 		for x in [r.position.x + 35, r.end.x - 35]:
 			_box(Vector3(2.6, 0.65, 0.12), Vector3(x, 3.4, z), teal)
 			_text("PLATFORM 1 / 2" if station.code != "KDP" else "PLATFORM 1", Vector3(x, 3.4, z + 0.075), 0.25, Color("f5e5b8"))
