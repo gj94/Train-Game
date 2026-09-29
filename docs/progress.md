@@ -1,5 +1,16 @@
 # Progress
 
+## 2026-09-30 — Continue on this PC with Codex
+- Installed portable Godot 4.7.2, Blender 5.2.1 LTS, and Godot MCP bridge 1.2.1 under ignored `.local/`.
+  Verified official download checksums. Existing Node 24.15.0 and Git reused.
+- Registered project-local Codex MCP config; corrected Claude MCP's E: path to D:.
+- Added `AGENTS.md`, `docs/pc-setup.md`, and `tools/godot.ps1` for future sessions.
+- MEMU builder now resolves its project directory relative to the script instead of hard-coding E:.
+- Godot imports successfully; **41 tests pass**. Blender background startup and script syntax verified.
+- MCP handshake/tool listing and live editor connection diagnostic passed (healthy, matching addon 1.2.1).
+- Sound lab is present as a sibling directory. No sound or gameplay changes.
+- Next: restart Codex to load the MCP config, open Godot via `tools/godot.ps1 editor`, and resume the existing sound playtest / planned features.
+
 ## 2026-09-28 — Physical (wheel-position) model of the approved take — JS in the lab first
 - Finding: the approved take = a fixed point on the track while an **ICF rake at ~66 km/h** rolls over a joint
   (lead bogie clang-clang, long gap, trail bogie, then next coach's lead bogie across the coupling). Time ratios

@@ -16,7 +16,7 @@ import bpy
 import bmesh
 import mathutils
 
-PROJECT = r"E:\ClaudeWS\train-game"
+PROJECT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 OUT = os.path.join(PROJECT, "assets", "models", "memu.glb")
 
 L = 21.3          # body length
