@@ -48,14 +48,14 @@ static func build() -> RailWorld:
 	w.add_signal("CPM-S1", "cpm_p1", 1)    # starter, platform 1
 	w.add_signal("CPM-S2", "cpm_p2", 1)    # starter, platform 2
 	w.add_signal("MRT-HE", "main_w", 1)    # home, eastbound
-	w.add_signal("MRT-SE1", "mrt_main", 1) # starter from main line
-	w.add_signal("MRT-SE2", "mrt_loop", 1) # starter from loop
+	w.add_signal("MRT-SE1", "mrt_main", 1, 100) # hold a full rake clear of the throat
+	w.add_signal("MRT-SE2", "mrt_loop", 1, 100)
 	w.add_signal("KDP-H", "main_e", 1)     # home
 	# Westbound (-1)
 	w.add_signal("KDP-S", "kdp_plat", -1)  # starter
 	w.add_signal("MRT-HW", "main_e", -1)
-	w.add_signal("MRT-SW1", "mrt_main", -1)
-	w.add_signal("MRT-SW2", "mrt_loop", -1)
+	w.add_signal("MRT-SW1", "mrt_main", -1, 100)
+	w.add_signal("MRT-SW2", "mrt_loop", -1, 100)
 	w.add_signal("CPM-H", "main_w", -1)
 
 	w.stations = [
@@ -66,6 +66,21 @@ static func build() -> RailWorld:
 
 	var t := Train.new("T1", train_length())
 	w.place_train(t, "cpm_p1", 300.0, 1)
+	return w
+
+
+## Two opposing eight-car services. Both wait for the dispatcher at red.
+static func build_dispatch() -> RailWorld:
+	var w := build()
+	var east: Train = w.trains.T1
+	east.automatic = true
+	east.service_name = "66001 · Coast local"
+	east.destination = "Kadalur"
+	var west := Train.new("T2", train_length())
+	west.automatic = true
+	west.service_name = "66002 · Valley local"
+	west.destination = "Chennapuram"
+	w.place_train(west, "kdp_plat", 20.0, -1)
 	return w
 
 

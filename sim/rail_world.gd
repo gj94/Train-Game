@@ -14,7 +14,7 @@ extends RefCounted
 enum Aspect { RED, YELLOW, GREEN }
 
 var graph := TrackGraph.new()
-var signals := {}        # id -> {id, edge, dir, s, cleared, route: Array of {edge, switch, seen}}
+var signals := {}        # route sections are immutable paths, independent of later point settings
 var trains := {}         # id -> Train
 var time := 0.0
 var protection := true   # auto emergency brake on passing a red signal
@@ -30,7 +30,8 @@ var _signals_on := {}    # "edge|dir" -> [signal ids]
 ## A signal `offset` metres before the exit end of `edge`, facing trains moving in `dir`.
 func add_signal(id: String, edge: String, dir: int, offset: float = 10.0) -> void:
 	var s := graph.exit_s(edge, dir) - dir * offset
-	signals[id] = {id = id, edge = edge, dir = dir, s = s, cleared = false, route = []}
+	signals[id] = {id = id, edge = edge, dir = dir, s = s, cleared = false, route = [],
+		destination = "", owner = "", cancel_pending = false}
 	var key := _key(edge, dir)
 	if not _signals_on.has(key):
 		_signals_on[key] = []
@@ -78,7 +79,7 @@ func block_ahead(sig_id: String) -> Dictionary:
 			return result
 		if nxt.against and result.against == "":
 			result.against = nxt.switch
-		result.edges.append({edge = nxt.edge, switch = nxt.switch})
+		result.edges.append({edge = nxt.edge, dir = nxt.dir, switch = nxt.switch})
 		var here: Array = _signals_on.get(_key(nxt.edge, nxt.dir), [])
 		if not here.is_empty():
 			result.end_signal = here[0]
@@ -89,18 +90,17 @@ func block_ahead(sig_id: String) -> Dictionary:
 
 func aspect(sig_id: String, _depth: int = 0) -> Aspect:
 	var sig: Dictionary = signals[sig_id]
-	if not sig.cleared:
-		return Aspect.RED
-	var blk := block_ahead(sig_id)
-	if blk.against != "":
+	if not sig.cleared or sig.route.is_empty() or sig.owner != "":
 		return Aspect.RED
 	var occ := occupancy()
-	for e in blk.edges:
+	for e in sig.route:
 		if occ.has(e.edge):
 			return Aspect.RED
-	if blk.end_signal == "" or _depth > 8:
+		if e.switch != "" and graph.switches[e.switch].reversed != e.reversed:
+			return Aspect.RED
+	if not signals.has(sig.destination) or _depth > 8:
 		return Aspect.YELLOW
-	return Aspect.YELLOW if aspect(blk.end_signal, _depth + 1) == Aspect.RED else Aspect.GREEN
+	return Aspect.YELLOW if aspect(sig.destination, _depth + 1) == Aspect.RED else Aspect.GREEN
 
 
 ## The next signal ahead of a train's head: {id, distance} or {} if none within `max_dist`.
@@ -113,7 +113,7 @@ func next_signal(train: Train, max_dist: float = 5000.0) -> Dictionary:
 		var best_d := INF
 		for sid in _signals_on.get(_key(cur.edge, cur.dir), []):
 			var d: float = (signals[sid].s - from_s) * cur.dir
-			if d > 0.0 and d < best_d:
+			if d >= 0.0 and d < best_d and travelled + d <= max_dist:
 				best = sid
 				best_d = d
 		if best != "":
@@ -169,10 +169,26 @@ func switch_lock_reason(node_id: String) -> String:
 			if r.switch == node_id:
 				return "locked by route from signal " + sig.id
 	for t in trains.values():
-		for i in range(1, t.path.size()):
-			if graph.exit_node(t.path[i].edge, t.path[i].dir) == node_id:
-				return "train %s is standing over it" % t.id
+		if _train_near_switch(t, node_id):
+			return "train %s occupies the point clearance zone" % t.id
 	return ""
+
+
+## A berth may be occupied while the throat behind its tail is free.
+## Long station turnouts require a 90 m fouling clearance; small test points 12 m.
+func _train_near_switch(t: Train, node_id: String) -> bool:
+	var remaining := t.length
+	for i in t.path.size():
+		var seg: Dictionary = t.path[i]
+		var edge: Dictionary = graph.edges[seg.edge]
+		var start: float = t.head_s if i == 0 else graph.exit_s(seg.edge, seg.dir)
+		var covered := minf(remaining, t._available_behind(graph, i))
+		var end: float = start - seg.dir * covered
+		var zone := 90.0 if node_id.begins_with("MRT_") else 12.0
+		if (edge.a == node_id and minf(start, end) < zone) or (edge.b == node_id and maxf(start, end) > edge.length - zone):
+			return true
+		remaining -= covered
+	return false
 
 
 # --- controls ---------------------------------------------------------------
@@ -191,35 +207,132 @@ func throw_switch(node_id: String) -> Dictionary:
 
 ## Clear (want = true) or put back (want = false) a signal. Returns {ok, reason}.
 func set_signal(sig_id: String, want: bool) -> Dictionary:
+	if not signals.has(sig_id):
+		return {ok = false, reason = "Unknown signal " + sig_id}
 	var sig: Dictionary = signals[sig_id]
 	if not want:
 		sig.cleared = false
-		# A route nobody has entered yet is released immediately.
-		if sig.route.all(func(r): return not r.seen):
+		if sig.owner == "" and not _approach_locked(sig_id):
 			sig.route = []
+		else:
+			sig.cancel_pending = true
 		return {ok = true, reason = ""}
 	if sig.cleared:
 		return {ok = true, reason = ""}
-	if not sig.route.is_empty():
-		return {ok = false, reason = "Signal %s: previous train still in the block" % sig_id}
 	var blk := block_ahead(sig_id)
 	if blk.against != "":
 		return {ok = false, reason = "Signal %s: switch %s is set against the route" % [sig_id, blk.against]}
+	# Compatibility shortcut: an explicit route following the current points.
+	for option in route_options(sig_id):
+		var aligned := true
+		for e in option.edges:
+			if e.switch != "" and graph.switches[e.switch].reversed != e.reversed:
+				aligned = false
+		if aligned:
+			return set_route(sig_id, option.destination)
+	return {ok = false, reason = "No route available"}
+
+
+## Enumerate routes from one signal to the NEXT signal or buffer, with all
+## turnout choices. This is a topology query: it never moves points.
+func route_options(sig_id: String) -> Array:
+	if not signals.has(sig_id):
+		return []
+	var sig: Dictionary = signals[sig_id]
+	var options: Array = []
+	_walk_routes(sig.edge, sig.dir, [], [sig.edge], options)
+	return options
+
+
+func _walk_routes(edge_id: String, dir: int, path: Array, visited: Array, options: Array) -> void:
+	if visited.size() > 64:
+		return
+	var node := graph.exit_node(edge_id, dir)
+	var exits: Array = []
+	if graph.switches.has(node):
+		var sw: Dictionary = graph.switches[node]
+		exits = [sw.normal, sw.reverse] if edge_id == sw.trunk else [sw.trunk]
+	else:
+		for e in graph.nodes[node].edges:
+			if e != edge_id:
+				exits.append(e)
+	if exits.is_empty() and not path.is_empty():
+		options.append({destination = "BUFFER:" + node, edges = path})
+	for e in exits:
+		if e in visited:
+			continue
+		var travel := 1 if graph.edges[e].a == node else -1
+		var switch_id := node if graph.switches.has(node) else ""
+		var reversed := false
+		if switch_id != "":
+			var sw: Dictionary = graph.switches[node]
+			reversed = e == sw.reverse or edge_id == sw.reverse
+		var extended := path.duplicate(true)
+		extended.append({edge = e, dir = travel, switch = switch_id, reversed = reversed, seen = false})
+		var here: Array = _signals_on.get(_key(e, travel), [])
+		if not here.is_empty():
+			options.append({destination = here[0], edges = extended})
+		else:
+			_walk_routes(e, travel, extended, visited + [e], options)
+
+
+## Validate every resource before making any change. Point conflicts matter
+## even when two routes protect different track blocks.
+func route_reason(sig_id: String, destination: String) -> String:
+	if not signals.has(sig_id):
+		return "Unknown entrance signal"
+	var sig: Dictionary = signals[sig_id]
+	if not sig.route.is_empty():
+		return "Route already set / awaiting tail clearance from " + sig_id
+	var candidate := {}
+	for option in route_options(sig_id):
+		if option.destination == destination:
+			candidate = option
+	if candidate.is_empty():
+		return "No route to " + destination
 	var occ := occupancy()
-	var mine := {}
-	for e in blk.edges:
+	for e in candidate.edges:
 		if occ.has(e.edge):
-			return {ok = false, reason = "Signal %s: block occupied by %s" % [sig_id, occ[e.edge]]}
-		mine[e.edge] = true
-	for other in signals.values():
-		for r in other.route:
-			if mine.has(r.edge):
-				return {ok = false, reason = "Signal %s: conflicts with route from %s" % [sig_id, other.id]}
-	sig.route = []
-	for e in blk.edges:
-		sig.route.append({edge = e.edge, switch = e.switch, seen = false})
+			return "Block %s occupied by %s" % [e.edge, occ[e.edge]]
+		for other in signals.values():
+			for r in other.route:
+				if r.edge == e.edge or (e.switch != "" and e.switch == r.switch):
+					return "Conflicts with route from " + other.id
+		if e.switch != "":
+			for t in trains.values():
+				if not _train_near_switch(t, e.switch):
+					continue
+				# The train waiting at this entrance may occupy its approach.
+				var ns := next_signal(t)
+				if ns.is_empty() or ns.id != sig_id or t.path.size() > 1:
+					return "Point clearance zone occupied by " + t.id
+	return ""
+
+
+func set_route(sig_id: String, destination: String) -> Dictionary:
+	var reason := route_reason(sig_id, destination)
+	if reason != "":
+		return {ok = false, reason = reason}
+	var sig: Dictionary = signals[sig_id]
+	for option in route_options(sig_id):
+		if option.destination == destination:
+			sig.route = option.edges.duplicate(true)
+	for e in sig.route:
+		if e.switch != "":
+			graph.switches[e.switch].reversed = e.reversed
+	sig.destination = destination
+	sig.owner = ""
+	sig.cancel_pending = false
 	sig.cleared = true
 	return {ok = true, reason = ""}
+
+
+func _approach_locked(sig_id: String) -> bool:
+	for t in trains.values():
+		var ns := next_signal(t)
+		if not ns.is_empty() and ns.id == sig_id and t.speed > 0.1 and ns.distance < t.braking_distance() * 1.3 + 25.0:
+			return true
+	return false
 
 
 ## Clear the next signal ahead of a train ("request the road").
@@ -233,8 +346,12 @@ func request_signal_ahead(train_id: String) -> Dictionary:
 ## Swap cabs (train must be stopped).
 func reverse_train(train_id: String) -> Dictionary:
 	var t: Train = trains[train_id]
+	for sig in signals.values():
+		if sig.owner == train_id and sig.route.any(func(r): return not r.seen):
+			return {ok = false, reason = "Complete the movement into the reserved block before changing ends"}
 	if not t.reverse(graph):
 		return {ok = false, reason = "Stop the train before changing ends"}
+	t.service_complete = false
 	return {ok = true, reason = ""}
 
 
@@ -249,10 +366,80 @@ func release_emergency(train_id: String) -> Dictionary:
 # --- simulation -------------------------------------------------------------
 
 func step(dt: float) -> void:
-	time += dt
-	for t in trains.values():
-		_step_train(t, dt)
-	_release_routes()
+	# Bound movement even at accelerated time / long frames. Each train sees
+	# the preceding train's updated occupancy before it is allowed to move.
+	var remaining := maxf(dt, 0.0)
+	while remaining > 0.000001:
+		var slice := minf(remaining, 0.05)
+		time += slice
+		for t in trains.values():
+			if t.automatic:
+				_drive_automatic(t)
+			_step_train(t, slice)
+		_release_routes()
+		remaining -= slice
+
+
+## Braking curves include signals, buffers, occupied blocks and lower speed
+## limits ahead. AI never requests or changes a route by itself.
+func _drive_automatic(t: Train) -> void:
+	if t.emergency:
+		t.status = "Emergency — release at stand"
+		t.controller = -1.0
+		return
+	var buffer := distance_to_buffer(t)
+	var stop_at := buffer - 7.0
+	var ns := next_signal(t)
+	t.status = "Running to " + t.destination
+	if not ns.is_empty() and aspect(ns.id) == Aspect.RED:
+		stop_at = minf(stop_at, ns.distance - 6.0)
+		if t.speed < 0.1:
+			t.status = "Waiting for " + ns.id
+	stop_at = minf(stop_at, _distance_to_obstruction(t) - 3.0)
+	var target := minf(speed_limit_for(t) - 0.4, sqrt(maxf(0.0, 2.0 * t.service_decel * 0.65 * stop_at)))
+	var cur: Dictionary = t.path[0]
+	var distance := absf(graph.exit_s(cur.edge, cur.dir) - t.head_s)
+	for i in 20:
+		var nxt := graph.next(cur.edge, cur.dir)
+		if nxt.is_empty() or distance > 1000.0:
+			break
+		var limit: float = graph.edges[nxt.edge].speed_limit - 0.4
+		target = minf(target, sqrt(maxf(0.0, limit * limit + 2.0 * t.service_decel * 0.65 * maxf(0.0, distance - 12.0))))
+		cur = nxt
+		distance += graph.edges[cur.edge].length
+	if stop_at < 0.7 or t.speed > target + 0.15:
+		t.controller = -1.0
+	elif t.speed < target - 0.5:
+		t.controller = clampf((target - t.speed) * 0.7, 0.0, 1.0)
+	else:
+		t.controller = 0.0
+	if buffer < 12.0 and t.speed < 0.01:
+		t.service_complete = true
+		t.status = "Arrived at " + t.destination
+		t.controller = -1.0
+
+
+## A hard block boundary prevents collisions even with driver protection off.
+## This also protects against routes revoked after a signal was passed.
+func _distance_to_obstruction(t: Train) -> float:
+	var cur: Dictionary = t.path[0]
+	var distance := absf(graph.exit_s(cur.edge, cur.dir) - t.head_s)
+	for i in 64:
+		var nxt := graph.next(cur.edge, cur.dir)
+		if nxt.is_empty():
+			return INF
+		for other in trains.values():
+			if other.id != t.id and other.occupies(nxt.edge):
+				return distance
+		if nxt.against:
+			return distance
+		for sig in signals.values():
+			for r in sig.route:
+				if r.edge == nxt.edge and r.dir != nxt.dir:
+					return distance
+		cur = nxt
+		distance += graph.edges[cur.edge].length
+	return INF
 
 
 func _step_train(t: Train, dt: float) -> void:
@@ -260,10 +447,23 @@ func _step_train(t: Train, dt: float) -> void:
 	var d := t.speed * dt
 	if d <= 0.0:
 		return
-	# Signals are far apart compared with one step's travel, so at most one is passed.
+	var obstruction := _distance_to_obstruction(t)
+	if d >= obstruction - 0.1:
+		d = maxf(0.0, obstruction - 0.1)
+		if not t.emergency:
+			_event("safety", "Train %s stopped at occupied or conflicting block boundary" % t.id, t.id)
+		t.emergency = true
+		t.speed = 0.0
 	var probe := next_signal(t, d + 1.0)
 	if not probe.is_empty() and probe.distance <= d:
-		_on_pass_signal(t, probe.id)
+		if aspect(probe.id) == Aspect.RED and protection:
+			if not t.emergency:
+				_event("spad", "Train %s attempted signal %s at danger — protection stop" % [t.id, probe.id], t.id)
+			t.emergency = true
+			t.speed = 0.0
+			d = maxf(0.0, probe.distance - 0.05)
+		else:
+			_on_pass_signal(t, probe.id)
 	var hit_speed := t.speed
 	var res := t.advance(graph, d)
 	for nxt in res.entered:
@@ -281,6 +481,8 @@ func _on_pass_signal(t: Train, sig_id: String) -> void:
 		if protection:
 			t.emergency = true
 	sig.cleared = false  # the route stays locked until the train has cleared it
+	if not sig.route.is_empty():
+		sig.owner = t.id
 
 
 func _release_routes() -> void:
@@ -288,15 +490,26 @@ func _release_routes() -> void:
 	for sig in signals.values():
 		if sig.route.is_empty():
 			continue
+		if sig.cancel_pending and sig.owner == "" and not _approach_locked(sig.id):
+			sig.route = []
+			sig.cancel_pending = false
+			continue
 		var keep := []
 		for r in sig.route:
-			if occ.has(r.edge):
+			if sig.owner != "" and occ.get(r.edge, "") == sig.owner:
 				r.seen = true
-				keep.append(r)
-			elif not r.seen:
+			# Release points only after the owning train's tail clears the
+			# turnout, while keeping the occupied berth reserved.
+			if r.seen and r.switch != "" and not _train_near_switch(trains[sig.owner], r.switch):
+				r.switch = ""
+			if occ.has(r.edge) or not r.seen:
 				keep.append(r)
 			# seen and now clear: released
 		sig.route = keep
+		if keep.is_empty():
+			sig.owner = ""
+			sig.destination = ""
+			sig.cancel_pending = false
 
 
 func _event(kind: String, text: String, train_id: String = "") -> void:

@@ -8,19 +8,8 @@ const DT := 1.0 / 60.0
 
 ## Power up to near the limit; brake for a red signal or the buffers ahead.
 static func autopilot(w: RailWorld, t: Train) -> void:
-	var stop_at := w.distance_to_buffer(t) - 5.0
-	var ns := w.next_signal(t)
-	if not ns.is_empty() and w.aspect(ns.id) == RailWorld.Aspect.RED:
-		stop_at = minf(stop_at, ns.distance - 5.0)
-	var limit := w.speed_limit_for(t) - 1.0
-	if t.braking_distance() * 1.2 + 10.0 >= stop_at:
-		t.controller = -1.0
-	elif t.speed < limit - 2.0:
-		t.controller = 1.0
-	elif t.speed > limit:
-		t.controller = -0.5
-	else:
-		t.controller = 0.0
+	# Exercise the production driver, including advance turnout speed checks.
+	w._drive_automatic(t)
 
 
 static func drive_until_stopped(w: RailWorld, t: Train, max_seconds: float) -> void:

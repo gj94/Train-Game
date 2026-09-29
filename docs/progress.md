@@ -1,5 +1,12 @@
 # Progress
 
+## 2026-09-30 — Station passing and dispatcher upgrade (in progress)
+- Explicit entrance-to-exit route enumeration and atomic setting; occupied blocks and shared switch conflicts refused. Signal aspects require a set, clear route; routes retain an owner after signal passage.
+- Cancellation holds approach locks; points release after the owning train's tail clears the fouling zone independently of occupied berth release. Maruthur starters moved inside the loop clearance points.
+- Production automatic driving brakes for signals, buffers and lower speed limits. Two opposing eight-car MEMU services are available through `FirstLine.build_dispatch()`; drivers never set routes themselves.
+- Hard occupied-block boundary safeguard also applies with driver protection disabled. Long simulation steps are subdivided.
+- 53 headless tests pass, including a complete opposing meet and both terminal arrivals. Dispatcher UI and visual pass follow in this session.
+
 ## 2026-09-30 — Detailed MEMU driving interior
 - User prioritised a more realistic interior. Replaced the box cab with an original Blender-built MEMU-inspired interior: formed green desk, analogue gauges, engraved controls, seats, fans, window hardware, wipers, headliner, footwell, radio, clipboard and rear equipment.
 - `tools/blender/build_cab.py` exports `assets/models/memu_cab.glb`; `render_cab.py` checks the exported GLB. Roughness tile is original, embedded and extracted by Godot. Asset registration and build/verification notes are in `docs/cab-interior.md`.

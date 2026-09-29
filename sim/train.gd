@@ -17,6 +17,11 @@ var odometer := 0.0         # metres travelled in total (for sound: rail joints,
 ## +1 full power, 0 coast, -1 full service brake.
 var controller := 0.0
 var emergency := false
+var automatic := false
+var service_name := "MEMU local"
+var destination := ""
+var service_complete := false
+var status := "Manual driving"
 
 # Performance — defaults roughly an 8-car Indian Railways MEMU.
 var mass := 400000.0            # kg
