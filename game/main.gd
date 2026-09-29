@@ -119,6 +119,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_F:
 				cam.follow = true
 				cam.set_mode(CameraRig.Mode.OVERVIEW)
+				_set_cab_visuals(false)
 			KEY_P:
 				world.protection = not world.protection
 				hud.toast("Train protection " + ("on" if world.protection else "off"))

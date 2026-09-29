@@ -13,6 +13,7 @@ var pivot := Vector3.ZERO
 var yaw := -0.6
 var pitch := -0.55
 var distance := 260.0
+var cab_fov := 70.0
 var follow := true
 
 var cab_transform: Callable     # () -> Transform3D
@@ -72,7 +73,7 @@ func _process(delta: float) -> void:
 	if mode == Mode.OVERVIEW and follow and follow_point.is_valid():
 		pivot = pivot.lerp(follow_point.call(), 1.0 - exp(-4.0 * delta))
 	var target := _target()
-	var target_fov := 62.0 if mode == Mode.CAB else 55.0
+	var target_fov := cab_fov if mode == Mode.CAB else 55.0
 	if _blend < 1.0:
 		_blend = minf(1.0, _blend + delta / BLEND_TIME)
 		var t := smoothstep(0.0, 1.0, _blend)
@@ -94,6 +95,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			_dragging = 0
 			if mb.button_index == MOUSE_BUTTON_RIGHT and mode == Mode.CAB:
 				_look = Vector2.ZERO
+		if mode == Mode.CAB and mb.pressed:
+			if mb.button_index == MOUSE_BUTTON_WHEEL_UP:
+				cab_fov = maxf(38.0, cab_fov - 4.0)
+			elif mb.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				cab_fov = minf(82.0, cab_fov + 4.0)
 		if mode == Mode.OVERVIEW and mb.pressed:
 			if mb.button_index == MOUSE_BUTTON_WHEEL_UP:
 				distance = maxf(12.0, distance * 0.88)
@@ -106,8 +112,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				yaw -= rel.x * 0.005
 				pitch = clampf(pitch - rel.y * 0.004, -1.5, -0.05)
 			else:
-				_look.x = clampf(_look.x - rel.x * 0.005, -1.8, 1.8)
-				_look.y = clampf(_look.y - rel.y * 0.004, -0.7, 0.6)
+				_look.x = clampf(_look.x - rel.x * 0.005, -2.6, 2.6)
+				_look.y = clampf(_look.y - rel.y * 0.004, -0.95, 0.85)
 		elif mode == Mode.OVERVIEW:   # left or middle drag pans
 			drag_moved += rel.length()
 			if _dragging == MOUSE_BUTTON_MIDDLE or drag_moved > 6.0:

@@ -13,6 +13,7 @@ Every third-party asset must be listed here before it is committed. CC0 preferre
 | Kloofendal 43d Clear (Pure Sky) HDRI 2K — sky + ambient light | `assets/polyhaven/hdri/` | https://polyhaven.com/a/kloofendal_43d_clear_puresky | Poly Haven | CC0 | 2026-09-27 |
 | Palm Tree (glb + atlas texture) | `assets/models/palm_quaternius*` | https://poly.pizza/m/P0tgwyXBgr | Quaternius | CC0 1.0 | 2026-09-27 |
 | MEMU cars (CabCar / TrailerCar / MotorCar) | `assets/models/memu.glb` | built by `tools/blender/build_memu.py` | this project (Claude) | own work | 2026-09-27 |
+| MEMU-inspired driving cab and original metal roughness tile | `assets/models/memu_cab*` | built by `tools/blender/build_cab.py` (no third-party reference assets incorporated) | this project (Codex) | own work | 2026-09-30 |
 | Eurostar car (interior loop) → rolling sound | `assets/sounds/interior_eurostar_car.ogg` | https://bigsoundbank.com/eurostar-car-s0635.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
 | Train car (interior, stop + departure) | `assets/sounds/interior_train_car.ogg` | https://bigsoundbank.com/train-car-s2727.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
 | Train in Station #1 | `assets/sounds/station_train_in_station.ogg` | https://bigsoundbank.com/train-in-station-1-s2723.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |

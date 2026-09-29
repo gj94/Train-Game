@@ -5,11 +5,12 @@ extends RefCounted
 ## changing ends just re-assigns which physical end is "car 0".
 
 const MODEL := "res://assets/models/memu.glb"
+const CabView := preload("res://game/cab_view.gd")
 const CAR_LENGTH := 21.3
 const CAR_GAP := 0.6
 const BOGIE_INSET := 3.0
 const RAIL_TOP := 0.5
-const EYE := Vector3(-0.75, 2.78, -CAR_LENGTH * 0.5 + 1.25)   # driver's eye, car-local (left-hand seat)
+const EYE := Vector3(-0.75, 2.80, -9.05)   # seated eye, left-hand driving position
 
 var train: Train
 var graph: TrackGraph
@@ -52,29 +53,13 @@ func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
 	update()
 
 
-## Simple driving cab around the camera: desk, windscreen frame, walls, ceiling.
-## (The body shell is single-sided, so from inside it is invisible.)
+## Original Blender-built cab; instruments are a rendering of the simulation state.
 func _build_cab_interior(car: Node3D) -> void:
-	_cab_interior = Node3D.new()
+	_cab_interior = CabView.new()
+	_cab_interior.name = "DrivingCab"
 	car.add_child(_cab_interior)
-	var y0 := RAIL_TOP
-	var front := -CAR_LENGTH * 0.5
-	var trim: Material = _wv.mat(Color(0.55, 0.58, 0.6))
-	var dark: Material = _wv.mat(Color(0.12, 0.13, 0.14))
-	var desk: Material = _wv.mat(Color(0.3, 0.33, 0.36))
-	_wv.box_m(Vector3(3.5, 0.4, 0.75), Vector3(0, y0 + 2.2, front + 0.5), desk, _cab_interior)            # desk
-	var panel: MeshInstance3D = _wv.box_m(Vector3(1.0, 0.06, 0.45), Vector3(-0.75, y0 + 2.43, front + 0.62), dark, _cab_interior)
-	panel.rotation.x = 0.35                                                                                # instrument panel
-	_wv.box_m(Vector3(0.12, 0.16, 0.12), Vector3(-0.2, y0 + 2.5, front + 0.75), dark, _cab_interior)      # master controller
-	_wv.box_m(Vector3(3.5, 0.06, 2.4), Vector3(0, y0 + 3.36, front + 1.2), trim, _cab_interior)           # ceiling
-	_wv.box_m(Vector3(3.5, 0.3, 0.1), Vector3(0, y0 + 3.3, front + 0.35), dark, _cab_interior)            # windscreen top frame
-	for x in [-1.65, 0.0, 1.65]:
-		_wv.box_m(Vector3(0.12 if x == 0.0 else 0.2, 0.95, 0.1), Vector3(x, y0 + 2.85, front + 0.3), dark, _cab_interior)
-	for side in [-1, 1]:
-		_wv.box_m(Vector3(0.06, 1.25, 2.4), Vector3(side * 1.76, y0 + 1.75, front + 1.2), trim, _cab_interior)   # lower side walls
-		_wv.box_m(Vector3(0.06, 0.25, 2.4), Vector3(side * 1.76, y0 + 3.22, front + 1.2), trim, _cab_interior)   # above side windows
-	_wv.box_m(Vector3(3.5, 2.3, 0.06), Vector3(0, y0 + 2.3, front + 2.4), trim, _cab_interior)             # back wall
-	_wv.box_m(Vector3(3.5, 0.06, 2.4), Vector3(0, y0 + 1.18, front + 1.2), dark, _cab_interior)            # floor
+	_cab_interior.position.y = RAIL_TOP
+	_cab_interior.setup(train)
 	_cab_interior.visible = false
 
 
@@ -97,6 +82,7 @@ func update() -> void:
 		l.material_override = _wv.mat(Color(1.0, 0.97, 0.85), true)
 	for l in _rear_lamps:
 		l.material_override = _wv.mat(Color(0.9, 0.05, 0.05), true)
+	_cab_interior.update_instruments()
 
 
 ## Driver's eye point in the leading cab and look direction.
@@ -104,7 +90,7 @@ func cab_transform() -> Transform3D:
 	var car: Node3D = cars[0]
 	var b := car.global_transform.basis
 	var eye := car.global_transform * (EYE + Vector3(0, RAIL_TOP, 0))
-	var ahead := eye - b.z * 40.0 - b.y * 1.0
+	var ahead := eye - b.z * 40.0 - b.y * 6.0
 	return Transform3D(Basis.looking_at(ahead - eye, Vector3.UP), eye)
 
 

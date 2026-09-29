@@ -9,7 +9,7 @@ C   ask for the next signal to clear     R   change ends (stopped)     H   horn
 [b]View[/b]
 Tab   cab ⇄ overview      F   follow train      1 / 2 / 3   jump to station
 Overview: right-drag orbit · left-drag pan · wheel zoom
-Cab: right-drag to look around
+Cab: right-drag to look around · wheel zoom
 
 [b]Dispatching[/b] (overview)
 Click a signal to clear it / put it back · click a switch marker to throw it
@@ -121,6 +121,7 @@ func refresh(s: Dictionary) -> void:
 	var lim := roundi(s.limit * 3.6)
 	var over: bool = s.speed > s.limit + 3.0 / 3.6
 	_speed.text = "%d km/h" % kmh
+	_speed.visible = not s.cab
 	_speed.add_theme_color_override("font_color", Color(1, 0.35, 0.3) if over else Color.WHITE)
 	_mode.text = ("CAB · %s" if s.cab else "OVERVIEW · %s") % s.train_id + ("   ×%d" % s.time_scale if s.time_scale > 1 else "")
 

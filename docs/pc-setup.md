@@ -38,6 +38,9 @@ To rebuild the MEMU (overwrites the generated model):
 & .\.local\blender\blender-5.2.1-windows-x64\blender.exe --background --factory-startup --python tools/blender/build_memu.py
 ```
 
+The detailed driving interior is a separate asset. Rebuild it with `--python tools/blender/build_cab.py`.
+See `docs/cab-interior.md` for inspection renders and cab controls.
+
 ## Codex MCP
 
 Project-local `.codex/config.toml` registers `godot` using the installed Node and bridge, with the project guard set to this D: checkout.
