@@ -19,6 +19,8 @@ var controller := 0.0
 var emergency := false
 var automatic := false
 var service_name := "MEMU local"
+var stock_kind := "memu"       # simulation identity; rendering resolves its own assets
+var cab_end := 1               # physical driving end, preserved when the head reverses
 var destination := ""
 var service_complete := false
 var status := "Manual driving"
@@ -136,6 +138,7 @@ func reverse(graph: TrackGraph) -> bool:
 		new_path.append({edge = path[i].edge, dir = -path[i].dir})
 	path = new_path
 	head_s = tail.s
+	cab_end = 3 - cab_end
 	controller = minf(controller, 0.0)
 	return true
 

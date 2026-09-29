@@ -1,16 +1,47 @@
 # WAP-7 locomotive asset
 
-An original, detailed Blender exterior inspired by **Lallaguda WAP-7 30306** in its
+An original, detailed Blender locomotive inspired by **Lallaguda WAP-7 30306** in its
 classic ivory and red livery. Created 30 September 2026. Chrome was used to inspect
 real locomotive photographs, including the front, cab side and rooftop equipment.
+It now includes both driving interiors and a playable light-engine scenario.
+
+## Drive it
+
+1. Run the game, then press **F2**, or choose **DRIVE WAP-7 30306** on the dispatch
+   board. This restarts in Cab 1 at Chennapuram. The initial route is cleared to
+   Maruthur's main-line starter. F2 switches back to the two-MEMU meet.
+2. Hold **W / Up** to increase power. **S / Down** moves the combined handle back
+   through coast into service braking; **X** selects coast. Obey the HUD limits.
+   **Space** applies emergency braking; press it again after stopping to release.
+3. **Right-drag** looks around the cab, including fully rearward; releasing returns
+   the view ahead. Mouse wheel changes field of view. **Tab** toggles exterior / cab.
+   **D** shows or hides the route desk; **F1** lists controls.
+4. Use **C** or **D** to set onward routes: **MRT-SE1 → KDP-H**, then
+   **KDP-H → BUFFER:KDP_B**. **A** hands driving to the existing AI if desired.
+   The AI obeys signals and limits but does not set its own routes.
+5. Stop before Kadalur's buffers and press **R** to change to the physical Cab 2.
+   Set **KDP-S → MRT-HW**, **MRT-HW → MRT-SW1**, **MRT-SW1 → CPM-H**, and
+   **CPM-H → BUFFER:CPM_B1** for the return. Reversing is refused while moving or
+   before an owned movement has reached its reserved block.
+
+Direct launch: `Godot_v4.7.2-stable_win64.exe --path . -- --wap7` using the executable
+under `.local/godot/`. This scenario is one locomotive without coaches; the
+existing eight-car MEMU meet remains available and unchanged.
 
 ## Open and inspect
 
-- Editable master: `art/wap7/wap7_30306.blend`.
+- Complete editable master, exterior and both interiors: `art/wap7/wap7_30306_full.blend`.
+- Original exterior master: `art/wap7/wap7_30306.blend`.
+- Interior master with three inspection cameras: `art/wap7/wap7_cab.blend`.
 - Godot/glTF export: `assets/models/wap7.glb`.
+- Reusable interior export: `assets/models/wap7_cab.glb`, instantiated at both ends.
 - Overall render: `art/wap7/hero.png`.
 - Export inspection renders: `art/wap7/hero_glb.png`, `front_glb.png`,
   `bogie_glb.png`, `roof_glb.png`, and `side_glb.png`.
+- Interior renders: `cab_driver.png`, `cab_overview.png`, `cab_rear.png`.
+- Actual game captures: `game_cab1.png`, `game_desk.png`, `game_rear.png`,
+  `game_exterior.png`, `game_driving.png`, `game_cab2.png`, `game_routes.png`,
+  and `game_memu_selector.png`.
 
 Open the master in Blender and use Numpad 0 for the prepared hero camera. In the
 Outliner, expand **WAP-7 • locomotive assemblies** to select the body, either cab,
@@ -20,6 +51,9 @@ another camera and use Ctrl+Numpad 0 to make it active. Use Material Preview for
 orbiting, or F12 for a Cycles render. All geometry is saved in the master; opening
 it does not run the builder. Text is converted to mesh, so no installed font is
 needed to open or export the model.
+The complete master adds **WAP7_DrivingInterior** and **WAP7_DrivingInterior_Cab2**
+collections. Use the separate cab master for unobstructed interior inspection;
+its `Cab_Driver`, `Cab_Overview` and `Cab_Rear` cameras are already positioned.
 
 ## Modeled detail
 
@@ -41,6 +75,16 @@ needed to open or export the model.
 - One folded and one raised pantograph, articulated arms, pivots, cross-bracing,
   spring packs, contact strips and horns; roof insulators, copper bus, breaker
   assembly, cables, hatch fasteners, lifting handles, walkways and fan grilles.
+- Both driving cabs: grey wraparound desk, knee recesses, separate speed recorder,
+  power/brake demand gauges, DDU, annunciators, controller and brake handles,
+  emergency mushroom, auxiliary toggles, radio/microphone and clipboard.
+- Rounded upholstered seats, armrests, seat pedestals, driver's pedal, ribbed floor,
+  lined walls, sliding-window runners/latches, windscreen surrounds and visors,
+  twin caged fans, ceiling light, rear electrical cabinet, machine-room door,
+  extinguisher and safety notices.
+- Working speed needle/digital readout, live power/brake demand needles, lamps,
+  controller/brake-handle animation and DDU with actual speed, demand, emergency,
+  AI/manual state and physical cab number. Auxiliary switches and fans are static.
 
 ## Scale, integration and limits
 
@@ -51,10 +95,11 @@ bogie centres, 1.85 m adjacent axle spacing and 1.092 m wheel tread diameter.
 The actual export extends to ±1.79 m across its projecting steps; flange bottoms
 extend 29 mm below rail top. The raised pantograph reaches approximately 5.75 m.
 
-The master has **53 mesh objects, 693,756 evaluated triangles and 46 materials**;
+The exterior has **53 mesh objects, 693,756 evaluated triangles and 46 materials**;
 the GLB is approximately 18.5 MiB. Meshes are grouped by functional assembly;
 bogies and pantographs have useful parent origins, and each wheelset has an axle
-origin. They are independently selectable but no animated actions are supplied.
+origin. The game articulates both bogies along the track and rotates all six
+wheelsets with distance travelled; no Blender animation actions are supplied.
 All exported materials use backface culling. Studio geometry, cameras and lights
 are excluded from the export. `art/wap7/.gdignore` excludes the editable master
 and inspection images from Godot's importer.
@@ -62,12 +107,22 @@ and inspection images from Godot's importer.
 This is a high-detail visual reconstruction, not a measured engineering replica.
 Small equipment positions, underside fittings, roof machinery and stencils are
 interpreted from class references; it does not reproduce every era-specific
-fitting of 30306. English side lettering is used. The cab glazing is opaque PBR
-glass; a complete driving interior, operable mechanisms, collision shapes and
-authored LOD meshes are not included (Godot generates automatic mesh LODs on
-import). The asset is not yet assigned to a playable service;
-the two existing MEMU services, simulation, sound and graphics settings remain
-as before.
+fitting of 30306. English side lettering is used. The exterior uses opaque PBR
+glass. In cab view, glass is cleared and exterior door backing assemblies are
+hidden in favour of the dedicated lining and its open window apertures. Interiors
+are hidden in overview. Changing ends preserves the locomotive's physical
+orientation and activates the opposite cab and headlight. The machine-room door
+is closed; there is no walk-through machinery compartment or clickable switch
+simulation. Godot generates automatic mesh LODs on import.
+
+Simulation remains independent of rendering. Its approximate light-engine profile
+uses 108 t, 4.5 MW at the wheels, a 1.0 m/s² low-speed traction cap and 140 km/h
+vehicle maximum; the layout's lower speed limits still apply. The inherited
+combined-handle, braking and protection systems are gameplay abstractions, not a
+WAP-7 air-brake or electrical-system training simulator. Power/brake gauges show
+**demand percentages**, not simulated amperes or air pressure. Track sound uses the
+existing approved impact kernels at the actual six Co-Co axle positions. No sound
+data or graphics quality settings changed.
 
 ## Rebuild and verify
 
@@ -76,8 +131,11 @@ Run from the repository root, only in background Blender:
 ```powershell
 & .\.local\blender\blender-5.2.1-windows-x64\blender.exe --background --factory-startup --python tools/blender/build_wap7.py -- --render
 & .\.local\blender\blender-5.2.1-windows-x64\blender.exe --background --factory-startup --python tools/blender/render_wap7.py -- --roundtrip hero front bogie roof side
+& .\.local\blender\blender-5.2.1-windows-x64\blender.exe --background --factory-startup --python tools/blender/build_wap7_cab.py -- --render
 powershell -ExecutionPolicy Bypass -File tools/godot.ps1 test
 & .\.local\godot\Godot_v4.7.2-stable_win64_console.exe --headless --path . --script res://tools/check_wap7.gd
+& .\.local\godot\Godot_v4.7.2-stable_win64_console.exe --headless --path . --script res://tools/check_wap7_playable.gd
+& .\.local\godot\Godot_v4.7.2-stable_win64_console.exe --headless --path . --script res://tools/check_dispatch_ui.gd
 ```
 
 The first command rebuilds the master and GLB, writes geometry statistics and
@@ -90,6 +148,11 @@ available, with Blender's built-in font as fallback; exported geometry has no
 font dependency. After Godot's import finishes, the last command checks the real
 imported PackedScene: 53 meshes, six axles at the correct height/spacing,
 backface-culling materials and no studio objects.
+The cab builder also assembles the complete two-interior master from the exterior
+master. The playable check loads the real main scene, injects W input, checks
+emergency/release, wheel and sound-axle alignment, both cabs and preserved body
+orientation, operates route buttons, completes an outward/return trip and switches
+back to the MEMU scenario. The dispatcher check covers the original two-train meet.
 
 ## Research and rights
 
@@ -102,6 +165,7 @@ original project work. No downloaded third-party model or photo texture is used.
 | [LGD WAP7 30306 at Bangalore](https://commons.wikimedia.org/wiki/File:LGD_WAP7_30306.jpg) | Pramath S.B, CC BY-SA 3.0 | Primary identity, front windows and guards, lamps, stripe, buffers, pilot and numbering; photographed 29 Nov 2012 |
 | [Cab-side view at Vijayawada](https://commons.wikimedia.org/wiki/File:Side_view_of_a_WAP_7_class_Locomotive_of_Indian_Railways.jpg) | Adityamadhav83, CC BY-SA 3.0 | Cab door/window proportions, large grille, handrails, pantograph base; photographed 30 Sep 2011 |
 | [WAP-7 outside Mumbai Central](https://commons.wikimedia.org/wiki/File:WAP-7_Locomotive_outside_Mumbai_Central_Passenger_station.jpg) | Historical Trains, CC0 1.0 | Overall side layout, roof silhouette and folded pantographs; photographed 20 May 2023 |
+| [Footplating and Testing a P7](http://sundarmukherjee.blogspot.com/2014/03/footplating-and-testing-p7.html) | Sundar Mukherjee; viewed in Chrome's image preview, no pixels copied | Real cab photograph: grey desk, sloping switch panels, separate speed recorder, instrument placement, windows and overhead fans |
 
 Chrome searches also located BLW's WAP7 technical leaflet and IRICEN's
 *WAP7/WAG9 Three Phase Locomotives* monograph. Search excerpts supported a

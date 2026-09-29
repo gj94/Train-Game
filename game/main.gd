@@ -4,6 +4,7 @@ extends Node3D
 const FirstLine := preload("res://sim/layouts/first_line.gd")
 const WorldView := preload("res://game/world_view.gd")
 const TrainView := preload("res://game/train_view.gd")
+const Wap7View := preload("res://game/wap7_train_view.gd")
 const CameraRig := preload("res://game/camera_rig.gd")
 const Hud := preload("res://game/hud.gd")
 const TrainAudio := preload("res://game/train_audio.gd")
@@ -25,27 +26,33 @@ var train_audio := {}
 var paused := false
 var time_scale := 1
 var _last_event := 0
+var wap7_drive := false
 
 
 func _ready() -> void:
-	world = FirstLine.build_dispatch()
+	wap7_drive = get_tree().get_meta("wap7_drive", "--wap7" in OS.get_cmdline_user_args())
+	world = FirstLine.build_wap7() if wap7_drive else FirstLine.build_dispatch()
 	train = world.trains.T1
 	wv = WorldView.new()
 	wv.build(world, self)
 	for t in world.trains.values():
-		var view := TrainView.new()
+		var view = Wap7View.new() if t.stock_kind == "wap7" else TrainView.new()
 		view.build(t, world.graph, self, wv)
 		train_views[t.id] = view
 	tv = train_views[train.id]
 	cam = CameraRig.new()
 	cam.cab_transform = tv.cab_transform
 	cam.follow_point = tv.overview_position
+	if wap7_drive:
+		cam.distance = 34.0
+		cam.cab_fov = 76.0
+		cam.cab_yaw_limit = PI
 	add_child(cam)
 	cam.make_current()
-	# Axles of the MEMU as modelled by TrainView (21.3 m bodies, 0.6 m gaps, bogies 3 m in).
-	var axles := AxleJoint.rake_axles(tv.cars.size(), TrainView.CAR_LENGTH + TrainView.CAR_GAP,
-		TrainView.CAR_LENGTH, TrainView.BOGIE_INSET, 2.5)
 	for t in world.trains.values():
+		var axles: Array = Wap7View.sound_axles() if t.stock_kind == "wap7" else AxleJoint.rake_axles(
+			train_views[t.id].cars.size(), TrainView.CAR_LENGTH + TrainView.CAR_GAP,
+			TrainView.CAR_LENGTH, TrainView.BOGIE_INSET, 2.5)
 		var sound := TrainAudio.new()
 		add_child(sound)
 		sound.setup(t, world, cam, axles)
@@ -65,8 +72,13 @@ func _ready() -> void:
 	dispatcher.drive_requested.connect(_enter_cab)
 	dispatcher.pause_requested.connect(_toggle_pause)
 	dispatcher.restart_requested.connect(func(): get_tree().reload_current_scene())
+	dispatcher.scenario_requested.connect(_switch_scenario)
 	dispatcher.result_message.connect(_report)
-	hud.toast("Two services are waiting. Set their routes from the dispatch board.")
+	if wap7_drive:
+		_enter_cab()
+		hud.toast("WAP-7 30306 · W power / S brake · Tab exterior · C onward routes · F2 MEMU meet")
+	else:
+		hud.toast("Two services are waiting. Set their routes from the dispatch board. F2 drives the WAP-7.")
 
 
 func _physics_process(delta: float) -> void:
@@ -96,6 +108,8 @@ func _process(delta: float) -> void:
 	var ns := world.next_signal(train)
 	hud.refresh({
 		train_id = train.id,
+		stock_kind = train.stock_kind,
+		cab_end = train.cab_end,
 		cars = tv.cars.size(),
 		speed = train.speed,
 		limit = world.speed_limit_for(train),
@@ -172,6 +186,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				time_scale = 1 if time_scale >= 4 else time_scale * 2
 			KEY_F1:
 				hud.toggle_help()
+			KEY_F2:
+				_switch_scenario()
 			KEY_1, KEY_2, KEY_3:
 				var idx: int = event.physical_keycode - KEY_1
 				if idx < world.stations.size():
@@ -240,3 +256,8 @@ func _pick(screen_pos: Vector2) -> void:
 
 func _report(result: Dictionary, ok_text: String) -> void:
 	hud.toast(ok_text if result.ok else result.reason)
+
+
+func _switch_scenario() -> void:
+	get_tree().set_meta("wap7_drive", not wap7_drive)
+	get_tree().call_deferred("reload_current_scene")

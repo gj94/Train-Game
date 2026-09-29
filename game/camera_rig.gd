@@ -14,6 +14,7 @@ var yaw := -0.65
 var pitch := -0.40
 var distance := 205.0
 var cab_fov := 70.0
+var cab_yaw_limit := 2.6
 var follow := true
 
 var cab_transform: Callable     # () -> Transform3D
@@ -117,7 +118,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				yaw -= rel.x * 0.005
 				pitch = clampf(pitch - rel.y * 0.004, -1.5, -0.05)
 			else:
-				_look.x = clampf(_look.x - rel.x * 0.005, -2.6, 2.6)
+				_look.x = clampf(_look.x - rel.x * 0.005, -cab_yaw_limit, cab_yaw_limit)
 				_look.y = clampf(_look.y - rel.y * 0.004, -0.95, 0.85)
 		elif mode == Mode.OVERVIEW:   # left or middle drag pans
 			drag_moved += rel.length()

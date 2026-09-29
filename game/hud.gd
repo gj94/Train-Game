@@ -11,6 +11,7 @@ C   open next signal's route desk     R   change ends (stopped)     H   horn
 Tab   cab ⇄ overview      F   follow train      1 / 2 / 3   jump to station
 Overview: right-drag orbit · left-drag pan · wheel zoom
 Cab: right-drag to look around · wheel zoom
+F2   switch between WAP-7 light engine and MEMU meet (restarts scenario)
 
 [b]Dispatching[/b] (overview)
 Choose entrance + exit, then SET ROUTE · PUT TO RED cancels safely
@@ -140,7 +141,8 @@ func refresh(s: Dictionary) -> void:
 	elif s.controller < -0.001:
 		handle = "[color=#ffaa55]Brake %d%%[/color]" % roundi(-s.controller * 100)
 	var lines := []
-	lines.append("[color=#ffca72][b]%s  /  %d-CAR MEMU[/b][/color]   %s" % [s.train_id, s.cars, "AI DRIVER" if s.automatic else "MANUAL"])
+	var stock := "WAP-7 30306 · CAB %d" % s.cab_end if s.get("stock_kind", "memu") == "wap7" else "%d-CAR MEMU" % s.cars
+	lines.append("[color=#ffca72][b]%s  /  %s[/b][/color]   %s" % [s.train_id, stock, "AI DRIVER" if s.automatic else "MANUAL"])
 	lines.append("Speed [b]%d[/b] km/h   Limit %d km/h%s" % [kmh, lim, "  [color=#ff5544]OVERSPEED[/color]" if over else ""])
 	lines.append("Handle  " + handle)
 	if s.next_signal.is_empty():

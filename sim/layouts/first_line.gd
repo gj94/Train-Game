@@ -98,6 +98,27 @@ static func build_dispatch() -> RailWorld:
 	return w
 
 
+## Standalone WAP-7 light-engine working; the existing MEMU meet remains available.
+## Physics is deliberately a playable approximation, not a traction certification.
+static func build_wap7() -> RailWorld:
+	var w := build()
+	var t: Train = w.trains.T1
+	t.stock_kind = "wap7"
+	t.length = 20.562
+	t.mass = 108000.0
+	t.max_power = 4500000.0
+	t.max_accel = 1.0
+	t.max_speed = 140.0 / 3.6
+	t.service_name = "30306 · WAP-7 light engine"
+	t.destination = "Kadalur"
+	t.status = "Manual WAP-7 test drive"
+	t.head_s = 304.0
+	t.controller = 0.0
+	w.set_route("CPM-S1", "MRT-HE")
+	w.set_route("MRT-HE", "MRT-SE1")
+	return w
+
+
 # --- geometry helpers: points strictly between the ends ----------------------
 
 const STEP := 5.0
