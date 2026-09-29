@@ -1,5 +1,15 @@
 # Progress
 
+## 2026-09-30 — Detailed WAP-7 Blender exterior
+- Researched real WAP-7 photographs in Chrome and built an original exterior inspired by Lallaguda **30306** in classic ivory/red livery. Front, cab-side and roof references, credits, nominal dimensions and interpretation limits are recorded in **`docs/wap7.md`**.
+- Added the background-only `tools/blender/build_wap7.py` builder, editable **`art/wap7/wap7_30306.blend`**, and **`assets/models/wap7.glb`**. The master includes a separately collected studio, display track and five inspection cameras; only locomotive assemblies are exported.
+- Detailed cab glazing/guards/wipers, livery and lettering, doors/steps/handrails, lamps/horns/sockets, buffers/couplers/hoses/pilots, six wheelsets, primary/secondary coil springs, dampers, brake/motor/sanding equipment, transformer/reservoirs, pantographs, insulators, roof bus/cables, hatches and grilles. Bogie/pantograph parents and axle origins are independently usable.
+- **53 mesh assemblies, 693,756 evaluated triangles, 46 materials**, approximately 18.5 MiB GLB. All materials use backface culling. This is a detailed exterior reconstruction with interpreted fittings, opaque glazing and English side lettering; it does not include a driving interior, animated actions or authored LOD meshes. Godot's importer generates its normal automatic mesh LODs.
+- Inspected the master render and five views rendered from the actual GLB round trip; corrected front lettering clearance, refined the cast coupler shape and adjusted inspection cameras. `tools/blender/render_wap7.py` checks export bounds, six wheelsets and materials. Godot successfully imported the final file; `tools/check_wap7.gd` verifies **53 meshes, 6 wheelsets, correct axle heights/spacings and no failures**. **74 headless tests pass**.
+- No gameplay, simulation, sound or project graphics settings changed. The WAP-7 is an available asset, not yet assigned to a service. This supersedes the earlier plan to obtain a Sketchfab WAP-7.
+- Inspect: open the `.blend`, Numpad 0 for the hero camera, or orbit in Material Preview. Review `hero_glb.png`, `front_glb.png`, `bogie_glb.png`, `roof_glb.png` and `side_glb.png` under `art/wap7/`. Expand the locomotive collection to select individual assemblies. Full rebuild/inspection commands are in `docs/wap7.md`.
+- Next: user feedback on the WAP-7 shape and detailing; a dedicated driving cab, LHB coaches and express-service integration remain separate future work.
+
 ## 2026-09-30 — Timetabled AI and 24-hour world clock
 - Added an independent 24-hour simulation clock with day counter; absolute timestamps keep overnight services ordered across midnight. Pause and time acceleration use the existing simulation clock. HUD, dispatcher and event log show world times.
 - Added validated per-train timetables: scheduled origin departure/day, block IDs, direction, minutes from origin, dwell and optional stopping coordinate. Invalid assignment preserves the existing timetable. Arrival offsets remain anchored to the booked origin time when trains run late.
