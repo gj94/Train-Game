@@ -48,7 +48,7 @@ func setup(w: RailWorld) -> void:
 	panel.set_anchors_and_offsets_preset(Control.PRESET_RIGHT_WIDE)
 	panel.offset_left = -356
 	panel.offset_right = -16
-	panel.offset_top = 16
+	panel.offset_top = 184
 	panel.offset_bottom = -16
 	panel.add_theme_stylebox_override("panel", _panel_style())
 	_root.add_child(panel)
@@ -56,7 +56,7 @@ func setup(w: RailWorld) -> void:
 	column.add_theme_constant_override("separation", 6)
 	panel.add_child(column)
 	_label(column, "SOUTHERN LINE  /  CONTROL", 15, Color("ffca72"))
-	_clock = _label(column, "", 26)
+	_clock = _label(column, "", 20)
 	_label(column, "ROUTE DESK", 13, Color("95aeb7"))
 	_source = OptionButton.new()
 	for sid in world.signals:
@@ -95,6 +95,8 @@ func setup(w: RailWorld) -> void:
 	column.add_child(controls)
 	_button(controls, "TAKE CAB  [Tab]", func(): drive_requested.emit())
 	_button(controls, "AI / MANUAL  [A]", func(): toggle_driver())
+	var scenarios := HBoxContainer.new()
+	column.add_child(scenarios)
 	var bottom := PanelContainer.new()
 	bottom.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
 	bottom.offset_left = 16
@@ -111,20 +113,19 @@ func setup(w: RailWorld) -> void:
 	_board_heading = _label(title, "DISPATCH BOARD", 17, Color("ffca72"))
 	_board_heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_legend = _label(title, "RED occupied    MINT reserved", 12, Color("adbec4"))
-	_scenario_button = _button(title, "MEMU [F2]" if world.trains.T1.stock_kind == "wap7" else "WAP-7 [F2]", func(): scenario_requested.emit())
+	_scenario_button = _button(scenarios, "MEMU [F2]" if world.trains.T1.stock_kind == "wap7" else "WAP-7 [F2]", func(): scenario_requested.emit())
 	_scenario_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_scenario_button.tooltip_text = "Switch scenario and restart at Chennapuram"
-	_lhb_button = _button(title, "MEMU [F3]" if world.trains.T1.stock_kind == "lhb" else "LHB [F3]", func(): lhb_requested.emit())
+	_lhb_button = _button(scenarios, "MEMU [F3]" if world.trains.T1.stock_kind == "lhb" else "LHB [F3]", func(): lhb_requested.emit())
 	_lhb_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_lhb_button.tooltip_text = "Drive WAP-7 with 20 LHB coaches (500.562 m); V enters a passenger coach"
 	_table_button = _button(title, "TIMETABLE [M]", toggle_timetable)
 	_table_button.size_flags_horizontal = Control.SIZE_SHRINK_END
-	var pause_button := _button(title, "PAUSE / RUN [Esc]", func(): pause_requested.emit())
-	pause_button.size_flags_horizontal = Control.SIZE_SHRINK_END
+	_button(title, "CLOSE [D]", func(): set_open(false)).size_flags_horizontal = Control.SIZE_SHRINK_END
 	_restart = _button(title, "RESTART SERVICES", func(): restart_requested.emit())
 	_restart.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_restart.visible = false
-	var scopes := HBoxContainer.new()
+	var scopes := HFlowContainer.new()
 	map_col.add_child(scopes)
 	_button(scopes, "WHOLE LINE", func(): _map.focus_station(-1))
 	for index in world.stations.size():

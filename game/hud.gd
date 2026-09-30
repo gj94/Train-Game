@@ -1,164 +1,265 @@
 extends CanvasLayer
-## Driver/dispatcher HUD, built in code.
+## Compact driver information and modal menus. Simulation stays in main/sim.
+signal action_requested(action: String)
 const Clock := preload("res://sim/world_clock.gd")
+const HELP := """[b]DRIVING[/b]
+W / ↑ more power · S / ↓ less power / more brake · X coast
+Space emergency brake (again at a stand to release)
+C next signal's route desk · R change ends when stopped · H horn
+Tab cab / exterior · A selected train AI / manual
 
-const HELP := """[b]Driving[/b] (works in both views)
-W / ↑   more power      S / ↓   less power / more brake
-X   coast (handle to 0)     Space   emergency brake (again at a stand: release)
-C   open next signal's route desk     R   change ends (stopped)     H   horn
+[b]CAMERA & PASSENGERS[/b]
+F follow train · 1 / 2 / 3 visit a station
+Outside: right-drag orbit, left-drag pan, wheel zoom
+Cab / passenger: right-drag look, wheel zoom
+LHB: V passenger / cab, PgUp/PgDn coach, ←/→ bay,
+Home aisle / seat, B fold or lower the 3A middle berth
 
-[b]View[/b]
-Tab   cab ⇄ overview      F   follow train      1 / 2 / 3   jump to station
-Overview: right-drag orbit · left-drag pan · wheel zoom
-Cab: right-drag to look around · wheel zoom
-F2   switch between WAP-7 light engine and MEMU meet (restarts scenario)
-F3   WAP-7 + LHB passenger rake / MEMU meet (restarts scenario)
-LHB: V passenger/cab · PgUp/PgDn coach · ←/→ bay · Home aisle/seat · B middle berths
+[b]DISPATCHING[/b]
+D open / close dispatch · M timetable / map
+Select an entrance and exit, then SET ROUTE. PUT TO RED cancels safely.
+Select any service in the roster to follow it. Tab takes manual control.
+AUTO DISPATCH requests booked routes. HOLD MRT queues trains at Maruthur.
+AI needs routes and waits for its departure time and station dwell.
 
-[b]Dispatching[/b] (overview)
-Choose entrance + exit, then SET ROUTE · PUT TO RED cancels safely
-D   dispatch board · A   selected train AI/manual · select a service to follow
-M   timetable: blocks, minutes from origin, planned/actual times and dwell
-Tab takes manual control of the selected train. A hands it back to AI.
+[b]DISPLAY & SESSION[/b]
+Esc pause menu / back · F1 controls · F4 clean view / restore
+F6 track labels · F8 event history · F11 fullscreen / window
+T time ×1 / ×2 / ×4 · P train protection on / off
+F2 WAP-7 light engine / MEMUs · F3 LHB rake / MEMUs
+Changing scenario or restarting asks first. There is no save/load yet.
 
-T   time ×1 / ×2 / ×4      Esc   pause      P   protection on/off      F1   help
-[ / ]   track sound quieter / louder (2 dB steps)      J   rail-joint markers (flash red on each hit)
-, / .   clang (2nd wheel of each bogie) quieter / louder than the cling (1st wheel)"""
-
+[b]SOUND & DIAGNOSTICS[/b]
+[ / ] track sound quieter / louder (2 dB)
+, / . clang quieter / louder · J rail-joint markers
+Approved track-only sound keeps the horn and engine layers muted."""
+var clean_view := false
+var history_open := false
+var modal := ""
 var _info: RichTextLabel
-var _speed: Label
 var _mode: Label
 var _toast: Label
 var _log: RichTextLabel
-var _help: RichTextLabel
+var _toolbar: HBoxContainer
+var _shade: ColorRect
+var _heading: Label
+var _body: RichTextLabel
+var _buttons: VBoxContainer
 var _toast_time := 0.0
-var _log_lines: Array = []
-
+var _critical_toast := false
+var _log_lines: Array[String] = []
 
 func _ready() -> void:
-	_info = _rich(Vector2(16, 16), Vector2(430, 0), 18)
-	_mode = _label(Vector2(0, 14), 17)
-	_mode.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
-	_mode.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_mode.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	_toast = _label(Vector2(0, 52), 16)
+	layer = 5
+	_info = _rich(Vector2(16, 16), Vector2(650, 96), 18)
+	_info.add_theme_stylebox_override("normal", _panel_style())
+	_mode = Label.new()
+	add_child(_mode)
+	_mode.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	_mode.offset_left = -850
+	_mode.offset_right = -16
+	_mode.offset_top = 64
+	_mode.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_mode.add_theme_font_size_override("font_size", 16)
+	_mode.add_theme_constant_override("outline_size", 6)
+	_mode.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_toolbar = HBoxContainer.new()
+	add_child(_toolbar)
+	_toolbar.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	_toolbar.offset_left = -440
+	_toolbar.offset_right = -16
+	_toolbar.offset_top = 16
+	_toolbar.add_theme_constant_override("separation", 8)
+	_button(_toolbar, "DISPATCH  D", "dispatch")
+	_button(_toolbar, "HELP  F1", "help")
+	_button(_toolbar, "MENU  Esc", "pause")
+	_toast = Label.new()
+	add_child(_toast)
 	_toast.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
-	_toast.offset_top = 52
+	_toast.offset_left = -540
+	_toast.offset_right = 540
+	_toast.offset_top = 124
 	_toast.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_toast.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	_toast.add_theme_color_override("font_color", Color(1.0, 0.85, 0.4))
-	_speed = _label(Vector2.ZERO, 54)
-	_speed.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
-	_speed.offset_top = -86
-	_speed.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_speed.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	_log = _rich(Vector2(16, 0), Vector2(560, 150), 16)
-	_log.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
-	_log.offset_top = 240
-	_log.offset_bottom = 370
-	_log.set_anchor(SIDE_TOP, 0)
-	_log.set_anchor(SIDE_BOTTOM, 0)
-	_log.offset_right = 576
-	_help = _rich(Vector2.ZERO, Vector2(640, 0), 16)
-	_help.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
-	_help.offset_left = -656
-	_help.offset_right = -16
-	_help.offset_bottom = -16
-	_help.grow_vertical = Control.GROW_DIRECTION_BEGIN   # fit_content grows it upward
-	_help.text = HELP
-	_help.visible = false
-	var bg := StyleBoxFlat.new()
-	bg.bg_color = Color(0.025, 0.062, 0.086, 0.90)
-	bg.set_content_margin_all(10)
-	bg.set_corner_radius_all(6)
-	for c in [_info, _help]:
-		c.add_theme_stylebox_override("normal", bg)
+	_toast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_toast.add_theme_font_size_override("font_size", 18)
+	_toast.add_theme_color_override("font_color", Color("ffca72"))
+	_toast.add_theme_constant_override("outline_size", 8)
+	_toast.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_log = _rich(Vector2(16, 184), Vector2(640, 200), 16)
+	_log.add_theme_stylebox_override("normal", _panel_style())
+	_log.scroll_active = true
+	_log.mouse_filter = Control.MOUSE_FILTER_STOP
+	_log.text = "[b]EVENT HISTORY  ·  F8 to close[/b]\nNo events yet."
+	_log.visible = false
+	_build_modal()
 
+func _panel_style() -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.025, 0.062, 0.086, 0.94)
+	style.border_color = Color("36525d")
+	style.set_border_width_all(1)
+	style.set_content_margin_all(14)
+	style.set_corner_radius_all(8)
+	return style
 
-func _label(pos: Vector2, size: int) -> Label:
-	var l := Label.new()
-	l.position = pos
-	l.add_theme_font_size_override("font_size", size)
-	l.add_theme_constant_override("outline_size", 6)
-	l.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.8))
-	add_child(l)
-	return l
+func _rich(pos: Vector2, dimensions: Vector2, font: int) -> RichTextLabel:
+	var rich := RichTextLabel.new()
+	rich.bbcode_enabled = true
+	rich.position = pos
+	rich.size = dimensions
+	rich.fit_content = false
+	rich.scroll_active = false
+	rich.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	rich.add_theme_font_size_override("normal_font_size", font)
+	rich.add_theme_font_size_override("bold_font_size", font)
+	add_child(rich)
+	return rich
 
+func _button(parent: Node, text: String, action: String) -> Button:
+	var button := Button.new()
+	button.text = text
+	button.focus_mode = Control.FOCUS_NONE
+	button.custom_minimum_size.y = 40
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	button.add_theme_font_size_override("font_size", 16)
+	for state in ["normal", "hover", "pressed"]:
+		var style := _panel_style()
+		style.bg_color = Color("213d49") if state != "normal" else Color("122b37")
+		style.content_margin_top = 8
+		style.content_margin_bottom = 8
+		button.add_theme_stylebox_override(state, style)
+	button.pressed.connect(func(): action_requested.emit(action))
+	parent.add_child(button)
+	return button
 
-func _rich(pos: Vector2, size: Vector2, font: int) -> RichTextLabel:
-	var r := RichTextLabel.new()
-	r.bbcode_enabled = true
-	r.position = pos
-	r.size = size
-	r.fit_content = true
-	r.scroll_active = false
-	r.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	r.add_theme_font_size_override("normal_font_size", font)
-	r.add_theme_font_size_override("bold_font_size", font)
-	r.add_theme_constant_override("outline_size", 5)
-	r.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.8))
-	add_child(r)
-	return r
+func _build_modal() -> void:
+	_shade = ColorRect.new()
+	add_child(_shade)
+	_shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_shade.color = Color(0.005, 0.015, 0.025, 0.72)
+	_shade.mouse_filter = Control.MOUSE_FILTER_STOP
+	var dialog := PanelContainer.new()
+	_shade.add_child(dialog)
+	dialog.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	dialog.offset_left = -400
+	dialog.offset_right = 400
+	dialog.offset_top = -365
+	dialog.offset_bottom = 365
+	dialog.add_theme_stylebox_override("panel", _panel_style())
+	var column := VBoxContainer.new()
+	column.add_theme_constant_override("separation", 10)
+	dialog.add_child(column)
+	_heading = Label.new()
+	_heading.add_theme_font_size_override("font_size", 27)
+	_heading.add_theme_color_override("font_color", Color("ffca72"))
+	column.add_child(_heading)
+	_body = RichTextLabel.new()
+	_body.bbcode_enabled = true
+	_body.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_body.add_theme_font_size_override("normal_font_size", 18)
+	_body.add_theme_font_size_override("bold_font_size", 18)
+	column.add_child(_body)
+	_buttons = VBoxContainer.new()
+	_buttons.add_theme_constant_override("separation", 8)
+	column.add_child(_buttons)
+	_shade.visible = false
 
+func show_modal(kind: String, labels_on: bool = false, description: String = "") -> void:
+	modal = kind
+	_shade.visible = kind != ""
+	for button in _buttons.get_children():
+		_buttons.remove_child(button)
+		button.queue_free()
+	_body.scroll_to_line(0)
+	match kind:
+		"pause":
+			_heading.text = "PAUSED"
+			_body.text = "Resume to continue the current service.\n[b]F4[/b] clears the screen; [b]D[/b] opens dispatch."
+			_button(_buttons, "Resume  ·  Esc", "resume")
+			_button(_buttons, "Controls  ·  F1", "help")
+			_button(_buttons, "Clean view  ·  F4", "clean")
+			_button(_buttons, "Track labels: " + ("ON" if labels_on else "OFF") + "  ·  F6", "labels")
+			_button(_buttons, "Fullscreen / window  ·  F11", "fullscreen")
+			_button(_buttons, "WAP-7 light engine / MEMUs  ·  F2", "wap7")
+			_button(_buttons, "LHB passenger rake / MEMUs  ·  F3", "lhb")
+			_button(_buttons, "Restart current services…", "restart")
+			_button(_buttons, "Quit to desktop…", "quit")
+		"help":
+			_heading.text = "CONTROLS  /  SIMULATION PAUSED"
+			_body.text = HELP
+			_button(_buttons, "Back  ·  Esc / F1", "close_help")
+		"confirm":
+			_heading.text = "LEAVE THIS RUN?"
+			_body.text = description + "\n\nCurrent progress will be lost. Save/load is not available yet."
+			_button(_buttons, "Cancel  ·  Esc", "cancel")
+			_button(_buttons, "Continue", "confirm")
+	_refresh_visibility()
 
-func toggle_help() -> void:
-	_help.visible = not _help.visible
+func set_clean(value: bool) -> void:
+	clean_view = value
+	_refresh_visibility()
 
+func toggle_history() -> void:
+	history_open = not history_open
+	_refresh_visibility()
 
-func toast(text: String) -> void:
+func _refresh_visibility() -> void:
+	_info.visible = not clean_view and modal == ""
+	_mode.visible = not clean_view and modal == ""
+	_toolbar.visible = not clean_view and modal == ""
+	_log.visible = history_open and not clean_view and modal == ""
+	_toast.visible = _toast_time > 0 and (not clean_view or _critical_toast)
+
+func toast(text: String, critical: bool = false) -> void:
 	_toast.text = text
-	_toast_time = 3.5
+	_toast_time = 6.0 if critical else 4.0
+	_critical_toast = critical
+	_toast.modulate.a = 1.0
+	_refresh_visibility()
 
-
-func log_event(e: Dictionary) -> void:
-	var color := "ff6655" if e.kind == "spad" else "ffcc55"
-	var stamp := Clock.format_time(e.get("clock", e.t))
-	_log_lines.append("[color=#aaaaaa]%s[/color]  [color=#%s]%s[/color]" % [stamp, color, e.text])
-	if _log_lines.size() > 6:
+func log_event(event: Dictionary) -> void:
+	var stamp := Clock.format_time(event.get("clock", event.t))
+	_log_lines.append("[color=#ffca72]%s[/color]  %s" % [stamp, event.text])
+	if _log_lines.size() > 8:
 		_log_lines.pop_front()
-	_log.text = "\n".join(_log_lines)
-
+	_log.text = "[b]EVENT HISTORY  ·  F8 to close[/b]\n" + "\n".join(_log_lines)
+	toast(event.text, true)
 
 func _process(delta: float) -> void:
-	if _toast_time > 0.0:
-		_toast_time -= delta
-		_toast.modulate.a = clampf(_toast_time, 0.0, 1.0)
+	if _toast_time > 0:
+		_toast_time = maxf(0, _toast_time - delta)
+		_toast.modulate.a = clampf(_toast_time, 0, 1)
+		if _toast_time == 0:
+			_toast.visible = false
 
-
-## `s` is a snapshot dictionary assembled by main.gd.
 func refresh(s: Dictionary) -> void:
 	var kmh := roundi(s.speed * 3.6)
 	var lim := roundi(s.limit * 3.6)
 	var over: bool = s.speed > s.limit + 3.0 / 3.6
-	_speed.text = "%d km/h" % kmh
-	_speed.visible = false
-	_speed.add_theme_color_override("font_color", Color(1, 0.35, 0.3) if over else Color.WHITE)
-	_mode.text = ("CAB · %s" if s.cab else "DISPATCH · %s") % s.train_id + "   D%d %s   ×%d" % [s.world_day, s.world_clock, s.time_scale] + ("   PAUSED" if s.paused else "")
-	if not s.get("passenger", "").is_empty():
-		_mode.text = s.passenger + "   ·   " + s.world_clock + ("   PAUSED" if s.paused else "")
-
 	var handle := "Coast"
 	if s.emergency:
-		handle = "[color=#ff5544][b]EMERGENCY BRAKE[/b][/color]"
+		handle = "[color=#ff7868]EMERGENCY BRAKE[/color]"
 	elif s.controller > 0.001:
-		handle = "[color=#88ff88]Power %d%%[/color]" % roundi(s.controller * 100)
+		handle = "Power %d%%" % roundi(s.controller * 100)
 	elif s.controller < -0.001:
-		handle = "[color=#ffaa55]Brake %d%%[/color]" % roundi(-s.controller * 100)
-	var lines := []
-	var stock := "WAP-7 30306 · CAB %d" % s.cab_end if s.get("stock_kind", "memu") == "wap7" else "%d-CAR MEMU" % s.cars
-	if s.get("stock_kind", "memu") == "lhb":
-		stock = "WAP-7 + 20 LHB · 500.6 m"
-	lines.append("[color=#ffca72][b]%s  /  %s[/b][/color]   %s" % [s.train_id, stock, "AI DRIVER" if s.automatic else "MANUAL"])
-	lines.append("Speed [b]%d[/b] km/h   Limit %d km/h%s" % [kmh, lim, "  [color=#ff5544]OVERSPEED[/color]" if over else ""])
-	lines.append("Handle  " + handle)
-	if s.next_signal.is_empty():
-		lines.append("Next signal  —")
-	else:
-		var names := ["[color=#ff4433]RED[/color]", "[color=#ffcc22]YELLOW[/color]", "[color=#44ff66]GREEN[/color]"]
-		lines.append("Next signal  [b]%s[/b]  %s  in %d m" % [s.next_signal.id, names[s.next_aspect], roundi(s.next_signal.distance)])
+		handle = "Brake %d%%" % roundi(-s.controller * 100)
+	var speed := "[b]%d[/b] km/h  ·  Limit %d" % [kmh, lim]
+	if over:
+		speed = "[color=#ff7868]" + speed + "  OVERSPEED[/color]"
+	var signal_text := "No signal ahead"
+	if not s.next_signal.is_empty():
+		var aspects := ["[color=#ff7868]RED[/color]", "[color=#ffca72]YELLOW[/color]", "[color=#72e6be]GREEN[/color]"]
+		signal_text = "%s  %s  ·  %d m" % [s.next_signal.id, aspects[s.next_aspect], roundi(s.next_signal.distance)]
 	if s.buffer < 500.0:
-		lines.append("Buffer stop in %d m" % roundi(s.buffer))
-	lines.append("Protection %s    [color=#94aeb8]F1 controls · D dispatch[/color]" % ("on" if s.protection else "[color=#ffaa55]off[/color]"))
+		signal_text += "  ·  Buffer %d m" % roundi(s.buffer)
+	_info.text = "%s   ·   %s\n%s   ·   %s / %s%s" % [speed, handle, signal_text, s.train_id, "AI" if s.automatic else "MANUAL", "  [color=#ffca72]PROTECTION OFF[/color]" if not s.protection else ""]
+	var view := "CAB" if s.cab else "OVERVIEW"
 	if not s.get("passenger", "").is_empty():
-		lines.append("[color=#94aeb8]PgUp/PgDn coach · ←/→ bay · Home seat · B berths[/color]")
-	_info.text = "\n".join(lines)
+		view = s.passenger
+	_mode.text = "%s  ·  D%d  %s  ·  ×%d" % [view, s.world_day, s.world_clock, s.time_scale]
+	# Emergency feedback survives clean view; other diagnostics stay optional.
+	if clean_view and s.emergency and modal == "":
+		_info.text = "[color=#ff7868][b]EMERGENCY BRAKE[/b][/color]  ·  %d km/h\nSpace to release once stopped" % kmh
+		_info.visible = true
+	elif clean_view:
+		_info.visible = false

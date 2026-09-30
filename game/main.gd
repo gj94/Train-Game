@@ -32,6 +32,12 @@ var _last_event := 0
 var wap7_drive := false
 var lhb_drive := false
 var _dispatch_tick := 0.0
+var labels_enabled := false
+var _desk_before_cab := false
+var _desk_before_clean := false
+var _paused_before_help := false
+var _pending_action := ""
+var _interior_view := false
 
 
 func _ready() -> void:
@@ -80,16 +86,21 @@ func _ready() -> void:
 		sound.joint_hit.connect(func(edge: String, k: int, _cls: int): wv.flash_joint(edge, k))
 	hud = Hud.new()
 	add_child(hud)
+	hud.action_requested.connect(_ui_action)
 	dispatcher = Dispatcher.new()
 	add_child(dispatcher)
 	dispatcher.setup(world)
 	dispatcher.train_selected.connect(_select_train)
 	dispatcher.drive_requested.connect(_enter_cab)
 	dispatcher.pause_requested.connect(_toggle_pause)
-	dispatcher.restart_requested.connect(func(): get_tree().reload_current_scene())
-	dispatcher.scenario_requested.connect(_switch_scenario)
-	dispatcher.lhb_requested.connect(_switch_lhb)
+	dispatcher.restart_requested.connect(func(): _request_action("restart"))
+	dispatcher.scenario_requested.connect(func(): _request_action("wap7"))
+	dispatcher.lhb_requested.connect(func(): _request_action("lhb"))
 	dispatcher.result_message.connect(_report)
+	dispatcher.set_open(false)
+	wv.set_labels_visible(false)
+	# Window close follows the same in-game confirmation as Quit.
+	get_tree().auto_accept_quit = false
 	if lhb_drive:
 		_enter_cab()
 		hud.toast("WAP-7 + LHB · W power / S brake · V passenger · Tab exterior · F1 controls")
@@ -97,7 +108,7 @@ func _ready() -> void:
 		_enter_cab()
 		hud.toast("WAP-7 30306 · W power / S brake · Tab exterior · C onward routes · F2 MEMU services")
 	else:
-		hud.toast("Set routes from the dispatch board. F2 drives WAP-7; F3 adds LHB coaches.")
+		hud.toast("D opens dispatch · AUTO DISPATCH runs services · Tab takes the cab · F1 controls")
 
 
 func _physics_process(delta: float) -> void:
@@ -156,6 +167,28 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
+		# Modal input never reaches train controls; the clock and held-key input pause too.
+		match event.physical_keycode:
+			KEY_ESCAPE:
+				if hud.modal == "help": _close_help()
+				elif hud.modal == "confirm": _cancel_action()
+				else: _toggle_pause()
+				return
+			KEY_F1:
+				if hud.modal != "confirm": _toggle_help()
+				return
+			KEY_F11:
+				_toggle_fullscreen()
+				return
+		if hud.modal == "pause":
+			match event.physical_keycode:
+				KEY_F2: _request_action("wap7")
+				KEY_F3: _request_action("lhb")
+				KEY_F4: _ui_action("clean")
+				KEY_F6: _ui_action("labels")
+			return
+		if hud.modal != "":
+			return
 		match event.physical_keycode:
 			KEY_TAB:
 				if cam.mode != CameraRig.Mode.OVERVIEW:
@@ -164,13 +197,13 @@ func _unhandled_input(event: InputEvent) -> void:
 				else:
 					_enter_cab()
 			KEY_D:
+				_restore_ui()
 				dispatcher.toggle()
 			KEY_M:
+				_restore_ui()
 				dispatcher.toggle_timetable()
 			KEY_A:
 				dispatcher.toggle_driver()
-			KEY_ESCAPE:
-				_toggle_pause()
 			KEY_X:
 				train.automatic = false
 				train.controller = 0.0
@@ -188,6 +221,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				else:
 					train.emergency = true
 			KEY_C:
+				_restore_ui()
 				var next := world.next_signal(train)
 				if not next.is_empty():
 					dispatcher.set_open(true)
@@ -212,12 +246,17 @@ func _unhandled_input(event: InputEvent) -> void:
 				hud.toast("Train protection " + ("on" if world.protection else "off"))
 			KEY_T:
 				time_scale = 1 if time_scale >= 4 else time_scale * 2
-			KEY_F1:
-				hud.toggle_help()
 			KEY_F2:
-				_switch_scenario()
+				_request_action("wap7")
 			KEY_F3:
-				_switch_lhb()
+				_request_action("lhb")
+			KEY_F4:
+				_toggle_clean()
+			KEY_F6:
+				_toggle_labels()
+			KEY_F8:
+				_restore_ui()
+				hud.toggle_history()
 			KEY_V:
 				if lhb_drive:
 					if cam.mode == CameraRig.Mode.PASSENGER:
@@ -256,15 +295,21 @@ func _set_cab_visuals(cab: bool) -> void:
 	audio.interior_listener = TrainAudio.DRIVER
 	if lhb_drive:
 		tv.set_passenger_view(false)
-	wv.set_labels_visible(not cab)
+	wv.set_labels_visible(labels_enabled and not cab and not hud.clean_view)
 	for sound in train_audio.values():
 		if sound != audio:
 			sound.set_interior(false)
 	audio.set_interior(cab)
-	dispatcher.set_open(not cab)
+	if cab:
+		dispatcher.set_open(false)
+	elif _interior_view and cam.mode == CameraRig.Mode.OVERVIEW and not hud.clean_view:
+		dispatcher.set_open(_desk_before_cab)
+	_interior_view = cab
 
 
 func _enter_cab() -> void:
+	if cam.mode == CameraRig.Mode.OVERVIEW:
+		_desk_before_cab = dispatcher._root.visible
 	train.automatic = false
 	train.controller = 0.0
 	cam.set_mode(CameraRig.Mode.CAB)
@@ -273,9 +318,12 @@ func _enter_cab() -> void:
 
 func _enter_passenger() -> void:
 	# Looking around as a passenger preserves the current driver's controls.
+	if cam.mode == CameraRig.Mode.OVERVIEW:
+		_desk_before_cab = dispatcher._root.visible
 	_set_cab_visuals(false)
 	tv.set_passenger_view(true)
 	cam.set_mode(CameraRig.Mode.PASSENGER)
+	_interior_view = true
 	wv.set_labels_visible(false)
 	audio.set_interior(true)
 	dispatcher.set_open(false)
@@ -283,11 +331,116 @@ func _enter_passenger() -> void:
 
 
 func _toggle_pause() -> void:
-	paused = not paused
+	_set_paused(not paused)
+	hud.show_modal("pause" if paused else "", labels_enabled)
+
+
+func _set_paused(value: bool) -> void:
+	paused = value
+	cam.set_process_unhandled_input(not value)
+	cam._dragging = 0
 	for sound in train_audio.values():
 		for player in sound.get_children():
 			if player is AudioStreamPlayer:
 				player.stream_paused = paused
+
+
+func _ui_action(action: String) -> void:
+	match action:
+		"dispatch":
+			_restore_ui()
+			dispatcher.toggle()
+		"pause", "resume": _toggle_pause()
+		"help": _toggle_help()
+		"close_help": _close_help()
+		"clean":
+			_toggle_clean()
+			if paused: _toggle_pause()
+		"labels":
+			_toggle_labels()
+			hud.show_modal("pause", labels_enabled)
+		"fullscreen": _toggle_fullscreen()
+		"restart", "wap7", "lhb", "quit": _request_action(action)
+		"cancel": _cancel_action()
+		"confirm": _confirm_action()
+
+
+func _toggle_help() -> void:
+	if hud.modal == "help":
+		_close_help()
+		return
+	_paused_before_help = paused
+	_set_paused(true)
+	hud.show_modal("help")
+
+
+func _close_help() -> void:
+	_set_paused(_paused_before_help)
+	hud.show_modal("pause" if paused else "", labels_enabled)
+
+
+func _request_action(action: String) -> void:
+	_pending_action = action
+	_set_paused(true)
+	var descriptions := {"restart": "Restart the current services from the beginning.",
+		"wap7": "Start the MEMU services." if wap7_drive else "Start the WAP-7 light engine.",
+		"lhb": "Start the MEMU services." if lhb_drive else "Start the WAP-7 with 20 LHB coaches.",
+		"quit": "Quit Train Game and return to the desktop."}
+	hud.show_modal("confirm", labels_enabled, descriptions[action])
+
+
+func _cancel_action() -> void:
+	_pending_action = ""
+	hud.show_modal("pause", labels_enabled)
+
+
+func _confirm_action() -> void:
+	var action := _pending_action
+	_pending_action = ""
+	match action:
+		"restart": get_tree().reload_current_scene()
+		"wap7": _switch_scenario()
+		"lhb": _switch_lhb()
+		"quit": get_tree().quit()
+
+
+func _toggle_labels() -> void:
+	labels_enabled = not labels_enabled
+	wv.set_labels_visible(labels_enabled and cam.mode == CameraRig.Mode.OVERVIEW and not hud.clean_view)
+	hud.toast("Track labels " + ("on" if labels_enabled else "off"))
+
+
+func _toggle_clean() -> void:
+	if not hud.clean_view:
+		_desk_before_clean = dispatcher._root.visible
+		dispatcher.set_open(false)
+		hud.set_clean(true)
+	else:
+		hud.set_clean(false)
+		dispatcher.set_open(_desk_before_clean and cam.mode == CameraRig.Mode.OVERVIEW)
+	wv.set_labels_visible(labels_enabled and cam.mode == CameraRig.Mode.OVERVIEW and not hud.clean_view)
+
+
+func _restore_ui() -> void:
+	if hud.clean_view:
+		hud.set_clean(false)
+		wv.set_labels_visible(labels_enabled and cam.mode == CameraRig.Mode.OVERVIEW)
+
+
+func _toggle_fullscreen() -> void:
+	var mode := DisplayServer.window_get_mode()
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if mode == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
+func _notification(what: int) -> void:
+	if hud == null:
+		return
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_request_action("quit")
+	elif what == NOTIFICATION_APPLICATION_FOCUS_OUT and not paused:
+		# Alt-tab cannot leave a manually driven train accelerating unattended.
+		_set_paused(true)
+		hud.show_modal("pause", labels_enabled)
 
 
 func _select_train(id: String) -> void:
@@ -314,6 +467,7 @@ func _pick(screen_pos: Vector2) -> void:
 		return
 	var info: Dictionary = hit.collider.get_meta("pick")
 	if info.kind == "signal":
+		_restore_ui()
 		dispatcher.set_open(true)
 		dispatcher.select_signal(info.id, true)
 	elif info.kind == "switch":

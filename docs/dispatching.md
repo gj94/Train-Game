@@ -12,7 +12,7 @@ and booked at the other terminus at +28 minutes. See [timetables.md](timetables.
 
 ## Reproduce the busy-station test
 
-1. Run the main scene (F5). On the board enable **AUTO DISPATCH** and **HOLD MRT**
+1. Run the main scene (F5), then press **D** to open dispatch. Enable **AUTO DISPATCH** and **HOLD MRT**
    before the first departure. Auto dispatch requests the booked routes through
    the same interlocking used by the manual desk. HOLD MRT keeps Maruthur's
    departures at red; it does not cancel routes already set.
@@ -58,6 +58,15 @@ The AI refuses an unbooked platform and waits for a route to its scheduled stop.
 
 ## Board and controls
 
+The game starts with a compact HUD and a clear view of the railway. **D** opens
+the dispatch workspace; returning from the cab restores whether you left it open
+or closed. Track labels and event history start hidden. **F4** clears the HUD and
+board, with emergency feedback retained; press it again to restore the display.
+**F6** toggles track labels, **F8** event history and **F11** fullscreen.
+Help pauses the simulation. Alt-tabbing pauses automatically; Esc resumes.
+Restart, F2/F3 and quitting show a confirmation before discarding the current run.
+For a standalone Windows copy, see [builds.md](builds.md).
+
 The schematic is generated from the real track graph. **Whole line** compresses
 rural distances; the three yard buttons enlarge points, platforms and signals.
 Red tracks are occupied, mint tracks reserved, amber points locked, and white
@@ -77,12 +86,12 @@ the timetable. Refusal reasons explain occupied blocks and conflicting locks.
 | X | Coast and take manual control |
 | Space | Emergency brake / release at stand |
 | R | Change ends at stand after timetable completion; LHB requires a run-round |
-| Esc / PAUSE | Pause world clock, trains and audio |
+| Esc / MENU | Pause world clock, trains and audio; resume / back |
 | T | x1 / x2 / x4 simulation time |
 | 1 / 2 / 3 | Station overview |
 | F | Follow selected train |
 | F2 / F3 | WAP-7 light engine / full LHB rake, toggle back to MEMU services |
-| F1 | Full help |
+| F1 | Scrollable help; pauses the simulation |
 
 Overview uses right-drag to orbit, left-drag to pan, wheel to zoom. Cab uses
 right-drag to look and wheel for field of view. F2/F3 also use the expanded route.

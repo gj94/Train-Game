@@ -74,8 +74,9 @@ func _check() -> void:
 	if not _expect(not t.emergency and t.controller == 0, "release and coast"):
 		return
 	_key(game, KEY_TAB)
-	if not _expect(game.cam.mode == 0 and not view._cabs[0].visible and desk._root.visible, "overview and route desk"):
+	if not _expect(game.cam.mode == 0 and not view._cabs[0].visible and not desk._root.visible, "overview respects closed route desk"):
 		return
+	_key(game, KEY_D)
 	for pair in [["MRT-SE1", "KDP-H"], ["KDP-H", "BUFFER:KDP_B"]]:
 		desk.select_signal(pair[0], true)
 		desk._select_destination(pair[1])
@@ -105,6 +106,9 @@ func _check() -> void:
 	if not _expect(t.service_complete and t.path[0].edge == "cpm_p1" and game.world.events.is_empty(), "safe return to Chennapuram"):
 		return
 	desk._scenario_button.pressed.emit()
+	if not _expect(game.paused and game.hud.modal == "confirm", "scenario change asks before discarding progress"):
+		return
+	game._confirm_action()
 	await process_frame
 	await process_frame
 	if not _expect(not current_scene.wap7_drive and current_scene.train_views.size() == 2, "button restores two-MEMU scenario"):

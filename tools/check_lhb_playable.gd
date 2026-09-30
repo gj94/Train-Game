@@ -99,6 +99,9 @@ func _check() -> void:
 	if not _expect(t.head_s == old_head and t.cab_end == 1 and "run-round" in game.hud._toast.text, "return requires run-round"):
 		return
 	game.dispatcher._lhb_button.pressed.emit()
+	if not _expect(game.paused and game.hud.modal == "confirm", "scenario change asks before discarding progress"):
+		return
+	game._confirm_action()
 	await process_frame
 	await process_frame
 	if not _expect(not current_scene.lhb_drive and current_scene.train_views.size() == 2, "F3 button restores original MEMU meet"):
