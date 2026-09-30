@@ -90,7 +90,8 @@ func _draw() -> void:
 		# train waiting at its starter visibly behind that signal.
 		var fraction: float = t.head_s / world.graph.edges[edge].length
 		if edge in ["cpm_p1", "cpm_p2"]:
-			fraction = t.head_s / 370.0 if t.head_s < 310.0 else lerpf(310.0 / 370.0, 1.0, (t.head_s - 310.0) / (world.graph.edges[edge].length - 310.0))
+			var starter: float = world.signals["CPM-S1" if edge == "cpm_p1" else "CPM-S2"].s
+			fraction = t.head_s / starter * .84 if t.head_s < starter else lerpf(.84, 1.0, (t.head_s - starter) / (world.graph.edges[edge].length - starter))
 		var p := _point(edge, fraction)
 		var rect := Rect2(p - Vector2(25, 10), Vector2(50, 20))
 		draw_style_box(_train_style(), rect)

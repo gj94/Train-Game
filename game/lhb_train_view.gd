@@ -4,6 +4,7 @@ extends "res://game/wap7_train_view.gd"
 const Profile := preload("res://sim/stock/lhb_consist.gd")
 const THREE_TIER := preload("res://assets/models/lhb_3a.glb")
 const TWO_TIER := preload("res://assets/models/lhb_2a.glb")
+const GENERATOR := preload("res://assets/models/lhb_eog.glb")
 
 var coaches: Array[Node3D] = []
 var coach_bogies: Array = []
@@ -11,7 +12,7 @@ var coach_axles: Array = []
 var coach_glass: Array = []
 var middle_berths: Array = []
 var berth_folded_angles: Array = []
-var passenger_coach := 0
+var passenger_coach := 1
 var passenger_bay := 0
 var passenger_seat := false
 var passenger_on := false
@@ -26,7 +27,8 @@ func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
 		car.name = t.id + "_LHB_" + Profile.FORMATION[i]
 		parent.add_child(car)
 		cars.append(car)
-		var model: Node3D = (THREE_TIER if i < 4 else TWO_TIER).instantiate()
+		var kind := Profile.coach_kind(i)
+		var model: Node3D = (GENERATOR if kind == "eog" else (THREE_TIER if kind == "3a" else TWO_TIER)).instantiate()
 		model.position.y = RAIL_TOP
 		car.add_child(model)
 		coaches.append(model)
@@ -55,9 +57,9 @@ func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
 			angles.append(berth.rotation.x)
 		berth_folded_angles.append(angles)
 		for e in [-1, 1]:
-			model.find_child("TailMarker_%s" % e, true, false).visible = i == 5 and e == -1
-		model.find_child("LastVehicleBoard", true, false).visible = i == 5
-		model.find_child("LastVehicleLetters", true, false).visible = i == 5
+			model.find_child("TailMarker_%s" % e, true, false).visible = i == Profile.FORMATION.size() - 1 and e == -1
+		model.find_child("LastVehicleBoard", true, false).visible = i == Profile.FORMATION.size() - 1
+		model.find_child("LastVehicleLetters", true, false).visible = i == Profile.FORMATION.size() - 1
 		for side in [-1, 1]:
 			var label := Label3D.new()
 			label.text = Profile.FORMATION[i]
@@ -116,6 +118,8 @@ func set_passenger_view(on: bool) -> void:
 
 func change_passenger_coach(delta: int) -> void:
 	passenger_coach = posmod(passenger_coach + delta, coaches.size())
+	while Profile.coach_kind(passenger_coach) == "eog":
+		passenger_coach = posmod(passenger_coach + (1 if delta >= 0 else -1), coaches.size())
 	set_passenger_view(passenger_on)
 
 
@@ -143,7 +147,7 @@ func passenger_name() -> String:
 	var location := "BAY %d" % (passenger_bay + 1)
 	if passenger_bay < 0 or passenger_bay > 8:
 		location = "REAR VESTIBULE" if passenger_bay < 0 else "FRONT VESTIBULE"
-	return "%s · AC %s TIER · %s" % [Profile.FORMATION[passenger_coach], "3" if passenger_coach < 4 else "2", location]
+	return "%s · AC %s TIER · %s" % [Profile.FORMATION[passenger_coach], "3" if Profile.coach_kind(passenger_coach) == "3a" else "2", location]
 
 
 func passenger_audio_position() -> Vector2:

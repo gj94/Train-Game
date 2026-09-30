@@ -9,10 +9,15 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **30 Sep 2026 visual/scale update:** stations must visibly follow actual Indian
+  station references, with real metre-scale vehicles and station capacity. User
+  selected Kumbakonam, Mayiladuthurai Junction and Thanjavur as architectural
+  references. The WAP-7/LHB quality is the benchmark. See `docs/stations.md` for
+  evidence, reconstructed features and the limits of the compact fictional route.
 - **Dispatcher mode:** an overview of the rail network (top-down 3D and/or schematic panel). Set routes, throw switches, clear signals, manage AI trains against a timetable.
 - **Driver mode:** take control of any train. Throttle, brake, reverser, obey signals and speed limits.
 - **Cab view on demand:** from dispatcher mode I can jump into the cab of any train, drive it, and jump back out. The transition should be seamless.
-- **Graphics:** NOT realistic. Stylised / low-poly, roughly **Transport Fever-level** look is fine.
+- **Graphics (updated 30 Sep):** recognisable Indian railway architecture and believable real-world proportions, with the detailed WAP-7/LHB assets as the quality benchmark. The earlier generic low-poly station approach no longer meets the user's requirement.
 - **Platform:** Windows PC, standalone build (.exe).
 
 ### Not required (at least initially)

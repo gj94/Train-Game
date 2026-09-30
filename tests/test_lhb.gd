@@ -63,17 +63,17 @@ func test_lhb_cannot_magically_reverse_locomotive_and_coaches():
 	var before := t.path.duplicate(true)
 	var result := w.reverse_train(t.id)
 	return not result.ok and "run-round" in result.reason and not t.reverse(w.graph) and \
-		t.path == before and t.head_s == 304 and t.cab_end == 1
+		t.path == before and t.head_s == Line.ORIGIN_HEAD and t.cab_end == 1
 
 
-func test_thirty_audio_axles_match_formation():
+func test_full_length_audio_axles_match_formation():
 	var axles := Profile.sound_axles()
-	if axles.size() != 30:
-		return "Expected six locomotive and 24 coach axles"
+	if axles.size() != 86:
+		return "Expected six locomotive and 80 coach axles"
 	for i in range(1, axles.size()):
 		if axles[i].x <= axles[i-1].x or axles[i].x > Profile.LENGTH:
 			return "Axles must be in physical order inside the rake"
-	for coach in 6:
+	for coach in Profile.FORMATION.size():
 		var first: Dictionary = axles[6 + coach * 4]
 		var second: Dictionary = axles[7 + coach * 4]
 		if first.car != coach + 1 or not is_equal_approx(second.x - first.x, 2.56):

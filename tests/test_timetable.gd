@@ -7,7 +7,7 @@ func _world(departure: String = "08:01", dwell: float = 1.0) -> RailWorld:
 	var w := Line.build()
 	var t: Train = w.trains.T1
 	t.automatic = true
-	t.head_s = 304.0
+	t.head_s = Line.ORIGIN_HEAD
 	var result := w.set_timetable("T1", {
 		departure = departure,
 		stops = [

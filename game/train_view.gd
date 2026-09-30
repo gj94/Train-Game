@@ -6,9 +6,11 @@ extends RefCounted
 
 const MODEL := "res://assets/models/memu.glb"
 const CabView := preload("res://game/cab_view.gd")
-const CAR_LENGTH := 21.3
-const CAR_GAP := 0.6
-const BOGIE_INSET := 3.0
+const Profile := preload("res://sim/stock/memu_consist.gd")
+const CAR_LENGTH := Profile.BODY_LENGTH
+const CAR_GAP := Profile.INTER_CAR_GAP
+const BOGIE_INSET := Profile.BOGIE_INSET
+const AXLE_SPACING := Profile.AXLE_SPACING
 const RAIL_TOP := 0.5
 const EYE := Vector3(-0.75, 2.80, -9.05)   # seated eye, left-hand driving position
 

@@ -1,130 +1,106 @@
 extends RefCounted
-## Original procedural scenery. Reuses registered project PBR textures.
+## Station identity on the photo-referenced architectural kits.
 var view
 var rng := RandomNumberGenerator.new()
+var _font := SystemFont.new()
 
 func build(world_view) -> void:
 	view = world_view
 	rng.seed = 30092026
+	_font.font_names = PackedStringArray(["Nirmala UI", "Arial"])
+	_font.font_weight = 700
 	for station in view.world.stations:
 		_station(station)
-	_footbridge()
 	_lineside()
 
 func _box(size: Vector3, pos: Vector3, color: Color) -> void:
 	view.box(size, pos, color)
 
-func _text(text: String, pos: Vector3, size: float, color: Color, rotation_y: float = 0) -> void:
+func _text(content: String, pos: Vector3, size: float, color: Color, rotation_y: float = 0) -> void:
 	var label := Label3D.new()
-	label.text = text
-	label.font_size = 64
-	label.pixel_size = size / 64.0
+	label.text = content
+	label.font = _font
+	label.font_size = 96
+	label.pixel_size = size / 96.0
 	label.modulate = color
 	label.outline_size = 0
 	label.position = pos
 	label.rotation.y = rotation_y
 	view.root.add_child(label)
 
+func _board(station: Dictionary, base: Vector3) -> void:
+	for dx in [-2.6, 2.6]:
+		_box(Vector3(.14, 3.15, .14), base + Vector3(dx, 1.575, 0), Color("262c29"))
+	_box(Vector3(6.2, 1.8, .14), base + Vector3(0, 2.55, 0), Color("1f2926"))
+	for side in [-1, 1]:
+		_box(Vector3(6.02, 1.62, .025), base + Vector3(0, 2.55, side * .081), Color("f3bf16"))
+		var angle := 0.0 if side > 0 else PI
+		_text(station.tamil, base + Vector3(0, 3.04, side * .101), .42, Color("171e1b"), angle)
+		_text(station.hindi, base + Vector3(0, 2.54, side * .101), .36, Color("171e1b"), angle)
+		_text(station.name.to_upper(), base + Vector3(0, 2.04, side * .101), .40, Color("171e1b"), angle)
+
 func _station(station: Dictionary) -> void:
-	var cream := Color("dccdac")
-	var teal := Color("1a565b")
-	var metal := Color("414b50")
-	for r: Rect2 in station.platforms:
+	for index in station.platforms.size():
+		var r: Rect2 = station.platforms[index]
 		var z := r.get_center().y
-		# Individual coping / painted platform fascia.
-		for x in range(int(r.position.x), int(r.end.x), 3):
-			for edge_z in [r.position.y, r.end.y]:
-				_box(Vector3(2.8, 0.34, 0.06), Vector3(x + 1.4, 0.62, edge_z), Color("f0e8d2") if int(x / 3.0) % 2 == 0 else Color("884e3f"))
-		# Real benches, kiosk, bins, posters, station clock and lamp standards.
-		for x in range(int(r.position.x + 24), int(r.end.x - 15), 28):
-			_box(Vector3(2.4, 0.12, 0.6), Vector3(x, 1.45, z), teal)
-			_box(Vector3(2.4, 0.60, 0.09), Vector3(x, 1.8, z + 0.25), teal)
-			for dx in [-0.9, 0.9]:
-				_box(Vector3(0.08, 0.54, 0.45), Vector3(x + dx, 1.17, z), metal)
-			_box(Vector3(0.48, 0.85, 0.48), Vector3(x + 3.5, 1.32, z), Color("3b655b"))
-			_box(Vector3(0.10, 5.0, 0.10), Vector3(x + 8, 3.4, z), metal)
-			_box(Vector3(2.2, 0.10, 0.10), Vector3(x + 8, 5.9, z), metal)
-			for dx in [-0.85, 0.85]:
-				view.box_m(Vector3(0.4, 0.08, 0.3), Vector3(x + 8 + dx, 5.83, z), view.mat(Color("fff1cd"), true))
-		for i in 18:
-			_person(Vector3(rng.randf_range(r.position.x + 8, r.end.x - 8), 0.94, rng.randf_range(r.position.y + 1.2, r.end.y - 1.2)))
-		var kiosk := Vector3(r.get_center().x - 33, 0.95, z)
-		_box(Vector3(4.4, 2.8, 1.5), kiosk + Vector3(0, 1.4, 0), cream)
-		_box(Vector3(4.6, 0.45, 1.7), kiosk + Vector3(0, 2.85, 0), teal)
-		for side in [-1, 1]:
-			_box(Vector3(3.4, 1.0, 0.08), kiosk + Vector3(0, 1.5, 0.78 * side), Color("29363b"))
-			_text("TEA  •  COFFEE", kiosk + Vector3(0, 2.86, 0.87 * side), 0.24, Color("f5e5b8"), 0.0 if side > 0 else PI)
-		for x in [r.position.x + 35, r.end.x - 35]:
-			_box(Vector3(2.6, 0.65, 0.12), Vector3(x, 3.4, z), teal)
-			_text("PLATFORM 1 / 2" if station.code != "KDP" else "PLATFORM 1", Vector3(x, 3.4, z + 0.075), 0.25, Color("f5e5b8"))
+		for x in [r.position.x + 18, r.end.x - 18]:
+			_board(station, Vector3(x, 1.3, z))
+		for offset in [-180, -108, 84, 180]:
+			var p := Vector3(r.get_center().x + offset, 4.65, z)
+			_box(Vector3(1.0, 1.0, .10), p, Color("153c68"))
+			for side in [-1, 1]:
+				_text(str(index + 1), p + Vector3(0, 0, side * .065), .65, Color("f4f0df"), 0.0 if side > 0 else PI)
+		for offset in [62, -104]:
+			for side in [-1, 1]:
+				var p := Vector3(r.get_center().x + offset, 3.84, z + side * 1.425)
+				_text("TEA  •  COFFEE" if offset == 62 else "BOOK STALL", p, .31, Color("f5e7c8"), 0.0 if side > 0 else PI)
+		for offset in [-218, -122, 116, 236]:
+			_text("DRINKING WATER", Vector3(r.get_center().x + offset, 2.1, z + .51), .14, Color("19466b"))
+		for i in 26:
+			var x := r.position.x + 22 + i * 21.3
+			if absf(x - (r.get_center().x - 58)) < 14 or absf(x - (r.get_center().x + 62)) < 6 or absf(x - (r.get_center().x - 104)) < 6:
+				continue
+			_person(Vector3(x, 1.3, z + rng.randf_range(-1.7, 1.7)))
 	var b: Vector3 = station.building
 	var side := -1.0 if b.z < 0 else 1.0
-	# Station approach: paved apron, access road, low boundary wall, planters.
-	view.box_m(Vector3(68, 0.14, 22), b + Vector3(0, 0.02, side * 15), view.pbr("brushed_concrete", 4.0, Color("a6aaa1")))
-	_box(Vector3(360, 0.10, 7), b + Vector3(0, 0.03, side * 32), Color("4b504d"))
-	for x in range(-175, 180, 9):
-		_box(Vector3(4, 0.01, 0.12), b + Vector3(x, 0.09, side * 32), Color("ded7b8"))
-	for x in [-28, -20, 20, 28]:
-		_box(Vector3(2.3, 0.6, 1.4), b + Vector3(x, 0.35, side * 10), Color("af795a"))
-		_box(Vector3(2.1, 0.6, 1.2), b + Vector3(x, 0.86, side * 10), Color("53613b"))
-	for i in 7:
-		var p := b + Vector3(-90 + i * 29, 0, side * rng.randf_range(51, 68))
-		_house(p, i)
-	# Fences stop at the station entrance.
-	for x in range(-145, 146, 3):
-		if abs(x) < 14:
-			continue
-		var p := b + Vector3(x, 0, side * 24)
-		_box(Vector3(0.15, 1.25, 0.15), p + Vector3(0, 0.65, 0), cream)
-		for height in [0.4, 0.85]:
-			_box(Vector3(3, 0.12, 0.10), p + Vector3(1.5, height, 0), cream)
+	var face_z := b.z + side * (15.78 if station.kit == "kumbakonam" else 11.68)
+	var angle := 0.0 if side > 0 else PI
+	var title: String = station.tamil + "  •  " + station.name.to_upper()
+	if station.kit == "thanjavur":
+		for i in 3:
+			_text([station.tamil, station.name.to_upper(), station.hindi][i], Vector3(b.x + (i-1)*23, 9.65, b.z + side*7.23), .90, Color("163c58"), angle)
+	elif station.kit == "kumbakonam":
+		_text(station.tamil + " ரயில் நிலையம்", Vector3(b.x, 6.55, face_z), .85, Color("163c58"), angle)
+		_text(station.hindi + "  •  " + station.name.to_upper(), Vector3(b.x, 5.62, face_z), .58, Color("163c58"), angle)
+		for dx in [-16.2, 16.2]:
+			_text("SOUTHERN\nRAILWAY", Vector3(b.x+dx, 6.12, face_z), .46, Color("f0e8cc"), angle)
+	else:
+		_text(title, Vector3(b.x, 6.72, face_z), .70, Color("163c58"), angle)
+		_text("SOUTHERN RAILWAY", Vector3(b.x, 6.15, face_z), .28, Color("163c58"), angle)
+	var stop_platform: Rect2 = station.platforms[0]
+	var marker := Vector3(stop_platform.end.x - 10, 1.3, stop_platform.get_center().y)
+	_box(Vector3(.08, 2.3, .08), marker + Vector3.UP * 1.15, Color("505b59"))
+	_box(Vector3(1.25, .7, .09), marker + Vector3.UP * 2.1, Color("182e44"))
+	_text("20 / 24\nCOACH", marker + Vector3(0, 2.1, .055), .21, Color("f4eee0"))
 
 func _person(pos: Vector3) -> void:
-	var palette := [Color("d89260"), Color("3c7b88"), Color("be5861"), Color("e7cf8d"), Color("627459")]
+	var palette := [Color("bc8154"), Color("3c677b"), Color("a94355"), Color("e5cc95"), Color("64735b")]
+	var clothes: Color = palette[rng.randi_range(0, palette.size() - 1)]
 	var body := CapsuleMesh.new()
-	body.radius = 0.19
-	body.height = 0.76
-	var torso: MeshInstance3D = view._add_mesh(body, view.mat(palette[rng.randi_range(0, palette.size() - 1)]))
-	torso.position = pos + Vector3(0, 1.1, 0)
+	body.radius = .20
+	body.height = .68
+	var torso: MeshInstance3D = view._add_mesh(body, view.mat(clothes))
+	torso.position = pos + Vector3(0, 1.12, 0)
 	var head := SphereMesh.new()
-	head.radius = 0.14
-	head.height = 0.28
-	var mi: MeshInstance3D = view._add_mesh(head, view.mat(Color("8b6049")))
-	mi.position = pos + Vector3(0, 1.61, 0)
-	for dx in [-0.10, 0.10]:
-		_box(Vector3(0.14, 0.75, 0.18), pos + Vector3(dx, 0.38, 0), Color("343c44"))
-
-func _house(p: Vector3, index: int) -> void:
-	var colors := [Color("cbb790"), Color("c3d3c8"), Color("d4a08a"), Color("d6d3b7")]
-	view.box_m(Vector3(13, 4.2, 10), p + Vector3(0, 2.1, 0), view.pbr("plastered_wall", 2.5, colors[index % 4]))
-	view._gable(Vector3(15, 1.9, 12), p + Vector3(0, 4.2, 0), view.pbr("roof_tiles", 1.5, Color("b69a87")))
+	head.radius = .13
+	head.height = .28
+	var mi: MeshInstance3D = view._add_mesh(head, view.mat(Color("825338")))
+	mi.position = pos + Vector3(0, 1.59, 0)
 	for side in [-1, 1]:
-		for x in [-4, 0, 4]:
-			_box(Vector3(1.8, 1.7, 0.15), p + Vector3(x, 2.35, side * 5.05), Color("e4dac3"))
-			_box(Vector3(1.45, 1.35, 0.17), p + Vector3(x, 2.35, side * 5.08), Color("345252"))
-
-func _footbridge() -> void:
-	var color := Color("708b8b")
-	var x := 2017.0
-	_box(Vector3(3.8, 0.35, 39), Vector3(x, 8.0, 4.5), color)
-	for z in [-15, 24]:
-		for dx in [-1.55, 1.55]:
-			_box(Vector3(0.28, 8, 0.28), Vector3(x + dx, 4.0, z), color)
-		# Stairs outside both running lines.
-		for i in 40:
-			_box(Vector3(0.48, 0.18, 3.0), Vector3(x - 1.7 - i * 0.43, 7.9 - i * 0.195, z), color)
-		for dz in [-1.5, 1.5]:
-			for i in range(0, 40, 3):
-				_box(Vector3(0.08, 1.1, 0.08), Vector3(x - 1.7 - i * 0.43, 8.5 - i * 0.195, z + dz), color)
-	for z in range(-15, 25, 2):
-		for dx in [-1.8, 1.8]:
-			_box(Vector3(0.08, 1.3, 0.08), Vector3(x + dx, 8.8, z), color)
-	for z in range(-15, 25, 8):
-		for dx in [-1.8, 1.8]:
-			_box(Vector3(0.10, 2.1, 0.10), Vector3(x + dx, 9.15, z), color)
-	for dx in [-1.8, 1.8]:
-		_box(Vector3(0.10, 0.10, 39), Vector3(x + dx, 9.4, 4.5), color)
-	view._gable(Vector3(4.8, 0.8, 40), Vector3(x, 10.1, 4.5), view.mat(Color("566e71")))
+		_box(Vector3(.13, .72, .16), pos + Vector3(side * .1, .4, 0), Color("343e46"))
+		_box(Vector3(.1, .57, .13), pos + Vector3(side * .23, 1.04, 0), clothes)
+		_box(Vector3(.14, .08, .28), pos + Vector3(side * .1, .04, -.055), Color("232720"))
+	_box(Vector3(.34, .48, .23), pos + Vector3(.37, .29, 0), Color("633e2d"))
 
 func _lineside() -> void:
 	# Small equipment cabinets, chainage posts, drain channels and grass tufts.

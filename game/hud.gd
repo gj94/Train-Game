@@ -147,7 +147,7 @@ func refresh(s: Dictionary) -> void:
 	var lines := []
 	var stock := "WAP-7 30306 · CAB %d" % s.cab_end if s.get("stock_kind", "memu") == "wap7" else "%d-CAR MEMU" % s.cars
 	if s.get("stock_kind", "memu") == "lhb":
-		stock = "WAP-7 + 6 LHB"
+		stock = "WAP-7 + 20 LHB · 500.6 m"
 	lines.append("[color=#ffca72][b]%s  /  %s[/b][/color]   %s" % [s.train_id, stock, "AI DRIVER" if s.automatic else "MANUAL"])
 	lines.append("Speed [b]%d[/b] km/h   Limit %d km/h%s" % [kmh, lim, "  [color=#ff5544]OVERSPEED[/color]" if over else ""])
 	lines.append("Handle  " + handle)

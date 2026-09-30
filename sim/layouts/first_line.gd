@@ -1,15 +1,20 @@
 extends RefCounted
-## First layout: a fictional single line in South India, about 3.7 km.
+## Compact fictional South Indian line, about 4.8 km; every unit is one metre.
+## Station architecture references and dimensional evidence: docs/stations.md.
 ##
 ##   Chennapuram (CPM) ── main_w ── Maruthur (MRT) ── main_e ── Kadalur (KDP)
 ##   2-platform terminus             passing loop               1-platform terminus
 ##
 ## x runs east, z south. Eastbound trains travel in +x.
 
-const CAR_LENGTH := 21.3
-const CAR_GAP := 0.6
-const CARS := 8
-const TRACK_SPACING := 9.0
+const Memu := preload("res://sim/stock/memu_consist.gd")
+const CAR_LENGTH := Memu.BODY_LENGTH
+const CAR_GAP := Memu.INTER_CAR_GAP
+const CARS := Memu.CARS
+const TRACK_SPACING := 12.0
+const ORIGIN_HEAD := 604.0
+const PLATFORM_LENGTH := 600.0
+const PLATFORM_HEIGHT_ABOVE_RAIL := 0.8
 const Clock := preload("res://sim/world_clock.gd")
 const TIMETABLE_FILE := "res://sim/timetables/first_line.json"
 
@@ -25,49 +30,49 @@ static func build() -> RailWorld:
 
 	g.add_node("CPM_B1", Vector3(0, 0, 0))
 	g.add_node("CPM_B2", Vector3(0, 0, -TRACK_SPACING))
-	g.add_node("CPM_1", Vector3(440, 0, 0))
-	g.add_node("MRT_1", Vector3(1800, 0, 0))
-	g.add_node("MRT_2", Vector3(2200, 0, 0))
-	g.add_node("KDP_H", Vector3(3500, 0, 0))
-	g.add_node("KDP_B", Vector3(3720, 0, 0))
+	g.add_node("CPM_1", Vector3(760, 0, 0))
+	g.add_node("MRT_1", Vector3(2120, 0, 0))
+	g.add_node("MRT_2", Vector3(2960, 0, 0))
+	g.add_node("KDP_H", Vector3(4260, 0, 0))
+	g.add_node("KDP_B", Vector3(4890, 0, 0))
 
-	g.add_edge("cpm_p1", "CPM_B1", "CPM_1", straight(0, 440, 0), kmh.call(50))
+	g.add_edge("cpm_p1", "CPM_B1", "CPM_1", straight(0, 760, 0), kmh.call(50))
 	g.add_edge("cpm_p2", "CPM_B2", "CPM_1",
-		straight(0, 320, -TRACK_SPACING) + ease_between(320, 440, -TRACK_SPACING, 0), kmh.call(30))
-	g.add_edge("main_w", "CPM_1", "MRT_1", bow(440, 1800, -160), kmh.call(100))
-	g.add_edge("mrt_main", "MRT_1", "MRT_2", straight(1800, 2200, 0), kmh.call(80))
+		straight(0, 620, -TRACK_SPACING) + ease_between(620, 760, -TRACK_SPACING, 0), kmh.call(30))
+	g.add_edge("main_w", "CPM_1", "MRT_1", bow(760, 2120, -160), kmh.call(100))
+	g.add_edge("mrt_main", "MRT_1", "MRT_2", straight(2120, 2960, 0), kmh.call(80))
 	g.add_edge("mrt_loop", "MRT_1", "MRT_2",
-		ease_between(1800, 1900, 0, TRACK_SPACING) + straight(1900, 2100, TRACK_SPACING)
-		+ ease_between(2100, 2200, TRACK_SPACING, 0), kmh.call(30))
-	g.add_edge("main_e", "MRT_2", "KDP_H", bow(2200, 3500, 120), kmh.call(100))
-	g.add_edge("kdp_plat", "KDP_H", "KDP_B", straight(3500, 3720, 0), kmh.call(50))
+		ease_between(2120, 2240, 0, TRACK_SPACING) + straight(2240, 2840, TRACK_SPACING)
+		+ ease_between(2840, 2960, TRACK_SPACING, 0), kmh.call(30))
+	g.add_edge("main_e", "MRT_2", "KDP_H", bow(2960, 4260, 120), kmh.call(100))
+	g.add_edge("kdp_plat", "KDP_H", "KDP_B", straight(4260, 4890, 0), kmh.call(50))
 
-	g.add_switch("CPM_1", "main_w", "cpm_p1", "cpm_p2", 105.0)
-	g.add_switch("MRT_1", "main_w", "mrt_main", "mrt_loop", 90.0)
-	g.add_switch("MRT_2", "main_e", "mrt_main", "mrt_loop", 90.0)
+	g.add_switch("CPM_1", "main_w", "cpm_p1", "cpm_p2", 115.0)
+	g.add_switch("MRT_1", "main_w", "mrt_main", "mrt_loop", 105.0)
+	g.add_switch("MRT_2", "main_e", "mrt_main", "mrt_loop", 105.0)
 
 	# Eastbound (+1)
-	w.add_signal("CPM-S1", "cpm_p1", 1, 130) # starters before the turnout clearance
-	w.add_signal("CPM-S2", "cpm_p2", 1, g.edges.cpm_p2.length - 310.0)
+	w.add_signal("CPM-S1", "cpm_p1", 1, 150) # starters before the turnout clearance
+	w.add_signal("CPM-S2", "cpm_p2", 1, g.edges.cpm_p2.length - 610.0)
 	w.add_signal("MRT-HE", "main_w", 1)    # home, eastbound
-	w.add_signal("MRT-SE1", "mrt_main", 1, 100) # hold a full rake clear of the throat
-	w.add_signal("MRT-SE2", "mrt_loop", 1, 100)
+	w.add_signal("MRT-SE1", "mrt_main", 1, 122) # hold a 20-coach rake clear of the throat
+	w.add_signal("MRT-SE2", "mrt_loop", 1, 122)
 	w.add_signal("KDP-H", "main_e", 1)     # home
 	# Westbound (-1)
 	w.add_signal("KDP-S", "kdp_plat", -1)  # starter
 	w.add_signal("MRT-HW", "main_e", -1)
-	w.add_signal("MRT-SW1", "mrt_main", -1, 100)
-	w.add_signal("MRT-SW2", "mrt_loop", -1, 100)
+	w.add_signal("MRT-SW1", "mrt_main", -1, 122)
+	w.add_signal("MRT-SW2", "mrt_loop", -1, 122)
 	w.add_signal("CPM-H", "main_w", -1)
 
 	w.stations = [
-		{code = "CPM", name = "Chennapuram", platforms = [Rect2(8, -7.1, 304, 5.2)], building = Vector3(120, 0, -23)},
-		{code = "MRT", name = "Maruthur", platforms = [Rect2(1906, 1.9, 190, 5.2)], building = Vector3(2000, 0, -16)},
-		{code = "KDP", name = "Kadalur", platforms = [Rect2(3505, 1.9, 210, 5.2)], building = Vector3(3610, 0, 13)},
+		{code = "CPM", name = "Chennapuram", tamil = "சென்னபுரம்", hindi = "चेन्नपुरम", reference = "Kumbakonam", kit = "kumbakonam", origin = Vector3(308, 0, 0), platforms = [Rect2(8, -10.1, PLATFORM_LENGTH, 8.2), Rect2(8, -25.9, PLATFORM_LENGTH, 12)], building = Vector3(308, 0, -34)},
+		{code = "MRT", name = "Maruthur", tamil = "மருதூர்", hindi = "मरुदूर", reference = "Mayiladuthurai Junction", kit = "mayiladuthurai", origin = Vector3(2540, 0, 0), platforms = [Rect2(2240, 1.9, PLATFORM_LENGTH, 8.2), Rect2(2240, -13.9, PLATFORM_LENGTH, 12)], building = Vector3(2540, 0, -22)},
+		{code = "KDP", name = "Kadalur", tamil = "கடலூர்", hindi = "कडलूर", reference = "Thanjavur Junction", kit = "thanjavur", origin = Vector3(4570, 0, 0), platforms = [Rect2(4270, 1.9, PLATFORM_LENGTH, 12)], building = Vector3(4570, 0, 22)},
 	]
 
 	var t := Train.new("T1", train_length())
-	w.place_train(t, "cpm_p1", 300.0, 1)
+	w.place_train(t, "cpm_p1", ORIGIN_HEAD, 1)
 	return w
 
 
@@ -78,7 +83,7 @@ static func build_dispatch() -> RailWorld:
 	east.automatic = true
 	east.service_name = "66001 · Coast local"
 	east.destination = "Kadalur"
-	east.head_s = 304.0
+	east.head_s = ORIGIN_HEAD
 	east.controller = -1.0
 	east.status = "Waiting for CPM-S1"
 	var west := Train.new("T2", train_length())
@@ -112,14 +117,14 @@ static func build_wap7() -> RailWorld:
 	t.service_name = "30306 · WAP-7 light engine"
 	t.destination = "Kadalur"
 	t.status = "Manual WAP-7 test drive"
-	t.head_s = 304.0
+	t.head_s = ORIGIN_HEAD
 	t.controller = 0.0
 	w.set_route("CPM-S1", "MRT-HE")
 	w.set_route("MRT-HE", "MRT-SE1")
 	return w
 
 
-## Short passenger formation fits every platform on the existing test line.
+## Full-length AC special formation: 16 three-tier, 2 two-tier, 2 generator vans.
 ## A run-round is not simulated, so this service is an outbound working.
 static func build_lhb() -> RailWorld:
 	var profile := preload("res://sim/stock/lhb_consist.gd")
@@ -131,8 +136,8 @@ static func build_lhb() -> RailWorld:
 	t.max_accel = .65
 	t.service_decel = .80
 	t.can_change_ends = false
-	t.service_name = "12603 · Southern Coast Express"
-	t.status = "WAP-7 + six LHB coaches"
+	t.service_name = "Southern Coast AC Special"
+	t.status = "WAP-7 + 20 LHB coaches · 500.562 m"
 	return w
 
 

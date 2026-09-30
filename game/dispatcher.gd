@@ -103,7 +103,7 @@ func setup(w: RailWorld) -> void:
 	_scenario_button.tooltip_text = "Switch scenario and restart at Chennapuram"
 	_lhb_button = _button(title, "MEMU [F3]" if world.trains.T1.stock_kind == "lhb" else "LHB [F3]", func(): lhb_requested.emit())
 	_lhb_button.size_flags_horizontal = Control.SIZE_SHRINK_END
-	_lhb_button.tooltip_text = "Drive WAP-7 with six detailed LHB coaches; V enters a passenger coach"
+	_lhb_button.tooltip_text = "Drive WAP-7 with 20 LHB coaches (500.562 m); V enters a passenger coach"
 	_table_button = _button(title, "TIMETABLE [M]", toggle_timetable)
 	_table_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	var pause_button := _button(title, "PAUSE / RUN [Esc]", func(): pause_requested.emit())
@@ -252,4 +252,4 @@ func _refresh() -> void:
 	if _restart.visible:
 		_objective.text = "ARRIVED  •  Change ends with R, set the return routes and drive Cab 2, or restart the scenario." if world.trains.T1.stock_kind == "wap7" else "SERVICES COMPLETE  •  Both trains arrived. Restart services for another meet, or select a train and change ends at a stand."
 		if world.trains.T1.stock_kind == "lhb":
-			_objective.text = "ARRIVED AT KADALUR  •  All six coaches are in the platform. Explore with V, or RESTART SERVICES. A locomotive run-round is required for a return working."
+			_objective.text = "ARRIVED AT KADALUR  •  All 20 coaches are in the platform. Explore with V, or RESTART SERVICES. A locomotive run-round is required for a return working."

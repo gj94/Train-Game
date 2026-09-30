@@ -53,7 +53,7 @@ func _ready() -> void:
 	if lhb_drive:
 		cam.passenger_transform = tv.passenger_transform
 	if wap7_drive or lhb_drive:
-		cam.distance = 155.0 if lhb_drive else 34.0
+		cam.distance = 420.0 if lhb_drive else 34.0
 		cam.cab_fov = 76.0
 		cam.cab_yaw_limit = PI
 	add_child(cam)
@@ -61,7 +61,7 @@ func _ready() -> void:
 	for t in world.trains.values():
 		var axles: Array = Wap7View.sound_axles() if t.stock_kind == "wap7" else AxleJoint.rake_axles(
 			train_views[t.id].cars.size(), TrainView.CAR_LENGTH + TrainView.CAR_GAP,
-			TrainView.CAR_LENGTH, TrainView.BOGIE_INSET, 2.5)
+			TrainView.CAR_LENGTH, TrainView.BOGIE_INSET, TrainView.AXLE_SPACING)
 		if t.stock_kind == "lhb":
 			axles = LhbView.sound_axles()
 		var sound := TrainAudio.new()
@@ -195,6 +195,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				hud.toast("Rail-joint markers " + ("on" if wv.joints_visible() else "off"))
 			KEY_F:
 				cam.follow = true
+				if lhb_drive:
+					cam.distance = maxf(cam.distance, 420.0)
 				cam.set_mode(CameraRig.Mode.OVERVIEW)
 				_set_cab_visuals(false)
 			KEY_P:
@@ -232,8 +234,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_1, KEY_2, KEY_3:
 				var idx: int = event.physical_keycode - KEY_1
 				if idx < world.stations.size():
+					cam.distance = 155.0
+					cam.yaw = 0.25 if world.stations[idx].building.z > 0 else PI + 0.25
 					cam.jump_to(world.stations[idx].building)
-					cam.distance = 180.0
 					_set_cab_visuals(false)
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		if cam.drag_moved < 6.0 and cam.mode == CameraRig.Mode.OVERVIEW:

@@ -2,6 +2,18 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-09-30 station/scale pass: `assets/models/stations/*.glb` and the editable
+`art/stations/*.blend` are original photo-referenced architectural kits, built by
+`tools/blender/build_stations.py`. `game/shaders/station_surface.gdshader` supplies
+original procedural mineral grain/weathering. `assets/models/lhb_eog.glb` and
+`art/lhb/lhb_eog.blend` are original luggage/brake/generator-van geometry built by
+`build_lhb_eog.py`, reusing the project's LHB bogies/couplings. MEMU geometry was
+rebuilt at the corrected body/bogie/axle lengths; the full native LHB master now
+has 20 coaches. Photographic references and dimensions are registered in
+[`stations.md`](stations.md); no reference image pixels or third-party models
+are shipped. Nirmala UI is a runtime Windows system-font lookup, not a bundled
+or redistributed font. Existing sound data and graphics settings are unchanged.
+
 2026-09-30 dispatch visual pass: station furniture, people, footbridge, village buildings,
 grass blades, procedural water shader, train labels and UI are original project code
 (`game/station_details.gd`, `game/shaders/paddy_water.gdshader`, `game/dispatcher.gd`).

@@ -19,7 +19,7 @@ import mathutils
 PROJECT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 OUT = os.path.join(PROJECT, "assets", "models", "memu.glb")
 
-L = 21.3          # body length
+L = 21.337        # RDSO body length, metres (docs/stations.md)
 HALF_W = 1.83     # half body width (3.66 m broad-gauge MEMU)
 Z_FLOOR = 1.15    # body bottom above rail
 CAB_SLOPE_FROM = 2.3
@@ -266,14 +266,14 @@ def cylinder_x(bm, center, radius, width, segments=18):
 def running_gear(scn, name, parent, motor):
     bm_frame = bmesh.new()
     bm_wheels = bmesh.new()
-    for by in (-(L / 2 - 3.0), L / 2 - 3.0):
+    for by in (-14.783 / 2, 14.783 / 2):
         box(bm_frame, (0, by, 0.78), (2.5, 3.1, 0.34))       # bogie frame
         box(bm_frame, (0, by, 1.02), (2.2, 0.5, 0.18))       # bolster
         for side in (-1, 1):
             box(bm_frame, (side * 1.08, by, 0.62), (0.16, 3.3, 0.3))   # side frames
             for s in (-0.9, 0.9):
                 box(bm_frame, (side * 1.08, by + s, 0.9), (0.22, 0.3, 0.3))  # springs
-        for ay in (-1.25, 1.25):
+        for ay in (-2.896 / 2, 2.896 / 2):
             for side in (-1, 1):
                 cylinder_x(bm_wheels, (side * 0.8, by + ay, 0.46), 0.46, 0.13)
             cylinder_x(bm_wheels, (0, by + ay, 0.46), 0.09, 1.7, 10)   # axle

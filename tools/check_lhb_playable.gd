@@ -15,7 +15,7 @@ func _check() -> void:
 	game.paused = true
 	var t: Train = game.train
 	var view = game.tv
-	if not _expect(game.lhb_drive and view.cars.size() == 7 and view.coaches.size() == 6, "six coaches behind WAP-7"):
+	if not _expect(game.lhb_drive and view.cars.size() == 21 and view.coaches.size() == 20, "20 coaches behind WAP-7"):
 		return
 	if not _expect(game.cam.mode == 1 and view._cabs[0].visible, "starts in the locomotive cab"):
 		return
@@ -34,18 +34,26 @@ func _check() -> void:
 	_key(game, KEY_V)
 	if not _expect(game.cam.mode == 2 and t.automatic and t.controller == .7 and view.passenger_on and not view._cabs[0].visible, "passenger view preserves driver"):
 		return
-	for i in 4:
+	for i in 16:
 		_key(game, KEY_PAGEDOWN)
 	_key(game, KEY_RIGHT)
 	_key(game, KEY_HOME)
-	if not _expect(view.passenger_coach == 4 and view.passenger_bay == 1 and view.passenger_seat and "2 TIER" in view.passenger_name(), "A1 two-tier seat camera"):
+	if not _expect(view.passenger_coach == 17 and view.passenger_bay == 1 and view.passenger_seat and "2 TIER" in view.passenger_name(), "A1 two-tier seat camera"):
 		return
 	var passenger: Transform3D = view.passenger_transform()
-	if not _expect(passenger.origin.distance_to(view.coaches[4].global_position) < 12, "camera belongs to selected coach"):
+	if not _expect(passenger.origin.distance_to(view.coaches[17].global_position) < 12, "camera belongs to selected coach"):
 		return
 	game._process(0)
 	if not _expect(game.audio.interior_listener.x > 120, "sound listener follows A1 instead of remaining in the locomotive"):
 		return
+	view.change_passenger_coach(1)
+	view.change_passenger_coach(1)
+	if not _expect(view.passenger_coach == 1, "forward coach selection skips generator cars and wraps to B1"):
+		return
+	view.change_passenger_coach(-1)
+	if not _expect(view.passenger_coach == 18, "backward coach selection skips generator cars and wraps to A2"):
+		return
+	view.change_passenger_coach(-1)
 	_key(game, KEY_LEFT)
 	_key(game, KEY_LEFT)
 	if not _expect(view.passenger_bay == -1 and "REAR VESTIBULE" in view.passenger_name(), "rear vestibule accessible"):
@@ -54,10 +62,10 @@ func _check() -> void:
 	if not _expect(view.passenger_bay == 9 and "FRONT VESTIBULE" in view.passenger_name(), "front vestibule accessible"):
 		return
 	_key(game, KEY_B)
-	if not _expect(view.berths_deployed and view.middle_berths[0].size() == 18 and absf(view.middle_berths[0][0].rotation.x) < .001, "3A middle berths deploy"):
+	if not _expect(view.berths_deployed and view.middle_berths[1].size() == 18 and absf(view.middle_berths[1][0].rotation.x) < .001, "3A middle berths deploy"):
 		return
 	_key(game, KEY_B)
-	if not _expect(not view.berths_deployed and absf(view.middle_berths[0][0].rotation.x) > 1.5, "middle berths fold back into seats"):
+	if not _expect(not view.berths_deployed and absf(view.middle_berths[1][0].rotation.x) > 1.5, "middle berths fold back into seats"):
 		return
 	_key(game, KEY_V)
 	if not _expect(game.cam.mode == 1 and not t.automatic and t.controller == 0 and not view.passenger_on, "returning to the driving cab takes manual control"):
@@ -94,7 +102,7 @@ func _check() -> void:
 	await process_frame
 	if not _expect(not current_scene.lhb_drive and current_scene.train_views.size() == 2, "F3 button restores original MEMU meet"):
 		return
-	print("LHB playable: PASS (30 axles, six coaches, both passenger classes, berth animation, W/S/brakes, safe arrival, run-round guard, scenario selection)")
+	print("LHB playable: PASS (86 axles, 20 coaches, both passenger classes, berth animation, W/S/brakes, safe arrival, run-round guard, scenario selection)")
 	quit(0)
 
 

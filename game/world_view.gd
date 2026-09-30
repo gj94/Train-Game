@@ -305,6 +305,32 @@ func _build_ohe() -> void:
 	var arm := BoxMesh.new()
 	arm.size = Vector3(OHE_OFFSET + 0.4, 0.09, 0.09)
 	_multimesh(arm, arms, steel())
+	# Station portals support both roads without planting masts on platforms.
+	for station in world.stations:
+		var z0 := 1000.0
+		var z1 := -1000.0
+		for platform: Rect2 in station.platforms:
+			z0 = minf(z0, platform.position.y - 2.0)
+			z1 = maxf(z1, platform.end.y + 2.0)
+		z0 = minf(z0, -4.0)
+		z1 = maxf(z1, 4.0)
+		var origin: Vector3 = station.origin
+		for offset in range(-270, 300, 54):
+			if absf(offset + 64.0) < 10.0:
+				continue
+			var x: float = origin.x + offset
+			for z in [z0, z1]:
+				box_m(Vector3(.5, .5, .5), Vector3(x, .25, z), mast_mat)
+				box_m(Vector3(.22, 8.8, .22), Vector3(x, 4.4, z), steel())
+			box_m(Vector3(.2, .3, z1-z0), Vector3(x, 8.4, (z0+z1)*.5), steel())
+			var tracks := [0.0]
+			if station.code == "CPM":
+				tracks.append(-12.0)
+			elif station.code == "MRT":
+				tracks.append(12.0)
+			for z in tracks:
+				box(Vector3(.11, .65, .11), Vector3(x, 7.92, z), Color("7d6047"))
+				box_m(Vector3(.04, 1.25, .04), Vector3(x, 6.9, z), steel())
 
 
 ## Keep masts off platforms and clear of other tracks.
@@ -321,16 +347,16 @@ func _mast_site_ok(p: Vector3) -> bool:
 
 # --- terrain -----------------------------------------------------------------
 
-## Flat around the railway, rising into hills (Western Ghats vibe) further out.
+## Flat Cauvery-delta setting around these Southern Railway station references.
 func terrain_height(x: float, z: float) -> float:
-	var hill := smoothstep(420.0, 1100.0, absf(z))
+	var hill := smoothstep(850.0, 1700.0, absf(z))
 	var n := _terrain_noise.get_noise_2d(x, z) * 0.5 + 0.5
-	return hill * (20.0 + n * 190.0) - 0.03
+	return hill * (2.0 + n * 14.0) - 0.03
 
 
 func _build_terrain() -> void:
 	var x0 := -1600.0
-	var x1 := 5400.0
+	var x1 := 6400.0
 	var z0 := -1700.0
 	var z1 := 1700.0
 	var step := 25.0
@@ -372,7 +398,10 @@ func _far_from_track(p: Vector3, clearance: float) -> bool:
 		if Vector2(p.x - _track_samples[i].x, p.z - _track_samples[i].z).length_squared() < c2:
 			return false
 	for st in world.stations:
-		if p.distance_to(st.building) < 32.0:
+		for platform: Rect2 in st.platforms:
+			if platform.grow(3.0).has_point(Vector2(p.x, p.z)):
+				return false
+		if absf(p.x - st.building.x) < 72.0 and absf(p.z - st.building.z) < 65.0:
 			return false
 		# Keep random trees out of the station street and house footprints.
 		var side := -1.0 if st.building.z < 0 else 1.0
@@ -392,7 +421,7 @@ func _build_scenery() -> void:
 	paddy_water.shader = load("res://game/shaders/paddy_water.gdshader")
 	var bund := pbr("red_laterite_soil_stones", 3.0)
 	for i in 150:
-		var p := Vector3(rng.randf_range(-400, 4100), 0, rng.randf_range(-420, 420))
+		var p := Vector3(rng.randf_range(-400, 5300), 0, rng.randf_range(-420, 420))
 		if not _far_from_track(p, 65.0):
 			continue
 		var in_village := false
@@ -428,7 +457,7 @@ func _build_scenery() -> void:
 	var palms := []
 	var placed := 0
 	while placed < 1400:
-		var centre := Vector3(rng.randf_range(-400, 4100), 0, rng.randf_range(-650, 650))
+		var centre := Vector3(rng.randf_range(-400, 5300), 0, rng.randf_range(-650, 650))
 		var clump := rng.randi_range(3, 12)
 		for k in clump:
 			var p := centre + Vector3(rng.randf_range(-35, 35), 0, rng.randf_range(-35, 35))
@@ -439,6 +468,13 @@ func _build_scenery() -> void:
 			var b := Basis(Vector3.UP, rng.randf() * TAU) * Basis.from_euler(Vector3(rng.randf_range(-0.08, 0.08), 0, rng.randf_range(-0.08, 0.08)))
 			palms.append(Transform3D(b.scaled(Vector3(s, s, s)), p))
 			placed += 1
+	# Planted forecourt trees, outside the train/footbridge and vehicle envelopes.
+	for station in world.stations:
+		var side := signf(station.building.z)
+		for x in [-49, 49]:
+			for dz in [15, 30]:
+				var p: Vector3 = station.building + Vector3(x, .7, side * dz)
+				palms.append(Transform3D(Basis(Vector3.UP, rng.randf() * TAU).scaled(Vector3.ONE * palm_scale * 3.2), p))
 	if palm_mesh:
 		_multimesh(palm_mesh, palms, null)
 
@@ -447,7 +483,7 @@ func _build_scenery() -> void:
 	var trunks := []
 	placed = 0
 	while placed < 320:
-		var p := Vector3(rng.randf_range(-400, 4100), 0, rng.randf_range(-700, 700))
+		var p := Vector3(rng.randf_range(-400, 5300), 0, rng.randf_range(-700, 700))
 		if not _far_from_track(p, 16.0):
 			continue
 		placed += 1
@@ -488,90 +524,28 @@ func _multimesh(mesh: Mesh, xforms: Array, material: Material) -> void:
 # --- stations ----------------------------------------------------------------
 
 func _build_stations() -> void:
-	var concrete := pbr("brushed_concrete", 2.5, Color(0.9, 0.88, 0.84))
-	var wall := pbr("plastered_wall", 3.0, Color(1.0, 0.9, 0.68))      # cream / ochre station walls
-	var roof := pbr("roof_tiles", 1.6, Color(1.0, 0.85, 0.75))          # Mangalore tiles
-	var steel_blue := mat(Color(0.28, 0.36, 0.5))
-	for st in world.stations:
-		for r: Rect2 in st.platforms:
-			var c := Vector3(r.position.x + r.size.x * 0.5, 0.45, r.position.y + r.size.y * 0.5)
-			box_m(Vector3(r.size.x, 0.9, r.size.y), c, concrete)
-			# Coping stones and yellow safety line along both edges.
-			for side in [-1, 1]:
-				var dz: float = side * (r.size.y * 0.5 - 0.25)
-				box_m(Vector3(r.size.x, 0.06, 0.5), c + Vector3(0, 0.47, dz), pbr("brushed_concrete", 1.0, Color(1.0, 1.0, 0.97)))
-				box(Vector3(r.size.x, 0.02, 0.12), c + Vector3(0, 0.51, dz - side * 0.4), Color(0.95, 0.78, 0.1))
-			# Shelter: steel columns + tiled pitched roof over the middle.
-			var roof_len := r.size.x * 0.45
-			_gable(Vector3(roof_len, 0.9, r.size.y - 0.6), c + Vector3(0, 4.0, 0), roof)
-			for k in 7:
-				var x := -roof_len * 0.5 + 2.0 + k * (roof_len - 4.0) / 6.0
-				box_m(Vector3(0.22, 3.2, 0.22), c + Vector3(x, 2.05, 0), steel_blue)
-			# Benches.
-			for k in 4:
-				var x := -roof_len * 0.4 + k * roof_len * 0.27
-				box_m(Vector3(1.8, 0.45, 0.5), c + Vector3(x, 0.72, 0.9), mat(Color(0.45, 0.3, 0.2)))
-			# Name boards at both ends: yellow with black lettering.
-			for dx in [-r.size.x * 0.5 + 12.0, r.size.x * 0.5 - 12.0]:
-				_name_board(st.name, c + Vector3(dx, 0.45, 0))
-		# Station building: plastered walls, Mangalore-tile roof, veranda.
-		var b: Vector3 = st.building
-		var front := signf(-b.z) if b.z != 0.0 else 1.0
-		box_m(Vector3(24, 4.8, 9), b + Vector3(0, 2.4, 0), wall)
-		box_m(Vector3(24.4, 0.5, 9.4), b + Vector3(0, 0.25, 0), concrete)
-		_gable(Vector3(27, 2.4, 13.5), b + Vector3(0, 4.8, front * 1.2), roof)
-		for k in 6:
-			box_m(Vector3(0.3, 4.4, 0.3), b + Vector3(-11 + k * 4.4, 2.4, front * 6.9), wall)
-		for k in 5:
-			box(Vector3(1.4, 2.4, 0.1), b + Vector3(-9 + k * 4.5, 1.7, front * 4.55), Color(0.28, 0.2, 0.14))
-		_name_board(st.name, b + Vector3(0, 7.2, front * 3.0))
-
-
-## A gable roof (triangular prism) with its ridge along X. `size.y` is the rise.
-func _gable(size: Vector3, pos: Vector3, material: Material) -> void:
-	var hx := size.x * 0.5
-	var hz := size.z * 0.5
-	var ridge := size.y
-	var st := SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var tris := [
-		# two roof slopes
-		[Vector3(-hx, 0, hz), Vector3(hx, 0, hz), Vector3(-hx, ridge, 0)],
-		[Vector3(hx, 0, hz), Vector3(hx, ridge, 0), Vector3(-hx, ridge, 0)],
-		[Vector3(hx, 0, -hz), Vector3(-hx, 0, -hz), Vector3(hx, ridge, 0)],
-		[Vector3(-hx, 0, -hz), Vector3(-hx, ridge, 0), Vector3(hx, ridge, 0)],
-		# gable ends
-		[Vector3(-hx, 0, -hz), Vector3(-hx, 0, hz), Vector3(-hx, ridge, 0)],
-		[Vector3(hx, 0, hz), Vector3(hx, 0, -hz), Vector3(hx, ridge, 0)],
-		# underside
-		[Vector3(-hx, 0, -hz), Vector3(hx, 0, -hz), Vector3(-hx, 0, hz)],
-		[Vector3(hx, 0, -hz), Vector3(hx, 0, hz), Vector3(-hx, 0, hz)],
-	]
-	for t in tris:
-		for v in t:
-			st.add_vertex(v)
-	st.generate_normals()
-	var mi := _add_mesh(st.commit(), material)
-	mi.position = pos
-
-
-func _name_board(text: String, base: Vector3) -> void:
-	var post := mat(Color(0.15, 0.15, 0.15))
-	box_m(Vector3(0.12, 2.2, 0.12), base + Vector3(-2.2, 1.1, 0), post)
-	box_m(Vector3(0.12, 2.2, 0.12), base + Vector3(2.2, 1.1, 0), post)
-	box(Vector3(5.6, 1.2, 0.1), base + Vector3(0, 2.6, 0), Color(0.98, 0.8, 0.08))
-	box(Vector3(5.8, 1.4, 0.06), base + Vector3(0, 2.6, 0), Color(0.08, 0.08, 0.08))
-	for side in [1, -1]:
-		var l := Label3D.new()
-		l.text = text.to_upper()
-		l.font_size = 72
-		l.pixel_size = 0.012
-		l.modulate = Color.BLACK
-		l.outline_size = 0
-		l.position = base + Vector3(0, 2.6, 0.06 * side)
-		l.rotation.y = 0.0 if side > 0 else PI
-		root.add_child(l)
-
+	var surface_shader := load("res://game/shaders/station_surface.gdshader") as Shader
+	var finishes := {}
+	for station in world.stations:
+		var kit := load("res://assets/models/stations/%s.glb" % station.kit) as PackedScene
+		var model := kit.instantiate() as Node3D
+		model.name = "Station_" + station.code
+		model.position = station.origin
+		root.add_child(model)
+		for mesh: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
+			for s in mesh.mesh.get_surface_count():
+				var original := mesh.mesh.surface_get_material(s) as StandardMaterial3D
+				if original == null or not original.resource_name.get_slice(".", 0) in ["SR_Concrete", "SR_Coping", "SR_Paver", "SR_PaverPale", "SR_Cream", "SR_Ivory", "SR_Maroon", "SR_RoofBlue", "SR_RoofRed", "SR_RoofGrey", "SR_Asphalt", "SR_Sandstone"]:
+					continue
+				var key: String = original.resource_name
+				if not finishes.has(key):
+					var finish := ShaderMaterial.new()
+					finish.shader = surface_shader
+					finish.set_shader_parameter("base_color", original.albedo_color)
+					finish.set_shader_parameter("surface_roughness", original.roughness)
+					finish.set_shader_parameter("surface_metallic", original.metallic)
+					finishes[key] = finish
+				mesh.set_surface_override_material(s, finishes[key])
 
 # --- signals and switches ----------------------------------------------------
 

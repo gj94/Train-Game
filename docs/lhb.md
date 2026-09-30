@@ -2,8 +2,9 @@
 
 Original Blender models in classic red and grey: **AC three-tier (72 berths)** and
 **AC two-tier (52 berths)**, with complete passenger compartments and end interiors.
-The playable short formation is **WAP-7 30306 + B1 B2 B3 B4 A1 A2**. It fits all three
-stations on the existing fictional line. Created 30 September 2026.
+The playable formation is **WAP-7 30306 + EOG1 + B1–B16 + A1–A2 + EOG2**.
+It fits the new 600 m platforms. The former six-coach test rake was superseded by
+the real-scale station pass on 30 September 2026; see [stations.md](stations.md).
 
 ## Play
 
@@ -16,7 +17,7 @@ stations on the existing fictional line. Created 30 September 2026.
    **A** toggles the AI driver. The AI obeys signals and speed limits but does not
    set routes. The heavier rake accelerates more slowly than the light engine.
 3. **V** enters the passenger coach, preserving the current AI/manual setting and
-   handle position. **PgUp / PgDn** selects B1–B4 or A1–A2. **Left / Right** visits
+   handle position. **PgUp / PgDn** selects B1–B16 or A1–A2, skipping generator vans. **Left / Right** visits
    the nine berth bays and both vestibules. **Home** switches between looking
    down the aisle and looking into the compartment. **Right-drag** looks around;
    release to face ahead. Mouse wheel zooms.
@@ -38,12 +39,14 @@ stations on the existing fictional line. Created 30 September 2026.
 ## Blender files
 
 - **`art/lhb/wap7_lhb_rake.blend`** — complete editable locomotive, both driving
-  interiors and six coupled coaches. Copies share mesh data, with separate coach,
+  interiors and 20 coupled coaches. Copies share mesh data, with separate coach,
   bogie, axle and berth parents. Select `Rake_Hero` or `Coach_Close` cameras.
 - **`art/lhb/lhb_3a.blend`** and **`art/lhb/lhb_2a.blend`** — individual masters,
   each with a separate studio and Hero, Bogie, Aisle, Compartment and Vestibule cameras.
 - **`assets/models/lhb_3a.glb`**, **`lhb_2a.glb`** — metre-scale game exports, only
   coach assemblies. Blender +Y becomes Godot -Z; rail top is asset Z=0 / Godot Y=0.
+- **`art/lhb/lhb_eog.blend`**, **`assets/models/lhb_eog.glb`** — distinct louvred
+  luggage/brake/generator exterior with the same articulated bogie/axle system.
 - **`art/lhb/*_glb.png`** — inspection renders re-imported from the real exports.
   **`art/lhb/game_*.png`** — actual Forward+ game captures of the rake, both classes,
   berth positions, vestibule/washbasin, driving and route desk.
@@ -67,18 +70,19 @@ The model uses a **23.54 m body**, **24 m over couplers**, **3.24 m outer width*
 **14.9 m bogie centres**, **2.56 m bogie wheelbase**, **915 mm wheel diameter**,
 and approximately **1.32 m floor height** above the rails. Both visual variants use
 the common 4.25 m AC3-style roof envelope; the 2A roof and final partial bay are an
-interpretation, not a reproduction of a specific production drawing. The short
-four-3A/two-2A formation is a fictional HOG-compatible test working, not a claim
-about the actual consist of a named Indian Railways service.
+interpretation, not a reproduction of a specific production drawing. The new
+16-3A/two-2A/two-generator formation uses the reported SWR 06523/06524 2025 AC-special
+composition. The playable Southern Coast AC Special remains fictional; it does not
+claim to reproduce that service's route or timetable.
 
 `sim/stock/lhb_consist.gd` owns formation geometry independently of rendering.
-The full train is **164.562 m**, with an approximate **408 t loaded mass**, WAP-7's
+The full train is **500.562 m**, with a tabulated **1,145.70 t gross mass**, WAP-7's
 existing 4.5 MW power profile, 0.65 m/s² low-speed traction cap and 0.8 m/s² service
 braking. These are gameplay values; distributed air-brake delays, coupler slack,
 electrical HOG systems and a train-specific timetable are not simulated.
 
 The view samples each coach and bogie along the track and rotates all wheelsets.
-Only the last coach shows tail lamps/LV board. Sound uses all **30 real axle
+Only the rear generator van shows tail lamps/LV board. Sound uses all **86 real axle
 positions**; the onboard listener follows the selected passenger coach and bay.
 The approved existing sound kernels, TRACK_ONLY and clang +2 dB remain in use.
 Project graphics settings have not been altered. Each coach export contains roughly

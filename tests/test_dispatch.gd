@@ -98,7 +98,7 @@ func test_manually_driven_service_can_complete():
 	var w := Line.build()
 	var t: Train = w.trains.T1
 	t.destination = "Kadalur"
-	w.place_train(t, "kdp_plat", 212, 1)
+	w.place_train(t, "kdp_plat", w.graph.edges.kdp_plat.length - 8, 1)
 	w.step(0.05)
 	return t.service_complete and not t.automatic
 

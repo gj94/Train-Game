@@ -6,9 +6,15 @@ const COACH_LENGTH := 24.0
 const BOGIE_HALF_SPACING := 7.45
 const AXLE_HALF_SPACING := 1.28
 const WHEEL_RADIUS := .4575
-const FORMATION := ["B1", "B2", "B3", "B4", "A1", "A2"]
-const LENGTH := LOCO_LENGTH + COACH_LENGTH * 6
-const MASS := 408000.0  # 108 t locomotive + approximately 50 t loaded per coach
+const FORMATION := ["EOG1", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13", "B14", "B15", "B16", "A1", "A2", "EOG2"]
+const COACH_COUNT := 20
+const LENGTH := LOCO_LENGTH + COACH_LENGTH * COACH_COUNT
+# RDSO gross masses: 3A 51.36 t, 2A 48.66 t, generator/luggage van 59.31 t.
+const MASS := 108000.0 + 16 * 51360.0 + 2 * 48660.0 + 2 * 59310.0
+
+
+static func coach_kind(index: int) -> String:
+	return "eog" if FORMATION[index].begins_with("EOG") else ("3a" if FORMATION[index].begins_with("B") else "2a")
 
 
 static func coach_center(index: int) -> float:
