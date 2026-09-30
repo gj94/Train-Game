@@ -2,6 +2,7 @@ extends SceneTree
 ## Real scene integration: selection, two cabs, controls, axle geometry and return.
 
 func _initialize() -> void:
+	set_meta("small_test_layout", true) # preserve the original layout regression fixture
 	call_deferred("_check")
 
 

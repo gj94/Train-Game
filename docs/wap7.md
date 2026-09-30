@@ -9,26 +9,26 @@ It now includes both driving interiors and a playable light-engine scenario.
 
 1. Run the game, then press **F2**, or choose **WAP-7 [F2]** on the dispatch
    board. This restarts in Cab 1 at Chennapuram. The initial route is cleared to
-   Maruthur's main-line starter. F2 switches back to the two-MEMU meet.
+   Maruthur's main-line starter. F2 switches back to the six-MEMU corridor.
 2. Hold **W / Up** to increase power. **S / Down** moves the combined handle back
    through coast into service braking; **X** selects coast. Obey the HUD limits.
    **Space** applies emergency braking; press it again after stopping to release.
 3. **Right-drag** looks around the cab, including fully rearward; releasing returns
    the view ahead. Mouse wheel changes field of view. **Tab** toggles exterior / cab.
    **D** shows or hides the route desk; **F1** lists controls.
-4. Use **C** or **D** to set onward routes: **MRT-SE1 → KDP-H**, then
-   **KDP-H → BUFFER:KDP_B**. **A** hands driving to the existing AI if desired.
+4. Use **C** or **D** to set onward routes: **MRT-E1 → E-AE1**, then
+   **KDP-H → BUFFER:KDP_B1**. **A** hands driving to the existing AI if desired.
    The AI obeys signals and limits but does not set its own routes.
 5. Stop before Kadalur's buffers and press **R** to change to the physical Cab 2.
-   Set **KDP-S → MRT-HW**, **MRT-HW → MRT-SW1**, **MRT-SW1 → CPM-H**, and
-   **CPM-H → BUFFER:CPM_B1** for the return. Reversing is refused while moving or
+   Set **KDP-W1 → E-AW1**, **MRT-HW → MRT-W3**, **MRT-W3 → W-AW1**, and
+   **CPM-H → BUFFER:CPM_B3** for the return. Reversing is refused while moving or
    before an owned movement has reached its reserved block.
 
 Direct launch: `Godot_v4.7.2-stable_win64.exe --path . -- --wap7` using the executable
 under `.local/godot/`. This scenario is one locomotive without coaches; the
-existing eight-car MEMU meet remains available and unchanged.
+default six-service, eight-car MEMU corridor remains available.
 
-For the locomotive hauling six detailed passenger coaches, press **F3** and see
+For the locomotive hauling 20 full-length LHB coaches, press **F3** and see
 [LHB coaches and passenger controls](lhb.md). The complete assembled Blender rake
 is `art/lhb/wap7_lhb_rake.blend`.
 
@@ -177,3 +177,7 @@ Chrome searches also located BLW's WAP7 technical leaflet and IRICEN's
 did not load reliably, so they were not used as a claim of full drawing-based
 verification. Remaining scale values are nominal modeling parameters and small
 detail geometry is photo-proportioned.
+
+The old scene integration keeps the small layout as a fixture. The corridor suite
+also checks a complete outward/return trip on the expanded double-line route,
+including both terminal crossovers and arrival at Chennapuram P3.

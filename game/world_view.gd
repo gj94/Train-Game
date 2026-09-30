@@ -19,6 +19,7 @@ const Details := preload("res://game/station_details.gd")
 var world: RailWorld
 var root: Node3D
 var signal_lamps := {}            # signal id -> [green, yellow, red] MeshInstance3D
+var route_indicators := {}
 var switch_markers := {}          # node id -> {label: Label3D, lamp: MeshInstance3D}
 var labels: Array = []            # Label3D nodes to hide in cab view
 var joint_markers := {}           # "edge|k" -> MeshInstance3D (rail-joint markers, J toggles)
@@ -54,6 +55,8 @@ func build(w: RailWorld, parent: Node3D) -> void:
 	_build_terrain()
 	_build_ohe()
 	_build_stations()
+	if world.scenery.get("corridor", false):
+		preload("res://game/corridor_scenery.gd").new().build(self)
 	_build_scenery()
 	Details.new().build(self)
 	for sid in world.signals:
@@ -200,7 +203,7 @@ func _build_track(eid: String) -> void:
 	var pts := _samples(eid, 2.0)
 	for p in pts:
 		_track_samples.append(p.pos)
-	var lift := 0.003 * world.graph.edges.keys().find(eid)   # avoid z-fighting where tracks overlap
+	var lift := 0.0004 * (world.graph.edges.keys().find(eid) % 8) # do not raise sleepers above the rail on larger graphs
 
 	# Soil shoulder under and beside the ballast.
 	var shoulder := _extrude(pts, [Vector2(-4.2, 0.02 + lift), Vector2(4.2, 0.02 + lift)], true)
@@ -290,7 +293,8 @@ func _build_ohe() -> void:
 			var s := minf(e.length - 6.0, 6.0 + i * OHE_SPACING)
 			if s < 0.0:
 				continue
-			var fwd := world.graph.tangent(eid, s, 1)
+			var mast_direction: int = -world.graph.edges[eid].allowed_dir if world.graph.edges[eid].allowed_dir != 0 else 1
+			var fwd := world.graph.tangent(eid, s, mast_direction)
 			var right := fwd.cross(Vector3.UP).normalized()
 			var base := world.graph.position(eid, s) + right * OHE_OFFSET
 			if not _mast_site_ok(base):
@@ -314,6 +318,9 @@ func _build_ohe() -> void:
 			z1 = maxf(z1, platform.end.y + 2.0)
 		z0 = minf(z0, -4.0)
 		z1 = maxf(z1, 4.0)
+		for track_z in station.get("track_z", []):
+			z0 = minf(z0, track_z - 3.4)
+			z1 = maxf(z1, track_z + 3.4)
 		var origin: Vector3 = station.origin
 		for offset in range(-270, 300, 54):
 			if absf(offset + 64.0) < 10.0:
@@ -328,6 +335,7 @@ func _build_ohe() -> void:
 				tracks.append(-12.0)
 			elif station.code == "MRT":
 				tracks.append(12.0)
+			tracks = station.get("track_z", tracks)
 			for z in tracks:
 				box(Vector3(.11, .65, .11), Vector3(x, 7.92, z), Color("7d6047"))
 				box_m(Vector3(.04, 1.25, .04), Vector3(x, 6.9, z), steel())
@@ -351,12 +359,16 @@ func _mast_site_ok(p: Vector3) -> bool:
 func terrain_height(x: float, z: float) -> float:
 	var hill := smoothstep(850.0, 1700.0, absf(z))
 	var n := _terrain_noise.get_noise_2d(x, z) * 0.5 + 0.5
-	return hill * (2.0 + n * 14.0) - 0.03
+	var height := hill * (2.0 + n * 14.0) - 0.03
+	for canal in world.scenery.get("canals", []):
+		if absf(z) < 400:
+			height -= (1.0-smoothstep(10.0,35.0,absf(x-canal)))*2.0
+	return height
 
 
 func _build_terrain() -> void:
-	var x0 := -1600.0
-	var x1 := 6400.0
+	var x0: float = world.scenery.get("x_min", -500.0) - 1100.0
+	var x1: float = world.scenery.get("x_max", 5300.0) + 1100.0
 	var z0 := -1700.0
 	var z1 := 1700.0
 	var step := 25.0
@@ -390,6 +402,17 @@ func _build_terrain() -> void:
 
 
 func _far_from_track(p: Vector3, clearance: float) -> bool:
+	if world.scenery.get("corridor", false):
+		for x in world.scenery.overbridges + world.scenery.canals:
+			if absf(p.x-x) < 36 and absf(p.z) < 450:
+				return false
+		for x in world.scenery.villages:
+			if absf(p.x-x) < 225 and absf(p.z) < 350:
+				return false
+		for station in world.stations:
+			var outward: float = signf(station.building.z)*p.z
+			if absf(p.x-station.origin.x) < 420 and outward > 72 and outward < 230:
+				return false
 	for field in _fields:
 		if field.has_point(Vector2(p.x, p.z)):
 			return false
@@ -414,14 +437,16 @@ func _far_from_track(p: Vector3, clearance: float) -> bool:
 func _build_scenery() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 20260927
+	var xmax: float = world.scenery.get("x_max", 5300.0)
+	var density: float = (xmax+400.0)/5700.0
 
 	# Paddy fields: flooded / green rice plots with low earth bunds.
 	var paddy_green := pbr("leafy_grass", 3.0, Color(0.63, 0.80, 0.39))
 	var paddy_water := ShaderMaterial.new()
 	paddy_water.shader = load("res://game/shaders/paddy_water.gdshader")
 	var bund := pbr("red_laterite_soil_stones", 3.0)
-	for i in 150:
-		var p := Vector3(rng.randf_range(-400, 5300), 0, rng.randf_range(-420, 420))
+	for i in (0 if world.scenery.get("corridor",false) else int(150*density)):
+		var p := Vector3(rng.randf_range(-400, xmax), 0, rng.randf_range(-420, 420))
 		if not _far_from_track(p, 65.0):
 			continue
 		var in_village := false
@@ -456,8 +481,8 @@ func _build_scenery() -> void:
 	inst.free()
 	var palms := []
 	var placed := 0
-	while placed < 1400:
-		var centre := Vector3(rng.randf_range(-400, 5300), 0, rng.randf_range(-650, 650))
+	while placed < int(1400*density):
+		var centre := Vector3(rng.randf_range(-400, xmax), 0, rng.randf_range(-650, 650))
 		var clump := rng.randi_range(3, 12)
 		for k in clump:
 			var p := centre + Vector3(rng.randf_range(-35, 35), 0, rng.randf_range(-35, 35))
@@ -482,8 +507,8 @@ func _build_scenery() -> void:
 	var crowns := []
 	var trunks := []
 	placed = 0
-	while placed < 320:
-		var p := Vector3(rng.randf_range(-400, 5300), 0, rng.randf_range(-700, 700))
+	while placed < int(320*density):
+		var p := Vector3(rng.randf_range(-400, xmax), 0, rng.randf_range(-700, 700))
 		if not _far_from_track(p, 16.0):
 			continue
 		placed += 1
@@ -527,7 +552,7 @@ func _build_stations() -> void:
 	var surface_shader := load("res://game/shaders/station_surface.gdshader") as Shader
 	var finishes := {}
 	for station in world.stations:
-		var kit := load("res://assets/models/stations/%s.glb" % station.kit) as PackedScene
+		var kit := load("res://assets/models/stations/%s%s.glb" % [station.kit, station.get("asset_variant", "")]) as PackedScene
 		var model := kit.instantiate() as Node3D
 		model.name = "Station_" + station.code
 		model.position = station.origin
@@ -582,6 +607,27 @@ func _build_signal(sid: String) -> void:
 		node.add_child(lamp)
 		lamps.append(lamp)
 	signal_lamps[sid] = lamps
+	if sid in world.automatic_signals:
+		box(Vector3(.44,.5,.06),Vector3(0,4.25,-.13),Color("e7e4d6"),node)
+		var plate := Label3D.new()
+		plate.text = "A"
+		plate.font_size = 64
+		plate.pixel_size = .005
+		plate.modulate = Color("171f24")
+		plate.outline_size = 0
+		plate.rotation.y = PI
+		plate.position = Vector3(0,4.25,-.18)
+		node.add_child(plate)
+	elif sid in ["CPM-H","MRT-HE","MRT-HW","KDP-H"] and world.scenery.get("corridor",false):
+		box(Vector3(.72,.75,.28),Vector3(0,6.95,0),Color("182125"),node)
+		var indicator := Label3D.new()
+		indicator.font_size = 64
+		indicator.pixel_size = .009
+		indicator.outline_size = 0
+		indicator.rotation.y = PI
+		indicator.position = Vector3(0,6.95,-.16)
+		node.add_child(indicator)
+		route_indicators[sid] = indicator
 
 	var label := Label3D.new()
 	label.text = sid
@@ -602,6 +648,15 @@ func _build_switch(nid: String) -> void:
 	var s := g.entry_s(sw.trunk, dir_into) + dir_into * 6.0
 	var fwd := g.tangent(sw.trunk, s, dir_into)
 	var pos := g.position(sw.trunk, s) + fwd.cross(Vector3.UP).normalized() * 4.5
+	for offset in [4.5,-4.5,8.5,-8.5,12.5]:
+		pos = g.position(sw.trunk,s)+fwd.cross(Vector3.UP).normalized()*offset
+		if _mast_site_ok(pos): break
+	# Fouling marker between the diverging roads at the clearance location.
+	var ends := []
+	for eid in [sw.normal,sw.reverse]:
+		var direction := 1 if g.edges[eid].a == nid else -1
+		ends.append(g.position(eid,g.entry_s(eid,direction)+direction*sw.clearance))
+	box(Vector3(1.0,.15,.25),(ends[0]+ends[1])*.5+Vector3.UP*.24,Color("e4dba9"))
 	var node := Node3D.new()
 	node.position = pos
 	root.add_child(node)
@@ -657,6 +712,8 @@ func update() -> void:
 		var lit := 0 if a == RailWorld.Aspect.GREEN else (1 if a == RailWorld.Aspect.YELLOW else 2)
 		for k in 3:
 			signal_lamps[sid][k].material_override = mat(colors[k], true) if k == lit else mat(dark)
+		if route_indicators.has(sid):
+			route_indicators[sid].text = world.signals[sid].destination.right(1) if a != RailWorld.Aspect.RED else ""
 	for nid in switch_markers:
 		var m: Dictionary = switch_markers[nid]
 		var rev: bool = world.graph.switches[nid].reversed

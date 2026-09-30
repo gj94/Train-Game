@@ -2,9 +2,9 @@ extends SceneTree
 ## Verify imported station kit dimensions against independent layout metadata.
 
 func _initialize() -> void:
-	var w := preload("res://sim/layouts/first_line.gd").build()
+	var w := preload("res://sim/layouts/southern_corridor.gd").build()
 	for station in w.stations:
-		var model := load("res://assets/models/stations/%s.glb" % station.kit).instantiate() as Node3D
+		var model := load("res://assets/models/stations/%s%s.glb" % [station.kit,station.get("asset_variant", "")]).instantiate() as Node3D
 		root.add_child(model)
 		var platforms := model.find_children("Platform_*", "MeshInstance3D", true, false)
 		if platforms.size() != station.platforms.size():
@@ -27,7 +27,7 @@ func _initialize() -> void:
 				_fail("Missing roof sheet: " + station.code)
 				return
 		model.free()
-	print("Stations: PASS (three imported kits, 600 m usable platforms + ramps, widths, 800 mm rail-relative height, canopies, footbridges)")
+	print("Stations: PASS (three four-platform yard kits, 600 m usable platforms + ramps, widths, 800 mm rail-relative height, canopies, footbridges)")
 	quit(0)
 
 func _fail(message: String) -> void:

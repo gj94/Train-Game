@@ -6,9 +6,9 @@ The user selected **Kumbakonam, Mayiladuthurai Junction and Thanjavur** as refer
 ## What is reproduced
 
 These are original, photograph-referenced architectural adaptations on the game's
-compact fictional line. They retain the playable names **Chennapuram / Maruthur /
-Kadalur** and existing signal IDs. They are **not surveyed replicas of the three
-real yards**, and the 4.89 km map is not the real distance between those towns.
+expanded fictional line. They retain the playable names **Chennapuram / Maruthur /
+Kadalur**. They are **not surveyed replicas of the three
+real yards**, and the 21.64 km map is not the real distance between those towns.
 Reference photographs show earlier station appearances, not a claim to reproduce
 the current Amrit Bharat redevelopment works.
 
@@ -25,10 +25,17 @@ Runtime additions supply Tamil/Hindi/English yellow boards, platform signs,
 passengers, stop markers and overhead electrical portals. The landscape now has
 a flat delta profile instead of steep hills immediately beside the stations.
 
-The remaining simplifications include idealised weathering, repeated structural
-bays, schematic people, simplified autos and tower ornament, reduced track counts,
-and no walkable station interior or station passenger simulation. The side access
-platforms and islands are adapted to the existing two-road dispatcher topology.
+Each station now has four platform roads and two 600 m islands. The covered
+footbridge reaches both islands and the station side; OHE portals span all four
+roads without putting masts on the platforms. Paired arrival/departure fans,
+terminal crossovers and double running lines replace the two-road default.
+
+Trackside scenery adds maintenance paths, cable troughs, lined drains, equipment
+cabinets, point motors/fouling markers, town boundary walls, market streets, houses,
+paddy plots with bunds and irrigation, road overbridges with embankments, and
+watercourse culverts. This is original procedural scenery inspired by the delta
+setting, not a surveyed reconstruction. Repeated building bays, schematic people,
+vegetation, autos and tower ornament remain simplified; interiors are not walkable.
 
 ## Dimensions and evidence
 
@@ -40,8 +47,8 @@ were lengthened together.
 |---|---:|---|
 | Usable level platform | 600 m | Deliberate railway-scale design allowance; not a measured length of each reference station. Accommodates the 500.562 m playable rake and a nominal 24-coach LHB + WAP-7 envelope of 596.562 m geometrically. The 24-coach case is not an added service. |
 | Platform surface | 0.800 m above rail | Within the 760–840 mm BG high-level range; world rail is Y=0.5, platform Y=1.3. Coping rises another 40 mm. |
-| Platform widths | 8.2 m island / 12 m side | Game layout dimensions allowing the photographed shelters, circulation and stair footprint; track centres 12 m apart. |
-| Maruthur station roads | 840 m between points, plus the small curve-length addition on the loop | 120 m approaches around a 600 m straight platform section. Starters and clearance zones keep the 20-coach rake clear of both throats. |
+| Platform widths | Two 8.2 m islands | Four platform tracks at Z = -21, -9, +9, +21 m; each island lies between a 12 m pair. Double mainline centres are 6 m apart outside the yards. These are game design dimensions. |
+| Maruthur station roads | 1,120 m X span between points, plus curve length | 600 m usable platform within the straight centre; 195 m point clearance and starters 270 m inside the road ends keep the 20-coach rake clear of both throats. |
 | LHB body / coupling pitch | 23.540 / 24.000 m | RDSO LHB maintenance dimensions. |
 | WAP-7 over buffers | 20.562 m | Existing metre-scale WAP-7 profile, see `wap7.md`. |
 | Playable LHB consist | 20 coaches + WAP-7 = **500.562 m** | EOG1, B1–B16, A1–A2, EOG2. Full-length AC-special composition based on the reported SWR 06523/06524 2025 formation; the game remains a fictional working. |
@@ -87,18 +94,20 @@ system fallback before export (the project target remains Windows).
 Run only background Blender using the machine paths in `pc-setup.md`:
 
 ```powershell
-& ./.local/blender/blender-5.2.1-windows-x64/blender.exe --background --factory-startup --python tools/blender/build_stations.py
+& ./.local/blender/blender-5.2.1-windows-x64/blender.exe --background --factory-startup --python tools/blender/build_stations.py -- --yards
 & ./.local/blender/blender-5.2.1-windows-x64/blender.exe --background --factory-startup --python tools/blender/build_lhb_eog.py
 & ./.local/blender/blender-5.2.1-windows-x64/blender.exe --background --factory-startup --python tools/blender/assemble_lhb_rake.py
 ```
 
-Editable station masters: `art/stations/{kumbakonam,mayiladuthurai,thanjavur}.blend`.
+Editable station masters: `art/stations/{kumbakonam,mayiladuthurai,thanjavur}_yard.blend`.
+The unsuffixed masters/exports and earlier screenshots retain the old two-road
+regression layout; build those with the same command without `-- --yards`.
 Runtime exports: `assets/models/stations/*.glb`. The native art folder is excluded
 from Godot import using `.gdignore`. Roof sheets have separate top/bottom vertices
 and physical thickness; coincident reverse faces disappeared during Godot import
 in the first export and were corrected after viewing the actual game.
 
-Tests: `tests/run_tests.gd`, `tools/check_stations.gd`, `tools/check_lhb_playable.gd`,
+Tests: `tests/run_tests.gd`, `tools/check_corridor_playable.gd`, `tools/check_stations.gd`, `tools/check_lhb_playable.gd`,
 `tools/check_wap7_playable.gd`, `tools/check_dispatch_ui.gd`.
 
 ## Playtest
@@ -111,9 +120,10 @@ Tests: `tests/run_tests.gd`, `tools/check_stations.gd`, `tools/check_lhb_playabl
    the locomotive and tail van must both stand alongside Chennapuram's platform.
 3. Press **A** to depart under AI. Stop at Maruthur's red starter and inspect both
    ends; all passenger vehicles must berth and the entrance points must release.
-4. Set **MRT-SE1 → KDP-H** and **KDP-H → BUFFER:KDP_B**. At Kadalur, inspect the
+4. Set **MRT-E1 → E-AE1** and **KDP-H → BUFFER:KDP_B1**. At Kadalur, inspect the
    rear generator van, LV board, and the train's length relative to the platform.
 5. Use **V**, **PgUp/PgDn**, **Home**, **B** to check B1–B16 and A1–A2. Coach cycling
    must skip both generator vans. R at the terminus must explain the run-round.
-6. Press F3 to return to the MEMU meet and follow `dispatching.md`'s route sequence.
-   Both eight-car services must stop on their separate roads and complete safely.
+6. Press F3 to return to the six-MEMU corridor and follow `dispatching.md`.
+   Enable AUTO DISPATCH and HOLD MRT to berth four trains together, then release
+   the hold so the waiting pair can enter and all six services complete.

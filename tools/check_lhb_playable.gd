@@ -2,6 +2,7 @@ extends SceneTree
 ## Real game checks, including physical axle alignment, UI controls and arrival.
 
 func _initialize() -> void:
+	set_meta("small_test_layout", true) # preserve the original layout regression fixture
 	call_deferred("_check")
 
 

@@ -3,6 +3,7 @@ extends SceneTree
 ## timetables, opposing meet and completion. Run after tests/run_tests.gd.
 
 func _initialize() -> void:
+	set_meta("small_test_layout", true) # preserve the original layout regression fixture
 	call_deferred("_check")
 
 func _check() -> void:

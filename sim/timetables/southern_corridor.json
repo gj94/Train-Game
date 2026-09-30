@@ -1,0 +1,162 @@
+{
+  "world_start": "08:00:00",
+  "day": 1,
+  "services": {
+    "T1": {
+      "name": "Southern local T1",
+      "departure": "08:01:00",
+      "day": 1,
+      "stops": [
+        {
+          "name": "CPM P1",
+          "block": "CPM_P1",
+          "direction": 1,
+          "minutes_from_origin": 0
+        },
+        {
+          "name": "Maruthur P1",
+          "block": "MRT_P1",
+          "direction": 1,
+          "minutes_from_origin": 12,
+          "dwell_minutes": 3
+        },
+        {
+          "name": "KDP P1",
+          "block": "KDP_P1",
+          "direction": 1,
+          "minutes_from_origin": 28
+        }
+      ]
+    },
+    "T2": {
+      "name": "Southern local T2",
+      "departure": "08:01:00",
+      "day": 1,
+      "stops": [
+        {
+          "name": "KDP P3",
+          "block": "KDP_P3",
+          "direction": -1,
+          "minutes_from_origin": 0
+        },
+        {
+          "name": "Maruthur P3",
+          "block": "MRT_P3",
+          "direction": -1,
+          "minutes_from_origin": 12,
+          "dwell_minutes": 3
+        },
+        {
+          "name": "CPM P3",
+          "block": "CPM_P3",
+          "direction": -1,
+          "minutes_from_origin": 28
+        }
+      ]
+    },
+    "T3": {
+      "name": "Southern local T3",
+      "departure": "08:02:00",
+      "day": 1,
+      "stops": [
+        {
+          "name": "CPM P2",
+          "block": "CPM_P2",
+          "direction": 1,
+          "minutes_from_origin": 0
+        },
+        {
+          "name": "Maruthur P2",
+          "block": "MRT_P2",
+          "direction": 1,
+          "minutes_from_origin": 12,
+          "dwell_minutes": 3
+        },
+        {
+          "name": "KDP P2",
+          "block": "KDP_P2",
+          "direction": 1,
+          "minutes_from_origin": 28
+        }
+      ]
+    },
+    "T4": {
+      "name": "Southern local T4",
+      "departure": "08:02:00",
+      "day": 1,
+      "stops": [
+        {
+          "name": "KDP P4",
+          "block": "KDP_P4",
+          "direction": -1,
+          "minutes_from_origin": 0
+        },
+        {
+          "name": "Maruthur P4",
+          "block": "MRT_P4",
+          "direction": -1,
+          "minutes_from_origin": 12,
+          "dwell_minutes": 3
+        },
+        {
+          "name": "CPM P4",
+          "block": "CPM_P4",
+          "direction": -1,
+          "minutes_from_origin": 28
+        }
+      ]
+    },
+    "T5": {
+      "name": "Southern local T5",
+      "departure": "08:04:00",
+      "day": 1,
+      "stops": [
+        {
+          "name": "CPM P3",
+          "block": "CPM_P3",
+          "direction": 1,
+          "minutes_from_origin": 0
+        },
+        {
+          "name": "Maruthur P1",
+          "block": "MRT_P1",
+          "direction": 1,
+          "minutes_from_origin": 12,
+          "dwell_minutes": 3
+        },
+        {
+          "name": "KDP P3",
+          "block": "KDP_P3",
+          "direction": 1,
+          "minutes_from_origin": 28
+        }
+      ]
+    },
+    "T6": {
+      "name": "Southern local T6",
+      "departure": "08:04:00",
+      "day": 1,
+      "stops": [
+        {
+          "name": "KDP P2",
+          "block": "KDP_P2",
+          "direction": -1,
+          "minutes_from_origin": 0
+        },
+        {
+          "name": "Maruthur P3",
+          "block": "MRT_P3",
+          "direction": -1,
+          "minutes_from_origin": 12,
+          "dwell_minutes": 3
+        },
+        {
+          "name": "CPM P2",
+          "block": "CPM_P2",
+          "direction": -1,
+          "minutes_from_origin": 28
+        }
+      ]
+    }
+  }
+}

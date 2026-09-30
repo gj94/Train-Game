@@ -341,7 +341,8 @@ def kiosk(z):
     a.finish(.012)
 
 
-def build(variant, platforms, bz):
+def build(variant, platforms, bz, export_name=None):
+    export_name = export_name or variant
     bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
     for col in list(bpy.data.collections): bpy.data.collections.remove(col)
     b.M={}; b.GROUPS=[]
@@ -358,15 +359,19 @@ def build(variant, platforms, bz):
     bpy.ops.object.select_all(action='DESELECT')
     for ob in b.ASSET.objects: ob.select_set(True)
     bpy.context.view_layer.objects.active=b.ROOT
-    bpy.ops.export_scene.gltf(filepath=os.path.join(MODELS,variant+'.glb'),export_format='GLB',use_selection=True,export_apply=True,export_extras=True)
-    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT,variant+'.blend'),compress=True)
-    print('STATION_COMPLETE',variant,len(b.ASSET.objects),flush=True)
+    bpy.ops.export_scene.gltf(filepath=os.path.join(MODELS,export_name+'.glb'),export_format='GLB',use_selection=True,export_apply=True,export_extras=True)
+    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT,export_name+'.blend'),compress=True)
+    print('STATION_COMPLETE',export_name,len(b.ASSET.objects),flush=True)
 
 
 if __name__=='__main__':
     if not bpy.app.background: raise RuntimeError('Background Blender only')
     os.makedirs(OUT,exist_ok=True); os.makedirs(MODELS,exist_ok=True)
     open(os.path.join(OUT,'.gdignore'),'w').close()
-    build('kumbakonam',[(-10.1,-1.9),(-25.9,-13.9)],-34)
-    build('mayiladuthurai',[(1.9,10.1),(-13.9,-1.9)],-22)
-    build('thanjavur',[(1.9,13.9)],22)
+    if '--yards' in sys.argv:
+        for variant,bz in [('kumbakonam',-36),('mayiladuthurai',-36),('thanjavur',36)]:
+            build(variant,[(-19.1,-10.9),(10.9,19.1)],bz,variant+'_yard')
+    else:
+        build('kumbakonam',[(-10.1,-1.9),(-25.9,-13.9)],-34)
+        build('mayiladuthurai',[(1.9,10.1),(-13.9,-1.9)],-22)
+        build('thanjavur',[(1.9,13.9)],22)

@@ -8,8 +8,8 @@ extends RefCounted
 ##
 ## set_route chooses the next signal / buffer and aligns and locks its points.
 ## No other route may reserve the same block or throat. The signal returns to
-## red on passage. Points release after tail clearance; occupied blocks stay
-## reserved until vacated. No rendering or scene-tree dependencies.
+## red on passage. Points release after tail clearance; occupancy continues to
+## protect berths after their entrance route releases. No scene-tree dependencies.
 
 enum Aspect { RED, YELLOW, GREEN }
 const Clock := preload("res://sim/world_clock.gd")
@@ -22,10 +22,13 @@ var time := 0.0
 var clock_start := 8.0 * 3600.0 # absolute world seconds at scenario start, day 1
 var protection := true   # emergency intervention before passing a red signal
 var stations: Array = [] # layout data for rendering: {code, name, platforms: [Rect2 in x/z], building}
+var automatic_signals: Array[String] = [] # fixed plain-line block signals; never station routes
+var scenery: Dictionary = {} # geographic/layout metadata consumed by rendering
 
 var events: Array = []   # {seq, t (elapsed), clock (absolute), kind, text, train}
 var _event_seq := 0
 var _signals_on := {}    # "edge|dir" -> [signal ids]
+var _next_auto_update := 0.0
 
 
 # --- building ---------------------------------------------------------------
@@ -269,7 +272,18 @@ func route_options(sig_id: String) -> Array:
 	var sig: Dictionary = signals[sig_id]
 	var options: Array = []
 	_walk_routes(sig.edge, sig.dir, [], [sig.edge], options)
-	return options
+	# A crossover ladder can reach the same berth by several paths. Present
+	# one stable, shortest route per exit instead of silently choosing the last
+	# enumerated zigzag while the UI displays a different route.
+	var unique := {}
+	for option in options:
+		var cost := 0.0
+		for r in option.edges:
+			cost += graph.edges[r.edge].length + (50.0 if r.reversed else 0.0)
+		option.cost = cost
+		if not unique.has(option.destination) or cost < unique[option.destination].cost:
+			unique[option.destination] = option
+	return unique.values()
 
 
 func _walk_routes(edge_id: String, dir: int, path: Array, visited: Array, options: Array) -> void:
@@ -290,6 +304,8 @@ func _walk_routes(edge_id: String, dir: int, path: Array, visited: Array, option
 		if e in visited:
 			continue
 		var travel := 1 if graph.edges[e].a == node else -1
+		if not graph.allows(e, travel):
+			continue
 		var switch_id := node if graph.switches.has(node) else ""
 		var reversed := false
 		if switch_id != "":
@@ -405,6 +421,7 @@ func step(dt: float) -> void:
 	while remaining > 0.000001:
 		var slice := minf(remaining, 0.05)
 		time += slice
+		_update_automatic_blocks()
 		for t in trains.values():
 			if t.automatic:
 				_drive_automatic(t)
@@ -420,6 +437,19 @@ func step(dt: float) -> void:
 				t.status = "Arrived at " + t.destination
 		_release_routes()
 		remaining -= slice
+
+
+func _update_automatic_blocks() -> void:
+	if time < _next_auto_update:
+		return
+	_next_auto_update = time + .5
+	for sid in automatic_signals:
+		if not signals[sid].route.is_empty():
+			continue
+		var options := route_options(sid)
+		if options.size() != 1 or options[0].edges.any(func(r): return r.switch != ""):
+			continue # automatic block control is never allowed to move a point
+		set_route(sid, options[0].destination)
 
 
 ## Braking curves include signals, buffers, occupied blocks and lower speed
@@ -520,6 +550,8 @@ func _stop_distance(edge: String, dir: int, from_s: float, stop: Dictionary, vis
 	var best := INF
 	for next in exits:
 		var direction := 1 if graph.edges[next].a == node else -1
+		if not graph.allows(next, direction):
+			continue
 		best = minf(best, _stop_distance(next, direction, graph.entry_s(next, direction), stop, visited + [key]))
 	return absf(graph.exit_s(edge, dir) - from_s) + best
 
@@ -633,6 +665,12 @@ func _release_routes() -> void:
 			if occ.has(r.edge) or not r.seen:
 				keep.append(r)
 			# seen and now clear: released
+		# Once every section has been traversed and the entrance/points are
+		# clear, this entrance may admit another train to a DIFFERENT berth.
+		# Occupancy continues to protect the first train's entire body. Keeping
+		# the entrance attached to that berth prevented multi-platform arrivals.
+		if sig.owner != "" and occ.get(sig.edge, "") != sig.owner and keep.all(func(r): return r.seen and r.switch == ""):
+			keep.clear()
 		sig.route = keep
 		if keep.is_empty():
 			sig.owner = ""

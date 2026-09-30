@@ -32,22 +32,28 @@ var _legend: Label
 var _scenario_button: Button
 var _lhb_button: Button
 var timetable_open := false
+var auto_dispatch := false
+var hold_arrivals := false
+var _auto_button: Button
+var _hold_button: Button
 
 func setup(w: RailWorld) -> void:
 	world = w
+	source = "CPM-E1" if world.signals.has("CPM-E1") else "CPM-S1"
 	_root = Control.new()
 	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_root)
 	var panel := PanelContainer.new()
-	panel.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
-	panel.offset_left = -396
+	panel.set_anchors_and_offsets_preset(Control.PRESET_RIGHT_WIDE)
+	panel.offset_left = -356
 	panel.offset_right = -16
 	panel.offset_top = 16
+	panel.offset_bottom = -16
 	panel.add_theme_stylebox_override("panel", _panel_style())
 	_root.add_child(panel)
 	var column := VBoxContainer.new()
-	column.add_theme_constant_override("separation", 10)
+	column.add_theme_constant_override("separation", 6)
 	panel.add_child(column)
 	_label(column, "SOUTHERN LINE  /  CONTROL", 15, Color("ffca72"))
 	_clock = _label(column, "", 26)
@@ -71,12 +77,19 @@ func setup(w: RailWorld) -> void:
 		_refresh())
 	_reason = _label(column, "", 14, Color("95aeb7"))
 	_reason.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_reason.custom_minimum_size = Vector2(330, 43)
+	_reason.custom_minimum_size = Vector2(290, 36)
 	_label(column, "SERVICES  /  SELECT TO FOLLOW", 13, Color("95aeb7"))
+	var scroll := ScrollContainer.new()
+	scroll.custom_minimum_size.y = 85
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	column.add_child(scroll)
+	var roster := VBoxContainer.new()
+	roster.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(roster)
 	for t in world.trains.values():
-		var b := _button(column, "", func(): train_selected.emit(t.id))
+		var b := _button(roster, "", func(): train_selected.emit(t.id))
 		b.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		b.custom_minimum_size.y = 58
+		b.custom_minimum_size.y = 45
 		_roster[t.id] = b
 	var controls := HBoxContainer.new()
 	column.add_child(controls)
@@ -85,8 +98,8 @@ func setup(w: RailWorld) -> void:
 	var bottom := PanelContainer.new()
 	bottom.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
 	bottom.offset_left = 16
-	bottom.offset_right = -16
-	bottom.offset_top = -310
+	bottom.offset_right = -372
+	bottom.offset_top = -480
 	bottom.offset_bottom = -16
 	bottom.add_theme_stylebox_override("panel", _panel_style())
 	_root.add_child(bottom)
@@ -97,7 +110,7 @@ func setup(w: RailWorld) -> void:
 	map_col.add_child(title)
 	_board_heading = _label(title, "DISPATCH BOARD", 17, Color("ffca72"))
 	_board_heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_legend = _label(title, "RED occupied    MINT reserved    GREY free", 14, Color("adbec4"))
+	_legend = _label(title, "RED occupied    MINT reserved", 12, Color("adbec4"))
 	_scenario_button = _button(title, "MEMU [F2]" if world.trains.T1.stock_kind == "wap7" else "WAP-7 [F2]", func(): scenario_requested.emit())
 	_scenario_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_scenario_button.tooltip_text = "Switch scenario and restart at Chennapuram"
@@ -111,16 +124,31 @@ func setup(w: RailWorld) -> void:
 	_restart = _button(title, "RESTART SERVICES", func(): restart_requested.emit())
 	_restart.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_restart.visible = false
+	var scopes := HBoxContainer.new()
+	map_col.add_child(scopes)
+	_button(scopes, "WHOLE LINE", func(): _map.focus_station(-1))
+	for index in world.stations.size():
+		_button(scopes, world.stations[index].code + " YARD", func(): _map.focus_station(index))
+	_auto_button = _button(scopes,"AUTO DISPATCH: OFF",func():
+		auto_dispatch = not auto_dispatch
+		_refresh())
+	_auto_button.tooltip_text = "Optional six-train demonstration. Requests normal interlocked routes to booked platforms. Switch off for manual control."
+	_hold_button = _button(scopes,"HOLD MRT: OFF",func():
+		hold_arrivals = not hold_arrivals
+		_refresh())
+	_hold_button.tooltip_text = "With auto dispatch, hold Maruthur departures to test all four platforms and queue following trains. Does not cancel routes already set."
 	_map = Map.new()
 	_map.world = world
 	map_col.add_child(_map)
 	_map.signal_selected.connect(func(id): select_signal(id))
 	_map.destination_selected.connect(_select_destination)
+	_map.train_selected.connect(func(id): train_selected.emit(id))
 	_timetable = TimetableView.new()
 	_timetable.world = world
 	map_col.add_child(_timetable)
 	_timetable.visible = false
-	_objective = _label(map_col, "", 14, Color("d5e2e5"))
+	_objective = _label(map_col, "", 12, Color("d5e2e5"))
+	_objective.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	select_signal(source, true)
 
 func _panel_style() -> StyleBoxFlat:
@@ -226,11 +254,18 @@ func _refresh() -> void:
 	var reason := world.route_reason(source, target)
 	_set.disabled = reason != ""
 	_cancel.disabled = world.signals[source].route.is_empty()
+	if source in world.automatic_signals:
+		_set.disabled = true
+		_cancel.disabled = true
 	var sig: Dictionary = world.signals[source]
 	if not sig.route.is_empty():
 		_reason.text = "%s → %s\n%s" % [source, sig.destination.replace("BUFFER:", ""), "Train " + sig.owner + " / tail release" if sig.owner != "" else ("Approach lock held" if sig.cancel_pending else "Route locked • signal " + ["RED", "YELLOW", "GREEN"][world.aspect(source)])]
 	else:
 		_reason.text = "Ready • points will align and lock" if reason == "" else reason
+	if source in world.automatic_signals:
+		_reason.text = "Automatic block signal • occupancy controls re-clearing; select a station home or starter for manual routing."
+	_auto_button.text = "AUTO DISPATCH: " + ("ON" if auto_dispatch else "OFF")
+	_hold_button.text = "HOLD MRT: " + ("ON" if hold_arrivals else "OFF")
 	_clock.text = "%s  ·  D%d  ·  %d/%d" % [world.clock_text(), world.clock_day(), world.trains.values().filter(func(t): return t.service_complete).size(), world.trains.size()]
 	for id in _roster:
 		var t: Train = world.trains[id]
@@ -241,15 +276,15 @@ func _refresh() -> void:
 	_map.destination = target
 	_map.queue_redraw()
 	_timetable.refresh(selected_train)
-	_objective.text = "MEET AT MARUTHUR  •  Route T1 into P2 / loop and T2 into P1 / main. Check M for each service's departure, stop blocks and timings.    D hide"
+	_objective.text = "SIX-TRAIN CORRIDOR · 21.64 km · 4 platform roads per station · Auto dispatch follows booked platforms; HOLD MRT queues arrivals. M timetable · D hide"
 	if world.trains.T1.stock_kind == "wap7":
-		_objective.text = "WAP-7 LIGHT ENGINE  •  Drive 30306 to Kadalur. Initial route cleared to Maruthur main. C opens onward routes; R changes cabs at a stand. F2 returns to MEMUs."
+		_objective.text = "WAP-7 LIGHT ENGINE · Initial route to Maruthur P1. C opens onward routes; R changes cabs at a stand. F2 returns to the six MEMUs."
 	elif world.trains.T1.stock_kind == "lhb":
-		_objective.text = "SOUTHERN COAST EXPRESS  •  WAP-7 + B1–B4 (3A) + A1–A2 (2A). C sets onward routes. V passenger · PgUp/PgDn coach · ←/→ bay · Home seat · B berths."
+		_objective.text = "SOUTHERN COAST AC SPECIAL · WAP-7 + 20 LHB · 500.562 m · C onward routes · V passenger · PgUp/PgDn coach · Home seat · B berths"
 	if timetable_open:
 		_objective.text = "AI waits for departure time, completes each block stop and dwell, then waits for a dispatcher route. Arrival / departure times use a 24-hour clock."
 	_restart.visible = world.trains.values().all(func(t): return t.service_complete)
 	if _restart.visible:
-		_objective.text = "ARRIVED  •  Change ends with R, set the return routes and drive Cab 2, or restart the scenario." if world.trains.T1.stock_kind == "wap7" else "SERVICES COMPLETE  •  Both trains arrived. Restart services for another meet, or select a train and change ends at a stand."
+		_objective.text = "ARRIVED  •  Change ends with R, set the return routes and drive Cab 2, or restart the scenario." if world.trains.T1.stock_kind == "wap7" else "SERVICES COMPLETE  •  All services arrived. Restart the timetable, or select a train and change ends at a stand."
 		if world.trains.T1.stock_kind == "lhb":
 			_objective.text = "ARRIVED AT KADALUR  •  All 20 coaches are in the platform. Explore with V, or RESTART SERVICES. A locomotive run-round is required for a return working."

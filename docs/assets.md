@@ -2,6 +2,16 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-09-30 corridor pass: `*_yard.glb` and `*_yard.blend` station variants are
+original four-platform adaptations of the same architectural references, built
+with `build_stations.py -- --yards`. `game/corridor_scenery.gd` supplies original
+instanced houses/shops, roads, boundary walls, bridges, culverts, drainage, cable
+troughs, paddy bunds and irrigation; the water shader adds procedural rice planting.
+Point machinery, fouling markers, A plates and platform route indicators are
+original geometry in `world_view.gd`. Existing registered CC0 textures/vegetation
+are reused. No new third-party assets or photograph pixels were downloaded or
+incorporated. Live review captures are `art/stations/corridor_*.png`.
+
 2026-09-30 station/scale pass: `assets/models/stations/*.glb` and the editable
 `art/stations/*.blend` are original photo-referenced architectural kits, built by
 `tools/blender/build_stations.py`. `game/shaders/station_surface.gdshader` supplies

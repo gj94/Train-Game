@@ -20,7 +20,7 @@ func add_node(id: String, pos: Vector3) -> void:
 
 ## `mid_points` are the polyline points between the two node positions.
 ## `speed_limit` is in m/s.
-func add_edge(id: String, a: String, b: String, mid_points: Array = [], speed_limit: float = 100.0 / 3.6) -> void:
+func add_edge(id: String, a: String, b: String, mid_points: Array = [], speed_limit: float = 100.0 / 3.6, allowed_dir: int = 0) -> void:
 	assert(not edges.has(id), "duplicate edge " + id)
 	assert(nodes.has(a) and nodes.has(b), "edge %s: unknown node" % id)
 	var pts := PackedVector3Array()
@@ -32,7 +32,7 @@ func add_edge(id: String, a: String, b: String, mid_points: Array = [], speed_li
 	cum.append(0.0)
 	for i in range(1, pts.size()):
 		cum.append(cum[i - 1] + pts[i].distance_to(pts[i - 1]))
-	edges[id] = {id = id, a = a, b = b, points = pts, cum = cum, length = cum[cum.size() - 1], speed_limit = speed_limit}
+	edges[id] = {id = id, a = a, b = b, points = pts, cum = cum, length = cum[cum.size() - 1], speed_limit = speed_limit, allowed_dir = allowed_dir}
 	nodes[a].edges.append(id)
 	nodes[b].edges.append(id)
 
@@ -83,7 +83,14 @@ func next(edge_id: String, dir: int) -> Dictionary:
 				break
 	if out == "":
 		return {}
+	var travel := 1 if edges[out].a == n else -1
+	if not allows(out, travel):
+		return {}
 	return {edge = out, dir = 1 if edges[out].a == n else -1, switch = sw_id, against = against}
+
+
+func allows(edge_id: String, dir: int) -> bool:
+	return edges[edge_id].allowed_dir == 0 or edges[edge_id].allowed_dir == dir
 
 
 func position(edge_id: String, s: float) -> Vector3:

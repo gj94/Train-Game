@@ -49,7 +49,8 @@ func _station(station: Dictionary) -> void:
 			var p := Vector3(r.get_center().x + offset, 4.65, z)
 			_box(Vector3(1.0, 1.0, .10), p, Color("153c68"))
 			for side in [-1, 1]:
-				_text(str(index + 1), p + Vector3(0, 0, side * .065), .65, Color("f4f0df"), 0.0 if side > 0 else PI)
+				var number: int = station.platform_numbers[index][0 if side < 0 else 1] if station.has("platform_numbers") else index+1
+				_text(str(number), p + Vector3(0, 0, side * .065), .65, Color("f4f0df"), 0.0 if side > 0 else PI)
 		for offset in [62, -104]:
 			for side in [-1, 1]:
 				var p := Vector3(r.get_center().x + offset, 3.84, z + side * 1.425)

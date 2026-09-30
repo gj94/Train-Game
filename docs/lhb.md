@@ -27,13 +27,13 @@ the real-scale station pass on 30 September 2026; see [stations.md](stations.md)
 5. **V** from a passenger view returns to the locomotive and takes manual control
    with the handle at coast. **Tab** leaves either interior for the exterior;
    Tab from the exterior takes the driver's cab. **F** follows the full rake.
-6. Set **MRT-SE1 → KDP-H**, then **KDP-H → BUFFER:KDP_B** using **C / D** and the
+6. Set **MRT-E1 → E-AE1**, then **KDP-H → BUFFER:KDP_B1** using **C / D** and the
    route desk. Without those routes, the AI stops safely before Maruthur's red
    starter. Brake before Kadalur's buffers; the whole rake fits the terminal.
 7. This is an **outbound working**. **R** explains that a locomotive run-round is
    needed instead of swapping the passenger end into a driving cab. At arrival,
    use **RESTART SERVICES** for another trip. Run-round/shunting is not simulated.
-   **F2** selects the WAP-7 light engine; **F3** returns to the original MEMU meet.
+   **F2** selects the WAP-7 light engine; **F3** returns to the six-service MEMU corridor.
    Scenario changes restart the working. **F1** shows all controls.
 
 ## Blender files
@@ -133,7 +133,11 @@ native masters/studios out of the game import. Then run:
 ```
 
 Asset checks count 72/52 actual berths and four correctly spaced axle pivots in each
-export. Scene checks exercise W/S, emergency/release, all 30 physical/sound axle
+export. Scene checks exercise W/S, emergency/release, all 86 physical/sound axle
 positions, passenger selection and listener placement, both vestibules, berth
 deployment, safe arrival, the run-round guard and return to the MEMU scenario.
 The existing WAP-7 round trip and full two-MEMU meet checks also pass.
+
+The default route is now the 21.64 km double-line corridor. The legacy scene check
+retains the small test layout; the headless corridor suite separately verifies the
+full 500.562 m rake berthing and arriving safely on the expanded route.

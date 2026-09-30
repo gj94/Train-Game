@@ -1,7 +1,9 @@
 extends Node3D
-## Two-train station meet: rendering and controls consume the independent sim.
+## Southern corridor: rendering and controls consume the independent sim.
 
 const FirstLine := preload("res://sim/layouts/first_line.gd")
+const Corridor := preload("res://sim/layouts/southern_corridor.gd")
+const DispatchPlan := preload("res://sim/dispatch_plan.gd")
 const WorldView := preload("res://game/world_view.gd")
 const TrainView := preload("res://game/train_view.gd")
 const Wap7View := preload("res://game/wap7_train_view.gd")
@@ -29,12 +31,14 @@ var time_scale := 1
 var _last_event := 0
 var wap7_drive := false
 var lhb_drive := false
+var _dispatch_tick := 0.0
 
 
 func _ready() -> void:
 	wap7_drive = get_tree().get_meta("wap7_drive", "--wap7" in OS.get_cmdline_user_args())
 	lhb_drive = get_tree().get_meta("lhb_drive", "--lhb" in OS.get_cmdline_user_args())
-	world = FirstLine.build_lhb() if lhb_drive else (FirstLine.build_wap7() if wap7_drive else FirstLine.build_dispatch())
+	var layout = FirstLine if get_tree().get_meta("small_test_layout", false) else Corridor
+	world = layout.build_lhb() if lhb_drive else (layout.build_wap7() if wap7_drive else layout.build_dispatch())
 	train = world.trains.T1
 	wv = WorldView.new()
 	wv.build(world, self)
@@ -91,7 +95,7 @@ func _ready() -> void:
 		hud.toast("WAP-7 + LHB · W power / S brake · V passenger · Tab exterior · F1 controls")
 	elif wap7_drive:
 		_enter_cab()
-		hud.toast("WAP-7 30306 · W power / S brake · Tab exterior · C onward routes · F2 MEMU meet")
+		hud.toast("WAP-7 30306 · W power / S brake · Tab exterior · C onward routes · F2 MEMU services")
 	else:
 		hud.toast("Set routes from the dispatch board. F2 drives WAP-7; F3 adds LHB coaches.")
 
@@ -108,6 +112,10 @@ func _physics_process(delta: float) -> void:
 		train.automatic = false
 		train.controller = clampf(train.controller + dir * HANDLE_RATE * delta, -1.0, 1.0)
 	for i in time_scale:
+		_dispatch_tick += delta
+		if dispatcher.auto_dispatch and _dispatch_tick >= .5:
+			_dispatch_tick = 0
+			DispatchPlan.update(world, dispatcher.hold_arrivals)
 		world.step(delta)
 
 

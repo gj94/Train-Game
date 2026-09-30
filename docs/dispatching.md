@@ -1,95 +1,135 @@
-# Southern Line: dispatching and station meets
+# Southern corridor: dispatching six trains
 
-The game starts with two eight-car MEMUs, both under AI control and stopped at red.
-T1 runs Chennapuram → Kadalur; T2 runs Kadalur → Chennapuram.
-Maruthur has a main platform road and a bidirectional passing loop, long enough to hold each complete rake clear of the points.
-The world begins at **D1 08:00:00** on a 24-hour clock. T1 departs at **08:01**, T2 at **08:02**.
-Press **M** or **TIMETABLE** to inspect the selected service's blocks, minutes from origin, planned/actual times and dwell.
-The schedule format and overnight examples are in [timetables.md](timetables.md).
+The default route spans **21.64 km** between terminal buffers (about 22 km), with
+two directional main tracks and **four 600 m platform faces at each station**.
+Chennapuram, Maruthur and Kadalur use the Kumbakonam, Mayiladuthurai and Thanjavur
+architectural references described in [stations.md](stations.md). The yards and
+route remain fictional, with realistic metre-scale train and platform lengths.
 
-## First playtest
+Six eight-car MEMUs start under AI control at D1 08:00. Departures are paired at
+08:01, 08:02 and 08:04, calling at Maruthur at +12 minutes with a three-minute dwell,
+and booked at the other terminus at +28 minutes. See [timetables.md](timetables.md).
 
-Run the main scene with Godot F5, or `powershell -ExecutionPolicy Bypass -File tools/godot.ps1 run`.
-The right-hand route desk has an entrance selector, an exit selector and **SET ROUTE**.
-You can select entrances on the schematic or by clicking a 3D signal. Points align automatically when the route is accepted.
+## Reproduce the busy-station test
 
-Set these four routes (in any order):
+1. Run the main scene (F5). On the board enable **AUTO DISPATCH** and **HOLD MRT**
+   before the first departure. Auto dispatch requests the booked routes through
+   the same interlocking used by the manual desk. HOLD MRT keeps Maruthur's
+   departures at red; it does not cancel routes already set.
+2. Press **2** for the Maruthur overview and choose **MRT yard** on the schematic.
+   Press **T** twice for x4 time. The expanded route takes several real minutes.
+3. Watch **T1 on P1, T3 on P2, T2 on P3 and T4 on P4**. All four will berth
+   together. T5 and T6 queue outside the station at red. At roughly 08:16, all
+   four platform roads should be red on the diagram with two trains held outside.
+4. Select **MRT-HE**, then **MRT-E1**: an occupied-platform request must be refused,
+   identifying the occupying train. Check locked point markers and live aspects.
+5. Turn **HOLD MRT off**. Trains depart after their dwell, tails clear the points,
+   the following pair enter the freed platforms, and all six reach their booked
+   terminal roads. The desk shows **6 / 6**, with **RESTART SERVICES** available.
+6. Select each of the six roster entries; **M** shows that service's booked and
+   actual times, **Tab** takes its cab, and **A** hands driving back to AI.
 
-| Entrance | Exit | Movement |
-|---|---|---|
-| CPM-S1 | MRT-HE | T1 leaves Chennapuram |
-| MRT-HE | MRT-SE2 | T1 enters Maruthur P2 / loop |
-| KDP-S | MRT-HW | T2 leaves Kadalur |
-| MRT-HW | MRT-SW1 | T2 enters Maruthur P1 / main |
+The automated full-scene test performs this sequence and checks that no signal
+overshoot, collision intervention or point run-through event occurs.
 
-Both trains must remain stopped until their scheduled departures, even with clear signals. Press **T** twice for ×4 time, and **2** to watch Maruthur. Both trains should stop about 6 m before their starters, on different roads. The main and loop tracks on the board turn red while occupied. The single-line approaches become grey after the tails clear them.
+## Dispatch manually
 
-Maruthur is a mandatory call at **+4 minutes** from each origin departure, with a **1-minute dwell**. Early trains wait until their booked departure (T1 08:06, T2 08:07); late trains still dwell for a full minute. Each arrival is recorded in the timetable. Signals continue to control authority independently of the clock.
+Leave AUTO DISPATCH off. Signals on plain mainline blocks re-clear automatically;
+you control station homes and platform starters. Automatic signals have A plates,
+and their route buttons are disabled. Terminal crossovers connect either mainline
+to all four platform roads. Maruthur's normal eastbound platforms are P1/P2,
+westbound P3/P4. Its two arrival fans are independent; departures from two roads
+onto the same running line conflict and must be dispatched successively.
 
-Then set:
+| Train | Origin route | Maruthur arrival | Maruthur departure | Terminal arrival |
+|---|---|---|---|---|
+| T1 | CPM-E1 → W-AE1 | MRT-HE → MRT-E1 | MRT-E1 → E-AE1 | KDP-H → BUFFER:KDP_B1 |
+| T2 | KDP-W3 → E-AW1 | MRT-HW → MRT-W3 | MRT-W3 → W-AW1 | CPM-H → BUFFER:CPM_B3 |
+| T3 | CPM-E2 → W-AE1 | MRT-HE → MRT-E2 | MRT-E2 → E-AE1 | KDP-H → BUFFER:KDP_B2 |
+| T4 | KDP-W4 → E-AW1 | MRT-HW → MRT-W4 | MRT-W4 → W-AW1 | CPM-H → BUFFER:CPM_B4 |
+| T5 | CPM-E3 → W-AE1 | MRT-HE → MRT-E1 | MRT-E1 → E-AE1 | KDP-H → BUFFER:KDP_B3 |
+| T6 | KDP-W2 → E-AW1 | MRT-HW → MRT-W3 | MRT-W3 → W-AW1 | CPM-H → BUFFER:CPM_B2 |
 
-| Entrance | Exit displayed in the desk | Movement |
-|---|---|---|
-| MRT-SE2 | KDP-H | T1 leaves the loop eastbound |
-| KDP-H | Platform / KDP_B | T1 enters Kadalur |
-| MRT-SW1 | CPM-H | T2 leaves the main road westbound |
-| CPM-H | Platform / CPM_B1 | T2 enters Chennapuram P1 |
+Routes sharing an entrance, destination block or point cannot be set together.
+Set each subsequent movement once the previous tail has cleared the throat.
+A home can route a following train to a different free platform while the first
+train remains berthed. The occupied berth itself remains protected by occupancy.
+The AI refuses an unbooked platform and waits for a route to its scheduled stop.
 
-Set these onward routes as soon as they become available. Both trains must finish the station call before moving, even with clear starters. Both should reach their terminal stopping markers gently, with arrival booked at **+8 minutes** (T1 08:09, T2 08:10). The desk reports **2 / 2** and offers **RESTART SERVICES**. The timetable records the actual arrivals and minutes early/late.
+## Board and controls
 
-## Safety checks to try
-
-- Before either train reaches Maruthur, set MRT-HE → MRT-SE2. Request MRT-HW → MRT-SW2: the second route must be refused because it reserves the same platform block. Use MRT-SW1 for the independent arrival instead.
-- While a train occupies a block, choose a route into it. **SET ROUTE** is disabled and the desk identifies the occupied block and train.
-- Click a point marker beneath an active route. It must refuse to move. The points behind a train unlock only after its tail has cleared the turnout; its occupied platform block remains reserved.
-- Set an unused route and press **PUT TO RED**. It should release immediately when no train is approaching. Cancel under a moving approach and the signal goes red while the points remain locked until the train stops safely.
-- In manual control, try driving through red with protection on. An emergency intervention stops the train before the signal and logs an attempted SPAD. **Space** releases the emergency brake only at a stand.
-- Leave the origin signal red past its departure time: AI must wait, then depart after you set the route. Its later booked times remain anchored to the original departure.
-- Route T1 towards MRT-SE1 instead of its booked MRT-SE2: it must wait at MRT-HE and report that its route must serve `mrt_loop`. Cancel the unused wrong route and set MRT-SE2 to continue.
-- Pause with **Esc**: the world clock, timetable and trains must all freeze. Resume and use **T** to check the clock and trains accelerate together.
-
-## Driving and views
+The schematic is generated from the real track graph. **Whole line** compresses
+rural distances; the three yard buttons enlarge points, platforms and signals.
+Red tracks are occupied, mint tracks reserved, amber points locked, and white
+tracks preview the selected route. Click a train label to follow it, a signal to
+select its entrance. Click a point marker in the 3D world to request a manual throw. Hover on the board for signal IDs.
+The right panel retains all six service buttons and route controls when viewing
+the timetable. Refusal reasons explain occupied blocks and conflicting locks.
 
 | Control | Action |
 |---|---|
-| Service buttons | Follow T1 or T2; retain each train's AI/manual state |
-| Tab / TAKE CAB | Enter selected MEMU's detailed cab and take manual control; Tab again returns to overview |
-| A | Toggle selected train between AI and manual; AI obeys routes but never sets them |
-| W / S, arrow up/down | Move the power/brake controller and take manual control |
+| D | Show/hide dispatch board and desk |
+| M / TIMETABLE | Selected service's timetable / diagram |
+| C | Select the next signal; does not clear it |
+| Tab / TAKE CAB | Selected train's driving cab / overview |
+| A | AI/manual driver; route automation is a separate desk option |
+| W / S, Up / Down | Power/brake and take manual control |
 | X | Coast and take manual control |
 | Space | Emergency brake / release at stand |
-| R | Change ends at stand after completing the timetable; return movement is unscheduled |
-| C | Open the route desk on the next signal; this does **not** clear it |
-| D | Show/hide dispatch board and route desk |
-| M / TIMETABLE | Toggle map and selected service's timetable; route controls stay available |
-| Esc / PAUSE | Pause/resume simulation and audio |
-| T | ×1 / ×2 / ×4 simulation time |
+| R | Change ends at stand after timetable completion; LHB requires a run-round |
+| Esc / PAUSE | Pause world clock, trains and audio |
+| T | x1 / x2 / x4 simulation time |
 | 1 / 2 / 3 | Station overview |
-| F | Follow selected train in overview |
+| F | Follow selected train |
+| F2 / F3 | WAP-7 light engine / full LHB rake, toggle back to MEMU services |
 | F1 | Full help |
 
-Overview: right-drag orbits, left-drag pans, wheel zooms. Cab: right-drag looks around, wheel changes field of view. The existing approved sound controls remain available; rail-joint debug bars now start hidden (**J**).
+Overview uses right-drag to orbit, left-drag to pan, wheel to zoom. Cab uses
+right-drag to look and wheel for field of view. F2/F3 also use the expanded route.
+The 500.562 m LHB rake fits wholly alongside each 600 m platform.
 
-## Implemented rules
+## Signalling and checks
 
-- A signal cannot show a proceed aspect without a set route, correctly aligned locked points, and clear protected blocks.
-- Red: no authority or occupied block. Yellow: route clear but the next signal is red, or the route ends at buffers. Green: the next signal also has a proceed aspect.
-- Setting a route validates every block and point before changing anything. Opposing and crossing reservations are refused, including routes sharing points but not destination blocks.
-- Signal passage records the train that owns the route and returns the signal to red. Cancelling in the gap between the signal and first point cannot release it underneath that train.
-- Blocks are conservative **track-edge sections**; head and tail both count. Point clearance is released separately from the station berth so opposing trains can pass.
-- AI uses braking curves for downstream red signals, speed reductions, occupied blocks and terminal buffers. A hard block-boundary safeguard remains enabled even when manual red-signal protection is switched off.
-- Timetabled AI also brakes for every scheduled block stop, holds for departure and dwell, and refuses a route that bypasses its next booked block. It never sets routes or points. Manual driving retains the timetable and records arrival/departure when the required stop is served.
-- Maruthur starters are 100 m inside the points, with 90 m turnout clearance zones. Chennapuram's junction is beyond both straight platform roads, with starters 130 m before the throat and 105 m clearance. Small test-layout points use 12 m. New layouts should specify suitable clearance distances.
+- Left-hand double-line running, six-metre mainline centres, four sections per
+  direction between stations, 110 km/h mainline, 65 km/h normal platform roads,
+  30 km/h loops/crossovers. These are chosen layout dimensions and operating values.
+- Red means no valid clear authority. Yellow means the route is clear but its next
+  signal is red (or it ends at buffers). Green requires the next signal to proceed.
+- Homes stand 250 m before the first points. Plain-line automatic signals are also
+  set back 250 m from their edge ends; reservations include that space beyond the
+  next signal. Blocks conservatively cover whole graph edges, including train tails.
+- Point alignment and reservations validate atomically. Signal passage assigns the
+  movement owner and restores red. Points release only after tail clearance: 195 m
+  at platform fans, 155 m at terminal crossover points. Starters stand 270 m inside
+  the platform edge ends; the AI stopping marker is another 6 m before the signal.
+- Try **MRT-E1 → E-AE1**, then **MRT-E2 → E-AE1**. The second must refuse while the
+  first reserves their merging throat. Independent opposite-direction arrivals
+  **MRT-HE → MRT-E1** and **MRT-HW → MRT-W3** may coexist.
+- **PUT TO RED** releases an unused route immediately if no train approaches.
+  Cancellation under an approaching train retains locks until it is safe to release.
+- AI braking respects red signals, occupied blocks, limits, scheduled stops and
+  buffers. Timetables never override signal authority. Check pause, early departure
+  holds, three-minute actual dwell after a late arrival, and the recorded delay in M.
 
-This scenario has two dated timetabled services and completion/restart. Daily recurrence, scoring and save/load remain future gameplay work. Signals require a fresh dispatcher route after each train; there is no automatic re-clearing.
+Principles were checked against [RDSO automatic signalling guidance](https://rdso.indianrailways.gov.in/uploads/Handbook%20on%20Automatic%20Signalling%20with%20MSDAC%20using%20OFC_August%202021.pdf)
+and [Railway Board signalling essentials](https://indianrailways.gov.in/railwayboard/uploads/directorate/signal/2023/7-Essential%20of%20Signalling.pdf).
+This is a three-aspect game implementation with whole-edge blocks, not a replica
+of a particular real station's interlocking. Calling-on, degraded working, shunting,
+relay failures, daily recurrence, scoring and save/load are not implemented.
 
-## Validation and visuals
+## Validation
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/godot.ps1 test
-& .\.local\godot\Godot_v4.7.2-stable_win64_console.exe --headless --path . --script res://tools/check_dispatch_ui.gd
+& ./.local/godot/Godot_v4.7.2-stable_win64_console.exe --headless --path . --script res://tools/check_corridor_playable.gd
+& ./.local/godot/Godot_v4.7.2-stable_win64_console.exe --headless --path . --script res://tools/check_stations.gd
 ```
 
-74 unit/regression tests plus the full-scene integration check passed. The latter exercises route buttons, cab handoff, cancellation, scheduled departures, both arrivals, timetable cells/selection, actual times, midnight display, completion UI and imported texture mipmaps. Graphical captures checked the overview, detailed cab, Maruthur meet, and timetable before departure/at the meet/after completion. Actual handling and audio balance still need the user's playtest.
-
-The art pass includes a dark route desk, live schematic, station furniture and passengers, footbridge, villages and access roads, grass blades, revised foliage, reflective flooded fields, warm daylight, MEMU destination boards and headlights. Mipmaps are enabled on the world PBR textures; Forward+, 8× MSAA, 16× anisotropic filtering, high SSIL and 8K directional shadows are retained/enabled for the intended powerful GPU. No new third-party assets were downloaded.
+The suite passes 98 tests, including seven new corridor cases: directional tracks,
+independent/conflicting routes, terminal platform access, continuous turnout paths,
+full-length LHB berthing, WAP-7 round trip and six-service station saturation/recovery. The scene check
+adds the real roster, route chooser, timetable and completion UI. Earlier two-train,
+WAP-7 and LHB scene checks retain the small layout as an explicit regression fixture.
+The WAP-7 also completes an outward/return run on the expanded corridor.
+Reviewed live captures are under `art/stations/corridor_*.png`. Final handling,
+visual performance and audio balance remain part of the user's playtest.
