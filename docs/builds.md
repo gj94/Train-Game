@@ -10,13 +10,15 @@ packaging immediately after those same checks have passed on the current code.
 Do not run an export while the editor is importing.
 
 The preset includes runtime resources, `sim/timetables/*.json` and
-`assets/models/ported/manifest.json`; it excludes
+`assets/models/ported/manifest.json` and BODY V2 sound provenance; it excludes
 development tools, tests, editor addons, documentation, original Blender art,
 and the user's raw `TrainAudio.mp3` / `TrainVideo.mp4` reference recordings.
 The README and selected guides are copied alongside the executable separately.
 Keep the EXE and PCK together. No development tools are required on the other PC.
 The renderer and graphics quality are the project's existing ones. Current sound
 voicing and the close-up motion playtest are documented in `guides/track.md`.
+The active BODY V2 bank uses lossless 48 kHz PCM. The build runs
+`tools/check_body_v2_audio.gd` against the actual native players at 0/30/71.6/120 km/h.
 
 ## Export templates on this PC
 

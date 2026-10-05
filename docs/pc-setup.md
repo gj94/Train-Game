@@ -78,13 +78,15 @@ git -c safe.directory=D:/ClaudeWS/train-game status
 Global Git settings were not changed. No remote was added.
 The sound lab is present at `D:\ClaudeWS\railway-clang-simulator`.
 Its export script defaults to the sibling train-game folder.
-Current sound (6 October): the approved joint-video synthetic reconstruction,
-exported as 14 pairs of separate wheel strikes plus rolling noise, TRACK_ONLY enabled.
-Pitch stays unchanged; actual axle/joint positions determine timing at every speed.
-The sibling's `tools/fit-joint-video.js` owns `profiles/joint-video.json`;
-regenerate the game bank with `node tools/export-joint-video-godot.js D:/ClaudeWS/train-game`.
-Never edit generated WAVs/constants. The previous physical-ICF exporter is retained
-for historical previews and must not be used to tune the active bank.
+Current sound (6 October): the complete approved BODY V2 website mix, with eight
+full-length impacts and per-bogie rolling, TRACK_ONLY enabled. Impact pitch stays
+unchanged; actual axle/joint positions determine timing at every speed.
+The sibling's `profiles/platform-body-v2/` preserves the approved source and hashes;
+regenerate with `node tools/export-body-v2-godot.mjs D:/ClaudeWS/train-game`.
+The exporter preserves original PCM, derives channel-routed copies for native
+spatial playback, and enforces lossless imports at 48 kHz. See `docs/body-v2-audio.md`.
+Never edit generated WAVs/constants. The joint-video and physical-ICF exporters
+are historical and must not be used to tune the active bank.
 Axle geometry follows the selected stock; the default is WAP-7 with mixed LHB coaches.
 
 ## Reinstall on another PC

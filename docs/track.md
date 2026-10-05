@@ -47,29 +47,30 @@ user's approved sound calibration; it is not a claim that modern Indian mainline
 have exposed joints every 13 m. The same convention continues through the fictional
 pointwork rather than introducing an unrelated audio rhythm there.
 
-The active sound now uses the user's approved reconstruction of `TrainVideo.mp4`:
-**14 pairs of individual strikes**, with a separate fitted rolling layer. The
-sibling Railway Sound Lab's `tools/fit-joint-video.js` builds its profile and
-`tools/export-joint-video-godot.js` exports `joint_video_*.wav` and
-`game/joint_video_model_data.gd`. Do not edit these generated files directly.
-Each 133.5 ms strike contains one reviewed wheel contact. The same variant pair
-serves both axles of a bogie at a given joint; variants retain the approved sound's
-natural tone and strength, replacing the earlier extra -4 semitone / +5 dB tuning.
+The active sound uses the complete user-approved **BODY V2 website mix** from
+`platform-body-v2-approved-20261006-022055`, replacing the earlier joint-video
+adapter. Eight lossless 48 kHz impact variants retain their full **341.333 ms**
+decay and **21.333 ms** pre-contact attack. Each bogie emits the approved rolling
+bed with its original phase staggering, distance law and power normalization.
+There is no added reverb, metallic oscillator or impact pitch/speed gain.
+The sibling Railway Sound Lab owns `tools/export-body-v2-godot.mjs` and
+`profiles/platform-body-v2/`; do not edit generated WAVs/constants directly.
+Source, mix rules and validation are detailed in [`body-v2-audio.md`](body-v2-audio.md).
 
-The scheduler evaluates actual axle positions in both directions, with a 17.415 ms
-kernel lead and late-start compensation. Playback pitch stays constant as speed
-changes; the contact gaps follow distance divided by speed. An LHB's 2.56 m axle
-pair therefore sounds 0.3072 / 0.1536 / 0.0768 seconds apart at 30 / 60 / 120 km/h.
-The same wheel meets the existing 13 m joints every 1.56 / 0.78 / 0.39 seconds.
-Other axles contribute their own contacts according to the selected formation.
-The source video's speed is unknown and its original timing/audio-video lag is
-not embedded in the game. This update retains the existing joint geometry; a
-single-joint video cannot determine the spacing of successive track joints.
+As in the website, **one listening joint** supplies impacts near the observer.
+It is selected from the existing visible gaps; all surrounding joints are not
+mixed together. This preserves the approved passing-rake rhythm. A stationary
+trackside view is the closest website comparison. Moving/following and onboard
+views adapt the listening joint to the camera's focus or actual position.
+The existing 13 m geometry is unchanged and is not inferred from this reference.
 
-Rolling level and impact strength follow speed and listener distance. At a stand,
-there are no new impacts and rolling fades to silence. Reduced reverb keeps attacks
-distinct. TRACK_ONLY remains enabled. Comma/period adjust second-axle balance;
-brackets adjust total track sound. J is optional diagnostics; real gaps stay visible.
+The scheduler evaluates actual axle positions in both directions. Playback pitch
+stays constant as speed changes; contact gaps follow distance divided by speed.
+An LHB's 2.56 m axle pair therefore sounds 0.3072 / 0.1536 / 0.0768 seconds apart
+at 30 / 60 / 120 km/h. Other stock uses its actual geometry. At a stand, there
+are no new impacts and rolling fades to silence. TRACK_ONLY remains enabled.
+Comma/period adjust second-axle balance (default neutral); brackets adjust total
+track sound. J is optional diagnostics; real gaps stay visible.
 
 `game/train_motion.gd` samples travelled distance along the occupied route between
 physics ticks. Bodies, bogies, wheels, camera targets and sound scheduling share
@@ -138,10 +139,10 @@ exercise actual gameplay separately.
 
 Rebuild MEMU: background Blender with `--python tools/blender/build_memu.py`.
 Run `tools/check_track.gd`, `tools/check_fleet_finish.gd`,
-`tools/check_motion_playable.gd`, `tools/check_joint_audio_playable.gd` and the normal
-headless suite. The audio check exercises actual players at 0/30/60/120 km/h;
-`-- --capture` saves Train-bus WAVs under `.local/audio-preview/` (use a working
-audio driver, e.g. `--audio-driver WASAPI` on Windows). The motion check
+`tools/check_motion_playable.gd`, `tools/check_body_v2_audio.gd` and the normal
+headless suite. The audio check exercises actual players at 0/30/71.6/120 km/h;
+`-- --capture` saves Train-bus WAVs under `.local/body-v2-ab/` (use a working
+audio driver or fixed-120-fps Movie Maker mode for offline mixing). The motion check
 also accepts `-- --clock-probe` to stress actual render/physics timing, with
 `--render-probe` for a graphical wheel-level capture; only that probe lowers
 physics ticks to 10 Hz to expose stepping on a slow test GPU.

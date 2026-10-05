@@ -1,0 +1,1231 @@
+{
+  "settings": {
+    "profile": "lhb",
+    "speed": 71.6,
+    "coaches": 20,
+    "distance": 5.8,
+    "jointStrength": 0.7,
+    "body": 0.5,
+    "ring": 0.5,
+    "rumble": 0.55,
+    "volume": 0.65,
+    "direction": 1,
+    "loop": true,
+    "showAxles": true
+  },
+  "consist": {
+    "profile": {
+      "name": "LHB express",
+      "length": 24,
+      "bodyLength": 23.54,
+      "bogieCentres": 14.9,
+      "wheelbase": 2.56,
+      "radius": 0.4575,
+      "color": 11347748,
+      "speed": 71.6,
+      "referenceStart": 15,
+      "referenceEnd": 35
+    },
+    "vehicles": [
+      {
+        "id": "locomotive",
+        "index": 0,
+        "kind": "locomotive",
+        "length": 20.56,
+        "bodyLength": 20.2,
+        "centre": 10.28
+      },
+      {
+        "id": "C01",
+        "index": 1,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 32.56
+      },
+      {
+        "id": "C02",
+        "index": 2,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 56.56
+      },
+      {
+        "id": "C03",
+        "index": 3,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 80.56
+      },
+      {
+        "id": "C04",
+        "index": 4,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 104.56
+      },
+      {
+        "id": "C05",
+        "index": 5,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 128.56
+      },
+      {
+        "id": "C06",
+        "index": 6,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 152.56
+      },
+      {
+        "id": "C07",
+        "index": 7,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 176.56
+      },
+      {
+        "id": "C08",
+        "index": 8,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 200.56
+      },
+      {
+        "id": "C09",
+        "index": 9,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 224.56
+      },
+      {
+        "id": "C10",
+        "index": 10,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 248.56
+      },
+      {
+        "id": "C11",
+        "index": 11,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 272.56
+      },
+      {
+        "id": "C12",
+        "index": 12,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 296.56
+      },
+      {
+        "id": "C13",
+        "index": 13,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 320.56
+      },
+      {
+        "id": "C14",
+        "index": 14,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 344.56
+      },
+      {
+        "id": "C15",
+        "index": 15,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 368.56
+      },
+      {
+        "id": "C16",
+        "index": 16,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 392.56
+      },
+      {
+        "id": "C17",
+        "index": 17,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 416.56
+      },
+      {
+        "id": "C18",
+        "index": 18,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 440.56
+      },
+      {
+        "id": "C19",
+        "index": 19,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 464.56
+      },
+      {
+        "id": "C20",
+        "index": 20,
+        "kind": "coach",
+        "length": 24,
+        "bodyLength": 23.54,
+        "centre": 488.56
+      }
+    ],
+    "axles": [
+      {
+        "id": "L-B1-A1",
+        "vehicle": 0,
+        "bogie": 0,
+        "index": 0,
+        "offset": 2.9299999999999993,
+        "radius": 0.546,
+        "load": 1.22
+      },
+      {
+        "id": "L-B1-A2",
+        "vehicle": 0,
+        "bogie": 0,
+        "index": 1,
+        "offset": 4.779999999999999,
+        "radius": 0.546,
+        "load": 1.22
+      },
+      {
+        "id": "L-B1-A3",
+        "vehicle": 0,
+        "bogie": 0,
+        "index": 2,
+        "offset": 6.629999999999999,
+        "radius": 0.546,
+        "load": 1.22
+      },
+      {
+        "id": "L-B2-A1",
+        "vehicle": 0,
+        "bogie": 1,
+        "index": 0,
+        "offset": 13.93,
+        "radius": 0.546,
+        "load": 1.22
+      },
+      {
+        "id": "L-B2-A2",
+        "vehicle": 0,
+        "bogie": 1,
+        "index": 1,
+        "offset": 15.78,
+        "radius": 0.546,
+        "load": 1.22
+      },
+      {
+        "id": "L-B2-A3",
+        "vehicle": 0,
+        "bogie": 1,
+        "index": 2,
+        "offset": 17.63,
+        "radius": 0.546,
+        "load": 1.22
+      },
+      {
+        "id": "C1-B1-A1",
+        "vehicle": 1,
+        "bogie": 0,
+        "index": 0,
+        "offset": 23.830000000000002,
+        "radius": 0.4575,
+        "load": 0.9
+      },
+      {
+        "id": "C1-B1-A2",
+        "vehicle": 1,
+        "bogie": 0,
+        "index": 1,
+        "offset": 26.390000000000004,
+        "radius": 0.4575,
+        "load": 0.925
+      },
+      {
+        "id": "C1-B2-A1",
+        "vehicle": 1,
+        "bogie": 1,
+        "index": 0,
+        "offset": 38.730000000000004,
+        "radius": 0.4575,
+        "load": 0.9750000000000001
+      },
+      {
+        "id": "C1-B2-A2",
+        "vehicle": 1,
+        "bogie": 1,
+        "index": 1,
+        "offset": 41.290000000000006,
+        "radius": 0.4575,
+        "load": 1
+      },
+      {
+        "id": "C2-B1-A1",
+        "vehicle": 2,
+        "bogie": 0,
+        "index": 0,
+        "offset": 47.83,
+        "radius": 0.4575,
+        "load": 1.075
+      },
+      {
+        "id": "C2-B1-A2",
+        "vehicle": 2,
+        "bogie": 0,
+        "index": 1,
+        "offset": 50.39,
+        "radius": 0.4575,
+        "load": 1.1
+      },
+      {
+        "id": "C2-B2-A1",
+        "vehicle": 2,
+        "bogie": 1,
+        "index": 0,
+        "offset": 62.730000000000004,
+        "radius": 0.4575,
+        "load": 0.925
+      },
+      {
+        "id": "C2-B2-A2",
+        "vehicle": 2,
+        "bogie": 1,
+        "index": 1,
+        "offset": 65.29,
+        "radius": 0.4575,
+        "load": 0.9500000000000001
+      },
+      {
+        "id": "C3-B1-A1",
+        "vehicle": 3,
+        "bogie": 0,
+        "index": 0,
+        "offset": 71.83,
+        "radius": 0.4575,
+        "load": 1.025
+      },
+      {
+        "id": "C3-B1-A2",
+        "vehicle": 3,
+        "bogie": 0,
+        "index": 1,
+        "offset": 74.39,
+        "radius": 0.4575,
+        "load": 1.05
+      },
+      {
+        "id": "C3-B2-A1",
+        "vehicle": 3,
+        "bogie": 1,
+        "index": 0,
+        "offset": 86.73,
+        "radius": 0.4575,
+        "load": 1.1
+      },
+      {
+        "id": "C3-B2-A2",
+        "vehicle": 3,
+        "bogie": 1,
+        "index": 1,
+        "offset": 89.29,
+        "radius": 0.4575,
+        "load": 0.9
+      },
+      {
+        "id": "C4-B1-A1",
+        "vehicle": 4,
+        "bogie": 0,
+        "index": 0,
+        "offset": 95.83,
+        "radius": 0.4575,
+        "load": 0.9750000000000001
+      },
+      {
+        "id": "C4-B1-A2",
+        "vehicle": 4,
+        "bogie": 0,
+        "index": 1,
+        "offset": 98.39,
+        "radius": 0.4575,
+        "load": 1
+      },
+      {
+        "id": "C4-B2-A1",
+        "vehicle": 4,
+        "bogie": 1,
+        "index": 0,
+        "offset": 110.73,
+        "radius": 0.4575,
+        "load": 1.05
+      },
+      {
+        "id": "C4-B2-A2",
+        "vehicle": 4,
+        "bogie": 1,
+        "index": 1,
+        "offset": 113.29,
+        "radius": 0.4575,
+        "load": 1.075
+      },
+      {
+        "id": "C5-B1-A1",
+        "vehicle": 5,
+        "bogie": 0,
+        "index": 0,
+        "offset": 119.83,
+        "radius": 0.4575,
+        "load": 0.925
+      },
+      {
+        "id": "C5-B1-A2",
+        "vehicle": 5,
+        "bogie": 0,
+        "index": 1,
+        "offset": 122.39,
+        "radius": 0.4575,
+        "load": 0.9500000000000001
+      },
+      {
+        "id": "C5-B2-A1",
+        "vehicle": 5,
+        "bogie": 1,
+        "index": 0,
+        "offset": 134.73,
+        "radius": 0.4575,
+        "load": 1
+      },
+      {
+        "id": "C5-B2-A2",
+        "vehicle": 5,
+        "bogie": 1,
+        "index": 1,
+        "offset": 137.29,
+        "radius": 0.4575,
+        "load": 1.025
+      },
+      {
+        "id": "C6-B1-A1",
+        "vehicle": 6,
+        "bogie": 0,
+        "index": 0,
+        "offset": 143.83,
+        "radius": 0.4575,
+        "load": 1.1
+      },
+      {
+        "id": "C6-B1-A2",
+        "vehicle": 6,
+        "bogie": 0,
+        "index": 1,
+        "offset": 146.39000000000001,
+        "radius": 0.4575,
+        "load": 0.9
+      },
+      {
+        "id": "C6-B2-A1",
+        "vehicle": 6,
+        "bogie": 1,
+        "index": 0,
+        "offset": 158.73,
+        "radius": 0.4575,
+        "load": 0.9500000000000001
+      },
+      {
+        "id": "C6-B2-A2",
+        "vehicle": 6,
+        "bogie": 1,
+        "index": 1,
+        "offset": 161.29,
+        "radius": 0.4575,
+        "load": 0.9750000000000001
+      },
+      {
+        "id": "C7-B1-A1",
+        "vehicle": 7,
+        "bogie": 0,
+        "index": 0,
+        "offset": 167.83,
+        "radius": 0.4575,
+        "load": 1.05
+      },
+      {
+        "id": "C7-B1-A2",
+        "vehicle": 7,
+        "bogie": 0,
+        "index": 1,
+        "offset": 170.39000000000001,
+        "radius": 0.4575,
+        "load": 1.075
+      },
+      {
+        "id": "C7-B2-A1",
+        "vehicle": 7,
+        "bogie": 1,
+        "index": 0,
+        "offset": 182.73,
+        "radius": 0.4575,
+        "load": 0.9
+      },
+      {
+        "id": "C7-B2-A2",
+        "vehicle": 7,
+        "bogie": 1,
+        "index": 1,
+        "offset": 185.29,
+        "radius": 0.4575,
+        "load": 0.925
+      },
+      {
+        "id": "C8-B1-A1",
+        "vehicle": 8,
+        "bogie": 0,
+        "index": 0,
+        "offset": 191.83,
+        "radius": 0.4575,
+        "load": 1
+      },
+      {
+        "id": "C8-B1-A2",
+        "vehicle": 8,
+        "bogie": 0,
+        "index": 1,
+        "offset": 194.39000000000001,
+        "radius": 0.4575,
+        "load": 1.025
+      },
+      {
+        "id": "C8-B2-A1",
+        "vehicle": 8,
+        "bogie": 1,
+        "index": 0,
+        "offset": 206.73,
+        "radius": 0.4575,
+        "load": 1.075
+      },
+      {
+        "id": "C8-B2-A2",
+        "vehicle": 8,
+        "bogie": 1,
+        "index": 1,
+        "offset": 209.29,
+        "radius": 0.4575,
+        "load": 1.1
+      },
+      {
+        "id": "C9-B1-A1",
+        "vehicle": 9,
+        "bogie": 0,
+        "index": 0,
+        "offset": 215.83,
+        "radius": 0.4575,
+        "load": 0.9500000000000001
+      },
+      {
+        "id": "C9-B1-A2",
+        "vehicle": 9,
+        "bogie": 0,
+        "index": 1,
+        "offset": 218.39000000000001,
+        "radius": 0.4575,
+        "load": 0.9750000000000001
+      },
+      {
+        "id": "C9-B2-A1",
+        "vehicle": 9,
+        "bogie": 1,
+        "index": 0,
+        "offset": 230.73,
+        "radius": 0.4575,
+        "load": 1.025
+      },
+      {
+        "id": "C9-B2-A2",
+        "vehicle": 9,
+        "bogie": 1,
+        "index": 1,
+        "offset": 233.29,
+        "radius": 0.4575,
+        "load": 1.05
+      },
+      {
+        "id": "C10-B1-A1",
+        "vehicle": 10,
+        "bogie": 0,
+        "index": 0,
+        "offset": 239.83,
+        "radius": 0.4575,
+        "load": 0.9
+      },
+      {
+        "id": "C10-B1-A2",
+        "vehicle": 10,
+        "bogie": 0,
+        "index": 1,
+        "offset": 242.39000000000001,
+        "radius": 0.4575,
+        "load": 0.925
+      },
+      {
+        "id": "C10-B2-A1",
+        "vehicle": 10,
+        "bogie": 1,
+        "index": 0,
+        "offset": 254.73,
+        "radius": 0.4575,
+        "load": 0.9750000000000001
+      },
+      {
+        "id": "C10-B2-A2",
+        "vehicle": 10,
+        "bogie": 1,
+        "index": 1,
+        "offset": 257.28999999999996,
+        "radius": 0.4575,
+        "load": 1
+      },
+      {
+        "id": "C11-B1-A1",
+        "vehicle": 11,
+        "bogie": 0,
+        "index": 0,
+        "offset": 263.83000000000004,
+        "radius": 0.4575,
+        "load": 1.075
+      },
+      {
+        "id": "C11-B1-A2",
+        "vehicle": 11,
+        "bogie": 0,
+        "index": 1,
+        "offset": 266.39,
+        "radius": 0.4575,
+        "load": 1.1
+      },
+      {
+        "id": "C11-B2-A1",
+        "vehicle": 11,
+        "bogie": 1,
+        "index": 0,
+        "offset": 278.73,
+        "radius": 0.4575,
+        "load": 0.925
+      },
+      {
+        "id": "C11-B2-A2",
+        "vehicle": 11,
+        "bogie": 1,
+        "index": 1,
+        "offset": 281.28999999999996,
+        "radius": 0.4575,
+        "load": 0.9500000000000001
+      },
+      {
+        "id": "C12-B1-A1",
+        "vehicle": 12,
+        "bogie": 0,
+        "index": 0,
+        "offset": 287.83000000000004,
+        "radius": 0.4575,
+        "load": 1.025
+      },
+      {
+        "id": "C12-B1-A2",
+        "vehicle": 12,
+        "bogie": 0,
+        "index": 1,
+        "offset": 290.39,
+        "radius": 0.4575,
+        "load": 1.05
+      },
+      {
+        "id": "C12-B2-A1",
+        "vehicle": 12,
+        "bogie": 1,
+        "index": 0,
+        "offset": 302.73,
+        "radius": 0.4575,
+        "load": 1.1
+      },
+      {
+        "id": "C12-B2-A2",
+        "vehicle": 12,
+        "bogie": 1,
+        "index": 1,
+        "offset": 305.28999999999996,
+        "radius": 0.4575,
+        "load": 0.9
+      },
+      {
+        "id": "C13-B1-A1",
+        "vehicle": 13,
+        "bogie": 0,
+        "index": 0,
+        "offset": 311.83000000000004,
+        "radius": 0.4575,
+        "load": 0.9750000000000001
+      },
+      {
+        "id": "C13-B1-A2",
+        "vehicle": 13,
+        "bogie": 0,
+        "index": 1,
+        "offset": 314.39,
+        "radius": 0.4575,
+        "load": 1
+      },
+      {
+        "id": "C13-B2-A1",
+        "vehicle": 13,
+        "bogie": 1,
+        "index": 0,
+        "offset": 326.73,
+        "radius": 0.4575,
+        "load": 1.05
+      },
+      {
+        "id": "C13-B2-A2",
+        "vehicle": 13,
+        "bogie": 1,
+        "index": 1,
+        "offset": 329.28999999999996,
+        "radius": 0.4575,
+        "load": 1.075
+      },
+      {
+        "id": "C14-B1-A1",
+        "vehicle": 14,
+        "bogie": 0,
+        "index": 0,
+        "offset": 335.83000000000004,
+        "radius": 0.4575,
+        "load": 0.925
+      },
+      {
+        "id": "C14-B1-A2",
+        "vehicle": 14,
+        "bogie": 0,
+        "index": 1,
+        "offset": 338.39,
+        "radius": 0.4575,
+        "load": 0.9500000000000001
+      },
+      {
+        "id": "C14-B2-A1",
+        "vehicle": 14,
+        "bogie": 1,
+        "index": 0,
+        "offset": 350.73,
+        "radius": 0.4575,
+        "load": 1
+      },
+      {
+        "id": "C14-B2-A2",
+        "vehicle": 14,
+        "bogie": 1,
+        "index": 1,
+        "offset": 353.28999999999996,
+        "radius": 0.4575,
+        "load": 1.025
+      },
+      {
+        "id": "C15-B1-A1",
+        "vehicle": 15,
+        "bogie": 0,
+        "index": 0,
+        "offset": 359.83000000000004,
+        "radius": 0.4575,
+        "load": 1.1
+      },
+      {
+        "id": "C15-B1-A2",
+        "vehicle": 15,
+        "bogie": 0,
+        "index": 1,
+        "offset": 362.39,
+        "radius": 0.4575,
+        "load": 0.9
+      },
+      {
+        "id": "C15-B2-A1",
+        "vehicle": 15,
+        "bogie": 1,
+        "index": 0,
+        "offset": 374.73,
+        "radius": 0.4575,
+        "load": 0.9500000000000001
+      },
+      {
+        "id": "C15-B2-A2",
+        "vehicle": 15,
+        "bogie": 1,
+        "index": 1,
+        "offset": 377.28999999999996,
+        "radius": 0.4575,
+        "load": 0.9750000000000001
+      },
+      {
+        "id": "C16-B1-A1",
+        "vehicle": 16,
+        "bogie": 0,
+        "index": 0,
+        "offset": 383.83000000000004,
+        "radius": 0.4575,
+        "load": 1.05
+      },
+      {
+        "id": "C16-B1-A2",
+        "vehicle": 16,
+        "bogie": 0,
+        "index": 1,
+        "offset": 386.39,
+        "radius": 0.4575,
+        "load": 1.075
+      },
+      {
+        "id": "C16-B2-A1",
+        "vehicle": 16,
+        "bogie": 1,
+        "index": 0,
+        "offset": 398.73,
+        "radius": 0.4575,
+        "load": 0.9
+      },
+      {
+        "id": "C16-B2-A2",
+        "vehicle": 16,
+        "bogie": 1,
+        "index": 1,
+        "offset": 401.28999999999996,
+        "radius": 0.4575,
+        "load": 0.925
+      },
+      {
+        "id": "C17-B1-A1",
+        "vehicle": 17,
+        "bogie": 0,
+        "index": 0,
+        "offset": 407.83000000000004,
+        "radius": 0.4575,
+        "load": 1
+      },
+      {
+        "id": "C17-B1-A2",
+        "vehicle": 17,
+        "bogie": 0,
+        "index": 1,
+        "offset": 410.39,
+        "radius": 0.4575,
+        "load": 1.025
+      },
+      {
+        "id": "C17-B2-A1",
+        "vehicle": 17,
+        "bogie": 1,
+        "index": 0,
+        "offset": 422.73,
+        "radius": 0.4575,
+        "load": 1.075
+      },
+      {
+        "id": "C17-B2-A2",
+        "vehicle": 17,
+        "bogie": 1,
+        "index": 1,
+        "offset": 425.28999999999996,
+        "radius": 0.4575,
+        "load": 1.1
+      },
+      {
+        "id": "C18-B1-A1",
+        "vehicle": 18,
+        "bogie": 0,
+        "index": 0,
+        "offset": 431.83000000000004,
+        "radius": 0.4575,
+        "load": 0.9500000000000001
+      },
+      {
+        "id": "C18-B1-A2",
+        "vehicle": 18,
+        "bogie": 0,
+        "index": 1,
+        "offset": 434.39,
+        "radius": 0.4575,
+        "load": 0.9750000000000001
+      },
+      {
+        "id": "C18-B2-A1",
+        "vehicle": 18,
+        "bogie": 1,
+        "index": 0,
+        "offset": 446.73,
+        "radius": 0.4575,
+        "load": 1.025
+      },
+      {
+        "id": "C18-B2-A2",
+        "vehicle": 18,
+        "bogie": 1,
+        "index": 1,
+        "offset": 449.28999999999996,
+        "radius": 0.4575,
+        "load": 1.05
+      },
+      {
+        "id": "C19-B1-A1",
+        "vehicle": 19,
+        "bogie": 0,
+        "index": 0,
+        "offset": 455.83000000000004,
+        "radius": 0.4575,
+        "load": 0.9
+      },
+      {
+        "id": "C19-B1-A2",
+        "vehicle": 19,
+        "bogie": 0,
+        "index": 1,
+        "offset": 458.39,
+        "radius": 0.4575,
+        "load": 0.925
+      },
+      {
+        "id": "C19-B2-A1",
+        "vehicle": 19,
+        "bogie": 1,
+        "index": 0,
+        "offset": 470.73,
+        "radius": 0.4575,
+        "load": 0.9750000000000001
+      },
+      {
+        "id": "C19-B2-A2",
+        "vehicle": 19,
+        "bogie": 1,
+        "index": 1,
+        "offset": 473.28999999999996,
+        "radius": 0.4575,
+        "load": 1
+      },
+      {
+        "id": "C20-B1-A1",
+        "vehicle": 20,
+        "bogie": 0,
+        "index": 0,
+        "offset": 479.83000000000004,
+        "radius": 0.4575,
+        "load": 1.075
+      },
+      {
+        "id": "C20-B1-A2",
+        "vehicle": 20,
+        "bogie": 0,
+        "index": 1,
+        "offset": 482.39,
+        "radius": 0.4575,
+        "load": 1.1
+      },
+      {
+        "id": "C20-B2-A1",
+        "vehicle": 20,
+        "bogie": 1,
+        "index": 0,
+        "offset": 494.73,
+        "radius": 0.4575,
+        "load": 0.925
+      },
+      {
+        "id": "C20-B2-A2",
+        "vehicle": 20,
+        "bogie": 1,
+        "index": 1,
+        "offset": 497.28999999999996,
+        "radius": 0.4575,
+        "load": 0.9500000000000001
+      }
+    ],
+    "bogies": [
+      {
+        "id": "L-B1",
+        "vehicle": 0,
+        "index": 0,
+        "offset": 4.779999999999999
+      },
+      {
+        "id": "L-B2",
+        "vehicle": 0,
+        "index": 1,
+        "offset": 15.78
+      },
+      {
+        "id": "C1-B1",
+        "vehicle": 1,
+        "index": 0,
+        "offset": 25.110000000000003
+      },
+      {
+        "id": "C1-B2",
+        "vehicle": 1,
+        "index": 1,
+        "offset": 40.010000000000005
+      },
+      {
+        "id": "C2-B1",
+        "vehicle": 2,
+        "index": 0,
+        "offset": 49.11
+      },
+      {
+        "id": "C2-B2",
+        "vehicle": 2,
+        "index": 1,
+        "offset": 64.01
+      },
+      {
+        "id": "C3-B1",
+        "vehicle": 3,
+        "index": 0,
+        "offset": 73.11
+      },
+      {
+        "id": "C3-B2",
+        "vehicle": 3,
+        "index": 1,
+        "offset": 88.01
+      },
+      {
+        "id": "C4-B1",
+        "vehicle": 4,
+        "index": 0,
+        "offset": 97.11
+      },
+      {
+        "id": "C4-B2",
+        "vehicle": 4,
+        "index": 1,
+        "offset": 112.01
+      },
+      {
+        "id": "C5-B1",
+        "vehicle": 5,
+        "index": 0,
+        "offset": 121.11
+      },
+      {
+        "id": "C5-B2",
+        "vehicle": 5,
+        "index": 1,
+        "offset": 136.01
+      },
+      {
+        "id": "C6-B1",
+        "vehicle": 6,
+        "index": 0,
+        "offset": 145.11
+      },
+      {
+        "id": "C6-B2",
+        "vehicle": 6,
+        "index": 1,
+        "offset": 160.01
+      },
+      {
+        "id": "C7-B1",
+        "vehicle": 7,
+        "index": 0,
+        "offset": 169.11
+      },
+      {
+        "id": "C7-B2",
+        "vehicle": 7,
+        "index": 1,
+        "offset": 184.01
+      },
+      {
+        "id": "C8-B1",
+        "vehicle": 8,
+        "index": 0,
+        "offset": 193.11
+      },
+      {
+        "id": "C8-B2",
+        "vehicle": 8,
+        "index": 1,
+        "offset": 208.01
+      },
+      {
+        "id": "C9-B1",
+        "vehicle": 9,
+        "index": 0,
+        "offset": 217.11
+      },
+      {
+        "id": "C9-B2",
+        "vehicle": 9,
+        "index": 1,
+        "offset": 232.01
+      },
+      {
+        "id": "C10-B1",
+        "vehicle": 10,
+        "index": 0,
+        "offset": 241.11
+      },
+      {
+        "id": "C10-B2",
+        "vehicle": 10,
+        "index": 1,
+        "offset": 256.01
+      },
+      {
+        "id": "C11-B1",
+        "vehicle": 11,
+        "index": 0,
+        "offset": 265.11
+      },
+      {
+        "id": "C11-B2",
+        "vehicle": 11,
+        "index": 1,
+        "offset": 280.01
+      },
+      {
+        "id": "C12-B1",
+        "vehicle": 12,
+        "index": 0,
+        "offset": 289.11
+      },
+      {
+        "id": "C12-B2",
+        "vehicle": 12,
+        "index": 1,
+        "offset": 304.01
+      },
+      {
+        "id": "C13-B1",
+        "vehicle": 13,
+        "index": 0,
+        "offset": 313.11
+      },
+      {
+        "id": "C13-B2",
+        "vehicle": 13,
+        "index": 1,
+        "offset": 328.01
+      },
+      {
+        "id": "C14-B1",
+        "vehicle": 14,
+        "index": 0,
+        "offset": 337.11
+      },
+      {
+        "id": "C14-B2",
+        "vehicle": 14,
+        "index": 1,
+        "offset": 352.01
+      },
+      {
+        "id": "C15-B1",
+        "vehicle": 15,
+        "index": 0,
+        "offset": 361.11
+      },
+      {
+        "id": "C15-B2",
+        "vehicle": 15,
+        "index": 1,
+        "offset": 376.01
+      },
+      {
+        "id": "C16-B1",
+        "vehicle": 16,
+        "index": 0,
+        "offset": 385.11
+      },
+      {
+        "id": "C16-B2",
+        "vehicle": 16,
+        "index": 1,
+        "offset": 400.01
+      },
+      {
+        "id": "C17-B1",
+        "vehicle": 17,
+        "index": 0,
+        "offset": 409.11
+      },
+      {
+        "id": "C17-B2",
+        "vehicle": 17,
+        "index": 1,
+        "offset": 424.01
+      },
+      {
+        "id": "C18-B1",
+        "vehicle": 18,
+        "index": 0,
+        "offset": 433.11
+      },
+      {
+        "id": "C18-B2",
+        "vehicle": 18,
+        "index": 1,
+        "offset": 448.01
+      },
+      {
+        "id": "C19-B1",
+        "vehicle": 19,
+        "index": 0,
+        "offset": 457.11
+      },
+      {
+        "id": "C19-B2",
+        "vehicle": 19,
+        "index": 1,
+        "offset": 472.01
+      },
+      {
+        "id": "C20-B1",
+        "vehicle": 20,
+        "index": 0,
+        "offset": 481.11
+      },
+      {
+        "id": "C20-B2",
+        "vehicle": 20,
+        "index": 1,
+        "offset": 496.01
+      }
+    ],
+    "length": 500.56
+  }
+}

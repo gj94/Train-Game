@@ -1,7 +1,7 @@
 extends SceneTree
 ## Actual default rake and camera, sampled between engine ticks.
 var failures := 0
-const Data := preload("res://game/joint_video_model_data.gd")
+const Data := preload("res://game/body_v2_data.gd")
 
 class ClockProbe extends Node:
 	var game
@@ -98,8 +98,8 @@ func check_motion() -> void:
 	var stopped: Vector3 = game.tv.cars[1].global_position
 	for i in 8: game._process(1.0/144)
 	check(game.tv.cars[1].global_position.is_equal_approx(stopped),"paused scene has no interpolation sawtooth")
-	check(game.audio.clang_balance_db == 0 and Data.MODEL_ID == "joint-video-contact-v1","approved video strike bank is active")
-	check(game.audio._kernels.size() == 28 and absf(game.audio._kernels[1].get_length()-Data.KERNEL_SECONDS) < .0001,"all 14 approved strike pairs are fully imported")
+	check(game.audio.clang_balance_db == 0 and game.audio.Data.MODEL_ID == "platform-body-v2","approved BODY V2 website sound is active")
+	check(game.audio._kernels.size() == 8 and absf(game.audio._kernels[1].get_length()-Data.KERNEL_SECONDS) < .0001,"all eight full BODY V2 decays are imported")
 	print("Rendered motion: %d failures; camera error %.6f m; body frame step %.6f..%.6f m" % [failures,camera_error,visual_steps.min(),visual_steps.max()])
 	if "--clock-probe" in OS.get_cmdline_user_args():
 		Engine.physics_ticks_per_second = 10 # Test-only stress; shipped game stays 60 Hz.

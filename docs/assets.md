@@ -2,7 +2,21 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
-2026-10-06 sound tuning: the two impact WAVs and generated constants were
+2026-10-06 BODY V2 integration: `assets/sounds/body_v2/` preserves the eight impact
+WAVs and rolling bed from the user's approved
+`platform-body-v2-approved-20261006-022055/platform-experience/public/synthesis/`
+byte for byte. The sibling Railway Sound Lab owns `profiles/platform-body-v2/`
+and `tools/export-body-v2-godot.mjs`. Additional left/right WAVs only route the
+unchanged PCM to one stereo channel; impact copies include silent scheduling
+padding. `provenance.json` records original SHA-256 hashes and source.
+The supplied fitter used spectral statistics of `MultipleTrainsTrackside.mp4`
+at 15–35 seconds with new random phases; it does not replay the recording.
+Original author/redistribution rights are unspecified: user-authorized personal
+playtest use only, with no open licence inferred. The raw reference video and
+the approved website are not bundled in the game. This supersedes the active
+joint-video bank and its earlier voicing; retained legacy files are inactive.
+
+Historical 2026-10-06 sound tuning: the two impact WAVs and generated constants were
 re-exported from `D:\ClaudeWS\railway-clang-simulator`. Its original game-specific
 `src/game-track-tuning.js` lowers the second axle four semitones while preserving
 the impact lead; clang balance is now +5 dB. The approved fitted profile and rolling
@@ -83,4 +97,4 @@ generate mipmaps for stable distance rendering.
 | Train Horn #3 | `assets/sounds/horn_3.ogg` | https://bigsoundbank.com/train-horn-3-s2847.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
 | Train door beeps | `assets/sounds/door_beeps.ogg` | https://bigsoundbank.com/train-door-beeps-s3343.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
 | Previous physical axle-over-joint model (retained for historical previews) | `assets/sounds/lab/physical_icf_*.wav`, `game/physical_model_data.gd` | user's Railway Sound Lab (`D:\ClaudeWS\railway-clang-simulator`), fitted to its approved synthetic take; game voicing updated 2026-10-06 | user (take = analysis/resynthesis of the "Rhythmic Railway … WAP7 with LHB and WAP4 with ICF … Part 9 IndianRailways" recording, 1:30–1:35) | personal use only — derived from a third-party recording | 2026-09-28 |
-| Approved joint-video strikes (14 pairs) + fitted rolling loop → active track sound | `assets/sounds/lab/joint_video_*.wav`, `game/joint_video_model_data.gd` | user-supplied `TrainVideo.mp4`, approved magnitude/phase reconstruction `joint-video-v3-synthetic.wav`; sibling Railway Sound Lab `profiles/joint-video.json`, `tools/fit-joint-video.js`, `tools/export-joint-video-godot.js` | user-provided third-party video; original author unspecified; reconstruction generated locally | user-authorized personal playtest only; no open redistribution licence asserted; raw video/MP3 excluded from builds | 2026-10-06 |
+| Approved joint-video strikes (14 pairs) + fitted rolling loop → historical track sound | `assets/sounds/lab/joint_video_*.wav`, `game/joint_video_model_data.gd` | user-supplied `TrainVideo.mp4`, approved magnitude/phase reconstruction `joint-video-v3-synthetic.wav`; sibling Railway Sound Lab `profiles/joint-video.json`, `tools/fit-joint-video.js`, `tools/export-joint-video-godot.js` | user-provided third-party video; original author unspecified; reconstruction generated locally | user-authorized personal playtest only; no open redistribution licence asserted; raw video/MP3 excluded from builds | 2026-10-06 |

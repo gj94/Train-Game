@@ -14,7 +14,7 @@ const PortedStock := preload("res://sim/stock/ported_stock.gd")
 const PortedFleet := preload("res://sim/layouts/ported_fleet.gd")
 const CameraRig := preload("res://game/camera_rig.gd")
 const Hud := preload("res://game/hud.gd")
-const TrainAudio := preload("res://game/train_audio.gd")
+const TrainAudio := preload("res://game/body_v2_audio.gd")
 const AxleJoint := preload("res://game/axle_joint.gd")
 const Dispatcher := preload("res://game/dispatcher.gd")
 
