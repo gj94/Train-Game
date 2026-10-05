@@ -87,6 +87,8 @@ The exporter preserves original PCM, derives channel-routed copies for native
 spatial playback, and enforces lossless imports at 48 kHz. See `docs/body-v2-audio.md`.
 Never edit generated WAVs/constants. The joint-video and physical-ICF exporters
 are historical and must not be used to tune the active bank.
+The working lab is not a Git checkout. A committed exporter/source recovery copy
+and restoration instructions are in `tools/sound-lab/body-v2/`.
 Axle geometry follows the selected stock; the default is WAP-7 with mixed LHB coaches.
 
 ## Reinstall on another PC
