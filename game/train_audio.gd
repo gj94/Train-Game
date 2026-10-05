@@ -21,7 +21,7 @@ const Data := preload("res://game/physical_model_data.gd")
 ## wheel 2 = the second, right after it ("clang", heavier). Every bogie of every car uses it,
 ## so a car over a joint gives cling-clang ....... cling-clang.
 const KERNELS := "res://assets/sounds/lab/physical_icf_wheel%d.wav"
-const DEFAULT_CLANG_BALANCE_DB := 2.0   # clang louder than cling by this much (user-tuned); , / . adjust
+const DEFAULT_CLANG_BALANCE_DB := Data.DEFAULT_CLANG_BALANCE_DB # sound-lab voicing; , / . adjust
 const ROLLING := "res://assets/sounds/lab/physical_icf_rolling.wav"
 signal joint_hit(edge: String, joint: int, cls: int)   # every axle-over-joint hit (for the joint markers)
 
@@ -37,6 +37,7 @@ const TRACK_ONLY := true
 const BUS := "Train"
 
 var train: Train
+var motion
 var world: RailWorld
 var camera: Node3D                   # listener in overview
 
@@ -194,7 +195,7 @@ static func driver_distance(x: float, listener: Vector2 = DRIVER) -> float:
 func _overview_distance(x: float) -> float:
 	if camera == null:
 		return 1e6
-	var loc := train.locate_behind(world.graph, x)
+	var loc: Dictionary = motion.locate(x) if motion != null else train.locate_behind(world.graph, x)
 	var p := world.graph.position(loc.edge, loc.s)
 	var focus: Vector3 = camera.pivot
 	return Vector2(Vector2(p.x - focus.x, p.z - focus.z).length(), OVERVIEW_SIDE).length()
@@ -252,7 +253,8 @@ func _track_sound(v: float, kmh: float) -> void:
 	var ahead := Data.KERNEL_LEAD * v
 	var positions := []
 	for a in _sched.axles:
-		var loc := train.locate_behind(world.graph, maxf(0.0, a.x - ahead))
+		var back: float = maxf(0.0, a.x - ahead)
+		var loc: Dictionary = motion.locate(back) if motion != null else train.locate_behind(world.graph, back)
 		positions.append({edge = loc.edge, s = loc.s, dir = loc.dir, length = world.graph.edges[loc.edge].length})
 	for h in _sched.advance(positions, v):
 		joint_hit.emit(h.edge, h.joint, h.cls)

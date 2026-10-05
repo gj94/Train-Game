@@ -27,6 +27,8 @@ var _from_fov := 60.0
 var _look := Vector2.ZERO       # cab head-turn (yaw, pitch)
 var _dragging := 0              # mouse button being dragged, 0 = none
 var drag_moved := 0.0           # pixels moved during the current left-button press
+var _follow_anchor := Vector3.ZERO
+var _follow_anchor_valid := false
 
 
 func _ready() -> void:
@@ -44,6 +46,7 @@ func set_mode(m: Mode) -> void:
 	_from_fov = fov
 	_blend = 0.0
 	mode = m
+	_follow_anchor_valid = false
 	_look = Vector2.ZERO
 	if m == Mode.OVERVIEW:
 		follow = true
@@ -86,7 +89,14 @@ func _process(delta: float) -> void:
 	if mode == Mode.CAB and cab_transform.is_valid():
 		pivot = (cab_transform.call() as Transform3D).origin
 	if mode == Mode.OVERVIEW and follow and follow_point.is_valid():
-		pivot = pivot.lerp(follow_point.call(), 1.0 - exp(-4.0 * delta))
+		var anchor: Vector3 = follow_point.call()
+		if _follow_anchor_valid:
+			pivot += anchor - _follow_anchor
+		pivot = pivot.lerp(anchor, 1.0 - exp(-4.0 * delta))
+		_follow_anchor = anchor
+		_follow_anchor_valid = true
+	else:
+		_follow_anchor_valid = false
 	var target := _target()
 	var target_fov := cab_fov if mode != Mode.OVERVIEW else 55.0
 	if _blend < 1.0:

@@ -4,6 +4,7 @@ const Stock := preload("res://sim/stock/ported_stock.gd")
 const RAIL_TOP := .5
 const CONTACT_HEIGHT := 5.6
 var train: Train
+var motion
 var graph: TrackGraph
 var choice := ""
 var cars: Array[Node3D] = []
@@ -105,7 +106,8 @@ func _interior_setup(parent: Node3D) -> void:
 
 
 func _point(back: float) -> Vector3:
-	var loc := train.locate_behind(graph, clampf(back, 0.0, train.length))
+	var distance := clampf(back, 0.0, train.length)
+	var loc: Dictionary = motion.locate(distance) if motion != null else train.locate_behind(graph, distance)
 	return graph.position(loc.edge, loc.s)
 
 
@@ -118,8 +120,9 @@ func _direction(index: int) -> float:
 
 
 func update() -> void:
-	var travelled := train.odometer - _last_odometer
-	_last_odometer = train.odometer
+	var distance: float = motion.odometer() if motion != null else train.odometer
+	var travelled := distance - _last_odometer
+	_last_odometer = distance
 	for i in cars.size():
 		var back := _center(i)
 		var sign_dir := _direction(i)

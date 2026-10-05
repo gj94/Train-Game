@@ -77,8 +77,11 @@ git -c safe.directory=D:/ClaudeWS/train-game status
 
 Global Git settings were not changed. No remote was added.
 The sound lab is present at `D:\ClaudeWS\railway-clang-simulator`.
-Its export script defaults to the sibling train-game folder, so no lab changes are needed.
-Keep the user's approved sound settings: eight-car formation, clang +2 dB, TRACK_ONLY enabled.
+Its export script defaults to the sibling train-game folder.
+Current sound preference (6 October): second axle four semitones lower, clang +5 dB,
+TRACK_ONLY enabled. The sibling's `src/game-track-tuning.js` owns this game voicing;
+regenerate with `tools/physical-export-godot.js`, never edit generated WAVs/constants.
+Axle geometry follows the selected stock; the default is WAP-7 with mixed LHB coaches.
 
 ## Reinstall on another PC
 

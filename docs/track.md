@@ -47,11 +47,25 @@ user's approved sound calibration; it is not a claim that modern Indian mainline
 have exposed joints every 13 m. The same convention continues through the fictional
 pointwork rather than introducing an unrelated audio rhythm there.
 
-The scheduler still evaluates every actual axle, both directions, with the existing
-17.415 ms kernel lead and late-start compensation. Only shared layout constants were
-introduced: generated WAVs, fitted sound data, level, clang balance and TRACK_ONLY
-were not edited. J remains an optional debugging overlay; real joints are always
-visible independently of it.
+The scheduler evaluates every actual axle in both directions, with a 17.415 ms
+kernel lead and late-start compensation. From 6 October, the second axle is
+**four semitones lower** and has **+5 dB clang balance** (3 dB more than the previous
+setting). The sibling Railway Sound Lab's `src/game-track-tuning.js` applies this
+voicing before `tools/physical-export-godot.js` generates the WAVs and constants.
+Resampling is anchored to the impact so the lead stays unchanged; the longer tail
+is retained. The first-axle waveform, fitted source profile, rolling loop and
+TRACK_ONLY setting are preserved. Comma/period still adjust clang balance in game.
+J remains an optional debugging overlay; real joints are always visible.
+
+`game/train_motion.gd` samples travelled distance along the occupied route between
+physics ticks. Bodies, bogies, wheels, camera targets and sound scheduling share
+that rendered position, including old tail-edge history until the rendered tail
+clears it. The overview camera carries forward the train's movement before easing
+its framing, so it does not lag behind at wheel-level zoom. Simulation and
+interlocking remain at their fixed tick rate; rendering is one tick behind.
+Teleporting or changing cab ends resets interpolation. Godot's physics jitter fix
+is disabled for this custom interpolation, as specified in the
+[engine documentation](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine-property-physics-jitter-fix).
 
 ## Trains
 
@@ -98,15 +112,21 @@ exercise actual gameplay separately.
    point labels and click an unlocked switch. Zoom on the blade toe and motor: one
    tongue opens while the other closes and the stretcher rods move. Locked points
    must remain locked.
-4. Follow an axle at low speed past a fishplated joint. The gap is centred on the
-   clang position. Check the leading/trailing wheel rhythm at higher speeds too.
+4. Follow a coach bogie past a fishplated joint, then at 40–80 km/h. The wheel,
+   bogie and camera should move together smoothly; the second axle should sound
+   deeper and louder. Repeat after changing direction. The gap is centred on the
+   clang position. Comma/period adjust the clang balance if desired.
    J can expose the existing sound diagnostic bars; turn it off for normal viewing.
 5. Check the MEMU's wheels rotating and bogies steering through a curve, and the
    upper door steps beside a platform. Report clipping, material glare and target-PC
    performance; no target-PC frame-rate guarantee is made.
 
 Rebuild MEMU: background Blender with `--python tools/blender/build_memu.py`.
-Run `tools/check_track.gd`, `tools/check_fleet_finish.gd` and the normal headless suite.
+Run `tools/check_track.gd`, `tools/check_fleet_finish.gd`,
+`tools/check_motion_playable.gd` and the normal headless suite. The motion check
+also accepts `-- --clock-probe` to stress actual render/physics timing, with
+`--render-probe` for a graphical wheel-level capture; only that probe lowers
+physics ticks to 10 Hz to expose stepping on a slow test GPU.
 `tools/capture_track.gd` saves actual-corridor comparison views under
 `.local/track-after/`; `tools/capture_fleet_finish.gd` renders the actual fleet in a
 small inspection railway under `.local/fleet-finish/`. Both use the game's materials

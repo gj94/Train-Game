@@ -25,6 +25,20 @@ func test_imported_reversal_preserves_axle_locations():
 			if absf(forward[i].x + backward[i].x - Stock.length_of(key)) > .0001: return "reverse geometry: " + key
 	return true
 
+func test_second_axle_stays_clang_in_either_travel_direction():
+	for choice in Stock.CHOICES:
+		for reversed in [false, true]:
+			var axles := Stock.sound_axles(choice, reversed)
+			axles.sort_custom(func(a,b): return a.x < b.x)
+			var at := 0
+			while at < axles.size():
+				var car: int = axles[at].car
+				var count: int = Stock.geometry(Stock.formation(choice)[car].model).axle_offsets.size()
+				for k in count:
+					if axles[at+k].cls % 2 != k % 2: return "wrong cling/clang order: " + choice
+				at += count
+	return true
+
 func test_imported_consists_have_safe_station_capacity():
 	for key in Stock.CHOICES:
 		var world := Fleet.build(key)

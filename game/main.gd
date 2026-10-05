@@ -6,6 +6,7 @@ const Corridor := preload("res://sim/layouts/southern_corridor.gd")
 const DispatchPlan := preload("res://sim/dispatch_plan.gd")
 const WorldView := preload("res://game/world_view.gd")
 const TrainView := preload("res://game/train_view.gd")
+const TrainMotion := preload("res://game/train_motion.gd")
 const Wap7View := preload("res://game/wap7_train_view.gd")
 const LhbView := preload("res://game/lhb_train_view.gd")
 const PortedView := preload("res://game/ported_train_view.gd")
@@ -28,6 +29,7 @@ var hud
 var audio
 var dispatcher
 var train_views := {}
+var train_motions := {}
 var train_audio := {}
 var paused := false
 var time_scale := 1
@@ -45,6 +47,8 @@ var _interior_view := false
 
 
 func _ready() -> void:
+	# Custom railway interpolation needs a clock without physics-jitter correction.
+	Engine.physics_jitter_fix = 0.0
 	imported_fleet = get_tree().get_meta("imported_fleet", "")
 	if not get_tree().has_meta("imported_fleet"):
 		for arg in OS.get_cmdline_user_args():
@@ -76,6 +80,9 @@ func _ready() -> void:
 			_: view = TrainView.new()
 		if t.stock_kind.begins_with("ported:"):
 			view = PortedView.new()
+		var motion := TrainMotion.new(t, world.graph)
+		train_motions[t.id] = motion
+		view.motion = motion
 		view.build(t, world.graph, self, wv)
 		train_views[t.id] = view
 	tv = train_views[train.id]
@@ -104,6 +111,7 @@ func _ready() -> void:
 			axles = train_views[t.id].sound_axles()
 		var sound := TrainAudio.new()
 		add_child(sound)
+		sound.motion = train_motions[t.id]
 		sound.setup(t, world, cam, axles)
 		train_audio[t.id] = sound
 	audio = train_audio[train.id]
@@ -153,17 +161,24 @@ func _physics_process(delta: float) -> void:
 	if dir != 0.0:
 		train.automatic = false
 		train.controller = clampf(train.controller + dir * HANDLE_RATE * delta, -1.0, 1.0)
+	for motion in train_motions.values(): motion.begin_tick()
 	for i in time_scale:
 		_dispatch_tick += delta
 		if dispatcher.auto_dispatch and _dispatch_tick >= .5:
 			_dispatch_tick = 0
 			DispatchPlan.update(world, dispatcher.hold_arrivals)
 		world.step(delta)
+	for motion in train_motions.values(): motion.end_tick()
+
+
+func _render_trains(fraction: float) -> void:
+	for id in train_views:
+		train_motions[id].sample(fraction)
+		train_views[id].update()
 
 
 func _process(delta: float) -> void:
-	for view in train_views.values():
-		view.update()
+	_render_trains(1.0 if paused else Engine.get_physics_interpolation_fraction())
 	if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
 		audio.interior_listener = tv.passenger_audio_position()
 	elif not imported_fleet.is_empty() and cam.mode == CameraRig.Mode.CAB:

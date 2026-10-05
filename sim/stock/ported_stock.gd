@@ -97,5 +97,6 @@ static func sound_axles(choice: String, reversed: bool = false) -> Array:
 		for bogie in 2:
 			for axle in spec.axle_offsets.size():
 				var back: float = car.center + (bogie * 2 - 1) * spec.bogie + spec.axle_offsets[axle]
-				result.append({x = total - back if reversed else back, cls = bogie * 2 + axle % 2, car = i})
+				var order: int = spec.axle_offsets.size() - 1 - axle if reversed else axle
+				result.append({x = total - back if reversed else back, cls = bogie * 2 + order % 2, car = i})
 	return result

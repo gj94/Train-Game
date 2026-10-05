@@ -8,14 +8,17 @@ const RATE := 44100
 const REFERENCE_SPEED := 66.0060      # km/h
 ## Kernels start this long before the wheel actually hits the joint (seconds).
 const KERNEL_LEAD := 0.017415
-const KERNEL_SECONDS := 0.522449
+const KERNEL_SECONDS := 0.653719
 const KERNELS := 2
+## Game voicing: the second axle is lower and louder; fitted profile stays intact.
+const CLANG_SEMITONES := -4.0
+const DEFAULT_CLANG_BALANCE_DB := 5.0
 ## Multiply kernel / rolling playback by these to undo the 16-bit export normalisation.
 const KERNEL_GAIN := 0.444799
 ## Kernels: WHEEL 1 = first wheel of a bogie over the joint ("cling", brighter),
 ## WHEEL 2 = the second, right after it ("clang", heavier). These gains bring both to equal
 ## energy; the game applies its own clang/cling balance on top.
-const WHEEL_GAIN := [1.0000, 1.9527]
+const WHEEL_GAIN := [1.0000, 1.7436]
 const ROLLING_GAIN := 0.247825
 ## Rolling noise radiated per wheel: level = sqrt(sum 1/(1+(d/NOISE_NEAR)^2) / NOISE_REF).
 const NOISE_NEAR := 3

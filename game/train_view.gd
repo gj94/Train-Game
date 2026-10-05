@@ -15,6 +15,7 @@ const RAIL_TOP := 0.5
 const EYE := Vector3(-0.75, 2.80, -9.05)   # seated eye, left-hand driving position
 
 var train: Train
+var motion
 var graph: TrackGraph
 var cars: Array = []            # Node3D per car (positioned on the track)
 var _front_lamps: Array = []    # lamps at the head of the train
@@ -79,8 +80,9 @@ func _register_running_gear(body: Node3D, kind: String, car_index: int) -> void:
 			if axle!=null: _wheel_views.append({node=axle,facing=facing})
 
 func _update_running_gear() -> void:
-	_wheel_angle -= (train.odometer-_last_odometer)/.46
-	_last_odometer = train.odometer
+	var distance: float = motion.odometer() if motion != null else train.odometer
+	_wheel_angle -= (distance - _last_odometer) / .46
+	_last_odometer = distance
 	for bogie in _bogie_views:
 		var direction := _point(bogie.back-1)-_point(bogie.back+1)
 		if direction.length_squared()<.00001: continue
@@ -134,7 +136,7 @@ func _build_cab_interior(car: Node3D) -> void:
 
 ## World position `back` metres behind the head.
 func _point(back: float) -> Vector3:
-	var loc := train.locate_behind(graph, back)
+	var loc: Dictionary = motion.locate(back) if motion != null else train.locate_behind(graph, back)
 	return graph.position(loc.edge, loc.s)
 
 

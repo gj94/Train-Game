@@ -2,6 +2,13 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-06 sound tuning: the two impact WAVs and generated constants were
+re-exported from `D:\ClaudeWS\railway-clang-simulator`. Its original game-specific
+`src/game-track-tuning.js` lowers the second axle four semitones while preserving
+the impact lead; clang balance is now +5 dB. The approved fitted profile and rolling
+loop are unchanged. This adds no third-party source material and retains the
+personal-use sound restriction below.
+
 2026-10-05 realism pass: `game/track_view.gd`, the track shaders, fishplates,
 fastenings, moving pointwork and `fleet_surface.gd` / its shader are original project
 geometry/material code. Existing registered Poly Haven CC0 textures are reused;
@@ -75,4 +82,4 @@ generate mipmaps for stable distance rendering.
 | Train horn #1 → horn (H) | `assets/sounds/horn_1.ogg` | https://bigsoundbank.com/train-horn-s0277.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
 | Train Horn #3 | `assets/sounds/horn_3.ogg` | https://bigsoundbank.com/train-horn-3-s2847.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
 | Train door beeps | `assets/sounds/door_beeps.ogg` | https://bigsoundbank.com/train-door-beeps-s3343.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
-| Physical axle-over-joint model (4 impact kernels + rolling loop + constants) → all track sound | `assets/sounds/lab/physical_icf_*.wav`, `game/physical_model_data.gd` | user's Railway Sound Lab (`E:\ClaudeWS\railway-clang-simulator`), fitted to its approved synthetic take | user (take = analysis/resynthesis of the "Rhythmic Railway … WAP7 with LHB and WAP4 with ICF … Part 9 IndianRailways" recording, 1:30–1:35) | personal use only — derived from a third-party recording | 2026-09-28 |
+| Physical axle-over-joint model (two impact kernels + rolling loop + constants) → all track sound | `assets/sounds/lab/physical_icf_*.wav`, `game/physical_model_data.gd` | user's Railway Sound Lab (`D:\ClaudeWS\railway-clang-simulator`), fitted to its approved synthetic take; game voicing updated 2026-10-06 | user (take = analysis/resynthesis of the "Rhythmic Railway … WAP7 with LHB and WAP4 with ICF … Part 9 IndianRailways" recording, 1:30–1:35) | personal use only — derived from a third-party recording | 2026-09-28 |

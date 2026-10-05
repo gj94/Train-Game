@@ -8,6 +8,7 @@ const EYE := Vector3(-.68, 2.98, -7.62)
 const HALF_LENGTH := 10.281
 
 var train: Train
+var motion
 var graph: TrackGraph
 var cars: Array = []
 var _body: Node3D
@@ -70,7 +71,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 
 
 func _point(back: float) -> Vector3:
-	var loc := train.locate_behind(graph, back)
+	var loc: Dictionary = motion.locate(back) if motion != null else train.locate_behind(graph, back)
 	return graph.position(loc.edge, loc.s)
 
 
@@ -93,8 +94,9 @@ func update() -> void:
 			direction = -direction
 		if direction.length_squared() > .0001:
 			_bogies[i].global_basis = Basis.looking_at(direction, Vector3.UP)
-	_wheel_angle -= (train.odometer - _last_odometer) / .546 * (1.0 if train.cab_end == 1 else -1.0)
-	_last_odometer = train.odometer
+	var distance: float = motion.odometer() if motion != null else train.odometer
+	_wheel_angle -= (distance - _last_odometer) / .546 * (1.0 if train.cab_end == 1 else -1.0)
+	_last_odometer = distance
 	for wheel in _wheels:
 		wheel.rotation.x = _wheel_angle
 

@@ -100,8 +100,9 @@ func update() -> void:
 			var a := _point(bogie_back - Profile.AXLE_HALF_SPACING)
 			var b := _point(bogie_back + Profile.AXLE_HALF_SPACING)
 			coach_bogies[i][j].global_transform = Transform3D(Basis.looking_at(a - b, Vector3.UP), (a + b) * .5 + Vector3.UP * RAIL_TOP)
+		var distance: float = motion.odometer() if motion != null else train.odometer
 		for axle in coach_axles[i]:
-			axle.rotation.x = -train.odometer / Profile.WHEEL_RADIUS
+			axle.rotation.x = -distance / Profile.WHEEL_RADIUS
 
 
 func overview_position() -> Vector3:

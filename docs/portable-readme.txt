@@ -32,6 +32,7 @@ D / M         Dispatch board / timetable
 F / 1 / 2 / 3 Follow train / station views
 Right-drag    Orbit outside, look around inside
 Mouse wheel   Zoom
+Comma / .     Decrease / increase second-axle clang balance
 F1            Scrollable controls, with simulation paused
 F4            Clean view / restore (emergency feedback remains visible)
 F6 / F8       Track labels / event history
@@ -45,6 +46,7 @@ Restart, scenario changes and quitting ask first. Progress is not saved.
 Detailed route and passenger controls: see the guides folder.
 Realism/joint playtest: guides/track.md. Exterior zoom reaches 3 m for wheel and
 joint inspection. Real gaps and fishplates stay visible with J diagnostics off.
+The second axle is four semitones lower, with +5 dB clang balance by default.
 
 DISPLAY AND TROUBLESHOOTING
 This build keeps the project's Forward+ renderer and high graphics quality.

@@ -1,7 +1,7 @@
 # Windows portable build
 
 Run `powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1` from this
-checkout. It runs the headless suite, track/joint geometry and fleet-finish checks,
+checkout. It runs the headless suite, track/joint geometry, fleet-finish and rendered-motion checks,
 imported-asset checks, QoL, six-train and
 imported-fleet journey integration checks (the complete run takes several minutes),
 exports a release, adds instructions/licences/guides, and produces
@@ -14,7 +14,8 @@ The preset includes runtime resources, `sim/timetables/*.json` and
 development tools, tests, editor addons, documentation and original Blender art.
 The README and selected guides are copied alongside the executable separately.
 Keep the EXE and PCK together. No development tools are required on the other PC.
-The renderer, quality and sound settings are the project's existing ones.
+The renderer and graphics quality are the project's existing ones. Current sound
+voicing and the close-up motion playtest are documented in `guides/track.md`.
 
 ## Export templates on this PC
 
