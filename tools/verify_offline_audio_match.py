@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser()
 parser.add_argument('prefix', type=Path)
+parser.add_argument('--title', default='Offline match • recorded passage 00:55–01:00')
 args = parser.parse_args()
 prefix = args.prefix.resolve()
 RATE = 44100
@@ -105,12 +106,12 @@ Path(str(prefix) + '-verification.json').write_text(json.dumps(result, indent=2)
 
 plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 10, 'axes.spines.top': False, 'axes.spines.right': False})
 fig, axs = plt.subplots(3, 1, figsize=(12, 9), layout='constrained')
-fig.suptitle('Offline match • recorded passage 00:55–01:00', fontsize=16, fontweight='bold')
+fig.suptitle(args.title, fontsize=16, fontweight='bold')
 for i, (label, low, high) in enumerate(bands[1:]):
     mask = (f >= low) & (f < high)
     axs[i].plot(t, db(np.sqrt(pa[:, mask].sum(axis=1) * (f[1] - f[0]))), color='#24364b', lw=1.5, label='Reference')
     axs[i].plot(t, db(np.sqrt(pb[:, mask].sum(axis=1) * (f[1] - f[0]))), color='#d05e28', lw=1, alpha=.85, label='Reconstruction')
-    axs[i].set(xlim=(0, 5), xlabel='Seconds within the selected passage', ylabel='Band RMS (dBFS)', title=f'{label} • measured impact envelope')
+    axs[i].set(xlim=(0, len(reference) / RATE), xlabel='Seconds within the selected passage', ylabel='Band RMS (dBFS)', title=f'{label} • measured impact envelope')
     axs[i].grid(alpha=.2)
     axs[i].legend(loc='lower right')
 for power, label, color in [(p2a, 'Reference', '#24364b'), (p2b, 'Reconstruction', '#d05e28')]:
