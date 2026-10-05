@@ -47,11 +47,13 @@ Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
 - The game runs *embedded* in the editor window ("Train Game (DEBUG)"). Its MCPRuntime screenshot helper doesn't
   connect, so capture the window with Win32 instead, and click inside the game view before sending keys (otherwise
   they go to the embed toolbar).
-- Train track sound = the user's Railway Sound Lab physical model (`E:\ClaudeWS\railway-clang-simulator`, Node.js):
-  fit in the lab (`node tools/physical-fit.js`), then `node tools/physical-export-godot.js` writes
-  `assets/sounds/lab/physical_icf_*.wav` + `game/physical_model_data.gd` (generated, don't hand-edit).
-  `game/axle_joint.gd` ports the scheduling of `src/physical.js`; `game/train_audio.gd` plays it.
-  Change sound behaviour in the lab first if the user is tuning it there, then re-export / re-port.
+- Active train sound = the user-approved BODY V2 website mix. Current source lab:
+  `D:\ClaudeWS\railway-clang-simulator`; see `docs/pc-setup.md` and `docs/body-v2-audio.md`.
+  `node tools/export-body-v2-godot.mjs D:/ClaudeWS/train-game` exports the unchanged bank
+  to `assets/sounds/body_v2/` and `game/body_v2_data.gd` (generated, don't hand-edit).
+  `game/axle_joint.gd` retains physical contact scheduling; `game/body_v2_audio.gd` is the
+  active player. `train_audio.gd`, joint-video and physical-ICF profiles are historical.
+  Preserve the approved full decays, native pitch, mix and one-joint listening model.
 - Parse-check scripts with `& $g --headless --path . --check-only --script res://<file>.gd` — the MCP
   `validate_scripts` tool misses errors (e.g. `var x := untyped.call()` "cannot infer type"). Values from untyped
   vars (like `_wv` in train_view.gd) need an explicit type: `var m: Material = _wv.mat(...)`.
