@@ -1,13 +1,15 @@
 # Windows portable build
 
 Run `powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1` from this
-checkout. It runs the headless suite, QoL and six-train integration checks,
+checkout. It runs the headless suite, imported-asset checks, QoL, six-train and
+imported-fleet journey integration checks (the complete run takes several minutes),
 exports a release, adds instructions/licences/guides, and produces
 `export/TrainGame-Windows.zip` plus a SHA-256 sidecar. `-SkipTests` is only for
 packaging immediately after those same checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-The preset includes runtime resources and `sim/timetables/*.json`; it excludes
+The preset includes runtime resources, `sim/timetables/*.json` and
+`assets/models/ported/manifest.json`; it excludes
 development tools, tests, editor addons, documentation and original Blender art.
 The README and selected guides are copied alongside the executable separately.
 Keep the EXE and PCK together. No development tools are required on the other PC.
@@ -29,6 +31,13 @@ Run the exported EXE from an extracted copy outside the checkout, with no
 timetables are covered. Confirm no missing resources or script errors in the
 log. Inspect the normal window and fullscreen, and stop all verification games
 afterward. Screenshots and temporary logs belong under `.local/`.
+
+Also check F9's seven imported workings. Headless startup smoke tests can use
+`TrainGame.exe --headless --quit-after 3 -- --fleet=vb16` (replace `vb16` with
+`wap7`, `wag9`, `wag12`, `icf`, `lhb` or `vb8`). Release templates reject
+`--path`; run the extracted EXE directly with its PCK beside it. The imported
+fleet's rebuild instructions, scope and playtest checklist are in
+[`imported-fleet.md`](imported-fleet.md).
 
 This is a personal playtest build: see the sound provenance in `docs/assets.md`.
 No code signing, installer, save/load or automatic update system is supplied.

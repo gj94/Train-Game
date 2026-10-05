@@ -1,0 +1,973 @@
+{
+  "repository": "https://github.com/gj94/transport-fever-3-mods",
+  "revision": "4c4f0be85edbf4468bca22f2d1285fec72343bd5",
+  "models": [
+    {
+      "id": "wap7",
+      "path": "pantograph_v04/WAP7_pantograph_v04.blend"
+    },
+    {
+      "id": "icf_1a",
+      "path": "icf_family_v01/1A/ICF_1A_master.blend"
+    },
+    {
+      "id": "icf_2a",
+      "path": "icf_family_v01/2A/ICF_2A_master.blend"
+    },
+    {
+      "id": "icf_3a",
+      "path": "icf_family_v01/3A/ICF_3A_master.blend"
+    },
+    {
+      "id": "icf_2s",
+      "path": "icf_family_v01/2S/ICF_2S_master.blend"
+    },
+    {
+      "id": "icf_cc",
+      "path": "icf_family_v01/CC/ICF_CC_master.blend"
+    },
+    {
+      "id": "icf_sl",
+      "path": "icf_family_v01/SL/ICF_SL_master.blend"
+    },
+    {
+      "id": "icf_gs",
+      "path": "icf_family_v01/GS/ICF_GS_master.blend"
+    },
+    {
+      "id": "lhb_1a",
+      "path": "lhb_family_v01/models/LHB_1A.blend"
+    },
+    {
+      "id": "lhb_2a",
+      "path": "lhb_family_v01/models/LHB_2A.blend"
+    },
+    {
+      "id": "lhb_3a",
+      "path": "lhb_family_v01/models/LHB_3A.blend"
+    },
+    {
+      "id": "lhb_2s",
+      "path": "lhb_family_v01/models/LHB_2S.blend"
+    },
+    {
+      "id": "lhb_cc",
+      "path": "lhb_family_v01/models/LHB_CC.blend"
+    },
+    {
+      "id": "lhb_sl",
+      "path": "lhb_family_v01/models/LHB_SL.blend"
+    },
+    {
+      "id": "lhb_gs",
+      "path": "lhb_family_v01/models/LHB_GS.blend"
+    },
+    {
+      "id": "vb_dtc",
+      "path": "vande_bharat_v01/cars/VB_DTC.blend"
+    },
+    {
+      "id": "vb_mc",
+      "path": "vande_bharat_v01/cars/VB_MC.blend"
+    },
+    {
+      "id": "vb_mc2",
+      "path": "vande_bharat_v01/cars/VB_MC2.blend"
+    },
+    {
+      "id": "vb_tc_cc",
+      "path": "vande_bharat_v01/cars/VB_TC_CC.blend"
+    },
+    {
+      "id": "vb_tc_ec",
+      "path": "vande_bharat_v01/cars/VB_TC_EC.blend"
+    },
+    {
+      "id": "vb_ndtc_ec",
+      "path": "vande_bharat_v01/cars/VB_NDTC_EC.blend"
+    },
+    {
+      "id": "vb_ndtc_ec2",
+      "path": "vande_bharat_v01/cars/VB_NDTC_EC2.blend"
+    },
+    {
+      "id": "wag9",
+      "path": "wag9_v01/WAG9_master.blend"
+    },
+    {
+      "id": "wag12b_a",
+      "path": "wag12_v01/sections/WAG12B_A.blend"
+    },
+    {
+      "id": "wag12b_b",
+      "path": "wag12_v01/sections/WAG12B_B.blend"
+    }
+  ],
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "sha": "7ca7f074717c1d9e3c8e275ea241a27713f8cf55",
+      "size": 2056
+    },
+    {
+      "path": "README.md",
+      "sha": "53538b304d3a4a9253223ddfc7d4131e16bb838c",
+      "size": 18227
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "sha": "44d228694ff9c02cbfc80dfd9fbd3171d34f940c",
+      "size": 45156
+    },
+    {
+      "path": "START_HERE.txt",
+      "sha": "27a58136a3923918d280cfa930240f80443f9ff8",
+      "size": 1535
+    },
+    {
+      "path": "TF3-INSTALL.md",
+      "sha": "c45f702af8ea3b7f2c7dd78616f1099588157bd8",
+      "size": 51447
+    },
+    {
+      "path": "TF3-VEHICLE-FEATURES.md",
+      "sha": "ee1282dd1e20c1f304e701b2d7a97a71ca0028f6",
+      "size": 13176
+    },
+    {
+      "path": "TRACK-SPEED-RESTRICTIONS.md",
+      "sha": "632e2be9a4e65e6ad7005fb3c76a39715017e2e7",
+      "size": 12682
+    },
+    {
+      "path": "icf_family_v01/1A/ICF_1A_master.blend",
+      "sha": "8cfa2d1a913dfdb6a4b37ba46da3fd0953152194",
+      "size": 970011
+    },
+    {
+      "path": "icf_family_v01/1A/berth_references.json",
+      "sha": "7ebfc64fe96f80c9a9a44514b0a0a24d8cfc85a7",
+      "size": 3978
+    },
+    {
+      "path": "icf_family_v01/1A/dimensions.json",
+      "sha": "f2761112d0fe3e38f7d9e459d1459d37ce9a5f5d",
+      "size": 270
+    },
+    {
+      "path": "icf_family_v01/1A/manifest.json",
+      "sha": "137d2ce85c5f06678432281cb077c56a5b3a0166",
+      "size": 4868
+    },
+    {
+      "path": "icf_family_v01/1A/pax_markers.json",
+      "sha": "fb8535c50eed07b92aa86f042826839a4435c81a",
+      "size": 12094
+    },
+    {
+      "path": "icf_family_v01/1A/references.md",
+      "sha": "3d36055f5bbb687d2228bbbf1d7d8c57cb5a5da4",
+      "size": 323
+    },
+    {
+      "path": "icf_family_v01/2A/ICF_2A_master.blend",
+      "sha": "e0b7535cfe50df8462f805620fabf54babf1176e",
+      "size": 1108998
+    },
+    {
+      "path": "icf_family_v01/2A/berth_references.json",
+      "sha": "bfeccd1ed0ceb1680fb09b7bd23136ae3f72eb69",
+      "size": 10005
+    },
+    {
+      "path": "icf_family_v01/2A/dimensions.json",
+      "sha": "f2761112d0fe3e38f7d9e459d1459d37ce9a5f5d",
+      "size": 270
+    },
+    {
+      "path": "icf_family_v01/2A/manifest.json",
+      "sha": "44420da406344ab487907219a7adee1dc1e6500e",
+      "size": 7130
+    },
+    {
+      "path": "icf_family_v01/2A/pax_markers.json",
+      "sha": "0e6f9f6e0b79ddeab9fd0cb051fa0044d34cac12",
+      "size": 30544
+    },
+    {
+      "path": "icf_family_v01/2A/references.md",
+      "sha": "0727efbf169d51b2e22fa529eefc2a90b42bf5e5",
+      "size": 323
+    },
+    {
+      "path": "icf_family_v01/2S/ICF_2S_master.blend",
+      "sha": "336ee95e3d21ca86498ba66aaccccc54769b44dd",
+      "size": 1185265
+    },
+    {
+      "path": "icf_family_v01/2S/berth_references.json",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2
+    },
+    {
+      "path": "icf_family_v01/2S/dimensions.json",
+      "sha": "3ba3b5053d0bf73d6a49e12d4b5e8e2479b025c9",
+      "size": 270
+    },
+    {
+      "path": "icf_family_v01/2S/manifest.json",
+      "sha": "f0a62b53d5b46c4bcdedd0410af143f58c41c493",
+      "size": 7135
+    },
+    {
+      "path": "icf_family_v01/2S/pax_markers.json",
+      "sha": "928f22ed119eba01cc7bec1f45ad6bbb01baaf7b",
+      "size": 73454
+    },
+    {
+      "path": "icf_family_v01/2S/references.md",
+      "sha": "5880a67fe10a9bd8e5b5c69b8cf21900daf2ac66",
+      "size": 323
+    },
+    {
+      "path": "icf_family_v01/3A/ICF_3A_master.blend",
+      "sha": "959199e56a54361b9c89087747e471d6b73bb1bc",
+      "size": 1010344
+    },
+    {
+      "path": "icf_family_v01/3A/berth_references.json",
+      "sha": "9701456c1069130a0947d7d86a0e3764ddd023bc",
+      "size": 14042
+    },
+    {
+      "path": "icf_family_v01/3A/dimensions.json",
+      "sha": "f2761112d0fe3e38f7d9e459d1459d37ce9a5f5d",
+      "size": 270
+    },
+    {
+      "path": "icf_family_v01/3A/manifest.json",
+      "sha": "08f38709354020caff66d314527606c82e05d3e7",
+      "size": 4571
+    },
+    {
+      "path": "icf_family_v01/3A/pax_markers.json",
+      "sha": "d3bf0aa99f4672f7063821c00ed4e39dbda6ec7d",
+      "size": 42650
+    },
+    {
+      "path": "icf_family_v01/3A/references.md",
+      "sha": "c56ac3a53309b70038f66ec7b87ad27305d4b56c",
+      "size": 323
+    },
+    {
+      "path": "icf_family_v01/CC/ICF_CC_master.blend",
+      "sha": "4bde49631a334dab90dadbf3d55efd0f37f65969",
+      "size": 1130992
+    },
+    {
+      "path": "icf_family_v01/CC/berth_references.json",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2
+    },
+    {
+      "path": "icf_family_v01/CC/dimensions.json",
+      "sha": "f2761112d0fe3e38f7d9e459d1459d37ce9a5f5d",
+      "size": 270
+    },
+    {
+      "path": "icf_family_v01/CC/manifest.json",
+      "sha": "c296bb78d532b7f56c00555c5ff2ad54315fb60f",
+      "size": 4791
+    },
+    {
+      "path": "icf_family_v01/CC/pax_markers.json",
+      "sha": "8342a7824031be67fc99a356ee5a41bc8fda386d",
+      "size": 45148
+    },
+    {
+      "path": "icf_family_v01/CC/references.md",
+      "sha": "fdf900f311346460f46ea9e47bfcc649a8f1fe05",
+      "size": 323
+    },
+    {
+      "path": "icf_family_v01/GS/ICF_GS_master.blend",
+      "sha": "1da0b36eb3f023f65d6ba6cdc86b3d44e6d975c9",
+      "size": 1142975
+    },
+    {
+      "path": "icf_family_v01/GS/berth_references.json",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2
+    },
+    {
+      "path": "icf_family_v01/GS/dimensions.json",
+      "sha": "3ba3b5053d0bf73d6a49e12d4b5e8e2479b025c9",
+      "size": 270
+    },
+    {
+      "path": "icf_family_v01/GS/manifest.json",
+      "sha": "e21f968b2e0d129d70acdc3b3af35eb3429ec656",
+      "size": 7173
+    },
+    {
+      "path": "icf_family_v01/GS/pax_markers.json",
+      "sha": "928f22ed119eba01cc7bec1f45ad6bbb01baaf7b",
+      "size": 73454
+    },
+    {
+      "path": "icf_family_v01/GS/references.md",
+      "sha": "f0e5067d1985ddf5336b6e2faf4445edce048e0a",
+      "size": 323
+    },
+    {
+      "path": "icf_family_v01/README.md",
+      "sha": "3afc60adf7169439e32078a3d8c1696a6104f4b3",
+      "size": 9606
+    },
+    {
+      "path": "icf_family_v01/SHA256SUMS.txt",
+      "sha": "4673489de1c3835a4a862dadb329e774307400af",
+      "size": 10085
+    },
+    {
+      "path": "icf_family_v01/SL/ICF_SL_master.blend",
+      "sha": "c3f25496677fbeaaf74f670df039b4aa2cdcbf3f",
+      "size": 1156934
+    },
+    {
+      "path": "icf_family_v01/SL/berth_references.json",
+      "sha": "4909106189cb24ecc682e9585de38f52196ae65d",
+      "size": 15944
+    },
+    {
+      "path": "icf_family_v01/SL/dimensions.json",
+      "sha": "3ba3b5053d0bf73d6a49e12d4b5e8e2479b025c9",
+      "size": 270
+    },
+    {
+      "path": "icf_family_v01/SL/manifest.json",
+      "sha": "6c91842cf621b651b5f0c54daf7bff69ce8b27ed",
+      "size": 7123
+    },
+    {
+      "path": "icf_family_v01/SL/pax_markers.json",
+      "sha": "08181d2c494d983ba63ebb82a11994a7d5d95825",
+      "size": 48334
+    },
+    {
+      "path": "icf_family_v01/SL/references.md",
+      "sha": "7db4f84c339b1398491c7aac3905c993dc448862",
+      "size": 323
+    },
+    {
+      "path": "icf_family_v01/build_icf_family.py",
+      "sha": "c9154bac5adfd0026333afca3cb0fbdcfea27137",
+      "size": 42756
+    },
+    {
+      "path": "icf_family_v01/compress_masters.py",
+      "sha": "f03de2eb8c00a40337cfd16538297d751522589e",
+      "size": 1779
+    },
+    {
+      "path": "icf_family_v01/export_marker_metadata.py",
+      "sha": "3bf7f15a18d38ef38f08aff316f161cfd3b003e1",
+      "size": 1157
+    },
+    {
+      "path": "icf_family_v01/family_manifest.json",
+      "sha": "513787ab0bf25327959093169281782a07b27496",
+      "size": 46527
+    },
+    {
+      "path": "icf_family_v01/make_contact_sheet.py",
+      "sha": "c649547398b58c9d7e2c47382b3e1eec3b3eff24",
+      "size": 3315
+    },
+    {
+      "path": "icf_family_v01/qa_summary.json",
+      "sha": "4b331cffaadefe0c25ecc37837d793f510e46b11",
+      "size": 1555
+    },
+    {
+      "path": "icf_family_v01/references.md",
+      "sha": "c0eee5e07a0764924346fe0e0f97873ac8c45bf9",
+      "size": 5956
+    },
+    {
+      "path": "icf_family_v01/render_icf_family.py",
+      "sha": "6f81aa7a8c2fec9b3c85842e8454a6e3a9e30273",
+      "size": 528
+    },
+    {
+      "path": "icf_family_v01/render_straight_join.py",
+      "sha": "0b24392be39889a1fef2e0acf3581552bba02fa9",
+      "size": 1633
+    },
+    {
+      "path": "icf_family_v01/validate_icf_family.py",
+      "sha": "45ade06933ff33352690e40b76ec37e22ef217cc",
+      "size": 6916
+    },
+    {
+      "path": "icf_family_v01/validate_straight_join.py",
+      "sha": "54fc39070e6373571b8ef3e8506825be486e2680",
+      "size": 4282
+    },
+    {
+      "path": "lhb_family_v01/README.md",
+      "sha": "7c4e11c143f67ae75aabf9fdb067cc80bac70e09",
+      "size": 8891
+    },
+    {
+      "path": "lhb_family_v01/SHA256SUMS.txt",
+      "sha": "6d5f8092e4598a685430c7b64af296a17e100d1c",
+      "size": 7161
+    },
+    {
+      "path": "lhb_family_v01/build_lhb_family.py",
+      "sha": "2fa9b5fc5c8ddb18d60701b71f8546e5b6de033a",
+      "size": 28935
+    },
+    {
+      "path": "lhb_family_v01/compress_masters.py",
+      "sha": "f67695b7174875cfa2f12039fbdec956220893e3",
+      "size": 2317
+    },
+    {
+      "path": "lhb_family_v01/dimensions.json",
+      "sha": "e369cb48e2451146271ff6f297f4e74eeb49b597",
+      "size": 2203
+    },
+    {
+      "path": "lhb_family_v01/export_markers.py",
+      "sha": "7284d4f307a02dc40a11fd6ac0629e749bfb3157",
+      "size": 1023
+    },
+    {
+      "path": "lhb_family_v01/manifest.json",
+      "sha": "6ce2860a156d56f81e23366a0e7336bfe8538f9c",
+      "size": 8592
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_1A.blend",
+      "sha": "cdfe47367f9dd7417ffba0c1059c2a2cae9b530e",
+      "size": 292808
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_1A_manifest.json",
+      "sha": "dbb1596ced44b1cc12281cca1814697258a58ba2",
+      "size": 714
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_1A_markers.json",
+      "sha": "605dce8913cfd19310da01913fde0413aacfe421",
+      "size": 12427
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_2A.blend",
+      "sha": "da403332d3ebb2b2bfbfcf00e599047cc28b8449",
+      "size": 322578
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_2A_manifest.json",
+      "sha": "5dd8b4035853a4b364c4f498c6f7642e7a4555e9",
+      "size": 717
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_2A_markers.json",
+      "sha": "1fbb73dc70c8f81956302d16a6914726bfe0e802",
+      "size": 27031
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_2S.blend",
+      "sha": "f436e7a50cf6bcfb5bc3f9c5ff488d821f619d36",
+      "size": 589518
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_2S_manifest.json",
+      "sha": "1263054cac4de42547708b1c7014a143dc7c36b6",
+      "size": 705
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_2S_markers.json",
+      "sha": "1269430f9887258cb41f448474cb3003e88a1e05",
+      "size": 28468
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_3A.blend",
+      "sha": "641c7ff3baa8eedca0899a0325456536ffcd78a8",
+      "size": 318491
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_3A_manifest.json",
+      "sha": "525c92b671d1f74a870f4fe19ae4f03e9e914046",
+      "size": 727
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_3A_markers.json",
+      "sha": "5f8729caf5ba0cd1ca94592a0f29cdc8efddf774",
+      "size": 37431
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_CC.blend",
+      "sha": "cd107406845285d4e8f3d7a969d408e1a512c730",
+      "size": 457305
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_CC_manifest.json",
+      "sha": "be7cdeaa3e2eeaac3ff434293514d256dbdf6633",
+      "size": 722
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_CC_markers.json",
+      "sha": "b93658ab7f9f85b7627263c7b8de7771b4d102bb",
+      "size": 20985
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_GS.blend",
+      "sha": "50577ad0a3ddf9c6c4936bc77ddd4e612555cb88",
+      "size": 543179
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_GS_manifest.json",
+      "sha": "1c18c20c29ccca94e989573ec07da7c499dff81c",
+      "size": 738
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_GS_markers.json",
+      "sha": "90e451b99e37754fe39ba372d554e02c25dc3d90",
+      "size": 28429
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_SL.blend",
+      "sha": "69fd93fc8105fb6c4a5f0a555c40118cd5c783ae",
+      "size": 478319
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_SL_manifest.json",
+      "sha": "c4bb810a61d5adcd9073fb928e5516d2a66a448d",
+      "size": 728
+    },
+    {
+      "path": "lhb_family_v01/models/LHB_SL_markers.json",
+      "sha": "e4276734a127c852e86d0f3e662f55f84c802540",
+      "size": 41581
+    },
+    {
+      "path": "lhb_family_v01/package_lhb_family.py",
+      "sha": "763a5ae2e52388997c2731bc3f1cd0b70f2c63a1",
+      "size": 3003
+    },
+    {
+      "path": "lhb_family_v01/references.md",
+      "sha": "ff49c8b20f1dbfb7dae070a39a98a3ceb9973a03",
+      "size": 5099
+    },
+    {
+      "path": "lhb_family_v01/render_details.py",
+      "sha": "74f2a8f0810d58d395b3628fa8c08eafb9718c91",
+      "size": 1830
+    },
+    {
+      "path": "lhb_family_v01/render_lhb_family.py",
+      "sha": "2ce74cc154574cfb6a9e2c94692bc9d535d54b3c",
+      "size": 3847
+    },
+    {
+      "path": "lhb_family_v01/validate_cross_family_join.py",
+      "sha": "1d254f80db382c2f2d0a486a8c49512343574841",
+      "size": 3726
+    },
+    {
+      "path": "lhb_family_v01/validate_lhb_family.py",
+      "sha": "de658dcbee1d1e5d9d49e1151971767ef4c305c9",
+      "size": 8123
+    },
+    {
+      "path": "pantograph_v04/README.md",
+      "sha": "3318da038afb71536c1803ea9bfde2402a5975f1",
+      "size": 8795
+    },
+    {
+      "path": "pantograph_v04/SHA256SUMS.txt",
+      "sha": "9f15bf30700baf12ea9943862861c475f8027d6b",
+      "size": 1633
+    },
+    {
+      "path": "pantograph_v04/WAP7_pantograph_v04.blend",
+      "sha": "7b48dc55e6ca23e761d037131501d40f1971615a",
+      "size": 688666
+    },
+    {
+      "path": "pantograph_v04/build_pantographs.py",
+      "sha": "7e03269a107fe69d19f0a1341fda25fcad6dfb3b",
+      "size": 9199
+    },
+    {
+      "path": "pantograph_v04/check_sweep.py",
+      "sha": "998d0dd46cab50b66f5f3a9064d1ae575efbd3fb",
+      "size": 2507
+    },
+    {
+      "path": "pantograph_v04/independent_review.json",
+      "sha": "f94eee04c5e72b78c2727d597efb83a617a10152",
+      "size": 28729
+    },
+    {
+      "path": "pantograph_v04/protected_source_manifest.json",
+      "sha": "162ffd68f7811d1ba5696139afc4a397c2bd0e07",
+      "size": 1835376
+    },
+    {
+      "path": "pantograph_v04/verify_and_render.py",
+      "sha": "76b31e07dfd144066548d5f15224c43eada3d8c8",
+      "size": 3625
+    },
+    {
+      "path": "tools/apply_coach_capacity.py",
+      "sha": "d5a75cf10a48ebed2ad339f1d8f7ced18e698940",
+      "size": 897
+    },
+    {
+      "path": "tools/build_speed_restrictions.py",
+      "sha": "6267440255a80ec3b5c84718334d1ce6b91be1a8",
+      "size": 17779
+    },
+    {
+      "path": "tools/check_coach_families.py",
+      "sha": "f941e0467ca698b65e60b9d603ba228a48458c68",
+      "size": 4611
+    },
+    {
+      "path": "tools/check_speed_boundaries.py",
+      "sha": "9a4d306d59517be51bd3e60d7b7cf3eb616df964",
+      "size": 14282
+    },
+    {
+      "path": "tools/check_speed_dropdown.py",
+      "sha": "72a572e3ba83a5f53f6670a09ba634b40f3a5e3b",
+      "size": 10572
+    },
+    {
+      "path": "tools/check_tf3_balance.py",
+      "sha": "b7eb0ec6f193b45426e3b1721b9e52b8a556b412",
+      "size": 9616
+    },
+    {
+      "path": "tools/check_tf3_freight.py",
+      "sha": "c0a898614edbb0598ca16268459376702aba5959",
+      "size": 7432
+    },
+    {
+      "path": "tools/check_tf3_pack.py",
+      "sha": "1248708019bd163eab482d42ac11f7f1621bb416",
+      "size": 14522
+    },
+    {
+      "path": "tools/check_tf3_pantograph_rig.py",
+      "sha": "cd63231c763194ba78866a08ba28afce99c68c0d",
+      "size": 3106
+    },
+    {
+      "path": "tools/check_vb_character_fit.py",
+      "sha": "89408e42709891bed776cbff8a2ce63d4b30e4a7",
+      "size": 2309
+    },
+    {
+      "path": "tools/check_vehicle_browser.py",
+      "sha": "72593134fae146ef8e127fc8c211646072840f14",
+      "size": 13117
+    },
+    {
+      "path": "tools/coach_families.py",
+      "sha": "1a1b7510c34c4e7c850327feb30be458a83cd76b",
+      "size": 1962
+    },
+    {
+      "path": "tools/compress_textures.py",
+      "sha": "1b816552622fb58ffacb2fdb95fdb0477b64e658",
+      "size": 1770
+    },
+    {
+      "path": "tools/correct_driver_anchors.py",
+      "sha": "f9d0294ecf74817a0f9ca1041c311462809c84bc",
+      "size": 941
+    },
+    {
+      "path": "tools/freight_locomotives.py",
+      "sha": "1e7c82da975210983aee6e1a2ecec1e7d1e8d071",
+      "size": 3636
+    },
+    {
+      "path": "tools/inspect_interiors.py",
+      "sha": "2b7d3aab93f470ca8f1afdddf274226fd1338690",
+      "size": 973
+    },
+    {
+      "path": "tools/install_speed_restrictions.py",
+      "sha": "bc403d1b3cde68928958657db1893c2a99040f37",
+      "size": 3741
+    },
+    {
+      "path": "tools/model_sources.py",
+      "sha": "8776241cbc7d5c7c9a2c0ef329e6bdedba717239",
+      "size": 1109
+    },
+    {
+      "path": "tools/native_tf3.py",
+      "sha": "cf055486b56e0cff6387539f1e602a33cf735b50",
+      "size": 16233
+    },
+    {
+      "path": "tools/pack_settings.py",
+      "sha": "2c381028cdd28510944ce382ac9c3a2b35a2aa40",
+      "size": 200
+    },
+    {
+      "path": "tools/package_tf3_icons.py",
+      "sha": "07b5840a83d44689449eaf50f41999a81d324f1f",
+      "size": 633
+    },
+    {
+      "path": "tools/package_tf3_pack.py",
+      "sha": "8791c33c778268530f0402af234430b56e39c5c0",
+      "size": 3631
+    },
+    {
+      "path": "tools/pantograph_rig.py",
+      "sha": "de7441e1fdf15af9b79ce63345c25026d851c97b",
+      "size": 1125
+    },
+    {
+      "path": "tools/prepare_tf3.py",
+      "sha": "36e663c40d95b6dcf6c2694aba4f75887a9deeb3",
+      "size": 8680
+    },
+    {
+      "path": "tools/release_metadata.py",
+      "sha": "aebbb6f5eca8c02ebf2bb039c4c39365e996de88",
+      "size": 1414
+    },
+    {
+      "path": "tools/render_tf3_icons.py",
+      "sha": "eace68d0d66e1bc5d994b5961f839268eec99fe1",
+      "size": 2774
+    },
+    {
+      "path": "tools/tf3_icons.py",
+      "sha": "1e1c41d465e5cbedfc6accbf97e036fff554b1d3",
+      "size": 342
+    },
+    {
+      "path": "tools/tf3_resource_paths.py",
+      "sha": "603510b8ca557a999a2b96b887dc62ba3a8c04de",
+      "size": 792
+    },
+    {
+      "path": "tools/track_speed_boards.py",
+      "sha": "69bf8b6828d50b6b3f25e68a90f5a83daa50bfbe",
+      "size": 8394
+    },
+    {
+      "path": "tools/vande_bharat.py",
+      "sha": "8ba01291467d32f2eb137b449e8dec4233160be2",
+      "size": 3761
+    },
+    {
+      "path": "tools/vehicle_browser.py",
+      "sha": "6dcd71438c953c0a7c2175da9410a19566a3fe86",
+      "size": 1679
+    },
+    {
+      "path": "tools/wap7_audio.py",
+      "sha": "3b48a80e695691fbbd46e83095f25d8768bb08e4",
+      "size": 3245
+    },
+    {
+      "path": "vande_bharat_v01/FILE_MANIFEST.json",
+      "sha": "30180c25eafca10088481f1fc54d506deebcde4e",
+      "size": 9394
+    },
+    {
+      "path": "vande_bharat_v01/README.md",
+      "sha": "19c65ba378ed5148f0573d8b6487e223fa909106",
+      "size": 13918
+    },
+    {
+      "path": "vande_bharat_v01/SHA256SUMS.txt",
+      "sha": "2585250f3fcdd068788a523fd3ae2f02acc72156",
+      "size": 5339
+    },
+    {
+      "path": "vande_bharat_v01/assemblies/VB_16_formation.json",
+      "sha": "4465a8ea658dc75564e41d8f5da6bbdc3b7e7ee7",
+      "size": 18607
+    },
+    {
+      "path": "vande_bharat_v01/assemblies/VB_8_formation.json",
+      "sha": "07e0956b77d224ec3a93e39845958e3d8b5e1800",
+      "size": 9798
+    },
+    {
+      "path": "vande_bharat_v01/build_assemblies.py",
+      "sha": "52d95bc30f700cd3c2a44594eb4e17e8536af144",
+      "size": 7434
+    },
+    {
+      "path": "vande_bharat_v01/build_vande_bharat.py",
+      "sha": "7a4c106efa2611013c22f9294e630c74c5578954",
+      "size": 31639
+    },
+    {
+      "path": "vande_bharat_v01/cars/VB_DTC.blend",
+      "sha": "aeb7ad407eef637579898834d034ece5232c4af0",
+      "size": 641395
+    },
+    {
+      "path": "vande_bharat_v01/cars/VB_MC.blend",
+      "sha": "46b3975ade31922a81bad58997447448c821f97b",
+      "size": 573502
+    },
+    {
+      "path": "vande_bharat_v01/cars/VB_MC2.blend",
+      "sha": "249307b3ce20ddd811419ae5b2a6fc77d57753e5",
+      "size": 572494
+    },
+    {
+      "path": "vande_bharat_v01/cars/VB_NDTC_EC.blend",
+      "sha": "f5b7891a39251415b4d37ce12ed49824d6fd361b",
+      "size": 433434
+    },
+    {
+      "path": "vande_bharat_v01/cars/VB_NDTC_EC2.blend",
+      "sha": "2e36eb08ba4a554b9f60636d5645429803eb6059",
+      "size": 432984
+    },
+    {
+      "path": "vande_bharat_v01/cars/VB_TC_CC.blend",
+      "sha": "6080747f474047a0ec6b1ebe9db1099f383bbaac",
+      "size": 607726
+    },
+    {
+      "path": "vande_bharat_v01/cars/VB_TC_EC.blend",
+      "sha": "12ec0a60b7dbf263919097d868cefe24f8419a5b",
+      "size": 445384
+    },
+    {
+      "path": "vande_bharat_v01/render_views.py",
+      "sha": "64bd73863a9f22de23813015607b83988bddd686",
+      "size": 2498
+    },
+    {
+      "path": "vande_bharat_v01/validate_fbx.py",
+      "sha": "e758f06f13a88102124fadcbb4fdb27dede10f26",
+      "size": 3629
+    },
+    {
+      "path": "wag12_v01/FILE_MANIFEST.json",
+      "sha": "1ae52fbfc7a5853d421d25948e83faa6b163bd16",
+      "size": 5980
+    },
+    {
+      "path": "wag12_v01/README.md",
+      "sha": "1666494794c828b9d47b17cf1446517c10b2b571",
+      "size": 15589
+    },
+    {
+      "path": "wag12_v01/SHA256SUMS.txt",
+      "sha": "8ec5420c5c3825d7ba547298ac0c6ce636bf6ce5",
+      "size": 3196
+    },
+    {
+      "path": "wag12_v01/assemblies/WAG12B_pair_manifest.json",
+      "sha": "1c99cb565c8665c330771f0481270ce00130965d",
+      "size": 1556
+    },
+    {
+      "path": "wag12_v01/build_assembly_and_render.py",
+      "sha": "e49e08c8cc705a596b61ce90314a994f6946b6b2",
+      "size": 6424
+    },
+    {
+      "path": "wag12_v01/build_wag12.py",
+      "sha": "4ca6f58b02a8c70199b33519f8d6117a979390b4",
+      "size": 34379
+    },
+    {
+      "path": "wag12_v01/sections/WAG12B_A.blend",
+      "sha": "21dbd38647ed079f78540b765b412aa73fc6eaa9",
+      "size": 4616932
+    },
+    {
+      "path": "wag12_v01/sections/WAG12B_B.blend",
+      "sha": "896b68c7609cbca241b43442b23080814c649b57",
+      "size": 4637836
+    },
+    {
+      "path": "wag12_v01/validate_assembly.py",
+      "sha": "12af0e0e58df7e60e12ffdded34e9af0713ba579",
+      "size": 3743
+    },
+    {
+      "path": "wag12_v01/validate_wag12.py",
+      "sha": "8bad3c0936de9d8119a42d3205399945e760c5c9",
+      "size": 7356
+    },
+    {
+      "path": "wag9_v01/README.md",
+      "sha": "bd2077d018d74051dd4f404bb181be8dfb072ad9",
+      "size": 9050
+    },
+    {
+      "path": "wag9_v01/SHA256SUMS.txt",
+      "sha": "d2044d3d72b96f9e156e74ff7c0e95424727c3d4",
+      "size": 2280
+    },
+    {
+      "path": "wag9_v01/WAG9_master.blend",
+      "sha": "23189f3f5b9dbcd4fa8e346f9decd29b31d56781",
+      "size": 722439
+    },
+    {
+      "path": "wag9_v01/build_wag9.py",
+      "sha": "fceaec72b97ea58eed6839bc6de24514b880d7ee",
+      "size": 41616
+    },
+    {
+      "path": "wag9_v01/check_roof_interference.py",
+      "sha": "0f7c55abb5b84b4305fe687aa23d9e2d40f1556a",
+      "size": 1804
+    },
+    {
+      "path": "wag9_v01/dimensions.json",
+      "sha": "f09e24e56423e091b4ffdbb5b6b26e8e53b4b0b6",
+      "size": 2444
+    },
+    {
+      "path": "wag9_v01/export_fbx.py",
+      "sha": "4d89ab9c04f04e27c053b9379be8015b86828e46",
+      "size": 2378
+    },
+    {
+      "path": "wag9_v01/manifest.json",
+      "sha": "743474b83a99ac1e9d617bc6314226bcb9123de8",
+      "size": 4655
+    },
+    {
+      "path": "wag9_v01/references.md",
+      "sha": "d66ecbcaba4db4ccbb45cc5d5e29be64311998d5",
+      "size": 4013
+    },
+    {
+      "path": "wag9_v01/validate_fbx.py",
+      "sha": "32c00b7e2b222706428f06c9a2960727e9bc17b0",
+      "size": 5031
+    },
+    {
+      "path": "wag9_v01/validate_master.py",
+      "sha": "47b0ea26ea72afa1709181c4b118cd044ac79961",
+      "size": 5769
+    }
+  ]
+}

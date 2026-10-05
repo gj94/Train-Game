@@ -13,6 +13,8 @@ Press D for dispatch, then AUTO DISPATCH to let the trains run their timetable.
 T cycles normal / 2x / 4x time. D closes the board again.
 Select a service in the roster and press Tab to take its cab. A returns it to AI.
 F2 selects a WAP-7 light engine; F3 selects WAP-7 + 20 LHB coaches.
+F9 opens the imported fleet: WAP-7, WAG-9, WAG-12B, seven-class ICF/LHB
+showcases, and compact 8/16-car Vande Bharat. See guides/imported-fleet.md.
 Confirm a scenario change in the menu. In LHB, A drives automatically; V rides
 inside a passenger coach. C opens the route desk for the next signal.
 
@@ -30,6 +32,7 @@ Mouse wheel   Zoom
 F1            Scrollable controls, with simulation paused
 F4            Clean view / restore (emergency feedback remains visible)
 F6 / F8       Track labels / event history
+F9            Imported Indian Rail fleet
 F11           Fullscreen / window
 Esc           Pause / resume; back from help or confirmation
 

@@ -2,6 +2,18 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-05: **25 user-owned Blender masters** from
+[gj94/transport-fever-3-mods at 4c4f0be](https://github.com/gj94/transport-fever-3-mods/tree/4c4f0be85edbf4468bca22f2d1285fec72343bd5)
+are converted to `assets/models/ported/*.glb`: WAP-7 pantograph v0.4; WAG-9;
+WAG-12B A/B; seven ICF, seven LHB and seven Vande Bharat car types.
+Author/rights holder: user (gj94). Permission: user's explicit request to reuse
+their work; **no open-source licence granted or inferred**. The source README
+identifies procedural originals, including two packed WAP-7 cab textures.
+No reference photo pixels, TF3 binaries or private horn recordings are included.
+Git hashes are pinned in `tools/port_sources.json`; source/output SHA-256 hashes
+are in `assets/models/ported/manifest.json`. See
+[`imported-fleet.md`](imported-fleet.md) for scope, limitations and rebuilding.
+
 2026-09-30 corridor pass: `*_yard.glb` and `*_yard.blend` station variants are
 original four-platform adaptations of the same architectural references, built
 with `build_stations.py -- --yards`. `game/corridor_scenery.gd` supplies original

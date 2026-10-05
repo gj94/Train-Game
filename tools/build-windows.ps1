@@ -14,7 +14,7 @@ $exportLog = Join-Path $projectRoot '.local/windows-export.log'
 Push-Location $projectRoot
 try {
     if (-not $SkipTests) {
-        foreach ($script in @('tests/run_tests.gd', 'tools/check_qol.gd', 'tools/check_corridor_playable.gd')) {
+        foreach ($script in @('tests/run_tests.gd', 'tools/check_ported_assets.gd', 'tools/check_qol.gd', 'tools/check_corridor_playable.gd', 'tools/check_ported_playable.gd')) {
             & $engine --headless --path $projectRoot --script "res://$script"
             if ($LASTEXITCODE -ne 0) { throw "Verification failed: $script" }
         }
@@ -28,7 +28,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Writing engine notices failed.' }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/portable-readme.txt') -Destination (Join-Path $buildRoot 'README.txt')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/assets.md') -Destination (Join-Path $buildRoot 'ASSET-SOURCES.md')
-    foreach ($guide in @('dispatching.md', 'timetables.md', 'lhb.md', 'wap7.md', 'stations.md')) {
+    foreach ($guide in @('dispatching.md', 'timetables.md', 'lhb.md', 'wap7.md', 'stations.md', 'imported-fleet.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     $revision = & git -c safe.directory=D:/ClaudeWS/train-game rev-parse --short HEAD

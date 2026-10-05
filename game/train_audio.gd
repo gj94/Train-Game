@@ -125,6 +125,11 @@ func reset_positions() -> void:
 	_sched.reset()
 
 
+## Update geometry after an asymmetric imported formation changes ends.
+func set_axles(axles: Array) -> void:
+	_sched.setup(axles, JOINT_SPACING, JOINT_OFFSET)
+
+
 ## Shift the clang (2nd wheel) against the cling (1st wheel) by `db`; returns the new balance.
 func adjust_clang_balance(db: float) -> float:
 	clang_balance_db = clampf(clang_balance_db + db, -12.0, 12.0)

@@ -2,6 +2,7 @@ extends CanvasLayer
 ## Compact driver information and modal menus. Simulation stays in main/sim.
 signal action_requested(action: String)
 const Clock := preload("res://sim/world_clock.gd")
+const PortedStock := preload("res://sim/stock/ported_stock.gd")
 const HELP := """[b]DRIVING[/b]
 W / ↑ more power · S / ↓ less power / more brake · X coast
 Space emergency brake (again at a stand to release)
@@ -12,8 +13,8 @@ Tab cab / exterior · A selected train AI / manual
 F follow train · 1 / 2 / 3 visit a station
 Outside: right-drag orbit, left-drag pan, wheel zoom
 Cab / passenger: right-drag look, wheel zoom
-LHB: V passenger / cab, PgUp/PgDn coach, ←/→ bay,
-Home aisle / seat, B fold or lower the 3A middle berth
+Passenger trains: V passenger / cab, PgUp/PgDn coach, ←/→ position,
+Home aisle / seat. Original LHB rake: B fold / lower middle berths.
 
 [b]DISPATCHING[/b]
 D open / close dispatch · M timetable / map
@@ -27,6 +28,7 @@ Esc pause menu / back · F1 controls · F4 clean view / restore
 F6 track labels · F8 event history · F11 fullscreen / window
 T time ×1 / ×2 / ×4 · P train protection on / off
 F2 WAP-7 light engine / MEMUs · F3 LHB rake / MEMUs
+F9 imported fleet: WAP-7, WAG-9, WAG-12B, ICF, LHB, Vande Bharat
 Changing scenario or restarting asks first. There is no save/load yet.
 
 [b]SOUND & DIAGNOSTICS[/b]
@@ -182,12 +184,19 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Fullscreen / window  ·  F11", "fullscreen")
 			_button(_buttons, "WAP-7 light engine / MEMUs  ·  F2", "wap7")
 			_button(_buttons, "LHB passenger rake / MEMUs  ·  F3", "lhb")
+			_button(_buttons, "Imported fleet…  ·  F9", "fleet")
 			_button(_buttons, "Restart current services…", "restart")
 			_button(_buttons, "Quit to desktop…", "quit")
 		"help":
 			_heading.text = "CONTROLS  /  SIMULATION PAUSED"
 			_body.text = HELP
 			_button(_buttons, "Back  ·  Esc / F1", "close_help")
+		"fleet":
+			_heading.text = "IMPORTED INDIAN RAIL FLEET"
+			_body.text = "Choose a train for the Southern corridor.\nThe coach showcases each contain all seven classes.\nVande Bharat uses the source's compact car lengths."
+			for choice in PortedStock.CHOICES:
+				_button(_buttons, PortedStock.LABELS[choice], "fleet:" + choice)
+			_button(_buttons, "Back  ·  Esc", "fleet_back")
 		"confirm":
 			_heading.text = "LEAVE THIS RUN?"
 			_body.text = description + "\n\nCurrent progress will be lost. Save/load is not available yet."

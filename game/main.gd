@@ -8,6 +8,9 @@ const WorldView := preload("res://game/world_view.gd")
 const TrainView := preload("res://game/train_view.gd")
 const Wap7View := preload("res://game/wap7_train_view.gd")
 const LhbView := preload("res://game/lhb_train_view.gd")
+const PortedView := preload("res://game/ported_train_view.gd")
+const PortedStock := preload("res://sim/stock/ported_stock.gd")
+const PortedFleet := preload("res://sim/layouts/ported_fleet.gd")
 const CameraRig := preload("res://game/camera_rig.gd")
 const Hud := preload("res://game/hud.gd")
 const TrainAudio := preload("res://game/train_audio.gd")
@@ -31,6 +34,7 @@ var time_scale := 1
 var _last_event := 0
 var wap7_drive := false
 var lhb_drive := false
+var imported_fleet := ""
 var _dispatch_tick := 0.0
 var labels_enabled := false
 var _desk_before_cab := false
@@ -41,10 +45,21 @@ var _interior_view := false
 
 
 func _ready() -> void:
+	imported_fleet = get_tree().get_meta("imported_fleet", "")
+	if not get_tree().has_meta("imported_fleet"):
+		for arg in OS.get_cmdline_user_args():
+			if arg.begins_with("--fleet=") and arg.trim_prefix("--fleet=") in PortedStock.CHOICES:
+				imported_fleet = arg.trim_prefix("--fleet=")
 	wap7_drive = get_tree().get_meta("wap7_drive", "--wap7" in OS.get_cmdline_user_args())
 	lhb_drive = get_tree().get_meta("lhb_drive", "--lhb" in OS.get_cmdline_user_args())
+	if not imported_fleet.is_empty():
+		wap7_drive = false
+		lhb_drive = false
 	var layout = FirstLine if get_tree().get_meta("small_test_layout", false) else Corridor
-	world = layout.build_lhb() if lhb_drive else (layout.build_wap7() if wap7_drive else layout.build_dispatch())
+	if not imported_fleet.is_empty():
+		world = PortedFleet.build(imported_fleet)
+	else:
+		world = layout.build_lhb() if lhb_drive else (layout.build_wap7() if wap7_drive else layout.build_dispatch())
 	train = world.trains.T1
 	wv = WorldView.new()
 	wv.build(world, self)
@@ -54,16 +69,22 @@ func _ready() -> void:
 			"lhb": view = LhbView.new()
 			"wap7": view = Wap7View.new()
 			_: view = TrainView.new()
+		if t.stock_kind.begins_with("ported:"):
+			view = PortedView.new()
 		view.build(t, world.graph, self, wv)
 		train_views[t.id] = view
 	tv = train_views[train.id]
 	cam = CameraRig.new()
 	cam.cab_transform = tv.cab_transform
 	cam.follow_point = tv.overview_position
-	if lhb_drive:
+	if _has_passengers():
 		cam.passenger_transform = tv.passenger_transform
 	if wap7_drive or lhb_drive:
 		cam.distance = 420.0 if lhb_drive else 34.0
+		cam.cab_fov = 76.0
+		cam.cab_yaw_limit = PI
+	if not imported_fleet.is_empty():
+		cam.distance = maxf(38.0, train.length * .85)
 		cam.cab_fov = 76.0
 		cam.cab_yaw_limit = PI
 	add_child(cam)
@@ -74,6 +95,8 @@ func _ready() -> void:
 			TrainView.CAR_LENGTH, TrainView.BOGIE_INSET, TrainView.AXLE_SPACING)
 		if t.stock_kind == "lhb":
 			axles = LhbView.sound_axles()
+		elif t.stock_kind.begins_with("ported:"):
+			axles = train_views[t.id].sound_axles()
 		var sound := TrainAudio.new()
 		add_child(sound)
 		sound.setup(t, world, cam, axles)
@@ -101,7 +124,10 @@ func _ready() -> void:
 	wv.set_labels_visible(false)
 	# Window close follows the same in-game confirmation as Quit.
 	get_tree().auto_accept_quit = false
-	if lhb_drive:
+	if not imported_fleet.is_empty():
+		_enter_cab()
+		hud.toast(PortedStock.LABELS[imported_fleet] + " · F9 fleet · Tab exterior · V passengers · F1 controls")
+	elif lhb_drive:
 		_enter_cab()
 		hud.toast("WAP-7 + LHB · W power / S brake · V passenger · Tab exterior · F1 controls")
 	elif wap7_drive:
@@ -133,8 +159,10 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	for view in train_views.values():
 		view.update()
-	if lhb_drive and cam.mode == CameraRig.Mode.PASSENGER:
+	if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
 		audio.interior_listener = tv.passenger_audio_position()
+	elif not imported_fleet.is_empty() and cam.mode == CameraRig.Mode.CAB:
+		audio.interior_listener = tv.interior_audio_position()
 	wv.update()
 	wv.update_joints(delta)
 	for e in world.events:
@@ -156,7 +184,7 @@ func _process(delta: float) -> void:
 		buffer = world.distance_to_buffer(train, 600.0),
 		protection = world.protection,
 		cab = cam.mode == CameraRig.Mode.CAB,
-		passenger = tv.passenger_name() if lhb_drive and cam.mode == CameraRig.Mode.PASSENGER else "",
+		passenger = tv.passenger_name() if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER else "",
 		time_scale = time_scale,
 		automatic = train.automatic,
 		paused = paused,
@@ -172,6 +200,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_ESCAPE:
 				if hud.modal == "help": _close_help()
 				elif hud.modal == "confirm": _cancel_action()
+				elif hud.modal == "fleet": hud.show_modal("pause", labels_enabled)
 				else: _toggle_pause()
 				return
 			KEY_F1:
@@ -184,6 +213,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			match event.physical_keycode:
 				KEY_F2: _request_action("wap7")
 				KEY_F3: _request_action("lhb")
+				KEY_F9: _ui_action("fleet")
 				KEY_F4: _ui_action("clean")
 				KEY_F6: _ui_action("labels")
 			return
@@ -230,6 +260,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				var res := world.reverse_train(train.id)
 				if res.ok:
 					audio.reset_positions()
+					if not imported_fleet.is_empty():
+						audio.set_axles(tv.sound_axles())
+						tv.update()
+						tv.set_cab_view(cam.mode == CameraRig.Mode.CAB)
 					train.destination = "Kadalur" if train.path[0].dir > 0 else "Chennapuram"
 				_report(res, "Changed ends — you are now driving from the other cab")
 			KEY_J:
@@ -239,6 +273,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				cam.follow = true
 				if lhb_drive:
 					cam.distance = maxf(cam.distance, 420.0)
+				elif not imported_fleet.is_empty():
+					cam.distance = maxf(cam.distance, train.length * .85)
 				cam.set_mode(CameraRig.Mode.OVERVIEW)
 				_set_cab_visuals(false)
 			KEY_P:
@@ -257,21 +293,23 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_F8:
 				_restore_ui()
 				hud.toggle_history()
+			KEY_F9:
+				_ui_action("fleet")
 			KEY_V:
-				if lhb_drive:
+				if _has_passengers():
 					if cam.mode == CameraRig.Mode.PASSENGER:
 						_enter_cab()
 					else:
 						_enter_passenger()
 			KEY_PAGEUP, KEY_PAGEDOWN:
-				if lhb_drive and cam.mode == CameraRig.Mode.PASSENGER:
+				if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
 					tv.change_passenger_coach(1 if event.physical_keycode == KEY_PAGEDOWN else -1)
 					cam._look = Vector2.ZERO
 			KEY_LEFT, KEY_RIGHT:
-				if lhb_drive and cam.mode == CameraRig.Mode.PASSENGER:
+				if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
 					tv.change_passenger_bay(1 if event.physical_keycode == KEY_RIGHT else -1)
 			KEY_HOME:
-				if lhb_drive and cam.mode == CameraRig.Mode.PASSENGER:
+				if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
 					tv.passenger_seat = not tv.passenger_seat
 					cam._look = Vector2.ZERO
 			KEY_B:
@@ -293,7 +331,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _set_cab_visuals(cab: bool) -> void:
 	tv.set_cab_view(cab)
 	audio.interior_listener = TrainAudio.DRIVER
-	if lhb_drive:
+	if _has_passengers():
 		tv.set_passenger_view(false)
 	wv.set_labels_visible(labels_enabled and not cab and not hud.clean_view)
 	for sound in train_audio.values():
@@ -327,7 +365,7 @@ func _enter_passenger() -> void:
 	wv.set_labels_visible(false)
 	audio.set_interior(true)
 	dispatcher.set_open(false)
-	hud.toast("PgUp/PgDn coach · ←/→ bay · Home aisle/seat · B middle berths · right-drag look")
+	hud.toast("PgUp/PgDn coach · ←/→ position · Home aisle/seat · right-drag look" + (" · B middle berths" if lhb_drive else ""))
 
 
 func _toggle_pause() -> void:
@@ -346,7 +384,14 @@ func _set_paused(value: bool) -> void:
 
 
 func _ui_action(action: String) -> void:
+	if action.begins_with("fleet:"):
+		_request_action(action)
+		return
 	match action:
+		"fleet":
+			_set_paused(true)
+			hud.show_modal("fleet")
+		"fleet_back": hud.show_modal("pause", labels_enabled)
 		"dispatch":
 			_restore_ui()
 			dispatcher.toggle()
@@ -386,7 +431,10 @@ func _request_action(action: String) -> void:
 		"wap7": "Start the MEMU services." if wap7_drive else "Start the WAP-7 light engine.",
 		"lhb": "Start the MEMU services." if lhb_drive else "Start the WAP-7 with 20 LHB coaches.",
 		"quit": "Quit Train Game and return to the desktop."}
-	hud.show_modal("confirm", labels_enabled, descriptions[action])
+	var description: String = descriptions.get(action, "")
+	if action.begins_with("fleet:"):
+		description = "Start " + PortedStock.LABELS[action.trim_prefix("fleet:")] + "."
+	hud.show_modal("confirm", labels_enabled, description)
 
 
 func _cancel_action() -> void:
@@ -397,6 +445,12 @@ func _cancel_action() -> void:
 func _confirm_action() -> void:
 	var action := _pending_action
 	_pending_action = ""
+	if action.begins_with("fleet:"):
+		get_tree().set_meta("imported_fleet", action.trim_prefix("fleet:"))
+		get_tree().set_meta("wap7_drive", false)
+		get_tree().set_meta("lhb_drive", false)
+		get_tree().call_deferred("reload_current_scene")
+		return
 	match action:
 		"restart": get_tree().reload_current_scene()
 		"wap7": _switch_scenario()
@@ -479,12 +533,18 @@ func _report(result: Dictionary, ok_text: String) -> void:
 
 
 func _switch_scenario() -> void:
+	get_tree().set_meta("imported_fleet", "")
 	get_tree().set_meta("wap7_drive", not wap7_drive)
 	get_tree().set_meta("lhb_drive", false)
 	get_tree().call_deferred("reload_current_scene")
 
 
 func _switch_lhb() -> void:
+	get_tree().set_meta("imported_fleet", "")
 	get_tree().set_meta("lhb_drive", not lhb_drive)
 	get_tree().set_meta("wap7_drive", false)
 	get_tree().call_deferred("reload_current_scene")
+
+
+func _has_passengers() -> bool:
+	return lhb_drive or imported_fleet in ["icf", "lhb", "vb8", "vb16"]
