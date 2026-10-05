@@ -4,6 +4,11 @@ The user's assets from [gj94/transport-fever-3-mods](https://github.com/gj94/tra
 are available through **F9**, or **Escape → Imported fleet**. Choose a working
 and confirm to start at Chennapuram. Original scenarios remain on F2/F3.
 
+A fresh launch defaults to **WAP-7 + seven mixed LHB coaches**: 1A, 2A, 3A,
+2S, CC, SL and GS, starting in the locomotive cab. Restart keeps the selected
+working. Explicit fleet choices and the original F2/F3 scenarios take precedence;
+`-- --memu` starts the six-MEMU dispatcher directly.
+
 ## Vehicles
 
 | Working | Imported assets | Visible train length |

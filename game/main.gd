@@ -52,6 +52,11 @@ func _ready() -> void:
 				imported_fleet = arg.trim_prefix("--fleet=")
 	wap7_drive = get_tree().get_meta("wap7_drive", "--wap7" in OS.get_cmdline_user_args())
 	lhb_drive = get_tree().get_meta("lhb_drive", "--lhb" in OS.get_cmdline_user_args())
+	var has_saved_scenario := get_tree().has_meta("imported_fleet") or get_tree().has_meta("wap7_drive") or get_tree().has_meta("lhb_drive")
+	# Fresh launches use the imported WAP-7 and all seven LHB coach classes.
+	if imported_fleet.is_empty() and not wap7_drive and not lhb_drive and not has_saved_scenario:
+		if "--memu" not in OS.get_cmdline_user_args() and not get_tree().get_meta("small_test_layout", false):
+			imported_fleet = "lhb"
 	if not imported_fleet.is_empty():
 		wap7_drive = false
 		lhb_drive = false

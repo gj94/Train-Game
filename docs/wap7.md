@@ -26,7 +26,7 @@ It now includes both driving interiors and a playable light-engine scenario.
 
 Direct launch: `Godot_v4.7.2-stable_win64.exe --path . -- --wap7` using the executable
 under `.local/godot/`. This scenario is one locomotive without coaches; the
-default six-service, eight-car MEMU corridor remains available.
+six-service, eight-car MEMU corridor remains available by pressing F2 again.
 
 For the locomotive hauling 20 full-length LHB coaches, press **F3** and see
 [LHB coaches and passenger controls](lhb.md). The complete assembled Blender rake

@@ -8,11 +8,14 @@ RUN ON ANOTHER PC
 4. F11 switches fullscreen/window. The initial window is 1280 x 720.
 
 START PLAYING
-The first scenario has six eight-car MEMUs on a 21.64 km fictional corridor.
-Press D for dispatch, then AUTO DISPATCH to let the trains run their timetable.
-T cycles normal / 2x / 4x time. D closes the board again.
-Select a service in the roster and press Tab to take its cab. A returns it to AI.
+The game starts in a WAP-7 hauling seven mixed LHB coaches: 1A, 2A, 3A,
+2S, chair car, sleeper and general seating. W/S drive; A enables AI.
+Tab shows the exterior; V enters a coach and PgUp/PgDn changes coaches.
+The fictional Southern corridor is 21.64 km long. D opens the dispatch board;
+T cycles normal / 2x / 4x time. C opens routes for the next signal.
 F2 selects a WAP-7 light engine; F3 selects WAP-7 + 20 LHB coaches.
+Press the same scenario key again and confirm to select six MEMU services;
+use D then AUTO DISPATCH to run their timetable.
 F9 opens the imported fleet: WAP-7, WAG-9, WAG-12B, seven-class ICF/LHB
 showcases, and compact 8/16-car Vande Bharat. See guides/imported-fleet.md.
 Confirm a scenario change in the menu. In LHB, A drives automatically; V rides

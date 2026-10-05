@@ -2,6 +2,7 @@ extends SceneTree
 ## Full six-service UI test; writes a reproducible four-platform visual checkpoint.
 const Dispatch := preload("res://sim/dispatch_plan.gd")
 func _initialize():
+	set_meta("imported_fleet", "") # Explicitly choose the six-MEMU dispatcher scenario.
 	call_deferred("_check")
 func _check():
 	change_scene_to_file("res://game/main.tscn")

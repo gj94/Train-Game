@@ -4,9 +4,9 @@ The game uses an independent simulation clock. Its display runs from `00:00:00` 
 
 Press **M / TIMETABLE** and select a service on the right. The table shows its stop name, **block ID**, **minutes from origin departure**, arrival/departure times, dwell, actual times and status. Gold highlights the current stop. Negative deviations mean early and positive deviations mean late; **Held** measures the current delay beyond a booked intermediate departure. Times crossing into a later day show `+1d`, `+2d`, etc.
 
-## Default services
+## Six-MEMU dispatcher services
 
-The scenario starts at D1 08:00:00. Six trains are placed at their origins under AI control.
+The MEMU dispatcher scenario starts at D1 08:00:00. Six trains are placed at their origins under AI control. Select it as described in [dispatching.md](dispatching.md); fresh launches now start the mixed-LHB working.
 
 | Service | Departure | Origin (+0) | Maruthur (+12 min, dwell 3 min) | Destination (+28 min) |
 |---|---|---|---|---|
@@ -71,4 +71,4 @@ Taking manual control keeps the schedule and records correctly served stops. Aut
 - Run the overnight example: `23:59:59` changes to D2 `00:00:00`, with the next stop still due at `00:11:00 +1d`.
 - Swap between T1 and T2, take a cab with **Tab**, then return control with **A**: the selected timetable and progress must remain consistent.
 
-The old `first_line.json` remains the two-train regression fixture; the default game uses `southern_corridor.json`.
+The old `first_line.json` remains the two-train regression fixture; the six-MEMU dispatcher uses `southern_corridor.json`.

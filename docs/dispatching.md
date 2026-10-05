@@ -6,13 +6,15 @@ Chennapuram, Maruthur and Kadalur use the Kumbakonam, Mayiladuthurai and Thanjav
 architectural references described in [stations.md](stations.md). The yards and
 route remain fictional, with realistic metre-scale train and platform lengths.
 
-Six eight-car MEMUs start under AI control at D1 08:00. Departures are paired at
+In the dispatcher scenario, six eight-car MEMUs start under AI control at D1 08:00. Departures are paired at
 08:01, 08:02 and 08:04, calling at Maruthur at +12 minutes with a three-minute dwell,
 and booked at the other terminus at +28 minutes. See [timetables.md](timetables.md).
 
 ## Reproduce the busy-station test
 
-1. Run the main scene (F5), then press **D** to open dispatch. Enable **AUTO DISPATCH** and **HOLD MRT**
+1. Run the main scene (F5). The default is WAP-7 with mixed LHB coaches; press
+   **F2**, confirm, then **F2** and confirm again to select the six MEMUs
+   (or launch directly with `-- --memu`). Press **D** to open dispatch. Enable **AUTO DISPATCH** and **HOLD MRT**
    before the first departure. Auto dispatch requests the booked routes through
    the same interlocking used by the manual desk. HOLD MRT keeps Maruthur's
    departures at red; it does not cancel routes already set.

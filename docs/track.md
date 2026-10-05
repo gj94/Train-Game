@@ -86,7 +86,8 @@ Fleet checks cover all 25 material applications/source preservation and MEMU
 wheel/rail/sound alignment and motion. Existing dispatch and fleet integrations
 exercise actual gameplay separately.
 
-1. Start the game, enable AUTO DISPATCH, then close D and use Tab for the cab.
+1. Start the default WAP-7/mixed-LHB working in the cab; A enables AI driving
+   and Tab switches between cab and exterior.
    Inspect track texture stability while moving and the close sleeper/clip detail
    from an exterior view. F4 clears the HUD.
    Exterior zoom now reaches 3 m for rail-joint and wheel inspection; pan/orbit to

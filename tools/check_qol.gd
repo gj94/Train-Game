@@ -16,7 +16,12 @@ func _check() -> void:
 	var game = current_scene
 	var hud = game.hud
 	var desk = game.dispatcher
+	if not _expect(game.imported_fleet == "lhb" and game.train.stock_kind == "ported:lhb" and game.tv.cars.size() == 8, "default WAP-7 and seven mixed LHB coaches"): return
+	var expected_models := ["wap7", "lhb_1a", "lhb_2a", "lhb_3a", "lhb_2s", "lhb_cc", "lhb_sl", "lhb_gs"]
+	if not _expect(game.tv.formation.map(func(car): return car.model) == expected_models and game.audio._sched.axles.size() == 34, "default coach mix and physical sound axles"): return
+	if not _expect(game.cam.mode == 1 and game.tv.cab_on, "default starts in WAP-7 cab"): return
 	if not _expect(not desk._root.visible and not hud._log.visible and game.wv.labels.all(func(l): return not l.visible), "uncluttered initial screen"): return
+	_key(game, KEY_TAB) # Begin the exterior/dispatch transition checks from overview.
 	_key(game, KEY_D)
 	_key(game, KEY_TAB)
 	if not _expect(not desk._root.visible and game.cam.mode == 1, "cab hides dispatch"): return
