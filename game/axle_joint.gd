@@ -10,7 +10,7 @@ extends RefCounted
 ## reported; `late` says how far past the kernel start the frame is, so the kernel can
 ## start that far in and the clang still lands on time.
 
-const Data := preload("res://game/physical_model_data.gd")
+const Data := preload("res://game/joint_video_model_data.gd")
 const JointLayout := preload("res://game/rail_joint_layout.gd")
 const MAX_STEP := 40.0        # metres: bigger per-frame moves (teleports, changing ends) are skipped
 

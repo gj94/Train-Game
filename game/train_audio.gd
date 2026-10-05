@@ -1,11 +1,11 @@
 extends Node
 ## Train sound, driven by the sim every frame.
 ##
-## Track sound: the physical axle-over-joint model from the user's Railway Sound Lab
-## (railway-clang-simulator: src/physical*.js, exported by tools/physical-export-godot.js).
-## Every axle crossing every rail joint plays that axle class's impact kernel (fitted to
-## the approved take: ICF rake over a joint at 66 km/h) at its recorded loudness, the
-## synth.js speed law and its distance to the listener. Rolling noise is the take's
+## Track sound: the approved joint-video reconstruction, separated in the Sound Lab
+## into 14 pairs of individual synthetic strikes plus a fitted rolling layer.
+## tools/export-joint-video-godot.js owns all generated WAVs and constants.
+## Actual axle crossings trigger strikes at unchanged pitch; speed changes the spacing
+## and loudness, never a fixed-rate clip loop. Rolling noise is the take's
 ## calibrated background, radiated by every wheel by distance. The listener is the driver
 ## (cab view) or, in the overview, a spot beside the track where the camera is looking
 ## (as if standing OVERVIEW_SIDE metres from the rails), turned down gently as you zoom
@@ -16,13 +16,13 @@ extends Node
 
 const AxleJoint := preload("res://game/axle_joint.gd")
 const JointLayout := preload("res://game/rail_joint_layout.gd")
-const Data := preload("res://game/physical_model_data.gd")
+const Data := preload("res://game/joint_video_model_data.gd")
 ## One bogie model: wheel 1 = the bogie's first wheel over the joint ("cling", brighter),
 ## wheel 2 = the second, right after it ("clang", heavier). Every bogie of every car uses it,
 ## so a car over a joint gives cling-clang ....... cling-clang.
-const KERNELS := "res://assets/sounds/lab/physical_icf_wheel%d.wav"
+const KERNELS := Data.KERNEL_PATH
 const DEFAULT_CLANG_BALANCE_DB := Data.DEFAULT_CLANG_BALANCE_DB # sound-lab voicing; , / . adjust
-const ROLLING := "res://assets/sounds/lab/physical_icf_rolling.wav"
+const ROLLING := Data.ROLLING_PATH
 signal joint_hit(edge: String, joint: int, cls: int)   # every axle-over-joint hit (for the joint markers)
 
 const JOINT_SPACING := JointLayout.SPACING
@@ -42,7 +42,7 @@ var world: RailWorld
 var camera: Node3D                   # listener in overview
 
 var _sched                           # AxleJoint scheduler
-var _kernels: Array = []             # AudioStreamWAV: [cling, clang]
+var _kernels: Array = []             # 14 approved [first-wheel, second-wheel] pairs
 var clang_balance_db := DEFAULT_CLANG_BALANCE_DB
 var _track: AudioStreamPlayer
 var _track_pb: AudioStreamPlaybackPolyphonic
@@ -82,7 +82,7 @@ func setup(t: Train, w: RailWorld, listener: Node3D, axles: Array) -> void:
 	_sched = AxleJoint.new()
 	_sched.setup(axles, JOINT_SPACING, JOINT_OFFSET)
 	for wheel in Data.KERNELS:
-		_kernels.append(load(KERNELS % (wheel + 1)))
+		_kernels.append(load(KERNELS % wheel))
 	var poly := AudioStreamPolyphonic.new()
 	poly.polyphony = 96
 	_track = _player(poly)
@@ -170,7 +170,7 @@ func set_interior(cab: bool) -> void:
 		_reverb.room_size = 0.32
 		_reverb.damping = 0.55
 		_reverb.spread = 0.6
-		_reverb.wet = 0.22
+		_reverb.wet = 0.10
 		_reverb.dry = 0.95
 		_reverb.predelay_msec = 12.0
 		_lowpass.cutoff_hz = 5200.0
@@ -178,7 +178,7 @@ func set_interior(cab: bool) -> void:
 		_reverb.room_size = 0.7
 		_reverb.damping = 0.35
 		_reverb.spread = 1.0
-		_reverb.wet = 0.2
+		_reverb.wet = 0.03
 		_reverb.dry = 1.0
 		_reverb.predelay_msec = 45.0
 		_lowpass.cutoff_hz = 16000.0
@@ -246,6 +246,12 @@ func _process(delta: float) -> void:
 	_fill_synth()
 
 
+## Both wheels of a bogie use the same approved variant pair at each joint.
+static func strike_index(cls: int, car: int, edge: String, joint: int) -> int:
+	var variant := posmod(AxleJoint.joint_character(edge, joint) + car * 2 + floori(cls / 2.0), Data.VARIANT_COUNT)
+	return variant * 2 + cls % 2
+
+
 ## Axle-over-joint hits + wheel-radiated rolling noise.
 func _track_sound(v: float, kmh: float) -> void:
 	var impact := AxleJoint.impact_scale(kmh)
@@ -265,7 +271,8 @@ func _track_sound(v: float, kmh: float) -> void:
 		g *= lerpf(_overview_gain(h.x), AxleJoint.distance_gain(driver_distance(h.x, interior_listener)), _cab_mix)
 		if g < 0.001:
 			continue
-		_track_pb.play_stream(_kernels[wheel], minf(h.late, Data.KERNEL_SECONDS - 0.02), linear_to_db(g), 1.0)
+		var bank_index := strike_index(h.cls, _sched.axles[h.axle].car, h.edge, h.joint)
+		_track_pb.play_stream(_kernels[bank_index], minf(h.late, Data.KERNEL_SECONDS - 0.02), linear_to_db(g), 1.0)
 	# Rolling noise from every wheel: driver (fixed distances) or camera.
 	var cab_d := PackedFloat32Array()
 	var cam_d := PackedFloat32Array()

@@ -14,7 +14,7 @@ $exportLog = Join-Path $projectRoot '.local/windows-export.log'
 Push-Location $projectRoot
 try {
     if (-not $SkipTests) {
-        foreach ($script in @('tests/run_tests.gd', 'tools/check_track.gd', 'tools/check_fleet_finish.gd', 'tools/check_ported_assets.gd', 'tools/check_motion_playable.gd', 'tools/check_qol.gd', 'tools/check_corridor_playable.gd', 'tools/check_ported_playable.gd')) {
+        foreach ($script in @('tests/run_tests.gd', 'tools/check_track.gd', 'tools/check_fleet_finish.gd', 'tools/check_ported_assets.gd', 'tools/check_motion_playable.gd', 'tools/check_joint_audio_playable.gd', 'tools/check_qol.gd', 'tools/check_corridor_playable.gd', 'tools/check_ported_playable.gd')) {
             & $engine --headless --path $projectRoot --script "res://$script"
             if ($LASTEXITCODE -ne 0) { throw "Verification failed: $script" }
         }
@@ -32,8 +32,8 @@ try {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     $revision = & git -c safe.directory=D:/ClaudeWS/train-game rev-parse --short HEAD
-    $dirty = & git -c safe.directory=D:/ClaudeWS/train-game status --porcelain
-    @("Built: $(Get-Date -Format o)", "Godot: 4.7.2 stable; Windows x86-64 release", "Source base: $revision", "Uncommitted changes included: $([bool]$dirty)") |
+    $dirty = & git -c safe.directory=D:/ClaudeWS/train-game status --porcelain --untracked-files=no
+    @("Built: $(Get-Date -Format o)", "Godot: 4.7.2 stable; Windows x86-64 release", "Source base: $revision", "Uncommitted tracked changes included: $([bool]$dirty)") |
         Set-Content -LiteralPath (Join-Path $buildRoot 'BUILD.txt') -Encoding utf8
     $hashes = foreach ($name in @('TrainGame.exe', 'TrainGame.pck')) {
         $file = Join-Path $buildRoot $name

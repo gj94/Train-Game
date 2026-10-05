@@ -2,7 +2,7 @@ extends RefCounted
 ## Track-sound logic: the axle-over-joint scheduler and its laws (the sound itself is checked by ear).
 
 const AxleJoint := preload("res://game/axle_joint.gd")
-const Data := preload("res://game/physical_model_data.gd")
+const Data := preload("res://game/joint_video_model_data.gd")
 
 
 ## Drive axles along a straight 1000 m edge (then optionally a second edge) at constant
@@ -121,14 +121,16 @@ func test_distance_fade():
 
 
 func test_exported_model_matches_the_fit():
-	if absf(Data.REFERENCE_SPEED - 66.0) > 0.5:
-		return "reference speed should be the fitted ~66 km/h, got %f" % Data.REFERENCE_SPEED
-	if Data.KERNELS != 2 or Data.WHEEL_GAIN.size() != 2:
-		return "expected one bogie model: 2 kernels (cling = 1st wheel, clang = 2nd wheel)"
+	if Data.MODEL_ID != "joint-video-contact-v1" or Data.REFERENCE_SPEED != 60.0:
+		return "expected the approved joint-video bank, with a 60 km/h volume anchor"
+	if Data.KERNELS != 28 or Data.WHEEL_GAIN.size() != 2:
+		return "expected 14 pairs of individually triggered first/second wheel strikes"
 	for w in Data.KERNELS:
-		var wav: AudioStreamWAV = load("res://assets/sounds/lab/physical_icf_wheel%d.wav" % (w + 1))
+		var wav: AudioStreamWAV = load(Data.KERNEL_PATH % w)
 		if wav == null or not wav.stereo or absf(wav.get_length() - Data.KERNEL_SECONDS) > 0.01:
 			return "wheel kernel %d missing or wrong length" % (w + 1)
+		if wav.loop_mode != AudioStreamWAV.LOOP_DISABLED:
+			return "a wheel strike must never loop"
 	return true
 
 

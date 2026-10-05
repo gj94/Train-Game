@@ -1,6 +1,6 @@
 # Permanent way and rolling-stock finish
 
-Updated 5 October 2026. The visual target is realistic railway equipment, replacing
+Updated 6 October 2026. The visual target is realistic railway equipment, replacing
 the earlier cartoon/low-poly treatment. Rendering remains separate from simulation.
 
 ## Track
@@ -47,15 +47,29 @@ user's approved sound calibration; it is not a claim that modern Indian mainline
 have exposed joints every 13 m. The same convention continues through the fictional
 pointwork rather than introducing an unrelated audio rhythm there.
 
-The scheduler evaluates every actual axle in both directions, with a 17.415 ms
-kernel lead and late-start compensation. From 6 October, the second axle is
-**four semitones lower** and has **+5 dB clang balance** (3 dB more than the previous
-setting). The sibling Railway Sound Lab's `src/game-track-tuning.js` applies this
-voicing before `tools/physical-export-godot.js` generates the WAVs and constants.
-Resampling is anchored to the impact so the lead stays unchanged; the longer tail
-is retained. The first-axle waveform, fitted source profile, rolling loop and
-TRACK_ONLY setting are preserved. Comma/period still adjust clang balance in game.
-J remains an optional debugging overlay; real joints are always visible.
+The active sound now uses the user's approved reconstruction of `TrainVideo.mp4`:
+**14 pairs of individual strikes**, with a separate fitted rolling layer. The
+sibling Railway Sound Lab's `tools/fit-joint-video.js` builds its profile and
+`tools/export-joint-video-godot.js` exports `joint_video_*.wav` and
+`game/joint_video_model_data.gd`. Do not edit these generated files directly.
+Each 133.5 ms strike contains one reviewed wheel contact. The same variant pair
+serves both axles of a bogie at a given joint; variants retain the approved sound's
+natural tone and strength, replacing the earlier extra -4 semitone / +5 dB tuning.
+
+The scheduler evaluates actual axle positions in both directions, with a 17.415 ms
+kernel lead and late-start compensation. Playback pitch stays constant as speed
+changes; the contact gaps follow distance divided by speed. An LHB's 2.56 m axle
+pair therefore sounds 0.3072 / 0.1536 / 0.0768 seconds apart at 30 / 60 / 120 km/h.
+The same wheel meets the existing 13 m joints every 1.56 / 0.78 / 0.39 seconds.
+Other axles contribute their own contacts according to the selected formation.
+The source video's speed is unknown and its original timing/audio-video lag is
+not embedded in the game. This update retains the existing joint geometry; a
+single-joint video cannot determine the spacing of successive track joints.
+
+Rolling level and impact strength follow speed and listener distance. At a stand,
+there are no new impacts and rolling fades to silence. Reduced reverb keeps attacks
+distinct. TRACK_ONLY remains enabled. Comma/period adjust second-axle balance;
+brackets adjust total track sound. J is optional diagnostics; real gaps stay visible.
 
 `game/train_motion.gd` samples travelled distance along the occupied route between
 physics ticks. Bodies, bogies, wheels, camera targets and sound scheduling share
@@ -112,10 +126,11 @@ exercise actual gameplay separately.
    point labels and click an unlocked switch. Zoom on the blade toe and motor: one
    tongue opens while the other closes and the stretcher rods move. Locked points
    must remain locked.
-4. Follow a coach bogie past a fishplated joint, then at 40–80 km/h. The wheel,
-   bogie and camera should move together smoothly; the second axle should sound
-   deeper and louder. Repeat after changing direction. The gap is centred on the
-   clang position. Comma/period adjust the clang balance if desired.
+4. Follow an LHB bogie past a fishplated joint at roughly 30, 60 and 120 km/h
+   where the route permits. The approved cling-clang character should remain,
+   with the pair interval halving each time speed doubles. The wheel, bogie and
+   camera should move together smoothly. Brake to a stand and verify the track
+   sound stops, then repeat after changing ends. Comma/period adjust the balance.
    J can expose the existing sound diagnostic bars; turn it off for normal viewing.
 5. Check the MEMU's wheels rotating and bogies steering through a curve, and the
    upper door steps beside a platform. Report clipping, material glare and target-PC
@@ -123,7 +138,10 @@ exercise actual gameplay separately.
 
 Rebuild MEMU: background Blender with `--python tools/blender/build_memu.py`.
 Run `tools/check_track.gd`, `tools/check_fleet_finish.gd`,
-`tools/check_motion_playable.gd` and the normal headless suite. The motion check
+`tools/check_motion_playable.gd`, `tools/check_joint_audio_playable.gd` and the normal
+headless suite. The audio check exercises actual players at 0/30/60/120 km/h;
+`-- --capture` saves Train-bus WAVs under `.local/audio-preview/` (use a working
+audio driver, e.g. `--audio-driver WASAPI` on Windows). The motion check
 also accepts `-- --clock-probe` to stress actual render/physics timing, with
 `--render-probe` for a graphical wheel-level capture; only that probe lowers
 physics ticks to 10 Hz to expose stepping on a slow test GPU.
