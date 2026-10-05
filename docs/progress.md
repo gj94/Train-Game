@@ -1,5 +1,11 @@
 # Progress
 
+## 2026-10-05 — Default WAP-7 with mixed LHB coaches
+- Fresh launches now start in the imported WAP-7 cab hauling seven LHB coaches: **1A, 2A, 3A, 2S, CC, SL and GS**. This uses the existing 188.560 m formation with 34 physical/sound axles. Explicit fleet selections, original F2/F3 scenarios and restart selection still take precedence; `-- --memu` directly opens the six-MEMU dispatcher.
+- Updated the startup/portable guides and existing integration fixtures. The QoL check verifies the actual default locomotive, all seven coach models, cab state and axle count; the corridor check explicitly selects MEMUs.
+- **102 headless tests pass**, plus track geometry, 25 fleet finishes/imports, default/QoL, six-service corridor and all seven imported fleet journey/menu checks. Rebuilt `export/TrainGame-Windows.zip` from clean commit `933f076`; verified extracted EXE/PCK hashes and a no-argument release launch (exit 0, no errors). Smoke-test copy: `.local/default-lhb-package/`; log: `.local/default-lhb-release.log`.
+- **Playtest:** launch F5 or the rebuilt EXE with no arguments. Confirm WAP-7 + seven mixed LHB coaches, press Tab for the exterior, V then PgUp/PgDn to visit each class, and W/S to drive or A for AI. F9 selects other imported workings; F2 then F2 again (confirm each) returns to six MEMU services.
+
 ## 2026-10-05 — Realistic permanent way, sound-aligned joints and fleet finishing
 - Replaced the box-sleeper track with a dedicated rendering adapter: correct 1,676 mm visible gauge, shaped 172 mm rails with worn heads/oxidised webs, 2.75 m cast concrete sleepers at 1,660/km, pads, spring clips and shoulders, coarse granite with scattered stones and irregular ballast shoulders. Local 64 m sections and distance-limited fine hardware keep the long route manageable. Rail top remains 0.5 m; simulation alignment and graphics-quality settings are unchanged.
 - Modelled stock rails, tapered moving switch tongues, shared turnout bearers, motor/slide chairs, drive/detection rods, crossing noses, wing rails and check rails. Tongues/rods follow actual locked route state with elapsed-time animation. Replaced glowing point discs with small unlit indicators. The geometry follows the fictional graph; it is not a surveyed RDSO turnout or a new wheel/flange contact simulation.
