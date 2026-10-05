@@ -1,5 +1,10 @@
 # Progress
 
+## 2026-10-05 — LAN download server for the portable build
+- Serving the latest 390.7 MiB mixed-LHB Windows ZIP at **http://192.168.8.183:8765/** using a hidden Node process. The server exposes only the ZIP, checksum, portable instructions and download page, binds to the Ethernet LAN address and accepts clients from its /24 subnet. Byte-range requests support resumed downloads. No router forwarding or startup task was configured.
+- Verified a complete HTTP transfer of **409,647,224 bytes** against the archive's SHA-256, plus download headers, range requests and refusal of unrelated files/write methods. The user confirmed that access from the other PC works. Windows has enabled its Node inbound allowance; the separate administrator prompt for a narrower custom rule was canceled, so no custom rule was added.
+- `tools/share-build.ps1` starts, reports or stops the server with a checked process identity. `tools/serve-build.mjs` uses the installed Node runtime without new dependencies. Instructions are in `docs/builds.md`; machine-local PID/logs are `.local/lan-share.*`. Keep the host awake during downloads; after extraction the receiving PC runs the game independently. The server must be restarted after a host reboot.
+
 ## 2026-10-05 — Default WAP-7 with mixed LHB coaches
 - Fresh launches now start in the imported WAP-7 cab hauling seven LHB coaches: **1A, 2A, 3A, 2S, CC, SL and GS**. This uses the existing 188.560 m formation with 34 physical/sound axles. Explicit fleet selections, original F2/F3 scenarios and restart selection still take precedence; `-- --memu` directly opens the six-MEMU dispatcher.
 - Updated the startup/portable guides and existing integration fixtures. The QoL check verifies the actual default locomotive, all seven coach models, cab state and axle count; the corridor check explicitly selects MEMUs.

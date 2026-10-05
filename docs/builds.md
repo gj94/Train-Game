@@ -42,3 +42,44 @@ fleet's rebuild instructions, scope and playtest checklist are in
 
 This is a personal playtest build: see the sound provenance in `docs/assets.md`.
 No code signing, installer, save/load or automatic update system is supplied.
+
+## Download over the LAN
+
+Start the download server on this PC with:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/share-build.ps1 -Action Start
+```
+
+It prints the current LAN URL (port 8765). Open that address in a browser on
+another Windows PC on the same LAN, download the ZIP, extract the whole folder,
+and run `TrainGame.exe`. The host must stay awake during the download; the game
+then runs locally on the receiving PC. The server survives closing the terminal,
+but does not automatically start after a reboot.
+
+Windows must allow inbound downloads. If Windows has already allowed Node and
+the other PC can download, no extra rule is needed. Otherwise, run this in an
+**administrator** PowerShell from the project directory, and repeat if the host
+IP or port changes:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/share-build.ps1 -Action Firewall
+```
+
+This creates `TrainGame-LAN-Download`, restricted to the Node executable, the
+selected LAN address/interface, TCP port 8765, the Private profile and the local
+subnet. It does not change the network category or disable Windows Firewall.
+Use `-BindAddress <IPv4>` if more than one connected network is available.
+
+The read-only server exposes only the latest ZIP, its SHA-256 sidecar and portable
+README, plus a download page. It supports byte ranges for resuming downloads.
+Stop it before replacing the archive with a new build, then start it again.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/share-build.ps1 -Action Status
+powershell -ExecutionPolicy Bypass -File tools/share-build.ps1 -Action Stop
+```
+
+Logs and the process record are under `.local/lan-share.*`. Stop checks process
+identity before terminating it. To remove the inactive firewall allowance too,
+run `Remove-NetFirewallRule -Name TrainGame-LAN-Download` as administrator.
