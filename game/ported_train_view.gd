@@ -40,6 +40,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 		cars.append(car)
 		var model: Node3D = (load("res://assets/models/ported/%s.glb" % entry.model) as PackedScene).instantiate()
 		car.add_child(model)
+		preload("res://game/fleet_surface.gd").apply(model, entry.model.begins_with("vb_"))
 		models.append(model)
 		var car_bogies := []
 		for pivot in spec.bogies:
@@ -65,11 +66,11 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 				mesh.visibility_range_end = 100.0
 				mesh.visibility_range_end_margin = 15.0
 			for surface in mesh.mesh.get_surface_count():
-				var material: Material = mesh.mesh.surface_get_material(surface)
+				var material: Material = mesh.get_active_material(surface)
 				if material is StandardMaterial3D and material.transparency != BaseMaterial3D.TRANSPARENCY_DISABLED:
 					var clear := material.duplicate() as StandardMaterial3D
 					clear.albedo_color.a = 0
-					car_glass.append({node = mesh, surface = surface, clear = clear})
+					car_glass.append({node = mesh, surface = surface, clear = clear, exterior = material})
 		glass.append(car_glass)
 		var front := SpotLight3D.new()
 		front.position = Vector3(0, 2.25, -entry.pitch * .5 + .30)
@@ -183,7 +184,7 @@ func _apply_glass() -> void:
 	var active := passenger_coach if passenger_on else (cars.size() - 1 if train.cab_end == 2 else 0)
 	for i in glass.size():
 		for pane in glass[i]:
-			pane.node.set_surface_override_material(pane.surface, pane.clear if i == active and (cab_on or passenger_on) else null)
+			pane.node.set_surface_override_material(pane.surface, pane.clear if i == active and (cab_on or passenger_on) else pane.exterior)
 	_interior_light.visible = cab_on or passenger_on
 
 

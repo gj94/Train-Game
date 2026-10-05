@@ -1,4 +1,4 @@
-"""Builds the low/mid-poly Indian Railways MEMU cars and exports assets/models/memu.glb.
+"""Builds Indian Railways MEMU cars with detailed, rigged running gear and fittings.
 
 Run headless (never touches an open Blender session):
   "C:/Program Files/Blender Foundation/Blender 5.2/blender.exe" --background --factory-startup --python tools/blender/build_memu.py
@@ -15,6 +15,9 @@ import os
 import bpy
 import bmesh
 import mathutils
+import sys
+sys.path.insert(0,os.path.dirname(__file__))
+import memu_detail
 
 PROJECT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 OUT = os.path.join(PROJECT, "assets", "models", "memu.glb")
@@ -47,6 +50,8 @@ def band_material(z):
 
 def fresh_scene():
     """Background session: reuse the factory scene, emptied."""
+    if not bpy.app.background:
+        raise RuntimeError('Run this builder only in background Blender.')
     scn = bpy.context.scene
     for ob in list(scn.objects):
         bpy.data.objects.remove(ob, do_unlink=True)
@@ -258,39 +263,6 @@ def box(bm, center, size):
     bmesh.ops.create_cube(bm, size=1.0, matrix=mathutils.Matrix.LocRotScale(center, None, size))
 
 
-def cylinder_x(bm, center, radius, width, segments=18):
-    m = mathutils.Matrix.Translation(center) @ mathutils.Matrix.Rotation(math.radians(90), 4, "Y")
-    bmesh.ops.create_cone(bm, cap_ends=True, segments=segments, radius1=radius, radius2=radius, depth=width, matrix=m)
-
-
-def running_gear(scn, name, parent, motor):
-    bm_frame = bmesh.new()
-    bm_wheels = bmesh.new()
-    for by in (-14.783 / 2, 14.783 / 2):
-        box(bm_frame, (0, by, 0.78), (2.5, 3.1, 0.34))       # bogie frame
-        box(bm_frame, (0, by, 1.02), (2.2, 0.5, 0.18))       # bolster
-        for side in (-1, 1):
-            box(bm_frame, (side * 1.08, by, 0.62), (0.16, 3.3, 0.3))   # side frames
-            for s in (-0.9, 0.9):
-                box(bm_frame, (side * 1.08, by + s, 0.9), (0.22, 0.3, 0.3))  # springs
-        for ay in (-2.896 / 2, 2.896 / 2):
-            for side in (-1, 1):
-                cylinder_x(bm_wheels, (side * 0.8, by + ay, 0.46), 0.46, 0.13)
-            cylinder_x(bm_wheels, (0, by + ay, 0.46), 0.09, 1.7, 10)   # axle
-    # Underframe and underfloor equipment.
-    box(bm_frame, (0, 0, 1.08), (2.9, L - 7.2, 0.12))
-    kit = [(0, 1.1, 2.4), (-2.6, 0.9, 1.6), (2.6, 1.0, 1.8)] if not motor else \
-          [(-3.8, 1.2, 1.4), (-1.6, 1.2, 1.9), (0.8, 1.3, 2.4), (3.4, 1.1, 1.6)]
-    for (ky, kx, klen) in kit:
-        box(bm_frame, (0, ky, 0.72), (kx * 2, klen, 0.62))
-    frame = new_object(name + "_Underframe", bm_frame, scn, parent)
-    assign(frame, ["Under"])
-    wheels = new_object(name + "_Wheels", bm_wheels, scn, parent)
-    assign(wheels, ["Steel"])
-    for p in wheels.data.polygons:
-        p.use_smooth = True
-
-
 def roof_kit(scn, name, parent, pantograph):
     bm = bmesh.new()
     # Roof ventilators along the centre line.
@@ -312,7 +284,7 @@ def roof_kit(scn, name, parent, pantograph):
             for bx in (-0.4, 0.4):   # a pair of thin tubes per arm
                 bmesh.ops.create_cube(bm, size=1.0, matrix=mathutils.Matrix.LocRotScale(
                     (bx, mid[0], mid[1]), mathutils.Euler((ang, 0, 0)), (0.05, length, 0.05)))
-        box(bm, (0, -0.1, 5.55), (1.9, 0.25, 0.05))
+        box(bm, (0, -0.1, 5.575), (1.9, 0.25, 0.05))
         ob = new_object(name + "_Pantograph", bm, scn, parent)
         assign(ob, ["Steel"])
 
@@ -331,14 +303,16 @@ def car(scn, name, cab, motor):
     else:
         gangway(scn, name, root, -1)
         gangway(scn, name, root, 1)
-    running_gear(scn, name, root, motor)
+    memu_detail.running_gear(sys.modules[__name__],scn,name,root,motor)
     roof_kit(scn, name, root, motor)
+    memu_detail.exterior(sys.modules[__name__],scn,name,root,cab,motor)
     return root
 
 
 def build():
     scn = fresh_scene()
     make_materials()
+    memu_detail.materials(sys.modules[__name__])
     cars = [car(scn, "CabCar", True, False), car(scn, "TrailerCar", False, False), car(scn, "MotorCar", False, True)]
     for i, c in enumerate(cars):   # spread out for previewing; the game positions them itself
         c.location.x = i * 5.0
@@ -350,6 +324,10 @@ def export(scn, cars):
         c.location.x = 0.0
     bpy.ops.export_scene.gltf(filepath=OUT, export_format="GLB", use_selection=False,
                               export_apply=True, export_yup=True)
+    master=os.path.join(PROJECT,'art','memu')
+    os.makedirs(master,exist_ok=True)
+    with open(os.path.join(master,'.gdignore'),'w') as handle: handle.write('')
+    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(master,'memu_detailed.blend'))
     return OUT
 
 

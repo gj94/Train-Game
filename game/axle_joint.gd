@@ -11,11 +11,12 @@ extends RefCounted
 ## start that far in and the clang still lands on time.
 
 const Data := preload("res://game/physical_model_data.gd")
+const JointLayout := preload("res://game/rail_joint_layout.gd")
 const MAX_STEP := 40.0        # metres: bigger per-frame moves (teleports, changing ends) are skipped
 
 var axles: Array = []         # [{x, cls, car}]
-var joint_spacing := 13.0
-var joint_offset := 6.5
+var joint_spacing := JointLayout.SPACING
+var joint_offset := JointLayout.OFFSET
 var _prev: Array = []         # per axle: last {edge, s, dir, length} or null
 
 

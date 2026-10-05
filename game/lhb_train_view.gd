@@ -31,6 +31,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
 		var model: Node3D = (GENERATOR if kind == "eog" else (THREE_TIER if kind == "3a" else TWO_TIER)).instantiate()
 		model.position.y = RAIL_TOP
 		car.add_child(model)
+		preload("res://game/fleet_surface.gd").apply(model)
 		coaches.append(model)
 		var bogies := []
 		var axles := []
@@ -43,12 +44,12 @@ func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
 		var glass := []
 		for mesh in model.find_children("*", "MeshInstance3D", true, false):
 			for s in mesh.mesh.get_surface_count():
-				var material: Material = mesh.mesh.surface_get_material(s)
+				var material: Material = mesh.get_active_material(s)
 				if material != null and material.resource_name.begins_with("LHB_Glass"):
 					var clear := material.duplicate() as StandardMaterial3D
 					clear.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 					clear.albedo_color.a = 0
-					glass.append({node = mesh, surface = s, clear = clear})
+					glass.append({node = mesh, surface = s, clear = clear, exterior = material})
 		coach_glass.append(glass)
 		var middles := model.find_children("MiddleBerth_*", "Node3D", true, false)
 		middle_berths.append(middles)
@@ -111,7 +112,7 @@ func set_passenger_view(on: bool) -> void:
 	passenger_on = on
 	for i in coaches.size():
 		for glass in coach_glass[i]:
-			glass.node.set_surface_override_material(glass.surface, glass.clear if on and i == passenger_coach else null)
+			glass.node.set_surface_override_material(glass.surface, glass.clear if on and i == passenger_coach else glass.exterior)
 		for j in 5:
 			_passenger_lights[i * 5 + j].visible = on and i == passenger_coach
 

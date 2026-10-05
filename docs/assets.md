@@ -2,6 +2,16 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-05 realism pass: `game/track_view.gd`, the track shaders, fishplates,
+fastenings, moving pointwork and `fleet_surface.gd` / its shader are original project
+geometry/material code. Existing registered Poly Haven CC0 textures are reused;
+no reference-photo pixels or new third-party assets were incorporated. The MEMU
+detail kit is original background Blender work (`tools/blender/memu_detail.py`),
+saved as `art/memu/memu_detailed.blend` and exported to `assets/models/memu.glb`.
+The user's 25 imported originals are finished at runtime without changing their
+source exports or extending their reuse licence. Dimensional references, visual
+limits, sound alignment and playtest steps are in [`track.md`](track.md).
+
 2026-10-05: **25 user-owned Blender masters** from
 [gj94/transport-fever-3-mods at 4c4f0be](https://github.com/gj94/transport-fever-3-mods/tree/4c4f0be85edbf4468bca22f2d1285fec72343bd5)
 are converted to `assets/models/ported/*.glb`: WAP-7 pantograph v0.4; WAG-9;

@@ -40,6 +40,8 @@ View preferences are remembered while moving between cab and exterior.
 Switching away from the game pauses it; resume with Esc when you return.
 Restart, scenario changes and quitting ask first. Progress is not saved.
 Detailed route and passenger controls: see the guides folder.
+Realism/joint playtest: guides/track.md. Exterior zoom reaches 3 m for wheel and
+joint inspection. Real gaps and fishplates stay visible with J diagnostics off.
 
 DISPLAY AND TROUBLESHOOTING
 This build keeps the project's Forward+ renderer and high graphics quality.

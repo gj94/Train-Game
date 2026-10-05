@@ -5,7 +5,8 @@ extends RefCounted
 ## (sources in docs/assets.md).
 
 const RAIL_TOP := 0.5
-const GAUGE_HALF := 0.84          # broad gauge (1676 mm)
+const TrackView := preload("res://game/track_view.gd")
+const GAUGE_HALF := TrackView.RAIL_CENTRE # 1676 mm between gauge faces
 const SIGNAL_SIDE := 2.8          # signals stand left of the track (India runs on the left)
 const OHE_SPACING := 55.0
 const OHE_OFFSET := 3.3           # mast distance from track centre
@@ -30,6 +31,7 @@ var _mats := {}
 var _noise_tex: NoiseTexture2D
 var _terrain_noise := FastNoiseLite.new()
 var _fields: Array[Rect2] = []
+var track_view
 
 
 func build(w: RailWorld, parent: Node3D) -> void:
@@ -50,8 +52,11 @@ func build(w: RailWorld, parent: Node3D) -> void:
 	_terrain_noise.fractal_octaves = 5
 
 	_build_environment()
+	track_view = TrackView.new()
+	track_view.build(self)
 	for eid in world.graph.edges:
-		_build_track(eid)
+		for p in _samples(eid, 2.0):
+			_track_samples.append(p.pos)
 	_build_terrain()
 	_build_ohe()
 	_build_stations()
@@ -197,45 +202,6 @@ func _samples(eid: String, step: float) -> Array:
 		var fwd := g.tangent(eid, s, 1)
 		out.append({pos = g.position(eid, s), right = fwd.cross(Vector3.UP).normalized(), fwd = fwd, s = s})
 	return out
-
-
-func _build_track(eid: String) -> void:
-	var pts := _samples(eid, 2.0)
-	for p in pts:
-		_track_samples.append(p.pos)
-	var lift := 0.0004 * (world.graph.edges.keys().find(eid) % 8) # do not raise sleepers above the rail on larger graphs
-
-	# Soil shoulder under and beside the ballast.
-	var shoulder := _extrude(pts, [Vector2(-4.2, 0.02 + lift), Vector2(4.2, 0.02 + lift)], true)
-	var sm := ShaderMaterial.new()
-	sm.shader = load("res://game/shaders/track_shoulder.gdshader")
-	sm.set_shader_parameter("soil_albedo", ph_tex("red_laterite_soil_stones", "diff"))
-	sm.set_shader_parameter("soil_normal", ph_tex("red_laterite_soil_stones", "nor_gl"))
-	sm.set_shader_parameter("gravel_albedo", ph_tex("gravel_floor_02", "diff"))
-	sm.set_shader_parameter("noise_tex", _noise_tex)
-	_add_mesh(shoulder, sm)
-
-	# Ballast: trapezoid cross-section, crushed grey granite.
-	var ballast := _extrude(pts, [Vector2(-2.4, 0.0), Vector2(-1.55, 0.3 + lift), Vector2(1.55, 0.3 + lift), Vector2(2.4, 0.0)])
-	_add_mesh(ballast, pbr("gravel_floor_02", 1.6, Color(0.82, 0.8, 0.78)))
-	# Rails: head, web and foot approximated by a narrow top and wider foot.
-	for side in [-GAUGE_HALF, GAUGE_HALF]:
-		var r := _extrude(pts, [Vector2(side - 0.07, 0.34), Vector2(side - 0.02, 0.37), Vector2(side - 0.02, 0.45),
-			Vector2(side - 0.036, 0.46), Vector2(side - 0.036, RAIL_TOP), Vector2(side + 0.036, RAIL_TOP),
-			Vector2(side + 0.036, 0.46), Vector2(side + 0.02, 0.45), Vector2(side + 0.02, 0.37), Vector2(side + 0.07, 0.34)])
-		_add_mesh(r, steel())
-
-	# Concrete sleepers.
-	var sleeper := BoxMesh.new()
-	sleeper.size = Vector3(2.75, 0.16, 0.26)
-	var e: Dictionary = world.graph.edges[eid]
-	var xforms := []
-	var count := int(e.length / 0.65)
-	for i in count:
-		var s := (i + 0.5) * 0.65
-		var basis := Basis.looking_at(world.graph.tangent(eid, s, 1), Vector3.UP)
-		xforms.append(Transform3D(basis, world.graph.position(eid, s) + Vector3(0, 0.30 + lift, 0)))
-	_multimesh(sleeper, xforms, pbr("brushed_concrete", 1.2, Color(0.85, 0.83, 0.8)))
 
 
 ## Sweeps a 2D profile (x = right offset, y = height) along sample points.
@@ -663,10 +629,10 @@ func _build_switch(nid: String) -> void:
 	box_m(Vector3(1.0, 0.6, 0.6), Vector3(0, 0.3, 0), steel(), node)   # point machine
 	var lamp := MeshInstance3D.new()
 	var cm := CylinderMesh.new()
-	cm.top_radius = 0.45
-	cm.bottom_radius = 0.45
-	cm.height = 0.12
-	cm.radial_segments = 16
+	cm.top_radius = 0.13
+	cm.bottom_radius = 0.13
+	cm.height = 0.22
+	cm.radial_segments = 4
 	lamp.mesh = cm
 	lamp.position = Vector3(0, 0.66, 0)
 	node.add_child(lamp)
@@ -705,6 +671,7 @@ func _clickable(node: Node3D, size: Vector3, offset: Vector3, info: Dictionary) 
 # --- per-frame updates -------------------------------------------------------
 
 func update() -> void:
+	track_view.update_points()
 	var dark := Color(0.1, 0.1, 0.1)
 	var colors := [Color(0.1, 1.0, 0.35), Color(1.0, 0.72, 0.05), Color(1.0, 0.08, 0.05)]
 	for sid in signal_lamps:
@@ -719,7 +686,8 @@ func update() -> void:
 		var rev: bool = world.graph.switches[nid].reversed
 		var locked := world.switch_lock_reason(nid) != ""
 		m.label.text = "%s  %s%s" % [nid, "R" if rev else "N", "  (locked)" if locked else ""]
-		m.lamp.material_override = mat(Color(1.0, 0.6, 0.1) if rev else Color(0.3, 0.8, 1.0), true)
+		m.lamp.material_override = mat(Color("b8a779") if rev else Color("b5b4ab"))
+		m.lamp.rotation.y = PI * .5 if rev else 0.0
 
 
 # --- rail-joint markers (where the track sound comes from) --------------------

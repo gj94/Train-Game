@@ -1,6 +1,6 @@
 # Train Game — Claude working notes
 
-3D low-poly train game: dispatcher + driver modes, jump into any cab and back.
+3D train game aiming for realistic trains and permanent way: dispatcher + driver modes, jump into any cab and back.
 Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
 
 ## Start / end of every session

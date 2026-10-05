@@ -15,6 +15,7 @@ extends Node
 ## Everything runs through the "Train" bus: reverb, plus a low-pass in the cab.
 
 const AxleJoint := preload("res://game/axle_joint.gd")
+const JointLayout := preload("res://game/rail_joint_layout.gd")
 const Data := preload("res://game/physical_model_data.gd")
 ## One bogie model: wheel 1 = the bogie's first wheel over the joint ("cling", brighter),
 ## wheel 2 = the second, right after it ("clang", heavier). Every bogie of every car uses it,
@@ -24,8 +25,8 @@ const DEFAULT_CLANG_BALANCE_DB := 2.0   # clang louder than cling by this much (
 const ROLLING := "res://assets/sounds/lab/physical_icf_rolling.wav"
 signal joint_hit(edge: String, joint: int, cls: int)   # every axle-over-joint hit (for the joint markers)
 
-const JOINT_SPACING := 13.0          # rail length: joints every 13 m on every track edge...
-const JOINT_OFFSET := 6.5            # ...starting 6.5 m in, so none sit on a switch or buffer
+const JOINT_SPACING := JointLayout.SPACING
+const JOINT_OFFSET := JointLayout.OFFSET
 const DEFAULT_TRACK_LEVEL := 1.2     # overall track-sound level (1.0 = the take's level); [ / ] adjust
 const OVERVIEW_SIDE := 6.0           # overview listener: metres from the track, at the camera's focus
 const DRIVER := Vector2(2.0, 1.5)    # driver's ear: metres behind the head, metres to the side

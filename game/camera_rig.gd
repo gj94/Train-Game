@@ -75,6 +75,8 @@ func _target() -> Transform3D:
 	# Frame the railway in the open area above and left of the route desk.
 	var right := Basis(Vector3.UP, yaw).x
 	var target := pivot + right * distance * 0.12 - Vector3.UP * distance * 0.10
+	# Close inspection frames the rail/wheels instead of looking below ground.
+	target += Vector3.UP * .75 * (1.0 - smoothstep(12.0, 45.0, distance))
 	return Transform3D(Basis.looking_at(target - pos, Vector3.UP), pos)
 
 
@@ -115,7 +117,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				cab_fov = minf(82.0, cab_fov + 4.0)
 		if mode == Mode.OVERVIEW and mb.pressed:
 			if mb.button_index == MOUSE_BUTTON_WHEEL_UP:
-				distance = maxf(12.0, distance * 0.88)
+				distance = maxf(3.0, distance * 0.88)
 			elif mb.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				distance = minf(3000.0, distance / 0.88)
 	elif event is InputEventMouseMotion and _dragging != 0:

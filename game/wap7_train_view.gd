@@ -33,6 +33,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 	_body = MODEL.instantiate()
 	_body.position.y = RAIL_TOP
 	car.add_child(_body)
+	preload("res://game/fleet_surface.gd").apply(_body)
 	for i in 2:
 		var cab := Cab.new()
 		cab.name = "DrivingCab%d" % (i + 1)
@@ -58,12 +59,12 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 	# Side-window boxes have inner faces; remove only their glass surfaces in cab mode.
 	for node in _body.find_children("*", "MeshInstance3D", true, false):
 		for s in node.mesh.get_surface_count():
-			var material: Material = node.mesh.surface_get_material(s)
+			var material: Material = node.get_active_material(s)
 			if material != null and material.resource_name == "WAP7_Glass":
 				var clear := material.duplicate() as StandardMaterial3D
 				clear.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 				clear.albedo_color.a = 0.0
-				_glass.append({node = node, surface = s, clear = clear})
+				_glass.append({node = node, surface = s, clear = clear, exterior = material})
 	_cab_interior = _cabs[0]
 	update()
 
@@ -111,7 +112,7 @@ func set_cab_view(on: bool) -> void:
 	for panel in _side_panels:
 		panel.visible = not on
 	for entry in _glass:
-		entry.node.set_surface_override_material(entry.surface, entry.clear if on else null)
+		entry.node.set_surface_override_material(entry.surface, entry.clear if on else entry.exterior)
 	update()
 
 

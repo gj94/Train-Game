@@ -22,6 +22,11 @@ var _rear_lamps: Array = []     # lamps at the tail
 var _cab_interior: Node3D       # shown only in cab view
 var _destinations: Array = []
 var _wv                         # world_view, for materials
+var _bogie_views := []
+var _wheel_views := []
+var _last_odometer := 0.0
+var _wheel_angle := 0.0
+var _cab_exterior_occluders := []
 
 
 func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
@@ -44,7 +49,11 @@ func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
 		if i == n - 1 and n > 1:
 			body.rotation.y = PI     # rear cab car faces backwards
 		car.add_child(body)
+		preload("res://game/fleet_surface.gd").apply(body)
 		_add_identity(body, i, n)
+		_register_running_gear(body, kind, i)
+		if i==0:
+			_cab_exterior_occluders = body.find_children("*ExteriorDetails_Frame","MeshInstance3D",true,false)
 		if kind == "CabCar":
 			var lamps := body.find_children("Lamp_*", "", true, false)
 			if i == 0:
@@ -58,6 +67,27 @@ func build(t: Train, g: TrackGraph, parent: Node3D, world_view) -> void:
 
 
 ## Crisp destination boards and running numbers on the existing MEMU model.
+func _register_running_gear(body: Node3D, kind: String, car_index: int) -> void:
+	var facing := -1.0 if absf(body.rotation.y)>1 else 1.0
+	for j in 2:
+		var bogie: Node3D = body.find_child(kind+"_Bogie"+str(j),true,false)
+		if bogie==null: continue
+		var rest := body.transform*bogie.position
+		_bogie_views.append({node=bogie,back=car_index*(CAR_LENGTH+CAR_GAP)+CAR_LENGTH*.5+rest.z,facing=facing})
+		for k in 2:
+			var axle: Node3D = body.find_child(kind+"_Axle"+str(j)+str(k),true,false)
+			if axle!=null: _wheel_views.append({node=axle,facing=facing})
+
+func _update_running_gear() -> void:
+	_wheel_angle -= (train.odometer-_last_odometer)/.46
+	_last_odometer = train.odometer
+	for bogie in _bogie_views:
+		var direction := _point(bogie.back-1)-_point(bogie.back+1)
+		if direction.length_squared()<.00001: continue
+		bogie.node.global_transform = Transform3D(Basis.looking_at(direction*bogie.facing,Vector3.UP),_point(bogie.back)+Vector3.UP*RAIL_TOP)
+	for axle in _wheel_views: axle.node.rotation.x = _wheel_angle*axle.facing
+
+
 func _add_identity(body: Node3D, index: int, count: int) -> void:
 	for side in [-1, 1]:
 		var number := Label3D.new()
@@ -119,6 +149,7 @@ func update() -> void:
 		if fwd.length_squared() < 0.0001:
 			continue
 		cars[i].global_transform = Transform3D(Basis.looking_at(fwd, Vector3.UP), (front + rear) * 0.5)
+	_update_running_gear()
 	for l in _front_lamps:
 		l.material_override = _wv.mat(Color(1.0, 0.97, 0.85), true)
 	for l in _rear_lamps:
@@ -137,6 +168,8 @@ func cab_transform() -> Transform3D:
 
 func set_cab_view(on: bool) -> void:
 	_cab_interior.visible = on
+	# The dedicated cab supplies its own correctly seated wipers.
+	for mesh in _cab_exterior_occluders: mesh.visible = not on
 
 
 func head_position() -> Vector3:

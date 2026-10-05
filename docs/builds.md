@@ -1,7 +1,8 @@
 # Windows portable build
 
 Run `powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1` from this
-checkout. It runs the headless suite, imported-asset checks, QoL, six-train and
+checkout. It runs the headless suite, track/joint geometry and fleet-finish checks,
+imported-asset checks, QoL, six-train and
 imported-fleet journey integration checks (the complete run takes several minutes),
 exports a release, adds instructions/licences/guides, and produces
 `export/TrainGame-Windows.zip` plus a SHA-256 sidecar. `-SkipTests` is only for

@@ -9,6 +9,10 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **5 Oct 2026 visual direction:** realistic trains and permanent way; the earlier
+  cartoon/low-poly target is superseded. Detailed track profiles, sleepers/fasteners,
+  moving pointwork and visible joints must match the axle sound positions. Improve
+  train geometry/materials, using background Blender where needed. See `docs/track.md`.
 - **30 Sep 2026 route/dispatch update:** expand the route, double-track the main
   line, provide multiple full-length platforms, sensible merging throats and
   signalling, and a matching dispatch view. Test several trains arriving together.
@@ -27,7 +31,7 @@ A **3D train game** where I can be either a **dispatcher** or a **driver**, and 
 - **Platform:** Windows PC, standalone build (.exe).
 
 ### Not required (at least initially)
-- Photorealism
+- Survey-perfect real-world routes
 - Huge real-world maps
 - Economy / city-building (Transport Fever-style economy is out of scope unless added later)
 - Multiplayer
