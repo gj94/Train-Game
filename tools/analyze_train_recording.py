@@ -76,11 +76,12 @@ for name,x in [('Recording 00:55–01:00',reference),('Preferred dry preview',pr
         analyses[name]['dominant_spectral_regions_hz']=[round(float(fs[i])) for i in prominent]
 
 result={'source':'TrainAudio.mp3','excerpt_start_seconds':55,'excerpt_end_seconds':60,
+  'source_speed_kmh':60,'source_speed_basis':'User identified the recording as 60 km/h; not inferred from sound.',
   'dominant_impact_group_period_seconds':float(lags[period_index]),'period_autocorrelation':float(autocorr[period_index]),
   'excerpt_sha256':hashlib.sha256((OUT/'TrainAudio-55-60.wav').read_bytes()).hexdigest(),
   'analyses':analyses,'transient_candidates_original_timestamps':[round(55+float(t[i]),4) for i in selected],
   'notes':['Transient candidates indicate changing energy, not verified individual wheel contacts.',
-           'The recording does not by itself establish train speed or joint spacing.',
+           'The user identifies the recording speed as 60 km/h; the repeating groups do not by themselves establish joint spacing.',
            'Spectral shapes are normalized by total 80–8000 Hz power; recording/mastering levels are not assumed equal.',
            'Band values include background and impacts; microphone/cabin response also affects the spectrum.']}
 (OUT/'recording-55-60-analysis.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
