@@ -113,6 +113,16 @@ propagation and differ from the old check's look-ahead/contact-boundary counts.
 `tools/check_platform_integration.gd` checks native curve voices, release/re-entry,
 pause, bus cleanup, and the three real scene cameras/listeners.
 
+7 October performance follow-up: queued onboard impacts first pass a conservative
+wavefront-distance check. The sound can travel at 343 m/s; the receiver's bound
+includes its speed and the full possible rotation of its offset from the bogie
+midpoint. Impacts that cannot arrive within 180 ms skip repeated curved-route
+queries for that frame. The original exact solver still sets arrival time before
+the 160 ms native scheduling window. Virtual impacts without a native voice also
+skip unnecessary stereo-volume calculations. The sample bank, pitch, envelope,
+contact positions and audible-distance limit are unchanged. The headless suite
+checks that the guard never excludes an imminent arrival on moving curved paths.
+
 Playtest a freshly extracted build at normal simulation time. Use A for AI and
 Alt+1/2/3 to compare coach positions at 30/60/120 km/h where allowed. Confirm
 wheel-pair gaps shorten with speed while impact pitch stays fixed; brake to a

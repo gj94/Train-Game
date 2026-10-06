@@ -330,12 +330,20 @@ func _route_for(contact: Dictionary,priority: float,bypass: bool) -> Dictionary:
 	return slot
 
 func _update_events(delta: float) -> void:
+	var onboard:=_onboard()
+	var receiver: Vector3=_receiver_at(0.0) if onboard else _ear.position
+	var receiver_travel:=_receiver_velocity.length()*.18
+	if not _owner_context.is_empty():
+		# The bogie midpoint travels at most v*dt. Its offset can rotate by
+		# at most twice its length, including a turnout/coach-end transition.
+		receiver_travel=_owner_context.owner.train.speed*.18+2*(absf(_owner_context.along)+absf(_owner_context.side))+1.0
 	for key in _recent.keys():
 		if _time-_recent[key]>5.5: _recent.erase(key)
 	for i in range(_events.size()-1,-1,-1):
 		var event: Dictionary=_events[i]
 		if not event.started:
-			if _onboard():
+			if onboard:
+				if not Acoustics.impact_can_arrive(event.source,receiver,_time-event.contact_time,.18,receiver_travel): continue
 				event.arrival=_time+Acoustics.curved_arrival(event.source,event.contact_time-_time,_receiver_at)
 				event.end=event.arrival-Data.KERNEL_LEAD+Data.KERNEL_SECONDS
 			if event.arrival-_time<=.16: _start_event(event)
@@ -348,8 +356,9 @@ func _update_events(delta: float) -> void:
 		if event.end<=_time:
 			for id in event.ids: _track_pb.stop_stream(id)
 			_events.remove_at(i); continue
-		var gains: Vector2 = Acoustics.stereo(event.source,_ear.position,_ear.forward,_ear.up)*event.gain
-		for side in event.ids.size(): _track_pb.set_stream_volume(event.ids[side],linear_to_db(maxf(.000001,gains[side])))
+		if not event.ids.is_empty():
+			var gains: Vector2 = Acoustics.stereo(event.source,_ear.position,_ear.forward,_ear.up)*event.gain
+			for side in event.ids.size(): _track_pb.set_stream_volume(event.ids[side],linear_to_db(maxf(.000001,gains[side])))
 	for route in _routes:
 		if route.until<_time: continue
 		var cutoff := Acoustics.impact_cutoff(route.source,_ear.position,_onboard(),_onboard() and not _passenger(),_owner_context.get("side",.4))

@@ -18,6 +18,14 @@ static func arrival_delay(source: Vector3, receiver: Vector3, velocity: Vector3)
 	var h := sqrt(dot*dot+a*r.length_squared())
 	return r.length_squared()/maxf(.000001,h-dot) if dot<0 else (dot+h)/a
 
+static func impact_can_arrive(source: Vector3,receiver: Vector3,age: float,lookahead: float,receiver_travel: float) -> bool:
+	# A sound wave cannot cover more than C*(age+lookahead). Even if the
+	# receiver moves straight toward it by its full travel bound, a more
+	# distant event cannot need native playback yet. Exact timing stays below.
+	if age+lookahead<0: return false
+	var reach:=C*(age+lookahead)+maxf(0,receiver_travel)
+	return source.distance_squared_to(receiver)<=reach*reach
+
 static func curved_arrival(source: Vector3, contact_time: float, listener_at: Callable) -> float:
 	var delay := 0.0
 	for i in 12:

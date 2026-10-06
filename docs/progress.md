@@ -33,6 +33,24 @@
   approaches and the four villages; compare both sides of the train. Check shop
   fronts, bus stops, people, foliage transitions and field detail while moving.
   Use F10 to compare frame time and audio queue behaviour on the 4090.
+- Asset portability follow-up: independent GLB audit checks all 41 original
+  exports, embedded resources and exact encoded material categories; the CC0
+  tree and nine downloaded texture hashes match provenance. All 42 editable
+  Blender masters open without external image dependencies. Fixed lazy-loaded
+  image packing in the photographic tree master and removed an unused source
+  object; runtime GLB geometry/pixels are unchanged. Manifest triangle counts now
+  come from the actual glTF export, after degenerate-face removal.
+- The moving soak exposed expensive onboard arrival queries when several trains
+  meet. Added a conservative sound-wave/receiver reach check before the unchanged
+  exact curved-arrival solver, and skip stereo calculations for virtual voices.
+  **152 unit tests pass** including the new curved-path bound regression.
+  A same-frame before/after six-service comparison over 1,200 simulated seconds
+  matched **92,375 contacts** in physical time, arrival time, native scheduling
+  frame, sample variant and gain (tolerance 0.1 microsecond for times).
+  Mean control CPU fell from 17.62 to 11.04 ms; the worst original ten-second
+  window fell from 100.36 to 18.13 ms. This accelerated, rendering-free comparison
+  is not an FPS measurement or a bit-identical live audio capture: native voice
+  allocation follows wall time, and was counted separately. No sound data changed.
 
 ## 2026-10-06 — Interior slowdown and scenery rendering
 - Fixed the growing interior audio workload: impacts from trains at the other end

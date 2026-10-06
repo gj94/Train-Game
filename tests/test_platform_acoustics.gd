@@ -165,6 +165,27 @@ func test_sparse_history_matches_complete_history():
 			if not sparse.positions[i].is_equal_approx(all.positions[index]) or sparse.curvatures[i]!=all.curvatures[index] or not sparse.tangents[i].is_equal_approx(all.tangents[index]): return "sparse history changes acoustics"
 	return true
 
+func test_impact_wavefront_guard_preserves_all_imminent_arrivals():
+	# Independent exact solver on moving/turning receivers: the broad phase
+	# may admit extra work, but must never reject anything audible in 180 ms.
+	for speed in [0.0,8.33,33.33,55.0]:
+		for radius in [80.0,441.36,2000.0]:
+			for direction in [-1.0,1.0]:
+				var path:=func(t: float)->Vector3:
+					var angle: float=direction*speed*t/radius
+					return Vector3(sin(angle)*radius,3.0,(1-cos(angle))*radius)+Vector3(cos(angle)*9,0,sin(angle)*9)
+				var receiver: Vector3=path.call(0.0)
+				var bound: float=speed*.18+18.0+1.0
+				for distance in [3.0,30.0,300.0,1600.0,2600.0]:
+					for side in [-1,1]:
+						var source:=Vector3(distance*side,.3,5.8)
+						for age in [0.0,.01,.15,.5,1.0,4.0,8.0,12.0]:
+							var arrival:=Model.curved_arrival(source,-age,path)
+							if arrival<=.18 and not Model.impact_can_arrive(source,receiver,age,.18,bound):
+								return "Wavefront guard rejected a due impact"
+	if Model.impact_can_arrive(Vector3(1600,0,0),Vector3.ZERO,0,.18,25): return "Far impact still enters exact solver"
+	return true
+
 func test_generated_squeal_bank_lossless_and_bounded():
 	for file in Data.HASHES:
 		if FileAccess.get_sha256(Data.ROOT+file)!=Data.HASHES[file]: return "squeal source changed"
