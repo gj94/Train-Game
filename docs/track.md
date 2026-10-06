@@ -44,10 +44,11 @@ wear deformation or mechanical blade travel time in the interlocking is implied.
 both sides of every gap and expose their end faces. Six-bolt fishplates support the
 web on both sides of each rail. This is intentionally jointed track to match the
 user's approved sound calibration; it is not a claim that modern Indian mainlines
-have exposed joints every 13 m. The same convention continues through the fictional
-pointwork rather than introducing an unrelated audio rhythm there.
+have exposed joints every 13 m. Point assemblies now use shared, rail-specific
+interface metadata in `track_contacts.gd`, suppressing periodic gaps inside them.
 
-The active sound uses the complete user-approved **BODY V2 website mix** from
+The active enhanced player is described in [`enhanced-audio.md`](enhanced-audio.md).
+It retains the original **BODY V2** impact and rolling bank from
 `platform-body-v2-approved-20261006-022055`, replacing the earlier joint-video
 adapter. Eight lossless 48 kHz impact variants retain their full **341.333 ms**
 decay and **21.333 ms** pre-contact attack. Each bogie emits the approved rolling
@@ -57,12 +58,10 @@ The sibling Railway Sound Lab owns `tools/export-body-v2-godot.mjs` and
 `profiles/platform-body-v2/`; do not edit generated WAVs/constants directly.
 Source, mix rules and validation are detailed in [`body-v2-audio.md`](body-v2-audio.md).
 
-As in the website, **one listening joint** supplies impacts near the observer.
-It is selected from the existing visible gaps; all surrounding joints are not
-mixed together. This preserves the approved passing-rake rhythm. A stationary
-trackside view is the closest website comparison. Moving/following and onboard
-views adapt the listening joint to the camera's focus or actual position.
-The existing 13 m geometry is unchanged and is not inferred from this reference.
+The new website port sounds **multiple actual joints and turnout contacts**, with
+propagation to the moving listener, onboard balances and benchmark curve squeal.
+The older one-joint mix remains a regression comparison only. Ordinary track's
+13 m gaps remain visible; new point interfaces match their affected running rail.
 
 The scheduler evaluates actual axle positions in both directions. Playback pitch
 stays constant as speed changes; contact gaps follow distance divided by speed.

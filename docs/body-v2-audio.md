@@ -1,6 +1,10 @@
 # Approved BODY V2 audio
 
-The active `game/body_v2_audio.gd` ports the complete website the user approved,
+**Superseded runtime:** see [enhanced-audio.md](enhanced-audio.md) for the current
+benchmark squeal, multiple contacts and passenger views. This document preserves
+the earlier one-joint reference and its regression checks.
+
+The reference `game/body_v2_audio.gd` ports the complete website the user approved,
 not just its WAV files. Source snapshot:
 `D:/ClaudeWS/platform-body-v2-approved-20261006-022055/platform-experience`.
 The snapshot is unchanged. The sibling Railway Sound Lab owns

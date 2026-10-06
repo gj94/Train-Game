@@ -14,7 +14,7 @@ const PortedStock := preload("res://sim/stock/ported_stock.gd")
 const PortedFleet := preload("res://sim/layouts/ported_fleet.gd")
 const CameraRig := preload("res://game/camera_rig.gd")
 const Hud := preload("res://game/hud.gd")
-const TrainAudio := preload("res://game/body_v2_audio.gd")
+const TrainAudio := preload("res://game/platform_audio.gd")
 const AxleJoint := preload("res://game/axle_joint.gd")
 const Dispatcher := preload("res://game/dispatcher.gd")
 
@@ -179,6 +179,7 @@ func _render_trains(fraction: float) -> void:
 
 func _process(delta: float) -> void:
 	_render_trains(1.0 if paused else Engine.get_physics_interpolation_fraction())
+	for sound in train_audio.values(): sound.listener_owner = audio
 	if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
 		audio.interior_listener = tv.passenger_audio_position()
 	elif not imported_fleet.is_empty() and cam.mode == CameraRig.Mode.CAB:
@@ -338,7 +339,9 @@ func _unhandled_input(event: InputEvent) -> void:
 					hud.toast("3A middle berths " + ("lowered for sleeping" if tv.berths_deployed else "folded for seating"))
 			KEY_1, KEY_2, KEY_3:
 				var idx: int = event.physical_keycode - KEY_1
-				if idx < world.stations.size():
+				if _has_passengers() and (cam.mode == CameraRig.Mode.PASSENGER or event.alt_pressed):
+					_passenger_preset(idx)
+				elif idx < world.stations.size():
 					cam.distance = 155.0
 					cam.yaw = 0.25 if world.stations[idx].building.z > 0 else PI + 0.25
 					cam.jump_to(world.stations[idx].building)
@@ -374,6 +377,22 @@ func _enter_cab() -> void:
 	_set_cab_visuals(true)
 
 
+func _passenger_preset(index: int) -> void:
+	if not _has_passengers():
+		hud.toast("Choose a passenger formation with F9 first")
+		return
+	var eligible: Array = tv.passenger_coaches()
+	if eligible.is_empty(): return
+	var selected: int = eligible[0 if index==0 else (eligible.size()-1 if index==2 else (eligible.size()-1)/2)]
+	tv.passenger_coach = selected
+	tv.passenger_bay = 9 if lhb_drive else 0
+	tv.passenger_seat = false
+	cam._look = Vector2.ZERO
+	_enter_passenger()
+	audio.reset_positions()
+	hud.toast(["FIRST", "MIDDLE", "LAST"][index] + " PASSENGER COACH · " + tv.passenger_name() + " · 1 / 2 / 3 change view")
+
+
 func _enter_passenger() -> void:
 	# Looking around as a passenger preserves the current driver's controls.
 	if cam.mode == CameraRig.Mode.OVERVIEW:
@@ -385,7 +404,7 @@ func _enter_passenger() -> void:
 	wv.set_labels_visible(false)
 	audio.set_interior(true)
 	dispatcher.set_open(false)
-	hud.toast("PgUp/PgDn coach · ←/→ position · Home aisle/seat · right-drag look" + (" · B middle berths" if lhb_drive else ""))
+	hud.toast("1 first · 2 middle · 3 last coach · PgUp/PgDn coach · ←/→ position · Home aisle/seat" + (" · B middle berths" if lhb_drive else ""))
 
 
 func _toggle_pause() -> void:
@@ -398,16 +417,22 @@ func _set_paused(value: bool) -> void:
 	cam.set_process_unhandled_input(not value)
 	cam._dragging = 0
 	for sound in train_audio.values():
-		for player in sound.get_children():
-			if player is AudioStreamPlayer:
-				player.stream_paused = paused
+		sound.set_paused(paused)
 
 
 func _ui_action(action: String) -> void:
 	if action.begins_with("fleet:"):
 		_request_action(action)
 		return
+	if action.begins_with("pax:"):
+		_set_paused(false)
+		hud.show_modal("")
+		_passenger_preset(int(action.get_slice(":",1)))
+		return
 	match action:
+		"passengers":
+			_set_paused(true)
+			hud.show_modal("passengers")
 		"fleet":
 			_set_paused(true)
 			hud.show_modal("fleet")

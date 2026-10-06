@@ -191,6 +191,14 @@ func _apply_glass() -> void:
 	_interior_light.visible = cab_on or passenger_on
 
 
+func passenger_coaches() -> Array:
+	var result := []
+	for i in cars.size():
+		if not specs[i].passengers.is_empty(): result.append(i)
+	if train.cab_end == 2: result.reverse()
+	return result
+
+
 func change_passenger_coach(delta: int) -> void:
 	passenger_coach = posmod(passenger_coach + delta, cars.size())
 	while specs[passenger_coach].passengers.is_empty():

@@ -2,6 +2,16 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-06 evening benchmark squeal: `assets/sounds/platform_enhanced/` contains
+four newly synthesized periodic banks plus lossless channel-routing copies.
+Source is the user's `platform-squeal-benchmark-src-md-20261006-221237` package,
+`public/squeal.js` and `squeal-profile.js`; original source hashes are recorded
+in the generated provenance file. Its profile contains spectral statistics
+fitted from the user's SquealingTrain reference; new seeded random phases are
+used, with no source waveform or video shipped. The sibling sound lab exporter
+owns generation. User-authorized personal playtest use; no open redistribution
+licence or absolute acoustic calibration is asserted. See `enhanced-audio.md`.
+
 2026-10-06 BODY V2 integration: `assets/sounds/body_v2/` preserves the eight impact
 WAVs and rolling bed from the user's approved
 `platform-body-v2-approved-20261006-022055/platform-experience/public/synthesis/`

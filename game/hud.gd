@@ -13,7 +13,8 @@ Tab cab / exterior · A selected train AI / manual
 F follow train · 1 / 2 / 3 visit a station
 Outside: right-drag orbit, left-drag pan, wheel zoom
 Cab / passenger: right-drag look, wheel zoom
-Passenger trains: V passenger / cab, PgUp/PgDn coach, ←/→ position,
+Passenger trains: V passenger / cab. In passenger view: 1 first / 2 middle / 3 last coach.
+Alt+1 / Alt+2 / Alt+3 enter those views directly. PgUp/PgDn coach, ←/→ position,
 Home aisle / seat. Original LHB rake: B fold / lower middle berths.
 
 [b]DISPATCHING[/b]
@@ -179,6 +180,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_body.text = "Resume to continue the current service.\n[b]F4[/b] clears the screen; [b]D[/b] opens dispatch."
 			_button(_buttons, "Resume  ·  Esc", "resume")
 			_button(_buttons, "Controls  ·  F1", "help")
+			_button(_buttons, "Passenger views…", "passengers")
 			_button(_buttons, "Clean view  ·  F4", "clean")
 			_button(_buttons, "Track labels: " + ("ON" if labels_on else "OFF") + "  ·  F6", "labels")
 			_button(_buttons, "Fullscreen / window  ·  F11", "fullscreen")
@@ -187,6 +189,13 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Imported fleet…  ·  F9", "fleet")
 			_button(_buttons, "Restart current services…", "restart")
 			_button(_buttons, "Quit to desktop…", "quit")
+		"passengers":
+			_heading.text = "PASSENGER VIEWS"
+			_body.text = "Ride inside the first, middle or last passenger coach.\nThe camera and sound follow that coach. Luggage and generator vans are skipped.\n\n[b]1 / 2 / 3[/b] switch views while riding; [b]PgUp/PgDn[/b] visit any coach."
+			_button(_buttons, "First passenger coach  ·  Alt+1", "pax:0")
+			_button(_buttons, "Middle passenger coach  ·  Alt+2", "pax:1")
+			_button(_buttons, "Last passenger coach  ·  Alt+3", "pax:2")
+			_button(_buttons, "Back", "fleet_back")
 		"help":
 			_heading.text = "CONTROLS  /  SIMULATION PAUSED"
 			_body.text = HELP

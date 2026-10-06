@@ -17,6 +17,8 @@ var wv
 var graph: TrackGraph
 var root: Node3D
 var junctions := {}
+var contact_layout
+var single_fishplate: ArrayMesh
 var point_blades := {}
 var point_rods := {}
 var _point_tick := 0
@@ -40,6 +42,7 @@ func build(view) -> void:
 	fastening = _fastening_mesh()
 	stone = _stone_mesh()
 	fishplate = _fishplate_mesh()
+	single_fishplate = _fishplate_mesh(true)
 	_find_junctions()
 	for eid in graph.edges:
 		var length: float = graph.edges[eid].length
@@ -79,34 +82,17 @@ func _materials() -> void:
 	materials.shoulder = shoulder
 
 func _find_junctions() -> void:
-	for nid in graph.switches:
-		var sw: Dictionary = graph.switches[nid]
-		var max_d := minf(280, minf(graph.edges[sw.normal].length,graph.edges[sw.reverse].length)*.48)
-		var previous := 0.0
-		var frog := -1.0
-		var toe := -1.0
-		for i in ceili(max_d*2):
-			var d := i*.5
-			var a := _from_node(sw.normal,nid,d)
-			var b := _from_node(sw.reverse,nid,d)
-			var separation: float = a.pos.distance_to(b.pos)
-			if toe<0 and separation>=.065: toe = d
-			if previous < 2*RAIL_CENTRE and separation >= 2*RAIL_CENTRE:
-				frog = d
-			if separation > 5.5:
-				max_d = d
-				break
-			previous = separation
-		for eid in [sw.normal,sw.reverse]:
-			if not junctions.has(eid): junctions[eid] = []
-			junctions[eid].append({node=nid, other=sw.reverse if eid==sw.normal else sw.normal,
-				primary=eid==sw.normal, extent=max_d, frog=frog, toe=maxf(1,toe), heel=maxf(1,toe)+9.0})
+	contact_layout = preload("res://game/track_contacts.gd").new(graph)
+	junctions = contact_layout.junctions
+
+
+
 
 func _from_node(eid: String, nid: String, d: float) -> Dictionary:
 	var direction := 1 if graph.edges[eid].a == nid else -1
 	var s := graph.entry_s(eid,direction) + direction*d
 	var f := graph.tangent(eid,s,direction)
-	return {pos=graph.position(eid,s), fwd=f, right=f.cross(Vector3.UP), s=s}
+	return {pos=graph.position(eid,s), fwd=f, right=f.cross(Vector3.UP), s=s, direction=direction}
 
 func _sample(eid: String, s: float) -> Dictionary:
 	var f := graph.tangent(eid,s,1)
@@ -136,14 +122,12 @@ func _build_chunk(eid: String, start: float, end: float) -> void:
 	var distances := []
 	for i in steps+1: distances.append(lerpf(start,end,i/float(steps)))
 	var joints := []
-	var k0 := maxi(0,ceili((start-JointLayout.OFFSET-JointLayout.GAP)/JointLayout.SPACING))
-	var k1 := floori((end-JointLayout.OFFSET+JointLayout.GAP)/JointLayout.SPACING)
-	for k in range(k0,k1+1):
-		var s := JointLayout.OFFSET+k*JointLayout.SPACING
-		if s >= graph.edges[eid].length: continue
+	var joint_contacts: Array = contact_layout.gaps(eid,start-JointLayout.GAP,end+JointLayout.GAP)
+	for contact in joint_contacts:
+		var s: float = contact.s
 		for edge in [s-JointLayout.GAP*.5,s+JointLayout.GAP*.5]:
 			if edge>start and edge<end: distances.append(edge)
-		if s>=start and s<end: joints.append(s)
+		if s>=start and s<end and not s in joints: joints.append(s)
 	distances.sort()
 	var pts := []
 	for s in distances:
@@ -165,8 +149,7 @@ func _build_chunk(eid: String, start: float, end: float) -> void:
 			_bed_segment(soil,a,b,node.position,true)
 			bed_faces += 1
 		for side in [-1.0,1.0]:
-			var joint_delta := absf(fposmod(mid.s-JointLayout.OFFSET+JointLayout.SPACING*.5,JointLayout.SPACING)-JointLayout.SPACING*.5)
-			if joint_delta < JointLayout.GAP*.499: continue
+			if contact_layout.at_gap(eid,mid.s,side): continue
 			# Stock rails follow the two OUTSIDE routes. The two inside tongues
 			# are separate hinged meshes, controlled by the interlocking state.
 			if mid.shared and mid.node_distance<mid.heel and side==signf(mid.gap): continue
@@ -192,17 +175,24 @@ func _build_chunk(eid: String, start: float, end: float) -> void:
 			var p := _sample(eid,s+direction*JointLayout.GAP*.5)
 			if p.s<start or p.s>end: continue
 			for side in [-1.0,1.0]:
+				if not contact_layout.at_gap(eid,s,side): continue
 				if p.shared and p.node_distance<p.heel and side==signf(p.gap): continue
 				_cap_rail(rails,p,side,node.position,-direction)
 	if rail_faces: _finish(rails,node,materials.rail,"Rails")
 	var plates := []
-	for s in joints:
-		var p := _sample(eid,s)
+	var single_plates := []
+	for contact in joint_contacts:
+		if contact.s<start or contact.s>=end: continue
+		var p := _sample(eid,contact.s)
 		# Shared stock rails receive one plate assembly, not coincident duplicates.
 		if p.shared and not p.primary and absf(p.gap)<.095: continue
-		plates.append(Transform3D(Basis.looking_at(p.fwd,Vector3.UP),p.pos-node.position))
+		if contact.side==0:
+			plates.append(Transform3D(Basis.looking_at(p.fwd,Vector3.UP),p.pos-node.position))
+		else:
+			single_plates.append(Transform3D(Basis.looking_at(p.fwd,Vector3.UP),p.pos+p.right*contact.side*RAIL_CENTRE-node.position))
 	_instances(fishplate,plates,node,materials.hardware,"Fishplates",160)
-	stats.joints += plates.size()
+	_instances(single_fishplate,single_plates,node,materials.hardware,"PointFishplates",160)
+	stats.joints += plates.size()+single_plates.size()
 	var ties := []
 	var bearers := []
 	var clips := []
@@ -374,14 +364,16 @@ func _build_points() -> void:
 			var ds := []
 			for k in 37: ds.append(lerpf(j.toe,j.heel,k/36.0))
 			# Visible gaps stay centred on the scheduler even on a moving tongue.
-			for s in AxleJoint.joints_on_edge(graph.edges[eid].length,JointLayout.SPACING,JointLayout.OFFSET):
+			for contact in contact_layout.gaps(eid,0,graph.edges[eid].length):
+				if contact.side!=0 and contact.side!=side*heel.direction: continue
+				var s: float = contact.s
 				var d: float = s if graph.edges[eid].a==nid else graph.edges[eid].length-s
 				for v in [d-JointLayout.GAP*.5,d+JointLayout.GAP*.5]:
 					if v>j.toe and v<j.heel: ds.append(v)
 			ds.sort()
 			for k in ds.size()-1:
 				var mid := _from_node(eid,nid,(ds[k]+ds[k+1])*.5)
-				if absf(fposmod(mid.s-JointLayout.OFFSET+JointLayout.SPACING*.5,JointLayout.SPACING)-JointLayout.SPACING*.5)<JointLayout.GAP*.499: continue
+				if contact_layout.at_gap(eid,mid.s,side*mid.direction): continue
 				var rows := []
 				for d in [ds[k],ds[k+1]]:
 					var p := _from_node(eid,nid,d)
@@ -532,10 +524,10 @@ func _stone_mesh() -> ArrayMesh:
 	st.generate_normals()
 	return st.commit()
 
-func _fishplate_mesh() -> ArrayMesh:
+func _fishplate_mesh(single: bool = false) -> ArrayMesh:
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	for side in [-1.0,1.0]:
+	for side in ([0.0] if single else [-1.0,1.0]):
 		var x: float = side*RAIL_CENTRE
 		for face in [-1.0,1.0]:
 			_box(st,Vector3(.023,.070,.64),Vector3(x+face*.026,.403,0))

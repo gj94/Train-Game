@@ -118,6 +118,14 @@ func set_passenger_view(on: bool) -> void:
 			_passenger_lights[i * 5 + j].visible = on and i == passenger_coach
 
 
+func passenger_coaches() -> Array:
+	var result := []
+	for i in coaches.size():
+		if Profile.coach_kind(i) != "eog": result.append(i)
+	if train.cab_end == 2: result.reverse()
+	return result
+
+
 func change_passenger_coach(delta: int) -> void:
 	passenger_coach = posmod(passenger_coach + delta, coaches.size())
 	while Profile.coach_kind(passenger_coach) == "eog":

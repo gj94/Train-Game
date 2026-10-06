@@ -47,13 +47,22 @@ Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
 - The game runs *embedded* in the editor window ("Train Game (DEBUG)"). Its MCPRuntime screenshot helper doesn't
   connect, so capture the window with Win32 instead, and click inside the game view before sending keys (otherwise
   they go to the embed toolbar).
-- Active train sound = the user-approved BODY V2 website mix. Current source lab:
+- Active train sound = the enhanced benchmark website port, `game/platform_audio.gd`.
+  Latest source: `platform-squeal-benchmark-src-md-20261006-221237` (replaces the
+  earlier three-tone curve-squeal source). Read `docs/enhanced-audio.md` first.
+  The sibling lab's `tools/export-platform-enhanced.mjs` owns the periodic squeal
+  banks and energy bins. Committed lab recovery sources: `tools/sound-lab/enhanced/`.
+  The unchanged BODY V2 impact/rolling bank is still owned by the prior exporter.
+  Contact metadata is shared with rendered rail gaps/point interfaces through
+  `game/track_contacts.gd`; do not restore ordinary periodic gaps inside points.
+  First/middle/last passenger views: Alt+1/2/3 (or 1/2/3 while riding).
+- Original approved BODY V2 reference and source lab:
   `D:\ClaudeWS\railway-clang-simulator`; see `docs/pc-setup.md` and `docs/body-v2-audio.md`.
   `node tools/export-body-v2-godot.mjs D:/ClaudeWS/train-game` exports the unchanged bank
   to `assets/sounds/body_v2/` and `game/body_v2_data.gd` (generated, don't hand-edit).
-  `game/axle_joint.gd` retains physical contact scheduling; `game/body_v2_audio.gd` is the
-  active player. `train_audio.gd`, joint-video and physical-ICF profiles are historical.
-  Preserve the approved full decays, native pitch, mix and one-joint listening model.
+  `game/axle_joint.gd` and `game/body_v2_audio.gd` retain the older reference tests.
+  `train_audio.gd`, joint-video and physical-ICF profiles are historical.
+  Preserve full decays, native impact pitch and the single-joint regression mode.
 - Parse-check scripts with `& $g --headless --path . --check-only --script res://<file>.gd` — the MCP
   `validate_scripts` tool misses errors (e.g. `var x := untyped.call()` "cannot infer type"). Values from untyped
   vars (like `_wv` in train_view.gd) need an explicit type: `var m: Material = _wv.mat(...)`.

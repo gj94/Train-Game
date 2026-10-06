@@ -78,7 +78,11 @@ git -c safe.directory=D:/ClaudeWS/train-game status
 Global Git settings were not changed. No remote was added.
 The sound lab is present at `D:\ClaudeWS\railway-clang-simulator`.
 Its export script defaults to the sibling train-game folder.
-Current sound (6 October): the complete approved BODY V2 website mix, with eight
+Current sound (6 October evening): enhanced `platform_audio.gd`, using the newer
+benchmark squeal source `platform-squeal-benchmark-src-md-20261006-221237`.
+See `docs/enhanced-audio.md`. Regenerate its new bank via the sibling lab's
+`node tools/export-platform-enhanced.mjs D:/ClaudeWS/train-game`.
+The original approved BODY V2 bank still provides eight
 full-length impacts and per-bogie rolling, TRACK_ONLY enabled. Impact pitch stays
 unchanged; actual axle/joint positions determine timing at every speed.
 The sibling's `profiles/platform-body-v2/` preserves the approved source and hashes;

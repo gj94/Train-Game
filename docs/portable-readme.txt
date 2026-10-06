@@ -11,6 +11,10 @@ START PLAYING
 The game starts in a WAP-7 hauling seven mixed LHB coaches: 1A, 2A, 3A,
 2S, chair car, sleeper and general seating. W/S drive; A enables AI.
 Tab shows the exterior; V enters a coach and PgUp/PgDn changes coaches.
+Alt+1 / Alt+2 / Alt+3 directly enter the first / middle / last passenger coach.
+While riding, 1 / 2 / 3 switch those views. Esc also has a Passenger views menu.
+The current sound includes the new benchmark squeal and speed-dependent rolling;
+see guides/enhanced-audio.md for the listening test and controls.
 The fictional Southern corridor is 21.64 km long. D opens the dispatch board;
 T cycles normal / 2x / 4x time. C opens routes for the next signal.
 F2 selects a WAP-7 light engine; F3 selects WAP-7 + 20 LHB coaches.
