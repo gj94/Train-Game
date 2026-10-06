@@ -40,7 +40,31 @@
   native lifecycle/passenger checks pass.** New regressions verify unchanged
   world transforms/box corners, converged arrival timing, rejection of 1,000
   remote impacts without queue/bus growth, retained approach margin and expiry.
-  Remaining release/package results are recorded below when complete.
+  Release/package verification is recorded below.
+- **Release complete:** all thirteen build-check scripts pass on performance
+  source `d0dc90c`, including permanent-way geometry, all 25 imported models,
+  motion, both audio adapters, UI/controller safety, traffic, the six-MEMU corridor,
+  all seven imported-fleet journeys and menu reload. Logs:
+  `.local/perf-verify-*.log`. Controller implementation is commit `79e0349`.
+- Exported **`TrainGame-Controller-Windows.zip`**, **420,689,679 bytes**, from a clean
+  tracked tree. SHA-256:
+  **`cf36d4598abfb20ad08eeddca4e47aef8f8c8d66abecef6f5bb6d3245d9335f0`**.
+  A fresh extracted copy passes EXE/PCK hashes, default traffic and VB16 startup
+  with no script/resource errors, and an independent PCK audit confirms all
+  controller/performance scripts, **39 lossless WAVs** and provenance, with raw
+  reference media excluded. Evidence: `.local/perf-release-build.log`,
+  `.local/perf-package-check.log`, `.local/controller-package/`.
+- Published at **http://192.168.8.183:8765/**, server PID **26232**. The landing page
+  offers the latest performance/controller ZIP first; the prior ZIP is unchanged
+  (SHA-256 `11b315007d9f95fa3920652a673ab42edb5092ac1b2733eb579e9f210e323ce1`).
+  A full **420,689,679-byte HTTP download** matches the new checksum. Both links,
+  instructions, file allowlist, method restrictions, HEAD and byte ranges pass.
+  Existing private-LAN configuration is retained; no firewall prompt was needed.
+  Temporary editor/profiling games have exited. Keep the host awake for downloads.
+- Opened a fresh requested GitHub CLI browser sign-in after the earlier device
+  code expired. Authentication is still pending; commits are local and **not
+  pushed**. No credentials are stored in the repository. Resume the authorized
+  push after sign-in succeeds.
 - **Playtest on the 4090:** extract the new performance/controller ZIP into a fresh
   folder; press F10 and A for AI. Ride in cab for at least five minutes, switch to
   first/middle/trailing passenger coaches with Alt+1/2/3, then compare exterior
