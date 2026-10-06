@@ -57,7 +57,15 @@ any reachable audible position in retained history are culled early.
 
 Native voice budgets are 24 filtered impact locations and 12 squeal voices
 (including fading tails) per train. Impact locations are prioritized by received
-level; all physical contacts remain in the diagnostic trace. Squeal uses the
+level; retained contacts keep their physical identity in the diagnostic trace.
+Impacts beyond a conservative 2.6 km prefetch radius are discarded before
+retarded-arrival calculations (native impact voices already stop at 1.6 km).
+This prevents inaudible trains at the far end of the 22 km corridor from building
+thousands of pending events. Nearby timing, voicing and decay are unchanged.
+Onboard receivers no longer search the entire corridor for an exterior listening
+joint. Exterior sources share a matching receiver's nearest-joint result.
+Curved-arrival iteration stops when converged to 0.1 ns, retaining its twelve-step
+maximum. Squeal uses the
 reference threshold, normalization, gain/filter smoothing and 300 ms release.
 Pause, coach jumps, consist replacement and exit clean up pending events/tails.
 

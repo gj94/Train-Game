@@ -278,6 +278,11 @@ func run_check() -> void:
 	Input.parse_input_event(key)
 	Input.flush_buffered_events()
 	check(game.train.emergency and not pad.controller_mode,"keyboard emergency works after controller UI")
+	pad.shortcut("performance")
+	game.performance_overlay._process(1)
+	check(game.performance_overlay.enabled and "queued impacts" in game.performance_overlay._label.text,"performance diagnostics accessible with controller command")
+	pad.shortcut("performance")
+	check(not game.performance_overlay.enabled,"performance overlay closes")
 	var release := key.duplicate()
 	release.pressed = false
 	Input.parse_input_event(release)

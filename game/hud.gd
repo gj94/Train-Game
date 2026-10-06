@@ -27,7 +27,7 @@ AI needs routes and waits for its departure time and station dwell.
 
 [b]DISPLAY & SESSION[/b]
 Esc pause menu / back · F1 controls · F4 clean view / restore
-F6 track labels · F8 event history · F11 fullscreen / window
+F6 track labels · F8 event history · F10 performance · F11 fullscreen / window
 T time ×1 / ×2 / ×4 · P train protection on / off
 F2 WAP-7 light engine / MEMUs · F3 LHB rake / MEMUs
 F9 new random traffic service / solo imported fleet

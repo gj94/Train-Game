@@ -1,5 +1,54 @@
 # Progress
 
+## 2026-10-06 — Interior slowdown and scenery rendering
+- Fixed the growing interior audio workload: impacts from trains at the other end
+  of the corridor were retained for long propagation delays and recalculated every
+  frame before eventually being discarded. Cull contacts beyond a conservative
+  2.6 km prefetch radius before queueing, preserve the existing 1.6 km native
+  playback limit, and avoid allocating filter buses for inaudible events. Onboard
+  audio skips the unused corridor-wide nearest-joint search; exterior sources
+  share the listener's selection. The arrival solver stops after convergence to
+  0.1 ns instead of repeating identical route queries. Approved PCM is unchanged.
+- Split corridor-wide MultiMeshes into 256 m spatial cells so distant scenery and
+  shadows can be culled. Batch differently sized scenery/station boxes by material
+  using scaled unit boxes, and reuse other BoxMeshes. World geometry and graphics
+  settings are preserved; automatic LOD now operates on the spatial batches.
+- Controlled six-service audio profile: before, mean control work rose from
+  **20 ms at 10 simulated seconds to 358 ms at 60 seconds**, with **2,342 pending
+  impacts**. After, it stays approximately **4–7 ms through 300 simulated seconds**,
+  with a peak of **54 pending impacts**. This is an accelerated 10 Hz CPU workload,
+  not a game FPS measurement. Evidence: `.local/perf-audio-before.json`,
+  `.local/perf-audio-after.json`; repeat with `tools/profile_traffic_audio.gd`.
+- Forward+ comparison on this PC's **Radeon 780M at 1280×720**, with identical
+  frozen six-train scenes and unchanged quality: mean GPU time **cab 56.21 →
+  20.76 ms, exterior 52.58 → 31.33 ms, passenger 54.61 → 19.44 ms**. Cab primitives
+  fall from 41.45 M to 11.91 M. Before/after screenshots of all three views were
+  inspected. These are graphics profiles, not a 4090 or full-game FPS claim.
+  Evidence: `.local/perf-render-before.json`, `.local/perf-render-after.json`;
+  repeat with `tools/profile_rendering.gd` without `--headless`.
+- F10, or controller Menu → Train & view actions → Sound/diagnostics, toggles live
+  FPS, GPU time, audio control time, queued impacts, buses and draw counts.
+  Disabled by default. `tools/profile_runtime.gd` provides a 90-second moving
+  six-train cab/passenger soak; timings are report-only, not hardware thresholds.
+- The live 90-second moving cab → passenger → cab soak completed without engine
+  errors: audio control averages **7.57–8.84 ms** across ten-second samples,
+  pending impacts peak at **49**, buses settle at **30**, and memory settles near
+  **540 MB**. The F10 overlay was visually checked in both interiors. This run
+  overlapped headless validation, so its 37–43 FPS is not an isolated benchmark.
+  Evidence: `.local/perf-runtime.json` and `.local/perf-runtime-*.png`.
+- **143 unit tests, 58 controller checks, enhanced audio reference checks and
+  native lifecycle/passenger checks pass.** New regressions verify unchanged
+  world transforms/box corners, converged arrival timing, rejection of 1,000
+  remote impacts without queue/bus growth, retained approach margin and expiry.
+  Remaining release/package results are recorded below when complete.
+- **Playtest on the 4090:** extract the new performance/controller ZIP into a fresh
+  folder; press F10 and A for AI. Ride in cab for at least five minutes, switch to
+  first/middle/trailing passenger coaches with Alt+1/2/3, then compare exterior
+  with Tab. Check that frame time and queued impacts do not steadily grow, and
+  that nearby axle pairs and curve squeal still follow motion. Note FPS, GPU ms,
+  audio ms and resolution if any view remains slow. The earlier ZIP stays on LAN
+  for comparison. Physical controller feel/vibration still need user testing.
+
 ## 2026-10-06 — Full Xbox controller input and menus
 - Added standard-layout Xbox 360/One/Series/Elite controls across driving, cameras,
   passenger positions, pause/help/fleet menus, dispatch routes, service selection,
@@ -19,8 +68,9 @@
   locked-point refusal, timetable overflow, disconnect and keyboard handoff.
   Screenshots of pause/settings/dispatch and the corrected footer were inspected
   at 1280×720. These are synthetic pad events in native Godot; physical USB/wireless
-  controllers and vibration still need the user's playtest. Full release checks
-  and a separate `TrainGame-Controller-Windows.zip` follow this entry.
+  controllers and vibration still need the user's playtest. All release checks
+  passed on controller commit `79e0349`, including all seven fleet journeys and
+  menu transitions; the separate ZIP also includes the performance fixes above.
 - Installed SHA-256-verified official GitHub CLI 2.102.0 under `.local/gh/` because
   no CLI was available here. Opened its browser device sign-in at the user's request;
   authentication is not yet confirmed. No credentials or raw recordings are committed.

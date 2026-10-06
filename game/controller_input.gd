@@ -28,7 +28,7 @@ const KEYS := {
 	"horn":KEY_H, "view":KEY_TAB, "passenger":KEY_V, "follow":KEY_F,
 	"seat":KEY_HOME, "berths":KEY_B, "route":KEY_C, "dispatch":KEY_D,
 	"timetable":KEY_M, "station1":KEY_1, "station2":KEY_2, "station3":KEY_3,
-	"protection":KEY_P, "time":KEY_T, "history":KEY_F8,
+	"protection":KEY_P, "time":KEY_T, "history":KEY_F8, "performance":KEY_F10,
 	"track_down":KEY_BRACKETLEFT, "track_up":KEY_BRACKETRIGHT,
 	"clang_down":KEY_COMMA, "clang_up":KEY_PERIOD, "joints":KEY_J,
 }

@@ -28,6 +28,7 @@ var _joint_root: Node3D
 var _flash := {}                  # "edge|k" -> seconds of red flash left
 var _track_samples := PackedVector3Array()
 var _mats := {}
+var _box_meshes := {}
 var _noise_tex: NoiseTexture2D
 var _terrain_noise := FastNoiseLite.new()
 var _fields: Array[Rect2] = []
@@ -129,9 +130,11 @@ func box(size: Vector3, pos: Vector3, color: Color, parent: Node3D = null) -> Me
 
 func box_m(size: Vector3, pos: Vector3, material: Material, parent: Node3D = null) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
-	var bm := BoxMesh.new()
-	bm.size = size
-	mi.mesh = bm
+	if not _box_meshes.has(size):
+		var bm := BoxMesh.new()
+		bm.size = size
+		_box_meshes[size]=bm
+	mi.mesh = _box_meshes[size]
 	mi.material_override = material
 	mi.position = pos
 	(parent if parent else root).add_child(mi)
@@ -499,6 +502,10 @@ func _build_scenery() -> void:
 
 
 func _multimesh(mesh: Mesh, xforms: Array, material: Material) -> void:
+	for group in preload("res://game/spatial_batches.gd").split(xforms).values():
+		_instance_batch(mesh,group.transforms,material,group.origin)
+
+func _instance_batch(mesh: Mesh, xforms: Array, material: Material, origin: Vector3) -> void:
 	var mm := MultiMesh.new()
 	mm.transform_format = MultiMesh.TRANSFORM_3D
 	mm.mesh = mesh
@@ -506,6 +513,8 @@ func _multimesh(mesh: Mesh, xforms: Array, material: Material) -> void:
 	for i in xforms.size():
 		mm.set_instance_transform(i, xforms[i])
 	var mmi := MultiMeshInstance3D.new()
+	mmi.name = "SceneryBatch"
+	mmi.position = origin
 	mmi.multimesh = mm
 	if material:
 		mmi.material_override = material

@@ -3,6 +3,7 @@ extends RefCounted
 var view
 var rng := RandomNumberGenerator.new()
 var _font := SystemFont.new()
+var _boxes := {}
 
 func build(world_view) -> void:
 	view = world_view
@@ -12,9 +13,14 @@ func build(world_view) -> void:
 	for station in view.world.stations:
 		_station(station)
 	_lineside()
+	var cube := BoxMesh.new()
+	cube.size = Vector3.ONE
+	for color in _boxes:
+		view._multimesh(cube,_boxes[color],view.mat(color))
 
 func _box(size: Vector3, pos: Vector3, color: Color) -> void:
-	view.box(size, pos, color)
+	if not _boxes.has(color): _boxes[color]=[]
+	_boxes[color].append(Transform3D(Basis.IDENTITY.scaled(size),pos))
 
 func _text(content: String, pos: Vector3, size: float, color: Color, rotation_y: float = 0) -> void:
 	var label := Label3D.new()

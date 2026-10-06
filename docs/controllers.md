@@ -40,6 +40,7 @@ View/Back switches the open dispatch desk between map and timetable.
 Menu → Train & view actions contains the other commands: horn, change ends,
 next signal routes, manual point control, station views, seat/aisle, original LHB
 berths, simulation speed, train protection, event history and sound diagnostics.
+The sound/diagnostics group also exposes the live performance overlay (F10).
 Manual point control uses the same occupancy and route locks as mouse input.
 The pause menu also exposes display settings, all fleet choices, restart and quit.
 

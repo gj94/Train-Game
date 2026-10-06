@@ -8,6 +8,11 @@ const Sweep := preload("res://game/contact_sweep.gd")
 const History := preload("res://game/acoustic_history.gd")
 const MAX_JOINT_ROUTES := 24
 const MAX_SQUEAL_VOICES := 12
+# Native impacts already stop at 1.6 km. This guard also covers a fast listener
+# approaching during the ~4.7 s propagation delay and short start lookahead.
+const IMPACT_PREFETCH_DISTANCE := 2600.0
+var culled_impacts := 0
+var last_process_ms := 0.0
 signal contact_event(event: Dictionary)
 var listener_owner: Node
 var reference_mode := false
@@ -155,8 +160,11 @@ func _receiver_at(dt: float) -> Vector3:
 	return (front+rear)*.5+tangent*ctx.along+tangent.cross(Vector3.UP)*ctx.side+Vector3.UP*ctx.height
 
 func _process(delta: float) -> void:
+	last_process_ms=0
 	if train==null or _paused or _track.stream_paused: return
+	var started := Time.get_ticks_usec()
 	_track_sound(train.speed,train.speed*3.6,delta)
+	last_process_ms=(Time.get_ticks_usec()-started)*.001
 
 func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 	if layout==null or _paused: return
@@ -168,8 +176,16 @@ func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 		_perspective=perspective
 	var focus: Vector3=camera.global_position if _onboard() else camera.pivot
 	if not joint_override.is_empty(): _selection=joint_override
-	elif _selection.is_empty() or focus.distance_squared_to(_focus)>.25:
-		_selection=Model.listening_joint(world.graph,focus); _focus=focus
+	elif not _onboard() or reference_mode:
+		if _selection.is_empty() or focus.distance_squared_to(_focus)>.25:
+			if is_instance_valid(listener_owner) and listener_owner!=self and not listener_owner._selection.is_empty() and listener_owner._focus.distance_squared_to(focus)<.25:
+				_selection=listener_owner._selection; _focus=listener_owner._focus
+			else:
+				_selection=Model.listening_joint(world.graph,focus); _focus=focus
+	elif _selection.is_empty():
+		# Onboard receivers use camera position and swept real contacts. A whole-
+		# corridor nearest-joint search has no role in their mix.
+		_selection={edge=train.path[0].edge,joint=0}
 	if _selection.is_empty(): return
 	var target := _listener()
 	if _ear.is_empty(): _ear=target.duplicate(); _previous_target=target.position
@@ -227,6 +243,9 @@ func _schedule(axle: int,contact: Dictionary,relative: float) -> void:
 		return
 	_recent[key]=_time
 	var source: Vector3=contact.source
+	if source.distance_squared_to(_ear.position)>IMPACT_PREFETCH_DISTANCE*IMPACT_PREFETCH_DISTANCE:
+		culled_impacts += 1
+		return
 	var time := _time+relative
 	var arrival: float
 	if _onboard(): arrival=_time+Acoustics.curved_arrival(source,relative,_receiver_at)
@@ -254,17 +273,20 @@ func _schedule(axle: int,contact: Dictionary,relative: float) -> void:
 	var priority := gain*Model.falloff(source.distance_to(_ear.position),false)
 	var event := {key=key,axle=axle,contact=contact,contact_time=time,arrival=arrival,source=source,variant=variant,gain=gain,
 		ids=[],end=arrival-Data.KERNEL_LEAD+Data.KERNEL_SECONDS,heard=false,virtual=false,route="",started=false,priority=priority,bypass=not _onboard() and jid==0}
-	# A trace always retains physical identity, even when an inaudible/distant
-	# contact is virtualized. Near decays take precedence over distant sources.
+	# Retained contacts keep physical identity even when voice-budget virtualized.
+	# Inaudible remote contacts never enter the costly retarded-arrival queue.
 	_events.append(event)
 	if arrival-_time<=.16: _start_event(event)
 
 func _start_event(event: Dictionary) -> void:
 	var source: Vector3=event.source
 	var delay: float=event.arrival-_time-Data.KERNEL_LEAD
-	var route := _route_for(event.contact,event.priority,event.bypass)
 	event.started=true
-	if route.is_empty() or source.distance_to(_ear.position)>1600 or delay< -.04:
+	if source.distance_to(_ear.position)>1600 or delay< -.04:
+		event.virtual=true
+		return
+	var route := _route_for(event.contact,event.priority,event.bypass)
+	if route.is_empty():
 		event.virtual=true
 	else:
 		event.route=route.bus

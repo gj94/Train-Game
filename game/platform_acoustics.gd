@@ -20,7 +20,12 @@ static func arrival_delay(source: Vector3, receiver: Vector3, velocity: Vector3)
 
 static func curved_arrival(source: Vector3, contact_time: float, listener_at: Callable) -> float:
 	var delay := 0.0
-	for i in 12: delay=(listener_at.call(contact_time+delay) as Vector3).distance_to(source)/C
+	for i in 12:
+		var next := (listener_at.call(contact_time+delay) as Vector3).distance_to(source)/C
+		if absf(next-delay)<1e-10:
+			delay=next
+			break
+		delay=next
 	return contact_time+delay
 
 static func stereo(source: Vector3, receiver: Vector3, forward: Vector3, up: Vector3=Vector3.UP, cap: float=1600.0) -> Vector2:

@@ -5,10 +5,12 @@ var batches := {}
 var rng := RandomNumberGenerator.new()
 
 func _box(size: Vector3, pos: Vector3, material: Material, rotation: Vector3 = Vector3.ZERO) -> void:
-	var key := str(size)+"|"+str(material.get_instance_id())
+	# One unit box per material; dimensions live in the instance transform.
+	# Unique drain/wall lengths no longer fragment thousands of draw batches.
+	var key := str(material.get_instance_id())
 	if not batches.has(key):
-		batches[key] = {size=size, material=material, transforms=[]}
-	batches[key].transforms.append(Transform3D(Basis.from_euler(rotation),pos))
+		batches[key] = {material=material, transforms=[]}
+	batches[key].transforms.append(Transform3D(Basis.from_euler(rotation).scaled_local(size),pos))
 
 func _line(a: Vector3, b: Vector3, width: float, height: float, material: Material) -> void:
 	var d := b-a
@@ -137,7 +139,7 @@ func build(world_view) -> void:
 	# Flush instanced scenery batches; all meshes/materials are original or registered CC0.
 	for item in batches.values():
 		var mesh := BoxMesh.new()
-		mesh.size = item.size
+		mesh.size = Vector3.ONE
 		view._multimesh(mesh,item.transforms,item.material)
 
 func _ramp_bank(p: Vector3, side: int, material: Material) -> void:

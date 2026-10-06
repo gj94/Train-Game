@@ -55,6 +55,25 @@ func run_check() -> void:
 	train.speed=0
 	for i in 20: sound._track_sound(0,0,1.0/120)
 	check(sound._squeals.is_empty() and sound._events.is_empty(),"standstill creates no impacts or squeal")
+	var before_buses := AudioServer.bus_count
+	for i in 1000:
+		var distant: Dictionary=sound.layout.contacts.curve[0].duplicate()
+		distant.key="distant-regression-"+str(i)
+		distant.source=sound._ear.position+Vector3(20000,0,0)
+		sound._schedule(0,distant,0)
+	check(sound._events.is_empty() and sound.culled_impacts==1000,"inaudible remote contacts never accumulate delayed-arrival work")
+	check(AudioServer.bus_count==before_buses,"inaudible remote contacts allocate no filter buses")
+	var margin: Dictionary=sound.layout.contacts.curve[0].duplicate()
+	margin.key="approaching-listener-margin"
+	margin.source=sound._ear.position+Vector3(1700,0,0)
+	# Keep the conservative margin beyond native 1.6 km audibility: a listener
+	# can approach the fixed joint before its wave arrives.
+	sound._schedule(0,margin,.035)
+	check(sound._events.size()==1,"approaching-listener prefetch survives outside the audible radius")
+	sound._time+=6
+	sound._update_events(6)
+	check(sound._recent.is_empty(),"distant duplicate guards expire instead of leaking")
+	sound.set_paused(true)
 	sound.free(); camera.free()
 	check(AudioServer.bus_count<=bus_start+1,"per-source native buses cleaned after scene exit")
 	print("Enhanced native curve/lifecycle: ",failures," failures")

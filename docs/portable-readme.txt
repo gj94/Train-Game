@@ -1,6 +1,11 @@
 TRAIN GAME - SOUTHERN CORRIDOR
 Windows x86-64 portable playtest build
 
+THIS BUILD
+Includes full Xbox controller support and cab/passenger performance fixes.
+F10 shows FPS, GPU time, audio work and pending impacts. Ride for several minutes
+in cab and passenger views when comparing performance on your PC.
+
 RUN ON ANOTHER PC
 1. Copy the ZIP and extract the entire folder to a writable location.
 2. Open TrainGame.exe. Keep TrainGame.pck beside it.
@@ -56,6 +61,7 @@ F1            Your scenario briefing and controls; simulation pauses
 F4            Clean view / restore (emergency feedback remains visible)
 F6 / F8       Track labels / event history
 F9            New random traffic service / solo imported fleet
+F10           Live FPS, GPU time, audio CPU time and queued-impact diagnostics
 F11           Fullscreen / window
 Esc           Pause / resume; back from help or confirmation
 

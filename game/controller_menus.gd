@@ -36,5 +36,5 @@ static func build(hud, kind: String) -> void:
 		"sound_controls":
 			hud._heading.text = "SOUND & JOINT DIAGNOSTICS"
 			hud._body.text = "Adjust track sound and second-axle balance, or show the physical contact markers."
-			entries = [["Track sound quieter","padcmd:track_down"],["Track sound louder","padcmd:track_up"],["Second axle quieter","padcmd:clang_down"],["Second axle louder","padcmd:clang_up"],["Rail-joint markers ON / OFF","padcmd:joints"],["Back","controller_actions"]]
+			entries = [["Track sound quieter","padcmd:track_down"],["Track sound louder","padcmd:track_up"],["Second axle quieter","padcmd:clang_down"],["Second axle louder","padcmd:clang_up"],["Rail-joint markers ON / OFF","padcmd:joints"],["Performance overlay ON / OFF","padcmd:performance"],["Back","controller_actions"]]
 	for entry in entries: hud._button(hud._buttons,entry[0],entry[1])

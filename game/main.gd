@@ -32,6 +32,7 @@ var hud
 var audio
 var dispatcher
 var controller
+var performance_overlay
 var train_views := {}
 var train_motions := {}
 var train_audio := {}
@@ -170,6 +171,9 @@ func _ready() -> void:
 	controller = ControllerInput.new()
 	controller.game = self
 	add_child(controller)
+	performance_overlay=preload("res://game/performance_overlay.gd").new()
+	performance_overlay.game=self
+	add_child(performance_overlay)
 
 
 func _physics_process(delta: float) -> void:
@@ -250,6 +254,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				return
 			KEY_F1:
 				if hud.modal != "confirm": _toggle_help()
+				return
+			KEY_F10:
+				performance_overlay.toggle()
 				return
 			KEY_F11:
 				_toggle_fullscreen()
