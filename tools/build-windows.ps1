@@ -1,4 +1,4 @@
-param([switch]$SkipTests)
+param([switch]$SkipTests, [ValidatePattern('^[A-Za-z0-9_-]+$')][string]$BuildName = 'TrainGame-Windows')
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path $PSScriptRoot -Parent
 $engine = Join-Path $projectRoot '.local/godot/Godot_v4.7.2-stable_win64_console.exe'
@@ -6,15 +6,15 @@ $template = Join-Path $projectRoot '.local/export-templates/windows_release_x86_
 if (-not (Test-Path $engine) -or -not (Test-Path $template)) {
     throw 'Install the matching Godot engine and verified Windows templates. See docs/builds.md.'
 }
-$buildRoot = Join-Path $projectRoot 'export/TrainGame-Windows'
-$archivePath = Join-Path $projectRoot 'export/TrainGame-Windows.zip'
+$buildRoot = Join-Path $projectRoot "export/$BuildName"
+$archivePath = Join-Path $projectRoot "export/$BuildName.zip"
 New-Item -ItemType Directory -Path $buildRoot -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $buildRoot 'guides') -Force | Out-Null
 $exportLog = Join-Path $projectRoot '.local/windows-export.log'
 Push-Location $projectRoot
 try {
     if (-not $SkipTests) {
-        foreach ($script in @('tests/run_tests.gd', 'tools/check_track.gd', 'tools/check_fleet_finish.gd', 'tools/check_ported_assets.gd', 'tools/check_motion_playable.gd', 'tools/check_body_v2_audio.gd', 'tools/check_platform_audio.gd', 'tools/check_platform_integration.gd', 'tools/check_qol.gd', 'tools/check_traffic_playable.gd', 'tools/check_corridor_playable.gd', 'tools/check_ported_playable.gd')) {
+        foreach ($script in @('tests/run_tests.gd', 'tools/check_controller_playable.gd', 'tools/check_track.gd', 'tools/check_fleet_finish.gd', 'tools/check_ported_assets.gd', 'tools/check_motion_playable.gd', 'tools/check_body_v2_audio.gd', 'tools/check_platform_audio.gd', 'tools/check_platform_integration.gd', 'tools/check_qol.gd', 'tools/check_traffic_playable.gd', 'tools/check_corridor_playable.gd', 'tools/check_ported_playable.gd')) {
             & $engine --headless --path $projectRoot --script "res://$script"
             if ($LASTEXITCODE -ne 0) { throw "Verification failed: $script" }
         }
@@ -24,11 +24,11 @@ try {
         Get-Content $exportLog -Tail 60
         throw "Export failed. See $exportLog"
     }
-    & $engine --headless --path $projectRoot --script res://tools/write_export_notices.gd
+    & $engine --headless --path $projectRoot --script res://tools/write_export_notices.gd -- "res://export/$BuildName/ENGINE-LICENSES.txt"
     if ($LASTEXITCODE -ne 0) { throw 'Writing engine notices failed.' }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/portable-readme.txt') -Destination (Join-Path $buildRoot 'README.txt')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/assets.md') -Destination (Join-Path $buildRoot 'ASSET-SOURCES.md')
-    foreach ($guide in @('dispatching.md', 'timetables.md', 'lhb.md', 'wap7.md', 'stations.md', 'imported-fleet.md', 'track.md', 'body-v2-audio.md', 'enhanced-audio.md')) {
+    foreach ($guide in @('controllers.md', 'dispatching.md', 'timetables.md', 'lhb.md', 'wap7.md', 'stations.md', 'imported-fleet.md', 'track.md', 'body-v2-audio.md', 'enhanced-audio.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     $revision = & git -c safe.directory=D:/ClaudeWS/train-game rev-parse --short HEAD
@@ -42,7 +42,7 @@ try {
     }
     $hashes | Set-Content -LiteralPath (Join-Path $buildRoot 'SHA256SUMS.txt') -Encoding ascii
     Compress-Archive -LiteralPath $buildRoot -DestinationPath $archivePath -CompressionLevel Optimal -Force
-    "$( (Get-FileHash -LiteralPath $archivePath -Algorithm SHA256).Hash.ToLower() )  TrainGame-Windows.zip" |
+    "$( (Get-FileHash -LiteralPath $archivePath -Algorithm SHA256).Hash.ToLower() )  $BuildName.zip" |
         Set-Content -LiteralPath ($archivePath + '.sha256') -Encoding ascii
     Get-Item $archivePath | Select-Object FullName, Length
 } finally {

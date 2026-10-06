@@ -80,6 +80,7 @@ func setup(w: RailWorld) -> void:
 	_reason.custom_minimum_size = Vector2(290, 36)
 	_label(column, "SERVICES  /  SELECT TO FOLLOW", 13, Color("95aeb7"))
 	var scroll := ScrollContainer.new()
+	scroll.follow_focus = true
 	scroll.custom_minimum_size.y = 85
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	column.add_child(scroll)
@@ -181,7 +182,7 @@ func _style_button(button: Button) -> void:
 		style.set_content_margin_all(9)
 		button.add_theme_stylebox_override(state, style)
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.focus_mode = Control.FOCUS_NONE
+	button.focus_mode = Control.FOCUS_ALL
 
 func _button(parent: Node, text: String, action: Callable) -> Button:
 	var button := Button.new()
@@ -230,9 +231,14 @@ func toggle_driver() -> void:
 
 func set_open(value: bool) -> void:
 	_root.visible = value
+	if not value:
+		var focus := get_viewport().gui_get_focus_owner()
+		if focus != null and _root.is_ancestor_of(focus): focus.release_focus()
+		_source.get_popup().hide()
+		_exit.get_popup().hide()
 
 func toggle() -> void:
-	_root.visible = not _root.visible
+	set_open(not _root.visible)
 
 func toggle_timetable() -> void:
 	timetable_open = not timetable_open

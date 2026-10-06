@@ -1,6 +1,7 @@
 extends SceneTree
 func _initialize() -> void:
 	var target := "res://export/TrainGame-Windows/ENGINE-LICENSES.txt"
+	if not OS.get_cmdline_user_args().is_empty(): target = OS.get_cmdline_user_args()[0]
 	var file := FileAccess.open(target, FileAccess.WRITE)
 	if file == null:
 		printerr("Cannot write engine notices")

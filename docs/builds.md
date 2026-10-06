@@ -9,6 +9,10 @@ exports a release, adds instructions/licences/guides, and produces
 packaging immediately after those same checks have passed on the current code.
 Do not run an export while the editor is importing.
 
+Use `-BuildName TrainGame-Controller-Windows` to package controller support
+alongside the existing playtest ZIP. Its folder, archive, checksum and licences
+are kept separate. The build checks native controller input and GUI navigation.
+
 The preset includes runtime resources, `sim/timetables/*.json` and
 `assets/models/ported/manifest.json` and BODY V2 sound provenance; it excludes
 development tools, tests, editor addons, documentation, original Blender art,
@@ -75,8 +79,9 @@ selected LAN address/interface, TCP port 8765, the Private profile and the local
 subnet. It does not change the network category or disable Windows Firewall.
 Use `-BindAddress <IPv4>` if more than one connected network is available.
 
-The read-only server exposes only the latest ZIP, its SHA-256 sidecar and portable
-README, plus a download page. It supports byte ranges for resuming downloads.
+The read-only server exposes the standard ZIP and, when present, the separate
+controller ZIP, their SHA-256 sidecars and portable READMEs, plus a download page.
+It supports byte ranges for resuming downloads.
 Stop it before replacing the archive with a new build, then start it again.
 
 ```powershell

@@ -16,6 +16,7 @@ const Traffic := preload("res://sim/layouts/traffic_service.gd")
 const CameraRig := preload("res://game/camera_rig.gd")
 const Hud := preload("res://game/hud.gd")
 const ScenarioBrief := preload("res://game/scenario_brief.gd")
+const ControllerInput := preload("res://game/controller_input.gd")
 const TrainAudio := preload("res://game/platform_audio.gd")
 const AxleJoint := preload("res://game/axle_joint.gd")
 const Dispatcher := preload("res://game/dispatcher.gd")
@@ -30,6 +31,7 @@ var cam
 var hud
 var audio
 var dispatcher
+var controller
 var train_views := {}
 var train_motions := {}
 var train_audio := {}
@@ -165,6 +167,9 @@ func _ready() -> void:
 		hud.toast("WAP-7 30306 · W power / S brake · Tab exterior · C onward routes · F2 MEMU services")
 	else:
 		hud.toast("D opens dispatch · AUTO DISPATCH runs services · Tab takes the cab · F1 controls")
+	controller = ControllerInput.new()
+	controller.game = self
+	add_child(controller)
 
 
 func _physics_process(delta: float) -> void:
@@ -175,6 +180,8 @@ func _physics_process(delta: float) -> void:
 		dir += 1.0
 	if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):
 		dir -= 1.0
+	var pad: float = controller.drive_input() if controller != null else 0.0
+	dir = minf(dir,pad) if dir < 0 or pad < 0 else maxf(dir,pad)
 	if dir != 0.0:
 		train.automatic = false
 		train.controller = clampf(train.controller + dir * HANDLE_RATE * delta, -1.0, 1.0)
@@ -238,7 +245,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_ESCAPE:
 				if hud.modal == "help": _close_help()
 				elif hud.modal == "confirm": _cancel_action()
-				elif hud.modal == "fleet": hud.show_modal("pause", labels_enabled)
+				elif hud.modal != "" and hud.modal != "pause": hud.show_modal("pause", labels_enabled)
 				else: _toggle_pause()
 				return
 			KEY_F1:
@@ -431,6 +438,7 @@ func _toggle_pause() -> void:
 
 func _set_paused(value: bool) -> void:
 	paused = value
+	if controller != null: controller.neutralize()
 	cam.set_process_unhandled_input(not value)
 	cam._dragging = 0
 	for sound in train_audio.values():
@@ -438,6 +446,15 @@ func _set_paused(value: bool) -> void:
 
 
 func _ui_action(action: String) -> void:
+	if action.begins_with("padcmd:"):
+		controller.perform(action.trim_prefix("padcmd:"))
+		return
+	if action.begins_with("pad_setting:"):
+		controller.change_setting(action.trim_prefix("pad_setting:"))
+		return
+	if action.begins_with("padpoint:"):
+		controller.throw_point(action.trim_prefix("padpoint:"))
+		return
 	if action.begins_with("fleet:"):
 		_request_action(action)
 		return
@@ -447,6 +464,11 @@ func _ui_action(action: String) -> void:
 		_passenger_preset(int(action.get_slice(":",1)))
 		return
 	match action:
+		"controllers": controller.open_settings()
+		"points": controller.open_points()
+		"controller_actions", "train_controls", "view_controls", "sound_controls":
+			_set_paused(true)
+			hud.show_modal(action)
 		"passengers":
 			_set_paused(true)
 			hud.show_modal("passengers")
@@ -478,6 +500,7 @@ func _toggle_help() -> void:
 		return
 	_paused_before_help = paused
 	_set_paused(true)
+	hud.controller_help = ControllerInput.HELP
 	hud.scenario_brief = ScenarioBrief.describe(world, train, traffic_drive, dispatcher.auto_dispatch, dispatcher.hold_arrivals)
 	hud.show_modal("help")
 
@@ -561,6 +584,9 @@ func _toggle_fullscreen() -> void:
 func _notification(what: int) -> void:
 	if hud == null:
 		return
+	if controller != null:
+		if what == NOTIFICATION_APPLICATION_FOCUS_OUT: controller.window_focus(false)
+		elif what == NOTIFICATION_APPLICATION_FOCUS_IN: controller.window_focus(true)
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_request_action("quit")
 	elif what == NOTIFICATION_APPLICATION_FOCUS_OUT and not paused:

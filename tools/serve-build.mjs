@@ -31,6 +31,9 @@ const files = new Map([
   ['/TrainGame-Windows.zip', ['TrainGame-Windows.zip', 'application/zip']],
   ['/TrainGame-Windows.zip.sha256', ['TrainGame-Windows.zip.sha256', 'text/plain; charset=utf-8']],
   ['/README.txt', ['TrainGame-Windows/README.txt', 'text/plain; charset=utf-8']],
+  ['/TrainGame-Controller-Windows.zip', ['TrainGame-Controller-Windows.zip', 'application/zip']],
+  ['/TrainGame-Controller-Windows.zip.sha256', ['TrainGame-Controller-Windows.zip.sha256', 'text/plain; charset=utf-8']],
+  ['/controller/README.txt', ['TrainGame-Controller-Windows/README.txt', 'text/plain; charset=utf-8']],
 ]);
 await stat(join(exportRoot, 'TrainGame-Windows.zip'));
 const text = (res, status, body, method) => {
@@ -50,7 +53,9 @@ const server = http.createServer(async (req, res) => {
     const path = new URL(req.url, 'http://localhost').pathname;
     if (path === '/') {
       const info = await stat(join(exportRoot, 'TrainGame-Windows.zip'));
-      const body = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Train Game download</title><style>body{max-width:640px;margin:60px auto;padding:24px;font:18px/1.6 system-ui;background:#101c28;color:#e5edf4}a{color:#83cfff}h1{line-height:1.2}.download{display:inline-block;background:#83cfff;color:#101c28;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold}small{color:#afc0ce}</style><h1>Train Game</h1><p>Windows portable build. Drive a randomly assigned passenger service among six trains, with AI traffic and automatic dispatch.</p><p><a class="download" href="/TrainGame-Windows.zip">Download game · ${(info.size / 1048576).toFixed(1)} MiB</a></p><ol><li>Download and extract the entire ZIP.</li><li>Open <b>TrainGame.exe</b> inside the extracted folder. Keep the PCK beside it.</li><li>Press F1 for your scenario briefing. W/S drive, A enables AI, and Alt+1/2/3 enter the first/middle/last passenger coach.</li></ol><p>No Godot or Blender installation is needed.</p><p><a href="/README.txt">Full instructions</a> · <a href="/TrainGame-Windows.zip.sha256">SHA-256 checksum</a></p><small>Build archive updated ${info.mtime.toISOString()}. Keep the host PC awake until the download finishes.</small></html>`;
+      const controllerInfo = await stat(join(exportRoot, 'TrainGame-Controller-Windows.zip')).catch(() => null);
+      const controller = controllerInfo ? `<h2>Controller build</h2><p>Xbox 360 / One / Series / Elite controls for driving, passenger views, menus and dispatch. The earlier build above remains available.</p><p><a class="download" href="/TrainGame-Controller-Windows.zip">Download controller build · ${(controllerInfo.size / 1048576).toFixed(1)} MiB</a></p><p><a href="/controller/README.txt">Controller instructions</a> · <a href="/TrainGame-Controller-Windows.zip.sha256">SHA-256 checksum</a></p>` : '';
+      const body = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Train Game download</title><style>body{max-width:640px;margin:60px auto;padding:24px;font:18px/1.6 system-ui;background:#101c28;color:#e5edf4}a{color:#83cfff}h1{line-height:1.2}.download{display:inline-block;background:#83cfff;color:#101c28;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold}small{color:#afc0ce}</style><h1>Train Game</h1><p>Windows portable build. Drive a randomly assigned passenger service among six trains, with AI traffic and automatic dispatch.</p><p><a class="download" href="/TrainGame-Windows.zip">Download game · ${(info.size / 1048576).toFixed(1)} MiB</a></p><ol><li>Download and extract the entire ZIP.</li><li>Open <b>TrainGame.exe</b> inside the extracted folder. Keep the PCK beside it.</li><li>Press F1 for your scenario briefing. W/S drive, A enables AI, and Alt+1/2/3 enter the first/middle/last passenger coach.</li></ol><p>No Godot or Blender installation is needed.</p><p><a href="/README.txt">Full instructions</a> · <a href="/TrainGame-Windows.zip.sha256">SHA-256 checksum</a></p>${controller}<small>Build archive updated ${info.mtime.toISOString()}. Keep the host PC awake until the download finishes.</small></html>`;
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': Buffer.byteLength(body) });
       return res.end(req.method === 'HEAD' ? undefined : body);
     }
@@ -78,7 +83,7 @@ const server = http.createServer(async (req, res) => {
     }
     res.writeHead(status, { 'Content-Type': entry[1], 'Content-Length': end - start + 1,
       'Accept-Ranges': 'bytes', ETag: etag, 'Last-Modified': info.mtime.toUTCString(),
-      ...(path.endsWith('.zip') ? { 'Content-Disposition': 'attachment; filename="TrainGame-Windows.zip"' } : {}) });
+      ...(path.endsWith('.zip') ? { 'Content-Disposition': `attachment; filename="${entry[0]}"` } : {}) });
     if (req.method === 'HEAD') return res.end();
     const stream = createReadStream(file, { start, end });
     stream.on('error', () => res.destroy());

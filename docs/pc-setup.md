@@ -7,6 +7,10 @@ Read this file for machine paths; CLAUDE.md also contains historical paths from 
 
 - Existing Node: `C:\Users\Gokul\Documents\Node_v24\node.exe` (24.15.0).
 - Existing Git: `C:\Program Files\Git\cmd\git.exe`.
+- Portable GitHub CLI 2.102.0: `.local/gh/bin/gh.exe` (official ZIP, SHA-256 verified).
+  Run `& .local/gh/bin/gh.exe auth status` to inspect sign-in, or
+  `& .local/gh/bin/gh.exe auth login --hostname github.com --git-protocol https --web`
+  when the user requests authentication. Do not print tokens.
 - Godot 4.7.2 standard: `.local/godot/Godot_v4.7.2-stable_win64_console.exe`.
 - Blender 5.2.1 LTS: `.local/blender/blender-5.2.1-windows-x64/blender.exe`.
 - Godot MCP bridge 1.2.1: `.local/mcp/node_modules/godot-mcp-bridge/dist/index.js`.

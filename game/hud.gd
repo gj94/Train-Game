@@ -3,6 +3,7 @@ extends CanvasLayer
 signal action_requested(action: String)
 const Clock := preload("res://sim/world_clock.gd")
 const PortedStock := preload("res://sim/stock/ported_stock.gd")
+const ControllerMenus := preload("res://game/controller_menus.gd")
 const HELP := """[b]DRIVING[/b]
 W / ↑ more power · S / ↓ less power / more brake · X coast
 Space emergency brake (again at a stand to release)
@@ -37,6 +38,11 @@ Changing scenario or restarting asks first. There is no save/load yet.
 , / . clang quieter / louder · J rail-joint markers
 Approved track-only sound keeps the horn and engine layers muted."""
 var scenario_brief := ""
+var controller_active := false
+var controller_help := ""
+var controller_options := {}
+var _pad_hint: Label
+var _button_scroll: ScrollContainer
 var clean_view := false
 var history_open := false
 var modal := ""
@@ -96,6 +102,18 @@ func _ready() -> void:
 	_log.text = "[b]EVENT HISTORY  ·  F8 to close[/b]\nNo events yet."
 	_log.visible = false
 	_build_modal()
+	_pad_hint = Label.new()
+	add_child(_pad_hint)
+	_pad_hint.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+	_pad_hint.offset_left = 20
+	_pad_hint.offset_right = -20
+	_pad_hint.offset_top = -34
+	_pad_hint.offset_bottom = -6
+	_pad_hint.clip_text = true
+	_pad_hint.add_theme_font_size_override("font_size", 16)
+	_pad_hint.add_theme_constant_override("outline_size", 5)
+	_pad_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_pad_hint.visible = false
 
 func _panel_style() -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
@@ -122,13 +140,17 @@ func _rich(pos: Vector2, dimensions: Vector2, font: int) -> RichTextLabel:
 func _button(parent: Node, text: String, action: String) -> Button:
 	var button := Button.new()
 	button.text = text
-	button.focus_mode = Control.FOCUS_NONE
+	button.focus_mode = Control.FOCUS_ALL
+	button.set_meta("action", action)
 	button.custom_minimum_size.y = 40
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.add_theme_font_size_override("font_size", 16)
-	for state in ["normal", "hover", "pressed"]:
+	for state in ["normal", "hover", "pressed", "focus"]:
 		var style := _panel_style()
 		style.bg_color = Color("213d49") if state != "normal" else Color("122b37")
+		if state == "focus":
+			style.border_color = Color("ffca72")
+			style.set_border_width_all(3)
 		style.content_margin_top = 8
 		style.content_margin_bottom = 8
 		button.add_theme_stylebox_override(state, style)
@@ -163,9 +185,14 @@ func _build_modal() -> void:
 	_body.add_theme_font_size_override("normal_font_size", 18)
 	_body.add_theme_font_size_override("bold_font_size", 18)
 	column.add_child(_body)
+	_button_scroll = ScrollContainer.new()
+	_button_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_button_scroll.follow_focus = true
+	column.add_child(_button_scroll)
 	_buttons = VBoxContainer.new()
+	_buttons.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_buttons.add_theme_constant_override("separation", 8)
-	column.add_child(_buttons)
+	_button_scroll.add_child(_buttons)
 	_shade.visible = false
 
 func show_modal(kind: String, labels_on: bool = false, description: String = "") -> void:
@@ -180,7 +207,9 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_heading.text = "PAUSED"
 			_body.text = "Resume to continue the current service.\n[b]F4[/b] clears the screen; [b]D[/b] opens dispatch."
 			_button(_buttons, "Resume  ·  Esc", "resume")
-			_button(_buttons, "Controls  ·  F1", "help")
+			_button(_buttons, "Scenario & controls  ·  F1", "help")
+			_button(_buttons, "Train & view actions…", "controller_actions")
+			_button(_buttons, "Controller settings & layout…", "controllers")
 			_button(_buttons, "Passenger views…", "passengers")
 			_button(_buttons, "Clean view  ·  F4", "clean")
 			_button(_buttons, "Track labels: " + ("ON" if labels_on else "OFF") + "  ·  F6", "labels")
@@ -190,6 +219,8 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Traffic / solo fleet…  ·  F9", "fleet")
 			_button(_buttons, "Restart current services…", "restart")
 			_button(_buttons, "Quit to desktop…", "quit")
+		"controllers", "controller_actions", "train_controls", "view_controls", "sound_controls", "points":
+			ControllerMenus.build(self, kind)
 		"passengers":
 			_heading.text = "PASSENGER VIEWS"
 			_body.text = "Ride inside the first, middle or last passenger coach.\nThe camera and sound follow that coach. Luggage and generator vans are skipped.\n\n[b]1 / 2 / 3[/b] switch views while riding; [b]PgUp/PgDn[/b] visit any coach."
@@ -199,7 +230,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Back", "fleet_back")
 		"help":
 			_heading.text = "SCENARIO & CONTROLS  /  PAUSED"
-			_body.text = scenario_brief + "\n[b]CONTROLS REFERENCE[/b]\n" + HELP
+			_body.text = scenario_brief + "\n" + controller_help + "\n\n[b]KEYBOARD REFERENCE[/b]\n" + HELP
 			_button(_buttons, "Back  ·  Esc / F1", "close_help")
 		"fleet":
 			_heading.text = "TRAFFIC & INDIAN RAIL FLEET"
@@ -213,7 +244,29 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_body.text = description + "\n\nCurrent progress will be lost. Save/load is not available yet."
 			_button(_buttons, "Cancel  ·  Esc", "cancel")
 			_button(_buttons, "Continue", "confirm")
+	var choices := _buttons.get_children()
+	for i in choices.size():
+		choices[i].focus_next = choices[(i+1)%choices.size()].get_path()
+		choices[i].focus_previous = choices[posmod(i-1,choices.size())].get_path()
+		choices[i].focus_neighbor_bottom = choices[i].focus_next
+		choices[i].focus_neighbor_top = choices[i].focus_previous
+	_button_scroll.custom_minimum_size.y = clampf(_buttons.get_child_count()*48-8,0,420)
+	if controller_active and kind != "": call_deferred("focus_first")
+	elif kind == "":
+		var focus := get_viewport().gui_get_focus_owner()
+		if focus != null: focus.release_focus()
 	_refresh_visibility()
+
+func focus_first() -> void:
+	if modal.is_empty(): return
+	for button in _buttons.get_children():
+		if not button.disabled and button.is_visible_in_tree():
+			button.grab_focus()
+			return
+
+func set_controller_hint(text: String) -> void:
+	_pad_hint.text = text
+	_pad_hint.visible = controller_active and (not clean_view or modal != "")
 
 func set_clean(value: bool) -> void:
 	clean_view = value
@@ -224,6 +277,7 @@ func toggle_history() -> void:
 	_refresh_visibility()
 
 func _refresh_visibility() -> void:
+	if _pad_hint != null: _pad_hint.visible = controller_active and (not clean_view or modal != "")
 	_info.visible = not clean_view and modal == ""
 	_mode.visible = not clean_view and modal == ""
 	_toolbar.visible = not clean_view and modal == ""

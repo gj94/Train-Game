@@ -1,5 +1,38 @@
 # Progress
 
+## 2026-10-06 — Full Xbox controller input and menus
+- Added standard-layout Xbox 360/One/Series/Elite controls across driving, cameras,
+  passenger positions, pause/help/fleet menus, dispatch routes, service selection,
+  timetables and manual point control. RT/LT adjust the combined handle with brake
+  priority; all other existing commands are reachable under Train & view actions.
+  Native dropdowns use explicit controller selection and a single repeat owner,
+  avoiding duplicate native/gamepad actions. The simulation and approved audio
+  sources are unchanged.
+- Added visible focus outlines, scrolling menu buttons, context hints, and saved
+  deadzone/sensitivity/inversion/vibration settings. Active-pad disconnect and
+  application focus loss pause safely. Reconnection never resumes automatically;
+  held inputs cannot carry from menus into driving until neutral. Switching back
+  to keyboard releases controller UI focus. Route/point safety remains in RailWorld.
+- **139 headless tests passed. All 56 graphical controller integration checks
+  passed**, including analog input, brake priority, AI takeover, camera/coach
+  controls, menu selection, settings persistence, native dropdowns, safe routes,
+  locked-point refusal, timetable overflow, disconnect and keyboard handoff.
+  Screenshots of pause/settings/dispatch and the corrected footer were inspected
+  at 1280×720. These are synthetic pad events in native Godot; physical USB/wireless
+  controllers and vibration still need the user's playtest. Full release checks
+  and a separate `TrainGame-Controller-Windows.zip` follow this entry.
+- Installed SHA-256-verified official GitHub CLI 2.102.0 under `.local/gh/` because
+  no CLI was available here. Opened its browser device sign-in at the user's request;
+  authentication is not yet confirmed. No credentials or raw recordings are committed.
+- **Playtest:** use [the controller guide](controllers.md): RT/LT partial movement
+  and release-to-hold; A AI/manual; B emergency at a stand; Y and sticks for views;
+  D-pad for first/last/adjacent coaches and Menu for middle; L3 dispatch with
+  signal/destination dropdowns and service selection. Scroll Help and every pause
+  action. Hold RT across pause/resume and unplug/reconnect while moving: both must
+  require a deliberate neutral/reapply cycle. Check Windows focus loss, saved
+  settings and keyboard Space after closing menus. The earlier LAN ZIP remains
+  available for comparison.
+
 ## 2026-10-06 late evening — Random traffic assignment and scenario briefing
 - User extended the release request: start as a randomly selected train among live traffic, with genuine waits for other trains; Help must explain what to expect from the player's perspective. Fresh launches now choose one of six passenger services (two LHB, two ICF, VB8 and VB16) on the existing Southern corridor. All are ready at 08:00; paired departures compete for real interlocked throats/blocks. The other five use AI; automatic dispatch includes the manually driven player's booked routes without changing their throttle or brakes.
 - `sim/layouts/traffic_service.gd` owns stock/placement and reproducible assignment; `dispatch_plan.gd` adds an explicit eligible manual-service argument, retaining legacy behavior by default. No interlocking bypass, imposed wait countdown or fake traffic. Restart keeps the assignment; F9 offers a fresh random service alongside explicit solo fleet choices. Passenger cameras, audio listener ownership, desk selection and the previous train's AI update together when changing services.

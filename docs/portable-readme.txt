@@ -30,7 +30,17 @@ keeps the same assignment. See guides/dispatching.md and imported-fleet.md.
 Confirm a scenario change in the menu. In LHB, A drives automatically; V rides
 inside a passenger coach. C opens the route desk for the next signal.
 
-QUICK CONTROLS
+XBOX CONTROLLERS (360 / ONE / SERIES / ELITE)
+RT/LT adjust power/brake; release to hold. A AI/manual; B emergency; X coast.
+Y cab/exterior; View/Back passenger/cab; Menu/Start pause and controller settings.
+Right stick looks; LB/RB zoom; left stick pans outside or changes position inside.
+D-pad left/right changes coach; up/down first/last. L3 opens/closes dispatch.
+In menus: D-pad/LS focus, A select, B back, LB/RB previous/next control, RS scroll.
+Menu > Train & view actions reaches routes, points, horn and all other commands.
+Disconnecting pauses. Release all controls after resuming before driving again.
+See guides/controllers.md for the full layout, settings and hardware playtest.
+
+QUICK KEYBOARD CONTROLS
 W / Up        More power
 S / Down      Reduce power / increase brake
 X             Coast
