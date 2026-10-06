@@ -370,19 +370,26 @@ func _record_history(positions: Array,v: float) -> void:
 	_history.append(_time,v,points,tangents,curves)
 
 func _heard_state(bogie: Dictionary) -> Dictionary:
+	var local_bogie := bogie.duplicate()
+	local_bogie.indices=range(bogie.indices.size())
 	var emission := _time
 	var state := {}
 	for i in 8:
-		var sample := _history.sample(emission)
+		var sample := _history.sample(emission,bogie.indices)
 		if sample.is_empty(): return {}
-		state=Acoustics.squeal_state(emission,sample.speed,bogie,sample.positions,sample.tangents,sample.curvatures)
-		emission=_time-state.source.distance_to(_ear.position)/343.0
-	var sample := _history.sample(emission)
+		state=Acoustics.squeal_state(emission,sample.speed,local_bogie,sample.positions,sample.tangents,sample.curvatures)
+		var next_emission: float=_time-state.source.distance_to(_ear.position)/343.0
+		if absf(next_emission-emission)<.00000001:
+			emission=next_emission
+			break
+		emission=next_emission
+	var sample := _history.sample(emission,bogie.indices)
 	if sample.is_empty(): return {}
-	state=Acoustics.squeal_state(emission,sample.speed,bogie,sample.positions,sample.tangents,sample.curvatures)
+	state=Acoustics.squeal_state(emission,sample.speed,local_bogie,sample.positions,sample.tangents,sample.curvatures)
 	state.distance=state.source.distance_to(_ear.position)
 	state.received=state.level*Model.falloff(state.distance,false)
 	state.velocity=sample.tangents[state.axle]*sample.speed
+	state.axle=bogie.indices[state.axle]
 	state.variant=posmod(bogie.car*3+bogie.index,4)
 	return state
 
@@ -391,6 +398,9 @@ func _update_squeal(v: float,delta: float) -> void:
 	var power := 0.0
 	if v>.001 and squeal_amount>0 and not reference_mode:
 		for b in _bogies:
+			# Even at the maximum recent speed, a five-second history cannot
+			# bring these distant sources into the 1.6 km audible region.
+			if b.target.distance_squared_to(_ear.position)>pow(1600+500,2): continue
 			var state := _heard_state(b)
 			if state.is_empty() or state.received<=.0015 or state.distance>1600: continue
 			power+=state.received*state.received; candidates.append(state)

@@ -149,6 +149,22 @@ func test_history_interpolation_and_reset():
 	if not history.sample(1).is_empty(): return "seek retained old source"
 	return true
 
+func test_sparse_history_matches_complete_history():
+	var history := History.new()
+	var p := PackedVector3Array([Vector3(1,2,3),Vector3(4,5,6),Vector3(7,8,9)])
+	var t := PackedVector3Array([Vector3.RIGHT,Vector3.FORWARD,Vector3.BACK])
+	var k := PackedFloat32Array([.1,.2,.3])
+	history.append(0,10,p,t,k)
+	history.append(1,20,PackedVector3Array([p[0]+Vector3.RIGHT,p[1]+Vector3.RIGHT,p[2]+Vector3.RIGHT]),t,k)
+	for time in [.0,.3,.99,1.0,1.2]:
+		var all := history.sample(time)
+		var sparse := history.sample(time,[2,0])
+		if sparse.positions.size()!=2: return "sparse query expands entire train"
+		for i in 2:
+			var index := 2 if i==0 else 0
+			if not sparse.positions[i].is_equal_approx(all.positions[index]) or sparse.curvatures[i]!=all.curvatures[index] or not sparse.tangents[i].is_equal_approx(all.tangents[index]): return "sparse history changes acoustics"
+	return true
+
 func test_generated_squeal_bank_lossless_and_bounded():
 	for file in Data.HASHES:
 		if FileAccess.get_sha256(Data.ROOT+file)!=Data.HASHES[file]: return "squeal source changed"

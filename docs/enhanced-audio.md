@@ -51,6 +51,9 @@ axle leaves a curve. Curvature is derived from the game's tessellated alignment,
 not from abrupt heading impulses at individual vertices. Straight track and
 standstill produce no new squeal. Five seconds of pose history support retarded
 source positions, and the source follows the modeled inner wheel.
+Each history query interpolates only the relevant bogie's wheels. Retarded-time
+iteration stops after convergence (at most eight iterations), and sources beyond
+any reachable audible position in retained history are culled early.
 
 Native voice budgets are 24 filtered impact locations and 12 squeal voices
 (including fading tails) per train. Impact locations are prioritized by received
