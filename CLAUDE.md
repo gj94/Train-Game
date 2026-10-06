@@ -20,6 +20,10 @@ Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
 - Blender MCP connector (`mcp__Blender__*`) needs Blender open with the MCP add-on server started.
 - PowerShell execution policy blocks `npm.ps1`/`npx.ps1`; call `npm.cmd` / `npx.cmd` instead.
 
+Fresh launches now assign a random passenger service in six-train traffic.
+Auto dispatch includes the selected manual driver. F1 explains the current
+scenario; F9 offers a new random assignment or a solo fleet drive.
+
 ## Commands (run from project root, `$g` = Godot console exe above)
 - Import / refresh: `& $g --headless --path . --import`
 - Tests: `& $g --headless --path . --script res://tests/run_tests.gd` (exit code 0 = all pass)

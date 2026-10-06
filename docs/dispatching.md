@@ -6,13 +6,42 @@ Chennapuram, Maruthur and Kadalur use the Kumbakonam, Mayiladuthurai and Thanjav
 architectural references described in [stations.md](stations.md). The yards and
 route remain fictional, with realistic metre-scale train and platform lengths.
 
+## Default: your service among traffic
+
+Fresh launches assign you a random cab in a six-service mixed passenger working:
+T1 LHB, T2 ICF, T3 Vande Bharat 8, T4 LHB, T5 ICF and T6 Vande Bharat 16.
+Three start at each terminus, all ready at 08:00. You drive the selected train;
+the other five use AI. **Auto dispatch starts ON** and requests your booked
+routes even while you drive manually. Conflicting requests wait for actual
+train/tail clearance, route release and free platform roads.
+
+T1/T2 normally depart first, T3/T4 follow, and T5/T6 may wait for both preceding
+services. Maruthur's shared platforms can cause further waits. Nothing overrides
+a red signal or teleports another train out of your way. Services call at Maruthur
+at +12 minutes, dwell at least three minutes, then continue to the opposite
+terminus, booked at +28 minutes; traffic and manual driving can delay these times.
+
+**F1** explains the selected service, its booked stops, expected traffic, the task
+from the driver's perspective, and current auto-dispatch/HOLD MRT settings.
+**A** hands your train to AI; **Alt+1/2/3** lets you ride first/middle/last coach.
+**D** shows the other services; selecting another returns your old traffic service
+to AI. **M** shows booked and actual times. Wait for a proceed aspect before using
+W to release the brake and add power. Stop at each booked platform marker.
+
+Restart keeps the current assignment. **F9 → New random traffic service** draws
+a new one (the same service can be drawn again). The F9 named fleet choices are
+still solo drives. `-- --fleet=lhb`, `-- --wap7`, `-- --lhb`, and `-- --memu`
+continue to select their explicit scenarios.
+
+## Original MEMU dispatcher exercise
+
 In the dispatcher scenario, six eight-car MEMUs start under AI control at D1 08:00. Departures are paired at
 08:01, 08:02 and 08:04, calling at Maruthur at +12 minutes with a three-minute dwell,
 and booked at the other terminus at +28 minutes. See [timetables.md](timetables.md).
 
 ## Reproduce the busy-station test
 
-1. Run the main scene (F5). The default is WAP-7 with mixed LHB coaches; press
+1. Run the main scene (F5). The default is a random mixed-fleet traffic service; press
    **F2**, confirm, then **F2** and confirm again to select the six MEMUs
    (or launch directly with `-- --memu`). Press **D** to open dispatch. Enable **AUTO DISPATCH** and **HOLD MRT**
    before the first departure. Auto dispatch requests the booked routes through

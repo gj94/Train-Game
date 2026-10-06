@@ -37,7 +37,9 @@ class ClockProbe extends Node:
 				get_viewport().get_texture().get_image().save_png("res://.local/motion-close-up.png")
 			finished.call(subframes > 20 and stalls == 0 and maximum-minimum > .5)
 
-func _initialize() -> void: call_deferred("check_motion")
+func _initialize() -> void:
+	set_meta("imported_fleet", "lhb") # Fixed geometry for the interpolation regression.
+	call_deferred("check_motion")
 
 func check(ok: bool, label: String) -> void:
 	if not ok:

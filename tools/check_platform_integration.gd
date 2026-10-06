@@ -6,7 +6,10 @@ class Listener extends Node3D:
 	var mode := 2
 	var pivot := Vector3.ZERO
 
-func _initialize() -> void: call_deferred("run_check")
+func _initialize() -> void:
+	# Keep the reference rake fixed unless this probe explicitly selects another.
+	if OS.get_cmdline_user_args().is_empty(): set_meta("imported_fleet", "lhb")
+	call_deferred("run_check")
 func check(ok: bool,label: String) -> void:
 	if not ok: failures+=1; printerr("FAIL: ",label)
 

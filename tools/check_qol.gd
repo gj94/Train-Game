@@ -16,10 +16,10 @@ func _check() -> void:
 	var game = current_scene
 	var hud = game.hud
 	var desk = game.dispatcher
-	if not _expect(game.imported_fleet == "lhb" and game.train.stock_kind == "ported:lhb" and game.tv.cars.size() == 8, "default WAP-7 and seven mixed LHB coaches"): return
-	var expected_models := ["wap7", "lhb_1a", "lhb_2a", "lhb_3a", "lhb_2s", "lhb_cc", "lhb_sl", "lhb_gs"]
-	if not _expect(game.tv.formation.map(func(car): return car.model) == expected_models and game.audio._sched.axles.size() == 34, "default coach mix and physical sound axles"): return
-	if not _expect(game.cam.mode == 1 and game.tv.cab_on, "default starts in WAP-7 cab"): return
+	if not _expect(game.traffic_drive and game.world.trains.size() == 6 and game.train_views.size() == 6, "default six-service traffic scenario"): return
+	if not _expect(desk.auto_dispatch and desk.selected_train == game.train.id and game.audio.train == game.train, "random assignment binds desk, cab and audio"): return
+	if not _expect(game.world.trains.values().filter(func(t): return not t.automatic).size() == 1 and not game.train.automatic, "other five services use AI"): return
+	if not _expect(game.cam.mode == 1 and game.tv.cab_on and game._has_passengers(), "default starts in assigned passenger train's cab"): return
 	if not _expect(not desk._root.visible and not hud._log.visible and game.wv.labels.all(func(l): return not l.visible), "uncluttered initial screen"): return
 	_key(game, KEY_TAB) # Begin the exterior/dispatch transition checks from overview.
 	_key(game, KEY_D)
@@ -33,6 +33,7 @@ func _check() -> void:
 	if not _expect(not desk._root.visible, "exterior preserves closed desk"): return
 	game.train.controller = .4
 	_key(game, KEY_F1)
+	if not _expect(hud._body.text.contains("YOUR SCENARIO") and hud._body.text.contains(game.train.id) and hud._body.text.contains("YOUR BOOKED STOPS") and hud._body.text.contains("Auto dispatch is ON"), "help explains this assignment and expected traffic"): return
 	var before: float = game.world.time
 	_key(game, KEY_X)
 	game._physics_process(1)

@@ -93,7 +93,7 @@ Never edit generated WAVs/constants. The joint-video and physical-ICF exporters
 are historical and must not be used to tune the active bank.
 The working lab is not a Git checkout. A committed exporter/source recovery copy
 and restoration instructions are in `tools/sound-lab/body-v2/`.
-Axle geometry follows the selected stock; the default is WAP-7 with mixed LHB coaches.
+Axle geometry follows the selected stock; the default randomly assigns one of six mixed passenger services.
 
 ## Reinstall on another PC
 

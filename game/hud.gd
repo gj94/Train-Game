@@ -29,13 +29,14 @@ Esc pause menu / back · F1 controls · F4 clean view / restore
 F6 track labels · F8 event history · F11 fullscreen / window
 T time ×1 / ×2 / ×4 · P train protection on / off
 F2 WAP-7 light engine / MEMUs · F3 LHB rake / MEMUs
-F9 imported fleet: WAP-7, WAG-9, WAG-12B, ICF, LHB, Vande Bharat
+F9 new random traffic service / solo imported fleet
 Changing scenario or restarting asks first. There is no save/load yet.
 
 [b]SOUND & DIAGNOSTICS[/b]
 [ / ] track sound quieter / louder (2 dB)
 , / . clang quieter / louder · J rail-joint markers
 Approved track-only sound keeps the horn and engine layers muted."""
+var scenario_brief := ""
 var clean_view := false
 var history_open := false
 var modal := ""
@@ -186,7 +187,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Fullscreen / window  ·  F11", "fullscreen")
 			_button(_buttons, "WAP-7 light engine / MEMUs  ·  F2", "wap7")
 			_button(_buttons, "LHB passenger rake / MEMUs  ·  F3", "lhb")
-			_button(_buttons, "Imported fleet…  ·  F9", "fleet")
+			_button(_buttons, "Traffic / solo fleet…  ·  F9", "fleet")
 			_button(_buttons, "Restart current services…", "restart")
 			_button(_buttons, "Quit to desktop…", "quit")
 		"passengers":
@@ -197,12 +198,13 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Last passenger coach  ·  Alt+3", "pax:2")
 			_button(_buttons, "Back", "fleet_back")
 		"help":
-			_heading.text = "CONTROLS  /  SIMULATION PAUSED"
-			_body.text = HELP
+			_heading.text = "SCENARIO & CONTROLS  /  PAUSED"
+			_body.text = scenario_brief + "\n[b]CONTROLS REFERENCE[/b]\n" + HELP
 			_button(_buttons, "Back  ·  Esc / F1", "close_help")
 		"fleet":
-			_heading.text = "IMPORTED INDIAN RAIL FLEET"
-			_body.text = "Choose a train for the Southern corridor.\nThe coach showcases each contain all seven classes.\nVande Bharat uses the source's compact car lengths."
+			_heading.text = "TRAFFIC & INDIAN RAIL FLEET"
+			_body.text = "Start a random service among six trains, or choose a solo drive below.\nICF/LHB showcases contain all seven coach classes.\nVande Bharat uses the source's compact car lengths."
+			_button(_buttons, "New random traffic service", "traffic")
 			for choice in PortedStock.CHOICES:
 				_button(_buttons, PortedStock.LABELS[choice], "fleet:" + choice)
 			_button(_buttons, "Back  ·  Esc", "fleet_back")

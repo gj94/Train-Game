@@ -2,9 +2,9 @@ extends RefCounted
 ## Optional dispatch assistant used by the live desk and traffic tests.
 ## It requests the same interlocked routes as manual dispatch; no safety bypass.
 
-static func update(w: RailWorld, hold_maruthur: bool = false) -> void:
+static func update(w: RailWorld, hold_maruthur: bool = false, manual_service: String = "") -> void:
 	for t in w.trains.values():
-		if not t.automatic or t.service_complete or t.timetable == null:
+		if (not t.automatic and t.id != manual_service) or t.service_complete or t.timetable == null:
 			continue
 		var ns := w.next_signal(t)
 		if ns.is_empty() or ns.id in w.automatic_signals or not w.signals[ns.id].route.is_empty():

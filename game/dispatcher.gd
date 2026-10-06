@@ -133,7 +133,7 @@ func setup(w: RailWorld) -> void:
 	_auto_button = _button(scopes,"AUTO DISPATCH: OFF",func():
 		auto_dispatch = not auto_dispatch
 		_refresh())
-	_auto_button.tooltip_text = "Optional six-train demonstration. Requests normal interlocked routes to booked platforms. Switch off for manual control."
+	_auto_button.tooltip_text = "Requests safe routes to booked platforms. In the traffic scenario this includes your manually driven service. Switch off to dispatch routes yourself."
 	_hold_button = _button(scopes,"HOLD MRT: OFF",func():
 		hold_arrivals = not hold_arrivals
 		_refresh())

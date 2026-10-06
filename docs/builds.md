@@ -32,7 +32,7 @@ does not include these development templates.
 ## Release verification
 
 Run the exported EXE from an extracted copy outside the checkout, with no
-`--path` argument. Check default mixed-LHB startup, `-- --memu`, F2 WAP-7 and F3 LHB so dynamic models and
+`--path` argument. Check default random six-service startup, `-- --memu`, F2 WAP-7 and F3 LHB so dynamic models and
 timetables are covered. Confirm no missing resources or script errors in the
 log. Inspect the normal window and fullscreen, and stop all verification games
 afterward. Screenshots and temporary logs belong under `.local/`.

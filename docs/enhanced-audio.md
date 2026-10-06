@@ -78,7 +78,7 @@ resampling and moving-filter updates prevent a sample-identical output claim.
   switches aisle/seat; right-drag looks around. **V** returns to the cab.
 
 Generator and luggage vans without passenger interiors are skipped. First/last
-refer to the current direction of travel. The default seven-coach mixed LHB rake
+refer to the current direction of travel. The seven-coach mixed LHB rake
 selects vehicle indices 1, 4 and 7. The 20-coach LHB and other passenger fleets
 use their actual eligible coach list. Entering these views preserves AI/manual
 driving controls. Outside passenger view, unmodified 1/2/3 remain station views.

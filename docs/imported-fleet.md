@@ -1,13 +1,15 @@
 # Imported Indian Rail fleet
 
 The user's assets from [gj94/transport-fever-3-mods](https://github.com/gj94/transport-fever-3-mods)
-are available through **F9**, or **Escape → Imported fleet**. Choose a working
+are available through **F9**, or **Escape → Traffic / solo fleet**. Choose a working
 and confirm to start at Chennapuram. Original scenarios remain on F2/F3.
 
-A fresh launch defaults to **WAP-7 + seven mixed LHB coaches**: 1A, 2A, 3A,
-2S, CC, SL and GS, starting in the locomotive cab. Restart keeps the selected
-working. Explicit fleet choices and the original F2/F3 scenarios take precedence;
-`-- --memu` starts the six-MEMU dispatcher directly.
+A fresh launch assigns a random cab among **six mixed passenger services**, with
+AI traffic and automatic routing. See [dispatching.md](dispatching.md). F1 explains
+your assignment and expected waits. Restart keeps it; F9 offers a new random
+assignment or a solo working. The LHB working still hauls all seven classes:
+1A, 2A, 3A, 2S, CC, SL and GS. Explicit fleet choices and F2/F3 take precedence;
+`-- --memu` starts the original six-MEMU dispatcher directly.
 
 ## Vehicles
 

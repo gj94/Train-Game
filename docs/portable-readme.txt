@@ -8,8 +8,12 @@ RUN ON ANOTHER PC
 4. F11 switches fullscreen/window. The initial window is 1280 x 720.
 
 START PLAYING
-The game starts in a WAP-7 hauling seven mixed LHB coaches: 1A, 2A, 3A,
-2S, chair car, sleeper and general seating. W/S drive; A enables AI.
+You are randomly assigned one of six passenger services: WAP-7/LHB,
+WAP-7/ICF and Vande Bharat. The other five trains use AI. Automatic dispatch
+sets safe routes for everyone, including your manually driven service.
+Wait at red while earlier trains clear shared routes and occupied platforms.
+F1 opens your scenario briefing: your service, stops, expected traffic and job.
+W/S drive; A enables AI for your train so you can ride as a passenger.
 Tab shows the exterior; V enters a coach and PgUp/PgDn changes coaches.
 Alt+1 / Alt+2 / Alt+3 directly enter the first / middle / last passenger coach.
 While riding, 1 / 2 / 3 switch those views. Esc also has a Passenger views menu.
@@ -20,8 +24,9 @@ T cycles normal / 2x / 4x time. C opens routes for the next signal.
 F2 selects a WAP-7 light engine; F3 selects WAP-7 + 20 LHB coaches.
 Press the same scenario key again and confirm to select six MEMU services;
 use D then AUTO DISPATCH to run their timetable.
-F9 opens the imported fleet: WAP-7, WAG-9, WAG-12B, seven-class ICF/LHB
-showcases, and compact 8/16-car Vande Bharat. See guides/imported-fleet.md.
+F9 offers New random traffic service, plus solo imported fleet drives:
+WAP-7, WAG-9, WAG-12B, ICF/LHB and Vande Bharat. Restart current services
+keeps the same assignment. See guides/dispatching.md and imported-fleet.md.
 Confirm a scenario change in the menu. In LHB, A drives automatically; V rides
 inside a passenger coach. C opens the route desk for the next signal.
 
@@ -37,10 +42,10 @@ F / 1 / 2 / 3 Follow train / station views
 Right-drag    Orbit outside, look around inside
 Mouse wheel   Zoom
 Comma / .     Decrease / increase second-axle clang balance
-F1            Scrollable controls, with simulation paused
+F1            Your scenario briefing and controls; simulation pauses
 F4            Clean view / restore (emergency feedback remains visible)
 F6 / F8       Track labels / event history
-F9            Imported Indian Rail fleet
+F9            New random traffic service / solo imported fleet
 F11           Fullscreen / window
 Esc           Pause / resume; back from help or confirmation
 
@@ -50,7 +55,8 @@ Restart, scenario changes and quitting ask first. Progress is not saved.
 Detailed route and passenger controls: see the guides folder.
 Realism/joint playtest: guides/track.md. Exterior zoom reaches 3 m for wheel and
 joint inspection. Real gaps and fishplates stay visible with J diagnostics off.
-The second axle is four semitones lower, with +5 dB clang balance by default.
+Impact pitch and timbre follow the approved website bank; event spacing follows
+physical wheel positions and train speed. The newer benchmark supplies squeal.
 
 DISPLAY AND TROUBLESHOOTING
 This build keeps the project's Forward+ renderer and high graphics quality.
