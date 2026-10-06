@@ -69,8 +69,11 @@ tree.data.calc_loop_triangles()
 triangles=len(tree.data.loop_triangles)
 print('PREPARED_PH_TREE',triangles,'triangles','dimensions',list(tree.dimensions),flush=True)
 # Pack the derivative master so it remains editable without machine-specific paths.
+for other in list(bpy.data.objects):
+    if other != tree: bpy.data.objects.remove(other,do_unlink=True)
 for im in bpy.data.images:
-    if im.source=='FILE' and im.has_data: im.pack()
+    # Image datablocks can be lazy-loaded; has_data=False does not mean unused.
+    if im.source=='FILE': im.pack()
 bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'art/scenery/tree_small_02_adapted.blend'),compress=True)
 bpy.ops.export_scene.gltf(filepath=str(OUT/'tree_small_02.glb'),export_format='GLB',use_selection=True,export_apply=True,export_yup=True,export_image_format='AUTO')
 from bake_scenery_impostors import bake

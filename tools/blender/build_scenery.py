@@ -5,7 +5,7 @@ CC0 PBR finishes. Colour attributes retain restrained, varied facade/prop paint.
 Coordinates throughout are Godot metres: X width, Y up, front faces -Z.
 """
 from __future__ import annotations
-import bpy, math, random, json, sys
+import bpy, math, random, json, struct, sys
 from pathlib import Path
 from contextlib import contextmanager
 from mathutils import Vector, Matrix
@@ -287,6 +287,11 @@ def save(g):
         obj.data.materials.clear(); obj.data.materials.append(material('architecture'))
         for face in obj.data.polygons: face.material_index=0
     bpy.ops.export_scene.gltf(filepath=str(OUT/(g.name+'.glb')),export_format='GLB',use_selection=True,export_apply=True,export_yup=True,export_normals=True,export_texcoords=True,export_materials='EXPORT',export_vertex_color='ACTIVE',export_all_vertex_colors=False)
+    # glTF drops degenerate faces during triangulation; report the shipped count.
+    data=(OUT/(g.name+'.glb')).read_bytes()
+    size=struct.unpack_from('<I',data,12)[0]
+    gltf=json.loads(data[20:20+size])
+    MANIFEST[g.name]['triangles']=sum(gltf['accessors'][p['indices']]['count']//3 for m in gltf['meshes'] for p in m['primitives'])
     print('SCENERY_ASSET',g.name,MANIFEST[g.name],flush=True)
 
 def main():

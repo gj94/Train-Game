@@ -13,8 +13,12 @@ Use `-BuildName TrainGame-Controller-Windows` to package controller support
 alongside the existing playtest ZIP. Its folder, archive, checksum and licences
 are kept separate. The build checks native controller input and GUI navigation.
 
+Use `-BuildName TrainGame-Scenery-Windows` for the 7 October scenery build. It also
+preserves the earlier archives and runs the new scenery resource/lifecycle check
+alongside the other 13 checks. The scenery guide is included in `guides/stations.md`.
+
 The preset includes runtime resources, `sim/timetables/*.json` and
-`assets/models/ported/manifest.json` and BODY V2 sound provenance; it excludes
+`assets/models/ported/manifest.json`, scenery manifests/provenance and BODY V2 sound provenance; it excludes
 development tools, tests, editor addons, documentation, original Blender art,
 and the user's raw `TrainAudio.mp3` / `TrainVideo.mp4` reference recordings.
 The README and selected guides are copied alongside the executable separately.
@@ -80,7 +84,8 @@ subnet. It does not change the network category or disable Windows Firewall.
 Use `-BindAddress <IPv4>` if more than one connected network is available.
 
 The read-only server exposes the standard ZIP and, when present, the separate
-controller ZIP, their SHA-256 sidecars and portable READMEs, plus a download page.
+controller and scenery ZIPs, their SHA-256 sidecars and portable READMEs, plus a
+download page. The scenery build appears first when available.
 It supports byte ranges for resuming downloads.
 Stop it before replacing the archive with a new build, then start it again.
 

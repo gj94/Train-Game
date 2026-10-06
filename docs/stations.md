@@ -127,3 +127,58 @@ Tests: `tests/run_tests.gd`, `tools/check_corridor_playable.gd`, `tools/check_st
 6. Press F3 to return to the six-MEMU corridor and follow `dispatching.md`.
    Enable AUTO DISPATCH and HOLD MRT to berth four trains together, then release
    the hold so the waiting pair can enter and all six services complete.
+
+## Surrounding towns and countryside (7 October 2026)
+
+The fictional corridor now has three station towns, four villages, industrial
+fringes and agricultural land planned together. The fixed scenery seed produces
+1,967 buildings, 942 field plots, 95 road sections and 36 moving road vehicles.
+Tiled homes, apartments, railway quarters, shops, schools, mills, warehouses and
+landmarks use 41 original Blender assets plus one registered CC0 broadleaf tree.
+The master files, exported bounds, texture provenance and licences are recorded
+in `art/scenery/`, `assets/models/scenery/` and `assets.md`.
+
+Roads have junction openings, drains, bus bays, utility wires, parked vehicles,
+stalls and English/Tamil signs. Paddy plots have bunds, irrigation and close crop
+geometry; modelled canal banks and tropical tree groups break up the flat delta.
+People and road traffic are decorative. Buildings are exterior scenery, with no
+walkable interiors; these settlements are not surveyed copies of real towns.
+
+`SceneryPlan` is deterministic and reads the railway without advancing it. Its
+exact segment clearance index rejects overlapping structures and crops. Render
+code uses spatial MultiMeshes, shared materials and imported mesh LOD. Eight-view
+tree impostors take over at distance; nearby crop blades and small props have
+shorter visibility ranges. The scenery changes do not lower the graphics preset.
+
+Rebuild original assets in a **background** Blender process:
+
+```powershell
+& ./.local/blender/blender-5.2.1-windows-x64/blender.exe --background --factory-startup --python-exit-code 1 --python tools/blender/build_scenery.py
+& ./.local/blender/blender-5.2.1-windows-x64/blender.exe --background --factory-startup --python-exit-code 1 --python tools/blender/bake_scenery_impostors.py
+```
+
+Append `-- --only=shop_row,tiled_house` to the first command for selected models.
+The Poly Haven derivative is rebuilt separately: run `fetch-scenery-tree.ps1`,
+then Blender with `--background --factory-startup --disable-autoexec
+--python-exit-code 1 --python tools/blender/prepare_ph_tree.py`. This also bakes
+its impostors and updates its provenance record. The texture download helper is
+`tools/fetch-scenery-textures.ps1`. Reimport in Godot after rebuilding; do not run
+another importer while the editor is importing. Keep `art/scenery/.gdignore`.
+
+Verification tools: `tests/test_scenery.gd` (included in the normal suite),
+`tools/check_scenery_playable.gd`, native `tools/inspect_scenery.gd` and
+`tools/soak_scenery.gd`. The soak accepts `-- --seconds=3600
+--output=res://.local/scenery-soak`, saves periodic screenshots/statistics, changes
+views and reloads completed services. Use `--audio-driver Dummy` for unattended
+performance runs; this checks scheduling/mixing, not audible playback.
+`python tools/check_scenery_assets.py` independently checks exported GLB geometry,
+embedded resources, encoded material categories and the photographic tree hash.
+Background Blender can run `tools/blender/check_scenery_masters.py` with
+`--disable-autoexec --python-exit-code 1` to verify editable masters and packed images.
+
+For the visual playtest, enable AI with **A**, look to both sides on station
+approaches, and ride the first/middle/last passenger coaches with **Alt+1/2/3**.
+Inspect the shop streets and bus bays from the exterior, then follow a train
+through the four villages, canal crossings and open fields. Watch foliage and
+crop transitions while moving. **F10** reports frame time, GPU time, audio work
+and queued impacts; record the resolution when comparing the 4090 laptop.

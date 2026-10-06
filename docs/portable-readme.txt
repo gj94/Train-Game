@@ -2,9 +2,13 @@ TRAIN GAME - SOUTHERN CORRIDOR
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Rebuilt scenery: station towns, villages, shops, apartments, industrial buildings,
+bus stops, road traffic, tropical trees, paddy fields and detailed canal banks.
 Includes full Xbox controller support and cab/passenger performance fixes.
 F10 shows FPS, GPU time, audio work and pending impacts. Ride for several minutes
 in cab and passenger views when comparing performance on your PC.
+Press A to let AI drive, then Alt+1/2/3 to inspect the landscape from the first,
+middle and last passenger coaches. See guides/stations.md for scenery details.
 
 RUN ON ANOTHER PC
 1. Copy the ZIP and extract the entire folder to a writable location.

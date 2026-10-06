@@ -15,10 +15,12 @@ func capture() -> void:
 	var prefix:="res://.local/scenery-before"
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--output="): prefix=arg.trim_prefix("--output=")
+	var village_x: float=game.world.scenery.villages[0]
+	var village_z: float=game.wv.scenery_plan.track_at(village_x).z-66.0
 	var shots:=[
 		["station_street",Vector3(440,6,-165),Vector3(505,4,-100)],
 		["market",Vector3(210,2.3,-81),Vector3(380,2.8,-84)],
-		["village_lane",Vector3(3170,2.3,-214),Vector3(3350,2.0,-222)],
+		["village_lane",Vector3(village_x-170,2.3,village_z+1),Vector3(village_x+40,2.0,village_z)],
 		["station_overview",Vector3(290,66,-245),Vector3(570,0,-10)],
 		["station_opposite",Vector3(760,8,82),Vector3(475,4,68)],
 		["village",Vector3(3180,7,-200),Vector3(3330,3,-170)],
