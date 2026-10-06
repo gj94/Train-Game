@@ -2,6 +2,46 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-07 scenery rebuild: `assets/models/scenery/*.glb` and editable
+`art/scenery/*.blend` are original project models generated in background Blender
+by `tools/blender/build_scenery.py`, `scenery_props.py`, `scenery_people.py`,
+`scenery_landmarks.py` and `scenery_vegetation.py`. The library includes tiled houses, shopfronts, apartments,
+railway quarters, a school, industrial buildings, a water tower, road vehicles,
+street furniture, produce carts, passengers, a fictional temple and telecom mast,
+and tropical vegetation. Eight-view distant tree colour/normal
+atlases are rendered from that same original geometry by
+`bake_scenery_impostors.py`; no photographic foliage pixels are incorporated.
+The runtime uses the registered CC0 surface maps and original weathering shaders.
+English/Tamil signs use Nirmala UI/Arial through Windows system-font lookup; no
+font files are bundled. The fictional settlement layouts are not surveyed towns.
+
+An additional photographic broadleaf asset, `tree_small_02.glb`, is an adaptation
+of **Tree Small 02 by Rico Cilliers**, [Poly Haven source](https://polyhaven.com/a/tree_small_02),
+CC0-1.0. Its diffuse/normal/roughness/alpha maps are third-party photographic
+texture pixels, unlike the original vegetation above. `fetch-scenery-tree.ps1`
+verifies the source package; `prepare_ph_tree.py` reduces the author's LOD1/trunk
+meshes to 65,630 triangles, preserves the leaf coverage and texture coordinates,
+and bakes distant
+views. The editable derivative is `art/scenery/tree_small_02_adapted.blend`.
+Source URLs/hashes and derivative details are recorded in
+`assets/models/scenery/tree_small_02-provenance.json`. Godot extracts its embedded
+maps as `tree_small_02_tree_small_02_*`; these share the same CC0 provenance.
+The source identifies Burkea africana; the game uses it as a fictional ornamental
+broadleaf, without claiming it is a mango tree or a native delta species.
+
+The three new 2K texture sets below were fetched from the official Poly Haven
+API/download host and checked against its published MD5 values. Per-file source
+URLs, authors, licence URLs and SHA-256 values are recorded in
+`assets/polyhaven/scenery-provenance.json`; `tools/fetch-scenery-textures.ps1`
+reproduces the download and verification. Poly Haven's
+[CC0 licence](https://polyhaven.com/license) permits this use.
+
+| Scenery texture | Project directory | Original author | Source / licence |
+|---|---|---|---|
+| Aerial Asphalt 01, diffuse/OpenGL normal/roughness | `assets/polyhaven/aerial_asphalt_01/` | Rob Tuytel | [Poly Haven](https://polyhaven.com/a/aerial_asphalt_01), CC0-1.0 |
+| Red Brick Plaster Patch 02, diffuse/OpenGL normal/roughness | `assets/polyhaven/red_brick_plaster_patch_02/` | Rob Tuytel | [Poly Haven](https://polyhaven.com/a/red_brick_plaster_patch_02), CC0-1.0 |
+| Pavement 06, diffuse/OpenGL normal/roughness | `assets/polyhaven/pavement_06/` | Jan Martens | [Poly Haven](https://polyhaven.com/a/pavement_06), CC0-1.0 |
+
 2026-10-06 evening benchmark squeal: `assets/sounds/platform_enhanced/` contains
 four newly synthesized periodic banks plus lossless channel-routing copies.
 Source is the user's `platform-squeal-benchmark-src-md-20261006-221237` package,

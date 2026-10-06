@@ -33,6 +33,9 @@ var _noise_tex: NoiseTexture2D
 var _terrain_noise := FastNoiseLite.new()
 var _fields: Array[Rect2] = []
 var track_view
+var scenery_plan
+var scenery_library
+var railway_clearance
 
 
 func build(w: RailWorld, parent: Node3D) -> void:
@@ -55,9 +58,14 @@ func build(w: RailWorld, parent: Node3D) -> void:
 	_build_environment()
 	track_view = TrackView.new()
 	track_view.build(self)
-	for eid in world.graph.edges:
-		for p in _samples(eid, 2.0):
-			_track_samples.append(p.pos)
+	railway_clearance=preload("res://game/scenery_clearance.gd").new(world.graph)
+	if world.scenery.get("corridor",false):
+		scenery_plan=preload("res://game/scenery_plan.gd").new()
+		scenery_plan.build(world)
+		scenery_library=preload("res://game/scenery_library.gd").new(self)
+	else:
+		for eid in world.graph.edges:
+			for p in _samples(eid,2.0): _track_samples.append(p.pos)
 	_build_terrain()
 	_build_ohe()
 	_build_stations()
@@ -316,10 +324,7 @@ func _mast_site_ok(p: Vector3) -> bool:
 		for r: Rect2 in st.platforms:
 			if r.grow(2.0).has_point(Vector2(p.x, p.z)):
 				return false
-	for i in range(0, _track_samples.size(), 2):
-		if Vector2(p.x - _track_samples[i].x, p.z - _track_samples[i].z).length_squared() < 2.9 * 2.9:
-			return false
-	return true
+	return railway_clearance.clear_point(p,2.9)
 
 
 # --- terrain -----------------------------------------------------------------
@@ -336,41 +341,22 @@ func terrain_height(x: float, z: float) -> float:
 
 
 func _build_terrain() -> void:
-	var x0: float = world.scenery.get("x_min", -500.0) - 1100.0
-	var x1: float = world.scenery.get("x_max", 5300.0) + 1100.0
-	var z0 := -1700.0
-	var z1 := 1700.0
-	var step := 25.0
-	var nx := int((x1 - x0) / step)
-	var nz := int((z1 - z0) / step)
-	var st := SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	for j in nz + 1:
-		for i in nx + 1:
-			var x := x0 + i * step
-			var z := z0 + j * step
-			st.add_vertex(Vector3(x, terrain_height(x, z), z))
-	for j in nz:
-		for i in nx:
-			var a := j * (nx + 1) + i
-			var b := a + 1
-			var c := a + nx + 1
-			var d := c + 1
-			for idx in [a, b, c, c, b, d]:
-				st.add_index(idx)
-	st.generate_normals()
-	var sm := ShaderMaterial.new()
-	sm.shader = load("res://game/shaders/ground.gdshader")
-	sm.set_shader_parameter("grass_albedo", ph_tex("leafy_grass", "diff"))
-	sm.set_shader_parameter("grass_normal", ph_tex("leafy_grass", "nor_gl"))
-	sm.set_shader_parameter("grass_rough", ph_tex("leafy_grass", "rough"))
-	sm.set_shader_parameter("soil_albedo", ph_tex("red_laterite_soil_stones", "diff"))
-	sm.set_shader_parameter("soil_normal", ph_tex("red_laterite_soil_stones", "nor_gl"))
-	sm.set_shader_parameter("noise_tex", _noise_tex)
-	_add_mesh(st.commit(), sm)
+	preload("res://game/terrain_scenery.gd").new().build(self)
 
 
 func _far_from_track(p: Vector3, clearance: float) -> bool:
+	if scenery_plan==null: return _legacy_far_from_track(p,clearance)
+	if not railway_clearance.clear_point(p,clearance): return false
+	if not scenery_plan.clear_land_point(p,3.5 if clearance>10 else .8): return false
+	for x in world.scenery.overbridges+world.scenery.canals:
+		if absf(p.x-x)<36 and absf(p.z)<450: return false
+	for station in world.stations:
+		for platform: Rect2 in station.platforms:
+			if platform.grow(3).has_point(Vector2(p.x,p.z)): return false
+		if absf(p.x-station.building.x)<72 and absf(p.z-station.building.z)<65: return false
+	return true
+
+func _legacy_far_from_track(p: Vector3, clearance: float) -> bool:
 	if world.scenery.get("corridor", false):
 		for x in world.scenery.overbridges + world.scenery.canals:
 			if absf(p.x-x) < 36 and absf(p.z) < 450:
@@ -404,6 +390,16 @@ func _far_from_track(p: Vector3, clearance: float) -> bool:
 
 
 func _build_scenery() -> void:
+	if scenery_plan==null:
+		_build_legacy_scenery()
+		return
+	preload("res://game/settlement_scenery.gd").new().build(self,scenery_plan,scenery_library)
+	preload("res://game/vegetation_scenery.gd").new().build(self,scenery_plan,scenery_library)
+	preload("res://game/crop_scenery.gd").new().build(self,scenery_plan)
+	scenery_library.flush()
+	preload("res://game/road_traffic.gd").new().build(self,scenery_plan,scenery_library)
+
+func _build_legacy_scenery() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 20260927
 	var xmax: float = world.scenery.get("x_max", 5300.0)

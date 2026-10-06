@@ -13,6 +13,7 @@ func build(world_view) -> void:
 	for station in view.world.stations:
 		_station(station)
 	_lineside()
+	if view.scenery_library!=null: view.scenery_library.flush()
 	var cube := BoxMesh.new()
 	cube.size = Vector3.ONE
 	for color in _boxes:
@@ -91,6 +92,10 @@ func _station(station: Dictionary) -> void:
 	_text("20 / 24\nCOACH", marker + Vector3(0, 2.1, .055), .21, Color("f4eee0"))
 
 func _person(pos: Vector3) -> void:
+	if view.scenery_library!=null:
+		var kinds:=["passenger_man","passenger_phone","passenger_sari","passenger_sari_blue"]
+		view.scenery_library.place(kinds[rng.randi_range(0,3)],pos,rng.randf()*TAU,Vector3.ONE*rng.randf_range(.95,1.08))
+		return
 	var palette := [Color("bc8154"), Color("3c677b"), Color("a94355"), Color("e5cc95"), Color("64735b")]
 	var clothes: Color = palette[rng.randi_range(0, palette.size() - 1)]
 	var body := CapsuleMesh.new()
@@ -137,7 +142,7 @@ func _lineside() -> void:
 				continue
 			_box(Vector3(0.5, 1.0, 0.5), base + Vector3(0, 0.5, 0), Color("e1dbc4"))
 			_text("%d" % int(p.x / 100), base + Vector3(0, 0.65, 0.26), 0.3, Color("283735"))
-		for i in int(e.length * 2):
+		for i in (0 if view.world.scenery.get("corridor",false) else int(e.length*2)):
 			var s := rng.randf_range(0, e.length)
 			var p: Vector3 = view.world.graph.position(eid, s)
 			var right: Vector3 = view.world.graph.tangent(eid, s, 1).cross(Vector3.UP)

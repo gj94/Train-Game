@@ -1,0 +1,87 @@
+{
+  "author": "Rico Cilliers",
+  "source": "https://polyhaven.com/a/tree_small_02",
+  "license_url": "https://polyhaven.com/license",
+  "asset": "Tree Small 02",
+  "source_files": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/blend/1k/tree_small_02/tree_small_02_1k.blend",
+      "md5": "d602d9e4df77457454ac427fd37d0b53",
+      "file": "tree_small_02_1k.blend",
+      "sha256": "af3fef6da3eb97057d9d4d3c4281c5944696b8d518715deddd8500482d30b1bd"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/tree_small_02/tree_small_02_branch_diff_1k.png",
+      "md5": "2da9ea379228636c4fda2fde9a11d760",
+      "file": "textures/tree_small_02_branch_diff_1k.png",
+      "sha256": "a93ce54213c4a98cd01cb5c5f7ab46b77defcd66e1dd082e6912f6e60632e630"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/tree_small_02/tree_small_02_branch_nor_gl_1k.png",
+      "md5": "4b6ae81428061986d42f205d03ec1989",
+      "file": "textures/tree_small_02_branch_nor_gl_1k.png",
+      "sha256": "0338a1400391893fdf6c6cbd1c22a573d6ab2300ad771d4916184bf206e1a671"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/tree_small_02/tree_small_02_branch_rough_1k.png",
+      "md5": "6189ac57979c248f9eb362ca04c5619e",
+      "file": "textures/tree_small_02_branch_rough_1k.png",
+      "sha256": "f285a54d141f30e39c7741e84a813c5cbccd9e9ee397af687176213f77d3e9a5"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/tree_small_02/tree_small_02_diff_1k.jpg",
+      "md5": "a7287a3f4e7f0d4577cb949b245f5b14",
+      "file": "textures/tree_small_02_diff_1k.jpg",
+      "sha256": "4e0093f407b3a1120a36de49a48ebe5a465a9a9b77e361c7a3e66866e115e404"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/tree_small_02/tree_small_02_leaves_alpha_1k.png",
+      "md5": "63199ba87a9e8928424bd8c3b8017bd0",
+      "file": "textures/tree_small_02_leaves_alpha_1k.png",
+      "sha256": "4f143e2dda8a6a572f427ac378b92255d21761e4611de0d26e21816c01aa533b"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/tree_small_02/tree_small_02_leaves_diff_1k.png",
+      "md5": "2c667193084725e8553062ddbdc73c7d",
+      "file": "textures/tree_small_02_leaves_diff_1k.png",
+      "sha256": "d3fc48522c76aa1f91076c6b86f302669822ebe4e2acabd67d42c4d57eaa5ba0"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/tree_small_02/tree_small_02_leaves_nor_gl_1k.png",
+      "md5": "e81c5d7e7fc09af321e8c5ac5b4948f2",
+      "file": "textures/tree_small_02_leaves_nor_gl_1k.png",
+      "sha256": "fa4ad390f2e68b745db8f568cad64c3272696c5e01312ae564795e37724d79b8"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/tree_small_02/tree_small_02_leaves_rough_1k.png",
+      "md5": "49c08fb74ed781e9632b543b8e19c8cb",
+      "file": "textures/tree_small_02_leaves_rough_1k.png",
+      "sha256": "f005213467e38bcb355b00c9a6eb9896b8d810ee885d5c7fa308d9f3326ef602"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/1k/tree_small_02/tree_small_02_nor_gl_1k.exr",
+      "md5": "eccf7df1617a8d6d841dff98bf58dc3a",
+      "file": "textures/tree_small_02_nor_gl_1k.exr",
+      "sha256": "cf999e30663267b55b6fab43ca97c1e96176bdc67268e6c25854d53f15267d64"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/1k/tree_small_02/tree_small_02_rough_1k.exr",
+      "md5": "af3b33e4b262b8ac40a94ee5d93ce13e",
+      "file": "textures/tree_small_02_rough_1k.exr",
+      "sha256": "1ed5ad24397c065beb2b2d3521470730f24e957cbd5fb323ad3f9b6d267b4585"
+    }
+  ],
+  "license": "CC0-1.0",
+  "adaptation": {
+    "triangles": 65630,
+    "source_mesh": "tree_small_02_LOD1 + tree_small_02_trunk",
+    "reduction_ratios": [
+      0.12,
+      0.22
+    ],
+    "tool": "tools/blender/prepare_ph_tree.py",
+    "units": "metres",
+    "original_species": "Burkea africana; used as an ornamental broadleaf asset, not labelled mango or native vegetation"
+  },
+  "runtime_sha256": "593c019bbe89ced54d26fee877867a3e56d52e442bcd1a4d3434f849349d7681"
+}

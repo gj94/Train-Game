@@ -8,9 +8,11 @@ uniform sampler2D grass_rough : hint_roughness_r, filter_linear_mipmap_anisotrop
 uniform sampler2D soil_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D soil_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D noise_tex : filter_linear, repeat_enable;
+uniform sampler2D land_use : filter_linear_mipmap, repeat_disable;
+uniform vec4 land_bounds = vec4(-1600,-1700,25000,3400);
 
 uniform float tile = 3.5;                 // metres per texture repeat up close
-uniform vec3 grass_tint : source_color = vec3(0.53, 0.70, 0.42);
+uniform vec3 grass_tint : source_color = vec3(0.49, 0.57, 0.34);
 uniform float soil_amount : hint_range(0.0, 1.0) = 0.12;
 
 varying vec3 wpos;
@@ -36,7 +38,10 @@ void fragment() {
 	vec3 soil = sample3(soil_albedo, p, far_mix);
 	float soil_w = smoothstep(0.74 - soil_amount * 0.35, 0.84, n_mid * 0.7 + n_macro * 0.3);
 
-	ALBEDO = mix(grass, soil, soil_w);
+	float use_mask=texture(land_use,(p-land_bounds.xy)/land_bounds.zw).r;
+ soil_w=max(soil_w,smoothstep(.20,.82,use_mask)*mix(.74,.97,n_mid));
+ vec3 dry_grass=mix(grass,grass*vec3(1.20,.94,.70),smoothstep(.38,.68,n_mid));
+ ALBEDO = mix(dry_grass, soil*vec3(.75,.72,.62), soil_w);
 	vec3 nm_g = texture(grass_normal, p / tile).rgb;
 	vec3 nm_s = texture(soil_normal, p / tile).rgb;
 	NORMAL_MAP = mix(nm_g, nm_s, soil_w);

@@ -1,5 +1,39 @@
 # Progress
 
+## 2026-10-07 — Scenery rebuild, first working milestone
+- Replaced the corridor's generic houses and sparse ground dressing with a
+  deterministic settlement/land-use plan: three station towns, four villages,
+  industrial fringes and about 1,967 buildings. Roads, building roofs/awnings and
+  942 agricultural plots are checked against the actual rail segments and each
+  other. Simulation, rail geometry and approved sound data are unchanged.
+- Added 41 original Blender assets plus a registered CC0 photographic tree:
+  tiled homes, shopfronts, apartments, quarters, school, warehouses, rice mill,
+  temple, water tower, telecom mast, road vehicles, passengers, stalls and
+  vegetation. Editable masters and reproducible background build scripts are
+  included. Scanned foliage and the three new Poly Haven PBR texture sets have
+  source URLs, author/licence records and verified hashes in the asset register.
+- Added street signs in English/Tamil, clipped pavement at junctions, bus bays,
+  parked vehicles, utility wires, passenger figures, produce carts and 36
+  decorative vehicles following smooth left-hand road loops. Road traffic reads
+  the simulation clock and pauses with the game; it does not affect rail logic.
+- Terrain is spatially tiled, with a land-use mask, modelled canal banks, field
+  bunds/irrigation and nearby crop geometry. Trees use eight-view colour/normal
+  impostors at distance. Architecture uses one draw surface per model with
+  material categories encoded in vertex colour; all instances are spatially
+  batched. The asset library holds its owning world weakly, preventing a reload
+  resource cycle caught during native inspection.
+- **151 headless tests passed** at this milestone, including exact clearance,
+  exported footprint bounds, road-loop continuity, junction/bus-bay openings,
+  determinism and release of the old scenery owner. All **95 scenery runtime
+  checks** also pass, covering the exported library, impostor dimensions, paused
+  road traffic, platform figures and resource release after reload. Native asset and route
+  inspection is ongoing; final GPU comparison, extended moving soak and portable
+  release verification will be recorded below before delivery.
+- Playtest focus: look out from the cab and Alt+1/2/3 passenger views at station
+  approaches and the four villages; compare both sides of the train. Check shop
+  fronts, bus stops, people, foliage transitions and field detail while moving.
+  Use F10 to compare frame time and audio queue behaviour on the 4090.
+
 ## 2026-10-06 — Interior slowdown and scenery rendering
 - Fixed the growing interior audio workload: impacts from trains at the other end
   of the corridor were retained for long propagation delays and recalculated every
