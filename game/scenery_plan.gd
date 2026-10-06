@@ -182,7 +182,7 @@ func _town(station: Dictionary,index: int) -> void:
 					if primary and row==0 and lot%10==2:
 						_prop("produce_cart",Vector3(centre.x+size.x*.23,.18,z+side*6.6),angle)
 					if primary and row==0 and lot%2==0:
-						_prop(["passenger_man","passenger_sari","passenger_phone","passenger_sari_blue"][lot%4],Vector3(centre.x-size.x*.25,.18,z+side*5.15),angle+rng.randf_range(-.9,.9))
+						_prop(["passenger_man","passenger_sari","passenger_phone","passenger_sari_blue"][int(lot*.5)%4],Vector3(centre.x-size.x*.25,.18,z+side*5.15),angle+rng.randf_range(-.9,.9))
 					if row==0 and lot%3==0:
 						_prop("motorcycle",Vector3(centre.x+size.x*.28,0,z+side*5.0),-side*PI*.4)
 						if primary and lot%6==0: _prop("auto_rickshaw",Vector3(centre.x-3,0,z-side*5.0),PI*.5)

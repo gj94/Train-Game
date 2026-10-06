@@ -56,6 +56,9 @@
   native audio, motion, permanent way, all seven imported formations, six-train
   dispatch and full corridor completions. Portable extraction, final native
   rendering comparison, sustained runs and LAN delivery are being verified next.
+- Final pedestrian review corrected the street-lot selector so all four standing
+  passenger variants appear. The 152 unit tests and 95 scenery runtime checks
+  pass again after this placement-only correction.
 
 ## 2026-10-06 — Interior slowdown and scenery rendering
 - Fixed the growing interior audio workload: impacts from trains at the other end
