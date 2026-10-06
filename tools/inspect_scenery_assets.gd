@@ -36,6 +36,14 @@ func capture() -> void:
 					print("MATERIAL ",mat.resource_name," tint ",mat.albedo_color," UV ",mat.uv1_scale,"/",mat.uv1_offset," tex ",mat.albedo_texture.resource_path)
 	for i in names.size(): lib.place(names[i],Vector3(i*100,0,0))
 	lib.flush()
+	if "--impostor" in OS.get_cmdline_user_args():
+		for node in stage.get_children():
+			if node is MultiMeshInstance3D:
+				if node.name.begins_with("Canopy_"):
+					node.visibility_range_begin=0
+					node.visibility_range_end=0
+					node.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_DISABLED
+				else: node.hide()
 	if "--raw" in OS.get_cmdline_user_args():
 		for node in stage.get_children():
 			if node is MultiMeshInstance3D: node.queue_free()

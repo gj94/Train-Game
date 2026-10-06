@@ -51,6 +51,11 @@
   window fell from 100.36 to 18.13 ms. This accelerated, rendering-free comparison
   is not an FPS measurement or a bit-identical live audio capture: native voice
   allocation follows wall time, and was counted separately. No sound data changed.
+- All **14 release-check scripts pass** on the final runtime code: 152 unit tests,
+  58 controller checks, 95 scenery resource/lifecycle checks, original and enhanced
+  native audio, motion, permanent way, all seven imported formations, six-train
+  dispatch and full corridor completions. Portable extraction, final native
+  rendering comparison, sustained runs and LAN delivery are being verified next.
 
 ## 2026-10-06 — Interior slowdown and scenery rendering
 - Fixed the growing interior audio workload: impacts from trains at the other end
