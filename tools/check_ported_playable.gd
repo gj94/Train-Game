@@ -12,6 +12,7 @@ func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--only="):
 			choices = Array(arg.trim_prefix("--only=").split(","))
+	if "--menu-only" in OS.get_cmdline_user_args(): choices = []
 	call_deferred("_check")
 
 func check(ok: bool, message: String) -> void:
@@ -45,7 +46,7 @@ func _check() -> void:
 			await screenshot(game, choice + "_exterior")
 		key(game, KEY_F9)
 		check(game.hud.modal == "fleet" and game.paused, choice + " fleet menu pauses")
-		check(game.hud._buttons.get_child_count() == 8, choice + " all fleet choices visible")
+		check_fleet_menu(game, choice)
 		if capture and choice == "wap7": await screenshot(game, "fleet_menu")
 		game._ui_action("fleet:vb8")
 		check(game.hud.modal == "confirm", choice + " selection confirmation")
@@ -118,7 +119,10 @@ func _check() -> void:
 	set_meta("imported_fleet", "wap7")
 	change_scene_to_file("res://game/main.tscn")
 	await process_frame
+	await process_frame
 	var game = current_scene
+	key(game, KEY_F9)
+	check_fleet_menu(game, "reloaded fleet")
 	game._ui_action("fleet:wag12")
 	game._confirm_action()
 	await process_frame
@@ -126,6 +130,12 @@ func _check() -> void:
 	check(current_scene.imported_fleet == "wag12" and current_scene.tv.cars.size() == 2, "confirmed menu selection reloads chosen train")
 	print("Imported fleet playable checks: %d failures" % failures)
 	quit(1 if failures else 0)
+
+func check_fleet_menu(game, label: String) -> void:
+	var buttons: Array = game.hud._buttons.get_children().map(func(button): return button.text)
+	check(buttons.size() == Stock.CHOICES.size()+2 and "New random traffic service" in buttons, label + " traffic option and Back visible")
+	for choice in Stock.CHOICES:
+		check(Stock.LABELS[choice] in buttons, label + " fleet choice visible: " + choice)
 
 func key(game, code: Key) -> void:
 	var event := InputEventKey.new()
