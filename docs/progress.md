@@ -1,6 +1,6 @@
 # Progress
 
-## 2026-10-07 — Scenery rebuild, first working milestone
+## 2026-10-07 — Scenery rebuild and portable release
 - Replaced the corridor's generic houses and sparse ground dressing with a
   deterministic settlement/land-use plan: three station towns, four villages,
   industrial fringes and about 1,967 buildings. Roads, building roofs/awnings and
@@ -26,9 +26,9 @@
   exported footprint bounds, road-loop continuity, junction/bus-bay openings,
   determinism and release of the old scenery owner. All **95 scenery runtime
   checks** also pass, covering the exported library, impostor dimensions, paused
-  road traffic, platform figures and resource release after reload. Native asset and route
-  inspection is ongoing; final GPU comparison, extended moving soak and portable
-  release verification will be recorded below before delivery.
+  road traffic, platform figures and resource release after reload. Final native
+  inspection, GPU comparison, moving soaks and portable verification are recorded
+  below.
 - Playtest focus: look out from the cab and Alt+1/2/3 passenger views at station
   approaches and the four villages; compare both sides of the train. Check shop
   fronts, bus stops, people, foliage transitions and field detail while moving.
@@ -55,7 +55,7 @@
   58 controller checks, 95 scenery resource/lifecycle checks, original and enhanced
   native audio, motion, permanent way, all seven imported formations, six-train
   dispatch and full corridor completions. Portable extraction, final native
-  rendering comparison, sustained runs and LAN delivery are being verified next.
+  rendering comparison, sustained runs and LAN delivery also pass as recorded below.
 - Final pedestrian review corrected the street-lot selector so all four standing
   passenger variants appear. The 152 unit tests and 95 scenery runtime checks
   pass again after this placement-only correction.
@@ -88,8 +88,25 @@
   errors. Nodes remain 25,948 in this run's earlier pedestrian mix; engine static
   memory ranges about 637–667 MB and drops after reload. This run started before
   the audio arrival optimization and overlapped other checks, so its frame times
-  are not the final performance result. A fresh 24-minute run of the final source
-  is in progress. Evidence: `.local/scenery-soak.{log,json}`.
+  are not the final performance result. Evidence: `.local/scenery-soak.{log,json}`.
+- **Final-source 24-minute native drive passed:** twenty minutes in the cab, then
+  the first passenger coach, a full service completion and a clean reload into
+  the next service. All 48 samples retain **25,979 nodes**; sampled engine static
+  memory is **644.6–670.5 MB**, falling to 644.6 MB after reload and ending at
+  649.4 MB. The old world is released. No warnings, script/resource errors or
+  leaked-object reports occur. Reload takes 19.15 seconds on this PC.
+- During that isolated moving run, 30-second steady-play frame-time means range
+  **18.17–27.92 ms**; the worst audio-control window is **12.67 ms** with about
+  917 impacts pending. The queue peaks at 1,370 during nearby traffic and drains
+  again. This is the same Radeon 780M/1280×720 setup, with Dummy audio for
+  unattended scheduling checks; these figures exclude loading pauses and are not
+  an audible sound comparison or a prediction for the 4090. Evidence:
+  `.local/scenery-soak-final.{log,json}` and `.local/scenery-native-qa.json`.
+- Work is committed on `codex/port-indian-rail-assets`. GitHub push was attempted
+  without interactive prompts, but this PC still has no saved GitHub credentials
+  (`gh auth status` rechecked during final verification). Remote delivery remains
+  pending sign-in; the verified LAN ZIP is available now. Raw reference recordings
+  remain untracked and are absent from the commits and build.
 
 ## 2026-10-06 — Interior slowdown and scenery rendering
 - Fixed the growing interior audio workload: impacts from trains at the other end
