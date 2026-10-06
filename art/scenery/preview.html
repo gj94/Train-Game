@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Train Game — scenery comparison</title>
+<style>
+  :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #111816; color: #e6ece8; }
+  body { max-width: 1280px; margin: 0 auto; padding: 28px 20px 48px; }
+  h1 { font-size: clamp(24px, 3vw, 38px); margin: 8px 0; font-weight: 650; }
+  h2 { font-size: 19px; margin: 28px 0 10px; }
+  p { line-height: 1.55; max-width: 78ch; color: #bccbc3; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .13em; font-size: 12px; color: #a8c5ae; }
+  .comparison { --split: 50%; position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 10px; background: #26332c; }
+  .comparison img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .comparison .after { clip-path: inset(0 0 0 var(--split)); }
+  .divider { position: absolute; top: 0; bottom: 0; left: var(--split); width: 2px; background: #fff; transform: translateX(-1px); box-shadow: 0 0 0 1px #0006; pointer-events: none; }
+  .badge { position: absolute; top: 14px; padding: 6px 10px; background: #111d17d9; border: 1px solid #ffffff33; border-radius: 5px; font-size: 13px; pointer-events: none; }
+  .before-label { left: 14px; } .after-label { right: 14px; }
+  .controls { display: flex; gap: 18px; align-items: center; margin: 16px 0; }
+  .controls label { font-size: 14px; white-space: nowrap; }
+  input { flex: 1; min-width: 80px; accent-color: #a9d49e; cursor: ew-resize; }
+  input:focus-visible { outline: 2px solid #d4ebc8; outline-offset: 6px; }
+  output { width: 4ch; text-align: right; font-variant-numeric: tabular-nums; }
+  .details { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  figure { margin: 0; } figure img { width: 100%; height: auto; display: block; border-radius: 8px; }
+  figcaption { font-size: 14px; line-height: 1.5; margin-top: 10px; color: #bccbc3; }
+  footer { border-top: 1px solid #34443b; margin-top: 32px; padding-top: 12px; font-size: 13px; color: #93a89b; }
+  @media (max-width: 720px) { .details { grid-template-columns: 1fr; } .controls { gap: 10px; } }
+</style>
+<p class="eyebrow">7 October 2026 · native game captures</p>
+<h1>A fuller railway landscape</h1>
+<p>Three station towns, four villages, agricultural plots and roadside activity replace the sparse corridor scenery. Drag the slider to compare the same station viewpoint before and after the rebuild.</p>
+<div class="comparison" id="comparison">
+  <img src="preview-overview-before.png" alt="Earlier scenery: simple house rows beside the railway, with sparse surrounding development.">
+  <img class="after" src="preview-overview-after.png" alt="Rebuilt scenery: a network of streets with shopfronts, apartments, tiled homes, trees and field plots.">
+  <div class="divider" aria-hidden="true"></div>
+  <span class="badge before-label">Before</span><span class="badge after-label">After</span>
+</div>
+<div class="controls">
+  <label for="split">Comparison split</label>
+  <input id="split" type="range" min="0" max="100" value="50" aria-describedby="comparison-help">
+  <output for="split" id="split-value">50%</output>
+</div>
+<p id="comparison-help">0% shows the new scenery; 100% shows the previous scenery. The slider also works with the arrow keys.</p>
+<div class="details">
+  <figure>
+    <h2>Station streets</h2>
+    <img src="preview-market.png" alt="Shopfronts with shutters and awnings, paved footpaths, people, utility poles and wires beside the station." loading="lazy">
+    <figcaption>Original Blender buildings and street props, English/Tamil signs, bus bays and moving decorative road traffic.</figcaption>
+  </figure>
+  <figure>
+    <h2>Working countryside</h2>
+    <img src="preview-rice-fields.png" alt="Close paddy plants behind an earthen field bund, with tree groups and the railway in the distance." loading="lazy">
+    <figcaption>Field bunds, irrigation, canal banks, crop geometry and tropical planting connect the settlements.</figcaption>
+  </figure>
+</div>
+<footer>Unedited 1280 × 720 captures from the native Forward+ renderer. After captures use source d675d57. Buildings are exterior scenery; people and road vehicles are decorative. This is a fictional corridor, not a surveyed reconstruction.</footer>
+<script>
+  const split = document.getElementById('split');
+  split.addEventListener('input', () => {
+    document.getElementById('comparison').style.setProperty('--split', `${split.value}%`);
+    document.getElementById('split-value').value = `${split.value}%`;
+  });
+</script>
+</html>

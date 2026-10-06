@@ -59,6 +59,37 @@
 - Final pedestrian review corrected the street-lot selector so all four standing
   passenger variants appear. The 152 unit tests and 95 scenery runtime checks
   pass again after this placement-only correction.
+- **Portable scenery release:** `TrainGame-Scenery-Windows.zip`, **491,977,062
+  bytes**, built from clean tracked source **`d675d57`**. SHA-256:
+  **`0c0626138b42bf686170839d9c51b207098286e6ff81816a758221dbdedc1ede`**.
+  A fresh extraction passes EXE/PCK hashes and all nine startup configurations
+  (default, MEMU and the seven imported formations). The PCK audit finds all 42
+  scenery models, ten atlases, seven scenery shaders, the 39 original lossless
+  impact/rolling WAVs and provenance, with raw references/development files absent.
+- The authorized LAN server is running at **`http://192.168.8.183:8765/`**. A full
+  HTTP download matches the new archive hash; range/resume, HEAD, read-only access
+  and the path allowlist pass. The previous standard/controller archives retain
+  their original hashes. Logs: `.local/scenery-final-package-check.log` and
+  `.local/scenery-download-verification.json`.
+- Saved an [interactive before/after comparison](../art/scenery/preview.html)
+  and unedited native screenshots in `art/scenery/preview-*.png`. The overview uses
+  the same camera before and after; street/crop close-ups show the final source.
+  This fictional scenery has decorative people/road traffic and exterior-only
+  buildings; it is not a surveyed town or a finished photorealistic environment.
+- **Isolated Forward+ comparison:** Radeon 780M, 1280×720, frozen six-service
+  scene and unchanged quality. Mean GPU time before → after is **cab 20.76 →
+  18.23 ms; exterior 31.33 → 31.63 ms; first passenger coach 19.44 → 17.17 ms**.
+  Final source has 25,979 scene nodes and roughly 638–640 MB engine static memory.
+  This is graphics timing, not live-game FPS or a 4090 result. Evidence:
+  `.local/perf-render-after.json`, `.local/scenery-profile3.json`; all three native
+  screenshots were inspected. The extracted final EXE also passes native startup.
+- **One-hour moving scenery soak passed:** cab, all three coach positions and
+  exterior, two completed journeys/reloads, zero retained old worlds and no engine
+  errors. Nodes remain 25,948 in this run's earlier pedestrian mix; engine static
+  memory ranges about 637–667 MB and drops after reload. This run started before
+  the audio arrival optimization and overlapped other checks, so its frame times
+  are not the final performance result. A fresh 24-minute run of the final source
+  is in progress. Evidence: `.local/scenery-soak.{log,json}`.
 
 ## 2026-10-06 — Interior slowdown and scenery rendering
 - Fixed the growing interior audio workload: impacts from trains at the other end
