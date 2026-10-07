@@ -36,6 +36,13 @@
   red while the other trains depart. D switches services; verify the old one
   continues under AI. Restart and check the authored schedule is retained.
   Guide: docs/services.md (included in the portable build).
+- Committed/pushed source **7f102d5** and built the clean
+  TrainGame-Services-Windows.zip, **610,375,399 bytes**, SHA-256
+  **1dcf5e91fefaeda08f039b2af20209eaeb0a8f7ebaaca8394490cb320704c40f**.
+  The existing private-LAN page at http://192.168.8.183:8765/ lists it first.
+  Its download returns HTTP 200 and the correct length; prior builds remain.
+  Only source checks and download availability were tested, not the extracted
+  distribution. The task's hidden editor and check processes are closed.
 
 ## 2026-10-07 — Asset and surface fidelity with a bounded rendering increase
 - Responded to the user's request for less artificial-looking assets, with
