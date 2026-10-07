@@ -54,8 +54,9 @@
   and cameras; WAP/VB geometry, coordinate and dependency hashes pass. Native
   route captures cover ERS/TVC/NCJ, backwaters, both VB interiors and cab, the
   named wait indication, every time rate and the default/progress button. A
-  full-route rehearsal completed all seven services safely; final encounter
-  counts and release details are recorded below when packaging finishes.
+  final full-route rehearsal completed all seven services safely, with three
+  crossings and three overtakes of K1. Maximum final arrival delay was 3.4 min
+  under AI driving; manual driving can change dispatch and arrival times.
   Source-render static memory stayed roughly 508–595 MiB across distant visits,
   with zero observed far-end position error. These are Radeon 780M checks,
   not a 4090 benchmark. Distribution testing remains skipped by request.
@@ -67,6 +68,17 @@
   F5 edits priority/speed/stops and exports/imports the timetable. F10 helps
   compare cab/exterior performance on the 4090 PC. Mapped geography is a
   playable reconstruction, not a surveyed replica of every railway detail.
+- Release: `TrainGame-Kerala-Coast-Windows.zip`, 1,028,125,182 bytes, built from
+  clean source `8058044` and pushed to `origin/codex/port-indian-rail-assets`.
+  SHA-256: `533ae81626c4f7f570550fe1126172d2ab97d4cd6fc72c0a44c4e7f1b79d7575`.
+  The existing LAN server now offers it as the latest build at
+  `http://192.168.8.183:8765/`; ZIP HEAD returned 200 with the exact byte length.
+  No extracted-distribution tests were run. Final source suite: 183 passed,
+  zero failed, including the reciprocal-loop-hold regression.
+  Rehearsal encounters: K2 crossing at Kumbalam 08:12:06; K3 overtake at Thuravur
+  08:39:28; K4 crossing at Mararikulam 09:14:28; K5 overtake there 09:16:52;
+  K6 overtake at Karunagappally 11:08:10; K7 crossing at Nemom 14:11:32.
+  These are observed outcomes of this AI run, not scripted event times.
 
 ## 2026-10-07 — Pilot/head-out cameras and portable service designer
 - Added direct pilot (4), left/right head-out (Q/E) and return toggles. Xbox
