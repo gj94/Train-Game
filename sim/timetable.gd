@@ -83,7 +83,14 @@ func complete() -> bool:
 func stop_ahead() -> Dictionary:
 	return stops[mini(index + 1, stops.size() - 1)] if at_stop else stops[index]
 
-func observe(train: Train, now: float, moved: bool) -> void:
+func skip_missed_stop() -> bool:
+	if not missed_stop or at_stop or index>=stops.size()-1:return false
+	stops[index].skipped=true
+	index+=1
+	missed_stop=false
+	return true
+
+func observe(train: Train, now: float, moved: bool, tolerance: float=1.1) -> void:
 	if complete():
 		return
 	if at_stop and moved:
@@ -97,14 +104,15 @@ func observe(train: Train, now: float, moved: bool) -> void:
 	if train.path[0].edge != stop.block or train.path[0].dir != stop.direction:
 		return
 	var ahead: float = (stop.s - train.head_s) * stop.direction
-	if absf(ahead) <= 1.1 and train.speed <= 0.001:
+	if absf(ahead) <= tolerance and train.speed <= 0.001:
 		actual_arrivals[index] = now
 		at_stop = true
 		missed_stop = false
-	elif ahead < -1.1:
+	elif ahead < -tolerance:
 		missed_stop = true
 
 func row_status(i: int, now: float) -> String:
+	if stops[i].get("skipped",false):return "SKIPPED"
 	if actual_departures[i] >= 0:
 		return "Departed " + _deviation(actual_departures[i] - planned_departure(i))
 	if actual_arrivals[i] >= 0:

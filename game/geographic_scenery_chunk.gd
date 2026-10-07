@@ -2,6 +2,7 @@ extends RefCounted
 ## One detached 512 m geographic tile. Mapped footprints/roads/water are geometry;
 ## facade details and planting are deterministic artistic reconstruction.
 const MeshBuilder := preload("res://game/geographic_mesh.gd")
+const Foundations := preload("res://game/geographic_foundations.gd")
 const Data := preload("res://game/geographic_data.gd")
 const Library := preload("res://game/scenery_library.gd")
 const Context := preload("res://game/world_view.gd")
@@ -14,6 +15,7 @@ var mask := PackedByteArray()
 var rng := RandomNumberGenerator.new()
 var root: Node3D
 var water_levels := []
+var ground_samples := {}
 var near_tiles: Array = []
 var mapped_rails: Array = []
 var library
@@ -63,10 +65,13 @@ func _class_at(x: float,z: float) -> int:
 	return mask[clampi(floori(z/8),0,63)*64+clampi(floori(x/8),0,63)]
 
 func _ground(x: float,z: float) -> float:
+	var key:=Vector2(x,z)
+	if ground_samples.has(key):return ground_samples[key]
 	var height: float=geo.ground_at(origin.x+x,origin.z+z)
 	if _class_at(x,z)==4:
 		for water in water_levels:
 			if _inside(Vector2(x,z),water.geometry): height=minf(height,water.height-.5)
+	ground_samples[key]=height
 	return height
 
 func _inside(point: Vector2,geometry: Dictionary) -> bool:
@@ -175,7 +180,9 @@ func _building(feature: Dictionary) -> void:
 		if rail.distance<22: continue # reconstructed operational clearance
 		var levels:=clampi(int(feature.tags.get("building:levels","2" if seed_value%4==0 else "1")),1,18)
 		var height:=maxf(2.8,float(feature.tags.get("height",str(levels*3.1)).trim_suffix(" m")))
-		var y:=_ground(centre.x,centre.y)
+		var footing:=Foundations.outline(ring,_ground)
+		var y: float=maxf(Foundations.surface_height(_ground,centre.x,centre.y),footing.map(func(p):return p.y).max())
+		Foundations.skirt(batch,footing,y)
 		var color: Color=[Color(.68,.68,.56),Color(.60,.69,.66),Color(.72,.59,.51),Color(.60,.64,.73),Color(.74,.71,.62)][seed_value%5]
 		color.a=1.0/15.0
 		var reversed:=Geometry2D.is_polygon_clockwise(ring)

@@ -114,6 +114,8 @@ static func _single_both(w: RailWorld,st: Dictionary) -> bool:
 	return (index==0 or sections[index-1].tracks==1) and (index==sections.size() or sections[index].tracks==1)
 
 static func hold_reason(w: RailWorld,t: Train,approaching: bool=false) -> String:
+	if approaching and t.timetable!=null and t.timetable.missed_stop:
+		return "Missed stop: %s. Open PROGRESS / F12 to skip this call and continue." % t.timetable.stops[t.timetable.index].name
 	if not w.dispatch_holds.has(t.id):return w.dispatch_notices.get(t.id,"") if approaching else ""
 	var hold: Dictionary=w.dispatch_holds[t.id]
 	if not approaching and station(w,t.path[0].edge).get("code","")!=hold.station:return ""

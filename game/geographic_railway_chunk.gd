@@ -79,6 +79,8 @@ func build_station(index: int) -> Dictionary:
 	var basis:=Basis(f,Vector3.UP,right)
 	var kind: String={"ERS":"kerala_ers_entry","TVC":"kerala_tvc_heritage","NCJ":"kerala_ncj_entry"}.get(station.code,"kerala_coastal_station")
 	if station.major or station.code in ["SRTL","VAK","NYY","KZT","ERL"]:
+		var footprint: Vector2={"ERS":Vector2(96,22),"TVC":Vector2(114,24),"NCJ":Vector2(84,24)}.get(station.code,Vector2(66,17))
+		preload("res://game/geographic_station_foundation.gd").draw(batch,geo,position,basis,footprint,origin)
 		for part in assets.asset(kind):
 			var model:=MeshInstance3D.new()
 			model.mesh=part.mesh
@@ -88,6 +90,7 @@ func build_station(index: int) -> Dictionary:
 		var front: float={"TVC":4.6,"ERS":8.2,"NCJ":8.1}.get(station.code,7.15)
 		_label(station.name.to_upper(),position+Vector3.UP*name_height-right*front,basis,.012 if station.code=="TVC" else .014,Color(.43,.085,.06),500)
 	else:
+		preload("res://game/geographic_station_foundation.gd").draw(batch,geo,position,basis,Vector2(18,8),origin)
 		batch.box("architecture",position+Vector3.UP*2,Vector3(18,4,8),Color(.69,.68,.54,1.0/15.0),basis)
 		for x in range(-7,8,3):
 			batch.box("architecture",position+f*x-right*4.03+Vector3.UP*1.8,Vector3(1.3,1.8,.06),Color(.1,.16,.17,4.0/15.0),basis)
@@ -116,6 +119,7 @@ func build_station(index: int) -> Dictionary:
 	for side in [-1,1]: batch.beam("metal",bridge_p+bridge_right*left+bridge_f*side*1.5+Vector3.UP*9.2,bridge_p+bridge_right*width+bridge_f*side*1.5+Vector3.UP*9.2,.06)
 	# Forecourt paving, waiting passengers and small platform kiosks.
 	batch.box("concrete",position-right*15-Vector3.UP*.02,Vector3(100,.18,13),Color.WHITE,basis)
+	preload("res://game/geographic_station_foundation.gd").draw(batch,geo,position-right*15-Vector3.UP*.10,basis,Vector2(100,13),origin)
 	var context:=Context.new(); context.root=root
 	var props:=Library.new(context); props.meshes=assets.meshes; props.finishes=assets.finishes
 	var rng:=RandomNumberGenerator.new(); rng.seed=hash(station.code)
@@ -149,7 +153,7 @@ func _label(text: String,position: Vector3,basis: Basis,pixel: float,color: Colo
 	label.visibility_range_end=distance
 	root.add_child(label)
 
-func build_ohe(eid: String,start: float,end: float) -> Dictionary:
+func build_ohe(eid: String,start: float,end: float,ohe_layout) -> Dictionary:
 	origin=graph.position(eid,(start+end)*.5)
 	origin=Vector3(floorf(origin.x/256)*256,0,floorf(origin.z/256)*256)
 	root=Node3D.new(); root.name="Electrification_"+eid
@@ -160,15 +164,8 @@ func build_ohe(eid: String,start: float,end: float) -> Dictionary:
 		var p:=graph.position_relative(eid,s,origin)
 		var f:=graph.tangent(eid,s,1)
 		var right:=f.cross(Vector3.UP)
-		var mast:=p+right*3.6
-		batch.box("concrete",mast+Vector3.UP*.35,Vector3(.7,.70,.75))
-		for side in [-1,1]:
-			batch.box("metal",mast+right*side*.105+Vector3.UP*3.7,Vector3(.08,7.25,.12))
-		for y in range(0,14):
-			batch.beam("metal",mast-right*.105+Vector3.UP*(.35+y*.5),mast+right*.105+Vector3.UP*(.85+y*.5),.035)
-		batch.beam("metal",mast+Vector3.UP*5.8,p-right*.2+Vector3.UP*6.3,.08)
-		batch.beam("metal",mast+Vector3.UP*7,p-right*.2+Vector3.UP*6.3,.055)
-		batch.beam("insulator",mast-right*.45+Vector3.UP*6.93,mast-right*.90+Vector3.UP*6.78,.13)
+
+
 		var next_s:=minf(s+55,e.length)
 		var next:=graph.position_relative(eid,next_s,origin)
 		var next_right:=graph.tangent(eid,next_s,1).cross(Vector3.UP)
@@ -181,26 +178,10 @@ func build_ohe(eid: String,start: float,end: float) -> Dictionary:
 			batch.beam("wire",a,b,.012)
 			batch.beam("wire",a+Vector3.UP*(1.0-.55*sin(PI*t0)),b+Vector3.UP*(1.0-.55*sin(PI*t1)),.012)
 			if j%2==0: batch.beam("wire",a,a+Vector3.UP*(1.0-.55*sin(PI*t0)),.009)
-		var global_s: float=lerpf(e.chainage_start,e.chainage_end,s/e.length)
-		for span in geo.route.spans:
-			if span.tags.get("bridge","no")=="no" or global_s<span.start or global_s>span.end: continue
-			var ground: float=geo.height_at(p.x+origin.x,p.z+origin.z)
-			var height:=maxf(2,p.y-ground)
-			batch.box("concrete",p-Vector3.UP*(height*.5),Vector3(1.8,height,3.0),Color.WHITE,Basis.looking_at(f))
-			break
-	# The mapped bridge deck follows actual bridge-tagged spans, never an earth fill.
-	for span in geo.route.spans:
-		if span.tags.get("bridge","no")=="no": continue
-		var lo: float=maxf(start,(span.start-e.chainage_start)/(e.chainage_end-e.chainage_start)*e.length)
-		var hi: float=minf(end,(span.end-e.chainage_start)/(e.chainage_end-e.chainage_start)*e.length)
-		if hi<=lo: continue
-		for s in range(ceili(lo),floori(hi),8):
-			var a:=graph.position_relative(eid,s,origin)
-			var b:=graph.position_relative(eid,minf(s+8,hi),origin)
-			var right:=graph.tangent(eid,s,1).cross(Vector3.UP)
-			batch.beam("concrete",a-Vector3.UP*.35,b-Vector3.UP*.35,4.8,Color.WHITE,.6)
-			for side in [-1,1]:
-				batch.beam("metal",a+right*side*2.25+Vector3.UP*1.0,b+right*side*2.25+Vector3.UP*1.0,.06)
-				batch.beam("metal",a+right*side*2.25,a+right*side*2.25+Vector3.UP*1.0,.06)
+
+	for support in ohe_layout.plans(eid,start,end,origin):
+		ohe_layout.draw(batch,support)
+	preload("res://game/geographic_bridges.gd").draw(batch,graph,geo,ohe_layout,eid,start,end,origin)
+
 	batch.finish(root,materials,"OHE")
 	return {node=root,origin=origin}

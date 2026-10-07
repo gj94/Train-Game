@@ -461,7 +461,7 @@ func step(dt: float) -> void:
 			var previous_distance: float = t.odometer
 			_step_train(t, slice)
 			if t.timetable != null:
-				t.timetable.observe(t, clock_seconds(), t.odometer > previous_distance + 0.000001)
+				t.timetable.observe(t, clock_seconds(), t.odometer > previous_distance + 0.000001, _arrival_tolerance(t))
 				t.service_complete = t.timetable.complete()
 				if t.service_complete:
 					t.status = "Arrived at " + t.destination
@@ -473,6 +473,18 @@ func step(dt: float) -> void:
 		_step_route_directions.clear()
 		remaining -= slice
 
+
+func _arrival_tolerance(t: Train) -> float:
+	if t.automatic or not scenery.get("geographic",false) or t.timetable==null:return 1.1
+	var stop: Dictionary=t.timetable.stops[t.timetable.index]
+	# The full formation must fit the platform, but a human need not hit a
+	# one-metre AI target. Leave five metres at each usable platform end.
+	for st in stations:
+		if stop.block not in st.platform_tracks:continue
+		var length: float=graph.edges[stop.block].length
+		var half:=minf(320,length*.5-200)
+		return maxf(1.1,half-t.length*.5-5)
+	return 1.1
 
 func _update_automatic_blocks() -> void:
 	if time < _next_auto_update:

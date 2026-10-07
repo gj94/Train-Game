@@ -1,5 +1,46 @@
 # Progress
 
+## 2026-10-08 — R2 support, ground contact and manual-stop corrections
+- Fixed the geographic renderer placing a +3.6 m mast beside every individual
+  road, which intruded into neighbouring track clearances. A read-only shared
+  support layout now groups the full track cross-section on one 55 m grid.
+  Double track uses outside cantilevers; wider yards use lattice gantries with
+  foundations beyond the outer roads and platform edges. Actual curved and
+  turnout segments are checked, including footing width. Rows avoid passenger
+  footbridges and are owned once across streamed chunks and parallel roads.
+- Complete route audit: 5,056 support rows, 7,870 posts, 415 yard gantries, no
+  posts within 3 m of a running-track centre. The old method had 2,776 unsafe
+  sites under the same audit. Native source renders of Ernakulam, Kollam and
+  the Ambalappuzha–Takazhi double track passed without errors and were inspected.
+- Buildings now sit on level floors with terrain-following foundation walls,
+  sampled against the same 8 m triangles used to render the ground. Station
+  frontages/forecourts have retaining foundations too. Shared bridge decks,
+  outer guard rails, abutments and submerged piers replace narrow floating
+  strips; fractional endpoints close chunk seams. Bridge terrain envelopes use
+  their exact chainages rather than extending the lowered ground past the deck.
+  `structures.json` covers 115 reconstructed spans, including 54 inferred only
+  from water/stream intersections; these are explicitly not surveyed bridges.
+- Reproduced a manual-driving failure matching the reported Kumbalam wait: an
+  unrecorded Tirunettur call makes all onward platform routes fail the timetable
+  reachability check, while old advice misleadingly names the VB/LHB occupant.
+  Manual stops now accept the full formation inside the platform stretch with
+  a 5 m end margin. AI still stops at its precise marker. A genuinely missed
+  call gets specific advice and an explicit Progress recovery button; skipped
+  calls remain separate from completed calls. The regression proves a freed
+  Kumbalam road clears after recovery while the occupied LHB road stays protected.
+  The user's exact run was not captured; an early-stop AI rehearsal also ran
+  through Kumbalam normally. No signal/interlocking protection was weakened.
+- Verification: 195 headless tests passed with no engine errors. Full-route OHE
+  audit and native previews passed. Captures at 4.27 and 6.6 km show the reported
+  early backwater crossings supported by complete decks/piers; native Progress
+  recovery updates the next stop and skipped count. Generated audio is unchanged.
+- Playtest: use D to visit Ernakulam or Kollam and inspect gantries across the
+  yard, then ride a double-track section and check the supports stand outside
+  both lines. Drive ERS–TNU–KUMM; stop normally with the whole train at Tirunettur
+  and confirm 2/56 completed in Progress. A missed call offers explicit recovery
+  instead of misleading traffic advice. Default remains K1. Distribution testing
+  remains skipped; R2 is a separate download, preserving the original archive.
+
 ## 2026-10-08 — Kerala Coast, dynamic traffic, detailed VB and journey progress
 - Added the full-scale Ernakulam–Alappuzha–Kayamkulam–Kollam–TVC–Nagercoil
   railway: 276.585 km between station centres, 56 stations, dated OSM alignment,

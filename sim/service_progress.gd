@@ -6,7 +6,8 @@ static func snapshot(world: RailWorld,train: Train) -> Dictionary:
 	var completed:=1 # the train starts at its origin; count it among the calls
 	for i in range(1,tt.stops.size()):
 		if tt.actual_arrivals[i]>=0:completed+=1
-	var result:={scheduled=true,total=tt.stops.size(),completed=completed,remaining=tt.stops.size()-completed,
+	var skipped: int=tt.stops.filter(func(s):return s.get("skipped",false)).size()
+	var result:={scheduled=true,total=tt.stops.size(),completed=completed,skipped=skipped,remaining=tt.stops.size()-completed-skipped,
 		complete=tt.complete(),current=tt.stops[tt.index].name if tt.at_stop else "",missed=tt.missed_stop}
 	if result.complete:return result
 	var next: int=mini(tt.index+1,tt.stops.size()-1) if tt.at_stop else tt.index

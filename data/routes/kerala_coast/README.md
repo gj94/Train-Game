@@ -33,5 +33,10 @@ Y is approximate elevation in metres. Station-to-station distance is measured
 along the selected mapped alignment, **not official railway kilometre posts**.
 
 Reproduce with `tools/maps/kerala_route.py` and `tools/maps/requirements.txt`.
+Then run `tools/maps/railway_structures.py` to regenerate `structures.json`.
+Its bridge envelopes combine tagged OSM bridges and mapped water crossings,
+with a small overlap onto each bank. Additional crossings and the rendered
+decks/piers are reconstructions, not verified engineering plans. This derivative
+uses the same ODbL attribution as the route's other OSM data.
 The pipeline preserves source IDs, polygon holes and unrounded metric geometry.
 See `docs/kerala-coast.md` for operation, reconstruction limits and commands.

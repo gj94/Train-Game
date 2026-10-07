@@ -65,6 +65,7 @@ var _body: RichTextLabel
 var _buttons: VBoxContainer
 var _toast_time := 0.0
 var _critical_toast := false
+var can_skip_stop := false
 var _log_lines: Array[String] = []
 
 func _ready() -> void:
@@ -254,6 +255,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 		"progress":
 			_heading.text = "JOURNEY PROGRESS  /  PAUSED"
 			_body.text = description
+			if can_skip_stop:_button(_buttons,"Skip missed call and continue","skip_missed_stop")
 			_button(_buttons,"Back  ·  Esc / F12","close_progress")
 		"help":
 			_heading.text = "SCENARIO & CONTROLS  /  PAUSED"

@@ -576,6 +576,12 @@ func _set_time_scale(value: int) -> void:
 	hud.toast("Normal time" if value==1 else "Fast forward ×%d · Shift+T returns to normal time" % value)
 
 func _ui_action(action: String) -> void:
+	if action=="skip_missed_stop":
+		if train.timetable!=null and train.timetable.skip_missed_stop():
+			DispatchPlan.update(world,false,train.id)
+			_close_progress()
+			_toggle_progress()
+		return
 	if action=="progress":
 		_toggle_progress()
 		return
@@ -679,16 +685,18 @@ func _toggle_progress() -> void:
 	_paused_before_progress=paused
 	_set_paused(true)
 	var p:=preload("res://sim/service_progress.gd").snapshot(world,train)
+	hud.can_skip_stop=p.get("missed",false) and train.timetable.index<train.timetable.stops.size()-1
 	var text: String="[b]"+train.service_name+"[/b]\n\n"
 	if not p.scheduled:
 		text+="This solo drive has no booked stops. F5 opens the service designer."
 	else:
 		text+="[b]Stops completed: %d / %d[/b]\n[b]Stops left: %d[/b]\nOrigin included in the total.\n\n" % [p.completed,p.total,p.remaining]
+		if p.skipped>0:text+="Skipped calls: %d (not counted as completed)\n" % p.skipped
 		if p.complete:text+="[b]Journey complete[/b]"
 		else:
 			if not p.current.is_empty():text+="Currently at: "+p.current+"\n"
 			text+="[b]Next stop: "+p.next_name+"[/b]\n"
-			if p.missed:text+="Stop marker missed — stop at the booked marker to continue this service.\n"
+			if p.missed:text+="This call was not recorded. Stop with the full train at the platform, or use the skip button to continue without credit for this call.\n"
 			elif is_finite(p.distance_m):
 				text+="Distance: %.1f km\n" % (p.distance_m/1000)
 				text+=("Estimated time: about %d in-game min\n" if p.waiting.is_empty() else "After clearance: about %d in-game min travel/dwell\n") % maxi(1,ceili(p.estimated_seconds/60))

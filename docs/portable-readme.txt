@@ -2,6 +2,13 @@ TRAIN GAME - SOUTHERN CORRIDOR
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R2: overhead supports now stand outside parallel tracks; wider
+yards use shared gantries. Foundations clear curved tracks and platforms.
+Buildings have terrain-following foundations; water crossings have continuous
+bridge decks, abutments and piers. Drive the first two stops to inspect them.
+Manual stops accept the whole train inside the platform instead of requiring
+an exact one-metre marker. If a call was missed, PROGRESS/F12 offers a skip
+button; skipped calls do not count as completed stops.
 Default: K1, the slow all-stop passenger on the Kerala Coast geographic route.
 Ernakulam Jn - Alappuzha - Kayamkulam - Kollam - TVC - Nagercoil Jn,
 about 277 km at full scale, 56 mapped stations, seven playable services.

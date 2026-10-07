@@ -10,6 +10,8 @@ var segments := []
 var tile_keys := {}
 var station_bins := {}
 var operating_ways := {}
+var bridge_bins := {}
+var bridges: Array = []
 
 func _init(data: Dictionary = {}) -> void:
 	route = data if not data.is_empty() else preload("res://sim/layouts/kerala_coast.gd").source()
@@ -23,18 +25,20 @@ func _init(data: Dictionary = {}) -> void:
 		var s: float=route.stations[i].s
 		for key in range(floori((s-850)/500),ceili((s+850)/500)+1):
 			station_bins[key]=maxf(station_bins.get(key,32),width)
+	bridges=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"structures.json")).bridges
+	for span in bridges:
+		for key in range(floori(span.start/500),floori(span.end/500)+1):
+			if not bridge_bins.has(key):bridge_bins[key]=[]
+			bridge_bins[key].append(span)
 	var points: Array = route.alignment
-	var bridges := []
-	for span in route.spans:
-		if span.tags.get("bridge","no") != "no": bridges.append(Vector2(span.start,span.end))
+
 	for i in range(0,points.size()-1,10):
 		var j := mini(i+10,points.size()-1)
 		var a := Vector3(points[i][0],points[i][1],points[i][2])
 		var b := Vector3(points[j][0],points[j][1],points[j][2])
 		var chain: float = route.chainage[i]
 		var bridge := false
-		for span in bridges:
-			if chain>=span.x-30 and chain<=span.y+30: bridge=true; break
+
 		var index := segments.size()
 		segments.append({a=a,b=b,s=chain,bridge=bridge})
 		for x in range(floori(minf(a.x,b.x)/CELL)-1,floori(maxf(a.x,b.x)/CELL)+2):
@@ -84,7 +88,13 @@ func nearest_rail(x: float,z: float) -> Dictionary:
 		var d := p.distance_to(a.lerp(b,along))
 		if d<best.distance:
 			best={distance=d,height=lerpf(segment.a.y,segment.b.y,along),s=segment.s+along*a.distance_to(b),bridge=segment.bridge}
+	best.bridge=not bridge_at(best.s).is_empty()
 	return best
+
+func bridge_at(s: float) -> Dictionary:
+	for span in bridge_bins.get(floori(s/500),[]):
+		if s>=span.start and s<=span.end:return span
+	return {}
 
 func ground_at(x: float,z: float) -> float:
 	var height := height_at(x,z)

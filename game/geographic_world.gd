@@ -9,6 +9,7 @@ const Library := preload("res://game/scenery_library.gd")
 const JointLayout := preload("res://game/rail_joint_layout.gd")
 var coordinate_origin := Vector3.ZERO
 var geo
+var ohe_layout
 var materials := {}
 var assets
 var track_template
@@ -62,6 +63,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	track_template.single_fishplate=track_template._fishplate_mesh(true)
 	track_template.wv=null
 	_index_track()
+	ohe_layout=preload("res://game/geographic_ohe_layout.gd").new(world)
 	for i in 2: workers.append({thread=null,job={},geo=GeoData.new(world.scenery.route)})
 	_loading_layer=CanvasLayer.new(); _loading_layer.layer=8
 	parent.add_child(_loading_layer)
@@ -185,7 +187,7 @@ func _worker(index: int,job: Dictionary) -> Dictionary:
 	match job.kind:
 		"tile","far": return SceneryChunk.new(data,materials,assets).build(job.key,job.kind=="far",job.get("holes",[]))
 		"station": return RailwayChunk.new(world,data,materials,assets).build_station(job.index)
-		"ohe": return RailwayChunk.new(world,data,materials,assets).build_ohe(job.edge,job.start,job.end)
+		"ohe": return RailwayChunk.new(world,data,materials,assets).build_ohe(job.edge,job.start,job.end,ohe_layout)
 		"track": return TrackChunk.new(track_template,world.graph).build(job.edge,job.start,job.end,job.nodes)
 	return {}
 
