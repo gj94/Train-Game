@@ -21,7 +21,7 @@ func _init(data: Dictionary = {}) -> void:
 		var width:=32.0
 		for road in operations.stations[i].roads:
 			width=maxf(width,absf(road.offset)+28)
-			operating_ways["w"+str(int(road.osm_way))]=true
+			if road.get("osm_way")!=null:operating_ways["w"+str(int(road.osm_way))]=true
 		var s: float=route.stations[i].s
 		for key in range(floori((s-850)/500),ceili((s+850)/500)+1):
 			station_bins[key]=maxf(station_bins.get(key,32),width)

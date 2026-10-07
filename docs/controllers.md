@@ -31,8 +31,9 @@ Menu → Passenger views. Non-passenger vans are skipped.
 
 ## Menus and dispatch
 
-D-pad or left stick moves focus; A selects and B goes back. LB/RB moves between
-controls, including between route selectors and service buttons. In dropdowns,
+D-pad or left stick moves menu focus; A selects and B goes back. In the dispatcher,
+LS pans the map, LT/RT zoom, D-pad selects targets, LB/RB switches desk areas,
+X locates the inspected train and Y fits the whole route. In dropdowns,
 LB/RB moves by a page. B closes a dropdown before closing the desk. The right
 stick scrolls Help/settings and the timetable, including its horizontal columns.
 View/Back switches the open dispatch desk between map and timetable.
@@ -59,7 +60,7 @@ remain available and replace the controller hints when used.
 
 ## Playtest
 
-1. Start a fresh six-service scenario with the pad connected. Check RT/LT partial
+1. Start a fresh scenario with the pad connected. Check RT/LT partial
    input, releasing to hold, X coast, A AI takeover and B emergency/release.
 2. Use Y, both sticks, bumpers and stick clicks. Use D-pad first/last/next/previous
    coach, then Menu → Passenger views → Middle. Compare camera and audio positions.

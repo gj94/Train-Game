@@ -1,7 +1,19 @@
-TRAIN GAME - SOUTHERN CORRIDOR
+TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R3: rebuilt control desk and independent dispatch engine.
+D opens the full-screen desk: wheel zoom, drag pan, whole-route overview,
+actual train footprints, service inspection, route actions and decision log.
+Clicking a train only inspects it. View train preserves your assignment;
+Take control asks for confirmation. Press 4 to return to your pilot seat.
+Xbox desk: LS pan, LT/RT zoom, D-pad targets, A inspect, LB/RB areas,
+X locate, Y whole route, RS inspector scroll, B back.
+Corrected double-sided multilingual nameboards, including Tamil in Tamil Nadu.
+Eraniel-Nagercoil now uses the commissioned double line. All 56 stations have
+a research audit; unresolved total-track/bay/platform discrepancies are recorded,
+not certified as exact infrastructure. See guides/kerala-station-audit.md.
+
 Kerala Coast R2: overhead supports now stand outside parallel tracks; wider
 yards use shared gantries. Foundations clear curved tracks and platforms.
 Buildings have terrain-following foundations; water crossings have continuous

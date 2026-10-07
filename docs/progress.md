@@ -1,5 +1,56 @@
 # Progress
 
+## 2026-10-08 — R3 dispatch engine, control desk and station audit
+- Moved automatic dispatch into the simulation-owned DispatchEngine, advancing
+  every 0.5 simulation seconds independently of the camera/UI. Separate planner,
+  prediction and resource diagnostics evaluate route alternatives, passenger
+  road suitability, priority plus waiting age, and receiving capacity before
+  admitting traffic to a single-line section. Existing physical interlocking,
+  approach locking and tail clearance remain authoritative for all commands.
+- Added bounded decision history, actionable blockers, circular-dependency
+  alerts, and reconsideration/cooldown of discretionary overtake holds. Platform
+  requests survive the departure-call transition and cannot retarget committed
+  station entries. These prevent tested avoidable conflicts; arbitrary packed
+  terminals or impossible service packs still require operator/schedule changes.
+- Rebuilt D as a full-screen control desk: continuous anchored zoom, two-axis
+  pan, overview strip, station locator, searchable service roster, timetable,
+  attention/log tabs, route previews and service/route controls. Amber footprints
+  show actual train length across track/point boundaries, distinct from occupied
+  block highlights; close zoom shows coach divisions. UI draws only while visible.
+- Clicking inspects without transferring assignment. View train moves only the
+  camera; 4 returns to the assigned pilot seat. Take control requires a separate
+  confirmation. Xbox LS pan, LT/RT zoom, D-pad targets, LB/RB areas and contextual
+  A/B actions work without leaking input into traction. Confirmation traps focus.
+- Used the requested in-app Browser for all 56 station entries, 34 secondary
+  count sources and dated doubling evidence. The checked-in station audit links
+  every source and distinguishes total yard tracks, platform faces and modeled
+  operating roads. Current station plans were unavailable: disagreements and
+  incomplete terminal bays remain explicit, not certified as exact layouts.
+- Corrected commissioned Eraniel–Nagercoil Town–Nagercoil Junction double line,
+  documented the reconstructed NJT third road, removed passenger-platform flags
+  from QLN/NCJ goods roads and moved terminating services to passenger roads.
+  Idempotent source-pipeline corrections preserve these changes on regeneration.
+- Replaced station labels with fitted three-row regional/Hindi/English boards:
+  Malayalam in Kerala and Tamil further south, correctly facing both sides,
+  located inside actual platform ends. Native board checks cover 24 labels in
+  all three scripts. Stable route IDs remain unchanged for existing service data.
+- Verification: 232 headless tests and 67 native Xbox integration checks passed;
+  0/8/20-minute departure-delay rehearsals each progressed beyond Kumbalam to
+  call 10 without safety events. Native desk checks passed at 1600x900/1280x720;
+  boards and full Kerala source renders were inspected. Sandboxed runs emitted
+  Windows certificate/shader-cache environment warnings; no script failures.
+- Final autonomous full-route rehearsal: all seven services arrived safely,
+  with three crossings and two overtakes of K1. Latest arrival delay was
+  10.1 minutes; simulation completed in 918 seconds of wall time. This checks
+  the actual world-owned engine, including the corrected southern double line.
+- Playtest: press D, locate Kumbalam and zoom to coach lengths; inspect K3,
+  choose View train and return with 4, confirming K1 remains assigned. Try Take
+  control, cancel, then confirm separately. On Xbox pan/zoom/navigate a wide
+  yard and confirm power/brakes do not change. Depart late as K1 and watch named
+  priority traffic receive routes. Inspect both faces of an ERS/TVC nameboard.
+  Guides: dispatcher-overhaul.md, controllers.md and kerala-station-audit.md.
+  Source checks precede packaging; extracted distribution testing remains skipped.
+
 ## 2026-10-08 — R2 support, ground contact and manual-stop corrections
 - Fixed the geographic renderer placing a +3.6 m mast beside every individual
   road, which intruded into neighbouring track clearances. A read-only shared

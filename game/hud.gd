@@ -53,6 +53,11 @@ var _button_scroll: ScrollContainer
 var clean_view := false
 var history_open := false
 var modal := ""
+var desk_open := false
+
+func set_desk_open(value: bool) -> void:
+	desk_open=value
+	_refresh_visibility()
 var _info: RichTextLabel
 var _mode: Label
 var _dispatch_notice: Label
@@ -295,7 +300,7 @@ func focus_first() -> void:
 
 func set_controller_hint(text: String) -> void:
 	_pad_hint.text = text
-	_pad_hint.visible = controller_active and (not clean_view or modal != "")
+	_pad_hint.visible = controller_active and (not desk_open or modal != "") and (not clean_view or modal != "")
 
 func set_clean(value: bool) -> void:
 	clean_view = value
@@ -306,11 +311,11 @@ func toggle_history() -> void:
 	_refresh_visibility()
 
 func _refresh_visibility() -> void:
-	if _pad_hint != null: _pad_hint.visible = controller_active and (not clean_view or modal != "")
-	_info.visible = not clean_view and modal == ""
-	_mode.visible = not clean_view and modal == ""
-	_toolbar.visible = not clean_view and modal == ""
-	_log.visible = history_open and not clean_view and modal == ""
+	if _pad_hint != null: _pad_hint.visible = controller_active and (not desk_open or modal != "") and (not clean_view or modal != "")
+	_info.visible = not clean_view and not desk_open and modal == ""
+	_mode.visible = not clean_view and not desk_open and modal == ""
+	_toolbar.visible = not clean_view and not desk_open and modal == ""
+	_log.visible = history_open and not clean_view and not desk_open and modal == ""
 	_toast.visible = _toast_time > 0 and (not clean_view or _critical_toast)
 
 func toast(text: String, critical: bool = false) -> void:
@@ -357,7 +362,7 @@ func refresh(s: Dictionary) -> void:
 		signal_text += "  ·  Buffer %d m" % roundi(s.buffer)
 	_info.text = "%s   ·   %s\n%s   ·   %s / %s%s" % [speed, handle, signal_text, s.train_id, "AI" if s.automatic else "MANUAL", "  [color=#ffca72]PROTECTION OFF[/color]" if not s.protection else ""]
 	_dispatch_notice.text=s.get("dispatch_expectation","")
-	_dispatch_notice.visible=not clean_view and modal.is_empty() and not _dispatch_notice.text.is_empty()
+	_dispatch_notice.visible=not clean_view and not desk_open and modal.is_empty() and not _dispatch_notice.text.is_empty()
 	var view := "PILOT" if s.cab else "OVERVIEW"
 	if not s.get("head_out", "").is_empty(): view = s.head_out
 	if not s.get("passenger", "").is_empty():

@@ -1,6 +1,6 @@
 # Southern corridor: dispatching six trains
 
-The default route spans **21.64 km** between terminal buffers (about 22 km), with
+The short-route alternative spans **21.64 km** between terminal buffers (about 22 km), with
 two directional main tracks and **four 600 m platform faces at each station**.
 Chennapuram, Maruthur and Kadalur use the Kumbakonam, Mayiladuthurai and Thanjavur
 architectural references described in [stations.md](stations.md). The yards and
@@ -8,7 +8,7 @@ route remain fictional, with realistic metre-scale train and platform lengths.
 
 ## Default: your service among traffic
 
-Fresh launches assign you a random cab in a six-service mixed passenger working:
+On the short route, traffic mode assigns you a random cab in a six-service working:
 T1 LHB, T2 ICF, T3 Vande Bharat 8, T4 LHB, T5 ICF and T6 Vande Bharat 16.
 Three start at each terminus, all ready at 08:00. You drive the selected train;
 the other five use AI. **Auto dispatch starts ON** and requests your booked
@@ -24,8 +24,10 @@ terminus, booked at +28 minutes; traffic and manual driving can delay these time
 **F1** explains the selected service, its booked stops, expected traffic, the task
 from the driver's perspective, and current auto-dispatch/HOLD MRT settings.
 **A** hands your train to AI; **Alt+1/2/3** lets you ride first/middle/last coach.
-**D** shows the other services; selecting another returns your old traffic service
-to AI. **M** shows booked and actual times. Wait for a proceed aspect before using
+**D** opens the [control desk](dispatcher-overhaul.md). Selecting inspects a service;
+View train watches it while keeping your assignment. Take control requires a
+separate confirmation before your old service returns to AI. **M** shows booked
+and actual times. Wait for a proceed aspect before using
 W to release the brake and add power. Stop at each booked platform marker.
 
 Restart keeps the current assignment. **F9 → New random traffic service** draws

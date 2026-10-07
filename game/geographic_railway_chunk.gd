@@ -54,7 +54,8 @@ func build_station(index: int) -> Dictionary:
 			if posmod(s,36)<12:
 				batch.box("metal",centre+Vector3.UP*1.85,Vector3(2.1,.09,.48),Color.WHITE,basis)
 				for x in [-.8,.8]: batch.box("metal",centre+right*x+Vector3.UP*1.54,Vector3(.07,.50,.38),Color.WHITE,basis)
-		for s in [e.length*.5-270,e.length*.5+270]:
+		var board_offset:=maxf(0,half_platform-28)
+		for s in [e.length*.5-board_offset,e.length*.5+board_offset]:
 			var p:=graph.position_relative(road,s,origin)
 			var f:=graph.tangent(road,s,1)
 			var right:=f.cross(Vector3.UP)
@@ -62,8 +63,7 @@ func build_station(index: int) -> Dictionary:
 			var basis:=Basis.looking_at(right*side)
 			batch.box("sign",position+Vector3.UP*3.45,Vector3(5.6,1.5,.10),Color(.91,.72,.20),basis)
 			for x in [-2.4,2.4]: batch.box("concrete",position+basis.x*x+Vector3.UP*2.45,Vector3(.13,2.4,.13))
-			var board_text: String=station.get("local_name","")+"\n"+station.name.to_upper()
-			_label(board_text,position+Vector3.UP*3.44-basis.z*.065,basis,.0065,Color(.09,.10,.08),330)
+			preload("res://game/station_nameboard.gd").add(root,station,position+Vector3.UP*3.45,basis)
 	# Frontage runs along the railway, with the distinctive entrance facing out.
 	var road: String=station.platform_tracks[0]
 	var midpoint: float=graph.edges[road].length*.5
@@ -88,7 +88,7 @@ func build_station(index: int) -> Dictionary:
 			root.add_child(model)
 		var name_height: float={"TVC":15.85,"ERS":7.6,"NCJ":9.42}.get(station.code,5.5)
 		var front: float={"TVC":4.6,"ERS":8.2,"NCJ":8.1}.get(station.code,7.15)
-		_label(station.name.to_upper(),position+Vector3.UP*name_height-right*front,basis,.012 if station.code=="TVC" else .014,Color(.43,.085,.06),500)
+		_label(station.get("board_name",station.name).to_upper(),position+Vector3.UP*name_height-right*front,basis*Basis(Vector3.UP,PI),.012 if station.code=="TVC" else .014,Color(.43,.085,.06),500)
 	else:
 		preload("res://game/geographic_station_foundation.gd").draw(batch,geo,position,basis,Vector2(18,8),origin)
 		batch.box("architecture",position+Vector3.UP*2,Vector3(18,4,8),Color(.69,.68,.54,1.0/15.0),basis)

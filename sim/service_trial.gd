@@ -1,6 +1,5 @@
 extends RefCounted
 ## Incremental rehearsal on an isolated simulation. GUI decides its time budget.
-const Dispatch := preload("res://sim/dispatch_plan.gd")
 var world: RailWorld
 var done := false
 var ok := false
@@ -10,6 +9,7 @@ var ticks := 0
 
 func _init(w: RailWorld) -> void:
 	world = w
+	world.dispatcher().enabled=true
 	deadline = w.clock_start
 	for train in world.trains.values():
 		deadline = maxf(deadline,train.timetable.planned_arrival(train.timetable.stops.size()-1))
@@ -17,7 +17,6 @@ func _init(w: RailWorld) -> void:
 
 func step() -> void:
 	if done: return
-	Dispatch.update(world)
 	world.step(2.0)
 	ticks += 1
 	if not world.events.is_empty():

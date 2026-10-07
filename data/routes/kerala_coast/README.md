@@ -40,3 +40,17 @@ decks/piers are reconstructions, not verified engineering plans. This derivative
 uses the same ODbL attribution as the route's other OSM data.
 The pipeline preserves source IDs, polygon holes and unrounded metric geometry.
 See `docs/kerala-coast.md` for operation, reconstruction limits and commands.
+
+The 8 October station review is recorded in `station-audit.json` and
+`docs/kerala-station-audit.md`. Browser-read evidence is retained in the two
+`station-*-evidence.tsv` files; regenerate the audit and multilingual signs with
+`tools/maps/audit_stations.py`. Published platform faces and total yard tracks
+are not interchangeable with the operating through roads in `operations.json`.
+Unresolved differences remain explicit in the audit.
+
+`tools/maps/station_corrections.py` applies dated commissioning corrections to
+the OSM-derived operations, including Eraniel–Nagercoil Town–Nagercoil Junction
+doubling, and distinguishes goods roads from passenger platforms. It runs as
+part of `tools/maps/station_operations.py`; rerunning the pipeline preserves
+these corrections. Source way/polygon IDs and reconstruction notes accompany
+the corrected roads. Exact terminal bays still require current station plans.

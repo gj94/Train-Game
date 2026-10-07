@@ -14,7 +14,7 @@ are 276.585 km apart. It is not compressed. There are 56 mapped station location
   distance, approximate in-game time and booked arrival. The origin counts as
   the first of 56 calls. Signal waits are identified separately because their
   duration can change. The progress panel pauses play; Back restores the prior
-  pause/running state. **D** selects any other service; **F9** can assign randomly.
+  pause/running state. **D** inspects any service; **F9** can assign randomly.
 - **F1** explains your working, priorities and booked stops. The live HUD names
   a service you should expect to wait for: crossing, overtaking or clearing the
   section. This advisory changes with the actual dispatch decision; signals
@@ -24,7 +24,10 @@ are 276.585 km apart. It is not compressed. There are 56 mapped station location
 - **4** pilot, **Q/E** head out, **Alt+1/2/3** first/middle/last passenger coach.
 - **D** opens the desk. Choose a station in the yard picker for its schematic;
   **VISIT YARD** moves the exterior camera there. **F** follows the selected train
-  again. Select a different service in the roster to follow or drive it.
+  again. Select a different service to inspect it, then choose **View train** or
+  **Take control…**. Handover requires confirmation; viewing preserves your service.
+  See [the new control desk guide](dispatcher-overhaul.md) for mouse/Xbox zoom,
+  map targets, route actions, platform requests and the decision log.
 - **F5** creates/imports/exports services for this route. The file is bound to
   this exact track/signalling graph. Use the route's platform identifiers and
   allow several hours for a full journey. Rehearsal is independent of the live

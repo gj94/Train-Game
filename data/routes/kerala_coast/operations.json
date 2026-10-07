@@ -864,7 +864,7 @@
           "road": 6,
           "lane": "D",
           "platform_side": -1,
-          "platform_width": 3.43
+          "platform_width": 0
         },
         {
           "offset": 50.406,
@@ -882,7 +882,7 @@
           "road": 8,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 2.43
+          "platform_width": 0
         },
         {
           "offset": 61.793,
@@ -891,7 +891,7 @@
           "road": 9,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 2.79
+          "platform_width": 0
         },
         {
           "offset": 68.684,
@@ -900,7 +900,7 @@
           "road": 10,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 0
         },
         {
           "offset": 84.453,
@@ -909,7 +909,7 @@
           "road": 11,
           "lane": "D",
           "platform_side": -1,
-          "platform_width": 3.43
+          "platform_width": 0
         },
         {
           "offset": 88.539,
@@ -918,7 +918,7 @@
           "road": 12,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 0
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
@@ -1688,10 +1688,22 @@
           "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43
+        },
+        {
+          "road": 3,
+          "osm_way": 1180712997,
+          "offset": -21.6,
+          "lane": "U",
+          "service": "main",
+          "platform_width": 0,
+          "platform_side": -1,
+          "evidence": "Mapped construction way, opened by dated commissioning report"
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "commissioning_review": "2026-10-08",
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
     },
     {
       "code": "VRLR",
@@ -1705,14 +1717,26 @@
           "lane": "D",
           "platform_side": -1,
           "platform_width": 3.43
+        },
+        {
+          "road": 2,
+          "osm_way": 1180712994,
+          "offset": 11.2,
+          "lane": "U",
+          "service": "main",
+          "platform_width": 0,
+          "platform_side": 1,
+          "evidence": "Mapped construction way, opened by dated commissioning report"
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "commissioning_review": "2026-10-08",
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
     },
     {
       "code": "NJT",
-      "through": true,
+      "through": false,
       "roads": [
         {
           "offset": -0.0,
@@ -1722,10 +1746,32 @@
           "lane": "D",
           "platform_side": -1,
           "platform_width": 3.43
+        },
+        {
+          "road": 2,
+          "osm_way": 1180712994,
+          "offset": 6.0,
+          "lane": "U",
+          "service": "main",
+          "platform_width": 3.43,
+          "platform_side": 1,
+          "evidence": "Mapped construction way, opened by dated commissioning report"
+        },
+        {
+          "road": 3,
+          "osm_way": null,
+          "offset": 22.3,
+          "lane": "U",
+          "service": "main",
+          "platform_width": 3.43,
+          "platform_side": -1,
+          "evidence": "Third road reported by both station sources; position reconstructed from platform polygon 1180712996"
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "commissioning_review": "2026-10-08",
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
     },
     {
       "code": "NCJ",
@@ -1757,7 +1803,7 @@
           "road": 3,
           "lane": "U",
           "platform_side": -1,
-          "platform_width": 3.43
+          "platform_width": 0
         },
         {
           "offset": 13.764,
@@ -1784,7 +1830,7 @@
           "road": 6,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 0
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
@@ -2267,8 +2313,10 @@
       "start": 259406.23,
       "end": 265861.366,
       "mapped_parallel_fraction": 0.082,
-      "tracks": 1,
-      "parallel_offset": -6.0
+      "tracks": 2,
+      "parallel_offset": 11.2,
+      "note": "Commissioned double line; prior OSM construction classification superseded by dated report.",
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
     },
     {
       "a": "VRLR",
@@ -2276,8 +2324,10 @@
       "start": 266861.366,
       "end": 271871.663,
       "mapped_parallel_fraction": 0.0,
-      "tracks": 1,
-      "parallel_offset": -6.0
+      "tracks": 2,
+      "parallel_offset": 6.0,
+      "note": "Commissioned double line; prior OSM construction classification superseded by dated report.",
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
     },
     {
       "a": "NJT",
@@ -2285,8 +2335,10 @@
       "start": 272871.663,
       "end": 276828.528,
       "mapped_parallel_fraction": 0.172,
-      "tracks": 1,
-      "parallel_offset": -6.0
+      "tracks": 2,
+      "parallel_offset": 6.0,
+      "note": "Commissioned double line; prior OSM construction classification superseded by dated report.",
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
     }
   ]
 }

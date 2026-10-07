@@ -51,6 +51,7 @@ func _edge(w: RailWorld, id: String, a: String, b: String, speed: float = 80, di
 func _build() -> RailWorld:
 	data = source()
 	operations=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"operations.json"))
+	var signs: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"station-signs.json"))
 	data=data.duplicate(false)
 	data.sections=operations.sections
 	distance = PackedFloat64Array(data.chainage)
@@ -59,6 +60,7 @@ func _build() -> RailWorld:
 		corridor=false,x_min=-2000.0,x_max=130000.0}
 	for i in data.stations.size():
 		var st: Dictionary = data.stations[i].duplicate(true)
+		st.merge(signs.get(st.code,{}),true)
 		var p := point(st.s)
 		st.origin = Vector3(p[0],p[1],p[2])
 		st.platforms = []
@@ -216,8 +218,8 @@ static func build_traffic() -> RailWorld:
 	var calls: Array=w.stations.map(func(s):return s.code)
 	var definitions := [
 		["K1","Coastal Stopping Passenger · Ernakulam to Nagercoil","icf",1,calls,1,1],
-		["K2","Northbound Morning LHB","lhb",-1,["TUVR","KUMM","ERS"],3,2],
-		["K3","Coastal Vande Bharat · 8 cars","vb8",1,["KUMM","TUVR","ALLP","KYJ","QLN","TVC","NCJ"],3,2],
+		["K2","Northbound Morning LHB","lhb",-1,["TUVR","KUMM","ERS"],3,4],
+		["K3","Coastal Vande Bharat · 8 cars","vb8",1,["KUMM","TUVR","ALLP","KYJ","QLN","TVC","NCJ"],3,5],
 		["K4","Northbound Backwater ICF","icf",-1,["AMPA","ALLP","MAKM","SRTL","TUVR","KUMM","ERS"],2,5],
 		["K5","Cape Vande Bharat · 16 cars","vb16",1,["SRTL","ALLP","KYJ","QLN","TVC","NCJ"],3,4],
 		["K6","Priority Kollam LHB Express","lhb",1,["KYJ","KPY","QLN"],4,5],

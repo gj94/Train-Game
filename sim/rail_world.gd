@@ -28,6 +28,11 @@ var single_line_sections: Dictionary = {} # edge -> direction-locked section bet
 var dispatch_notices: Dictionary = {} # advisory text; never grants or withholds authority
 var dispatch_holds: Dictionary = {}
 var dispatch_history: Array = []
+var _dispatcher # Lazy world-owned engine; its back-reference is weak.
+
+func dispatcher():
+	if _dispatcher == null: _dispatcher=load("res://sim/dispatch_engine.gd").new(self)
+	return _dispatcher
 
 var events: Array = []   # {seq, t (elapsed), clock (absolute), kind, text, train}
 var _event_seq := 0
@@ -452,6 +457,7 @@ func step(dt: float) -> void:
 	while remaining > 0.000001:
 		var slice := minf(remaining, 0.05)
 		time += slice
+		if _dispatcher != null: _dispatcher.advance()
 		_update_automatic_blocks()
 		_step_route_directions=_reservation_directions()
 		_within_step=true

@@ -15,7 +15,7 @@ const Hud := preload("res://game/hud.gd")
 const ScenarioBrief := preload("res://game/scenario_brief.gd")
 const ControllerInput := preload("res://game/controller_input.gd")
 const TrainAudio := preload("res://game/platform_audio.gd")
-const Dispatcher := preload("res://game/dispatcher.gd")
+const Dispatcher := preload("res://game/dispatch_desk.gd")
 
 const ServicePack := preload("res://sim/service_pack.gd")
 const ServiceEditor := preload("res://game/service_editor.gd")
@@ -186,6 +186,9 @@ func _ready() -> void:
 	dispatcher.setup(world)
 	dispatcher.services_requested.connect(_open_services)
 	dispatcher.train_selected.connect(_select_train)
+	dispatcher.view_train_requested.connect(_view_train_only)
+	dispatcher.open_changed.connect(func(value): hud.set_desk_open(value))
+	world.dispatcher().manual_service=train.id if traffic_drive else ""
 	dispatcher.station_view_requested.connect(_visit_station)
 	dispatcher.drive_requested.connect(_enter_cab)
 	dispatcher.pause_requested.connect(_toggle_pause)
@@ -232,6 +235,7 @@ func _physics_process(delta: float) -> void:
 		dir -= 1.0
 	var pad: float = controller.drive_input() if controller != null else 0.0
 	dir = minf(dir,pad) if dir < 0 or pad < 0 else maxf(dir,pad)
+	if dispatcher._root.visible: dir=0.0
 	if dir != 0.0:
 		train.automatic = false
 		train.controller = clampf(train.controller + dir * HANDLE_RATE * delta, -1.0, 1.0)
@@ -240,11 +244,7 @@ func _physics_process(delta: float) -> void:
 	while remaining>.000001:
 		var slice:=minf(remaining,.05)
 		remaining-=slice
-		_dispatch_tick += slice
-		if dispatcher.auto_dispatch and _dispatch_tick >= .5:
-			_dispatch_tick = 0
-			DispatchPlan.update(world, dispatcher.hold_arrivals, train.id if traffic_drive else "")
-		world.step(slice)
+		world.step(slice) # The simulation owns dispatch timing, even with the desk closed.
 	for motion in train_motions.values(): motion.end_tick()
 
 
@@ -321,6 +321,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			if event.physical_keycode in [KEY_ESCAPE,KEY_F5] and not service_editor.confirm_play.visible:
 				_close_services()
 			return
+		if dispatcher._root.visible and hud.modal.is_empty():
+			if event.physical_keycode==KEY_ESCAPE:
+				if dispatcher._confirm.visible:dispatcher.cancel_handover()
+				else:dispatcher.set_open(false)
+				return
+			if event.physical_keycode not in [KEY_D,KEY_M,KEY_F1,KEY_F5,KEY_F10,KEY_F11,KEY_F12,KEY_T]:return
 		# Modal input never reaches train controls; the clock and held-key input pause too.
 		match event.physical_keycode:
 			KEY_ESCAPE:
@@ -495,6 +501,7 @@ func _set_cab_visuals(cab: bool) -> void:
 
 
 func _pilot_camera() -> void:
+	cam.follow_point=tv.overview_position
 	# View changes are not a command to reset the power/brake handle or AI.
 	if train.stock_kind.begins_with("ported:"): tv.cab_position = 0
 	if cam.mode == CameraRig.Mode.OVERVIEW: _desk_before_cab = dispatcher._root.visible
@@ -835,6 +842,17 @@ func _visit_station(index: int) -> void:
 	dispatcher.set_open(false)
 
 
+func _view_train_only(id: String) -> void:
+	if not train_views.has(id): return
+	cam.set_mode(CameraRig.Mode.OVERVIEW)
+	_set_cab_visuals(false)
+	cam.follow_point=train_views[id].overview_position
+	cam.follow=true
+	cam.distance=maxf(80,world.trains[id].length*.85)
+	cam.pivot=train_views[id].overview_position()
+	cam._blend=1.0
+	hud.toast("Viewing "+id+" · still driving "+train.id+" · 4 returns to your pilot seat")
+
 func _select_train(id: String) -> void:
 	if id == train.id:
 		return
@@ -854,6 +872,7 @@ func _select_train(id: String) -> void:
 		cam.cab_fov = 76.0
 		cam.cab_yaw_limit = PI
 	dispatcher.selected_train = id
+	world.dispatcher().manual_service=id if traffic_drive else ""
 	_set_cab_visuals(cam.mode == CameraRig.Mode.CAB)
 	if cam.mode in [CameraRig.Mode.CAB, CameraRig.Mode.HEAD_OUT]:
 		train.automatic = false

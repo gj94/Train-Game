@@ -66,6 +66,8 @@ def build():
             r['platform_width']=round(min(3.43,max(gaps)-4.1),2) if max(gaps)>=6.1 else 0
         stations.append(dict(code=st['code'],through=through,roads=roads,source='OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded',geometry_scope='Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.'))
     out=dict(source='southern-zone-261006.osm.pbf',signalling_scope='Game automatic blocks at approximately 1 km, not surveyed real signal positions.',stations=stations,sections=sections)
+    from station_corrections import apply
+    out=apply(out)
     (ROOT/'data/routes/kerala_coast/operations.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     for st in stations:print(st['code'],len(st['roads']),'through' if st['through'] else 'loops',[(r['road'],r['offset'],r['lane']) for r in st['roads']])
 

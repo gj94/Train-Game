@@ -16,13 +16,7 @@ static func station(w: RailWorld,edge: String) -> Dictionary:
 	return {}
 
 static func eta(w: RailWorld,t: Train,s: float) -> float:
-	var distance: float=(s-chainage(w,t))*t.path[0].dir
-	if distance < -t.length-500:return INF
-	if absf(s-chainage(w,t))<500:return 0.0 # already arrived, regardless of booked departure
-	var seconds:=maxf(0,distance)/minf(90.0/3.6,t.max_speed)
-	if t.timetable!=null and t.timetable.at_stop:
-		seconds+=maxf(0,t.timetable.release_time()-w.clock_seconds())
-	return seconds
+	return preload("res://sim/dispatch_prediction.gd").arrival_seconds(w,t,s)
 
 static func conflict(w: RailWorld,t: Train,st: Dictionary) -> Dictionary:
 	if st.is_empty() or st.through_halt:return {}

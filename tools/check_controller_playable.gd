@@ -8,6 +8,7 @@ const DEVICE := 13
 
 func _initialize() -> void:
 	set_meta("traffic_seed", 2)
+	set_meta("route", "southern_corridor") # pin six-service fixture, independent of release default
 	call_deferred("run_check")
 
 func check(condition: bool, label: String) -> void:
@@ -160,7 +161,9 @@ func run_check() -> void:
 	axis(JOY_AXIS_TRIGGER_RIGHT,0)
 	await tap(JOY_BUTTON_START)
 	await tap(JOY_BUTTON_DPAD_DOWN)
-	check(root.gui_get_focus_owner().get_meta("action","") == "help","D-pad moves focus")
+	check(root.gui_get_focus_owner().get_meta("action","") == "progress","D-pad moves to next visible pause action")
+	await tap(JOY_BUTTON_DPAD_DOWN)
+	check(root.gui_get_focus_owner().get_meta("action","") == "help","D-pad reaches help after progress")
 	await tap(JOY_BUTTON_A)
 	check(game.hud.modal == "help" and "XBOX CONTROLLER" in game.hud._body.text,"Help contains scenario and controller reference")
 	axis(JOY_AXIS_RIGHT_Y,1)
@@ -213,6 +216,15 @@ func run_check() -> void:
 	await tap(JOY_BUTTON_B)
 	await tap(JOY_BUTTON_LEFT_STICK)
 	check(game.dispatcher._root.visible,"L3 opens dispatch")
+	check(game.dispatcher._map.has_focus(),"desk starts with map focus")
+	var map_center: float=game.dispatcher._map.center_s
+	axis(JOY_AXIS_LEFT_X,1);pad._process(.5);axis(JOY_AXIS_LEFT_X,0)
+	check(game.dispatcher._map.center_s!=map_center,"left stick pans dispatcher")
+	var map_span: float=game.dispatcher._map.span
+	axis(JOY_AXIS_TRIGGER_RIGHT,1);pad._process(.5);axis(JOY_AXIS_TRIGGER_RIGHT,0)
+	check(game.dispatcher._map.span<map_span and pad.drive_input()==0,"triggers zoom desk without driving")
+	game.dispatcher.select_signal(game.dispatcher.source,true)
+	game.dispatcher._source.grab_focus()
 	await tap(JOY_BUTTON_A)
 	check(game.dispatcher._source.get_popup().visible,"A opens native signal dropdown")
 	var selected: int = game.dispatcher._source.selected
@@ -255,9 +267,27 @@ func run_check() -> void:
 	await frames()
 	await screenshot("desk")
 	var target := "T1" if game.train.id != "T1" else "T2"
+	var assigned: String=game.train.id
 	game.dispatcher._roster[target].grab_focus()
 	await tap(JOY_BUTTON_A)
-	check(game.train.id == target and game.audio.train == game.train,"controller roster follows selected train and audio")
+	check(game.dispatcher.inspected_train==target and game.train.id==assigned and game.audio.train==game.train,"controller roster inspects without changing driver/audio")
+	game.dispatcher._view.grab_focus()
+	await tap(JOY_BUTTON_A)
+	check(game.train.id==assigned and game.audio.train.id==assigned and game.cam.mode==0,"View train only changes exterior camera")
+	game._pilot_camera()
+	check(game.cam.follow_point==game.tv.overview_position,"return to pilot restores assigned train follow target")
+	game.dispatcher.set_open(true)
+	game.dispatcher._take.grab_focus()
+	await tap(JOY_BUTTON_A)
+	check(game.dispatcher._confirm.visible and game.train.id==assigned,"controller asks before handover")
+	await tap(JOY_BUTTON_B)
+	check(not game.dispatcher._confirm.visible and game.train.id==assigned,"B cancels handover safely")
+	game.dispatcher._take.grab_focus()
+	await tap(JOY_BUTTON_A)
+	game.dispatcher._confirm_yes.grab_focus()
+	await tap(JOY_BUTTON_A)
+	check(game.train.id==target and game.audio.train==game.train,"confirmed handover changes driver/audio")
+	game.dispatcher.set_open(true)
 	await tap(JOY_BUTTON_B)
 	check(not game.dispatcher._root.visible and root.gui_get_focus_owner() == null,"closing dispatch releases GUI focus")
 	pad._connection_changed(DEVICE,false)

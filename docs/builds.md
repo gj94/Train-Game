@@ -10,11 +10,15 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R3-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
 shows journey status. Do not test the extracted distribution routinely.
+R3 adds the simulation-owned dispatcher, zoomable Xbox control desk, explicit
+service handover and multilingual station boards. Run the headless suite and
+the relevant checks in `dispatcher-overhaul.md` before packaging. The station
+audit and dispatcher guide are included with the download.
 
 Use `-BuildName TrainGame-Controller-Windows` to package controller support
 alongside the existing playtest ZIP. Its folder, archive, checksum and licences

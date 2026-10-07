@@ -17,7 +17,10 @@ Left stick click opens/closes dispatch.
 D-pad / left stick move focus · A select/open · B back/cancel.
 LB/RB previous/next control; in a dropdown, previous/next page.
 Right stick scrolls Help or the timetable (horizontal and vertical).
-The route desk has signal/destination selectors, route buttons and service roster.
+Dispatch: left stick pan, LT/RT zoom, D-pad map targets, A inspect.
+LB/RB switch desk areas · X locate inspected train · Y fit whole route.
+Right stick scrolls the inspector; View/Back switches to the timetable.
+Choose View train to watch without changing your service. Take control asks first.
 Menu → Train & view actions provides every remaining driving/camera/sound action.
 
 Disconnecting or losing window focus pauses the simulation.
@@ -60,7 +63,7 @@ func _ready() -> void:
 			if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 				InputMap.action_erase_event(action,event)
 	Input.joy_connection_changed.connect(_connection_changed)
-	for picker in [game.dispatcher._source,game.dispatcher._exit]:
+	for picker in game.dispatcher.pickers():
 		picker.get_popup().window_input.connect(_popup_input)
 	var devices := Input.get_connected_joypads()
 	if not devices.is_empty(): _adopt(devices[0])
@@ -155,6 +158,13 @@ func _input(event: InputEvent) -> void:
 		return
 	if _ui_open():
 		_ensure_focus()
+		if game.hud.modal.is_empty() and _popup()==null:
+			if game.dispatcher._confirm.visible:
+				if event.button_index==JOY_BUTTON_B: game.dispatcher.cancel_handover();return
+			elif event.button_index in [JOY_BUTTON_LEFT_SHOULDER,JOY_BUTTON_RIGHT_SHOULDER]:
+				game.dispatcher.focus_zone(-1 if event.button_index==JOY_BUTTON_LEFT_SHOULDER else 1);return
+			elif event.button_index==JOY_BUTTON_X: game.dispatcher._map.focus_train(game.dispatcher.inspected_train);return
+			elif event.button_index==JOY_BUTTON_Y: game.dispatcher._map.focus_station(-1);return
 		match event.button_index:
 			JOY_BUTTON_A: _ui_pulse("ui_accept")
 			JOY_BUTTON_B: _back()
@@ -208,7 +218,7 @@ func _service_ui() -> bool:
 	return game.get("service_editor") != null and game.service_editor.visible
 
 func _pickers() -> Array:
-	var result: Array = [game.dispatcher._source,game.dispatcher._exit]
+	var result: Array = game.dispatcher.pickers()
 	if _service_ui(): result.append_array(game.service_editor.pickers)
 	return result
 
@@ -229,6 +239,10 @@ func _close_popups() -> void:
 
 func _ensure_focus() -> void:
 	if not controller_mode or _popup() != null: return
+	if game.hud.modal.is_empty() and game.dispatcher._root.visible and game.dispatcher._confirm.visible:
+		var owner:=get_viewport().gui_get_focus_owner()
+		if owner==null or not game.dispatcher._confirm.is_ancestor_of(owner):game.dispatcher._confirm_no.grab_focus()
+		return
 	if _confirmation() != null:
 		if _confirmation().gui_get_focus_owner() == null: _confirmation().get_cancel_button().grab_focus()
 		return
@@ -241,7 +255,7 @@ func _ensure_focus() -> void:
 	var container: Control = game.hud._buttons if not game.hud.modal.is_empty() else game.dispatcher._root
 	if focus == null or not focus.is_visible_in_tree() or not container.is_ancestor_of(focus):
 		if not game.hud.modal.is_empty(): game.hud.focus_first()
-		else: game.dispatcher._source.grab_focus()
+		else: game.dispatcher.focus_first()
 
 func _ui_pulse(action: String) -> void:
 	_ensure_focus()
@@ -283,6 +297,9 @@ func _popup_action(action: String) -> void:
 func _back() -> void:
 	if _confirmation() != null:
 		_confirmation().hide()
+		return
+	if game.dispatcher._root.visible and game.dispatcher._confirm.visible:
+		game.dispatcher.cancel_handover()
 		return
 	if _popup() != null:
 		_ui_pulse("ui_cancel")
@@ -330,8 +347,14 @@ func _process(delta: float) -> void:
 	var left := Shape.stick(Vector2(_axes[0],_axes[1]),deadzone)
 	if _ui_open():
 		if controller_mode: _ensure_focus()
-		_repeat(Shape.cardinal(_nav_vector()),delta,func(d):
-			_ui_pulse("ui_right" if d.x > 0 else ("ui_left" if d.x < 0 else ("ui_down" if d.y > 0 else "ui_up"))))
+		var desk_active: bool=game.hud.modal.is_empty() and _popup()==null and game.dispatcher._root.visible
+		var nav:=_nav_vector()
+		if desk_active:
+			game.dispatcher.pad_navigation(left,right,_axes[5]-_axes[4],delta)
+			nav=Vector2(int(_buttons.has(JOY_BUTTON_DPAD_RIGHT))-int(_buttons.has(JOY_BUTTON_DPAD_LEFT)),int(_buttons.has(JOY_BUTTON_DPAD_DOWN))-int(_buttons.has(JOY_BUTTON_DPAD_UP)))
+		_repeat(Shape.cardinal(nav),delta,func(d):
+			if desk_active and game.dispatcher._map.has_focus():game.dispatcher._map.navigate_target(Vector2(d))
+			else:_ui_pulse("ui_right" if d.x > 0 else ("ui_left" if d.x < 0 else ("ui_down" if d.y > 0 else "ui_up"))))
 		if _service_ui():
 			_scroll_tree(game.service_editor.panel,right*650*delta)
 		elif not game.hud.modal.is_empty():
@@ -346,7 +369,8 @@ func _process(delta: float) -> void:
 		if game.cam.mode == 2:
 			_repeat(Shape.cardinal(Vector2(left.x,0)),delta,func(d):
 				game.tv.change_passenger_bay(d.x))
-	game.hud.set_controller_hint(("D-pad / LS move · A select · B back · LB/RB next control · RS scroll" if _ui_open() else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · LS click dispatch") if _armed or _ui_open() else "Release controller sticks, triggers and buttons to continue")
+	var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect/select · LB/RB areas · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
+	game.hud.set_controller_hint((menu_hint if _ui_open() else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · LS click dispatch") if _armed or _ui_open() else "Release controller sticks, triggers and buttons to continue")
 
 func _scroll_tree(node: Node, offset: Vector2) -> void:
 	# Tree owns internal scrollbars; it exposes no public scrollbar getter.
