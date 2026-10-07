@@ -47,6 +47,18 @@
   and roof while moving. F2 → confirm → stop → R to inspect the opposite cab.
   Alt+1/2/3 still selects first/middle/last passenger coaches. F10 shows performance
   readings for comparison on the 4090 laptop.
+- **Portable release:** `TrainGame-WAP7-Detail-Windows.zip`, **601,353,874 bytes**,
+  built from clean tracked source **`b814c75`**. SHA-256:
+  `60f290bffdd55fcada77172cae622c477f8c7118763f1e11d378f59d479b19ab`.
+  The code commit is pushed to `origin/codex/port-indian-rail-assets`. The LAN
+  server at `http://192.168.8.183:8765/` now lists it first; its ZIP responds with
+  HTTP 200 and the correct length. The earlier scenery archive hash is unchanged.
+- The user requested stopping repeated distribution tests. Stopped this run's
+  remaining extracted-build checks after default/MEMU/WAP-7/WAG-9 startups had
+  passed. The other extracted formations and PCK audit were **not completed**;
+  no full distribution-verification claim is made. Saved the preference in
+  `docs/builds.md`. The 16 source release checks and native model/stability work
+  above were already complete. Only a download-link availability check followed.
 
 ## 2026-10-07 — GitHub sign-in and first push
 - Completed the user-requested GitHub CLI browser sign-in as `gj94` and pushed

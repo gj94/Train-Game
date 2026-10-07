@@ -45,7 +45,13 @@ does not include these development templates.
 
 ## Release verification
 
-Run the exported EXE from an extracted copy outside the checkout, with no
+User preference (7 October): **do not repeat distribution/extracted-build testing
+for each release**. Keep routine verification focused on changed code and the
+required headless tests. The user will playtest the downloadable build. The
+following distribution checks are optional, for an explicit request or a specific
+packaging issue; they are not a routine release gate.
+
+When needed, run the exported EXE from an extracted copy outside the checkout, with no
 `--path` argument. Check default random six-service startup, `-- --memu`, F2 WAP-7 and F3 LHB so dynamic models and
 timetables are covered. Confirm no missing resources or script errors in the
 log. Inspect the normal window and fullscreen, and stop all verification games
