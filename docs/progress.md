@@ -44,6 +44,11 @@
   Check the clearer spacing and preserved cling/clang pitch. If a device delay
   remains, F10 supplies its driver/buffer estimate. Distribution testing remains
   skipped per the user's preference; required source tests ran above.
+- Built from clean source **`c7858cb`**, pushed to the existing GitHub branch.
+  The updated `TrainGame-WAP7-Detail-Windows.zip` is **601,356,949 bytes**, SHA-256
+  `652bdad3ea934817f520ac4ec45a7c28837ba229651d22d2ab552583d9dbea34`.
+  Replaced the latest WAP-7 download on `http://192.168.8.183:8765/`; a HEAD request
+  confirms HTTP 200 and the correct length. No extraction/distribution tests ran.
 
 ## 2026-10-07 — Detailed WAP-7 v0.2 port and persistent mouse look
 - Ported the user's updated WAP-7 39002 master from `transport-fever-3-mods`
