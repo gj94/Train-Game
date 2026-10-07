@@ -96,8 +96,8 @@ subnet. It does not change the network category or disable Windows Firewall.
 Use `-BindAddress <IPv4>` if more than one connected network is available.
 
 The read-only server exposes the standard ZIP and, when present, the separate
-controller and scenery ZIPs, their SHA-256 sidecars and portable READMEs, plus a
-download page. The scenery build appears first when available.
+controller, scenery and detailed WAP-7 ZIPs, their SHA-256 sidecars and portable
+READMEs, plus a download page. The detailed WAP-7 build appears first when available.
 It supports byte ranges for resuming downloads.
 Stop it before replacing the archive with a new build, then start it again.
 
