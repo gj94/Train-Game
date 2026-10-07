@@ -1,5 +1,18 @@
 # Progress
 
+## 2026-10-07 — GitHub sign-in and first push
+- Completed the user-requested GitHub CLI browser sign-in as `gj94` and pushed
+  the full committed game history through scenery verification commit `3b3106c`
+  to `https://github.com/gj94/Train-Game`, branch
+  `codex/port-indian-rail-assets`. The branch now tracks its matching origin branch.
+- Configured this checkout's GitHub credential helper to use the signed-in CLI;
+  Git directory trust remains scoped to each command. The raw reference recordings
+  and local build/tool folders were not added to Git. Gameplay and the verified
+  LAN build are unchanged; use the scenery playtest steps below.
+- Re-ran the headless suite before the handoff commit: **152 passed, zero failed**
+  (`.local/github-push-tests.log`). The remote default branch matches the pushed
+  working branch.
+
 ## 2026-10-07 — Scenery rebuild and portable release
 - Replaced the corridor's generic houses and sparse ground dressing with a
   deterministic settlement/land-use plan: three station towns, four villages,

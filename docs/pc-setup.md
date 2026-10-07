@@ -79,7 +79,12 @@ The drive does not record file ownership. Scope trust to each Git command:
 git -c safe.directory=D:/ClaudeWS/train-game status
 ```
 
-Global Git settings were not changed. No remote was added.
+Git directory trust remains command-scoped; do not add a global trust exception.
+`origin` is now `https://github.com/gj94/Train-Game.git`. The active branch
+`codex/port-indian-rail-assets` tracks its matching origin branch. GitHub CLI
+browser sign-in was completed as `gj94` on 7 October 2026. This checkout's local
+GitHub credential helper uses `.local/gh/bin/gh.exe auth git-credential`; tokens
+are managed by the CLI, not stored in project files.
 The sound lab is present at `D:\ClaudeWS\railway-clang-simulator`.
 Its export script defaults to the sibling train-game folder.
 Current sound (6 October evening): enhanced `platform_audio.gd`, using the newer
