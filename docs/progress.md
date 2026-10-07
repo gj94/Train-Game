@@ -40,6 +40,11 @@
   and confirm 2/56 completed in Progress. A missed call offers explicit recovery
   instead of misleading traffic advice. Default remains K1. Distribution testing
   remains skipped; R2 is a separate download, preserving the original archive.
+- R2 release: `TrainGame-Kerala-Coast-R2-Windows.zip`, 1,028,141,653 bytes,
+  exported from clean source commit `ae7f457`. SHA-256:
+  `2c6a3d7585a39a2885d919df42838b64c6aa89548985fcce5f6af1f220c18c97`.
+  The LAN server at `http://192.168.8.183:8765/` serves R2 as latest; HTTP 200
+  and exact Content-Length confirmed, with the original R1 URL still available.
 
 ## 2026-10-08 — Kerala Coast, dynamic traffic, detailed VB and journey progress
 - Added the full-scale Ernakulam–Alappuzha–Kayamkulam–Kollam–TVC–Nagercoil
