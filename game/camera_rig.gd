@@ -1,10 +1,16 @@
 extends Camera3D
-## One camera, two modes, with a smooth blend when switching:
+## One camera with overview, pilot, passenger and head-out viewpoints.
 ## OVERVIEW — orbit around a pivot (right-drag orbit, left-drag pan, wheel zoom),
 ##            optionally following the train.
 ## CAB      — driver's seat in the leading cab (right-drag to look around).
 
-enum Mode { OVERVIEW, CAB, PASSENGER }
+enum Mode { OVERVIEW, CAB, PASSENGER, HEAD_OUT }
+
+var head_out_transform: Callable
+var head_out_side := -1
+var _blend_duration := BLEND_TIME
+var _close_driving_blend := false
+var _blend_reference := Transform3D()
 
 const BLEND_TIME := 1.1
 
@@ -45,6 +51,10 @@ func set_mode(m: Mode) -> void:
 	_from = global_transform
 	_from_fov = fov
 	_blend = 0.0
+	# Moving between close driving viewpoints should feel immediate.
+	_close_driving_blend = mode in [Mode.CAB, Mode.HEAD_OUT] and m in [Mode.CAB, Mode.HEAD_OUT]
+	_blend_duration = .18 if _close_driving_blend else BLEND_TIME
+	if _close_driving_blend and head_out_transform.is_valid(): _blend_reference = head_out_transform.call(head_out_side)
 	mode = m
 	_follow_anchor_valid = false
 	_look = Vector2.ZERO
@@ -64,7 +74,24 @@ func jump_to(p: Vector3) -> void:
 	pivot = p
 
 
+func set_head_out(side: int) -> void:
+	if mode == Mode.HEAD_OUT and side != head_out_side:
+		_from = global_transform
+		_from_fov = fov
+		_blend = 0.0
+		_blend_duration = .18
+		_close_driving_blend = true
+		_blend_reference = head_out_transform.call(side) if head_out_transform.is_valid() else Transform3D()
+		_look = Vector2.ZERO
+	head_out_side = -1 if side < 0 else 1
+	set_mode(Mode.HEAD_OUT)
+
+
 func _target() -> Transform3D:
+	if mode == Mode.HEAD_OUT and head_out_transform.is_valid():
+		var t: Transform3D = head_out_transform.call(head_out_side)
+		t.basis = t.basis * Basis.from_euler(Vector3(_look.y, _look.x, 0))
+		return t
 	if mode == Mode.PASSENGER and passenger_transform.is_valid():
 		var t: Transform3D = passenger_transform.call()
 		t.basis = t.basis * Basis.from_euler(Vector3(_look.y, _look.x, 0))
@@ -84,6 +111,8 @@ func _target() -> Transform3D:
 
 
 func _process(delta: float) -> void:
+	if mode == Mode.HEAD_OUT and head_out_transform.is_valid():
+		pivot = (head_out_transform.call(head_out_side) as Transform3D).origin
 	if mode == Mode.PASSENGER and passenger_transform.is_valid():
 		pivot = (passenger_transform.call() as Transform3D).origin
 	if mode == Mode.CAB and cab_transform.is_valid():
@@ -100,9 +129,15 @@ func _process(delta: float) -> void:
 	var target := _target()
 	var target_fov := cab_fov if mode != Mode.OVERVIEW else 55.0
 	if _blend < 1.0:
-		_blend = minf(1.0, _blend + delta / BLEND_TIME)
+		_blend = minf(1.0, _blend + delta / _blend_duration)
 		var t := smoothstep(0.0, 1.0, _blend)
-		global_transform = _from.interpolate_with(target, t)
+		var start := _from
+		# Carry the blend start with the cab; a moving train must not leave its
+		# camera behind during the quick lean-out transition, including curves.
+		if _close_driving_blend and head_out_transform.is_valid():
+			var anchor: Transform3D = head_out_transform.call(head_out_side)
+			start = anchor * _blend_reference.affine_inverse() * _from
+		global_transform = start.interpolate_with(target, t)
 		fov = lerpf(_from_fov, target_fov, t)
 	else:
 		global_transform = target

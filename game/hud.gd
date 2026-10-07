@@ -11,6 +11,7 @@ C next signal's route desk · R change ends when stopped · H horn
 Tab cab / exterior · A selected train AI / manual
 
 [b]CAMERA & PASSENGERS[/b]
+4 pilot seat · Q left head-out / return · E right head-out / return
 F follow train · 1 / 2 / 3 visit a station
 Outside: right-drag orbit, left-drag pan, wheel zoom
 Cab / passenger: right-drag look (stays on release), wheel zoom, middle-click recenter.
@@ -20,6 +21,7 @@ Alt+1 / Alt+2 / Alt+3 enter those views directly. PgUp/PgDn coach, ←/→ posit
 Home aisle / seat. Original LHB rake: B fold / lower middle berths.
 
 [b]DISPATCHING[/b]
+F5 service designer: edit stock, stops and times; import/export JSON; play any service.
 D open / close dispatch · M timetable / map
 Select an entrance and exit, then SET ROUTE. PUT TO RED cancels safely.
 Select any service in the roster to follow it. Tab takes manual control.
@@ -32,7 +34,8 @@ F6 track labels · F8 event history · F10 performance · F11 fullscreen / windo
 T time ×1 / ×2 / ×4 · P train protection on / off
 F2 WAP-7 light engine / MEMUs · F3 LHB rake / MEMUs
 F9 new random traffic service / solo imported fleet
-Changing scenario or restarting asks first. There is no save/load yet.
+F5 imports/exports service definitions. Changing scenario or restarting asks first.
+Running progress is not saved; service files start a fresh timetable.
 
 [b]SOUND & DIAGNOSTICS[/b]
 [ / ] track sound quieter / louder (2 dB)
@@ -211,6 +214,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Scenario & controls  ·  F1", "help")
 			_button(_buttons, "Train & view actions…", "controller_actions")
 			_button(_buttons, "Controller settings & layout…", "controllers")
+			_button(_buttons, "Service designer / import / export  ·  F5", "services")
 			_button(_buttons, "Passenger views…", "passengers")
 			_button(_buttons, "Clean view  ·  F4", "clean")
 			_button(_buttons, "Track labels: " + ("ON" if labels_on else "OFF") + "  ·  F6", "labels")
@@ -328,7 +332,8 @@ func refresh(s: Dictionary) -> void:
 	if s.buffer < 500.0:
 		signal_text += "  ·  Buffer %d m" % roundi(s.buffer)
 	_info.text = "%s   ·   %s\n%s   ·   %s / %s%s" % [speed, handle, signal_text, s.train_id, "AI" if s.automatic else "MANUAL", "  [color=#ffca72]PROTECTION OFF[/color]" if not s.protection else ""]
-	var view := "CAB" if s.cab else "OVERVIEW"
+	var view := "PILOT" if s.cab else "OVERVIEW"
+	if not s.get("head_out", "").is_empty(): view = s.head_out
 	if not s.get("passenger", "").is_empty():
 		view = s.passenger
 	_mode.text = "%s  ·  D%d  %s  ·  ×%d" % [view, s.world_day, s.world_clock, s.time_scale]

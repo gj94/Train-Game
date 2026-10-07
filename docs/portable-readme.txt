@@ -2,6 +2,13 @@ TRAIN GAME - SOUTHERN CORRIDOR
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Pilot/head-out cameras and service designer:
+4 pilot seat; Q/E left/right head-out (same key returns). In driving views,
+Xbox D-pad left/right leans out and up returns pilot. These preserve the handle.
+F5 designs services: formations, departures, platform stops and dwell times.
+Import/export JSON timetables and rehearse AI traffic; choose any service to drive
+while AI runs the other trains and dispatcher. See guides/services.md.
+
 Visual fidelity update: textured broadleaf canopies, fuller palms, irregular verge
 cover, finer rice blades, rounded masonry edges and weathered photographic station
 finishes. Platform passengers have revised faces and clothing. Track stone and
@@ -56,7 +63,8 @@ XBOX CONTROLLERS (360 / ONE / SERIES / ELITE)
 RT/LT adjust power/brake; release to hold. A AI/manual; B emergency; X coast.
 Y cab/exterior; View/Back passenger/cab; Menu/Start pause and controller settings.
 Right stick looks; LB/RB zoom; left stick pans outside or changes position inside.
-D-pad left/right changes coach; up/down first/last. L3 opens/closes dispatch.
+In pilot/head-out: D-pad left/right head-out, up pilot. Else left/right changes
+coach and up first coach; down last coach. L3 opens/closes dispatch.
 In menus: D-pad/LS focus, A select, B back, LB/RB previous/next control, RS scroll.
 Menu > Train & view actions reaches routes, points, horn and all other commands.
 Disconnecting pauses. Release all controls after resuming before driving again.

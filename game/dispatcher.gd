@@ -1,6 +1,7 @@
 extends CanvasLayer
 ## Route desk and service roster; all safety decisions remain in the sim.
 
+signal services_requested
 signal train_selected(id: String)
 signal drive_requested
 signal pause_requested
@@ -114,10 +115,10 @@ func setup(w: RailWorld) -> void:
 	_board_heading = _label(title, "DISPATCH BOARD", 17, Color("ffca72"))
 	_board_heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_legend = _label(title, "RED occupied    MINT reserved", 12, Color("adbec4"))
-	_scenario_button = _button(scenarios, "MEMU [F2]" if world.trains.T1.stock_kind == "wap7" else "WAP-7 [F2]", func(): scenario_requested.emit())
+	_scenario_button = _button(scenarios, "MEMU [F2]" if world.trains[selected_train].stock_kind == "wap7" else "WAP-7 [F2]", func(): scenario_requested.emit())
 	_scenario_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_scenario_button.tooltip_text = "Switch scenario and restart at Chennapuram"
-	_lhb_button = _button(scenarios, "MEMU [F3]" if world.trains.T1.stock_kind == "lhb" else "LHB [F3]", func(): lhb_requested.emit())
+	_lhb_button = _button(scenarios, "MEMU [F3]" if world.trains[selected_train].stock_kind == "lhb" else "LHB [F3]", func(): lhb_requested.emit())
 	_lhb_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_lhb_button.tooltip_text = "Drive WAP-7 with 20 LHB coaches (500.562 m); V enters a passenger coach"
 	_table_button = _button(title, "TIMETABLE [M]", toggle_timetable)
@@ -128,6 +129,7 @@ func setup(w: RailWorld) -> void:
 	_restart.visible = false
 	var scopes := HFlowContainer.new()
 	map_col.add_child(scopes)
+	_button(scopes, "DESIGN SERVICES [F5]", func(): services_requested.emit())
 	_button(scopes, "WHOLE LINE", func(): _map.focus_station(-1))
 	for index in world.stations.size():
 		_button(scopes, world.stations[index].code + " YARD", func(): _map.focus_station(index))
@@ -283,15 +285,15 @@ func _refresh() -> void:
 	_map.destination = target
 	_map.queue_redraw()
 	_timetable.refresh(selected_train)
-	_objective.text = "SIX-TRAIN CORRIDOR · 21.64 km · 4 platform roads per station · Auto dispatch follows booked platforms; HOLD MRT queues arrivals. M timetable · D hide"
-	if world.trains.T1.stock_kind == "wap7":
+	_objective.text = "%d SERVICES · Auto dispatch follows booked platforms; HOLD MRT queues arrivals. F5 design services · M timetable · D hide" % world.trains.size()
+	if world.trains[selected_train].stock_kind == "wap7":
 		_objective.text = "WAP-7 LIGHT ENGINE · Initial route to Maruthur P1. C opens onward routes; R changes cabs at a stand. F2 returns to the six MEMUs."
-	elif world.trains.T1.stock_kind == "lhb":
+	elif world.trains[selected_train].stock_kind == "lhb":
 		_objective.text = "SOUTHERN COAST AC SPECIAL · WAP-7 + 20 LHB · 500.562 m · C onward routes · V passenger · PgUp/PgDn coach · Home seat · B berths"
 	if timetable_open:
 		_objective.text = "AI waits for departure time, completes each block stop and dwell, then waits for a dispatcher route. Arrival / departure times use a 24-hour clock."
 	_restart.visible = world.trains.values().all(func(t): return t.service_complete)
 	if _restart.visible:
-		_objective.text = "ARRIVED  •  Change ends with R, set the return routes and drive Cab 2, or restart the scenario." if world.trains.T1.stock_kind == "wap7" else "SERVICES COMPLETE  •  All services arrived. Restart the timetable, or select a train and change ends at a stand."
-		if world.trains.T1.stock_kind == "lhb":
+		_objective.text = "ARRIVED  •  Change ends with R, set the return routes and drive Cab 2, or restart the scenario." if world.trains[selected_train].stock_kind == "wap7" else "SERVICES COMPLETE  •  All services arrived. Restart the timetable, or select a train and change ends at a stand."
+		if world.trains[selected_train].stock_kind == "lhb":
 			_objective.text = "ARRIVED AT KADALUR  •  All 20 coaches are in the platform. Explore with V, or RESTART SERVICES. A locomotive run-round is required for a return working."

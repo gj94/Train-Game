@@ -107,6 +107,11 @@ func cab_transform() -> Transform3D:
 	return Transform3D(Basis.looking_at(-basis.z * 40.0 - basis.y * 6.0, Vector3.UP), eye)
 
 
+func head_out_transform(side: int) -> Transform3D:
+	var transform: Transform3D = _cab_interior.global_transform
+	return Transform3D(Basis.looking_at(-transform.basis.z, Vector3.UP), transform * Vector3(side * 1.90, EYE.y, EYE.z))
+
+
 func set_cab_view(on: bool) -> void:
 	_cab_on = on
 	# Exterior doors/window seals contain solid backing plates. The dedicated

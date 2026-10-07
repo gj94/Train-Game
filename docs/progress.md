@@ -1,5 +1,42 @@
 # Progress
 
+## 2026-10-07 — Pilot/head-out cameras and portable service designer
+- Added direct pilot (4), left/right head-out (Q/E) and return toggles. Xbox
+  D-pad left/right/up offers the same while driving; passenger shortcuts remain
+  in other views. Eye points clear both body sides and follow the active cab,
+  including reverse cabs. Quick transitions move/rotate with the train rather
+  than trailing from a frozen world position. The shortcuts preserve AI/manual
+  state and the handle; Tab's take-cab action no longer resets the handle.
+- F5 / pause menu / dispatch opens a separate, paused service editor: formations,
+  unique IDs/names, departure day/time, world start, platform/block stops, minute
+  offsets, dwell, optional markers, add/duplicate/remove and stop ordering.
+  Import/export portable JSON; last valid draft persists in user data.
+- Added pure simulation service-pack validation and construction. Files bind to
+  the layout geometry/signals. Unknown/malformed input, invalid markers,
+  unreachable/wrong-direction stops and duplicate starting blocks are rejected
+  without replacing the draft or running world. Overnight schedules supported.
+- Incremental AI rehearsal checks the whole timetable independently, reports
+  arrival delay or held services, and can be cancelled. Play selected service
+  launches it with the other trains under AI and the dispatcher routing the
+  manual player's service too. Arbitrary service IDs work throughout the desk;
+  handover returns the previous train to AI. Restart retains the launch choice.
+- Limits are explicit in the UI/guide: 12 physically present trains, 16 stops,
+  forward workings, no automatic run-rounds or train spawning. Definitions are
+  not running savegames. Finished trains still occupy their destinations.
+- Verification: **161 headless tests pass**, including portable round-trip,
+  invalid/overnight schedules, full six-service completion and a deliberately
+  blocked terminal. **37 native source integration checks**, **58 existing Xbox
+  checks**, **7 moving/reversing camera checks**, and **9 incremental editor
+  rehearsal/persistence checks** pass. Native captures show
+  both WAP-7 head-out sides and the designer at 1280×720. Distribution testing
+  remains skipped per the user's preference.
+- Playtest: use Q/E/4 while accelerating/braking and looking around; try the
+  Xbox D-pad from the pilot. F5, edit service times/platforms, Validate, Rehearse,
+  Export, then Import the JSON on the other PC. Select a service and Play; obey
+  red while the other trains depart. D switches services; verify the old one
+  continues under AI. Restart and check the authored schedule is retained.
+  Guide: docs/services.md (included in the portable build).
+
 ## 2026-10-07 — Asset and surface fidelity with a bounded rendering increase
 - Responded to the user's request for less artificial-looking assets, with
   explicit permission to use some of the newly available performance headroom.

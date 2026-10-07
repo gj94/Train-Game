@@ -185,6 +185,18 @@ func cab_transform() -> Transform3D:
 	return Transform3D(Basis.looking_at(transform.basis * look, Vector3.UP), transform * eye)
 
 
+func head_out_transform(side: int) -> Transform3D:
+	var i := cars.size() - 1 if train.cab_end == 2 else 0
+	var opposite := cars.size() == 1 and train.cab_end == 2
+	var eye := _v(specs[i].eyes[1 if opposite else 0].position)
+	if specs[i].get("detailed_materials", false):
+		eye = Vector3(0, 3.05, 7.8 if opposite else -7.8)
+	eye.x = side * 1.90 * (-1.0 if opposite else 1.0)
+	var transform := cars[i].global_transform
+	var forward := transform.basis * Vector3(0, -.025, 1 if opposite else -1)
+	return Transform3D(Basis.looking_at(forward, Vector3.UP), transform * eye)
+
+
 func cycle_cab_position() -> String:
 	var i := cars.size()-1 if train.cab_end==2 else 0
 	if not specs[i].get("detailed_materials", false): return ""

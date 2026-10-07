@@ -9,7 +9,8 @@ A AI/manual · B emergency brake (again at a stand to release) · X coast.
 Y cab/exterior · View/Back passenger/cab · Menu/Start pause.
 Right stick look/orbit · LB/RB zoom out/in · Right stick click centre/follow.
 Left stick pans exterior or moves left/right inside a passenger coach.
-D-pad left/right previous/next coach · up first coach · down last coach.
+In pilot/head-out: D-pad left/right leans out that side (again returns); up pilot.
+In other views: D-pad left/right previous/next coach · up first · down last coach.
 Left stick click opens/closes dispatch.
 
 [b]MENUS & DISPATCH[/b]
@@ -24,6 +25,7 @@ After connecting, resuming or closing a menu, release sticks, buttons and
 triggers before driving again. Reconnection never resumes automatically.
 Keyboard and mouse remain available."""
 const KEYS := {
+	"pilot":KEY_4, "head_left":KEY_Q, "head_right":KEY_E,
 	"ai":KEY_A, "emergency":KEY_SPACE, "coast":KEY_X, "reverse":KEY_R,
 	"horn":KEY_H, "view":KEY_TAB, "passenger":KEY_V, "follow":KEY_F,
 	"seat":KEY_HOME, "berths":KEY_B, "route":KEY_C, "dispatch":KEY_D,
@@ -123,6 +125,7 @@ func _popup_input(event: InputEvent) -> void:
 	if not (event is InputEventJoypadButton or event is InputEventJoypadMotion): return
 	var popup = _popup()
 	if popup != null: popup.set_input_as_handled()
+	elif _confirmation() != null: _confirmation().set_input_as_handled()
 	_input(event)
 
 func _input(event: InputEvent) -> void:
@@ -175,10 +178,14 @@ func _input(event: InputEvent) -> void:
 		JOY_BUTTON_RIGHT_STICK:
 			game.cam._look = Vector2.ZERO
 			if game.cam.mode == 0: game.cam.follow = true
-		JOY_BUTTON_DPAD_UP: game._passenger_preset(0)
+		JOY_BUTTON_DPAD_UP:
+			if game.cam.mode in [1,3]: shortcut("pilot")
+			else: game._passenger_preset(0)
 		JOY_BUTTON_DPAD_DOWN: game._passenger_preset(2)
 		JOY_BUTTON_DPAD_LEFT, JOY_BUTTON_DPAD_RIGHT:
-			if game._has_passengers():
+			if game.cam.mode in [1,3]:
+				shortcut("head_left" if event.button_index == JOY_BUTTON_DPAD_LEFT else "head_right")
+			elif game._has_passengers():
 				if game.cam.mode != 2: game._enter_passenger()
 				game.tv.change_passenger_coach(-1 if event.button_index == JOY_BUTTON_DPAD_LEFT else 1)
 				game.cam._look = Vector2.ZERO
@@ -197,11 +204,22 @@ func perform(action: String) -> void:
 	if action.begins_with("station"): game.cam.set_mode(0)
 	shortcut(action)
 
+func _service_ui() -> bool:
+	return game.get("service_editor") != null and game.service_editor.visible
+
+func _pickers() -> Array:
+	var result: Array = [game.dispatcher._source,game.dispatcher._exit]
+	if _service_ui(): result.append_array(game.service_editor.pickers)
+	return result
+
+func _confirmation():
+	return game.service_editor.confirm_play if _service_ui() and game.service_editor.confirm_play.visible else null
+
 func _ui_open() -> bool:
 	return not game.hud.modal.is_empty() or game.dispatcher._root.visible
 
 func _popup():
-	for picker in [game.dispatcher._source,game.dispatcher._exit]:
+	for picker in _pickers():
 		if picker.get_popup().visible: return picker.get_popup()
 	return null
 
@@ -211,6 +229,14 @@ func _close_popups() -> void:
 
 func _ensure_focus() -> void:
 	if not controller_mode or _popup() != null: return
+	if _confirmation() != null:
+		if _confirmation().gui_get_focus_owner() == null: _confirmation().get_cancel_button().grab_focus()
+		return
+	if _service_ui():
+		var owner := get_viewport().gui_get_focus_owner()
+		if owner == null or not game.service_editor.panel.is_ancestor_of(owner):
+			game.service_editor.roster.grab_focus()
+		return
 	var focus := get_viewport().gui_get_focus_owner()
 	var container: Control = game.hud._buttons if not game.hud.modal.is_empty() else game.dispatcher._root
 	if focus == null or not focus.is_visible_in_tree() or not container.is_ancestor_of(focus):
@@ -222,7 +248,7 @@ func _ui_pulse(action: String) -> void:
 	if _popup() != null:
 		_popup_action(action)
 		return
-	var target: Viewport = _popup() if _popup() != null else get_viewport()
+	var target: Viewport = _confirmation() if _confirmation() != null else get_viewport()
 	for pressed in [true,false]:
 		var event := InputEventAction.new()
 		event.action = action
@@ -236,7 +262,10 @@ func _popup_action(action: String) -> void:
 	if action == "ui_cancel":
 		popup.hide()
 		return
-	var picker: OptionButton = game.dispatcher._source if popup == game.dispatcher._source.get_popup() else game.dispatcher._exit
+	var picker: OptionButton
+	for candidate in _pickers():
+		if candidate.get_popup() == popup: picker=candidate; break
+	if picker == null: return
 	var index: int = popup.get_focused_item()
 	if action == "ui_accept":
 		if index < 0: index = picker.selected
@@ -252,8 +281,14 @@ func _popup_action(action: String) -> void:
 		popup.set_focused_item(clampi((picker.selected if index < 0 else index)+step,0,picker.item_count-1))
 
 func _back() -> void:
+	if _confirmation() != null:
+		_confirmation().hide()
+		return
 	if _popup() != null:
 		_ui_pulse("ui_cancel")
+		return
+	if _service_ui():
+		game._close_services()
 		return
 	match game.hud.modal:
 		"confirm": game._cancel_action()
@@ -297,7 +332,9 @@ func _process(delta: float) -> void:
 		if controller_mode: _ensure_focus()
 		_repeat(Shape.cardinal(_nav_vector()),delta,func(d):
 			_ui_pulse("ui_right" if d.x > 0 else ("ui_left" if d.x < 0 else ("ui_down" if d.y > 0 else "ui_up"))))
-		if not game.hud.modal.is_empty():
+		if _service_ui():
+			_scroll_tree(game.service_editor.panel,right*650*delta)
+		elif not game.hud.modal.is_empty():
 			game.hud._body.get_v_scroll_bar().value += right.y*650*delta
 		elif game.dispatcher.timetable_open:
 			_scroll_tree(game.dispatcher._timetable._table,right*650*delta)

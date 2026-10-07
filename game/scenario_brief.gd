@@ -5,17 +5,17 @@ const Clock := preload("res://sim/world_clock.gd")
 static func describe(world: RailWorld, train: Train, traffic: bool, auto_dispatch: bool, hold: bool) -> String:
 	var text := "[b]YOUR SCENARIO · " + train.id + "[/b]\n" + train.service_name + "\n\n"
 	if traffic:
-		text += "You are one of six passenger services: three leave each end of the corridor. The other five run under AI control.\n"
+		text += "You are driving one of %d scheduled services. The other %d run under AI control.\n" % [world.trains.size(),world.trains.size()-1]
 		var ahead := []
 		for other in world.trains.values():
-			if other == train: break
-			if other.timetable.stops[0].direction == train.timetable.stops[0].direction:
+			if other == train or other.timetable == null: continue
+			if other.timetable.departure < train.timetable.departure and other.timetable.stops[0].block.get_slice("_",0) == train.timetable.stops[0].block.get_slice("_",0):
 				ahead.append(other.id)
 		if ahead.is_empty():
-			text += "Your service normally gets the first departure route from its terminus. Traffic can still delay you farther along the line.\n"
+			text += "Other services can depart at the same time and share your station throat. Wait for a proceed signal; the dispatcher clears conflicting routes only after trains have passed.\n"
 		else:
-			text += "At the start, " + ", ".join(ahead) + " normally leave ahead of you. Expect to wait at red until their trains clear the shared route; there may be more than one train to wait for.\n"
-		text += "Trains meet at Maruthur, share platform roads and then continue to the opposite terminus. Signals can hold you again behind a train or an occupied platform.\n\n"
+			text += "Earlier booked departures from your starting station: " + ", ".join(ahead) + ". You may wait at red until their trains clear a shared route; there may be more than one train to wait for.\n"
+		text += "Trains follow their booked stops and share routes and platform roads. Signals can hold you behind another train or an occupied platform. F5 opens the service designer; D lets you select another working during this run.\n\n"
 	if train.timetable != null:
 		text += "[b]YOUR BOOKED STOPS[/b]\n"
 		for i in train.timetable.stops.size():

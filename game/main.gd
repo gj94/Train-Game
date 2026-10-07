@@ -21,6 +21,12 @@ const TrainAudio := preload("res://game/platform_audio.gd")
 const AxleJoint := preload("res://game/axle_joint.gd")
 const Dispatcher := preload("res://game/dispatcher.gd")
 
+const ServicePack := preload("res://sim/service_pack.gd")
+const ServiceEditor := preload("res://game/service_editor.gd")
+var service_editor
+var authored_pack := {}
+var _service_error := ""
+
 const HANDLE_RATE := 0.8   # handle travel per second while W/S held
 
 var world: RailWorld
@@ -73,14 +79,32 @@ func _ready() -> void:
 		wap7_drive = false
 		lhb_drive = false
 	var layout = FirstLine if get_tree().get_meta("small_test_layout", false) else Corridor
-	if traffic_drive:
+	var authored = get_tree().get_meta("service_pack", {})
+	if not authored.is_empty():
+		var result := ServicePack.build(authored, "first_line" if get_tree().get_meta("small_test_layout",false) else "southern_corridor")
+		if result.ok:
+			authored_pack = result.data
+			world = result.world
+			traffic_drive = true
+			imported_fleet = ""
+			wap7_drive = false
+			lhb_drive = false
+		else:
+			_service_error = result.reason
+			get_tree().remove_meta("service_pack")
+	if not authored_pack.is_empty():
+		pass
+	elif traffic_drive:
 		world = Traffic.build()
 	elif not imported_fleet.is_empty():
 		world = PortedFleet.build(imported_fleet)
 	else:
 		world = layout.build_lhb() if lhb_drive else (layout.build_wap7() if wap7_drive else layout.build_dispatch())
-	train = world.trains.T1
-	if traffic_drive:
+	train = world.trains.values()[0]
+	if not authored_pack.is_empty():
+		var chosen: String = get_tree().get_meta("player_service",train.id)
+		train = world.trains.get(chosen,train)
+	elif traffic_drive:
 		var seed_value: int = get_tree().get_meta("traffic_seed", randi())
 		get_tree().set_meta("traffic_seed", seed_value)
 		get_tree().set_meta("traffic_drive", true)
@@ -103,6 +127,7 @@ func _ready() -> void:
 	tv = train_views[train.id]
 	cam = CameraRig.new()
 	cam.cab_transform = tv.cab_transform
+	cam.head_out_transform = tv.head_out_transform
 	cam.follow_point = tv.overview_position
 	if _has_passengers():
 		cam.passenger_transform = tv.passenger_transform
@@ -143,6 +168,7 @@ func _ready() -> void:
 	dispatcher.selected_train = train.id
 	dispatcher.auto_dispatch = traffic_drive
 	dispatcher.setup(world)
+	dispatcher.services_requested.connect(_open_services)
 	dispatcher.train_selected.connect(_select_train)
 	dispatcher.drive_requested.connect(_enter_cab)
 	dispatcher.pause_requested.connect(_toggle_pause)
@@ -176,6 +202,7 @@ func _ready() -> void:
 	performance_overlay=preload("res://game/performance_overlay.gd").new()
 	performance_overlay.game=self
 	add_child(performance_overlay)
+	if not _service_error.is_empty(): hud.toast("Service file could not start: "+_service_error,true)
 
 
 func _physics_process(delta: float) -> void:
@@ -235,6 +262,7 @@ func _process(delta: float) -> void:
 		buffer = world.distance_to_buffer(train, 600.0),
 		protection = world.protection,
 		cab = cam.mode == CameraRig.Mode.CAB,
+		head_out = ("HEAD OUT · LEFT" if cam.head_out_side < 0 else "HEAD OUT · RIGHT") if cam.mode == CameraRig.Mode.HEAD_OUT else "",
 		passenger = tv.passenger_name() if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER else "",
 		time_scale = time_scale,
 		automatic = train.automatic,
@@ -246,6 +274,10 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
+		if service_editor != null and service_editor.visible:
+			if event.physical_keycode in [KEY_ESCAPE,KEY_F5] and not service_editor.confirm_play.visible:
+				_close_services()
+			return
 		# Modal input never reaches train controls; the clock and held-key input pause too.
 		match event.physical_keycode:
 			KEY_ESCAPE:
@@ -268,12 +300,17 @@ func _unhandled_input(event: InputEvent) -> void:
 				KEY_F2: _request_action("wap7")
 				KEY_F3: _request_action("lhb")
 				KEY_F9: _ui_action("fleet")
+				KEY_F5: _open_services()
 				KEY_F4: _ui_action("clean")
 				KEY_F6: _ui_action("labels")
 			return
 		if hud.modal != "":
 			return
 		match event.physical_keycode:
+			KEY_F5: _open_services()
+			KEY_4: _pilot_camera()
+			KEY_Q: _head_out_camera(-1)
+			KEY_E: _head_out_camera(1)
 			KEY_TAB:
 				if cam.mode != CameraRig.Mode.OVERVIEW:
 					cam.set_mode(CameraRig.Mode.OVERVIEW)
@@ -406,11 +443,30 @@ func _set_cab_visuals(cab: bool) -> void:
 	_interior_view = cab
 
 
+func _pilot_camera() -> void:
+	# View changes are not a command to reset the power/brake handle or AI.
+	if train.stock_kind.begins_with("ported:"): tv.cab_position = 0
+	if cam.mode == CameraRig.Mode.OVERVIEW: _desk_before_cab = dispatcher._root.visible
+	cam.set_mode(CameraRig.Mode.CAB)
+	cam._look = Vector2.ZERO
+	_set_cab_visuals(true)
+
+
+func _head_out_camera(side: int) -> void:
+	if cam.mode == CameraRig.Mode.HEAD_OUT and cam.head_out_side == side:
+		_pilot_camera()
+		return
+	if cam.mode == CameraRig.Mode.OVERVIEW: _desk_before_cab = dispatcher._root.visible
+	cam.set_head_out(side)
+	_set_cab_visuals(false)
+	dispatcher.set_open(false)
+	wv.set_labels_visible(false)
+
+
 func _enter_cab() -> void:
 	if cam.mode == CameraRig.Mode.OVERVIEW:
 		_desk_before_cab = dispatcher._root.visible
 	train.automatic = false
-	train.controller = 0.0
 	cam.set_mode(CameraRig.Mode.CAB)
 	_set_cab_visuals(true)
 
@@ -478,6 +534,7 @@ func _ui_action(action: String) -> void:
 		_passenger_preset(int(action.get_slice(":",1)))
 		return
 	match action:
+		"services": _open_services()
 		"controllers": controller.open_settings()
 		"points": controller.open_points()
 		"controller_actions", "train_controls", "view_controls", "sound_controls":
@@ -506,6 +563,43 @@ func _ui_action(action: String) -> void:
 		"restart", "wap7", "lhb", "traffic", "quit": _request_action(action)
 		"cancel": _cancel_action()
 		"confirm": _confirm_action()
+
+
+func _open_services() -> void:
+	_set_paused(true)
+	dispatcher.set_open(false)
+	hud.show_modal("")
+	hud.modal = "services"
+	hud._refresh_visibility()
+	if service_editor == null:
+		service_editor = ServiceEditor.new()
+		add_child(service_editor)
+		service_editor.closed.connect(_close_services)
+		service_editor.play_requested.connect(_play_services)
+		service_editor.confirm_play.window_input.connect(controller._popup_input)
+		for picker in service_editor.pickers:
+			picker.get_popup().window_input.connect(controller._popup_input)
+	service_editor.open(world,authored_pack)
+
+
+func _close_services() -> void:
+	service_editor.dismiss()
+	hud.show_modal("pause",labels_enabled)
+	controller.neutralize()
+
+
+func _play_services(pack: Dictionary, id: String) -> void:
+	var result := ServicePack.build(pack,ServicePack.layout_id(world))
+	if not result.ok or not result.world.trains.has(id):
+		service_editor._status(result.get("reason","Select a service"),true)
+		return
+	get_tree().set_meta("service_pack",result.data)
+	get_tree().set_meta("player_service",id)
+	get_tree().set_meta("traffic_drive",true)
+	get_tree().set_meta("imported_fleet","")
+	get_tree().set_meta("wap7_drive",false)
+	get_tree().set_meta("lhb_drive",false)
+	get_tree().call_deferred("reload_current_scene")
 
 
 func _toggle_help() -> void:
@@ -546,6 +640,7 @@ func _cancel_action() -> void:
 func _confirm_action() -> void:
 	var action := _pending_action
 	_pending_action = ""
+	if action != "restart" and get_tree().has_meta("service_pack"): get_tree().remove_meta("service_pack")
 	if action.begins_with("fleet:"):
 		get_tree().set_meta("traffic_drive", false)
 		get_tree().set_meta("imported_fleet", action.trim_prefix("fleet:"))
@@ -619,6 +714,7 @@ func _select_train(id: String) -> void:
 	tv = train_views[id]
 	audio = train_audio[id]
 	cam.cab_transform = tv.cab_transform
+	cam.head_out_transform = tv.head_out_transform
 	cam.follow_point = tv.overview_position
 	cam.follow = true
 	cam.passenger_transform = tv.passenger_transform if _has_passengers() else Callable()
@@ -628,8 +724,9 @@ func _select_train(id: String) -> void:
 		cam.cab_yaw_limit = PI
 	dispatcher.selected_train = id
 	_set_cab_visuals(cam.mode == CameraRig.Mode.CAB)
-	if cam.mode == CameraRig.Mode.CAB:
+	if cam.mode in [CameraRig.Mode.CAB, CameraRig.Mode.HEAD_OUT]:
 		train.automatic = false
+		if cam.mode == CameraRig.Mode.HEAD_OUT: dispatcher.set_open(false)
 	elif cam.mode == CameraRig.Mode.PASSENGER:
 		if _has_passengers(): _enter_passenger()
 		else: _enter_cab()

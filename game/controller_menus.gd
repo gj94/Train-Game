@@ -25,7 +25,7 @@ static func build(hud, kind: String) -> void:
 		"view_controls":
 			hud._heading.text = "CAMERA & PASSENGERS"
 			hud._body.text = "Passenger controls apply to trains with passenger interiors.\nRight stick looks; LB/RB zoom; left stick pans outside or changes position inside."
-			entries = [["Cab / exterior","padcmd:view"],["Passenger / cab","padcmd:passenger"],["First / middle / last passenger coach…","passengers"],["Cab position / passenger aisle or seat","padcmd:seat"],["Fold / lower berths (original LHB)","padcmd:berths"],["Follow train","padcmd:follow"],["Chennapuram view","padcmd:station1"],["Maruthur view","padcmd:station2"],["Kadalur view","padcmd:station3"],["Back","controller_actions"]]
+			entries = [["Pilot seat","padcmd:pilot"],["Left head-out / return","padcmd:head_left"],["Right head-out / return","padcmd:head_right"],["Cab / exterior","padcmd:view"],["Passenger / cab","padcmd:passenger"],["First / middle / last passenger coach…","passengers"],["Cab position / passenger aisle or seat","padcmd:seat"],["Fold / lower berths (original LHB)","padcmd:berths"],["Follow train","padcmd:follow"],["Chennapuram view","padcmd:station1"],["Maruthur view","padcmd:station2"],["Kadalur view","padcmd:station3"],["Back","controller_actions"]]
 		"points":
 			hud._heading.text = "MANUAL POINT CONTROL"
 			hud._body.text = "A toggles a point. Occupied and route-locked points refuse movement.\nUse the dispatch desk to set complete routes and clear signals."

@@ -1,5 +1,11 @@
 # Timetables and the world clock
 
+**F5** opens the in-game service designer: choose formations, edit stops and
+times, import/export a portable JSON timetable, rehearse AI traffic and drive any
+selected service with the others under AI. See [services.md](services.md).
+The older JSON format below remains the built-in timetable source; exported
+service packs wrap these stop definitions with layout, stock and service IDs.
+
 The game uses an independent simulation clock. Its display runs from `00:00:00` to `23:59:59`, then advances the day counter and wraps to midnight. It is unrelated to the PC's clock. Pausing freezes it; ×2 and ×4 accelerate it along with train movement. Internal timestamps keep increasing across midnight, so overnight stops retain their correct dates.
 
 Press **M / TIMETABLE** and select a service on the right. The table shows its stop name, **block ID**, **minutes from origin departure**, arrival/departure times, dwell, actual times and status. Gold highlights the current stop. Negative deviations mean early and positive deviations mean late; **Held** measures the current delay beyond a booked intermediate departure. Times crossing into a later day show `+1d`, `+2d`, etc.

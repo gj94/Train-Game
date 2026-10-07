@@ -21,8 +21,8 @@ Guide button remains a Windows function. No additional game driver is required.
 | Right stick click | Centre look; restore follow outside |
 | Left stick | Pan outside; left/right moves through passenger positions |
 | Left stick click | Open / close dispatch |
-| D-pad left / right | Previous / next passenger coach |
-| D-pad up / down | First / last passenger coach |
+| D-pad left / right | Pilot/head-out: lean out left/right or return; other views: previous/next coach |
+| D-pad up / down | Pilot/head-out: up returns pilot; otherwise up first coach; down last coach |
 
 Triggers adjust the handle at a rate proportional to their deflection. Release
 them to hold the handle. LT takes priority if both are pressed. A deliberate

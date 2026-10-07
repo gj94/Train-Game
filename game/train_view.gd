@@ -168,6 +168,12 @@ func cab_transform() -> Transform3D:
 	return Transform3D(Basis.looking_at(ahead - eye, Vector3.UP), eye)
 
 
+func head_out_transform(side: int) -> Transform3D:
+	var transform: Transform3D = cars[0].global_transform
+	var eye := Vector3(side * 1.90, EYE.y + RAIL_TOP, EYE.z)
+	return Transform3D(Basis.looking_at(-transform.basis.z, Vector3.UP), transform * eye)
+
+
 func set_cab_view(on: bool) -> void:
 	_cab_interior.visible = on
 	# The dedicated cab supplies its own correctly seated wipers.
