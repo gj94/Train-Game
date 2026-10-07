@@ -3,8 +3,7 @@ const Stock := preload("res://sim/stock/ported_stock.gd")
 const Fleet := preload("res://sim/layouts/ported_fleet.gd")
 
 func test_imported_formation_geometry():
-	var expected := {"wap7": [1, 6, 20.56], "wag9": [1, 6, 20.642], "wag12": [2, 8, 38.58],
-		"icf": [8, 34, 176.639], "lhb": [8, 34, 188.56], "vb8": [8, 32, 155.73753], "vb16": [16, 64, 310.73753]}
+	var expected := {"icf": [8, 34, 176.639], "lhb": [8, 34, 188.56], "vb8": [8, 32, 192.0], "vb16": [16, 64, 384.0]}
 	for key in expected:
 		var formation := Stock.formation(key)
 		var data: Array = expected[key]
@@ -54,7 +53,7 @@ func test_imported_family_and_vb_handedness():
 		var cars := Stock.formation(key)
 		for i in 7:
 			if cars[i + 1].model != key + "_" + Stock.CLASSES[i]: return "missing coach class"
-	for key in ["vb8", "vb16", "wag12"]:
+	for key in ["vb8", "vb16"]:
 		var cars := Stock.formation(key)
 		if cars.front().reverse or not cars.back().reverse: return "outer cabs must face outward"
 	return true

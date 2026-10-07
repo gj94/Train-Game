@@ -65,7 +65,16 @@ static func describe(axles: Array) -> Dictionary:
 static func listening_joint(graph: TrackGraph, focus: Vector3) -> Dictionary:
 	var best := {}
 	var best_distance := INF
+	var candidates: Array=[]
 	for edge in graph.edges:
+		var e: Dictionary=graph.edges[edge]
+		var bound: AABB=e.bounds
+		var nearest:=focus.clamp(bound.position,bound.end)
+		candidates.append({edge=edge,score=focus.distance_squared_to(nearest)})
+	candidates.sort_custom(func(a,b): return a.score<b.score)
+	for candidate in candidates:
+		if candidate.score>best_distance: break
+		var edge: String=candidate.edge
 		var e: Dictionary = graph.edges[edge]
 		if e.length <= Layout.OFFSET: continue
 		for segment in range(e.points.size()-1):

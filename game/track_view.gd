@@ -358,7 +358,9 @@ func _build_points() -> void:
 			pivot.name = "Blade_"+nid+"_"+eid
 			pivot.transform = Transform3D(Basis.looking_at(heel.fwd,Vector3.UP),heel.pos+heel.right*side*RAIL_CENTRE)
 			root.add_child(pivot)
-			var inverse := pivot.global_transform.affine_inverse()
+			# Permanent-way assemblies are authored relative to their local root.
+			# This also allows a geographic chunk to be built outside the scene tree.
+			var inverse := pivot.transform.affine_inverse()
 			var st := SurfaceTool.new()
 			st.begin(Mesh.PRIMITIVE_TRIANGLES)
 			var ds := []

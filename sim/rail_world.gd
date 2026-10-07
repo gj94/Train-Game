@@ -24,17 +24,31 @@ var protection := true   # emergency intervention before passing a red signal
 var stations: Array = [] # layout data for rendering: {code, name, platforms: [Rect2 in x/z], building}
 var automatic_signals: Array[String] = [] # fixed plain-line block signals; never station routes
 var scenery: Dictionary = {} # geographic/layout metadata consumed by rendering
+var single_line_sections: Dictionary = {} # edge -> direction-locked section between passing places
+var dispatch_notices: Dictionary = {} # advisory text; never grants or withholds authority
+var dispatch_holds: Dictionary = {}
+var dispatch_history: Array = []
 
 var events: Array = []   # {seq, t (elapsed), clock (absolute), kind, text, train}
 var _event_seq := 0
 var _signals_on := {}    # "edge|dir" -> [signal ids]
 var _next_auto_update := 0.0
+var _route_distances
+var _route_options_cache := {}
+var _route_topology_size := ""
+var _within_step := false
+var _step_route_directions := {}
+var _automatic_set := {}
+var _automatic_set_size := -1
+var _auto_direction_snapshot: Dictionary = {}
+var _updating_automatic := false
 
 
 # --- building ---------------------------------------------------------------
 
 ## A signal `offset` metres before the exit end of `edge`, facing trains moving in `dir`.
 func add_signal(id: String, edge: String, dir: int, offset: float = 10.0) -> void:
+	_route_options_cache.clear()
 	var s := graph.exit_s(edge, dir) - dir * offset
 	signals[id] = {id = id, edge = edge, dir = dir, s = s, cleared = false, route = [],
 		destination = "", owner = "", cancel_pending = false}
@@ -136,6 +150,7 @@ func aspect(sig_id: String, _depth: int = 0) -> Aspect:
 
 ## The next signal ahead of a train's head: {id, distance} or {} if none within `max_dist`.
 func next_signal(train: Train, max_dist: float = 5000.0) -> Dictionary:
+	if scenery.get("geographic",false) and max_dist==5000.0: max_dist=25000.0
 	var travelled := 0.0
 	var cur: Dictionary = train.path[0]
 	var from_s := train.head_s
@@ -269,6 +284,14 @@ func set_signal(sig_id: String, want: bool) -> Dictionary:
 func route_options(sig_id: String) -> Array:
 	if not signals.has(sig_id):
 		return []
+	# Geographic layouts are immutable once assembled. Occupancy and point
+	# settings are deliberately absent: this cache stores possible paths only.
+	if scenery.get("geographic",false):
+		var topology := "%d:%d:%d" % [graph.edges.size(),graph.switches.size(),signals.size()]
+		if topology != _route_topology_size:
+			_route_options_cache.clear()
+			_route_topology_size=topology
+		if _route_options_cache.has(sig_id): return _route_options_cache[sig_id]
 	var sig: Dictionary = signals[sig_id]
 	var options: Array = []
 	_walk_routes(sig.edge, sig.dir, [], [sig.edge], options)
@@ -283,7 +306,9 @@ func route_options(sig_id: String) -> Array:
 		option.cost = cost
 		if not unique.has(option.destination) or cost < unique[option.destination].cost:
 			unique[option.destination] = option
-	return unique.values()
+	var result: Array=unique.values()
+	if scenery.get("geographic",false): _route_options_cache[sig_id]=result
+	return result
 
 
 func _walk_routes(edge_id: String, dir: int, path: Array, visited: Array, options: Array) -> void:
@@ -334,6 +359,12 @@ func route_reason(sig_id: String, destination: String) -> String:
 			candidate = option
 	if candidate.is_empty():
 		return "No route to " + destination
+	var has_single: bool=candidate.edges.any(func(e):return single_line_sections.has(e.edge))
+	var direction_locks:=(_auto_direction_snapshot if _updating_automatic else single_line_directions()) if has_single else {}
+	for entry in candidate.edges:
+		var section: String=single_line_sections.get(entry.edge,"")
+		if not section.is_empty() and direction_locks.has(section) and direction_locks[section]!=entry.dir:
+			return "Single line "+section+" is locked for opposing traffic"
 	var occ := occupancy()
 	for e in candidate.edges:
 		if occ.has(e.edge):
@@ -422,6 +453,8 @@ func step(dt: float) -> void:
 		var slice := minf(remaining, 0.05)
 		time += slice
 		_update_automatic_blocks()
+		_step_route_directions=_reservation_directions()
+		_within_step=true
 		for t in trains.values():
 			if t.automatic:
 				_drive_automatic(t)
@@ -436,6 +469,8 @@ func step(dt: float) -> void:
 				t.service_complete = true
 				t.status = "Arrived at " + t.destination
 		_release_routes()
+		_within_step=false
+		_step_route_directions.clear()
 		remaining -= slice
 
 
@@ -443,13 +478,42 @@ func _update_automatic_blocks() -> void:
 	if time < _next_auto_update:
 		return
 	_next_auto_update = time + .5
+	var directions:=single_line_directions()
+	_auto_direction_snapshot=directions
+	_updating_automatic=true
+	# Unoccupied automatic routes must not hold a single-line direction forever.
 	for sid in automatic_signals:
+		var sig: Dictionary=signals[sid]
+		var section: String=single_line_sections.get(sig.edge,"")
+		if not section.is_empty() and not directions.has(section) and sig.owner.is_empty():
+			sig.route=[];sig.cleared=false
+	for sid in automatic_signals:
+		var section: String=single_line_sections.get(signals[sid].edge,"")
+		if not section.is_empty() and directions.get(section,0)!=signals[sid].dir:continue
 		if not signals[sid].route.is_empty():
 			continue
 		var options := route_options(sid)
 		if options.size() != 1 or options[0].edges.any(func(r): return r.switch != ""):
 			continue # automatic block control is never allowed to move a point
 		set_route(sid, options[0].destination)
+	_updating_automatic=false
+	_auto_direction_snapshot={}
+
+func single_line_directions() -> Dictionary:
+	var result:={}
+	if single_line_sections.is_empty():return result
+	if _automatic_set_size!=automatic_signals.size():
+		_automatic_set={}
+		for sid in automatic_signals:_automatic_set[sid]=true
+		_automatic_set_size=automatic_signals.size()
+	for t in trains.values():
+		for seg in t.path:
+			if single_line_sections.has(seg.edge):result[single_line_sections[seg.edge]]=seg.dir
+	for sig in signals.values():
+		if _automatic_set.has(sig.id):continue
+		for entry in sig.route:
+			if single_line_sections.has(entry.edge):result[single_line_sections[entry.edge]]=entry.dir
+	return result
 
 
 ## Braking curves include signals, buffers, occupied blocks and lower speed
@@ -471,8 +535,18 @@ func _drive_automatic(t: Train) -> void:
 				t.status = ("Departs " if tt.index == 0 else "Dwell until ") + Clock.format_time(tt.release_time())
 				t.controller = -1.0
 				return
+			var scenario_hold: String=preload("res://sim/priority_dispatch.gd").hold_reason(self,t)
+			if not scenario_hold.is_empty():
+				t.status=scenario_hold
+				t.controller=-1.0
+				return
 			var starter := next_signal(t)
-			if starter.is_empty() or aspect(starter.id) == Aspect.RED:
+			var inside_reserved_section:=false
+			if _signals_on.get(_key(t.path[0].edge,t.path[0].dir),[]).is_empty():
+				for signal_data in signals.values():
+					if signal_data.owner==t.id and signal_data.route.any(func(r): return r.edge==t.path[0].edge and r.dir==t.path[0].dir):
+						inside_reserved_section=true
+			if not inside_reserved_section and (starter.is_empty() or aspect(starter.id) == Aspect.RED):
 				t.status = "Awaiting route" if starter.is_empty() else "Waiting for " + starter.id
 				t.controller = -1.0
 				return
@@ -532,28 +606,8 @@ func _drive_automatic(t: Train) -> void:
 ## Distance via track topology, allowing points beyond a red signal to be
 ## set later. Actual movement still follows only dispatcher-set points.
 func _stop_distance(edge: String, dir: int, from_s: float, stop: Dictionary, visited: Array) -> float:
-	var key := _key(edge, dir)
-	if key in visited or visited.size() >= 64:
-		return INF
-	if edge == stop.block and dir == stop.direction:
-		var distance: float = (stop.s - from_s) * dir
-		return maxf(0.0, distance) if distance >= -1.1 else INF
-	var node := graph.exit_node(edge, dir)
-	var exits: Array = []
-	if graph.switches.has(node):
-		var sw: Dictionary = graph.switches[node]
-		exits = [sw.normal, sw.reverse] if edge == sw.trunk else [sw.trunk]
-	else:
-		for other in graph.nodes[node].edges:
-			if other != edge:
-				exits.append(other)
-	var best := INF
-	for next in exits:
-		var direction := 1 if graph.edges[next].a == node else -1
-		if not graph.allows(next, direction):
-			continue
-		best = minf(best, _stop_distance(next, direction, graph.entry_s(next, direction), stop, visited + [key]))
-	return absf(graph.exit_s(edge, dir) - from_s) + best
+	if _route_distances == null: _route_distances = preload("res://sim/route_distances.gd").new(graph)
+	return _route_distances.distance(edge,dir,from_s,stop)
 
 
 func _distance_to_red(t: Train) -> float:
@@ -576,22 +630,31 @@ func _distance_to_red(t: Train) -> float:
 
 ## A hard block boundary prevents collisions even with driver protection off.
 ## This also protects against routes revoked after a signal was passed.
+func _reservation_directions() -> Dictionary:
+	var directions := {}
+	for signal_data in signals.values():
+		for road in signal_data.route:
+			directions[road.edge]=int(directions.get(road.edge,0)) | (1 if road.dir>0 else 2)
+	return directions
+
+
 func _distance_to_obstruction(t: Train) -> float:
+	# Route paths are constant within a physics slice; occupancy is not. Keep
+	# each earlier train's movement visible to the trains updated after it.
+	var occupied := occupancy()
+	var directions: Dictionary=_step_route_directions if _within_step else _reservation_directions()
 	var cur: Dictionary = t.path[0]
 	var distance := absf(graph.exit_s(cur.edge, cur.dir) - t.head_s)
 	for i in 64:
 		var nxt := graph.next(cur.edge, cur.dir)
 		if nxt.is_empty():
 			return INF
-		for other in trains.values():
-			if other.id != t.id and other.occupies(nxt.edge):
-				return distance
+		if occupied.has(nxt.edge) and occupied[nxt.edge]!=t.id:
+			return distance
 		if nxt.against:
 			return distance
-		for sig in signals.values():
-			for r in sig.route:
-				if r.edge == nxt.edge and r.dir != nxt.dir:
-					return distance
+		if int(directions.get(nxt.edge,0)) & (2 if nxt.dir>0 else 1):
+			return distance
 		cur = nxt
 		distance += graph.edges[cur.edge].length
 	return INF

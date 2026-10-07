@@ -66,6 +66,14 @@ func toggle_mode() -> void:
 	set_mode(Mode.CAB if mode == Mode.OVERVIEW else Mode.OVERVIEW)
 
 
+func shift_origin(delta: Vector3) -> void:
+	global_position -= delta
+	pivot -= delta
+	_from.origin -= delta
+	_blend_reference.origin -= delta
+	_follow_anchor -= delta
+
+
 func jump_to(p: Vector3) -> void:
 	set_mode(Mode.OVERVIEW)
 	follow = false

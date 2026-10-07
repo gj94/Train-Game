@@ -136,7 +136,8 @@ func _build_cab_interior(car: Node3D) -> void:
 
 ## World position `back` metres behind the head.
 func _point(back: float) -> Vector3:
-	var loc: Dictionary = motion.locate(back) if motion != null else train.locate_behind(graph, back)
+	if motion != null: return motion.point(back)
+	var loc: Dictionary = train.locate_behind(graph, back)
 	return graph.position(loc.edge, loc.s)
 
 

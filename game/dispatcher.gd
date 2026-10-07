@@ -1,6 +1,7 @@
 extends CanvasLayer
 ## Route desk and service roster; all safety decisions remain in the sim.
 
+signal station_view_requested(index: int)
 signal services_requested
 signal train_selected(id: String)
 signal drive_requested
@@ -40,7 +41,7 @@ var _hold_button: Button
 
 func setup(w: RailWorld) -> void:
 	world = w
-	source = "CPM-E1" if world.signals.has("CPM-E1") else "CPM-S1"
+	source = "CPM-E1" if world.signals.has("CPM-E1") else str(world.signals.keys()[0])
 	_root = Control.new()
 	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -115,12 +116,12 @@ func setup(w: RailWorld) -> void:
 	_board_heading = _label(title, "DISPATCH BOARD", 17, Color("ffca72"))
 	_board_heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_legend = _label(title, "RED occupied    MINT reserved", 12, Color("adbec4"))
-	_scenario_button = _button(scenarios, "MEMU [F2]" if world.trains[selected_train].stock_kind == "wap7" else "WAP-7 [F2]", func(): scenario_requested.emit())
+	_scenario_button = _button(scenarios, "WAP-7 + ICF [F2]", func(): scenario_requested.emit())
 	_scenario_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_scenario_button.tooltip_text = "Switch scenario and restart at Chennapuram"
-	_lhb_button = _button(scenarios, "MEMU [F3]" if world.trains[selected_train].stock_kind == "lhb" else "LHB [F3]", func(): lhb_requested.emit())
+	_lhb_button = _button(scenarios, "WAP-7 + LHB [F3]", func(): lhb_requested.emit())
 	_lhb_button.size_flags_horizontal = Control.SIZE_SHRINK_END
-	_lhb_button.tooltip_text = "Drive WAP-7 with 20 LHB coaches (500.562 m); V enters a passenger coach"
+	_lhb_button.tooltip_text = "Detailed WAP-7 with mixed LHB coaches; V enters a passenger coach"
 	_table_button = _button(title, "TIMETABLE [M]", toggle_timetable)
 	_table_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	_button(title, "CLOSE [D]", func(): set_open(false)).size_flags_horizontal = Control.SIZE_SHRINK_END
@@ -131,8 +132,18 @@ func setup(w: RailWorld) -> void:
 	map_col.add_child(scopes)
 	_button(scopes, "DESIGN SERVICES [F5]", func(): services_requested.emit())
 	_button(scopes, "WHOLE LINE", func(): _map.focus_station(-1))
-	for index in world.stations.size():
-		_button(scopes, world.stations[index].code + " YARD", func(): _map.focus_station(index))
+	if world.scenery.get("geographic",false):
+		var yards:=OptionButton.new()
+		yards.add_item("Choose station yard…")
+		for st in world.stations: yards.add_item(st.code+" · "+st.name)
+		yards.item_selected.connect(func(index): _map.focus_station(index-1))
+		_style_button(yards)
+		scopes.add_child(yards)
+		_button(scopes,"VISIT YARD",func():
+			if yards.selected>0: station_view_requested.emit(yards.selected-1))
+	else:
+		for index in world.stations.size():
+			_button(scopes, world.stations[index].code + " YARD", func(): _map.focus_station(index))
 	_auto_button = _button(scopes,"AUTO DISPATCH: OFF",func():
 		auto_dispatch = not auto_dispatch
 		_refresh())
@@ -141,7 +152,8 @@ func setup(w: RailWorld) -> void:
 		hold_arrivals = not hold_arrivals
 		_refresh())
 	_hold_button.tooltip_text = "With auto dispatch, hold Maruthur departures to test all four platforms and queue following trains. Does not cancel routes already set."
-	_map = Map.new()
+	_hold_button.visible=not world.scenery.get("geographic",false)
+	_map = load("res://game/geographic_dispatch_map.gd").new() if world.scenery.get("geographic",false) else Map.new()
 	_map.world = world
 	map_col.add_child(_map)
 	_map.signal_selected.connect(func(id): select_signal(id))
@@ -292,6 +304,8 @@ func _refresh() -> void:
 		_objective.text = "SOUTHERN COAST AC SPECIAL · WAP-7 + 20 LHB · 500.562 m · C onward routes · V passenger · PgUp/PgDn coach · Home seat · B berths"
 	if timetable_open:
 		_objective.text = "AI waits for departure time, completes each block stop and dwell, then waits for a dispatcher route. Arrival / departure times use a 24-hour clock."
+	if world.scenery.get("geographic",false):
+		_objective.text="KERALA COAST · 277 km via Alappuzha and TVC · Select a station yard to dispatch · F5 design / import services · F7 routes"
 	_restart.visible = world.trains.values().all(func(t): return t.service_complete)
 	if _restart.visible:
 		_objective.text = "ARRIVED  •  Change ends with R, set the return routes and drive Cab 2, or restart the scenario." if world.trains[selected_train].stock_kind == "wap7" else "SERVICES COMPLETE  •  All services arrived. Restart the timetable, or select a train and change ends at a stand."

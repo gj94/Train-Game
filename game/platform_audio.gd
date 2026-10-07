@@ -23,6 +23,7 @@ var layout
 var _sweep := Sweep.new()
 var _history := History.new()
 var _time := 0.0
+var simulation_rate := 1.0
 var _last_history := -1.0
 var _events := []
 var _recent := {}
@@ -169,14 +170,14 @@ func _process(delta: float) -> void:
 	last_process_ms=0
 	if train==null or _paused or _track.stream_paused: return
 	var started := Time.get_ticks_usec()
-	_track_sound(train.speed,train.speed*3.6,delta)
+	_track_sound(train.speed,train.speed*3.6,delta*simulation_rate)
 	last_process_ms=(Time.get_ticks_usec()-started)*.001
 
 func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 	if layout==null or _paused: return
 	_time+=delta
 	Timing.refresh()
-	_start_window=maxf(.16,Timing.prediction_seconds(delta)+.02)
+	_start_window=maxf(.16,Timing.prediction_seconds(delta,simulation_rate)+.02)
 	var perspective := 2 if _passenger() else (1 if _onboard() else 0)
 	if _perspective!=perspective:
 		reset_positions()
@@ -222,7 +223,7 @@ func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 	_update_events(delta)
 	for h in hits: _schedule(h.axle,h.contact,h.relative)
 	if v>.001:
-		var lead := Timing.prediction_seconds(delta)
+		var lead := Timing.prediction_seconds(delta,simulation_rate)
 		for i in positions.size():
 			var now: Dictionary=positions[i]
 			var ahead := _locate_at(_sched.axles[i].x,lead)
@@ -303,8 +304,8 @@ func _start_event(event: Dictionary) -> void:
 		event.route=route.bus; event.playback=route.playback
 		route.player.volume_db=_track.volume_db
 		var gains: Vector2 = Acoustics.stereo(source,_ear.position,_ear.forward,_ear.up,600 if event.bypass else 1600)*event.gain
-		var buffered := Timing.delay_seconds()
-		output_delay_ms=buffered*1000
+		var buffered := Timing.delay_seconds()*simulation_rate
+		output_delay_ms=Timing.delay_seconds()*1000
 		var offset := maxf(0,Data.PAD-delay+buffered)
 		event.output_delay=buffered; event.offset=offset; event.scheduled_at=_time
 		for side in 2:

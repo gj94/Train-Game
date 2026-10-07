@@ -4,6 +4,14 @@ const Clock := preload("res://sim/world_clock.gd")
 
 static func describe(world: RailWorld, train: Train, traffic: bool, auto_dispatch: bool, hold: bool) -> String:
 	var text := "[b]YOUR SCENARIO · " + train.id + "[/b]\n" + train.service_name + "\n\n"
+	if world.scenery.get("geographic",false):
+		text += "[b]KERALA COAST[/b] Ernakulam Jn → Alappuzha → Kayamkulam → Kollam → Thiruvananthapuram Central → Nagercoil Jn. Approximately 277 km with 56 named stations.\nOn single-line sections, wait at a station while opposing traffic clears the section. The whole journey takes several hours. D selects another service; F7 changes route.\n\nTrack alignment, buildings and waterways: © OpenStreetMap contributors, ODbL 1.0 (openstreetmap.org/copyright). Elevation: NASA/USGS SRTM. Station architecture, platform roads, signals, grades and timetables are game reconstructions, not surveyed current railway infrastructure.\n\n"
+	var expectation: String=preload("res://sim/priority_dispatch.gd").hold_reason(world,train,true)
+	if not expectation.is_empty():text+="[b]DISPATCH EXPECTATION[/b] "+expectation+"\n\n"
+	if world.scenery.get("geographic",false):
+		text+="[b]DYNAMIC TRAFFIC[/b] The stopping passenger has priority 20 and calls at every stop. Faster expresses and Vande Bharat services have higher priorities. Expect several meets and opportunities for overtaking; their locations change with actual running. A delayed passenger does not hold an express just to stage an overtake. First arrival takes an available loop for a single-line crossing. Follow the live wait indication and signals.\n"
+		for service in world.trains.values():text+="%s · priority %d · %s\n" % [service.id,service.dispatch_priority,service.service_name]
+		text+="T cycles fast forward up to ×32; Shift+T returns to ×1. All trains and the clock advance together.\n\n"
 	if traffic:
 		text += "You are driving one of %d scheduled services. The other %d run under AI control.\n" % [world.trains.size(),world.trains.size()-1]
 		var ahead := []

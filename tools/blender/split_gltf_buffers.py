@@ -32,7 +32,7 @@ def split_glb(source, destination, limit=48*1024*1024):
         part.extend(chunk)
     dependencies=[]
     for i,part in enumerate(buffers):
-        path=Path(destination).parent/'wap7_detail'/f'geometry_{i}.bin'
+        path=Path(destination).parent/(Path(destination).stem+'_detail')/f'geometry_{i}.bin'
         path.parent.mkdir(parents=True,exist_ok=True)
         path.write_bytes(part)
         dependencies.append(dict(uri=path.relative_to(Path(destination).parent).as_posix(),byteLength=len(part),sha256=hashlib.sha256(part).hexdigest()))

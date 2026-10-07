@@ -2,6 +2,25 @@ TRAIN GAME - SOUTHERN CORRIDOR
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Default: K1, the slow all-stop passenger on the Kerala Coast geographic route.
+Ernakulam Jn - Alappuzha - Kayamkulam - Kollam - TVC - Nagercoil Jn,
+about 277 km at full scale, 56 mapped stations, seven playable services.
+K1 is the slow all-stop passenger. Priorities and actual progress determine
+crossings/overtakes. The HUD names the service you should expect to wait for.
+PROGRESS / F12: completed/total stops, stops left, next stop, distance and estimated
+in-game time. The origin counts as the first call. Back resumes the prior state.
+T: fast forward x1/2/4/8/16/32; Shift+T returns to normal. All traffic and the
+clock advance together; speeds remain ordinary in-world km/h.
+Enhanced full-size Vande Bharat 8/16 preserves source interiors and articulation.
+Only detailed WAP-7 + ICF/LHB and Vande Bharat 8/16 are selectable.
+D: choose a station yard, then VISIT YARD to explore it. F follows your train.
+F5 designs and exchanges services for this route. F7 returns to the short corridor.
+Initial loading and distant camera transfers prepare nearby scenery first.
+This is a playable reconstruction: yards, signals, bridges and most facades are
+interpreted, not a complete current survey. See guides/kerala-coast.md.
+Map data (c) OpenStreetMap contributors, ODbL 1.0; NASA/USGS SRTM terrain.
+See MAP-DATA-LICENSE.md for sources, attribution and editable database access.
+
 Pilot/head-out cameras and service designer:
 4 pilot seat; Q/E left/right head-out (same key returns). In driving views,
 Xbox D-pad left/right leans out and up returns pilot. These preserve the handle.
@@ -37,8 +56,8 @@ RUN ON ANOTHER PC
 4. F11 switches fullscreen/window. The initial window is 1280 x 720.
 
 START PLAYING
-You are randomly assigned one of six passenger services: WAP-7/LHB,
-WAP-7/ICF and Vande Bharat. The other five trains use AI. Automatic dispatch
+You start in the K1 stopping passenger among seven Kerala Coast services: WAP-7/LHB,
+WAP-7/ICF and Vande Bharat. The other six trains use AI. Automatic dispatch
 sets safe routes for everyone, including your manually driven service.
 Wait at red while earlier trains clear shared routes and occupied platforms.
 F1 opens your scenario briefing: your service, stops, expected traffic and job.

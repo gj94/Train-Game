@@ -1,18 +1,20 @@
 extends RefCounted
 ## Portable definitions. Validate in a fresh world; never mutate the live run.
 const Corridor := preload("res://sim/layouts/southern_corridor.gd")
+const Kerala := preload("res://sim/layouts/kerala_coast.gd")
 const FirstLine := preload("res://sim/layouts/first_line.gd")
 const Traffic := preload("res://sim/layouts/traffic_service.gd")
 const Stock := preload("res://sim/stock/ported_stock.gd")
-const Memu := preload("res://sim/stock/memu_consist.gd")
 const Clock := preload("res://sim/world_clock.gd")
 const MAX_SERVICES := 12
 const MAX_BYTES := 262144
 
 static func layout_id(world: RailWorld) -> String:
+	if world.scenery.get("geographic",false): return "kerala_coast"
 	return "southern_corridor" if world.scenery.get("corridor", false) else "first_line"
 
 static func blank(layout: String) -> RailWorld:
+	if layout == "kerala_coast": return Kerala.build()
 	if layout == "southern_corridor": return Corridor.build()
 	if layout == "first_line":
 		var world := FirstLine.build()
@@ -42,19 +44,26 @@ static func signature(world: RailWorld) -> String:
 	return "\n".join(parts).sha256_text()
 
 static func defaults(layout: String = "southern_corridor") -> Dictionary:
-	var world := Traffic.build() if layout == "southern_corridor" else FirstLine.build_dispatch()
+	var world := Kerala.build_traffic() if layout == "kerala_coast" else (Traffic.build() if layout == "southern_corridor" else FirstLine.build_dispatch())
 	var services: Array = []
 	for train in world.trains.values():
+		if not train.stock_kind.begins_with("ported:"):
+			var name_before: String=train.service_name
+			Stock.configure(train,"lhb")
+			train.service_name=name_before
 		var schedule = train.timetable
 		var stops: Array = []
 		for stop in schedule.stops:
 			stops.append({name=stop.name,block=stop.block,direction=stop.direction,
 				minutes_from_origin=stop.minutes_from_origin,dwell_minutes=stop.dwell_minutes})
+			stops[-1].position_m=stop.s
 		services.append({id=train.id,name=train.service_name,
 			stock=train.stock_kind.trim_prefix("ported:"),
+			speed_limit_kmh=train.max_speed*3.6,
+			priority=train.dispatch_priority,
 			departure=Clock.format_time(schedule.departure),day=Clock.day(schedule.departure),stops=stops})
 	return {format="train-game-services",version=1,layout=layout,
-		layout_signature=signature(world),name="My Southern services",
+		layout_signature=signature(world),name="My Kerala Coast services" if layout=="kerala_coast" else "My Southern services",
 		world_start=Clock.format_time(world.clock_start),day=Clock.day(world.clock_start),services=services}
 
 static func decode(text: String, expected_layout: String = "") -> Dictionary:
@@ -69,7 +78,7 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 	if data.get("format") != "train-game-services" or data.get("version") != 1:
 		return _error("Unsupported format/version; expected train-game-services version 1")
 	var layout = data.get("layout","")
-	if not layout is String or layout not in ["southern_corridor","first_line"]:
+	if not layout is String or layout not in ["southern_corridor","first_line","kerala_coast"]:
 		return _error("Unknown track layout")
 	if expected_layout != "" and layout != expected_layout: return _error("This file belongs to a different track layout")
 	var world := blank(layout)
@@ -91,9 +100,13 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 		if world.trains.has(id): return _error("Duplicate service ID: " + id)
 		if not _text(definition.get("name",""),100): return _error(id + ": enter a service name")
 		var stock = definition.get("stock","")
-		if not stock is String or (stock != "memu" and stock not in Stock.CHOICES): return _error(id + ": unknown rolling stock")
+		if not stock is String or stock not in Stock.CHOICES: return _error(id + ": choose WAP-7 + LHB, WAP-7 + ICF or Vande Bharat 8/16")
 		var stops = definition.get("stops",[])
-		if not stops is Array or stops.size() < 2 or stops.size() > 16: return _error(id + ": use 2–16 stops, including origin and destination")
+		if not stops is Array or stops.size() < 2 or stops.size() > 64: return _error(id + ": use 2–64 stops, including origin and destination")
+		if layout=="kerala_coast" and stops[0] is Dictionary:
+			for station in world.stations:
+				if station.get("through_halt",false) and stops[0].get("block","") in station.platform_tracks:
+					return _error(id+": start at a station with a departure signal; unsignalled halts can be intermediate stops")
 		for stop in stops:
 			if not stop is Dictionary: return _error(id + ": each stop must be an object")
 			if not _text(stop.get("name",stop.get("block","")),100): return _error(id + ": invalid stop name")
@@ -103,8 +116,14 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 			if not _number(direction) or float(direction) not in [-1.0,1.0]: return _error(id + ": stop direction must be +1 or -1")
 			if not world.graph.allows(block,int(direction)): return _error(id + ": wrong-way stop on " + block)
 		if not _day(definition.get("day",1)): return _error(id + ": invalid departure day")
-		var train := Train.new(id,Memu.LENGTH)
-		if stock != "memu": Stock.configure(train,stock)
+		var train := Train.new(id,1)
+		Stock.configure(train,stock)
+		var speed=definition.get("speed_limit_kmh",train.max_speed*3.6)
+		if not _number(speed) or speed<5 or speed>train.max_speed*3.6+.001:return _error(id+": speed cap must be between 5 km/h and this stock's maximum")
+		train.max_speed=float(speed)/3.6
+		var priority=definition.get("priority",50)
+		if not _number(priority) or priority<1 or priority>100 or priority!=floorf(priority):return _error(id+": priority must be an integer from 1 to 100 (higher runs first)")
+		train.dispatch_priority=int(priority)
 		# Timetable validates full-length markers before any placement.
 		train.path = [{edge=stops[0].block,dir=int(stops[0].direction)}]
 		world.trains[id] = train

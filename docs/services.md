@@ -2,15 +2,15 @@
 
 Open **F5**, **Menu → Service designer / import / export**, or **D → Design
 services**. The current run pauses while you edit a separate draft. The first
-draft contains the existing six mixed passenger services; reopening an authored
+draft contains the current route's mixed passenger services; reopening an authored
 run edits its original definitions.
 
 ## Create and play
 
 1. Set the timetable name, world start time and day.
 2. Select a service, or Add / Duplicate one. Give it a unique ID and name; choose
-   MEMU or one of the seven imported formations. Set departure time, day and
-   running direction.
+   detailed WAP-7 + LHB, WAP-7 + ICF, or Vande Bharat 8/16. Set departure time,
+   day, direction, priority (1–100, higher first), and service speed cap.
 3. Choose each stop's platform/block. The first row is the origin, with arrival
    offset **0**. Later arrival offsets are minutes after booked departure, and
    must include preceding dwell. The last row is the destination. Add, remove or
@@ -50,7 +50,7 @@ Files describe services for the current layout. They are not running savegames
 or track-layout files. A geometry/signalling signature rejects files for a
 different or changed railway; scenery changes do not affect compatibility.
 
-- 1–12 simultaneously placed services, 2–16 stops per service.
+- 1–12 simultaneously placed services, 2–64 stops per service.
 - All trains occupy their origins at world start, even if booked later. Two
   origins cannot share a block. A duplicate needs its own free origin.
   Off-map spawning and rolling-stock reuse are not implemented.
@@ -66,7 +66,11 @@ different or changed railway; scenery changes do not affect compatibility.
 
 JSON envelope: format "train-game-services", version 1, layout,
 layout_signature, name, world_start, day and a services array. Each service has
-id, name, stock, departure, day and stops. Stop fields follow
+id, name, stock, departure, day and stops. Optional `priority` defaults to 50;
+`speed_limit_kmh` defaults to the stock maximum and cannot exceed it. Stock
+identifiers are `lhb`, `icf`, `vb8`, `vb16`. On Kerala Coast, the dispatcher uses
+actual running and priority to select passing roads and arrange overtakes;
+imported files do not contain scripted crossing/overtaking gates. Stop fields follow
 [timetables.md](timetables.md). Export gives a complete editable example with
 the current layout signature. Maximum import size: 256 KiB.
 

@@ -18,5 +18,5 @@ static func refresh() -> void:
 static func delay_seconds() -> float:
 	return output_latency+maxf(0.0,AudioServer.get_time_to_next_mix()) if _realtime else 0.0
 
-static func prediction_seconds(frame_seconds: float) -> float:
-	return Data.KERNEL_LEAD+output_latency+mix_period+maxf(Data.LOOKAHEAD,frame_seconds)
+static func prediction_seconds(frame_seconds: float, simulation_rate: float = 1.0) -> float:
+	return Data.KERNEL_LEAD+(output_latency+mix_period)*simulation_rate+maxf(Data.LOOKAHEAD,frame_seconds)

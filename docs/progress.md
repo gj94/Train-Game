@@ -1,5 +1,73 @@
 # Progress
 
+## 2026-10-08 — Kerala Coast, dynamic traffic, detailed VB and journey progress
+- Added the full-scale Ernakulam–Alappuzha–Kayamkulam–Kollam–TVC–Nagercoil
+  railway: 276.585 km between station centres, 56 stations, dated OSM alignment,
+  waterways/roads/building footprints and SRTM terrain. The source corridor has
+  336,756 mapped buildings. Two workers stream nearby scenery, track, OHE and
+  station chunks; edge-local coordinates and a floating origin avoid cab jitter.
+  Original background Blender station frontages, platforms, bridges, bilingual
+  boards, shelters, people and tropical planting are included. Wide yards keep
+  buildings/footbridges clear of their outer roads; radar bridge-top elevations
+  are clipped below the rail deck. Geography/provenance/rebuild: kerala-coast.md.
+- Station operating roads use an OSM rail/siding cross-section audit with source
+  way IDs. Construction and identified dead-end/yard tracks are excluded.
+  Single-road halts have no invented loops. Throats, platform identifiers and
+  roughly 1 km automatic blocks are reconstructed, not official current plans.
+  A single-line direction lock permits following trains but blocks opposing
+  entry until occupied trains and committed entry routes clear; idle automatic
+  authorities cannot hold the direction forever.
+- Seven designed passenger services, including K1's 56-call, 65 km/h stopping
+  working, higher-priority LHB/VB services and northbound trains. Dispatch uses
+  actual positions, release times, priority, reachable roads and interlocking.
+  Overtakes/crossings are not scripted gates. First arrivals take available
+  crossing loops, with lookahead covering the next single section through halts.
+  A committed meet prevents reciprocal holds at different station loops.
+  Fixed an opposite-line-loop overtake deadlock and a PUPR section ID being
+  mistaken for a station platform. HUD/F1 names the service to wait for and
+  updates/withdraws the advice as conditions change.
+- Fresh launch now defaults to **K1 on Kerala Coast**. D still selects any
+  service; F9 offers random assignment and four solo formations; F7 changes
+  route. **PROGRESS / F12** shows completed/total calls, calls left, next stop,
+  distance, approximate in-game travel/dwell time and booked arrival. Origin is
+  counted (1/56 initially). Unknown signal waits are identified separately.
+  The panel pauses and restores the prior pause state on closing.
+- Whole-world fast forward: T cycles ×1/2/4/8/16/32, Shift+T restores ×1; direct
+  buttons also exist in pause. All physics/dispatch/clock advance in bounded
+  substeps, preserving in-world train limits. Playback and audio scheduling use
+  the same simulation rate; approved generated sound data is unchanged.
+- Enhanced full-size Vande Bharat v02 is pinned to asset-repo revision
+  5322f1ca301c0d8832eccd84c779904f8e4f00f3 (backup/vande-bharat-fullsize-v02).
+  All 12,828,460 source triangles across seven masters, source material graphs,
+  furnished interiors, seats and articulation survive the transfer. Separate
+  shadow meshes, shared resources and engine LODs control cost. Formation pitch
+  is 192/384 m for 8/16 cars. Source remains an author-labelled WIP checkpoint.
+  Only detailed WAP-7 + ICF, WAP-7 + LHB and VB8/VB16 are playable; low-detail
+  WAP/MEMU and WAG showcases are excluded from the package.
+- F5 service files now support priorities, speed caps and up to 64 stops, with
+  exact stopping markers and route-specific geometry signatures. Long route
+  distance queries use cached reverse shortest paths instead of a 64-edge limit.
+- Verification: **183 headless tests pass**, including progress counting,
+  long-section first-arrival loops, dynamic priority, no opposing single-line
+  entry, following trains and expired automatic reservations. Native checks
+  pass all four formations' axle/sound alignment, pivots, reverse orientation
+  and cameras; WAP/VB geometry, coordinate and dependency hashes pass. Native
+  route captures cover ERS/TVC/NCJ, backwaters, both VB interiors and cab, the
+  named wait indication, every time rate and the default/progress button. A
+  full-route rehearsal completed all seven services safely; final encounter
+  counts and release details are recorded below when packaging finishes.
+  Source-render static memory stayed roughly 508–595 MiB across distant visits,
+  with zero observed far-end position error. These are Radeon 780M checks,
+  not a 4090 benchmark. Distribution testing remains skipped by request.
+- Playtest: launch directly into K1; open PROGRESS/F12, close and depart or press
+  A for AI. Check the counter after Tirunettur. Use T/Shift+T on long stretches
+  and waits; watch the named crossing/overtake advice. Drive late and check that
+  higher-priority traffic is dispatched from actual running. D selects K3/K5
+  for VB8/VB16; inspect pilot, head-out and first/middle/last passenger views.
+  F5 edits priority/speed/stops and exports/imports the timetable. F10 helps
+  compare cab/exterior performance on the 4090 PC. Mapped geography is a
+  playable reconstruction, not a surveyed replica of every railway detail.
+
 ## 2026-10-07 — Pilot/head-out cameras and portable service designer
 - Added direct pilot (4), left/right head-out (Q/E) and return toggles. Xbox
   D-pad left/right/up offers the same while driving; passenger shortcuts remain

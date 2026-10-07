@@ -5,30 +5,44 @@ are available through **F9**, or **Escape → Traffic / solo fleet**. Choose a w
 and confirm to start at Chennapuram. F2/F3 now use the detailed WAP-7 as well.
 See [the v0.2 port notes](wap7-detail.md) for interior viewpoints and preserved detail.
 
-A fresh launch assigns a random cab among **six mixed passenger services**, with
-AI traffic and automatic routing. See [dispatching.md](dispatching.md). F1 explains
-your assignment and expected waits. Restart keeps it; F9 offers a new random
+A fresh launch starts **K1, the slow passenger on Kerala Coast**, among seven
+services with AI traffic and automatic routing. F1 explains your assignment and
+expected waits; PROGRESS/F12 shows stop counts and the next arrival estimate.
+Restart keeps the assignment; F9 offers a new random
 assignment or a solo working. The LHB working still hauls all seven classes:
 1A, 2A, 3A, 2S, CC, SL and GS. Explicit fleet choices and F2/F3 take precedence;
-`-- --memu` starts the original six-MEMU dispatcher directly.
+the older low-detail WAP and MEMU are no longer playable or shipped. F7 switches
+between Kerala Coast and the shorter Southern corridor.
 
 ## Vehicles
 
 | Working | Imported assets | Visible train length |
 |---|---|---:|
-| WAP-7 | Detailed v0.2 master, both cabs and machinery room | 20.562 m |
-| WAG-9 | Green/yellow master, both furnished cabs | 20.642 m |
-| WAG-12B | Articulated A/B sections with outward cabs | 38.580 m |
 | ICF showcase | WAP-7 + 1A, 2A, 3A, 2S, CC, SL, GS | 176.639 m |
 | LHB showcase | WAP-7 + 1A, 2A, 3A, 2S, CC, SL, GS | 188.560 m |
-| Vande Bharat 8 | DTC, MC, TC_EC, MC2, MC2, TC_CC, MC, DTC | 155.738 m |
-| Vande Bharat 16 | Source formation with all six required car types | 310.738 m |
+| Vande Bharat 8 | Full-size v02, DTC–MC–TC_EC–MC2 + mirrored half | 191.560 m (192 m coupling pitch) |
+| Vande Bharat 16 | Full-size v02, CC trailers and two central EC cars | 383.560 m (384 m coupling pitch) |
 
-Twenty-five distinct current masters are imported. Older prototypes, review
-fixtures and duplicate FBX/baked files are superseded by these masters.
-Coach showcases are inspection consists, not claimed real services. Freight
-locomotives run light; the source contains no freight wagons. Vande Bharat retains
-the author's **compact interpretation**, with 19.375 m car pitch.
+Only these four formations are selectable. The detailed WAP-7 retains both cabs
+and its machinery room. Historical WAG masters remain in source history/catalogue
+for integrity comparison, but are excluded from the playable package.
+Coach showcases contain seven classes rather than a claimed real booked rake.
+
+The enhanced Vande Bharat is pinned to source revision
+`5322f1ca301c0d8832eccd84c779904f8e4f00f3`, branch
+`backup/vande-bharat-fullsize-v02`. This is the author's WIP checkpoint, including
+EC upholstery still under review. Its full-size 24 m car pitch replaces the
+older compact interpretation. Bogie centres are 14.9 m apart, axle spacing 2.7 m,
+wheel diameter .952 m. The eight/sixteen-car formations have 530/1,128 modelled seats.
+
+All 12,828,460 triangles from the seven source masters survive in the closest
+LOD, including seats, luggage racks, equipment, cab and underframe details.
+Meshes are merged only within rigid articulated parts. Pantographs, wheels and
+bogies retain separate pivots. Source procedural material graphs are translated
+to Godot, preserving source coordinates in full-float custom vertex channels.
+Rendering/lighting differs between engines; a Cycles render is not pixel-identical
+to the game's real-time lighting. Distant LODs, 100 m interior visibility and
+separate reduced shadow meshes reduce runtime work without simplifying the master.
 
 ## Controls and route
 
@@ -36,7 +50,7 @@ the author's **compact interpretation**, with 19.375 m car pitch.
 - **Tab**: cab/exterior. **F**: frame train; wheel/right-drag: zoom/orbit.
 - **V**: passenger/cab in ICF, LHB and Vande Bharat. **PgUp/PgDn** cycles coaches;
   **←/→** changes position; **Home** switches aisle/seat.
-- **R**: change ends at rest in light engines and Vande Bharat. Coach showcases
+- **R**: change ends at rest in Vande Bharat. Coach showcases
   refuse reversal because a locomotive run-round is not implemented.
 - **C/D**: route desk. Initial routes lead to Maruthur P1. To continue, set
   **MRT-E1 → E-AE1**, then **KDP-H → BUFFER:KDP_B1**.
@@ -44,7 +58,7 @@ the author's **compact interpretation**, with 19.375 m car pitch.
   discards progress. There is no save/load.
 
 Bogies steer through curves, wheels roll with distance, and active pantograph
-heads meet the 5.6 m wire above rail. WAG-12 sections and VB cars articulate
+heads meet the 5.6 m wire above rail. VB cars articulate
 independently. Reversal preserves physical car orientation and reverses the
 axle audio map. Existing route protection and approved sound kernels are reused.
 
@@ -57,7 +71,13 @@ frame rate still need a human playtest.
 
 ## Rebuild
 
-The other 24 masters remain at `4c4f0be85edbf4468bca22f2d1285fec72343bd5`.
+ICF/LHB masters remain at `4c4f0be85edbf4468bca22f2d1285fec72343bd5`.
+Fetch `tools/vb_v02_sources.json` into `.local/vb-v02-source/` for the seven
+enhanced Vande Bharat masters. Run the converter for their `vb_*` IDs, then
+install the emitted material shader code through Godot MCP (create the per-car
+`*_detail/shaders` directories first). The exported shader definitions are saved
+in `.local/<car>-materials.json`. Keep mesh compression disabled on these imports:
+the extra full-float coordinates carry the procedural material inputs.
 WAP-7 is now the detailed v0.2 source: fetch `tools/wap7_v02_sources.json` into
 `.local/wap7-v02-source/` before running the converter. Follow [wap7-detail.md](wap7-detail.md)
 for its shader installation and source-specific checks.
@@ -77,9 +97,9 @@ The converter maps source `(X,Y,Z)` to Godot `(-Y,Z,-X)`, preserves metres,
 UVs/split normals and mechanical hierarchies, and merges meshes per rigid parent:
 The original fleet conversion used 387 rigid groups across 25 models; the detailed
 WAP-7 replacement has its own 24-group audit in `wap7-detail.md`.
-VB ceiling lining winding is corrected for Godot's backface culling.
-Legacy fleet glass gets an alpha material. The new WAP-7 uses its authored material
-graphs and original images instead of generic fleet finishing. Godot generates mesh LODs; groups
+The v02 VB ceiling uses its authored inward lining; the old compact ceiling fix
+does not apply. Legacy coach glass gets an alpha material. WAP-7 and enhanced VB
+use authored material graphs instead of generic fleet finishing. Godot generates mesh LODs; groups
 named INTERIOR have a 100 m draw range. Other interior geometry remains visible
 with its parent body.
 
@@ -92,15 +112,16 @@ bounds, pivots, cameras, passenger markers and mesh counts. The adapter is
 
 ```powershell
 & .\.local\godot\Godot_v4.7.2-stable_win64_console.exe --headless --path . --log-file .local/fleet-tests.log --script res://tests/run_tests.gd
-& .\.local\godot\Godot_v4.7.2-stable_win64_console.exe --headless --path . --log-file .local/fleet-assets.log --script res://tools/check_ported_assets.gd
-& .\.local\godot\Godot_v4.7.2-stable_win64_console.exe --headless --path . --log-file .local/fleet-playable.log --script res://tools/check_ported_playable.gd
+& .\.local\godot\Godot_v4.7.2-stable_win64_console.exe --path . --audio-driver Dummy --log-file .local/fleet-assets.log --script res://tools/check_ported_assets.gd
+python tools/check_wap7_port.py
+python tools/check_vb_port.py
 ```
 
-For captures, run the last script without `--headless`, adding `-- --capture`;
-outputs go to `.local/ported-preview/`. Direct launch accepts `-- --fleet=wap7`,
-`wag9`, `wag12`, `icf`, `lhb`, `vb8` or `vb16`.
+`tools/check_kerala_geography.gd` captures the detailed VB pilot, CC/EC passenger
+views and exterior on the geographic route. Native rendering is required for
+transform/visual checks. Direct launch accepts `-- --fleet=icf`, `lhb`, `vb8` or `vb16`.
 
-1. F9 → WAG-9, then WAG-12B: inspect wheel/rail contact and pantographs. Stop,
+1. F9 → Vande Bharat 8, then 16: inspect wheel/rail contact and pantographs. Stop,
    press R and inspect the other cab.
 2. Choose each coach showcase. V then PgDn through all seven classes; check
    glazing, interior visibility and Home/arrow-key viewpoints.

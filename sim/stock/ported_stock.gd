@@ -1,16 +1,16 @@
 extends RefCounted
 ## Pure-simulation geometry for the user's imported fleet. Metres, kg, watts.
-## These are playable approximations; VB retains the author's compact length.
+## Full-size v02 VB datums and detailed WAP-7 with the two coach families.
 
-const CHOICES := ["wap7", "wag9", "wag12", "icf", "lhb", "vb8", "vb16"]
+const CHOICES := ["lhb", "icf", "vb8", "vb16"]
 const LABELS := {
 	"wap7": "WAP-7 · imported light engine",
 	"wag9": "WAG-9 · light engine",
 	"wag12": "WAG-12B · twin section",
 	"icf": "WAP-7 + ICF · seven-class showcase",
 	"lhb": "WAP-7 + LHB · seven-class showcase",
-	"vb8": "Vande Bharat · compact 8 cars",
-	"vb16": "Vande Bharat · compact 16 cars",
+	"vb8": "Vande Bharat · detailed 8 cars · 192 m",
+	"vb16": "Vande Bharat · detailed 16 cars · 384 m",
 }
 const CLASSES := ["1a", "2a", "3a", "2s", "cc", "sl", "gs"]
 
@@ -21,7 +21,7 @@ static func geometry(model: String) -> Dictionary:
 	if model.begins_with("lhb_"):
 		return {pitch = 24.0, bogie = 7.45, axle_offsets = [-1.28, 1.28], radius = .4575, front = .08, rear = .08}
 	if model.begins_with("vb_"):
-		return {pitch = 19.375, bogie = 5.85, axle_offsets = [-1.35, 1.35], radius = .476, front = .368765 if model == "vb_dtc" else 0.0, rear = 0.0}
+		return {pitch = 24.0, bogie = 7.45, axle_offsets = [-1.35, 1.35], radius = .476, front = 0.0, rear = 0.0}
 	if model.begins_with("wag12"):
 		return {pitch = 19.2, bogie = 5.1, axle_offsets = [-1.3, 1.3], radius = .625, front = .09, rear = 0.0}
 	return {pitch = 20.4 if model == "wap7" else 20.562, bogie = 6.0, axle_offsets = [-1.85, 0.0, 1.85], radius = .546, front = .08 if model == "wap7" else .04, rear = .08 if model == "wap7" else .04}

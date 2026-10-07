@@ -102,7 +102,10 @@ class Compiler:
             expr={'ADD':f'({x}+{y})','SUBTRACT':f'({x}-{y})','MULTIPLY':f'({x}*{y})',
                   'DIVIDE':f'({x}/{y})','MULTIPLY_ADD':f'({x}*{y}+{z})','POWER':f'pow(max({x},0.0),{y})',
                   'MINIMUM':f'min({x},{y})','MAXIMUM':f'max({x},{y})','ABSOLUTE':f'abs({x})',
-                  'SINE':f'sin({x})','ARCTAN2':f'atan({x},{y})','GREATER_THAN':f'step({y},{x})'}[op]
+                  'SINE':f'sin({x})','ARCTAN2':f'atan({x},{y})','GREATER_THAN':f'step({y},{x})',
+                  'FRACT':f'fract({x})','FLOOR':f'floor({x})','MODULO':f'mod({x},{y})',
+                  'LESS_THAN':f'(1.0-step({y},{x}))',
+                  'PINGPONG':f'({y}-abs(mod({x},max(2.0*{y},0.000001))-{y}))'}[op]
             if n.use_clamp: expr=f'clamp({expr},0.0,1.0)'
         elif t=='MAP_RANGE':
             x,lo,hi,ol,oh=(a(k) for k in ('Value','From Min','From Max','To Min','To Max'))
@@ -200,6 +203,10 @@ class Compiler:
         return dict(name='wap7_'+self.mat.name,code=code,textures=self.textures,glass=glass,
                     source_values=values, shader='wap7_'+hashlib.sha256(code.encode()).hexdigest()[:12]+'.gdshader')
 
-def export_materials(materials, directory):
+def export_materials(materials, directory, prefix='wap7'):
     directory.mkdir(parents=True,exist_ok=True)
-    return [Compiler(m,directory).compile() for m in materials]
+    output = [Compiler(m,directory).compile() for m in materials]
+    for entry in output:
+        entry['name'] = prefix + entry['name'][4:]
+        entry['shader'] = prefix + entry['shader'][4:]
+    return output

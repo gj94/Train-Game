@@ -42,7 +42,10 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 		cars.append(car)
 		var model: Node3D = (load("res://assets/models/ported/%s.glb" % entry.model) as PackedScene).instantiate()
 		car.add_child(model)
-		preload("res://game/fleet_surface.gd").apply(model, entry.model.begins_with("vb_"))
+		if entry.model.begins_with("vb_") and spec.get("detailed_materials",false):
+			preload("res://game/authored_vehicle_materials.gd").apply(model,entry.model)
+		else:
+			preload("res://game/fleet_surface.gd").apply(model, entry.model.begins_with("vb_"))
 		models.append(model)
 		var car_bogies := []
 		for pivot in spec.bogies:
@@ -71,7 +74,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 				var material: Material = mesh.get_active_material(surface)
 				if material is ShaderMaterial and material.get_meta("optical_glass",false):
 					var role := material.resource_name.to_lower()
-					if "laminated_cab_glass" in role or "windscreen" in role:
+					if entry.model.begins_with("vb_") or "laminated_cab_glass" in role or "windscreen" in role:
 						var clear := material.duplicate() as ShaderMaterial
 						clear.set_shader_parameter("onboard_glass",true)
 						car_glass.append({node=mesh,surface=surface,clear=clear,exterior=material})
@@ -114,7 +117,8 @@ func _interior_setup(parent: Node3D) -> void:
 
 func _point(back: float) -> Vector3:
 	var distance := clampf(back, 0.0, train.length)
-	var loc: Dictionary = motion.locate(distance) if motion != null else train.locate_behind(graph, distance)
+	if motion != null: return motion.point(distance)
+	var loc: Dictionary = train.locate_behind(graph, distance)
 	return graph.position(loc.edge, loc.s)
 
 
@@ -176,7 +180,7 @@ func cab_transform() -> Transform3D:
 	var opposite := cars.size() == 1 and train.cab_end == 2
 	var eye := _v(eyes[1 if opposite else 0].position)
 	var look := Vector3(0, -.06, 1 if opposite else -1)
-	if specs[i].get("detailed_materials", false):
+	if formation[i].model=="wap7" and specs[i].get("detailed_materials", false):
 		var positions := [Vector3(-.78,3.05,-7.98),Vector3(.90,3.05,-7.98),Vector3(0,3.13,-7.47),Vector3(0,3.0,-6.6)]
 		eye = positions[cab_position]
 		if opposite: eye = Vector3(-eye.x,eye.y,-eye.z)
@@ -189,7 +193,7 @@ func head_out_transform(side: int) -> Transform3D:
 	var i := cars.size() - 1 if train.cab_end == 2 else 0
 	var opposite := cars.size() == 1 and train.cab_end == 2
 	var eye := _v(specs[i].eyes[1 if opposite else 0].position)
-	if specs[i].get("detailed_materials", false):
+	if formation[i].model=="wap7" and specs[i].get("detailed_materials", false):
 		eye = Vector3(0, 3.05, 7.8 if opposite else -7.8)
 	eye.x = side * 1.90 * (-1.0 if opposite else 1.0)
 	var transform := cars[i].global_transform
@@ -199,7 +203,7 @@ func head_out_transform(side: int) -> Transform3D:
 
 func cycle_cab_position() -> String:
 	var i := cars.size()-1 if train.cab_end==2 else 0
-	if not specs[i].get("detailed_materials", false): return ""
+	if formation[i].model!="wap7" or not specs[i].get("detailed_materials", false): return ""
 	cab_position = (cab_position+1)%4
 	return ["WAP-7 driver seat", "WAP-7 assistant seat", "WAP-7 cab overview", "WAP-7 machinery aisle"][cab_position]
 

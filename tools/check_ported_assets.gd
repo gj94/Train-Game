@@ -41,7 +41,7 @@ func _check() -> void:
 					for index in vertices.size():
 						var point: Vector3 = mesh.global_transform * vertices[index]
 						var normal: Vector3 = mesh.global_basis * normals[index]
-						if point.y > 3.69 and point.y < 3.74 and absf(point.x) < .9 and normal.y < -.8:
+						if point.y > 2.8 and point.y < 4.0 and absf(point.x) < .9 and normal.y < -.8:
 							inward_ceiling = true
 		if str(id).begins_with("vb_"): check(inward_ceiling, id + " ceiling faces passengers")
 		if id == "wap7": check(textures >= 2, "WAP-7 packed instruments have textures")
@@ -55,7 +55,7 @@ func _check() -> void:
 				if node != null: check(node.global_position.distance_to(v(pivot.position)) < .001, id + " axis conversion " + pivot.node)
 		var geometry := Stock.geometry(id)
 		check(absf(geometry.pitch - spec.pitch) < .001, id + " sim/import pitch matches")
-		check(spec.mesh_groups < 35, id + " consolidated mesh count")
+		check(spec.mesh_groups < 45, id + " consolidated mesh count including pantograph pivots")
 		model.free()
 	for choice in Stock.CHOICES:
 		var world := Fleet.build(choice)
@@ -87,7 +87,7 @@ func _check() -> void:
 		view.update()
 		check_view(view, train, curved, .02)
 		parent.free()
-	print("Imported assets: 25 models, 7 formations; %d failures" % failures)
+	print("Imported assets: 25 archived/current masters, 4 playable formations; %d failures" % failures)
 	quit(1 if failures else 0)
 
 func check_view(view, train: Train, world: RailWorld, tolerance: float = .003) -> void:

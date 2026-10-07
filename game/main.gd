@@ -5,10 +5,7 @@ const FirstLine := preload("res://sim/layouts/first_line.gd")
 const Corridor := preload("res://sim/layouts/southern_corridor.gd")
 const DispatchPlan := preload("res://sim/dispatch_plan.gd")
 const WorldView := preload("res://game/world_view.gd")
-const TrainView := preload("res://game/train_view.gd")
 const TrainMotion := preload("res://game/train_motion.gd")
-const Wap7View := preload("res://game/wap7_train_view.gd")
-const LhbView := preload("res://game/lhb_train_view.gd")
 const PortedView := preload("res://game/ported_train_view.gd")
 const PortedStock := preload("res://sim/stock/ported_stock.gd")
 const PortedFleet := preload("res://sim/layouts/ported_fleet.gd")
@@ -18,11 +15,14 @@ const Hud := preload("res://game/hud.gd")
 const ScenarioBrief := preload("res://game/scenario_brief.gd")
 const ControllerInput := preload("res://game/controller_input.gd")
 const TrainAudio := preload("res://game/platform_audio.gd")
-const AxleJoint := preload("res://game/axle_joint.gd")
 const Dispatcher := preload("res://game/dispatcher.gd")
 
 const ServicePack := preload("res://sim/service_pack.gd")
 const ServiceEditor := preload("res://game/service_editor.gd")
+const Kerala := preload("res://sim/layouts/kerala_coast.gd")
+var geographic_drive := false
+var geographic_listener
+var _geographic_loading := false
 var service_editor
 var authored_pack := {}
 var _service_error := ""
@@ -54,6 +54,7 @@ var labels_enabled := false
 var _desk_before_cab := false
 var _desk_before_clean := false
 var _paused_before_help := false
+var _paused_before_progress := false
 var _pending_action := ""
 var _interior_view := false
 
@@ -61,12 +62,19 @@ var _interior_view := false
 func _ready() -> void:
 	# Custom railway interpolation needs a clock without physics-jitter correction.
 	Engine.physics_jitter_fix = 0.0
+	AudioServer.playback_speed_scale=1.0
+	var default_route:="kerala_coast"
+	if get_tree().get_meta("small_test_layout",false) or not str(get_tree().get_meta("imported_fleet","")).is_empty() or Array(OS.get_cmdline_user_args()).any(func(a):return a.begins_with("--fleet=") or a in ["--wap7","--lhb","--memu"]):default_route="southern_corridor"
+	for argument in OS.get_cmdline_user_args():
+		if argument.begins_with("--route="):default_route=argument.trim_prefix("--route=")
+	geographic_drive = get_tree().get_meta("route",default_route)=="kerala_coast"
+	if geographic_drive: get_tree().set_meta("route","kerala_coast")
 	imported_fleet = get_tree().get_meta("imported_fleet", "")
 	if not get_tree().has_meta("imported_fleet"):
 		for arg in OS.get_cmdline_user_args():
 			if arg.begins_with("--fleet=") and arg.trim_prefix("--fleet=") in PortedStock.CHOICES:
 				imported_fleet = arg.trim_prefix("--fleet=")
-			elif arg == "--wap7": imported_fleet = "wap7"
+			elif arg == "--wap7": imported_fleet = "icf"
 			elif arg == "--lhb": imported_fleet = "lhb"
 	wap7_drive = get_tree().get_meta("wap7_drive", "--wap7" in OS.get_cmdline_user_args())
 	lhb_drive = get_tree().get_meta("lhb_drive", "--lhb" in OS.get_cmdline_user_args())
@@ -81,7 +89,8 @@ func _ready() -> void:
 	var layout = FirstLine if get_tree().get_meta("small_test_layout", false) else Corridor
 	var authored = get_tree().get_meta("service_pack", {})
 	if not authored.is_empty():
-		var result := ServicePack.build(authored, "first_line" if get_tree().get_meta("small_test_layout",false) else "southern_corridor")
+		var expected_layout := "kerala_coast" if geographic_drive else ("first_line" if get_tree().get_meta("small_test_layout",false) else "southern_corridor")
+		var result := ServicePack.build(authored, expected_layout)
 		if result.ok:
 			authored_pack = result.data
 			world = result.world
@@ -94,32 +103,38 @@ func _ready() -> void:
 			get_tree().remove_meta("service_pack")
 	if not authored_pack.is_empty():
 		pass
+	elif geographic_drive:
+		world = Kerala.build_traffic()
+		traffic_drive = true
+		imported_fleet = ""
+		wap7_drive = false
+		lhb_drive = false
 	elif traffic_drive:
 		world = Traffic.build()
 	elif not imported_fleet.is_empty():
 		world = PortedFleet.build(imported_fleet)
 	else:
 		world = layout.build_lhb() if lhb_drive else (layout.build_wap7() if wap7_drive else layout.build_dispatch())
+	for service in world.trains.values():
+		if not service.stock_kind.begins_with("ported:"):
+			PortedStock.configure(service,"lhb")
+			world.place_train(service,service.path[0].edge,service.head_s,service.path[0].dir)
 	train = world.trains.values()[0]
 	if not authored_pack.is_empty():
 		var chosen: String = get_tree().get_meta("player_service",train.id)
 		train = world.trains.get(chosen,train)
 	elif traffic_drive:
-		var seed_value: int = get_tree().get_meta("traffic_seed", randi())
+		var seed_value: int = get_tree().get_meta("traffic_seed", 0 if geographic_drive else randi())
 		get_tree().set_meta("traffic_seed", seed_value)
 		get_tree().set_meta("traffic_drive", true)
-		train = world.trains[Traffic.selected_service(seed_value)]
-	wv = WorldView.new()
+		train = world.trains[world.trains.keys()[posmod(seed_value,world.trains.size())]] if geographic_drive else world.trains[Traffic.selected_service(seed_value)]
+	wv = preload("res://game/geographic_world.gd").new() if geographic_drive else WorldView.new()
+	if geographic_drive: wv.selected_train = train.id
 	wv.build(world, self)
 	for t in world.trains.values():
-		var view: RefCounted
-		match t.stock_kind:
-			"lhb": view = LhbView.new()
-			"wap7": view = Wap7View.new()
-			_: view = TrainView.new()
-		if t.stock_kind.begins_with("ported:"):
-			view = PortedView.new()
+		var view: RefCounted = PortedView.new()
 		var motion := TrainMotion.new(t, world.graph)
+		if geographic_drive: motion.coordinate_origin = wv.coordinate_origin
 		train_motions[t.id] = motion
 		view.motion = motion
 		view.build(t, world.graph, self, wv)
@@ -141,18 +156,19 @@ func _ready() -> void:
 		cam.cab_yaw_limit = PI
 	add_child(cam)
 	cam.make_current()
+	if geographic_drive:
+		geographic_listener = preload("res://game/geographic_audio_listener.gd").new()
+		add_child(geographic_listener)
+		geographic_listener.source_camera = cam
+		geographic_listener.coordinate_origin = wv.coordinate_origin
+		geographic_listener.sync(cam,wv.coordinate_origin)
+		cam.far = 12000.0
 	for t in world.trains.values():
-		var axles: Array = Wap7View.sound_axles() if t.stock_kind == "wap7" else AxleJoint.rake_axles(
-			train_views[t.id].cars.size(), TrainView.CAR_LENGTH + TrainView.CAR_GAP,
-			TrainView.CAR_LENGTH, TrainView.BOGIE_INSET, TrainView.AXLE_SPACING)
-		if t.stock_kind == "lhb":
-			axles = LhbView.sound_axles()
-		elif t.stock_kind.begins_with("ported:"):
-			axles = train_views[t.id].sound_axles()
+		var axles: Array = train_views[t.id].sound_axles()
 		var sound := TrainAudio.new()
 		add_child(sound)
 		sound.motion = train_motions[t.id]
-		sound.setup(t, world, cam, axles)
+		sound.setup(t, world, geographic_listener if geographic_drive else cam, axles)
 		train_audio[t.id] = sound
 	audio = train_audio[train.id]
 	# Rail-joint markers: yellow bars that flash red whenever an axle hits them (J toggles).
@@ -170,6 +186,7 @@ func _ready() -> void:
 	dispatcher.setup(world)
 	dispatcher.services_requested.connect(_open_services)
 	dispatcher.train_selected.connect(_select_train)
+	dispatcher.station_view_requested.connect(_visit_station)
 	dispatcher.drive_requested.connect(_enter_cab)
 	dispatcher.pause_requested.connect(_toggle_pause)
 	dispatcher.restart_requested.connect(func(): _request_action("restart"))
@@ -206,7 +223,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if paused:
+	if paused or (geographic_drive and wv.loading):
 		return
 	var dir := 0.0
 	if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP):
@@ -219,22 +236,47 @@ func _physics_process(delta: float) -> void:
 		train.automatic = false
 		train.controller = clampf(train.controller + dir * HANDLE_RATE * delta, -1.0, 1.0)
 	for motion in train_motions.values(): motion.begin_tick()
-	for i in time_scale:
-		_dispatch_tick += delta
+	var remaining:=delta*time_scale
+	while remaining>.000001:
+		var slice:=minf(remaining,.05)
+		remaining-=slice
+		_dispatch_tick += slice
 		if dispatcher.auto_dispatch and _dispatch_tick >= .5:
 			_dispatch_tick = 0
 			DispatchPlan.update(world, dispatcher.hold_arrivals, train.id if traffic_drive else "")
-		world.step(delta)
+		world.step(slice)
 	for motion in train_motions.values(): motion.end_tick()
+
+
+func _geographic_frame() -> void:
+	var absolute: Vector3 = cam.global_position+wv.coordinate_origin
+	if cam.global_position.length_squared()>1500.0*1500.0:
+		var origin := Vector3(floorf(absolute.x/1024)*1024,0,floorf(absolute.z/1024)*1024)
+		var shift: Vector3 = origin-wv.coordinate_origin
+		wv.rebase(origin)
+		cam.shift_origin(shift)
+		for motion in train_motions.values(): motion.coordinate_origin=origin
+	geographic_listener.coordinate_origin=wv.coordinate_origin
+	if wv.loading!=_geographic_loading:
+		_geographic_loading=wv.loading
+		for sound in train_audio.values(): sound.set_paused(paused or _geographic_loading)
 
 
 func _render_trains(fraction: float) -> void:
 	for id in train_views:
 		train_motions[id].sample(fraction)
+		if geographic_drive and cam!=null:
+			var nearby: bool=id==train.id or train_motions[id].point(0).distance_squared_to(cam.global_position)<2200.0*2200.0
+			for car in train_views[id].cars: car.visible=nearby
+			if train_audio.has(id):
+				var quiet: bool=paused or wv.loading or not nearby
+				if train_audio[id]._paused!=quiet: train_audio[id].set_paused(quiet)
+			if not nearby: continue
 		train_views[id].update()
 
 
 func _process(delta: float) -> void:
+	if geographic_drive: _geographic_frame()
 	_render_trains(1.0 if paused else Engine.get_physics_interpolation_fraction())
 	for sound in train_audio.values(): sound.listener_owner = audio
 	if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
@@ -249,6 +291,7 @@ func _process(delta: float) -> void:
 			hud.log_event(e)
 	var ns := world.next_signal(train)
 	hud.refresh({
+		dispatch_expectation=preload("res://sim/priority_dispatch.gd").hold_reason(world,train,true),
 		train_id = train.id,
 		stock_kind = train.stock_kind,
 		cab_end = train.cab_end,
@@ -281,13 +324,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Modal input never reaches train controls; the clock and held-key input pause too.
 		match event.physical_keycode:
 			KEY_ESCAPE:
-				if hud.modal == "help": _close_help()
+				if hud.modal == "progress": _close_progress()
+				elif hud.modal == "help": _close_help()
 				elif hud.modal == "confirm": _cancel_action()
 				elif hud.modal != "" and hud.modal != "pause": hud.show_modal("pause", labels_enabled)
 				else: _toggle_pause()
 				return
 			KEY_F1:
 				if hud.modal != "confirm": _toggle_help()
+				return
+			KEY_F12:
+				if hud.modal != "confirm": _toggle_progress()
 				return
 			KEY_F10:
 				performance_overlay.toggle()
@@ -300,6 +347,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				KEY_F2: _request_action("wap7")
 				KEY_F3: _request_action("lhb")
 				KEY_F9: _ui_action("fleet")
+				KEY_F7: _request_action("route:southern_corridor" if geographic_drive else "route:kerala_coast")
 				KEY_F5: _open_services()
 				KEY_F4: _ui_action("clean")
 				KEY_F6: _ui_action("labels")
@@ -372,7 +420,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				world.protection = not world.protection
 				hud.toast("Train protection " + ("on" if world.protection else "off"))
 			KEY_T:
-				time_scale = 1 if time_scale >= 4 else time_scale * 2
+				_set_time_scale(1 if event.shift_pressed or time_scale>=32 else time_scale*2)
 			KEY_F2:
 				_request_action("wap7")
 			KEY_F3:
@@ -384,6 +432,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_F8:
 				_restore_ui()
 				hud.toggle_history()
+			KEY_F7: _ui_action("routes")
 			KEY_F9:
 				_ui_action("fleet")
 			KEY_V:
@@ -419,7 +468,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				elif idx < world.stations.size():
 					cam.distance = 155.0
 					cam.yaw = 0.25 if world.stations[idx].building.z > 0 else PI + 0.25
-					cam.jump_to(world.stations[idx].building)
+					var destination: Vector3=world.stations[idx].building
+					if geographic_drive: destination-=wv.coordinate_origin
+					cam.jump_to(destination)
 					_set_cab_visuals(false)
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		if cam.drag_moved < 6.0 and cam.mode == CameraRig.Mode.OVERVIEW:
@@ -512,10 +563,28 @@ func _set_paused(value: bool) -> void:
 	cam.set_process_unhandled_input(not value)
 	cam._dragging = 0
 	for sound in train_audio.values():
-		sound.set_paused(paused)
+		sound.set_paused(paused or (geographic_drive and wv.loading))
 
+
+func _set_time_scale(value: int) -> void:
+	if value not in [1,2,4,8,16,32]:return
+	time_scale=value
+	AudioServer.playback_speed_scale=float(value)
+	for sound in train_audio.values():
+		sound.simulation_rate=float(value)
+		sound.reset_positions()
+	hud.toast("Normal time" if value==1 else "Fast forward ×%d · Shift+T returns to normal time" % value)
 
 func _ui_action(action: String) -> void:
+	if action=="progress":
+		_toggle_progress()
+		return
+	if action=="close_progress":
+		_close_progress()
+		return
+	if action.begins_with("time:"):
+		_set_time_scale(int(action.trim_prefix("time:")))
+		return
 	if action.begins_with("padcmd:"):
 		controller.perform(action.trim_prefix("padcmd:"))
 		return
@@ -534,6 +603,7 @@ func _ui_action(action: String) -> void:
 		_passenger_preset(int(action.get_slice(":",1)))
 		return
 	match action:
+		"routes": _request_action("route:southern_corridor" if geographic_drive else "route:kerala_coast")
 		"services": _open_services()
 		"controllers": controller.open_settings()
 		"points": controller.open_points()
@@ -602,6 +672,35 @@ func _play_services(pack: Dictionary, id: String) -> void:
 	get_tree().call_deferred("reload_current_scene")
 
 
+func _toggle_progress() -> void:
+	if hud.modal=="progress":
+		_close_progress()
+		return
+	_paused_before_progress=paused
+	_set_paused(true)
+	var p:=preload("res://sim/service_progress.gd").snapshot(world,train)
+	var text: String="[b]"+train.service_name+"[/b]\n\n"
+	if not p.scheduled:
+		text+="This solo drive has no booked stops. F5 opens the service designer."
+	else:
+		text+="[b]Stops completed: %d / %d[/b]\n[b]Stops left: %d[/b]\nOrigin included in the total.\n\n" % [p.completed,p.total,p.remaining]
+		if p.complete:text+="[b]Journey complete[/b]"
+		else:
+			if not p.current.is_empty():text+="Currently at: "+p.current+"\n"
+			text+="[b]Next stop: "+p.next_name+"[/b]\n"
+			if p.missed:text+="Stop marker missed — stop at the booked marker to continue this service.\n"
+			elif is_finite(p.distance_m):
+				text+="Distance: %.1f km\n" % (p.distance_m/1000)
+				text+=("Estimated time: about %d in-game min\n" if p.waiting.is_empty() else "After clearance: about %d in-game min travel/dwell\n") % maxi(1,ceili(p.estimated_seconds/60))
+			text+="Booked arrival: "+preload("res://sim/world_clock.gd").format_time(p.scheduled_arrival)+"\n"
+			if not p.waiting.is_empty():text+="\n"+p.waiting+"\n"
+			text+="\nEstimate uses the route distance and service speed. Driving and signal waits can change it."
+	hud.show_modal("progress",labels_enabled,text)
+
+func _close_progress() -> void:
+	_set_paused(_paused_before_progress)
+	hud.show_modal("pause" if paused else "",labels_enabled)
+
 func _toggle_help() -> void:
 	if hud.modal == "help":
 		_close_help()
@@ -622,11 +721,13 @@ func _request_action(action: String) -> void:
 	_pending_action = action
 	_set_paused(true)
 	var descriptions := {"restart": "Restart the current services from the beginning.",
-		"wap7": "Start the MEMU services." if imported_fleet=="wap7" else "Start the detailed WAP-7 light engine.",
-		"lhb": "Start the MEMU services." if imported_fleet=="lhb" else "Start the detailed WAP-7 with mixed LHB coaches.",
+		"wap7": "Start the detailed WAP-7 with mixed ICF coaches.",
+		"lhb": "Start the detailed WAP-7 with mixed LHB coaches.",
 		"traffic": "Start six mixed passenger services and assign you a random train.",
 		"quit": "Quit Train Game and return to the desktop."}
 	var description: String = descriptions.get(action, "")
+	if action.begins_with("route:"):
+		description="Start the 277 km Kerala Coast via Alappuzha and TVC with seven passenger services and dynamic priority dispatch." if action.ends_with("kerala_coast") else "Return to the fictional Southern corridor."
 	if action.begins_with("fleet:"):
 		description = "Start " + PortedStock.LABELS[action.trim_prefix("fleet:")] + "."
 	hud.show_modal("confirm", labels_enabled, description)
@@ -641,6 +742,15 @@ func _confirm_action() -> void:
 	var action := _pending_action
 	_pending_action = ""
 	if action != "restart" and get_tree().has_meta("service_pack"): get_tree().remove_meta("service_pack")
+	if action.begins_with("route:"):
+		get_tree().set_meta("route",action.trim_prefix("route:"))
+		get_tree().set_meta("traffic_drive",true)
+		get_tree().set_meta("imported_fleet","")
+		get_tree().set_meta("traffic_seed",0 if action.ends_with("kerala_coast") else randi())
+		get_tree().call_deferred("reload_current_scene")
+		return
+	if action in ["wap7","lhb"] or action.begins_with("fleet:"):
+		get_tree().set_meta("route","southern_corridor")
 	if action.begins_with("fleet:"):
 		get_tree().set_meta("traffic_drive", false)
 		get_tree().set_meta("imported_fleet", action.trim_prefix("fleet:"))
@@ -704,6 +814,19 @@ func _notification(what: int) -> void:
 		hud.show_modal("pause", labels_enabled)
 
 
+func _visit_station(index: int) -> void:
+	if index<0 or index>=world.stations.size(): return
+	var destination: Vector3=world.stations[index].origin
+	if geographic_drive: destination-=wv.coordinate_origin
+	cam.distance=175
+	cam.pitch=-.55
+	cam.jump_to(destination)
+	# Geographic transfers snap the camera instead of travelling through 200 km.
+	if geographic_drive: cam._blend=1.0
+	_set_cab_visuals(false)
+	dispatcher.set_open(false)
+
+
 func _select_train(id: String) -> void:
 	if id == train.id:
 		return
@@ -730,6 +853,10 @@ func _select_train(id: String) -> void:
 	elif cam.mode == CameraRig.Mode.PASSENGER:
 		if _has_passengers(): _enter_passenger()
 		else: _enter_cab()
+	if geographic_drive:
+		cam._blend=1.0
+		cam.pivot=tv.overview_position()
+		cam._follow_anchor_valid=false
 	for sound in train_audio.values():
 		sound.listener_owner = audio
 		sound.reset_positions()
@@ -756,7 +883,7 @@ func _report(result: Dictionary, ok_text: String) -> void:
 
 func _switch_scenario() -> void:
 	get_tree().set_meta("traffic_drive", false)
-	get_tree().set_meta("imported_fleet", "" if imported_fleet=="wap7" else "wap7")
+	get_tree().set_meta("imported_fleet", "icf")
 	get_tree().set_meta("wap7_drive", false)
 	get_tree().set_meta("lhb_drive", false)
 	get_tree().call_deferred("reload_current_scene")
@@ -764,7 +891,7 @@ func _switch_scenario() -> void:
 
 func _switch_lhb() -> void:
 	get_tree().set_meta("traffic_drive", false)
-	get_tree().set_meta("imported_fleet", "" if imported_fleet=="lhb" else "lhb")
+	get_tree().set_meta("imported_fleet", "lhb")
 	get_tree().set_meta("lhb_drive", false)
 	get_tree().set_meta("wap7_drive", false)
 	get_tree().call_deferred("reload_current_scene")

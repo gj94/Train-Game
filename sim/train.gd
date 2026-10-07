@@ -26,6 +26,7 @@ var destination := ""
 var service_complete := false
 var status := "Manual driving"
 var timetable = null          # optional pure-sim timetable working
+var dispatch_priority := 50   # larger number gets the earliest available route
 
 # Performance — defaults roughly an 8-car Indian Railways MEMU.
 var mass := 400000.0            # kg

@@ -31,8 +31,11 @@ AI needs routes and waits for its departure time and station dwell.
 [b]DISPLAY & SESSION[/b]
 Esc pause menu / back · F1 controls · F4 clean view / restore
 F6 track labels · F8 event history · F10 performance · F11 fullscreen / window
-T time ×1 / ×2 / ×4 · P train protection on / off
-F2 WAP-7 light engine / MEMUs · F3 LHB rake / MEMUs
+F12 journey progress: stops completed/left, next stop and estimated time
+T fast forward ×1 / ×2 / ×4 / ×8 / ×16 / ×32 · Shift+T normal time
+Fast forward advances the whole world; train speeds and braking distances stay unchanged.
+P train protection on / off
+F2 detailed WAP-7 + ICF · F3 detailed WAP-7 + LHB
 F9 new random traffic service / solo imported fleet
 F5 imports/exports service definitions. Changing scenario or restarting asks first.
 Running progress is not saved; service files start a fresh timetable.
@@ -52,6 +55,7 @@ var history_open := false
 var modal := ""
 var _info: RichTextLabel
 var _mode: Label
+var _dispatch_notice: Label
 var _toast: Label
 var _log: RichTextLabel
 var _toolbar: HBoxContainer
@@ -80,19 +84,29 @@ func _ready() -> void:
 	_toolbar = HBoxContainer.new()
 	add_child(_toolbar)
 	_toolbar.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
-	_toolbar.offset_left = -440
+	_toolbar.offset_left = -600
 	_toolbar.offset_right = -16
 	_toolbar.offset_top = 16
 	_toolbar.add_theme_constant_override("separation", 8)
+	_button(_toolbar, "PROGRESS  F12", "progress")
 	_button(_toolbar, "DISPATCH  D", "dispatch")
 	_button(_toolbar, "HELP  F1", "help")
 	_button(_toolbar, "MENU  Esc", "pause")
+	_dispatch_notice=Label.new()
+	add_child(_dispatch_notice)
+	_dispatch_notice.position=Vector2(18,112)
+	_dispatch_notice.size=Vector2(1050,58)
+	_dispatch_notice.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	_dispatch_notice.add_theme_font_size_override("font_size",17)
+	_dispatch_notice.add_theme_color_override("font_color",Color("ffca72"))
+	_dispatch_notice.add_theme_constant_override("outline_size",8)
+	_dispatch_notice.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	_toast = Label.new()
 	add_child(_toast)
 	_toast.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
 	_toast.offset_left = -540
 	_toast.offset_right = 540
-	_toast.offset_top = 124
+	_toast.offset_top = 178
 	_toast.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_toast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_toast.add_theme_font_size_override("font_size", 18)
@@ -211,16 +225,20 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_heading.text = "PAUSED"
 			_body.text = "Resume to continue the current service.\n[b]F4[/b] clears the screen; [b]D[/b] opens dispatch."
 			_button(_buttons, "Resume  ·  Esc", "resume")
+			_button(_buttons, "Journey progress  ·  F12", "progress")
 			_button(_buttons, "Scenario & controls  ·  F1", "help")
 			_button(_buttons, "Train & view actions…", "controller_actions")
 			_button(_buttons, "Controller settings & layout…", "controllers")
 			_button(_buttons, "Service designer / import / export  ·  F5", "services")
 			_button(_buttons, "Passenger views…", "passengers")
+			for rate in [1,2,4,8,16,32]:
+				_button(_buttons,"Time ×%d%s" % [rate," · normal" if rate==1 else " · fast forward"],"time:"+str(rate))
 			_button(_buttons, "Clean view  ·  F4", "clean")
 			_button(_buttons, "Track labels: " + ("ON" if labels_on else "OFF") + "  ·  F6", "labels")
 			_button(_buttons, "Fullscreen / window  ·  F11", "fullscreen")
-			_button(_buttons, "WAP-7 light engine / MEMUs  ·  F2", "wap7")
-			_button(_buttons, "LHB passenger rake / MEMUs  ·  F3", "lhb")
+			_button(_buttons, "WAP-7 + ICF passenger rake  ·  F2", "wap7")
+			_button(_buttons, "WAP-7 + LHB passenger rake  ·  F3", "lhb")
+			_button(_buttons, "Kerala Coast / Southern corridor…  ·  F7", "routes")
 			_button(_buttons, "Traffic / solo fleet…  ·  F9", "fleet")
 			_button(_buttons, "Restart current services…", "restart")
 			_button(_buttons, "Quit to desktop…", "quit")
@@ -233,13 +251,17 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Middle passenger coach  ·  Alt+2", "pax:1")
 			_button(_buttons, "Last passenger coach  ·  Alt+3", "pax:2")
 			_button(_buttons, "Back", "fleet_back")
+		"progress":
+			_heading.text = "JOURNEY PROGRESS  /  PAUSED"
+			_body.text = description
+			_button(_buttons,"Back  ·  Esc / F12","close_progress")
 		"help":
 			_heading.text = "SCENARIO & CONTROLS  /  PAUSED"
 			_body.text = scenario_brief + "\n" + controller_help + "\n\n[b]KEYBOARD REFERENCE[/b]\n" + HELP
 			_button(_buttons, "Back  ·  Esc / F1", "close_help")
 		"fleet":
 			_heading.text = "TRAFFIC & INDIAN RAIL FLEET"
-			_body.text = "Start a random service among six trains, or choose a solo drive below.\nICF/LHB showcases contain all seven coach classes.\nVande Bharat uses the source's compact car lengths."
+			_body.text = "Start a random service in mixed traffic, or choose a solo drive below.\nICF/LHB showcases contain all seven coach classes.\nDetailed Vande Bharat: full-size 192 m / 384 m formations."
 			_button(_buttons, "New random traffic service", "traffic")
 			for choice in PortedStock.CHOICES:
 				_button(_buttons, PortedStock.LABELS[choice], "fleet:" + choice)
@@ -332,6 +354,8 @@ func refresh(s: Dictionary) -> void:
 	if s.buffer < 500.0:
 		signal_text += "  ·  Buffer %d m" % roundi(s.buffer)
 	_info.text = "%s   ·   %s\n%s   ·   %s / %s%s" % [speed, handle, signal_text, s.train_id, "AI" if s.automatic else "MANUAL", "  [color=#ffca72]PROTECTION OFF[/color]" if not s.protection else ""]
+	_dispatch_notice.text=s.get("dispatch_expectation","")
+	_dispatch_notice.visible=not clean_view and modal.is_empty() and not _dispatch_notice.text.is_empty()
 	var view := "PILOT" if s.cab else "OVERVIEW"
 	if not s.get("head_out", "").is_empty(): view = s.head_out
 	if not s.get("passenger", "").is_empty():

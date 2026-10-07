@@ -21,6 +21,8 @@ var world_day: SpinBox
 var id_field: LineEdit
 var name_field: LineEdit
 var stock_field: OptionButton
+var priority_field: SpinBox
+var speed_field: SpinBox
 var departure_field: LineEdit
 var departure_day: SpinBox
 var direction_field: OptionButton
@@ -39,7 +41,7 @@ var _pending_pack := {}
 var _pending_service := ""
 var save_path := "user://services-draft.json"
 var _file_mode := ""
-var _stock_choices := ["memu"] + Stock.CHOICES
+var _stock_choices := Stock.CHOICES
 
 func _ready() -> void:
 	layer = 12
@@ -98,8 +100,14 @@ func _ready() -> void:
 	var identity := _row(fields)
 	id_field = _line(identity,"Service ID",func(v): _service().id=v; _changed())
 	name_field = _line(identity,"Service name",func(v): _service().name=v; _changed())
-	stock_field = _option(fields,"Rolling stock",func(i): _service().stock=_stock_choices[i]; _changed())
-	for choice in _stock_choices: stock_field.add_item("MEMU · eight cars" if choice=="memu" else Stock.LABELS[choice])
+	stock_field = _option(fields,"Rolling stock",func(i):
+		_service().stock=_stock_choices[i]
+		speed_field.value=minf(speed_field.value,110 if _service().stock=="icf" else 180)
+		_changed())
+	for choice in _stock_choices: stock_field.add_item(Stock.LABELS[choice])
+	var dispatching:=_row(fields)
+	priority_field=_spin(dispatching,"Dispatch priority · higher runs first",1,100,1,func(v):_service().priority=int(v);_changed())
+	speed_field=_spin(dispatching,"Service speed cap · km/h",5,180,5,func(v):_service().speed_limit_kmh=v;_changed())
 	var timing := _row(fields)
 	departure_field = _line(timing,"Departure HH:MM[:SS]",func(v): _service().departure=v; _changed())
 	departure_day = _spin(timing,"Day",1,365,1,func(v): _service().day=int(v); _changed())
@@ -263,6 +271,8 @@ func _load_service() -> void:
 	var service := _service()
 	id_field.text=service.id; name_field.text=service.name
 	stock_field.select(_stock_choices.find(service.stock))
+	priority_field.value=service.get("priority",50)
+	speed_field.value=service.get("speed_limit_kmh",110 if service.stock=="icf" else 180)
 	departure_field.text=service.departure
 	departure_day.value=service.get("day",1)
 	direction_field.select(0 if service.stops[0].direction==1 else 1)
@@ -315,7 +325,7 @@ func _remove_service() -> void:
 	_changed(); _load_service()
 
 func _add_stop() -> void:
-	if _service().stops.size()>=16: return
+	if _service().stops.size()>=64: return
 	var stop: Dictionary = _service().stops[-1].duplicate(true)
 	stop.minutes_from_origin+=15
 	stop.dwell_minutes=0

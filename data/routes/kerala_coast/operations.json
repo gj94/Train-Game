@@ -1,0 +1,2292 @@
+{
+  "source": "southern-zone-261006.osm.pbf",
+  "signalling_scope": "Game automatic blocks at approximately 1 km, not surveyed real signal positions.",
+  "stations": [
+    {
+      "code": "ERS",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.001,
+          "osm_way": 1311408253,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -8.757,
+          "osm_way": 827738560,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 0
+        },
+        {
+          "offset": -4.5,
+          "osm_way": 514137864,
+          "service": "siding",
+          "mapped_offset": -3.852,
+          "road": 3,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": -14.291,
+          "osm_way": 1453149441,
+          "service": "main",
+          "road": 4,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -30.826,
+          "osm_way": 285881585,
+          "service": "main",
+          "road": 5,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -34.823,
+          "osm_way": 49015817,
+          "service": "main",
+          "road": 6,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "TNU",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 96075197,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KUMM",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.008,
+          "osm_way": 602468921,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 0
+        },
+        {
+          "offset": 4.704,
+          "osm_way": 640855308,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.094,
+          "osm_way": 640855306,
+          "service": "siding",
+          "road": 3,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "AROR",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.121,
+          "osm_way": 618851874,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "EZP",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.042,
+          "osm_way": 53023780,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "TUVR",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.001,
+          "osm_way": 619253921,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 0
+        },
+        {
+          "offset": -4.863,
+          "osm_way": 640855310,
+          "service": "siding",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 4.5,
+          "osm_way": 640855309,
+          "service": "siding",
+          "mapped_offset": 4.159,
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "VAY",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.195,
+          "osm_way": 621229125,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "SRTL",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.072,
+          "osm_way": 53021635,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.202,
+          "osm_way": 640865716,
+          "service": "siding",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 12.123,
+          "osm_way": 640865717,
+          "service": "siding",
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "TRVZ",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.034,
+          "osm_way": 97246730,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "MAKM",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.046,
+          "osm_way": 97246730,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 0
+        },
+        {
+          "offset": -5.082,
+          "osm_way": 640865722,
+          "service": "siding",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 4.5,
+          "osm_way": 640865724,
+          "service": "siding",
+          "mapped_offset": 4.152,
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KAVR",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 97246730,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "TMPY",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.015,
+          "osm_way": 97246730,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "ALLP",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 632741107,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 4.902,
+          "osm_way": 640907586,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 18.81,
+          "osm_way": 640907587,
+          "service": "main",
+          "road": 3,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "PUPR",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 618707708,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "AMPA",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 1034298611,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -15.441,
+          "osm_way": 640907588,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 4.993,
+          "osm_way": 640907594,
+          "service": "main",
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "TZH",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 619910191,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -6.027,
+          "osm_way": 619910178,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KVTA",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 467777629,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -7.73,
+          "osm_way": 1034621330,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "HAD",
+      "through": false,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 520216267,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 0
+        },
+        {
+          "offset": -6.029,
+          "osm_way": 1034621330,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": 5.649,
+          "osm_way": 640907597,
+          "service": "siding",
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -10.242,
+          "osm_way": 640907598,
+          "service": "siding",
+          "road": 4,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "CHPD",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 520216267,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.751,
+          "osm_way": 1034621330,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 10.545,
+          "osm_way": 640907608,
+          "service": "siding",
+          "road": 3,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 17.08,
+          "osm_way": 640907610,
+          "service": "siding",
+          "road": 4,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KYJ",
+      "through": false,
+      "roads": [
+        {
+          "offset": -0.009,
+          "osm_way": 661604985,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 14.63,
+          "osm_way": 827739544,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.139,
+          "osm_way": 520212088,
+          "service": "main",
+          "road": 3,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -17.482,
+          "osm_way": 640935828,
+          "service": "siding",
+          "road": 4,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 18.99,
+          "osm_way": 661604977,
+          "service": "main",
+          "road": 5,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "OCR",
+      "through": false,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 619142868,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 8.314,
+          "osm_way": 178708239,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 11.642,
+          "osm_way": 641467871,
+          "service": "siding",
+          "road": 3,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KPY",
+      "through": false,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 661604986,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 5.885,
+          "osm_way": 808639279,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 0
+        },
+        {
+          "offset": 10.597,
+          "osm_way": 641478855,
+          "service": "siding",
+          "road": 3,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -13.058,
+          "osm_way": 641467876,
+          "service": "siding",
+          "road": 4,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 29.688,
+          "osm_way": 546893500,
+          "service": "siding",
+          "road": 5,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "STKT",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 808639274,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": 5.857,
+          "osm_way": 808639272,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 0
+        },
+        {
+          "offset": -5.756,
+          "osm_way": 641478853,
+          "service": "siding",
+          "road": 3,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 10.541,
+          "osm_way": 641478848,
+          "service": "siding",
+          "road": 4,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "MQO",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 617379924,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -6.822,
+          "osm_way": 661604990,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "PRND",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 331666080,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": -5.113,
+          "osm_way": 661604991,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": 5.211,
+          "osm_way": 546758557,
+          "service": "main",
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -9.899,
+          "osm_way": 546758556,
+          "service": "main",
+          "road": 4,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "QLN",
+      "through": false,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 242028390,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -4.833,
+          "osm_way": 70655547,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 14.288,
+          "osm_way": 242027823,
+          "service": "siding",
+          "road": 3,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 18.231,
+          "osm_way": 242028206,
+          "service": "siding",
+          "road": 4,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 32.585,
+          "osm_way": 827738556,
+          "service": "siding",
+          "road": 5,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 45.62,
+          "osm_way": 550863735,
+          "service": "siding",
+          "road": 6,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 50.406,
+          "osm_way": 916892584,
+          "service": "siding",
+          "road": 7,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": 55.259,
+          "osm_way": 242026931,
+          "service": "siding",
+          "road": 8,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 2.43
+        },
+        {
+          "offset": 61.793,
+          "osm_way": 242026932,
+          "service": "siding",
+          "road": 9,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 2.79
+        },
+        {
+          "offset": 68.684,
+          "osm_way": 519646401,
+          "service": "siding",
+          "road": 10,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 84.453,
+          "osm_way": 242027571,
+          "service": "siding",
+          "road": 11,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 88.539,
+          "osm_way": 632923357,
+          "service": "siding",
+          "road": 12,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "IRP",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.009,
+          "osm_way": 101048963,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -4.5,
+          "osm_way": 608428999,
+          "service": "main",
+          "mapped_offset": -4.021,
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "MYY",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.026,
+          "osm_way": 101048963,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -6.946,
+          "osm_way": 608428999,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "PVU",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 519426841,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -13.982,
+          "osm_way": 519426849,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 4.541,
+          "osm_way": 641573557,
+          "service": "siding",
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -19.856,
+          "osm_way": 641573559,
+          "service": "siding",
+          "road": 4,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KFI",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.094,
+          "osm_way": 608428993,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -4.5,
+          "osm_way": 236119109,
+          "service": "main",
+          "mapped_offset": -2.736,
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "EVA",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.01,
+          "osm_way": 608428993,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -4.909,
+          "osm_way": 236119109,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "VAK",
+      "through": false,
+      "roads": [
+        {
+          "offset": -0.003,
+          "osm_way": 608428994,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": -5.62,
+          "osm_way": 514398904,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 5.675,
+          "osm_way": 514398901,
+          "service": "siding",
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -24.778,
+          "osm_way": 514398903,
+          "service": "siding",
+          "road": 4,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "AMY",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.05,
+          "osm_way": 608428987,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -9.683,
+          "osm_way": 148462098,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KVU",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 514385379,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -13.023,
+          "osm_way": 514385383,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 5.092,
+          "osm_way": 514385380,
+          "service": "siding",
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -18.856,
+          "osm_way": 514385381,
+          "service": "siding",
+          "road": 4,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "CRY",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 738434645,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -7.194,
+          "osm_way": 738434644,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "PGZ",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 965152762,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.367,
+          "osm_way": 796439515,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "MQU",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.005,
+          "osm_way": 608428982,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": -5.92,
+          "osm_way": 90772767,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 5.969,
+          "osm_way": 641627322,
+          "service": "siding",
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KXP",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 608428982,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.763,
+          "osm_way": 90772767,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KZK",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 608428982,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.423,
+          "osm_way": 90772767,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": -10.069,
+          "osm_way": 641627329,
+          "service": "siding",
+          "road": 3,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "VELI",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.154,
+          "osm_way": 608428982,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.63,
+          "osm_way": 90772767,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "TVCN",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 762403627,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 0
+        },
+        {
+          "offset": -5.598,
+          "osm_way": 762403625,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 4.5,
+          "osm_way": 519426852,
+          "service": "siding",
+          "mapped_offset": 3.861,
+          "road": 3,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "TVP",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 385040650,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.362,
+          "osm_way": 608428979,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "TVC",
+      "through": false,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 1311408266,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 4.593,
+          "osm_way": 1311408246,
+          "service": "main",
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 17.859,
+          "osm_way": 641650010,
+          "service": "main",
+          "road": 3,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 23.404,
+          "osm_way": 641650014,
+          "service": "siding",
+          "road": 4,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 37.732,
+          "osm_way": 641650015,
+          "service": "siding",
+          "road": 5,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "NEM",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.001,
+          "osm_way": 397808851,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.886,
+          "osm_way": 642058764,
+          "service": "siding",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "BRAM",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 385040651,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "NYY",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.044,
+          "osm_way": 385040651,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 4.875,
+          "osm_way": 642058766,
+          "service": "siding",
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "AMVA",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 31546483,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "DAVM",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 31546483,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "PASA",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.091,
+          "osm_way": 31546483,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -5.243,
+          "osm_way": 642058768,
+          "service": "siding",
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KZTW",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.031,
+          "osm_way": 547434723,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "KZT",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.073,
+          "osm_way": 146626681,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -4.5,
+          "osm_way": 642058771,
+          "service": "siding",
+          "mapped_offset": -4.288,
+          "road": 2,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "PYD",
+      "through": true,
+      "roads": [
+        {
+          "offset": 0.0,
+          "osm_way": 206074319,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "ERL",
+      "through": false,
+      "roads": [
+        {
+          "offset": 0.012,
+          "osm_way": 256075026,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 4.776,
+          "osm_way": 642058773,
+          "service": "siding",
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "VRLR",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.011,
+          "osm_way": 256080322,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "NJT",
+      "through": true,
+      "roads": [
+        {
+          "offset": -0.0,
+          "osm_way": 256080322,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    },
+    {
+      "code": "NCJ",
+      "through": false,
+      "roads": [
+        {
+          "offset": -0.001,
+          "osm_way": 992276367,
+          "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -4.5,
+          "osm_way": 992276369,
+          "service": "main",
+          "mapped_offset": -3.534,
+          "road": 2,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": -8.659,
+          "osm_way": 96236046,
+          "service": "siding",
+          "road": 3,
+          "lane": "U",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 13.764,
+          "osm_way": 514385391,
+          "service": "siding",
+          "road": 4,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 19.888,
+          "osm_way": 383031403,
+          "service": "siding",
+          "road": 5,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -34.726,
+          "osm_way": 514385387,
+          "service": "siding",
+          "road": 6,
+          "lane": "U",
+          "platform_side": 1,
+          "platform_width": 3.43
+        }
+      ],
+      "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+    }
+  ],
+  "sections": [
+    {
+      "a": "ERS",
+      "b": "TNU",
+      "start": 1244.0439999999999,
+      "end": 4724.583,
+      "mapped_parallel_fraction": 0.64,
+      "tracks": 1,
+      "parallel_offset": -6.0,
+      "note": "ERS–Kumbalam doubling remains under construction in Ministry of Railways March 2026 project status; TNU has one mapped road."
+    },
+    {
+      "a": "TNU",
+      "b": "KUMM",
+      "start": 5724.583,
+      "end": 7931.894,
+      "mapped_parallel_fraction": 0.133,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "KUMM",
+      "b": "AROR",
+      "start": 8931.894,
+      "end": 13022.538,
+      "mapped_parallel_fraction": 0.2,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "AROR",
+      "b": "EZP",
+      "start": 14022.538,
+      "end": 18440.823,
+      "mapped_parallel_fraction": 0.061,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "EZP",
+      "b": "TUVR",
+      "start": 19440.823,
+      "end": 23523.556,
+      "mapped_parallel_fraction": 0.033,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "TUVR",
+      "b": "VAY",
+      "start": 24523.556,
+      "end": 27182.924,
+      "mapped_parallel_fraction": 0.053,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "VAY",
+      "b": "SRTL",
+      "start": 28182.924,
+      "end": 33518.662,
+      "mapped_parallel_fraction": 0.025,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "SRTL",
+      "b": "TRVZ",
+      "start": 34518.662,
+      "end": 39351.7,
+      "mapped_parallel_fraction": 0.0,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "TRVZ",
+      "b": "MAKM",
+      "start": 40351.7,
+      "end": 44421.441,
+      "mapped_parallel_fraction": 0.0,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "MAKM",
+      "b": "KAVR",
+      "start": 45421.441,
+      "end": 47770.239,
+      "mapped_parallel_fraction": 0.0,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "KAVR",
+      "b": "TMPY",
+      "start": 48770.239,
+      "end": 53204.031,
+      "mapped_parallel_fraction": 0.0,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "TMPY",
+      "b": "ALLP",
+      "start": 54204.031,
+      "end": 57163.413,
+      "mapped_parallel_fraction": 0.143,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "ALLP",
+      "b": "PUPR",
+      "start": 58163.413,
+      "end": 64280.598,
+      "mapped_parallel_fraction": 0.043,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "PUPR",
+      "b": "AMPA",
+      "start": 65280.598,
+      "end": 69351.934,
+      "mapped_parallel_fraction": 0.033,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "AMPA",
+      "b": "TZH",
+      "start": 70351.934,
+      "end": 75058.828,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -8.895
+    },
+    {
+      "a": "TZH",
+      "b": "KVTA",
+      "start": 76058.828,
+      "end": 81687.201,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -12.342
+    },
+    {
+      "a": "KVTA",
+      "b": "HAD",
+      "start": 82687.201,
+      "end": 87524.821,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -6.334
+    },
+    {
+      "a": "HAD",
+      "b": "CHPD",
+      "start": 88524.821,
+      "end": 92702.276,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -6.751
+    },
+    {
+      "a": "CHPD",
+      "b": "KYJ",
+      "start": 93702.276,
+      "end": 100522.939,
+      "mapped_parallel_fraction": 0.981,
+      "tracks": 2,
+      "parallel_offset": -8.809
+    },
+    {
+      "a": "KYJ",
+      "b": "OCR",
+      "start": 101522.939,
+      "end": 106468.214,
+      "mapped_parallel_fraction": 0.946,
+      "tracks": 2,
+      "parallel_offset": 4.992
+    },
+    {
+      "a": "OCR",
+      "b": "KPY",
+      "start": 107468.214,
+      "end": 114139.887,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": 5.475
+    },
+    {
+      "a": "KPY",
+      "b": "STKT",
+      "start": 115139.887,
+      "end": 121791.956,
+      "mapped_parallel_fraction": 0.804,
+      "tracks": 2,
+      "parallel_offset": 10.487
+    },
+    {
+      "a": "STKT",
+      "b": "MQO",
+      "start": 122791.956,
+      "end": 126304.697,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -5.662
+    },
+    {
+      "a": "MQO",
+      "b": "PRND",
+      "start": 127304.697,
+      "end": 132099.021,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -16.31
+    },
+    {
+      "a": "PRND",
+      "b": "QLN",
+      "start": 133099.021,
+      "end": 141159.076,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -5.485
+    },
+    {
+      "a": "QLN",
+      "b": "IRP",
+      "start": 142159.076,
+      "end": 145940.135,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -5.138
+    },
+    {
+      "a": "IRP",
+      "b": "MYY",
+      "start": 146940.135,
+      "end": 150060.364,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -10.232
+    },
+    {
+      "a": "MYY",
+      "b": "PVU",
+      "start": 151060.364,
+      "end": 153633.529,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -12.568
+    },
+    {
+      "a": "PVU",
+      "b": "KFI",
+      "start": 154633.529,
+      "end": 158161.173,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -11.936
+    },
+    {
+      "a": "KFI",
+      "b": "EVA",
+      "start": 159161.173,
+      "end": 161016.486,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -5.987
+    },
+    {
+      "a": "EVA",
+      "b": "VAK",
+      "start": 162016.486,
+      "end": 164822.046,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -6.308
+    },
+    {
+      "a": "VAK",
+      "b": "AMY",
+      "start": 165822.046,
+      "end": 171207.074,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -5.385
+    },
+    {
+      "a": "AMY",
+      "b": "KVU",
+      "start": 172207.074,
+      "end": 173974.351,
+      "mapped_parallel_fraction": 0.909,
+      "tracks": 2,
+      "parallel_offset": -5.104
+    },
+    {
+      "a": "KVU",
+      "b": "CRY",
+      "start": 174974.351,
+      "end": 177070.705,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -10.886
+    },
+    {
+      "a": "CRY",
+      "b": "PGZ",
+      "start": 178070.705,
+      "end": 181126.217,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -9.366
+    },
+    {
+      "a": "PGZ",
+      "b": "MQU",
+      "start": 182126.217,
+      "end": 184489.836,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -4.578
+    },
+    {
+      "a": "MQU",
+      "b": "KXP",
+      "start": 185489.836,
+      "end": 188385.654,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -4.664
+    },
+    {
+      "a": "KXP",
+      "b": "KZK",
+      "start": 189385.654,
+      "end": 192407.505,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -6.479
+    },
+    {
+      "a": "KZK",
+      "b": "VELI",
+      "start": 193407.505,
+      "end": 196382.442,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -6.597
+    },
+    {
+      "a": "VELI",
+      "b": "TVCN",
+      "start": 197382.442,
+      "end": 198576.719,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -8.185
+    },
+    {
+      "a": "TVCN",
+      "b": "TVP",
+      "start": 199576.719,
+      "end": 203279.092,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -6.022
+    },
+    {
+      "a": "TVP",
+      "b": "TVC",
+      "start": 204279.092,
+      "end": 205769.843,
+      "mapped_parallel_fraction": 1.0,
+      "tracks": 2,
+      "parallel_offset": -6.081
+    },
+    {
+      "a": "TVC",
+      "b": "NEM",
+      "start": 206769.843,
+      "end": 213399.189,
+      "mapped_parallel_fraction": 0.12,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "NEM",
+      "b": "BRAM",
+      "start": 214399.189,
+      "end": 218896.005,
+      "mapped_parallel_fraction": 0.091,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "BRAM",
+      "b": "NYY",
+      "start": 219896.005,
+      "end": 222884.721,
+      "mapped_parallel_fraction": 0.0,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "NYY",
+      "b": "AMVA",
+      "start": 223884.721,
+      "end": 225494.883,
+      "mapped_parallel_fraction": 0.1,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "AMVA",
+      "b": "DAVM",
+      "start": 226494.883,
+      "end": 229113.552,
+      "mapped_parallel_fraction": 0.0,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "DAVM",
+      "b": "PASA",
+      "start": 230113.552,
+      "end": 235349.035,
+      "mapped_parallel_fraction": 0.0,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "PASA",
+      "b": "KZTW",
+      "start": 236349.035,
+      "end": 240579.086,
+      "mapped_parallel_fraction": 0.065,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "KZTW",
+      "b": "KZT",
+      "start": 241579.086,
+      "end": 243654.63,
+      "mapped_parallel_fraction": 0.357,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "KZT",
+      "b": "PYD",
+      "start": 244654.63,
+      "end": 249962.283,
+      "mapped_parallel_fraction": 0.025,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "PYD",
+      "b": "ERL",
+      "start": 250962.283,
+      "end": 258406.23,
+      "mapped_parallel_fraction": 0.018,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "ERL",
+      "b": "VRLR",
+      "start": 259406.23,
+      "end": 265861.366,
+      "mapped_parallel_fraction": 0.082,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "VRLR",
+      "b": "NJT",
+      "start": 266861.366,
+      "end": 271871.663,
+      "mapped_parallel_fraction": 0.0,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    },
+    {
+      "a": "NJT",
+      "b": "NCJ",
+      "start": 272871.663,
+      "end": 276828.528,
+      "mapped_parallel_fraction": 0.172,
+      "tracks": 1,
+      "parallel_offset": -6.0
+    }
+  ]
+}

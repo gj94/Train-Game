@@ -2,6 +2,45 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-08 Vande Bharat full-size v0.2: seven user-owned masters from
+[`vande_bharat_detail_v02` at 5322f1c](https://github.com/gj94/transport-fever-3-mods/tree/5322f1ca301c0d8832eccd84c779904f8e4f00f3/vande_bharat_detail_v02),
+branch `backup/vande-bharat-fullsize-v02`, replace the compact VB cars.
+Pinned source Git blobs: `tools/vb_v02_sources.json`; output/dependency SHA-256
+hashes: `assets/models/ported/manifest.json`. Rights holder: user (gj94);
+permission is their explicit port request, not an inferred open-source licence.
+12,828,460 source triangles, complete interiors and articulation are retained
+across the seven masters. Procedural materials are translated to Godot shaders;
+separate reduced shadow meshes and distance LODs manage rendering cost. No
+reference photo pixels or source private audio are added. The source branch is
+labelled a WIP checkpoint, including EC upholstery still under review.
+See `docs/imported-fleet.md` for preservation and runtime limits.
+
+2026-10-08 Kerala Coast: `data/routes/kerala_coast/route.json` and `tiles/*.json`
+are adapted OpenStreetMap databases, **© OpenStreetMap contributors, ODbL 1.0**.
+The [Geofabrik Southern Zone 2026-10-06 extract](https://download.geofabrik.de/asia/india/southern-zone-261006.osm.pbf)
+has MD5 `3abbf0e71cd2e79efbc8ed58d85c4468`; snapshot 2026-10-06T20:21:06Z.
+The OSM-derived database is distributed in editable form in this repository
+under [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/), independently
+of code/art licences. In-game loading and F1 credit OSM; the portable package
+includes MAP-DATA-LICENSE.md. See the data folder's README for complete provenance.
+
+Terrain uses public-domain NASA/USGS SRTM GL1, N08E076/N08E077/N09E076/N09E077,
+downloaded from [OpenTopography's public SRTM archive](https://opentopography.s3.sdsc.edu/raster?prefix=SRTM_GL1/).
+The original observations date to 2000, and the smoothed rail profile is an
+approximation, not a rail engineering survey. Runtime elevation tiles use a
+32 m grid. [USGS source/use information](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm).
+
+`kerala_*.glb` / `art/scenery/kerala_*.blend` are original architectural models
+from `tools/blender/build_kerala_stations.py`, made in background Blender. Existing
+registered CC0 textures are reused. Photographs guided shapes only; no photo
+pixels are incorporated. References: [TVC heritage frontage](https://commons.wikimedia.org/wiki/File:Thiruvananthapuram_Central_railway_station.jpg),
+[Ernakulam entry context](https://commons.wikimedia.org/wiki/File:Ernakulam_Junction_railway_station_-_eastern_entry_tower_02.jpg),
+and [Nagercoil existing station](https://commons.wikimedia.org/wiki/File:Nagercoil_Junction_Railway_Station.JPG).
+Dimensions, unseen sides and yard layouts are interpreted. No claim is made to
+represent current redevelopment. Malayalam/Tamil/English labels use the same
+Windows Nirmala UI/Arial system-font lookup as the existing scenery; no fonts
+are redistributed. Water ripples and facade construction are original code.
+
 2026-10-07 fidelity pass: the original `mango_tree` and `rain_tree` geometry now
 uses one leaflet from Rico Cilliers' registered **Tree Small 02** diffuse/normal
 atlas below (CC0-1.0). `scenery_vegetation.py` maps the unchanged atlas directly

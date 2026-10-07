@@ -9,6 +9,18 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **8 Oct 2026 gameplay:** default to the slow Kerala Coast passenger (K1).
+  Dynamic service priorities arrange overtakes and first-arrival crossing loops;
+  show the other service's name in live wait advice. Progress/F12 shows completed
+  and remaining calls plus the next stop and a qualified arrival estimate.
+  Whole-world fast forward supports ×1 through ×32. Fleet is limited to detailed
+  WAP-7 + ICF/LHB and full-size enhanced Vande Bharat 8/16.
+- **7–8 Oct 2026 geographic route:** the user requested Ernakulam Junction to
+  Nagercoil Junction via TVC, explicitly choosing Alappuzha and the coastal
+  backwaters. This supersedes the earlier exclusion of huge real-world maps.
+  Preserve full scale and train detail, stream scenery, support the dispatcher
+  and service editor, and distinguish mapped geography from reconstructed yards
+  and architecture. See `docs/kerala-coast.md` for the playable route and limits.
 - **5 Oct 2026 visual direction:** realistic trains and permanent way; the earlier
   cartoon/low-poly target is superseded. Detailed track profiles, sleepers/fasteners,
   moving pointwork and visible joints must match the axle sound positions. Improve
@@ -32,7 +44,7 @@ A **3D train game** where I can be either a **dispatcher** or a **driver**, and 
 
 ### Not required (at least initially)
 - Survey-perfect real-world routes
-- Huge real-world maps
+- (Superseded 7 Oct: huge real-world maps are now requested.)
 - Economy / city-building (Transport Fever-style economy is out of scope unless added later)
 - Multiplayer
 - Mod support

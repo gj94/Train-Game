@@ -4,6 +4,7 @@ extends RefCounted
 ## and edge boundaries. Simulation and its reservations are never interpolated.
 var train: Train
 var graph: TrackGraph
+var coordinate_origin := Vector3.ZERO
 var _route: Train
 var _current_path: Array = []
 var _current_s := 0.0
@@ -52,7 +53,8 @@ func end_tick() -> void:
 			break
 	var past := _route.locate_behind(graph, travelled)
 	var before: Dictionary = _before_path[0]
-	if past.dir != before.dir or graph.position(past.edge, past.s).distance_to(graph.position(before.edge, _before_s)) > .01:
+	var anchor: Vector3 = graph.nodes[graph.edges[before.edge].a].pos
+	if past.dir != before.dir or graph.position_relative(past.edge,past.s,anchor).distance_to(graph.position_relative(before.edge,_before_s,anchor)) > .01:
 		reset()
 		return # Teleport/reversal: snap instead of sweeping across unrelated track.
 	_distance = travelled
@@ -72,7 +74,7 @@ func locate(back: float) -> Dictionary:
 
 func point(back: float) -> Vector3:
 	var loc := locate(back)
-	return graph.position(loc.edge, loc.s)
+	return graph.position_relative(loc.edge, loc.s, coordinate_origin)
 
 func odometer() -> float:
 	_sync_external_change()

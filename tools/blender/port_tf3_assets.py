@@ -38,7 +38,25 @@ def convert(entry, source=SOURCE, pin=PIN, detailed=False):
     objects = [root, *root.children_recursive]
     source_object_count = len(objects)
     assert not any(o.library for o in objects), 'Per-car source must be self-contained'
-    if detailed:
+    if detailed and key.startswith('vb_'):
+        body = bpy.data.objects['BODY']
+        interior = bpy.data.objects.new('PASSENGER_INTERIOR', None)
+        bpy.context.scene.collection.objects.link(interior)
+        interior.parent = body
+        cab = bpy.data.objects.new('CAB_INTERIOR', None)
+        bpy.context.scene.collection.objects.link(cab)
+        cab.parent = body
+        for ob in objects:
+            if ob.parent != body:
+                continue
+            target = cab if ob.name.startswith('VB02_CAB_') else interior
+            if ob.name.startswith(('VB02_INT_', 'VB02_CAB_', 'PAX_', 'PASSENGER_SEATED_')):
+                world_matrix = ob.matrix_world.copy()
+                ob.parent = target
+                ob.matrix_world = world_matrix
+        objects.extend([interior, cab])
+        bpy.context.view_layer.update()
+    if detailed and key == 'wap7':
         # A rigid interior batch can be culled at distance without removing any
         # source detail. Preserve every member's original world transform.
         body = bpy.data.objects['BODY']
@@ -62,6 +80,9 @@ def convert(entry, source=SOURCE, pin=PIN, detailed=False):
         base, arms, low, sign = (4.212, 2.45, math.radians(1), -1)
         if key.startswith('vb_'):
             base, arms = 4.032, 2.7
+            if detailed:
+                base = float(ctrl['base_rail_z_m']) + float(ctrl['contact_top_offset_m'])
+                low = float(ctrl['angle_min_rad'])
         elif key == 'wag9':
             base, arms = 4.149, 2.53
             low = math.asin((4.255 - base) / arms)
@@ -157,7 +178,7 @@ def convert(entry, source=SOURCE, pin=PIN, detailed=False):
                     slots.append(material)
                 # The VB authoring ceiling uses the outer roof's upward winding.
                 # Renderers with backface culling need an inward-facing lining.
-                inward_ceiling = key.startswith('vb_') and ob.name.startswith('Curved_ceiling_inner')
+                inward_ceiling = key.startswith('vb_') and not detailed and ob.name.startswith('Curved_ceiling_inner')
                 face_vertices = list(poly.vertices)
                 face_loops = list(poly.loop_indices)
                 if inward_ceiling:
@@ -218,12 +239,13 @@ def convert(entry, source=SOURCE, pin=PIN, detailed=False):
         # original graphs and image pixels before invoking its exporter.
         sys.path.insert(0, str(Path(__file__).parent))
         from wap7_materials import export_materials
-        shaders = export_materials(material_sources.values(), OUT/'wap7_detail/textures')
-        (ROOT/'.local/wap7-materials.json').write_text(json.dumps(shaders,indent=2))
+        detail_root = OUT/(key+'_detail')
+        shaders = export_materials(material_sources.values(), detail_root/'textures', key)
+        (ROOT/f'.local/{key}-materials.json').write_text(json.dumps(shaders,indent=2))
         material_index = [{k:v for k,v in m.items() if k != 'code'} for m in shaders]
-        (OUT/'wap7_detail/materials.json').write_text(json.dumps(dict(materials=material_index,frames=group_frames),indent=2)+'\n')
+        (detail_root/'materials.json').write_text(json.dumps(dict(materials=material_index,frames=group_frames),indent=2)+'\n')
     export_options = dict(export_vertex_color='NONE', export_attributes=True) if detailed else {}
-    export_path = ROOT/'.local/wap7-detail-export.glb' if detailed else OUT/(key+'.glb')
+    export_path = ROOT/f'.local/{key}-detail-export.glb' if detailed else OUT/(key+'.glb')
     bpy.ops.export_scene.gltf(filepath=str(export_path), export_format='GLB',
         use_selection=True, export_yup=True, export_animations=False, export_cameras=False,
         export_lights=False, export_extras=False, export_materials='EXPORT', **export_options)
@@ -256,10 +278,11 @@ def convert(entry, source=SOURCE, pin=PIN, detailed=False):
                       dependencies=dependencies,
                       material_count=len(shaders), coordinate_encoding='TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)',
                       hidden_legacy_excluded=True)
-        result['eyes'] = [dict(position=[-.78,3.05,-7.98]),dict(position=[.78,3.05,7.98])]
+        if key == 'wap7':
+            result['eyes'] = [dict(position=[-.78,3.05,-7.98]),dict(position=[.78,3.05,7.98])]
         print('DETAIL MATERIALS',len(shaders),'visible objects',visible_objects,flush=True)
         from wap7_shadows import export_shadows
-        shadow_path=OUT/'wap7_detail/shadows.glb'
+        shadow_path=OUT/(key+'_detail')/'shadows.glb'
         result['shadow_triangles']=export_shadows([o for o in coll.objects if o.type=='MESH'],shadow_path)
         result['shadow_sha256']=hashlib.sha256(shadow_path.read_bytes()).hexdigest()
         print('SHADOW TRIANGLES',result['shadow_triangles'],flush=True)
@@ -277,6 +300,10 @@ def main():
         if entry['id'] == 'wap7':
             detail_pin = json.loads((ROOT/'tools/wap7_v02_sources.json').read_text())
             report['wap7'] = convert(detail_pin['models'][0], ROOT/'.local/wap7-v02-source', detail_pin, True)
+        elif entry['id'].startswith('vb_'):
+            detail_pin = json.loads((ROOT/'tools/vb_v02_sources.json').read_text())
+            detail_entry = next(e for e in detail_pin['models'] if e['id'] == entry['id'])
+            report[entry['id']] = convert(detail_entry, ROOT/'.local/vb-v02-source', detail_pin, True)
         else:
             report[entry['id']] = convert(entry)
         report_path.write_text(json.dumps(report, indent=2) + '\n')
