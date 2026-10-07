@@ -2,6 +2,11 @@ TRAIN GAME - SOUTHERN CORRIDOR
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Detailed WAP-7 39002 with both complete cabs and machinery compartment.
+F2 light engine / F3 mixed LHB rake. Home cycles driver, assistant, cab overview
+and machinery aisle. Right-drag look stays on release; middle-click recenters.
+See guides/wap7-detail.md for the model and inspection controls.
+
 Rebuilt scenery: station towns, villages, shops, apartments, industrial buildings,
 bus stops, road traffic, tropical trees, paddy fields and detailed canal banks.
 Includes full Xbox controller support and cab/passenger performance fixes.
@@ -30,7 +35,7 @@ The current sound includes the new benchmark squeal and speed-dependent rolling;
 see guides/enhanced-audio.md for the listening test and controls.
 The fictional Southern corridor is 21.64 km long. D opens the dispatch board;
 T cycles normal / 2x / 4x time. C opens routes for the next signal.
-F2 selects a WAP-7 light engine; F3 selects WAP-7 + 20 LHB coaches.
+F2 selects a detailed WAP-7 light engine; F3 selects WAP-7 + mixed LHB classes.
 Press the same scenario key again and confirm to select six MEMU services;
 use D then AUTO DISPATCH to run their timetable.
 F9 offers New random traffic service, plus solo imported fleet drives:

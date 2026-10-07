@@ -1,5 +1,53 @@
 # Progress
 
+## 2026-10-07 — Detailed WAP-7 v0.2 port and persistent mouse look
+- Ported the user's updated WAP-7 39002 master from `transport-fever-3-mods`
+  revision `de45b4e0e4194af47b1182800b7d103409c69478`. The offline byte audit and
+  Godot mesh audit confirm **2,885,744 visible triangles**, 12,331 nonempty source
+  objects consolidated into 24 rigid groups, 109 material roles and **40 original
+  texture files with matching source hashes**. Both furnished cabs, machinery
+  compartment, lettering, seats, grilles and running gear are retained. See
+  [the port guide](wap7-detail.md) and `art/wap7/detail-preview/` native captures.
+- Preserved full float object/generated material coordinates and the original
+  image resolutions. Translated material graphs into 21 shared shader programs,
+  with filtered noise and a shared small volume texture. Near visible geometry
+  is not decimated. A separate 107,006-triangle shadow mesh follows the rigid
+  moving parts; distant interiors cull at 100 m. URI-backed geometry buffers
+  are split losslessly below GitHub's file-size limit, with manifest hashes.
+- Godot materials approximate Cycles noise, BSDF mixing and refractive glazing.
+  Occupied-cab windows reduce reflection/tint to keep the forward view clear.
+  The source instruments remain static artwork; live driving values use the HUD.
+  The source has no authored `SURFV02_Wear` mesh attributes, so its absent-attribute
+  value of zero is preserved. Simulation geometry and approved sound banks are
+  unchanged; bogies, six axles, pantographs and cab-door hinges stay independent.
+- F2/F3 now select this detailed light engine / mixed LHB rake. Default random
+  six-train traffic also uses it for WAP-7 services. Home cycles driver, assistant,
+  cab overview and machinery-aisle viewpoints; the controller menu exposes the
+  same action. Passenger Home keeps its seat/aisle function. Right-drag look now
+  persists on release; middle-click explicitly recenters, as does right-stick
+  click. F2/F3 retain the existing scenario-change confirmation.
+- All **16 release-check scripts pass**: **153 unit tests**, **58 controller checks**,
+  **16 detailed cab/control checks**, **95 scenery checks**, source/engine geometry
+  and texture audits, seven imported
+  formation journeys, rendered motion, track, original/enhanced audio, passenger
+  views and six-service corridor/traffic checks pass. Native inspection covers
+  both cabs, machinery, running gear, roof and both exterior sides without script
+  or shader errors. The release builder now also treats logged engine errors as
+  failures even when Godot exits with status zero.
+- The six-minute moving cab soak completed cleanly: node count 26,099 and audio
+  buses 30 throughout, peak pending events 56, engine static memory 667.4–676.5 MB.
+  It overlapped headless checks and is a stability check, not an isolated FPS
+  benchmark. An isolated same-camera native comparison on the Radeon 780M at
+  1280 × 720 measures previous/detailed mean frame times of **21.25/26.69 ms cab**,
+  **34.56/35.27 ms exterior**, **19.37/21.15 ms passenger**. Preserving the full cab
+  adds measurable GPU cost; this is not a 4090 result. The guide includes GPU
+  times and method. Portable release verification follows below.
+- Playtest: F3 → confirm → Home through the four cab positions; right-drag and
+  release, then middle-click to recenter. Tab outside and inspect grilles, bogies
+  and roof while moving. F2 → confirm → stop → R to inspect the opposite cab.
+  Alt+1/2/3 still selects first/middle/last passenger coaches. F10 shows performance
+  readings for comparison on the 4090 laptop.
+
 ## 2026-10-07 — GitHub sign-in and first push
 - Completed the user-requested GitHub CLI browser sign-in as `gj94` and pushed
   the full committed game history through scenery verification commit `3b3106c`

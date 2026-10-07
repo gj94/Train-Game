@@ -60,6 +60,8 @@ func _ready() -> void:
 		for arg in OS.get_cmdline_user_args():
 			if arg.begins_with("--fleet=") and arg.trim_prefix("--fleet=") in PortedStock.CHOICES:
 				imported_fleet = arg.trim_prefix("--fleet=")
+			elif arg == "--wap7": imported_fleet = "wap7"
+			elif arg == "--lhb": imported_fleet = "lhb"
 	wap7_drive = get_tree().get_meta("wap7_drive", "--wap7" in OS.get_cmdline_user_args())
 	lhb_drive = get_tree().get_meta("lhb_drive", "--lhb" in OS.get_cmdline_user_args())
 	var has_saved_scenario := get_tree().has_meta("imported_fleet") or get_tree().has_meta("wap7_drive") or get_tree().has_meta("lhb_drive")
@@ -364,6 +366,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
 					tv.passenger_seat = not tv.passenger_seat
 					cam._look = Vector2.ZERO
+				elif cam.mode == CameraRig.Mode.CAB and train.stock_kind.begins_with("ported:"):
+					var position_name: String = tv.cycle_cab_position()
+					if not position_name.is_empty():
+						cam._look = Vector2.ZERO
+						hud.toast(position_name + " · Home next position")
 			KEY_B:
 				if lhb_drive:
 					tv.toggle_berths()
@@ -521,8 +528,8 @@ func _request_action(action: String) -> void:
 	_pending_action = action
 	_set_paused(true)
 	var descriptions := {"restart": "Restart the current services from the beginning.",
-		"wap7": "Start the MEMU services." if wap7_drive else "Start the WAP-7 light engine.",
-		"lhb": "Start the MEMU services." if lhb_drive else "Start the WAP-7 with 20 LHB coaches.",
+		"wap7": "Start the MEMU services." if imported_fleet=="wap7" else "Start the detailed WAP-7 light engine.",
+		"lhb": "Start the MEMU services." if imported_fleet=="lhb" else "Start the detailed WAP-7 with mixed LHB coaches.",
 		"traffic": "Start six mixed passenger services and assign you a random train.",
 		"quit": "Quit Train Game and return to the desktop."}
 	var description: String = descriptions.get(action, "")
@@ -652,16 +659,16 @@ func _report(result: Dictionary, ok_text: String) -> void:
 
 func _switch_scenario() -> void:
 	get_tree().set_meta("traffic_drive", false)
-	get_tree().set_meta("imported_fleet", "")
-	get_tree().set_meta("wap7_drive", not wap7_drive)
+	get_tree().set_meta("imported_fleet", "" if imported_fleet=="wap7" else "wap7")
+	get_tree().set_meta("wap7_drive", false)
 	get_tree().set_meta("lhb_drive", false)
 	get_tree().call_deferred("reload_current_scene")
 
 
 func _switch_lhb() -> void:
 	get_tree().set_meta("traffic_drive", false)
-	get_tree().set_meta("imported_fleet", "")
-	get_tree().set_meta("lhb_drive", not lhb_drive)
+	get_tree().set_meta("imported_fleet", "" if imported_fleet=="lhb" else "lhb")
+	get_tree().set_meta("lhb_drive", false)
 	get_tree().set_meta("wap7_drive", false)
 	get_tree().call_deferred("reload_current_scene")
 

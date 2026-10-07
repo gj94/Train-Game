@@ -2,7 +2,8 @@
 
 The user's assets from [gj94/transport-fever-3-mods](https://github.com/gj94/transport-fever-3-mods)
 are available through **F9**, or **Escape → Traffic / solo fleet**. Choose a working
-and confirm to start at Chennapuram. Original scenarios remain on F2/F3.
+and confirm to start at Chennapuram. F2/F3 now use the detailed WAP-7 as well.
+See [the v0.2 port notes](wap7-detail.md) for interior viewpoints and preserved detail.
 
 A fresh launch assigns a random cab among **six mixed passenger services**, with
 AI traffic and automatic routing. See [dispatching.md](dispatching.md). F1 explains
@@ -15,7 +16,7 @@ assignment or a solo working. The LHB working still hauls all seven classes:
 
 | Working | Imported assets | Visible train length |
 |---|---|---:|
-| WAP-7 | Pantograph v0.4 master, both furnished cabs | 20.560 m |
+| WAP-7 | Detailed v0.2 master, both cabs and machinery room | 20.562 m |
 | WAG-9 | Green/yellow master, both furnished cabs | 20.642 m |
 | WAG-12B | Articulated A/B sections with outward cabs | 38.580 m |
 | ICF showcase | WAP-7 + 1A, 2A, 3A, 2S, CC, SL, GS | 176.639 m |
@@ -56,7 +57,10 @@ frame rate still need a human playtest.
 
 ## Rebuild
 
-Source revision: `4c4f0be85edbf4468bca22f2d1285fec72343bd5`.
+The other 24 masters remain at `4c4f0be85edbf4468bca22f2d1285fec72343bd5`.
+WAP-7 is now the detailed v0.2 source: fetch `tools/wap7_v02_sources.json` into
+`.local/wap7-v02-source/` before running the converter. Follow [wap7-detail.md](wap7-detail.md)
+for its shader installation and source-specific checks.
 `tools/port_sources.json` pins download paths and Git blob hashes. Sources remain
 in ignored `.local/transport-fever-3-mods/`; the converter never saves over them
 or executes downloaded scripts. Run only in background Blender:
@@ -71,10 +75,11 @@ editor open; otherwise use `tools/godot.ps1 import`. Avoid concurrent imports.
 
 The converter maps source `(X,Y,Z)` to Godot `(-Y,Z,-X)`, preserves metres,
 UVs/split normals and mechanical hierarchies, and merges meshes per rigid parent:
-47,587 source objects become 387 rigid mesh groups across the 25 models.
+The original fleet conversion used 387 rigid groups across 25 models; the detailed
+WAP-7 replacement has its own 24-group audit in `wap7-detail.md`.
 VB ceiling lining winding is corrected for Godot's backface culling.
-Glass gets an alpha material. WAP-7's two packed original instrument textures
-are embedded in GLB and extracted by Godot. Godot generates mesh LODs; groups
+Legacy fleet glass gets an alpha material. The new WAP-7 uses its authored material
+graphs and original images instead of generic fleet finishing. Godot generates mesh LODs; groups
 named INTERIOR have a 100 m draw range. Other interior geometry remains visible
 with its parent body.
 

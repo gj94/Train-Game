@@ -4,14 +4,14 @@
     "pitch": 20.4,
     "bounds": [
       [
-        -1.5916868,
-        -0.0240003,
-        -10.2799997
+        -1.6588641,
+        -0.0290003,
+        -10.2810001
       ],
       [
-        1.5916868,
-        4.2566352,
-        10.2799997
+        1.6588641,
+        4.2547579,
+        10.2810001
       ]
     ],
     "bogies": [
@@ -93,14 +93,14 @@
         "position": [
           -0.78,
           3.05,
-          -7.52
+          -7.98
         ]
       },
       {
         "position": [
           0.78,
           3.05,
-          7.52
+          7.98
         ]
       }
     ],
@@ -129,12 +129,42 @@
         "sign": -1
       }
     ],
-    "source": "pantograph_v04/WAP7_pantograph_v04.blend",
-    "source_sha256": "98ba27a619312ff5ec807f2d2be5b3cc8c88111f03530661bec3b6efebaa53d5",
-    "source_objects": 2657,
-    "mesh_groups": 21,
-    "triangles": 171372,
-    "output_sha256": "928e8104f7cc956819863ddb479115c233489def1b521430fb975f1d72f293a9"
+    "source": "wap7_photoreal_v02/WAP7_detail_v02.blend",
+    "source_sha256": "25aa1f264f7dbab9f25e9e2fe27ff2f2e9d6b8ab513133d374717fcff0e24930",
+    "source_objects": 12359,
+    "mesh_groups": 24,
+    "triangles": 2885744,
+    "output_sha256": "18984eac18e3e84076550b3459097bf9d5d992315506e72624bbe4d1c66ba42a",
+    "detailed_materials": true,
+    "source_revision": "de45b4e0e4194af47b1182800b7d103409c69478",
+    "visible_source_objects": 12331,
+    "dependencies": [
+      {
+        "uri": "wap7_detail/geometry_0.bin",
+        "byteLength": 50330932,
+        "sha256": "8e12f745e294e99f9f5253ecbff28a0a0634a07304096fa64e1b7417d05421e3"
+      },
+      {
+        "uri": "wap7_detail/geometry_1.bin",
+        "byteLength": 50156236,
+        "sha256": "efa0a3c2b49b6144186949025b32d0567d83083aed27110f9fc3b8c8fec8d2db"
+      },
+      {
+        "uri": "wap7_detail/geometry_2.bin",
+        "byteLength": 49014064,
+        "sha256": "8ca5f34e40a69154be5e3511bc4a35740765c8747348054eb95b8a0a51ada40c"
+      },
+      {
+        "uri": "wap7_detail/geometry_3.bin",
+        "byteLength": 36255756,
+        "sha256": "857394db8e2e96ec2129b5bdd9778b3e8117851a9d8d1b7644ed9dea51636284"
+      }
+    ],
+    "material_count": 109,
+    "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
+    "hidden_legacy_excluded": true,
+    "shadow_triangles": 107006,
+    "shadow_sha256": "d9aed2da4e8c39fd2aada3da2fdcdff2f8da190f34d120601ec568dee4bcda73"
   },
   "vb_dtc": {
     "id": "vb_dtc",

@@ -3,6 +3,8 @@ extends RefCounted
 const SURFACE := preload("res://game/shaders/fleet_surface.gdshader")
 
 static func apply(model: Node3D, modern: bool = false) -> Dictionary:
+	if model.find_child("CABV02_1_Rear_door_hinge", true, false) != null:
+		return preload("res://game/wap7_detail.gd").apply(model)
 	var stats := {paint=0, metal=0, glass=0}
 	for mesh: MeshInstance3D in model.find_children("*","MeshInstance3D",true,false):
 		var node_path := str(mesh.get_path()).to_lower()

@@ -1,0 +1,702 @@
+{
+  "repository": "https://github.com/gj94/transport-fever-3-mods",
+  "revision": "de45b4e0e4194af47b1182800b7d103409c69478",
+  "models": [
+    {
+      "id": "wap7",
+      "path": "wap7_photoreal_v02/WAP7_detail_v02.blend"
+    }
+  ],
+  "files": [
+    {
+      "path": "wap7_photoreal_v02/FILE_MANIFEST.json",
+      "sha": "079c8b15da179b9c3686a6c397d7f2c302f4a994",
+      "size": 29646
+    },
+    {
+      "path": "wap7_photoreal_v02/README.md",
+      "sha": "919841696584688873c92ef39f3ebe60c9c65045",
+      "size": 8436
+    },
+    {
+      "path": "wap7_photoreal_v02/REFERENCES.md",
+      "sha": "9c0136c9f9029c3c25b0b5511687c3c64ae72763",
+      "size": 2401
+    },
+    {
+      "path": "wap7_photoreal_v02/SHA256SUMS.txt",
+      "sha": "8ae940dcd2b0139ce26bb7c7ec6bb00d2ec072d5",
+      "size": 15265
+    },
+    {
+      "path": "wap7_photoreal_v02/VISUAL_QA.md",
+      "sha": "0cbe478b81e819b5ae611ab6c5782ebda866cc1b",
+      "size": 6855
+    },
+    {
+      "path": "wap7_photoreal_v02/WAP7_detail_v02.blend",
+      "sha": "e1ac08a03cd1d1dce5c017996445f01fac8279d6",
+      "size": 10368238
+    },
+    {
+      "path": "wap7_photoreal_v02/components/body_geometry.py",
+      "sha": "c11aba6001c7499cef9e32d7560e248c013f69cf",
+      "size": 5875
+    },
+    {
+      "path": "wap7_photoreal_v02/components/cab_interiors.py",
+      "sha": "509137e39249202cd4423e83516c06a0b7c3f793",
+      "size": 53188
+    },
+    {
+      "path": "wap7_photoreal_v02/components/common.py",
+      "sha": "37bad4a256e5ab9d868fb990c5ea1b04543a5614",
+      "size": 7072
+    },
+    {
+      "path": "wap7_photoreal_v02/components/coupler.py",
+      "sha": "f0730ec6508d8b30d391de13b51c9453c325676b",
+      "size": 16842
+    },
+    {
+      "path": "wap7_photoreal_v02/components/depot.py",
+      "sha": "6465bdba551ac22d1c42fcf98f842a5c39bcb94e",
+      "size": 6165
+    },
+    {
+      "path": "wap7_photoreal_v02/components/exterior.py",
+      "sha": "f5b424a572e53cf01d4b2426cdd23b6af308ad53",
+      "size": 25454
+    },
+    {
+      "path": "wap7_photoreal_v02/components/machinery_room.py",
+      "sha": "bf0e0cf07c3d43f9f545a8a2fc13575cf873d335",
+      "size": 47385
+    },
+    {
+      "path": "wap7_photoreal_v02/components/materials.py",
+      "sha": "b15ce012c0a3d38346f8083cb11cc9309d6c786b",
+      "size": 422
+    },
+    {
+      "path": "wap7_photoreal_v02/components/presentation.py",
+      "sha": "8a679b4b4451dfd4d2c2ebba16a34b0dd3b1051f",
+      "size": 14708
+    },
+    {
+      "path": "wap7_photoreal_v02/components/roof.py",
+      "sha": "2c8a7c44428ff74ee45636b3a9facc95a342e7c7",
+      "size": 19631
+    },
+    {
+      "path": "wap7_photoreal_v02/components/running_gear.py",
+      "sha": "9bc6560d4782095a434c0582c69c7cc23f7d9415",
+      "size": 59017
+    },
+    {
+      "path": "wap7_photoreal_v02/components/stage.py",
+      "sha": "12af3639b2170e42f165698cdd21abd3edc038d0",
+      "size": 2518
+    },
+    {
+      "path": "wap7_photoreal_v02/components/surface_materials.py",
+      "sha": "74c600c9f818844502beceb4e16f58bdfb841e2e",
+      "size": 25291
+    },
+    {
+      "path": "wap7_photoreal_v02/components/surface_running_gear.py",
+      "sha": "918cb7178b598cf069c87187584d4bd31a5d5b42",
+      "size": 4110
+    },
+    {
+      "path": "wap7_photoreal_v02/delivery_manifest.json",
+      "sha": "50df16fbeb3ad5315f2f3c470074b224cda977e5",
+      "size": 122761
+    },
+    {
+      "path": "wap7_photoreal_v02/docs/BUILD_AND_RENDER.md",
+      "sha": "bb1a5c3ffd749af9e78b5e7ed08166d2aa2c19c5",
+      "size": 7179
+    },
+    {
+      "path": "wap7_photoreal_v02/docs/CAB_GALLERY_USAGE.md",
+      "sha": "38fb00d7fc27fed6f88ca9315bf7319b8c10b097",
+      "size": 3043
+    },
+    {
+      "path": "wap7_photoreal_v02/docs/CAB_IMPLEMENTATION.md",
+      "sha": "373248ab2d05d5948439ea9d19e5f1449931fb56",
+      "size": 5656
+    },
+    {
+      "path": "wap7_photoreal_v02/docs/CAB_REFERENCE_NOTES.md",
+      "sha": "593d95ddf68ad799406ad19942daf9375704933e",
+      "size": 5265
+    },
+    {
+      "path": "wap7_photoreal_v02/docs/EXTERIOR_REFERENCE_NOTES.md",
+      "sha": "9a6b5bb57bdc97803ff028e3c4965cf3554f7dfe",
+      "size": 8003
+    },
+    {
+      "path": "wap7_photoreal_v02/docs/MACHINERY_REFERENCE_NOTES.md",
+      "sha": "5fb732e02ede8808b70e0869a44954cb68263d21",
+      "size": 10044
+    },
+    {
+      "path": "wap7_photoreal_v02/docs/RUNNING_GEAR_REFERENCE_NOTES.md",
+      "sha": "5740c514f6bab70577648269460dcad330e7ca1b",
+      "size": 11079
+    },
+    {
+      "path": "wap7_photoreal_v02/docs/SURFACE_MATERIALS.md",
+      "sha": "ee8f35840c985da7de1517165d533a8d108edd47",
+      "size": 13676
+    },
+    {
+      "path": "wap7_photoreal_v02/previews/cab/overview_A.png",
+      "sha": "870a02da51596fa82f34b24218e8538d18214b9b",
+      "size": 2406907
+    },
+    {
+      "path": "wap7_photoreal_v02/previews/cab/panel_A.png",
+      "sha": "2267d8a865f47b403e54f7e62e5cbf7aae53f595",
+      "size": 2407641
+    },
+    {
+      "path": "wap7_photoreal_v02/previews/details/wheel.png",
+      "sha": "223527960df26e4ae3d5330a36eff167725afabb",
+      "size": 2956404
+    },
+    {
+      "path": "wap7_photoreal_v02/previews/machinery_gallery/machinery_through_door.png",
+      "sha": "1d92b4eb5baa8850ea20558654d9d73ac8428eab",
+      "size": 2215452
+    },
+    {
+      "path": "wap7_photoreal_v02/previews/outdoor_hero.png",
+      "sha": "64978ec9afd1132e8dff08f62cafed71d307cdab",
+      "size": 2916964
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/bogie_view_framing_validation.json",
+      "sha": "2555adb5dece12fda972061ca7b251fd7c69b370",
+      "size": 939
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/build_report.json",
+      "sha": "f5d172bdb5d7d2dc6a7b14d03e23cad5d73cc43e",
+      "size": 32454
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/cab/combined_join_validation.json",
+      "sha": "132b670dd0fafbd4ecf5b851770c0019d4681944",
+      "size": 11582
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/cab/component_file_manifest.json",
+      "sha": "b070381697aff7a56cb6b06e48a95783c0bd94f3",
+      "size": 3135
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/cab/component_validation.json",
+      "sha": "c4601abaa6505ba691de921b1b37215f5cfc7d8d",
+      "size": 3941
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/cab/lanyard_geometry_validation.json",
+      "sha": "d4c7f7b1432fbea3a204a5e08cad84a09cf7370f",
+      "size": 482
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/cab/overview_sampling_validation.json",
+      "sha": "12fcf9ee8973ba55875b0e262d11f6580ab9f321",
+      "size": 712
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/delivery_material_font_comparison.json",
+      "sha": "59fe0268178fa2aaa68e476f2403a839040176c2",
+      "size": 17079
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/entry_ladder_yaw_clearance.json",
+      "sha": "4e630bde61bcc76b6f8f3d83e085d95748a6a750",
+      "size": 2379
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/final_gallery_validation.json",
+      "sha": "1c540af087c146ee555a348f29b0a4c190d6a785",
+      "size": 5088
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/machinery/adaptive_sampling_validation.json",
+      "sha": "fb06350e2a7dec9d6c6c19e035ffbb6e5dcfeeb6",
+      "size": 288
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/machinery/validation_report.json",
+      "sha": "1355bc6c22e53f97e566d452ac24e54dfbf4a140",
+      "size": 4334
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/outdoor_hero.json",
+      "sha": "075e8d7dedf1dcb1ba55d403c06af9d1b2ec8530",
+      "size": 1335
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/portability_validation.json",
+      "sha": "e7a783185705c0c216f8a2c8c601775be6a828d0",
+      "size": 16708
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/preview_metadata_cleanup.json",
+      "sha": "e797415ddeab87f437ba02ba193f71f038a14768",
+      "size": 7747
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/probe_coupler_top.json",
+      "sha": "68047fc4574e53e3491e1936b29780c622f550c4",
+      "size": 913
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/probe_pantograph.json",
+      "sha": "7b6873de3f66d28daab0246f9171c393615a2528",
+      "size": 911
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/probe_side.json",
+      "sha": "465443e61234b9d22c6f381a5ea285e4565bced6",
+      "size": 912
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/publication_source_validation.json",
+      "sha": "d4d3281e99cf23bc8d76f911f7196c4994791b51",
+      "size": 1058
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/reference_audit/FINAL_VALIDATION_SUMMARY.md",
+      "sha": "6cfb9114207e48241032565621fea50c640168db",
+      "size": 4381
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/reference_audit/INDEPENDENT_VALIDATION.md",
+      "sha": "2ffcc2b025177095f37637d850ff577abec1ef4b",
+      "size": 3180
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/reference_audit/final_gallery_review.json",
+      "sha": "5b0d0537059ef95cb9c678ddfa2438b9e3594e61",
+      "size": 8481
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/reference_audit/final_integrated_validation.json",
+      "sha": "bff3c90d6db3d51b41bc2848cd3d05622421d28d",
+      "size": 4844178
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/reference_audit/functional_interface_baseline.json",
+      "sha": "6f84f33690c03148cd9f6dfbce99b29b941921c3",
+      "size": 15305
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/reference_audit/validate_integrated_readonly.py",
+      "sha": "f1b97f09cf4b67f256d853a7b85f88f05cdb26a9",
+      "size": 15148
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/roof_connection_validation.json",
+      "sha": "53e8cc8d59e6ca6dd7aaeb5df6cd053f6c7a2dba",
+      "size": 8930
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/running_gear_validation.json",
+      "sha": "709c1ae19dad9dce2a46166a9eb0bb015d1fd7c9",
+      "size": 22452
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/side_view_framing_validation.json",
+      "sha": "0197481eb6420373d657ce17ae45f566877909dc",
+      "size": 1014
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/surfaces/bounded_gain_validation.json",
+      "sha": "0ed3f2cc03949ac353435fe72a33aeee36a88e43",
+      "size": 1172
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/surfaces/environment_colourspace_validation.json",
+      "sha": "362d9ecd9c0d334e1b1932ed3da7844383826212",
+      "size": 342
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/surfaces/environment_sun_direction.json",
+      "sha": "87fe6f95bfbd4b2a4b540dd2b0239635e3e5e404",
+      "size": 880
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/surfaces/final_closeup_material_reviews.json",
+      "sha": "17ce183f241590fc0ad4082c75a7df361ccc26d0",
+      "size": 8342
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/surfaces/final_gallery_material_review.json",
+      "sha": "a36d58cacd19583143b7313abf39721076744fbd",
+      "size": 5877
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/surfaces/final_integrated_review.json",
+      "sha": "5be25134a9b1bd0d6c44e55e385e171071abd5e4",
+      "size": 3745
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/surfaces/gear_surface_validation.json",
+      "sha": "19c153d262ed6ca2629096e8bc244ef73882921f",
+      "size": 711
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/surfaces/surface_delivery_manifest.json",
+      "sha": "6578775cb3b15842afd7e643de6ea4cc412b2067",
+      "size": 6160
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/surfaces/surface_validation.json",
+      "sha": "7ff5306e5695d0590ad1cff071f5657d14fb344c",
+      "size": 8760
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/surfaces/weather_placement_validation.json",
+      "sha": "3c5042d5db78e16e6b528c4e79ce8938fd2ac8a6",
+      "size": 2346
+    },
+    {
+      "path": "wap7_photoreal_v02/qa/underfloor_view_framing_validation.json",
+      "sha": "1571fa571c225a4f2f073006f0d0671f4feda426",
+      "size": 575
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/audit_portability.py",
+      "sha": "76ab849fcdc7f43abd56bb64334230409e394b5f",
+      "size": 3700
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/build_master.py",
+      "sha": "d034f08bea67cfe1c8129b66955cfa64c105b52f",
+      "size": 5438
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/compare_delivery_materials.py",
+      "sha": "1af3048f7a7de65432f0122c354c5d768f01324e",
+      "size": 9172
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/make_cab_instruments.py",
+      "sha": "06792b45012774b26b7810b9e132c869b27921d5",
+      "size": 4334
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/make_identity_details.py",
+      "sha": "4f5fbd5aeb787b9093b7835af8abdca7ae2cb5d3",
+      "size": 3414
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/make_service_wear_maps.py",
+      "sha": "83141ba53d2cdfcb88434cb49e6bf01589efd1b3",
+      "size": 10460
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/make_surface_detail_maps.py",
+      "sha": "54bc0f679de2c4b1f2c669817c81b56a364795fc",
+      "size": 3436
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/prepare_delivery_master.py",
+      "sha": "f468905dfbc1ce3c04390f20d789abff8ce1d08c",
+      "size": 6900
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/render_cab_gallery.py",
+      "sha": "672c36844bd5aae597ba76c24d94f1d1e005fe16",
+      "size": 15465
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/render_cab_gallery_uniform.py",
+      "sha": "cf7e1ea2b99b93000b7600393e11234e4052d37e",
+      "size": 15128
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/render_detail_gallery.py",
+      "sha": "ef0f16bb4c37cc4813cdf7ee3decc6ea1d439cef",
+      "size": 3488
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/render_final_gallery.sh",
+      "sha": "bbc0d5c905b70355d074602d32e7d29a70de280b",
+      "size": 1845
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/render_machinery_gallery.py",
+      "sha": "ec21ec436ab09b4ac4e52fce91d9d64b60bc3e7a",
+      "size": 20482
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/render_outdoor.py",
+      "sha": "038ea935f1bf825c87e119b15c2c2e61f8ddce53",
+      "size": 2464
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/render_probe.py",
+      "sha": "0249caee09b46aee0bee7c6bb52cb11a6a910a06",
+      "size": 2123
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/strip_preview_metadata.py",
+      "sha": "8eb90689a534f5b6c9d0d9081fc4733b95e7ce01",
+      "size": 5587
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/validate_cab_join.py",
+      "sha": "8fae0d615dc6feabc89a637d639f6df87a06c60e",
+      "size": 2976
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/validate_entry_ladders.py",
+      "sha": "5c2da84318fd5dbebe6b3b9d920ed823bfbb4a99",
+      "size": 2753
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/validate_gear_surfaces.py",
+      "sha": "e2ff53b009294e42bdb5ba5b7110c6dc22940d29",
+      "size": 1827
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/validate_roof_connections.py",
+      "sha": "23b74135763f79d8762bce1e86b4a6e6cb3476c6",
+      "size": 3869
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/validate_surface_materials.py",
+      "sha": "dc1eec4758b055ac6d124f87c3f24c79d902726d",
+      "size": 6114
+    },
+    {
+      "path": "wap7_photoreal_v02/scripts/verify_gallery.py",
+      "sha": "047851ae04eadcea0b3ee6bc5ef7cc850a24f76b",
+      "size": 4146
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/PROVENANCE.json",
+      "sha": "a2bccb3c9fc9835441f5b7a341662d1ab5a5c5d3",
+      "size": 411
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/gauge_afi.png",
+      "sha": "3ecedfee3aa14ce436f5bd427342b65804236b5d",
+      "size": 26277
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/gauge_bc.png",
+      "sha": "ea67345b6606977b63d5a14189e45ca187468175",
+      "size": 28213
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/gauge_bp.png",
+      "sha": "9a80856ad25b046902b7cb0862ee8816c8e6421c",
+      "size": 26075
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/gauge_mrfp.png",
+      "sha": "dad3a530b68e6559fb36f042bb5c3f0b6eb55319",
+      "size": 32105
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/gauge_pb.png",
+      "sha": "34d8e0be4ed9a0682f8a3a74d2d69d93fedcd02f",
+      "size": 26070
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/lcd_blank.png",
+      "sha": "9d5777a96e5524b1dc9da424fcae26ae57489e80",
+      "size": 1486
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/meter_battery.png",
+      "sha": "3db886d9ff623498c4a040ee2d1014f6a0fe6ead",
+      "size": 12981
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/meter_bogie1.png",
+      "sha": "b5143a36d76d974c063a2af62861b78caa5ba6ce",
+      "size": 14746
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/meter_bogie2.png",
+      "sha": "a3f58af426b9181618050ef76688d2c6b13942c5",
+      "size": 15198
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/meter_ohe.png",
+      "sha": "4c8cd0d18b22451a59f3990f77f776b42ec81e31",
+      "size": 12108
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab/speedometer.png",
+      "sha": "9afe1b5af12b357dc4a98d9de5ea391ada61c36a",
+      "size": 24832
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab1.png",
+      "sha": "f27a7570db4f763b27777e4b5807a913d3c82611",
+      "size": 3985
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/cab2.png",
+      "sha": "3fa44375b8fa5089b75a14acb41b95f4f9cae422",
+      "size": 4727
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/class.png",
+      "sha": "ae37c5ecb47d6be5e19693d2df4f2c508ffa7f15",
+      "size": 15629
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/hog.png",
+      "sha": "4e2ac86c7a5e28a4b9cd13e7822472caa2c7c399",
+      "size": 12093
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/indian_flag.png",
+      "sha": "3e896a85f7e9c40740049892725e19898f9e0c07",
+      "size": 3603
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/lift.png",
+      "sha": "17ecf9fe2eb0347a6a6341cbdfd5b1389314c57d",
+      "size": 1964
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/number_black.png",
+      "sha": "e02463917fa2a5e3b0b877c04e6dda75d1a39df8",
+      "size": 21708
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/number_red.png",
+      "sha": "8391fc5a11d52d02f521f61c4083d29cf49bd4e1",
+      "size": 27659
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/railway_english.png",
+      "sha": "2dfd87dc7c1882161388dd5e4d9f608fa5803916",
+      "size": 41800
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/railway_hindi.png",
+      "sha": "f8817abea49d5626e12146993412975c8db623b7",
+      "size": 11559
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/rpm.png",
+      "sha": "d277cd6e8d040239beb10f5d3a9c7d350e5f48e8",
+      "size": 4388
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/shed.png",
+      "sha": "6bdc03a32b3b2399edbffc5f36c2dca44bd50401",
+      "size": 20573
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/sr.png",
+      "sha": "a4a22076b4262b4a2708bad0724cee4395e659aa",
+      "size": 4225
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/surfaces/SURFV02_MAP_PROVENANCE.json",
+      "sha": "aa4b459f028f691a6178be4502814e11b921f612",
+      "size": 860
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/surfaces/SURFV02_SERVICE_WEAR_PROVENANCE.json",
+      "sha": "291e36950cde800ee25af6aa7c1ec913741db733",
+      "size": 5140
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/surfaces/SURFV02_buffer_grease.png",
+      "sha": "42ea1a275c45bb3fb340bc858aebe3ceb3ceacdc",
+      "size": 657065
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/surfaces/SURFV02_buffer_roughness.png",
+      "sha": "d780471de1b5ad2b6c912022f9950d16593645a3",
+      "size": 6182956
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/surfaces/SURFV02_buffer_wear.png",
+      "sha": "5a58550e660aa61059372592c37a2f88e0a110d4",
+      "size": 4673556
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/surfaces/SURFV02_roof_foot_runoff.png",
+      "sha": "37b93f91e2fbe4b7c31b4b1c7b630b8e3ce09752",
+      "size": 26153
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/surfaces/SURFV02_windscreen_service_film.png",
+      "sha": "4e749ac1060a9cf84b340741c3f6645d58dcb039",
+      "size": 103258
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/technical.png",
+      "sha": "b96b6e92c43a48a2633b18dd64fc531b49b9eda4",
+      "size": 8866
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/v02_body_side1_albedo.png",
+      "sha": "64342e05ff09f8327a65be17f65ff4c82933b850",
+      "size": 3385534
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/v02_body_side1_grime_mask.png",
+      "sha": "436974ed40ac0a3552571b29e12b332013f0d750",
+      "size": 238911
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/v02_body_side1_roughness.png",
+      "sha": "fd60a3ec7545df605ef3330155896f4f9c4e58b1",
+      "size": 110848
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/v02_body_side2_albedo.png",
+      "sha": "d14fa9c68ab746c1b40b932b86867e716673b1ec",
+      "size": 3359500
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/v02_body_side2_grime_mask.png",
+      "sha": "1e37c19fd76bb5d8b02e820a6105d190f972776a",
+      "size": 236751
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/v02_body_side2_roughness.png",
+      "sha": "a64e20a6917549b81b1abfa77e6130afc3f0d49a",
+      "size": 110299
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/v02_nose_albedo.png",
+      "sha": "5ba593db3567cbc9734dcf3d7462865db02934fe",
+      "size": 1441937
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/v02_nose_grime_mask.png",
+      "sha": "6a786809f6351cc97a0426c07006f469d92dd491",
+      "size": 72593
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/v02_nose_roughness.png",
+      "sha": "fa4b05ab94caa79a43fc4246e08767db4d330b9d",
+      "size": 33912
+    },
+    {
+      "path": "wap7_photoreal_v02/textures/v02_royapuram_crest.png",
+      "sha": "baf4ab2650b14726e5c722d859f3a3ca92ddc938",
+      "size": 162412
+    }
+  ]
+}

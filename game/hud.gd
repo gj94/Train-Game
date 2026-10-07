@@ -13,7 +13,8 @@ Tab cab / exterior · A selected train AI / manual
 [b]CAMERA & PASSENGERS[/b]
 F follow train · 1 / 2 / 3 visit a station
 Outside: right-drag orbit, left-drag pan, wheel zoom
-Cab / passenger: right-drag look, wheel zoom
+Cab / passenger: right-drag look (stays on release), wheel zoom, middle-click recenter.
+Detailed WAP-7: Home cycles driver / assistant / cab overview / machinery aisle.
 Passenger trains: V passenger / cab. In passenger view: 1 first / 2 middle / 3 last coach.
 Alt+1 / Alt+2 / Alt+3 enter those views directly. PgUp/PgDn coach, ←/→ position,
 Home aisle / seat. Original LHB rake: B fold / lower middle berths.

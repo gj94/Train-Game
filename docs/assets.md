@@ -2,6 +2,18 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-07 WAP-7 detailed v0.2: `assets/models/ported/wap7.glb` and
+`assets/models/ported/wap7_detail/` derive from the user's own
+[`wap7_photoreal_v02/WAP7_detail_v02.blend`](https://github.com/gj94/transport-fever-3-mods/tree/de45b4e0e4194af47b1182800b7d103409c69478/wap7_photoreal_v02).
+Revision `de45b4e0e4194af47b1182800b7d103409c69478`; source SHA-256
+`25aa1f264f7dbab9f25e9e2fe27ff2f2e9d6b8ab513133d374717fcff0e24930`.
+The user explicitly requested this port. The source reports original geometry,
+instrument art and constructed surface masks, with reference photographs used
+for guidance rather than incorporated pixels. No broader open-source licence is
+asserted. Pins are in `tools/wap7_v02_sources.json`; conversion, rendering limits
+and playtest steps are in `docs/wap7-detail.md`. Images under
+`art/wap7/detail-preview/` are native game captures of this port.
+
 2026-10-07 scenery rebuild: `assets/models/scenery/*.glb` and editable
 `art/scenery/*.blend` are original project models generated in background Blender
 by `tools/blender/build_scenery.py`, `scenery_props.py`, `scenery_people.py`,

@@ -118,8 +118,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				drag_moved = 0.0
 		elif not mb.pressed and mb.button_index == _dragging:
 			_dragging = 0
-			if mb.button_index == MOUSE_BUTTON_RIGHT and mode != Mode.OVERVIEW:
-				_look = Vector2.ZERO
+		# Releasing look keeps the chosen direction. Recenter deliberately.
+		if mb.pressed and mb.button_index == MOUSE_BUTTON_MIDDLE and mode != Mode.OVERVIEW:
+			_look = Vector2.ZERO
 		if mode != Mode.OVERVIEW and mb.pressed:
 			if mb.button_index == MOUSE_BUTTON_WHEEL_UP:
 				cab_fov = maxf(38.0, cab_fov - 4.0)

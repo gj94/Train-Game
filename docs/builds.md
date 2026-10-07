@@ -28,6 +28,12 @@ voicing and the close-up motion playtest are documented in `guides/track.md`.
 The active BODY V2 bank uses lossless 48 kHz PCM. The build runs
 `tools/check_body_v2_audio.gd` against the actual native players at 0/30/71.6/120 km/h.
 
+## Detailed locomotive package
+
+For the detailed locomotive, use `-BuildName TrainGame-WAP7-Detail-Windows`.
+It preserves older downloads, includes the authored WAP-7 material index and runs
+the detailed model preservation check. See `guides/wap7-detail.md` in the ZIP.
+
 ## Export templates on this PC
 
 The official [Godot 4.7.2 export templates](https://godotengine.org/download/archive/4.7.2-stable/)

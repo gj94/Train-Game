@@ -21,6 +21,7 @@ var passenger_bay := 0
 var passenger_seat := false
 var passenger_on := false
 var cab_on := false
+var cab_position := 0
 var _last_odometer := 0.0
 var _wheel_angles: Array[float] = []
 var _interior_light: OmniLight3D
@@ -68,6 +69,12 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 				mesh.visibility_range_end_margin = 15.0
 			for surface in mesh.mesh.get_surface_count():
 				var material: Material = mesh.get_active_material(surface)
+				if material is ShaderMaterial and material.get_meta("optical_glass",false):
+					var role := material.resource_name.to_lower()
+					if "laminated_cab_glass" in role or "windscreen" in role:
+						var clear := material.duplicate() as ShaderMaterial
+						clear.set_shader_parameter("onboard_glass",true)
+						car_glass.append({node=mesh,surface=surface,clear=clear,exterior=material})
 				if material is StandardMaterial3D and material.transparency != BaseMaterial3D.TRANSPARENCY_DISABLED:
 					var clear := material.duplicate() as StandardMaterial3D
 					clear.albedo_color.a = 0
@@ -169,8 +176,20 @@ func cab_transform() -> Transform3D:
 	var opposite := cars.size() == 1 and train.cab_end == 2
 	var eye := _v(eyes[1 if opposite else 0].position)
 	var look := Vector3(0, -.06, 1 if opposite else -1)
+	if specs[i].get("detailed_materials", false):
+		var positions := [Vector3(-.78,3.05,-7.98),Vector3(.90,3.05,-7.98),Vector3(0,3.13,-7.47),Vector3(0,3.0,-6.6)]
+		eye = positions[cab_position]
+		if opposite: eye = Vector3(-eye.x,eye.y,-eye.z)
+		if cab_position == 3: look.z *= -1.0
 	var transform := cars[i].global_transform
 	return Transform3D(Basis.looking_at(transform.basis * look, Vector3.UP), transform * eye)
+
+
+func cycle_cab_position() -> String:
+	var i := cars.size()-1 if train.cab_end==2 else 0
+	if not specs[i].get("detailed_materials", false): return ""
+	cab_position = (cab_position+1)%4
+	return ["WAP-7 driver seat", "WAP-7 assistant seat", "WAP-7 cab overview", "WAP-7 machinery aisle"][cab_position]
 
 
 func set_cab_view(on: bool) -> void:

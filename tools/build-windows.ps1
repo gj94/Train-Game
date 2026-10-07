@@ -14,9 +14,14 @@ $exportLog = Join-Path $projectRoot '.local/windows-export.log'
 Push-Location $projectRoot
 try {
     if (-not $SkipTests) {
-        foreach ($script in @('tests/run_tests.gd', 'tools/check_controller_playable.gd', 'tools/check_track.gd', 'tools/check_fleet_finish.gd', 'tools/check_ported_assets.gd', 'tools/check_motion_playable.gd', 'tools/check_body_v2_audio.gd', 'tools/check_platform_audio.gd', 'tools/check_platform_integration.gd', 'tools/check_qol.gd', 'tools/check_traffic_playable.gd', 'tools/check_corridor_playable.gd', 'tools/check_ported_playable.gd', 'tools/check_scenery_playable.gd')) {
-            & $engine --headless --path $projectRoot --script "res://$script"
-            if ($LASTEXITCODE -ne 0) { throw "Verification failed: $script" }
+        foreach ($script in @('tests/run_tests.gd', 'tools/check_controller_playable.gd', 'tools/check_track.gd', 'tools/check_fleet_finish.gd', 'tools/check_ported_assets.gd', 'tools/check_wap7_detail.gd', 'tools/check_wap7_controls.gd', 'tools/check_motion_playable.gd', 'tools/check_body_v2_audio.gd', 'tools/check_platform_audio.gd', 'tools/check_platform_integration.gd', 'tools/check_qol.gd', 'tools/check_traffic_playable.gd', 'tools/check_corridor_playable.gd', 'tools/check_ported_playable.gd', 'tools/check_scenery_playable.gd')) {
+            $checkLog = Join-Path $projectRoot ('.local/build-check-' + [IO.Path]::GetFileNameWithoutExtension($script) + '.log')
+            & $engine --headless --path $projectRoot --script "res://$script" *> $checkLog
+            $checkExit = $LASTEXITCODE
+            Get-Content -LiteralPath $checkLog -Tail 4
+            if ($checkExit -ne 0 -or (Select-String -LiteralPath $checkLog -Pattern '^(SCRIPT ERROR:|SHADER ERROR:|ERROR:|FAIL[: ])' -Quiet)) {
+                throw "Verification failed: $script. See $checkLog"
+            }
         }
     }
     & $engine --headless --path $projectRoot --export-release 'Windows Portable' (Join-Path $buildRoot 'TrainGame.exe') *> $exportLog
@@ -28,7 +33,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Writing engine notices failed.' }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/portable-readme.txt') -Destination (Join-Path $buildRoot 'README.txt')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/assets.md') -Destination (Join-Path $buildRoot 'ASSET-SOURCES.md')
-    foreach ($guide in @('controllers.md', 'dispatching.md', 'timetables.md', 'lhb.md', 'wap7.md', 'stations.md', 'imported-fleet.md', 'track.md', 'body-v2-audio.md', 'enhanced-audio.md')) {
+    foreach ($guide in @('controllers.md', 'dispatching.md', 'timetables.md', 'lhb.md', 'wap7.md', 'wap7-detail.md', 'stations.md', 'imported-fleet.md', 'track.md', 'body-v2-audio.md', 'enhanced-audio.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     $revision = & git -c safe.directory=D:/ClaudeWS/train-game rev-parse --short HEAD

@@ -7,6 +7,18 @@ func _initialize() -> void:
 func run_profile() -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	Engine.max_fps = 0
+	if "--legacy-wap7" in OS.get_cmdline_user_args():
+		# Optional local A/B fixture, extracted from the previous Git revision.
+		# Use identical camera/settings to isolate the replacement model cost.
+		var doc := GLTFDocument.new()
+		var state := GLTFState.new()
+		assert(doc.append_from_file("res://.local/wap7-before.glb",state)==OK)
+		var legacy := doc.generate_scene(state)
+		var packed := PackedScene.new()
+		assert(packed.pack(legacy)==OK)
+		packed.take_over_path("res://assets/models/ported/wap7.glb")
+		set_meta("legacy_profile_resource",packed)
+		legacy.free()
 	change_scene_to_file("res://game/main.tscn")
 	await process_frame
 	await process_frame
