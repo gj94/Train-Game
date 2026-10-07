@@ -37,6 +37,13 @@
   grass clearance and distant transitions while moving. Compare F10 at the same
   camera/resolution against the previous WAP build, which is retained on the LAN
   server. Distribution testing remains skipped per the user's preference.
+- Built and pushed clean source **`959e8b9`**. The new
+  `TrainGame-Fidelity-Windows.zip` is **610,339,539 bytes**, SHA-256
+  `00928f96827d7a70e7ff4be5769e6c477f5b07c635433a697cb34917be2e4a83`.
+  The existing private-LAN server now lists it first at
+  `http://192.168.8.183:8765/`; its download responds HTTP 200 with the correct
+  length. The previous WAP-7/audio-fix archive remains available for comparison.
+  No extracted-build/distribution tests ran. The temporary MCP editor was closed.
 
 ## 2026-10-07 — Joint timing and website audio fidelity correction
 - Investigated the user's delayed cling/clang and weaker website resemblance.
