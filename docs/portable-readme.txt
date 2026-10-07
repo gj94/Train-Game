@@ -2,6 +2,12 @@ TRAIN GAME - SOUTHERN CORRIDOR
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Visual fidelity update: textured broadleaf canopies, fuller palms, irregular verge
+cover, finer rice blades, rounded masonry edges and weathered photographic station
+finishes. Platform passengers have revised faces and clothing. Track stone and
+sleepers have a darker, more worn finish. Detailed WAP-7 geometry is preserved.
+See guides/visual-fidelity.md for comparison views, performance and playtest steps.
+
 Audio update: corrected native filters, output-buffer timing compensation and
 39 m joint spacing matching the approved website. F10 shows the audio buffer estimate.
 Detailed WAP-7 39002 with both complete cabs and machinery compartment.

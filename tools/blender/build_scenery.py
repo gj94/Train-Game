@@ -19,7 +19,7 @@ MASTERS = ROOT / 'art/scenery'
 RNG = random.Random(20261007)
 MATERIALS = {}
 MANIFEST = {}
-SURFACE_IDS={'detail':0,'masonry':1,'roof':2,'metal':3,'glass':4,'bark':5,'leaves':6,'grass':7,'sign':8,'wood':9}
+SURFACE_IDS={'detail':0,'masonry':1,'roof':2,'metal':3,'glass':4,'bark':5,'leaves':6,'grass':7,'sign':8,'wood':9,'broadleaf':10}
 PAINTS = [(0.64,.58,.44),(.61,.66,.60),(.48,.60,.63),(.68,.58,.52),(.68,.68,.57),(.57,.64,.58)]
 IVORY=(.76,.73,.63); CONCRETE=(.43,.43,.39); DARK=(.055,.07,.07)
 RUST=(.27,.12,.065); GLASS=(.12,.20,.21); STEEL=(.24,.29,.29); WOOD=(.20,.115,.060)
@@ -34,33 +34,51 @@ def material(name):
     mat.node_tree.links.new(attr.outputs['Color'],node.inputs['Base Color'])
     node.inputs['Roughness'].default_value=.85 if name!='glass' else .26
     node.inputs['Metallic'].default_value=.45 if name=='metal' else 0
+    if name=='broadleaf':
+        # Registered CC0 Burkea leaf photographs; reused as ornamental foliage.
+        # UVs select one isolated leaflet directly; source pixels are unchanged.
+        prefix=OUT/'tree_small_02_tree_small_02_leaves'
+        diffuse=mat.node_tree.nodes.new('ShaderNodeTexImage')
+        diffuse.image=bpy.data.images.load(str(prefix)+'_diff_1k.png',check_existing=True)
+        normal=mat.node_tree.nodes.new('ShaderNodeTexImage')
+        normal.image=bpy.data.images.load(str(prefix)+'_nor_gl_1k.png',check_existing=True)
+        normal.image.colorspace_settings.name='Non-Color'
+        mat.node_tree.links.new(diffuse.outputs['Color'],node.inputs['Base Color'])
+        mat.node_tree.links.new(diffuse.outputs['Alpha'],node.inputs['Alpha'])
+        bump=mat.node_tree.nodes.new('ShaderNodeNormalMap')
+        bump.inputs['Strength'].default_value=.45
+        mat.node_tree.links.new(normal.outputs['Color'],bump.inputs['Color'])
+        mat.node_tree.links.new(bump.outputs[0],node.inputs['Normal'])
+        mat.use_backface_culling=False
     MATERIALS[name]=mat
     return mat
 
 class Geometry:
     def __init__(self,name):
         self.name=name; self.vertices=[]; self.faces=[]; self.colours=[]; self.slots=[]; self.smooth=[]
-        self.materials=[]; self.transform=Matrix.Identity(4)
+        self.materials=[]; self.transform=Matrix.Identity(4); self.uvs=[]; self.bevel_weights=[]
     @contextmanager
     def at(self,position=(0,0,0),angle=0):
         previous=self.transform.copy()
         self.transform=previous @ Matrix.Translation(Vector(position)) @ Matrix.Rotation(angle,4,'Y')
         try: yield self
         finally: self.transform=previous
-    def mesh(self,vertices,faces,kind='masonry',colour=IVORY,smooth=False):
+    def mesh(self,vertices,faces,kind='masonry',colour=IVORY,smooth=False,uvs=None,bevel=False):
         if kind not in self.materials: self.materials.append(kind)
         start=len(self.vertices)
         for vertex in vertices:
             p=self.transform @ Vector(vertex)
             self.vertices.append((p.x,-p.z,p.y))
             self.colours.append((*colour[:3],SURFACE_IDS.get(kind,0)/15.0))
+        self.uvs.extend(uvs if uvs is not None else [None]*len(vertices))
+        self.bevel_weights.extend([bevel]*len(vertices))
         self.faces.extend(tuple(start+i for i in face) for face in faces)
         self.slots.extend([self.materials.index(kind)]*len(faces)); self.smooth.extend([smooth]*len(faces))
     def box(self,p,size,kind='masonry',colour=IVORY,rotation=None):
         signs=[(-1,-1,-1),(1,-1,-1),(1,1,-1),(-1,1,-1),(-1,-1,1),(1,-1,1),(1,1,1),(-1,1,1)]
         vertices=[Vector((x*size[0]/2,y*size[1]/2,z*size[2]/2)) for x,y,z in signs]
         if rotation is not None: vertices=[rotation @ v for v in vertices]
-        self.mesh([Vector(p)+v for v in vertices],[(0,3,2,1),(4,5,6,7),(0,1,5,4),(1,2,6,5),(2,3,7,6),(3,0,4,7)],kind,colour)
+        self.mesh([Vector(p)+v for v in vertices],[(0,3,2,1),(4,5,6,7),(0,1,5,4),(1,2,6,5),(2,3,7,6),(3,0,4,7)],kind,colour,bevel=min(size)>=.18 and max(size)>=.75)
     def cylinder(self,a,b,r,kind='metal',colour=STEEL,sides=10,end_radius=None):
         a,b=Vector(a),Vector(b); d=b-a; q=d.to_track_quat('Y','Z').to_matrix()
         r2=r if end_radius is None else end_radius
@@ -72,6 +90,9 @@ class Geometry:
     def finish(self):
         mesh=bpy.data.meshes.new(self.name)
         mesh.from_pydata(self.vertices,[],self.faces); mesh.update()
+        weights=mesh.attributes.new('bevel_weight_edge','FLOAT','EDGE')
+        for edge in mesh.edges:
+            weights.data[edge.index].value=1 if all(self.bevel_weights[v] for v in edge.vertices) else 0
         for kind in self.materials: mesh.materials.append(material(kind))
         for face,slot,smooth in zip(mesh.polygons,self.slots,self.smooth): face.material_index=slot; face.use_smooth=smooth
         attr=mesh.color_attributes.new(name='Color',type='FLOAT_COLOR',domain='POINT')
@@ -84,7 +105,8 @@ class Geometry:
             axes=[i for i in range(3) if i!=axis]
             for loop in poly.loop_indices:
                 p=mesh.vertices[mesh.loops[loop].vertex_index].co
-                uv.data[loop].uv=(p[axes[0]],p[axes[1]])
+                explicit=self.uvs[mesh.loops[loop].vertex_index]
+                uv.data[loop].uv=explicit if explicit is not None else (p[axes[0]],p[axes[1]])
         return obj
 
 def reset():
@@ -271,13 +293,20 @@ def save(g):
         bevel=obj.modifiers.new('Manufactured rounded edges','BEVEL')
         bevel.width=.025; bevel.segments=2; bevel.harden_normals=True
         bevel.limit_method='ANGLE'; bevel.angle_limit=.7
+    elif not any(kind in g.materials for kind in ['bark','leaves','grass','broadleaf']) and not g.name.startswith('passenger_'):
+        # Small real edge radii catch daylight without changing metre footprints.
+        bevel=obj.modifiers.new('Worn construction edges','BEVEL')
+        bevel.width=.012; bevel.segments=2; bevel.harden_normals=True
+        bevel.limit_method='WEIGHT'
+    for image in bpy.data.images:
+        if image.source=='FILE' and image.users: image.pack()
     OUT.mkdir(parents=True,exist_ok=True); MASTERS.mkdir(parents=True,exist_ok=True)
     bpy.ops.wm.save_as_mainfile(filepath=str(MASTERS/(g.name+'.blend')),compress=True)
     evaluated=obj.evaluated_get(bpy.context.evaluated_depsgraph_get())
     mesh=evaluated.to_mesh(); mesh.calc_loop_triangles()
     coords=[v.co for v in mesh.vertices]
     low=[min(p[i] for p in coords) for i in range(3)]; high=[max(p[i] for p in coords) for i in range(3)]
-    unified=not any(kind in g.materials for kind in ['bark','leaves','grass'])
+    unified=not any(kind in g.materials for kind in ['bark','leaves','grass','broadleaf'])
     MANIFEST[g.name]={'triangles':len(mesh.loop_triangles),'surfaces':1 if unified else len(g.materials),'godot_size':[high[0]-low[0],high[2]-low[2],high[1]-low[1]],'godot_min':[low[0],low[2],-high[1]],'godot_max':[high[0],high[2],-low[1]],'materials':g.materials,'surface_ids':SURFACE_IDS if unified else {},'source':'Original project geometry','front':'-Z','units':'metres'}
     evaluated.to_mesh_clear()
     if unified:

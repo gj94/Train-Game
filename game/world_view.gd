@@ -162,7 +162,7 @@ func _build_environment() -> void:
 	env.background_mode = Environment.BG_SKY
 	env.sky = sky
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
-	env.ambient_light_energy = 0.65
+	env.ambient_light_energy = 0.48
 	env.reflected_light_source = Environment.REFLECTION_SOURCE_SKY
 	env.tonemap_mode = Environment.TONE_MAPPER_AGX
 	env.tonemap_exposure = 1.0
@@ -531,7 +531,7 @@ func _build_stations() -> void:
 		for mesh: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
 			for s in mesh.mesh.get_surface_count():
 				var original := mesh.mesh.surface_get_material(s) as StandardMaterial3D
-				if original == null or not original.resource_name.get_slice(".", 0) in ["SR_Concrete", "SR_Coping", "SR_Paver", "SR_PaverPale", "SR_Cream", "SR_Ivory", "SR_Maroon", "SR_RoofBlue", "SR_RoofRed", "SR_RoofGrey", "SR_Asphalt", "SR_Sandstone"]:
+				if original == null or not original.resource_name.begins_with("SR_"):
 					continue
 				var key: String = original.resource_name
 				if not finishes.has(key):
@@ -540,6 +540,25 @@ func _build_stations() -> void:
 					finish.set_shader_parameter("base_color", original.albedo_color)
 					finish.set_shader_parameter("surface_roughness", original.roughness)
 					finish.set_shader_parameter("surface_metallic", original.metallic)
+					var role: String = key.get_slice(".",0).trim_prefix("SR_")
+					var asset := "plastered_wall"
+					var kind := 0
+					var metres := 2.0
+					if role in ["Paver","PaverPale","TileBlue","TileWhite"]:
+						asset="brushed_concrete"; kind=1; metres=1.5
+					elif role.begins_with("Roof"):
+						asset="brushed_concrete"; kind=2; metres=1.2
+					elif role in ["Concrete","Coping","Sandstone"]:
+						asset="brushed_concrete"; kind=3; metres=2.0
+					elif role=="Asphalt":
+						asset="aerial_asphalt_01"; kind=4; metres=8.0
+					elif role=="Glass": kind=5
+					elif role in ["Steel","DarkSteel","Blue","White"]:
+						asset="brushed_concrete"; kind=6
+					finish.set_shader_parameter("surface_kind",kind)
+					finish.set_shader_parameter("metres",metres)
+					for pair in [["surface_albedo","diff"],["surface_normal","nor_gl"],["surface_rough","rough"]]:
+						finish.set_shader_parameter(pair[0],ph_tex(asset,pair[1]))
 					finishes[key] = finish
 				mesh.set_surface_override_material(s, finishes[key])
 

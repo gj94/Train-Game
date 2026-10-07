@@ -21,6 +21,31 @@ func run() -> void:
 	check(plan.fields.size()>800,"agricultural plots loaded")
 	check(plan.bus_bays.size()==3,"station bus bays present")
 	check(library.placements.is_empty(),"staging transforms released after flush")
+	var service_edges:={}
+	for edge in game.world.graph.edges.values():
+		if edge.allowed_dir!=1: continue
+		for offset in [14.0,-7.0,-10.0]:
+			var points:=PackedVector3Array()
+			for p in edge.points: points.append(p+Vector3(0,0,offset))
+			service_edges[str(edge.id)+":"+str(offset)]={points=points}
+	var services=load("res://game/scenery_clearance.gd").new({edges=service_edges})
+	var patches:=0
+	var clear:=true
+	for node in game.wv.root.get_children():
+		if not node is MultiMeshInstance3D or node.get_meta("scenery_kind","")!="verge_patch": continue
+		for i in node.multimesh.instance_count:
+			patches+=1
+			# Dummy RenderingServer cannot read back MultiMesh transforms.
+			if DisplayServer.get_name()=="headless": continue
+			var p: Vector3=node.position+node.multimesh.get_instance_transform(i).origin
+			var valid: bool=services.clear_point(p,3.79) and plan.clearance.clear_point(p,5.99) and plan.clear_land_point(p,2.79)
+			if clear and not valid: print("Ground cover first rejected position: ",p," / service ",services.clear_point(p,3.79)," rail ",plan.clearance.clear_point(p,5.99)," land ",plan.clear_land_point(p,2.79))
+			clear=clear and valid
+	print("Ground cover: ",patches," patches")
+	check(patches>500,"near-track ground cover loaded")
+	if DisplayServer.get_name()!="headless":
+		check(clear,"ground-cover footprints clear rails, paths, drains, fields and buildings")
+	else: print("Ground-cover transform readback skipped on Dummy; run natively for clearance audit")
 	var catalog=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/scenery/manifest.json"))
 	for kind in catalog:
 		var parts: Array=library.asset(kind)

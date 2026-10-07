@@ -1,5 +1,43 @@
 # Progress
 
+## 2026-10-07 — Asset and surface fidelity with a bounded rendering increase
+- Responded to the user's request for less artificial-looking assets, with
+  explicit permission to use some of the newly available performance headroom.
+  Preserved the full WAP-7 v0.2 model, simulation and approved audio data.
+- Rebuilt 14 building types with rounded masonry edges and improved plaster,
+  exposed-brick, metal and window finishes. Restricted bevels to substantial
+  construction edges after the first native comparison; small fittings retain
+  their original geometry. Single-surface architectural batching remains intact.
+- Rebuilt four tree variants: fuller 23-frond palms and broadleaf crowns using
+  registered CC0 leaf photographs on bent cards. Rebaked matching eight-view
+  distant atlases. Added 8,471 nearby grass/weed patches, finer varied rice blades,
+  closer road texture scale and revised terrain texture blending. Whole patches
+  clear rails, paths, drains, troughs, fields and building footprints.
+- Stations now use photographic PBR plaster/concrete maps, paving joints and
+  varied roof-sheet wear. Ballast/sleepers are darker and more weathered. Five
+  static passenger assets have integrated facial geometry, hairlines and revised
+  clothing. These remain simple scenery characters, not scanned humans. Native
+  comparisons and scope/limitations: `docs/visual-fidelity.md` and
+  `art/scenery/fidelity-preview/`.
+- **155 headless tests pass**, as do the focused permanent-way check and
+  **99 native scenery checks**, including all ground-cover placements and world
+  release after reload. The first clearance audit exposed the Dummy renderer's
+  identity transform readback; the check now explicitly skips that unsupported
+  operation in headless mode and verifies it with the native renderer. All 42
+  geometry GLBs and existing registered hashes pass the asset audit; all 43
+  Blender masters open with packed dependencies. Native shader/visual captures
+  cover the three stations, settlement/rural views and close trackwork.
+- Isolated same-camera six-train profiles on this **Radeon 780M at 1280 × 720**
+  measure before/after mean frame time **27.09/27.33 ms cab**, **35.98/38.57 ms
+  exterior**, **21.24/22.66 ms passenger**: about 1%, 7%, 7% extra frame time.
+  GPU times are 26.27/26.32, 35.03/37.73 and 20.31/21.75 ms respectively.
+  These short fixed-camera measurements are not a 4090 or route-wide FPS result.
+- Playtest: Tab at a station, inspect paving/roof sheets/buildings; A to let AI
+  depart, then Alt+1/2/3 and look sideways at foliage, fields and verges. Check
+  grass clearance and distant transitions while moving. Compare F10 at the same
+  camera/resolution against the previous WAP build, which is retained on the LAN
+  server. Distribution testing remains skipped per the user's preference.
+
 ## 2026-10-07 — Joint timing and website audio fidelity correction
 - Investigated the user's delayed cling/clang and weaker website resemblance.
   Confirmed that desktop streamed polyphonic voices ignore the per-substream bus

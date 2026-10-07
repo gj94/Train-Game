@@ -40,16 +40,61 @@ def cloth(g,rings,colour,folds=0,phase=0):
 
 def head(g,p,skin=SKIN,female=False):
     x,y,z=p
-    oval_limb(g,(x,y-.20,z),(x,y-.09,z),.060,.058,'detail',skin)
-    ellipsoid(g,(x,y,z),(.104,.138,.103),'detail',skin,16,10)
-    ellipsoid(g,(x,y+.062,z+.018),(.106,.086,.090),'detail',HAIR,16,8)
-    # Hairline, ears, nose, brows and small eyes remain restrained at this scale.
+    oval_limb(g,(x,y-.20,z+.008),(x,y-.085,z+.008),.048,.049,'detail',skin,16)
+    # Integrated bridge, cheekbones, sockets, jaw and chin replace the egg head
+    # and separate large nose. Dimensions remain appropriate to a 1.7 m figure.
+    vertices=[]; faces=[]; sides=40; rings=28
+    def bell(v,c,s): return math.exp(-((v-c)/s)**2)
+    for j in range(rings+1):
+        latitude=math.pi*j/rings
+        yy=math.cos(latitude)*.133
+        jaw=.72+.28*min(1,max(0,(yy+.115)/.095))
+        for i in range(sides):
+            a=i*math.tau/sides
+            xx=math.cos(a)*math.sin(latitude)*.098*jaw
+            zz=math.sin(a)*math.sin(latitude)*.097
+            front=max(0,-math.sin(a))**10
+            shape=.020*bell(xx,0,.013)*bell(yy,.013,.049)
+            shape+=.027*bell(xx,0,.020)*bell(yy,-.026,.020)
+            shape+=.006*bell(abs(xx),.052,.021)*bell(yy,-.019,.034)
+            shape+=.009*bell(xx,0,.029)*bell(yy,-.095,.020)
+            shape-=.009*bell(abs(xx),.036,.021)*bell(yy,.020,.014)
+            vertices.append((x+xx,y+yy,z+zz-front*shape))
+    for j in range(rings):
+        for i in range(sides):
+            a=j*sides+i; b=j*sides+(i+1)%sides
+            faces.append((a,a+sides,b+sides,b))
+    g.mesh(vertices,[tuple(reversed(face)) for face in faces],'detail',skin,True)
+    # Hair cap follows the scalp; irregular hairline, no helmet-like lower sphere.
+    vertices=[]; faces=[]
+    for j in range(11):
+        for i in range(40):
+            a=i*math.tau/40
+            front=max(0,-math.sin(a))
+            end=1.70-front*.66+.035*math.sin(a*7)
+            t=end*j/10
+            vertices.append((x+math.cos(a)*math.sin(t)*.100,y+math.cos(t)*.135,z+math.sin(a)*math.sin(t)*.099))
+    for j in range(10):
+        for i in range(40):
+            a=j*40+i; b=j*40+(i+1)%40
+            faces.append((a,a+40,b+40,b))
+    g.mesh(vertices,[tuple(reversed(face)) for face in faces],'detail',HAIR,True)
     for side in [-1,1]:
-        ellipsoid(g,(x+side*.104,y-.008,z),(.016,.029,.021),'detail',skin,8,5)
-        ellipsoid(g,(x+side*.039,y+.016,z-.096),(.016,.008,.006),'detail',(.028,.022,.016),8,4)
-        g.beam((x+side*.021,y+.033,z-.098),(x+side*.055,y+.031,z-.092),.008,'detail',HAIR)
-    ellipsoid(g,(x,y-.019,z-.101),(.022,.033,.028),'detail',skin,8,6)
-    g.beam((x-.022,y-.061,z-.091),(x+.022,y-.061,z-.091),.007,'detail',(.16,.070,.045))
+        ellipsoid(g,(x+side*.097,y-.005,z),(.013,.027,.018),'detail',skin,14,8)
+        ellipsoid(g,(x+side*.107,y-.006,z-.008),(.004,.017,.009),'detail',tuple(v*.60 for v in skin),10,6)
+        ellipsoid(g,(x+side*.035,y+.019,z-.088),(.014,.0045,.006),'detail',(.42,.38,.32),16,8)
+        ellipsoid(g,(x+side*.035,y+.019,z-.094),(.0045,.0042,.0015),'detail',(.042,.027,.014),12,6)
+        ellipsoid(g,(x+side*.035,y+.019,z-.095),(.002,.0027,.001),'detail',HAIR,10,6)
+        # Curved eyelids, fine eyebrows and nostrils, all millimetre-scale.
+        for k in range(5):
+            u=k/5; v=(k+1)/5
+            for upper in [False,True]:
+                def lid(t): return (x+side*.035+(t-.5)*.031,y+.019+math.sin(t*math.pi)*(.006 if upper else -.004),z-.092)
+                g.beam(lid(u),lid(v),.002,'detail',skin)
+            g.beam((x+side*.035+(u-.5)*.036,y+.036+.004*math.sin(u*math.pi),z-.090),(x+side*.035+(v-.5)*.036,y+.036+.004*math.sin(v*math.pi),z-.090),.0025,'detail',HAIR)
+        ellipsoid(g,(x+side*.010,y-.039,z-.117),(.004,.0025,.003),'detail',tuple(v*.45 for v in skin),10,6)
+    ellipsoid(g,(x,y-.063,z-.087),(.024,.004,.006),'detail',(.22,.094,.065),20,8)
+    ellipsoid(g,(x,y-.069,z-.086),(.021,.0035,.006),'detail',(.29,.13,.084),20,8)
     if female:
         ellipsoid(g,(x,y+.024,z+.109),(.071,.060,.069),'detail',HAIR,10,7)
         for side in [-1,1]: ellipsoid(g,(x+side*.111,y-.035,z),(.012,.018,.009),'metal',(.48,.33,.10),8,4)
@@ -57,7 +102,7 @@ def head(g,p,skin=SKIN,female=False):
 def person(g,female=False,colour=(.16,.29,.38),pose='standing',bag=True):
     seated=pose in ['seated','rider']; hips=.87 if not seated else .56
     torso_bottom=hips; torso_top=hips+.49
-    cloth(g,[(torso_bottom,.15,.10,0),(hips+.12,.17,.105,0),(hips+.36,.205,.12,0),(torso_top,.17,.085,0)],colour,.018)
+    cloth(g,[(torso_bottom,.15,.10,0),(hips+.06,.155,.104,0),(hips+.12,.162,.105,0),(hips+.23,.171,.116,0),(hips+.36,.20,.12,0),(hips+.43,.177,.092,0),(torso_top,.075,.070,0)],colour,.028)
     if female:
         cloth(g,[(.075,.23,.16,0),(.23,.23,.15,0),(hips-.09,.17,.12,0),(hips+.04,.16,.115,0)],colour,.08)
         # Contrast border and diagonal pallu follow the torso, with folded edges.
@@ -73,7 +118,11 @@ def person(g,female=False,colour=(.16,.29,.38),pose='standing',bag=True):
             ellipsoid(g,(side*.105,.067,ankle_z-.035),(.077,.055,.145),'detail',SHOE,12,6)
         # Visible shirt opening, collar and rolled cuffs.
         g.beam((0,hips+.05,-.112),(0,hips+.45,-.115),.013,'detail',tuple(v*.65 for v in colour))
-        for y in [.09,.19,.29,.39]: ellipsoid(g,(.012,hips+y,-.118),(.008,.008,.004),'detail',(.61,.60,.52),6,4)
+        for y in [.09,.19,.29,.39]: ellipsoid(g,(.012,hips+y,-.118),(.004,.004,.002),'detail',(.51,.50,.43),10,5)
+        for side in [-1,1]:
+            g.mesh([(side*.014,hips+.47,-.070),(side*.072,hips+.48,-.064),(side*.107,hips+.405,-.105),(side*.045,hips+.42,-.112)],[(0,1,2,3),(3,2,1,0)],'detail',tuple(v*.84 for v in colour))
+        # Pocket rim and fabric hem, not a floating solid rectangle.
+        g.beam((.065,hips+.31,-.122),(.135,hips+.31,-.115),.004,'detail',tuple(v*.74 for v in colour))
     for side in [-1,1]:
         shoulder=(side*.19,hips+.42,0)
         elbow=(side*.245,hips+.20,-.045)

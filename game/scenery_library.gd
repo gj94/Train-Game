@@ -10,10 +10,10 @@ var finishes := {}
 var placements := {}
 var counts := {}
 const TREES := {
-	"coconut_palm":Vector2(13.476758,6.125799),
-	"young_palm":Vector2(12.304759,3.730030),
-	"mango_tree":Vector2(11.464451,3.869613),
-	"rain_tree":Vector2(13.670517,4.151332),
+	"coconut_palm":Vector2(13.644375,6.201989),
+	"young_palm":Vector2(12.346182,3.796909),
+	"mango_tree":Vector2(12.399399,3.950090),
+	"rain_tree":Vector2(15.785943,4.540256),
 	"tree_small_02":Vector2(6.295639,2.275827)}
 const TREE_DETAIL_DISTANCE := 270.0
 var bounds := []
@@ -33,6 +33,14 @@ func material(kind: String) -> Material:
 			for suffix in [["albedo","diff"],["normal","nor_gl"],["rough","rough"]]:
 				mat.set_shader_parameter(pair[0]+"_"+suffix[0],view.ph_tex(pair[1],suffix[1]))
 		mat.set_shader_parameter("aged_wall",view.ph_tex("red_brick_plaster_patch_02","diff"))
+		mat.set_shader_parameter("aged_normal",view.ph_tex("red_brick_plaster_patch_02","nor_gl"))
+		finishes[kind]=mat
+		return mat
+	if kind=="broadleaf":
+		mat.shader=load("res://game/shaders/scenery_scanned_leaf.gdshader")
+		mat.set_shader_parameter("leaf_albedo",load(ROOT+"tree_small_02_tree_small_02_leaves_diff_1k.png"))
+		mat.set_shader_parameter("leaf_normal",load(ROOT+"tree_small_02_tree_small_02_leaves_nor_gl_1k.png"))
+		mat.set_shader_parameter("use_vertex_tint",true)
 		finishes[kind]=mat
 		return mat
 	if kind in ["leaves","grass"]:
@@ -50,6 +58,7 @@ func material(kind: String) -> Material:
 			mat.set_shader_parameter("weathering",.62)
 			mat.set_shader_parameter("paint_variation",.85)
 		"bark":
+			mat.set_shader_parameter("bark_surface",true)
 			mat.set_shader_parameter("material_tint",Vector3(.60,.57,.50))
 			mat.set_shader_parameter("weathering",.34)
 		"roof":
@@ -124,7 +133,7 @@ func _flush_geometry() -> void:
 		for part in asset(kind):
 			var transforms:=[]
 			for placement in placements[kind]: transforms.append(placement*part.transform)
-			for group in Cells.split(transforms,128.0 if TREES.has(kind) or kind in ["grass_tuft","reeds","shrub"] else 256.0).values():
+			for group in Cells.split(transforms,128.0 if TREES.has(kind) or kind in ["grass_tuft","verge_patch","reeds","shrub"] else 256.0).values():
 				var mm:=MultiMesh.new()
 				mm.transform_format=MultiMesh.TRANSFORM_3D
 				mm.use_custom_data=true
@@ -138,18 +147,21 @@ func _flush_geometry() -> void:
 					mm.set_instance_custom_data(index,Color(seed,.5,.5,1))
 				var batch:=MultiMeshInstance3D.new()
 				batch.name="District_"+kind
+				batch.set_meta("scenery_kind",kind)
 				batch.position=group.origin
 				batch.multimesh=mm
 				batch.visibility_range_end=_range(kind)
 				batch.visibility_range_end_margin=28 if TREES.has(kind) else 35
-				if TREES.has(kind): batch.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
-				if kind in ["grass_tuft","reeds"]: batch.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				if TREES.has(kind) or kind=="verge_patch": batch.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
+				if kind in ["grass_tuft","verge_patch","reeds"]: batch.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				if kind in ["mango_tree","rain_tree"]: batch.lod_bias=2.0
 				view.root.add_child(batch)
 func _range(kind: String) -> float:
 	if kind=="tree_small_02": return 150.0
 	if TREES.has(kind): return TREE_DETAIL_DISTANCE
 	if kind.begins_with("passenger_"): return 350.0
 	if kind=="telecom_mast": return 3500
+	if kind=="verge_patch": return 150
 	if kind=="grass_tuft": return 135
 	if kind=="reeds": return 210
 	if kind=="shrub": return 430

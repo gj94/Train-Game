@@ -9,9 +9,10 @@ void fragment() {
 	float grain = texture(albedo_tex,p).r;
 	float patches = .5+.5*sin(world_pos.x*4.2+sin(world_pos.z*3.7));
 	float seat = exp(-pow((abs(UV.x)-.874)/.19,2.0));
-	ALBEDO = vec3(.29,.285,.267)*mix(.70,1.25,grain)*COLOR.rgb*(1.0-seat*.34)*( .87+.26*patches);
+	float film = texture(rough_tex,world_pos.xz/2.2).r;
+	ALBEDO = vec3(.235,.225,.201)*mix(.70,1.25,grain)*COLOR.rgb*(1.0-seat*.34)*( .78+.28*patches)*mix(.74,1.0,film);
 	NORMAL_MAP = texture(normal_tex,p).rgb;
-	NORMAL_MAP_DEPTH = .5;
+	NORMAL_MAP_DEPTH = .8;
 	ROUGHNESS = max(.87,texture(rough_tex,p).r);
 	SPECULAR = .22;
 }

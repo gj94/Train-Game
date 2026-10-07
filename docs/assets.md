@@ -2,6 +2,17 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-07 fidelity pass: the original `mango_tree` and `rain_tree` geometry now
+uses one leaflet from Rico Cilliers' registered **Tree Small 02** diffuse/normal
+atlas below (CC0-1.0). `scenery_vegetation.py` maps the unchanged atlas directly
+onto bent leaf cards; no photograph is generated or repainted. These are mixed
+ornamental canopy approximations, not botanically exact mango/rain trees. The
+GLBs embed the maps; Godot extracts copies with `mango_tree_` / `rain_tree_`
+prefixes. Their eight-view impostors also contain these photographic pixels.
+The other newly rebuilt palms, verge patches, passengers and building geometry
+are original project work. The station materials reuse the previously registered
+Poly Haven concrete, plaster and asphalt maps. No new external downloads.
+
 2026-10-07 WAP-7 detailed v0.2: `assets/models/ported/wap7.glb` and
 `assets/models/ported/wap7_detail/` derive from the user's own
 [`wap7_photoreal_v02/WAP7_detail_v02.blend`](https://github.com/gj94/transport-fever-3-mods/tree/de45b4e0e4194af47b1182800b7d103409c69478/wap7_photoreal_v02).
@@ -22,7 +33,8 @@ railway quarters, a school, industrial buildings, a water tower, road vehicles,
 street furniture, produce carts, passengers, a fictional temple and telecom mast,
 and tropical vegetation. Eight-view distant tree colour/normal
 atlases are rendered from that same original geometry by
-`bake_scenery_impostors.py`; no photographic foliage pixels are incorporated.
+`bake_scenery_impostors.py`; the initial version used no photographic foliage
+pixels. The later fidelity pass above adds the registered CC0 leaf photographs.
 The runtime uses the registered CC0 surface maps and original weathering shaders.
 English/Tamil signs use Nirmala UI/Arial through Windows system-font lookup; no
 font files are bundled. The fictional settlement layouts are not surveyed towns.

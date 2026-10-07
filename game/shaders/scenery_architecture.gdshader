@@ -8,6 +8,7 @@ uniform sampler2D roof_albedo : source_color, filter_linear_mipmap_anisotropic, 
 uniform sampler2D roof_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D roof_rough : hint_roughness_r, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D aged_wall : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D aged_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 varying vec3 local_pos;
 varying vec3 local_normal;
 varying vec3 world_pos;
@@ -16,6 +17,13 @@ float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
 float noise(vec2 p) {
  vec2 i=floor(p),f=fract(p); f=f*f*(3.0-2.0*f);
  return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1)),f.x),f.y);
+}
+vec3 mapped_normal(vec3 n,vec3 p,vec2 uv,vec3 bump) {
+ vec3 p2=cross(dFdy(p),n),p1=cross(n,dFdx(p));
+ vec2 a=dFdx(uv),b=dFdy(uv);
+ vec3 t=p2*a.x+p1*b.x,bt=p2*a.y+p1*b.y;
+ float scale=inversesqrt(max(max(dot(t,t),dot(bt,bt)),.00000001));
+ return normalize(mat3(t*scale,bt*scale,n)*bump);
 }
 void vertex() {
  local_pos=VERTEX; local_normal=NORMAL;
@@ -41,11 +49,12 @@ void fragment() {
   else if(style<4.0) tint=vec3(.92,.86,.69);
   else if(style<5.0) tint=vec3(.82,.79,.93);
   vec3 texture_colour=texture(wall_albedo,uv/2.0).rgb;
-  if(variation.x>.83 && local_pos.y<3.8) {
-   texture_colour=mix(texture_colour,texture(aged_wall,uv/3.4).rgb,.46);
-  }
-  paint*=texture_colour*tint;
-  normal=texture(wall_normal,uv/2.0).rgb;
+  float exposed=smoothstep(.42,.66,noise(uv*.45+variation.x*19.0));
+  exposed*=smoothstep(.42,.78,variation.x)*(1.0-smoothstep(2.0,5.0,local_pos.y));
+  texture_colour=mix(texture_colour,texture(aged_wall,uv/3.4).rgb,exposed*.83);
+  paint*=texture_colour*tint*.85;
+  normal=mix(texture(wall_normal,uv/2.0).rgb,texture(aged_normal,uv/3.4).rgb,exposed);
+  normal_depth=.8;
   rough=texture(wall_rough,uv/2.0).r*.9;
   weather=.65;
  } else if(category==2) {
@@ -54,9 +63,15 @@ void fragment() {
   rough=texture(roof_rough,uv/1.15).r;
   weather=.20;
  } else if(category==3) {
-  metal=.42; rough=.47; weather=.18;
+  metal=.36; rough=.55; weather=.35;
+  paint*=mix(.68,1.02,noise(uv*vec2(3.1,.2)));
  } else if(category==4) {
-  metal=.28; rough=.22; weather=.04;
+  metal=.16; rough=.20; weather=.04;
+  float room=hash(floor(vec2(uv.x/1.6,local_pos.y/3.15)));
+  paint*=mix(.15,.57,room);
+  // Dark backing and uneven blinds give windows depth, without transparent sorting.
+  float blind=step(.58,room)*smoothstep(.38,.5,fract(local_pos.y/3.15));
+  paint=mix(paint,vec3(.21,.18,.12)*(.75+.25*sin(uv.x*68.0)),blind*.66);
  } else if(category==8) {
   rough=.66; weather=.10;
  } else if(category==9) {
@@ -69,8 +84,8 @@ void fragment() {
  float dirt=weather*(rising*.65+(1.0-age)*.32+smoothstep(.50,.86,streak)*.32);
  if(category==1) dirt+=(1.0-smoothstep(.01,.55,mod(3.28-local_pos.y,3.15)))*noise(world_pos.xz*2.1)*.20;
  ALBEDO=paint*(.93+variation.x*.14)*mix(vec3(1),vec3(.53,.49,.39),clamp(dirt,0.0,.55));
- NORMAL_MAP=normal;
- NORMAL_MAP_DEPTH=normal_depth;
+ vec3 bump=normal*2.0-1.0; bump.xy*=normal_depth;
+ NORMAL=mapped_normal(NORMAL,VERTEX,uv,normalize(bump));
  ROUGHNESS=clamp(rough+dirt*.10,.18,1.0);
  METALLIC=metal;
  SPECULAR=.35;

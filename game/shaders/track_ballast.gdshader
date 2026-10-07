@@ -9,7 +9,7 @@ void fragment() {
 	vec3 gravel = texture(albedo_tex,p).rgb;
 	float macro = sin(world_pos.x*.075+sin(world_pos.z*.33))*sin(world_pos.z*.11+world_pos.x*.024);
 	float grey = dot(gravel,vec3(.3,.59,.11));
-	gravel = mix(vec3(grey),gravel,.32)*vec3(.67,.665,.65);
+	gravel = mix(vec3(grey),gravel,.32)*vec3(.43,.425,.41);
 	float rust = exp(-pow((abs(UV.x)-.874)/.24,2.0));
 	float oil = exp(-pow(UV.x/.46,2.0))*(.6+.4*sin(UV.y*.15));
 	ALBEDO = mix(gravel,gravel*vec3(.76,.58,.44),rust*.26)*(1.0-oil*.16)*(1.0+macro*.13);

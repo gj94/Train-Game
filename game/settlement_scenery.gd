@@ -37,7 +37,7 @@ func _materials() -> void:
 	materials.wall=view.pbr("plastered_wall",2.0,Color(.71,.67,.54))
 	materials.brick=view.pbr("red_brick_plaster_patch_02",2.5,Color(.64,.56,.43))
 	materials.paving=_ground_material("pavement_06",3.2,Vector3(.82,.79,.69),false)
-	materials.asphalt=_ground_material("aerial_asphalt_01",24.0,Vector3(.67,.68,.66),true)
+	materials.asphalt=_ground_material("aerial_asphalt_01",8.0,Vector3(.51,.53,.52),true)
 	materials.lane=_ground_material("red_laterite_soil_stones",4.0,Vector3(.69,.64,.50),false)
 	materials.paint=view.mat(Color(.69,.68,.55))
 	materials.wire=view.mat(Color(.055,.065,.061))

@@ -8,20 +8,21 @@ func build(view,plan) -> void:
 	for stage in [2,3]:
 		var st:=SurfaceTool.new()
 		st.begin(Mesh.PRIMITIVE_TRIANGLES)
-		for row in 21:
-			for col in 21:
-				var p:=Vector3((col+.5)*SIZE/21+rng.randf_range(-.07,.07),0,(row+.5)*SIZE/21+rng.randf_range(-.07,.07))
-				var h:=rng.randf_range(.34,.58) if stage==2 else rng.randf_range(.53,.78)
+		for row in 25:
+			for col in 25:
+				var p:=Vector3((col+.5)*SIZE/25+rng.randf_range(-.11,.11),0,(row+.5)*SIZE/25+rng.randf_range(-.11,.11))
+				var h:=rng.randf_range(.40,.80) if stage==2 else rng.randf_range(.60,.95)
 				var colour:=Color(.075,.14,.018) if stage==2 else Color(.20,.19,.040)
 				colour=colour.lightened(rng.randf_range(0,.026))
-				for blade in 5:
+				for blade in 6:
 					var angle:=rng.randf()*TAU
-					var right:=Vector3(cos(angle),0,sin(angle))*.018
-					var bend:=Vector3(-sin(angle),0,cos(angle))*h*.38
-					var middle:=p+Vector3.UP*h*.62+bend*.20
-					var tip:=p+Vector3.UP*h+bend
+					var right:=Vector3(cos(angle),0,sin(angle))*rng.randf_range(.005,.011)
+					var blade_height:=h*rng.randf_range(.50,1.12)
+					var bend:=Vector3(-sin(angle),0,cos(angle))*blade_height*rng.randf_range(.30,.65)
+					var middle:=p+Vector3.UP*blade_height*.78+bend*.22
+					var tip:=p+Vector3.UP*blade_height*.92+bend
 					for vertex in [p-right,p+right,middle-right*.65,middle-right*.65,p+right,middle+right*.65,middle-right*.65,middle+right*.65,tip]:
-						st.set_color(colour)
+						st.set_color(colour*Color(.58+.42*clampf(vertex.y/h,0,1),.64+.36*clampf(vertex.y/h,0,1),.72+.28*clampf(vertex.y/h,0,1)))
 						st.add_vertex(vertex)
 		st.generate_normals()
 		var mesh:=st.commit()

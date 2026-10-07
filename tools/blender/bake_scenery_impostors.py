@@ -9,21 +9,24 @@ from pathlib import Path
 from mathutils import Vector
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from build_scenery import reset
+from build_scenery import reset, MATERIALS
 from scenery_vegetation import coconut_palm, young_palm, mango_tree, rain_tree
 OUT=ROOT/'assets/models/scenery/impostors'
 TILE=384
 
 def bake(factory=None,prepared=None):
     if prepared is None:
-        reset(); geometry=factory(); obj=geometry.finish()
+        reset()
+        MATERIALS.clear()
+        for mat in list(bpy.data.materials): bpy.data.materials.remove(mat,do_unlink=True)
+        geometry=factory(); obj=geometry.finish()
     else:
         obj=prepared
         class GeometryName: name=obj.name
         geometry=GeometryName()
     sources={}
-    if prepared is not None:
-        for mat in obj.data.materials:
+    for mat in obj.data.materials:
+        if prepared is not None or mat.name=='SC_broadleaf':
             principled=next(n for n in mat.node_tree.nodes if n.type=='BSDF_PRINCIPLED')
             colour=principled.inputs['Base Color'].links[0].from_node.image
             alpha_link=principled.inputs['Alpha'].links[0] if principled.inputs['Alpha'].is_linked else None
@@ -68,7 +71,7 @@ def bake(factory=None,prepared=None):
                 else:
                     colour=nodes.new('ShaderNodeVertexColor'); colour.layer_name='Color'
                 tint=nodes.new('ShaderNodeMixRGB'); tint.blend_type='MULTIPLY'; tint.inputs[0].default_value=1
-                tint.inputs[2].default_value=(.60,.57,.50,1) if mat.name.startswith('SC_bark') else (1,1,1,1)
+                tint.inputs[2].default_value=(.60,.57,.50,1) if mat.name.startswith('SC_bark') else ((.72,.76,.66,1) if mat.name=='SC_broadleaf' else (1,1,1,1))
                 links.new(colour.outputs['Color'],tint.inputs[1])
                 ao=nodes.new('ShaderNodeAmbientOcclusion'); ao.inputs['Distance'].default_value=1.5
                 ao.samples=8; ao.only_local=True
@@ -112,7 +115,9 @@ def main():
     OUT.mkdir(parents=True,exist_ok=True)
     path=OUT/'catalog.json'
     catalog=json.loads(path.read_text()) if path.exists() else {}
+    only=next((arg[7:].split(',') for arg in sys.argv if arg.startswith('--only=')),None)
     for factory in [coconut_palm,young_palm,mango_tree,rain_tree]:
+        if only is not None and factory.__name__ not in only: continue
         catalog[factory.__name__]=bake(factory)
         print('IMPOSTOR COMPLETE',factory.__name__,catalog[factory.__name__],flush=True)
     path.write_text(json.dumps(catalog,indent=2)+'\n')

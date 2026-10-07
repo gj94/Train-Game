@@ -4,6 +4,7 @@ uniform sampler2D surface_albedo : source_color, filter_linear_mipmap_anisotropi
 uniform sampler2D surface_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D surface_roughness : hint_roughness_r, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform bool textured = false;
+uniform bool bark_surface = false;
 uniform float metres = 2.0;
 uniform float roughness_value = 0.85;
 uniform float metallic_value = 0.0;
@@ -56,6 +57,12 @@ void fragment() {
  }
  // The custom seed alters brightness subtly without multiplying draw materials.
  float tone=1.0+(variation.x-.5)*.14;
+ if(bark_surface) {
+  float fissure=noise(vec2((local_pos.x+local_pos.z)*36.0,local_pos.y*1.2));
+  float pores=noise(vec2((local_pos.x-local_pos.z)*105.0,local_pos.y*24.0));
+  base*=mix(.40,1.28,fissure)*mix(.78,1.12,pores);
+  rough=.95;
+ }
  ALBEDO=paint*base*tone*mix(vec3(1),vec3(.53,.49,.39),clamp(dirt,0.0,.55));
  ROUGHNESS=clamp(rough+dirt*.10,.22,1.0);
  METALLIC=metallic_value;

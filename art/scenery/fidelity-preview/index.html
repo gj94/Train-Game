@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Train Game · asset fidelity comparison</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#111916;color:#e7ece7}body{max-width:1280px;margin:auto;padding:28px 20px 48px}h1{font-size:clamp(24px,3vw,38px);font-weight:600}p{line-height:1.55;color:#b9c7bd;max-width:85ch}.controls{display:flex;align-items:center;gap:16px;margin:18px 0;flex-wrap:wrap}select{font:inherit;padding:8px;background:#223329;color:inherit;border:1px solid #4b6151;border-radius:6px}input{flex:1;min-width:120px;accent-color:#b2d39d}.comparison{--split:50%;position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:8px;background:#26342c}.comparison img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}.after{clip-path:inset(0 0 0 var(--split))}.divider{position:absolute;left:var(--split);height:100%;width:2px;background:white}.badge{position:absolute;top:12px;padding:6px 10px;border-radius:4px;background:#111916da;font-size:13px}.old{left:12px}.new{right:12px}.details{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}figure{margin:0}figure img{width:100%;border-radius:6px}figcaption{color:#b9c7bd;font-size:14px;line-height:1.5;margin-top:8px}a{color:#c5e3b1}footer{border-top:1px solid #37483c;margin-top:30px;padding-top:10px;font-size:13px;color:#99ad9f}@media(max-width:700px){.details{grid-template-columns:1fr}}
+</style>
+<p>7 October 2026 · actual native game captures</p>
+<h1>More surface detail. Fuller vegetation.</h1>
+<p>Photographic leaf surfaces, worn plaster, roof-sheet variation, finer rice blades and irregular trackside ground cover. Compare identical camera positions with the previous build.</p>
+<div class="controls"><label for="view">View</label><select id="view"><option value="market">Station market</option><option value="village">Village lane</option><option value="rice">Rice field</option><option value="exterior">Exterior gameplay</option></select><label for="split">Before / after</label><input id="split" type="range" min="0" max="100" value="50"><output id="value">50%</output></div>
+<div class="comparison" id="comparison"><img id="before" src="market-before.png" alt="Previous station market"><img id="after" class="after" src="market-after.png" alt="Updated station market"><div class="divider"></div><span class="badge old">Previous build</span><span class="badge new">Fidelity update</span></div>
+<p>Drag left to reveal the update, or use the slider's arrow keys. The preserved WAP-7 retains its original detail. These images use the game's normal rendering settings.</p>
+<div class="details"><figure><img src="trackside.png" alt="Updated ballast, sleepers and trackside grass"><figcaption>Darker ballast and sleeper finishes, with irregular ground cover kept clear of trackwork and service paths.</figcaption></figure><figure><img src="roof.png" alt="Station canopies and platforms"><figcaption>Photographic station finishes, worn sheet-metal variation and small paving joints.</figcaption></figure></div>
+<p>On the local Radeon 780M at 1280 × 720, fixed-camera mean frame times changed from 27.09 to 27.33 ms in the cab, 35.98 to 38.57 ms outside, and 21.24 to 22.66 ms in a passenger coach. These are short controlled samples, not measurements of the RTX 4090.</p>
+<footer>Modular buildings and static passengers remain approximations. Source credits, validation and playtest steps are in docs/visual-fidelity.md and docs/assets.md.</footer>
+<script>
+const split=document.querySelector('#split'),panel=document.querySelector('#comparison'),view=document.querySelector('#view');
+split.addEventListener('input',()=>{panel.style.setProperty('--split',split.value+'%');document.querySelector('#value').textContent=split.value+'%'});
+view.addEventListener('change',()=>{for(const side of ['before','after']){const img=document.querySelector('#'+side);img.src=view.value+'-'+side+'.png';img.alt=(side==='before'?'Previous ':'Updated ')+view.selectedOptions[0].textContent}});
+</script>
+</html>

@@ -4,11 +4,21 @@ var view
 var plan
 var library
 var rng:=RandomNumberGenerator.new()
+var service_clearance
 func build(world_view,layout,assets) -> void:
 	view=world_view
 	plan=layout
 	library=assets
 	rng.seed=2026100702
+	# Match CorridorScenery's world-Z offsets for paths, troughs and open drains.
+	var service_edges:={}
+	for edge in view.world.graph.edges.values():
+		if edge.allowed_dir!=1: continue
+		for offset in [14.0,-7.0,-10.0]:
+			var points:=PackedVector3Array()
+			for p in edge.points: points.append(p+Vector3(0,0,offset))
+			service_edges[str(edge.id)+":"+str(offset)]={points=points}
+	service_clearance=preload("res://game/scenery_clearance.gd").new({edges=service_edges})
 	for item in plan.tree_sites:
 		var p: Vector3=item.position
 		p.y=view.terrain_height(p.x,p.z)
@@ -70,10 +80,15 @@ func _verges() -> void:
 			var right: Vector3=view.world.graph.tangent(edge.id,s,1).cross(Vector3.UP)
 			for side in [-1,1]:
 				for k in 5:
-					var p: Vector3=centre+right*side*rng.randf_range(8.0,17.5)+Vector3(rng.randf_range(-4,4),0,0)
-					if not view._far_from_track(p,6.5): continue
+					var p: Vector3=centre+right*side*rng.randf_range(4.0,16.0)+Vector3(rng.randf_range(-4,4),0,0)
+					if not view._far_from_track(p,3.6) or not service_clearance.clear_point(p,1.7): continue
 					p.y=view.terrain_height(p.x,p.z)+.015
-					library.place("grass_tuft",p,rng.randf()*TAU,Vector3.ONE*rng.randf_range(.65,1.35))
+					library.place("grass_tuft",p,rng.randf()*TAU,Vector3(rng.randf_range(1.0,2.2),rng.randf_range(.55,1.0),rng.randf_range(1.0,2.2)))
+				for band in [7.5,13.0,19.0,26.0]:
+					var patch: Vector3=centre+right*side*(band+rng.randf_range(-1.5,1.5))+Vector3(rng.randf_range(-3.5,3.5),0,0)
+					if not view._far_from_track(patch,6.0) or not plan.clear_land_point(patch,2.8) or not service_clearance.clear_point(patch,3.8): continue
+					patch.y=view.terrain_height(patch.x,patch.z)+.012
+					library.place("verge_patch",patch,rng.randf()*TAU,Vector3.ONE*rng.randf_range(.8,1.2))
 				if s%40==0:
 					var p: Vector3=centre+right*side*rng.randf_range(17.5,24.0)
 					if view._far_from_track(p,16):
