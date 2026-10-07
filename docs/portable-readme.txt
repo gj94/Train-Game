@@ -2,6 +2,8 @@ TRAIN GAME - SOUTHERN CORRIDOR
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Audio update: corrected native filters, output-buffer timing compensation and
+39 m joint spacing matching the approved website. F10 shows the audio buffer estimate.
 Detailed WAP-7 39002 with both complete cabs and machinery compartment.
 F2 light engine / F3 mixed LHB rake. Home cycles driver, assistant, cab overview
 and machinery aisle. Right-drag look stays on release; middle-click recenters.

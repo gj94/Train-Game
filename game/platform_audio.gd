@@ -6,6 +6,8 @@ const EnhancedData := preload("res://game/platform_enhanced_data.gd")
 const Contacts := preload("res://game/track_contacts.gd")
 const Sweep := preload("res://game/contact_sweep.gd")
 const History := preload("res://game/acoustic_history.gd")
+const Timing := preload("res://game/audio_output_timing.gd")
+const MAX_IMPACT_CHANNELS := 128
 const MAX_JOINT_ROUTES := 24
 const MAX_SQUEAL_VOICES := 12
 # Native impacts already stop at 1.6 km. This guard also covers a fast listener
@@ -42,6 +44,8 @@ var _voice_serial := 0
 var _perspective := -1
 var debug_events := []
 var active_squeal := []
+var _start_window := .16
+var output_delay_ms := 0.0
 
 func setup(t: Train,w: RailWorld,listener: Node3D,axles: Array) -> void:
 	layout=Contacts.new(w.graph)
@@ -50,7 +54,9 @@ func setup(t: Train,w: RailWorld,listener: Node3D,axles: Array) -> void:
 	_hiss=AudioEffectHighShelfFilter.new()
 	_hiss.cutoff_hz=900; _hiss.resonance=.5; _hiss.db=AudioEffectFilter.FILTER_6DB; _hiss.gain=1.0
 	var rolling_bus := _make_filter_bus("rolling",_hiss)
-	# Polyphonic substreams require an explicit bus; restarting retains original phases.
+	# Desktop streaming ignores play_stream's per-substream bus argument.
+	# Route the owning AudioStreamPlayer so the shelf reaches the actual PCM.
+	_rolling.bus=rolling_bus
 	for i in _bogies.size():
 		var b: Dictionary=_bogies[i]
 		for id in b.ids: _roll_pb.stop_stream(id)
@@ -169,6 +175,8 @@ func _process(delta: float) -> void:
 func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 	if layout==null or _paused: return
 	_time+=delta
+	Timing.refresh()
+	_start_window=maxf(.16,Timing.prediction_seconds(delta)+.02)
 	var perspective := 2 if _passenger() else (1 if _onboard() else 0)
 	if _perspective!=perspective:
 		reset_positions()
@@ -204,7 +212,8 @@ func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 		for voice in _squeals: _stop_squeal(voice)
 		_squeals.clear()
 	_last_cab=train.cab_end
-	# Native starts are only ~35 ms ahead. Cancel unsounded predictions when
+	# Predict far enough ahead for the measured device buffer and full attack.
+	# Cancel unsounded predictions when
 	# braking/route edits invalidate them; physical swept hits can schedule anew.
 	var signature := str(train.path[0]) if not train.path.is_empty() else ""
 	if absf(v-_last_speed)>.08 or signature!=_route_signature or v<=.001:
@@ -213,7 +222,7 @@ func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 	_update_events(delta)
 	for h in hits: _schedule(h.axle,h.contact,h.relative)
 	if v>.001:
-		var lead := Data.KERNEL_LEAD+Data.LOOKAHEAD
+		var lead := Timing.prediction_seconds(delta)
 		for i in positions.size():
 			var now: Dictionary=positions[i]
 			var ahead := _locate_at(_sched.axles[i].x,lead)
@@ -229,7 +238,7 @@ func _cancel_events(all: bool) -> void:
 	for i in range(_events.size()-1,-1,-1):
 		var event: Dictionary=_events[i]
 		if not all and event.contact_time<=_time: continue
-		for id in event.ids: _track_pb.stop_stream(id)
+		for id in event.ids: event.playback.stop_stream(id)
 		_recent.erase(event.key)
 		_events.remove_at(i)
 
@@ -276,27 +285,34 @@ func _schedule(axle: int,contact: Dictionary,relative: float) -> void:
 	# Retained contacts keep physical identity even when voice-budget virtualized.
 	# Inaudible remote contacts never enter the costly retarded-arrival queue.
 	_events.append(event)
-	if arrival-_time<=.16: _start_event(event)
+	if arrival-_time<=_start_window: _start_event(event)
 
 func _start_event(event: Dictionary) -> void:
 	var source: Vector3=event.source
 	var delay: float=event.arrival-_time-Data.KERNEL_LEAD
 	event.started=true
-	if source.distance_to(_ear.position)>1600 or delay< -.04:
+	var channels := 0
+	for pending in _events: channels+=pending.ids.size()
+	if source.distance_to(_ear.position)>1600 or delay< -.04 or channels+2>MAX_IMPACT_CHANNELS:
 		event.virtual=true
 		return
 	var route := _route_for(event.contact,event.priority,event.bypass)
 	if route.is_empty():
 		event.virtual=true
 	else:
-		event.route=route.bus
+		event.route=route.bus; event.playback=route.playback
+		route.player.volume_db=_track.volume_db
 		var gains: Vector2 = Acoustics.stereo(source,_ear.position,_ear.forward,_ear.up,600 if event.bypass else 1600)*event.gain
+		var buffered := Timing.delay_seconds()
+		output_delay_ms=buffered*1000
+		var offset := maxf(0,Data.PAD-delay+buffered)
+		event.output_delay=buffered; event.offset=offset; event.scheduled_at=_time
 		for side in 2:
-			event.ids.append(_track_pb.play_stream(_routed[event.variant][side],maxf(0,Data.PAD-delay),linear_to_db(maxf(.000001,gains[side])),1,0,route.bus))
+			event.ids.append(event.playback.play_stream(_routed[event.variant][side],offset,linear_to_db(maxf(.000001,gains[side])),1))
 		route.until=maxf(route.until,event.end); route.priority=event.priority
 		if -1 in event.ids:
 			for id in event.ids:
-				if id>=0: _track_pb.stop_stream(id)
+				if id>=0: event.playback.stop_stream(id)
 			event.ids=[]; event.virtual=true
 
 func _route_for(contact: Dictionary,priority: float,bypass: bool) -> Dictionary:
@@ -310,14 +326,17 @@ func _route_for(contact: Dictionary,priority: float,bypass: bool) -> Dictionary:
 		# Web Audio low-pass Q is decibels: Q=.5 -> linear 10^(.5/20).
 		filter.resonance=pow(10,.5/20); filter.db=AudioEffectFilter.FILTER_6DB
 		var bus := _make_filter_bus("joint%d"%_routes.size(),filter)
-		slot={bus=bus,filter=filter,until=0.0,priority=0.0}; _routes.append(slot)
+		var player := _poly_player(32)
+		player.bus=bus
+		slot={bus=bus,filter=filter,player=player,playback=player.get_stream_playback(),until=0.0,priority=0.0}
+		_routes.append(slot)
 	if slot.is_empty():
 		for route in _routes:
 			if slot.is_empty() or route.priority<slot.priority: slot=route
 		if priority<=slot.priority: return {}
 		for event in _events:
 			if event.route==slot.bus:
-				for id in event.ids: _track_pb.stop_stream(id)
+				for id in event.ids: event.playback.stop_stream(id)
 				event.ids=[]; event.virtual=true
 	var index := AudioServer.get_bus_index(slot.bus)
 	# Recreate the filter instance to prevent a previous joint's IIR tail leaking.
@@ -332,21 +351,22 @@ func _route_for(contact: Dictionary,priority: float,bypass: bool) -> Dictionary:
 func _update_events(delta: float) -> void:
 	var onboard:=_onboard()
 	var receiver: Vector3=_receiver_at(0.0) if onboard else _ear.position
-	var receiver_travel:=_receiver_velocity.length()*.18
+	var window:=_start_window+.02
+	var receiver_travel:=_receiver_velocity.length()*window
 	if not _owner_context.is_empty():
 		# The bogie midpoint travels at most v*dt. Its offset can rotate by
 		# at most twice its length, including a turnout/coach-end transition.
-		receiver_travel=_owner_context.owner.train.speed*.18+2*(absf(_owner_context.along)+absf(_owner_context.side))+1.0
+		receiver_travel=_owner_context.owner.train.speed*window+2*(absf(_owner_context.along)+absf(_owner_context.side))+1.0
 	for key in _recent.keys():
 		if _time-_recent[key]>5.5: _recent.erase(key)
 	for i in range(_events.size()-1,-1,-1):
 		var event: Dictionary=_events[i]
 		if not event.started:
 			if onboard:
-				if not Acoustics.impact_can_arrive(event.source,receiver,_time-event.contact_time,.18,receiver_travel): continue
+				if not Acoustics.impact_can_arrive(event.source,receiver,_time-event.contact_time,window,receiver_travel): continue
 				event.arrival=_time+Acoustics.curved_arrival(event.source,event.contact_time-_time,_receiver_at)
 				event.end=event.arrival-Data.KERNEL_LEAD+Data.KERNEL_SECONDS
-			if event.arrival-_time<=.16: _start_event(event)
+			if event.arrival-_time<=_start_window: _start_event(event)
 		if not event.heard and event.arrival<=_time:
 			event.heard=true
 			contact_event.emit(event.duplicate())
@@ -354,11 +374,11 @@ func _update_events(delta: float) -> void:
 			debug_events.append({axle=event.axle,contact=event.contact.key,physical=event.contact_time,arrival=event.arrival,variant=event.variant,virtual=event.virtual})
 			if debug_events.size()>2048: debug_events.pop_front()
 		if event.end<=_time:
-			for id in event.ids: _track_pb.stop_stream(id)
+			for id in event.ids: event.playback.stop_stream(id)
 			_events.remove_at(i); continue
 		if not event.ids.is_empty():
 			var gains: Vector2 = Acoustics.stereo(event.source,_ear.position,_ear.forward,_ear.up)*event.gain
-			for side in event.ids.size(): _track_pb.set_stream_volume(event.ids[side],linear_to_db(maxf(.000001,gains[side])))
+			for side in event.ids.size(): event.playback.set_stream_volume(event.ids[side],linear_to_db(maxf(.000001,gains[side])))
 	for route in _routes:
 		if route.until<_time: continue
 		var cutoff := Acoustics.impact_cutoff(route.source,_ear.position,_onboard(),_onboard() and not _passenger(),_owner_context.get("side",.4))
@@ -456,9 +476,12 @@ func _update_squeal(v: float,delta: float) -> void:
 			texture.gain=pow(10,state.edge_db/40)
 			var bus := _make_filter_bus("squeal%d"%_voice_serial,texture)
 			AudioServer.add_bus_effect(AudioServer.get_bus_index(bus),filter)
+			var player := _poly_player(2)
+			player.bus=bus
+			var playback := player.get_stream_playback() as AudioStreamPlaybackPolyphonic
 			var ids := []
-			for side in 2: ids.append(_track_pb.play_stream(_squeal_waves[state.variant][side],fposmod(state.emission+state.variant*.731,EnhancedData.SQUEAL_SECONDS),-100,1,0,bus))
-			voice={id=state.id,ids=ids,bus=bus,filter=filter,texture=texture,edge_db=state.edge_db,gain=0.0,pitch=1.0,position=state.source,release=-1.0,cutoff=12000.0,wanted=true}
+			for side in 2: ids.append(playback.play_stream(_squeal_waves[state.variant][side],fposmod(state.emission+state.variant*.731,EnhancedData.SQUEAL_SECONDS),-100,1))
+			voice={id=state.id,ids=ids,bus=bus,player=player,playback=playback,filter=filter,texture=texture,edge_db=state.edge_db,gain=0.0,pitch=1.0,position=state.source,release=-1.0,cutoff=12000.0,wanted=true}
 			_squeals.append(voice)
 		voice.wanted=true; voice.state=state
 	for i in range(_squeals.size()-1,-1,-1):
@@ -480,16 +503,19 @@ func _update_squeal(v: float,delta: float) -> void:
 			voice.texture.gain=pow(10,voice.edge_db/40)
 		var gains: Vector2 = Acoustics.stereo(voice.position,_ear.position,_ear.forward,_ear.up)*voice.gain*Data.MASTER*track_level
 		for side in 2:
-			_track_pb.set_stream_volume(voice.ids[side],linear_to_db(maxf(.000001,gains[side])))
-			_track_pb.set_stream_pitch_scale(voice.ids[side],voice.pitch)
+			voice.playback.set_stream_volume(voice.ids[side],linear_to_db(maxf(.000001,gains[side])))
+			voice.playback.set_stream_pitch_scale(voice.ids[side],voice.pitch)
 
 func _stop_squeal(voice: Dictionary) -> void:
-	for id in voice.ids: _track_pb.stop_stream(id)
+	voice.player.stop()
+	voice.player.free()
 	var index := AudioServer.get_bus_index(voice.bus)
 	if index>=0: AudioServer.remove_bus(index)
 	_buses.erase(voice.bus)
 
 func _exit_tree() -> void:
+	for player in get_children():
+		if player is AudioStreamPlayer: player.stop()
 	super._exit_tree()
 	for name in _buses:
 		var index := AudioServer.get_bus_index(name)

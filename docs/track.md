@@ -40,11 +40,12 @@ uses its existing centreline train physics: no flange-contact simulation, rail c
 wear deformation or mechanical blade travel time in the interlocking is implied.
 
 `game/rail_joint_layout.gd` is the single source for visible joints and sound:
-**13 m spacing, 6.5 m offset from each edge start, 10 mm open gap**. Meshes split at
+**39 m spacing, 6.5 m offset from each edge start, 10 mm open gap**. Meshes split at
 both sides of every gap and expose their end faces. Six-bolt fishplates support the
 web on both sides of each rail. This is intentionally jointed track to match the
 user's approved sound calibration; it is not a claim that modern Indian mainlines
-have exposed joints every 13 m. Point assemblies now use shared, rail-specific
+have exposed joints every 39 m. The user selected the approved website's default
+39 m SWR rhythm on 7 October. Point assemblies use shared, rail-specific
 interface metadata in `track_contacts.gd`, suppressing periodic gaps inside them.
 
 The active enhanced player is described in [`enhanced-audio.md`](enhanced-audio.md).
@@ -61,7 +62,7 @@ Source, mix rules and validation are detailed in [`body-v2-audio.md`](body-v2-au
 The new website port sounds **multiple actual joints and turnout contacts**, with
 propagation to the moving listener, onboard balances and benchmark curve squeal.
 The older one-joint mix remains a regression comparison only. Ordinary track's
-13 m gaps remain visible; new point interfaces match their affected running rail.
+39 m joint spacing stays visible; point interfaces match their affected running rail.
 
 The scheduler evaluates actual axle positions in both directions. Playback pitch
 stays constant as speed changes; contact gaps follow distance divided by speed.

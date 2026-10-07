@@ -20,8 +20,9 @@ Rolling follows `(speed / 71.6 km/h)^1.25`, capped at 1.4, with the supplied
 impacts. Onboard rolling/squeal has no artificial relative Doppler.
 
 Contacts come from `track_contacts.gd`, shared with the permanent-way renderer.
-Existing ordinary track remains **13 m jointed rail**; the website's optional
-39 m SWR setting is not silently substituted for visible game gaps. The active
+Ordinary track uses **39 m SWR joint spacing**, matching the website default and
+the user's explicit 7 October selection. Visible gaps and fishplates moved with
+their sound contacts; the gap itself remains 10 mm wide. The active
 player now hears multiple physical joints. Inside point assemblies, ordinary
 periodic gaps are replaced by rail-specific interfaces. Toe, heel and crossing
 positions derive from the existing game geometry, rather than assuming every
@@ -30,11 +31,27 @@ game turnout is the website's 39.975 m assembly. Each complete modeled point has
 one stronger nose transfer. Check rails do not generate invented gap impacts.
 
 The scheduler sweeps actual axle route positions and interpolates crossing time.
-A short prediction preserves the 21.333 ms pre-contact attack; invalidated future
+A prediction includes the reported output-device latency, mixer block and next
+display frame, preserving the 21.333 ms pre-contact attack; invalidated future
 contacts are canceled on motion/route changes. Native silent padding places
 starts between display frames. More distant arrivals wait in a queue before
 native scheduling. Debug records retain physical and heard times and identify
 virtualized events. The scene's joint marker flashes at heard arrival.
+
+`audio_output_timing.gd` caches the driver's latency estimate once per second and
+samples time-to-next-mix when submitting an impact. The padding offset removes
+that buffering delay without altering waveform samples, pitch or real acoustic
+propagation. Offline captures/Dummy have no physical device compensation. F10
+shows the audio driver and output-buffer estimate. This estimate cannot measure
+unreported Bluetooth/receiver or display latency; a hardware listening test is
+still needed for those paths.
+
+Desktop `AudioStreamPlaybackPolyphonic.play_stream(..., bus)` does not route an
+ordinary streamed voice independently of its owning player. The corrected
+adapter therefore uses one pooled player per joint filter, the rolling player's
+actual shelf bus and one player per squeal filter chain. Previously these filter
+buses were configured but bypassed by the native stream mixer. The native PCM
+regression now captures their outputs rather than checking properties alone.
 
 ## New benchmark squeal
 
@@ -55,7 +72,7 @@ Each history query interpolates only the relevant bogie's wheels. Retarded-time
 iteration stops after convergence (at most eight iterations), and sources beyond
 any reachable audible position in retained history are culled early.
 
-Native voice budgets are 24 filtered impact locations and 12 squeal voices
+Native voice budgets are 128 impact channels, 24 filtered impact locations and 12 squeal voices
 (including fading tails) per train. Impact locations are prioritized by received
 level; retained contacts keep their physical identity in the diagnostic trace.
 Impacts beyond a conservative 2.6 km prefetch radius are discarded before

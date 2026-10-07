@@ -37,8 +37,9 @@ func run_check() -> void:
 		world.graph.add_node("a",Vector3(-2000,0,0))
 		world.graph.add_node("b",Vector3(2000,0,0))
 		world.graph.add_edge("benchmark","a","b")
-		var joint_s:=2008.5
-		var joint_world:=Vector3(8.5,0,0)
+		var joint_id:=51
+		var joint_s: float=Sound.JOINT_OFFSET+joint_id*Sound.JOINT_SPACING
+		var joint_world:=Vector3(joint_s-2000,0,0)
 		var train:=Train.new("body_probe",fixture.consist.length)
 		train.path=[{edge="benchmark",dir=1}]
 		train.speed=kmh/3.6
@@ -55,7 +56,7 @@ func run_check() -> void:
 		if test_case.stem=="-rolling": sound._track.volume_db=-100
 		sound.set_process(false)
 		sound.listener_override={position=joint_world+Vector3(3.8,2.73,5.8),forward=Vector3(-27.8,-.43,-5.8).normalized(),up=Vector3.UP}
-		sound.joint_override={edge="benchmark",joint=154,point=joint_world,tangent=Vector3.RIGHT}
+		sound.joint_override={edge="benchmark",joint=joint_id,point=joint_world,tangent=Vector3.RIGHT}
 		check(sound._kernels.size()==8,"all approved BODY V2 variants load")
 		check(sound._bogies.size()==42,"rolling radiates from the exact 42 website bogies")
 		var identities:=sound._identities

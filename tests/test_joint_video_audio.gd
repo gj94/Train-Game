@@ -13,7 +13,7 @@ func _timed_hits(kmh: float, fps: float, direction: int = 1) -> Array:
 	var head := 100.0 if direction > 0 else 500.0
 	var out := []
 	var time := 0.0
-	while time < 80.0 / speed:
+	while time < maxf(80.0,Layout.SPACING*5.0) / speed:
 		var pos := []
 		for axle in s.axles:
 			pos.append({edge="plain", s=head-direction*(axle.x-Data.KERNEL_LEAD*speed), dir=direction, length=1000.0})

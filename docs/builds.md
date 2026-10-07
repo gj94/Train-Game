@@ -6,7 +6,8 @@ imported-asset checks, QoL, six-train and
 imported-fleet journey integration checks (the complete run takes several minutes),
 exports a release, adds instructions/licences/guides, and produces
 `export/TrainGame-Windows.zip` plus a SHA-256 sidecar. `-SkipTests` is only for
-packaging immediately after those same checks have passed on the current code.
+packaging immediately after the required headless suite and applicable source
+checks have passed on the current code.
 Do not run an export while the editor is importing.
 
 Use `-BuildName TrainGame-Controller-Windows` to package controller support

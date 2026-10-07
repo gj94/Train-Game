@@ -34,8 +34,11 @@ func _process(delta: float) -> void:
 		pending+=sound._events.size()
 	var fps:=Performance.get_monitor(Performance.TIME_FPS)
 	var gpu:=RenderingServer.viewport_get_measured_render_time_gpu(get_viewport().get_viewport_rid())
-	_label.text="PERFORMANCE · F10 hide\n%d FPS · %.1f ms/frame · GPU %.1f ms\nAudio control %.2f ms · queued impacts %d · buses %d\nDraw calls %d · primitives %.2f M · nodes %d\nWindow %d × %d" % [
+	var timing = preload("res://game/audio_output_timing.gd")
+	timing.refresh()
+	_label.text="PERFORMANCE · F10 hide\n%d FPS · %.1f ms/frame · GPU %.1f ms\nAudio control %.2f ms · queued impacts %d · buses %d\nAudio output %s · buffer estimate %.1f ms + mix\nDraw calls %d · primitives %.2f M · nodes %d\nWindow %d × %d" % [
 		roundi(fps),1000/maxf(1,fps),gpu,audio_ms,pending,AudioServer.bus_count,
+		AudioServer.get_driver_name(),timing.output_latency*1000,
 		roundi(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)),
 		Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME)/1000000,
 		roundi(Performance.get_monitor(Performance.OBJECT_NODE_COUNT)),

@@ -37,11 +37,13 @@ func run_check() -> void:
 		check(sound._squeals.size()<=12,"squeal voice budget")
 		if i%30==0: await process_frame
 	check(maximum==2,"both coach bogies develop squeal from physical wheel curvature")
-	check(sound.debug_events.size()>8,"repeated physical rail contacts produce heard events")
+	check(sound.debug_events.size()>=4,"all four axles cross a real joint on the 39 m layout")
 	for voice in sound._squeals:
 		check(absf(voice.pitch-1)<.000001,"onboard squeal does not transpose")
 		check(voice.texture.cutoff_hz==4800,"new benchmark curve-color shelf")
 		check(voice.ids[0]>=0 and voice.ids[1]>=0,"both native squeal channels allocated")
+		check(voice.player.bus==voice.bus,"squeal player routes through its color and air filters")
+		check(voice.playback.is_stream_playing(voice.ids[0]),"squeal plays on its own filtered player")
 	check(sound._squeal_waves[0][0].loop_end==Data.SQUEAL_FRAMES,"entire periodic FFT bank loops without truncation")
 	sound.squeal_amount=0
 	for i in 50: sound._track_sound(train.speed,30,1.0/120)

@@ -1,5 +1,50 @@
 # Progress
 
+## 2026-10-07 — Joint timing and website audio fidelity correction
+- Investigated the user's delayed cling/clang and weaker website resemblance.
+  Confirmed that desktop streamed polyphonic voices ignore the per-substream bus
+  argument: a native PCM probe recorded zero signal on the intended filter bus
+  until the owning player itself was routed there. The previous property checks
+  and unfiltered single-joint reference comparison did not expose that error.
+- Routed rolling through its actual 900 Hz shelf, pooled impact players through
+  each joint's distance/cab filter, and squeal players through their color/air
+  chains. Keep 24 impact locations, 128 impact channels and 12 squeal voices;
+  pause, re-entry and scene exit stop/release all routed players and buses. The
+  approved PCM, variant laws, pitch, axle loads and geometric sound travel are
+  unchanged. Generated sound assets were not edited.
+- The previous starts also omitted output-device/mixer delay. Added a cached
+  driver-latency estimate and per-submission next-mix compensation, with enough
+  prediction to retain the entire 21.333 ms attack even at lower frame rates.
+  F10 now shows the driver and output-buffer estimate. Dummy/offline captures
+  are exempt. This host's WASAPI probe could not open an output device and fell
+  back to Dummy, so the fix is verified at the scheduler/native-mixer level;
+  actual speaker/Bluetooth/display alignment still needs the user's PC playtest.
+- The website defaults to **39 m SWR**, while the game used 13 m joints. The user
+  explicitly approved matching 39 m. Changed the shared visible/sounding layout
+  together, retaining the 6.5 m edge offset, 10 mm gap and separate turnout
+  interfaces. This removes two thirds of ordinary joint contacts; axle-pair
+  timing still follows each vehicle's geometry and speed.
+- **155 headless unit tests pass**, including device-buffer prediction headroom
+  and 39 m/2.56 m timing in both directions at 30/60/120 km/h. Focused native PCM,
+  reference-audio, curve/passenger lifecycle, permanent-way, rendered axle-motion
+  and original BODY V2 checks pass. The routing test measures rolling/impact
+  signal on the actual filtered buses and approximately 0.021 filtered/bypass
+  amplitude for a 6 kHz probe through the 900 Hz low-pass.
+- Re-recorded the controlled eight-second single-joint website fixture at
+  30/71.6/120 km/h. Mean absolute spectral-band error is 0.137/0.135/0.142 dB;
+  the 30 km/h result improved from 0.767 dB after the rolling shelf correction.
+  Overall level differences are -0.035/+0.0004/-0.063 dB. These are controlled
+  reference measurements, not a claim of identical whole-game or speaker output.
+  Evidence: `.local/audio-fix-ab/comparison.json` and capture WAVs. A six-service
+  120-second simulated CPU profile ends at 4.90 ms mean / 6.54 ms p95 control work,
+  12 queued events and 23 buses; it is not an FPS measurement.
+- Playtest the updated build at normal simulation time: F3, drive/AI at about
+  30/60/100 km/h, Tab close to a bogie and watch an actual gap as axles cross.
+  Compare cab and Alt+1 passenger sound, slow into a turnout, stop, then resume.
+  Check the clearer spacing and preserved cling/clang pitch. If a device delay
+  remains, F10 supplies its driver/buffer estimate. Distribution testing remains
+  skipped per the user's preference; required source tests ran above.
+
 ## 2026-10-07 — Detailed WAP-7 v0.2 port and persistent mouse look
 - Ported the user's updated WAP-7 39002 master from `transport-fever-3-mods`
   revision `de45b4e0e4194af47b1182800b7d103409c69478`. The offline byte audit and
