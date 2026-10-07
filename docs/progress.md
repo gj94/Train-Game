@@ -50,6 +50,13 @@
   priority traffic receive routes. Inspect both faces of an ERS/TVC nameboard.
   Guides: dispatcher-overhaul.md, controllers.md and kerala-station-audit.md.
   Source checks precede packaging; extracted distribution testing remains skipped.
+- R3 release: `TrainGame-Kerala-Coast-R3-Windows.zip`, 1,026,067,557 bytes,
+  exported from clean source commit `3826889`. SHA-256:
+  `fa600e160457eee615c619520ed7aab0aa20453a48879c975ecb093f895e8680`.
+  Refreshed the idle LAN server at `http://192.168.8.183:8765/`; R3 is latest,
+  with linked dispatcher/audit guides. HTTP 200, exact length, byte range and
+  checksum sidecar verified. Earlier R2 downloads remain available. Code was
+  pushed to `codex/port-indian-rail-assets` before packaging.
 
 ## 2026-10-08 — R2 support, ground contact and manual-stop corrections
 - Fixed the geographic renderer placing a +3.6 m mast beside every individual
