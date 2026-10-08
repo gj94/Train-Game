@@ -16,7 +16,10 @@
 - Four committed-plan disruption trials passed: K1 starts +10/+20 min,
   K2 +15 min and VB at 08:30 instead of 08:18. No safety events, sampled
   circular waits, wrong receiving platforms or premature opposing departures.
-  A complete 32-service rehearsal is running while R7 is prepared on request.
+  The complete 32-service rehearsal passed after 1,500 seconds: all arrived
+  safely, with 19 opposing crossings and 3 overtakes of K1. Largest arrival
+  delay was 40.2 minutes; this validates completion, not timetable optimality.
+  Manual driving may change the outcome. Log: `.local/future-32-rehearsal.log`.
 - Added Delete service… to the dispatch inspector, with a named confirmation
   defaulting to Keep service. The assigned train is protected; hand over first
   to remove it. Deletion is for this run, releases only that train's authority,
@@ -36,7 +39,12 @@
   to clear. Enter P3; K2 should then depart north. Inspect the planned crossing
   advice in D. To recover a blocked run, inspect an AI train, Delete service…,
   cancel once with B, then confirm with A; verify your service remains selected.
-  R7 packaging/publication is pending; extracted-distribution testing is skipped.
+  Published R7 at http://192.168.8.183:8765/ from clean source 8a84c42.
+  ZIP: 1,506,961,014 bytes; SHA-256
+  `7f8b6022c574fc3a86fa4f2d38ffc0bd62bcaa92e9adf0acf39a2af14e59af31`.
+  Verified LAN catalog, archive HEAD/byte range, checksum and dispatcher guide.
+  Extracted-distribution testing is skipped as requested. Rebuilds invalidate
+  the completion checksum before exporting to avoid advertising a stale ZIP.
 
 ## 2026-10-08 — Isolated opening-priority experiment
 - At the user's request, compared the full 32-service opening with K1/K2

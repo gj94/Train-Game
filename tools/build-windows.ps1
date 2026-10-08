@@ -8,6 +8,11 @@ if (-not (Test-Path $engine) -or -not (Test-Path $template)) {
 }
 $buildRoot = Join-Path $projectRoot "export/$BuildName"
 $archivePath = Join-Path $projectRoot "export/$BuildName.zip"
+# The download page treats the checksum as the completion marker. A rebuild
+# must not advertise the old ZIP while export/compression is still in progress.
+if (Test-Path -LiteralPath ($archivePath + '.sha256')) {
+    Remove-Item -LiteralPath ($archivePath + '.sha256')
+}
 New-Item -ItemType Directory -Path $buildRoot -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $buildRoot 'guides') -Force | Out-Null
 $exportLog = Join-Path $projectRoot '.local/windows-export.log'

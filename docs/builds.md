@@ -37,6 +37,13 @@ berths, plus confirmed service deletion from the dispatcher. The deletion
 removes simulation occupancy, owned authority and presentation/audio resources;
 the assigned service is protected. See the R7 section in dispatcher-overhaul.md.
 
+Current retained downloads are R7 and the R6 fallback. On 8 October the older
+base/controller/scenery/detail/fidelity/services and Kerala R1-R5 folders, ZIPs
+and checksums were removed on request, freeing 19.39 GiB. Historical build names
+below are reproducible packaging options, not currently hosted downloads.
+The LAN page advertises a ZIP only after its checksum has been written; rebuilds
+remove that completion marker before export begins.
+
 Use `-BuildName TrainGame-Controller-Windows` to package controller support
 alongside the existing playtest ZIP. Its folder, archive, checksum and licences
 are kept separate. The build checks native controller input and GUI navigation.
