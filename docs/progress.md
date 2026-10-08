@@ -30,8 +30,18 @@
   boarding/seating/alighting captures and both-side door checks pass. Native
   keyboard fullscreen switching through the pause menu and saved configuration
   pass. Controller integration passes 69 checks. All baked seat/door paths are
-  reachable. The 32-service traffic rehearsal is being finalized;
-  publish status and final results will be added below. No extracted-build test.
+  reachable. The full 32-service rehearsal passes: every service arrives safely
+  and clears to depot, with no safety events. K1 encounters 19 opposing movements
+  and three overtakes (including empty stock); latest passenger arrival delay is
+  56.0 minutes. Runtime: 1,915 seconds. The free-drive-only initialization addition
+  was validated by the 340-test suite and does not alter scheduled workings.
+  Manual driving may change outcomes. No extracted-build test.
+- Feature commit `9426d13` is pushed. R12 Windows was exported from that clean
+  source: 1,631,403,751 bytes; SHA-256
+  `f57afb5039ef878cc73a11d9012fa3f31712a8a02973e527de10dee09be95379`.
+  Publication uses the existing private LAN server at `http://192.168.8.183:8765/`.
+  R12 is advertised as latest; the host verified the catalogue, exact ZIP length,
+  HTTP 206 range download, SHA-256 sidecar and passenger guide. R11 remains a fallback.
 - Playtest: start fresh K1 at ERS; V/coach menu to inspect riders; watch boarding
   from outside and try power before the countdown finishes. Enable AI and watch
   Kumbalam alighting/boarding, compare F12 totals, then test LHB and both VBs.

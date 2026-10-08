@@ -10,7 +10,7 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R10-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R12-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
@@ -59,7 +59,22 @@ kerala-station-audit.md and enhanced-audio.md. Source
 checks include the full headless suite, long-rake walking, service editor, ride
 integration, native rattle PCM and complete 32-service traffic rehearsal.
 
-Current retained downloads are R10, R9, R8, R7 and the R6 fallback. On 8 October the older
+R11 ports the pinned detailed ERS/TVC/NCJ architecture and replaces terminal
+parking with unloading and signalled depot workings. R10 was withdrawn after
+its extended rehearsal exposed permanent platform occupation. R11 retained its
+long rakes, CSV station inventory and moving-coach selection changes.
+
+R12 adds seated travellers, destination-based boarding/alighting, platform-side
+door animation and departure interlocks, plus saved fullscreen with F11,
+Alt+Enter and controller Menu. The passenger aisle JSON is explicitly included
+by `data/interiors/*.json`; four new seated character GLBs are referenced by the
+crowd renderer. `passengers.md` is included in the download. Source checks:
+`tests/run_tests.gd`, `check_passenger_service.gd`, `check_controller_playable.gd`,
+native `check_passengers_playable.gd` (service indices 0/1/2/4 cover all four
+formations; `--car=7` checks the reversed VB8 end car), and the full traffic
+rehearsal. No extracted-distribution run is required.
+
+Retained fallback downloads include R11, R9, R8, R7 and R6. On 8 October the older
 base/controller/scenery/detail/fidelity/services and Kerala R1-R5 folders, ZIPs
 and checksums were removed on request, freeing 19.39 GiB. Historical build names
 below are reproducible packaging options, not currently hosted downloads.
