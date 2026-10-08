@@ -29,6 +29,11 @@
   three overtakes of K1, maximum arrival delay 40.2 min. WAP/LHB source walking
   check passed 76 assertions; Vande Bharat passed 83, including the new acoustic
   profile checks in both driving compartment and passenger accommodation.
+  Final native PCM capture passed all six cases with no virtualized contacts;
+  physical contact-time error was below 0.001 ms against the fixture geometry.
+  Ride CPU cost in the real-model source check averaged 0.39–0.42 ms/update for
+  eight vehicles and 0.80 ms for VB16 on this host, at 1x and 60 Hz; this is an
+  isolated component measurement, not a whole-game FPS claim.
   No extracted-distribution test. Reproducible audio harness is committed in
   tools/audio-comparison and tools/check_onboard_audio.gd.
 - Playtest: fresh K1, use L3 pilot at 30–60 km/h; change power/coast/brake and
@@ -36,6 +41,11 @@
   and walk; then compare pilot versus head-out sound. Try pause and 2x/4x back
   to 1x. At a free station, approach should clear before passing the automatic;
   busy stations and crossings may correctly retain yellow/red protection.
+  Published R9 at http://192.168.8.183:8765/ from clean source `feb55bd`.
+  ZIP: 1,506,982,461 bytes; SHA-256
+  `e218699884d8a54d13e26ac52cd77b2afbfd6c495534939e35819765bfb7ae9e`.
+  Verified catalog, archive HEAD/byte range, checksum and ride guide. R8/R7/R6
+  remain available as fallbacks; the temporary audio-render server was stopped.
 
 ## 2026-10-08 — R8 direct controller camera navigation
 - Replaced context-dependent camera chords with shared shortcuts in both Xbox

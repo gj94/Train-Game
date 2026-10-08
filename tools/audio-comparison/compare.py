@@ -36,4 +36,3 @@ for speed,stem in [(s,t) for s in ['30','71.6','120'] for t in ['-pilot', '-pass
   corr.append((float(np.corrcoef(aa,bb)[0,1]),lag*.01))
  out.append(dict(speed=speed,stem=stem or 'full',game_seconds=n/sr,rms_delta_db=float(10*np.log10(np.mean(b*b)/np.mean(a*a))),mean_band_error_db=float(np.mean(np.abs(errs))),envelope=max(corr),game_peak=float(abs(b).max()),reference_peak=float(abs(a).max()),channel_rms_ratio=[float(np.sqrt(np.mean(b[:,i]**2)/np.mean(a[:,i]**2))) for i in range(2)]))
 print(json.dumps(out,indent=2));(root/'comparison.json').write_text(json.dumps(out,indent=2))
-
