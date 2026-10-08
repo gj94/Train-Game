@@ -64,6 +64,8 @@ var _paused_before_progress := false
 var _pending_action := ""
 var _interior_view := false
 var display_options := preload("res://game/display_options.gd").new()
+var save_load
+var _resume: Dictionary = {}
 
 
 func _ready() -> void:
@@ -71,6 +73,10 @@ func _ready() -> void:
 	# Custom railway interpolation needs a clock without physics-jitter correction.
 	Engine.physics_jitter_fix = 0.0
 	AudioServer.playback_speed_scale=1.0
+	_resume=get_tree().get_meta("resume_session",{})
+	if not _resume.is_empty():
+		get_tree().remove_meta("resume_session")
+		preload("res://game/save_load.gd").prepare_metadata(get_tree(),_resume.session)
 	var default_route:="kerala_coast"
 	if get_tree().get_meta("small_test_layout",false) or not str(get_tree().get_meta("imported_fleet","")).is_empty() or Array(OS.get_cmdline_user_args()).any(func(a):return a.begins_with("--fleet=") or a in ["--wap7","--lhb","--memu"]):default_route="southern_corridor"
 	for argument in OS.get_cmdline_user_args():
@@ -96,7 +102,7 @@ func _ready() -> void:
 		lhb_drive = false
 	var layout = FirstLine if get_tree().get_meta("small_test_layout", false) else Corridor
 	var authored = get_tree().get_meta("service_pack", {})
-	if not authored.is_empty():
+	if not authored.is_empty() and _resume.is_empty():
 		var expected_layout := "kerala_coast" if geographic_drive else ("first_line" if get_tree().get_meta("small_test_layout",false) else "southern_corridor")
 		var result := ServicePack.build(authored, expected_layout)
 		if result.ok:
@@ -109,7 +115,10 @@ func _ready() -> void:
 		else:
 			_service_error = result.reason
 			get_tree().remove_meta("service_pack")
-	if not authored_pack.is_empty():
+	if not _resume.is_empty():
+		world=_resume.world
+		preload("res://sim/world_snapshot.gd").apply(self,_resume.session,preload("res://game/save_load.gd").FLAGS)
+	elif not authored_pack.is_empty():
 		pass
 	elif geographic_drive:
 		world = Kerala.build_traffic()
@@ -128,7 +137,9 @@ func _ready() -> void:
 			PortedStock.configure(service,"lhb")
 			world.place_train(service,service.path[0].edge,service.head_s,service.path[0].dir)
 	train = world.trains.values()[0]
-	if not authored_pack.is_empty():
+	if not _resume.is_empty():
+		train=world.trains[_resume.session.player]
+	elif not authored_pack.is_empty():
 		var chosen: String = get_tree().get_meta("player_service",train.id)
 		train = world.trains.get(chosen,train)
 	elif traffic_drive:
@@ -182,14 +193,15 @@ func _ready() -> void:
 	dispatcher = Dispatcher.new()
 	add_child(dispatcher)
 	dispatcher.selected_train = train.id
-	dispatcher.auto_dispatch = traffic_drive
-	dispatcher.setup(world)
+	dispatcher.auto_dispatch = world.dispatcher().enabled if not _resume.is_empty() else traffic_drive
+	dispatcher.setup(world,not _resume.is_empty())
+	dispatcher.hold_arrivals=world.dispatcher().hold_maruthur
 	dispatcher.services_requested.connect(_open_services)
 	dispatcher.train_selected.connect(_select_train)
 	dispatcher.view_train_requested.connect(_view_train_only)
 	dispatcher.service_deleted.connect(_on_service_deleted)
 	dispatcher.open_changed.connect(func(value): hud.set_desk_open(value))
-	world.dispatcher().manual_service=train.id if traffic_drive else ""
+	if _resume.is_empty():world.dispatcher().manual_service=train.id if traffic_drive else ""
 	dispatcher.station_view_requested.connect(_visit_station)
 	dispatcher.drive_requested.connect(_enter_cab)
 	dispatcher.pause_requested.connect(_toggle_pause)
@@ -201,7 +213,9 @@ func _ready() -> void:
 	wv.set_labels_visible(false)
 	# Window close follows the same in-game confirmation as Quit.
 	get_tree().auto_accept_quit = false
-	if traffic_drive:
+	if not _resume.is_empty():
+		pass # Restored controls, authority and timetable must not be initialized again.
+	elif traffic_drive:
 		_enter_cab()
 		train.controller = -1.0
 		DispatchPlan.update(world, false, train.id)
@@ -231,6 +245,10 @@ func _ready() -> void:
 	add_child(passenger_crowd)
 	passenger_crowd.setup(self)
 	if not _service_error.is_empty(): hud.toast("Service file could not start: "+_service_error,true)
+	save_load=preload("res://game/save_load.gd").new(self)
+	if not _resume.is_empty():
+		save_load.restore_view(_resume.session)
+		_resume.clear()
 
 
 func _physics_process(delta: float) -> void:
@@ -355,6 +373,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			if event.physical_keycode in [KEY_ESCAPE,KEY_F5] and not service_editor.confirm_play.visible:
 				_close_services()
 			return
+		if event.ctrl_pressed and event.physical_keycode in [KEY_S,KEY_L] and hud.modal in ["","pause"]:
+			if event.physical_keycode==KEY_S:save_load.save("quick")
+			else:save_load.open("load")
+			get_viewport().set_input_as_handled()
+			return
 		if dispatcher._root.visible and hud.modal.is_empty():
 			if event.physical_keycode==KEY_ESCAPE:
 				if dispatcher._confirm.visible:dispatcher.cancel_handover()
@@ -367,6 +390,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				if hud.modal == "progress": _close_progress()
 				elif hud.modal == "help": _close_help()
 				elif hud.modal == "confirm": _cancel_action()
+				elif hud.modal == "saved_games": save_load.back()
 				elif hud.modal != "" and hud.modal != "pause": hud.show_modal("pause", labels_enabled)
 				else: _toggle_pause()
 				return
@@ -635,6 +659,9 @@ func _set_time_scale(value: int) -> void:
 	hud.toast("Normal time" if value==1 else "Fast forward ×%d · Shift+T returns to normal time" % value)
 
 func _ui_action(action: String) -> void:
+	if action.begins_with("save:"):
+		save_load.action(action)
+		return
 	if action=="skip_missed_stop":
 		if train.timetable!=null and train.timetable.skip_missed_stop():
 			DispatchPlan.update(world,false,train.id)
@@ -814,6 +841,7 @@ func _request_action(action: String) -> void:
 		description="Start the 277 km Kerala Coast via Alappuzha and TVC with 32 scheduled passenger services and dynamic priority dispatch." if action.ends_with("kerala_coast") else "Return to the fictional Southern corridor."
 	if action.begins_with("fleet:"):
 		description = "Start " + PortedStock.LABELS[action.trim_prefix("fleet:")] + "."
+	description+="\nUnsaved progress will be lost. Use Save journey in the pause menu to keep this run."
 	hud.show_modal("confirm", labels_enabled, description)
 
 

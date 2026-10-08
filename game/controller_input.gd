@@ -339,6 +339,7 @@ func _back() -> void:
 		return
 	match game.hud.modal:
 		"confirm": game._cancel_action()
+		"saved_games": game.save_load.back()
 		"help": game._close_help()
 		"progress": game._close_progress()
 		"pause": game._ui_action("resume")

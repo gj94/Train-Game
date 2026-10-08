@@ -81,7 +81,7 @@ var _tabs: TabContainer
 var _inspector: ScrollContainer
 var _last_platform_key := ""
 
-func setup(w: RailWorld) -> void:
+func setup(w: RailWorld, restoring: bool=false) -> void:
 	layer=4
 	world=w;engine=w.dispatcher();engine.enabled=auto_dispatch
 	if not world.trains.has(selected_train):selected_train=str(world.trains.keys()[0])
@@ -115,7 +115,7 @@ func setup(w: RailWorld) -> void:
 	_build_inspector(body)
 	_objective=UI.label(page,"Wheel zoom · Drag pan · Click inspect · Home fit  |  Xbox: LS pan · LT/RT zoom · D-pad targets · A inspect · LB/RB areas · X locate · Y fit",12,UI.MUTED)
 	_build_confirmation()
-	engine.run_cycle(false)
+	if not restoring:engine.run_cycle(false)
 	select_signal(source,true)
 	inspect_train(inspected_train,false)
 	_refresh()

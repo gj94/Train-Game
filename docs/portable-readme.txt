@@ -2,6 +2,15 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R14: Save / Load journeys from Esc or controller Menu.
+Five numbered slots plus Quick save. Ctrl+S quick-saves; Ctrl+L opens Load.
+Trains, signal routes, dispatcher plans, passengers, timetable/depot progress,
+your controls and camera/walking position resume. Loads start PAUSED.
+Overwrites retain a previous backup; loading and manual overwrite ask first.
+Open saves folder lets you copy saves to another PC. Saves live separately
+from this game folder and survive build updates with compatible track layouts.
+There is no autosave. See guides/save-load.md for details and playtest steps.
+
 Kerala Coast R13: fixes the Turavur overtake departure order after long waits.
 Once the VB arrives alongside for an overtake, a routine crossing delay keeps
 it ahead of the passenger. Earlier signal waits no longer expire a fresh

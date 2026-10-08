@@ -1,7 +1,11 @@
 # Xbox controller
 
-Fullscreen: press Menu and choose **Fullscreen / Windowed** (second item after
-Resume). The preference is saved. Keyboard F11 or Alt+Enter works in menus too.
+Save/Load: press Menu and choose **Save journey**, **Load journey** or **Quick save**.
+D-pad / left stick selects; A activates; B goes back. Load/overwrite confirmations
+start on Cancel. Loaded journeys remain paused until Resume. See [Save/Load](save-load.md).
+
+Fullscreen: press Menu and choose **Fullscreen / Windowed**.
+The preference is saved. Keyboard F11 or Alt+Enter works in menus too.
 
 Uses Godot's standard gamepad mapping for Xbox 360, One, Series and Elite pads.
 Connect over USB or a Windows-supported wireless connection before or during play.

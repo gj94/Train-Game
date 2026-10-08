@@ -1,5 +1,36 @@
 # Progress
 
+## 2026-10-09 — R14 Save/Load journeys
+- Added a versioned, renderer-independent railway checkpoint: occupied train
+  paths/physics/controls, timetables and completed passenger results, passengers
+  mid-exchange, points and signal authority, dispatch wait ages/commitments,
+  future-platform reservations, operator choices, deleted services and depots.
+  Restoring builds a separate world and verifies the track, platform, depot and
+  signalling signature before replacing the live session.
+- Added five manual slots and a separate quick save to the pause menu, with
+  complete Xbox focus/back navigation. Ctrl+S quick-saves; Ctrl+L opens Load.
+  Entries show service/time/progress/timestamp. Load and manual overwrite
+  default to Cancel; each overwrite preserves the previous backup. Verified
+  temporary writes and checksums reject damaged files without replacing a run.
+  Open saves folder supports copying checkpoints between compatible PCs/builds.
+- Loads resume paused, retaining the assigned service, custom service pack,
+  AI/manual driving, power/brake, fast-forward multiplier, passenger/head-out/free
+  camera, onboard/platform walking position and dispatch map. Existing authority
+  is not reinitialized on scene construction. Inputs are neutralized and audio
+  voices are rebuilt. Fixed startup selection to allow saves after handing over
+  and deleting the original assigned train. No autosave or format migration.
+- All 360 headless tests pass, including 12 new checkpoint/file regressions for
+  exact continuation, overtake/future-clearance state, passenger exchange, depot
+  results, topology compatibility, backup rotation and corruption rejection.
+  Source integration checks pass: 27 Kerala checks including platform restoration,
+  22 handover/deletion checks, 21 native menu/view checks and 72 controller checks.
+  Native Save/Load screenshots were inspected; slot summaries wrap and scroll.
+  No extracted-distribution test. See save-load.md for scope and file locations.
+- Playtest: save while moving, continue, load and compare clock/speed/handle and
+  nearby services before Resume. Save during an overtake wait or boarding, and
+  while walking in a coach/on a platform. Overwrite a numbered slot, restore its
+  previous backup, and cancel a load to check the current run remains intact.
+
 ## 2026-10-09 — R13 Turavur overtake departure order
 - Recreated the reported three-train arrangement at Turavur around 09:30 with
   the passenger in a platform loop, VB on the central through road and an

@@ -9,6 +9,10 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **9 Oct 2026 Save/Load:** resume the complete railway and assigned service,
+  including interlocking/dispatch commitments, timetable and passenger progress,
+  depot workings and onboard/platform viewpoint. Provide controller-accessible
+  save slots, quick save, safe replacement/backup and paused restoration.
 - **9 Oct 2026 passengers and display:** carry visible passengers in trains,
   with destination-based boarding/alighting at scheduled platform stops. Keep
   simulation independent of crowd rendering, respect capacity and platform side,

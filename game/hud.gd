@@ -34,6 +34,7 @@ AI needs routes and waits for its departure time and station dwell.
 
 [b]DISPLAY & SESSION[/b]
 Esc pause menu / back · F1 controls · F4 clean view / restore
+Ctrl+S quick save · Ctrl+L load journey · pause menu for five manual save slots
 F6 track labels · F8 event history · F10 performance · F11 / Alt+Enter fullscreen / window
 F12 journey progress: stops completed/left, next stop and estimated time
 T fast forward ×1 / ×2 / ×4 / ×8 / ×16 / ×32 · Shift+T normal time
@@ -57,6 +58,7 @@ var _button_scroll: ScrollContainer
 var clean_view := false
 var history_open := false
 var modal := ""
+var save_menu: Dictionary = {}
 var desk_open := false
 
 func set_desk_open(value: bool) -> void:
@@ -230,11 +232,17 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 		_buttons.remove_child(button)
 		button.queue_free()
 	_body.scroll_to_line(0)
+	_body.size_flags_vertical=Control.SIZE_FILL if kind=="saved_games" else Control.SIZE_EXPAND_FILL
+	_body.custom_minimum_size.y=125 if kind=="saved_games" else 0
+	_button_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL if kind=="saved_games" else Control.SIZE_FILL
 	match kind:
 		"pause":
 			_heading.text = "PAUSED"
 			_body.text = "Resume to continue the current service.\n[b]F4[/b] clears the screen; [b]D[/b] opens dispatch."
 			_button(_buttons, "Resume  ·  Esc", "resume")
+			_button(_buttons, "Save journey…", "save:menu:save")
+			_button(_buttons, "Load journey…  ·  Ctrl+L", "save:menu:load")
+			_button(_buttons, "Quick save  ·  Ctrl+S", "save:quick")
 			_button(_buttons, ("Return to window" if DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN,DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN] else "Enter fullscreen")+"  ·  F11 / Alt+Enter", "fullscreen")
 			_button(_buttons, "Journey progress  ·  F12", "progress")
 			_button(_buttons, "Scenario & controls  ·  F1", "help")
@@ -253,6 +261,13 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Traffic / solo fleet…  ·  F9", "fleet")
 			_button(_buttons, "Restart current services…", "restart")
 			_button(_buttons, "Quit to desktop…", "quit")
+		"saved_games":
+			_heading.text=save_menu.get("title","SAVED JOURNEYS")
+			_body.text=save_menu.get("body","")
+			for entry in save_menu.get("options",[]):
+				var button:=_button(_buttons,entry[0],entry[1])
+				button.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+				button.custom_minimum_size.y=48
 		"controllers", "controller_actions", "train_controls", "view_controls", "sound_controls", "points":
 			ControllerMenus.build(self, kind)
 		"coaches":
