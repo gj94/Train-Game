@@ -26,6 +26,12 @@
   22 handover/deletion checks, 21 native menu/view checks and 72 controller checks.
   Native Save/Load screenshots were inspected; slot summaries wrap and scroll.
   No extracted-distribution test. See save-load.md for scope and file locations.
+- Feature commit `18111a2` is pushed. R14 Windows was exported from that clean
+  revision: 1,631,421,588 bytes; SHA-256
+  `8730452a888e20dd5379da0833b98ec64ddd7edbdafd4e78eaf4d213e6a40192`.
+  Published as latest at `http://192.168.8.183:8765/`; the host verified the
+  catalogue, exact ZIP size, HTTP 206 range, checksum sidecar, README and saved
+  journeys guide. R13 remains available as a fallback.
 - Playtest: save while moving, continue, load and compare clock/speed/handle and
   nearby services before Resume. Save during an overtake wait or boarding, and
   while walking in a coach/on a platform. Overwrite a numbered slot, restore its
