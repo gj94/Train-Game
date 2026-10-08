@@ -50,7 +50,7 @@ Files describe services for the current layout. They are not running savegames
 or track-layout files. A geometry/signalling signature rejects files for a
 different or changed railway; scenery changes do not affect compatibility.
 
-- 1–12 simultaneously placed services, 2–64 stops per service.
+- 1–64 simultaneously placed services, 2–64 stops per service.
 - All trains occupy their origins at world start, even if booked later. Two
   origins cannot share a block. A duplicate needs its own free origin.
   Off-map spawning and rolling-stock reuse are not implemented.

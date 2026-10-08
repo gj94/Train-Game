@@ -1,10 +1,11 @@
-# Walking inside the train
+# Walking inside the train and on platforms
 
 Press **E** on keyboard or **Y** with the default Xbox layout to get out of the
 driver's or passenger's seat. Walk through the cab, machinery aisle, passenger
 aisles and vestibules. Nearby seats and interior passages display an interaction
 prompt. The WAP-7 has no passenger gangway: use a passenger camera preset to enter
-its coaches, then walk between the connected coaches.
+its coaches, or step out onto a platform at a stop and board a coach doorway.
+The Kerala route supports platform walking beside your assigned train.
 
 ## Controls
 
@@ -20,6 +21,7 @@ its coaches, then walk between the connected coaches.
 | Dispatch | 9 | Tap View / Back |
 | Service progress | F12 | Hold View / Back |
 | Return to pilot | 4 | Hold right-stick click + D-pad up |
+| Always select left head-out | Q | Hold left-stick click + D-pad left |
 | First / middle / last passenger coach | Alt+1 / Alt+2 / Alt+3 | Camera & passengers menu; hold RS + D-pad left cycles internal views |
 
 On keyboard **Shift+E** now selects the right head-out view; Q still selects the
@@ -33,10 +35,23 @@ default controller layout, X+A explicitly toggles AI and X+B explicitly applies
 emergency braking. Menu → Train & view actions has these commands in both layouts.
 Release walking keys/sticks/triggers when returning to driving or closing a menu.
 
-Interior door leaves remain static artwork. Where a closed door or a narrow
+At a stand, walk up to an exterior door on the platform side and look toward it.
+Use **A / left click** when **Step onto platform** appears. Walk along the
+platform, face another doorway and use **Board coach…**. The train and dispatcher
+keep running; enabling AI can make your train leave while you remain outside.
+Boarding requires your train to be stopped beside you. Camera shortcuts can
+return to your train; boarding does not change your driving assignment.
+
+Platform edges, columns, benches, signs and waiting passengers constrain walking.
+Through roads without passenger faces cannot be used to alight. Exterior doorway
+positions come from all 22 original Blender masters, including reversed VB cars.
+Platform walking currently covers the geographic Kerala route and carriages of
+your assigned service; it does not cross tracks, use footbridges or board other
+services. Use the dispatcher handover to change service.
+
+Interior and exterior door leaves remain static artwork. Where a closed door or a narrow
 doorway blocks the body, a prompt takes you through with a short fade. Gangways
-also use this transition. This version supports interior walking; it does not
-add exterior platform walking, jumping, opening exterior doors or clickable cab
+also use this transition. This version does not add jumping, animated doors or clickable cab
 instruments. Cab controls remain available from the existing driving input/menu.
 
 ## Implementation and source
@@ -45,6 +60,13 @@ instruments. Cab controls remain available from the existing driving input/menu.
 camera uses that car's interpolated transform, including reversed VB cars and
 geographic origin shifts. The sound listener follows the walked position in the
 same axle/joint coordinate system as seated views. No audio bank is regenerated.
+
+`platform_navigation.gd` matches the geographic platform renderer in metre space;
+the outside camera belongs to the platform, not to a moving car. It follows
+floating-origin shifts. `platform_walk.gd` validates door side, platform extent,
+speed, nearby standing clearance and boarding distance at interaction time.
+`tools/blender/exterior_door_census.py` rebuilds `data/interiors/exterior_doors.json`
+from hash-checked Blender masters in a separate background process.
 
 `data/interiors/walkways.json` contains 8 cm floor and clearance grids for all
 22 active detailed masters: WAP-7, fourteen ICF/LHB classes and seven VB car models.

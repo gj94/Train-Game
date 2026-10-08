@@ -26,6 +26,7 @@ train-specific handles or every cab instrument interaction.
 | Hold right-stick click + D-pad | Left: cycle internal views; right: exterior; up: pilot; down: middle passenger coach |
 | Left stick | Cab zoom; exterior pan; on foot walk / strafe |
 | Left-stick click | Horn when driving; crouch on foot |
+| Hold left-stick click + D-pad left | Always select left head-out, including repeated presses; both layouts |
 | Hold right-stick click + left stick | Zoom; left-stick click recentres |
 | D-pad up / down | Select driving end at rest, where supported |
 | View / Back | Tap dispatch; hold journey progress |
@@ -37,7 +38,7 @@ including out of its braking range. Release controls to hold the selected handle
 An intentional driving-handle input takes over from AI. View-only camera presets
 preserve AI; the existing cab/exterior toggle enters manual driving on return.
 
-On foot, RT runs, A uses the displayed seat/doorway/gangway prompt, and D-pad right
+On foot, RT runs, A uses the displayed seat/doorway/gangway/platform prompt, and D-pad right
 toggles a headlamp. Walking inputs cannot alter traction. See [walking.md](walking.md)
 for keyboard equivalents, current door transitions and a complete playtest.
 

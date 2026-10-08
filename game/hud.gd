@@ -46,7 +46,7 @@ Running progress is not saved; service files start a fresh timetable.
 [b]SOUND & DIAGNOSTICS[/b]
 [ / ] track sound quieter / louder (2 dB)
 , / . clang quieter / louder · J rail-joint markers
-Approved track-only sound keeps the horn and engine layers muted."""
+Electric engine hum/traction and horn are active alongside the approved track sounds."""
 var scenario_brief := ""
 var controller_active := false
 var controller_help := ""
@@ -83,7 +83,7 @@ func _ready() -> void:
 	_mode = Label.new()
 	add_child(_mode)
 	_mode.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
-	_mode.offset_left = -850
+	_mode.offset_left = -600
 	_mode.offset_right = -16
 	_mode.offset_top = 64
 	_mode.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
@@ -314,6 +314,7 @@ func toggle_history() -> void:
 	_refresh_visibility()
 
 func _refresh_visibility() -> void:
+	if _dispatch_notice != null: _dispatch_notice.visible=not clean_view and not desk_open and modal.is_empty() and not _dispatch_notice.text.is_empty()
 	if _pad_hint != null: _pad_hint.visible = controller_active and (not desk_open or modal != "") and (not clean_view or modal != "")
 	_info.visible = not clean_view and not desk_open and modal == ""
 	_mode.visible = not clean_view and not desk_open and modal == ""
@@ -367,11 +368,7 @@ func refresh(s: Dictionary) -> void:
 	_info.text = "%s   ·   %s\n%s   ·   %s / %s%s" % [speed, handle, signal_text, s.train_id, "AI" if s.automatic else "MANUAL", "  [color=#ffca72]PROTECTION OFF[/color]" if not s.protection else ""]
 	_dispatch_notice.text=s.get("dispatch_expectation","")
 	_dispatch_notice.visible=not clean_view and not desk_open and modal.is_empty() and not _dispatch_notice.text.is_empty()
-	var view := "PILOT" if s.cab else "OVERVIEW"
-	if not s.get("head_out", "").is_empty(): view = s.head_out
-	if not s.get("passenger", "").is_empty():
-		view = s.passenger
-	_mode.text = "%s  ·  D%d  %s  ·  ×%d" % [view, s.world_day, s.world_clock, s.time_scale]
+	_mode.text = preload("res://game/journey_hud.gd").text(s.get("journey",{}))+"\nD%d  %s  ·  ×%d" % [s.world_day, s.world_clock, s.time_scale]
 	# Emergency feedback survives clean view; other diagnostics stay optional.
 	if clean_view and s.emergency and modal == "":
 		_info.text = "[color=#ff7868][b]EMERGENCY BRAKE[/b][/color]  ·  %d km/h\nSpace to release once stopped" % kmh

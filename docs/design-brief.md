@@ -9,8 +9,15 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **8 Oct 2026 journey HUD and traffic:** replace the persistent camera label
+  with the next scheduled stop, metres remaining and estimated in-game minutes.
+  The default stopping scenario has 32 scheduled services, with 31 under AI
+  when driving K1. Detailed train presentation streams near the observer.
 - **8 Oct 2026 walking:** leave driver/passenger seats and walk inside the moving
-  articulated train. Default Xbox bindings follow TSW immersive contexts, with
+  train, step onto Kerala platforms at a stand, and board another carriage of
+  the same service through source-located exterior doors. L3 + D-pad left always
+  selects left head-out. Electric traction/auxiliary sound and horn are restored.
+  Interiors follow the articulated vehicles. Default Xbox bindings follow TSW immersive contexts, with
   legacy layout selectable. Continuous collision-aware aisles, prompted interior
   doorway/gangway transitions, seat selection, crouch and headlamp; see walking.md.
 - **8 Oct 2026 gameplay:** default to the slow Kerala Coast passenger (K1).

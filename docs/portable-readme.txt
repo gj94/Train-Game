@@ -2,6 +2,20 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R6: 32 scheduled services, with K1 the default stopping passenger.
+The HUD replaces the camera label with next station, metres and estimated
+in-game minutes. Signal waits are additional; fast forward retains world minutes.
+D shows all services; F5 supports up to 64. Nearby detailed trains/audio stream
+as you travel while every service stays active in the simulation.
+Dispatcher admission now reserves compatible passenger berths across both
+approaches and checks onward routes, preventing the reported Kumbalam trap.
+Hold left-stick click + D-pad left to always select left head-out.
+At a stopped train's platform-side doorway, A/left-click steps onto the platform;
+walk to another carriage doorway and interact to board. The train can leave
+while you remain outside. 4 / RS held + D-pad up returns to the pilot.
+Electric engine/traction sound and horn are active again, beside the approved
+clack/squeal sound. The approved sample banks are unchanged.
+
 Kerala Coast R5: walk inside the moving train; default TSW-style Xbox layout.
 Y/E stands or sits; LS/WASD walks; RS/right-drag looks; RT/Shift runs;
 LS click/C crouches. A/left-click uses the seat, doorway or gangway prompt.
@@ -9,8 +23,8 @@ D-pad right/L toggles a headlamp. The train's driver and handle stay set.
 Driving: RT/RB power, LT/LB brake. Hold X+A AI, X+B emergency, X+RB coast.
 RS click cab/exterior; hold RS + D-pad for camera presets. View tap dispatch,
 View hold progress. Settings can restore the legacy controller layout.
-Interior doorways and gangways use a short transition; exterior walking and
-animated door leaves are not included. See guides/walking.md and controllers.md.
+Doorways and gangways use a short transition; animated door leaves are not
+included. R6 adds Kerala platform walking. See guides/walking.md and controllers.md.
 
 Kerala Coast R4: all fourteen ICF/LHB coach classes now use detailed v02 assets.
 Class-specific furnishings, running gear, underframe equipment, exterior markings
@@ -40,7 +54,7 @@ an exact one-metre marker. If a call was missed, PROGRESS/F12 offers a skip
 button; skipped calls do not count as completed stops.
 Default: K1, the slow all-stop passenger on the Kerala Coast geographic route.
 Ernakulam Jn - Alappuzha - Kayamkulam - Kollam - TVC - Nagercoil Jn,
-about 277 km at full scale, 56 mapped stations, seven playable services.
+about 277 km at full scale, 56 mapped stations, 32 playable services.
 K1 is the slow all-stop passenger. Priorities and actual progress determine
 crossings/overtakes. The HUD names the service you should expect to wait for.
 PROGRESS / F12: completed/total stops, stops left, next stop, distance and estimated
@@ -92,7 +106,7 @@ RUN ON ANOTHER PC
 4. F11 switches fullscreen/window. The initial window is 1280 x 720.
 
 START PLAYING
-You start in the K1 stopping passenger among seven Kerala Coast services: WAP-7/LHB,
+You start in the K1 stopping passenger among 32 Kerala Coast services: WAP-7/LHB,
 WAP-7/ICF and Vande Bharat. The other six trains use AI. Automatic dispatch
 sets safe routes for everyone, including your manually driven service.
 Wait at red while earlier trains clear shared routes and occupied platforms.
@@ -168,5 +182,5 @@ The executable is an unsigned personal development build.
 PERSONAL PLAYTEST COPY
 The approved track sound is derived from the user's reference recording and is
 registered for personal use only. This package is for use on your own PC.
-The current track-only mode mutes horn/engine layers deliberately.
+Engine hum/traction and horn are enabled; track sound retains the approved bank.
 Asset sources and engine licence notices are included in this folder.

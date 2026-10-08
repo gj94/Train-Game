@@ -8,8 +8,31 @@ are 276.585 km apart. It is not compressed. There are 56 mapped station location
 
 ## Driving and exploring
 
-- The default is K1 among seven passenger workings. The others use AI;
+The route is **mixed single and double line**, not single throughout. Current
+game station-centre sections are:
+
+| Section | Running lines | Approximate game distance |
+| --- | ---: | ---: |
+| Ernakulam–Ambalappuzha | 1 | 69.1 km |
+| Ambalappuzha–TVC | 2 | 136.4 km |
+| TVC–Eraniel | 1 | 52.6 km |
+| Eraniel–Nagercoil | 2 | 18.4 km |
+
+Station loops and platform roads are additional. This totals about 155 km of
+double-track running. The Ministry's [13 February 2026 section breakdown](https://sansad.in/getFile/annex/270/AU1705_QP2ZtK.pdf?source=pqars)
+confirms Ambalappuzha–Kayamkulam already doubled and northern coastal works in
+different stages. The [8 June Mararikulam–Alappuzha sanction](https://www.pib.gov.in/newsite/erelcontent.aspx?lang=2&reg=48&relid=289762)
+groups other works as commissioned **or under implementation**; it does not
+establish that the whole northern coastal line is in double-line operation.
+The game snapshot is not certification of every commissioning change after
+those sources; see the station audit for unresolved infrastructure details.
+
+- The default is K1 among **32 scheduled passenger workings**. The others use AI;
   automatic dispatch also requests routes for your manually driven train.
+- The top-right HUD shows the next scheduled station, distance in **metres**
+  and approximate **in-game minutes**, replacing the camera label. Estimates
+  include acceleration, braking and remaining dwell; signal waits are additional
+  and marked explicitly. Fast forward changes real elapsed time, not this estimate.
 - **PROGRESS / F12** shows completed/total calls, calls left, the next stop,
   distance, approximate in-game time and booked arrival. The origin counts as
   the first of 56 calls. Signal waits are identified separately because their
@@ -21,7 +44,7 @@ are 276.585 km apart. It is not compressed. There are 56 mapped station location
   remain the authority to move. **W/S** drive; **A** hands driving
   to AI. Wait for a proceed signal. Single-line sections must clear before an
   opposing working can enter, and halts can lie inside a reserved section.
-- **4** pilot, **Q/E** head out, **Alt+1/2/3** first/middle/last passenger coach.
+- **4** pilot, **Q / Shift+E** head out, **Alt+1/2/3** first/middle/last passenger coach.
 - **D** opens the desk. Choose a station in the yard picker for its schematic;
   **VISIT YARD** moves the exterior camera there. **F** follows the selected train
   again. Select a different service to inspect it, then choose **View train** or
@@ -32,7 +55,7 @@ are 276.585 km apart. It is not compressed. There are 56 mapped station location
   this exact track/signalling graph. Use the route's platform identifiers and
   allow several hours for a full journey. Rehearsal is independent of the live
   run; it can take time on this full-scale route. Exported stop markers retain
-  their exact positions. Up to 12 services and 64 stops per service are supported.
+  their exact positions. Up to 64 services and 64 stops per service are supported.
   Set priority from 1–100 (higher first) and a service speed cap.
   Begin at a station with a departure signal; unsignalled halts can be
   intermediate or final stops, not service origins.
@@ -55,6 +78,17 @@ These are designed game services, **not published Indian Railways timetables**:
 | K5 | Vande Bharat 16, Cherthala–Nagercoil | 09:08 | 100 |
 | K6 | Priority LHB, Kayamkulam–Kollam | 10:58 | 80 |
 | K7 | Northbound LHB, Eraniel–TVC | 13:30 | 65 |
+
+K8–K32 add 25 regional workings: southbound intercity, passenger and VB trains
+between Ernakulam and Kadakavur, and northbound services between Nagercoil Town
+and Ernakulam. Departures span 08:10–14:30, with priorities 30–100. Their exact
+origins, calls, departures and priorities are in `sim/timetables/kerala_regional.json`
+and visible in F1, the dispatcher roster and F5. Each starts in a separate road;
+destinations use separately allocated roads so completed services do not stack
+on the same terminal block. All 32 exist from the start and remain simulated.
+Nearby models/audio load within 3.2 km and unload beyond 4.5 km; your assigned
+train and a train being viewed stay loaded. This does not remove distant trains
+from the dispatcher or signalling.
 
 Select K1 on the desk to drive the slow passenger. Meets and overtakes are
 chosen from current positions, expected arrivals, booked release times,

@@ -10,7 +10,7 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R5-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R6-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
@@ -26,6 +26,12 @@ R5 adds moving-train interior walking and default TSW-style controller contexts.
 The interior clearance JSON is included explicitly, with `walking.md` in the
 download guides. Source integration tests cover all four formations; no routine
 extracted-distribution test is required.
+R6 replaces the camera label with next-stop metres and estimated world minutes,
+adds compatible-platform admission and onward routing, platform walking,
+the direct L3 + D-pad left camera shortcut, and electric traction/horn audio;
+expands the stopping timetable to 32 services and streams nearby train models
+and sound. `tools/check_journey_traffic.gd` covers HUD and service handover;
+`tools/check_kerala_traffic.gd` rehearses all scheduled trains independently.
 
 Use `-BuildName TrainGame-Controller-Windows` to package controller support
 alongside the existing playtest ZIP. Its folder, archive, checksum and licences

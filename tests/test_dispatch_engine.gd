@@ -146,8 +146,8 @@ func test_full_receiving_station_prevents_single_line_entry():
 	var found:=false
 	for option in options:
 		var result:=planner.admission_reason(w,t,option)
-		if result.get("reason","").contains("Receiving roads at KUMM"):
-			found=true
+		if result.is_empty():return "Admitted a train into a full receiving station"
+		if result.get("blockers",[]).any(func(b):return b.resource=="KUMM_P2"):found=true
 	return found
 
 func test_stale_hold_identity_removed_after_service_replacement():
@@ -209,7 +209,8 @@ func test_receiving_capacity_claim_counts_committed_following_train():
 	w.place_train(Train.new("LEAD",100),"TNU_P1",600,1)
 	var planner:=Planner.new()
 	for option in w.route_options(w.next_signal(t).id):
-		if planner.admission_reason(w,t,option).get("reason","").contains("Receiving capacity reserved"):return true
+		var result:=planner.admission_reason(w,t,option)
+		if not result.get("reason","").is_empty() and result.get("blockers",[]).any(func(b):return b.train=="LEAD" and b.kind=="receiving_capacity"):return true
 	return "Following train could consume the leader's only berth"
 
 func test_advisory_cycle_releases_one_hold_and_prevents_immediate_recreation():

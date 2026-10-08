@@ -6,7 +6,7 @@ const FirstLine := preload("res://sim/layouts/first_line.gd")
 const Traffic := preload("res://sim/layouts/traffic_service.gd")
 const Stock := preload("res://sim/stock/ported_stock.gd")
 const Clock := preload("res://sim/world_clock.gd")
-const MAX_SERVICES := 12
+const MAX_SERVICES := 64
 const MAX_BYTES := 262144
 
 static func layout_id(world: RailWorld) -> String:

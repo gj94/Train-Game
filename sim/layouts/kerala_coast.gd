@@ -3,6 +3,7 @@ extends RefCounted
 ## Pure data/simulation: no scene nodes, GPU resources or view state.
 const ROOT := "res://data/routes/kerala_coast/"
 const Stock := preload("res://sim/stock/ported_stock.gd")
+const SERVICE_COUNT := 32
 static var _source := {}
 var data: Dictionary
 var distance := PackedFloat64Array()
@@ -228,6 +229,13 @@ static func build_traffic() -> RailWorld:
 	for station in w.stations: stations[station.code] = station
 	var departures:={"K1":"08:00","K2":"08:00","K3":"08:18","K4":"08:45","K5":"09:08","K6":"10:58","K7":"13:30"}
 	var priorities:={"K1":20,"K2":70,"K3":95,"K4":40,"K5":100,"K6":80,"K7":65}
+	# Fictional regional workings spread encounters across the full stopping run.
+	# Unique origin and terminating loop roads keep through mains available.
+	var regional: Array=JSON.parse_string(FileAccess.get_file_as_string("res://sim/timetables/kerala_regional.json"))
+	for row in regional:
+		definitions.append(row.slice(0,7))
+		departures[row[0]]=row[7]
+		priorities[row[0]]=int(row[8])
 	for d in definitions:
 		var t := Train.new(d[0],1)
 		Stock.configure(t,d[2])
@@ -243,6 +251,7 @@ static func build_traffic() -> RailWorld:
 			if t.id=="K2" and station.code=="KUMM":road=1
 			if t.id=="K4" and station.code=="MAKM":road=1
 			if t.id=="K7" and station.code=="NYY":road=1
+			if i>0 and i<d[4].size()-1 and not w.graph.edges.has("%s_P%d" % [station.code,road]):road=1
 			var block := "%s_P%d" % [station.code,road]
 			if i>0: minutes += absf(station.s-stations[d[4][i-1]].s)/1000.0/(45.0 if t.id=="K1" else 75.0)*60.0+1.8
 			stops.append({name=station.name,block=block,direction=d[3],minutes_from_origin=snappedf(minutes,.1),

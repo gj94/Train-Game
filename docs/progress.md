@@ -1,5 +1,59 @@
 # Progress
 
+## 2026-10-08 — Kumbalam receiving capacity, 32 services, platform walking and engine audio
+- Reproduced the screenshot's cause: Kumbalam's through main was counted as a
+  spare passenger berth, allowing both single-line approaches to depend on one
+  remaining platform. Admission now matches each approaching service to a
+  compatible free road across both approaches, respecting passenger faces,
+  formation length, final road and the following booked call. The same berth
+  rule is used for crossing/overtake predictions; stale crossing holds are
+  withdrawn when the other service cannot be received. Route/interlocking and
+  approach/tail locks remain authoritative. No reversal or teleport recovery.
+- Added 25 fictional regional workings, bringing the default stopping scenario
+  to 32 services. Starts and final platforms are individually allocated; the
+  full simulated timetable is independent of nearby model/audio residency.
+  Service packs accept up to 64 services. Presentation loads within 3.2 km and
+  unloads beyond 4.5 km, with the player's and viewed service retained.
+- Replaced the persistent camera label with next scheduled stop, metres and
+  estimated world minutes. F12 remains the detailed progress panel. Estimates
+  retain world minutes during fast forward; pending signals are identified.
+- L3 held + D-pad left directly selects left head-out in both controller
+  layouts, including repeated use and transitions from on-foot mode. Tap L3
+  retains horn/crouch/legacy dispatch. Help and contextual prompts updated.
+- Added Kerala platform walking from stopped, platform-side train doors and
+  boarding another carriage of the assigned service. Background Blender exported
+  door locations/provenance from all 22 pinned detailed masters. Collision uses
+  platform boundaries and rendered fixtures; no track crossing or station
+  footbridge navigation. Camera/audio remain on the platform if the train leaves;
+  controller/AI ownership remains unchanged. Door leaves remain static with
+  brief prompted transitions. Other-service boarding is not implemented.
+- Restored electric hum, load/speed-dependent traction whine, inverter tone and
+  the existing horn. Cached native 3D loops belong to WAP locomotives and VB motor
+  cars on a separate Traction bus. No generated sound-lab data was edited.
+  Native mixer capture measured idle RMS 0.009 and powered RMS 0.023 at the test
+  cab; pause silenced the layer. Approved impact/rolling routing and enhanced
+  contact counts passed unchanged at 0/30/71.6/120 km/h. Physical listening
+  balance on the user's PC remains a playtest.
+- Route audit: this game is already mixed line, with about 155 km doubled
+  (Ambalappuzha–TVC and Eraniel–Nagercoil). Added the Ministry's February section
+  breakdown and June sanction to the route guide; commissioning after those
+  sources is not certified. Existing station-audit limits remain explicit.
+- Verification so far: 262 tests passed, plus early and 10/20-minute late manual
+  K1 rehearsals with no circular-dependency alerts or safety events. Full
+  32-service rehearsal is running. Actual-game
+  checks passed 69 interior-walking, 33 platform/controller/engine, 68 legacy
+  controller and 17 journey/streaming checks. Every ICF/LHB/VB8/VB16 vehicle had
+  a usable doorway, including reversed cars. Native HUD and platform captures
+  reviewed; extracted-distribution tests remain skipped by request.
+- Playtest: start a fresh K1 scenario, drive early or late through Kumbalam and
+  inspect named wait advice in D. Tap L3+D-pad left twice and verify it remains
+  left head-out. At a station stand with Y/E, face a platform-side exterior
+  door, use A/left-click, walk along the platform and board another coach.
+  Check idle hum, power-dependent whine and horn, then compare clack prominence
+  from the cab and passenger views. Check next-stop HUD and all 32 roster entries.
+- R6 source/release preparation in progress; R5 remains the published LAN build
+  until the full timetable rehearsal and final packaging are confirmed.
+
 ## 2026-10-08 — Interior walking and TSW-style controller contexts
 - Added on-foot movement in the moving WAP-7, ICF/LHB and VB8/VB16 interiors.
   Position stays local to the individual articulated car; the camera and audio

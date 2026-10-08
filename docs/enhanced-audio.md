@@ -5,6 +5,22 @@ Active player: `game/platform_audio.gd`. The reference is the user's newer
 superseding the earlier curve-squeal snapshot from 21:56. The original nine BODY V2
 WAVs are unchanged. The old `body_v2_audio.gd` remains a regression reference.
 
+## Electric engine layer restored, 8 October
+
+The track-only comparison mode had also disabled the game engine sounds and horn.
+`engine_audio.gd` now adds a separate **Traction** bus: electric auxiliary hum,
+load/speed-dependent motor whine and low-speed inverter tone. Cached one-second
+periodic PCM loops play in Godot's native 3D mixer; there is no per-frame sample
+generation and no change to the sound-lab files. These are synthesized engine
+sounds, not new recordings or a calibrated WAP/VB acoustic measurement.
+
+WAP sound comes from the locomotive; VB traction comes from its four/eight motor
+cars. Level responds to power or moving regenerative braking; stationary applied
+brakes produce no motor whine. Distance, cab attenuation, pause, scenery loading
+and streamed train cleanup apply. The existing recorded horn is enabled again.
+Clack/squeal pitch, contacts, approved bank and filter buses remain unchanged.
+On a platform the track receiver uses the walker's actual position and orientation.
+
 ## Sound and physical contacts
 
 The enhanced adapter preserves the full 341.333 ms impact kernels, native pitch,

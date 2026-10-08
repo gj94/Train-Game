@@ -52,7 +52,7 @@ func test_coastal_route_is_full_scale_and_follows_the_requested_junctions():
 
 func test_geographic_operational_graph_and_booked_services_are_reachable():
 	var world := Kerala.build_traffic()
-	if world.trains.size()!=7: return "Missing mixed traffic"
+	if world.trains.size()!=32: return "Expected 32 mixed services"
 	for node in world.graph.nodes:
 		var count: int = world.graph.nodes[node].edges.size()
 		if count>3 or (count==3 and not world.graph.switches.has(node)): return "Uncontrolled junction: "+node
@@ -74,12 +74,34 @@ func test_automatic_sections_stop_at_controlled_station_homes():
 			return "Automatic signal would operate a station point: "+id
 	return true
 
+func test_large_stopping_scenario_has_separate_origins_and_terminal_roads():
+	var world:=Kerala.build_traffic()
+	var origins:={}
+	var termini:={}
+	var stocks:={}
+	var north:=0
+	var south:=0
+	for t in world.trains.values():
+		var first: Dictionary=t.timetable.stops[0]
+		var last: Dictionary=t.timetable.stops[-1]
+		if origins.has(first.block): return "Overlapping origin: "+first.block
+		if termini.has(last.block): return "Completed services share a terminal: "+last.block
+		for block in [first.block,last.block]:
+			var st: Dictionary=preload("res://sim/priority_dispatch.gd").station(world,block)
+			if st.platform_details[block].platform_width<=0: return "Passenger origin/terminus lacks a platform: "+block
+		origins[first.block]=true
+		termini[last.block]=true
+		stocks[t.stock_kind]=true
+		if first.direction>0: south+=1
+		else: north+=1
+	return stocks.size()==4 and north>=12 and south>=12 and world.trains.K1.timetable.stops.size()==56 and world.trains.K1.dispatch_priority==20
+
 func test_kerala_services_export_and_import_preserve_placement():
 	var pack=preload("res://sim/service_pack.gd")
 	var data: Dictionary=pack.defaults("kerala_coast")
 	var result: Dictionary=pack.decode(JSON.stringify(data),"kerala_coast")
 	if not result.ok: return result.reason
-	if result.world.trains.size()!=7: return "Service import lost trains"
+	if result.world.trains.size()!=32: return "Service import lost trains"
 	for t in result.world.trains.values():
 		if t.path.size()!=1 or absf(t.head_s-t.timetable.stops[0].s)>.01: return "Placement changed"
 	return true

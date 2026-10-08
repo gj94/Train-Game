@@ -6,6 +6,7 @@ const HELP := """[b]XBOX CONTROLLER · TSW-STYLE IMMERSIVE[/b]
 Driving: RT increase power · RB reduce power · LT apply brake · LB release brake.
 The combined handle holds its position when released. Braking takes priority.
 RS look · LS up/down zoom in cab, move camera outside · LS click horn.
+Hold LS click + D-pad left always selects left head-out, from any camera.
 RS click switches cab/exterior. Hold RS for camera shift:
 D-pad left cycles pilot, head-out and passenger views; right exterior; up pilot;
 down middle passenger coach. LS zooms; LS click recentres.
@@ -19,7 +20,8 @@ LS walk/strafe · RS look · RT run · LS click crouch/stand.
 Y sit in a nearby seat · A use the displayed seat/doorway/gangway interaction.
 D-pad right toggles your headlamp. X opens train/view actions.
 The walking controls do not operate traction. The current driver/handle stays set.
-Interior doorway and gangway prompts move you through with a brief transition.
+Doorway and gangway prompts move you through with a brief transition.
+At a stop beside a platform, A leaves through an exterior door or boards a coach.
 
 [b]MENUS & DISPATCH[/b]
 D-pad / LS navigate · A select · B cancel · LB/RB focus areas · RS scroll.
@@ -40,9 +42,36 @@ static func handle(pad, current: float, travel: float) -> float:
 	return current
 
 static func reset(pad) -> void:
+	pad._left_shift_down=false
+	pad._left_shift_used=false
 	pad._camera_down=false
 	pad._operation_down=false
 	pad._view_down=false
+
+static func left_shift(pad, event: InputEventJoypadButton) -> bool:
+	var g=pad.game
+	if event.button_index==JOY_BUTTON_LEFT_STICK:
+		if event.pressed:
+			pad._left_shift_down=true
+			pad._left_shift_used=false
+			if down(pad,JOY_BUTTON_DPAD_LEFT):
+				pad._left_shift_used=true
+				g._head_out_camera(-1,false)
+		else:
+			var tapped: bool=pad._left_shift_down and not pad._left_shift_used
+			pad._left_shift_down=false
+			if tapped:
+				if g.walker.active: g.walker.toggle_crouch()
+				elif pad._camera_down: g.cam._look=Vector2.ZERO;g.cam.cab_fov=76;g.cam.follow=true
+				elif pad.tsw_layout: pad.shortcut("horn")
+				else: pad.shortcut("dispatch")
+		return true
+	if event.button_index==JOY_BUTTON_DPAD_LEFT and pad._left_shift_down:
+		if event.pressed:
+			pad._left_shift_used=true
+			g._head_out_camera(-1,false)
+		return true
+	return false
 
 static func button(pad, event: InputEventJoypadButton) -> void:
 	var g=pad.game
@@ -130,7 +159,9 @@ static func process(pad, left: Vector2, right: Vector2, delta: float) -> void:
 	Camera.apply(g.cam,look,left if g.cam.mode==0 and not pad._camera_down else Vector2.ZERO,zoom,delta)
 
 static func hint(pad) -> String:
+	if pad._left_shift_down:return "LS click held · D-pad left selects left head-out"
 	if pad._operation_down:return "X held · A AI/manual · B emergency brake · RB coast"
 	if pad._camera_down:return "RS held · D-pad left internal views · right exterior · up pilot · down passenger · LS zoom"
+	if pad.game.walker.active and pad.game.walker.platform.outside:return "LS walk · RS look · RT run · A board · LS click crouch · RS held + D-pad up pilot · View map"
 	if pad.game.walker.active:return "LS walk · RS look · RT run · LS click crouch · Y sit · A interact · View map · Menu pause"
 	return "RT/RB power · LT/LB brake · Y stand · LS click horn · RS camera/hold views · X actions · View map · Menu pause"

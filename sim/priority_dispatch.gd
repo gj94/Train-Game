@@ -75,6 +75,9 @@ static func update(w: RailWorld) -> void:
 		if withdrawn and hold.kind=="crossing":
 			var st: Dictionary=w.stations.filter(func(s):return s.code==hold.station)[0]
 			withdrawn=conflict(w,t,st).get("other","")!=other.id
+		if hold.kind=="crossing":
+			var st: Dictionary=w.stations.filter(func(s):return s.code==hold.station)[0]
+			if station(w,t.path[0].edge).get("code","")==st.code and not _passing_road_available(w,other,st,t.path[0].edge):withdrawn=true
 		if passed or other.service_complete or withdrawn:
 			if passed:
 				w.dispatch_history.append({train=id,other=other.id,station=hold.station,kind=hold.kind,time=w.clock_seconds()})
@@ -95,8 +98,9 @@ static func _passing_road_available(w: RailWorld,other: Train,st: Dictionary,hel
 	var occ:=w.occupancy()
 	var direction: int=other.path[0].dir
 	var approach: float=(st.s-chainage(w,other))*direction
-	for road: String in st.platform_tracks:
-		if road==held_edge or occ.has(road):continue
+	var free: Array=st.platform_tracks.filter(func(r):return r!=held_edge and not occ.has(r))
+	var compatible:=preload("res://sim/receiving_berths.gd").roads(w,other,st,other.path[0].edge,direction,free)
+	for road: String in compatible:
 		var goal:={block=road,direction=direction,s=w.graph.edges[road].length*.5}
 		var distance:=w._stop_distance(other.path[0].edge,direction,other.head_s,goal,[])
 		if distance<maxf(0,approach)+2000:return true

@@ -26,7 +26,7 @@ Available controls and behavior:
 
 ## Using the desk
 
-Press **D** or click the left stick. The roster and map select an **inspected**
+Press **D** or tap View/Back in the default Xbox layout. The roster and map select an **inspected**
 train; YOUR SERVICE in the header remains your driving assignment. **View train**
 moves the exterior camera and closes the desk. **4** returns to your pilot seat.
 **Take control…** presents a confirmation; Keep current service / B cancels it.
@@ -67,6 +67,17 @@ in `RailWorld` remains the only way to grant a route. The old `DispatchPlan.upda
 entry point is a compatibility wrapper; live play and service rehearsals use the
 world clock directly.
 
+Receiving capacity is service-specific: passenger calls require a platform face,
+the whole formation must fit, terminal roads must match, and the road must reach
+the following booked call. Both approaches to a station participate in one
+berth assignment. A through main without a platform cannot count as spare
+capacity for a stopping passenger. The planner checks this before allowing entry
+to a single-line approach, rather than waiting for a circular dependency inside
+the throat. Occupied and already committed roads are excluded, and incoming
+claims are matched to compatible roads rather than compared as simple counts.
+Crossing/overtake predictions share that eligibility rule; a crossing hold is
+withdrawn if the opposing service no longer has a usable receiving platform.
+
 Uncommitted requests use service priority plus waiting age. Long overtake holds
 and circular advisory dependencies can be released for a fresh route assessment;
 the interlocking still refuses conflicting movements. These measures reduce
@@ -85,7 +96,9 @@ dependency alert is a diagnostic, not proof that every alternative is impossible
   the real scene, including traction isolation, dropdowns, handover and camera.
 - `tools/check_dispatch_delays.gd`: autonomous Kerala traffic with 0/8/20-minute
   player departure delays; no safety events and progression beyond Kumbalam.
-- `tools/check_kerala_traffic.gd`: complete autonomous seven-service rehearsal,
+- `tools/check_manual_admission.gd`: manual K1 with an early approach and 10/20-minute
+  late departures; actual Kumbalam geometry, opposing K2 and parked K3.
+- `tools/check_kerala_traffic.gd`: complete autonomous 32-service rehearsal,
   requiring multiple crossings and overtakes of the slow passenger.
 
 Playtest: open D near Kumbalam, zoom to individual coach lengths, inspect K3 and

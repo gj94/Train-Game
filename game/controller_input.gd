@@ -51,6 +51,8 @@ var vibration := .35
 var settings_path := "user://controller.cfg"
 var tsw_layout := true
 var _camera_down := false
+var _left_shift_down := false
+var _left_shift_used := false
 var _camera_used := false
 var _camera_time := 0.0
 var _camera_index := -1
@@ -127,7 +129,7 @@ func _neutral() -> bool:
 
 func drive_input() -> float:
 	if active_device < 0 or not _armed or not _focused or game.paused or _ui_open() or _context != "drive": return 0
-	if game.walker.active or _camera_down or _operation_down: return 0
+	if game.walker.active or _camera_down or _operation_down or _left_shift_down: return 0
 	if tsw_layout and _axes[4]<=.06:
 		if _buttons.has(JOY_BUTTON_LEFT_SHOULDER): return 1.0 if game.train.controller<0 else 0.0
 		if _buttons.has(JOY_BUTTON_RIGHT_SHOULDER): return -1.0 if game.train.controller>0 else 0.0
@@ -181,6 +183,7 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.pressed: _buttons[event.button_index] = true
 	else: _buttons.erase(event.button_index)
+	if not game.paused and not _ui_open() and _armed and TSW.left_shift(self,event): return
 	if not event.pressed:
 		if (tsw_layout or game.walker.active) and _armed and not game.paused and not _ui_open(): TSW.button(self,event)
 		return

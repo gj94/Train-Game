@@ -44,6 +44,9 @@ var performance_overlay
 var train_views := {}
 var train_motions := {}
 var train_audio := {}
+var traffic_presentation
+var _journey_snapshot := {}
+var _journey_refresh := 0.0
 var paused := false
 var time_scale := 1
 var _last_event := 0
@@ -133,14 +136,13 @@ func _ready() -> void:
 	wv = preload("res://game/geographic_world.gd").new() if geographic_drive else WorldView.new()
 	if geographic_drive: wv.selected_train = train.id
 	wv.build(world, self)
+	traffic_presentation=preload("res://game/traffic_presentation.gd").new()
+	traffic_presentation.game=self
 	for t in world.trains.values():
-		var view: RefCounted = PortedView.new()
 		var motion := TrainMotion.new(t, world.graph)
 		if geographic_drive: motion.coordinate_origin = wv.coordinate_origin
 		train_motions[t.id] = motion
-		view.motion = motion
-		view.build(t, world.graph, self, wv)
-		train_views[t.id] = view
+		if not geographic_drive or t.id==train.id: traffic_presentation.ensure_view(t.id)
 	tv = train_views[train.id]
 	cam = CameraRig.new()
 	cam.cab_transform = tv.cab_transform
@@ -165,19 +167,12 @@ func _ready() -> void:
 		geographic_listener.coordinate_origin = wv.coordinate_origin
 		geographic_listener.sync(cam,wv.coordinate_origin)
 		cam.far = 12000.0
-	for t in world.trains.values():
-		var axles: Array = train_views[t.id].sound_axles()
-		var sound := TrainAudio.new()
-		add_child(sound)
-		sound.motion = train_motions[t.id]
-		sound.setup(t, world, geographic_listener if geographic_drive else cam, axles)
-		train_audio[t.id] = sound
+	for id in train_views: traffic_presentation.ensure_audio(id)
 	audio = train_audio[train.id]
 	# Rail-joint markers: yellow bars that flash red whenever an axle hits them (J toggles).
 	wv.build_joints(TrainAudio.JOINT_SPACING, TrainAudio.JOINT_OFFSET)
 	wv.set_joints_visible(false)
-	for sound in train_audio.values():
-		sound.joint_hit.connect(func(edge: String, k: int, _cls: int): wv.flash_joint(edge, k))
+
 	hud = Hud.new()
 	add_child(hud)
 	hud.action_requested.connect(_ui_action)
@@ -279,7 +274,7 @@ func _render_trains(fraction: float) -> void:
 	for id in train_views:
 		train_motions[id].sample(fraction)
 		if geographic_drive and cam!=null:
-			var nearby: bool=id==train.id or train_motions[id].point(0).distance_squared_to(cam.global_position)<2200.0*2200.0
+			var nearby: bool=id==train.id or traffic_presentation.distance_to(id)<2200.0
 			for car in train_views[id].cars: car.visible=nearby
 			if train_audio.has(id):
 				var quiet: bool=paused or wv.loading or not nearby
@@ -290,10 +285,11 @@ func _render_trains(fraction: float) -> void:
 
 func _process(delta: float) -> void:
 	if geographic_drive: _geographic_frame()
+	traffic_presentation.update(delta)
 	_render_trains(1.0 if paused else Engine.get_physics_interpolation_fraction())
 	if walker!=null: walker.update(delta)
 	for sound in train_audio.values(): sound.listener_owner = audio
-	if walker!=null and walker.active:
+	if walker!=null and walker.active and not walker.platform.outside:
 		audio.interior_listener=walker.audio_position()
 	elif _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
 		audio.interior_listener = tv.passenger_audio_position()
@@ -305,8 +301,13 @@ func _process(delta: float) -> void:
 		if e.seq > _last_event:
 			_last_event = e.seq
 			hud.log_event(e)
+	_journey_refresh-=delta
+	if _journey_refresh<=0:
+		_journey_snapshot=preload("res://sim/service_progress.gd").snapshot(world,train)
+		_journey_refresh=.25
 	var ns := world.next_signal(train)
 	hud.refresh({
+		journey=_journey_snapshot,
 		dispatch_expectation=preload("res://sim/priority_dispatch.gd").hold_reason(world,train,true),
 		train_id = train.id,
 		stock_kind = train.stock_kind,
@@ -321,9 +322,7 @@ func _process(delta: float) -> void:
 		buffer = world.distance_to_buffer(train, 600.0),
 		protection = world.protection,
 		cab = cam.mode == CameraRig.Mode.CAB,
-		head_out = ("HEAD OUT · LEFT" if cam.head_out_side < 0 else "HEAD OUT · RIGHT") if cam.mode == CameraRig.Mode.HEAD_OUT else "",
 		on_foot = walker!=null and walker.active,
-		passenger = ("ON FOOT · CAR %d" % (walker.car+1)) if walker!=null and walker.active else (tv.passenger_name() if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER else ""),
 		time_scale = time_scale,
 		automatic = train.automatic,
 		paused = paused,
@@ -511,6 +510,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _set_cab_visuals(cab: bool) -> void:
+	if cam.mode!=CameraRig.Mode.OVERVIEW:
+		traffic_presentation.followed_service=""
+		cam.follow_point=tv.overview_position
 	if walker!=null and cam.mode!=CameraRig.Mode.WALKING: walker.stop()
 	tv.set_cab_view(cab)
 	audio.interior_listener = TrainAudio.DRIVER
@@ -529,6 +531,7 @@ func _set_cab_visuals(cab: bool) -> void:
 
 
 func _pilot_camera() -> void:
+	traffic_presentation.followed_service=""
 	cam.follow_point=tv.overview_position
 	# View changes are not a command to reset the power/brake handle or AI.
 	if train.stock_kind.begins_with("ported:"): tv.cab_position = 0
@@ -538,8 +541,8 @@ func _pilot_camera() -> void:
 	_set_cab_visuals(true)
 
 
-func _head_out_camera(side: int) -> void:
-	if cam.mode == CameraRig.Mode.HEAD_OUT and cam.head_out_side == side:
+func _head_out_camera(side: int, toggle: bool=true) -> void:
+	if toggle and cam.mode == CameraRig.Mode.HEAD_OUT and cam.head_out_side == side:
 		_pilot_camera()
 		return
 	if cam.mode == CameraRig.Mode.OVERVIEW: _desk_before_cab = dispatcher._root.visible
@@ -571,7 +574,7 @@ func _passenger_preset(index: int) -> void:
 	cam._look = Vector2.ZERO
 	_enter_passenger()
 	audio.reset_positions()
-	hud.toast(["FIRST", "MIDDLE", "LAST"][index] + " PASSENGER COACH · " + tv.passenger_name() + " · 1 / 2 / 3 change view")
+
 
 
 func _enter_passenger() -> void:
@@ -773,7 +776,7 @@ func _request_action(action: String) -> void:
 		"quit": "Quit Train Game and return to the desktop."}
 	var description: String = descriptions.get(action, "")
 	if action.begins_with("route:"):
-		description="Start the 277 km Kerala Coast via Alappuzha and TVC with seven passenger services and dynamic priority dispatch." if action.ends_with("kerala_coast") else "Return to the fictional Southern corridor."
+		description="Start the 277 km Kerala Coast via Alappuzha and TVC with 32 scheduled passenger services and dynamic priority dispatch." if action.ends_with("kerala_coast") else "Return to the fictional Southern corridor."
 	if action.begins_with("fleet:"):
 		description = "Start " + PortedStock.LABELS[action.trim_prefix("fleet:")] + "."
 	hud.show_modal("confirm", labels_enabled, description)
@@ -862,6 +865,8 @@ func _notification(what: int) -> void:
 
 func _visit_station(index: int) -> void:
 	if index<0 or index>=world.stations.size(): return
+	traffic_presentation.followed_service=""
+	cam.follow_point=tv.overview_position
 	var destination: Vector3=world.stations[index].origin
 	if geographic_drive: destination-=wv.coordinate_origin
 	cam.distance=175
@@ -874,7 +879,10 @@ func _visit_station(index: int) -> void:
 
 
 func _view_train_only(id: String) -> void:
-	if not train_views.has(id): return
+	if not world.trains.has(id): return
+	traffic_presentation.ensure_view(id)
+	traffic_presentation.ensure_audio(id)
+	traffic_presentation.followed_service=id
 	cam.set_mode(CameraRig.Mode.OVERVIEW)
 	_set_cab_visuals(false)
 	cam.follow_point=train_views[id].overview_position
@@ -885,8 +893,12 @@ func _view_train_only(id: String) -> void:
 	hud.toast("Viewing "+id+" · still driving "+train.id+" · 4 returns to your pilot seat")
 
 func _select_train(id: String) -> void:
-	if id == train.id:
+	if id == train.id or not world.trains.has(id):
 		return
+	traffic_presentation.ensure_view(id)
+	traffic_presentation.ensure_audio(id)
+	traffic_presentation.followed_service=""
+	_journey_refresh=0
 	if walker!=null: walker.stop()
 	tv.set_cab_view(false)
 	if _has_passengers(): tv.set_passenger_view(false)

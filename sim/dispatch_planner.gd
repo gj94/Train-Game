@@ -32,6 +32,11 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 		var distance: float = w._stop_distance(last.edge, last.dir, w.graph.entry_s(last.edge, last.dir), goal, [])
 		if option.edges.any(func(r): return r.edge == goal.block and r.dir == goal.direction): distance = 0.0
 		if is_inf(distance): reason = "Cannot reach next call: " + stop.name
+		var following_index: int=t.timetable.index+(1 if t.timetable.at_stop else 0)+1
+		if stopping and following_index<t.timetable.stops.size():
+			var following: Dictionary=t.timetable.stops[following_index]
+			if is_inf(w._stop_distance(last.edge,last.dir,w.graph.entry_s(last.edge,last.dir),following,[])):
+				reason="Road cannot reach following call: "+following.name
 		cost += distance * .00001
 		if not preferred.is_empty() and preferred.option.destination == option.destination:
 			cost -= 1000
@@ -74,12 +79,17 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 			if occupancy.has(road) and occupancy[road] != t.id:
 				blocked.append({train=occupancy[road], kind="receiving_road", resource=road})
 			elif not approaches.has(road): available.append(road)
+		var own_roads:=_receiving_roads(w,t,destination,entry.edge,entry.dir,available)
+		# Capacity means a road this particular service can use. A through main
+		# without a passenger face cannot receive a booked station call.
+		if own_roads.is_empty():
+			return {reason="Expect a wait before %s: no free platform suitable for this service" % destination.name,blockers=blocked}
 		# Avoid admitting a train into a single line whose receiving station is
 		# full. It would otherwise prevent an opposing occupant from departing.
 		if available.is_empty():
 			return {reason="Receiving roads at %s are occupied or committed; wait before entering %s" % [destination.code, section], blockers=blocked}
 		# Following trains already inside the single section need a berth first.
-		var ahead := 0
+		var claims: Array=[{id=t.id,roads=own_roads}]
 		for other: Train in w.trains.values():
 			if other == t: continue
 			if destination.platform_tracks.any(func(r): return occupancy.get(r, "") == other.id):continue
@@ -88,12 +98,39 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 			# An already committed receiving platform is excluded from available,
 			# so its owner must not also consume a second berth in this count.
 			if committed.any(func(p):return p.edge in destination.platform_tracks):continue
-			if other.path.any(func(p): return w.single_line_sections.get(p.edge, "") == section and p.dir == entry.dir) or committed.any(func(p): return w.single_line_sections.get(p.edge, "") == section and p.dir == entry.dir):
-				ahead += 1
+			# Include BOTH approaches to the receiving station. Opposing trains
+			# can enter different single sections while competing for one platform.
+			for segment in other.path+committed:
+				var other_section: String=w.single_line_sections.get(segment.edge,"")
+				if other_section.is_empty(): continue
+				if _exit_station(w,other_section,segment.dir).get("code","")!=destination.code: continue
+				var roads:=_receiving_roads(w,other,destination,segment.edge,segment.dir,available)
+				claims.append({id=other.id,roads=roads})
 				blocked.append({train=other.id,kind="receiving_capacity",resource=destination.code})
-		if ahead >= available.size():
-			return {reason="Receiving capacity reserved for %d train(s) already in %s" % [ahead, section], blockers=blocked}
+				break
+		if not _can_berth(claims):
+			return {reason="Expect a wait before %s: the remaining platforms are reserved for approaching services" % destination.name, blockers=blocked}
 	return {}
+
+func _receiving_roads(w,t: Train,st: Dictionary,edge: String,direction: int,free: Array) -> Array:
+	return preload("res://sim/receiving_berths.gd").roads(w,t,st,edge,direction,free)
+
+static func _can_berth(claims: Array) -> bool:
+	# Bipartite matching: don't count a general-purpose road twice or allocate
+	# the only suitable platform to a train with other usable choices.
+	var assigned:={}
+	for i in claims.size():
+		if not _assign_berth(i,claims,assigned,{}): return false
+	return true
+
+static func _assign_berth(index: int,claims: Array,assigned: Dictionary,seen: Dictionary) -> bool:
+	for road in claims[index].roads:
+		if seen.has(road): continue
+		seen[road]=true
+		if not assigned.has(road) or _assign_berth(assigned[road],claims,assigned,seen):
+			assigned[road]=index
+			return true
+	return false
 
 func _exit_station(w, section: String, direction: int) -> Dictionary:
 	var key := section + str(direction)

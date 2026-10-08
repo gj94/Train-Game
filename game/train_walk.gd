@@ -5,6 +5,7 @@ static var _profiles: Dictionary = {}
 static var _navigation := {}
 var game
 var active := false
+var platform
 var car := 0
 var position := Vector2.ZERO
 var crouched := false
@@ -25,6 +26,7 @@ var lamp_enabled := false
 func _ready() -> void:
 	if _profiles.is_empty():
 		_profiles=JSON.parse_string(FileAccess.get_file_as_string("res://data/interiors/walkways.json"))
+	platform=preload("res://game/platform_walk.gd").new(self)
 	_overlay=CanvasLayer.new()
 	_overlay.layer=6
 	add_child(_overlay)
@@ -121,6 +123,8 @@ func stand() -> bool:
 func stop() -> void:
 	if not active: return
 	active=false
+	platform.outside=false
+	game.cam.set_meta("on_platform",false)
 	_lamp.visible=false
 	target={}
 	game.tv.walk_car=-1
@@ -130,6 +134,7 @@ func stop() -> void:
 
 func camera_transform() -> Transform3D:
 	if not active: return game.tv.cab_transform()
+	if platform.outside: return platform.camera_transform()
 	var t: Transform3D=game.tv.cars[car].global_transform
 	return Transform3D(t.basis,t*Vector3(position.x,nav.floor_height(position)+eye_height,position.y))
 
@@ -139,7 +144,7 @@ func audio_position() -> Vector2:
 
 func toggle_crouch() -> void:
 	if not active: return
-	if crouched and not nav.allowed(position,false):
+	if crouched and not platform.outside and not nav.allowed(position,false):
 		game.hud.toast("Not enough headroom to stand here.")
 		return
 	crouched=not crouched
@@ -153,6 +158,9 @@ func update(delta: float) -> void:
 	_overlay.visible=not blocked and not game.hud.clean_view
 	if blocked:
 		neutralize()
+		return
+	if platform.outside:
+		platform.update(delta)
 		return
 	var pad: Vector2=game.controller.walk_input() if game.controller!=null else Vector2.ZERO
 	var keys:=_keyboard_move()
@@ -172,13 +180,12 @@ func update(delta: float) -> void:
 	_fade_time=maxf(0,_fade_time-delta)
 	_fade.color.a=clampf(_fade_time/.22,0,1)
 	target=_interaction()
-	var label: String=str(game.tv.formation[car].model).to_upper().replace("_"," ")
 	var control: String="Y" if game.hud.controller_active else "E"
 	var interact: String="A" if game.hud.controller_active else "Left click"
 	var action: String=target.get("label","Look toward a seat or an interior doorway")
 	if target.get("kind","") in ["seat","driver"]: action=control+" · "+action
 	elif not target.is_empty(): action=interact+" · "+action
-	_prompt.text=label+" · CAR "+str(car+1)+(" · CROUCHING" if crouched else " · ON FOOT")+"\n"+action
+	_prompt.text=action
 
 func _refresh_exits() -> void:
 	exits=nav.room_exits(position)
@@ -203,6 +210,9 @@ func _seat_target(require_facing: bool=true) -> Dictionary:
 	return found
 
 func _interaction() -> Dictionary:
+	if platform.outside: return platform.boarding_target()
+	var door: Dictionary=platform.inside_target()
+	if not door.is_empty(): return door
 	var forward:=Basis(Vector3.UP,game.cam._look.x)*Vector3.FORWARD
 	for entry in exits:
 		var facing: Vector2=(entry.bridge.point-entry.point).normalized() if not entry.bridge.is_empty() else Vector2(0,entry.direction)
@@ -222,6 +232,8 @@ func interact() -> void:
 	if not active: return
 	target=_interaction()
 	match target.get("kind",""):
+		"alight": platform.alight(target)
+		"board": platform.board(target)
 		"seat","driver": sit(target)
 		"door":
 			var found: Dictionary=nav.nearest(target.point,crouched,.3)
@@ -232,6 +244,9 @@ func interact() -> void:
 		"gangway": _gangway(target.car)
 
 func sit(selected: Dictionary = {}) -> bool:
+	if platform.outside:
+		game.hud.toast("Board a carriage before choosing a seat.")
+		return false
 	var seat: Dictionary=selected if not selected.is_empty() else _seat_target()
 	if seat.is_empty(): seat=_seat_target(false)
 	if seat.is_empty():

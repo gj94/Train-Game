@@ -39,6 +39,7 @@ var _receiver_velocity := Vector3.ZERO
 var _previous_target := Vector3.ZERO
 var _last_speed := 0.0
 var _last_cab := 1
+var engine
 var _route_signature := ""
 var _paused := false
 var _voice_serial := 0
@@ -47,6 +48,9 @@ var debug_events := []
 var active_squeal := []
 var _start_window := .16
 var output_delay_ms := 0.0
+
+func horn() -> void:
+	if is_instance_valid(engine): engine.horn()
 
 func setup(t: Train,w: RailWorld,listener: Node3D,axles: Array) -> void:
 	layout=Contacts.new(w.graph)
@@ -111,6 +115,11 @@ func _make_filter_bus(label: String,effect: AudioEffect) -> String:
 	AudioServer.add_bus_effect(index,effect)
 	_buses.append(name)
 	return name
+
+func _listener() -> Dictionary:
+	if camera.get_meta("on_platform",false):
+		return {position=camera.global_position,forward=-camera.global_basis.z,up=camera.global_basis.y}
+	return super._listener()
 
 func _onboard() -> bool:
 	return _cab or ("mode" in camera and camera.mode!=0)

@@ -48,7 +48,7 @@ func run() -> void:
 	game._set_paused(true)
 	game.hud.show_modal("")
 	check(game.train.id=="K1" and game.train.stock_kind=="ported:icf","default slow passenger uses detailed ICF")
-	check(game.train_views.size()==7,"seven traffic services instantiated")
+	check(game.world.trains.size()==32 and game.train_views.size()<5,"32 services simulated; only nearby detailed models resident")
 	for id in game.train_views:
 		var view = game.train_views[id]
 		check(game.train_audio[id]._sched.axles==view.sound_axles(),id+" actual visual/audio axle positions agree")
