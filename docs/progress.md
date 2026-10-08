@@ -24,9 +24,10 @@
   Streamed models, audio buses and motion state are released; viewing a deleted
   train returns the camera to the assigned service. Restart restores the pack.
 - Verification: 285 headless tests pass. Source-game deletion checks passed
-  16 checks; native renderer/controller confirmation verification is pending.
-  Headless dummy rendering reported a known mesh-material diagnostic while
-  loading the inspected train, so a native run is being checked before release.
+  16 checks, including confirmation/cancel, ownership and presentation cleanup.
+  Native Vulkan/controller checks passed; screenshot review caught an inherited
+  off-screen confirmation layout and it was corrected before publication.
+  A final check covers centering as well as controller confirmation/cancel.
 - Playtest: start fresh K1, drive to Kumbalam's home signal and wait for VB P3
   to clear. Enter P3; K2 should then depart north. Inspect the planned crossing
   advice in D. To recover a blocked run, inspect an AI train, Delete service…,

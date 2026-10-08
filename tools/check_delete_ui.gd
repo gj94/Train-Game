@@ -32,6 +32,9 @@ func run() -> void:
 	desk.inspect_train("K2");desk._delete_service.pressed.emit()
 	check(desk._confirm.visible and desk._confirm_delete,"delete opens existing controller modal")
 	check("K2" in desk._confirm_text.text and "Northbound Morning LHB" in desk._confirm_text.text,"confirmation names exact service")
+	await process_frame;await process_frame
+	check(Rect2(Vector2.ZERO,Vector2(root.size)).encloses(desk._confirm.get_global_rect()),"confirmation stays fully inside the viewport")
+	check((desk._confirm.position+desk._confirm.size*.5-desk._root.size*.5).length()<1,"confirmation is centered within the dispatch UI")
 	check(root.gui_get_focus_owner()==desk._confirm_no,"confirmation defaults to Keep service")
 	await tap(JOY_BUTTON_B)
 	check(game.world.trains.has("K2") and root.gui_get_focus_owner()==desk._delete_service,"cancel preserves service and restores controller focus")

@@ -235,7 +235,9 @@ func _build_confirmation() -> void:
 	_confirm_blocker.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);_confirm_blocker.visible=false
 	_confirm=PanelContainer.new();_root.add_child(_confirm)
 	_confirm.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	_confirm.position=Vector2(-250,-120);_confirm.custom_minimum_size=Vector2(500,220)
+	_confirm.custom_minimum_size=Vector2(500,220)
+	_confirm.position=(get_viewport().get_visible_rect().size-Vector2(500,220))*.5
+	_confirm.grow_horizontal=Control.GROW_DIRECTION_BOTH;_confirm.grow_vertical=Control.GROW_DIRECTION_BOTH
 	_confirm.add_theme_stylebox_override("panel",UI.panel("#203346",22))
 	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",18);_confirm.add_child(column)
 	_confirm_title=UI.label(column,"HAND OVER YOUR SERVICE?",22,UI.AMBER)
@@ -248,6 +250,11 @@ func _build_confirmation() -> void:
 		button.focus_next=button.get_path_to(other);button.focus_previous=button.get_path_to(other)
 		for side in [SIDE_LEFT,SIDE_RIGHT,SIDE_TOP,SIDE_BOTTOM]:button.set_focus_neighbor(side,button.get_path_to(other))
 	_confirm.visible=false
+	_confirm.resized.connect(_center_confirmation.call_deferred)
+	_root.resized.connect(_center_confirmation.call_deferred)
+
+func _center_confirmation() -> void:
+	_confirm.position=(_root.size-_confirm.size)*.5
 
 func _prompt_handover() -> void:
 	if inspected_train==selected_train:drive_requested.emit();return
