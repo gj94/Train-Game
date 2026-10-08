@@ -2,6 +2,16 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R8: direct camera controls, shared by both Xbox layouts.
+D-pad left/right cycles all cameras backwards/forwards. Left-stick click returns
+to pilot; right-stick click selects external FREE camera without following.
+Use LS to pan and RS to orbit outside; hold RS + LS up/down to zoom in default
+layout. The cycle includes the WAP cab positions, both head-outs, first/middle/
+last passenger coaches, following exterior and free exterior.
+These shortcuts also work on foot. B crouches; D-pad up toggles the walking
+headlamp; X+Y sounds the horn in default layout. Menu/dispatch navigation stays
+contextual, and changing cameras preserves the assigned service and AI/handle.
+
 Kerala Coast R7: automatic future-platform crossing plans and service removal.
 Start a fresh K1 scenario: you can approach Kumbalam while K2 approaches from
 the other side. Wait at the home signal for the VB to leave; enter its P3,
@@ -20,19 +30,19 @@ D shows all services; F5 supports up to 64. Nearby detailed trains/audio stream
 as you travel while every service stays active in the simulation.
 Dispatcher admission now reserves compatible passenger berths across both
 approaches and checks onward routes, preventing the reported Kumbalam trap.
-Hold left-stick click + D-pad left to always select left head-out.
+Left-stick click returns to pilot; D-pad right then selects left head-out.
 At a stopped train's platform-side doorway, A/left-click steps onto the platform;
 walk to another carriage doorway and interact to board. The train can leave
-while you remain outside. 4 / RS held + D-pad up returns to the pilot.
+while you remain outside. 4 / left-stick click returns to the pilot.
 Electric engine/traction sound and horn are active again, beside the approved
 clack/squeal sound. The approved sample banks are unchanged.
 
 Kerala Coast R5: walk inside the moving train; default TSW-style Xbox layout.
 Y/E stands or sits; LS/WASD walks; RS/right-drag looks; RT/Shift runs;
-LS click/C crouches. A/left-click uses the seat, doorway or gangway prompt.
-D-pad right/L toggles a headlamp. The train's driver and handle stay set.
+B/C crouches. A/left-click uses the seat, doorway or gangway prompt.
+D-pad up/L toggles a headlamp. The train's driver and handle stay set.
 Driving: RT/RB power, LT/LB brake. Hold X+A AI, X+B emergency, X+RB coast.
-RS click cab/exterior; hold RS + D-pad for camera presets. View tap dispatch,
+LS click pilot; RS click free exterior; D-pad left/right cameras. View tap dispatch,
 View hold progress. Settings can restore the legacy controller layout.
 Doorways and gangways use a short transition; animated door leaves are not
 included. R6 adds Kerala platform walking. See guides/walking.md and controllers.md.
@@ -84,7 +94,7 @@ See MAP-DATA-LICENSE.md for sources, attribution and editable database access.
 
 Pilot/head-out cameras and service designer:
 4 pilot seat; Q/E left/right head-out (same key returns). In driving views,
-Xbox D-pad left/right leans out and up returns pilot. These preserve the handle.
+Xbox D-pad left/right cycles cameras; LS click returns pilot. These preserve the handle.
 F5 designs services: formations, departures, platform stops and dwell times.
 Import/export JSON timetables and rehearse AI traffic; choose any service to drive
 while AI runs the other trains and dispatcher. See guides/services.md.
@@ -139,10 +149,10 @@ inside a passenger coach. C opens the route desk for the next signal.
 
 XBOX CONTROLLERS (360 / ONE / SERIES / ELITE)
 Default TSW-style: RT/RB power, LT/LB brake; release to hold. Y stand/sit.
-X tap actions; hold X+A AI/manual, X+B emergency, X+RB coast.
-RS looks; RS click cab/exterior, hold RS + D-pad up pilot/down middle passenger,
-left cycles internal views/right exterior. LS pans outside and zooms in cab.
-On foot LS walks, RT runs, L3 crouches, A interacts and D-pad right toggles headlamp.
+X tap actions; hold X+A AI/manual, X+B emergency, X+RB coast, X+Y horn.
+RS looks; RS click external free; LS click pilot. D-pad left/right cycles all
+cameras. LS pans outside and zooms in cab; hold RS + LS up/down zooms outside.
+On foot LS walks, RT runs, B crouches, A interacts and D-pad up toggles headlamp.
 View tap dispatch/hold progress. Menu/Start pause and controller settings.
 In menus: D-pad/LS focus, A select, B back, LB/RB previous/next control, RS scroll.
 Menu > Train & view actions reaches routes, points, horn and all other commands.

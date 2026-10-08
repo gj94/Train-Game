@@ -10,7 +10,7 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R7-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R8-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
@@ -37,7 +37,12 @@ berths, plus confirmed service deletion from the dispatcher. The deletion
 removes simulation occupancy, owned authority and presentation/audio resources;
 the assigned service is protected. See the R7 section in dispatcher-overhaul.md.
 
-Current retained downloads are R7 and the R6 fallback. On 8 October the older
+R8 simplifies Xbox camera navigation: D-pad left/right cycles all camera presets,
+L3 returns pilot and R3 selects detached free exterior. Shared across both layouts
+and walking, with menu/dispatch navigation isolated. Camera changes preserve
+driving state. Source checks: `check_camera_controls.gd`, `check_controller_playable.gd`.
+
+Current retained downloads are R8, R7 and the R6 fallback. On 8 October the older
 base/controller/scenery/detail/fidelity/services and Kerala R1-R5 folders, ZIPs
 and checksums were removed on request, freeing 19.39 GiB. Historical build names
 below are reproducible packaging options, not currently hosted downloads.

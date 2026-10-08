@@ -9,6 +9,10 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **8 Oct 2026 controller camera revision:** D-pad left/right cycles all available
+  cameras in either direction; left-stick click returns to pilot and right-stick
+  click selects detached external free camera. Apply consistently in both layouts
+  and on foot, retaining menu/dispatcher navigation. This supersedes camera chords.
 - **8 Oct 2026 forward dispatch:** consider safe future platform clearances,
   reserve the vacating train's exit and receiving berth, hold the opposing train
   until the incoming train clears the approach, and retain physical signal
@@ -20,8 +24,8 @@ A **3D train game** where I can be either a **dispatcher** or a **driver**, and 
   when driving K1. Detailed train presentation streams near the observer.
 - **8 Oct 2026 walking:** leave driver/passenger seats and walk inside the moving
   train, step onto Kerala platforms at a stand, and board another carriage of
-  the same service through source-located exterior doors. L3 + D-pad left always
-  selects left head-out. Electric traction/auxiliary sound and horn are restored.
+  the same service through source-located exterior doors. Electric traction/
+  auxiliary sound and horn are restored.
   Interiors follow the articulated vehicles. Default Xbox bindings follow TSW immersive contexts, with
   legacy layout selectable. Continuous collision-aware aisles, prompted interior
   doorway/gangway transitions, seat selection, crouch and headlamp; see walking.md.

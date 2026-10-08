@@ -120,7 +120,7 @@ func run_check() -> void:
 	check(not game.cam.follow,"left stick pans independently")
 	axis(JOY_AXIS_LEFT_X,0)
 	await tap(JOY_BUTTON_RIGHT_STICK)
-	check(game.cam.follow,"R3 restores follow")
+	check(game.cam.mode==0 and not game.cam.follow,"R3 selects detached exterior")
 	var distance: float = game.cam.distance
 	button(JOY_BUTTON_RIGHT_SHOULDER,true)
 	pad._process(.5)
@@ -144,7 +144,7 @@ func run_check() -> void:
 	check(absf(game.cam._look.x) <= game.cam.cab_yaw_limit+.00001,"passenger look stays bounded")
 	axis(JOY_AXIS_RIGHT_X,0)
 	await tap(JOY_BUTTON_RIGHT_STICK)
-	check(game.cam._look == Vector2.ZERO,"R3 recentres passenger look")
+	check(game.cam.mode==0 and not game.cam.follow,"R3 leaves passenger view for external free")
 	await tap(JOY_BUTTON_START)
 	check(game.paused and game.hud.modal == "pause","Menu pauses")
 	await screenshot("pause")
@@ -217,8 +217,8 @@ func run_check() -> void:
 		await tap(JOY_BUTTON_RIGHT_SHOULDER)
 	check(visited.size() == game.hud._buttons.get_child_count(),"bumper navigation reaches every pause action")
 	await tap(JOY_BUTTON_B)
-	await tap(JOY_BUTTON_LEFT_STICK)
-	check(game.dispatcher._root.visible,"L3 opens dispatch")
+	pad.shortcut("dispatch");await frames()
+	check(game.dispatcher._root.visible,"dispatch menu action opens desk")
 	check(game.dispatcher._map.has_focus(),"desk starts with map focus")
 	var map_center: float=game.dispatcher._map.center_s
 	axis(JOY_AXIS_LEFT_X,1);pad._process(.5);axis(JOY_AXIS_LEFT_X,0)

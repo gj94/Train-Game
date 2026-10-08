@@ -14,19 +14,21 @@ The Kerala route supports platform walking beside your assigned train.
 | Walk / strafe | WASD | Left stick |
 | Look | Right-drag, direction stays on release | Right stick |
 | Run | Hold Shift | Hold RT while moving |
-| Crouch / stand | C | Left-stick click |
+| Crouch / stand | C | B |
 | Sit near a seat | E | Y |
 | Use displayed seat / interior doorway / gangway | Left click | A |
-| Headlamp | L | D-pad right |
+| Headlamp | L | D-pad up |
 | Dispatch | 9 | Tap View / Back |
 | Service progress | F12 | Hold View / Back |
-| Return to pilot | 4 | Hold right-stick click + D-pad up |
-| Always select left head-out | Q | Hold left-stick click + D-pad left |
-| First / middle / last passenger coach | Alt+1 / Alt+2 / Alt+3 | Camera & passengers menu; hold RS + D-pad left cycles internal views |
+| Return to pilot | 4 | Left-stick click |
+| External free camera | Tab, then pan to detach | Right-stick click |
+| Cycle all cameras | Camera & passengers menu | D-pad left / right |
+| Left head-out | Q | Left-stick click, then D-pad right |
+| First / middle / last passenger coach | Alt+1 / Alt+2 / Alt+3 | Cycle with D-pad or Camera & passengers menu |
 
 On keyboard **Shift+E** now selects the right head-out view; Q still selects the
 left. The default controller layout follows TSW's immersive contexts; see
-[controllers.md](controllers.md) for driving, camera shift and the legacy option.
+[controllers.md](controllers.md) for driving, shared camera shortcuts and the legacy option.
 
 Getting up and sitting down preserve the driver and the latched power/brake
 handle. Enable AI before leaving the controls if you want it to drive. Walking

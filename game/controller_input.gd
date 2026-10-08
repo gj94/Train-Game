@@ -9,13 +9,13 @@ RT increase power / release brake · LT reduce power / apply brake.
 Release the triggers to hold the current handle; LT wins if both are pressed.
 A AI/manual · B emergency brake (again at a stand to release) · X coast.
 Y cab/exterior · View/Back passenger/cab · Menu/Start pause.
-Right stick look/orbit · LB/RB zoom out/in · Right stick click centre/follow.
+Right stick look/orbit · LB/RB zoom out/in · Right stick click external FREE.
 Left stick pans exterior or moves left/right inside a passenger coach.
-In pilot/head-out: D-pad left/right leans out that side (again returns); up pilot.
-In other views: D-pad left/right previous/next coach · up first · down last coach.
-Left stick click opens/closes dispatch.
+D-pad left/right cycles all cameras backwards/forwards.
+Left stick click returns to pilot. Open dispatch from Train & view actions.
 Stand/sit is under Menu → Train & view actions → Camera & passengers.
-On foot in either layout: LS walk, RS look, RT run, LS click crouch, Y sit, A interact.
+On foot in either layout: LS walk, RS look, RT run, B crouch, Y sit, A interact.
+D-pad up headlamp. Camera shortcuts stay the same on foot.
 
 [b]MENUS & DISPATCH[/b]
 D-pad / left stick move focus · A select/open · B back/cancel.
@@ -51,11 +51,7 @@ var vibration := .35
 var settings_path := "user://controller.cfg"
 var tsw_layout := true
 var _camera_down := false
-var _left_shift_down := false
-var _left_shift_used := false
-var _camera_used := false
-var _camera_time := 0.0
-var _camera_index := -1
+
 var _operation_down := false
 var _operation_used := false
 var _view_down := false
@@ -129,7 +125,7 @@ func _neutral() -> bool:
 
 func drive_input() -> float:
 	if active_device < 0 or not _armed or not _focused or game.paused or _ui_open() or _context != "drive": return 0
-	if game.walker.active or _camera_down or _operation_down or _left_shift_down: return 0
+	if game.walker.active or _camera_down or _operation_down: return 0
 	if tsw_layout and _axes[4]<=.06:
 		if _buttons.has(JOY_BUTTON_LEFT_SHOULDER): return 1.0 if game.train.controller<0 else 0.0
 		if _buttons.has(JOY_BUTTON_RIGHT_SHOULDER): return -1.0 if game.train.controller>0 else 0.0
@@ -183,7 +179,7 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.pressed: _buttons[event.button_index] = true
 	else: _buttons.erase(event.button_index)
-	if not game.paused and not _ui_open() and _armed and TSW.left_shift(self,event): return
+	if not game.paused and not _ui_open() and _armed and Camera.button(self,event): return
 	if not event.pressed:
 		if (tsw_layout or game.walker.active) and _armed and not game.paused and not _ui_open(): TSW.button(self,event)
 		return
@@ -223,21 +219,12 @@ func _input(event: InputEvent) -> void:
 		JOY_BUTTON_X: shortcut("coast")
 		JOY_BUTTON_Y: shortcut("view")
 		JOY_BUTTON_BACK: shortcut("passenger")
-		JOY_BUTTON_LEFT_STICK: shortcut("dispatch")
-		JOY_BUTTON_RIGHT_STICK:
-			game.cam._look = Vector2.ZERO
-			if game.cam.mode == 0: game.cam.follow = true
+
 		JOY_BUTTON_DPAD_UP:
 			if game.cam.mode in [1,3]: shortcut("pilot")
 			else: game._passenger_preset(0)
 		JOY_BUTTON_DPAD_DOWN: game._passenger_preset(2)
-		JOY_BUTTON_DPAD_LEFT, JOY_BUTTON_DPAD_RIGHT:
-			if game.cam.mode in [1,3]:
-				shortcut("head_left" if event.button_index == JOY_BUTTON_DPAD_LEFT else "head_right")
-			elif game._has_passengers():
-				if game.cam.mode != 2: game._enter_passenger()
-				game.tv.change_passenger_coach(-1 if event.button_index == JOY_BUTTON_DPAD_LEFT else 1)
-				game.cam._look = Vector2.ZERO
+
 
 func shortcut(action: String) -> void:
 	if action=="stand": game.walker.toggle_seat();return
@@ -415,7 +402,7 @@ func _process(delta: float) -> void:
 		if game.cam.mode == 2:
 			_repeat(Shape.cardinal(Vector2(left.x,0)),delta,func(d):
 				game.tv.change_passenger_bay(d.x))
-	var driving_hint: String=TSW.hint(self) if tsw_layout or game.walker.active else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · LS click dispatch"
+	var driving_hint: String=TSW.hint(self) if tsw_layout or game.walker.active else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · D-pad cameras · LS click pilot · RS click free"
 	var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect/select · LB/RB areas · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
 	game.hud.set_controller_hint((menu_hint if _ui_open() else driving_hint) if _armed or _ui_open() else "Release controller sticks, triggers and buttons to continue")
 

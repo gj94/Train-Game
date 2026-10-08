@@ -20,14 +20,13 @@ train-specific handles or every cab instrument interaction.
 | A | Use displayed on-foot interaction |
 | B | Back / cancel in menus |
 | X tap | Open Train & view actions |
-| X held + A / B / RB | AI/manual / emergency brake / coast |
+| X held + A / B / RB / Y | AI/manual / emergency brake / coast / horn |
 | Right stick | Look / orbit |
-| Right-stick click | Cab / exterior; recentre on foot |
-| Hold right-stick click + D-pad | Left: cycle internal views; right: exterior; up: pilot; down: middle passenger coach |
+| D-pad left / right | Previous / next camera, wrapping through all available views |
+| Right-stick click | External **free** camera; repeated clicks stay in free camera |
 | Left stick | Cab zoom; exterior pan; on foot walk / strafe |
-| Left-stick click | Horn when driving; crouch on foot |
-| Hold left-stick click + D-pad left | Always select left head-out, including repeated presses; both layouts |
-| Hold right-stick click + left stick | Zoom; left-stick click recentres |
+| Left-stick click | Return directly to the pilot seat, including from walking |
+| Hold right-stick click + left stick up / down | Zoom the free exterior camera |
 | D-pad up / down | Select driving end at rest, where supported |
 | View / Back | Tap dispatch; hold journey progress |
 | Menu / Start | Pause / back |
@@ -38,8 +37,16 @@ including out of its braking range. Release controls to hold the selected handle
 An intentional driving-handle input takes over from AI. View-only camera presets
 preserve AI; the existing cab/exterior toggle enters manual driving on return.
 
-On foot, RT runs, A uses the displayed seat/doorway/gangway/platform prompt, and D-pad right
-toggles a headlamp. Walking inputs cannot alter traction. See [walking.md](walking.md)
+The camera cycle is pilot → left head-out → right head-out → WAP-7 assistant
+seat / cab overview / machinery aisle (where supported) → first / middle / last
+passenger coach → following exterior → free exterior → pilot. Left reverses
+the cycle. Switching with keyboard or menus updates the cycle's starting point.
+Free exterior stays fixed in the world until you pan it; LS pans and RS orbits.
+These three shortcuts apply in both layouts and on foot, while menus and dispatch
+retain D-pad navigation. They preserve your service, AI setting and driving handle.
+
+On foot, RT runs, A uses the displayed seat/doorway/gangway/platform prompt, B
+crouches and D-pad up toggles a headlamp. Walking inputs cannot alter traction. See [walking.md](walking.md)
 for keyboard equivalents, current door transitions and a complete playtest.
 
 ## Optional previous Train Game layout
@@ -60,10 +67,10 @@ in the legacy layout.
 | Menu / Start | Pause / back |
 | Right stick | Look in cab/passenger; orbit outside |
 | LB / RB | Zoom out / in |
-| Right stick click | Centre look; restore follow outside |
+| Right stick click | External free camera |
 | Left stick | Pan outside; left/right moves through passenger positions |
-| Left stick click | Open / close dispatch |
-| D-pad left / right | Pilot/head-out: lean out left/right or return; other views: previous/next coach |
+| Left stick click | Return to pilot |
+| D-pad left / right | Previous / next camera, same cycle as the default layout |
 | D-pad up / down | Pilot/head-out: up returns pilot; otherwise up first coach; down last coach |
 
 Triggers adjust the handle at a rate proportional to their deflection. Release
@@ -104,11 +111,13 @@ remain available and replace the controller hints when used.
 
 1. In the legacy layout, start a fresh scenario with the pad connected. Check RT/LT partial
    input, releasing to hold, X coast, A AI takeover and B emergency/release.
-2. Use Y, both sticks, bumpers and stick clicks. Use D-pad first/last/next/previous
-   coach, then Menu → Passenger views → Middle. Compare camera and audio positions.
+2. Cycle every camera in both directions with D-pad left/right. L3 must return
+   to pilot and R3 to free exterior from each view. Leave the train moving under
+   AI: free camera stays behind; following exterior follows it. Stand up and
+   repeat the shortcuts; verify a held run trigger cannot become traction.
 3. Navigate Help and settings without the mouse. Scroll the text and all pause
    buttons. Change a setting, restart the game, and check that it persists.
-4. Open dispatch with L3. Select a signal and destination, set a safe route, put it
+4. Open dispatch using View (default layout) or Train & view actions. Select a signal and destination, set a safe route, put it
    to red, switch services and view the timetable. Try a locked point: it must refuse.
 5. Hold RT while pausing/resuming: the handle must wait for release and a fresh
    press. Disconnect/reconnect while moving, then Alt-Tab: the game must pause.

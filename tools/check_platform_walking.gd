@@ -1,5 +1,5 @@
 extends "res://tools/check_walking_playable.gd"
-## Source integration for model doors, platform collision, audio and L3 chord.
+## Source integration for model doors, platform collision, audio and camera shortcuts.
 func _initialize() -> void:
 	set_meta("route","kerala_coast");set_meta("traffic_seed",0)
 	family="platform"
@@ -15,11 +15,9 @@ func face(direction: Vector3) -> void:
 	game.cam._look=Vector2(atan2(-direction.x,-direction.z),0)
 	game.cam.global_transform=game.cam._target()
 
-func chord() -> void:
-	button(JOY_BUTTON_LEFT_STICK,true);button(JOY_BUTTON_DPAD_LEFT,true)
-	await frames()
-	button(JOY_BUTTON_DPAD_LEFT,false);button(JOY_BUTTON_LEFT_STICK,false)
-	await frames()
+func left_head_out() -> void:
+	await tap(JOY_BUTTON_LEFT_STICK)
+	await tap(JOY_BUTTON_DPAD_RIGHT)
 
 func rms(capture: AudioEffectCapture) -> float:
 	var buffer:=capture.get_buffer(capture.get_frames_available())
@@ -47,11 +45,11 @@ func run() -> void:
 		pad.tsw_layout=layout
 		game._pilot_camera();await frames()
 		for i in 2:
-			await chord()
-			check(game.cam.mode==3 and game.cam.head_out_side==-1,"L3 + D-pad left always selects left head-out in either layout")
-		game._head_out_camera(1,false);await frames();await chord()
-		check(game.cam.head_out_side==-1,"chord switches directly from right to left")
-		check(game.train.controller==-1 and not game.train.automatic,"camera chord preserves driving handle and assignment")
+			await left_head_out()
+			check(game.cam.mode==3 and game.cam.head_out_side==-1,"pilot then cycle selects left head-out in either layout")
+		game._head_out_camera(1,false);await frames();await left_head_out()
+		check(game.cam.head_out_side==-1,"camera shortcuts work from right head-out")
+		check(game.train.controller==-1 and not game.train.automatic,"camera shortcuts preserve driving handle and assignment")
 	pad.tsw_layout=true
 	game._pilot_camera();await frames()
 	check(walk.stand(),"stand in WAP cab")
@@ -98,8 +96,8 @@ func run() -> void:
 		walk.interact();await frames()
 		check(not walk.platform.outside and walk.car==1 and walk.nav.allowed(walk.position),"boarding lands inside another carriage on supported floor")
 		check(game.train.controller==-1 and not game.train.automatic,"boarding does not hand over service")
-		await chord()
-		check(not walk.active and game.cam.mode==3 and game.cam.head_out_side==-1,"direct camera chord also works from on-foot state")
+		await left_head_out()
+		check(not walk.active and game.cam.mode==3 and game.cam.head_out_side==-1,"camera shortcuts also work from on-foot state")
 	# Native mixer output: all approved track sounds use a separate bus.
 	game._pilot_camera();game.cam.global_transform=game.cam._target()
 	var engine=game.traffic_presentation.roots.K1.get_node("EngineAudio")

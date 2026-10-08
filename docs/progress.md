@@ -1,5 +1,30 @@
 # Progress
 
+## 2026-10-08 — R8 direct controller camera navigation
+- Replaced context-dependent camera chords with shared shortcuts in both Xbox
+  layouts: D-pad left/right cycles backwards/forwards, L3 returns to pilot and
+  R3 selects detached external free view immediately. Repeated R3 stays free.
+  The cycle reads the active camera rather than a stale private index, includes
+  detailed WAP cab positions, both head-outs, first/middle/last passenger views,
+  following exterior and free exterior, and skips duplicate coach presets.
+- Camera commands preserve service assignment, AI and latched power/brake.
+  They also exit walking cleanly; held walking/run controls must neutralise
+  before they can operate traction. Menus/dispatcher keep their D-pad navigation.
+  Free exterior stays in world space: LS pans, RS orbits; holding RS + LS zooms
+  in the default layout. Legacy layout retains bumper zoom.
+- Resolved displaced controls: on foot B crouches and D-pad up toggles the
+  headlamp; default X+Y sounds the horn. Help, controller menus, guide and
+  portable instructions describe the new bindings; keyboard controls remain.
+- Verification: 285 headless tests passed. Native source checks passed 112 camera
+  assertions on WAP-7/LHB, 88 on Vande Bharat, and all 68 existing controller/menu
+  regression checks. Camera tests cover both layouts and every cycle position.
+  No extracted distribution test.
+- Playtest: cycle right through every camera and left back through them; use L3
+  and R3 from passenger, head-out and walking views. Let AI drive and verify free
+  camera stays behind while following exterior follows. Check menus still
+  navigate normally, then B crouch / D-pad up lamp on foot and X+Y horn driving.
+  R8 packaging/publication pending.
+
 ## 2026-10-08 — R7 future-clearance crossing plans and delete service
 - Implemented the user's Kumbalam sequence as automatic simulation-owned,
   bounded three-train crossing transactions. Reserve both station berths and
