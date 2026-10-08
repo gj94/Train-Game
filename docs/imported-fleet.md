@@ -5,12 +5,12 @@ are available through **F9**, or **Escape → Traffic / solo fleet**. Choose a w
 and confirm to start at Chennapuram. F2/F3 now use the detailed WAP-7 as well.
 See [the v0.2 port notes](wap7-detail.md) for interior viewpoints and preserved detail.
 
-A fresh launch starts **K1, the slow passenger on Kerala Coast**, among seven
+A fresh launch starts **K1, the slow passenger on Kerala Coast**, among 32
 services with AI traffic and automatic routing. F1 explains your assignment and
 expected waits; PROGRESS/F12 shows stop counts and the next arrival estimate.
 Restart keeps the assignment; F9 offers a new random
-assignment or a solo working. The LHB working still hauls all seven classes:
-1A, 2A, 3A, 2S, CC, SL and GS. Explicit fleet choices and F2/F3 take precedence;
+assignment or a solo working. WAP trains use full-length homogeneous coach
+families: 20 seated coaches for K1 and 22 for express workings. Explicit fleet choices and F2/F3 take precedence;
 the older low-detail WAP and MEMU are no longer playable or shipped. F7 switches
 between Kerala Coast and the shorter Southern corridor.
 
@@ -18,15 +18,16 @@ between Kerala Coast and the shorter Southern corridor.
 
 | Working | Imported assets | Visible train length |
 |---|---|---:|
-| ICF showcase | WAP-7 + 1A, 2A, 3A, 2S, CC, SL, GS | 176.639 m |
-| LHB showcase | WAP-7 + 1A, 2A, 3A, 2S, CC, SL, GS | 188.560 m |
+| ICF express / stopping passenger | WAP-7 + 22 / 20 blue ICF coaches | 511.094 / 466.500 m |
+| LHB express / seated passenger | WAP-7 + 22 / 20 red-grey LHB coaches | 548.560 / 500.560 m |
 | Vande Bharat 8 | Full-size v02, DTC–MC–TC_EC–MC2 + mirrored half | 191.560 m (192 m coupling pitch) |
 | Vande Bharat 16 | Full-size v02, CC trailers and two central EC cars | 383.560 m (384 m coupling pitch) |
 
-Only these four formations are selectable. The detailed WAP-7 retains both cabs
+Only these four stock families are selectable, with two WAP rake profiles in the Service Designer. The detailed WAP-7 retains both cabs
 and its machinery room. Historical WAG masters remain in source history/catalogue
 for integrity comparison, but are excluded from the playable package.
-Coach showcases contain seven classes rather than a claimed real booked rake.
+See [rakes and research](rakes.md) for class grouping, physical lengths and the
+missing utility-car limitation. These are representative fictional formations.
 
 The enhanced Vande Bharat is pinned to published source revision
 `91bcc2899eeedccb7497374227d1c81562279640` on `main`, including the newer three
@@ -74,8 +75,8 @@ ICF/LHB now use all fourteen v02 masters from checkpoint
 `e209ff54ff5cd00bb0761761bdbe124cac6bf7cd`. Fetch
 `tools/coach_v02_sources.json` to `.local/coach-v02-source/`; see
 [detailed coach notes](coach-detail.md) for source status, material conversion
-and preservation checks. The selectable formations and physical axle datums
-remain the same.
+and preservation checks. R10 changes formation counts and exterior LHB paint
+consistency; the source geometry and physical axle datums remain unchanged.
 Fetch `tools/vb_v02_sources.json` into `.local/vb-v02-source/` for the seven
 enhanced Vande Bharat masters. Run the converter for their `vb_*` IDs, then
 install the emitted material shader code through Godot MCP (create the per-car

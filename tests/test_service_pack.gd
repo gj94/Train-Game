@@ -44,6 +44,9 @@ func test_invalid_imports_never_return_a_partially_built_world():
 	bad=Pack.defaults(); bad.services[0].stops[1].direction=0; cases.append(bad)
 	bad=Pack.defaults(); bad.services[0].day=1.5; cases.append(bad)
 	bad=Pack.defaults(); bad.services[0].name=[]; cases.append(bad)
+	bad=Pack.defaults(); bad.services[0].rake="icf_3a,lhb_sl"; cases.append(bad)
+	bad=Pack.defaults(); bad.services[2].rake="express"; cases.append(bad)
+	bad=Pack.defaults(); bad.services[0].rake=22; cases.append(bad)
 	for value in [null,[],{"format":"other"},true,{"format":"train-game-services","version":1,"layout":7}]: cases.append(value)
 	for value in cases:
 		var result := Pack.build(value)
@@ -87,3 +90,20 @@ func test_rehearsal_completes_default_and_reports_an_occupied_terminal():
 		trial.step()
 		if trial.done: break
 	return trial.done and not trial.ok and "did not finish" in trial.report
+
+func test_rake_profiles_survive_export_and_validate_full_length():
+	var stock := preload("res://sim/stock/ported_stock.gd")
+	var pack := Pack.defaults()
+	pack.services[0].rake="passenger"
+	var decoded := Pack.decode(JSON.stringify(pack))
+	if not decoded.ok: return decoded.reason
+	var train: Train = decoded.world.trains.T1
+	if train.rake_profile!="passenger" or train.length!=stock.length_of("lhb","passenger"): return "lost imported formation"
+	if decoded.data.services[0].rake!="passenger": return "export lost profile"
+	# Old files without a profile get a full-length family default, never seven cars.
+	for service in pack.services: service.erase("rake")
+	decoded=Pack.build(pack)
+	if not decoded.ok: return decoded.reason
+	if decoded.world.trains.T1.length!=stock.length_of("lhb"): return "legacy formation was not upgraded"
+	pack.services[0].stops[0].position_m=300
+	return not Pack.build(pack).ok

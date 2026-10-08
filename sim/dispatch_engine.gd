@@ -266,8 +266,8 @@ func assign_platform(id: String, block: String) -> Dictionary:
 	var stop: Dictionary = t.timetable.stop_ahead()
 	var st: Dictionary = Policy.station(w,stop.block)
 	if st.is_empty() or block not in st.get("platform_tracks",[]): return {ok=false,reason="Choose a road at the next scheduled station"}
-	if st.get("platform_details",{}).get(block,{}).get("platform_width",1)<=0 or w.graph.edges[block].length<t.length+20: return {ok=false,reason="Road cannot accommodate this passenger service"}
-	var goal := {block=block,direction=stop.direction,s=w.graph.edges[block].length*.5+stop.direction*t.length*.5}
+	if st.get("platform_details",{}).get(block,{}).get("platform_width",1)<=0 or preload("res://sim/berth_clearance.gd").capacity(w,block)<t.length: return {ok=false,reason="Road cannot accommodate the full train clear of signals, points and platform ends"}
+	var goal := {block=block,direction=stop.direction,s=preload("res://sim/berth_clearance.gd").marker(w,t,block,stop.direction)}
 	if is_inf(w._stop_distance(t.path[0].edge,t.path[0].dir,t.head_s,goal,[])): return {ok=false,reason="Platform is not reachable in this direction"}
 	var ns: Dictionary=w.next_signal(t)
 	if not ns.is_empty() and w.signals[ns.id].route.any(func(r):return r.edge in st.platform_tracks): return {ok=false,reason="Station entry route already committed; platform cannot change until safe release"}

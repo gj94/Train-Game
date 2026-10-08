@@ -37,7 +37,7 @@ static func apply(model: Node3D, key: String) -> Dictionary:
 				material.resource_name=original.resource_name
 				material.shader=load(root+"shaders/"+entry.shader)
 				material.set_shader_parameter("author_from_mesh",transform)
-				material.set_shader_parameter("source_values",PackedFloat32Array(entry.source_values))
+				material.set_shader_parameter("source_values",preload("res://game/coach_livery.gd").values(key,entry))
 				for uniform in entry.get("textures",{}):
 					material.set_shader_parameter(uniform,load(root+"textures/"+str(entry.textures[uniform])))
 				material.set_shader_parameter("noise_volume",load("res://assets/models/ported/wap7_detail/microfinish.res"))

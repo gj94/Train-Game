@@ -2,6 +2,13 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-09 coach-body sounds: `assets/sounds/coach_rattle/` contains eight original
+procedurally synthesized latch/panel cues, exported from the sibling
+`railway-clang-simulator` source project. No recording samples were used.
+Source/exporter snapshots are in `tools/audio-source`; `provenance.json` records
+source and output SHA-256 hashes. The existing approved joint/squeal banks are
+unchanged. These are tuned sound-design approximations, not measured ICF sounds.
+
 2026-10-08 detailed coach port: fourteen user-owned masters from
 [`icf_detail_v02` and `lhb_detail_v02` at e209ff5](https://github.com/gj94/transport-fever-3-mods/tree/e209ff54ff5cd00bb0761761bdbe124cac6bf7cd),
 branch `backup/coach-detail-overnight`, replace the fourteen v01 coach models.

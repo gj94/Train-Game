@@ -432,7 +432,9 @@ func _refresh() -> void:
 		_last_platform_key=key;_platform.clear()
 		var st: Dictionary=preload("res://sim/priority_dispatch.gd").station(world,call.get("block",""))
 		for road in st.get("platform_tracks",[]):
-			_platform.add_item(road);_platform.set_item_metadata(_platform.item_count-1,road)
+			if st.get("platform_details",{}).get(road,{}).get("platform_width",1)<=0:continue
+			if not st.get("passenger_open",true):continue
+			_platform.add_item(road+" · passenger platform");_platform.set_item_metadata(_platform.item_count-1,road)
 			if road==call.get("block",""):_platform.select(_platform.item_count-1)
 	var target: String=_exit.get_item_metadata(_exit.selected) if _exit.selected>=0 else ""
 	var reason: String=engine.route_preview(source,target).reason

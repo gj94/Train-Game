@@ -1,5 +1,84 @@
 # Progress
 
+## 2026-10-09 — R10 long rakes, CSV stations, moving-coach access and rattles
+- Replaced the seven-coach class showcase with representative service profiles:
+  K1 has 20 seated ICF coaches (466.500 m including WAP-7); WAP expresses have
+  22 ICF (511.094 m) or LHB (548.560 m) coaches. The Service Designer supports
+  either seated/express profile, preserving it through export/import. VB remains
+  8/16 cars. Research and exact formations are in rakes.md. Dedicated SLR, EOG
+  and pantry models are absent from the remote assets; these remain fictional
+  passenger-only formations rather than exact real-world coach diagrams.
+- Every rake uses a single coach family. The reported red/blue mix came from
+  blue LHB CC/2S source paint, not ICF geometry in an LHB rake. Standardised the
+  exterior LHB paint RGB to the source AC/sleeper red, preserving roughness,
+  bump, textures, markings and interiors. ICF retains its source blue finish.
+  Rendering, occupied length and joint axles share the simulation formation.
+  Full loaded mass now uses WAP-7's 322.6 kN traction ceiling; WAP/LHB is capped
+  at 140 km/h and ICF at 110 km/h, with lower scenario service limits retained.
+- Audited every Kerala platform/siding in both directions with the longest
+  rake, including waiting at the starter. Extra ladder turnouts previously
+  shortened inner roads, and starters sat inside the 195 m fouling zones.
+  Extended yard approaches per ladder and moved starters to 210 m offsets.
+  Shared berth clearance now accounts for signals, points and actual passenger
+  platform ends in validation, route admission, future plans, platform selection
+  and manual stopping tolerance. Rendering and walking share platform spans.
+  Booked calls use reachable passenger faces instead of placeholder through
+  roads. Platform totals follow the supplied CSV below; geometry is an operational
+  reconstruction, not a real-yard length survey. Old Kerala service drafts have
+  a different layout signature and must be recreated against the current layout.
+- Added eight seeded, synthesized latch/panel cues from the sibling sound lab,
+  with source snapshots and SHA-256 provenance. Irregular spatial timing and
+  body jolts trigger stronger/more frequent ICF rattles, quieter LHB rattles.
+  Four positional voices per nearby train, fixed pitch, no backlog after seeks;
+  pause/reference mode is quiet and stopped trains fade out. These are tuned
+  approximations, not measured ICF recordings. Approved joint/squeal banks and
+  the user's recordings are unchanged.
+- WAP-7 has no passenger gangway. Clarified standing/doorway/help prompts for
+  the platform route, corrected passenger coach numbering to exclude the loco,
+  and verified collision-swept walking from the actual pilot standing point to
+  a side door, along the platform, and into coach 1 using controller Y/A.
+  Moving exits remain blocked; walking preserves service/manual brake state.
+- Added Pause/Start → Go to passenger coach and the same entry in Camera &
+  passengers. Any of the 20/22 passenger coaches is selectable while moving;
+  controller A selects, Y stands inside, L3 returns to pilot. Service, AI and
+  handle settings remain unchanged. Coach numbering excludes the locomotive.
+- Preserved the uploaded station CSV byte-for-byte, pinned its SHA-256 and
+  exempted it from Git newline conversion. All 56 selected platform totals and
+  station names match the generated world. TNU is closed, reducing K1 to 55 calls;
+  KUMM has one passenger platform plus two through roads. Veli uses the CSV IRI
+  count of one, retaining the unresolved three-count alternative as evidence.
+  DAVM has two faces on one track; KPY storage cannot act as an extra passing
+  loop. CSV loop additions at OCR/KZK and six TVCN positions are reconstructed.
+  The dispatcher distinguishes platform/through/storage and filters passenger
+  road choices. Future-clearance transactions can reserve the sole platform
+  after the VB departs, with an independent opposing berth and protected escape.
+  Revised regional service origins/calls to use the selected passenger faces.
+  All raw reference columns and differences are retained in the reproducible
+  station audit. Total yard-track counts, bay connections, chainage and older
+  mapped construction figures are not all identical to the operating game map;
+  see kerala-station-audit.md. Map regeneration reapplies the CSV specification.
+- Verification so far: 320 headless tests pass (exit 0; sandbox certificate-store
+  warning occurs after completion). Native ride integration passed
+  36 checks across all six profiles; service-editor integration passed 12.
+  Native rattle PCM passed 8 checks (peak 0.262, RMS 0.0191; paused/stopped zero),
+  with a bounded four-voice pool. Source synthesis test checks all eight finite,
+  distinct, repeatable, unclipped WAVs. Long-rake native walking passed 132
+  assertions, including moving-coach menu/controller access and scene streaming
+  at both stations. Native ICF/LHB throttle, braking and complete corridor trips
+  passed. Dispatcher render/zoom/inspection checks passed at 1600×900 and 1280×720;
+  captures confirm the sole-platform label and full train footprints. Full-route
+  traffic verification is being finished before publication. No extracted-build test.
+- Playtest: start fresh K1 and inspect the 20 blue coaches; inspect a WAP/LHB
+  express for 22 red/grey coaches. Use F5 to select/export/import either rake.
+  At a stopped platform, Y/E stands, A/left-click at the cab side door alights;
+  walk to coach 1 and board via its prompt. In an ICF passenger view at 30–60
+  km/h, listen for intermittent body rattles beneath the joint/rolling sound;
+  compare LHB, stop and pause. At Kumbalam, inspect both train ends and wait
+  for the last coach to clear before the conflicting route releases.
+  While moving, Pause → Go to passenger coach → last coach, Y/E to stand,
+  then L3/4 to return to pilot. Check Kumbalam's 1-platform/3-track dispatcher
+  label and PROGRESS's 55 scheduled calls; Tirunettur should be passed without a call.
+
 ## 2026-10-08 — R9 ride motion, onboard acoustics and home lookahead
 - User clarified that jolts/vibrations should be introduced. Added a pure damped
   suspension solver and a rendered-axle contact adapter. Actual 39 m joints and

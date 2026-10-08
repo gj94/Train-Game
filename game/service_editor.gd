@@ -21,6 +21,7 @@ var world_day: SpinBox
 var id_field: LineEdit
 var name_field: LineEdit
 var stock_field: OptionButton
+var rake_field: OptionButton
 var priority_field: SpinBox
 var speed_field: SpinBox
 var departure_field: LineEdit
@@ -102,9 +103,14 @@ func _ready() -> void:
 	name_field = _line(identity,"Service name",func(v): _service().name=v; _changed())
 	stock_field = _option(fields,"Rolling stock",func(i):
 		_service().stock=_stock_choices[i]
-		speed_field.value=minf(speed_field.value,110 if _service().stock=="icf" else 180)
+		_service().rake=Stock.resolve_profile(_service().stock)
+		_refresh_rakes()
+		speed_field.value=minf(speed_field.value,_stock_speed())
 		_changed())
 	for choice in _stock_choices: stock_field.add_item(Stock.LABELS[choice])
+	rake_field = _option(fields,"Rake · coaches exclude locomotive",func(i):
+		_service().rake=rake_field.get_item_metadata(i)
+		_changed())
 	var dispatching:=_row(fields)
 	priority_field=_spin(dispatching,"Dispatch priority · higher runs first",1,100,1,func(v):_service().priority=int(v);_changed())
 	speed_field=_spin(dispatching,"Service speed cap · km/h",5,180,5,func(v):_service().speed_limit_kmh=v;_changed())
@@ -232,7 +238,7 @@ func open(world: RailWorld, active_pack: Dictionary = {}) -> void:
 	for block in blocks:
 		var label: String = block
 		for station in world.stations:
-			if block.to_upper().begins_with(station.code): label=station.name+" · "+block; break
+			if block.to_upper().begins_with(station.code): label=station.name+(" (closed)" if not station.get("passenger_open",true) else "")+" · "+block; break
 		block_field.add_item(label)
 		block_field.set_item_metadata(block_field.item_count-1,block)
 	selected = clampi(selected,0,draft.services.size()-1)
@@ -245,6 +251,17 @@ func open(world: RailWorld, active_pack: Dictionary = {}) -> void:
 	_status("Drafts save locally when valid. Import/export shares definitions, not a running save. Rehearse to find traffic conflicts.")
 	show()
 	roster.grab_focus()
+
+func _refresh_rakes() -> void:
+	rake_field.clear()
+	for profile in Stock.profiles(_service().stock):
+		rake_field.add_item(Stock.RAKE_LABELS[profile])
+		rake_field.set_item_metadata(rake_field.item_count-1,profile)
+	rake_field.select(Stock.profiles(_service().stock).find(Stock.resolve_profile(_service().stock,_service().get("rake",""))))
+	rake_field.disabled=rake_field.item_count==1
+
+func _stock_speed() -> float:
+	return 110.0 if _service().stock=="icf" else (140.0 if _service().stock=="lhb" else 180.0)
 
 func _service() -> Dictionary:
 	return draft.services[selected]
@@ -271,8 +288,9 @@ func _load_service() -> void:
 	var service := _service()
 	id_field.text=service.id; name_field.text=service.name
 	stock_field.select(_stock_choices.find(service.stock))
+	_refresh_rakes()
 	priority_field.value=service.get("priority",50)
-	speed_field.value=service.get("speed_limit_kmh",110 if service.stock=="icf" else 180)
+	speed_field.value=service.get("speed_limit_kmh",_stock_speed())
 	departure_field.text=service.departure
 	departure_day.value=service.get("day",1)
 	direction_field.select(0 if service.stops[0].direction==1 else 1)

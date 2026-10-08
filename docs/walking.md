@@ -7,6 +7,20 @@ prompt. The WAP-7 has no passenger gangway: use a passenger camera preset to ent
 its coaches, or step out onto a platform at a stop and board a coach doorway.
 The Kerala route supports platform walking beside your assigned train.
 
+You can transfer to **any passenger coach while moving**, including behind a
+WAP-7: open Pause/Start → **Go to passenger coach…**, select Coach 1–20/22, then
+press **Y/E** to stand inside. The same list is under Camera & passengers.
+This changes your viewpoint without handing over your service or changing the
+power/brake handle or AI setting. **Left-stick click / 4** returns to the pilot.
+For quick access, D-pad left/right cycles the first, middle and last coach views;
+keyboard Alt+1/2/3 does the same. Physical alighting remains restricted to a stop.
+
+From the WAP driver's seat at ERS: keep manual control with the brake applied,
+press **Y/E**, then face the cab side door beside the platform. Use **A/left
+click** at **Step onto platform**, walk back along the train and board **coach 1**.
+There is no walkable end connection through the locomotive coupler. The cab
+prompt and F1 help now explain this; the locomotive is not counted as coach 1.
+
 ## Controls
 
 | Action | Keyboard / mouse | Xbox, either layout while on foot |

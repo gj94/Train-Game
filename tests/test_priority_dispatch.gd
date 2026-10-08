@@ -92,6 +92,7 @@ func test_free_opposite_line_loop_cannot_be_used_for_a_same_direction_overtake()
 	var st: Dictionary=w.stations.filter(func(s):return s.code=="OCR")[0]
 	var train:=Train.new("EXPRESS",100)
 	w.place_train(train,"KYJ_OCR_D4",500,1)
+	w.place_train(Train.new("LOOP_OCCUPIED",100),"OCR_P4",500,1)
 	return not Priority._passing_road_available(w,train,st,"OCR_P1")
 
 func test_first_arrival_uses_loop_when_opposing_train_is_on_a_long_single_section():

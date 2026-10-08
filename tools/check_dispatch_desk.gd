@@ -19,6 +19,7 @@ func _check() -> void:
 	desk.cancel_handover()
 	_expect(not desk._confirm.visible and desk.selected_train==assigned,"Cancel preserves assignment")
 	desk.inspect_train(assigned);desk._map.focus_station(2)
+	_expect(desk._platform.item_count==1 and desk._platform.get_item_metadata(0)=="KUMM_P3","Kumbalam offers only its CSV passenger platform")
 	await process_frame
 	await process_frame
 	_expect(desk._map.size.x>=400 and desk._map.size.y>=280,"Map has useful area")

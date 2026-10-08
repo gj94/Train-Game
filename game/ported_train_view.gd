@@ -35,7 +35,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 	train = t
 	graph = g
 	choice = t.stock_kind.trim_prefix("ported:")
-	formation = Stock.formation(choice)
+	formation = Stock.formation(choice, t.rake_profile)
 	var catalog: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ported/manifest.json"))
 	for entry in formation:
 		var spec: Dictionary = catalog[entry.model]
@@ -295,7 +295,7 @@ func overview_position() -> Vector3:
 
 
 func sound_axles() -> Array:
-	return Stock.sound_axles(choice, train.cab_end == 2)
+	return Stock.sound_axles(choice, train.cab_end == 2, train.rake_profile)
 
 
 func _v(value: Array) -> Vector3:

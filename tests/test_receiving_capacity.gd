@@ -3,7 +3,7 @@ const Kerala:=preload("res://sim/layouts/kerala_coast.gd")
 const Planner:=preload("res://sim/dispatch_planner.gd")
 
 func fixture() -> RailWorld:
-	var w:=Kerala.build_traffic()
+	var w:=preload("res://tests/kerala_fixture.gd").historical_crossing()
 	w.dispatcher().future_clearances.enabled=false # exercise the conservative fallback separately
 	for id in w.trains.keys():
 		if id not in ["K1","K2","K3"]: w.trains.erase(id)
@@ -31,7 +31,7 @@ func test_opposing_claim_from_the_other_section_prevents_kumbalam_deadlock():
 func test_early_manual_passenger_claim_is_respected_when_opponent_replans():
 	var w:=fixture()
 	var t: Train=w.trains.K1
-	w.place_train(t,"TNU_KUMM_M2",w.graph.edges.TNU_KUMM_M2.length-100,1)
+	w.place_train(t,preload("res://tests/kerala_fixture.gd").kumbalam_approach(w),w.graph.edges[preload("res://tests/kerala_fixture.gd").kumbalam_approach(w)].length-100,1)
 	t.timetable.index=2;t.timetable.at_stop=false;t.automatic=false
 	var e=w.dispatcher();e.manual_service="K1"
 	e.run_cycle(true)
@@ -48,8 +48,10 @@ func test_typed_berths_use_matching_instead_of_counting_all_roads():
 
 func test_arrival_road_must_allow_departure_toward_the_following_call():
 	var w:=Kerala.build_traffic()
-	var t: Train=w.trains.K12
-	t.timetable.index=3;t.timetable.at_stop=false
+	var t: Train=w.trains.K1
+	for i in t.timetable.stops.size():
+		if str(t.timetable.stops[i].block).begins_with("AMPA_"):t.timetable.index=i
+	t.timetable.at_stop=false
 	w.place_train(t,"PUPR_AMPA_M3",w.graph.edges.PUPR_AMPA_M3.length-90,1)
 	var choices:=Planner.new().candidates(w,t,w.next_signal(t).id)
 	var wrong:=choices.filter(func(o):return o.option.edges[-1].edge=="AMPA_P2")
@@ -58,7 +60,7 @@ func test_arrival_road_must_allow_departure_toward_the_following_call():
 func test_early_arrival_does_not_wait_for_opponent_without_a_usable_platform():
 	var w:=fixture()
 	var t: Train=w.trains.K1
-	w.place_train(t,"TNU_KUMM_M2",w.graph.edges.TNU_KUMM_M2.length-100,1)
+	w.place_train(t,preload("res://tests/kerala_fixture.gd").kumbalam_approach(w),w.graph.edges[preload("res://tests/kerala_fixture.gd").kumbalam_approach(w)].length-100,1)
 	t.timetable.index=2;t.timetable.at_stop=false
 	w.dispatcher().run_cycle(true)
 	return not w.dispatch_holds.has("K1") and not w.signals[w.next_signal(t).id].route.is_empty()

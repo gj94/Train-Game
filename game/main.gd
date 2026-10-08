@@ -649,6 +649,13 @@ func _ui_action(action: String) -> void:
 	if action.begins_with("fleet:"):
 		_request_action(action)
 		return
+	if action.begins_with("coach:"):
+		var index:=int(action.get_slice(":",1))
+		if not _has_passengers() or index not in tv.passenger_coaches():return
+		_set_paused(false);hud.show_modal("")
+		tv.passenger_coach=index;tv.passenger_bay=0;tv.passenger_seat=false;tv.passenger_seat_index=-1
+		cam._look=Vector2.ZERO;_enter_passenger();audio.reset_positions()
+		return
 	if action.begins_with("pax:"):
 		_set_paused(false)
 		hud.show_modal("")
@@ -662,6 +669,13 @@ func _ui_action(action: String) -> void:
 		"controller_actions", "train_controls", "view_controls", "sound_controls":
 			_set_paused(true)
 			hud.show_modal(action)
+		"coaches":
+			_set_paused(true)
+			hud.controller_options.coaches=[]
+			if _has_passengers():
+				for index in tv.passenger_coaches():
+					hud.controller_options.coaches.append({index=index,label="Coach "+str(hud.controller_options.coaches.size()+1)})
+			hud.show_modal("coaches")
 		"passengers":
 			_set_paused(true)
 			hud.show_modal("passengers")

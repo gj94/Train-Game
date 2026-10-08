@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **9 Oct 2026 station inventory and rakes:** apply the user's CSV platform totals
+  across all 56 stations; keep running roads/loops/storage separate from reported
+  yard totals. Closed Tirunettur has no passenger call. Long WAP formations use
+  homogeneous ICF or LHB stock, with full-rake platform/signal clearance.
+  Go to passenger coach must work in motion, retaining the service and controls.
 - **8 Oct 2026 controller camera revision:** D-pad left/right cycles all available
   cameras in either direction; left-stick click returns to pilot and right-stick
   click selects detached external free camera. Apply consistently in both layouts

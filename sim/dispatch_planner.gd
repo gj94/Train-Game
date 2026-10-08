@@ -21,16 +21,19 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 		var future = w.dispatcher().future_clearances
 		var promised: String=future.assigned(t,st.get("code",""))
 		var stopping: bool = not st.is_empty() and last.edge in st.get("platform_tracks", []) and Policy.station(w, stop.block).get("code", "") == st.code
+		if not st.is_empty() and preload("res://sim/berth_clearance.gd").capacity(w,last.edge,stopping)<t.length:
+			reason="Formation is too long to wait clear of signals and points on this road"
 		if stopping:
 			if st.get("platform_details", {}).get(last.edge, {}).get("platform_width", 1) <= 0: reason = "No passenger platform on this road"
-			if w.graph.edges[last.edge].length < t.length + 20: reason = "Formation is too long for this road"
+			if preload("res://sim/berth_clearance.gd").capacity(w,last.edge) < t.length: reason = "Formation is too long for this road's clear platform length"
 		if stopping and (t.timetable.index < t.timetable.stops.size()-1 or platform==last.edge):
 			goal.block = last.edge
-			goal.s = w.graph.edges[last.edge].length * .5 + last.dir * t.length * .5
+			goal.s = preload("res://sim/berth_clearance.gd").marker(w,t,last.edge,last.dir)
 			changes_stop = true
 			if not platform.is_empty() and last.edge != platform: reason = "Operator assigned " + platform
 		elif not platform.is_empty() and stopping and last.edge != platform:
 			reason = "Operator assigned " + platform
+		if stopping and reason.is_empty():reason=preload("res://sim/berth_clearance.gd").reason(w,t,last.edge,goal.s,last.dir)
 		var distance: float = w._stop_distance(last.edge, last.dir, w.graph.entry_s(last.edge, last.dir), goal, [])
 		if option.edges.any(func(r): return r.edge == goal.block and r.dir == goal.direction): distance = 0.0
 		if is_inf(distance): reason = "Cannot reach next call: " + stop.name
@@ -81,8 +84,8 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 				if r.edge in destination.platform_tracks: approaches[r.edge] = sig.id
 		for road: String in destination.platform_tracks:
 			if not future.owner(road).is_empty() and future.owner(road)!=t.id:continue
-			if not w.graph.allows(road, entry.dir) or w.graph.edges[road].length < t.length + 20: continue
-			var goal := {block=road, direction=entry.dir, s=w.graph.edges[road].length*.5+entry.dir*t.length*.5}
+			if not w.graph.allows(road, entry.dir) or preload("res://sim/berth_clearance.gd").capacity(w,road,false)<t.length: continue
+			var goal := {block=road, direction=entry.dir, s=preload("res://sim/berth_clearance.gd").marker(w,t,road,entry.dir,false)}
 			if is_inf(w._stop_distance(entry.edge, entry.dir, w.graph.entry_s(entry.edge, entry.dir), goal, [])): continue
 			if occupancy.has(road) and occupancy[road] != t.id:
 				blocked.append({train=occupancy[road], kind="receiving_road", resource=road})

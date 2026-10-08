@@ -38,6 +38,10 @@ func ensure_audio(id: String) -> void:
 	roots[id].add_child(engine)
 	engine.setup(game,game.train_views[id],sound)
 	sound.engine=engine
+	var body:=preload("res://game/coach_rattle_audio.gd").new()
+	body.name="CoachRattleAudio"
+	roots[id].add_child(body)
+	body.setup(game,game.train_views[id],sound)
 
 func distance_to(id: String) -> float:
 	var motion=game.train_motions[id]

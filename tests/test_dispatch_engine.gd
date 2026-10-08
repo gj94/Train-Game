@@ -120,16 +120,16 @@ func test_missed_call_is_not_blame_on_an_unrelated_occupied_road():
 	var w:=Kerala.build_traffic();var t: Train=w.trains.K1
 	t.timetable.index=1;t.timetable.at_stop=false;t.timetable.missed_stop=true
 	w.dispatcher().run_cycle(false)
-	return w.dispatcher().states.K1.status=="attention" and w.dispatcher().states.K1.reason.contains("Tirunettur") and w.dispatcher().states.K1.blockers.is_empty()
+	return w.dispatcher().states.K1.status=="attention" and w.dispatcher().states.K1.reason.contains("Kumbalam") and w.dispatcher().states.K1.blockers.is_empty()
 
 func test_occupied_platform_does_not_hide_free_kumbalam_alternative():
 	var w:=Kerala.build_traffic();var t: Train=w.trains.K1
-	t.timetable.index=2;t.timetable.at_stop=false
-	w.place_train(t,"TNU_KUMM_M2",w.graph.edges.TNU_KUMM_M2.length-80,1)
+	t.timetable.index=preload("res://tests/kerala_fixture.gd").kumbalam_call(w);t.timetable.at_stop=false
+	w.place_train(t,preload("res://tests/kerala_fixture.gd").kumbalam_approach(w),w.graph.edges[preload("res://tests/kerala_fixture.gd").kumbalam_approach(w)].length-80,1)
 	w.place_train(w.trains.K2,"KUMM_P1",400,-1)
 	w.trains.erase("K3")
 	var e=w.dispatcher();e.manual_service="K1";e.run_cycle(true)
-	return e.states.K1.status=="cleared" and t.timetable.stops[2].block!="KUMM_P1" and e.states.K1.blockers.is_empty()
+	return e.states.K1.status=="cleared" and t.timetable.stop_ahead().block=="KUMM_P3" and e.states.K1.blockers.is_empty()
 
 func test_platform_preference_rejects_unreachable_and_nonpassenger_roads():
 	var w:=Kerala.build_traffic();var e=w.dispatcher()
@@ -223,7 +223,7 @@ func test_advisory_cycle_releases_one_hold_and_prevents_immediate_recreation():
 
 func test_platform_request_survives_departure_call_index_change():
 	var w:=Kerala.build_traffic();var t: Train=w.trains.K1;var e=w.dispatcher()
-	if not e.assign_platform("K1","TNU_P1").ok:return "Valid next-call request refused"
+	if not e.assign_platform("K1","KUMM_P3").ok:return "Valid next-call request refused"
 	t.timetable.at_stop=false;t.timetable.index=1
 	e.run_cycle(false)
 	return e.platform_preferences.has("K1")
@@ -231,7 +231,7 @@ func test_platform_request_survives_departure_call_index_change():
 func test_end_call_rejects_nonpassenger_storage_road():
 	var w:=Kerala.build_traffic();var t: Train=w.trains.K3
 	t.timetable.index=t.timetable.stops.size()-1;t.timetable.at_stop=false
-	t.timetable.stops[-1].block="NCJ_P6"
+	t.timetable.stops[-1].block="NCJ_P3"
 	w.place_train(t,"NJT_NCJ_D3",w.graph.edges.NJT_NCJ_D3.length-90,1)
 	var ns: Dictionary=w.next_signal(t)
 	var choices: Array=Planner.new().candidates(w,t,ns.id)

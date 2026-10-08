@@ -94,7 +94,7 @@ func test_large_stopping_scenario_has_separate_origins_and_terminal_roads():
 		stocks[t.stock_kind]=true
 		if first.direction>0: south+=1
 		else: north+=1
-	return stocks.size()==4 and north>=12 and south>=12 and world.trains.K1.timetable.stops.size()==56 and world.trains.K1.dispatch_priority==20
+	return stocks.size()==4 and north>=12 and south>=12 and world.trains.K1.timetable.stops.size()==55 and world.trains.K1.dispatch_priority==20
 
 func test_kerala_services_export_and_import_preserve_placement():
 	var pack=preload("res://sim/service_pack.gd")

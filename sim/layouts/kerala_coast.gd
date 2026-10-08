@@ -70,8 +70,15 @@ func _build() -> RailWorld:
 		st.building = st.origin
 		# Real station names/locations; road numbering here belongs to the game.
 		st.operating_roads=operations.stations[i].roads
+		st.passenger_open=operations.stations[i].get("passenger_open",true)
+		st.name=operations.stations[i].get("register_name",st.name)
+		st.official_km=operations.stations[i].get("register_km",null)
 		st.through_halt=operations.stations[i].through
 		st.roads=st.operating_roads.size()
+		# Extra ladder turnouts need extra throat length, not progressively shorter
+		# passenger roads. Retain a full 1 km road beyond the innermost turnouts.
+		var per_lane:=maxi(st.operating_roads.filter(func(r):return r.lane=="D" and not r.get("storage",false)).size(),st.operating_roads.filter(func(r):return r.lane=="U" and not r.get("storage",false)).size())
+		st.yard_half=520.0+maxi(0,per_lane-2)*22.0
 		st.platform_details={}
 		w.stations.append(st)
 		_station(w,st,i)
@@ -122,15 +129,15 @@ func _station(w: RailWorld, st: Dictionary, index: int) -> void:
 		var adjacent := index-1 if end=="L" else index
 		var single: bool = adjacent>=0 and adjacent<data.sections.size() and data.sections[adjacent].tracks==1
 		for lane in ["D","U"]:
-			_node(w,c+"_"+end+lane,s+signum*500,st.operating_roads[0 if lane=="D" else 1].offset)
+			_node(w,c+"_"+end+lane,s+signum*st.yard_half,st.operating_roads[0 if lane=="D" else 1].offset)
 		if single:
-			_node(w,c+"_"+end+"M",s+signum*700,0)
+			_node(w,c+"_"+end+"M",s+signum*(st.yard_half+200),0)
 			for lane in ["D","U"]:
 				var a: String = c+"_"+end+"M" if end=="L" else c+"_"+end+lane
 				var b: String = c+"_"+end+lane if end=="L" else c+"_"+end+"M"
 				_edge(w,c+"_"+end+"LEAD_"+lane,a,b,60)
 	for lane in ["D","U"]:
-		var roads: Array=st.operating_roads.filter(func(r):return r.lane==lane)
+		var roads: Array=st.operating_roads.filter(func(r):return r.lane==lane and not r.get("storage",false))
 		var left: String=c+"_L"+lane
 		var right: String=c+"_R"+lane
 		for j in roads.size():
@@ -140,16 +147,24 @@ func _station(w: RailWorld, st: Dictionary, index: int) -> void:
 			st.platform_tracks.append(id)
 			st.track_z.append(road.offset)
 			st.platform_details[id]=road
-			w.add_signal(c+"-S"+str(int(road.road)),id,1,100)
-			w.add_signal(c+"-N"+str(int(road.road)),id,-1,100)
+			# Keep a train waiting at its starter inside the 195 m fouling limit.
+			w.add_signal(c+"-S"+str(int(road.road)),id,1,210)
+			w.add_signal(c+"-N"+str(int(road.road)),id,-1,210)
 			if j<roads.size()-2:
 				var next_left: String=c+"_L"+lane+str(j)
 				var next_right: String=c+"_R"+lane+str(j)
-				_node(w,next_left,s-500+(j+1)*22,roads[j+1].offset)
-				_node(w,next_right,s+500-(j+1)*22,roads[j+1].offset)
+				_node(w,next_left,s-st.yard_half+(j+1)*22,roads[j+1].offset)
+				_node(w,next_right,s+st.yard_half-(j+1)*22,roads[j+1].offset)
 				_edge(w,c+"_LADDER_L"+lane+str(j),left,next_left,25)
 				_edge(w,c+"_LADDER_R"+lane+str(j),next_right,right,25)
 				left=next_left;right=next_right
+	for road in st.operating_roads:
+		if not road.get("storage",false):continue
+		var id: String="%s_P%d" % [c,road.road]
+		_node(w,id+"_STORAGE_A",s-350,road.offset)
+		_node(w,id+"_STORAGE_B",s+350,road.offset)
+		_edge(w,id,id+"_STORAGE_A",id+"_STORAGE_B",15)
+		st.platform_tracks.append(id);st.track_z.append(road.offset);st.platform_details[id]=road
 	st.platform_tracks.sort_custom(func(a,b):return int(a.split("_P")[1])<int(b.split("_P")[1]))
 
 func _section(w: RailWorld, section: Dictionary, index: int) -> void:
@@ -216,10 +231,10 @@ func _single_line_groups(w: RailWorld) -> void:
 
 static func build_traffic() -> RailWorld:
 	var w := build()
-	var calls: Array=w.stations.map(func(s):return s.code)
+	var calls: Array=w.stations.filter(func(s):return s.passenger_open).map(func(s):return s.code)
 	var definitions := [
 		["K1","Coastal Stopping Passenger · Ernakulam to Nagercoil","icf",1,calls,1,1],
-		["K2","Northbound Morning LHB","lhb",-1,["TUVR","KUMM","ERS"],3,4],
+		["K2","Northbound Morning LHB","lhb",-1,["TUVR","ERS"],3,4],
 		["K3","Coastal Vande Bharat · 8 cars","vb8",1,["KUMM","TUVR","ALLP","KYJ","QLN","TVC","NCJ"],3,5],
 		["K4","Northbound Backwater ICF","icf",-1,["AMPA","ALLP","MAKM","SRTL","TUVR","KUMM","ERS"],2,5],
 		["K5","Cape Vande Bharat · 16 cars","vb16",1,["SRTL","ALLP","KYJ","QLN","TVC","NCJ"],3,4],
@@ -238,10 +253,10 @@ static func build_traffic() -> RailWorld:
 		priorities[row[0]]=int(row[8])
 	for d in definitions:
 		var t := Train.new(d[0],1)
-		Stock.configure(t,d[2])
+		Stock.configure(t,d[2],"passenger" if d[0]=="K1" else "")
 		t.service_name=d[1]
 		t.dispatch_priority=priorities[t.id]
-		if t.id=="K1":t.max_speed=65.0/3.6;t.max_accel=.45
+		if t.id=="K1":t.max_speed=65.0/3.6
 		var stops := []
 		var minutes := 0.0
 		for i in d[4].size():
@@ -253,9 +268,18 @@ static func build_traffic() -> RailWorld:
 			if t.id=="K7" and station.code=="NYY":road=1
 			if i>0 and i<d[4].size()-1 and not w.graph.edges.has("%s_P%d" % [station.code,road]):road=1
 			var block := "%s_P%d" % [station.code,road]
+			# Book an actual passenger face, rather than relying on the dispatcher
+			# to repair a placeholder through-road stop after the service starts.
+			if station.platform_details[block].platform_width<=0:
+				for candidate in station.platform_tracks:
+					if station.platform_details[candidate].platform_width<=0:continue
+					var goal:={block=candidate,direction=d[3],s=preload("res://sim/berth_clearance.gd").marker(w,t,candidate,d[3])}
+					if not stops.is_empty() and is_inf(w._stop_distance(stops[-1].block,d[3],stops[-1].position_m,goal,[])):continue
+					block=candidate;break
+				assert(station.platform_details[block].platform_width>0,"No reachable passenger face at "+station.code)
 			if i>0: minutes += absf(station.s-stations[d[4][i-1]].s)/1000.0/(45.0 if t.id=="K1" else 75.0)*60.0+1.8
 			stops.append({name=station.name,block=block,direction=d[3],minutes_from_origin=snappedf(minutes,.1),
-				dwell_minutes=1.0 if t.id=="K1" else .5,position_m=w.graph.edges[block].length*.5+d[3]*t.length*.5})
+				dwell_minutes=1.0 if t.id=="K1" else .5,position_m=preload("res://sim/berth_clearance.gd").marker(w,t,block,d[3])})
 		t.path = [{edge=stops[0].block,dir=d[3]}]
 		w.trains[t.id] = t
 		var result := w.set_timetable(t.id,{name=d[1],departure=departures[t.id],day=1,stops=stops})

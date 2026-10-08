@@ -32,5 +32,5 @@ func test_goods_roads_are_not_passenger_platforms():
 	var w:=Kerala.build()
 	var station: Dictionary=w.stations.filter(func(s):return s.code=="QLN")[0]
 	for road in station.operating_roads:
-		if road.road>=6 and road.platform_width!=0:return "Goods road acquired a passenger platform"
+		if road.road>=7 and road.platform_width!=0:return "Goods road acquired a passenger platform"
 	return true

@@ -20,6 +20,7 @@ var emergency := false
 var automatic := false
 var service_name := "MEMU local"
 var stock_kind := "memu"       # simulation identity; rendering resolves its own assets
+var rake_profile := ""         # shared formation identity for geometry, mass, views and audio
 var cab_end := 1               # physical driving end, preserved when the head reverses
 var can_change_ends := true    # a single locomotive + coaches needs a run-round instead
 var destination := ""

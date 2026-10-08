@@ -21,7 +21,7 @@ func test_future_crossing_reserves_three_distinct_compatible_berths():
 func test_both_approaches_clear_but_occupied_vb_platform_stays_red():
 	var w:=_world();var e=_activate(w)
 	if w.aspect("ERS-S1")==RailWorld.Aspect.RED or w.aspect("TUVR-N3")==RailWorld.Aspect.RED:return "Safe approach was not admitted"
-	w.place_train(w.trains.K1,"TNU_KUMM_M2",w.graph.edges.TNU_KUMM_M2.length-80,1)
+	w.place_train(w.trains.K1,preload("res://tests/kerala_fixture.gd").kumbalam_approach(w),w.graph.edges[preload("res://tests/kerala_fixture.gd").kumbalam_approach(w)].length-80,1)
 	w.trains.K1.timetable.index=2;w.trains.K1.timetable.at_stop=false
 	e.run_cycle(true)
 	return w.aspect(w.next_signal(w.trains.K1).id)==RailWorld.Aspect.RED and w.trains.K3.path[0].edge=="KUMM_P3"
@@ -73,7 +73,7 @@ func test_new_plan_cannot_steal_an_existing_crossings_resources():
 func test_planned_opponent_stays_until_full_incoming_tail_arrives():
 	var w:=_world();var e=_activate(w)
 	w.place_train(w.trains.K2,"KUMM_P2",400,-1)
-	w.trains.K1.path=[{edge="KUMM_P3",dir=1},{edge="TNU_KUMM_M2",dir=1}]
+	w.trains.K1.path=[{edge="KUMM_P3",dir=1},{edge=preload("res://tests/kerala_fixture.gd").kumbalam_approach(w),dir=1}]
 	e.future_clearances.update(w,e,false)
 	if e.future_clearances.hold(w,w.trains.K2).is_empty():return "Released opponent before incoming tail cleared"
 	w.trains.K1.path=[{edge="KUMM_P3",dir=1}]

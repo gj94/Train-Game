@@ -7,63 +7,75 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.001,
+          "offset": 0.0,
           "osm_way": 1311408253,
           "service": "main",
           "road": 1,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 0.001
         },
         {
-          "offset": -8.757,
+          "offset": -16.0,
           "osm_way": 827738560,
           "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 0
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -8.757
         },
         {
-          "offset": -4.5,
+          "offset": -8.0,
           "osm_way": 514137864,
           "service": "siding",
           "mapped_offset": -3.852,
           "road": 3,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 0
+          "platform_width": 3.43,
+          "register_original_offset": -4.5
         },
         {
-          "offset": -14.291,
+          "offset": -24.0,
           "osm_way": 1453149441,
           "service": "main",
           "road": 4,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -14.291
         },
         {
-          "offset": -30.826,
+          "offset": -36.532,
           "osm_way": 285881585,
           "service": "main",
           "road": 5,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": -30.826
         },
         {
-          "offset": -34.823,
+          "offset": -44.532,
           "osm_way": 49015817,
           "service": "main",
           "road": 6,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -34.823
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 6,
+      "register_code": "ERS",
+      "register_name": "Ernakulam Junction",
+      "register_km": 0.0,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "TNU",
@@ -80,42 +92,57 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": false,
+      "register_platforms": 1,
+      "register_code": "TNU",
+      "register_name": "Tirunettur",
+      "register_km": null,
+      "register_scope": "Historical closed station"
     },
     {
       "code": "KUMM",
       "through": false,
       "roads": [
         {
-          "offset": 0.008,
+          "offset": 0.0,
           "osm_way": 602468921,
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 0
+          "platform_side": 1,
+          "platform_width": 0,
+          "register_original_offset": 0.008
         },
         {
-          "offset": 4.704,
+          "offset": 8.0,
           "osm_way": 640855308,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 0,
+          "register_original_offset": 4.704
         },
         {
-          "offset": -5.094,
+          "offset": -8.0,
           "osm_way": 640855306,
           "service": "siding",
           "road": 3,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -5.094
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "KUMM",
+      "register_name": "Kumbalam",
+      "register_km": 7.71,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "AROR",
@@ -132,7 +159,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "AROR",
+      "register_name": "Aroor",
+      "register_km": 12.81,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "EZP",
@@ -149,7 +182,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "EZP",
+      "register_name": "Ezhupunna",
+      "register_km": 18.23,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "TUVR",
@@ -185,7 +224,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "TUVR",
+      "register_name": "Turavur",
+      "register_km": 23.3,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "VAY",
@@ -202,7 +247,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "VAY",
+      "register_name": "Vayalar",
+      "register_km": 26.97,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "SRTL",
@@ -237,7 +288,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 3,
+      "register_code": "SRTL",
+      "register_name": "Cherthala",
+      "register_km": 33.31,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "TRVZ",
@@ -254,7 +311,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "TRVZ",
+      "register_name": "Tiruvizha",
+      "register_km": 39.13,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "MAKM",
@@ -290,7 +353,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "MAKM",
+      "register_name": "Mararikulam",
+      "register_km": 44.23,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "KAVR",
@@ -307,7 +376,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "KAVR",
+      "register_name": "Kalavur",
+      "register_km": 47.58,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "TMPY",
@@ -324,7 +399,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "TMPY",
+      "register_name": "Tumboli",
+      "register_km": 53.0,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "ALLP",
@@ -359,7 +440,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 3,
+      "register_code": "ALLP",
+      "register_name": "Alappuzha",
+      "register_km": 57.0,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "PUPR",
@@ -376,7 +463,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "PNPR",
+      "register_name": "Punnapra",
+      "register_km": 64.07,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "AMPA",
@@ -411,7 +504,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 3,
+      "register_code": "AMPA",
+      "register_name": "Ambalappuzha",
+      "register_km": 69.16,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "TZH",
@@ -424,20 +523,28 @@
           "road": 1,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 0.0
         },
         {
-          "offset": -6.027,
+          "offset": -8.0,
           "osm_way": 619910178,
           "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 0,
+          "register_original_offset": -6.027
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "TZH",
+      "register_name": "Takazhi",
+      "register_km": 74.84,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "KVTA",
@@ -463,7 +570,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "KVTA",
+      "register_name": "Karuvatta",
+      "register_km": 81.49,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "HAD",
@@ -507,7 +620,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "HAD",
+      "register_name": "Haripad",
+      "register_km": 87.3,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "CHPD",
@@ -520,38 +639,48 @@
           "road": 1,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 0.0
         },
         {
-          "offset": -5.751,
+          "offset": -8.0,
           "osm_way": 1034621330,
           "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -5.751
         },
         {
-          "offset": 10.545,
+          "offset": 8.296,
           "osm_way": 640907608,
           "service": "siding",
           "road": 3,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": 10.545
         },
         {
-          "offset": 17.08,
+          "offset": 16.296,
           "osm_way": 640907610,
           "service": "siding",
           "road": 4,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 0,
+          "register_original_offset": 17.08
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 3,
+      "register_code": "CHPD",
+      "register_name": "Cheppad",
+      "register_km": 92.58,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "KYJ",
@@ -604,20 +733,27 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 5,
+      "register_code": "KYJ",
+      "register_name": "Kayamkulam Junction",
+      "register_km": 100.34,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "OCR",
       "through": false,
       "roads": [
         {
-          "offset": -0.0,
+          "offset": 0.0,
           "osm_way": 619142868,
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -0.0
         },
         {
           "offset": 8.314,
@@ -625,52 +761,74 @@
           "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 0,
+          "register_original_offset": 8.314
         },
         {
-          "offset": 11.642,
+          "offset": 16.314,
           "osm_way": 641467871,
           "service": "siding",
           "road": 3,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 11.642
+        },
+        {
+          "road": 4,
+          "offset": -10.0,
+          "lane": "D",
+          "service": "siding",
+          "osm_way": null,
+          "platform_width": 0,
+          "platform_side": 1,
+          "evidence": "Reconstructed position for CSV running-loop/platform inventory",
+          "register_original_offset": -10
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "OCR",
+      "register_name": "Ochira",
+      "register_km": 106.24,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "KPY",
       "through": false,
       "roads": [
         {
-          "offset": -0.0,
+          "offset": 0.0,
           "osm_way": 661604986,
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -0.0
         },
         {
-          "offset": 5.885,
+          "offset": 8.0,
           "osm_way": 808639279,
           "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 0
+          "platform_side": 1,
+          "platform_width": 0,
+          "register_original_offset": 5.885
         },
         {
-          "offset": 10.597,
+          "offset": 16.0,
           "osm_way": 641478855,
           "service": "siding",
           "road": 3,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 10.597
         },
         {
           "offset": -13.058,
@@ -678,8 +836,9 @@
           "service": "siding",
           "road": 4,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -13.058
         },
         {
           "offset": 29.688,
@@ -688,11 +847,20 @@
           "road": 5,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 0,
+          "storage": true,
+          "evidence": "CSV maps four running roads plus industrial spurs/stubs; this fifth road is storage, not a passing loop. Connection unresolved.",
+          "register_original_offset": 29.688
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 3,
+      "register_code": "KPY",
+      "register_name": "Karunagapalli",
+      "register_km": 113.93,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "STKT",
@@ -736,7 +904,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "STKT",
+      "register_name": "Sasthankotta",
+      "register_km": 121.59,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "MQO",
@@ -762,7 +936,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "MQO",
+      "register_name": "Munroturuttu",
+      "register_km": 126.11,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "PRND",
@@ -806,123 +986,147 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "PRND",
+      "register_name": "Perinad",
+      "register_km": 131.99,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "QLN",
       "through": false,
       "roads": [
         {
-          "offset": -0.0,
+          "offset": 0.0,
           "osm_way": 242028390,
           "service": "main",
           "road": 1,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": -0.0
         },
         {
-          "offset": -4.833,
+          "offset": -8.0,
           "osm_way": 70655547,
           "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -4.833
         },
         {
-          "offset": 14.288,
+          "offset": 11.121,
           "osm_way": 242027823,
           "service": "siding",
           "road": 3,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": 14.288
         },
         {
-          "offset": 18.231,
+          "offset": 19.121,
           "osm_way": 242028206,
           "service": "siding",
           "road": 4,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 18.231
         },
         {
-          "offset": 32.585,
+          "offset": 29.418,
           "osm_way": 827738556,
           "service": "siding",
           "road": 5,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": 32.585
         },
         {
-          "offset": 45.62,
+          "offset": 42.453,
           "osm_way": 550863735,
           "service": "siding",
           "road": 6,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 0
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": 45.62
         },
         {
-          "offset": 50.406,
+          "offset": 50.453,
           "osm_way": 916892584,
           "service": "siding",
           "road": 7,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 0
+          "platform_width": 0,
+          "register_original_offset": 50.406
         },
         {
-          "offset": 55.259,
+          "offset": 58.453,
           "osm_way": 242026931,
           "service": "siding",
           "road": 8,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 0
+          "platform_width": 0,
+          "register_original_offset": 55.259
         },
         {
-          "offset": 61.793,
+          "offset": 66.453,
           "osm_way": 242026932,
           "service": "siding",
           "road": 9,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 0
+          "platform_width": 0,
+          "register_original_offset": 61.793
         },
         {
-          "offset": 68.684,
+          "offset": 74.453,
           "osm_way": 519646401,
           "service": "siding",
           "road": 10,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 0
+          "platform_width": 0,
+          "register_original_offset": 68.684
         },
         {
-          "offset": 84.453,
+          "offset": 82.453,
           "osm_way": 242027571,
           "service": "siding",
           "road": 11,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 0
+          "platform_side": 1,
+          "platform_width": 0,
+          "register_original_offset": 84.453
         },
         {
-          "offset": 88.539,
+          "offset": 90.453,
           "osm_way": 632923357,
           "service": "siding",
           "road": 12,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 0
+          "platform_width": 0,
+          "register_original_offset": 88.539
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 6,
+      "register_code": "QLN",
+      "register_name": "Kollam Junction",
+      "register_km": 141.18,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "IRP",
@@ -949,7 +1153,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "IRP",
+      "register_name": "Iravipuram",
+      "register_km": 145.6,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "MYY",
@@ -975,7 +1185,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "MYY",
+      "register_name": "Mayyanad",
+      "register_km": 149.93,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "PVU",
@@ -987,26 +1203,29 @@
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": 0.0
         },
         {
-          "offset": -13.982,
+          "offset": -11.856,
           "osm_way": 519426849,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 0,
+          "register_original_offset": -13.982
         },
         {
-          "offset": 4.541,
+          "offset": 8.0,
           "osm_way": 641573557,
           "service": "siding",
           "road": 3,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 4.541
         },
         {
           "offset": -19.856,
@@ -1014,12 +1233,19 @@
           "service": "siding",
           "road": 4,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -19.856
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 3,
+      "register_code": "PVU",
+      "register_name": "Paravur",
+      "register_km": 153.5,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "KFI",
@@ -1046,7 +1272,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "KFI",
+      "register_name": "Kappil",
+      "register_km": 158.03,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "EVA",
@@ -1072,7 +1304,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "EVA",
+      "register_name": "Edavai",
+      "register_km": 160.88,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "VAK",
@@ -1116,7 +1354,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 3,
+      "register_code": "VAK",
+      "register_name": "Varkala Sivagiri",
+      "register_km": 164.66,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "AMY",
@@ -1142,7 +1386,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "AMY",
+      "register_name": "Akathumuri",
+      "register_km": 171.11,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "KVU",
@@ -1154,26 +1404,29 @@
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": 0.0
         },
         {
-          "offset": -13.023,
+          "offset": -10.856,
           "osm_way": 514385383,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 0,
+          "register_original_offset": -13.023
         },
         {
-          "offset": 5.092,
+          "offset": 8.0,
           "osm_way": 514385380,
           "service": "siding",
           "road": 3,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 5.092
         },
         {
           "offset": -18.856,
@@ -1181,12 +1434,19 @@
           "service": "siding",
           "road": 4,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -18.856
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 3,
+      "register_code": "KVU",
+      "register_name": "Kadakavur",
+      "register_km": 173.87,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "CRY",
@@ -1212,7 +1472,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "CRY",
+      "register_name": "Chirayinkeezh",
+      "register_km": 176.93,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "PGZ",
@@ -1238,7 +1504,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "PGZ",
+      "register_name": "Perunguzhi",
+      "register_km": 180.97,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "MQU",
@@ -1273,7 +1545,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "MQU",
+      "register_name": "Murukkampuzha",
+      "register_km": 184.38,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "KXP",
@@ -1299,7 +1577,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "KXP",
+      "register_name": "Kaniyapuram",
+      "register_km": 188.27,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "KZK",
@@ -1312,55 +1596,83 @@
           "road": 1,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 0.0
         },
         {
-          "offset": -5.423,
+          "offset": -8.0,
           "osm_way": 90772767,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 0
+          "platform_width": 3.43,
+          "register_original_offset": -5.423
         },
         {
-          "offset": -10.069,
+          "offset": -16.0,
           "osm_way": 641627329,
           "service": "siding",
           "road": 3,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -10.069
+        },
+        {
+          "road": 4,
+          "offset": 8.0,
+          "lane": "D",
+          "service": "siding",
+          "osm_way": null,
+          "platform_width": 0,
+          "platform_side": 1,
+          "evidence": "Reconstructed position for CSV running-loop/platform inventory",
+          "register_original_offset": 10
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 3,
+      "register_code": "KZK",
+      "register_name": "Kazhakuttam",
+      "register_km": 192.29,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "VELI",
       "through": true,
       "roads": [
         {
-          "offset": -0.154,
+          "offset": 0.0,
           "osm_way": 608428982,
           "service": "main",
           "road": 1,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": -0.154
         },
         {
-          "offset": -5.63,
+          "offset": -8.0,
           "osm_way": 90772767,
           "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 0,
+          "register_original_offset": -5.63
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "VELI",
+      "register_name": "Veli",
+      "register_km": 196.48,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "TVCN",
@@ -1372,31 +1684,73 @@
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 0
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": 0.0
         },
         {
-          "offset": -5.598,
+          "offset": -8.0,
           "osm_way": 762403625,
           "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -5.598
         },
         {
-          "offset": 4.5,
+          "offset": 8.0,
           "osm_way": 519426852,
           "service": "siding",
           "mapped_offset": 3.861,
           "road": 3,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 4.5
+        },
+        {
+          "road": 4,
+          "offset": -20.402,
+          "lane": "U",
+          "service": "siding",
+          "osm_way": null,
+          "platform_width": 3.43,
+          "platform_side": 1,
+          "evidence": "Reconstructed position for CSV running-loop/platform inventory",
+          "register_original_offset": -18
+        },
+        {
+          "road": 5,
+          "offset": 16.0,
+          "lane": "D",
+          "service": "siding",
+          "osm_way": null,
+          "platform_width": 3.43,
+          "platform_side": 1,
+          "evidence": "Reconstructed position for CSV running-loop/platform inventory",
+          "register_original_offset": 18
+        },
+        {
+          "road": 6,
+          "offset": -29.402,
+          "lane": "U",
+          "service": "siding",
+          "osm_way": null,
+          "platform_width": 3.43,
+          "platform_side": 1,
+          "evidence": "Reconstructed position for CSV running-loop/platform inventory",
+          "register_original_offset": -27
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 6,
+      "register_code": "TVCN",
+      "register_name": "Thiruvananthapuram North",
+      "register_km": 199.42,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "TVP",
@@ -1422,7 +1776,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "TVP",
+      "register_name": "Thiruvananthapuram Pettah",
+      "register_km": 203.17,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "TVC",
@@ -1475,7 +1835,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 5,
+      "register_code": "TVC",
+      "register_name": "Thiruvananthapuram Central",
+      "register_km": 205.66,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "NEM",
@@ -1501,7 +1867,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "TVCS",
+      "register_name": "Thiruvananthapuram South",
+      "register_km": 213.38,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "BRAM",
@@ -1518,7 +1890,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "BRAM",
+      "register_name": "Balaramapuram",
+      "register_km": 218.89,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "NYY",
@@ -1544,7 +1922,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "NYY",
+      "register_name": "Neyyattinkara",
+      "register_km": 222.76,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "AMVA",
@@ -1561,7 +1945,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "AMVA",
+      "register_name": "Amaravila",
+      "register_km": 225.68,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "DAVM",
@@ -1574,11 +1964,21 @@
           "road": 1,
           "lane": "D",
           "platform_side": -1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "platform_sides": [
+            -1,
+            1
+          ]
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Two CSV platform positions on opposite sides of the single mapped road. Track commissioning and exact positions unresolved.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "DAVM",
+      "register_name": "Dhanuvachapuram",
+      "register_km": 229.18,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "PASA",
@@ -1604,7 +2004,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "PASA",
+      "register_name": "Parassala",
+      "register_km": 235.24,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "KZTW",
@@ -1621,7 +2027,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "KZTW",
+      "register_name": "Kulitturai West",
+      "register_km": 240.41,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "KZT",
@@ -1648,7 +2060,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "KZT",
+      "register_name": "Kulitturai",
+      "register_km": 243.55,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "PYD",
@@ -1665,7 +2083,13 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "PYD",
+      "register_name": "Palliyadi",
+      "register_km": 249.79,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "ERL",
@@ -1703,7 +2127,13 @@
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
       "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
       "commissioning_review": "2026-10-08",
-      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027",
+      "passenger_open": true,
+      "register_platforms": 2,
+      "register_code": "ERL",
+      "register_name": "Eraniel",
+      "register_km": 258.3,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "VRLR",
@@ -1732,7 +2162,13 @@
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
       "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
       "commissioning_review": "2026-10-08",
-      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027",
+      "passenger_open": true,
+      "register_platforms": 1,
+      "register_code": "VRLR",
+      "register_name": "Viranialur",
+      "register_km": 265.75,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "NJT",
@@ -1771,70 +2207,88 @@
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
       "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
       "commissioning_review": "2026-10-08",
-      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027",
+      "passenger_open": true,
+      "register_platforms": 3,
+      "register_code": "NJT",
+      "register_name": "Nagercoil Town",
+      "register_km": 271.67,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     },
     {
       "code": "NCJ",
       "through": false,
       "roads": [
         {
-          "offset": -0.001,
+          "offset": 0.0,
           "osm_way": 992276367,
           "service": "main",
           "road": 1,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": -0.001
         },
         {
-          "offset": -4.5,
+          "offset": -8.0,
           "osm_way": 992276369,
           "service": "main",
           "mapped_offset": -3.534,
           "road": 2,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 0
+          "platform_width": 0,
+          "register_original_offset": -4.5
         },
         {
-          "offset": -8.659,
+          "offset": -16.0,
           "osm_way": 96236046,
           "service": "siding",
           "road": 3,
           "lane": "U",
-          "platform_side": -1,
-          "platform_width": 0
+          "platform_side": 1,
+          "platform_width": 0,
+          "register_original_offset": -8.659
         },
         {
-          "offset": 13.764,
+          "offset": 8.0,
           "osm_way": 514385391,
           "service": "siding",
           "road": 4,
           "lane": "D",
-          "platform_side": -1,
-          "platform_width": 3.43
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": 13.764
         },
         {
-          "offset": 19.888,
+          "offset": 16.0,
           "osm_way": 383031403,
           "service": "siding",
           "road": 5,
           "lane": "D",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 3.43,
+          "register_original_offset": 19.888
         },
         {
-          "offset": -34.726,
+          "offset": -42.067,
           "osm_way": 514385387,
           "service": "siding",
           "road": 6,
           "lane": "U",
           "platform_side": 1,
-          "platform_width": 0
+          "platform_width": 3.43,
+          "register_original_offset": -34.726
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers."
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "passenger_open": true,
+      "register_platforms": 4,
+      "register_code": "NCJ",
+      "register_name": "Nagercoil Junction",
+      "register_km": 276.71,
+      "register_scope": "Reported platform positions; not independently verified current operational inventory"
     }
   ],
   "sections": [
@@ -2340,5 +2794,11 @@
       "note": "Commissioned double line; prior OSM construction classification superseded by dated report.",
       "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
     }
-  ]
+  ],
+  "station_register": {
+    "file": "station-register.csv",
+    "sha256": "069b6e591029b8e9c04123385c8b2fc7ba731a0af936fdbd000628fc08ee0a00",
+    "applied": "2026-10-09",
+    "authority": "User requested CSV platform counts, including reported/disputed figures."
+  }
 }

@@ -3,7 +3,7 @@ const Stock := preload("res://sim/stock/ported_stock.gd")
 const Fleet := preload("res://sim/layouts/ported_fleet.gd")
 
 func test_imported_formation_geometry():
-	var expected := {"icf": [8, 34, 176.639], "lhb": [8, 34, 188.56], "vb8": [8, 32, 192.0], "vb16": [16, 64, 384.0]}
+	var expected := {"icf": [23, 94, 511.094], "lhb": [23, 94, 548.56], "vb8": [8, 32, 192.0], "vb16": [16, 64, 384.0]}
 	for key in expected:
 		var formation := Stock.formation(key)
 		var data: Array = expected[key]
@@ -50,10 +50,29 @@ func test_imported_consists_have_safe_station_capacity():
 
 func test_imported_family_and_vb_handedness():
 	for key in ["icf", "lhb"]:
-		var cars := Stock.formation(key)
-		for i in 7:
-			if cars[i + 1].model != key + "_" + Stock.CLASSES[i]: return "missing coach class"
+		for profile in Stock.profiles(key):
+			var cars := Stock.formation(key,profile)
+			if cars[0].model != "wap7": return "missing locomotive"
+			for i in range(1,cars.size()):
+				if not cars[i].model.begins_with(key+"_"): return "mixed incompatible coach families"
 	for key in ["vb8", "vb16"]:
 		var cars := Stock.formation(key)
 		if cars.front().reverse or not cars.back().reverse: return "outer cabs must face outward"
+	return true
+
+func test_long_rake_mass_traction_and_stopping_passenger_geometry():
+	for key in ["icf","lhb"]:
+		var express := Train.new("E",1)
+		var local := Train.new("P",1)
+		Stock.configure(express,key)
+		Stock.configure(local,key,"passenger")
+		if express.mass != 123000+22*(45000 if key=="icf" else 54000): return "rake mass omits vehicles"
+		if local.length >= express.length or local.mass >= express.mass: return "passenger profile is not shared by mass/geometry"
+		if absf(express.max_accel*express.mass-322600)>1 or express.max_accel>=local.max_accel: return "WAP tractive effort not respected"
+		if Stock.formation(key,"passenger").size()!=21 or Stock.sound_axles(key,false,"passenger").size()!=86: return "wrong stopping rake"
+		for car in Stock.formation(key,"passenger").slice(1):
+			if car.model not in [key+"_gs",key+"_2s"]: return "sleeper/AC showcase in stopping passenger"
+		for reversed in [false,true]:
+			for axle in Stock.sound_axles(key,reversed,"passenger"):
+				if axle.x<=0 or axle.x>=local.length: return "passenger axle outside occupied body"
 	return true

@@ -64,7 +64,9 @@ func _check() -> void:
 				check(game.tv.passenger_transform().origin.is_finite(), choice + " seated viewpoint")
 				key(game, KEY_HOME)
 				key(game, KEY_PAGEDOWN)
-			check(seen.size() == (7 if choice in ["icf", "lhb"] else (5 if choice == "vb8" else 6)), choice + " all passenger types reachable")
+			var expected_types:={}
+			for car in game.tv.passenger_coaches():expected_types[game.tv.formation[car].model]=true
+			check(seen==expected_types, choice + " all passenger types in the service rake reachable")
 			key(game, KEY_TAB)
 		if views_only:
 			current_scene = null
@@ -72,19 +74,22 @@ func _check() -> void:
 			await process_frame
 			continue
 		# W and S go through real held-key handling, then let the AI approach red.
+		game._pilot_camera()
+		game._set_paused(false)
+		game._physics_process(1.0 / 60) # Neutral controls re-arm after closing menus.
 		var press := InputEventKey.new()
 		press.physical_keycode = KEY_W
 		press.pressed = true
 		Input.parse_input_event(press)
 		Input.flush_buffered_events()
-		game._set_paused(false)
-		for i in 120: game._physics_process(1.0 / 60)
+		# Allow the held handle to ramp and the full-mass 22-coach train to move.
+		for i in 480: game._physics_process(1.0 / 60)
 		var release := InputEventKey.new()
 		release.physical_keycode = KEY_W
 		Input.parse_input_event(release)
 		Input.flush_buffered_events()
 		game._set_paused(true)
-		check(train.speed > .2 and train.controller > .9, choice + " throttle drives train")
+		check(train.speed > .2 and train.controller > .9, choice + " throttle drives train (speed %.3f, handle %.3f)" % [train.speed,train.controller])
 		key(game, KEY_SPACE)
 		game.world.step(10)
 		check(train.speed == 0 and train.emergency, choice + " emergency braking")
@@ -116,18 +121,18 @@ func _check() -> void:
 		quit(1 if failures else 0)
 		return
 	# Exercise an accepted menu choice, not only launch metadata.
-	set_meta("imported_fleet", "wap7")
+	set_meta("imported_fleet", "icf")
 	change_scene_to_file("res://game/main.tscn")
 	await process_frame
 	await process_frame
 	var game = current_scene
 	key(game, KEY_F9)
 	check_fleet_menu(game, "reloaded fleet")
-	game._ui_action("fleet:wag12")
+	game._ui_action("fleet:vb16")
 	game._confirm_action()
 	await process_frame
 	await process_frame
-	check(current_scene.imported_fleet == "wag12" and current_scene.tv.cars.size() == 2, "confirmed menu selection reloads chosen train")
+	check(current_scene.imported_fleet == "vb16" and current_scene.tv.cars.size() == 16, "confirmed menu selection reloads chosen train")
 	print("Imported fleet playable checks: %d failures" % failures)
 	quit(1 if failures else 0)
 

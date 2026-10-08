@@ -17,6 +17,13 @@ func run() -> void:
 	var pack := Pack.defaults()
 	var live := Pack.build(pack).world as RailWorld
 	editor.open(live,pack)
+	check(editor.rake_field.item_count==2,"WAP rake picker offers express and seated profiles")
+	editor.rake_field.item_selected.emit(1)
+	check(editor.draft.services[0].rake=="passenger" and Pack.build(editor.draft).world.trains.T1.length<live.trains.T1.length,"rake selection updates simulation length")
+	editor.rake_field.item_selected.emit(0)
+	editor.selected=2;editor._load_service()
+	check(editor.rake_field.disabled and editor.rake_field.item_count==1,"Vande Bharat retains fixed car count")
+	editor.selected=0;editor._load_service()
 	editor._test_traffic()
 	check(editor._trial!=null,"rehearsal starts on validated draft")
 	var started := Time.get_ticks_msec()

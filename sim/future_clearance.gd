@@ -45,9 +45,10 @@ func propose(w, engine, t: Train) -> Dictionary:
 	var occ: Dictionary=w.occupancy()
 	var free: Array=st.platform_tracks.filter(func(road):return not occ.has(road) and not _reserved(w,road))
 	var own_free:=Berths.roads(w,t,st,approach.edge,t.path[0].dir,free)
-	# This transaction handles one free berth and one occupied future berth.
+	# The stopping train may have no free passenger face yet (one-platform yard).
+	# The opponent still needs a separate usable road and a free escape berth.
 	# More complicated yards keep the ordinary conservative admission policy.
-	if own_free.size()!=1:return {}
+	if own_free.size()>1:return {}
 	for road: String in st.platform_tracks:
 		if not occ.has(road) or _reserved(w,road):continue
 		var v: Train=w.trains[occ[road]]

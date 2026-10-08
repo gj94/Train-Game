@@ -42,11 +42,22 @@ The pipeline preserves source IDs, polygon holes and unrounded metric geometry.
 See `docs/kerala-coast.md` for operation, reconstruction limits and commands.
 
 The 8 October station review is recorded in `station-audit.json` and
-`docs/kerala-station-audit.md`. Browser-read evidence is retained in the two
+`docs/kerala-station-browser-audit.md`. Browser-read evidence is retained in the two
 `station-*-evidence.tsv` files; regenerate the audit and multilingual signs with
 `tools/maps/audit_stations.py`. Published platform faces and total yard tracks
 are not interchangeable with the operating through roads in `operations.json`.
 Unresolved differences remain explicit in the audit.
+
+The user's original 56-row `station-register.csv` is preserved verbatim, including
+its source links, revision dates and uncertainty notes. The user selected its
+reported platform totals for gameplay on 9 October; Veli uses its CSV IRI count
+of one where the CSV does not resolve the dispute. `station-register-decisions.json`
+records the choices. `tools/maps/apply_station_register.py` applies the counts,
+names and Tirunettur closure after base operations/sign generation, and
+`tools/maps/verify_station_register.py` produces the comparison in
+`docs/kerala-station-audit.md`. Track totals, running roads, storage, platform
+bodies and numbered positions remain distinct. The user-provided reference does
+not establish new licences for linked sources or certify current yard diagrams.
 
 `tools/maps/station_corrections.py` applies dated commissioning corrections to
 the OSM-derived operations, including Eraniel–Nagercoil Town–Nagercoil Junction

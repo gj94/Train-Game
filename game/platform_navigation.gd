@@ -10,17 +10,19 @@ var start := 0.0
 var end := 0.0
 var obstacles: Array[Rect2] = []
 
-func _init(w: RailWorld, road: String="") -> void:
+func _init(w: RailWorld, road: String="",requested_side: int=0) -> void:
 	graph=w.graph
 	if road.is_empty(): return
 	var station:=preload("res://sim/priority_dispatch.gd").station(w,road)
 	if station.is_empty(): return
 	var detail: Dictionary=station.get("platform_details",{}).get(road,{})
 	if detail.get("platform_width",0)<=0: return
-	edge=road;side=detail.platform_side;width=detail.platform_width
+	if requested_side!=0 and not detail.get("platform_sides",[detail.platform_side]).any(func(value):return is_equal_approx(float(value),float(requested_side))):return
+	edge=road;side=detail.platform_side if requested_side==0 else requested_side;width=detail.platform_width
 	var midpoint: float=graph.edges[edge].length*.5
-	var half:=minf(320,midpoint-200)
-	start=midpoint-half;end=midpoint+half
+	var span:=preload("res://sim/berth_clearance.gd").platform_span(w,road)
+	var half: float=(span.y-span.x)*.5
+	start=span.x;end=span.y
 	var centre:=2.02+width*.5
 	var shelter:=48.0 if station.get("through_halt",false) else 180.0
 	for s in range(ceili(midpoint-shelter),floori(midpoint+shelter),12):

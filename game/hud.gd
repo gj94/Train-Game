@@ -14,6 +14,7 @@ Tab cab / exterior · A selected train AI / manual
 4 pilot seat · Q left head-out / return · Shift+E right head-out / return
 E stand up / sit down near a seat. On foot: WASD walk, Shift run, C crouch, L headlamp.
 Right-drag looks all around; left click uses the seat / doorway / gangway prompt.
+WAP-7 has no coach gangway. At a platform stop: cab side door → platform → coach door.
 9 opens dispatch while walking. Current driver and power/brake stay set.
 F follow train · 1 / 2 / 3 visit a station
 Outside: right-drag orbit, left-drag pan, wheel zoom
@@ -239,7 +240,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Train & view actions…", "controller_actions")
 			_button(_buttons, "Controller settings & layout…", "controllers")
 			_button(_buttons, "Service designer / import / export  ·  F5", "services")
-			_button(_buttons, "Passenger views…", "passengers")
+			_button(_buttons, "Go to passenger coach…", "passengers")
 			for rate in [1,2,4,8,16,32]:
 				_button(_buttons,"Time ×%d%s" % [rate," · normal" if rate==1 else " · fast forward"],"time:"+str(rate))
 			_button(_buttons, "Clean view  ·  F4", "clean")
@@ -253,9 +254,15 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Quit to desktop…", "quit")
 		"controllers", "controller_actions", "train_controls", "view_controls", "sound_controls", "points":
 			ControllerMenus.build(self, kind)
+		"coaches":
+			_heading.text = "GO TO PASSENGER COACH"
+			_body.text = "Works while moving, including WAP-7 trains.\nYou keep your service, power/brake and AI setting. Y / E stands to walk inside; LS click returns to the pilot.\nThis is a viewpoint transfer; WAP-7 has no passenger gangway."
+			for coach in controller_options.get("coaches",[]):_button(_buttons,coach.label,"coach:"+str(coach.index))
+			_button(_buttons,"Back","passengers")
 		"passengers":
-			_heading.text = "PASSENGER VIEWS"
-			_body.text = "Ride inside the first, middle or last passenger coach.\nThe camera and sound follow that coach. Luggage and generator vans are skipped.\n\n[b]1 / 2 / 3[/b] switch views while riding; [b]PgUp/PgDn[/b] visit any coach."
+			_heading.text = "PASSENGER COACHES"
+			_body.text = "Go to a coach while moving, including WAP-7 trains. Your driving controls stay set.\nY / E stands to walk inside; LS click returns to the pilot.\n[b]1 / 2 / 3[/b] selects first/middle/last; [b]PgUp/PgDn[/b] visits any coach."
+			_button(_buttons,"Go to any passenger coach…","coaches")
 			_button(_buttons, "First passenger coach  ·  Alt+1", "pax:0")
 			_button(_buttons, "Middle passenger coach  ·  Alt+2", "pax:1")
 			_button(_buttons, "Last passenger coach  ·  Alt+3", "pax:2")
@@ -271,7 +278,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Back  ·  Esc / F1", "close_help")
 		"fleet":
 			_heading.text = "TRAFFIC & INDIAN RAIL FLEET"
-			_body.text = "Start a random service in mixed traffic, or choose a solo drive below.\nICF/LHB showcases contain all seven coach classes.\nDetailed Vande Bharat: full-size 192 m / 384 m formations."
+			_body.text = "Start a random service in mixed traffic, or choose a solo drive below.\nWAP-7 expresses have 22 coaches of one family: blue ICF or red/grey LHB.\nDetailed Vande Bharat: full-size 192 m / 384 m formations."
 			_button(_buttons, "New random traffic service", "traffic")
 			for choice in PortedStock.CHOICES:
 				_button(_buttons, PortedStock.LABELS[choice], "fleet:" + choice)

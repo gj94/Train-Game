@@ -69,6 +69,9 @@ def build():
     from station_corrections import apply
     out=apply(out)
     (ROOT/'data/routes/kerala_coast/operations.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    if (ROOT/'data/routes/kerala_coast/station-register.csv').exists():
+        from apply_station_register import build as apply_register
+        apply_register()
     for st in stations:print(st['code'],len(st['roads']),'through' if st['through'] else 'loops',[(r['road'],r['offset'],r['lane']) for r in st['roads']])
 
 if __name__=='__main__':build()

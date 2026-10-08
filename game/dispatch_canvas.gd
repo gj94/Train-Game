@@ -176,10 +176,12 @@ func _draw() -> void:
 				if not st.is_empty():
 					var detail: Dictionary=st.get("platform_details",{}).get(id,{})
 					if detail.get("platform_width",1)>0:
-						var a:=_edge_p(id,.22);var b:=_edge_p(id,.78)
-						var side: float=detail.get("platform_side",-1)
-						var rect:=Rect2(Vector2(minf(a.x,b.x),midpoint.y+side*11-4),Vector2(absf(b.x-a.x),8))
-						draw_rect(rect,Color("#233a4a"))
+						var ends:=preload("res://sim/berth_clearance.gd").platform_span(world,id)
+						var a:=_edge_p(id,ends.x/length);var b:=_edge_p(id,ends.y/length)
+						for side in detail.get("platform_sides",[detail.get("platform_side",-1)]):
+							var rect:=Rect2(Vector2(minf(a.x,b.x),midpoint.y+float(side)*11-4),Vector2(absf(b.x-a.x),8))
+							draw_rect(rect,Color("#233a4a"))
+					name+=" · "+("Platform" if detail.get("platform_width",0)>0 else ("Storage" if detail.get("storage",false) else "Through"))
 				_text(midpoint+Vector2(-30,-14),name,RAIL,11)
 	for index in world.stations.size():
 		var st: Dictionary=world.stations[index]
@@ -187,12 +189,16 @@ func _draw() -> void:
 		if p.x<0 or p.x>size.x:continue
 		if span>18000 and not st.get("major",true):continue
 		if span>100000 and index%4!=0 and not st.code in ["ERS","ALLP","QLN","TVC","NCJ"]:continue
-		var caption: String=st.code if span>18000 else st.name
+		var caption: String=st.get("display_code",st.code) if span>18000 else st.name
 		var width: float=ThemeDB.fallback_font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x
 		var x:=clampf(p.x-width*.5,8,maxf(8,size.x-width-8))
 		draw_line(Vector2(p.x,56),Vector2(p.x,size.y*.30),Color("#243949"))
 		_text(Vector2(x,30),caption,AMBER if index==focus_index else TEXT,16)
-		if span<18000:_text(Vector2(x,48),"%s  ·  %d roads" % [st.code,st.get("platform_tracks",[]).size()],RAIL,11)
+		if span<18000:
+			var faces:=preload("res://sim/platform_faces.gd").entries(st).size()
+			var inventory: String="%s · %d platform%s · %d tracks" % [st.get("display_code",st.code),faces,"" if faces==1 else "s",st.get("platform_tracks",[]).size()]
+			if not st.get("passenger_open",true):inventory+=" · closed"
+			_text(Vector2(x,48),inventory,RAIL,11)
 		_hits.append({key="station:"+str(index),kind="station",id=str(index),rect=Rect2(Vector2(x,7),Vector2(maxf(width,40),46)),p=Vector2(p.x,29)})
 	if span<10000:
 		for id in world.graph.switches:

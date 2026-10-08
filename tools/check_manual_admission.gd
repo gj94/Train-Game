@@ -10,7 +10,7 @@ func _init() -> void:
 		var engine=w.dispatcher();engine.enabled=true;engine.manual_service="K1"
 		t.automatic=false
 		if delay<0:
-			w.place_train(t,"TNU_KUMM_M2",w.graph.edges.TNU_KUMM_M2.length-100,1)
+			w.place_train(t,preload("res://tests/kerala_fixture.gd").kumbalam_approach(w),w.graph.edges[preload("res://tests/kerala_fixture.gd").kumbalam_approach(w)].length-100,1)
 			t.timetable.index=2;t.timetable.at_stop=false
 		var passed:=false
 		var cycle_seconds:=0.0

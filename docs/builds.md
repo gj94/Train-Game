@@ -10,7 +10,7 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R9-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R10-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
@@ -47,7 +47,19 @@ and advance home routing from the last clear automatic block. Source checks:
 304 headless tests, four-formation ride integration, native walking and onboard
 audio capture, plus the complete 32-service scenario. See ride-dynamics.md.
 
-Current retained downloads are R9, R8, R7 and the R6 fallback. On 8 October the older
+R10 replaces the short showcase formations with 20-coach seated / 22-coach express
+rakes, consistent ICF/LHB families and full-mass WAP traction. Station roads and
+stopping markers account for signals, turnout fouling limits and platform ends.
+It adds intermittent positional coach-body rattles, stronger on ICF, and clearer
+WAP platform-to-coach walking prompts. The coach-selection menu also transfers
+directly into any moving coach without changing the driving assignment. All 56
+platform totals follow the supplied CSV; K1 has 55 calls (Tirunettur is closed),
+with a sole-platform Kumbalam future-clearance plan. See rakes.md,
+kerala-station-audit.md and enhanced-audio.md. Source
+checks include the full headless suite, long-rake walking, service editor, ride
+integration, native rattle PCM and complete 32-service traffic rehearsal.
+
+Current retained downloads are R10, R9, R8, R7 and the R6 fallback. On 8 October the older
 base/controller/scenery/detail/fidelity/services and Kerala R1-R5 folders, ZIPs
 and checksums were removed on request, freeing 19.39 GiB. Historical build names
 below are reproducible packaging options, not currently hosted downloads.

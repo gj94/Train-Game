@@ -46,6 +46,7 @@ func configure(definition: Dictionary, world, train: Train) -> Dictionary:
 		for sig in world.signals.values():
 			if sig.edge == block and sig.dir == dir:
 				position = sig.s - dir * 6.0
+		if world.scenery.get("geographic",false):position=preload("res://sim/berth_clearance.gd").marker(world,train,block,dir)
 		if raw.has("position_m"):
 			if not _number(raw.position_m):
 				return _error("Stopping position must be a finite number")
@@ -53,6 +54,8 @@ func configure(definition: Dictionary, world, train: Train) -> Dictionary:
 		var length: float = world.graph.edges[block].length
 		if position < 0 or position > length or absf(position - world.graph.entry_s(block, dir)) < train.length:
 			return _error("Stop marker cannot hold the full train in block " + block)
+		var clearance: String=preload("res://sim/berth_clearance.gd").reason(world,train,block,position,dir)
+		if not clearance.is_empty():return _error(clearance)
 		stops.append({block = block, name = str(raw.get("name", block)), direction = int(dir), s = position,
 			minutes_from_origin = float(offset), dwell_minutes = float(dwell) if i > 0 else 0.0})
 		previous_departure = float(offset) + stops[-1].dwell_minutes

@@ -487,9 +487,9 @@ func _arrival_tolerance(t: Train) -> float:
 	# one-metre AI target. Leave five metres at each usable platform end.
 	for st in stations:
 		if stop.block not in st.platform_tracks:continue
-		var length: float=graph.edges[stop.block].length
-		var half:=minf(320,length*.5-200)
-		return maxf(1.1,half-t.length*.5-5)
+		var bounds:=preload("res://sim/berth_clearance.gd").limits(self,stop.block)
+		var tail: float=stop.s-stop.direction*t.length
+		return maxf(0,minf(minf(stop.s,tail)-bounds.x,bounds.y-maxf(stop.s,tail)))
 	return 1.1
 
 func _update_automatic_blocks() -> void:

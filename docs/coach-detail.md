@@ -57,7 +57,7 @@ a separate read-only census of every visible source object and evaluated triangl
 Native asset checks exercise train articulation and audio geometry on straight
 and curved track. `tools/check_coach_detail.gd` reviews all fourteen classes through
 the actual adapter in exterior, aisle and seat views. `tools/check_coach_traffic.gd`
-exercises the seven-train Kerala scene, first/middle/last coach controls and audio
+exercises the Kerala scene, first/middle/last coach controls and audio
 axle geometry, and records native frame times. Run these two with a graphics device;
 they save review images under `.local/`. Required simulation tests remain
 `tests/run_tests.gd`.
@@ -65,7 +65,12 @@ Pass `-- --vb-ec` to the native detail check to review the three updated VB EC
 masters in the same way.
 
 Playtest: F9 selects ICF or LHB. V enters a passenger view; PgUp/PgDn walks
-through the seven classes, Home switches aisle/seat and arrow keys change bays.
+through the current service's coaches, Home switches aisle/seat and arrow keys change bays.
 Inspect 1A privacy walls, 2A curtains, folded sleeper berths, CC chairs, GS benches,
 window openings, exterior class lettering and underframe running gear. Alt+1/2/3
 still selects the first, middle or trailing passenger coach on a traffic service.
+
+R10 replaces the demonstration rakes with [full-length service profiles](rakes.md).
+Every ICF coach remains blue. LHB exterior body paint is red across classes;
+the runtime override changes only three RGB inputs in the original Class_livery
+shader, retaining grey panels, markings, interiors and all surface detail.

@@ -30,10 +30,12 @@ func dock(car: int,door: Dictionary) -> Dictionary:
 	var local:=Vector2(door.point[0],door.point[1])
 	var back: float=game.tv._center(car)+game.tv._direction(car)*local.y
 	var loc: Dictionary=game.tv.motion.locate(back)
-	if not _surfaces.has(loc.edge): _surfaces[loc.edge]=Surface.new(game.world,loc.edge)
-	var nav=_surfaces[loc.edge]
-	if nav.edge.is_empty(): return {}
 	var outward: Vector3=game.tv.cars[car].global_basis.x*signf(local.x)
+	var side:=signi(roundi(outward.dot(game.world.graph.tangent(loc.edge,loc.s,1).cross(Vector3.UP))))
+	var key: String=loc.edge+"/"+str(side)
+	if not _surfaces.has(key): _surfaces[key]=Surface.new(game.world,loc.edge,side)
+	var nav=_surfaces[key]
+	if nav.edge.is_empty(): return {}
 	var right: Vector3=game.world.graph.tangent(loc.edge,loc.s,1).cross(Vector3.UP)*nav.side
 	if outward.dot(right)<.65: return {}
 	var landing: Dictionary=nav.landing(loc.s)
@@ -76,7 +78,8 @@ func boarding_target() -> Dictionary:
 			if delta.length()>2.1 or forward.dot(delta.normalized())<.3: continue
 			var entry:=entry_point(car,door)
 			if entry.is_empty(): continue
-			return {kind="board",car=car,door=door,entry=entry.point,label="Board coach %d · %s" % [car+1,str(game.tv.formation[car].model).to_upper().replace("_"," ")]}
+			var name: String="WAP-7 cab" if game.tv.formation[car].model=="wap7" else "coach %d · %s" % [car if game.tv.choice in ["icf","lhb"] else car+1,str(game.tv.formation[car].model).to_upper().replace("_"," ")]
+			return {kind="board",car=car,door=door,entry=entry.point,label="Board "+name}
 	return {}
 
 func alight(berth: Dictionary) -> bool:
@@ -143,5 +146,5 @@ func update(delta: float) -> void:
 	if _refresh<=0:_target=boarding_target();_refresh=.1
 	walk.target=_target
 	var control: String="A" if game.hud.controller_active else "Left click"
-	var pilot: String="Hold RS + D-pad up" if game.hud.controller_active else "4"
+	var pilot: String="Left stick click" if game.hud.controller_active else "4"
 	walk._prompt.text=control+" · "+_target.label if not _target.is_empty() else "Walk along the platform to another doorway · "+pilot+" returns to the pilot"

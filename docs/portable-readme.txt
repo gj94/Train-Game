@@ -2,6 +2,26 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R10: full-length service rakes replace the seven-coach showcases.
+K1 has 20 blue ICF coaches; WAP express trains have 22 ICF or LHB coaches.
+Every LHB coach now has consistent red/grey body paint. Families never mix.
+Mass, acceleration, axle sounds, visible length and dispatch occupancy agree.
+Platform/siding capacity uses the clear length between signals and points.
+Yard ladders preserve full-length roads and starters are clear of turnouts.
+Intermittent metallic coach-body rattles are stronger in ICF and quieter in LHB.
+F5 lets you select/export/import the WAP rake profile; VB remains 8/16 cars.
+All 56 platform counts follow the supplied station CSV. K1 has 55 calls because
+Tirunettur is closed. Kumbalam has one passenger platform and two through roads;
+the dispatcher can plan K1 into the VB's platform after its actual departure.
+Pause/Start > Go to passenger coach... selects any coach while moving, including
+behind a WAP. Y/E stands inside; left-stick click/4 returns to the pilot.
+This preserves your service, AI and power/brake setting.
+WAP-7 has no passenger gangway: stop by a platform, press Y/E to stand, face
+the cab side door, then A/left-click to alight. Walk to and board coach 1.
+These are representative formations; utility/guard cars are not yet modelled.
+Start a fresh scenario. See guides/rakes.md, guides/walking.md and the station audit.
+Old Kerala service files need a fresh layout signature after the yard changes.
+
 Kerala Coast R9: sprung-body jolts, vibration, curve sway and traction/brake pitch.
 Cab/passenger/walking views move with the coach; wheels remain on the rails.
 Head-out audio is open-air; walking coaches retain passenger acoustics.

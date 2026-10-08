@@ -44,6 +44,7 @@ func _ready() -> void:
 	_prompt.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
 	_prompt.offset_left=20;_prompt.offset_right=-20
 	_prompt.offset_top=-110;_prompt.offset_bottom=-44
+	_prompt.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	_prompt.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	_prompt.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
 	_prompt.add_theme_font_size_override("font_size",18)
@@ -118,6 +119,8 @@ func stand() -> bool:
 	neutralize()
 	if game.controller!=null: game.controller.neutralize()
 	_refresh_exits()
+	if game.tv.formation[car].model=="wap7":
+		game.hud.toast("D-pad cycles to passenger coaches while moving; Y stands inside. Or use the passenger-coach menu. At a stop, the cab side door leads to the platform.")
 	return true
 
 func stop() -> void:
@@ -187,9 +190,10 @@ func update(delta: float) -> void:
 	target=_interaction()
 	var control: String="Y" if game.hud.controller_active else "E"
 	var interact: String="A" if game.hud.controller_active else "Left click"
-	var action: String=target.get("label","Look toward a seat or an interior doorway")
+	var fallback: String="WAP-7 has no coach gangway · use a cab side door at a platform" if game.tv.formation[car].model=="wap7" else "Look toward a seat or an interior doorway"
+	var action: String=target.get("label",fallback)
 	if target.get("kind","") in ["seat","driver"]: action=control+" · "+action
-	elif not target.is_empty(): action=interact+" · "+action
+	elif target.get("kind","") in ["alight","board","door","gangway"]: action=interact+" · "+action
 	_prompt.text=action
 
 func _refresh_exits() -> void:
@@ -227,10 +231,11 @@ func _interaction() -> Dictionary:
 		var reverse: int=-1 if game.tv.formation[car].reverse else 1
 		var next: int=car+entry.direction*reverse
 		if next<0 or next>=game.tv.cars.size(): continue
-		if game.tv.formation[car].model=="wap7" or game.tv.formation[next].model=="wap7": continue
+		if game.tv.formation[car].model=="wap7" or game.tv.formation[next].model=="wap7":
+			return {kind="notice",label="No physical gangway · use Go to passenger coach, or the platform at a stop"}
 		# Do not label a short furniture alcove as the end of the carriage.
 		if absf(entry.point.y)<float(game.tv.specs[car].pitch)*.5-3.0: continue
-		return {kind="gangway",car=next,label="Through gangway to coach "+str(next+1)}
+		return {kind="gangway",car=next,label="Through gangway to coach "+str(next if game.tv.choice in ["icf","lhb"] else next+1)}
 	return _seat_target()
 
 func interact() -> void:

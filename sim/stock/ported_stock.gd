@@ -7,12 +7,25 @@ const LABELS := {
 	"wap7": "WAP-7 · imported light engine",
 	"wag9": "WAG-9 · light engine",
 	"wag12": "WAG-12B · twin section",
-	"icf": "WAP-7 + ICF · seven-class showcase",
-	"lhb": "WAP-7 + LHB · seven-class showcase",
+	"icf": "WAP-7 + ICF · blue rake",
+	"lhb": "WAP-7 + LHB · red / grey rake",
 	"vb8": "Vande Bharat · detailed 8 cars · 192 m",
 	"vb16": "Vande Bharat · detailed 16 cars · 384 m",
 }
 const CLASSES := ["1a", "2a", "3a", "2s", "cc", "sl", "gs"]
+const RAKE_LABELS := {"express": "22-coach express", "passenger": "20-coach seated passenger", "fixed": "Fixed Vande Bharat formation"}
+# Representative fictional workings, not an exact real train's diagram.
+# Utility/guard/power cars are not present in the source asset collection.
+const RAKES := {
+	"express": [["gs",2], ["sl",10], ["3a",6], ["2a",2], ["1a",1], ["gs",1]],
+	"passenger": [["gs",5], ["2s",10], ["gs",5]],
+}
+
+static func profiles(choice: String) -> Array:
+	return ["express", "passenger"] if choice in ["icf", "lhb"] else ["fixed"]
+
+static func resolve_profile(choice: String, profile: String = "") -> String:
+	return str(profiles(choice)[0]) if profile.is_empty() else profile
 
 
 static func geometry(model: String) -> Dictionary:
@@ -27,8 +40,10 @@ static func geometry(model: String) -> Dictionary:
 	return {pitch = 20.4 if model == "wap7" else 20.562, bogie = 6.0, axle_offsets = [-1.85, 0.0, 1.85], radius = .546, front = .08 if model == "wap7" else .04, rear = .08 if model == "wap7" else .04}
 
 
-static func formation(choice: String) -> Array:
+static func formation(choice: String, profile: String = "") -> Array:
 	assert(choice in CHOICES)
+	profile = resolve_profile(choice, profile)
+	assert(profile in profiles(choice), "Incompatible rake profile")
 	var ids: Array = []
 	var flips: Array = []
 	match choice:
@@ -38,7 +53,8 @@ static func formation(choice: String) -> Array:
 			flips = [false, true]
 		"icf", "lhb":
 			ids = ["wap7"]
-			for kind in CLASSES: ids.append(choice + "_" + kind)
+			for group in RAKES[profile]:
+				for _i in int(group[1]): ids.append(choice + "_" + str(group[0]))
 		"vb8":
 			ids = ["vb_dtc", "vb_mc", "vb_tc_ec", "vb_mc2", "vb_mc2", "vb_tc_cc", "vb_mc", "vb_dtc"]
 		"vb16":
@@ -54,16 +70,17 @@ static func formation(choice: String) -> Array:
 	return result
 
 
-static func length_of(choice: String) -> float:
-	var items := formation(choice)
+static func length_of(choice: String, profile: String = "") -> float:
+	var items := formation(choice, profile)
 	var last: Dictionary = items.back()
 	var spec := geometry(last.model)
 	return last.center + last.pitch * .5 + (spec.front if last.reverse else spec.rear)
 
 
-static func configure(train: Train, choice: String) -> void:
+static func configure(train: Train, choice: String, profile: String = "") -> void:
 	train.stock_kind = "ported:" + choice
-	train.length = length_of(choice)
+	train.rake_profile = resolve_profile(choice, profile)
+	train.length = length_of(choice, train.rake_profile)
 	train.service_name = LABELS[choice]
 	train.can_change_ends = choice not in ["icf", "lhb"]
 	train.max_speed = (110.0 if choice == "icf" else (120.0 if choice in ["wag9", "wag12"] else 180.0)) / 3.6
@@ -77,8 +94,11 @@ static func configure(train: Train, choice: String) -> void:
 			train.mass = 180000.0
 			train.max_power = 9000000.0
 		"icf", "lhb":
-			train.mass += 7 * (45000.0 if choice == "icf" else 54000.0)
-			train.max_accel = .6
+			var count := formation(choice, train.rake_profile).size()-1
+			train.mass = 123000.0 + count * (45000.0 if choice == "icf" else 54000.0)
+			# WAP-7 adhesion/tractive-effort ceiling: a longer rake must accelerate slower.
+			train.max_accel = minf(.6, 322600.0/train.mass)
+			train.max_speed = (110.0 if choice == "icf" else 140.0)/3.6
 		"vb8", "vb16":
 			var count := 8 if choice == "vb8" else 16
 			train.mass = count * 48000.0
@@ -87,10 +107,10 @@ static func configure(train: Train, choice: String) -> void:
 	train.status = "Imported fleet test drive"
 
 
-static func sound_axles(choice: String, reversed: bool = false) -> Array:
+static func sound_axles(choice: String, reversed: bool = false, profile: String = "") -> Array:
 	var result := []
-	var total := length_of(choice)
-	var cars := formation(choice)
+	var total := length_of(choice, profile)
+	var cars := formation(choice, profile)
 	for i in cars.size():
 		var car: Dictionary = cars[i]
 		var spec := geometry(car.model)

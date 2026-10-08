@@ -59,6 +59,7 @@ static func defaults(layout: String = "southern_corridor") -> Dictionary:
 			stops[-1].position_m=stop.s
 		services.append({id=train.id,name=train.service_name,
 			stock=train.stock_kind.trim_prefix("ported:"),
+			rake=train.rake_profile,
 			speed_limit_kmh=train.max_speed*3.6,
 			priority=train.dispatch_priority,
 			departure=Clock.format_time(schedule.departure),day=Clock.day(schedule.departure),stops=stops})
@@ -101,6 +102,9 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 		if not _text(definition.get("name",""),100): return _error(id + ": enter a service name")
 		var stock = definition.get("stock","")
 		if not stock is String or stock not in Stock.CHOICES: return _error(id + ": choose WAP-7 + LHB, WAP-7 + ICF or Vande Bharat 8/16")
+		var profile = definition.get("rake", "")
+		if not profile is String or Stock.resolve_profile(stock, profile) not in Stock.profiles(stock):
+			return _error(id + ": invalid rake for this coach family")
 		var stops = definition.get("stops",[])
 		if not stops is Array or stops.size() < 2 or stops.size() > 64: return _error(id + ": use 2–64 stops, including origin and destination")
 		if layout=="kerala_coast" and stops[0] is Dictionary:
@@ -117,7 +121,7 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 			if not world.graph.allows(block,int(direction)): return _error(id + ": wrong-way stop on " + block)
 		if not _day(definition.get("day",1)): return _error(id + ": invalid departure day")
 		var train := Train.new(id,1)
-		Stock.configure(train,stock)
+		Stock.configure(train,stock,profile)
 		var speed=definition.get("speed_limit_kmh",train.max_speed*3.6)
 		if not _number(speed) or speed<5 or speed>train.max_speed*3.6+.001:return _error(id+": speed cap must be between 5 km/h and this stock's maximum")
 		train.max_speed=float(speed)/3.6
@@ -154,6 +158,7 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 	var normalized: Dictionary = data.duplicate(true)
 	normalized.day = int(data.get("day",1))
 	for definition in normalized.services:
+		definition.rake = world.trains[definition.id].rake_profile
 		definition.day = int(definition.get("day",1))
 		for i in definition.stops.size():
 			var stop: Dictionary = definition.stops[i]

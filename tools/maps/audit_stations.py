@@ -42,5 +42,8 @@ def build():
         if r['notes']:evidence+=' · '+' '.join(r['notes'])
         lines.append(f'| {r["code"]} {r["name"]} | {r["mapped_operating_roads"]} | {r["modeled_platform_roads"]} | {r["reported_platforms"]} | {r.get("reported_total_tracks","—")} | {evidence} |')
     lines+=['','The [4 October 2026 commissioning report](https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027) identifies the completed Eraniel–Nagercoil Town and Nagercoil Town–Junction double sections. Remaining northern doubling is still in progress.','', 'Platform locations and throat geometry remain reconstructed. Exact bay connections, storage roads and all present-day commissioned changes need official station working diagrams or dated site evidence. Keep uncertainties visible in this audit rather than silently inventing capacity.','']
-    (ROOT/'docs/kerala-station-audit.md').write_text('\n'.join(lines),encoding='utf8')
+    (ROOT/'docs/kerala-station-browser-audit.md').write_text('\n'.join(lines),encoding='utf8')
+    if (DATA/'station-register.csv').exists():
+        from apply_station_register import build as apply_register
+        apply_register()
 if __name__=='__main__':build()

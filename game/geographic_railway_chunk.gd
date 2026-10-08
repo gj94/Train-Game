@@ -20,15 +20,16 @@ func build_station(index: int) -> Dictionary:
 	origin=Vector3(floorf(station.origin.x/256)*256,0,floorf(station.origin.z/256)*256)
 	root=Node3D.new(); root.name="Station_"+station.code
 	batch=MeshBuilder.new()
-	for road in station.platform_tracks:
-		var detail: Dictionary=station.platform_details[road]
-		if detail.platform_width<=0:continue
+	for face in preload("res://sim/platform_faces.gd").entries(station):
+		var road: String=face.edge
+		var detail: Dictionary=face
 		var side: float=detail.platform_side
 		var platform_far: float=2.02+detail.platform_width
 		var e: Dictionary=graph.edges[road]
-		var half_platform:=minf(320,e.length*.5-200)
-		var start: float=e.length*.5-half_platform
-		var end: float=e.length*.5+half_platform
+		var span:=preload("res://sim/berth_clearance.gd").platform_span(world,road)
+		var half_platform: float=(span.y-span.x)*.5
+		var start: float=span.x
+		var end: float=span.y
 		for s in range(ceili(start),floori(end),8):
 			var a:=graph.position_relative(road,s,origin)
 			var b:=graph.position_relative(road,minf(s+8,end),origin)

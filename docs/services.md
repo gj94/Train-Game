@@ -9,8 +9,10 @@ run edits its original definitions.
 
 1. Set the timetable name, world start time and day.
 2. Select a service, or Add / Duplicate one. Give it a unique ID and name; choose
-   detailed WAP-7 + LHB, WAP-7 + ICF, or Vande Bharat 8/16. Set departure time,
+   detailed WAP-7 + LHB, WAP-7 + ICF, or Vande Bharat 8/16. WAP services offer a
+   22-coach express or 20-coach seated rake; VB counts remain fixed. Set departure time,
    day, direction, priority (1–100, higher first), and service speed cap.
+   WAP/LHB is capped at 140 km/h; ICF at 110. [Formation details](rakes.md).
 3. Choose each stop's platform/block. The first row is the origin, with arrival
    offset **0**. Later arrival offsets are minutes after booked departure, and
    must include preceding dwell. The last row is the destination. Add, remove or

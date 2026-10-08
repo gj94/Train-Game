@@ -17,8 +17,8 @@ static func roads(w,t: Train,st: Dictionary,edge: String,direction: int,free: Ar
 		if not w.graph.allows(road,direction):continue
 		if not call.is_empty() and st.get("platform_details",{}).get(road,{}).get("platform_width",1)<=0:continue
 		if final_call and road!=call.block:continue
-		if w.graph.edges[road].length<t.length+20:continue
-		var goal:={block=road,direction=direction,s=w.graph.edges[road].length*.5+direction*t.length*.5}
+		if preload("res://sim/berth_clearance.gd").capacity(w,road,not call.is_empty())<t.length:continue
+		var goal:={block=road,direction=direction,s=preload("res://sim/berth_clearance.gd").marker(w,t,road,direction,not call.is_empty())}
 		if is_inf(w._stop_distance(edge,direction,w.graph.entry_s(edge,direction),goal,[])):continue
 		if not following.is_empty() and is_inf(w._stop_distance(road,direction,w.graph.entry_s(road,direction),following,[])):continue
 		result.append(road)

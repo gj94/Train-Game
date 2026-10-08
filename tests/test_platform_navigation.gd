@@ -4,7 +4,7 @@ const EngineSound:=preload("res://game/engine_audio.gd")
 
 func test_only_passenger_platforms_provide_walking_surface():
 	var w:=preload("res://sim/layouts/kerala_coast.gd").build_traffic()
-	return Surface.new(w,"KUMM_P1").edge.is_empty() and Surface.new(w,"KUMM_P2").edge=="KUMM_P2"
+	return Surface.new(w,"KUMM_P1").edge.is_empty() and Surface.new(w,"KUMM_P2").edge.is_empty() and Surface.new(w,"KUMM_P3").edge=="KUMM_P3"
 
 func test_platform_sweeps_stop_at_edges_and_obstacles():
 	var w:=preload("res://sim/layouts/kerala_coast.gd").build_traffic()

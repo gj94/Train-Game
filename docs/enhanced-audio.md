@@ -5,6 +5,29 @@ Active player: `game/platform_audio.gd`. The reference is the user's newer
 superseding the earlier curve-squeal snapshot from 21:56. The original nine BODY V2
 WAVs are unchanged. The old `body_v2_audio.gd` remains a regression reference.
 
+## Coach-body rattles — R10
+
+`coach_rattle_audio.gd` adds intermittent short latch/panel resonances, strongest
+in ICF coaches and quieter/less frequent in LHB. Each coach has its own seeded
+distance intervals; speed changes cadence, and sprung-body jolts can trigger
+extra knocks. These are secondary metallic body cues, independent of axle-joint
+timing. They settle to silence when stopped, freeze on pause/loading, and remain
+excluded from the track-reference comparison mode. Pitch does not rise with speed.
+
+Eight short, uncompressed mono WAVs come from the canonical sibling sound-lab
+`src/coach-rattle.mjs`, exported by `tools/export-coach-rattle.mjs`. Rebuild with
+`node D:/ClaudeWS/railway-clang-simulator/tools/export-coach-rattle.mjs D:/ClaudeWS/train-game`.
+Source snapshots are committed under `tools/audio-source/`, with source/output
+hashes in `assets/sounds/coach_rattle/provenance.json`. These are synthesized
+approximations, not new recordings or a measured ICF reference match. The approved
+joint, rolling and squeal banks have not been regenerated or retuned.
+
+Each resident train uses at most four native positional voices; distant events
+are culled and stale fast-forward events never accumulate into a burst. The
+separate CoachBody bus, local source positions and reduced cab leakage keep the
+sounds associated with coaches rather than the locomotive. Validation includes
+native PCM capture, clipping, pause, stationary silence and bounded voice count.
+
 ## Electric engine layer restored, 8 October
 
 The track-only comparison mode had also disabled the game engine sounds and horn.

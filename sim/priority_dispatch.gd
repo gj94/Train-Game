@@ -163,7 +163,9 @@ static func choose_platform(w: RailWorld,t: Train,options: Array,stop: Dictionar
 		var is_loop: bool=road!=primary and (road>2 or _single_both(w,st))
 		if w.route_reason(w.next_signal(t).id,option.destination)!="":continue
 		var goal:=stop.duplicate()
-		if stopping:goal.block=last.edge;goal.s=w.graph.edges[last.edge].length*.5+last.dir*t.length*.5
+		if stopping:
+			goal.block=last.edge;goal.s=preload("res://sim/berth_clearance.gd").marker(w,t,last.edge,last.dir)
+			if not preload("res://sim/berth_clearance.gd").fits(w,t,last.edge,goal.s,last.dir):continue
 		var onward:=w._stop_distance(last.edge,last.dir,w.graph.entry_s(last.edge,last.dir),goal,[])
 		if is_inf(onward):continue
 		var score: float=option.cost*.001+(0 if road==primary else 20)
