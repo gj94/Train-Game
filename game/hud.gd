@@ -34,7 +34,7 @@ AI needs routes and waits for its departure time and station dwell.
 
 [b]DISPLAY & SESSION[/b]
 Esc pause menu / back · F1 controls · F4 clean view / restore
-F6 track labels · F8 event history · F10 performance · F11 fullscreen / window
+F6 track labels · F8 event history · F10 performance · F11 / Alt+Enter fullscreen / window
 F12 journey progress: stops completed/left, next stop and estimated time
 T fast forward ×1 / ×2 / ×4 / ×8 / ×16 / ×32 · Shift+T normal time
 Fast forward advances the whole world; train speeds and braking distances stay unchanged.
@@ -235,6 +235,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_heading.text = "PAUSED"
 			_body.text = "Resume to continue the current service.\n[b]F4[/b] clears the screen; [b]D[/b] opens dispatch."
 			_button(_buttons, "Resume  ·  Esc", "resume")
+			_button(_buttons, ("Return to window" if DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN,DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN] else "Enter fullscreen")+"  ·  F11 / Alt+Enter", "fullscreen")
 			_button(_buttons, "Journey progress  ·  F12", "progress")
 			_button(_buttons, "Scenario & controls  ·  F1", "help")
 			_button(_buttons, "Train & view actions…", "controller_actions")
@@ -245,7 +246,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 				_button(_buttons,"Time ×%d%s" % [rate," · normal" if rate==1 else " · fast forward"],"time:"+str(rate))
 			_button(_buttons, "Clean view  ·  F4", "clean")
 			_button(_buttons, "Track labels: " + ("ON" if labels_on else "OFF") + "  ·  F6", "labels")
-			_button(_buttons, "Fullscreen / window  ·  F11", "fullscreen")
+
 			_button(_buttons, "WAP-7 + ICF passenger rake  ·  F2", "wap7")
 			_button(_buttons, "WAP-7 + LHB passenger rake  ·  F3", "lhb")
 			_button(_buttons, "Kerala Coast / Southern corridor…  ·  F7", "routes")

@@ -44,6 +44,7 @@ var performance_overlay
 var train_views := {}
 var train_motions := {}
 var train_audio := {}
+var passenger_crowd
 var traffic_presentation
 var _journey_snapshot := {}
 var _journey_refresh := 0.0
@@ -62,9 +63,11 @@ var _paused_before_help := false
 var _paused_before_progress := false
 var _pending_action := ""
 var _interior_view := false
+var display_options := preload("res://game/display_options.gd").new()
 
 
 func _ready() -> void:
+	if "--script" not in OS.get_cmdline_args():display_options.restore()
 	# Custom railway interpolation needs a clock without physics-jitter correction.
 	Engine.physics_jitter_fix = 0.0
 	AudioServer.playback_speed_scale=1.0
@@ -224,6 +227,9 @@ func _ready() -> void:
 	performance_overlay=preload("res://game/performance_overlay.gd").new()
 	performance_overlay.game=self
 	add_child(performance_overlay)
+	passenger_crowd=preload("res://game/passenger_crowd.gd").new()
+	add_child(passenger_crowd)
+	passenger_crowd.setup(self)
 	if not _service_error.is_empty(): hud.toast("Service file could not start: "+_service_error,true)
 
 
@@ -292,6 +298,7 @@ func _process(delta: float) -> void:
 	traffic_presentation.update(delta)
 	_render_trains(1.0 if paused else Engine.get_physics_interpolation_fraction(),0.0 if paused or _geographic_loading else delta*time_scale)
 	if walker!=null: walker.update(delta)
+	if passenger_crowd!=null:passenger_crowd.update()
 	cam.set_meta("passenger_interior",walker!=null and walker.passenger_interior())
 	for sound in train_audio.values(): sound.listener_owner = audio
 	if walker!=null and walker.active and not walker.platform.outside:
@@ -335,6 +342,12 @@ func _process(delta: float) -> void:
 		world_day = world.clock_day(),
 	})
 
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode==KEY_F11 or (event.alt_pressed and event.physical_keycode==KEY_ENTER):
+			_toggle_fullscreen()
+			get_viewport().set_input_as_handled()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -763,6 +776,9 @@ func _toggle_progress() -> void:
 			text+="Booked arrival: "+preload("res://sim/world_clock.gd").format_time(p.scheduled_arrival)+"\n"
 			if not p.waiting.is_empty():text+="\n"+p.waiting+"\n"
 			text+="\nEstimate uses the route distance and service speed. Driving and signal waits can change it."
+	var passengers:=preload("res://sim/passenger_service.gd").snapshot(train)
+	if not passengers.is_empty():
+		text+="\n\n[b]Passengers aboard: %d[/b]\nBoarded: %d · Alighted: %d\n%s" % [passengers.onboard,passengers.boarded,passengers.alighted,passengers.phase.capitalize()]
 	hud.show_modal("progress",labels_enabled,text)
 
 func _close_progress() -> void:
@@ -864,8 +880,10 @@ func _restore_ui() -> void:
 
 
 func _toggle_fullscreen() -> void:
-	var mode := DisplayServer.window_get_mode()
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if mode == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)
+	var error:=display_options.toggle()
+	if hud==null:return
+	if error!=OK:hud.toast("Display mode changed; setting could not be saved",true)
+	elif hud.modal=="pause":hud.show_modal("pause",labels_enabled)
 
 
 func _notification(what: int) -> void:

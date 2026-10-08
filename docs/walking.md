@@ -66,10 +66,11 @@ Platform walking currently covers the geographic Kerala route and carriages of
 your assigned service; it does not cross tracks, use footbridges or board other
 services. Use the dispatcher handover to change service.
 
-Interior and exterior door leaves remain static artwork. Where a closed door or a narrow
-doorway blocks the body, a prompt takes you through with a short fade. Gangways
-also use this transition. This version does not add jumping, animated doors or clickable cab
-instruments. Cab controls remain available from the existing driving input/menu.
+R12 animates platform-side passenger doors during scheduled exchanges. Interior
+doors and locomotive cab doors remain static artwork. Where a closed door or a
+narrow doorway blocks the body, a prompt takes you through with a short fade.
+Gangways also use this transition. Jumping and clickable cab instruments are not
+included. Cab controls remain available from the existing driving input/menu.
 
 ## Implementation and source
 
@@ -116,6 +117,11 @@ harness uses `tools/check_walking_playable.gd -- --fleet=icf` (also `lhb`, `vb8`
 and coach transitions. Legacy controller/menu/dispatch coverage remains separate.
 
 ## Playtest
+
+R12 adds seated and boarding passengers. Occupied seats cannot be selected for
+sitting. Passenger doors animate during scheduled Kerala stops, and traction
+waits for the exchange to finish. Dynamic NPCs do not physically block the player.
+See [Passengers](passengers.md) for behaviour, controls and remaining limits.
 
 1. In the starting WAP-7, press Y/E, turn around, and approach the machinery door.
    Use A/left-click at the prompt. Return through it and sit back down with Y/E.

@@ -2,6 +2,15 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R12: travelling passengers in ICF, LHB and Vande Bharat coaches.
+At scheduled platform stops people alight, others board and take seats. Doors
+open on the platform side; traction waits for boarding and closed doors. F12
+shows aboard/boarded/alighted totals. All passengers alight before depot working.
+Crowds are rendered locally with a fixed budget; all journeys stay simulated.
+F11 or Alt+Enter toggles fullscreen. Esc/controller Menu also has Fullscreen.
+The display choice is saved; new portable installations default to fullscreen.
+Start a fresh scenario. See guides/passengers.md for controls, scope and tests.
+
 Kerala Coast R11: completed passenger trains unload, then run as empty stock
 to reserved depot berths with normal signals and full-rake tail clearance.
 Passenger progress/results stay complete. The dispatcher shows depot status;
@@ -161,11 +170,12 @@ RUN ON ANOTHER PC
 1. Copy the ZIP and extract the entire folder to a writable location.
 2. Open TrainGame.exe. Keep TrainGame.pck beside it.
 3. No Godot editor, Blender, Node.js or development checkout is needed.
-4. F11 switches fullscreen/window. The initial window is 1280 x 720.
+4. F11 / Alt+Enter switches fullscreen/window. New installs start fullscreen;
+   Esc/controller Menu offers the same action. Your choice is remembered.
 
 START PLAYING
 You start in the K1 stopping passenger among 32 Kerala Coast services: WAP-7/LHB,
-WAP-7/ICF and Vande Bharat. The other six trains use AI. Automatic dispatch
+WAP-7/ICF and Vande Bharat. The other 31 trains use AI. Automatic dispatch
 sets safe routes for everyone, including your manually driven service.
 Wait at red while earlier trains clear shared routes and occupied platforms.
 F1 opens your scenario briefing: your service, stops, expected traffic and job.

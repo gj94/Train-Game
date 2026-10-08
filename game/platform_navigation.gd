@@ -35,7 +35,7 @@ func _init(w: RailWorld, road: String="",requested_side: int=0) -> void:
 	for eid in station.platform_tracks:
 		var d: Dictionary=station.platform_details[eid]
 		if d.platform_width<=0: continue
-		for i in (34 if station.major else 12):
+		for i in (8 if station.major else 4):
 			var s: float=graph.edges[eid].length*.5+rng.randf_range(-240,240)
 			var lateral:=rng.randf_range(2.4,2.02+d.platform_width-.3)
 			rng.randf() # visual passenger's facing consumes the same draw

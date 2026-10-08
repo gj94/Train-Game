@@ -1,6 +1,8 @@
 extends RefCounted
 ## Presentation only: journey estimates remain in simulation time.
 static func text(progress: Dictionary) -> String:
+	var pax: Dictionary=progress.get("passengers",{})
+	if pax.get("phase","") in ["opening","exchange","closing"]:return "%s · %d aboard · %s · %.0f s" % [progress.get("current","Platform"),pax.onboard,pax.phase,pax.seconds]
 	if not progress.get("scheduled",false): return "No scheduled stops"
 	if progress.get("complete",false): return progress.get("depot_status","All scheduled stops completed")
 	var station: String=progress.get("next_name","Next stop")

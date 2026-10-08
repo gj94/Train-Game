@@ -10,6 +10,7 @@ var graph: TrackGraph
 var choice := ""
 var cars: Array[Node3D] = []
 var models: Array[Node3D] = []
+var passenger_portals := []
 var specs: Array = []
 var formation: Array = []
 var bogies: Array = []
@@ -51,6 +52,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 		else:
 			preload("res://game/fleet_surface.gd").apply(model, entry.model.begins_with("vb_"))
 		models.append(model)
+		passenger_portals.append(preload("res://game/passenger_portals.gd").new(model,entry.model,spec))
 		var car_bogies := []
 		for pivot in spec.bogies:
 			car_bogies.append(model.find_child(pivot.node, true, false))

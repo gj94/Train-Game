@@ -29,6 +29,7 @@ var status := "Manual driving"
 var timetable = null          # optional pure-sim timetable working
 var completed_timetable = null # passenger result retained during empty-stock working
 var depot: Dictionary = {}     # unloading / working / stabled, separate from passenger completion
+var passengers: Dictionary = {} # journey destinations and timed platform exchanges
 var dispatch_priority := 50   # larger number gets the earliest available route
 
 # Performance — defaults roughly an 8-car Indian Railways MEMU.

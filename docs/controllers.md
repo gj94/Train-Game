@@ -1,5 +1,8 @@
 # Xbox controller
 
+Fullscreen: press Menu and choose **Fullscreen / Windowed** (second item after
+Resume). The preference is saved. Keyboard F11 or Alt+Enter works in menus too.
+
 Uses Godot's standard gamepad mapping for Xbox 360, One, Series and Elite pads.
 Connect over USB or a Windows-supported wireless connection before or during play.
 Elite paddles use the buttons assigned in the controller's own profile. The Xbox

@@ -205,6 +205,7 @@ func _seat_target(require_facing: bool=true) -> Dictionary:
 	var forward:=Basis(Vector3.UP,game.cam._look.x)*Vector3.FORWARD
 	var seats: Array=game.tv.specs[car].passengers
 	for i in seats.size():
+		if not game.train.passengers.is_empty() and game.train.passengers.cars[car].seats[i]>=0:continue
 		var s: Array=seats[i].position
 		var delta:=Vector2(s[0],s[2])-position
 		if require_facing and delta.length()>.3 and Vector2(forward.x,forward.z).dot(delta.normalized())<.25: continue

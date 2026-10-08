@@ -15,6 +15,7 @@ enum Aspect { RED, YELLOW, GREEN }
 const Clock := preload("res://sim/world_clock.gd")
 const Timetable := preload("res://sim/timetable.gd")
 const Depot := preload("res://sim/depot_workings.gd")
+const Passengers := preload("res://sim/passenger_service.gd")
 
 var graph := TrackGraph.new()
 var signals := {}        # route sections are immutable paths, independent of later point settings
@@ -111,6 +112,7 @@ func set_timetable(train_id: String, definition: Dictionary) -> Dictionary:
 	for road in depot_reservations.keys():
 		if depot_reservations[road]==train_id:depot_reservations.erase(road)
 	train.depot.clear()
+	train.passengers.clear()
 	train.destination = schedule.stops[-1].name
 	train.service_complete = false
 	return result
@@ -469,6 +471,7 @@ func step(dt: float) -> void:
 		_step_route_directions=_reservation_directions()
 		_within_step=true
 		for t in trains.values():
+			Passengers.update(self,t,slice)
 			Depot.update(self,t)
 			if t.automatic:
 				_drive_automatic(t)
@@ -687,6 +690,9 @@ func _distance_to_obstruction(t: Train) -> float:
 
 
 func _step_train(t: Train, dt: float) -> void:
+	if Passengers.departure_blocked(t):
+		t.controller=-1.0
+		t.status="Passenger exchange · %.0f s · %d aboard" % [maxf(0,t.passengers.duration-t.passengers.elapsed),t.passengers.onboard]
 	t.update_speed(dt)
 	var d := t.speed * dt
 	if d <= 0.0:

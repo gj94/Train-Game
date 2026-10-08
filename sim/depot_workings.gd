@@ -29,6 +29,7 @@ static func update(w, t: Train) -> void:
 	if w.clock_seconds()<t.depot.release:
 		t.status="Service complete · unloading before depot"
 		return
+	if preload("res://sim/passenger_service.gd").departure_blocked(t):return
 	var choice:=choose(w,t)
 	if choice.is_empty():
 		t.status="Service complete · waiting for a reachable depot berth"

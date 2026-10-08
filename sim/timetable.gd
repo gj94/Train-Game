@@ -10,6 +10,7 @@ var at_stop := true
 var actual_arrivals: Array[float] = []
 var actual_departures: Array[float] = []
 var missed_stop := false
+var passenger_release := 0.0 # physical exchange/door completion, absolute world seconds
 
 func configure(definition: Dictionary, world, train: Train) -> Dictionary:
 	var value = definition.get("departure", "")
@@ -78,8 +79,8 @@ func planned_departure(i: int) -> float:
 
 func release_time() -> float:
 	if index == 0:
-		return departure
-	return maxf(planned_departure(index), actual_arrivals[index] + stops[index].dwell_minutes * 60.0)
+		return maxf(departure,passenger_release)
+	return maxf(passenger_release,maxf(planned_departure(index), actual_arrivals[index] + stops[index].dwell_minutes * 60.0))
 
 func complete() -> bool:
 	return at_stop and index == stops.size() - 1

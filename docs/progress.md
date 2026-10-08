@@ -1,5 +1,43 @@
 # Progress
 
+## 2026-10-09 — R12 travelling passengers and fullscreen
+- Added independent passenger journeys, actual model seat capacities and
+  destination-bound boarding/alighting to scheduled ICF, LHB and VB services.
+  Demand favours local trips with some through passengers; there is no real-world
+  ridership claim. Free-drive trains carry seated riders without automatic stops.
+  Exchanges require a booked stop at a stand with the full rake in a passenger
+  platform. Alight before boarding, two door queues per coach, capacity-limited
+  seats and conservation on interrupted exchanges. Pause/fast-forward use world
+  time. Traction is interlocked until closing; timetable/dispatcher release
+  forecasts include the exchange. Terminal unloading finishes before depot work.
+- Added source-grid aisle routes for every seat/door in all 21 coach models,
+  original male/female seated Blender variants, and eight shared GPU crowd
+  batches. Riders follow the coach body. Boarding/alighting uses vestibules and
+  platform-side apertures with hinged ICF/LHB or sliding VB leaves. Reversed VB
+  cars use the correct side; cab doors are excluded. Disembarked people continue
+  in railway coordinates and do not follow departing trains or origin rebases.
+  Maximum 140 seated and 80 moving people within 100 m; journeys remain simulated
+  outside this visual budget. Caching reduced the same ICF 220-person CPU update
+  from 5.83 to 1.95 ms on the local Radeon 780M development PC (not whole-game FPS).
+  Procedural characters, local queues and shader gait are documented honestly in
+  passengers.md; dynamic people do not physically collide with the player.
+- Added saved fullscreen preference, fullscreen by default in exports, global
+  F11/Alt+Enter and a prominent controller-reachable pause-menu action. Windowed
+  mode restores prior dimensions/mode. Progress/HUD expose passenger totals and
+  the current exchange; occupied seats cannot be selected for sitting.
+- Verification: 340 headless tests pass, including ten passenger regressions;
+  native ICF/LHB/VB8/VB16
+  boarding/seating/alighting captures and both-side door checks pass. Native
+  keyboard fullscreen switching through the pause menu and saved configuration
+  pass. Controller integration passes 69 checks. All baked seat/door paths are
+  reachable. The 32-service traffic rehearsal is being finalized;
+  publish status and final results will be added below. No extracted-build test.
+- Playtest: start fresh K1 at ERS; V/coach menu to inspect riders; watch boarding
+  from outside and try power before the countdown finishes. Enable AI and watch
+  Kumbalam alighting/boarding, compare F12 totals, then test LHB and both VBs.
+  Pause/fast-forward during exchange; watch final unloading before depot work.
+  F11/Alt+Enter and controller Menu must toggle fullscreen and remember the choice.
+
 ## 2026-10-09 — R11 station master port and terminal depot workings
 - Pulled all three complete `south_indian_stations_v02` masters from the user's
   pinned `1585bc27960fb67d970a1b5c75208ddf53597191` gallery. Fetches verify Git

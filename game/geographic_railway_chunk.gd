@@ -148,7 +148,7 @@ func build_station(index: int) -> Dictionary:
 		var detail: Dictionary=station.platform_details[eid]
 		if detail.platform_width<=0:continue
 		var side: float=detail.platform_side
-		for i in (34 if station.major else 12):
+		for i in (8 if station.major else 4):
 			var s: float=edge.length*.5+rng.randf_range(-240,240)
 			var forward:=graph.tangent(eid,s,1)
 			var at:=graph.position_relative(eid,s,origin)+forward.cross(Vector3.UP)*side*rng.randf_range(2.4,2.02+detail.platform_width-.3)+Vector3.UP*1.27
