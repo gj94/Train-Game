@@ -19,6 +19,9 @@ var lamps: Array = []
 var passenger_coach := 0
 var passenger_bay := 0
 var passenger_seat := false
+var passenger_seat_index := -1
+var walk_car := -1
+var walk_eye := Vector3.ZERO
 var passenger_on := false
 var cab_on := false
 var cab_position := 0
@@ -219,11 +222,11 @@ func set_passenger_view(on: bool) -> void:
 
 
 func _apply_glass() -> void:
-	var active := passenger_coach if passenger_on else (cars.size() - 1 if train.cab_end == 2 else 0)
+	var active := walk_car if walk_car>=0 else (passenger_coach if passenger_on else (cars.size() - 1 if train.cab_end == 2 else 0))
 	for i in glass.size():
 		for pane in glass[i]:
-			pane.node.set_surface_override_material(pane.surface, pane.clear if i == active and (cab_on or passenger_on) else pane.exterior)
-	_interior_light.visible = cab_on or passenger_on
+			pane.node.set_surface_override_material(pane.surface, pane.clear if i == active and (cab_on or passenger_on or walk_car>=0) else pane.exterior)
+	_interior_light.visible = cab_on or passenger_on or walk_car>=0
 
 
 func passenger_coaches() -> Array:
@@ -239,10 +242,12 @@ func change_passenger_coach(delta: int) -> void:
 	while specs[passenger_coach].passengers.is_empty():
 		passenger_coach = posmod(passenger_coach + delta, cars.size())
 	passenger_bay = 0
+	passenger_seat_index = -1
 	_apply_glass()
 
 
 func change_passenger_bay(delta: int) -> void:
+	passenger_seat_index = -1
 	passenger_bay = posmod(passenger_bay + delta, 9)
 
 
@@ -255,7 +260,7 @@ func passenger_transform() -> Transform3D:
 	var look := Vector3(0, -.02, -1)
 	if passenger_seat:
 		var seats: Array = specs[passenger_coach].passengers
-		var seat: Dictionary = seats[mini(passenger_bay * maxi(1, seats.size() / 9), seats.size() - 1)]
+		var seat: Dictionary = seats[clampi(passenger_seat_index,0,seats.size()-1) if passenger_seat_index>=0 else mini(passenger_bay*maxi(1,seats.size()/9),seats.size()-1)]
 		eye = _v(seat.position) + Vector3.UP * 1.12
 		look = _v(seat.forward) + Vector3.DOWN * .04
 	var transform := cars[passenger_coach].global_transform
@@ -263,10 +268,11 @@ func passenger_transform() -> Transform3D:
 
 
 func passenger_name() -> String:
-	return "%s · CAR %d · %s %d" % [str(formation[passenger_coach].model).to_upper().replace("_", " "), passenger_coach + 1, "SEAT" if passenger_seat else "AISLE", passenger_bay + 1]
+	return "%s · CAR %d · %s %d" % [str(formation[passenger_coach].model).to_upper().replace("_", " "), passenger_coach + 1, "SEAT" if passenger_seat else "AISLE", passenger_seat_index+1 if passenger_seat and passenger_seat_index>=0 else passenger_bay+1]
 
 
 func interior_audio_position() -> Vector2:
+	if walk_car>=0: return Vector2(_center(walk_car)+_direction(walk_car)*walk_eye.z,maxf(.8,walk_eye.y-.5))
 	var i := passenger_coach if passenger_on else (cars.size() - 1 if train.cab_end == 2 else 0)
 	var camera := passenger_transform() if passenger_on else cab_transform()
 	var eye := cars[i].to_local(camera.origin)

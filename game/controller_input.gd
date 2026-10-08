@@ -2,7 +2,9 @@ extends Node
 ## One active standard gamepad. UI receives native actions; simulation stays untouched.
 const Shape := preload("res://game/controller_math.gd")
 const Camera := preload("res://game/controller_camera.gd")
-const HELP := """[b]XBOX CONTROLLER · 360 / ONE / SERIES / ELITE[/b]
+const TSW := preload("res://game/controller_tsw.gd")
+const HELP := TSW.HELP
+const LEGACY_HELP := """[b]XBOX CONTROLLER · 360 / ONE / SERIES / ELITE[/b]
 RT increase power / release brake · LT reduce power / apply brake.
 Release the triggers to hold the current handle; LT wins if both are pressed.
 A AI/manual · B emergency brake (again at a stand to release) · X coast.
@@ -12,6 +14,8 @@ Left stick pans exterior or moves left/right inside a passenger coach.
 In pilot/head-out: D-pad left/right leans out that side (again returns); up pilot.
 In other views: D-pad left/right previous/next coach · up first · down last coach.
 Left stick click opens/closes dispatch.
+Stand/sit is under Menu → Train & view actions → Camera & passengers.
+On foot in either layout: LS walk, RS look, RT run, LS click crouch, Y sit, A interact.
 
 [b]MENUS & DISPATCH[/b]
 D-pad / left stick move focus · A select/open · B back/cancel.
@@ -45,6 +49,16 @@ var sensitivity := 1.0
 var invert_y := false
 var vibration := .35
 var settings_path := "user://controller.cfg"
+var tsw_layout := true
+var _camera_down := false
+var _camera_used := false
+var _camera_time := 0.0
+var _camera_index := -1
+var _operation_down := false
+var _operation_used := false
+var _view_down := false
+var _view_used := false
+var _view_time := 0.0
 var _axes := PackedFloat32Array([0,0,0,0,0,0])
 var _buttons := {}
 var _armed := false
@@ -97,6 +111,7 @@ func _connection_changed(device: int, connected: bool) -> void:
 		game.hud.toast("Controller disconnected · simulation paused · reconnect or use keyboard",true)
 
 func neutralize() -> void:
+	TSW.reset(self)
 	_armed = false
 	_direction = Vector2i.ZERO
 	_repeat_time = 0
@@ -112,7 +127,23 @@ func _neutral() -> bool:
 
 func drive_input() -> float:
 	if active_device < 0 or not _armed or not _focused or game.paused or _ui_open() or _context != "drive": return 0
+	if game.walker.active or _camera_down or _operation_down: return 0
+	if tsw_layout and _axes[4]<=.06:
+		if _buttons.has(JOY_BUTTON_LEFT_SHOULDER): return 1.0 if game.train.controller<0 else 0.0
+		if _buttons.has(JOY_BUTTON_RIGHT_SHOULDER): return -1.0 if game.train.controller>0 else 0.0
 	return Shape.handle(_axes[5],_axes[4])
+
+func drive_handle(current: float, travel: float) -> float:
+	var direction:=drive_input()
+	if direction==0: return current
+	return TSW.handle(self,current,travel) if tsw_layout else clampf(current+direction*travel,-1,1)
+
+func walk_input() -> Vector2:
+	if active_device<0 or not _armed or not _focused or game.paused or _ui_open() or _camera_down: return Vector2.ZERO
+	return Shape.stick(Vector2(_axes[0],_axes[1]),deadzone)
+
+func walk_running() -> bool:
+	return walk_input()!=Vector2.ZERO and Shape.trigger(_axes[5])>.2
 
 func _set_mode(value: bool) -> void:
 	if value == controller_mode: return
@@ -150,7 +181,9 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.pressed: _buttons[event.button_index] = true
 	else: _buttons.erase(event.button_index)
-	if not event.pressed: return
+	if not event.pressed:
+		if (tsw_layout or game.walker.active) and _armed and not game.paused and not _ui_open(): TSW.button(self,event)
+		return
 	if event.button_index == JOY_BUTTON_START:
 		_close_popups()
 		if game.hud.modal.is_empty(): game._ui_action("pause")
@@ -176,6 +209,9 @@ func _input(event: InputEvent) -> void:
 				if game.hud.modal.is_empty(): game.dispatcher.toggle_timetable()
 		return
 	if game.paused: return
+	if tsw_layout or game.walker.active:
+		if _armed: TSW.button(self,event)
+		return
 	match event.button_index:
 		JOY_BUTTON_A: shortcut("ai")
 		JOY_BUTTON_B:
@@ -201,9 +237,13 @@ func _input(event: InputEvent) -> void:
 				game.cam._look = Vector2.ZERO
 
 func shortcut(action: String) -> void:
+	if action=="stand": game.walker.toggle_seat();return
+	if action=="crouch": game.walker.toggle_crouch();return
 	if not KEYS.has(action): return
 	var event := InputEventKey.new()
 	event.physical_keycode = KEYS[action]
+	event.shift_pressed = action=="head_right"
+	event.set_meta("controller_command",true)
 	event.pressed = true
 	# Reuse the keyboard command path without injecting a held keyboard state.
 	game._unhandled_input(event)
@@ -310,6 +350,7 @@ func _back() -> void:
 	match game.hud.modal:
 		"confirm": game._cancel_action()
 		"help": game._close_help()
+		"progress": game._close_progress()
 		"pause": game._ui_action("resume")
 		"":
 			game.dispatcher.set_open(false)
@@ -337,7 +378,7 @@ func _repeat(direction: Vector2i, delta: float, navigate: Callable) -> void:
 
 func _process(delta: float) -> void:
 	if game == null: return
-	var context: String = game.hud.modal if not game.hud.modal.is_empty() else ("desk" if game.dispatcher._root.visible else "drive")
+	var context: String = game.hud.modal if not game.hud.modal.is_empty() else ("desk" if game.dispatcher._root.visible else ("walk" if game.walker.active else "drive"))
 	if context != _context:
 		_context = context
 		neutralize()
@@ -361,6 +402,8 @@ func _process(delta: float) -> void:
 			game.hud._body.get_v_scroll_bar().value += right.y*650*delta
 		elif game.dispatcher.timetable_open:
 			_scroll_tree(game.dispatcher._timetable._table,right*650*delta)
+	elif not game.paused and _armed and (tsw_layout or game.walker.active):
+		TSW.process(self,left,right,delta)
 	elif not game.paused and _armed:
 		var look := right*sensitivity
 		if invert_y: look.y = -look.y
@@ -369,8 +412,9 @@ func _process(delta: float) -> void:
 		if game.cam.mode == 2:
 			_repeat(Shape.cardinal(Vector2(left.x,0)),delta,func(d):
 				game.tv.change_passenger_bay(d.x))
+	var driving_hint: String=TSW.hint(self) if tsw_layout or game.walker.active else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · LS click dispatch"
 	var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect/select · LB/RB areas · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
-	game.hud.set_controller_hint((menu_hint if _ui_open() else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · LS click dispatch") if _armed or _ui_open() else "Release controller sticks, triggers and buttons to continue")
+	game.hud.set_controller_hint((menu_hint if _ui_open() else driving_hint) if _armed or _ui_open() else "Release controller sticks, triggers and buttons to continue")
 
 func _scroll_tree(node: Node, offset: Vector2) -> void:
 	# Tree owns internal scrollbars; it exposes no public scrollbar getter.
@@ -400,18 +444,19 @@ func open_settings() -> void:
 	game._set_paused(true)
 	var name := Input.get_joy_name(active_device) if active_device >= 0 else "No controller connected"
 	if name.is_empty(): name = "Standard gamepad"
-	game.hud.controller_options = {name=name,deadzone=deadzone,sensitivity=sensitivity,invert=invert_y,vibration=vibration}
-	game.hud.controller_help = HELP
+	game.hud.controller_options = {name=name,deadzone=deadzone,sensitivity=sensitivity,invert=invert_y,vibration=vibration,tsw=tsw_layout}
+	game.hud.controller_help = HELP if tsw_layout else LEGACY_HELP
 	game.hud.show_modal("controllers")
 
 func change_setting(name: String) -> void:
 	match name:
+		"layout": tsw_layout=not tsw_layout
 		"deadzone": deadzone = .12 if deadzone >= .30 else snappedf(deadzone+.06,.01)
 		"sensitivity": sensitivity = .5 if sensitivity >= 2.0 else sensitivity+.25
 		"invert": invert_y = not invert_y
 		"vibration": vibration = 0 if vibration >= .7 else (.35 if vibration == 0 else .7)
 		"defaults":
-			deadzone = .18; sensitivity = 1; invert_y = false; vibration = .35
+			deadzone = .18; sensitivity = 1; invert_y = false; vibration = .35; tsw_layout=true
 	_save_settings()
 	open_settings()
 	call_deferred("_focus_setting","pad_setting:"+name)
@@ -433,8 +478,9 @@ func _load_settings() -> void:
 	sensitivity = _number(config,"sensitivity",1,.25,3)
 	vibration = _number(config,"vibration",.35,0,1)
 	invert_y = config.get_value("controller","invert_y",false) == true
+	tsw_layout = config.get_value("controller","tsw_layout",true) == true
 
 func _save_settings() -> void:
 	var config := ConfigFile.new()
-	for key in ["deadzone","sensitivity","vibration","invert_y"]: config.set_value("controller",key,get(key))
+	for key in ["deadzone","sensitivity","vibration","invert_y","tsw_layout"]: config.set_value("controller",key,get(key))
 	if config.save(settings_path) != OK: game.hud.toast("Controller settings could not be saved",true)

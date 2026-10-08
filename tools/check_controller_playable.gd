@@ -64,6 +64,7 @@ func run_check() -> void:
 	await process_frame
 	game = current_scene
 	pad = game.controller
+	pad.tsw_layout = false # Preserve regression coverage of the optional legacy layout.
 	pad.settings_path = "res://.local/controller-test.cfg"
 	game.set_process(false)
 	game.set_physics_process(false)
@@ -174,13 +175,15 @@ func run_check() -> void:
 	await focus_action("controllers")
 	check(game.hud.modal == "controllers","controller settings reachable")
 	var old_deadzone: float = pad.deadzone
-	await tap(JOY_BUTTON_A)
+	await focus_action("pad_setting:deadzone")
 	check(pad.deadzone != old_deadzone and FileAccess.file_exists(pad.settings_path),"A changes and saves deadzone")
 	var saved_deadzone: float = pad.deadzone
 	pad.deadzone = .4
 	pad._load_settings()
 	check(pad.deadzone == saved_deadzone,"settings reload persists")
 	await focus_action("pad_setting:defaults")
+	check(pad.tsw_layout,"defaults select TSW-style layout")
+	pad.tsw_layout=false
 	await screenshot("settings")
 	await tap(JOY_BUTTON_B)
 	await focus_action("controller_actions")

@@ -1,5 +1,47 @@
 # Progress
 
+## 2026-10-08 — Interior walking and TSW-style controller contexts
+- Added on-foot movement in the moving WAP-7, ICF/LHB and VB8/VB16 interiors.
+  Position stays local to the individual articulated car; the camera and audio
+  listener use its interpolated pose and reversed-car orientation. Stand/sit
+  preserves the current driver and handle. Nearby passenger seats retain their
+  exact seat index when re-entered.
+- Background Blender baked supported floor/standing/crouch clearance from all
+  22 pinned detailed masters without altering visual assets. Runtime sub-cell
+  sweeps stop at furnishings, partitions, floor holes and excessive steps; tiny
+  isolated floor fragments are excluded from standing/gangway destinations.
+  Cached room links connect interior partitions and source-located compartment
+  doors. Doorway/gangway prompts use brief transitions; door leaves stay static.
+  WAP-7 machinery access works, but there is no locomotive-to-coach gangway.
+- Default Xbox controls follow Dovetail's immersive guide: Y stand/sit, LS walk,
+  RS look, RT run, L3 crouch, A interact; RT/RB power and LT/LB brake while driving.
+  RS camera shift exposes internal/exterior presets. View tap opens dispatch,
+  hold shows progress; X opens actions or shifts AI/emergency/coast chords.
+  Headlamp, exact-seat interaction, on-foot prompts and context-specific help
+  are included. The legacy controller layout remains selectable and persisted.
+- Keyboard E stands/sits; Shift+E is now right head-out. WASD walk, Shift run,
+  C crouch, L headlamp, right-drag look, left-click interact, 9 dispatch.
+  Standing, returning to driving, UI changes and focus loss require neutral
+  movement controls before reuse. Walking inputs cannot operate traction; the
+  strongest brake request wins when keyboard/controller inputs coincide.
+- Verification: 243 headless tests passed. Source integration passed on all
+  four formations; native ICF/LHB/VB16 cab, aisle and gangway captures were
+  reviewed. VB16 included transitions back through oppositely-oriented coaches.
+  The default Kerala scenario passed 69 walking checks, including the live HUD.
+  Legacy controller/menu/dispatcher integration passed 68 checks. Native walking
+  updates averaged 0.030 ms in LHB and 0.043 ms in VB16 on this host's Radeon 780M;
+  those measure the walking update, not total frame time. Physical Xbox feel
+  remains a user playtest; synthesized events exercise the actual input router.
+- Playtest: Y/E out of the pilot seat, turn toward the machinery doorway and
+  use A/left-click; return and sit. Enable AI, choose Alt+1/2/3 passenger views,
+  stand, explore and sit elsewhere. Walk through gangways both directions,
+  including the reversed VB half; open/close dispatch while holding RT, release
+  it, and verify no unexpected power input. Full steps/limitations are in
+  `docs/walking.md`. Exterior platform walking, jumps, animated doors and
+  clickable cab instruments are outside this implementation.
+- R5 packaging includes the clearance JSON and walking/controller guides.
+  Extracted-distribution testing remains skipped as requested.
+
 ## 2026-10-08 — R4 detailed coach fleet and published VB update
 - Ported all fourteen v02 ICF/LHB masters (1A, 2A, 3A, 2S, CC, SL, GS per
   family) from user-owned remote checkpoint `e209ff5`, including full interiors,

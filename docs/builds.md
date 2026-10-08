@@ -10,7 +10,7 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R4-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R5-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
@@ -22,6 +22,10 @@ audit and dispatcher guide are included with the download.
 R4 replaces all fourteen legacy coach models with the detailed v02 ICF/LHB
 masters and includes the published VB EC updates. Its material JSON metadata
 is explicitly included in the export preset; see `coach-detail.md` for checks.
+R5 adds moving-train interior walking and default TSW-style controller contexts.
+The interior clearance JSON is included explicitly, with `walking.md` in the
+download guides. Source integration tests cover all four formations; no routine
+extracted-distribution test is required.
 
 Use `-BuildName TrainGame-Controller-Windows` to package controller support
 alongside the existing playtest ZIP. Its folder, archive, checksum and licences

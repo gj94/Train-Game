@@ -38,6 +38,8 @@ var hud
 var audio
 var dispatcher
 var controller
+var walker
+var _drive_keys_armed := true
 var performance_overlay
 var train_views := {}
 var train_motions := {}
@@ -216,6 +218,10 @@ func _ready() -> void:
 		hud.toast("WAP-7 30306 · W power / S brake · Tab exterior · C onward routes · F2 MEMU services")
 	else:
 		hud.toast("D opens dispatch · AUTO DISPATCH runs services · Tab takes the cab · F1 controls")
+	walker=preload("res://game/train_walk.gd").new()
+	walker.game=self
+	add_child(walker)
+	cam.walking_transform=walker.camera_transform
 	controller = ControllerInput.new()
 	controller.game = self
 	add_child(controller)
@@ -233,12 +239,19 @@ func _physics_process(delta: float) -> void:
 		dir += 1.0
 	if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):
 		dir -= 1.0
-	var pad: float = controller.drive_input() if controller != null else 0.0
-	dir = minf(dir,pad) if dir < 0 or pad < 0 else maxf(dir,pad)
-	if dispatcher._root.visible: dir=0.0
-	if dir != 0.0:
-		train.automatic = false
-		train.controller = clampf(train.controller + dir * HANDLE_RATE * delta, -1.0, 1.0)
+	if not _drive_keys_armed:
+		if not Input.is_physical_key_pressed(KEY_W) and not Input.is_physical_key_pressed(KEY_S) and not Input.is_physical_key_pressed(KEY_UP) and not Input.is_physical_key_pressed(KEY_DOWN): _drive_keys_armed=true
+		dir=0.0
+	if walker!=null and walker.active: dir=0.0
+	var pad_target: float=controller.drive_handle(train.controller,HANDLE_RATE*delta) if controller!=null else train.controller
+	if dispatcher._root.visible or (walker!=null and walker.active): pad_target=train.controller
+	var pad_intent: float=controller.drive_input() if controller!=null else 0.0
+	if dispatcher._root.visible or (walker!=null and walker.active): dir=0.0;pad_intent=0.0
+	if dir!=0.0 or pad_intent!=0.0:
+		var key_target:=clampf(train.controller+dir*HANDLE_RATE*delta,-1,1)
+		train.automatic=false
+		# The strongest brake request wins across keyboard and controller.
+		train.controller=minf(key_target,pad_target) if dir<0 or pad_target<train.controller else maxf(key_target,pad_target)
 	for motion in train_motions.values(): motion.begin_tick()
 	var remaining:=delta*time_scale
 	while remaining>.000001:
@@ -278,8 +291,11 @@ func _render_trains(fraction: float) -> void:
 func _process(delta: float) -> void:
 	if geographic_drive: _geographic_frame()
 	_render_trains(1.0 if paused else Engine.get_physics_interpolation_fraction())
+	if walker!=null: walker.update(delta)
 	for sound in train_audio.values(): sound.listener_owner = audio
-	if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
+	if walker!=null and walker.active:
+		audio.interior_listener=walker.audio_position()
+	elif _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
 		audio.interior_listener = tv.passenger_audio_position()
 	elif train.stock_kind.begins_with("ported:") and cam.mode == CameraRig.Mode.CAB:
 		audio.interior_listener = tv.interior_audio_position()
@@ -306,7 +322,8 @@ func _process(delta: float) -> void:
 		protection = world.protection,
 		cab = cam.mode == CameraRig.Mode.CAB,
 		head_out = ("HEAD OUT · LEFT" if cam.head_out_side < 0 else "HEAD OUT · RIGHT") if cam.mode == CameraRig.Mode.HEAD_OUT else "",
-		passenger = tv.passenger_name() if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER else "",
+		on_foot = walker!=null and walker.active,
+		passenger = ("ON FOOT · CAR %d" % (walker.car+1)) if walker!=null and walker.active else (tv.passenger_name() if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER else ""),
 		time_scale = time_scale,
 		automatic = train.automatic,
 		paused = paused,
@@ -360,11 +377,19 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 		if hud.modal != "":
 			return
+		if walker!=null and walker.active and not event.has_meta("controller_command") and event.physical_keycode in [KEY_W,KEY_A,KEY_S,KEY_D,KEY_C,KEY_SPACE,KEY_L]:
+			if event.physical_keycode==KEY_C: walker.toggle_crouch()
+			if event.physical_keycode==KEY_L: walker.toggle_lamp()
+			get_viewport().set_input_as_handled()
+			return
 		match event.physical_keycode:
 			KEY_F5: _open_services()
 			KEY_4: _pilot_camera()
 			KEY_Q: _head_out_camera(-1)
-			KEY_E: _head_out_camera(1)
+			KEY_E:
+				if event.shift_pressed: _head_out_camera(1)
+				else: walker.toggle_seat()
+			KEY_9: dispatcher.toggle()
 			KEY_TAB:
 				if cam.mode != CameraRig.Mode.OVERVIEW:
 					cam.set_mode(CameraRig.Mode.OVERVIEW)
@@ -478,12 +503,15 @@ func _unhandled_input(event: InputEvent) -> void:
 					if geographic_drive: destination-=wv.coordinate_origin
 					cam.jump_to(destination)
 					_set_cab_visuals(false)
+	elif walker!=null and walker.active and event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and event.pressed:
+		if not paused and hud.modal.is_empty() and not dispatcher._root.visible: walker.interact()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		if cam.drag_moved < 6.0 and cam.mode == CameraRig.Mode.OVERVIEW:
 			_pick(event.position)
 
 
 func _set_cab_visuals(cab: bool) -> void:
+	if walker!=null and cam.mode!=CameraRig.Mode.WALKING: walker.stop()
 	tv.set_cab_view(cab)
 	audio.interior_listener = TrainAudio.DRIVER
 	if _has_passengers():
@@ -538,6 +566,7 @@ func _passenger_preset(index: int) -> void:
 	var selected: int = eligible[0 if index==0 else (eligible.size()-1 if index==2 else (eligible.size()-1)/2)]
 	tv.passenger_coach = selected
 	tv.passenger_bay = 9 if lhb_drive else 0
+	tv.passenger_seat_index = -1
 	tv.passenger_seat = false
 	cam._look = Vector2.ZERO
 	_enter_passenger()
@@ -546,6 +575,7 @@ func _passenger_preset(index: int) -> void:
 
 
 func _enter_passenger() -> void:
+	if walker!=null: walker.stop()
 	# Looking around as a passenger preserves the current driver's controls.
 	if cam.mode == CameraRig.Mode.OVERVIEW:
 		_desk_before_cab = dispatcher._root.visible
@@ -567,6 +597,7 @@ func _toggle_pause() -> void:
 func _set_paused(value: bool) -> void:
 	paused = value
 	if controller != null: controller.neutralize()
+	if walker!=null: walker.neutralize()
 	cam.set_process_unhandled_input(not value)
 	cam._dragging = 0
 	for sound in train_audio.values():
@@ -722,7 +753,7 @@ func _toggle_help() -> void:
 		return
 	_paused_before_help = paused
 	_set_paused(true)
-	hud.controller_help = ControllerInput.HELP
+	hud.controller_help = ControllerInput.HELP if controller==null or controller.tsw_layout else ControllerInput.LEGACY_HELP
 	hud.scenario_brief = ScenarioBrief.describe(world, train, traffic_drive, dispatcher.auto_dispatch, dispatcher.hold_arrivals)
 	hud.show_modal("help")
 
@@ -856,6 +887,7 @@ func _view_train_only(id: String) -> void:
 func _select_train(id: String) -> void:
 	if id == train.id:
 		return
+	if walker!=null: walker.stop()
 	tv.set_cab_view(false)
 	if _has_passengers(): tv.set_passenger_view(false)
 	if traffic_drive and not train.service_complete: train.automatic = true

@@ -11,7 +11,10 @@ C next signal's route desk · R change ends when stopped · H horn
 Tab cab / exterior · A selected train AI / manual
 
 [b]CAMERA & PASSENGERS[/b]
-4 pilot seat · Q left head-out / return · E right head-out / return
+4 pilot seat · Q left head-out / return · Shift+E right head-out / return
+E stand up / sit down near a seat. On foot: WASD walk, Shift run, C crouch, L headlamp.
+Right-drag looks all around; left click uses the seat / doorway / gangway prompt.
+9 opens dispatch while walking. Current driver and power/brake stay set.
 F follow train · 1 / 2 / 3 visit a station
 Outside: right-drag orbit, left-drag pan, wheel zoom
 Cab / passenger: right-drag look (stays on release), wheel zoom, middle-click recenter.
@@ -22,7 +25,7 @@ Home aisle / seat. Original LHB rake: B fold / lower middle berths.
 
 [b]DISPATCHING[/b]
 F5 service designer: edit stock, stops and times; import/export JSON; play any service.
-D open / close dispatch · M timetable / map
+D (9 on foot) open / close dispatch · M timetable / map
 Select an entrance and exit, then SET ROUTE. PUT TO RED cancels safely.
 Select any service in the roster to follow it. Tab takes manual control.
 AUTO DISPATCH requests booked routes. HOLD MRT queues trains at Maruthur.
@@ -341,6 +344,7 @@ func _process(delta: float) -> void:
 			_toast.visible = false
 
 func refresh(s: Dictionary) -> void:
+	_toolbar.get_child(1).text="DISPATCH  9" if s.get("on_foot",false) else "DISPATCH  D"
 	var kmh := roundi(s.speed * 3.6)
 	var lim := roundi(s.limit * 3.6)
 	var over: bool = s.speed > s.limit + 3.0 / 3.6

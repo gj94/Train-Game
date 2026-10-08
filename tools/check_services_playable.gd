@@ -23,6 +23,7 @@ func frames(count: int = 3) -> void:
 func key(code: int) -> void:
 	var event := InputEventKey.new()
 	event.physical_keycode=code; event.pressed=true
+	event.shift_pressed=code==KEY_E
 	game._unhandled_input(event)
 
 func tap(button: int) -> void:
@@ -43,6 +44,7 @@ func bind_game() -> void:
 	game=current_scene
 	game.set_physics_process(false)
 	game.controller.set_process(false)
+	game.controller.tsw_layout=false # Existing layout retains its camera shortcuts.
 	for sound in game.train_audio.values(): sound.set_process(false)
 	game.controller._adopt(13)
 	game.controller.window_focus(true)

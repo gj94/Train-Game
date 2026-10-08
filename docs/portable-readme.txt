@@ -2,6 +2,16 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R5: walk inside the moving train; default TSW-style Xbox layout.
+Y/E stands or sits; LS/WASD walks; RS/right-drag looks; RT/Shift runs;
+LS click/C crouches. A/left-click uses the seat, doorway or gangway prompt.
+D-pad right/L toggles a headlamp. The train's driver and handle stay set.
+Driving: RT/RB power, LT/LB brake. Hold X+A AI, X+B emergency, X+RB coast.
+RS click cab/exterior; hold RS + D-pad for camera presets. View tap dispatch,
+View hold progress. Settings can restore the legacy controller layout.
+Interior doorways and gangways use a short transition; exterior walking and
+animated door leaves are not included. See guides/walking.md and controllers.md.
+
 Kerala Coast R4: all fourteen ICF/LHB coach classes now use detailed v02 assets.
 Class-specific furnishings, running gear, underframe equipment, exterior markings
 and authored materials are preserved. Vande Bharat EC cars use the newer published
@@ -95,27 +105,29 @@ The current sound includes the new benchmark squeal and speed-dependent rolling;
 see guides/enhanced-audio.md for the listening test and controls.
 The fictional Southern corridor is 21.64 km long. D opens the dispatch board;
 T cycles normal / 2x / 4x time. C opens routes for the next signal.
-F2 selects a detailed WAP-7 light engine; F3 selects WAP-7 + mixed LHB classes.
-Press the same scenario key again and confirm to select six MEMU services;
-use D then AUTO DISPATCH to run their timetable.
-F9 offers New random traffic service, plus solo imported fleet drives:
-WAP-7, WAG-9, WAG-12B, ICF/LHB and Vande Bharat. Restart current services
+F2 selects WAP-7 + ICF; F3 selects WAP-7 + mixed LHB classes.
+F9 offers traffic services and solo imported fleet drives:
+WAP-7 + ICF/LHB and Vande Bharat 8/16. Restart current services
 keeps the same assignment. See guides/dispatching.md and imported-fleet.md.
 Confirm a scenario change in the menu. In LHB, A drives automatically; V rides
 inside a passenger coach. C opens the route desk for the next signal.
 
 XBOX CONTROLLERS (360 / ONE / SERIES / ELITE)
-RT/LT adjust power/brake; release to hold. A AI/manual; B emergency; X coast.
-Y cab/exterior; View/Back passenger/cab; Menu/Start pause and controller settings.
-Right stick looks; LB/RB zoom; left stick pans outside or changes position inside.
-In pilot/head-out: D-pad left/right head-out, up pilot. Else left/right changes
-coach and up first coach; down last coach. L3 opens/closes dispatch.
+Default TSW-style: RT/RB power, LT/LB brake; release to hold. Y stand/sit.
+X tap actions; hold X+A AI/manual, X+B emergency, X+RB coast.
+RS looks; RS click cab/exterior, hold RS + D-pad up pilot/down middle passenger,
+left cycles internal views/right exterior. LS pans outside and zooms in cab.
+On foot LS walks, RT runs, L3 crouches, A interacts and D-pad right toggles headlamp.
+View tap dispatch/hold progress. Menu/Start pause and controller settings.
 In menus: D-pad/LS focus, A select, B back, LB/RB previous/next control, RS scroll.
 Menu > Train & view actions reaches routes, points, horn and all other commands.
 Disconnecting pauses. Release all controls after resuming before driving again.
 See guides/controllers.md for the full layout, settings and hardware playtest.
 
 QUICK KEYBOARD CONTROLS
+E             Stand / sit near a seat
+Shift+E / Q   Right / left head-out view
+On foot       WASD walk, Shift run, C crouch, L headlamp, 9 dispatch
 W / Up        More power
 S / Down      Reduce power / increase brake
 X             Coast

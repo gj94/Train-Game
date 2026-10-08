@@ -5,7 +5,48 @@ Connect over USB or a Windows-supported wireless connection before or during pla
 Elite paddles use the buttons assigned in the controller's own profile. The Xbox
 Guide button remains a Windows function. No additional game driver is required.
 
-## Driving and cameras
+## Default: TSW-style immersive
+
+Based on Dovetail's [Train Sim World Controls Guide](https://support.dovetailgames.com/hc/en-us/articles/36105734473234-Train-Sim-World-Controls-Guide)
+(consulted 8 October 2026). Train Game uses one combined power/brake handle, so
+the power/brake buttons operate that handle; it does not simulate TSW's separate
+train-specific handles or every cab instrument interaction.
+
+| Control | Action |
+| --- | --- |
+| RT / RB | Increase / reduce power |
+| LT / LB | Apply / release brake |
+| Y | Stand up / sit near a seat |
+| A | Use displayed on-foot interaction |
+| B | Back / cancel in menus |
+| X tap | Open Train & view actions |
+| X held + A / B / RB | AI/manual / emergency brake / coast |
+| Right stick | Look / orbit |
+| Right-stick click | Cab / exterior; recentre on foot |
+| Hold right-stick click + D-pad | Left: cycle internal views; right: exterior; up: pilot; down: middle passenger coach |
+| Left stick | Cab zoom; exterior pan; on foot walk / strafe |
+| Left-stick click | Horn when driving; crouch on foot |
+| Hold right-stick click + left stick | Zoom; left-stick click recentres |
+| D-pad up / down | Select driving end at rest, where supported |
+| View / Back | Tap dispatch; hold journey progress |
+| Menu / Start | Pause / back |
+
+LT takes priority. RB stops at coast without applying a brake; LB releases a
+brake without applying traction. RT moves the combined handle toward power,
+including out of its braking range. Release controls to hold the selected handle.
+An intentional driving-handle input takes over from AI. View-only camera presets
+preserve AI; the existing cab/exterior toggle enters manual driving on return.
+
+On foot, RT runs, A uses the displayed seat/doorway/gangway prompt, and D-pad right
+toggles a headlamp. Walking inputs cannot alter traction. See [walking.md](walking.md)
+for keyboard equivalents, current door transitions and a complete playtest.
+
+## Optional previous Train Game layout
+
+Select **Controller settings & layout → Layout** to restore these bindings.
+While on foot, the walking bindings above apply in both layouts. Use Menu →
+Train & view actions → Camera & passengers → Stand up / sit down to leave a seat
+in the legacy layout.
 
 | Control | Action |
 | --- | --- |
@@ -47,7 +88,7 @@ The pause menu also exposes display settings, all fleet choices, restart and qui
 
 ## Settings and safety
 
-Menu → Controller settings & layout adjusts stick deadzone, look sensitivity,
+Menu → Controller settings & layout selects TSW-style/legacy and adjusts stick deadzone, look sensitivity,
 vertical inversion and vibration strength. Settings persist in
 `user://controller.cfg`. Emergency braking produces a brief vibration where the
 Windows connection supports it; connection-specific vibration needs hardware testing.
@@ -60,7 +101,7 @@ remain available and replace the controller hints when used.
 
 ## Playtest
 
-1. Start a fresh scenario with the pad connected. Check RT/LT partial
+1. In the legacy layout, start a fresh scenario with the pad connected. Check RT/LT partial
    input, releasing to hold, X coast, A AI takeover and B emergency/release.
 2. Use Y, both sticks, bumpers and stick clicks. Use D-pad first/last/next/previous
    coach, then Menu → Passenger views → Middle. Compare camera and audio positions.

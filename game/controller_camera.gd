@@ -11,6 +11,6 @@ static func apply(camera, look: Vector2, pan: Vector2, zoom: float, delta: float
 			var forward := Vector3(-camera.global_basis.z.x,0,-camera.global_basis.z.z).normalized()
 			camera.pivot += (right*pan.x-forward*pan.y)*clampf(camera.distance*.65,2,1500)*delta
 	else:
-		camera._look.x = clampf(camera._look.x-look.x*2.2*delta,-camera.cab_yaw_limit,camera.cab_yaw_limit)
+		camera._look.x = wrapf(camera._look.x-look.x*2.2*delta,-PI,PI) if camera.mode==4 else clampf(camera._look.x-look.x*2.2*delta,-camera.cab_yaw_limit,camera.cab_yaw_limit)
 		camera._look.y = clampf(camera._look.y-look.y*1.6*delta,-.95,.85)
 		camera.cab_fov = clampf(camera.cab_fov-zoom*32*delta,38,82)

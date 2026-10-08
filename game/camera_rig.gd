@@ -4,7 +4,8 @@ extends Camera3D
 ##            optionally following the train.
 ## CAB      — driver's seat in the leading cab (right-drag to look around).
 
-enum Mode { OVERVIEW, CAB, PASSENGER, HEAD_OUT }
+enum Mode { OVERVIEW, CAB, PASSENGER, HEAD_OUT, WALKING }
+var walking_transform: Callable
 
 var head_out_transform: Callable
 var head_out_side := -1
@@ -96,6 +97,10 @@ func set_head_out(side: int) -> void:
 
 
 func _target() -> Transform3D:
+	if mode == Mode.WALKING and walking_transform.is_valid():
+		var t: Transform3D=walking_transform.call()
+		t.basis=t.basis*Basis.from_euler(Vector3(_look.y,_look.x,0))
+		return t
 	if mode == Mode.HEAD_OUT and head_out_transform.is_valid():
 		var t: Transform3D = head_out_transform.call(head_out_side)
 		t.basis = t.basis * Basis.from_euler(Vector3(_look.y, _look.x, 0))
@@ -119,6 +124,8 @@ func _target() -> Transform3D:
 
 
 func _process(delta: float) -> void:
+	if mode == Mode.WALKING and walking_transform.is_valid():
+		pivot=(walking_transform.call() as Transform3D).origin
 	if mode == Mode.HEAD_OUT and head_out_transform.is_valid():
 		pivot = (head_out_transform.call(head_out_side) as Transform3D).origin
 	if mode == Mode.PASSENGER and passenger_transform.is_valid():
@@ -181,7 +188,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				yaw -= rel.x * 0.005
 				pitch = clampf(pitch - rel.y * 0.004, -1.5, -0.05)
 			else:
-				_look.x = clampf(_look.x - rel.x * 0.005, -cab_yaw_limit, cab_yaw_limit)
+				_look.x = wrapf(_look.x-rel.x*.005,-PI,PI) if mode==Mode.WALKING else clampf(_look.x-rel.x*.005,-cab_yaw_limit,cab_yaw_limit)
 				_look.y = clampf(_look.y - rel.y * 0.004, -0.95, 0.85)
 		elif mode == Mode.OVERVIEW:   # left or middle drag pans
 			drag_moved += rel.length()

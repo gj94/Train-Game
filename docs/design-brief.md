@@ -9,6 +9,10 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **8 Oct 2026 walking:** leave driver/passenger seats and walk inside the moving
+  articulated train. Default Xbox bindings follow TSW immersive contexts, with
+  legacy layout selectable. Continuous collision-aware aisles, prompted interior
+  doorway/gangway transitions, seat selection, crouch and headlamp; see walking.md.
 - **8 Oct 2026 gameplay:** default to the slow Kerala Coast passenger (K1).
   Dynamic service priorities arrange overtakes and first-arrival crossing loops;
   show the other service's name in live wait advice. Progress/F12 shows completed
