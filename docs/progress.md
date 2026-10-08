@@ -1,5 +1,33 @@
 # Progress
 
+## 2026-10-08 — Isolated opening-priority experiment
+- At the user's request, compared the full 32-service opening with K1/K2
+  priorities 20/70 versus 70/20, changed before any route was committed.
+  Identical AI driving in both runs; no production priority, timetable,
+  dispatcher code or published R6 archive was changed.
+- Baseline / swapped: K1 departed ERS 08:20:55 / 08:00:00 and arrived Turavur
+  08:50:24 / 08:37:49. K2 arrived ERS 08:21:51 / 08:57:03. K3 departed
+  Kumbalam 08:18:00 / 08:48:52. Reversing priority eliminates the passenger's
+  initial wait but delays the VB by 30m52s and K2's arrival by 35m12s.
+- Both openings cleared with no safety events or sampled circular waits.
+  The 262-test headless suite passed. This is an opening comparison through
+  K2's arrival and K1/K3 clearing Turavur, not another full-route rehearsal.
+  Reusable tool: `tools/check_opening_priority.gd`; local JSON records the
+  actual station times, first clearances and originating-road exits.
+- Follow-up vacancy probe (`-- --vacancy`, two-second samples): baseline VB
+  head left Kumbalam P3 at 08:18:54, rear at 08:19:16. At that moment K2 was
+  already on ERS_TNU_M1 and ERS_single was locked for opposing traffic.
+  ERS-S1 cleared at 08:20:56. This explains why a newly vacant platform alone
+  cannot permit K1's departure in the existing baseline sequence.
+- User proposes entering the platform vacated by the VB. A planned meet could
+  instead retain K2 on Kumbalam P2, receive K1 into P3 after the VB exits and
+  release K2 after K1 clears the approach. Current admission uses available
+  berths, not predicted vacancies; this alternative still needs a separate
+  simulation and escape-route safeguards. No such policy was implemented here.
+- Playtest reference: fresh R6 still uses the baseline opening. Priority
+  changes made after a route is committed will not revoke its authority, so
+  changing priorities mid-session is not the same experiment.
+
 ## 2026-10-08 — Kumbalam receiving capacity, 32 services, platform walking and engine audio
 - Reproduced the screenshot's cause: Kumbalam's through main was counted as a
   spare passenger berth, allowing both single-line approaches to depend on one

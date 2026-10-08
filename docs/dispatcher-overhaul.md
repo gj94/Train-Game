@@ -52,6 +52,30 @@ uses the same interlocking and receiving-capacity check as automatic dispatch.
 Put to red & hold prevents automatic re-clearing while preserving approach/tail
 locks. Release signal hold resumes automatic requests.
 
+`tools/check_opening_priority.gd` runs an isolated opening comparison using the
+full 32-service world: first the published priorities, then K1/K2 swapped from
+20/70 to 70/20 before any authority is issued. Both runs use identical AI driving;
+the published timetable and build are unchanged. It records first signal
+clearance, origin exits, actual station times, safety events and sampled circular
+waits in `.local/opening-priority-results.json`. Each run continues until K1 and
+K3 are beyond Turavur and K2 has arrived at ERS, with a two-hour timeout. This is
+an opening experiment, not a replacement for the full timetable rehearsal.
+Pass `-- --vacancy` to measure the baseline VB head/tail departure from Kumbalam
+P3 and the ERS starter clearance, sampled every two simulation seconds.
+In the baseline, the VB starts at 08:18:00, its head leaves P3 at 08:18:54,
+and its rear clears at 08:19:16. K2 is already on ERS_TNU_M1 at that point;
+the opposing single-line lock holds K1 until ERS-S1 clears at 08:20:56.
+
+The 8 October comparison cleared the opening in both cases without safety
+events or sampled circular waits. Baseline versus swapped: K1 leaves ERS at
+08:20:55 / 08:00:00; reaches Turavur at 08:50:24 / 08:37:49; K2 arrives ERS at
+08:21:51 / 08:57:03; K3 leaves Kumbalam at 08:18:00 / 08:48:52. Thus changing
+priority alone gives the passenger an earlier start but delays both expresses.
+The separate proposed alternative is a planned Kumbalam meet: keep K2 on P2,
+receive K1 into P3 after the VB vacates it, then release K2 north. That requires
+planning a future berth vacancy and preserving the VB's escape route; it has
+not been implemented or validated by this priority-only experiment.
+
 The Attention tab shows missed calls, long blocked waits and circular dependency
 groups. Select an item to inspect its service. The bounded Decision log records
 changes and operator actions without adding identical messages every tick.
