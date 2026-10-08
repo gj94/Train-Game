@@ -752,7 +752,7 @@ func _toggle_progress() -> void:
 	else:
 		text+="[b]Stops completed: %d / %d[/b]\n[b]Stops left: %d[/b]\nOrigin included in the total.\n\n" % [p.completed,p.total,p.remaining]
 		if p.skipped>0:text+="Skipped calls: %d (not counted as completed)\n" % p.skipped
-		if p.complete:text+="[b]Journey complete[/b]"
+		if p.complete:text+="[b]Journey complete[/b]\n"+p.get("depot_status","")
 		else:
 			if not p.current.is_empty():text+="Currently at: "+p.current+"\n"
 			text+="[b]Next stop: "+p.next_name+"[/b]\n"

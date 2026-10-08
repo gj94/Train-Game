@@ -34,6 +34,7 @@ func configure(definition: Dictionary, world, train: Train) -> Dictionary:
 		var dir = raw.get("direction", train.path[0].dir)
 		if not block is String or not world.graph.edges.has(block):
 			return _error("Unknown stop block: " + str(block))
+		if world.depots.has(block):return _error("Depot berths are assigned by empty-stock dispatch, not passenger calls: "+block)
 		if not _number(offset) or not _number(dwell) or float(offset) < 0 or float(dwell) < 0:
 			return _error("Stop and dwell minutes must be finite non-negative numbers")
 		if not _number(dir) or float(dir) not in [-1.0, 1.0]:

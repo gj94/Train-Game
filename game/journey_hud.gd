@@ -2,7 +2,7 @@ extends RefCounted
 ## Presentation only: journey estimates remain in simulation time.
 static func text(progress: Dictionary) -> String:
 	if not progress.get("scheduled",false): return "No scheduled stops"
-	if progress.get("complete",false): return "All scheduled stops completed"
+	if progress.get("complete",false): return progress.get("depot_status","All scheduled stops completed")
 	var station: String=progress.get("next_name","Next stop")
 	if progress.get("missed",false): return station+" · Stop missed · F12 for options"
 	var distance: float=progress.get("distance_m",INF)

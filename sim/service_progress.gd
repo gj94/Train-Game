@@ -1,7 +1,7 @@
 extends RefCounted
 ## Read-only journey summary. Estimates are in simulation seconds, not wall time.
 static func snapshot(world: RailWorld,train: Train) -> Dictionary:
-	var tt=train.timetable
+	var tt=train.completed_timetable if train.completed_timetable!=null else train.timetable
 	if tt==null:return {scheduled=false}
 	var completed:=1 # the train starts at its origin; count it among the calls
 	for i in range(1,tt.stops.size()):
@@ -9,7 +9,9 @@ static func snapshot(world: RailWorld,train: Train) -> Dictionary:
 	var skipped: int=tt.stops.filter(func(s):return s.get("skipped",false)).size()
 	var result:={scheduled=true,total=tt.stops.size(),completed=completed,skipped=skipped,remaining=tt.stops.size()-completed-skipped,
 		complete=tt.complete(),current=tt.stops[tt.index].name if tt.at_stop else "",missed=tt.missed_stop}
-	if result.complete:return result
+	if result.complete:
+		result.depot_status=train.status if not train.depot.is_empty() else ""
+		return result
 	var next: int=mini(tt.index+1,tt.stops.size()-1) if tt.at_stop else tt.index
 	var stop: Dictionary=tt.stops[next]
 	var distance:=world._stop_distance(train.path[0].edge,train.path[0].dir,train.head_s,stop,[])

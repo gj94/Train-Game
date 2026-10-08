@@ -1,5 +1,53 @@
 # Progress
 
+## 2026-10-09 — R11 station master port and terminal depot workings
+- Pulled all three complete `south_indian_stations_v02` masters from the user's
+  pinned `1585bc27960fb67d970a1b5c75208ddf53597191` gallery. Fetches verify Git
+  blob hashes; reassembly verifies per-part and whole-master SHA-256. Background
+  Blender runs with source script execution disabled and never saves over them.
+- Ported ERS west entrance/interiors/forecourt, ERS east furnished hall, TVC
+  heritage/halls/offices, NCJ historic facade/annex/rooms, and the ERS maintenance
+  workshop. Preserved all 3,519,333 evaluated triangles from 9,251 source objects
+  in 31 spatial batches, with original signage, UVs/normals and translated graph
+  materials. Separate simple shadow meshes and Godot distance LODs manage cost.
+  Five native model checks confirm exact triangle totals and shader application.
+  Source/font notices and exact reconstruction/port limits accompany the build.
+  Static authored yard/platform meshes remain in the local complete masters;
+  they are not overlaid onto the CSV operating railway. See station-model-port.md.
+- Replaced permanent terminal-platform parking with `sim/depot_workings.gd`:
+  90-second unloading, exclusive reservation of a reachable finite depot berth,
+  then ordinary signal-protected AI empty-stock movement. No teleport/despawn.
+  Passenger results, progress and player identity remain; the entire train must
+  clear all throats and stop inside its depot road before being marked stabled.
+  Operator holds remain effective and deletion releases the depot reservation.
+  If full, the depot request waits and retries without overwriting another lease.
+- Added reconstructed depot receptions at ERS/ALLP/KYJ/QLN/TVCN/TVC/NCJ, separate
+  from passenger inventory. Four full-rake roads per reception, ordinary locked
+  points and route protection; new terrain/scenery clearance follows their
+  geometry. Reused the detailed maintenance workshop beside those roads. These
+  are gameplay connections, not surveyed depot tracks. Older fictional layouts
+  without depot infrastructure keep their previous completion behaviour.
+- Dispatcher roster/map, journey HUD and PROGRESS expose the new lifecycle while
+  the service timetable retains its passenger results. Passenger timetable import
+  cannot masquerade a depot berth as a passenger platform. Traffic rehearsal now
+  requires all trains to be stabled as well as having completed their services.
+  Restored K23's KPY terminus and K24's Haripad call; the temporary timetable
+  workaround has been removed in favour of clearing the actual terminal trains.
+- Verification: 330 headless tests pass; ten focused depot regressions include
+  red signals, tail clearance, finite leases, retries, deletion, holds, all 32
+  terminal-to-depot paths, passenger validation and terrain alignment. Native
+  station geometry/material checks pass for all five assemblies. Native desk
+  render/navigation/inspection checks pass at 1600×900 and 1280×720. The streamed
+  ERS scene, including both entrances, loads and captures correctly. Depot
+  allocation also passes 30 seeded arrival-order permutations of all 32 services.
+  The complete 32-service rehearsal is running before publication. No
+  extracted-build test.
+- Playtest: start a fresh Kerala scenario; inspect both ERS entrances and use the
+  free camera at TVC/NCJ. Follow K2 into the depot after ERS unloading; its whole
+  rake must vacate the platform. Later inspect K23/K24 through KPY/Haripad. Finish
+  a short custom service and check that passenger progress remains complete while
+  the assigned train moves under AI to its depot. See depot-workings.md.
+
 ## 2026-10-09 — R10 long rakes, CSV stations, moving-coach access and rattles
 - Replaced the seven-coach class showcase with representative service profiles:
   K1 has 20 seated ICF coaches (466.500 m including WAP-7); WAP expresses have
@@ -78,6 +126,16 @@
   While moving, Pause → Go to passenger coach → last coach, Y/E to stand,
   then L3/4 to return to pilot. Check Kumbalam's 1-platform/3-track dispatcher
   label and PROGRESS's 55 scheduled calls; Tirunettur should be passed without a call.
+- Publication: source commit `0de9902` pushed to `codex/port-indian-rail-assets`.
+  R10 was built from that clean commit and published at
+  `http://192.168.8.183:8765/`; ZIP 1,507,237,046 bytes, SHA-256
+  `e81763e01e4b58ade3bfa8ef8ed155f57bc92f58f4292aa31c6673f0c1b61ea6`.
+  LAN catalogue, ZIP headers, 32-byte partial download, checksum and four guides
+  verified. Existing R9/R8/R7/R6 fallbacks retained. This initial R10 listing was
+  withdrawn when the full rehearsal found K23 terminating on KPY's only usable
+  northbound passenger road, permanently blocking later calls. A temporary
+  timetable workaround was superseded by the user's depot instruction below;
+  K23 retains its KPY destination and K24 retains its Haripad call.
 
 ## 2026-10-08 — R9 ride motion, onboard acoustics and home lookahead
 - User clarified that jolts/vibrations should be introduced. Added a pure damped

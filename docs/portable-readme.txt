@@ -2,6 +2,16 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R11: completed passenger trains unload, then run as empty stock
+to reserved depot berths with normal signals and full-rake tail clearance.
+Passenger progress/results stay complete. The dispatcher shows depot status;
+the same assigned service is handed to AI for the depot movement after unloading.
+Includes detailed ERS west/east halls, TVC heritage frontage and Nagercoil
+buildings/interiors from the pinned station models, plus depot workshops.
+The source architecture retains full detail. Operating tracks/platforms remain
+the CSV-based game layout; depot connections are gameplay reconstructions.
+Start a fresh scenario. See guides/depot-workings.md and station-model-port.md.
+
 Kerala Coast R10: full-length service rakes replace the seven-coach showcases.
 K1 has 20 blue ICF coaches; WAP express trains have 22 ICF or LHB coaches.
 Every LHB coach now has consistent red/grey body paint. Families never mix.

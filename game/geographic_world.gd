@@ -245,6 +245,11 @@ func update() -> void:
 				result.node.position=result.origin-coordinate_origin
 				root.add_child(result.node); loaded[job.id]=result
 			else:
+				if job.kind=="station" and preload("res://game/authored_station.gd").available(world.stations[job.index].code):
+					preload("res://game/authored_station.gd").prepare(world.stations[job.index].code)
+				if job.kind=="station":
+					if world.stations[job.index].code=="ERS":preload("res://game/authored_station.gd").prepare("ERS_EAST")
+					if world.depots.values().any(func(d):return d.station==world.stations[job.index].code):preload("res://game/authored_station.gd").prepare("ERS_WORKSHOP")
 				worker.job=job; worker.thread=Thread.new()
 				worker.thread.start(_worker.bind(workers.find(worker),job))
 	for chunk in loaded.values():

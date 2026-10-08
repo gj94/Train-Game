@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **9 Oct 2026 depots and station masters:** finished passenger workings unload
+  and run as empty stock to a reserved depot berth. Normal interlocking and
+  full-tail clearance remain mandatory; retain passenger results and the player
+  assignment. Port the pinned `1585bc2` ERS/TVC/NCJ architecture and interiors,
+  preserving source detail and the CSV-authoritative operating platform totals.
 - **9 Oct 2026 station inventory and rakes:** apply the user's CSV platform totals
   across all 56 stations; keep running roads/loops/storage separate from reported
   yard totals. Closed Tirunettur has no passenger call. Long WAP formations use

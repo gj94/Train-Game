@@ -8,6 +8,7 @@ static var _source := {}
 var data: Dictionary
 var distance := PackedFloat64Array()
 var operations: Dictionary
+const DEPOT_STATIONS := ["ERS","ALLP","KYJ","QLN","TVCN","TVC","NCJ"]
 
 static func source() -> Dictionary:
 	if _source.is_empty(): _source = JSON.parse_string(FileAccess.get_file_as_string(ROOT+"route.json"))
@@ -19,7 +20,7 @@ static func build() -> RailWorld:
 
 func point(s: float, offset: float = 0.0) -> Array:
 	var index := clampi(distance.bsearch(clampf(s,0,distance[-1]))-1,0,distance.size()-2)
-	var weight := clampf((s-distance[index])/(distance[index+1]-distance[index]),0,1)
+	var weight := (s-distance[index])/(distance[index+1]-distance[index])
 	var a: Array = data.alignment[index]
 	var b: Array = data.alignment[index+1]
 	var dx: float = b[0]-a[0]
@@ -90,8 +91,9 @@ func _build() -> RailWorld:
 		var st: Dictionary = w.stations[i]
 		for lane in ["D","U"]:
 			var station_node: String = st.code+"_"+("L" if i==0 else "R")+lane
+			station_node=_depot_exit(w,st,station_node,-1 if i==0 else 1,lane)
 			var buffer: String = st.code+"_BUFFER_"+lane
-			_node(w,buffer,0 if i==0 else distance[-1],st.operating_roads[0 if lane=="D" else 1].offset)
+			_node(w,buffer,w.graph.nodes[station_node].chainage+(-300 if i==0 else 300),st.operating_roads[0 if lane=="D" else 1].offset)
 			_edge(w,st.code+"_END_"+lane,buffer if i==0 else station_node,station_node if i==0 else buffer,30)
 	# Register all 3-edge station forks after connecting the adjacent sections.
 	for id in w.graph.nodes:
@@ -106,6 +108,15 @@ func _build() -> RailWorld:
 		var branches: Array = backward if forward.size()==1 else forward
 		branches.sort_custom(func(a,b): return absf(w.graph.edges[a].lateral)<absf(w.graph.edges[b].lateral))
 		w.graph.add_switch(id,trunk,branches[0],branches[1],195)
+	data.depot_alignment=[]
+	for eid: String in w.graph.edges:
+		if "_DEPOT_" not in eid:continue
+		var e: Dictionary=w.graph.edges[eid]
+		var points:=[]
+		for k in range(0,ceili(e.length),25):
+			var p:=w.graph.position(eid,float(k));points.append([p.x,p.y,p.z])
+		var end:=w.graph.position(eid,e.length);points.append([end.x,end.y,end.z])
+		data.depot_alignment.append({points=points,s=e.chainage_start})
 	w._update_automatic_blocks()
 	return w
 
@@ -173,6 +184,8 @@ func _section(w: RailWorld, section: Dictionary, index: int) -> void:
 	if section.tracks==1:
 		var start: String=a.code+"_RM"
 		var end: String=b.code+"_LM"
+		start=_depot_exit(w,a,start,1,"M")
+		end=_depot_exit(w,b,end,-1,"M")
 		var sa: float=w.graph.nodes[start].chainage
 		var sb: float=w.graph.nodes[end].chainage
 		var blocks:=maxi(1,ceili((sb-sa)/1000))
@@ -193,6 +206,8 @@ func _section(w: RailWorld, section: Dictionary, index: int) -> void:
 	for lane in ["D","U"]:
 		var start: String = a.code+"_R"+lane
 		var end: String = b.code+"_L"+lane
+		start=_depot_exit(w,a,start,1,lane)
+		end=_depot_exit(w,b,end,-1,lane)
 		var sa: float = w.graph.nodes[start].chainage
 		var sb: float = w.graph.nodes[end].chainage
 		var blocks := maxi(1,ceili((sb-sa)/1000))
@@ -227,7 +242,41 @@ func _single_line_groups(w: RailWorld) -> void:
 		var prefix: String=st.code+"_"+w.stations[i+1].code+"_M"
 		for eid in w.graph.edges:
 			if eid.begins_with(prefix):w.single_line_sections[eid]=group
+		for lead in [st.code+"_DEPOT_RM_ACCESS",w.stations[i+1].code+"_DEPOT_LM_ACCESS"]:
+			if w.graph.edges.has(lead):w.single_line_sections[lead]=group
 		if st.through_halt:w.single_line_sections[st.platform_tracks[0]]=group
+
+func _depot_exit(w: RailWorld, st: Dictionary, start: String, dir: int, lane: String) -> String:
+	if st.code not in DEPOT_STATIONS:return start
+	# Explicitly reconstructed depot approaches, separate from CSV passenger
+	# roads. Each reception has four finite, full-rake stabling roads.
+	var key: String=st.code+"_DEPOT_"+("R" if dir==1 else "L")+lane
+	var s: float=w.graph.nodes[start].chainage
+	var offset: float=w.graph.nodes[start].lateral
+	var side:= -1.0 if lane=="D" else 1.0
+	var junction: String=key+"_J"
+	_node(w,junction,s+dir*220,offset)
+	_depot_edge(w,key+"_ACCESS",start,junction,dir,40)
+	var gate: String=key+"_G0"
+	_node(w,gate,s+dir*600,offset+side*80)
+	_depot_edge(w,key+"_LEAD",junction,gate,dir,25)
+	for road in range(1,5):
+		var end: String=key+"_B"+str(road)
+		var lateral: float=offset+side*(80+road*9)
+		_node(w,end,s+dir*(1800+road*30),lateral)
+		var id: String=key+"_ROAD"+str(road)
+		_depot_edge(w,id,gate,end,dir,15,lateral)
+		w.depots[id]={name=st.name+" depot · "+("south" if dir==1 else "north")+" "+lane+str(road),direction=dir,station=st.code,reconstructed=true}
+		w.graph.edges[id].depot=true
+		if road>=3:continue
+		var next: String=key+"_G"+str(road)
+		_node(w,next,s+dir*(600+road*30),offset+side*80)
+		_depot_edge(w,key+"_FAN"+str(road),gate,next,dir,15)
+		gate=next
+	return junction
+
+func _depot_edge(w: RailWorld, id: String, a: String, b: String, dir: int, speed: float, offset: float=INF) -> void:
+	_edge(w,id,a if dir==1 else b,b if dir==1 else a,speed,0,offset)
 
 static func build_traffic() -> RailWorld:
 	var w := build()

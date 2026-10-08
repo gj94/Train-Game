@@ -35,7 +35,8 @@ those sources; see the station audit for unresolved infrastructure details.
   and marked explicitly. Fast forward changes real elapsed time, not this estimate.
 - **PROGRESS / F12** shows completed/total calls, calls left, the next stop,
   distance, approximate in-game time and booked arrival. The origin counts as
-  the first of 56 calls. Signal waits are identified separately because their
+  the first of 55 calls. Tirunettur remains mapped but is closed in the supplied
+  station register and has no passenger call. Signal waits are identified separately because their
   duration can change. The progress panel pauses play; Back restores the prior
   pause/running state. **D** inspects any service; **F9** can assign randomly.
 - **F1** explains your working, priorities and booked stops. The live HUD names

@@ -2,6 +2,22 @@
 
 8 October 2026. This replaces the fixed dispatch overlay.
 
+## R10: station register and long trains
+
+The user-selected CSV now supplies all 56 station platform totals. Kumbalam has
+one passenger platform (game road P3) and two through roads; the morning LHB
+passes without a booked call. The future-clearance transaction also supports
+zero currently free passenger faces, provided the opposing train has a distinct
+usable road and the vacating train has a protected escape into a free berth.
+Thus K2 can wait on P1, the VB vacates P3, K1 enters P3, and K2 clears north.
+The occupied platform's entrance stays red. Earlier R7 timings below describe
+the previous shorter rakes and two-platform fixture, not the current timetable.
+
+Clearance checks include full-rake length between signals, turnout fouling
+zones and passenger platform ends. The map labels platform/through/storage
+roads and shows platform and track counts separately; the stop-road selector
+offers passenger platforms only. See [the CSV reconciliation](kerala-station-audit.md).
+
 ## R7: future platform clearances and deleting a service
 
 The dispatcher automatically looks for a bounded three-train crossing sequence
@@ -186,3 +202,12 @@ manual assignment, read-only assessment and intermediate calls. The complete
 32-service rehearsal finished safely in 1,430.6 seconds, including 19 crossings
 and three overtakes of K1; largest arrival delay remained 40.2 minutes. This
 is a completion/safety check, not a globally optimal timetable claim.
+
+## R11 terminal clearance
+
+The separate depot engine now reserves a finite berth and sends completed Kerala
+services there as empty stock after unloading. Passenger results remain recorded;
+normal interlocking and full-tail clearance protect every move. The desk reports
+unloading/working/stabled states and the number in depot. See [depot workings](depot-workings.md).
+The full rehearsal's success condition includes stabling, so platform parking can
+no longer be hidden behind a passenger-arrival-only completion report.

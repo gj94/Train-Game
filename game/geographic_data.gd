@@ -46,6 +46,7 @@ func _init(data: Dictionary = {}) -> void:
 				var key := Vector2i(x,z)
 				if not rail_bins.has(key): rail_bins[key] = []
 				rail_bins[key].append(index)
+	preload("res://game/geographic_depot_ground.gd").install(self,route)
 
 func tile(key: Vector2i) -> Dictionary:
 	if not tile_keys.has(key): return {}
@@ -87,8 +88,8 @@ func nearest_rail(x: float,z: float) -> Dictionary:
 		var along := clampf((p-a).dot(b-a)/maxf(.001,(b-a).length_squared()),0,1)
 		var d := p.distance_to(a.lerp(b,along))
 		if d<best.distance:
-			best={distance=d,height=lerpf(segment.a.y,segment.b.y,along),s=segment.s+along*a.distance_to(b),bridge=segment.bridge}
-	best.bridge=not bridge_at(best.s).is_empty()
+			best={distance=d,height=lerpf(segment.a.y,segment.b.y,along),s=segment.s+along*a.distance_to(b),bridge=segment.bridge,depot=segment.get("depot",false)}
+	best.bridge=not best.get("depot",false) and not bridge_at(best.s).is_empty()
 	return best
 
 func bridge_at(s: float) -> Dictionary:
@@ -99,7 +100,7 @@ func bridge_at(s: float) -> Dictionary:
 func ground_at(x: float,z: float) -> float:
 	var height := height_at(x,z)
 	var rail := nearest_rail(x,z)
-	var width: float=station_bins.get(floori(rail.s/500),32)
+	var width: float=12.0 if rail.get("depot",false) else station_bins.get(floori(rail.s/500),32)
 	if rail.distance<width+58:
 		if rail.bridge:
 			# SRTM can capture bridge/embankment tops. Keep natural lower ground,

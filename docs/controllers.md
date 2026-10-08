@@ -76,7 +76,10 @@ in the legacy layout.
 Triggers adjust the handle at a rate proportional to their deflection. Release
 them to hold the handle. LT takes priority if both are pressed. A deliberate
 trigger input takes over from AI. The middle coach is available under
-Menu → Passenger views. Non-passenger vans are skipped.
+Menu → Go to passenger coach. Choose a preset, or Go to any passenger coach
+for the numbered list. This works while moving behind a WAP-7. Y stands inside;
+left-stick click returns to pilot without changing your driving assignment.
+Non-passenger vans are skipped.
 
 ## Menus and dispatch
 

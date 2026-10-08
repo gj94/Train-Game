@@ -14,10 +14,13 @@ extends RefCounted
 enum Aspect { RED, YELLOW, GREEN }
 const Clock := preload("res://sim/world_clock.gd")
 const Timetable := preload("res://sim/timetable.gd")
+const Depot := preload("res://sim/depot_workings.gd")
 
 var graph := TrackGraph.new()
 var signals := {}        # route sections are immutable paths, independent of later point settings
 var trains := {}         # id -> Train
+var depots: Dictionary = {} # dedicated off-main stabling roads; not passenger platforms
+var depot_reservations: Dictionary = {} # road -> empty-stock service
 var time := 0.0
 var clock_start := 8.0 * 3600.0 # absolute world seconds at scenario start, day 1
 var protection := true   # emergency intervention before passing a red signal
@@ -104,6 +107,10 @@ func set_timetable(train_id: String, definition: Dictionary) -> Dictionary:
 	if not result.ok:
 		return result
 	train.timetable = schedule
+	train.completed_timetable=null
+	for road in depot_reservations.keys():
+		if depot_reservations[road]==train_id:depot_reservations.erase(road)
+	train.depot.clear()
 	train.destination = schedule.stops[-1].name
 	train.service_complete = false
 	return result
@@ -462,14 +469,15 @@ func step(dt: float) -> void:
 		_step_route_directions=_reservation_directions()
 		_within_step=true
 		for t in trains.values():
+			Depot.update(self,t)
 			if t.automatic:
 				_drive_automatic(t)
 			var previous_distance: float = t.odometer
 			_step_train(t, slice)
 			if t.timetable != null:
 				t.timetable.observe(t, clock_seconds(), t.odometer > previous_distance + 0.000001, _arrival_tolerance(t))
-				t.service_complete = t.timetable.complete()
-				if t.service_complete:
+				t.service_complete = t.completed_timetable!=null or t.timetable.complete()
+				if t.service_complete and t.depot.is_empty():
 					t.status = "Arrived at " + t.destination
 			elif t.destination != "" and t.speed < 0.01 and distance_to_buffer(t, 15.0) < 12.0:
 				t.service_complete = true
@@ -545,7 +553,7 @@ func _drive_automatic(t: Train) -> void:
 	if t.timetable != null:
 		var tt = t.timetable
 		if tt.complete():
-			t.status = "Timetable complete"
+			if t.depot.is_empty():t.status = "Timetable complete"
 			t.controller = -1.0
 			return
 		if tt.at_stop:
@@ -576,7 +584,7 @@ func _drive_automatic(t: Train) -> void:
 	var buffer := distance_to_buffer(t)
 	var stop_at := buffer - 7.0
 	var ns := next_signal(t)
-	t.status = "Running to " + t.destination
+	t.status = "Empty stock to " + t.depot.name if Depot.active(t) else "Running to " + t.destination
 	stop_at = minf(stop_at, _distance_to_red(t) - 6.0)
 	if not ns.is_empty() and aspect(ns.id) == Aspect.RED:
 		stop_at = minf(stop_at, ns.distance - 6.0)
@@ -617,7 +625,7 @@ func _drive_automatic(t: Train) -> void:
 		t.controller = clampf((target - t.speed) * 0.7, 0.0, 1.0)
 	else:
 		t.controller = 0.0
-	if t.service_complete:
+	if t.service_complete and not Depot.active(t):
 		t.controller = -1.0
 
 

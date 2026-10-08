@@ -128,7 +128,7 @@ transform/visual checks. Direct launch accepts `-- --fleet=icf`, `lhb`, `vb8` or
 
 1. F9 → Vande Bharat 8, then 16: inspect wheel/rail contact and pantographs. Stop,
    press R and inspect the other cab.
-2. Choose each coach showcase. V then PgDn through all seven classes; check
+2. Choose each WAP coach family. V then PgDn through the service rake; check
    glazing, interior visibility and Home/arrow-key viewpoints.
 3. Try both VB lengths: outward end cabs, intermediate cars, couplings and
    passenger views.

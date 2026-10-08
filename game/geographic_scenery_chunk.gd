@@ -177,7 +177,7 @@ func _building(feature: Dictionary) -> void:
 		for p in ring: centre+=p
 		centre/=ring.size()
 		var rail: Dictionary=geo.nearest_rail(origin.x+centre.x,origin.z+centre.y)
-		if rail.distance<22: continue # reconstructed operational clearance
+		if rail.distance<(60 if rail.get("depot",false) else 22): continue # reconstructed track/workshop clearance
 		var levels:=clampi(int(feature.tags.get("building:levels","2" if seed_value%4==0 else "1")),1,18)
 		var height:=maxf(2.8,float(feature.tags.get("height",str(levels*3.1)).trim_suffix(" m")))
 		var footing:=Foundations.outline(ring,_ground)
@@ -270,7 +270,7 @@ func _planting() -> void:
 		var kind:=_class_at(p.x,p.z)
 		if kind in [4,5,6,7,8]: continue
 		var rail: Dictionary=geo.nearest_rail(p.x+origin.x,p.z+origin.z)
-		if rail.distance<27 or _near_mapped_rail(Vector2(p.x,p.z),8): continue
+		if rail.distance<(60 if rail.get("depot",false) else 27) or _near_mapped_rail(Vector2(p.x,p.z),8): continue
 		if kind==2 and i%5!=0: continue
 		p.y=_ground(p.x,p.z)
 		var choice: String="coconut_palm" if rng.randf()<.72 else ("mango_tree" if rng.randf()<.55 else "rain_tree")
@@ -282,6 +282,6 @@ func _planting() -> void:
 		var kind:=_class_at(p.x,p.z)
 		if kind in [5,6,7,8,4]: continue
 		var rail: Dictionary=geo.nearest_rail(p.x+origin.x,p.z+origin.z)
-		if rail.distance<15 or rail.distance>120: continue
+		if rail.distance<(45 if rail.get("depot",false) else 15) or rail.distance>120: continue
 		p.y=_ground(p.x,p.z)
 		library.place("verge_patch",p,rng.randf()*TAU,Vector3.ONE*rng.randf_range(.7,1.25))

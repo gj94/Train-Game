@@ -15,6 +15,20 @@ var batch
 func _init(w: RailWorld, data, shared_materials: Dictionary, shared_assets) -> void:
 	world=w; graph=w.graph; geo=data; materials=shared_materials; assets=shared_assets
 
+func _add_authored_annexes(station: Dictionary, p: Vector3, f: Vector3, right: Vector3, extent: float) -> void:
+	if station.code=="ERS":_mount_authored("ERS_EAST",p+right*(extent+24),f,right)
+	for road: String in world.depots:
+		if world.depots[road].station!=station.code or not road.ends_with("ROAD4"):continue
+		var s: float=graph.edges[road].length*.65
+		var forward:=graph.tangent(road,s,1)
+		var outward:=forward.cross(Vector3.UP)*(1.0 if graph.edges[road].lateral>0 else -1.0)
+		_mount_authored("ERS_WORKSHOP",graph.position_relative(road,s,origin)+outward*24,forward*(1.0 if graph.edges[road].lateral>0 else -1.0),outward)
+
+func _mount_authored(code: String, position: Vector3, forward: Vector3, right: Vector3) -> void:
+	var assembly:=preload("res://game/authored_station.gd").add_building(root,code,position,forward,right,true)
+	preload("res://game/geographic_station_foundation.gd").draw(batch,geo,assembly.position,assembly.basis,assembly.footprint,origin)
+	batch.box("concrete",assembly.position-Vector3.UP*.065,Vector3(assembly.footprint.x,.10,assembly.footprint.y),Color.WHITE,assembly.basis)
+
 func build_station(index: int) -> Dictionary:
 	var station: Dictionary=world.stations[index]
 	origin=Vector3(floorf(station.origin.x/256)*256,0,floorf(station.origin.z/256)*256)
@@ -79,7 +93,11 @@ func build_station(index: int) -> Dictionary:
 	var position:=p+right*(left_extent-26)
 	var basis:=Basis(f,Vector3.UP,right)
 	var kind: String={"ERS":"kerala_ers_entry","TVC":"kerala_tvc_heritage","NCJ":"kerala_ncj_entry"}.get(station.code,"kerala_coastal_station")
-	if station.major or station.code in ["SRTL","VAK","NYY","KZT","ERL"]:
+	if preload("res://game/authored_station.gd").available(station.code):
+		var assembly:=preload("res://game/authored_station.gd").add_building(root,station.code,position,f,right)
+		preload("res://game/geographic_station_foundation.gd").draw(batch,geo,assembly.position,assembly.basis,assembly.footprint,origin)
+		batch.box("concrete",assembly.position-Vector3.UP*.065,Vector3(assembly.footprint.x,.10,assembly.footprint.y),Color.WHITE,assembly.basis)
+	elif station.major or station.code in ["SRTL","VAK","NYY","KZT","ERL"]:
 		var footprint: Vector2={"ERS":Vector2(96,22),"TVC":Vector2(114,24),"NCJ":Vector2(84,24)}.get(station.code,Vector2(66,17))
 		preload("res://game/geographic_station_foundation.gd").draw(batch,geo,position,basis,footprint,origin)
 		for part in assets.asset(kind):
@@ -98,6 +116,7 @@ func build_station(index: int) -> Dictionary:
 	if station.get("through_halt",false):
 		batch.finish(root,materials,"Railway")
 		return {node=root,origin=origin}
+	_add_authored_annexes(station,p,f,right,right_extent)
 	# Passenger bridge with open balustrades and supported stairs, clear of OHE.
 	var bridge_s: float=midpoint+60
 	var bridge_p:=graph.position_relative(road,bridge_s,origin)

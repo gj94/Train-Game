@@ -68,6 +68,11 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 
 func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 	if not w.scenery.get("geographic", false): return {}
+	# A local depot entrance leaves the corridor before its next receiving
+	# station. Ordinary interlocking still protects the shared throat/approach.
+	if w.depots.has(option.edges[-1].edge):
+		if preload("res://sim/depot_workings.gd").active(t) and option.edges[-1].edge==t.depot.road:return {}
+		return {reason="Depot road reserved for an assigned empty-stock working",blockers=[]}
 	for entry in option.edges:
 		var section: String = w.single_line_sections.get(entry.edge, "")
 		if section.is_empty() or t.path.any(func(p): return w.single_line_sections.get(p.edge, "") == section): continue

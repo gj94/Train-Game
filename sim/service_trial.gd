@@ -22,17 +22,17 @@ func step() -> void:
 	if not world.events.is_empty():
 		done = true
 		report = "Traffic check stopped: " + str(world.events[0].text)
-	elif world.trains.values().all(func(t): return t.service_complete):
+	elif world.trains.values().all(func(t): return preload("res://sim/depot_workings.gd").finished(world,t)):
 		done = true
 		ok = true
 		var late := 0.0
 		for train in world.trains.values():
-			var schedule = train.timetable
+			var schedule = train.completed_timetable if train.completed_timetable!=null else train.timetable
 			late = maxf(late,schedule.actual_arrivals[-1]-schedule.planned_arrival(schedule.stops.size()-1))
-		report = "All %d services arrived safely. Latest arrival delay: %.1f min. Manual driving may change the outcome." % [world.trains.size(),late/60]
+		report = "All %d services arrived safely and cleared to depot where provided. Latest passenger arrival delay: %.1f min. Manual driving may change the outcome." % [world.trains.size(),late/60]
 	elif world.clock_seconds() > deadline:
 		done = true
 		var held: Array[String] = []
 		for train in world.trains.values():
-			if not train.service_complete: held.append(train.id + " at " + train.path[0].edge)
+			if not preload("res://sim/depot_workings.gd").finished(world,train): held.append(train.id + " at " + train.path[0].edge)
 		report = "Traffic did not finish within two hours of the last booked arrival: " + ", ".join(held) + ". Check occupied destination platforms and conflicting schedules."

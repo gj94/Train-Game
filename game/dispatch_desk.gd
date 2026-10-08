@@ -406,10 +406,12 @@ func _refresh() -> void:
 	_your_train.text="YOUR SERVICE  "+selected_train+"  ·  "+("AI driving" if world.trains[selected_train].automatic else "Manual driving")
 	var complete: int=world.trains.values().filter(func(t):return t.service_complete).size()
 	var held: int=engine.states.values().filter(func(s):return s.status in ["waiting","held","blocked"]).size()
-	_status.text="%d services   /   %d waiting   /   %d arrived" % [world.trains.size(),held,complete]
+	var stabled: int=world.trains.values().filter(func(t):return t.depot.get("phase","")=="stabled").size()
+	_status.text="%d services / %d waiting / %d arrived / %d in depot" % [world.trains.size(),held,complete,stabled]
 	for id in _roster:
 		var t: Train=world.trains[id];var state: Dictionary=engine.states.get(id,{})
 		_roster[id].text="%s  %s   %d km/h\n%s\n%s" % [id,"●" if id==inspected_train else "",roundi(t.speed*3.6),t.service_name,state.get("status","observing").to_upper()]
+		if not t.depot.is_empty():_roster[id].text+=" · "+str(t.depot.phase).to_upper()
 		_roster[id].tooltip_text=t.service_name+"\n"+state.get("reason","")
 	var t: Train=world.trains[inspected_train]
 	var state: Dictionary=engine.states.get(inspected_train,{})

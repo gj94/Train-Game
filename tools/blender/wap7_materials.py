@@ -170,6 +170,8 @@ class Compiler:
         return var,kind
 
     def surface(self,node):
+        if node.type=='BSDF_DIFFUSE':
+            return dict(color=self.inp(node,'Color','vec3'),rough=self.inp(node,'Roughness'),metal='0.0',alpha='1.0',emission='vec3(0.0)',normal=self.inp(node,'Normal','vec3') if node.inputs['Normal'].is_linked else 'NORMAL',transmission='0.0')
         if node.type=='BSDF_TRANSPARENT':
             return dict(color='vec3(1.0)',rough='0.0',metal='0.0',alpha='0.0',emission='vec3(0.0)',normal='NORMAL',transmission='0.0')
         if node.type=='MIX_SHADER':

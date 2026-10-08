@@ -137,14 +137,15 @@ resampling and moving-filter updates prevent a sample-identical output claim.
 
 - **Alt+1 / Alt+2 / Alt+3:** enter first / middle / last passenger coach directly.
 - In passenger view, **1 / 2 / 3** select those same coaches.
-- **Esc → Passenger views** offers the same three choices.
+- **Esc → Go to passenger coach** offers the same three choices and a numbered
+  list for any coach, including while moving behind a WAP-7.
 - **PgUp/PgDn** visit other coaches; **left/right** change position; **Home**
   switches aisle/seat; right-drag looks around. **V** returns to the cab.
 
 Generator and luggage vans without passenger interiors are skipped. First/last
-refer to the current direction of travel. The seven-coach mixed LHB rake
-selects vehicle indices 1, 4 and 7. The 20-coach LHB and other passenger fleets
-use their actual eligible coach list. Entering these views preserves AI/manual
+refer to the current direction of travel. R10's 20/22-coach WAP rakes and the
+Vande Bharat formations use their actual eligible coach lists, excluding the
+WAP locomotive. Entering these views preserves AI/manual
 driving controls. Outside passenger view, unmodified 1/2/3 remain station views.
 
 ## Source and validation
@@ -189,7 +190,9 @@ is an airborne listening model, not a separately calibrated carbody vibration pa
 
 The new comparison uses a moving pilot and first-coach doorway on straight
 track with 39 m joints at 30, 71.6 and 120 km/h. It uses the website's exact
-WAP + 20 LHB geometry, rather than the game's imported seven-coach formation.
+WAP + 20 LHB geometry, rather than R9's imported seven-coach formation. R10's
+20/22-coach service profiles are a subsequent change; these measurements describe
+the fixed comparison fixture, not a new measurement of each long service rake.
 Native and Web Audio captures use the same approved PCM and receiver positions.
 
 Across six eight-second captures, game/reference RMS difference was -0.015 to

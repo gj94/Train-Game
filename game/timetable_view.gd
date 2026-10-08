@@ -41,7 +41,7 @@ func refresh(train_id: String) -> void:
 	if world == null or _table == null:
 		return
 	var train: Train = world.trains[train_id]
-	var tt = train.timetable
+	var tt = train.completed_timetable if train.completed_timetable!=null else train.timetable
 	if tt != _current_schedule:
 		_table.clear()
 		_items.clear()

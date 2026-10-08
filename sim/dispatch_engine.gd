@@ -117,8 +117,9 @@ func _evaluate(w, t: Train, route_trains: bool, approach: Dictionary = {}) -> Di
 		signal_id=ns.get("id", ""), signal_distance=ns.get("distance", INF),
 		destination="", blockers=[], alternatives=[], wait_seconds=0.0,
 		call=Prediction.next_call(w,t), hold=w.dispatch_holds.get(t.id,{}).duplicate(true)}
-	if t.service_complete:
-		state.status="complete"; state.reason="Service complete; destination road remains occupied"; return state
+	if t.service_complete and not preload("res://sim/depot_workings.gd").active(t):
+		state.status="complete" if t.depot.get("phase","")=="stabled" or w.depots.is_empty() else "dwell"
+		state.reason=t.status; return state
 	if t.emergency:
 		state.status="attention"; state.reason="Emergency brake applied; release at a stand"; return state
 	if t.timetable != null and t.timetable.missed_stop:
@@ -348,6 +349,8 @@ func delete_service(id: String, protected_service: String="") -> Dictionary:
 		sig.cleared=false;sig.route=[];sig.owner="";sig.destination="";sig.cancel_pending=false
 		released.append(sig.id)
 	w.trains.erase(id)
+	for road in w.depot_reservations.keys():
+		if w.depot_reservations[road]==id:w.depot_reservations.erase(road)
 	w.dispatch_notices.erase(id)
 	for held in w.dispatch_holds.keys():
 		if held==id or w.dispatch_holds[held].get("other","")==id:w.dispatch_holds.erase(held)

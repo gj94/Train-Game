@@ -8,7 +8,8 @@ its coaches, or step out onto a platform at a stop and board a coach doorway.
 The Kerala route supports platform walking beside your assigned train.
 
 You can transfer to **any passenger coach while moving**, including behind a
-WAP-7: open Pause/Start → **Go to passenger coach…**, select Coach 1–20/22, then
+WAP-7: open Pause/Start → **Go to passenger coach…** → **Go to any passenger coach…**,
+select Coach 1–20/22, then
 press **Y/E** to stand inside. The same list is under Camera & passengers.
 This changes your viewpoint without handing over your service or changing the
 power/brake handle or AI setting. **Left-stick click / 4** returns to the pilot.

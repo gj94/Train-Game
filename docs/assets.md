@@ -2,6 +2,17 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-09 detailed station buildings: user-owned `south_indian_stations_v02`
+at [1585bc27960fb67d970a1b5c75208ddf53597191](https://github.com/gj94/transport-fever-3-mods/tree/1585bc27960fb67d970a1b5c75208ddf53597191/south_indian_stations_v02).
+The user explicitly requested this port; no open redistribution licence is
+inferred. All three full Blender masters are hash-verified locally. Five runtime
+building assemblies preserve 3,519,333 evaluated triangles, interiors, original
+typeset signs and graph materials. Static source yards are not layered over the
+operating railway. Source photo/map provenance and Noto/DejaVu notices are kept
+in `assets/models/ported/station-notices`; no reference photo pixels or fonts are
+bundled. Mapping attribution remains © OpenStreetMap contributors, ODbL 1.0.
+See `station-model-port.md` for exact scope, render differences and rebuild steps.
+
 2026-10-09 coach-body sounds: `assets/sounds/coach_rattle/` contains eight original
 procedurally synthesized latch/panel cues, exported from the sibling
 `railway-clang-simulator` source project. No recording samples were used.

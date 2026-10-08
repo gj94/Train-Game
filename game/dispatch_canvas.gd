@@ -170,6 +170,7 @@ func _draw() -> void:
 		else:_line_segment(id,0,length,2.5,RAIL)
 		if span<8500:
 			var midpoint:=_edge_p(id,.5)
+			if world.depots.has(id):_text(midpoint+Vector2(-30,-14),world.depots[id].name,RAIL,11)
 			if "_P" in id:
 				var name: String=id
 				var st:=_station_for_edge(id)
