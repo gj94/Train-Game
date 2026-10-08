@@ -41,6 +41,14 @@
   clickable cab instruments are outside this implementation.
 - R5 packaging includes the clearance JSON and walking/controller guides.
   Extracted-distribution testing remains skipped as requested.
+- R5 released from clean source `59dc584`, committed and pushed to
+  `codex/port-indian-rail-assets`. `TrainGame-Kerala-Coast-R5-Windows.zip` is
+  1,506,915,303 bytes; SHA-256
+  `bea076febea9bffe4da4c72ba7f3d984451bfbe8c23aeb764009d20fbfdb918b`.
+  The existing LAN page at `http://192.168.8.183:8765/` now offers R5 first;
+  older builds are retained. HTTP HEAD, byte-range resume, checksum sidecar and
+  walking-guide responses were verified. The source project was tested; the
+  extracted build was not launched.
 
 ## 2026-10-08 — R4 detailed coach fleet and published VB update
 - Ported all fourteen v02 ICF/LHB masters (1A, 2A, 3A, 2S, CC, SL, GS per
