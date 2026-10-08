@@ -23,11 +23,15 @@
   removes its occupancy/holds/future commitments, then reassesses traffic.
   Streamed models, audio buses and motion state are released; viewing a deleted
   train returns the camera to the assigned service. Restart restores the pack.
-- Verification: 285 headless tests pass. Source-game deletion checks passed
-  16 checks, including confirmation/cancel, ownership and presentation cleanup.
-  Native Vulkan/controller checks passed; screenshot review caught an inherited
-  off-screen confirmation layout and it was corrected before publication.
-  A final check covers centering as well as controller confirmation/cancel.
+- Verification: 285 headless tests pass. Native Vulkan source-game deletion
+  checks passed all 18 checks, including Xbox confirmation/cancel, ownership,
+  presentation cleanup and dialog placement. Screenshot review caught an
+  inherited off-screen confirmation; a CenterContainer now owns its layout.
+  The final screenshot and a separate headless layout check confirm centering.
+- Removed 11 obsolete build families (base through R5), freeing 20,817,331,582
+  bytes (19.39 GiB). Retained R6 as fallback and the incoming R7. The LAN catalog
+  and startup script now use those retained builds instead of the deleted base
+  ZIP; only archives with a completed checksum appear on the download page.
 - Playtest: start fresh K1, drive to Kumbalam's home signal and wait for VB P3
   to clear. Enter P3; K2 should then depart north. Inspect the planned crossing
   advice in D. To recover a blocked run, inspect an AI train, Delete service…,

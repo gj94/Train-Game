@@ -53,7 +53,11 @@ if ($Action -eq 'Firewall') {
     "Firewall ready: TCP $Port on $BindAddress, Private profile, local subnet only."
     return
 }
-if (!(Test-Path -LiteralPath (Join-Path $projectRoot 'export/TrainGame-Windows.zip'))) { throw 'Build the Windows ZIP first.' }
+$availableBuilds = @('R7', 'R6') | Where-Object {
+    $archive = Join-Path $projectRoot "export/TrainGame-Kerala-Coast-$_-Windows.zip"
+    (Test-Path -LiteralPath $archive) -and (Test-Path -LiteralPath "$archive.sha256")
+}
+if (!$availableBuilds) { throw 'Build a supported Windows ZIP with its checksum first.' }
 $serverArgs = @('"' + $serverScript + '"', "--host=$BindAddress", "--port=$Port", "--prefix=$($ip.PrefixLength)")
 $child = Start-Process -FilePath $nodePath -ArgumentList $serverArgs -WorkingDirectory $projectRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $projectRoot '.local/lan-share.out.log') -RedirectStandardError (Join-Path $projectRoot '.local/lan-share.err.log')
 Start-Sleep -Milliseconds 800
