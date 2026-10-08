@@ -4,6 +4,7 @@ const Planner:=preload("res://sim/dispatch_planner.gd")
 
 func fixture() -> RailWorld:
 	var w:=Kerala.build_traffic()
+	w.dispatcher().future_clearances.enabled=false # exercise the conservative fallback separately
 	for id in w.trains.keys():
 		if id not in ["K1","K2","K3"]: w.trains.erase(id)
 	return w

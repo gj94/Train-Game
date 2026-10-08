@@ -1,5 +1,38 @@
 # Progress
 
+## 2026-10-08 — R7 future-clearance crossing plans and delete service
+- Implemented the user's Kumbalam sequence as automatic simulation-owned,
+  bounded three-train crossing transactions. Reserve both station berths and
+  the vacater's escape section plus a currently free compatible onward berth.
+  Incoming trains can approach a protected home signal; actual occupancy,
+  point/direction and tail locks still decide when they may enter. Opposing
+  departures wait until the incoming train's complete tail is in its berth.
+  No chained speculative vacancies; incompatible/held/manual vacaters, busy
+  escape berths, unrelated approaches and operator preferences reject a plan.
+- Compared with R6, K1 arrives Kumbalam 08:21:02 rather than 08:30:42 and
+  Turavur 08:40:44 rather than 08:50:24. The VB still leaves at 08:18:00;
+  K2 reaches ERS 08:27:13 rather than 08:21:51. Net arrival-time improvement
+  across these three measured calls is 4m18s; not a global optimisation claim.
+- Four committed-plan disruption trials passed: K1 starts +10/+20 min,
+  K2 +15 min and VB at 08:30 instead of 08:18. No safety events, sampled
+  circular waits, wrong receiving platforms or premature opposing departures.
+  A complete 32-service rehearsal is running while R7 is prepared on request.
+- Added Delete service… to the dispatch inspector, with a named confirmation
+  defaulting to Keep service. The assigned train is protected; hand over first
+  to remove it. Deletion is for this run, releases only that train's authority,
+  removes its occupancy/holds/future commitments, then reassesses traffic.
+  Streamed models, audio buses and motion state are released; viewing a deleted
+  train returns the camera to the assigned service. Restart restores the pack.
+- Verification: 285 headless tests pass. Source-game deletion checks passed
+  16 checks; native renderer/controller confirmation verification is pending.
+  Headless dummy rendering reported a known mesh-material diagnostic while
+  loading the inspected train, so a native run is being checked before release.
+- Playtest: start fresh K1, drive to Kumbalam's home signal and wait for VB P3
+  to clear. Enter P3; K2 should then depart north. Inspect the planned crossing
+  advice in D. To recover a blocked run, inspect an AI train, Delete service…,
+  cancel once with B, then confirm with A; verify your service remains selected.
+  R7 packaging/publication is pending; extracted-distribution testing is skipped.
+
 ## 2026-10-08 — Isolated opening-priority experiment
 - At the user's request, compared the full 32-service opening with K1/K2
   priorities 20/70 versus 70/20, changed before any route was committed.

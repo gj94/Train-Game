@@ -11,7 +11,10 @@ func _init() -> void:
 		_vacancy_probe()
 		return
 	var results: Array = []
+	if "--future" in OS.get_cmdline_user_args():
+		results.append(_rehearse(false,true))
 	for swap in [false, true]:
+		if "--future" in OS.get_cmdline_user_args():break
 		results.append(_rehearse(swap))
 	var output := "res://.local/opening-priority-results.json"
 	var file := FileAccess.open(output, FileAccess.WRITE)
@@ -19,16 +22,18 @@ func _init() -> void:
 	print("PRIORITY_RESULTS ", JSON.stringify(results))
 	quit(0 if results.all(func(r): return r.cleared_opening and r.safety_events.is_empty() and r.circular_seconds == 0) else 1)
 
-func _rehearse(swap: bool) -> Dictionary:
+func _rehearse(swap: bool, future: bool=false) -> Dictionary:
 	var w := Kerala.build_traffic()
 	if swap:
 		var old: int = w.trains.K1.dispatch_priority
 		w.trains.K1.dispatch_priority = w.trains.K2.dispatch_priority
 		w.trains.K2.dispatch_priority = old
 	var engine = w.dispatcher()
+	engine.future_clearances.enabled=future
 	engine.enabled = true
 	engine.run_cycle(true)
 	var result := {variant="swapped" if swap else "baseline", priorities={}, initial={}, first_clear={}, origin_exit={}, calls={}, circular_seconds=0.0, first_cycle={}, safety_events=[], cleared_opening=false}
+	if future:result.variant="future"
 	var origins := {}
 	var starts := {}
 	for id in WATCH:
@@ -39,7 +44,7 @@ func _rehearse(swap: bool) -> Dictionary:
 		var state: Dictionary = engine.states[id]
 		result.initial[id] = {status=state.status, reason=state.reason}
 		if w.aspect(starts[id]) != RailWorld.Aspect.RED: result.first_clear[id] = w.clock_text()
-	print("PRIORITY_START ", JSON.stringify({variant=result.variant, priorities=result.priorities, decisions=result.initial}))
+	print("PRIORITY_START ", JSON.stringify({variant=result.variant, priorities=result.priorities, decisions=result.initial,plans=engine.future_clearances.plans}))
 	var tuvr := 0.0
 	for station in w.stations:
 		if station.code == "TUVR": tuvr = station.s

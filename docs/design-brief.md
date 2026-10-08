@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **8 Oct 2026 forward dispatch:** consider safe future platform clearances,
+  reserve the vacating train's exit and receiving berth, hold the opposing train
+  until the incoming train clears the approach, and retain physical signal
+  protection. Permit confirmed deletion of blocking AI services from the desk,
+  including their occupancy, reservations and presentation resources.
 - **8 Oct 2026 journey HUD and traffic:** replace the persistent camera label
   with the next scheduled stop, metres remaining and estimated in-game minutes.
   The default stopping scenario has 32 scheduled services, with 31 under AI

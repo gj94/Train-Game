@@ -2,6 +2,37 @@
 
 8 October 2026. This replaces the fixed dispatch overlay.
 
+## R7: future platform clearances and deleting a service
+
+The dispatcher automatically looks for a bounded three-train crossing sequence
+when two approaches compete for one usable free berth and a same-direction train
+is booked to vacate another within 20 minutes. It exclusively reserves the two
+meeting berths, the vacater's escape section and a compatible berth that is free
+at the next passing station. It rejects unrelated traffic already in either
+approach, conflicting reservations, held/manual vacaters, incompatible roads and
+operator platform preferences. It does not chain promises of future vacancies.
+
+Kumbalam example: K1 approaches the north home, K2 enters P2, the VB leaves P3,
+K1 enters P3, then K2 can leave north after K1's whole train is inside. Forecasts
+never clear an occupied road: normal route, point, direction and tail locks are
+checked on every movement. Late trains retain their promised receiving space.
+Other cases use conservative receiving-capacity checks. This handles the tested
+sequence; it is not a proof of globally optimal dispatch for arbitrary schedules.
+
+In the verified opening, K1 reaches Kumbalam at 08:21:02 instead of 08:30:42 and
+Turavur at 08:40:44 instead of 08:50:24. VB departure remains 08:18:00. K2 reaches
+ERS at 08:27:13 instead of 08:21:51. K1 gains 9m40s while K2 costs 5m22s; VB is
+unchanged. Four disruption rehearsals (K1 +10/+20 min, K2 +15 min, VB +12 min
+beyond its booked departure) also completed with no safety event or circular wait.
+
+To remove a blocking service, inspect it and choose **Delete service…**.
+The confirmation names the train and defaults to **Keep service**; keyboard and
+controller use the same focusable modal. Confirming removes it for this run,
+releases only its authority, cancels its crossing commitments, and reassesses
+traffic. Its model/audio are freed; if you were viewing it, the view returns to
+your assigned train. Your assigned service is protected: hand over first if you
+want to delete it. Restart restores the scenario; this does not edit a saved pack.
+
 The world owns the dispatch engine. It runs on simulation time, independently
 of the desk or camera, and requests routes through the existing interlocking.
 Planning, prediction and resource diagnostics live in `sim/`. UI input can

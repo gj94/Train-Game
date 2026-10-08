@@ -184,6 +184,7 @@ func _ready() -> void:
 	dispatcher.services_requested.connect(_open_services)
 	dispatcher.train_selected.connect(_select_train)
 	dispatcher.view_train_requested.connect(_view_train_only)
+	dispatcher.service_deleted.connect(_on_service_deleted)
 	dispatcher.open_changed.connect(func(value): hud.set_desk_open(value))
 	world.dispatcher().manual_service=train.id if traffic_drive else ""
 	dispatcher.station_view_requested.connect(_visit_station)
@@ -877,6 +878,17 @@ func _visit_station(index: int) -> void:
 	_set_cab_visuals(false)
 	dispatcher.set_open(false)
 
+
+func _on_service_deleted(id: String) -> void:
+	if id==train.id:return
+	if traffic_presentation.followed_service==id:
+		traffic_presentation.followed_service=""
+		cam.follow_point=tv.overview_position;cam.follow=true
+		cam.pivot=tv.overview_position();cam._blend=1.0
+		cam._follow_anchor_valid=false
+	traffic_presentation.release(id)
+	train_motions.erase(id)
+	_journey_refresh=0
 
 func _view_train_only(id: String) -> void:
 	if not world.trains.has(id): return

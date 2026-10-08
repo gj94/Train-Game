@@ -20,6 +20,7 @@ var revision := 0
 var cycles := 0
 var _world: WeakRef
 var _planner := Planner.new()
+var future_clearances := preload("res://sim/future_clearance.gd").new()
 var _next_tick := 0.0
 var _wait_since := {}
 var _last_state := {}
@@ -41,6 +42,7 @@ func run_cycle(route_trains: bool = true) -> void:
 	if w == null or _running: return
 	_running = true
 	cycles += 1
+	future_clearances.update(w,self,route_trains)
 	for id in w.dispatch_holds.keys():
 		if not w.trains.has(id) or not w.trains.has(w.dispatch_holds[id].get("other", "")): w.dispatch_holds.erase(id)
 	if route_trains: Policy.update(w)
@@ -60,6 +62,9 @@ func run_cycle(route_trains: bool = true) -> void:
 	states.clear()
 	for t: Train in services:
 		var state := _evaluate(w, t, route_trains)
+		state.planned_crossing=future_clearances.advice(w,t)
+		if not state.planned_crossing.is_empty() and state.status in ["blocked","waiting"]:
+			state.reason=state.planned_crossing+" · "+state.reason
 		states[t.id] = state
 		var waiting: bool = state.status in ["waiting", "held", "blocked"] and not operator_holds.has(t.id)
 		if waiting and not _wait_since.has(t.id): _wait_since[t.id] = w.time
@@ -100,6 +105,9 @@ func _evaluate(w, t: Train, route_trains: bool) -> Dictionary:
 		state.status="manual"; state.reason="Unscheduled movement: select a signal and set a route"; return state
 	if t.timetable.at_stop and w.clock_seconds() < t.timetable.release_time():
 		state.status="dwell"; state.reason="Booked departure / dwell until " + preload("res://sim/world_clock.gd").format_time(t.timetable.release_time()); return state
+	var future_hold: String=future_clearances.hold(w,t)
+	if not future_hold.is_empty():
+		state.status="held"; state.reason=future_hold; return state
 	if ns.is_empty():
 		state.status="attention"; state.reason="No forward signal; check the working and destination"; return state
 	var sig: Dictionary = w.signals[ns.id]
@@ -271,9 +279,17 @@ func route_preview(source: String, destination: String) -> Dictionary:
 	for t: Train in w.trains.values():
 		var ns: Dictionary=w.next_signal(t)
 		if ns.get("id","")!=source or t.timetable==null:continue
+		var planned_hold: String=future_clearances.hold(w,t)
+		if not planned_hold.is_empty():return {ok=false,reason=planned_hold}
 		for option in _planner.candidates(w,t,source):
 			if option.destination==destination:
 				return {ok=option.available,reason=option.reason,stop=option.stop,train=t.id}
+	for option in w.route_options(source):
+		if option.destination!=destination:continue
+		for entry in option.edges:
+			if not future_clearances.owner(entry.edge).is_empty():return {ok=false,reason="Platform reserved for a planned crossing"}
+			for plan in future_clearances.plans:
+				if w.single_line_sections.get(entry.edge,"") in [plan.approach_section,plan.escape_section]:return {ok=false,reason="Section reserved for a planned crossing"}
 	return {ok=true,reason=""}
 
 func put_to_red(source: String) -> Dictionary:
@@ -293,4 +309,29 @@ func release_signal(source: String) -> void:
 	run_cycle(enabled)
 
 func snapshot() -> Dictionary:
-	return {revision=revision,enabled=enabled,services=states.duplicate(true),alerts=alerts.duplicate(true),journal=journal.duplicate(true)}
+	return {revision=revision,enabled=enabled,services=states.duplicate(true),alerts=alerts.duplicate(true),journal=journal.duplicate(true),future_plans=future_clearances.plans.duplicate(true)}
+
+func delete_service(id: String, protected_service: String="") -> Dictionary:
+	var w = _world.get_ref()
+	if w==null or not w.trains.has(id):return {ok=false,reason="Service no longer exists"}
+	if id==manual_service or id==protected_service:return {ok=false,reason="Take control of another service before deleting your assigned train"}
+	if w.trains.size()<=1:return {ok=false,reason="Keep at least one service in the scenario"}
+	var t: Train=w.trains[id]
+	var next: Dictionary=w.next_signal(t)
+	var released: Array=[]
+	for sig in w.signals.values():
+		if sig.owner!=id and not (sig.owner.is_empty() and sig.id==next.get("id","")):continue
+		sig.cleared=false;sig.route=[];sig.owner="";sig.destination="";sig.cancel_pending=false
+		released.append(sig.id)
+	w.trains.erase(id)
+	w.dispatch_notices.erase(id)
+	for held in w.dispatch_holds.keys():
+		if held==id or w.dispatch_holds[held].get("other","")==id:w.dispatch_holds.erase(held)
+	for state in [operator_holds,platform_preferences,states,_wait_since,_last_state,_advisory_release_until]:state.erase(id)
+	for p in future_clearances.plans.duplicate():
+		if id in [p.incoming,p.opponent,p.vacater]:
+			future_clearances.plans.erase(p)
+			_record(w,"crossing_cancelled",id,"Reassess planned crossing at "+p.station+": service deleted")
+	_record(w,"service_deleted",id,"Deleted "+t.service_name+"; removed its train and released its own authority")
+	run_cycle(enabled)
+	return {ok=true,reason="",id=id,released_signals=released}

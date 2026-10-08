@@ -2,6 +2,17 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R7: automatic future-platform crossing plans and service removal.
+Start a fresh K1 scenario: you can approach Kumbalam while K2 approaches from
+the other side. Wait at the home signal for the VB to leave; enter its P3,
+then K2 clears north once your rear is in. Physical signals still govern entry.
+The dispatcher reserves the vacating train's escape and receiving platform;
+late running never makes an occupied platform safe merely because time passed.
+D / View opens dispatch. Inspect an AI service, choose Delete service..., then
+confirm its name to remove it from this run and reassess traffic. Keep service
+is the default confirmation choice. Your assigned train cannot be deleted;
+hand over to another service first. Restart restores the original scenario.
+
 Kerala Coast R6: 32 scheduled services, with K1 the default stopping passenger.
 The HUD replaces the camera label with next station, metres and estimated
 in-game minutes. Signal waits are additional; fast forward retains world minutes.

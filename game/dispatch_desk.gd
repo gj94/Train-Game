@@ -4,6 +4,7 @@ signal station_view_requested(index: int)
 signal services_requested
 signal train_selected(id: String)
 signal view_train_requested(id: String)
+signal service_deleted(id: String)
 signal drive_requested
 signal pause_requested
 signal restart_requested
@@ -70,6 +71,9 @@ var _confirm_text: Label
 var _confirm_yes: Button
 var _confirm_no: Button
 var _confirm_id := ""
+var _confirm_delete := false
+var _confirm_title: Label
+var _delete_service: Button
 var _timer := 0.0
 var _last_revision := -1
 var _filter_waiting := false
@@ -204,6 +208,8 @@ func _build_inspector(parent: Node) -> void:
 		if _platform.selected>=0:
 			var result: Dictionary=engine.assign_platform(inspected_train,_platform.get_item_metadata(_platform.selected))
 			result_message.emit(result,"Platform preference recorded");_refresh())
+	_delete_service=UI.button(_train_card,"Delete service…",_prompt_delete)
+	_delete_service.tooltip_text="Remove this train for the current run and let dispatch reassess. Restart restores the scenario."
 	UI.button(_train_card,"Inspect next signal",func():
 		var ns:=world.next_signal(world.trains[inspected_train])
 		if not ns.is_empty():select_signal(ns.id,true);_map.focus_signal(ns.id))
@@ -232,7 +238,7 @@ func _build_confirmation() -> void:
 	_confirm.position=Vector2(-250,-120);_confirm.custom_minimum_size=Vector2(500,220)
 	_confirm.add_theme_stylebox_override("panel",UI.panel("#203346",22))
 	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",18);_confirm.add_child(column)
-	UI.label(column,"HAND OVER YOUR SERVICE?",22,UI.AMBER)
+	_confirm_title=UI.label(column,"HAND OVER YOUR SERVICE?",22,UI.AMBER)
 	_confirm_text=UI.wrap(column,"",15)
 	var row:=HBoxContainer.new();column.add_child(row)
 	_confirm_no=UI.button(row,"Keep current service",cancel_handover)
@@ -246,17 +252,48 @@ func _build_confirmation() -> void:
 func _prompt_handover() -> void:
 	if inspected_train==selected_train:drive_requested.emit();return
 	_confirm_id=inspected_train
+	_confirm_delete=false;_confirm_title.text="HAND OVER YOUR SERVICE?"
+	_confirm_no.text="Keep current service";_confirm_yes.text="Take control"
 	_confirm_text.text="AI will take over %s. You will drive %s. Viewing this train does not require a handover." % [selected_train,_confirm_id]
 	_confirm_blocker.show();_confirm.show();_confirm_no.grab_focus()
 
 func cancel_handover() -> void:
-	_confirm_blocker.hide();_confirm.hide();_confirm_id="";_take.grab_focus()
+	_confirm_blocker.hide();_confirm.hide();_confirm_id=""
+	if _confirm_delete:_delete_service.grab_focus()
+	else:_take.grab_focus()
+	_confirm_delete=false
 
 func confirm_handover() -> void:
+	if _confirm_delete:
+		_confirm_deletion()
+		return
 	var id:=_confirm_id
 	_confirm_blocker.hide();_confirm.hide();_confirm_id=""
 	if not world.trains.has(id):return
 	train_selected.emit(id);selected_train=id;drive_requested.emit()
+
+func _prompt_delete() -> void:
+	if inspected_train==selected_train or not world.trains.has(inspected_train):return
+	_confirm_id=inspected_train;_confirm_delete=true
+	_confirm_title.text="DELETE THIS SERVICE?"
+	_confirm_text.text="Remove %s — %s from this run? Its train, occupancy and reservations will be removed; dispatch will reassess. Restart restores the scenario. Your service %s stays under your control." % [_confirm_id,world.trains[_confirm_id].service_name,selected_train]
+	_confirm_no.text="Keep service";_confirm_yes.text="Delete service"
+	_confirm_blocker.show();_confirm.show();_confirm_no.grab_focus()
+
+func _confirm_deletion() -> void:
+	var id:=_confirm_id
+	_confirm_blocker.hide();_confirm.hide();_confirm_id="";_confirm_delete=false
+	var result: Dictionary=engine.delete_service(id,selected_train)
+	if result.ok:
+		if _roster.has(id):
+			_roster[id].queue_free();_roster.erase(id)
+		service_deleted.emit(id)
+		inspect_train(selected_train)
+		_map._hits.clear();_map.last_footprints.erase(id);_map._focus_key=""
+		_map.focus_train(selected_train);_roster[selected_train].grab_focus()
+	else:_delete_service.grab_focus()
+	result_message.emit(result,"Service "+id+" deleted; traffic reassessed")
+	_refresh()
 
 func inspect_train(id: String,center: bool=false) -> void:
 	if not world.trains.has(id):return
@@ -377,6 +414,8 @@ func _refresh() -> void:
 	_inspect_title.text=inspected_train+"  /  "+t.service_name
 	_inspect_stats.text="%d km/h   ·   %.1f m   ·   %s\n%s" % [roundi(t.speed*3.6),t.length,"AI driver" if t.automatic else "Manual driver",t.path[0].edge]
 	_inspect_reason.text=state.get("reason","Waiting for dispatch assessment")
+	var planned: String=state.get("planned_crossing","")
+	if not planned.is_empty() and not _inspect_reason.text.contains(planned):_inspect_reason.text+="\n"+planned
 	var call: Dictionary=state.get("call",{})
 	_inspect_call.text="No remaining scheduled calls"
 	if not call.is_empty():
@@ -385,6 +424,7 @@ func _refresh() -> void:
 	_hold_service.text="Release operator hold" if engine.operator_holds.has(inspected_train) else "Hold at next controlled signal"
 	_priority.text="Priority  %d" % t.dispatch_priority
 	_take.text="Return to your cab" if inspected_train==selected_train else "Take control…"
+	_delete_service.disabled=inspected_train==selected_train
 	var key: String=str(call.get("block",""))+":"+inspected_train
 	if key!=_last_platform_key:
 		_last_platform_key=key;_platform.clear()

@@ -10,7 +10,7 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R6-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R7-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
@@ -32,6 +32,10 @@ the direct L3 + D-pad left camera shortcut, and electric traction/horn audio;
 expands the stopping timetable to 32 services and streams nearby train models
 and sound. `tools/check_journey_traffic.gd` covers HUD and service handover;
 `tools/check_kerala_traffic.gd` rehearses all scheduled trains independently.
+R7 adds automatic future-platform crossing transactions with protected escape
+berths, plus confirmed service deletion from the dispatcher. The deletion
+removes simulation occupancy, owned authority and presentation/audio resources;
+the assigned service is protected. See the R7 section in dispatcher-overhaul.md.
 
 Use `-BuildName TrainGame-Controller-Windows` to package controller support
 alongside the existing playtest ZIP. Its folder, archive, checksum and licences

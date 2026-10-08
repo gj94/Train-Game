@@ -18,6 +18,8 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 		var reason := ""
 		var cost: float = option.cost * .001
 		var hold := {}
+		var future = w.dispatcher().future_clearances
+		var promised: String=future.assigned(t,st.get("code",""))
 		var stopping: bool = not st.is_empty() and last.edge in st.get("platform_tracks", []) and Policy.station(w, stop.block).get("code", "") == st.code
 		if stopping:
 			if st.get("platform_details", {}).get(last.edge, {}).get("platform_width", 1) <= 0: reason = "No passenger platform on this road"
@@ -42,6 +44,9 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 			cost -= 1000
 			hold = preferred.hold
 		var physical: String = w.route_reason(signal_id, option.destination)
+		if not promised.is_empty() and last.edge!=promised: reason="Planned crossing platform: "+promised
+		var protected: String=future.section_reason(w,t,option)
+		if not protected.is_empty():reason=protected
 		var blockers: Array = []
 		if not physical.is_empty() and reason.is_empty():
 			reason = physical
@@ -65,6 +70,8 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 		if section.is_empty() or t.path.any(func(p): return w.single_line_sections.get(p.edge, "") == section): continue
 		var destination := _exit_station(w, section, entry.dir)
 		if destination.is_empty(): continue
+		var future = w.dispatcher().future_clearances
+		if future.admission(t,section):continue
 		var occupancy: Dictionary = w.occupancy()
 		var blocked: Array = []
 		var available: Array = []
@@ -73,6 +80,7 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 			for r in sig.route:
 				if r.edge in destination.platform_tracks: approaches[r.edge] = sig.id
 		for road: String in destination.platform_tracks:
+			if not future.owner(road).is_empty() and future.owner(road)!=t.id:continue
 			if not w.graph.allows(road, entry.dir) or w.graph.edges[road].length < t.length + 20: continue
 			var goal := {block=road, direction=entry.dir, s=w.graph.edges[road].length*.5+entry.dir*t.length*.5}
 			if is_inf(w._stop_distance(entry.edge, entry.dir, w.graph.entry_s(entry.edge, entry.dir), goal, [])): continue
@@ -92,6 +100,7 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 		var claims: Array=[{id=t.id,roads=own_roads}]
 		for other: Train in w.trains.values():
 			if other == t: continue
+			if not future.assigned(other,destination.code).is_empty():continue # its exclusive berth is already removed from available
 			if destination.platform_tracks.any(func(r): return occupancy.get(r, "") == other.id):continue
 			var ns: Dictionary=w.next_signal(other)
 			var committed: Array=w.signals[ns.id].route if not ns.is_empty() else []
