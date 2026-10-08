@@ -61,6 +61,7 @@ func run_cycle(route_trains: bool = true) -> void:
 		return sa > sb if sa != sb else a.id < b.id)
 	states.clear()
 	for t: Train in services:
+		if route_trains: _prepare_approach(w,t)
 		var state := _evaluate(w, t, route_trains)
 		state.planned_crossing=future_clearances.advice(w,t)
 		if not state.planned_crossing.is_empty() and state.status in ["blocked","waiting"]:
@@ -86,8 +87,31 @@ func _effective_priority(w, t: Train) -> float:
 	# Aging acts only on uncommitted requests, never on route/direction locks.
 	return t.dispatch_priority + minf(110, maxf(0, w.time - _wait_since.get(t.id, w.time)) / 20.0)
 
-func _evaluate(w, t: Train, route_trains: bool) -> Dictionary:
-	var ns: Dictionary = w.next_signal(t)
+func _prepare_approach(w, t: Train) -> void:
+	# Prepare the controlled entrance beyond a clear final automatic block.
+	# Never look through a red block, another train or a booked intermediate stop.
+	if not t.automatic and t.id!=manual_service:return
+	var next: Dictionary=w.next_signal(t)
+	if next.is_empty() or next.id not in w.automatic_signals:return
+	if w.aspect(next.id)==RailWorld.Aspect.RED:return
+	var automatic: Dictionary=w.signals[next.id]
+	var home_id: String=automatic.destination
+	if not w.signals.has(home_id) or home_id in w.automatic_signals:return
+	var home: Dictionary=w.signals[home_id]
+	if not home.route.is_empty():return
+	var distance: float=next.distance
+	for entry in automatic.route:
+		distance+=absf((home.s if entry.edge==home.edge else w.graph.exit_s(entry.edge,entry.dir))-w.graph.entry_s(entry.edge,entry.dir))
+	if distance>clampf(t.braking_distance()+500,1500,3500):return
+	var call: Dictionary=t.timetable.stop_ahead() if t.timetable!=null else {}
+	if not call.is_empty():
+		var to_call: float=w._stop_distance(t.path[0].edge,t.path[0].dir,t.head_s,call,[])
+		if to_call<distance:return
+	var prepared:=_evaluate(w,t,true,{id=home_id,distance=distance})
+	if prepared.status=="cleared":_record(w,"approach_route",t.id,"Prepared "+home_id+" ahead of "+next.id)
+
+func _evaluate(w, t: Train, route_trains: bool, approach: Dictionary = {}) -> Dictionary:
+	var ns: Dictionary = w.next_signal(t) if approach.is_empty() else approach
 	var state := {id=t.id, name=t.service_name, priority=t.dispatch_priority,
 		effective_priority=_effective_priority(w,t), status="running", reason="",
 		signal_id=ns.get("id", ""), signal_distance=ns.get("distance", INF),

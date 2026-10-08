@@ -162,3 +162,35 @@ wheel-pair gaps shorten with speed while impact pitch stays fixed; brake to a
 stand and restart. Traverse a curved turnout slowly and compare with straight
 running, then pause/resume and change coach repeatedly. The new passenger balance
 is an airborne listening model, not a separately calibrated carbody vibration path.
+# R9 onboard comparison and perspective fixes
+
+The new comparison uses a moving pilot and first-coach doorway on straight
+track with 39 m joints at 30, 71.6 and 120 km/h. It uses the website's exact
+WAP + 20 LHB geometry, rather than the game's imported seven-coach formation.
+Native and Web Audio captures use the same approved PCM and receiver positions.
+
+Across six eight-second captures, game/reference RMS difference was -0.015 to
++0.142 dB and mean absolute third-octave band difference was 0.064–0.167 dB.
+No impacts were virtualized. This validates overall track-layer level/timbre,
+not identical waveforms or subjective equality: 10 ms envelope correlation was
+0.57–0.86; loop phase, native mixer automation and compressor behavior differ.
+The reference excludes electric traction, other trains and station turnouts.
+The game's detailed stock also has different locomotive geometry and listening
+positions. Do not treat the comparison as proof that the entire game sounds
+like the user's videos.
+
+Fixed two actual perspective errors: head-out no longer uses the enclosed-cab
+impact/squeal filter; walking in a passenger coach retains passenger balance
+and filtering instead of reverting to pilot acoustics. Walking in a DTC driving
+compartment remains a cab (local z below -6 m). Geographic audio copies this
+listener context across origin rebases. Approved sound banks are unchanged.
+
+Reproduce: run `node tools/audio-comparison/serve.mjs`, open its localhost URL
+and render the six references. Run `tools/check_onboard_audio.gd` with the real
+renderer, `--audio-driver Dummy --fixed-fps 120 --write-movie .local/onboard-ab/native.avi`
+and user argument `--capture`. Do not use the headless dummy renderer for movie
+capture. `tools/audio-comparison/compare.py` requires NumPy and reports spectra,
+RMS, peaks and envelope correlation from `.local/onboard-ab`. Optional isolated
+impacts use the page checkbox and native `--strikes`; preserve full-mix captures
+before overwriting. The tool server serves only approved reference assets and
+binds to localhost. No user recordings or sound banks are modified.

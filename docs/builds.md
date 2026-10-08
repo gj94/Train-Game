@@ -10,7 +10,7 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R8-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R9-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
@@ -42,7 +42,12 @@ L3 returns pilot and R3 selects detached free exterior. Shared across both layou
 and walking, with menu/dispatch navigation isolated. Camera changes preserve
 driving state. Source checks: `check_camera_controls.gd`, `check_controller_playable.gd`.
 
-Current retained downloads are R8, R7 and the R6 fallback. On 8 October the older
+R9 adds sprung-body ride dynamics, head-out/walking acoustic profile corrections
+and advance home routing from the last clear automatic block. Source checks:
+304 headless tests, four-formation ride integration, native walking and onboard
+audio capture, plus the complete 32-service scenario. See ride-dynamics.md.
+
+Current retained downloads are R9, R8, R7 and the R6 fallback. On 8 October the older
 base/controller/scenery/detail/fidelity/services and Kerala R1-R5 folders, ZIPs
 and checksums were removed on request, freeing 19.39 GiB. Historical build names
 below are reproducible packaging options, not currently hosted downloads.

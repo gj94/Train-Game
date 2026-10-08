@@ -138,6 +138,11 @@ func camera_transform() -> Transform3D:
 	var t: Transform3D=game.tv.cars[car].global_transform
 	return Transform3D(t.basis,t*Vector3(position.x,nav.floor_height(position)+eye_height,position.y))
 
+func passenger_interior() -> bool:
+	if not active or platform.outside or game.tv.specs[car].passengers.is_empty(): return false
+	# DTC contains both a driving compartment and passenger accommodation.
+	return game.tv.formation[car].model!="vb_dtc" or position.y>=-6.0
+
 func audio_position() -> Vector2:
 	return Vector2(game.tv._center(car)+game.tv._direction(car)*position.y,
 		maxf(.8,nav.floor_height(position)+eye_height-.5))

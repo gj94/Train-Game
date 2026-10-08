@@ -165,3 +165,24 @@ Depart late as K1 and watch higher-priority traffic receive routes as gaps permi
 Estimates are predictions, not promises. Track occupancy and the interlocking
 are authoritative. Infrastructure and simultaneous terminal occupations can
 make a service pack impossible without changing its schedule or layout.
+# R9 approach signal preparation
+
+The dispatcher now prepares a controlled entrance while the train approaches
+the final clear automatic block before it, within a bounded braking lookahead.
+Previously it only worked from the next signal; the automatic approach stayed
+yellow because the home was unset, then the home stayed briefly red until the
+next dispatch cycle after passing the automatic.
+
+In this game's three-aspect model, a prepared home with its platform starter
+red shows yellow; the preceding automatic can then show green. A yellow home
+for a stopping service is therefore expected. Busy platforms, conflicts and
+holds can still legitimately leave the home red and its approach yellow.
+Preparation cannot look through a red/occupied approach, skip a booked stop,
+override operator holds or bypass the existing interlocking, admission and
+future-clearance plan. No signal is cosmetically forced to green.
+
+Eight regressions cover clear/occupied approaches, starter protection, holds,
+manual assignment, read-only assessment and intermediate calls. The complete
+32-service rehearsal finished safely in 1,430.6 seconds, including 19 crossings
+and three overtakes of K1; largest arrival delay remained 40.2 minutes. This
+is a completion/safety check, not a globally optimal timetable claim.

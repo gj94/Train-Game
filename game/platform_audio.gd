@@ -125,7 +125,10 @@ func _onboard() -> bool:
 	return _cab or ("mode" in camera and camera.mode!=0)
 
 func _passenger() -> bool:
-	return "mode" in camera and camera.mode==2
+	return "mode" in camera and (camera.mode==2 or (camera.mode==4 and camera.get_meta("passenger_interior",false)))
+
+func _enclosed_cab() -> bool:
+	return _onboard() and not _passenger() and not ("mode" in camera and camera.mode==3)
 
 func _locate_at(back: float,dt: float=0) -> Dictionary:
 	var distance := back-train.speed*dt
@@ -187,7 +190,7 @@ func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 	_time+=delta
 	Timing.refresh()
 	_start_window=maxf(.16,Timing.prediction_seconds(delta,simulation_rate)+.02)
-	var perspective := 2 if _passenger() else (1 if _onboard() else 0)
+	var perspective := 2 if _passenger() else (1 if _enclosed_cab() else (3 if _onboard() else 0))
 	if _perspective!=perspective:
 		reset_positions()
 		for route in _routes: route.key=""; route.until=0.0
@@ -353,7 +356,7 @@ func _route_for(contact: Dictionary,priority: float,bypass: bool) -> Dictionary:
 	AudioServer.remove_bus_effect(index,0)
 	slot.filter=slot.filter.duplicate()
 	AudioServer.add_bus_effect(index,slot.filter)
-	slot.filter.cutoff_hz=Acoustics.impact_cutoff(contact.source,_ear.position,_onboard(),_onboard() and not _passenger(),_owner_context.get("side",.4))
+	slot.filter.cutoff_hz=Acoustics.impact_cutoff(contact.source,_ear.position,_onboard(),_enclosed_cab(),_owner_context.get("side",.4))
 	AudioServer.set_bus_effect_enabled(index,0,not bypass)
 	slot.key=contact.key; slot.source=contact.source; slot.bypass=bypass; slot.until=_time; slot.priority=priority
 	return slot
@@ -391,7 +394,7 @@ func _update_events(delta: float) -> void:
 			for side in event.ids.size(): event.playback.set_stream_volume(event.ids[side],linear_to_db(maxf(.000001,gains[side])))
 	for route in _routes:
 		if route.until<_time: continue
-		var cutoff := Acoustics.impact_cutoff(route.source,_ear.position,_onboard(),_onboard() and not _passenger(),_owner_context.get("side",.4))
+		var cutoff := Acoustics.impact_cutoff(route.source,_ear.position,_onboard(),_enclosed_cab(),_owner_context.get("side",.4))
 		route.filter.cutoff_hz=lerpf(route.filter.cutoff_hz,cutoff,1-exp(-delta/.05))
 
 func _update_rolling(v: float,delta: float) -> void:
@@ -500,13 +503,13 @@ func _update_squeal(v: float,delta: float) -> void:
 		if voice.release>=0 and _time-voice.release>=.3:
 			_stop_squeal(voice); _squeals.remove_at(i); continue
 		var state: Dictionary=voice.get("state",{})
-		var goal: float=squeal_amount*state.get("level",0)*norm*(.85 if _onboard() and not _passenger() else 1.0) if voice.wanted else 0.0
+		var goal: float=squeal_amount*state.get("level",0)*norm*(.85 if _enclosed_cab() else 1.0) if voice.wanted else 0.0
 		voice.gain=lerpf(voice.gain,goal,1-exp(-delta/(.075 if voice.wanted else .055)))
 		if not state.is_empty():
 			voice.position=voice.position.lerp(state.source,1-exp(-delta/.012))
 			var radial: float=0 if _onboard() else state.velocity.dot(state.source-_ear.position)/maxf(.1,state.distance)
 			voice.pitch=lerpf(voice.pitch,343/(343+radial),1-exp(-delta/.06))
-			var cutoff: float=(3200 if _onboard() and not _passenger() else 12000)/(1+maxf(0,state.distance-4)/30)
+			var cutoff: float=(3200 if _enclosed_cab() else 12000)/(1+maxf(0,state.distance-4)/30)
 			voice.cutoff=lerpf(voice.cutoff,cutoff,1-exp(-delta/.06))
 			voice.filter.cutoff_hz=voice.cutoff
 			voice.edge_db=lerpf(voice.edge_db,state.edge_db,1-exp(-delta/.08))

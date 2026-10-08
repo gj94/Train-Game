@@ -74,6 +74,7 @@ func run() -> void:
 	check(game.train.controller==.35,"standing preserves power/brake")
 	check(game.audio._cab,"standing keeps onboard acoustics")
 	game._process(.016)
+	check(not game.audio._passenger() and game.audio._enclosed_cab(),"standing in the driver's compartment keeps cab acoustics")
 	check(game.hud._toolbar.get_child(1).text=="DISPATCH  9","HUD shows the on-foot dispatch binding")
 	await shot("cab")
 	check(walk.sit() and game.cam.mode==1,"driver can immediately sit back at the controls")
@@ -104,6 +105,8 @@ func run() -> void:
 		game._enter_passenger();await frames()
 		check(walk.stand(),"stand from seat in "+str(game.tv.formation[car].model))
 		await frames()
+		game._process(.016)
+		check(game.audio._passenger() and not game.audio._enclosed_cab(),"walking from a passenger seat keeps passenger acoustics")
 		check(walk.car==car and walk.nav.component(walk.position,true).size()>=40,"standing placement avoids isolated floor fragments")
 		var previous:Transform3D=game.tv.cars[car].global_transform
 		game.tv.cars[car].global_transform=Transform3D(Basis(Vector3.UP,.8),Vector3(300,10,-80))*previous

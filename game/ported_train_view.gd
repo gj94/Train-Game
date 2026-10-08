@@ -5,6 +5,7 @@ const RAIL_TOP := .5
 const CONTACT_HEIGHT := 5.6
 var train: Train
 var motion
+var ride
 var graph: TrackGraph
 var choice := ""
 var cars: Array[Node3D] = []
@@ -102,6 +103,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 		rear.light_energy = 2.5
 		car.add_child(rear)
 		lamps.append([front, rear])
+	ride=preload("res://game/vehicle_ride.gd").new(self)
 	_interior_setup(parent)
 	passenger_coach = 1 if choice in ["icf", "lhb"] else 0
 	update()
@@ -145,6 +147,7 @@ func update() -> void:
 		var rear := _point(back + half)
 		if front.distance_squared_to(rear) < .0001: continue
 		cars[i].global_transform = Transform3D(Basis.looking_at((front - rear) * sign_dir, Vector3.UP), (front + rear) * .5 + Vector3.UP * RAIL_TOP)
+		if ride!=null: cars[i].global_transform *= ride.offset(i)
 		for j in bogies[i].size():
 			var position := _v(specs[i].bogies[j].position)
 			var bogie_back := back + sign_dir * position.z
@@ -189,7 +192,7 @@ func cab_transform() -> Transform3D:
 		if opposite: eye = Vector3(-eye.x,eye.y,-eye.z)
 		if cab_position == 3: look.z *= -1.0
 	var transform := cars[i].global_transform
-	return Transform3D(Basis.looking_at(transform.basis * look, Vector3.UP), transform * eye)
+	return Transform3D(Basis.looking_at(transform.basis * look, transform.basis.y), transform * eye)
 
 
 func head_out_transform(side: int) -> Transform3D:
@@ -201,7 +204,7 @@ func head_out_transform(side: int) -> Transform3D:
 	eye.x = side * 1.90 * (-1.0 if opposite else 1.0)
 	var transform := cars[i].global_transform
 	var forward := transform.basis * Vector3(0, -.025, 1 if opposite else -1)
-	return Transform3D(Basis.looking_at(forward, Vector3.UP), transform * eye)
+	return Transform3D(Basis.looking_at(forward, transform.basis.y), transform * eye)
 
 
 func cycle_cab_position() -> String:
@@ -264,7 +267,7 @@ func passenger_transform() -> Transform3D:
 		eye = _v(seat.position) + Vector3.UP * 1.12
 		look = _v(seat.forward) + Vector3.DOWN * .04
 	var transform := cars[passenger_coach].global_transform
-	return Transform3D(Basis.looking_at(transform.basis * look, Vector3.UP), transform * eye)
+	return Transform3D(Basis.looking_at(transform.basis * look, transform.basis.y), transform * eye)
 
 
 func passenger_name() -> String:

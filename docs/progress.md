@@ -1,5 +1,42 @@
 # Progress
 
+## 2026-10-08 — R9 ride motion, onboard acoustics and home lookahead
+- User clarified that jolts/vibrations should be introduced. Added a pure damped
+  suspension solver and a rendered-axle contact adapter. Actual 39 m joints and
+  point interfaces excite heave, pitch and signed roll. Spatial roughness,
+  traction/brake changes and curve loading move each body. Bogies/wheels keep
+  their rail poses; cab, head-out, passenger and walking cameras share the body.
+  Pause, origin rebase, reversal and time acceleration are covered. These are
+  tuned ride cues, not measured suspension/coupler/brake-pipe simulation.
+- Diagnosed late home setting: dispatch previously considered only the next
+  signal. It now prepares the controlled entrance beyond the final clear
+  automatic block, within bounded braking distance, using the existing planner,
+  berth admission, future-clearance plan and interlocking. It cannot look
+  through red/occupied approaches or skip an intermediate call. Yellow home
+  remains expected when the platform starter is red; approach can now be green.
+- Extended the website/native comparison to moving pilot and passenger receivers
+  across multiple joints at 30/71.6/120 km/h. Six captures: -0.015 to +0.142 dB
+  RMS difference and 0.064–0.167 dB mean band error, zero virtualized impacts.
+  This is track-only, exact website geometry: it does not establish identical
+  gameplay sound or video matching. Envelope correlation 0.57–0.86 is recorded
+  alongside the close spectral match; no arbitrary EQ/volume retune was made.
+- Corrected actual perspective errors: head-out previously inherited enclosed
+  cab filtering; walking passenger coaches inherited pilot balance/filtering.
+  DTC walking distinguishes the driving compartment from passenger space.
+  Approved generated banks and the user's original recordings are unchanged.
+- Verification: 304 headless tests pass; real-model ride integration 24/24.
+  Complete 32-service run finished safely in 1,430.6 s with 19 crossings and
+  three overtakes of K1, maximum arrival delay 40.2 min. WAP/LHB source walking
+  check passed 76 assertions; Vande Bharat passed 83, including the new acoustic
+  profile checks in both driving compartment and passenger accommodation.
+  No extracted-distribution test. Reproducible audio harness is committed in
+  tools/audio-comparison and tools/check_onboard_audio.gd.
+- Playtest: fresh K1, use L3 pilot at 30–60 km/h; change power/coast/brake and
+  cross joints/points. Stop and let the body settle. Cycle to passenger, stand
+  and walk; then compare pilot versus head-out sound. Try pause and 2x/4x back
+  to 1x. At a free station, approach should clear before passing the automatic;
+  busy stations and crossings may correctly retain yellow/red protection.
+
 ## 2026-10-08 — R8 direct controller camera navigation
 - Replaced context-dependent camera chords with shared shortcuts in both Xbox
   layouts: D-pad left/right cycles backwards/forwards, L3 returns to pilot and

@@ -2,6 +2,13 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R9: sprung-body jolts, vibration, curve sway and traction/brake pitch.
+Cab/passenger/walking views move with the coach; wheels remain on the rails.
+Head-out audio is open-air; walking coaches retain passenger acoustics.
+The dispatcher prepares free home routes from the preceding automatic block.
+Yellow remains correct when the next signal is red; occupied/conflicting routes
+still protect at red. Start a fresh scenario. See guides/ride-dynamics.md.
+
 Kerala Coast R8: direct camera controls, shared by both Xbox layouts.
 D-pad left/right cycles all cameras backwards/forwards. Left-stick click returns
 to pilot; right-stick click selects external FREE camera without following.

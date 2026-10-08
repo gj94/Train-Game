@@ -53,7 +53,7 @@ if ($Action -eq 'Firewall') {
     "Firewall ready: TCP $Port on $BindAddress, Private profile, local subnet only."
     return
 }
-$availableBuilds = @('R8', 'R7', 'R6') | Where-Object {
+$availableBuilds = @('R9', 'R8', 'R7', 'R6') | Where-Object {
     $archive = Join-Path $projectRoot "export/TrainGame-Kerala-Coast-$_-Windows.zip"
     (Test-Path -LiteralPath $archive) -and (Test-Path -LiteralPath "$archive.sha256")
 }

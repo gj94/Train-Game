@@ -271,7 +271,7 @@ func _geographic_frame() -> void:
 		for sound in train_audio.values(): sound.set_paused(paused or _geographic_loading)
 
 
-func _render_trains(fraction: float) -> void:
+func _render_trains(fraction: float,ride_delta: float=0.0) -> void:
 	for id in train_views:
 		train_motions[id].sample(fraction)
 		if geographic_drive and cam!=null:
@@ -281,14 +281,18 @@ func _render_trains(fraction: float) -> void:
 				var quiet: bool=paused or wv.loading or not nearby
 				if train_audio[id]._paused!=quiet: train_audio[id].set_paused(quiet)
 			if not nearby: continue
-		train_views[id].update()
+		var view=train_views[id]
+		if "ride" in view and view.ride!=null and train_audio.has(id):
+			view.ride.update(ride_delta,train_audio[id].layout)
+		view.update()
 
 
 func _process(delta: float) -> void:
 	if geographic_drive: _geographic_frame()
 	traffic_presentation.update(delta)
-	_render_trains(1.0 if paused else Engine.get_physics_interpolation_fraction())
+	_render_trains(1.0 if paused else Engine.get_physics_interpolation_fraction(),0.0 if paused or _geographic_loading else delta*time_scale)
 	if walker!=null: walker.update(delta)
+	cam.set_meta("passenger_interior",walker!=null and walker.passenger_interior())
 	for sound in train_audio.values(): sound.listener_owner = audio
 	if walker!=null and walker.active and not walker.platform.outside:
 		audio.interior_listener=walker.audio_position()

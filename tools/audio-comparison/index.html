@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Onboard reference audio</title>
+<h1>Approved website audio comparison</h1>
+<p>Moving pilot and first-coach doorway; WAP + 20 LHB; joints every 39 m. Track layers only.</p>
+<label><input id="strikes" type="checkbox">Isolate joint impacts (also pass --strikes to the native capture)</label>
+<p><button id="render">Render reference at 30, 71.6 and 120 km/h</button></p><pre id="status">Ready</pre>
+<script type="module">
+import {TrainAudio} from './audio.js';
+import {DEFAULTS,createConsist,buildEvents,APPROACH,listenerPosition} from './model.js';
+const NativeOffline=window.OfflineAudioContext;
+class ScheduledContext extends NativeOffline {
+ constructor(){super(2,48000*8,48000);this.clock=0;}
+ get currentTime(){return this.clock;}
+ resume(){return Promise.resolve();}
+}
+window.AudioContext=ScheduledContext;
+function encode(buffer){const n=buffer.length,b=new ArrayBuffer(44+n*4),v=new DataView(b),u=new Uint8Array(b);u.set(new TextEncoder().encode('RIFF'),0);v.setUint32(4,36+n*4,true);u.set(new TextEncoder().encode('WAVEfmt '),8);v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,2,true);v.setUint32(24,48000,true);v.setUint32(28,192000,true);v.setUint16(32,4,true);v.setUint16(34,16,true);u.set(new TextEncoder().encode('data'),36);v.setUint32(40,n*4,true);for(let c=0;c<2;c++){const a=buffer.getChannelData(c);for(let i=0;i<n;i++)v.setInt16(44+i*4+c*2,Math.round(Math.max(-1,Math.min(1,a[i]))*32767),true);}return b;}
+document.querySelector('#render').onclick=async()=>{
+ const status=document.querySelector('#status');status.textContent='Rendering…';
+ try{for(const speed of [30,71.6,120]){for(const position of ['pilot','passenger']){
+  const stem='-'+position; const s={...DEFAULTS,track:'swr',points:'none',speed,position},consist=createConsist(),audio=new TrainAudio();await audio.init();audio.configure(consist,s);audio.running=true;
+  if(document.querySelector('#strikes').checked){s.rumble=0;audio.setLevels(s);}
+  const c=audio.context,first=consist.axles.find(a=>a.vehicle===1),t0=(APPROACH+first.offset)/(speed/3.6)-1;
+  const camera={position:{x:3.8,y:2.73,z:5.8},matrixWorld:{elements:Array(16).fill(0)}};
+  const events=buildEvents(consist,s);let next=0;
+  for(let frame=0;frame<8*120;frame++){
+   const elapsed=frame/120;c.clock=elapsed;camera.position=listenerPosition(t0+elapsed,s);camera.matrixWorld.elements[8]=-1;camera.matrixWorld.elements[9]=0;camera.matrixWorld.elements[10]=0;audio.update(t0+elapsed,s,camera);
+   while(next<events.length&&audio.arrivalTime(events[next],s)-t0<=elapsed+.16){const e=events[next++],arrival=audio.arrivalTime(e,s)-t0;if(arrival>=elapsed-.04)audio.impact(e,arrival);}
+  }
+  const rendered=await NativeOffline.prototype.startRendering.call(c);
+  const response=await fetch('/capture/'+speed+stem,{method:'POST',body:encode(rendered)});if(!response.ok)throw Error('Save failed');
+  status.textContent+='\nSaved website '+speed+' km/h '+stem;
+ }}status.textContent+='\nDONE';}catch(e){status.textContent+='\nERROR: '+e.stack;}
+};
+</script>
