@@ -38,6 +38,25 @@ def convert(entry, source=SOURCE, pin=PIN, detailed=False):
     objects = [root, *root.children_recursive]
     source_object_count = len(objects)
     assert not any(o.library for o in objects), 'Per-car source must be self-contained'
+    if detailed and key.startswith('lhb_'):
+        # Isolate enclosed furnishing for distance culling. Keep the outer shell,
+        # glazing and doorway detail visible; never simplify the nearby master.
+        body = bpy.data.objects['BODY_PIVOT']
+        interior = bpy.data.objects.new('PASSENGER_INTERIOR', None)
+        bpy.context.scene.collection.objects.link(interior)
+        interior.parent = body
+        for ob in objects:
+            if ob.parent != body or ob.type not in {'MESH','FONT','CURVE'}:
+                continue
+            if ob.name.startswith(('BODYSIDE_', 'GLASS_', 'ROOF_', 'ENTRY_', 'DOOR_', 'GANGWAY_', 'WINDOW_recessed')):
+                continue
+            bounds = [ob.matrix_world @ Vector(v) for v in ob.bound_box]
+            if bounds and all(abs(v.x)<11.2 and abs(v.y)<1.59 and 1.26<v.z<3.96 for v in bounds):
+                original = ob.matrix_world.copy()
+                ob.parent = interior
+                ob.matrix_world = original
+        objects.append(interior)
+        bpy.context.view_layer.update()
     if detailed and key.startswith('vb_'):
         body = bpy.data.objects['BODY']
         interior = bpy.data.objects.new('PASSENGER_INTERIOR', None)
@@ -97,6 +116,11 @@ def convert(entry, source=SOURCE, pin=PIN, detailed=False):
         pantos.append(dict(nodes=names, base=base, arms=arms, lower_angle=low, sign=sign))
     bpy.context.view_layer.update()
     keep = [o for o in objects if o.type == 'EMPTY' and not o.name.startswith(SKIP)]
+    if detailed and key.startswith('lhb_'):
+        # Consolidate fixed equipment under its nearest rigid mechanism. Brake
+        # discs follow their axles; calipers/springs remain on their bogies.
+        keep = [o for o in keep if o == root or o.name in ('BODY_PIVOT','PASSENGER_INTERIOR','UNDERFLOOR_EQUIPMENT_FIXED')
+                or o.name.startswith(('BOGIE_', 'AXLE_', 'COUPLING_', 'DOOR_'))]
     coll = bpy.data.collections.new('GODOT_PORT')
     bpy.context.scene.collection.children.link(coll)
     mapped = {}
@@ -304,6 +328,10 @@ def main():
             detail_pin = json.loads((ROOT/'tools/vb_v02_sources.json').read_text())
             detail_entry = next(e for e in detail_pin['models'] if e['id'] == entry['id'])
             report[entry['id']] = convert(detail_entry, ROOT/'.local/vb-v02-source', detail_pin, True)
+        elif entry['id'].startswith(('icf_', 'lhb_')):
+            detail_pin = json.loads((ROOT/'tools/coach_v02_sources.json').read_text())
+            detail_entry = next(e for e in detail_pin['models'] if e['id'] == entry['id'])
+            report[entry['id']] = convert(detail_entry, ROOT/'.local/coach-v02-source', detail_pin, True)
         else:
             report[entry['id']] = convert(entry)
         report_path.write_text(json.dumps(report, indent=2) + '\n')

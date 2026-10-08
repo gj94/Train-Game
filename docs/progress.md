@@ -1,5 +1,43 @@
 # Progress
 
+## 2026-10-08 — R4 detailed coach fleet and published VB update
+- Ported all fourteen v02 ICF/LHB masters (1A, 2A, 3A, 2S, CC, SL, GS per
+  family) from user-owned remote checkpoint `e209ff5`, including full interiors,
+  class fittings, bogies, brake gear, underframe equipment and original Hindi
+  marking pixels. The source's final gallery remains WIP; its master geometry
+  is independently checked. Source pins and rebuild steps are committed.
+- A separate background-Blender census agrees with all 13,682,319 evaluated
+  source triangles. Closest geometry is complete; static parts batch within
+  rigid mechanisms, axles/discs rotate separately and bogies steer. Detailed
+  source graphs use the existing material translator, extended for the new
+  vector/checker nodes. Noise/lighting/transparency still differ from Cycles.
+- Applied the published `main` VB revision `91bcc28`: the three changed EC
+  masters are rebuilt, and the four byte-identical car sources are verified.
+  Current VB source geometry totals 14,820,268 triangles. The detailed WAP-7
+  is unchanged. Selectable stock remains ICF, LHB, VB8 and VB16.
+- Native review found Godot stripping `_alpha` from an LHB material identifier,
+  which interrupted material binding. Disabled import name hints and preserved
+  full-precision material coordinates. A repeatable import configurator and
+  material-binding regressions guard this. Original class images bind directly;
+  reduced shadow proxies and distance LOD/interior visibility preserve close detail.
+- Verification: 232 headless tests passed; all fourteen source censuses and
+  coach/VB/WAP integrity checks passed. Native coach review passed 4,218 checks
+  across 42 exterior/aisle/seated captures, inspected for all fourteen classes.
+  The three updated VB EC masters passed another 959 native checks and nine views.
+  All 25 archived/current masters and four playable formations passed import,
+  straight/curved axle-to-audio alignment and reversible-car checks.
+- Full Kerala source scene passed 128 integration checks, including all seven
+  services, unchanged sound-axle maps, first/middle/last passenger views and live
+  simulation. Twenty-one native captures cover the four playable formations.
+  At 1280x720 on this host's Radeon 780M, settled samples were 33.2–47.6 ms/frame;
+  these are diagnostic scene samples, not a 4090 laptop performance guarantee.
+- Playtest: launch K1 and use Alt+1/2/3 for first/middle/trailing coach views.
+  PgUp/PgDn changes class, Home toggles aisle/seat and arrow keys move between
+  bays. Use F9 for the LHB showcase; inspect class lettering, furnishings and
+  running gear up close. Use the dispatcher to inspect/view VB8/VB16 EC coaches.
+  Doors and coupler articulation remain static source mechanisms. See
+  `docs/coach-detail.md`. Extracted distribution testing remains skipped.
+
 ## 2026-10-08 — R3 dispatch engine, control desk and station audit
 - Moved automatic dispatch into the simulation-owned DispatchEngine, advancing
   every 0.5 simulation seconds independently of the camera/UI. Separate planner,

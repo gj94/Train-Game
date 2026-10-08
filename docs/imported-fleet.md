@@ -28,14 +28,13 @@ and its machinery room. Historical WAG masters remain in source history/catalogu
 for integrity comparison, but are excluded from the playable package.
 Coach showcases contain seven classes rather than a claimed real booked rake.
 
-The enhanced Vande Bharat is pinned to source revision
-`5322f1ca301c0d8832eccd84c779904f8e4f00f3`, branch
-`backup/vande-bharat-fullsize-v02`. This is the author's WIP checkpoint, including
-EC upholstery still under review. Its full-size 24 m car pitch replaces the
+The enhanced Vande Bharat is pinned to published source revision
+`91bcc2899eeedccb7497374227d1c81562279640` on `main`, including the newer three
+EC masters. Its full-size 24 m car pitch replaces the
 older compact interpretation. Bogie centres are 14.9 m apart, axle spacing 2.7 m,
 wheel diameter .952 m. The eight/sixteen-car formations have 530/1,128 modelled seats.
 
-All 12,828,460 triangles from the seven source masters survive in the closest
+All 14,820,268 triangles from the seven current source masters survive in the closest
 LOD, including seats, luggage racks, equipment, cab and underframe details.
 Meshes are merged only within rigid articulated parts. Pantographs, wheels and
 bogies retain separate pivots. Source procedural material graphs are translated
@@ -71,7 +70,12 @@ frame rate still need a human playtest.
 
 ## Rebuild
 
-ICF/LHB masters remain at `4c4f0be85edbf4468bca22f2d1285fec72343bd5`.
+ICF/LHB now use all fourteen v02 masters from checkpoint
+`e209ff54ff5cd00bb0761761bdbe124cac6bf7cd`. Fetch
+`tools/coach_v02_sources.json` to `.local/coach-v02-source/`; see
+[detailed coach notes](coach-detail.md) for source status, material conversion
+and preservation checks. The selectable formations and physical axle datums
+remain the same.
 Fetch `tools/vb_v02_sources.json` into `.local/vb-v02-source/` for the seven
 enhanced Vande Bharat masters. Run the converter for their `vb_*` IDs, then
 install the emitted material shader code through Godot MCP (create the per-car

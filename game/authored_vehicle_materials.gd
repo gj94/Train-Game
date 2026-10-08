@@ -38,6 +38,8 @@ static func apply(model: Node3D, key: String) -> Dictionary:
 				material.shader=load(root+"shaders/"+entry.shader)
 				material.set_shader_parameter("author_from_mesh",transform)
 				material.set_shader_parameter("source_values",PackedFloat32Array(entry.source_values))
+				for uniform in entry.get("textures",{}):
+					material.set_shader_parameter(uniform,load(root+"textures/"+str(entry.textures[uniform])))
 				material.set_shader_parameter("noise_volume",load("res://assets/models/ported/wap7_detail/microfinish.res"))
 				material.set_meta("optical_glass",entry.glass)
 				_materials[identity]=material
@@ -55,5 +57,6 @@ static func apply(model: Node3D, key: String) -> Dictionary:
 		shadow.visibility_range_end_margin=mesh.visibility_range_end_margin
 		mesh.add_child(shadow)
 	model.set_meta("surface_finish",stats)
-	model.set_meta("detailed_vande_bharat",true)
+	model.set_meta("detailed_authored_vehicle",true)
+	model.set_meta("detailed_vande_bharat",key.begins_with("vb_"))
 	return stats

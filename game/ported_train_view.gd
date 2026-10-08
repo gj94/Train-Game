@@ -42,7 +42,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 		cars.append(car)
 		var model: Node3D = (load("res://assets/models/ported/%s.glb" % entry.model) as PackedScene).instantiate()
 		car.add_child(model)
-		if entry.model.begins_with("vb_") and spec.get("detailed_materials",false):
+		if entry.model != "wap7" and spec.get("detailed_materials",false):
 			preload("res://game/authored_vehicle_materials.gd").apply(model,entry.model)
 		else:
 			preload("res://game/fleet_surface.gd").apply(model, entry.model.begins_with("vb_"))
@@ -74,7 +74,7 @@ func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
 				var material: Material = mesh.get_active_material(surface)
 				if material is ShaderMaterial and material.get_meta("optical_glass",false):
 					var role := material.resource_name.to_lower()
-					if entry.model.begins_with("vb_") or "laminated_cab_glass" in role or "windscreen" in role:
+					if (entry.model != "wap7" and spec.get("detailed_materials",false)) or "laminated_cab_glass" in role or "windscreen" in role:
 						var clear := material.duplicate() as ShaderMaterial
 						clear.set_shader_parameter("onboard_glass",true)
 						car_glass.append({node=mesh,surface=surface,clear=clear,exterior=material})

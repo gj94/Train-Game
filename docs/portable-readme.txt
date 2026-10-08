@@ -2,6 +2,13 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R4: all fourteen ICF/LHB coach classes now use detailed v02 assets.
+Class-specific furnishings, running gear, underframe equipment, exterior markings
+and authored materials are preserved. Vande Bharat EC cars use the newer published
+source. The four selectable formations and axle/joint audio spacing stay the same.
+F9 selects ICF/LHB; V enters a coach, PgUp/PgDn changes class, Home toggles seat/aisle.
+See guides/coach-detail.md for source status and remaining static mechanisms.
+
 Kerala Coast R3: rebuilt control desk and independent dispatch engine.
 D opens the full-screen desk: wheel zoom, drag pan, whole-route overview,
 actual train footprints, service inspection, route actions and decision log.

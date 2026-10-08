@@ -64,6 +64,9 @@ func _check() -> void:
 		root.add_child(parent)
 		var view := View.new()
 		view.build(train, world.graph, parent, null)
+		for i in view.models.size():
+			if view.formation[i].model != "wap7" and view.specs[i].get("detailed_materials",false):
+				check(view.models[i].get_meta("detailed_authored_vehicle",false),view.formation[i].model + " complete authored material binding")
 		check_view(view, train, world)
 		if train.can_change_ends:
 			var poses: Array = view.cars.map(func(car): return car.global_transform)

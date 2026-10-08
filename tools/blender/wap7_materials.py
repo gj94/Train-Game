@@ -97,6 +97,18 @@ class Compiler:
             if name=='Color': expr=f'vec4(vec3({expr}),1.0)'; kind='vec4'
         elif t=='SEPXYZ': expr=f'({a("Vector","vec3")}).'+name.lower()
         elif t=='COMBXYZ': kind='vec3'; expr=f'vec3({a("X")},{a("Y")},{a("Z")})'
+        elif t=='VECT_MATH':
+            x,y=a(0,'vec3'),a(1,'vec3')
+            if n.operation=='DOT_PRODUCT': expr=f'dot({x},{y})'
+            else:
+                kind='vec3'
+                expr={'MULTIPLY':f'({x}*{y})','ADD':f'({x}+{y})','SUBTRACT':f'({x}-{y})'}[n.operation]
+        elif t=='TEX_CHECKER':
+            coord=a('Vector','vec3') if n.inputs['Vector'].is_linked else 'generated_position'
+            factor=f'mod(dot(floor(({coord})*({a("Scale")})),vec3(1.0)),2.0)'
+            expr=factor
+            if name=='Color':
+                kind='vec4'; expr=f'mix({a("Color1",kind)},{a("Color2",kind)},{factor})'
         elif t=='MATH':
             x,y,z=(a(i) for i in range(3)); op=n.operation
             expr={'ADD':f'({x}+{y})','SUBTRACT':f'({x}-{y})','MULTIPLY':f'({x}*{y})',

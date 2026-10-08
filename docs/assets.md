@@ -2,6 +2,22 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-08 detailed coach port: fourteen user-owned masters from
+[`icf_detail_v02` and `lhb_detail_v02` at e209ff5](https://github.com/gj94/transport-fever-3-mods/tree/e209ff54ff5cd00bb0761761bdbe124cac6bf7cd),
+branch `backup/coach-detail-overnight`, replace the fourteen v01 coach models.
+Rights holder: user (gj94); permission is the explicit request to port their
+remaining high-quality assets. No open redistribution licence is inferred.
+`tools/coach_v02_sources.json` records exact Git blob hashes. Geometry, material
+graphs and original Hindi class-label PNGs are transferred; reference photos,
+gallery images, source scripts and their depot environment are not bundled.
+The checkpoint's gallery remains WIP; source geometry and runtime verification
+are distinct. See `coach-detail.md` for mechanics, rendering limits and checks.
+
+The same pass updates Vande Bharat to published main revision
+[`91bcc2899eeedccb7497374227d1c81562279640`](https://github.com/gj94/transport-fever-3-mods/tree/91bcc2899eeedccb7497374227d1c81562279640/vande_bharat_detail_v02),
+including the three revised EC masters. The other four car sources and the
+detailed WAP-7 are unchanged. Their existing ownership/permission applies.
+
 2026-10-08 Vande Bharat full-size v0.2: seven user-owned masters from
 [`vande_bharat_detail_v02` at 5322f1c](https://github.com/gj94/transport-fever-3-mods/tree/5322f1ca301c0d8832eccd84c779904f8e4f00f3/vande_bharat_detail_v02),
 branch `backup/vande-bharat-fullsize-v02`, replace the compact VB cars.
