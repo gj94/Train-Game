@@ -18,6 +18,12 @@
   clears at 09:32:20, passenger starter clears at 09:33:48. These fixture times
   illustrate departure order, not promised timings for every manual run.
   No new full-timetable or extracted-distribution run for this focused fix.
+- Source fix `78e144c` is committed and pushed. R13 Windows was exported from
+  that clean revision: 1,631,391,426 bytes; SHA-256
+  `f717b1a29897c25eeaee7ce4b5c0228d876eff66070ac15b0b5b9f05c8f26a2a`.
+  Published as latest on `http://192.168.8.183:8765/`; catalogue, exact ZIP size,
+  HTTP 206 byte range, checksum sidecar, README and dispatcher guide verified
+  from the host. R12 remains a fallback.
 - Playtest: start a fresh stopping scenario; after a long crossing/overtake
   wait with the VB alongside, let the opposing train enter. The VB should
   depart first, followed by your passenger after its route clears. Inspect
