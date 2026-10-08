@@ -48,7 +48,7 @@ static func conflict(w: RailWorld,t: Train,st: Dictionary) -> Dictionary:
 			if other_eta>own_eta+LOOKAHEAD_SECONDS:continue
 			if other.dispatch_priority<=t.dispatch_priority or (at-other_at)*direction<0:continue
 			if other.max_speed<=t.max_speed and not (t.timetable!=null and t.timetable.at_stop):continue
-		best={other=other.id,station=st.code,chainage=st.s,kind="crossing" if opposing else "overtake",direction=direction}
+		best={other=other.id,station=st.code,chainage=st.s,kind="crossing" if opposing else "overtake",direction=direction,created=w.time}
 		best_eta=other_eta
 	return best
 
@@ -70,6 +70,11 @@ static func update(w: RailWorld) -> void:
 		var hold: Dictionary=w.dispatch_holds[id]
 		var t: Train=w.trains[id]
 		var other: Train=w.trains[hold.other]
+		if hold.kind=="overtake":
+			# An arrival commits the departure order, including the short interval
+			# after its head leaves the station but before its whole train clears.
+			hold.created=hold.get("created",w.time)
+			hold.arrived=hold.get("arrived",false) or station(w,other.path[0].edge).get("code","")==hold.station
 		var passed: bool=(chainage(w,other)-hold.chainage)*other.path[0].dir>other.length+500
 		var withdrawn: bool=eta(w,other,hold.chainage)>MAX_HOLD_ETA
 		if withdrawn and hold.kind=="crossing":
@@ -105,6 +110,16 @@ static func _passing_road_available(w: RailWorld,other: Train,st: Dictionary,hel
 		var distance:=w._stop_distance(other.path[0].edge,direction,other.head_s,goal,[])
 		if distance<maxf(0,approach)+2000:return true
 	return false
+
+static func overtake_in_progress(w: RailWorld, hold: Dictionary) -> bool:
+	if hold.get("kind","")!="overtake" or not hold.get("arrived",false):return false
+	var other: Train=w.trains.get(hold.get("other",""))
+	if other==null or other.service_complete or other.emergency:return false
+	if other.path[0].dir!=hold.get("direction",other.path[0].dir):return false
+	var engine=w.dispatcher()
+	if engine.operator_holds.has(other.id) or engine.inhibited_signals.has(w.next_signal(other).get("id","")):return false
+	if other.timetable!=null and other.timetable.at_stop and other.timetable.release_time()-w.clock_seconds()>MAX_HOLD_ETA:return false
+	return true
 
 static func _single_both(w: RailWorld,st: Dictionary) -> bool:
 	var index: int=w.stations.find(st)

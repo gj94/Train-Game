@@ -1,5 +1,28 @@
 # Progress
 
+## 2026-10-09 — R13 Turavur overtake departure order
+- Recreated the reported three-train arrangement at Turavur around 09:30 with
+  the passenger in a platform loop, VB on the central through road and an
+  opposing ICF entering the other platform. This is a controlled reproduction,
+  not a recovered save of the user's manual run.
+- Found and reproduced the wrong order: the overtake timeout counted all prior
+  signal waiting, then the local's waiting-age priority exceeded the VB's.
+  Overtake plans now time their own age. Once the express arrives alongside,
+  a routine crossing delay preserves its departure order until it passes.
+  Unavailable expresses and circular dependencies can still be replanned;
+  existing signal, route and tail locks remain authoritative.
+- Verification: 348 headless tests pass, including eight new regressions for
+  both directions, prior waiting, manual driving, tail clearance, unavailable
+  expresses and existing authority. A moving three-train reproduction passes
+  with no safety events: opposing ICF fully inside at 09:31:58, VB starter
+  clears at 09:32:20, passenger starter clears at 09:33:48. These fixture times
+  illustrate departure order, not promised timings for every manual run.
+  No new full-timetable or extracted-distribution run for this focused fix.
+- Playtest: start a fresh stopping scenario; after a long crossing/overtake
+  wait with the VB alongside, let the opposing train enter. The VB should
+  depart first, followed by your passenger after its route clears. Inspect
+  the dispatch decision log if an operator hold or emergency changes that plan.
+
 ## 2026-10-09 — R12 travelling passengers and fullscreen
 - Added independent passenger journeys, actual model seat capacities and
   destination-bound boarding/alighting to scheduled ICF, LHB and VB services.

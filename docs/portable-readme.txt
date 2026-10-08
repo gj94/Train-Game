@@ -2,6 +2,13 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R13: fixes the Turavur overtake departure order after long waits.
+Once the VB arrives alongside for an overtake, a routine crossing delay keeps
+it ahead of the passenger. Earlier signal waits no longer expire a fresh
+overtake plan. Normal route, occupancy and full-tail protection still apply;
+unavailable trains and circular dependencies can still trigger replanning.
+Start a fresh scenario. See guides/dispatcher-overhaul.md for details.
+
 Kerala Coast R12: travelling passengers in ICF, LHB and Vande Bharat coaches.
 At scheduled platform stops people alight, others board and take seats. Doors
 open on the platform side; traction waits for boarding and closed doors. F12

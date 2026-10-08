@@ -2,6 +2,23 @@
 
 8 October 2026. This replaces the fixed dispatch overlay.
 
+## R13: preserve an overtake through a crossing delay
+
+An overtake hold measures the age of that particular plan, not earlier signal
+waiting. After the express reaches the same station, the dispatcher preserves
+its departure order through an ordinary crossing wait and until it has passed.
+The local's waiting-age priority cannot undo that established overtake. A long
+uncommitted wait can still be reconsidered; an emergency, explicit operator or
+signal hold, or a circular dependency can also require replanning. None of
+these decisions revoke an existing route or bypass occupancy and tail locks.
+
+The Turavur regression uses the actual three-road yard: two passenger platforms
+and the central through road. After the opposing ICF enters, the VB clears
+before the passenger. Run `tools/check_turavur_crossing.gd` for the moving
+three-train sequence and `tests/run_tests.gd` for the full headless suite,
+including `test_overtake_commitment.gd` in both directions. Exact timings vary
+with driving and arrivals.
+
 ## R10: station register and long trains
 
 The user-selected CSV now supplies all 56 station platform totals. Kumbalam has
