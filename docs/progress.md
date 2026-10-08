@@ -38,9 +38,12 @@
   (Ambalappuzha–TVC and Eraniel–Nagercoil). Added the Ministry's February section
   breakdown and June sanction to the route guide; commissioning after those
   sources is not certified. Existing station-audit limits remain explicit.
-- Verification so far: 262 tests passed, plus early and 10/20-minute late manual
-  K1 rehearsals with no circular-dependency alerts or safety events. Full
-  32-service rehearsal is running. Actual-game
+- Verification: 262 tests passed, plus early and 10/20-minute late manual
+  K1 rehearsals with no circular-dependency alerts or safety events. The full
+  32-service rehearsal completed with every service arriving safely: 19 opposing
+  encounters and three overtakes of K1, with no deadlock or safety event.
+  Largest final arrival delay was 40.2 world minutes; this validates completion,
+  not an optimal timetable or every possible manual driving pattern. Actual-game
   checks passed 69 interior-walking, 33 platform/controller/engine, 68 legacy
   controller and 17 journey/streaming checks. Every ICF/LHB/VB8/VB16 vehicle had
   a usable doorway, including reversed cars. Native HUD and platform captures
@@ -51,8 +54,14 @@
   door, use A/left-click, walk along the platform and board another coach.
   Check idle hum, power-dependent whine and horn, then compare clack prominence
   from the cab and passenger views. Check next-stop HUD and all 32 roster entries.
-- R6 source/release preparation in progress; R5 remains the published LAN build
-  until the full timetable rehearsal and final packaging are confirmed.
+- R6 released from clean source `a730104`, committed and pushed to
+  `codex/port-indian-rail-assets`. At the user's request, it was published while
+  the full rehearsal was finishing; that rehearsal subsequently passed.
+  `TrainGame-Kerala-Coast-R6-Windows.zip` is 1,506,960,207 bytes; SHA-256
+  `50ecc5270809e5b4ba8478511fe8a113c75a5f5edba796ee0d0e67d12c52c70a`.
+  The LAN server at `http://192.168.8.183:8765/` offers R6 first, retaining older
+  builds. Verified HTTP page, archive HEAD/length, 16-byte range/resume response,
+  checksum sidecar and walking guide. No extracted distribution was launched.
 
 ## 2026-10-08 — Interior walking and TSW-style controller contexts
 - Added on-foot movement in the moving WAP-7, ICF/LHB and VB8/VB16 interiors.
