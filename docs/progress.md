@@ -40,8 +40,17 @@
   render/navigation/inspection checks pass at 1600×900 and 1280×720. The streamed
   ERS scene, including both entrances, loads and captures correctly. Depot
   allocation also passes 30 seeded arrival-order permutations of all 32 services.
-  The complete 32-service rehearsal is running before publication. No
-  extracted-build test.
+  The complete 32-service rehearsal passes: every passenger working finishes
+  and every train clears into a depot, with no safety events. K1 encounters 19
+  opposing movements and three overtakes (including empty stock); latest
+  passenger arrival delay is 55.3 minutes. Runtime: 2,071 seconds. Manual driving
+  can change outcomes. No extracted-build test.
+- Built the clean committed source `baf96c0` as R11 Windows, 1,630,291,108 bytes;
+  SHA-256 `4b4a6223125c77716c1e6d794d441b85f84605f8fdc45d1f7fcb7615bde2d8c3`.
+  R10 was withdrawn after its extended rehearsal exposed permanent terminal
+  parking; R11 fixes the lifecycle and retains those long-rake/CSV/coach changes.
+  Published as latest at `http://192.168.8.183:8765/`; catalogue, exact ZIP length,
+  HTTP 206 byte-range download, checksum and both new guides verified from host.
 - Playtest: start a fresh Kerala scenario; inspect both ERS entrances and use the
   free camera at TVC/NCJ. Follow K2 into the depot after ERS unloading; its whole
   rake must vacate the platform. Later inspect K23/K24 through KPY/Haripad. Finish
