@@ -37,6 +37,13 @@
   running gear up close. Use the dispatcher to inspect/view VB8/VB16 EC coaches.
   Doors and coupler articulation remain static source mechanisms. See
   `docs/coach-detail.md`. Extracted distribution testing remains skipped.
+- R4 release: `TrainGame-Kerala-Coast-R4-Windows.zip`, 1,506,868,731 bytes,
+  exported from clean source commit `a3ac191`, pushed to
+  `codex/port-indian-rail-assets`. SHA-256:
+  `27d246d064652880423542cab3283c3b4ff50d8ff2d49c0d4bd762a9d6232820`.
+  The idle LAN server was refreshed at `http://192.168.8.183:8765/`; R4 is latest.
+  HTTP 200, exact content length, byte ranges, checksum sidecar and coach guide
+  passed download checks. R3 and earlier archives remain available.
 
 ## 2026-10-08 — R3 dispatch engine, control desk and station audit
 - Moved automatic dispatch into the simulation-owned DispatchEngine, advancing
