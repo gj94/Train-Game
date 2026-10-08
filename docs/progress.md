@@ -23,7 +23,10 @@
   and R3 from passenger, head-out and walking views. Let AI drive and verify free
   camera stays behind while following exterior follows. Check menus still
   navigate normally, then B crouch / D-pad up lamp on foot and X+Y horn driving.
-  R8 packaging/publication pending.
+  Published R8 at http://192.168.8.183:8765/ from clean source 4d69cf2.
+  ZIP: 1,506,962,810 bytes; SHA-256
+  `3b2c6e1e75980e1db3d810acd9525ffddf933d27b90e43ec46ce8cbb5544e127`.
+  Verified catalog, archive HEAD/byte range, checksum and updated controller guide.
 
 ## 2026-10-08 — R7 future-clearance crossing plans and delete service
 - Implemented the user's Kumbalam sequence as automatic simulation-owned,
