@@ -20,6 +20,8 @@ var ground_samples := {}
 var near_tiles: Array = []
 var mapped_rails: Array = []
 var library
+var occupancy:=preload("res://game/geographic_scenery_occupancy.gd").new()
+const BuildingLayout:=preload("res://game/geographic_building_layout.gd")
 
 func _init(data, shared_materials: Dictionary, shared_assets) -> void:
 	geo=data
@@ -43,6 +45,12 @@ func build(key: Vector2i, far_tile: bool=false, holes: Array=[]) -> Dictionary:
 		if feature.kind=="water":
 			water_levels.append({geometry=feature.geometry,height=feature.get("water_height",0.0)})
 	_terrain(512,64,false)
+	var context:=Context.new()
+	context.root=root
+	library=Library.new(context)
+	library.meshes=assets.meshes
+	library.finishes=assets.finishes
+	_register_occupied(tile.get("features",[]))
 	for feature in tile.get("features",[]):
 		match feature.kind:
 			"water": _water(feature)
@@ -51,11 +59,6 @@ func build(key: Vector2i, far_tile: bool=false, holes: Array=[]) -> Dictionary:
 			"building": _building(feature)
 			"rail": _mapped_rail(feature)
 	batch.finish(root,materials,"Geography")
-	var context:=Context.new()
-	context.root=root
-	library=Library.new(context)
-	library.meshes=assets.meshes
-	library.finishes=assets.finishes
 	_planting()
 	library.flush()
 	library=null
@@ -99,10 +102,10 @@ func _terrain(size: float,steps: int,far_tile: bool) -> void:
 			var height: float=geo.height_at(origin.x+p.x,origin.z+p.y)-.35 if far_tile else _ground(p.x,p.y)
 			vertices.append(Vector3(p.x,height,p.y))
 			var land:=_class_at(p.x,p.y)
-			var color:=Color(.38,.69,.35,.03)
-			if land==1 or land in [6,7,8]: color=Color(.58,.64,.53,.23)
-			elif land==2: color=Color(.50,.77,.29,.04)
-			elif land==3: color=Color(.29,.55,.27,.01)
+			var color:=Color(.30,.49,.23,.04)
+			if land==1 or land in [6,7,8]: color=Color(.38,.46,.30,.21)
+			elif land==2: color=Color(.36,.58,.20,.03)
+			elif land==3: color=Color(.22,.39,.20,.02)
 			elif land==4: color=Color(.36,.39,.29,.9)
 			elif land==5: color=Color(.88,.77,.52,.85)
 			colors.append(color)
@@ -148,6 +151,10 @@ func _road(feature: Dictionary) -> void:
 				var normal: Vector3=(q-p).cross(side).normalized()
 				if normal.y<0: normal=-normal
 				batch.quad("road",p-side,q-side,q+side,p+side,normal,Color.WHITE,[Vector2(0,0),Vector2(0,1),Vector2(1,1),Vector2(1,0)])
+				if not bridge:
+					for signum in [-1,1]:
+						var outer: Vector3=side+side.normalized()*.65
+						batch.quad("road_shoulder",p+side*signum-Vector3.UP*.02,q+side*signum-Vector3.UP*.02,q+outer*signum-Vector3.UP*.03,p+outer*signum-Vector3.UP*.03,Vector3.UP)
 				if bridge:
 					for signum in [-1,1]:
 						batch.beam("concrete",p+side*signum+Vector3.UP*.55,q+side*signum+Vector3.UP*.55,.18)
@@ -186,6 +193,17 @@ func _building(feature: Dictionary) -> void:
 		var footing:=Foundations.outline(ring,_ground)
 		var y: float=maxf(Foundations.surface_height(_ground,centre.x,centre.y),footing.map(func(p):return p.y).max())
 		Foundations.skirt(batch,footing,y)
+		var detail:=BuildingLayout.fit(ring,levels,feature.tags,seed_value,assets.catalog)
+		if not detail.is_empty():
+			# Fill the retaining skirt. Detailed verandas/steps expose the base that
+			# a solid extrusion used to hide; grass must not remain inside it.
+			var pad:=Geometry2D.triangulate_polygon(ring)
+			for j in range(0,pad.size(),3):
+				var pa:=ring[pad[j]];var pb:=ring[pad[j+1]];var pc:=ring[pad[j+2]]
+				batch.triangle("forecourt",Vector3(pa.x,y,pa.y),Vector3(pb.x,y,pb.y),Vector3(pc.x,y,pc.y),Vector3.UP)
+			var position: Vector3=detail.position;position.y=y
+			library.place(detail.kind,position,detail.angle,detail.scale)
+			continue
 		var color: Color=[Color(.68,.68,.56),Color(.60,.69,.66),Color(.72,.59,.51),Color(.60,.64,.73),Color(.74,.71,.62)][seed_value%5]
 		color.a=1.0/15.0
 		var reversed:=Geometry2D.is_polygon_clockwise(ring)
@@ -205,7 +223,7 @@ func _building(feature: Dictionary) -> void:
 					var glass:=Color(.10,.17,.18,4.0/15.0)
 					batch.quad("architecture",p-right-up,p+right-up,p+right+up,p-right+up,normal,glass)
 					if rail.distance>420: continue
-					var frame:=Color(.69,.70,.65,0)
+					var frame:=Color(.24,.24,.20,0) if seed_value%3 else Color(.51,.50,.43,0)
 					batch.beam("architecture_detail",p-right-up,p-right+up,.075,frame)
 					batch.beam("architecture_detail",p+right-up,p+right+up,.075,frame)
 					batch.beam("architecture_detail",p-right+up,p+right+up,.075,frame)
@@ -221,15 +239,7 @@ func _building(feature: Dictionary) -> void:
 			var a: Vector2=ring[indices[i]]; var b: Vector2=ring[indices[i+1]]; var c: Vector2=ring[indices[i+2]]
 			batch.triangle("architecture",Vector3(a.x,y+height,a.y),Vector3(b.x,y+height,b.y),Vector3(c.x,y+height,c.y),Vector3.UP,roof_color)
 		if levels<=2 and ring.size()==4 and seed_value%3!=0:
-			# Four-sided hipped tiled roof, with metre-scale overhang.
-			var peak:=Vector3(centre.x,y+height+1.8,centre.y)
-			for i in ring.size():
-				var pa: Vector2=centre+(ring[i]-centre)*1.06
-				var pb: Vector2=centre+(ring[(i+1)%ring.size()]-centre)*1.06
-				var a:=Vector3(pa.x,y+height,pa.y); var b:=Vector3(pb.x,y+height,pb.y)
-				var normal: Vector3=(b-a).cross(peak-a).normalized()
-				if normal.y<0: normal=-normal
-				batch.triangle("architecture",a,b,peak,normal,Color(.70,.49,.30,2.0/15.0))
+			preload("res://game/geographic_roof.gd").draw(batch,ring,centre,y+height)
 		elif rail.distance<420:
 			for i in ring.size():
 				var a:=Vector3(ring[i].x,y+height+.30,ring[i].y)
@@ -267,8 +277,23 @@ func _near_mapped_rail(p: Vector2,clearance: float) -> bool:
 		if p.distance_squared_to(a.lerp(b,weight))<clearance*clearance: return true
 	return false
 
+func _register_occupied(features: Array) -> void:
+	for feature in features:
+		if feature.kind=="building":
+			var geometry: Dictionary=feature.geometry
+			var polygons: Array=geometry.coordinates if geometry.type=="MultiPolygon" else [geometry.coordinates]
+			for poly in polygons:
+				if poly.is_empty():continue
+				var ring:=PackedVector2Array()
+				for p in poly[0]:ring.append(Vector2(p[0],p[1]))
+				occupancy.add_polygon(ring,.6)
+		elif feature.kind in ["road","stream"]:
+			var half_width: float={"motorway":5.0,"trunk":4.5,"primary":4.0,"secondary":3.25,"tertiary":2.75,"residential":2.25,"service":1.8,"footway":.75,"path":.5,"track":1.4}.get(feature.tags.get("highway",""),2.0)
+			for line in _lines(feature.geometry):
+				for i in range(1,line.size()):
+					occupancy.add_road(Vector2(line[i-1][0],line[i-1][1]),Vector2(line[i][0],line[i][1]),half_width+1)
 func _planting() -> void:
-	for i in 520:
+	for i in 650:
 		var p:=Vector3(rng.randf_range(0,512),0,rng.randf_range(0,512))
 		var kind:=_class_at(p.x,p.z)
 		if kind in [4,5,6,7,8]: continue
@@ -276,17 +301,20 @@ func _planting() -> void:
 		var rail: Dictionary=geo.nearest_rail(p.x+origin.x,p.z+origin.z)
 		if rail.distance<(60 if rail.get("depot",false) else 27) or _near_mapped_rail(Vector2(p.x,p.z),8): continue
 		if kind==2 and i%5!=0: continue
-		p.y=_ground(p.x,p.z)
-		var choice: String="coconut_palm" if rng.randf()<.72 else ("mango_tree" if rng.randf()<.55 else "rain_tree")
+		if not occupancy.clear(Vector2(p.x,p.z),3.5):continue
+		p.y=Foundations.surface_height(_ground,p.x,p.z)
+		var choice: String=["coconut_palm","coconut_palm","coconut_palm","coconut_palm","young_palm","young_palm","tree_small_02","mango_tree","rain_tree"][rng.randi_range(0,8)]
 		if kind==3 and rng.randf()<.55: choice="rain_tree"
 		var scale:=rng.randf_range(.72,1.28)
 		library.place(choice,p,rng.randf()*TAU,Vector3.ONE*scale)
-	for i in 280:
+	for i in 1200:
 		var p:=Vector3(rng.randf_range(0,512),0,rng.randf_range(0,512))
 		var kind:=_class_at(p.x,p.z)
 		if kind in [5,6,7,8,4]: continue
 		if StationSites.contains(geo.station_sites,p.x+origin.x,p.z+origin.z,2):continue
 		var rail: Dictionary=geo.nearest_rail(p.x+origin.x,p.z+origin.z)
 		if rail.distance<(45 if rail.get("depot",false) else 15) or rail.distance>120: continue
-		p.y=_ground(p.x,p.z)
-		library.place("verge_patch",p,rng.randf()*TAU,Vector3.ONE*rng.randf_range(.7,1.25))
+		if not occupancy.clear(Vector2(p.x,p.z),2.5) or _near_mapped_rail(Vector2(p.x,p.z),5):continue
+		p.y=Foundations.surface_height(_ground,p.x,p.z)
+		var choice: String="verge_patch" if i%4!=0 else "shrub"
+		library.place(choice,p,rng.randf()*TAU,Vector3.ONE*rng.randf_range(.7,1.25))

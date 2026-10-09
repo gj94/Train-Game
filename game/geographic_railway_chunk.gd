@@ -144,7 +144,7 @@ func build_station(index: int) -> Dictionary:
 		for side in [-1,1]: batch.box("metal",centre+bridge_f*side*1.5,Vector3(.04,1.1,.04))
 	for side in [-1,1]: batch.beam("metal",bridge_p+bridge_right*left+bridge_f*side*1.5+Vector3.UP*9.2,bridge_p+bridge_right*width+bridge_f*side*1.5+Vector3.UP*9.2,.06)
 	# Forecourt paving, waiting passengers and small platform kiosks.
-	batch.box("concrete",position-right*15-Vector3.UP*.02,Vector3(100,.18,13),Color.WHITE,basis)
+	batch.box("forecourt",position-right*15-Vector3.UP*.02,Vector3(100,.18,13),Color.WHITE,basis)
 	preload("res://game/geographic_station_foundation.gd").draw(batch,geo,position-right*15-Vector3.UP*.10,basis,Vector2(100,13),origin)
 	var context:=Context.new(); context.root=root
 	var props:=Library.new(context); props.meshes=assets.meshes; props.finishes=assets.finishes
@@ -165,10 +165,30 @@ func build_station(index: int) -> Dictionary:
 			props.place("tea_kiosk",at+forward.cross(Vector3.UP)*side*(2.02+detail.platform_width*.6)+Vector3.UP*1.27,atan2(forward.x,forward.z))
 	for i in 14 if station.major else 5:
 		props.place("auto_rickshaw" if i%3==0 else "hatchback",position-right*15+f*(-38+i*5),atan2(right.x,right.z))
+	_forecourt_details(position,f,right,basis,props)
 	props.flush()
 	batch.finish(root,materials,"Railway")
 	return {node=root,origin=origin}
 
+func _forecourt_details(p: Vector3,f: Vector3,right: Vector3,basis: Basis,props) -> void:
+	# All planting/furniture stays within the existing reserved 100 x 13 m apron.
+	for x in [-46,-27,27,46]:
+		var at: Vector3=p+f*x-right*20
+		batch.box("concrete",at+Vector3.UP*.28,Vector3(3.3,.5,1.6),Color.WHITE,basis)
+		batch.box("road_shoulder",at+Vector3.UP*.54,Vector3(3.0,.04,1.3),Color.WHITE,basis)
+		for offset in [-.9,0,.9]:
+			props.place("shrub",at+f*offset+Vector3.UP*.54,float(x),Vector3(.65,.55,.65))
+	for x in range(-48,49,4):
+		if abs(x)<8:continue # pedestrian entrance
+		var at: Vector3=p+f*x-right*9
+		batch.box("metal",at+Vector3.UP*.52,Vector3(.09,1.04,.09),Color.WHITE,basis)
+		batch.box("paint",at+Vector3.UP*.85,Vector3(.11,.12,.11),Color.WHITE,basis)
+	for x in range(-44,45,5):
+		if abs(x)<8:continue
+		var at: Vector3=p+f*x-right*16+Vector3.UP*.08
+		batch.box("paint",at,Vector3(.07,.012,4.4),Color.WHITE,basis)
+	for side in [-1,1]:
+		batch.box("concrete",p+f*side*29-right*21.35+Vector3.UP*.08,Vector3(41,.18,.26),Color.WHITE,basis)
 func _label(text: String,position: Vector3,basis: Basis,pixel: float,color: Color,distance: float) -> void:
 	var label:=Label3D.new()
 	var font:=SystemFont.new(); font.font_names=PackedStringArray(["Nirmala UI","Arial"])

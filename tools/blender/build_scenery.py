@@ -330,6 +330,15 @@ def main():
         args=sys.argv[sys.argv.index('--')+1:]
         for arg in args:
             if arg.startswith('--only='): only=set(arg[7:].split(','))
+    if only is None or 'kerala_bungalow' in only:
+        g=flat_building('kerala_bungalow',9.5,8.2,1,4)
+        # Shaded entrance veranda, a low plinth and steps, all included in the
+        # measured bounds used to fit the model inside its mapped property.
+        g.box((0,.18,-5.05),(7.8,.36,1.9),'masonry',CONCRETE)
+        g.box((0,2.91,-5.10),(8.0,.16,2.1),'masonry',IVORY)
+        for x in [-3.6,3.6]:g.box((x,1.60,-5.78),(.20,2.8,.20),'masonry',PAINTS[4])
+        for i in range(2):g.box((0,.06+i*.06,-6.20+i*.24),(2.4,.12+i*.12,.5),'masonry',CONCRETE)
+        save(g)
     for name,w,d,f,s,shop in specs:
         if only is None or name in only: save(flat_building(name,w,d,f,s,shop,corner=name=='corner_shop'))
     for name,w,d,s,c in [('tiled_house',8.6,7.2,0,False),('courtyard_house',11,9,4,True),('tiled_cottage',6.4,6.6,3,False)]:

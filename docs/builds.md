@@ -10,11 +10,16 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R15-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R16-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
 shows journey status. Do not test the extracted distribution routinely.
+R16 improves coastal scenery with fitted detailed building meshes, a new original
+bungalow, layered vegetation, varied grass/laterite, road shoulders, platform and
+canopy finishes, forecourt furniture and more neutral daylight. Source comparison
+captures and performance methodology are in visual-fidelity.md. No topology or
+save-format changes; R14/R15 saves remain compatible.
 R15 ports the new coastal collection: 52 active station architectures, with
 furnished interiors and original signs, full visible geometry and translated
 source materials. CSV operating layouts and R14 save topology remain unchanged.

@@ -17,6 +17,7 @@ const TREES := {
 	"tree_small_02":Vector2(6.295639,2.275827)}
 const TREE_DETAIL_DISTANCE := 270.0
 var bounds := []
+var catalog: Dictionary = {}
 func _init(world_view=null) -> void:
 	_view_ref=weakref(world_view) if world_view!=null else null
 func place(kind: String,position: Vector3,angle: float=0.0,scale: Vector3=Vector3.ONE) -> void:
@@ -154,7 +155,7 @@ func _flush_geometry() -> void:
 				batch.visibility_range_end_margin=28 if TREES.has(kind) else 35
 				if TREES.has(kind) or kind=="verge_patch": batch.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
 				if kind in ["grass_tuft","verge_patch","reeds"]: batch.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-				if kind in ["mango_tree","rain_tree"]: batch.lod_bias=2.0
+				if kind in ["mango_tree","rain_tree"]: batch.lod_bias=1.0
 				view.root.add_child(batch)
 func _range(kind: String) -> float:
 	if kind=="tree_small_02": return 150.0

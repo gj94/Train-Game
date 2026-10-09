@@ -162,7 +162,7 @@ func _build_environment() -> void:
 	env.background_mode = Environment.BG_SKY
 	env.sky = sky
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
-	env.ambient_light_energy = 0.48
+	env.ambient_light_energy = 0.42
 	env.reflected_light_source = Environment.REFLECTION_SOURCE_SKY
 	env.tonemap_mode = Environment.TONE_MAPPER_AGX
 	env.tonemap_exposure = 1.0
@@ -172,7 +172,7 @@ func _build_environment() -> void:
 	env.ssil_enabled = true
 	env.glow_enabled = true
 	env.glow_intensity = 0.28
-	env.glow_bloom = 0.015
+	env.glow_bloom = 0.0
 	env.glow_hdr_threshold = 1.2
 	env.fog_enabled = true
 	env.fog_mode = Environment.FOG_MODE_EXPONENTIAL
@@ -182,14 +182,14 @@ func _build_environment() -> void:
 	env.fog_aerial_perspective = 0.6
 	env.adjustment_enabled = true
 	env.adjustment_saturation = 0.94
-	env.adjustment_contrast = 1.06
+	env.adjustment_contrast = 1.02
 	var we := WorldEnvironment.new()
 	we.environment = env
 	root.add_child(we)
 
 	var sun := DirectionalLight3D.new()
-	sun.light_color = Color(1.0, 0.88, 0.72)
-	sun.light_energy = 1.9
+	sun.light_color = Color(1.0, 0.96, 0.89)
+	sun.light_energy = 1.55
 	sun.light_angular_distance = 0.6          # soft shadow edges
 	sun.shadow_enabled = true
 	sun.shadow_blur = 1.2

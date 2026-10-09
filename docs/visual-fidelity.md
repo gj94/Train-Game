@@ -1,3 +1,72 @@
+# Coastal graphics — R16, 9 October 2026
+
+The coastal route previously used simple footprint extrusions for almost every
+mapped house. Suitable rectangular footprints now receive the detailed scenery
+kit: window recesses, verandas, balconies, tiled roofs, tanks and service fittings.
+A new original 5,824-triangle bungalow adds a shaded entrance and steps. Its
+editable Blender master is included in the source repository. Horizontal fitting
+is bounded; doors/storeys retain their vertical scale. Skewed, irregular, very
+small/large and incompatible-height buildings keep their mapped geometry.
+Raised foundations are filled beneath exposed verandas. Remaining simple houses
+have restrained window frames and elongated hip roofs instead of pyramid roofs.
+
+Terrain blends registered grass and laterite photographs at multiple scales,
+with broad, irregular variation and separate soil normals. Roads have dusty
+edges and laterite shoulders. Mature/young palms, scanned small trees, shrubs and
+weed patches give the scenery more height variation. A worker-local spatial index
+keeps planting clear of mapped buildings and roads; existing railway and station
+clearance checks remain. Planting follows the rendered terrain triangles.
+
+Platforms and forecourts now have worn paving, canopies have sheet/runoff/rust
+detail, and forecourts have planters, kerbs, bollards and marked parking bays within
+their reserved footprint. Daylight is more neutral and artificial bloom is removed.
+The full station/train models, railway graph, dispatcher, sounds and save format
+are unchanged. R14/R15 saves remain compatible.
+
+## Native comparison and performance
+
+Open `art/scenery/coastal-fidelity/index.html` for the before/after slider and close
+station/neighbourhood views. These are unaltered source-game captures, not Blender
+beauty renders. `tools/profile_coastal_graphics.gd` reproduces the camera sequence.
+Baseline and final measurements are preserved alongside the images as JSON.
+
+Same seed 0, paused clock, settled streaming, 45 warmup + 120 sample frames,
+Forward+, 1280 × 720, VSync off, unchanged 8× MSAA + FXAA, 8K shadows and SSAO/SSIL.
+This PC has a Radeon 780M; these are not measurements of the user's RTX 4090 laptop.
+
+| View | Before mean frame time | R16 | Change |
+|---|---:|---:|---:|
+| WAP-7 pilot | 42.54 ms | 43.92 ms | +3.2% |
+| Passenger | 44.14 ms | 44.63 ms | +1.1% |
+| Kumbalam exterior | 33.88 ms | 35.96 ms | +6.1% |
+
+The initial heavier tree mix was reduced after profiling. Full near geometry,
+distance LODs and existing tree impostors remain. These short samples do not
+establish route-wide or long-duration FPS. One early close-camera sample had a
+stale coordinate origin after streaming and is excluded from the comparison;
+the corrected station and neighbourhood views are additional visual checks.
+
+The asset audit passes for 51 original scenery GLBs and registered source hashes.
+All 372 headless tests pass. Regressions cover rotated footprint containment, unsuitable shapes and
+heights, deterministic placement and road/building planting clearances.
+Native pilot, passenger, Kumbalam, station-close and neighbourhood captures compile
+the actual shaders without rendering/script errors. No extracted build is tested.
+
+## Playtest R16
+
+1. Load your existing save or start the coastal stopping service. Compare the cab
+   and passenger views with R15 at the same resolution; use F10 for frame timing.
+2. In Dispatch, visit Kumbalam without taking over another service. Use external
+   free camera (right-stick click) to inspect the station paving, parking and planters.
+3. Look at nearby houses: verandas, inset windows, roof ridges/tanks and filled bases.
+   Follow the train out to compare young palms, ground cover and road shoulders.
+4. Check for vegetation through roads/platforms and for excessive foliage popping.
+
+The route still uses modular reconstructed properties and procedural vegetation.
+This is a substantial scenery/material pass, not full photorealism or a surveyed
+model of every real house. Open ground, terrain detail and vegetation silhouettes
+remain the largest visual limitations.
+
 # Visual fidelity pass — 7 October 2026
 
 The detailed WAP-7 stays intact. This pass improves the surrounding scenery and

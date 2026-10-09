@@ -1,5 +1,34 @@
 # Progress
 
+## 2026-10-09 — R16 coastal graphics
+- Connected the detailed scenery kit to suitable mapped building footprints;
+  preserved irregular, skewed and incompatible-height mapped envelopes. Door and
+  storey heights stay unscaled. New original Kerala bungalow: 5,824 triangles,
+  recessed windows, veranda, columns, steps and roof fittings; background Blender
+  source and measured bounds retained. Filled bases support exposed verandas.
+- Added terrain variation at multiple scales, grass/laterite normal blending,
+  dusty roads/shoulders, young palms/scanned small trees/shrubs and more near-track
+  weed patches. Spatial occupancy checks keep planting off mapped roads and houses;
+  station and railway clearances remain. Planting uses rendered terrain heights.
+- Refined simple house roof ridges/window frames, platform paving, canopy weathering,
+  and station forecourt planters/kerbs/bollards/parking. More neutral daylight and
+  no artificial bloom. Simulation, sounds, station layouts and save schema unchanged.
+- Native source captures reviewed for pilot, passenger, Kumbalam exterior,
+  close station and neighbourhood. Same-view mean frame times on Radeon 780M:
+  42.54→43.92 ms pilot, 44.14→44.63 passenger, 33.88→35.96 exterior (about 1–6%
+  cost). Same quality settings/1280×720/seed; short samples, not RTX 4090 results.
+  Reduced the initial heavy foliage mix after profiling. Fixed a stale-origin test
+  camera and exposed grass beneath building bases found during visual review.
+- Scenery audit passes for 51 original GLBs plus registered CC0 asset hashes.
+  Native comparison/measurements: `art/scenery/coastal-fidelity/index.html`.
+  All 372 headless tests pass, including eight footprint/occupancy regressions.
+  The sandbox emits its existing root-certificate-store warning after the passing
+  suite; no script/test failures. No extracted-distribution test.
+- Playtest: load a coastal save, inspect cab/passenger views, visit Kumbalam in
+  Dispatch without handing over your service, and use external free camera to
+  inspect frontage/paving, nearby verandas/roof detail and road/rail planting clearance.
+  See `docs/visual-fidelity.md` for the comparison, limits and exact method.
+
 ## 2026-10-09 — R15 coastal station architecture
 - Pinned the newly published coastal collection at `089dbecca1d6209cc8dd35a2b431f4ec4063a490`.
   Downloaded/verified all 53 Blender masters, including split-file hashes, and

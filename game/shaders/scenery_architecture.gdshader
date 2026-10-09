@@ -9,6 +9,7 @@ uniform sampler2D roof_normal : hint_normal, filter_linear_mipmap_anisotropic, r
 uniform sampler2D roof_rough : hint_roughness_r, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D aged_wall : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D aged_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform bool instanced_palette = true;
 varying vec3 local_pos;
 varying vec3 local_normal;
 varying vec3 world_pos;
@@ -48,6 +49,7 @@ void fragment() {
   else if(style<3.0) tint=vec3(.77,.93,.72);
   else if(style<4.0) tint=vec3(.92,.86,.69);
   else if(style<5.0) tint=vec3(.82,.79,.93);
+  if(!instanced_palette) tint=vec3(1.0);
   vec3 texture_colour=texture(wall_albedo,uv/2.0).rgb;
   float exposed=smoothstep(.42,.66,noise(uv*.45+variation.x*19.0));
   exposed*=smoothstep(.42,.78,variation.x)*(1.0-smoothstep(2.0,5.0,local_pos.y));

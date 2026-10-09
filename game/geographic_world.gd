@@ -50,6 +50,9 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	_noise_tex.noise=noise
 	_build_environment()
 	assets=Library.new(self)
+	assets.catalog=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/scenery/manifest.json"))
+	for kind in preload("res://game/geographic_building_layout.gd").KINDS+["young_palm","tree_small_02","shrub","reeds"]:
+		assets.asset(kind)
 	for kind in ["coconut_palm","mango_tree","rain_tree","verge_patch","kerala_tvc_heritage","kerala_ers_entry","kerala_ncj_entry","kerala_coastal_station","passenger_man","passenger_sari","passenger_phone","passenger_sari_blue","tea_kiosk","hatchback","auto_rickshaw","motorcycle"]:
 		assets.asset(kind)
 	_make_materials()
@@ -88,15 +91,26 @@ func _make_materials() -> void:
 	ground.set_shader_parameter("grass_albedo",ph_tex("leafy_grass","diff"))
 	ground.set_shader_parameter("grass_normal",ph_tex("leafy_grass","nor_gl"))
 	ground.set_shader_parameter("soil_albedo",ph_tex("red_laterite_soil_stones","diff"))
+	ground.set_shader_parameter("soil_normal",ph_tex("red_laterite_soil_stones","nor_gl"))
+	ground.set_shader_parameter("macro_noise",_noise_tex)
 	materials.ground=ground
-	materials.architecture=assets.material("architecture")
+	materials.architecture=assets.material("architecture").duplicate()
+	materials.architecture.set_shader_parameter("instanced_palette",false)
 	materials.architecture_detail=materials.architecture
 	materials.concrete=pbr("brushed_concrete",2.0,Color(.67,.67,.62))
-	materials.platform=pbr("brushed_concrete",1.2,Color(.70,.63,.52))
-	materials.road=pbr("aerial_asphalt_01",8.0,Color(.60,.62,.60))
+	materials.platform=_station_finish(1,Color(.57,.54,.48),1.2)
+	materials.forecourt=_station_finish(1,Color(.43,.44,.42),1.8)
+	var road:=ShaderMaterial.new()
+	road.shader=load("res://game/shaders/scenery_road.gdshader")
+	road.set_shader_parameter("surface_albedo",ph_tex("aerial_asphalt_01","diff"))
+	road.set_shader_parameter("surface_normal",ph_tex("aerial_asphalt_01","nor_gl"))
+	road.set_shader_parameter("surface_rough",ph_tex("aerial_asphalt_01","rough"))
+	road.set_shader_parameter("metres",5.0)
+	materials.road=road
+	materials.road_shoulder=pbr("red_laterite_soil_stones",2.5,Color(.40,.37,.30))
 	materials.ballast=pbr("gravel_floor_02",2.0,Color(.40,.39,.35))
 	materials.metal=steel()
-	materials.roof=mat(Color(.32,.37,.36))
+	materials.roof=_station_finish(2,Color(.43,.46,.44),2.0)
 	materials.paint=mat(Color(.84,.79,.60))
 	materials.sign=mat(Color(.91,.72,.20))
 	materials.insulator=mat(Color(.19,.095,.055))
@@ -104,6 +118,16 @@ func _make_materials() -> void:
 	materials.water=ShaderMaterial.new()
 	materials.water.shader=load("res://game/shaders/geographic_water.gdshader")
 	materials.water.set_shader_parameter("route_origin",coordinate_origin)
+
+func _station_finish(kind: int,color: Color,metres: float) -> ShaderMaterial:
+	var material:=ShaderMaterial.new()
+	material.shader=load("res://game/shaders/station_surface.gdshader")
+	material.set_shader_parameter("surface_kind",kind)
+	material.set_shader_parameter("base_color",color)
+	material.set_shader_parameter("metres",metres)
+	for pair in [["surface_albedo","diff"],["surface_normal","nor_gl"],["surface_rough","rough"]]:
+		material.set_shader_parameter(pair[0],ph_tex("brushed_concrete",pair[1]))
+	return material
 
 func _index_track() -> void:
 	for eid in world.graph.edges:

@@ -2,6 +2,16 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R16: improved coastal scenery and materials.
+Detailed houses with recessed windows, verandas, balconies and roof fittings now
+replace suitable mapped building extrusions. Includes a new Kerala bungalow.
+More varied vegetation, grass/soil transitions, dusty road shoulders, weathered
+platform paving and roof sheets, planted forecourts and marked parking bays.
+Daylight is less yellow and surfaces no longer receive artificial bloom.
+R14/R15 saves remain compatible. See guides/visual-fidelity.md for scope and checks.
+Playtest: visit Kumbalam in the dispatcher, inspect its forecourt and surrounding
+houses with the external free camera, then compare a cab and passenger view.
+
 Kerala Coast R15: new coastal station architecture from the reviewed Blender masters.
 52 active station models, including furnished interiors, signs and distinctive
 roof/facade details. Viranialur uses its photographed open shelters. Full visible

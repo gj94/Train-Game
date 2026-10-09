@@ -28,6 +28,10 @@ if (!host.startsWith('192.168.') && !host.startsWith('10.') && (address >>> 20) 
 const mask = (0xffffffff << (32 - prefix)) >>> 0;
 const exportRoot = fileURLToPath(new URL('../export/', import.meta.url));
 const files = new Map([
+  ['/TrainGame-Kerala-Coast-R16-Windows.zip', ['TrainGame-Kerala-Coast-R16-Windows.zip', 'application/zip']],
+  ['/TrainGame-Kerala-Coast-R16-Windows.zip.sha256', ['TrainGame-Kerala-Coast-R16-Windows.zip.sha256', 'text/plain; charset=utf-8']],
+  ['/kerala-r16/README.txt', ['TrainGame-Kerala-Coast-R16-Windows/README.txt', 'text/plain; charset=utf-8']],
+  ['/kerala-r16/graphics', ['TrainGame-Kerala-Coast-R16-Windows/guides/visual-fidelity.md', 'text/plain; charset=utf-8']],
   ['/TrainGame-Kerala-Coast-R15-Windows.zip', ['TrainGame-Kerala-Coast-R15-Windows.zip', 'application/zip']],
   ['/TrainGame-Kerala-Coast-R15-Windows.zip.sha256', ['TrainGame-Kerala-Coast-R15-Windows.zip.sha256', 'text/plain; charset=utf-8']],
   ['/kerala-r15/README.txt', ['TrainGame-Kerala-Coast-R15-Windows/README.txt', 'text/plain; charset=utf-8']],
@@ -78,6 +82,9 @@ const files = new Map([
   ['/kerala-r6/walking', ['TrainGame-Kerala-Coast-R6-Windows/guides/walking.md', 'text/plain; charset=utf-8']],
   ['/kerala-r6/controllers', ['TrainGame-Kerala-Coast-R6-Windows/guides/controllers.md', 'text/plain; charset=utf-8']],
 ]);
+for (const name of ['index.html', 'before-kumbalam.png', 'verified-kumbalam.png', 'before-pilot.png', 'verified-pilot.png', 'before-passenger.png', 'verified-passenger.png', 'station-close.png', 'neighbourhood.png']) {
+  files.set('/kerala-r16/preview/' + name, ['TrainGame-Kerala-Coast-R16-Windows/guides/coastal-fidelity/' + name, name.endsWith('.png') ? 'image/png' : 'text/html; charset=utf-8']);
+}
 const text = (res, status, body, method) => {
   res.writeHead(status, { 'Content-Type': 'text/plain; charset=utf-8', 'Content-Length': Buffer.byteLength(body) });
   res.end(method === 'HEAD' ? undefined : body);
@@ -99,6 +106,8 @@ const server = http.createServer(async (req, res) => {
         try { await stat(join(exportRoot, base + '.sha256')); return await stat(join(exportRoot, base)); }
         catch { return null; }
       };
+      const r16Info = await ready('R16');
+      const r16 = r16Info ? `<h2>Latest: Kerala Coast R16</h2><p><a class="download" href="/TrainGame-Kerala-Coast-R16-Windows.zip">Download latest build · ${(r16Info.size / 1048576).toFixed(1)} MiB</a></p><p>Improved coastal graphics: detailed houses with window recesses, verandas, balconies and roof fittings, a new Kerala bungalow, more varied vegetation and grass/laterite terrain, dusty road shoulders, weathered platform paving and canopy sheets, planted forecourts and parking bays. More neutral daylight and reduced surface washout.</p><p>R14/R15 saves remain compatible. Visit Kumbalam from the dispatcher and inspect the station frontage and surrounding houses with the external free camera. Compare cab and passenger views at your usual resolution.</p><p><a href="/kerala-r16/preview/index.html">Before / after screenshots</a> · <a href="/kerala-r16/README.txt">Instructions</a> · <a href="/kerala-r16/graphics">Graphics scope and measurements</a> · <a href="/TrainGame-Kerala-Coast-R16-Windows.zip.sha256">SHA-256</a></p>` : '';
       const r15Info = await ready('R15');
       const r15 = r15Info ? `<h2>Latest: Kerala Coast R15</h2><p><a class="download" href="/TrainGame-Kerala-Coast-R15-Windows.zip">Download latest build · ${(r15Info.size / 1048576).toFixed(1)} MiB</a></p><p>New coastal station architecture at 52 active stops: station-specific facades, roofs, furnished rooms and original signs, ported from the reviewed Blender masters with full visible geometry. Viranialur uses its photographed open shelters. Streamed scenery keeps the buildings and forecourts clear of generic houses and trees.</p><p>Operating tracks and platforms retain the CSV layout. The source's static yards are not overlaid. Includes R14 Save/Load; R14 saves retain the same track topology. Use the dispatcher station visitor and external free camera to inspect Kumbalam, Turavur, Kollam and Neyyattinkara.</p><p><a href="/kerala-r15/README.txt">Instructions</a> · <a href="/kerala-r15/station-models">Station port and scope</a> · <a href="/TrainGame-Kerala-Coast-R15-Windows.zip.sha256">SHA-256</a></p>` : '';
       const r14Info = await ready('R14');
@@ -123,7 +132,8 @@ const server = http.createServer(async (req, res) => {
       const previous = r12 + (r12Info ? prior.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : prior);
       const earlier = r13 + (r13Info ? previous.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : previous);
       const saved = r14 + (r14Info ? earlier.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : earlier);
-      const sections = r15 + (r15Info ? saved.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : saved);
+      const stations = r15 + (r15Info ? saved.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : saved);
+      const sections = r16 + (r16Info ? stations.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : stations);
       const body = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Train Game download</title><style>body{max-width:720px;margin:48px auto;padding:24px;font:18px/1.6 system-ui;background:#101c28;color:#e5edf4}a{color:#83cfff}h1{line-height:1.2}.download{display:inline-block;background:#83cfff;color:#101c28;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold}small{color:#afc0ce}</style><h1>Train Game</h1>${sections}<ol><li>Download and extract the entire ZIP.</li><li>Open <b>TrainGame.exe</b> and keep its PCK beside it.</li><li>Start a fresh scenario and press F1 for the briefing.</li></ol><p>No Godot or Blender installation is needed. Recent fallback builds are retained below the latest download; much older builds have been removed to free space.</p><small>Keep the host PC awake until your download finishes.</small></html>`;
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': Buffer.byteLength(body) });
       return res.end(req.method === 'HEAD' ? undefined : body);
