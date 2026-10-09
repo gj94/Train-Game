@@ -117,11 +117,14 @@ func _make_filter_bus(label: String,effect: AudioEffect) -> String:
 	return name
 
 func _listener() -> Dictionary:
-	if camera.get_meta("on_platform",false):
-		return {position=camera.global_position,forward=-camera.global_basis.z,up=camera.global_basis.y}
-	return super._listener()
+	if not listener_override.is_empty(): return listener_override
+	# The old website preview put a virtual spectator beside the orbit pivot.
+	# Gameplay must hear from the actual eye, just like native traction/horn.
+	if reference_mode and not camera.get_meta("on_platform",false): return super._listener()
+	return {position=camera.global_position,forward=-camera.global_basis.z,up=camera.global_basis.y}
 
 func _onboard() -> bool:
+	if camera.get_meta("on_platform",false): return false
 	return _cab or ("mode" in camera and camera.mode!=0)
 
 func _passenger() -> bool:
@@ -197,15 +200,15 @@ func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 		_perspective=perspective
 	var focus: Vector3=camera.global_position if _onboard() else camera.pivot
 	if not joint_override.is_empty(): _selection=joint_override
-	elif not _onboard() or reference_mode:
+	elif reference_mode:
 		if _selection.is_empty() or focus.distance_squared_to(_focus)>.25:
 			if is_instance_valid(listener_owner) and listener_owner!=self and not listener_owner._selection.is_empty() and listener_owner._focus.distance_squared_to(focus)<.25:
 				_selection=listener_owner._selection; _focus=listener_owner._focus
 			else:
 				_selection=Model.listening_joint(world.graph,focus); _focus=focus
 	elif _selection.is_empty():
-		# Onboard receivers use camera position and swept real contacts. A whole-
-		# corridor nearest-joint search has no role in their mix.
+		# Gameplay uses the real eye and every swept contact. Nearest-joint
+		# projection belongs only to the single-joint website reference mode.
 		_selection={edge=train.path[0].edge,joint=0}
 	if _selection.is_empty(): return
 	var target := _listener()

@@ -2,6 +2,14 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R17: free-camera sound follows your actual viewpoint.
+Approaching a train now brings rolling, joints and squeal closer acoustically,
+matching the engine/horn receiver. The old exterior mix followed the orbit focus
+instead. Approved sounds, speed response and joint timing are unchanged.
+R14-R16 saves remain compatible. See guides/enhanced-audio.md for checks.
+Playtest: right-stick click for free exterior; move near a moving train's bogies,
+then away. Left-stick click returns to pilot. Try nearby AI trains as well.
+
 Kerala Coast R16: improved coastal scenery and materials.
 Detailed houses with recessed windows, verandas, balconies and roof fittings now
 replace suitable mapped building extrusions. Includes a new Kerala bungalow.

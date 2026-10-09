@@ -5,6 +5,33 @@ Active player: `game/platform_audio.gd`. The reference is the user's newer
 superseding the earlier curve-squeal snapshot from 21:56. The original nine BODY V2
 WAVs are unchanged. The old `body_v2_audio.gd` remains a regression reference.
 
+## Free-camera receiver — R17
+
+Gameplay track sound now listens at the actual camera eye and orientation, as
+native traction and horns already do. Previously exterior track audio inherited
+the website preview's virtual spectator beside the orbit pivot. A detached free
+camera could approach the wheels while that receiver stayed hundreds of metres
+away, making rolling, joint impacts and squeal much too quiet.
+
+The geographic listener retains absolute route coordinates across origin shifts.
+Only explicit reference mode keeps the website's projected single-joint receiver;
+gameplay no longer searches the entire track graph for that unused projection.
+On-foot platform cameras always use exterior acoustics. The approved sound banks,
+gain law, speed response and joint timing are unchanged.
+
+`tools/check_free_camera_audio.gd` captures native PCM at 200 m and 5 m, with a
+remote fixed pivot. It checks rolling and traction distance response, a real
+nearby joint voice, pivot independence, origin rebasing and pause silence.
+Receiver unit tests also cover orientation, overrides and reference mode.
+Run the native probe headlessly with `--audio-driver Dummy`.
+
+Playtest: right-stick click selects free exterior. Approach the bogies of a
+moving train, then move away; rolling and impacts should rise and fall with your
+distance. Try an AI train while keeping your current driving assignment. Return
+to pilot with left-stick click and cycle to a passenger view for the existing
+interior mix. A stationary coach has no rolling/joint sounds; the WAP auxiliary
+hum comes from its locomotive.
+
 ## Coach-body rattles — R10
 
 `coach_rattle_audio.gd` adds intermittent short latch/panel resonances, strongest

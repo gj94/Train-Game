@@ -10,11 +10,17 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R16-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R17-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
 shows journey status. Do not test the extracted distribution routinely.
+R17 makes gameplay track audio follow the actual camera eye instead of the
+exterior orbit pivot. Free-camera rolling, joints and squeal share the physical
+receiver used by traction/horns, including geographic origin shifts. Approved
+banks and distance laws remain unchanged. R14-R16 saves remain compatible.
+Source checks: receiver regressions and native PCM near/far, pivot/rebase,
+impact and pause checks in check_free_camera_audio.gd; see enhanced-audio.md.
 R16 improves coastal scenery with fitted detailed building meshes, a new original
 bungalow, layered vegetation, varied grass/laterite, road shoulders, platform and
 canopy finishes, forecourt furniture and more neutral daylight. Source comparison

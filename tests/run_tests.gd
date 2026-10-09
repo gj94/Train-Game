@@ -5,7 +5,11 @@ extends SceneTree
 ##
 ## Run: godot --headless --path . --script res://tests/run_tests.gd
 
-func _init() -> void:
+func _initialize() -> void:
+	# Scene fixtures need an initialized main loop and root viewport.
+	call_deferred("run_tests")
+
+func run_tests() -> void:
 	var failures := 0
 	var passes := 0
 	var dir := DirAccess.open("res://tests")

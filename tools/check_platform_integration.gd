@@ -109,7 +109,7 @@ func run_check() -> void:
 	check(views==[eligible[0],eligible[(eligible.size()-1)/2],eligible[-1]],"first/middle/last presets select actual passenger stock")
 	check(game.train.controller==initial_controller and game.train.automatic==initial_automatic,"passenger views retain driver controls")
 	game.hud.show_modal("passengers")
-	check(game.hud._buttons.get_child_count()==4,"passenger view menu presents three choices plus back")
+	check(game.hud._buttons.get_child_count()==5,"passenger view menu presents any-coach entry, three presets and back")
 	game._set_paused(true); game._set_paused(false)
 	print("Enhanced audio and passenger views: ",failures," failures; selected ",views)
 	quit(1 if failures else 0)

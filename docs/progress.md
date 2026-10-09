@@ -1,5 +1,32 @@
 # Progress
 
+## 2026-10-09 — R17 free-camera audio receiver
+- Fixed exterior track sound listening beside the camera's orbit pivot instead
+  of its actual eye. Rolling, joint impacts and squeal now use the same physical
+  viewpoint as native traction/horns. Geographic absolute coordinates survive
+  rebasing; platform walking stays exterior. Website reference mode and explicit
+  receiver overrides retain their intended behavior.
+- Removed the unused nearest-joint graph search from gameplay exterior audio.
+  Approved sound banks, gain/pitch laws, speed response and contact timing remain
+  unchanged. No simulation, scenery or save-format changes.
+- Added six receiver regressions plus native PCM near/far, pivot-only movement,
+  origin rebase, nearby impact allocation/output and pause checks. In the failing
+  baseline fixture moving from 200 m to 5 m barely changed rolling RMS
+  (0.000374 to 0.000364); after the fix it rose from 0.001116 to 0.048562.
+  These are captured test levels, not a global volume increase or calibrated SPL.
+- Test suites start after SceneTree initialization so real camera fixtures have
+  a valid viewport. Updated the old passenger-menu integration expectation to
+  include the existing any-coach entry beside its three presets and Back.
+- All 378 headless tests pass. Native free-camera PCM, filter routing and full
+  enhanced-audio/passenger-view integration checks pass. The sandbox retains
+  its existing certificate-store warning; there are no script or test failures
+  in the completed checks. No packaged-game launch or extraction.
+- Playtest: R3 selects free exterior. Approach a moving train's bogies, then
+  move away; wheel noise and impacts should follow distance. Try a nearby AI
+  service while retaining your driving assignment. L3 returns to pilot; cycle
+  to passenger to compare the existing interior mix. Existing R14-R16 saves work.
+  See `docs/enhanced-audio.md` for checks and reproduction steps.
+
 ## 2026-10-09 — R16 coastal graphics
 - Connected the detailed scenery kit to suitable mapped building footprints;
   preserved irregular, skewed and incompatible-height mapped envelopes. Door and
