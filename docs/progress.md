@@ -30,6 +30,14 @@
   host and is explicitly reported; it needs the actual target-PC run.
 - Track geometry, all 25 archived/current train masters and four formations,
   and rendered motion integration checks also passed with zero failures.
+- R23 portable build: `export/TrainGame-Kerala-Coast-R23-Windows.zip`,
+  **1,694,119,311 bytes**, clean source **d2e87aa**. All **203 ZIP-entry CRCs**
+  passed; packaged launcher and guide match source. The isolated read-only PCK
+  audit found benchmark/worker scripts and all R22 scenery without launching or
+  extracting the distribution. SHA-256:
+  `f46da221f95416e5a3172af0dae86a37912e3fe3b174dc2b7cb4c6ebd03336d8`.
+  The build helper now streams SHA-256 through .NET because this host's child
+  PowerShell intermittently failed to autoload Get-FileHash. No LAN publication.
 - Local fixed-camera R22 baseline and GPU-cost probe are in
   `.local/performance-r22-before.*` and `.local/performance-gpu-probe.*`.
   Quick validation results are not performance claims. Further GPU optimization
