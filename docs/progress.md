@@ -28,6 +28,14 @@
   Dispatch without handing over your service, and use external free camera to
   inspect frontage/paving, nearby verandas/roof detail and road/rail planting clearance.
   See `docs/visual-fidelity.md` for the comparison, limits and exact method.
+- Published `TrainGame-Kerala-Coast-R16-Windows.zip` from clean source `724b2df`:
+  1,684,798,540 bytes; SHA-256
+  `6cf116551a29dc4a30517aa0e3cf01746b353a83debd4bbb6de42d8ed5577ad7`.
+  LAN server restarted at `http://192.168.8.183:8765/`; R16 is the sole latest
+  entry, earlier builds remain fallbacks. Verified HEAD size, byte-range ZIP
+  download, checksum, README, graphics guide and comparison HTML/eight PNGs.
+  Preview: `/kerala-r16/preview/index.html`. Source and release record pushed to
+  `origin/codex/port-indian-rail-assets`. No packaged-game launch or extraction.
 
 ## 2026-10-09 — R15 coastal station architecture
 - Pinned the newly published coastal collection at `089dbecca1d6209cc8dd35a2b431f4ec4063a490`.
