@@ -30,6 +30,10 @@ const mask = (0xffffffff << (32 - prefix)) >>> 0;
 const exportRoot = fileURLToPath(new URL('../export/', import.meta.url));
 const updateEntry = updateRoutes(exportRoot);
 const files = new Map([
+  ['/TrainGame-Kerala-Coast-R23-Windows.zip', ['TrainGame-Kerala-Coast-R23-Windows.zip', 'application/zip']],
+  ['/TrainGame-Kerala-Coast-R23-Windows.zip.sha256', ['TrainGame-Kerala-Coast-R23-Windows.zip.sha256', 'text/plain; charset=utf-8']],
+  ['/kerala-r23/README.txt', ['TrainGame-Kerala-Coast-R23-Windows/README.txt', 'text/plain; charset=utf-8']],
+  ['/kerala-r23/performance', ['TrainGame-Kerala-Coast-R23-Windows/guides/performance.md', 'text/plain; charset=utf-8']],
   ['/TrainGame-Updater.zip', ['TrainGame-Updater.zip', 'application/zip']],
   ['/TrainGame-Updater.zip.sha256', ['TrainGame-Updater.zip.sha256', 'text/plain; charset=utf-8']],
   ['/updater/instructions', ['updater/UPDATER-README.txt', 'text/plain; charset=utf-8']],
@@ -119,6 +123,8 @@ const server = http.createServer(async (req, res) => {
         try { await stat(join(exportRoot, base + '.sha256')); return await stat(join(exportRoot, base)); }
         catch { return null; }
       };
+      const r23Info = await ready('R23');
+      const r23 = r23Info ? `<h2>Latest full build: Kerala Coast R23</h2><p><a class="download" href="/TrainGame-Kerala-Coast-R23-Windows.zip">Download R23 for a new PC · ${(r23Info.size / 1048576).toFixed(1)} MiB</a></p><p>Complete Windows game with the latest Kerala scenery, threaded scenery streaming and performance benchmark. No previous installation is needed.</p><p>Extract the entire ZIP onto your SSD. Open <b>TrainGame.exe</b> to play, or <b>Run Performance Benchmark.cmd</b> to benchmark this PC. The benchmark includes 1440p and 4K runs and saves its report ZIP in Documents.</p><p><a href="/kerala-r23/README.txt">Instructions</a> · <a href="/kerala-r23/performance">Benchmark guide</a> · <a href="/TrainGame-Kerala-Coast-R23-Windows.zip.sha256">SHA-256</a></p>` : '';
       const r18Info = await ready('R18');
       const r18 = r18Info ? `<h2>Latest: Kerala Coast R18</h2><p><a class="download" href="/TrainGame-Kerala-Coast-R18-Windows.zip">Download latest build · ${(r18Info.size / 1048576).toFixed(1)} MiB</a></p><p>Pilot by default. D-pad right/left first enters the matching head-out; repeat to cycle. Down goes back one coach, Up moves toward the pilot. Left stick moves around inside the cab; left-stick click returns to pilot.</p><p>Right-stick click starts free camera at eye height on the nearest open platform. LS moves, RS looks, RT/LT zoom and RB/LB raise/lower. Hold RS for 0.65 s to switch triggers between zoom and train control, then release controls to arm. R14–R17 saves remain compatible.</p><p><a href="/kerala-r18/README.txt">Instructions</a> · <a href="/kerala-r18/controllers">Controller guide</a> · <a href="/TrainGame-Kerala-Coast-R18-Windows.zip.sha256">SHA-256</a></p>` : '';
       const r17Info = await ready('R17');
@@ -162,12 +168,13 @@ const server = http.createServer(async (req, res) => {
         const release = JSON.parse(Buffer.from(signed.payload, 'base64'));
         if (!/^TrainGame-[A-Za-z0-9_-]+$/.test(release.version)) throw Error('Invalid update version');
         updateVersion = release.version;
-        updater = `<h2>Already installed? Update only what changed</h2><p><a class="download" href="/TrainGame-Updater.zip">Get Update &amp; Play · ${(info.size / 1024).toFixed(0)} KiB</a></p><p>One-time setup: extract this tiny ZIP beside your existing <b>TrainGame.exe</b> and <b>TrainGame.pck</b>. Open <b>Update and Play.exe</b> for future releases. It keeps unchanged data in place and downloads only changed blocks. No fresh full ZIP or reinstall required.</p><p>R17 → R18 changes about 17 MB of the main game pack. Interrupted updates resume through the launcher. Saved journeys stay in place. Use <b>Play installed</b> when the host is offline.</p><p><a href="/updater/instructions">Setup and recovery guide</a> · <a href="/TrainGame-Updater.zip.sha256">Launcher SHA-256</a></p><h2>First installation / full downloads</h2>`;
+        updater = `<h2>Already installed? Update only what changed</h2><p><a class="download" href="/TrainGame-Updater.zip">Get Update &amp; Play v2 · ${(info.size / 1024).toFixed(0)} KiB</a></p><p>Extract this tiny ZIP beside your existing <b>TrainGame.exe</b> and <b>TrainGame.pck</b>, replacing any older <b>Update and Play.exe</b>. Open it for future releases. R23 requires this v2 launcher to install the benchmark files.</p><p>Interrupted updates resume through the launcher. Saved journeys stay in place. Use <b>Play installed</b> when the host is offline.</p><p><a href="/updater/instructions">Setup and recovery guide</a> · <a href="/TrainGame-Updater.zip.sha256">Launcher SHA-256</a></p>`;
       } catch { /* The existing ZIP downloads remain available before updater publication. */ }
       const fullDownloads = r18 + (r18Info ? audio.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : audio);
-      const sections = updater + (updateVersion ? `<p>Current updater release: <b>${updateVersion}</b></p>` + fullDownloads.replaceAll('Latest:', 'Full install:').replaceAll('Download latest build', 'Download full build') : fullDownloads);
+      const updateStatus = updateVersion ? `<p>Current updater release: <b>${updateVersion}</b></p>` : '';
+      const sections = r23 ? r23 + updater + updateStatus + (fullDownloads ? `<details><summary>Older full builds</summary>${fullDownloads.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback')}</details>` : '') : fullDownloads + updater + updateStatus;
       const body = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Train Game download</title><style>body{max-width:720px;margin:48px auto;padding:24px;font:18px/1.6 system-ui;background:#101c28;color:#e5edf4}a{color:#83cfff}h1{line-height:1.2}.download{display:inline-block;background:#83cfff;color:#101c28;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold}small{color:#afc0ce}</style><h1>Train Game</h1>${sections}<ol><li>Download and extract the entire ZIP.</li><li>Open <b>TrainGame.exe</b> and keep its PCK beside it.</li><li>Start a fresh scenario and press F1 for the briefing.</li></ol><p>No Godot or Blender installation is needed. Recent fallback builds are retained below the latest download; much older builds have been removed to free space.</p><small>Keep the host PC awake until your download finishes.</small></html>`;
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': Buffer.byteLength(body) });
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': Buffer.byteLength(body), 'Cache-Control': 'no-store' });
       return res.end(req.method === 'HEAD' ? undefined : body);
     }
     const entry = files.get(path) ?? await updateEntry(path);

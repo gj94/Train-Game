@@ -203,10 +203,12 @@ selected LAN address/interface, TCP port 8765, the Private profile and the local
 subnet. It does not change the network category or disable Windows Firewall.
 Use `-BindAddress <IPv4>` if more than one connected network is available.
 
-The read-only server exposes the standard ZIP and, when present, the separate
-controller, scenery and detailed WAP-7 ZIPs, their SHA-256 sidecars and portable
-READMEs, plus a download page. The detailed WAP-7 build appears first when available.
-It supports byte ranges for resuming downloads.
+The read-only server offers **Kerala Coast R23** first for a fresh installation,
+with its full ZIP, SHA-256 sidecar, portable README and benchmark guide. It also
+offers the small Update & Play v2 launcher for existing installations. Older
+full builds are collapsed under a separate section. R23 includes both benchmark
+launchers; extract it onto the target SSD and run `Run Performance Benchmark.cmd`.
+The server supports byte ranges for resuming downloads.
 Stop it before replacing the archive with a new build, then start it again.
 
 ```powershell

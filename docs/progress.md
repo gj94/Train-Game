@@ -1,5 +1,19 @@
 # Progress
 
+## 2026-10-09 — Fresh-install R23 download page fixed
+- The LAN page still advertised R18 despite the updater serving R23. Added the
+  full R23 ZIP, checksum, README and benchmark guide to the download allowlist.
+  R23 is now the first download; older builds are collapsed. The page also
+  explains the v2 launcher replacement and sends no-store caching headers.
+- Restarted the checked LAN server at `http://192.168.8.183:8765/`. A complete
+  **1,694,119,311-byte HTTP download** matched the published R23 SHA-256. All page
+  links, HEAD metadata, three resumed ranges and the existing updater passed.
+  Node/PowerShell parsing and Git whitespace checks passed. Game files are
+  unchanged from the **421-passed, 0-failed** headless run earlier this session.
+- Fresh PC: download `TrainGame-Kerala-Coast-R23-Windows.zip`, extract the whole
+  archive onto the SSD, and run `TrainGame.exe` or `Run Performance Benchmark.cmd`.
+  No older installation is needed. Keep this host awake during the download.
+
 ## 2026-10-09 — R23 available through Update & Play
 - Published the verified R23 folder as signed sequence 23 on the existing LAN
   server, including all 203 files and both benchmark launchers. No game rebuild.
