@@ -1,8 +1,13 @@
 # Performance and target-PC benchmark
 
-Target: desktop RTX 4080 with 16 GB VRAM, an Intel i9, 64 GB RAM and an SSD.
-The exact i9 and preferred resolution are not yet known. The benchmark records
-them where available and tests both 2560×1440 and 3840×2160 by default.
+Confirmed target from the 10 October report: Core i9-13980HX, RTX 4090 Laptop GPU
+with 16 GB VRAM, 64 GB RAM and an NVMe SSD. This supersedes the earlier assumed
+desktop RTX 4080 target. The benchmark requests 2560×1440 and 3840×2160 by default;
+verify the actual captured size because Windows can constrain a window.
+
+See [the first target-PC analysis](benchmark-2026-10-10.md) for results and
+limitations, including the non-4K size of the run labelled 4K, train-creation
+stalls and the cache profile's RTX 4080-only rule.
 
 ## Run on the target PC
 

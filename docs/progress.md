@@ -1,5 +1,22 @@
 # Progress
 
+## 2026-10-10 — Player benchmark reviewed; AI model quality verified
+- Read the complete `TrainGame-Benchmark-20261010-000502.zip` returned from the
+  i9-13980HX / RTX 4090 Laptop / 64 GB PC. Corrected the assumed target in
+  `docs/performance.md`; full findings are in `docs/benchmark-2026-10-10.md`.
+- Both full passes completed. The second pass's screenshots are 3028×1703,
+  despite its 4K label. Early target dimensions conflict with image dimensions;
+  settled views also show approximately 60 Hz pacing with uncapped settings.
+  Neither issue should be mistaken for a confirmed native-4K measurement.
+- Identified train-presentation loading pauses of 2–3 seconds, a 2 GiB fallback
+  cache threshold mistakenly selected for this 16 GB GPU, expensive Nagercoil
+  tile jobs, GPU-limited moving views and simulation-related live-traffic jitter.
+  These are measured findings and follow-up priorities, not implemented fixes.
+- Nearby AI trains share the player's detailed models/materials and distance
+  LOD. Only one or two train views were resident while 32 services simulated.
+- Validation: full headless suite **421 passed, 0 failed**; Git whitespace checks
+  passed. Analysis/documentation only: no game, asset or published-build changes.
+
 ## 2026-10-09 — Benchmark blank-window startup fixed
 - Reproduced the user's stall with packaged R23 BUILD/SHA256 files on Windows
   PowerShell. `Get-Content` attaches filesystem/provider metadata to its strings;
