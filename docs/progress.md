@@ -39,6 +39,12 @@
   Check Turavur's stairs/canopy and Virani Alur's open-shelter boundary, then
   travel beside the dense verge and check clear ballast/platforms and smooth
   vegetation distance transitions. Existing saves/operating CSV remain intact.
+- Published R20 from clean source `8b071bb`, signed update sequence 20 at
+  `http://192.168.8.183:8765/`. R19 to R20 changes 17,202,342 installed bytes;
+  download including the signed catalogue is 20,013,827 bytes (about 20 MB).
+  Verified the pinned-key signature, changed PCK HTTP range/hash, clean source
+  metadata, surroundings guide and current LAN download page. No new full ZIP.
+  Source and publication record pushed to GitHub.
 
 ## 2026-10-09 — R19 movement in D-pad-selected coach interiors
 - Fixed the missed passenger-camera context in R18: automatic LS movement entry
