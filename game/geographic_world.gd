@@ -53,7 +53,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	_build_environment()
 	assets=Library.new(self)
 	assets.catalog=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/scenery/manifest.json"))
-	for kind in preload("res://game/geographic_building_layout.gd").KINDS+["young_palm","tree_small_02","shrub","reeds"]:
+	for kind in preload("res://game/geographic_building_layout.gd").KINDS+preload("res://game/kerala_scenery.gd").ASSETS+["young_palm","tree_small_02","shrub","reeds"]:
 		assets.asset(kind)
 	for kind in ["coconut_palm","mango_tree","rain_tree","verge_patch","kerala_tvc_heritage","kerala_ers_entry","kerala_ncj_entry","kerala_coastal_station","passenger_man","passenger_sari","passenger_phone","passenger_sari_blue","tea_kiosk","hatchback","auto_rickshaw","motorcycle"]:
 		assets.asset(kind)
@@ -102,6 +102,11 @@ func _make_materials() -> void:
 	ground.set_shader_parameter("soil_normal",ph_tex("red_laterite_soil_stones","nor_gl"))
 	ground.set_shader_parameter("macro_noise",_noise_tex)
 	materials.ground=ground
+	var paddy:=ShaderMaterial.new()
+	paddy.shader=load("res://game/shaders/kerala_paddy.gdshader")
+	paddy.set_shader_parameter("grass_albedo",ph_tex("leafy_grass","diff"))
+	paddy.set_shader_parameter("soil_albedo",ph_tex("red_laterite_soil_stones","diff"))
+	materials.paddy=paddy
 	materials.architecture=assets.material("architecture").duplicate()
 	materials.architecture.set_shader_parameter("instanced_palette",false)
 	materials.architecture_detail=materials.architecture

@@ -2,6 +2,15 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-09 Kerala scenery variety: eleven original procedural Blender masters
+and GLBs (veranda house, laterite cottage, balcony villa, coastal shop, banana,
+two boats, well, net rack, green/ripe rice). `tools/blender/scenery_kerala.py`
+contains the source, with metre bounds/materials in the scenery manifest.
+Kerala Tourism and Kanniyakumari district references informed the design;
+no reference-photo pixels or third-party meshes were imported. Existing CC0
+PBR finishes are reused, with procedural banana veins and rice-field shaders.
+See `kerala-scenery.md` for reference links, placement rules and playtest steps.
+
 2026-10-09 R21 speed indicators: original procedural triangle, fishtail and T/P
 meshes, striped posts, fixings, footings and Godot-font lettering. Official railway
 manuals inform shapes/placement; no PDF imagery is bundled. Sources and gameplay

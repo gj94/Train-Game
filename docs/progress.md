@@ -1,5 +1,42 @@
 # Progress
 
+## 2026-10-09 — Kerala scenery variety
+- Researched Kerala Tourism's coastal homes, backwaters and cultivation references,
+  plus Kanniyakumari district agriculture. Reference links, reconstruction limits,
+  rebuild commands and playtest steps are in `docs/kerala-scenery.md`.
+- Added eleven original background-authored Blender masters/GLBs: veranda house,
+  laterite cottage, balcony villa, tiled shop, banana clump, canoe, fishing skiff,
+  courtyard well, drying net rack and green/ripe rice. Recessed openings, shaded
+  verandas, tile caps, balconies, roof services, split/veined leaves and open hulls
+  supply distinct silhouettes and close detail. No reference photo pixels added.
+- Detailed building fitting tries compatible alternatives and both footprint axes,
+  faces nearby mapped roads, retains human storey heights and stays inside measured
+  envelopes. Sparse inferred shopfronts use only unclassified roadside buildings.
+  Dry compounds/wells and working banks validate roads, buildings, water, station
+  sites and tracks. Boat hull polygons must avoid islands as well as dry banks.
+- Mapped fields have stable green, ripe, wet and harvested parcel treatments,
+  near-camera rice geometry and planted bunds. Coconut/banana frequency varies
+  with the coastal lowlands and southern approach. Spatial batches/fades limit
+  rice to 145 m, banana to 300 m and small shoreline props to 500 m.
+- Precise water polygons override coarse raster gaps. Mixed shoreline cells refine
+  locally to 2 m, with a 10 m bank grading band that excludes tile clipping edges
+  and protected railway ground. Refined perimeter vertices are stitched to their
+  coarse neighbours; the visual pass caught and fixed a T-junction seam.
+- Validation: the complete 413-test headless suite passed, then all eight focused
+  Kerala tests passed including the added perimeter-stitch regression. The 62-GLB
+  audit passed embedded-resource, geometry, material-category and provenance checks.
+  Native source renders inspected assets and actual KUMM/ALLP/TUVR/VAK/NCJ scenery.
+  Screenshots are in `art/scenery/kerala-variety`; capture scripts run the source,
+  wait for streaming and preserve simulation state. No packaged game was launched.
+- Whole-scene views remain demanding on this PC's integrated Radeon 780M.
+  Nagercoil rice captures ranged from approximately 16.9 to 24.1 million primitives
+  with different cameras/coverage; the other PC still needs a comparable F10
+  passenger/exterior playtest. Timing during parallel QA is not an isolated benchmark.
+- Player check: D → KUMM → VISIT YARD for planted banks and boats; TUVR for shops,
+  verandas and compound walls; NCJ's northern approach for open rice parcels and
+  banana planting. F4 clears the HUD. Revisit after a distant station jump to check
+  deterministic placement and inspect clear roads/platforms from ground level.
+
 ## 2026-10-09 — R21 formation limits and physical speed boards
 - Removed K1's 65 km/h scenario override. All 32 built-in services now use their
   configured formation limit (ICF 110, LHB 140, VB8/VB16 180 km/h). The 45 km/h

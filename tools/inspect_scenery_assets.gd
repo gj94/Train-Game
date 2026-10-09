@@ -61,7 +61,7 @@ func capture() -> void:
 		var centre:=Vector3(i*100,0,0)
 		camera.position=centre+Vector3(-22,10,-28)
 		camera.look_at(centre+Vector3(0,3.5,0))
-		if names[i].begins_with("passenger_") or names[i] in ["hatchback","auto_rickshaw","motorcycle","tea_kiosk","transformer","shrub","grass_tuft","reeds"]:
+		if names[i].begins_with("passenger_") or names[i] in ["hatchback","auto_rickshaw","motorcycle","tea_kiosk","transformer","shrub","grass_tuft","reeds","banana_clump","country_canoe","fishing_skiff","courtyard_well","fishing_net_rack","rice_green","rice_ripe"]:
 			camera.position=centre+Vector3(-5,2.5,-7)
 			camera.look_at(centre+Vector3(0,1,0))
 		if names[i].begins_with("passenger_"):

@@ -9,6 +9,10 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **9 Oct 2026 scenery variety:** research the Kerala coastal landscape and add
+  considered architectural, agricultural, shoreline and planting variety. Keep
+  mapped geography and rail clearance; avoid repeating one generic house/forest
+  kit or importing unrelated hill-station scenery. See `kerala-scenery.md`.
 - **9 Oct 2026 speed limits:** default services use formation equipment limits,
   with no artificial slow-passenger cap. Add directional caution/start/release
   boards from track limits, with full-rake clearance and branch identification.

@@ -19,7 +19,7 @@ MASTERS = ROOT / 'art/scenery'
 RNG = random.Random(20261007)
 MATERIALS = {}
 MANIFEST = {}
-SURFACE_IDS={'detail':0,'masonry':1,'roof':2,'metal':3,'glass':4,'bark':5,'leaves':6,'grass':7,'sign':8,'wood':9,'broadleaf':10}
+SURFACE_IDS={'detail':0,'masonry':1,'roof':2,'metal':3,'glass':4,'bark':5,'leaves':6,'grass':7,'sign':8,'wood':9,'broadleaf':10,'banana_leaf':6}
 PAINTS = [(0.64,.58,.44),(.61,.66,.60),(.48,.60,.63),(.68,.58,.52),(.68,.68,.57),(.57,.64,.58)]
 IVORY=(.76,.73,.63); CONCRETE=(.43,.43,.39); DARK=(.055,.07,.07)
 RUST=(.27,.12,.065); GLASS=(.12,.20,.21); STEEL=(.24,.29,.29); WOOD=(.20,.115,.060)
@@ -357,6 +357,9 @@ def main():
         if only is None or factory.__name__ in only: save(factory())
     from scenery_vegetation import FACTORIES as VEGETATION
     for factory in VEGETATION:
+        if only is None or factory.__name__ in only: save(factory())
+    from scenery_kerala import FACTORIES as KERALA
+    for factory in KERALA:
         if only is None or factory.__name__ in only: save(factory())
     path=OUT/'manifest.json'
     prior=json.loads(path.read_text()) if path.exists() else {}
