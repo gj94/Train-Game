@@ -9,6 +9,7 @@ var meshes := {}
 var finishes := {}
 var placements := {}
 var counts := {}
+var impostors := {}
 const TREES := {
 	"coconut_palm":Vector2(13.644375,6.201989),
 	"young_palm":Vector2(12.346182,3.796909),
@@ -177,7 +178,10 @@ func _range(kind: String) -> float:
 	if kind in ["hatchback","auto_rickshaw","motorcycle","motorcycle_rider","tea_kiosk","produce_cart"]: return 650
 	if kind in ["utility_pole","transformer","bus_shelter"]: return 850
 	return 1800
-func _flush_impostors(kind: String) -> void:
+func prepare_impostors() -> void:
+	for kind in TREES:impostors[kind]=_impostor_mesh(kind)
+
+func _impostor_mesh(kind: String) -> QuadMesh:
 	var size: Vector2=TREES[kind]
 	var mesh:=QuadMesh.new()
 	mesh.size=Vector2.ONE*size.x
@@ -188,6 +192,11 @@ func _flush_impostors(kind: String) -> void:
 	mat.set_shader_parameter("colour_atlas",load(ROOT+"impostors/"+kind+"_albedo.png"))
 	mat.set_shader_parameter("normal_atlas",load(ROOT+"impostors/"+kind+"_normal.png"))
 	mesh.material=mat
+	return mesh
+
+func _flush_impostors(kind: String) -> void:
+	var size: Vector2=TREES[kind]
+	var mesh: QuadMesh=impostors[kind] if impostors.has(kind) else _impostor_mesh(kind)
 	for group in Cells.split(placements[kind],64).values():
 		var mm:=MultiMesh.new()
 		mm.transform_format=MultiMesh.TRANSFORM_3D

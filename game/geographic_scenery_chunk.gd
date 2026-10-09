@@ -55,6 +55,7 @@ func build(key: Vector2i, far_tile: bool=false, holes: Array=[]) -> Dictionary:
 	context.root=root
 	library=Library.new(context)
 	library.meshes=assets.meshes
+	library.impostors=assets.impostors
 	library.finishes=assets.finishes
 	_register_occupied(tile.get("features",[]))
 	for feature in tile.get("features",[]):

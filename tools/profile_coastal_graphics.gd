@@ -12,7 +12,7 @@ func _initialize() -> void:
 func settle() -> void:
 	var start:=Time.get_ticks_msec()
 	for i in 10:await process_frame
-	while (game.wv.loading or not game.wv.queue.is_empty() or game.wv.workers.any(func(w):return w.thread!=null)) and Time.get_ticks_msec()-start<150000:
+	while (game.wv.loading or game.wv.has_pending_work()) and Time.get_ticks_msec()-start<240000:
 		await process_frame
 	for i in 60:await process_frame
 func capture(label: String) -> void:

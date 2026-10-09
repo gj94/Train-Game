@@ -49,9 +49,11 @@ try {
     & $engine --headless --path $projectRoot --script res://tools/write_export_notices.gd -- "res://export/$BuildName/ENGINE-LICENSES.txt"
     if ($LASTEXITCODE -ne 0) { throw 'Writing engine notices failed.' }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/portable-readme.txt') -Destination (Join-Path $buildRoot 'README.txt')
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'benchmark-windows.ps1') -Destination (Join-Path $buildRoot 'Benchmark.ps1')
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'run-performance-benchmark.cmd') -Destination (Join-Path $buildRoot 'Run Performance Benchmark.cmd')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/assets.md') -Destination (Join-Path $buildRoot 'ASSET-SOURCES.md')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/ported/station-notices') -Destination $buildRoot -Recurse -Force
-    foreach ($guide in @('save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md')) {
+    foreach ($guide in @('performance.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'data/routes/kerala_coast/README.md') -Destination (Join-Path $buildRoot 'MAP-DATA-LICENSE.md')

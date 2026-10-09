@@ -70,6 +70,20 @@ func test_render_teleport_and_cab_reversal_snap():
 	if f.m.locate(0).dir != -1 or absf(f.m.point(0).x - 160) > .0001: return "cab reversal retained old interpolation"
 	return true
 
+func test_point_cache_follows_interpolation_rebase_and_external_edits():
+	var f:=fixture()
+	var initial: Vector3=f.m.point(5)
+	if f.m.point(5)!=initial:return "Repeated sample moved"
+	f.m.coordinate_origin=Vector3(1024,0,0)
+	if f.m.point(5)!=initial-Vector3(1024,0,0):return "Cached point ignored origin shift"
+	f.m.begin_tick();f.t.advance(f.g,2);f.m.end_tick()
+	f.m.sample(.25)
+	var a: Vector3=f.m.point(5)
+	f.m.sample(.75)
+	if absf(f.m.point(5).x-a.x-1)>.0001:return "Cached point ignored render fraction"
+	f.t.path[0].edge="2"
+	return absf(f.m.point(5).x-(247-1024))<.0001
+
 func test_render_curve_stays_on_track_and_leaves_simulation_untouched():
 	var f := fixture()
 	f.g.edges["1"].points = PackedVector3Array([Vector3(100,0,0),Vector3(150,0,5),Vector3(200,0,0)])
@@ -88,4 +102,3 @@ func test_render_curve_stays_on_track_and_leaves_simulation_untouched():
 		if f.t.head_s != head or f.t.odometer != odometer: return "render modified simulation"
 		if absf(f.m.odometer()-2*alpha) > .0001: return "wheel rotation and rendered distance disagree"
 	return true
-

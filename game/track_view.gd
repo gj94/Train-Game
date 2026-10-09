@@ -426,8 +426,11 @@ func update_points(immediate: bool = false) -> void:
 		for blade in point_blades[nid]:
 			var open: bool = reverse if blade.normal else not reverse
 			var target: Basis = blade.closed*Basis(Vector3.UP,blade.angle if open else 0.0)
-			blade.node.basis = blade.node.basis.slerp(target,blend)
-		point_rods[nid].position.x = lerpf(point_rods[nid].position.x,.12 if reverse else 0.0,blend)
+			if blade.node.basis!=target:
+				blade.node.basis = target if immediate or blade.node.basis.is_equal_approx(target) else blade.node.basis.slerp(target,blend)
+		var target_x:=.12 if reverse else 0.0
+		if point_rods[nid].position.x!=target_x:
+			point_rods[nid].position.x=target_x if immediate or is_equal_approx(point_rods[nid].position.x,target_x) else lerpf(point_rods[nid].position.x,target_x,blend)
 
 func _finish(st: SurfaceTool, parent: Node3D, material: Material, label: String) -> void:
 	st.generate_normals()

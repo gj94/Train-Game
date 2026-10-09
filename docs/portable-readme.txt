@@ -2,6 +2,19 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R23: threaded streaming and detailed target-PC benchmarking.
+Double-click "Run Performance Benchmark.cmd" for automatic 1440p and 4K tests.
+Allow 10-20 minutes. Leave the game focused and let it control the cameras.
+Send back Documents/TrainGame-Benchmark-<date-time>.zip when it finishes.
+Records frame timings, CPU/GPU/VRAM, scenery jobs, screenshots and error logs.
+Full visual detail is preserved. F10 shows optional frame/worker/memory stats.
+See guides/performance.md for single-resolution runs and measurement details.
+
+Kerala Coast R22: greater researched Kerala scenery variety.
+Veranda homes, laterite cottages, balcony villas, roadside shops, crops,
+banana groves, boats, fishing nets, bunds and canal details across the route.
+See guides/kerala-scenery.md.
+
 Kerala Coast R21: stock-limited running and trackside speed indicators.
 K1's artificial 65 km/h cap is removed: its ICF formation supports 110 km/h,
 subject to the track, signals and traffic. Older built-in K1 saves upgrade too.

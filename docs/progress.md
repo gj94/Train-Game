@@ -1,5 +1,49 @@
 # Progress
 
+## 2026-10-09 — Performance streaming and target-PC diagnostic
+- Target is the other PC: i9, 64 GB RAM, RTX 4080 16 GB, SSD. This development
+  machine has a Ryzen 7840HS/Radeon 780M; do not present its FPS as RTX results.
+- Replaced two per-job threads with 2–8 persistent sleeping geometry workers
+  (logical CPUs / 4), plus a serialized station-resource preparation worker.
+  Shared authored materials/stations publish immutable bundles behind short mutex
+  sections. Detached scene chunks activate with a soft 2 ms/24-child frame budget.
+- RTX 4080 retains up to 96 hidden chunks for 120 seconds, evicting them above a
+  measured 10 GiB allocation ceiling. Active scenery is retained; this is a warm
+  cache budget, not a hard VRAM cap. Rebase/cancellation/shutdown are covered.
+- Shared impostor resources and exact position-sample caching remove duplicate
+  resource/query work. Unchanged point, wheel, pantograph, lamp and visibility
+  transforms no longer force repeated updates. Simulation/audio rules are intact.
+- Kept all textures, geometry, distances, AA, SSAO/SSIL and shadows. Broad
+  occlusion culling was tested and removed: no useful gain on the local GPU.
+- Added portable `--benchmark`, `Benchmark.ps1` and a double-click CMD launcher.
+  Defaults to 1440p + 4K. Ten views/phases include live traffic, streaming and
+  revisits, with loading recorded separately. CSV per-frame timing, per-job trace,
+  engine settings, screenshots, per-core CPU/RAM/disk telemetry and optional
+  NVIDIA telemetry are packaged automatically in Documents. No automatic upload.
+- Details and interpretation: `docs/performance.md`. F10 diagnostics stay hidden
+  normally and now include p95/p99, GPU allocations, workers and cache state.
+- Validation: full headless suite **420 passed, 0 failed**; **12 focused checks**
+  passed after adding the percentile regression (421 unique tests now). The
+  source GPU/Windows launcher quick run completed all **16 measured/loading
+  phases and 10 screenshots**, wrote 1,951 job/activation events and produced its
+  report ZIP with no engine errors. NVIDIA telemetry is unavailable on this AMD
+  host and is explicitly reported; it needs the actual target-PC run.
+- Track geometry, all 25 archived/current train masters and four formations,
+  and rendered motion integration checks also passed with zero failures.
+- Local fixed-camera R22 baseline and GPU-cost probe are in
+  `.local/performance-r22-before.*` and `.local/performance-gpu-probe.*`.
+  Quick validation results are not performance claims. Further GPU optimization
+  and any 60/120 FPS promise await the target-PC report.
+
+Playtest:
+1. On the RTX 4080 PC, extract R23 to the SSD and double-click **Run Performance
+   Benchmark.cmd**. Leave the window focused and controls alone. Return the
+   Documents/TrainGame-Benchmark-*.zip; partial logs are retained on failure.
+2. In normal play, use F10 to inspect workers/memory while visiting Kumbalam,
+   Nagercoil and back; check for missing geometry, freezes or growing memory.
+3. Ride a train across tile/origin boundaries, change ends, and quit while scenery
+   is loading. Check smooth motion, correct lamps/pantographs and clean shutdown.
+
 ## 2026-10-09 — Kerala scenery variety
 - Researched Kerala Tourism's coastal homes, backwaters and cultivation references,
   plus Kanniyakumari district agriculture. Reference links, reconstruction limits,

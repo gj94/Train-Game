@@ -30,6 +30,7 @@ var cab_position := 0
 var _last_odometer := 0.0
 var _wheel_angles: Array[float] = []
 var _interior_light: OmniLight3D
+var _equipment_cab := 0
 
 
 func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
@@ -138,6 +139,7 @@ func _direction(index: int) -> float:
 
 
 func update() -> void:
+	var equipment_changed:=_equipment_cab!=train.cab_end
 	var distance: float = motion.odometer() if motion != null else train.odometer
 	var travelled := distance - _last_odometer
 	_last_odometer = distance
@@ -148,21 +150,26 @@ func update() -> void:
 		var front := _point(back - half)
 		var rear := _point(back + half)
 		if front.distance_squared_to(rear) < .0001: continue
-		cars[i].global_transform = Transform3D(Basis.looking_at((front - rear) * sign_dir, Vector3.UP), (front + rear) * .5 + Vector3.UP * RAIL_TOP)
-		if ride!=null: cars[i].global_transform *= ride.offset(i)
+		var pose:=Transform3D(Basis.looking_at((front - rear) * sign_dir, Vector3.UP), (front + rear) * .5 + Vector3.UP * RAIL_TOP)
+		if ride!=null:pose*=ride.offset(i)
+		if cars[i].global_transform!=pose:cars[i].global_transform=pose
 		for j in bogies[i].size():
 			var position := _v(specs[i].bogies[j].position)
 			var bogie_back := back + sign_dir * position.z
 			var a := _point(bogie_back - 1.0)
 			var b := _point(bogie_back + 1.0)
 			if a.distance_squared_to(b) > .0001:
-				bogies[i][j].global_transform = Transform3D(Basis.looking_at((a - b) * sign_dir, Vector3.UP), _point(bogie_back) + Vector3.UP * (RAIL_TOP + position.y))
+				var bogie_pose:=Transform3D(Basis.looking_at((a - b) * sign_dir, Vector3.UP), _point(bogie_back) + Vector3.UP * (RAIL_TOP + position.y))
+				if bogies[i][j].global_transform!=bogie_pose:bogies[i][j].global_transform=bogie_pose
 		_wheel_angles[i] -= travelled * sign_dir / float(specs[i].axles[0].radius)
-		for axle in axles[i]: axle.rotation.x = _wheel_angles[i]
-		_update_pantographs(i)
-		var leading := i == (cars.size() - 1 if train.cab_end == 2 else 0)
-		lamps[i][0].visible = leading and sign_dir > 0
-		lamps[i][1].visible = leading and sign_dir < 0
+		if travelled!=0:
+			for axle in axles[i]:axle.rotation.x=_wheel_angles[i]
+		if equipment_changed:
+			_update_pantographs(i)
+			var leading := i == (cars.size() - 1 if train.cab_end == 2 else 0)
+			lamps[i][0].visible = leading and sign_dir > 0
+			lamps[i][1].visible = leading and sign_dir < 0
+	_equipment_cab=train.cab_end
 	if _interior_light != null and (cab_on or passenger_on):
 		var camera := passenger_transform() if passenger_on else cab_transform()
 		_interior_light.global_position = camera.origin + Vector3.UP * .5

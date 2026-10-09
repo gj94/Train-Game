@@ -16,6 +16,8 @@ var _before_odometer := 0.0
 var _before_cab := 1
 var _distance := 0.0
 var _lag := 0.0
+var _points := {}
+var _point_origin := Vector3.ZERO
 
 func _init(t: Train, g: TrackGraph) -> void:
 	train = t
@@ -24,6 +26,7 @@ func _init(t: Train, g: TrackGraph) -> void:
 	reset()
 
 func reset() -> void:
+	_points.clear()
 	_current_path = train.path.duplicate(true)
 	_current_s = train.head_s
 	_current_odometer = train.odometer
@@ -66,15 +69,22 @@ func _sync_external_change() -> void:
 
 func sample(fraction: float) -> void:
 	_sync_external_change()
-	_lag = _distance * (1.0 - clampf(fraction, 0.0, 1.0))
+	var lag:=_distance * (1.0 - clampf(fraction, 0.0, 1.0))
+	if lag!=_lag:_points.clear()
+	_lag=lag
 
 func locate(back: float) -> Dictionary:
 	_sync_external_change()
 	return _route.locate_behind(graph, back + _lag)
 
 func point(back: float) -> Vector3:
-	var loc := locate(back)
-	return graph.position_relative(loc.edge, loc.s, coordinate_origin)
+	_sync_external_change()
+	if _point_origin!=coordinate_origin:
+		_points.clear();_point_origin=coordinate_origin
+	if not _points.has(back):
+		var loc := _route.locate_behind(graph,back+_lag)
+		_points[back]=graph.position_relative(loc.edge, loc.s, coordinate_origin)
+	return _points[back]
 
 func odometer() -> float:
 	_sync_external_change()

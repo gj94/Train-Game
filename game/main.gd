@@ -66,10 +66,18 @@ var _interior_view := false
 var display_options := preload("res://game/display_options.gd").new()
 var save_load
 var _resume: Dictionary = {}
+var profiling := false
+var frame_costs := {}
+var simulation_ms := 0.0
 
 
 func _ready() -> void:
-	if "--script" not in OS.get_cmdline_args():display_options.restore()
+	var benchmark:="--benchmark" in OS.get_cmdline_user_args()
+	profiling=benchmark
+	if benchmark:
+		get_tree().set_meta("traffic_seed",0)
+		get_tree().set_meta("benchmark",true)
+	if "--script" not in OS.get_cmdline_args() and not benchmark:display_options.restore()
 	# Custom railway interpolation needs a clock without physics-jitter correction.
 	Engine.physics_jitter_fix = 0.0
 	AudioServer.playback_speed_scale=1.0
@@ -250,11 +258,17 @@ func _ready() -> void:
 	if not _resume.is_empty():
 		save_load.restore_view(_resume.session)
 		_resume.clear()
+	if benchmark:
+		var runner:=preload("res://game/performance_benchmark.gd").new()
+		add_child(runner)
+		runner.run.call_deferred(self)
 
 
 func _physics_process(delta: float) -> void:
+	simulation_ms=0.0
 	if paused or (geographic_drive and wv.loading):
 		return
+	var began:=Time.get_ticks_usec() if profiling else 0
 	var dir := 0.0
 	if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP):
 		dir += 1.0
@@ -280,6 +294,7 @@ func _physics_process(delta: float) -> void:
 		remaining-=slice
 		world.step(slice) # The simulation owns dispatch timing, even with the desk closed.
 	for motion in train_motions.values(): motion.end_tick()
+	if profiling:simulation_ms=(Time.get_ticks_usec()-began)*.001
 
 
 func _geographic_frame() -> void:
@@ -301,7 +316,8 @@ func _render_trains(fraction: float,ride_delta: float=0.0) -> void:
 		train_motions[id].sample(fraction)
 		if geographic_drive and cam!=null:
 			var nearby: bool=id==train.id or traffic_presentation.distance_to(id)<2200.0
-			for car in train_views[id].cars: car.visible=nearby
+			for car in train_views[id].cars:
+				if car.visible!=nearby:car.visible=nearby
 			if train_audio.has(id):
 				var quiet: bool=paused or wv.loading or not nearby
 				if train_audio[id]._paused!=quiet: train_audio[id].set_paused(quiet)
@@ -313,11 +329,17 @@ func _render_trains(fraction: float,ride_delta: float=0.0) -> void:
 
 
 func _process(delta: float) -> void:
+	var began:=Time.get_ticks_usec() if profiling else 0
+	var stamp:=began
 	if geographic_drive: _geographic_frame()
 	traffic_presentation.update(delta)
 	_render_trains(1.0 if paused else Engine.get_physics_interpolation_fraction(),0.0 if paused or _geographic_loading else delta*time_scale)
+	if profiling:
+		frame_costs.trains=(Time.get_ticks_usec()-stamp)*.001;stamp=Time.get_ticks_usec()
 	if walker!=null: walker.update(delta)
 	if passenger_crowd!=null:passenger_crowd.update()
+	if profiling:
+		frame_costs.crowd=(Time.get_ticks_usec()-stamp)*.001;stamp=Time.get_ticks_usec()
 	cam.set_meta("passenger_interior",walker!=null and walker.passenger_interior())
 	for sound in train_audio.values(): sound.listener_owner = audio
 	if walker!=null and walker.active and not walker.platform.outside:
@@ -328,6 +350,8 @@ func _process(delta: float) -> void:
 		audio.interior_listener = tv.interior_audio_position()
 	wv.update()
 	wv.update_joints(delta)
+	if profiling:
+		frame_costs.world=(Time.get_ticks_usec()-stamp)*.001;stamp=Time.get_ticks_usec()
 	for e in world.events:
 		if e.seq > _last_event:
 			_last_event = e.seq
@@ -335,11 +359,12 @@ func _process(delta: float) -> void:
 	_journey_refresh-=delta
 	if _journey_refresh<=0:
 		_journey_snapshot=preload("res://sim/service_progress.gd").snapshot(world,train)
+		_journey_snapshot["dispatch_expectation"]=preload("res://sim/priority_dispatch.gd").hold_reason(world,train,true)
 		_journey_refresh=.25
 	var ns := world.next_signal(train)
 	hud.refresh({
 		journey=_journey_snapshot,
-		dispatch_expectation=preload("res://sim/priority_dispatch.gd").hold_reason(world,train,true),
+		dispatch_expectation=_journey_snapshot.get("dispatch_expectation",""),
 		train_id = train.id,
 		stock_kind = train.stock_kind,
 		cab_end = train.cab_end,
@@ -360,6 +385,9 @@ func _process(delta: float) -> void:
 		world_clock = world.clock_text(),
 		world_day = world.clock_day(),
 	})
+	if profiling:
+		frame_costs.hud=(Time.get_ticks_usec()-stamp)*.001
+		frame_costs.total=(Time.get_ticks_usec()-began)*.001
 
 
 func _input(event: InputEvent) -> void:

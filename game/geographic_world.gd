@@ -7,6 +7,18 @@ const TrackChunk := preload("res://game/geographic_track_chunk.gd")
 const LocalGraph := preload("res://game/local_track_graph.gd")
 const Library := preload("res://game/scenery_library.gd")
 const JointLayout := preload("res://game/rail_joint_layout.gd")
+const StreamWorker := preload("res://game/stream_worker.gd")
+const AuthoredStation := preload("res://game/authored_station.gd")
+var performance := {}
+var _asset_worker
+var _prepared_stations := {}
+var _activating := {}
+var _warm := {} # Hidden scene trees retain uploaded buffers for nearby revisits.
+var cache_hits := 0
+var completed_jobs := 0
+var last_stream_ms := 0.0
+var collect_timing := false
+var job_trace := []
 var coordinate_origin := Vector3.ZERO
 var geo
 var ohe_layout
@@ -36,6 +48,7 @@ var _view_tick := 0
 var camera_absolute := Vector3.ZERO
 
 func build(w: RailWorld,parent: Node3D) -> void:
+	collect_timing=parent.get_tree().get_meta("benchmark",false)
 	world=w
 	root=Node3D.new(); root.name="KeralaCoast"
 	parent.add_child(root)
@@ -58,6 +71,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	for kind in ["coconut_palm","mango_tree","rain_tree","verge_patch","kerala_tvc_heritage","kerala_ers_entry","kerala_ncj_entry","kerala_coastal_station","passenger_man","passenger_sari","passenger_phone","passenger_sari_blue","tea_kiosk","hatchback","auto_rickshaw","motorcycle"]:
 		assets.asset(kind)
 	assets.meshes["coastal_grass"]=[{mesh=preload("res://game/coastal_groundcover.gd").mesh(assets.material("grass")),transform=Transform3D.IDENTITY}]
+	assets.prepare_impostors()
 	_make_materials()
 	track_template=TrackView.new()
 	track_template.wv=self
@@ -75,11 +89,16 @@ func build(w: RailWorld,parent: Node3D) -> void:
 		var p:=Vector2(board.point.x,board.point.z)
 		geo.vegetation_clearance.add_road(p,p,1.2)
 	ohe_layout=preload("res://game/geographic_ohe_layout.gd").new(world)
-	for i in 2:
+	performance=preload("res://game/performance_profile.gd").settings()
+	for i in performance.workers:
 		var data:=GeoData.new(world.scenery.route)
 		data.station_sites=geo.station_sites
 		data.vegetation_clearance=geo.vegetation_clearance
-		workers.append({thread=null,job={},geo=data})
+		var runner:=StreamWorker.new()
+		workers.append({runner=runner,geo=data})
+		runner.start(_worker.bind(i))
+	_asset_worker=StreamWorker.new()
+	_asset_worker.start(_prepare_station)
 	_loading_layer=CanvasLayer.new(); _loading_layer.layer=8
 	parent.add_child(_loading_layer)
 	_loading_panel=ColorRect.new(); _loading_panel.color=Color(.035,.055,.06,.97)
@@ -218,15 +237,22 @@ func _request(focus: Vector3) -> void:
 			var job: Dictionary=board.duplicate();job.priority=d;_add_job(job)
 	queue.clear()
 	for id in wanted:
-		if loaded.has(id) or workers.any(func(worker): return not worker.job.is_empty() and worker.job.id==id): continue
+		if _warm.has(id):
+			loaded[id].node.visible=true
+			_warm.erase(id)
+			cache_hits+=1
+		if loaded.has(id) or _activating.has(id) or workers.any(func(worker): return not worker.runner.job.is_empty() and worker.runner.job.id==id): continue
 		queue.append(wanted[id])
 	queue.sort_custom(func(a,b): return a.priority<b.priority)
 	for id in loaded.keys():
 		if wanted.has(id): continue
-		_remove(id)
+		if not _warm.has(id):
+			loaded[id].node.visible=false
+			_warm[id]=Time.get_ticks_msec()
 	_refresh_loading()
 
 func _add_job(job: Dictionary) -> void:
+	if collect_timing:job.requested_usec=Time.get_ticks_usec()
 	wanted[job.id]=job
 
 func _remove(id: String) -> void:
@@ -236,8 +262,9 @@ func _remove(id: String) -> void:
 	for label in chunk.get("labels",[]): labels.erase(label)
 	chunk.node.queue_free()
 	loaded.erase(id)
+	_warm.erase(id)
 
-func _worker(index: int,job: Dictionary) -> Dictionary:
+func _worker(job: Dictionary,index: int) -> Dictionary:
 	var data=workers[index].geo
 	match job.kind:
 		"tile","far": return SceneryChunk.new(data,materials,assets).build(job.key,job.kind=="far",job.get("holes",[]))
@@ -245,6 +272,57 @@ func _worker(index: int,job: Dictionary) -> Dictionary:
 		"ohe": return RailwayChunk.new(world,data,materials,assets).build_ohe(job.edge,job.start,job.end,ohe_layout)
 		"track": return TrackChunk.new(track_template,world.graph).build(job.edge,job.start,job.end,job.nodes)
 	return {}
+
+func _prepare_station(job: Dictionary) -> Dictionary:
+	var code: String=world.stations[job.index].code
+	if AuthoredStation.available(code):AuthoredStation.prepare(code)
+	if code=="ERS":AuthoredStation.prepare("ERS_EAST")
+	if world.depots.values().any(func(d):return d.station==code):AuthoredStation.prepare("ERS_WORKSHOP")
+	return {code=code}
+
+func has_pending_work() -> bool:
+	return not queue.is_empty() or not _activating.is_empty() or workers.any(func(w):return not w.runner.job.is_empty()) or (_asset_worker!=null and not _asset_worker.job.is_empty())
+
+func _stage(id: String,result: Dictionary) -> void:
+	# Insert small sets of top-level children across frames. Source hierarchy,
+	# materials and local transforms survive; only activation is staggered.
+	var holder:=Node3D.new()
+	holder.name=result.node.name if not str(result.node.name).is_empty() else "StreamedChunk"
+	for key in result.node.get_meta_list():holder.set_meta(key,result.node.get_meta(key))
+	holder.position=result.origin-coordinate_origin
+	root.add_child(holder)
+	_activating[id]={result=result,holder=holder}
+
+func _activate() -> void:
+	var began:=Time.get_ticks_usec()
+	var children:=0
+	for id in _activating.keys():
+		var pending: Dictionary=_activating[id]
+		var result: Dictionary=pending.result
+		if not wanted.has(id):
+			result.node.free();pending.holder.queue_free();_activating.erase(id)
+			continue
+		while result.node.get_child_count()>0:
+			var child: Node=result.node.get_child(0)
+			result.node.remove_child(child)
+			pending.holder.add_child(child)
+			children+=1
+			if children>=performance.activation_children or Time.get_ticks_usec()-began>=performance.activation_usec:return
+		result.node.free()
+		result.node=pending.holder
+		if result.has("adapter"):result.adapter.root=result.node
+		loaded[id]=result
+		_activating.erase(id)
+		completed_jobs+=1
+		if collect_timing:job_trace.append({id=id,event="activated",ticks_usec=Time.get_ticks_usec()})
+
+func _trim_warm() -> void:
+	if _warm.is_empty():return
+	var id: String=_warm.keys()[0]
+	var expired: bool=Time.get_ticks_msec()-_warm[id]>performance.warm_seconds*1000
+	var pressure:=Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED)>float(performance.gpu_cache_ceiling)
+	# Bound memory and destruction work. Never evict visible scenery for a budget.
+	if expired or pressure or _warm.size()>int(performance.warm_chunks):_remove(id)
 
 func _signal(job: Dictionary) -> Dictionary:
 	var sig: Dictionary=world.signals[job.sid]
@@ -276,38 +354,43 @@ func _refresh_loading() -> void:
 
 func update() -> void:
 	if closing: return
+	var began:=Time.get_ticks_usec()
 	var camera:=root.get_viewport().get_camera_3d()
 	if camera!=null:
 		camera_absolute=camera.global_position+coordinate_origin
 		var cell:=Vector2i(floori(camera_absolute.x/512),floori(camera_absolute.z/512))
 		if cell!=_last_cell or Vector2(camera_absolute.x-_last_focus.x,camera_absolute.z-_last_focus.z).length_squared()>220*220:
 			_request(camera_absolute)
+	var prepared: Dictionary=_asset_worker.take()
+	if not prepared.is_empty():
+		_prepared_stations[prepared.job.id]=true
+		_trace_job(prepared,"assets")
 	for worker in workers:
-		if worker.thread!=null and not worker.thread.is_alive():
-			var result: Dictionary=worker.thread.wait_to_finish()
-			var id: String=worker.job.id
-			worker.thread=null; worker.job={}
+		var finished: Dictionary=worker.runner.take()
+		if not finished.is_empty():
+			_trace_job(finished,"geometry")
+			var result: Dictionary=finished.result
+			var id: String=finished.job.id
 			if not result.is_empty():
 				if wanted.has(id):
-					result.node.position=result.origin-coordinate_origin
-					root.add_child(result.node)
-					loaded[id]=result
+					_stage(id,result)
 				else: result.node.free()
-		if worker.thread==null and not queue.is_empty():
+		if worker.runner.job.is_empty() and not queue.is_empty() and _activating.size()<workers.size()*2:
 			var job: Dictionary=queue.pop_front()
 			if job.kind in ["signal","speed_board"]:
 				var result: Dictionary=_signal(job) if job.kind=="signal" else speed_boards.build(job,geo)
 				result.node.position=result.origin-coordinate_origin
 				root.add_child(result.node); loaded[job.id]=result
 			else:
-				if job.kind=="station" and preload("res://game/authored_station.gd").available(world.stations[job.index].code):
-					preload("res://game/authored_station.gd").prepare(world.stations[job.index].code)
-				if job.kind=="station":
-					if world.stations[job.index].code=="ERS":preload("res://game/authored_station.gd").prepare("ERS_EAST")
-					if world.depots.values().any(func(d):return d.station==world.stations[job.index].code):preload("res://game/authored_station.gd").prepare("ERS_WORKSHOP")
-				worker.job=job; worker.thread=Thread.new()
-				worker.thread.start(_worker.bind(workers.find(worker),job))
-	for chunk in loaded.values():
+				if job.kind=="station" and not _prepared_stations.has(job.id):
+					if _asset_worker.job.is_empty():_asset_worker.submit(job)
+					queue.append(job)
+				else:worker.runner.submit(job)
+	_activate()
+	_trim_warm()
+	for id in loaded:
+		if _warm.has(id):continue
+		var chunk: Dictionary=loaded[id]
 		if chunk.has("adapter"):
 			var adapter=chunk.adapter
 			for node in adapter.graph.switches:
@@ -316,17 +399,28 @@ func update() -> void:
 	_view_tick+=1
 	if _view_tick%6==0:
 		for sid in signal_lamps:
+			if _warm.has("signal:"+sid):continue
 			var aspect:=world.aspect(sid)
+			if signal_lamps[sid][0].get_meta("aspect",-1)==aspect:continue
+			signal_lamps[sid][0].set_meta("aspect",aspect)
 			var lit:=0 if aspect==RailWorld.Aspect.GREEN else (1 if aspect==RailWorld.Aspect.YELLOW else 2)
 			for i in 3:
 				signal_lamps[sid][i].material_override=mat([Color(.1,1,.35),Color(1,.72,.05),Color(1,.08,.05)][i],true) if i==lit else mat(Color(.08,.08,.08))
 		_refresh_loading()
 	if _joints_on and camera_absolute.distance_squared_to(_joint_focus)>150*150: _make_joint_markers()
+	last_stream_ms=(Time.get_ticks_usec()-began)*.001
+
+func _trace_job(finished: Dictionary,role: String) -> void:
+	if not collect_timing:return
+	job_trace.append({id=finished.job.id,event=role,kind=finished.job.kind,requested_usec=finished.job.get("requested_usec",0),
+		submitted_usec=finished.submitted_usec,began_usec=finished.began_usec,finished_usec=finished.finished_usec,
+		build_ms=(finished.finished_usec-finished.began_usec)*.001,wanted=wanted.has(finished.job.id)})
 
 func rebase(origin: Vector3) -> void:
 	coordinate_origin=origin
 	materials.water.set_shader_parameter("route_origin",origin)
 	for chunk in loaded.values(): chunk.node.position=chunk.origin-origin
+	for pending in _activating.values():pending.holder.position=pending.result.origin-origin
 	if _joints_on: _make_joint_markers()
 
 func terrain_height(x: float,z: float) -> float:
@@ -365,11 +459,12 @@ func set_labels_visible(value: bool) -> void:
 
 func _shutdown() -> void:
 	closing=true
+	if _asset_worker!=null:_asset_worker.close()
 	for worker in workers:
-		if worker.thread!=null:
-			var result: Dictionary=worker.thread.wait_to_finish()
-			if not result.is_empty(): result.node.free()
-			worker.thread=null
+		var finished: Dictionary=worker.runner.close()
+		if not finished.is_empty() and not finished.result.is_empty():finished.result.node.free()
+	for pending in _activating.values():pending.result.node.free()
+	_activating.clear()
 	loaded.clear()
 	track_template=null
 	assets=null

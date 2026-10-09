@@ -130,7 +130,7 @@ func build_station(index: int) -> Dictionary:
 	preload("res://game/station_platform_civil.gd").bridge(batch,world,station,origin)
 
 	var context:=Context.new(); context.root=root
-	var props:=Library.new(context); props.meshes=assets.meshes; props.finishes=assets.finishes
+	var props:=Library.new(context); props.meshes=assets.meshes; props.finishes=assets.finishes;props.impostors=assets.impostors
 	var rng:=RandomNumberGenerator.new(); rng.seed=hash(station.code)
 	for eid in station.platform_tracks:
 		var edge: Dictionary=graph.edges[eid]
