@@ -20,6 +20,7 @@ namespace TrainGameUpdater {
     public sealed class UpdateResult { public string version; public long downloadedBytes; public long writtenBytes; public long reusedBytes; }
     public sealed class UpdateCore {
         public const int BlockSize = 65536;
+        public const int LauncherVersion = 2;
         readonly string root, state, key;
         readonly Uri server;
         readonly Action<string, int> progress;
@@ -50,7 +51,7 @@ namespace TrainGameUpdater {
                 if (!Regex.IsMatch(part, @"^[A-Za-z0-9_ .()\-]+$") || part == "." || part == ".." || part.EndsWith(".") || part.EndsWith(" ") ||
                     Regex.IsMatch(part, @"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(\.|$)", RegexOptions.IgnoreCase)) throw new InvalidDataException("Invalid update path: " + name);
             }
-            var allowed = new[] { "TrainGame.exe", "TrainGame.pck", "README.txt", "BUILD.txt", "SHA256SUMS.txt", "ENGINE-LICENSES.txt", "ASSET-SOURCES.md", "MAP-DATA-LICENSE.md" };
+            var allowed = new[] { "TrainGame.exe", "TrainGame.pck", "README.txt", "BUILD.txt", "SHA256SUMS.txt", "ENGINE-LICENSES.txt", "ASSET-SOURCES.md", "MAP-DATA-LICENSE.md", "Benchmark.ps1", "Run Performance Benchmark.cmd" };
             if (!allowed.Contains(name) && !name.StartsWith("guides/") && !name.StartsWith("station-notices/")) throw new InvalidDataException("Unmanaged update path: " + name);
             string result = Path.GetFullPath(Path.Combine(root, name.Replace('/', Path.DirectorySeparatorChar)));
             if (!result.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase)) throw new InvalidDataException("Path escapes installation.");
@@ -65,7 +66,7 @@ namespace TrainGameUpdater {
                 if (!rsa.VerifyData(data, CryptoConfig.MapNameToOID("SHA256"), signature)) throw new InvalidDataException("Update signature is invalid. No game files were changed.");
             }
             var manifest = json.Deserialize<Catalogue>(Encoding.UTF8.GetString(data));
-            if (manifest.format != 1 || manifest.minimumLauncher > 1 || manifest.blockSize != BlockSize || manifest.sequence < 1 ||
+            if (manifest.format != 1 || manifest.minimumLauncher > LauncherVersion || manifest.blockSize != BlockSize || manifest.sequence < 1 ||
                 !Regex.IsMatch(manifest.version ?? "", @"^TrainGame-[A-Za-z0-9_-]+$") || manifest.files == null || manifest.files.Length > 2000)
                 throw new InvalidDataException("Unsupported update catalogue. Download the latest launcher.");
             var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);

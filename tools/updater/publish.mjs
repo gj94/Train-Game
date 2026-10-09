@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 
 export const BLOCK = 65536;
+const benchmarkFiles = ['Benchmark.ps1', 'Run Performance Benchmark.cmd'];
 export async function describeFile(path, name) {
   const file = await open(path, 'r');
   try {
@@ -32,14 +33,16 @@ export async function catalogue(directory, build, sequence) {
       if (item.isDirectory()) {
         if (!relative && !['guides', 'station-notices'].includes(name)) continue;
         await walk(name);
-      } else if (item.isFile() && (relative || ['TrainGame.exe', 'TrainGame.pck', 'README.txt', 'BUILD.txt', 'SHA256SUMS.txt', 'ENGINE-LICENSES.txt', 'ASSET-SOURCES.md', 'MAP-DATA-LICENSE.md'].includes(name))) {
+      } else if (item.isFile() && (relative || ['TrainGame.exe', 'TrainGame.pck', 'README.txt', 'BUILD.txt', 'SHA256SUMS.txt', 'ENGINE-LICENSES.txt', 'ASSET-SOURCES.md', 'MAP-DATA-LICENSE.md', ...benchmarkFiles].includes(name))) {
         files.push(await describeFile(join(directory, name), name));
       }
     }
   }
   await walk();
   if (!files.some(f => f.path === 'TrainGame.exe') || !files.some(f => f.path === 'TrainGame.pck')) throw Error('Missing game executable or pack.');
-  return { format: 1, minimumLauncher: 1, blockSize: BLOCK, sequence, version: build, files };
+  const benchmarkCount = files.filter(f => benchmarkFiles.includes(f.path)).length;
+  if (benchmarkCount !== 0 && benchmarkCount !== benchmarkFiles.length) throw Error('Incomplete benchmark launcher pair. Include both Benchmark.ps1 and Run Performance Benchmark.cmd.');
+  return { format: 1, minimumLauncher: benchmarkCount ? 2 : 1, blockSize: BLOCK, sequence, version: build, files };
 }
 export function envelope(manifest, key) {
   const data = Buffer.from(JSON.stringify(manifest));

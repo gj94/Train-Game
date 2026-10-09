@@ -44,7 +44,7 @@ namespace TrainGameUpdater {
         DateTime lastReport = DateTime.MinValue;
         public UpdateWindow(string folder, string server, string publicKey) {
             directory = folder; key = publicKey;
-            Text = "Train Game | Update & Play"; ClientSize = new Size(640, 378);
+            Text = "Train Game | Update & Play v" + UpdateCore.LauncherVersion; ClientSize = new Size(640, 378);
             FormBorderStyle = FormBorderStyle.FixedDialog; MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen; Font = new Font("Segoe UI", 10);
             Controls.Add(new Label { Text = "Train Game", Font = new Font("Segoe UI", 23, FontStyle.Bold), Bounds = new Rectangle(26, 18, 560, 46) });

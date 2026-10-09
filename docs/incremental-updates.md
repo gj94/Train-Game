@@ -74,6 +74,26 @@ small launcher from the same trusted LAN download page. Manifest protocol
 upgrades may require replacing this small launcher manually; it does not replace
 its own running executable.
 
+## R23 and the performance benchmark
+
+R23 requires **Update & Play v2**, which explicitly allows the two signed files
+`Benchmark.ps1` and `Run Performance Benchmark.cmd`. Download the small
+`TrainGame-Updater.zip` again, close the old launcher and game, and replace
+`Update and Play.exe` in the existing game folder. The window title identifies v2.
+The old launcher refuses this release before changing game data and asks for the
+latest launcher. The signing key and format remain unchanged; v2 still accepts
+older catalogues and resumes their interrupted updates.
+
+Click **Update & Play** to install R23. Once the game opens, close it, then run
+**Run Performance Benchmark.cmd** from that same folder. See
+`guides/performance.md` in the installation (source: `docs/performance.md`).
+Keep the host PC awake and both PCs on the same LAN until the update completes.
+Benchmarking itself runs locally and produces a report ZIP in Documents.
+
+The published R21 → R23 transition changes **549.30 MiB** of file blocks and
+reuses **1,391.14 MiB**, plus a 2,831,053-byte signed catalogue download. The v2
+launcher ZIP is 15,597 bytes. Other starting versions may need different amounts.
+
 ## Publishing the next release
 
 Run required source checks before committing, as usual. Export a new uniquely

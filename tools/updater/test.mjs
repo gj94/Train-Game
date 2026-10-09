@@ -36,6 +36,7 @@ const changed = Buffer.from(pack); changed[BLOCK + 20] ^= 0xff; changed[BLOCK * 
 await writeFile(join(target, 'TrainGame.pck'), changed);
 await writeFile(join(target, 'README.txt'), 'small updated guide\n');
 let manifest = await catalogue(target, 'TrainGame-Test', 20);
+assert.equal(manifest.minimumLauncher, 1, 'Older game-only releases remain compatible with launcher v1');
 let signed = envelope(manifest, keys.privateKey), fail = '', ranges = 0, bytes = 0;
 const server = createServer(async (req, res) => {
   if (fail === 'offline') { res.writeHead(503); return res.end(); }
@@ -100,7 +101,7 @@ try {
   const bad = JSON.parse(signed); bad.signature = Buffer.alloc(256).toString('base64'); signed = JSON.stringify(bad);
   const badSignature = await client(normal); assert.equal(badSignature.code, 1); assert.match(badSignature.err, /signature/); signed = cleanSigned;
   pass('reject untrusted signature');
-  for (const path of ['../outside.txt', 'C:/outside.txt', 'guides/../../outside.txt', 'guides/con.txt', 'guides/test.txt:stream', 'Update and Play.exe']) {
+  for (const path of ['../outside.txt', 'C:/outside.txt', 'guides/../../outside.txt', 'guides/con.txt', 'guides/test.txt:stream', 'Update and Play.exe', 'Other.ps1', 'Other.cmd']) {
     signed = envelope({ ...manifest, files: [...manifest.files, { ...manifest.files[0], path }] }, keys.privateKey);
     const rejected = await client(normal); assert.equal(rejected.code, 1, path);
   }
@@ -116,6 +117,35 @@ try {
   await writeFile(join(target, 'TrainGame.pck'), Buffer.concat([changed, randomBytes(BLOCK + 9)]));
   manifest = await catalogue(target, 'TrainGame-Test', 22); signed = envelope(manifest, keys.privateKey);
   const grow = await client(normal); assert.equal(grow.code, 0, grow.err); await same(normal); pass('grow pack with partial final block');
+  await writeFile(join(target, 'Benchmark.ps1'), '# synthetic benchmark fixture\n');
+  await assert.rejects(catalogue(target, 'TrainGame-Test', 23), /Incomplete benchmark launcher pair/);
+  await writeFile(join(target, 'Run Performance Benchmark.cmd'), '@rem synthetic benchmark fixture\r\n');
+  await writeFile(join(target, 'Other.ps1'), '# excluded from the published catalogue\n');
+  manifest = await catalogue(target, 'TrainGame-Test', 23);
+  assert.equal(manifest.minimumLauncher, 2);
+  assert(!manifest.files.some(f => f.path === 'Other.ps1'));
+  signed = envelope(manifest, keys.privateKey);
+  const benchmarkBytes = manifest.files.filter(f => ['Benchmark.ps1', 'Run Performance Benchmark.cmd'].includes(f.path)).reduce((n, f) => n + f.size, 0);
+  const gameBefore = (await stat(join(normal, 'TrainGame.pck'))).mtimeMs;
+  const benchmark = await client(normal); assert.equal(benchmark.code, 0, benchmark.err);
+  assert.equal(JSON.parse(benchmark.out).downloadedBytes, benchmarkBytes);
+  await same(normal);
+  assert.equal((await stat(join(normal, 'TrainGame.pck'))).mtimeMs, gameBefore);
+  pass('upgrade v1 installation: exact benchmark pair added, unrelated scripts excluded, game untouched');
+  ranges = 0; const benchmarkNoop = await client(normal); assert.equal(benchmarkNoop.code, 0, benchmarkNoop.err);
+  assert.equal(JSON.parse(benchmarkNoop.out).writtenBytes, 0); assert.equal(ranges, 0);
+  pass('benchmark release repeat check downloads and writes zero game blocks');
+  const interruptedBenchmark = await fixture('interrupt-benchmark');
+  assert.match((await client(interruptedBenchmark, 'write')).err, /Injected interruption/);
+  fail = 'offline';
+  const recoveredBenchmark = await client(interruptedBenchmark); assert.equal(recoveredBenchmark.code, 0, recoveredBenchmark.err);
+  assert.equal(JSON.parse(recoveredBenchmark.out).downloadedBytes, 0); await same(interruptedBenchmark); fail = '';
+  pass('new benchmark files recover after an interrupted apply while offline');
+  const supportedSigned = signed;
+  signed = envelope({ ...manifest, minimumLauncher: 3 }, keys.privateKey);
+  assert.match((await client(normal)).err, /Download the latest launcher/);
+  assert.equal((await stat(join(normal, 'TrainGame.pck'))).mtimeMs, gameBefore);
+  signed = supportedSigned; pass('future launcher requirement rejected before touching game data');
   await mkdir(join(temp, 'updates')); await writeFile(join(temp, 'updates/TrainGame-Test.json'), signed);
   const route = updateRoutes(temp);
   assert.deepEqual(await route('/update-files/TrainGame-Test/TrainGame.pck'), ['TrainGame-Test/TrainGame.pck', 'application/octet-stream']);

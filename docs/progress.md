@@ -1,5 +1,25 @@
 # Progress
 
+## 2026-10-09 — R23 available through Update & Play
+- Published the verified R23 folder as signed sequence 23 on the existing LAN
+  server, including all 203 files and both benchmark launchers. No game rebuild.
+- Update & Play v2 explicitly permits `Benchmark.ps1` and
+  `Run Performance Benchmark.cmd`; the publisher requires the complete pair and
+  declares minimum launcher 2. Older game-only releases remain supported.
+- Replace the small launcher once: `http://192.168.8.183:8765/TrainGame-Updater.zip`
+  (**15,597 bytes**). The window title identifies v2; the signing key is unchanged.
+  From R21, changed blocks total **549.30 MiB**, reusing **1,391.14 MiB**.
+- Validation: **23 native updater checks** and **421 headless game tests** passed.
+  Verified the live signature, benchmark/guide bytes, first/middle/final PCK ranges,
+  launcher ZIP/checksum and page release. Read-only verification through the actual
+  executables confirms v2 accepts all 203 entries and v1 requests the new launcher.
+
+Player steps: close the game and old launcher, extract the tiny updater ZIP into
+the existing game folder, replacing `Update and Play.exe`, then click **Update &
+Play**. Keep both PCs on the LAN and the host awake until it finishes. Close the
+game it opens, then double-click **Run Performance Benchmark.cmd** and return the
+Documents/TrainGame-Benchmark-*.zip. See `docs/incremental-updates.md`.
+
 ## 2026-10-09 — Performance streaming and target-PC diagnostic
 - Target is the other PC: i9, 64 GB RAM, RTX 4080 16 GB, SSD. This development
   machine has a Ryzen 7840HS/Radeon 780M; do not present its FPS as RTX results.

@@ -1,4 +1,11 @@
-TRAIN GAME - UPDATE & PLAY
+TRAIN GAME - UPDATE & PLAY v2
+
+R23 / BENCHMARK SUPPORT
+Replace the previous Update and Play.exe with this v2 launcher once. R23 includes
+the performance improvements, Kerala scenery and both benchmark launcher files.
+After Update & Play finishes and opens the game, close the game and double-click
+"Run Performance Benchmark.cmd" in the same folder to measure this PC.
+The report ZIP is saved under Documents. Keep the benchmark window focused.
 
 ONE-TIME SETUP ON THE OTHER PC
 Close Train Game. Extract this small ZIP into your EXISTING game folder,
