@@ -30,6 +30,8 @@ const mask = (0xffffffff << (32 - prefix)) >>> 0;
 const exportRoot = fileURLToPath(new URL('../export/', import.meta.url));
 const updateEntry = updateRoutes(exportRoot);
 const files = new Map([
+  ['/TrainGame-Benchmark-Fix-1.zip', ['TrainGame-Benchmark-Fix-1.zip', 'application/zip']],
+  ['/TrainGame-Benchmark-Fix-1.zip.sha256', ['TrainGame-Benchmark-Fix-1.zip.sha256', 'text/plain; charset=utf-8']],
   ['/TrainGame-Kerala-Coast-R23-Windows.zip', ['TrainGame-Kerala-Coast-R23-Windows.zip', 'application/zip']],
   ['/TrainGame-Kerala-Coast-R23-Windows.zip.sha256', ['TrainGame-Kerala-Coast-R23-Windows.zip.sha256', 'text/plain; charset=utf-8']],
   ['/kerala-r23/README.txt', ['TrainGame-Kerala-Coast-R23-Windows/README.txt', 'text/plain; charset=utf-8']],
@@ -171,8 +173,14 @@ const server = http.createServer(async (req, res) => {
         updater = `<h2>Already installed? Update only what changed</h2><p><a class="download" href="/TrainGame-Updater.zip">Get Update &amp; Play v2 · ${(info.size / 1024).toFixed(0)} KiB</a></p><p>Extract this tiny ZIP beside your existing <b>TrainGame.exe</b> and <b>TrainGame.pck</b>, replacing any older <b>Update and Play.exe</b>. Open it for future releases. R23 requires this v2 launcher to install the benchmark files.</p><p>Interrupted updates resume through the launcher. Saved journeys stay in place. Use <b>Play installed</b> when the host is offline.</p><p><a href="/updater/instructions">Setup and recovery guide</a> · <a href="/TrainGame-Updater.zip.sha256">Launcher SHA-256</a></p>`;
       } catch { /* The existing ZIP downloads remain available before updater publication. */ }
       const fullDownloads = r18 + (r18Info ? audio.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : audio);
+      let benchmarkFix = '';
+      try {
+        const fix = await stat(join(exportRoot, 'TrainGame-Benchmark-Fix-1.zip'));
+        await stat(join(exportRoot, 'TrainGame-Benchmark-Fix-1.zip.sha256'));
+        benchmarkFix = `<h2>R23 benchmark startup fix</h2><p><a class="download" href="/TrainGame-Benchmark-Fix-1.zip">Download benchmark fix · ${(fix.size / 1024).toFixed(0)} KiB</a></p><p>Apply this after extracting the R23 full game above. Close the old benchmark window, then extract this small ZIP beside <b>TrainGame.exe</b>, replacing <b>Benchmark.ps1</b> and <b>Run Performance Benchmark.cmd</b>. Run the CMD again. It prints progress immediately and skips stalled hardware checks automatically. Update &amp; Play also delivers this fix.</p><p><a href="/TrainGame-Benchmark-Fix-1.zip.sha256">Fix SHA-256</a></p>`;
+      } catch { /* Only advertise a completed fix archive. */ }
       const updateStatus = updateVersion ? `<p>Current updater release: <b>${updateVersion}</b></p>` : '';
-      const sections = r23 ? r23 + updater + updateStatus + (fullDownloads ? `<details><summary>Older full builds</summary>${fullDownloads.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback')}</details>` : '') : fullDownloads + updater + updateStatus;
+      const sections = r23 ? r23 + benchmarkFix + updater + updateStatus + (fullDownloads ? `<details><summary>Older full builds</summary>${fullDownloads.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback')}</details>` : '') : fullDownloads + benchmarkFix + updater + updateStatus;
       const body = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Train Game download</title><style>body{max-width:720px;margin:48px auto;padding:24px;font:18px/1.6 system-ui;background:#101c28;color:#e5edf4}a{color:#83cfff}h1{line-height:1.2}.download{display:inline-block;background:#83cfff;color:#101c28;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold}small{color:#afc0ce}</style><h1>Train Game</h1>${sections}<ol><li>Download and extract the entire ZIP.</li><li>Open <b>TrainGame.exe</b> and keep its PCK beside it.</li><li>Start a fresh scenario and press F1 for the briefing.</li></ol><p>No Godot or Blender installation is needed. Recent fallback builds are retained below the latest download; much older builds have been removed to free space.</p><small>Keep the host PC awake until your download finishes.</small></html>`;
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': Buffer.byteLength(body), 'Cache-Control': 'no-store' });
       return res.end(req.method === 'HEAD' ? undefined : body);

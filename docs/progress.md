@@ -1,5 +1,35 @@
 # Progress
 
+## 2026-10-09 — Benchmark blank-window startup fixed
+- Reproduced the user's stall with packaged R23 BUILD/SHA256 files on Windows
+  PowerShell. `Get-Content` attaches filesystem/provider metadata to its strings;
+  deep JSON serialization stalled on that metadata. Reading plain string arrays
+  through .NET fixes it. The final packaged-metadata/hardware check completes in
+  a few seconds, including a path with spaces.
+- The CMD now prints before PowerShell starts. Launcher 2 shows timestamped
+  hardware progress, 15-second run updates and ZIP packaging status. Optional
+  inventory runs in a separate process with a 25-second deadline; power-plan and
+  NVIDIA probes have 5-second deadlines. Stalled Windows counter collection is
+  stopped separately after 20 seconds without samples. Partial diagnostics stay
+  in the report; engine/frame/process capture continues. No admin needed.
+- Added five native regression checks, including an actually blocked helper,
+  its termination/partial data, exit codes and packaged-metadata serialization
+  under a 5-second deadline. All passed. Full headless game suite: **421 passed,
+  0 failed**. Source quick benchmark completed **16 stages and 10 screenshots**,
+  retained asynchronous counters and produced its ZIP. Follow-up final hardware
+  validation passed after fixing helper exit-code retention and power-plan access.
+- Published **TrainGame-Benchmark-Fix-1.zip (7,380 bytes)** on the existing LAN
+  page. It contains the two launcher files and instructions. ZIP CRCs, exact source
+  bytes and the full HTTP checksum passed. Also published signed sequence **24**,
+  `TrainGame-Kerala-Coast-R23-BenchmarkFix1-Windows`, for Update & Play v2.
+  The original R23 release is immutable; EXE/PCK hashes are identical in the hotfix.
+
+Player steps: close the blank benchmark window; download the small fix ZIP from
+`http://192.168.8.183:8765/TrainGame-Benchmark-Fix-1.zip`; extract its contents beside
+`TrainGame.exe`, replacing both launcher files; run the CMD again. Expect an
+immediate banner followed by hardware progress and the game. Return the Documents
+report ZIP. Exact target-PC behavior still needs this rerun.
+
 ## 2026-10-09 — Fresh-install R23 download page fixed
 - The LAN page still advertised R18 despite the updater serving R23. Added the
   full R23 ZIP, checksum, README and benchmark guide to the download allowlist.

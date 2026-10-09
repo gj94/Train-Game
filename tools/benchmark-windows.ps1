@@ -2,16 +2,110 @@ param(
     [ValidateSet('1440p','4K','900p','Both')][string]$Resolution='Both',
     [ValidateRange(1,3)][int]$Passes=1,
     [ValidateSet('safe','separate')][string]$RenderThread='safe',
-    [string]$Executable=(Join-Path $PSScriptRoot 'TrainGame.exe'),
+    [string]$Executable='',
     [string]$ProjectPath='',
-    [switch]$Quick
+    [switch]$Quick,
+    [switch]$SkipHardware,
+    [ValidateSet('','inventory','counters')][string]$Collector='',
+    [string]$CollectorFolder='',
+    [string]$CollectorLabel=''
 )
 $ErrorActionPreference='Stop'
+Write-Host 'Train Game benchmark - launcher 2'
+
+# Isolate optional Windows/driver calls from the launcher and its game watchdog.
+# A provider can ignore its own timeout; the parent also bounds the process.
+function Write-BenchmarkStatus([string]$Message) {
+    $line='['+[DateTime]::Now.ToString('HH:mm:ss')+'] '+$Message
+    Write-Host $line
+    if ($script:statusPath) { [IO.File]::AppendAllText($script:statusPath,$line+[Environment]::NewLine) }
+}
+function Stop-OwnedProcess($Process) {
+    if ($Process -and !$Process.HasExited) {
+        try { $Process.Kill();$null=$Process.WaitForExit(1000) } catch { Write-Host ('Could not stop helper: '+$_.Exception.Message) }
+    }
+}
+function Invoke-BoundedProcess([string]$FilePath,[string[]]$Arguments,[string]$OutputPath,[string]$ErrorPath,[int]$TimeoutSeconds=25,[switch]$ShowProgress) {
+    $child=$null;$shown=0;$completed=$false
+    $timer=[Diagnostics.Stopwatch]::StartNew()
+    try {
+        $child=Start-Process -FilePath $FilePath -ArgumentList $Arguments -WindowStyle Hidden -PassThru -RedirectStandardOutput $OutputPath -RedirectStandardError $ErrorPath
+        # Retain the native handle before HasExited can close its temporary one.
+        # Windows PowerShell otherwise sometimes exposes a null ExitCode.
+        $null=$child.Handle
+        while (!$child.HasExited -and $timer.Elapsed.TotalSeconds -lt $TimeoutSeconds) {
+            if ($ShowProgress -and (Test-Path -LiteralPath $OutputPath)) {
+                $lines=@(Get-Content -LiteralPath $OutputPath)
+                while ($shown -lt $lines.Count) { Write-BenchmarkStatus $lines[$shown];$shown++ }
+            }
+            Start-Sleep -Milliseconds 200
+        }
+        $completed=$child.HasExited
+        if ($completed) { $null=$child.WaitForExit(1000) }
+        return [pscustomobject]@{completed=$completed;exit_code=$(if ($completed) {$child.ExitCode} else {$null});elapsed_seconds=$timer.Elapsed.TotalSeconds}
+    } finally { Stop-OwnedProcess $child }
+}
+function Invoke-InventoryCollector {
+    $data=[ordered]@{collected_utc=[DateTime]::UtcNow.ToString('o');complete=$false;errors=@()}
+    $queries=[ordered]@{
+        cpu={Get-CimInstance Win32_Processor -OperationTimeoutSec 5 | Select-Object Name,Manufacturer,NumberOfCores,NumberOfLogicalProcessors,MaxClockSpeed}
+        ram={Get-CimInstance Win32_PhysicalMemory -OperationTimeoutSec 5 | Select-Object Capacity,Speed,ConfiguredClockSpeed}
+        os={Get-CimInstance Win32_OperatingSystem -OperationTimeoutSec 5 | Select-Object Caption,Version,BuildNumber,TotalVisibleMemorySize,FreePhysicalMemory}
+        gpu={Get-CimInstance Win32_VideoController -OperationTimeoutSec 5 | Select-Object Name,DriverVersion,DriverDate,VideoModeDescription,CurrentRefreshRate}
+        volumes={Get-CimInstance Win32_LogicalDisk -Filter 'DriveType=3' -OperationTimeoutSec 5 | Select-Object DeviceID,Size,FreeSpace,FileSystem}
+        disks={Get-PhysicalDisk | Select-Object FriendlyName,MediaType,BusType,Size,HealthStatus}
+    }
+    foreach ($name in $queries.Keys) {
+        # Persist the last attempted query before entering a potentially stuck provider.
+        $data.current_query=$name
+        $data | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $CollectorFolder 'inventory-partial.json') -Encoding utf8
+        Write-Host "Checking $name..."
+        try { $data[$name]=@(& $queries[$name]) }
+        catch { $data.errors+=($name+': '+$_.Exception.Message) }
+    }
+    $data.complete=$true;$data.current_query=''
+    $data | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $CollectorFolder 'inventory-partial.json') -Encoding utf8
+}
+function Invoke-CounterCollector {
+    $counterPath=Join-Path $CollectorFolder ($CollectorLabel+'-system-counters.jsonl')
+    $writer=[IO.StreamWriter]::new($counterPath,$false)
+    $queries=[ordered]@{
+        cpu={Get-CimInstance Win32_PerfFormattedData_Counters_ProcessorInformation -OperationTimeoutSec 3 | Select-Object Name,PercentProcessorTime,PercentProcessorUtility,ProcessorFrequency,PercentofMaximumFrequency}
+        memory={Get-CimInstance Win32_PerfFormattedData_PerfOS_Memory -OperationTimeoutSec 3 | Select-Object AvailableMBytes,CommittedBytes,CommitLimit,PagesInputPersec,PageReadsPersec}
+        disk={Get-CimInstance Win32_PerfFormattedData_PerfDisk_PhysicalDisk -OperationTimeoutSec 3 | Select-Object Name,DiskReadBytesPersec,DiskWriteBytesPersec,CurrentDiskQueueLength}
+        disk_raw={Get-CimInstance Win32_PerfRawData_PerfDisk_PhysicalDisk -OperationTimeoutSec 3 | Select-Object Name,AvgDisksecPerRead,AvgDisksecPerRead_Base,AvgDisksecPerWrite,AvgDisksecPerWrite_Base,Timestamp_PerfTime,Frequency_PerfTime}
+    }
+    $disabled=@{}
+    try {
+        while ($disabled.Count -lt $queries.Count) {
+            foreach ($name in $queries.Keys) {
+                if ($disabled[$name]) { continue }
+                $sample=[ordered]@{utc=[DateTime]::UtcNow.ToString('o');unix_ms=([DateTimeOffset]::UtcNow).ToUnixTimeMilliseconds();run=$CollectorLabel;counter=$name}
+                try { $sample.data=@(& $queries[$name]) }
+                catch { $sample.error=$_.Exception.Message;$disabled[$name]=$true }
+                $writer.WriteLine(($sample | ConvertTo-Json -Depth 6 -Compress));$writer.Flush()
+            }
+            Start-Sleep -Milliseconds 900
+        }
+    } finally { $writer.Dispose() }
+}
+if ($Collector) {
+    if (!(Test-Path -LiteralPath $CollectorFolder -PathType Container)) { throw 'Collector output folder is missing.' }
+    if ($Collector -eq 'inventory') { Invoke-InventoryCollector } else { Invoke-CounterCollector }
+    exit 0
+}
+
+Write-BenchmarkStatus 'Starting. Optional hardware checks have time limits; the game will open automatically.'
+if (!$Executable) { $Executable=[IO.Path]::Combine($PSScriptRoot,'TrainGame.exe') }
 if (!(Test-Path -LiteralPath $Executable)) { throw 'Place this script beside TrainGame.exe, or pass -Executable with its path.' }
 $Executable=(Resolve-Path -LiteralPath $Executable).Path
 $stamp=Get-Date -Format 'yyyyMMdd-HHmmss'
 $folder=Join-Path ([Environment]::GetFolderPath('MyDocuments')) "TrainGame-Benchmark-$stamp"
 New-Item -ItemType Directory -Path $folder | Out-Null
+$script:statusPath=Join-Path $folder 'launcher.log'
+Write-BenchmarkStatus "Reports: $folder"
+$workerShell=Join-Path $env:WINDIR 'System32/WindowsPowerShell/v1.0/powershell.exe'
+$workerArguments=@('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',('"'+$PSCommandPath+'"'),'-CollectorFolder',('"'+$folder+'"'))
 $warnings=[Collections.Generic.List[string]]::new()
 $samples=[Collections.Generic.List[object]]::new()
 $results=[Collections.Generic.List[object]]::new()
@@ -19,18 +113,15 @@ $sizes=@{'1440p'='2560x1440';'4K'='3840x2160';'900p'='1600x900'}
 $resolutions=if ($Resolution -eq 'Both') {@('1440p','4K')} else {@($Resolution)}
 $gpuMonitor=$null
 $gameProcess=$null
+$counterProcess=$null
 $systemWriter=$null
 $allPassed=$true
 
 function Read-Inventory {
     $inventory=[ordered]@{
         collected_utc=[DateTime]::UtcNow.ToString('o')
-        cpu=@(Get-CimInstance Win32_Processor | Select-Object Name,Manufacturer,NumberOfCores,NumberOfLogicalProcessors,MaxClockSpeed)
-        ram=@(Get-CimInstance Win32_PhysicalMemory | Select-Object Capacity,Speed,ConfiguredClockSpeed)
-        os=Get-CimInstance Win32_OperatingSystem | Select-Object Caption,Version,BuildNumber,TotalVisibleMemorySize,FreePhysicalMemory
-        gpu=@(Get-CimInstance Win32_VideoController | Select-Object Name,DriverVersion,DriverDate,VideoModeDescription,CurrentRefreshRate)
-        volumes=@(Get-CimInstance Win32_LogicalDisk -Filter 'DriveType=3' | Select-Object DeviceID,Size,FreeSpace,FileSystem)
-        power_plan=(& powercfg.exe /getactivescheme | Out-String).Trim()
+        logical_cpus=[Environment]::ProcessorCount
+        launcher_version=2
         resolutions=$resolutions
         passes=$Passes
         render_thread=$RenderThread
@@ -38,36 +129,63 @@ function Read-Inventory {
         telemetry_interval_seconds=1
         cpu_temperature='Unavailable through standard Windows counters; not estimated.'
     }
-    try { $inventory.disks=@(Get-PhysicalDisk | Select-Object FriendlyName,MediaType,BusType,Size,HealthStatus) }
-    catch { $warnings.Add('Physical disk details unavailable: '+$_.Exception.Message) }
+    if (!$SkipHardware) {
+        Write-BenchmarkStatus 'Collecting hardware details (25-second limit)...'
+        try {
+            $probe=Invoke-BoundedProcess $workerShell ($workerArguments+@('-Collector','inventory')) (Join-Path $folder 'inventory-worker.log') (Join-Path $folder 'inventory-errors.log') 25 -ShowProgress
+            $inventory.collector=$probe
+            if (!$probe.completed -or $probe.exit_code -ne 0) {
+                $warnings.Add('Hardware inventory did not finish; partial details retained. See inventory-worker.log.')
+                Write-BenchmarkStatus 'Hardware check timed out or failed. Continuing with partial details.'
+            }
+        } catch { $warnings.Add('Hardware inventory unavailable: '+$_.Exception.Message) }
+        $partial=Join-Path $folder 'inventory-partial.json'
+        if (Test-Path -LiteralPath $partial) {
+            try {
+                $collected=Get-Content -LiteralPath $partial -Raw | ConvertFrom-Json
+                foreach ($property in $collected.PSObject.Properties) { $inventory[$property.Name]=$property.Value }
+                foreach ($issue in $collected.errors) { $warnings.Add('Hardware inventory: '+$issue) }
+            } catch { $warnings.Add('Could not read partial inventory: '+$_.Exception.Message) }
+        }
+        Write-BenchmarkStatus 'Checking active power plan (5-second limit)...'
+        try {
+            $powerOutput=Join-Path $folder 'power-plan.txt'
+            $powerProbe=Invoke-BoundedProcess (Join-Path $env:WINDIR 'System32/powercfg.exe') @('/getactivescheme') $powerOutput (Join-Path $folder 'power-plan-errors.txt') 5
+            if ($powerProbe.completed -and $powerProbe.exit_code -eq 0) { $inventory.power_plan=[IO.File]::ReadAllText($powerOutput).Trim() }
+            else { $warnings.Add('Active power plan unavailable; see power-plan-errors.txt.') }
+        } catch { $warnings.Add('Active power plan unavailable: '+$_.Exception.Message) }
+    } else { $warnings.Add('Optional hardware collection skipped by request.') }
     $build=Join-Path (Split-Path $Executable -Parent) 'BUILD.txt'
-    if (Test-Path -LiteralPath $build) { $inventory.build=Get-Content -LiteralPath $build }
+    # Get-Content strings carry PSDrive/PSProvider metadata in Windows PowerShell.
+    # Deep JSON serialization can walk that object graph and appear to hang.
+    # Read plain strings so packaged BUILD/SHA256 metadata stays plain JSON.
+    if (Test-Path -LiteralPath $build) { $inventory.build=[IO.File]::ReadAllLines($build) }
     $hashes=Join-Path (Split-Path $Executable -Parent) 'SHA256SUMS.txt'
-    if (Test-Path -LiteralPath $hashes) { $inventory.build_hashes=Get-Content -LiteralPath $hashes }
+    if (Test-Path -LiteralPath $hashes) { $inventory.build_hashes=[IO.File]::ReadAllLines($hashes) }
     $inventory | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $folder 'hardware.json') -Encoding utf8
 }
 
 try {
     Read-Inventory
     try {
+    Write-BenchmarkStatus 'Checking optional NVIDIA telemetry (5-second limit per probe)...'
     $smi=Get-Command nvidia-smi.exe -ErrorAction SilentlyContinue
     $smiPath=if ($smi) {$smi.Source} else {Join-Path $env:WINDIR 'System32/nvidia-smi.exe'}
-    if (Test-Path -LiteralPath $smiPath) {
+    if (!$SkipHardware -and (Test-Path -LiteralPath $smiPath)) {
         $fields='timestamp,index,name,driver_version,pstate,temperature.gpu,utilization.gpu,utilization.memory,memory.total,memory.used,memory.free,clocks.current.graphics,clocks.current.memory,power.draw,power.limit,clocks_event_reasons.active'
-        $probe=& $smiPath "--query-gpu=$fields" '--format=csv'
-        if ($LASTEXITCODE -ne 0) {
+        $probe=Invoke-BoundedProcess $smiPath @("--query-gpu=$fields",'--format=csv') (Join-Path $folder 'gpu-probe.csv') (Join-Path $folder 'gpu-probe-errors.txt') 5
+        if (!$probe.completed -or $probe.exit_code -ne 0) {
             $warnings.Add('Extended NVIDIA fields unsupported; basic GPU telemetry used.')
             $fields='timestamp,index,name,driver_version,temperature.gpu,utilization.gpu,memory.total,memory.used,clocks.current.graphics,power.draw'
-            $probe=& $smiPath "--query-gpu=$fields" '--format=csv'
+            $probe=Invoke-BoundedProcess $smiPath @("--query-gpu=$fields",'--format=csv') (Join-Path $folder 'gpu-basic-probe.csv') (Join-Path $folder 'gpu-basic-probe-errors.txt') 5
         }
-        if ($LASTEXITCODE -eq 0) {
-            $probe | Set-Content -LiteralPath (Join-Path $folder 'gpu-start.csv') -Encoding utf8
+        if ($probe.completed -and $probe.exit_code -eq 0) {
             $gpuMonitor=Start-Process -FilePath $smiPath -ArgumentList @("--query-gpu=$fields",'--format=csv','--loop=1') -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $folder 'gpu-telemetry.csv') -RedirectStandardError (Join-Path $folder 'gpu-telemetry-errors.txt')
         } else { $warnings.Add('NVIDIA telemetry could not start. Engine GPU timing/memory still recorded.') }
     } else { $warnings.Add('nvidia-smi unavailable. Engine GPU timing/memory still recorded.') }
     } catch { $warnings.Add('Optional NVIDIA telemetry unavailable: '+$_.Exception.Message) }
     $systemWriter=[IO.StreamWriter]::new((Join-Path $folder 'system-telemetry.jsonl'),$false)
-    $logical=[int](Get-CimInstance Win32_ComputerSystem).NumberOfLogicalProcessors
+    $logical=[math]::Max(1,[Environment]::ProcessorCount)
     foreach ($pass in 1..$Passes) {
         foreach ($resolutionName in $resolutions) {
             $label="$resolutionName-$RenderThread-pass$pass"
@@ -80,16 +198,19 @@ try {
             }
             $arguments+=@('--','--benchmark',('"--benchmark-output='+$output.Replace('\','/')+'"'))
             if ($Quick) { $arguments+='--benchmark-quick' }
-            Write-Host "Running $label. Leave the game focused; it controls the cameras and exits automatically."
+            Write-BenchmarkStatus "Running $label. Leave the game focused; it controls the cameras and exits automatically."
             # This is the visible game under test. Helpers remain hidden; keeping
             # the game foreground avoids driver background-app FPS limits.
             $gameProcess=Start-Process -FilePath $Executable -ArgumentList $arguments -PassThru -WindowStyle Normal
             $started=[DateTime]::UtcNow
             $lastTime=$started
             $lastCpu=0.0
-            $coreCounters=$true
-            $memoryCounters=$true
-            $diskCounters=$true
+            $lastProgress=$started
+            if (!$SkipHardware) {
+                try {
+                    $counterProcess=Start-Process -FilePath $workerShell -ArgumentList ($workerArguments+@('-Collector','counters','-CollectorLabel',$label)) -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $folder "$label-counters.log") -RedirectStandardError (Join-Path $folder "$label-counter-errors.log")
+                } catch { $warnings.Add('Windows counter helper unavailable: '+$_.Exception.Message) }
+            }
             while (!$gameProcess.HasExited) {
                 $now=[DateTime]::UtcNow
                 $gameProcess.Refresh()
@@ -103,24 +224,22 @@ try {
                     working_set_bytes=$gameProcess.WorkingSet64;private_bytes=$gameProcess.PrivateMemorySize64
                     peak_working_set_bytes=$gameProcess.PeakWorkingSet64;threads=$gameProcess.Threads.Count;handles=$gameProcess.HandleCount
                 }
-                if ($coreCounters) {
-                    try { $sample.cpu=@(Get-CimInstance Win32_PerfFormattedData_Counters_ProcessorInformation -ErrorAction Stop | Select-Object Name,PercentProcessorTime,PercentProcessorUtility,ProcessorFrequency,PercentofMaximumFrequency) }
-                    catch { $coreCounters=$false;$warnings.Add('Per-core counters unavailable: '+$_.Exception.Message) }
-                }
-                if ($memoryCounters) {
-                    try { $sample.memory=Get-CimInstance Win32_PerfFormattedData_PerfOS_Memory -ErrorAction Stop | Select-Object AvailableMBytes,CommittedBytes,CommitLimit,PagesInputPersec,PageReadsPersec }
-                    catch { $memoryCounters=$false;$warnings.Add('System memory counters unavailable: '+$_.Exception.Message) }
-                }
-                if ($diskCounters) {
-                    try {
-                        $sample.disk=@(Get-CimInstance Win32_PerfFormattedData_PerfDisk_PhysicalDisk -ErrorAction Stop | Select-Object Name,DiskReadBytesPersec,DiskWriteBytesPersec,CurrentDiskQueueLength)
-                        $sample.disk_raw=@(Get-CimInstance Win32_PerfRawData_PerfDisk_PhysicalDisk -ErrorAction Stop | Select-Object Name,AvgDisksecPerRead,AvgDisksecPerRead_Base,AvgDisksecPerWrite,AvgDisksecPerWrite_Base,Timestamp_PerfTime,Frequency_PerfTime)
+                if ($counterProcess) {
+                    $counterFile=Join-Path $folder "$label-system-counters.jsonl"
+                    $lastCounter=if (Test-Path -LiteralPath $counterFile) {(Get-Item -LiteralPath $counterFile).LastWriteTimeUtc} else {$started}
+                    if ($counterProcess.HasExited -or ($now-$lastCounter).TotalSeconds -gt 20) {
+                        Stop-OwnedProcess $counterProcess;$counterProcess=$null
+                        $warnings.Add("$label Windows counters stopped or stalled; partial counters retained, game/process/GPU capture continues.")
+                        Write-BenchmarkStatus 'Windows counters unavailable. Continuing the benchmark.'
                     }
-                    catch { $diskCounters=$false;$warnings.Add('Disk counters unavailable: '+$_.Exception.Message) }
                 }
                 $systemWriter.WriteLine(($sample | ConvertTo-Json -Depth 6 -Compress))
                 $systemWriter.Flush()
                 $lastTime=$now;$lastCpu=$cpuSeconds
+                if (($now-$lastProgress).TotalSeconds -ge 15) {
+                    Write-BenchmarkStatus ("$label running: {0:N0} seconds. Leave the game focused." -f ($now-$started).TotalSeconds)
+                    $lastProgress=$now
+                }
                 if (($now-$started).TotalMinutes -gt 30) {
                     Stop-Process -Id $gameProcess.Id -ErrorAction SilentlyContinue
                     $warnings.Add("$label exceeded the 30-minute limit; partial data retained.")
@@ -132,6 +251,14 @@ try {
             $gameProcess.WaitForExit()
             $exitCode=$gameProcess.ExitCode
             $gameProcess=$null
+            Stop-OwnedProcess $counterProcess;$counterProcess=$null
+            $counterFile=Join-Path $folder "$label-system-counters.jsonl"
+            if (Test-Path -LiteralPath $counterFile) {
+                foreach ($entry in @(Select-String -LiteralPath $counterFile -Pattern '"error":')) {
+                    try { $failure=$entry.Line | ConvertFrom-Json;$warnings.Add("$label $($failure.counter) counters unavailable: $($failure.error)") } catch { }
+                }
+            }
+            Write-BenchmarkStatus "$label finished. Reading results..."
             if (Test-Path -LiteralPath $output) {
                 $result=Get-Content -LiteralPath $output -Raw | ConvertFrom-Json
                 $results.Add([pscustomobject]@{run=$label;exit_code=$exitCode;report=$result})
@@ -153,9 +280,11 @@ try {
 } catch {
     $allPassed=$false
     $warnings.Add($_.Exception.Message)
+    Write-BenchmarkStatus ('Benchmark error: '+$_.Exception.Message)
 } finally {
-    if ($gameProcess -and !$gameProcess.HasExited) { Stop-Process -Id $gameProcess.Id -ErrorAction SilentlyContinue }
-    if ($gpuMonitor -and !$gpuMonitor.HasExited) { Stop-Process -Id $gpuMonitor.Id -ErrorAction SilentlyContinue }
+    Stop-OwnedProcess $gameProcess
+    Stop-OwnedProcess $gpuMonitor
+    Stop-OwnedProcess $counterProcess
     if ($systemWriter) { $systemWriter.Dispose() }
     $summary=[Collections.Generic.List[string]]::new()
     $summary.Add("Train Game benchmark - $stamp")
@@ -176,6 +305,7 @@ try {
     $summary | Set-Content -LiteralPath (Join-Path $folder 'SUMMARY.txt') -Encoding utf8
     $warnings | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $folder 'warnings.json') -Encoding utf8
     $archive=$folder+'.zip'
+    Write-BenchmarkStatus 'Packing the report ZIP...'
     Compress-Archive -LiteralPath $folder -DestinationPath $archive -CompressionLevel Optimal
     Write-Host ($summary -join [Environment]::NewLine)
     Write-Host "Send back this ZIP: $archive"

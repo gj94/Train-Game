@@ -6,6 +6,13 @@ them where available and tests both 2560×1440 and 3840×2160 by default.
 
 ## Run on the target PC
 
+**R23 launcher fix:** if you downloaded the original R23 game ZIP, also download
+`TrainGame-Benchmark-Fix-1.zip` from the LAN page and extract its contents beside
+`TrainGame.exe`, replacing `Benchmark.ps1` and `Run Performance Benchmark.cmd`.
+The fixed launcher displays **Train Game benchmark - launcher 2** immediately.
+The original game executable and PCK stay the same. The incremental updater also
+delivers this fix in sequence 24 (`R23-BenchmarkFix1`).
+
 1. Extract the entire R23 portable ZIP onto the SSD.
 2. Close other games and heavy background work. Keep the normal driver settings;
    do not change overclocks or clear shader caches for this run.
@@ -19,6 +26,15 @@ Allow roughly 10–20 minutes for both runs; actual loading time depends on the 
 The console reports completion. If a run fails, it still packages the partial
 reports and error logs. The launcher stops its own game after 30 minutes per run.
 No saved game or display preferences are overwritten.
+
+The console shows each startup hardware query, then a running message every
+15 seconds and a message while packaging results. Hardware inventory has a
+25-second process timeout; NVIDIA probes each have a 5-second limit. Partial
+inventory and unavailable counters are recorded in the ZIP. Optional Windows
+performance counters run separately and are stopped after 20 seconds without
+new samples, so a stalled provider cannot hold up the game or its timeout.
+If a particular machine still needs it, `-SkipHardware` bypasses optional Windows
+and NVIDIA collection while retaining engine/frame/process measurements.
 
 For a shorter first run, open PowerShell in the extracted folder:
 
@@ -48,12 +64,15 @@ mode as a quality setting. `-Quick` is a developer validation run, not a benchma
   focus/window state and individual pipeline-compilation counters.
 - **Each run's jobs.json**: request/submission/start/completion times for scenery
   and station preparation, cancellation state, and main-thread activation events.
-- **system-telemetry.jsonl**: timestamped process CPU/core use, RAM, thread/handle
-  counts, individual logical-CPU counters, memory pressure/paging and disk I/O.
+- **system-telemetry.jsonl**: timestamped process CPU/core use, RAM and
+  thread/handle counts. **Each run's system-counters.jsonl** stores timestamped
+  individual logical-CPU counters, memory pressure/paging and disk I/O separately.
   Raw disk timing counters are included to avoid rounded sub-second latency.
 - **gpu-telemetry.csv**: NVIDIA load, memory, clocks, temperature, power/P-state
   and clock-limiting flags, when the installed driver exposes them.
 - **Engine logs and PNGs**: errors and a screenshot of every measured view.
+- **launcher.log, inventory-worker.log and inventory-partial.json**: startup and
+  run progress, the last attempted hardware query and partial inventory on timeout.
 
 The scripted sequence covers startup, cab and passenger interiors, 75 seconds of
 live 32-service traffic, Kumbalam wide/close views, 25-second outbound and return
