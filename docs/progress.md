@@ -26,6 +26,11 @@
   one authored assembly without script/shader errors; screenshots were reviewed.
 - All 364 headless tests pass, including four new scenery-footprint regressions.
   Native previews use the source project; no extracted-distribution test.
+- Source commit `a4d7577` is pushed. R15 exported from that clean revision and
+  is latest at `http://192.168.8.183:8765/`: 1,677,002,421 bytes; SHA-256
+  `2e70adb15f6e847251ae2b3ee254804c6d32a43d0b1a4dab1c2c749933f274c4`.
+  LAN catalogue, exact ZIP size, HTTP 206 range, checksum sidecar, README and
+  station-port guide verified. R14 remains available as a fallback.
 - Scope and reproduction steps: `station-model-port.md`. This imports architecture,
   interiors and attached access, not static source yards or station-room walking
   navigation. CSV platforms, live track/signals/OHE and most platform furnishings
