@@ -15,6 +15,9 @@ static func check(w: RailWorld, s: Dictionary) -> String:
 	if not s.imported_fleet.is_empty() and s.imported_fleet not in Stock.CHOICES:return "Unknown saved solo formation"
 	if not shape(s.get("camera"),{mode=TYPE_INT,yaw=TYPE_FLOAT,pitch=TYPE_FLOAT,distance=TYPE_FLOAT,cab_fov=TYPE_FLOAT,head_out_side=TYPE_INT,follow=TYPE_BOOL,_look=TYPE_VECTOR2,pivot=TYPE_VECTOR3}):return "Invalid saved camera"
 	if s.camera.mode not in [0,1,2,3,4] or s.camera.distance<=0 or s.camera.head_out_side not in [-1,1] or not s.camera.pivot.is_finite() or not s.camera._look.is_finite():return "Invalid saved camera position"
+	if s.camera.has("free_flight"):
+		if not shape(s.camera,{free_flight=TYPE_BOOL,free_fov=TYPE_FLOAT}):return "Invalid saved free camera"
+		if s.camera.free_fov<18 or s.camera.free_fov>85 or (s.camera.free_flight and (s.camera.mode!=0 or s.camera.follow)):return "Invalid saved free camera mode"
 	if not shape(s.get("view"),{passenger_coach=TYPE_INT,passenger_bay=TYPE_INT,passenger_seat=TYPE_BOOL,passenger_seat_index=TYPE_INT,cab_position=TYPE_INT}):return "Invalid saved passenger view"
 	var t: Train=w.trains[s.player]
 	var formation:=Stock.formation(t.stock_kind.trim_prefix("ported:"),t.rake_profile)

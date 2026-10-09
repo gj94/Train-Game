@@ -27,9 +27,9 @@ func run() -> void:
 	pad.window_focus(true);pad._adopt(DEVICE);pad._set_mode(true)
 	game.train.automatic=true;game.train.controller=.35
 	var coaches: Array=game.tv.passenger_coaches()
-	var expected: Array=[[1,0],[3,-1],[3,1]]
+	var expected: Array=[[1,0],[3,1]]
 	if family=="lhb":expected.append_array([[1,1],[1,2],[1,3]])
-	expected.append_array([[2,coaches[0]],[2,coaches[(coaches.size()-1)/2]],[2,coaches[-1]],[0,true],[0,false]])
+	expected.append_array([[2,coaches[0]],[2,coaches[(coaches.size()-1)/2]],[2,coaches[-1]],[0,true],[0,false],[3,-1]])
 	for layout in [true,false]:
 		pad.tsw_layout=layout;game._pilot_camera();await frames()
 		for direction in [1,-1]:
@@ -54,7 +54,8 @@ func run() -> void:
 		check(walk.stand(),"stand for on-foot camera shortcuts");await frames()
 		await tap(JOY_BUTTON_B);check(walk.active and walk.crouched,"B crouches without leaving walking")
 		var lamp_before: bool=walk.lamp_enabled
-		await tap(JOY_BUTTON_DPAD_UP);check(walk.active and walk.lamp_enabled!=lamp_before,"D-pad up operates walking lamp")
+		button(JOY_BUTTON_X,true);await tap(JOY_BUTTON_DPAD_UP);button(JOY_BUTTON_X,false);await frames()
+		check(walk.active and walk.lamp_enabled!=lamp_before,"X plus D-pad up operates walking lamp")
 		axis(JOY_AXIS_TRIGGER_RIGHT,1);axis(JOY_AXIS_LEFT_Y,-1)
 		await tap(JOY_BUTTON_LEFT_STICK)
 		check(not walk.active and pose()==[1,0] and pad.drive_input()==0,"pilot return blocks held walking/run input")
@@ -65,7 +66,7 @@ func run() -> void:
 		await tap(JOY_BUTTON_LEFT_STICK)
 		check(walk.stand(),"stand for on-foot cycling");await frames()
 		await tap(JOY_BUTTON_DPAD_RIGHT)
-		check(not walk.active and pose()==[3,-1],"D-pad cycles on foot without lamp conflict")
+		check(not walk.active and pose()==[3,1],"D-pad cycles on foot without lamp conflict")
 		await tap(JOY_BUTTON_START)
 		var before:=pose()
 		await tap(JOY_BUTTON_DPAD_RIGHT);await tap(JOY_BUTTON_RIGHT_STICK)

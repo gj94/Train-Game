@@ -10,11 +10,16 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R17-Windows -SkipTests`
+Current geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R18-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
 shows journey status. Do not test the extracted distribution routinely.
+R18 revises camera navigation: pilot-adjacent matching head-outs, sequential
+coach stepping, cabin movement and an eye-level platform free camera. Free
+triggers zoom by default; hold RS to toggle driving with a neutral-input gate.
+Optional save fields preserve its lens and viewpoint while R14-R17 saves retain
+their earlier camera behavior. See controllers.md and check_camera_navigation.gd.
 R17 makes gameplay track audio follow the actual camera eye instead of the
 exterior orbit pivot. Free-camera rolling, joints and squeal share the physical
 receiver used by traction/horns, including geographic origin shifts. Approved

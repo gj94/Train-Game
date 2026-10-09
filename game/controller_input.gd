@@ -3,6 +3,7 @@ extends Node
 const Shape := preload("res://game/controller_math.gd")
 const Camera := preload("res://game/controller_camera.gd")
 const TSW := preload("res://game/controller_tsw.gd")
+const CameraMotion := preload("res://game/controller_camera_motion.gd")
 const HELP := TSW.HELP
 const LEGACY_HELP := """[b]XBOX CONTROLLER · 360 / ONE / SERIES / ELITE[/b]
 RT increase power / release brake · LT reduce power / apply brake.
@@ -10,12 +11,14 @@ Release the triggers to hold the current handle; LT wins if both are pressed.
 A AI/manual · B emergency brake (again at a stand to release) · X coast.
 Y cab/exterior · View/Back passenger/cab · Menu/Start pause.
 Right stick look/orbit · LB/RB zoom out/in · Right stick click external FREE.
-Left stick pans exterior or moves left/right inside a passenger coach.
-D-pad left/right cycles all cameras backwards/forwards.
+Left stick moves around the cab, pans exterior or moves within a passenger coach.
+From pilot, D-pad left/right enters the matching head-out; repeat to cycle.
+D-pad down/up moves one coach toward the tail/loco, with no wrap.
+Free: RT/LT zoom, LB/RB lower/raise. Hold RS 0.65 s to switch triggers to/from train control.
 Left stick click returns to pilot. Open dispatch from Train & view actions.
 Stand/sit is under Menu → Train & view actions → Camera & passengers.
 On foot in either layout: LS walk, RS look, RT run, B crouch, Y sit, A interact.
-D-pad up headlamp. Camera shortcuts stay the same on foot.
+X + D-pad up headlamp. Camera shortcuts stay the same on foot.
 
 [b]MENUS & DISPATCH[/b]
 D-pad / left stick move focus · A select/open · B back/cancel.
@@ -51,6 +54,8 @@ var vibration := .35
 var settings_path := "user://controller.cfg"
 var tsw_layout := true
 var _camera_down := false
+var _camera_hold_time := 0.0
+var _free_train_controls := false
 
 var _operation_down := false
 var _operation_used := false
@@ -124,8 +129,10 @@ func _neutral() -> bool:
 	return Shape.stick(Vector2(_axes[0],_axes[1]),deadzone) == Vector2.ZERO and Shape.stick(Vector2(_axes[2],_axes[3]),deadzone) == Vector2.ZERO and Shape.handle(_axes[5],_axes[4]) == 0 and _buttons.is_empty()
 
 func drive_input() -> float:
-	if active_device < 0 or not _armed or not _focused or game.paused or _ui_open() or _context != "drive": return 0
+	if active_device < 0 or not _armed or not _focused or game.paused or _ui_open() or _context not in ["drive","free"]: return 0
+	if CameraMotion.is_free(game.cam)!=(_context=="free"):return 0
 	if game.walker.active or _camera_down or _operation_down: return 0
+	if CameraMotion.is_free(game.cam) and not _free_train_controls:return 0
 	if tsw_layout and _axes[4]<=.06:
 		if _buttons.has(JOY_BUTTON_LEFT_SHOULDER): return 1.0 if game.train.controller<0 else 0.0
 		if _buttons.has(JOY_BUTTON_RIGHT_SHOULDER): return -1.0 if game.train.controller>0 else 0.0
@@ -220,10 +227,6 @@ func _input(event: InputEvent) -> void:
 		JOY_BUTTON_Y: shortcut("view")
 		JOY_BUTTON_BACK: shortcut("passenger")
 
-		JOY_BUTTON_DPAD_UP:
-			if game.cam.mode in [1,3]: shortcut("pilot")
-			else: game._passenger_preset(0)
-		JOY_BUTTON_DPAD_DOWN: game._passenger_preset(2)
 
 
 func shortcut(action: String) -> void:
@@ -369,12 +372,14 @@ func _repeat(direction: Vector2i, delta: float, navigate: Callable) -> void:
 
 func _process(delta: float) -> void:
 	if game == null: return
-	var context: String = game.hud.modal if not game.hud.modal.is_empty() else ("desk" if game.dispatcher._root.visible else ("walk" if game.walker.active else "drive"))
+	var context: String = game.hud.modal if not game.hud.modal.is_empty() else ("desk" if game.dispatcher._root.visible else ("walk" if game.walker.active else ("free" if CameraMotion.is_free(game.cam) else "drive")))
 	if context != _context:
+		if context=="free":_free_train_controls=false
 		_context = context
 		neutralize()
 	if active_device < 0 or not _focused: return
 	if not _armed and _neutral(): _armed = true
+	if not game.paused and not _ui_open() and _armed:CameraMotion.tick(self,delta)
 	var right := Shape.stick(Vector2(_axes[2],_axes[3]),deadzone)
 	var left := Shape.stick(Vector2(_axes[0],_axes[1]),deadzone)
 	if _ui_open():
@@ -393,6 +398,8 @@ func _process(delta: float) -> void:
 			game.hud._body.get_v_scroll_bar().value += right.y*650*delta
 		elif game.dispatcher.timetable_open:
 			_scroll_tree(game.dispatcher._timetable._table,right*650*delta)
+	elif not game.paused and _armed and CameraMotion.input(self,left,right,delta):
+		pass
 	elif not game.paused and _armed and (tsw_layout or game.walker.active):
 		TSW.process(self,left,right,delta)
 	elif not game.paused and _armed:
@@ -404,6 +411,7 @@ func _process(delta: float) -> void:
 			_repeat(Shape.cardinal(Vector2(left.x,0)),delta,func(d):
 				game.tv.change_passenger_bay(d.x))
 	var driving_hint: String=TSW.hint(self) if tsw_layout or game.walker.active else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · D-pad cameras · LS click pilot · RS click free"
+	if CameraMotion.is_free(game.cam):driving_hint=CameraMotion.hint(self)
 	var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect/select · LB/RB areas · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
 	game.hud.set_controller_hint((menu_hint if _ui_open() else driving_hint) if _armed or _ui_open() else "Release controller sticks, triggers and buttons to continue")
 

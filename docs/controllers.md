@@ -30,11 +30,13 @@ train-specific handles or every cab instrument interaction.
 | X held + A / B / RB / Y | AI/manual / emergency brake / coast / horn |
 | Right stick | Look / orbit |
 | D-pad left / right | Previous / next camera, wrapping through all available views |
-| Right-stick click | External **free** camera; repeated clicks stay in free camera |
-| Left stick | Cab zoom; exterior pan; on foot walk / strafe |
+| Right-stick click | External **free** camera at passenger eye height on the nearest open station platform |
+| Left stick | Move around the cab (enter walking); free-camera movement; on foot walk / strafe |
 | Left-stick click | Return directly to the pilot seat, including from walking |
-| Hold right-stick click + left stick up / down | Zoom the free exterior camera |
-| D-pad up / down | Select driving end at rest, where supported |
+| Hold right-stick click for 0.65 s | Toggle free-camera triggers between zoom and train control; release controls to arm |
+| D-pad up / down | Forward / back one passenger coach, stopping at the pilot / last coach |
+| Free-camera RT / LT | Optical zoom in / out by default |
+| Free-camera RB / LB | Raise / lower viewpoint while triggers are in zoom mode |
 | View / Back | Tap dispatch; hold journey progress |
 | Menu / Start | Pause / back |
 
@@ -44,16 +46,27 @@ including out of its braking range. Release controls to hold the selected handle
 An intentional driving-handle input takes over from AI. View-only camera presets
 preserve AI; the existing cab/exterior toggle enters manual driving on return.
 
-The camera cycle is pilot → left head-out → right head-out → WAP-7 assistant
+Fresh scenarios start in the pilot seat; loading a save restores its viewpoint.
+The camera cycle is pilot → right head-out → WAP-7 assistant
 seat / cab overview / machinery aisle (where supported) → first / middle / last
-passenger coach → following exterior → free exterior → pilot. Left reverses
+passenger coach → following exterior → free exterior → left head-out → pilot. Left reverses
 the cycle. Switching with keyboard or menus updates the cycle's starting point.
-Free exterior stays fixed in the world until you pan it; LS pans and RS orbits.
+Thus the first press from pilot always goes to the head-out on the pressed side.
+Up/down visits every passenger coach in formation order, skipping non-passenger
+vehicles and respecting the driving end. Neither end wraps. This also works on foot.
+Free exterior stays fixed in the world until you move it; LS moves and RS turns
+at your eye. Entering it places you on an open station platform near the previous
+viewpoint. RT/LT change the lens without moving you. Repeated short RS clicks
+keep your position. Hold RS to switch RT/LT back to train control; the HUD names
+the current trigger function. A held trigger never transfers directly into driving.
+L3 returns to pilot and requires release if you were holding a zoom/run trigger.
+Moving LS in the cab stands into the existing cabin navigation, with desk/wall
+clearance; it preserves the handle and AI. Y still stands/sits explicitly.
 These three shortcuts apply in both layouts and on foot, while menus and dispatch
 retain D-pad navigation. They preserve your service, AI setting and driving handle.
 
 On foot, RT runs, A uses the displayed seat/doorway/gangway/platform prompt, B
-crouches and D-pad up toggles a headlamp. Walking inputs cannot alter traction. See [walking.md](walking.md)
+crouches and X + D-pad up toggles a headlamp. Walking inputs cannot alter traction. See [walking.md](walking.md)
 for keyboard equivalents, current door transitions and a complete playtest.
 
 ## Optional previous Train Game layout
@@ -73,12 +86,15 @@ in the legacy layout.
 | View / Back | Passenger / cab |
 | Menu / Start | Pause / back |
 | Right stick | Look in cab/passenger; orbit outside |
-| LB / RB | Zoom out / in |
+| LB / RB | Zoom out / in; lower / raise in free-camera zoom mode |
 | Right stick click | External free camera |
-| Left stick | Pan outside; left/right moves through passenger positions |
+| Left stick | Move inside cab; pan outside; left/right moves through passenger positions |
 | Left stick click | Return to pilot |
 | D-pad left / right | Previous / next camera, same cycle as the default layout |
-| D-pad up / down | Pilot/head-out: up returns pilot; otherwise up first coach; down last coach |
+| D-pad up / down | Forward / back one passenger coach, stopping at pilot / tail |
+
+Both layouts use RT/LT for free-camera zoom by default. Hold RS for 0.65 s to
+toggle train control, then release all controls before using the new function.
 
 Triggers adjust the handle at a rate proportional to their deflection. Release
 them to hold the handle. LT takes priority if both are pressed. A deliberate
@@ -125,6 +141,12 @@ remain available and replace the controller hints when used.
    to pilot and R3 to free exterior from each view. Leave the train moving under
    AI: free camera stays behind; following exterior follows it. Stand up and
    repeat the shortcuts; verify a held run trigger cannot become traction.
+   From pilot, Right must first choose right head-out and Left the left one.
+   Step Down through the full rake, then Up to pilot; neither end wraps.
+   Move LS in the cab and check movement around the desk; L3 returns to the seat.
+   R3 should place you on a nearby platform. RT/LT zoom without changing power;
+   hold R3 to switch to driving, release everything, then use a fresh trigger.
+   Hold R3 again to restore zoom. RB/LB raise/lower the free camera in zoom mode.
 3. Navigate Help and settings without the mouse. Scroll the text and all pause
    buttons. Change a setting, restart the game, and check that it persists.
 4. Open dispatch using View (default layout) or Train & view actions. Select a signal and destination, set a safe route, put it

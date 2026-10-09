@@ -28,6 +28,10 @@ if (!host.startsWith('192.168.') && !host.startsWith('10.') && (address >>> 20) 
 const mask = (0xffffffff << (32 - prefix)) >>> 0;
 const exportRoot = fileURLToPath(new URL('../export/', import.meta.url));
 const files = new Map([
+  ['/TrainGame-Kerala-Coast-R18-Windows.zip', ['TrainGame-Kerala-Coast-R18-Windows.zip', 'application/zip']],
+  ['/TrainGame-Kerala-Coast-R18-Windows.zip.sha256', ['TrainGame-Kerala-Coast-R18-Windows.zip.sha256', 'text/plain; charset=utf-8']],
+  ['/kerala-r18/README.txt', ['TrainGame-Kerala-Coast-R18-Windows/README.txt', 'text/plain; charset=utf-8']],
+  ['/kerala-r18/controllers', ['TrainGame-Kerala-Coast-R18-Windows/guides/controllers.md', 'text/plain; charset=utf-8']],
   ['/TrainGame-Kerala-Coast-R17-Windows.zip', ['TrainGame-Kerala-Coast-R17-Windows.zip', 'application/zip']],
   ['/TrainGame-Kerala-Coast-R17-Windows.zip.sha256', ['TrainGame-Kerala-Coast-R17-Windows.zip.sha256', 'text/plain; charset=utf-8']],
   ['/kerala-r17/README.txt', ['TrainGame-Kerala-Coast-R17-Windows/README.txt', 'text/plain; charset=utf-8']],
@@ -110,6 +114,8 @@ const server = http.createServer(async (req, res) => {
         try { await stat(join(exportRoot, base + '.sha256')); return await stat(join(exportRoot, base)); }
         catch { return null; }
       };
+      const r18Info = await ready('R18');
+      const r18 = r18Info ? `<h2>Latest: Kerala Coast R18</h2><p><a class="download" href="/TrainGame-Kerala-Coast-R18-Windows.zip">Download latest build · ${(r18Info.size / 1048576).toFixed(1)} MiB</a></p><p>Pilot by default. D-pad right/left first enters the matching head-out; repeat to cycle. Down goes back one coach, Up moves toward the pilot. Left stick moves around inside the cab; left-stick click returns to pilot.</p><p>Right-stick click starts free camera at eye height on the nearest open platform. LS moves, RS looks, RT/LT zoom and RB/LB raise/lower. Hold RS for 0.65 s to switch triggers between zoom and train control, then release controls to arm. R14–R17 saves remain compatible.</p><p><a href="/kerala-r18/README.txt">Instructions</a> · <a href="/kerala-r18/controllers">Controller guide</a> · <a href="/TrainGame-Kerala-Coast-R18-Windows.zip.sha256">SHA-256</a></p>` : '';
       const r17Info = await ready('R17');
       const r17 = r17Info ? `<h2>Latest: Kerala Coast R17</h2><p><a class="download" href="/TrainGame-Kerala-Coast-R17-Windows.zip">Download latest build · ${(r17Info.size / 1048576).toFixed(1)} MiB</a></p><p>Free-camera audio now follows your actual viewpoint. Approach a moving train to hear its rolling, joints and squeal at the correct distance, matching engine and horn positioning. The approved sounds and speed response are unchanged.</p><p>Right-stick click selects free exterior; move near the wheels, then away. Left-stick click returns to pilot. R14–R16 saves remain compatible.</p><p><a href="/kerala-r17/README.txt">Instructions</a> · <a href="/kerala-r17/audio">Audio fix and checks</a> · <a href="/TrainGame-Kerala-Coast-R17-Windows.zip.sha256">SHA-256</a></p>` : '';
       const r16Info = await ready('R16');
@@ -140,7 +146,8 @@ const server = http.createServer(async (req, res) => {
       const saved = r14 + (r14Info ? earlier.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : earlier);
       const stations = r15 + (r15Info ? saved.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : saved);
       const scenery = r16 + (r16Info ? stations.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : stations);
-      const sections = r17 + (r17Info ? scenery.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : scenery);
+      const audio = r17 + (r17Info ? scenery.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : scenery);
+      const sections = r18 + (r18Info ? audio.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : audio);
       const body = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Train Game download</title><style>body{max-width:720px;margin:48px auto;padding:24px;font:18px/1.6 system-ui;background:#101c28;color:#e5edf4}a{color:#83cfff}h1{line-height:1.2}.download{display:inline-block;background:#83cfff;color:#101c28;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold}small{color:#afc0ce}</style><h1>Train Game</h1>${sections}<ol><li>Download and extract the entire ZIP.</li><li>Open <b>TrainGame.exe</b> and keep its PCK beside it.</li><li>Start a fresh scenario and press F1 for the briefing.</li></ol><p>No Godot or Blender installation is needed. Recent fallback builds are retained below the latest download; much older builds have been removed to free space.</p><small>Keep the host PC awake until your download finishes.</small></html>`;
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': Buffer.byteLength(body) });
       return res.end(req.method === 'HEAD' ? undefined : body);

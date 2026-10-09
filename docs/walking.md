@@ -32,12 +32,17 @@ prompt and F1 help now explain this; the locomotive is not counted as coach 1.
 | Crouch / stand | C | B |
 | Sit near a seat | E | Y |
 | Use displayed seat / interior doorway / gangway | Left click | A |
-| Headlamp | L | D-pad up |
+| Headlamp | L | Hold X + D-pad up |
 | Dispatch | 9 | Tap View / Back |
 | Service progress | F12 | Hold View / Back |
 | Return to pilot | 4 | Left-stick click |
 | External free camera | Tab, then pan to detach | Right-stick click |
 | Cycle all cameras | Camera & passengers menu | D-pad left / right |
+| Move viewpoint one coach toward loco / tail | PgUp / PgDn | D-pad up / down (Up ends at pilot) |
+
+From the pilot seat, moving the left stick also enters cabin walking. The baked
+interior clearance keeps movement out of walls and desks; left-stick click returns
+to the pilot. Explicit Y/E standing and sitting remain available.
 | Left head-out | Q | Left-stick click, then D-pad right |
 | First / middle / last passenger coach | Alt+1 / Alt+2 / Alt+3 | Cycle with D-pad or Camera & passengers menu |
 

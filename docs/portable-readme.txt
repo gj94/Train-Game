@@ -2,6 +2,16 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R18: logical controller camera navigation.
+Pilot is the default. D-pad right/left from pilot enters right/left head-out;
+repeat to cycle. D-pad down moves back one coach, up toward the pilot, no wrap.
+Left stick moves around inside the cab using collision-aware walking; L3 returns
+to the pilot. R3 enters free camera at eye height on the nearest open platform.
+Free: LS move, RS look, RT/LT optical zoom, RB/LB raise/lower. Hold R3 for 0.65 s
+to switch triggers between zoom and driving, then release controls to arm.
+On foot: X + D-pad up toggles the headlamp. See guides/controllers.md.
+R14-R17 saves remain compatible; new saves retain free-camera position and zoom.
+
 Kerala Coast R17: free-camera sound follows your actual viewpoint.
 Approaching a train now brings rolling, joints and squeal closer acoustically,
 matching the engine/horn receiver. The old exterior mix followed the orbit focus

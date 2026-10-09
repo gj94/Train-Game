@@ -1,5 +1,39 @@
 # Progress
 
+## 2026-10-09 — R18 controller camera flow
+- Fresh starts use pilot view. From pilot the first D-pad press selects the
+  matching head-out: right for right, left for left. The full reversible cycle
+  retains cab positions, passenger presets and exterior views. Up/down walks
+  the viewpoint through every passenger coach in driving-end order, with pilot
+  and tail limits instead of wrapping. Applies in both layouts and on foot.
+- LS in the cab enters collision-aware cabin walking instead of changing zoom;
+  L3 returns to the pilot. Driver assignment, AI and power/brake remain set.
+  X + D-pad Up now controls the walking headlamp; change-ends remains in Actions.
+- R3 starts a detached camera on the nearest open station's usable platform,
+  1.65 m above its surface, looking along the platform beside the train. Native
+  ERS rendering caught an initial locomotive-side close-up; moved the spectator
+  farther back on the platform and angled the view along it. Repeated short
+  presses preserve the current free position. RS turns at the eye; LS moves.
+- Free-camera RT/LT control optical zoom by default; RB/LB raise/lower it.
+  Holding R3 for 0.65 s toggles driving triggers, once per hold. Explicit free
+  input context, neutral gating and function hints prevent held zoom/run inputs
+  becoming train controls on a viewpoint change, resume or toggle.
+- New optional save fields restore the free viewpoint and lens. R14-R17 saves
+  supply the older orbit defaults; source integration checks restore both forms.
+- All 383 headless tests pass. Native event-driven camera/navigation checks pass
+  in both layouts on all four formations, including carriage limits, actual cab
+  translation, trigger switching and save compatibility. Final complete camera
+  cycle: 112 checks; controller/menu/dispatch integration: 72 checks, no failures.
+  Source-game ERS free-platform rendering reviewed at 1280×720; scenery loads and
+  the eye remains on the platform. The headless sandbox retains its existing
+  certificate-store warning. No extracted-distribution test.
+- Playtest: from pilot press Right then L3 then Left; use Down repeatedly through
+  the rake and Up to pilot. Move LS inside the cab and return with L3. Press R3,
+  check the platform viewpoint, zoom using triggers, then hold R3 and release all
+  controls before trying driving triggers. Switch back, return to pilot with a
+  zoom trigger held and confirm the handle stays set. Save/load a free viewpoint.
+  See `docs/controllers.md` for both layouts and the updated headlamp binding.
+
 ## 2026-10-09 — R17 free-camera audio receiver
 - Fixed exterior track sound listening beside the camera's orbit pivot instead
   of its actual eye. Rolling, joint impacts and squeal now use the same physical

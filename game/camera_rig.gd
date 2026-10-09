@@ -23,6 +23,8 @@ var distance := 205.0
 var cab_fov := 70.0
 var cab_yaw_limit := 2.6
 var follow := true
+var free_flight := false
+var free_fov := 65.0
 
 var cab_transform: Callable     # () -> Transform3D
 var passenger_transform: Callable
@@ -47,6 +49,7 @@ func _ready() -> void:
 
 
 func set_mode(m: Mode) -> void:
+	free_flight = false
 	if m == mode:
 		return
 	_from = global_transform
@@ -75,6 +78,13 @@ func shift_origin(delta: Vector3) -> void:
 	_follow_anchor -= delta
 
 
+func enter_free(eye: Vector3, forward: Vector3) -> void:
+	set_mode(Mode.OVERVIEW)
+	follow=false;free_flight=true;pivot=eye;free_fov=65
+	var angles:=Basis.looking_at(forward,Vector3.UP).get_euler()
+	yaw=angles.y;pitch=angles.x
+	_blend=1;global_transform=_target();fov=free_fov
+
 func jump_to(p: Vector3) -> void:
 	set_mode(Mode.OVERVIEW)
 	follow = false
@@ -97,6 +107,8 @@ func set_head_out(side: int) -> void:
 
 
 func _target() -> Transform3D:
+	if mode == Mode.OVERVIEW and free_flight:
+		return Transform3D(Basis.from_euler(Vector3(pitch,yaw,0)),pivot)
 	if mode == Mode.WALKING and walking_transform.is_valid():
 		var t: Transform3D=walking_transform.call()
 		t.basis=t.basis*Basis.from_euler(Vector3(_look.y,_look.x,0))
@@ -142,7 +154,7 @@ func _process(delta: float) -> void:
 	else:
 		_follow_anchor_valid = false
 	var target := _target()
-	var target_fov := cab_fov if mode != Mode.OVERVIEW else 55.0
+	var target_fov := cab_fov if mode != Mode.OVERVIEW else (free_fov if free_flight else 55.0)
 	if _blend < 1.0:
 		_blend = minf(1.0, _blend + delta / _blend_duration)
 		var t := smoothstep(0.0, 1.0, _blend)
@@ -178,15 +190,17 @@ func _unhandled_input(event: InputEvent) -> void:
 				cab_fov = minf(82.0, cab_fov + 4.0)
 		if mode == Mode.OVERVIEW and mb.pressed:
 			if mb.button_index == MOUSE_BUTTON_WHEEL_UP:
-				distance = maxf(3.0, distance * 0.88)
+				if free_flight:free_fov=maxf(18,free_fov-4)
+				else:distance = maxf(3.0, distance * 0.88)
 			elif mb.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				distance = minf(3000.0, distance / 0.88)
+				if free_flight:free_fov=minf(85,free_fov+4)
+				else:distance = minf(3000.0, distance / 0.88)
 	elif event is InputEventMouseMotion and _dragging != 0:
 		var rel := (event as InputEventMouseMotion).relative
 		if _dragging == MOUSE_BUTTON_RIGHT:
 			if mode == Mode.OVERVIEW:
 				yaw -= rel.x * 0.005
-				pitch = clampf(pitch - rel.y * 0.004, -1.5, -0.05)
+				pitch = clampf(pitch - rel.y * 0.004, -1.45 if free_flight else -1.5, 1.45 if free_flight else -.05)
 			else:
 				_look.x = wrapf(_look.x-rel.x*.005,-PI,PI) if mode==Mode.WALKING else clampf(_look.x-rel.x*.005,-cab_yaw_limit,cab_yaw_limit)
 				_look.y = clampf(_look.y - rel.y * 0.004, -0.95, 0.85)
@@ -196,6 +210,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				follow = false
 				var right := global_transform.basis.x
 				var fwd := Vector3(-global_transform.basis.z.x, 0, -global_transform.basis.z.z).normalized()
-				pivot -= (right * rel.x - fwd * rel.y) * distance * 0.0016
+				pivot -= (right * rel.x - fwd * rel.y) * (.012 if free_flight else distance*.0016)
 		else:
 			drag_moved += rel.length()

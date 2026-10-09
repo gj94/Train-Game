@@ -230,7 +230,8 @@ func _ready() -> void:
 		_enter_cab()
 		hud.toast("WAP-7 30306 · W power / S brake · Tab exterior · C onward routes · F2 MEMU services")
 	else:
-		hud.toast("D opens dispatch · AUTO DISPATCH runs services · Tab takes the cab · F1 controls")
+		_enter_cab()
+		hud.toast("D opens dispatch · AUTO DISPATCH runs services · Tab exterior · F1 controls")
 	walker=preload("res://game/train_walk.gd").new()
 	walker.game=self
 	add_child(walker)
@@ -947,7 +948,7 @@ func _on_service_deleted(id: String) -> void:
 	if id==train.id:return
 	if traffic_presentation.followed_service==id:
 		traffic_presentation.followed_service=""
-		cam.follow_point=tv.overview_position;cam.follow=true
+		cam.follow_point=tv.overview_position;cam.follow=true;cam.free_flight=false
 		cam.pivot=tv.overview_position();cam._blend=1.0
 		cam._follow_anchor_valid=false
 	traffic_presentation.release(id)

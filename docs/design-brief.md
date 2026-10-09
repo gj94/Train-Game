@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **9 Oct 2026 camera flow:** pilot by default; left/right from pilot enters the
+  matching head-out before cycling. Up/down moves one coach toward loco/tail
+  without wrapping. LS moves inside the cab. Free camera starts at passenger
+  eye height on the nearest open platform, with triggers for optical zoom;
+  holding RS toggles driving triggers with a neutral-input gate.
 - **9 Oct 2026 coastal station assets:** use the new reviewed route-wide masters,
   retaining station-specific architecture, furnished interiors and sign detail;
   preserve CSV operating layouts, source provenance and runtime performance.
