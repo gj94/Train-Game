@@ -72,7 +72,7 @@ These are designed game services, **not published Indian Railways timetables**:
 
 | ID | Working | Departure | Priority |
 |---|---|---|---:|
-| K1 | WAP-7 + ICF all-stop passenger, Ernakulam–Nagercoil, 65 km/h cap | 08:00 | 20 |
+| K1 | WAP-7 + ICF all-stop passenger, Ernakulam–Nagercoil, 110 km/h equipment limit | 08:00 | 20 |
 | K2 | Northbound LHB, Turavur–Ernakulam | 08:00 | 70 |
 | K3 | Vande Bharat 8, Kumbalam–Nagercoil | 08:18 | 95 |
 | K4 | Northbound ICF, Ambalappuzha–Ernakulam | 08:45 | 40 |

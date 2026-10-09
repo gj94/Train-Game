@@ -77,6 +77,10 @@ func build(w: RailWorld, parent: Node3D) -> void:
 		_build_signal(sid)
 	for nid in world.graph.switches:
 		_build_switch(nid)
+	var speed_boards:=preload("res://game/track_speed_board_view.gd").new(world)
+	for job in speed_boards.jobs:
+		var chunk:=speed_boards.build(job)
+		chunk.node.position=chunk.origin;root.add_child(chunk.node)
 
 
 # --- materials ---------------------------------------------------------------

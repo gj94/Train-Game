@@ -69,6 +69,9 @@ static func restore(data) -> Dictionary:
 		var stock=preload("res://sim/stock/ported_stock.gd")
 		if stock.resolve_profile(entry.stock_kind.trim_prefix("ported:"),entry.rake_profile) not in stock.profiles(entry.stock_kind.trim_prefix("ported:")):return error("Invalid saved rake")
 		apply(t,entry,TRAIN)
+		# R20 and earlier built-in K1 saves retain the retired scenario cap.
+		# Authored packs (including deliberately slower services) remain untouched.
+		if _legacy_passenger_cap(data,t):t.max_speed=110.0/3.6
 		for key in ["timetable","completed_timetable"]:
 			if not entry.has(key):return error("Missing saved timetable")
 			if entry[key]==null:continue
@@ -107,6 +110,13 @@ static func matches(object, data: Dictionary, names: Array) -> bool:
 	for key in names:
 		if not data.has(key) or typeof(data[key])!=typeof(object.get(key)):return false
 	return true
+
+static func _legacy_passenger_cap(data: Dictionary, t: Train) -> bool:
+	var session: Dictionary=data.session
+	if session.get("authored_pack",true)!=false:return false
+	var meta=session.get("meta",{})
+	if not meta is Dictionary or meta.has("service_pack"):return false
+	return data.layout=="kerala_coast" and t.id=="K1" and t.stock_kind=="ported:icf" and t.rake_profile=="passenger" and is_equal_approx(t.max_speed,65.0/3.6)
 
 static func valid_path(w: RailWorld, path) -> bool:
 	if not path is Array or path.is_empty() or path.size()>w.graph.edges.size():return false

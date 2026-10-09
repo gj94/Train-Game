@@ -305,7 +305,6 @@ static func build_traffic() -> RailWorld:
 		Stock.configure(t,d[2],"passenger" if d[0]=="K1" else "")
 		t.service_name=d[1]
 		t.dispatch_priority=priorities[t.id]
-		if t.id=="K1":t.max_speed=65.0/3.6
 		var stops := []
 		var minutes := 0.0
 		for i in d[4].size():

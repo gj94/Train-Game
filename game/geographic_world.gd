@@ -10,6 +10,7 @@ const JointLayout := preload("res://game/rail_joint_layout.gd")
 var coordinate_origin := Vector3.ZERO
 var geo
 var ohe_layout
+var speed_boards
 var materials := {}
 var assets
 var track_template
@@ -69,6 +70,10 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	track_template.single_fishplate=track_template._fishplate_mesh(true)
 	track_template.wv=null
 	_index_track()
+	speed_boards=preload("res://game/track_speed_board_view.gd").new(world,geo.vegetation_clearance)
+	for board in speed_boards.jobs:
+		var p:=Vector2(board.point.x,board.point.z)
+		geo.vegetation_clearance.add_road(p,p,1.2)
 	ohe_layout=preload("res://game/geographic_ohe_layout.gd").new(world)
 	for i in 2:
 		var data:=GeoData.new(world.scenery.route)
@@ -202,6 +207,10 @@ func _request(focus: Vector3) -> void:
 		var p:=world.graph.position(sig.edge,sig.s)
 		var d:=Vector2(p.x-focus.x,p.z-focus.z).length_squared()
 		if d<1650*1650: _add_job({id="signal:"+sid,kind="signal",sid=sid,point=p,priority=d})
+	for board in speed_boards.jobs:
+		var d:=Vector2(board.point.x-focus.x,board.point.z-focus.z).length_squared()
+		if d<1650*1650:
+			var job: Dictionary=board.duplicate();job.priority=d;_add_job(job)
 	queue.clear()
 	for id in wanted:
 		if loaded.has(id) or workers.any(func(worker): return not worker.job.is_empty() and worker.job.id==id): continue
@@ -281,8 +290,8 @@ func update() -> void:
 				else: result.node.free()
 		if worker.thread==null and not queue.is_empty():
 			var job: Dictionary=queue.pop_front()
-			if job.kind=="signal":
-				var result:=_signal(job)
+			if job.kind in ["signal","speed_board"]:
+				var result: Dictionary=_signal(job) if job.kind=="signal" else speed_boards.build(job,geo)
 				result.node.position=result.origin-coordinate_origin
 				root.add_child(result.node); loaded[job.id]=result
 			else:

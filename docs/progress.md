@@ -1,5 +1,36 @@
 # Progress
 
+## 2026-10-09 — R21 formation limits and physical speed boards
+- Removed K1's 65 km/h scenario override. All 32 built-in services now use their
+  configured formation limit (ICF 110, LHB 140, VB8/VB16 180 km/h). The 45 km/h
+  timetable average remains scheduling data, not a traction cap. Existing
+  reconstructed track limits, stops and dispatch priorities are unchanged.
+- Old built-in K1 checkpoints upgrade the retired cap on load without moving
+  trains or changing saved locks. Authored service-pack speed caps are preserved.
+- Added a pure directional sign planner derived from actual graph limits:
+  1,200 m caution, numbered starts and full-rake T/P release. Trace legal paths
+  independently of switch settings; suppress equal-speed block repeats and
+  unsafe releases at subsequent restrictions or slower merging approaches.
+  Default T/P clearance is 600 m, expanding for a longer formation if present.
+- Added original meshes/lettering, striped posts and grounded footings, streamed
+  within 1.65 km. Branch road plaques distinguish loop limits. Shared immutable
+  exclusion keeps posts clear of all tracks/platforms/signals and nearby grass.
+  Both geographic and smaller layouts use the same sign planner/renderer.
+  Indian manual references and explicit gameplay adaptations are documented in
+  docs/speed-boards.md; these are not surveyed real-world board locations.
+- Source capture checks passed 1,067 assertions over 1,063 planned assemblies;
+  reviewed native ERS caution/start/T/P and Kumbalam approach views. No exported
+  distribution was launched or extracted. Focused 12-test coverage includes
+  both driving modes reaching 110 on suitable line, tail clearance, direction,
+  buffers, consecutive restrictions, forks, merges, save migration and all-route
+  footprint clearance. All 406 headless tests pass; main.gd parse-check passes.
+  Known sandbox certificate/shader-cache warnings remain; source captures have
+  no script or shader errors. Publication recorded below after export.
+- Player check: start or resume built-in K1 and exceed 65 where the actual line
+  and traffic allow; compare manual/AI. Read the road label at a junction and
+  confirm the lower HUD limit remains until the rear leaves the restricted track.
+  Inspect ERS/KUMM boards in free camera, with dispatcher labels switched off.
+
 ## 2026-10-09 — R20 grounded stations and dense coastal planting
 - Researched the Ministry of Railways' station circulation guidance; rebuilt
   connected entrance paving, protected footways/crossings, vehicle lanes,

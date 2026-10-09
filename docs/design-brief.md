@@ -9,6 +9,9 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **9 Oct 2026 speed limits:** default services use formation equipment limits,
+  with no artificial slow-passenger cap. Add directional caution/start/release
+  boards from track limits, with full-rake clearance and branch identification.
 - **9 Oct 2026 station setting:** grounded station compounds with controlled
   entrances, connected pedestrian/vehicle circulation and precast concrete
   boundary fencing matching the supplied reference. Dense Kerala planting and

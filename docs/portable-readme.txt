@@ -2,6 +2,14 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R21: stock-limited running and trackside speed indicators.
+K1's artificial 65 km/h cap is removed: its ICF formation supports 110 km/h,
+subject to the track, signals and traffic. Older built-in K1 saves upgrade too.
+Yellow fishtail boards warn of lower limits; numbered triangles mark the start.
+Circular T/P boards mark passenger release after full-rake clearance distance.
+Read road plaques at junctions: loop restrictions apply to that road.
+See guides/speed-boards.md. Use Update and Play.exe for the incremental update.
+
 Kerala Coast R20: grounded station surroundings and denser coastal vegetation.
 Connected entrance paving, organised parking, crossing/ramp, drains, planting
 and precast concrete boundary fencing matching the supplied reference.
