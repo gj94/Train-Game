@@ -25,11 +25,17 @@
   buffers, consecutive restrictions, forks, merges, save migration and all-route
   footprint clearance. All 406 headless tests pass; main.gd parse-check passes.
   Known sandbox certificate/shader-cache warnings remain; source captures have
-  no script or shader errors. Publication recorded below after export.
+  no script or shader errors.
 - Player check: start or resume built-in K1 and exceed 65 where the actual line
   and traffic allow; compare manual/AI. Read the road label at a junction and
   confirm the lower HUD limit remains until the rear leaves the restricted track.
   Inspect ERS/KUMM boards in free camera, with dispatcher labels switched off.
+- Published R21 from clean source `0d45dab`, signed update sequence 21 at
+  `http://192.168.8.183:8765/`. R20 to R21 changes 17,250,358 installed bytes;
+  download including the signed catalogue is 20,062,111 bytes (about 20 MB).
+  Verified pinned-key signature, changed PCK HTTP range/hash, clean BUILD.txt,
+  speed-board guide and current LAN page. No new full ZIP or distribution test.
+  Source and publication record pushed to GitHub.
 
 ## 2026-10-09 — R20 grounded stations and dense coastal planting
 - Researched the Ministry of Railways' station circulation guidance; rebuilt
