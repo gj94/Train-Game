@@ -2,6 +2,14 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R19: continuous camera movement inside every passenger coach.
+Press D-pad Down/Up to choose a coach, then use LS to move/strafe and RS to look.
+No Y press is needed. LS now moves you along the interior instead of zooming or
+jumping between bays. The viewpoint follows that individual carriage while the
+train moves and turns. A passes prompted interior doorways; L3 returns pilot.
+Available in both controller layouts. Existing saves remain compatible.
+Use Update and Play.exe to install this release into the same game folder.
+
 Kerala Coast R18: logical controller camera navigation.
 Pilot is the default. D-pad right/left from pilot enters right/left head-out;
 repeat to cycle. D-pad down moves back one coach, up toward the pilot, no wrap.
@@ -251,8 +259,9 @@ XBOX CONTROLLERS (360 / ONE / SERIES / ELITE)
 Default TSW-style: RT/RB power, LT/LB brake; release to hold. Y stand/sit.
 X tap actions; hold X+A AI/manual, X+B emergency, X+RB coast, X+Y horn.
 RS looks; RS click external free; LS click pilot. D-pad left/right cycles all
-cameras. LS pans outside and zooms in cab; hold RS + LS up/down zooms outside.
-On foot LS walks, RT runs, B crouches, A interacts and D-pad up toggles headlamp.
+cameras; D-pad Down/Up selects the next/previous passenger coach. LS moves inside
+the cab or coach, RS looks. Free camera: RT/LT zoom; hold RS switches to driving.
+On foot LS walks, RT runs, B crouches, A interacts; X + D-pad up toggles headlamp.
 View tap dispatch/hold progress. Menu/Start pause and controller settings.
 In menus: D-pad/LS focus, A select, B back, LB/RB previous/next control, RS scroll.
 Menu > Train & view actions reaches routes, points, horn and all other commands.

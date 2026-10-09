@@ -407,10 +407,9 @@ func _process(delta: float) -> void:
 		if invert_y: look.y = -look.y
 		var zoom := float(int(_buttons.has(JOY_BUTTON_RIGHT_SHOULDER))-int(_buttons.has(JOY_BUTTON_LEFT_SHOULDER)))
 		Camera.apply(game.cam,look,left if game.cam.mode == 0 else Vector2.ZERO,zoom,delta)
-		if game.cam.mode == 2:
-			_repeat(Shape.cardinal(Vector2(left.x,0)),delta,func(d):
-				game.tv.change_passenger_bay(d.x))
+		# Passenger LS translation is handled by CameraMotion in both layouts.
 	var driving_hint: String=TSW.hint(self) if tsw_layout or game.walker.active else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · D-pad cameras · LS click pilot · RS click free"
+	if game.cam.mode==2:driving_hint="LS move inside coach · RS look · D-pad up/down coaches · LS click pilot · RS click free"
 	if CameraMotion.is_free(game.cam):driving_hint=CameraMotion.hint(self)
 	var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect/select · LB/RB areas · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
 	game.hud.set_controller_hint((menu_hint if _ui_open() else driving_hint) if _armed or _ui_open() else "Release controller sticks, triggers and buttons to continue")

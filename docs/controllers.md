@@ -31,7 +31,7 @@ train-specific handles or every cab instrument interaction.
 | Right stick | Look / orbit |
 | D-pad left / right | Previous / next camera, wrapping through all available views |
 | Right-stick click | External **free** camera at passenger eye height on the nearest open station platform |
-| Left stick | Move around the cab (enter walking); free-camera movement; on foot walk / strafe |
+| Left stick | Move continuously inside the cab or selected passenger coach; walk / strafe; free-camera movement |
 | Left-stick click | Return directly to the pilot seat, including from walking |
 | Hold right-stick click for 0.65 s | Toggle free-camera triggers between zoom and train control; release controls to arm |
 | D-pad up / down | Forward / back one passenger coach, stopping at the pilot / last coach |
@@ -60,8 +60,13 @@ viewpoint. RT/LT change the lens without moving you. Repeated short RS clicks
 keep your position. Hold RS to switch RT/LT back to train control; the HUD names
 the current trigger function. A held trigger never transfers directly into driving.
 L3 returns to pilot and requires release if you were holding a zoom/run trigger.
-Moving LS in the cab stands into the existing cabin navigation, with desk/wall
-clearance; it preserves the handle and AI. Y still stands/sits explicitly.
+Moving LS in the cab **or any passenger view**, including immediately after
+D-pad Down/Up, enters continuous interior movement without pressing Y first.
+LS moves forward/back and sideways; RS looks. The viewpoint stays attached to
+that individual carriage through movement and curves. Reach the aisle ends,
+using A at an interior-doorway prompt if needed; walls and furniture retain
+their clearances. LS does not zoom or jump between passenger bays. Movement
+preserves the handle and AI. Y still stands/sits explicitly.
 These three shortcuts apply in both layouts and on foot, while menus and dispatch
 retain D-pad navigation. They preserve your service, AI setting and driving handle.
 
@@ -88,7 +93,7 @@ in the legacy layout.
 | Right stick | Look in cab/passenger; orbit outside |
 | LB / RB | Zoom out / in; lower / raise in free-camera zoom mode |
 | Right stick click | External free camera |
-| Left stick | Move inside cab; pan outside; left/right moves through passenger positions |
+| Left stick | Move continuously inside the cab or selected coach; pan outside |
 | Left stick click | Return to pilot |
 | D-pad left / right | Previous / next camera, same cycle as the default layout |
 | D-pad up / down | Forward / back one passenger coach, stopping at pilot / tail |
@@ -144,6 +149,9 @@ remain available and replace the controller hints when used.
    From pilot, Right must first choose right head-out and Left the left one.
    Step Down through the full rake, then Up to pilot; neither end wraps.
    Move LS in the cab and check movement around the desk; L3 returns to the seat.
+   Press Down, then move LS without pressing Y: walk to the end of the coach,
+   look with RS and check the lens stays unchanged. Repeat in a middle and tail
+   coach while the train moves; the camera must travel and turn with its coach.
    R3 should place you on a nearby platform. RT/LT zoom without changing power;
    hold R3 to switch to driving, release everything, then use a fresh trigger.
    Hold R3 again to restore zoom. RB/LB raise/lower the free camera in zoom mode.

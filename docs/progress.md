@@ -1,5 +1,31 @@
 # Progress
 
+## 2026-10-09 — R19 movement in D-pad-selected coach interiors
+- Fixed the missed passenger-camera context in R18: automatic LS movement entry
+  only handled the driver's cab. D-pad-selected coach views still zoomed in the
+  default layout and jumped bays in the legacy layout. Both now enter continuous
+  carriage-local movement immediately on LS input, without a separate Y press.
+  Removed those obsolete passenger stick mappings and updated contextual hints.
+- RS looks independently; movement entry preserves both yaw and pitch and accepts
+  simultaneous RS input. Existing interior clearance and doorway interactions
+  apply. The camera follows its individual articulated carriage, including turns,
+  and preserves the assigned driver, AI and latched handle. L3 returns to pilot;
+  D-pad Down continues from the carriage being explored. Save schema unchanged.
+- All 383 headless tests pass. New event-driven source integration passes 1,200
+  checks across WAP+LHB (380), WAP+ICF (380), VB8 (156) and VB16 (284), covering
+  every coach in both controller layouts, immediate/continuous translation,
+  unchanged FOV/bay, pitch retention, independent look, articulated motion,
+  preserved controls and walking-save validation. First/middle/tail fixtures use
+  real stick input to reach the far end of the connected aisle around furniture.
+  Existing camera-navigation regression also passes all 130 checks. The sandbox
+  retains its certificate-store warning; no script/test failures. No extracted
+  distribution test. Closed the task-owned headless editor after MCP edits.
+- Player check: update to R19, then press D-pad Down and move LS immediately;
+  forward/back/sideways should translate through the coach instead of zooming.
+  RS looks, A passes prompted interior doorways, and L3 returns to pilot. Repeat
+  in middle/tail coaches on a moving train and check that the viewpoint stays
+  inside the chosen carriage through curves. No Y press is required.
+
 ## 2026-10-09 — Incremental LAN updater
 - Added a small native Windows Update & Play launcher for existing portable
   installations, with an editable LAN address, progress and offline Play.

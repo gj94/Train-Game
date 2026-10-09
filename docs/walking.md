@@ -10,7 +10,10 @@ The Kerala route supports platform walking beside your assigned train.
 You can transfer to **any passenger coach while moving**, including behind a
 WAP-7: open Pause/Start → **Go to passenger coach…** → **Go to any passenger coach…**,
 select Coach 1–20/22, then
-press **Y/E** to stand inside. The same list is under Camera & passengers.
+move **LS** to move around inside immediately, or press **Y/E** to stand explicitly.
+The same list is under Camera & passengers. D-pad Down/Up selects each coach in
+order; LS translates continuously inside that coach and RS looks around. Your
+position follows its movement and rotation instead of staying behind in the world.
 This changes your viewpoint without handing over your service or changing the
 power/brake handle or AI setting. **Left-stick click / 4** returns to the pilot.
 For quick access, D-pad left/right cycles the first, middle and last coach views;
@@ -40,11 +43,14 @@ prompt and F1 help now explain this; the locomotive is not counted as coach 1.
 | Cycle all cameras | Camera & passengers menu | D-pad left / right |
 | Move viewpoint one coach toward loco / tail | PgUp / PgDn | D-pad up / down (Up ends at pilot) |
 
-From the pilot seat, moving the left stick also enters cabin walking. The baked
-interior clearance keeps movement out of walls and desks; left-stick click returns
-to the pilot. Explicit Y/E standing and sitting remain available.
-| Left head-out | Q | Left-stick click, then D-pad right |
+| Left head-out | Q | Left-stick click, then D-pad left |
 | First / middle / last passenger coach | Alt+1 / Alt+2 / Alt+3 | Cycle with D-pad or Camera & passengers menu |
+
+From the pilot seat or any passenger viewpoint, moving the left stick enters
+continuous interior movement with no extra button. This includes a coach selected
+with D-pad Down/Up, camera cycling or the passenger menu. The baked clearance keeps
+movement out of walls and desks; left-stick click returns to the pilot. Explicit
+Y/E standing and sitting remain available. Use A at interior-doorway prompts.
 
 On keyboard **Shift+E** now selects the right head-out view; Q still selects the
 left. The default controller layout follows TSW's immersive contexts; see

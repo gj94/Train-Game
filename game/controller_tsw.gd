@@ -5,7 +5,7 @@ const Camera := preload("res://game/controller_camera.gd")
 const HELP := """[b]XBOX CONTROLLER · TSW-STYLE IMMERSIVE[/b]
 Driving: RT increase power · RB reduce power · LT apply brake · LB release brake.
 The combined handle holds its position when released. Braking takes priority.
-RS look · LS moves around the cab (stands into collision-aware walking).
+RS look · LS moves freely along the cab or selected coach interior (no Y needed).
 From pilot: D-pad right → right head-out; left → left head-out. Repeat to cycle.
 D-pad down moves back one coach; up moves forward one coach, stopping at pilot.
 LS click returns to pilot · RS click selects FREE camera on the nearest platform.
@@ -99,7 +99,7 @@ static func process(pad, left: Vector2, right: Vector2, delta: float) -> void:
 			return
 	var look: Vector2=right*pad.sensitivity
 	if pad.invert_y: look.y=-look.y
-	var zoom: float=-left.y if g.cam.mode==2 or g.cam.mode==3 else 0.0
+	var zoom: float=-left.y if g.cam.mode==3 else 0.0
 	if g.walker.active and not pad._camera_down: zoom=0
 
 	Camera.apply(g.cam,look,left if g.cam.mode==0 and not pad._camera_down else Vector2.ZERO,zoom,delta)

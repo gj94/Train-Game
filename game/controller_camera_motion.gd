@@ -25,10 +25,13 @@ static func input(pad, left: Vector2, right: Vector2, delta: float) -> bool:
 				g.cam.pivot.y+=(int(pad._buttons.has(JOY_BUTTON_RIGHT_SHOULDER))-int(pad._buttons.has(JOY_BUTTON_LEFT_SHOULDER)))*3.0*delta
 		preload("res://game/controller_camera.gd").apply(g.cam,look,left,zoom,delta)
 		return true
-	if g.cam.mode==1 and left.length_squared()>.01 and not pad._camera_down and not pad._operation_down:
-		# Reuse the baked cabin clearances rather than sliding through desks/walls.
+	if g.cam.mode in [1,2] and left.length_squared()>.01 and not pad._camera_down and not pad._operation_down:
+		# Every onboard viewpoint supports continuous carriage-relative movement.
 		if g.walker.stand():
 			pad._context="walk";pad._armed=true;g.walker.armed=true
+			var look: Vector2=right*pad.sensitivity
+			if pad.invert_y:look.y=-look.y
+			preload("res://game/controller_camera.gd").apply(g.cam,look,Vector2.ZERO,0,delta)
 		return true
 	return false
 static func hint(pad) -> String:

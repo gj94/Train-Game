@@ -109,7 +109,7 @@ func stand() -> bool:
 	_lamp.visible=lamp_enabled
 	game.cam.set_mode(4)
 	game.cam._blend=1
-	game.cam._look=Vector2(atan2(-facing.x,-facing.z),0)
+	game.cam._look=Vector2(atan2(-facing.x,-facing.z),asin(clampf(facing.normalized().y,-1,1)))
 	game.tv.walk_car=car
 	game.tv.walk_eye=Vector3(position.x,nav.floor_height(position)+eye_height,position.y)
 	game.tv._apply_glass()
@@ -120,7 +120,7 @@ func stand() -> bool:
 	if game.controller!=null: game.controller.neutralize()
 	_refresh_exits()
 	if game.tv.formation[car].model=="wap7":
-		game.hud.toast("D-pad cycles to passenger coaches while moving; Y stands inside. Or use the passenger-coach menu. At a stop, the cab side door leads to the platform.")
+		game.hud.toast("D-pad down selects a passenger coach, even while moving; LS moves inside, RS looks. At a stop, the cab side door leads to the platform.")
 	return true
 
 func stop() -> void:

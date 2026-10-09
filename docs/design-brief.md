@@ -11,7 +11,9 @@ A **3D train game** where I can be either a **dispatcher** or a **driver**, and 
 ### Core requirements
 - **9 Oct 2026 camera flow:** pilot by default; left/right from pilot enters the
   matching head-out before cycling. Up/down moves one coach toward loco/tail
-  without wrapping. LS moves inside the cab. Free camera starts at passenger
+  without wrapping. LS moves continuously inside the cab or selected passenger
+  coach without a separate stand command; RS looks, and the eye follows the
+  individual carriage through motion/curves. Free camera starts at passenger
   eye height on the nearest open platform, with triggers for optical zoom;
   holding RS toggles driving triggers with a neutral-input gate.
 - **9 Oct 2026 coastal station assets:** use the new reviewed route-wide masters,
