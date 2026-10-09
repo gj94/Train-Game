@@ -162,6 +162,7 @@ try {
     $summary.Add("All runs completed without detected errors: $allPassed")
     $summary.Add('Frame percentiles are milliseconds; lower is better. 60 FPS = 16.67 ms; 120 FPS = 8.33 ms.')
     $summary.Add('NVIDIA memory is whole-GPU use. Engine GPU allocations are game-side estimates, not a VRAM residency guarantee.')
+    $summary.Add('Static engine RAM is unavailable in release builds; use process working/private RAM in system-telemetry.jsonl.')
     $summary.Add('No CPU temperature sensor is installed by this script. N/A GPU fields are unavailable, not zero.')
     foreach ($entry in $results) {
         $summary.Add("")

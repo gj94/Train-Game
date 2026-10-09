@@ -69,10 +69,12 @@ Camera motion is wall-clock based; live simulation advances normally and can
 pause for missing required scenery. Its clock/speed/loading state are recorded.
 Driver-level VSync or caps can override the game's uncapped request.
 
-GPU queries can lag the corresponding CPU frame. Engine graphics allocations
+GPU queries can lag the corresponding CPU frame; some engine counters refresh up
+to one second late. Engine graphics allocations
 are estimates and are distinct from NVIDIA's whole-GPU memory use. Static engine
-memory omits some driver/native allocations; process working/private RAM is
-recorded separately. Unsupported sensor values mean unavailable, not zero.
+memory is unavailable in release builds (marked in each JSON); its zero samples
+are not zero RAM use. Process working/private RAM is recorded separately.
+Unsupported sensor values mean unavailable, not zero.
 CPU temperature requires a separate hardware sensor provider and is not guessed.
 Windows disk/CPU telemetry covers the whole system as well as this game's process.
 

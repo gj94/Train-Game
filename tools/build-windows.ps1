@@ -5,6 +5,14 @@ param(
     [ValidateRange(0,2147483647)][int]$UpdateSequence = 0
 )
 $ErrorActionPreference = 'Stop'
+# Streaming .NET hashing also works in hosts where Get-FileHash autoloading is
+# unavailable. The PCK can be close to 2 GB; never load it into a byte array.
+function Get-PortableSha256([string]$Path) {
+    $stream=[IO.File]::OpenRead($Path)
+    $algorithm=[Security.Cryptography.SHA256]::Create()
+    try { return [BitConverter]::ToString($algorithm.ComputeHash($stream)).Replace('-','').ToLowerInvariant() }
+    finally { $algorithm.Dispose();$stream.Dispose() }
+}
 $projectRoot = Split-Path $PSScriptRoot -Parent
 $engine = Join-Path $projectRoot '.local/godot/Godot_v4.7.2-stable_win64_console.exe'
 $template = Join-Path $projectRoot '.local/export-templates/windows_release_x86_64.exe'
@@ -69,7 +77,7 @@ try {
     $hashes = foreach ($name in @('TrainGame.exe', 'TrainGame.pck')) {
         $file = Join-Path $buildRoot $name
         if (-not (Test-Path $file)) { throw "Missing build file: $file" }
-        "$( (Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash.ToLower() )  $name"
+        "$(Get-PortableSha256 $file)  $name"
     }
     $hashes | Set-Content -LiteralPath (Join-Path $buildRoot 'SHA256SUMS.txt') -Encoding ascii
     if ($UpdateSequence -gt 0) {
@@ -80,7 +88,7 @@ try {
     }
     if (!$SkipZip) {
         Compress-Archive -LiteralPath $buildRoot -DestinationPath $archivePath -CompressionLevel Optimal -Force
-        "$( (Get-FileHash -LiteralPath $archivePath -Algorithm SHA256).Hash.ToLower() )  $BuildName.zip" |
+        "$(Get-PortableSha256 $archivePath)  $BuildName.zip" |
             Set-Content -LiteralPath ($archivePath + '.sha256') -Encoding ascii
         Get-Item $archivePath | Select-Object FullName, Length
     }
