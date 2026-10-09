@@ -9,6 +9,7 @@ var rail_bins := {}
 var segments := []
 var tile_keys := {}
 var station_bins := {}
+var station_sites := {}
 var operating_ways := {}
 var bridge_bins := {}
 var bridges: Array = []
@@ -107,4 +108,4 @@ func ground_at(x: float,z: float) -> float:
 			# but never let those radar returns bury the reconstructed deck.
 			height=minf(height,lerpf(rail.height-.8,height,smoothstep(width,width+58,rail.distance)))
 		else:height=lerpf(rail.height-.15,height,smoothstep(width,width+58,rail.distance))
-	return height
+	return preload("res://game/coastal_station_sites.gd").ground(station_sites,x,z,height)

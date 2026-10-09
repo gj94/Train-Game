@@ -253,3 +253,20 @@ generate mipmaps for stable distance rendering.
 | Train door beeps | `assets/sounds/door_beeps.ogg` | https://bigsoundbank.com/train-door-beeps-s3343.html | Joseph Sardin (BigSoundBank) | CC0 | 2026-09-27 |
 | Previous physical axle-over-joint model (retained for historical previews) | `assets/sounds/lab/physical_icf_*.wav`, `game/physical_model_data.gd` | user's Railway Sound Lab (`D:\ClaudeWS\railway-clang-simulator`), fitted to its approved synthetic take; game voicing updated 2026-10-06 | user (take = analysis/resynthesis of the "Rhythmic Railway … WAP7 with LHB and WAP4 with ICF … Part 9 IndianRailways" recording, 1:30–1:35) | personal use only — derived from a third-party recording | 2026-09-28 |
 | Approved joint-video strikes (14 pairs) + fitted rolling loop → historical track sound | `assets/sounds/lab/joint_video_*.wav`, `game/joint_video_model_data.gd` | user-supplied `TrainVideo.mp4`, approved magnitude/phase reconstruction `joint-video-v3-synthetic.wav`; sibling Railway Sound Lab `profiles/joint-video.json`, `tools/fit-joint-video.js`, `tools/export-joint-video-godot.js` | user-provided third-party video; original author unspecified; reconstruction generated locally | user-authorized personal playtest only; no open redistribution licence asserted; raw video/MP3 excluded from builds | 2026-10-06 |
+# Coastal station collection — R15
+
+The user's `gj94/transport-fever-3-mods` collection is pinned at
+`089dbecca1d6209cc8dd35a2b431f4ec4063a490`. Source manifest:
+`tools/coastal_station_sources.json`. Packed Blender masters, Git blob hashes and
+split-file SHA-256 checks are preserved locally; per-assembly source/buffer hashes
+are in `assets/models/ported/station_*_detail/provenance.json`.
+
+User-authorized architecture/interior ports cover 52 active stations, plus a
+separately retained historical Tirunettur asset. No licence is asserted over
+reference photographs: their pixels are not shipped. Map-derived source geometry
+is attributed to OpenStreetMap contributors under ODbL 1.0. Source reference
+notes, DejaVu/Bitstream and Noto/SIL OFL notices are retained in
+`assets/models/ported/station-notices/coastal/` and included in portable builds.
+Original packed sign textures and geometry/text outlines are retained.
+See `docs/station-model-port.md` for precise scope, material approximations and
+the distinction between authored buildings and the live CSV operating layout.

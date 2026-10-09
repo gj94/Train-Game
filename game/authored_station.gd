@@ -2,27 +2,32 @@ extends RefCounted
 ## Detailed source building assemblies. Track/signalling remain simulation-owned.
 static var _scenes := {}
 static var _bounds := {}
+static var _placements := {}
 
 static func available(code: String) -> bool:
-	return code in ["ERS","TVC","NCJ"]
+	return code in ["ERS","TVC","NCJ"] or preload("res://game/coastal_station_placement.gd").available(code)
 
 static func prepare(code: String) -> void:
-	var key: String="station_"+code.to_lower()
+	var key: String="station_"+preload("res://game/coastal_station_placement.gd").asset_code(code).to_lower()
 	if _scenes.has(key):return
 	if not _scenes.has(key):
 		_scenes[key]=load("res://assets/models/ported/"+key+".glb")
 		var source: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ported/"+key+"_detail/provenance.json"))
 		_bounds[key]=source.source_bounds
+		_placements[key]=source.get("placement",{})
+		if not _placements[key].is_empty():_placements[key]["foundation_pads"]=source.get("foundation_pads",[])
 	var warm: Node3D=(_scenes[key] as PackedScene).instantiate()
 	preload("res://game/authored_vehicle_materials.gd").apply(warm,key)
 	warm.free()
 
 static func add_building(parent: Node3D, code: String, position: Vector3, forward: Vector3, right: Vector3, centered: bool=false) -> Dictionary:
 	prepare(code)
-	var key: String="station_"+code.to_lower()
+	var key: String="station_"+preload("res://game/coastal_station_placement.gd").asset_code(code).to_lower()
 	var model: Node3D=(_scenes[key] as PackedScene).instantiate()
 	model.name=code+"_AuthoredStation"
 	preload("res://game/authored_vehicle_materials.gd").apply(model,key)
+	if not _placements.get(key,{}).is_empty():
+		return preload("res://game/coastal_station_placement.gd").mount(parent,model,position,forward,right,_bounds[key],_placements[key])
 	# glTF: author X -> X, Y -> -Z, Z -> Y. Orient source yard side inward.
 	var basis:=Basis(-forward,Vector3.UP,-right)
 	var bounds: Array=_bounds[key]

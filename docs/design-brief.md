@@ -9,6 +9,9 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **9 Oct 2026 coastal station assets:** use the new reviewed route-wide masters,
+  retaining station-specific architecture, furnished interiors and sign detail;
+  preserve CSV operating layouts, source provenance and runtime performance.
 - **9 Oct 2026 Save/Load:** resume the complete railway and assigned service,
   including interlocking/dispatch commitments, timetable and passenger progress,
   depot workings and onboard/platform viewpoint. Provide controller-accessible

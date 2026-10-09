@@ -1,0 +1,38 @@
+# Thiruvananthapuram North (TVCN) • complete station environment v01
+
+Editable full-size Blender scene, five rendered review views, and a self-contained portable glTF archive. No trains or other rolling stock.
+
+## Files
+- TVCN_station_v01.blend: authoritative editable scene, materials, cameras and packed font resources
+- renders/: full network, station architecture, platform/track view, furnished interior, railway detail
+- exchange/TVCN_portable_GLTF.zip: losslessly archived GLB, verified against the raw export
+- SOURCES.json: evidence links, dates and limitations
+- QA_BUILD.json, QA_EXPORT.json and RENDER_PROVENANCE.json: measured model properties and exact source/render/export hashes
+- source/: metric source-derived geometry, available native name outlines and documentary build/repair recipes
+
+Recipe snapshots document the construction and narrow repairs. The packed scene is authoritative; these scripts are not a standalone one-click rebuild and refer to the region staging layout and shared locked Blender launcher.
+
+## Scale and coverage
+Metres, scene scale1.0. Broad-gauge running head inner faces1.676m apart. Modeled platform bodies: 4; IRI reported platform positions: 6. Source snapshot includes 26 clipped rail-way pieces, not a certified count of physical roads. Full source-specific curves, connected loops and separately mapped sidings are retained within the documented approach envelope. Platforms are not shortened decorative modules. Furniture, water points, lights, signs, waiting/ticket or appropriate service interiors, structural roof members, overhead lines, ballast/sleepers/fasteners, and relevant footbridge/stair connections are modelled.
+
+The source scene has 1,395 objects, 2,019,946 mesh vertices and 26,954 sleeper/support placements. Rail-network local bounds: [-1000.1663725616728, -400.0, 1400.0, -5.098100633296838]. Nominal dimensions are explicit modelling choices, not an engineering survey.
+
+## What is observed and what is reconstructed
+Google Maps Sirosh Sivaraman February2024 main-entry photograph; main-entry place coordinates8.5091337,76.8961733 set building side and approximate longitudinal position.
+
+Four platform bodies are modelled. Reported6 platform positions do not establish exact present adjacency of every edge. The eastern island yard-side edge remains beside open ground, because the inspected undated satellite did not clearly resolve an adjacent road. No count-driven missing rail was silently invented. Western island edges were corrected for mapped registration conflicts. Three mapped recessed yard alignments are interpreted as maintenance-pit roads, with geometry/function caveats.
+
+Maps contain mixed historical edit dates. An OSM edit date, Google copyright year or photo upload date is not a construction or commissioning date. Buildings, shelter spans, unmeasured platform dimensions and hidden rooms/fixtures are reconstructed. This is a source-informed visual asset, not an as-built survey, operational railway inventory, safety certificate or railway-engineering design. Signals, switch details, model clearances and service assignments are illustrative. Geometric rail-channel checks do not certify real wheel/rail operation. Compound pointwork remains simplified where the exact design is unknown.
+
+The 45mm geometric flange channels, unioned running heads, tapered blade components and reconstructed crossing bearers avoid duplicated rail overlays in the adopted model. Procedural material noise/bump is native Blender shading. The portable glTF preserves geometry and base material properties, but those procedural textures are not baked.
+
+## Source references
+- https://www.google.com/maps/place/Thiruvananthapuram+North+Railway+Station+(Main+entry)+Platform+1/@8.5091411,76.8961804,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICdsZbSMw!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAHRPTWlwPP6ftH410o-3dS2sufkOn5rNxer6DxJo2TRlce690D0JyxzTRt_LEXM6WvntMDNWVQsZJrrPTFpzQ1Ajc9d_w_zCuiHmRU6nBvWQ4KeJJ2-2oRJmOchx-rcAcfuY57AbFzps%3Dw203-h152-k-no!7i4080!8i3072!4m11!1m2!2m1!1sThiruvananthapuram+North+railway+station!3m7!1s0x3b05bd36d1e9d4fd:0x7f3ad14b2e8a0981!8m2!3d8.5091337!4d76.8961733!10e5!15sCihUaGlydXZhbmFudGhhcHVyYW0gTm9ydGggcmFpbHdheSBzdGF0aW9uWioiKHRoaXJ1dmFuYW50aGFwdXJhbSBub3J0aCByYWlsd2F5IHN0YXRpb26SARByYWlsd2F5X3NlcnZpY2VzmgEjQ2haRFNVaE5NRzluUzBWSlEwRm5TVU5PZUhGaVgwMTNFQUXgAQD6AQQIABBK!16s%2Fg%2F11kqvlk4sb?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D | Feb 2024 | Ordinary contributor photograph of Main entry Platform 1 place
+- https://www.google.com/maps/place/Thiruvananthapuram+North+Railway+Station+(Main+entry)+Platform+1/@8.5091411,76.8961804,3a,75y,90t/data=!3m8!1e2!3m6!1sCIABIhBXSyMqwY-PXcocD44Ddvw2!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAHRPTWklSb0O36ggSV2im0StGO8WE-CJsOdyF1WybZ02C3LfP-1MOMh1vZnQ-XU52EoVOGsRkDUCWa8CdqFbV70NvYZcFpJOE92_YxhouODiG9v3ZsT6LeUYsjqRFJ1stYukuOaUpg5ms0EPrcpC%3Dw203-h360-k-no!7i2160!8i3840!4m11!1m2!2m1!1sThiruvananthapuram+North+railway+station!3m7!1s0x3b05bd36d1e9d4fd:0x7f3ad14b2e8a0981!8m2!3d8.5091337!4d76.8961733!10e5!15sCihUaGlydXZhbmFudGhhcHVyYW0gTm9ydGggcmFpbHdheSBzdGF0aW9uWioiKHRoaXJ1dmFuYW50aGFwdXJhbSBub3J0aCByYWlsd2F5IHN0YXRpb26SARByYWlsd2F5X3NlcnZpY2VzmgEjQ2haRFNVaE5NRzluUzBWSlEwRm5TVU5PZUhGaVgwMTNFQUXgAQD6AQQIABBK!16s%2Fg%2F11kqvlk4sb?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D | Image capture Jun 2025; photo header Jun 2026 | Ordinary contributor photograph
+- https://www.google.com/maps/place/Thiruvananthapuram+North+Railway+Station+(Main+entry)+Platform+1/@8.5091411,76.8961804,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICNhp3T1AE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAHRPTWnz26l-dM1qPzLwY49sghXU38KNdOLRubbVkaAEL4YgCRluk-MaykL4bd1vY3zHpqMNXEaf1YPT3MQwEyw3FPFs2hiKLlVqZIIEe5KdanDgBarKPM163dUWbiXmAd376EDnjQhjNA%3Dw203-h440-k-no!7i1844!8i4000!4m11!1m2!2m1!1sThiruvananthapuram+North+railway+station!3m7!1s0x3b05bd36d1e9d4fd:0x7f3ad14b2e8a0981!8m2!3d8.5091337!4d76.8961733!10e5!15sCihUaGlydXZhbmFudGhhcHVyYW0gTm9ydGggcmFpbHdheSBzdGF0aW9uWioiKHRoaXJ1dmFuYW50aGFwdXJhbSBub3J0aCByYWlsd2F5IHN0YXRpb26SARByYWlsd2F5X3NlcnZpY2VzmgEjQ2haRFNVaE5NRzluUzBWSlEwRm5TVU5PZUhGaVgwMTNFQUXgAQD6AQQIABBK!16s%2Fg%2F11kqvlk4sb?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D | Jan 2024 | Ordinary contributor photograph of footbridge interior
+- https://www.google.com/maps/place/8%C2%B030'37.2%22N+76%C2%B053'49.4%22E/@8.5100118,76.8965723,224m/data=!3m1!1e3!4m4!3m3!8m2!3d8.5103341!4d76.8970471?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D | satellite acquisition date not exposed; observation accessed2026-10-08
+- https://api.openstreetmap.org/api/0.6/map?bbox=76.8841000,8.4972540,76.9081000,8.5212540 | OSM snapshot accessed2026-10-08; original way dates retained in source/layout.json
+- https://indiarailinfo.com/station/map/thiruvananthapuram-north-kochuveli-tvcn/1009 | IRI profile cross-check accessed2026-10-08; reported totals are secondary and not a signed current yard plan
+
+## Rights
+Map-derived geometry © OpenStreetMap contributors, available under ODbL1.0: https://www.openstreetmap.org/copyright and https://opendatacommons.org/licenses/odbl/1-0/ . Preserve attribution and applicable derived-database obligations. No new licence is claimed for third-party source material. No Google/photographer screenshots, station photographs or copied photo textures are distributed in this package. Authoring geometry is newly generated for this request. DejaVu and Noto lettering uses locally installed freely licensed fonts; see THIRD_PARTY_NOTICES.txt.

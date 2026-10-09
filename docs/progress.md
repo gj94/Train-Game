@@ -1,5 +1,41 @@
 # Progress
 
+## 2026-10-09 — R15 coastal station architecture
+- Pinned the newly published coastal collection at `089dbecca1d6209cc8dd35a2b431f4ec4063a490`.
+  Downloaded/verified all 53 Blender masters, including split-file hashes, and
+  evaluated them in background Blender with source script execution disabled.
+  Added 51 active station building/interior assemblies and Viranialur's original
+  open shelters; retained historical Tirunettur separately without an active stop.
+- Preserved 1,394,944 active-source triangles and 3,849 exported objects in 137
+  spatial batches. Original dimensions, bevels, roof geometry, furnished rooms,
+  signs, packed image pixels and normals remain; source material graphs are
+  translated to realtime shaders, now including brick patterns. Godot distance
+  LODs and separate shadow meshes keep full nearby visible geometry.
+- Added rigid placement at outer platforms and floor-level alignment. Foundations
+  support southern plinths/verandas/annexes; Viranialur gets an outer apron for
+  its full-width shelters. Source PNPR/TVCS map to existing PUPR/NEM IDs. No
+  operational graph, platform inventory, dispatch state or save schema changes.
+- Native route review caught generic mapped houses and trees overlapping the
+  new models. Added an immutable spatial footprint index shared by workers to
+  exclude these, prevent road surfaces through buildings and lower terrain that
+  would bury the new plinths. Surrounding scenery remains streamed.
+- Source geometry/material/placement check: 262 checks passed across all 52 active
+  models, including exact triangle counts, shader overrides, rigid transforms
+  and building/track clearance. All 53 exported geometry buffers pass SHA-256.
+  Native streamed Kumbalam, Turavur, Kollam, Neyyattinkara and Viranialur each load
+  one authored assembly without script/shader errors; screenshots were reviewed.
+- All 364 headless tests pass, including four new scenery-footprint regressions.
+  Native previews use the source project; no extracted-distribution test.
+- Scope and reproduction steps: `station-model-port.md`. This imports architecture,
+  interiors and attached access, not static source yards or station-room walking
+  navigation. CSV platforms, live track/signals/OHE and most platform furnishings
+  remain game-generated. Notices/reference notes/fonts accompany the assets.
+- Playtest: visit Kumbalam and Turavur using the dispatch station visitor, then
+  Kollam and Neyyattinkara. Use external free camera for entrances, platform sides,
+  interiors and raised-floor bases; check there are no generic houses/trees inside
+  the buildings or forecourt. At Viranialur check the original open shelters.
+  Load an R14 save and confirm the assigned service and timetable resume paused.
+
 ## 2026-10-09 — R14 Save/Load journeys
 - Added a versioned, renderer-independent railway checkpoint: occupied train
   paths/physics/controls, timetables and completed passenger results, passengers

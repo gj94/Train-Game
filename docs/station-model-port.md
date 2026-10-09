@@ -1,4 +1,66 @@
-# ERS, TVC and Nagercoil station models
+# Station model ports
+
+## R15 coastal collection — 9 October 2026
+
+Pinned source: [coastal station collection, 089dbecca](https://github.com/gj94/transport-fever-3-mods/tree/089dbecca1d6209cc8dd35a2b431f4ec4063a490/coastal_station_collection).
+All 53 newly published Blender masters were fetched with Git blob verification;
+split masters additionally pass their part and whole-file SHA-256 checks. The
+52 active route stations now use 51 station-specific building/interior assemblies
+and Viranialur's photographed open shelters. Tirunettur's historical assembly is
+retained as an asset, without inventing an active stop or a surveyed placement.
+ERS/TVC/NCJ keep their previous rich-v02 assemblies below.
+
+The active additions retain **1,394,944 evaluated triangles**, original metric
+dimensions, roof profiles, structural details, room furnishings, signs, UVs,
+normals and packed sign images. The 3,849 exported source objects use 137 spatial
+batches, generated distance
+LODs and separate simplified shadows; nearby visible geometry is not decimated.
+The renderer applies source-graph material translations, including procedural
+noise, brick patterns and bump. These are realtime approximations, not identical
+Cycles shading. We use packed masters rather than the older GLBs with missing
+fallback colours described in the source's material-correction notice.
+
+Buildings are rigidly rotated and translated beside an outer platform; slopes
+do not tilt, stretch or mirror the models. Source floor levels align with the
+game platform floor. Foundations support the complete assembly, with additional
+infill under southern plinths, verandas and toilet annexes. Viranialur keeps the
+complete shelters belonging to its one reported platform, with an outer apron
+to accommodate their original width. Its source's second, unverified platform
+body and associated shelters are not introduced into the operating layout.
+PNPR maps to the existing PUPR route ID and TVCS to NEM, retaining save identity.
+An immutable footprint index excludes generic buildings and vegetation from
+station buildings/forecourts. Road surfaces cannot cross the new building
+footprints, and the ground is lowered locally when it would bury a plinth.
+
+Scope is **station architecture and attached interiors/access**, not replacement
+of the operating yards. Source platforms, track meshes, OHE, static signals,
+most platform shelters/furniture, remote yard service buildings and surrounding
+terrain remain in the complete local masters. The game continues to generate
+those from its CSV-based layout and geographic stream. There is no station-room
+walking/navigation implementation in this port. Mixed-date photographs and
+inferred room layouts remain the source's disclosed reconstructions.
+
+Provenance per asset lists source revision/hash, selected collections and object
+names, actual exported objects, triangle totals, buffer hashes, dimensions and
+placement metadata. Source notices, reference notes and font licences ship in
+`station-notices/coastal/`. The masters stay under
+`.local/coastal-station-source/`; no downloaded authoring script is executed.
+
+Reproduce all 53 assets (or append `-- KUMM TUVR NYY` for selected stations):
+
+```powershell
+node tools/fetch_port_sources.mjs tools/coastal_station_sources.json .local/coastal-station-source
+& .local/blender/blender-5.2.1-windows-x64/blender.exe --background --factory-startup --disable-autoexec --threads 3 --python tools/blender/port_coastal_stations.py
+```
+
+`tools/check_coastal_stations.gd` checks all 52 active mappings, exact imported
+triangle counts, material overrides, rigid scale and building/track clearance,
+and captures representative native views. `tools/check_coastal_route.gd` checks
+the actual streamed stations at Kumbalam, Turavur, Kollam, Neyyattinkara and
+Viranialur. Use the dispatcher station visitor and external free camera to
+inspect their facades, platform sides and raised-floor foundations.
+
+## Earlier ERS, TVC and Nagercoil assemblies
 
 Source: [the user's station gallery at revision 1585bc2](https://github.com/gj94/transport-fever-3-mods/blob/1585bc27960fb67d970a1b5c75208ddf53597191/south_indian_stations_v02/GALLERY.md).
 All three complete Blender masters were downloaded from that exact revision,

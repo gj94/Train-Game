@@ -43,6 +43,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	var position:=world.graph.position(t.path[0].edge,t.head_s)
 	coordinate_origin=Vector3(floorf(position.x/1024)*1024,0,floorf(position.z/1024)*1024)
 	geo=GeoData.new(world.scenery.route)
+	geo.station_sites=preload("res://game/coastal_station_sites.gd").build(world)
 	_noise_tex=NoiseTexture2D.new()
 	_noise_tex.width=256; _noise_tex.height=256; _noise_tex.seamless=true
 	var noise:=FastNoiseLite.new(); noise.frequency=.012
@@ -64,7 +65,10 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	track_template.wv=null
 	_index_track()
 	ohe_layout=preload("res://game/geographic_ohe_layout.gd").new(world)
-	for i in 2: workers.append({thread=null,job={},geo=GeoData.new(world.scenery.route)})
+	for i in 2:
+		var data:=GeoData.new(world.scenery.route)
+		data.station_sites=geo.station_sites
+		workers.append({thread=null,job={},geo=data})
 	_loading_layer=CanvasLayer.new(); _loading_layer.layer=8
 	parent.add_child(_loading_layer)
 	_loading_panel=ColorRect.new(); _loading_panel.color=Color(.035,.055,.06,.97)

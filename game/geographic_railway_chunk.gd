@@ -54,6 +54,7 @@ func build_station(index: int) -> Dictionary:
 			batch.quad("concrete",a+near+Vector3.UP*.20,b+near+Vector3.UP*.20,b+near+Vector3.UP*1.26,a+near+Vector3.UP*1.26,-right*side)
 			batch.quad("paint",a+near+right*side*.18+Vector3.UP*1.268,b+near+right*side*.18+Vector3.UP*1.268,b+near+right*side*.37+Vector3.UP*1.268,a+near+right*side*.37+Vector3.UP*1.268,Vector3.UP,Color(.78,.70,.30))
 		var shelter_half:=48.0 if station.get("through_halt",false) else 180.0
+		if station.code=="VRLR":shelter_half=0.0 # Exact authored open shelters below.
 		for s in range(ceili(e.length*.5-shelter_half),floori(e.length*.5+shelter_half),12):
 			var p:=graph.position_relative(road,s,origin)
 			var f:=graph.tangent(road,s,1)
@@ -93,10 +94,15 @@ func build_station(index: int) -> Dictionary:
 	var position:=p+right*(left_extent-26)
 	var basis:=Basis(f,Vector3.UP,right)
 	var kind: String={"ERS":"kerala_ers_entry","TVC":"kerala_tvc_heritage","NCJ":"kerala_ncj_entry"}.get(station.code,"kerala_coastal_station")
+	if preload("res://game/coastal_station_placement.gd").available(station.code):
+		var site:=preload("res://game/coastal_station_placement.gd").site(world,station,origin)
+		position=site.position;f=site.forward;right=site.right;basis=Basis(f,Vector3.UP,right)
 	if preload("res://game/authored_station.gd").available(station.code):
 		var assembly:=preload("res://game/authored_station.gd").add_building(root,station.code,position,f,right)
 		preload("res://game/geographic_station_foundation.gd").draw(batch,geo,assembly.position,assembly.basis,assembly.footprint,origin)
 		batch.box("concrete",assembly.position-Vector3.UP*.065,Vector3(assembly.footprint.x,.10,assembly.footprint.y),Color.WHITE,assembly.basis)
+		preload("res://game/coastal_station_foundation.gd").draw(batch,geo,assembly,origin)
+		if preload("res://game/coastal_station_placement.gd").available(station.code):position=assembly.position-right*assembly.footprint.y*.5
 	elif station.major or station.code in ["SRTL","VAK","NYY","KZT","ERL"]:
 		var footprint: Vector2={"ERS":Vector2(96,22),"TVC":Vector2(114,24),"NCJ":Vector2(84,24)}.get(station.code,Vector2(66,17))
 		preload("res://game/geographic_station_foundation.gd").draw(batch,geo,position,basis,footprint,origin)

@@ -3,6 +3,7 @@ extends RefCounted
 ## facade details and planting are deterministic artistic reconstruction.
 const MeshBuilder := preload("res://game/geographic_mesh.gd")
 const Foundations := preload("res://game/geographic_foundations.gd")
+const StationSites := preload("res://game/coastal_station_sites.gd")
 const Data := preload("res://game/geographic_data.gd")
 const Library := preload("res://game/scenery_library.gd")
 const Context := preload("res://game/world_view.gd")
@@ -139,6 +140,7 @@ func _road(feature: Dictionary) -> void:
 			var steps:=maxi(1,ceili(a.distance_to(b)/8.0))
 			for j in steps:
 				var p:=a.lerp(b,j/float(steps)); var q:=a.lerp(b,(j+1)/float(steps))
+				if not bridge and StationSites.contains(geo.station_sites,(p.x+q.x)*.5+origin.x,(p.z+q.z)*.5+origin.z,width*.5+4,true):continue
 				p.y=_ground(p.x,p.z)+.07; q.y=_ground(q.x,q.z)+.07
 
 				if bridge: p.y+=5.8; q.y+=5.8
@@ -173,6 +175,7 @@ func _building(feature: Dictionary) -> void:
 		var ring:=PackedVector2Array()
 		for p in poly[0]: ring.append(Vector2(p[0],p[1]))
 		if ring[0].is_equal_approx(ring[-1]): ring.remove_at(ring.size()-1)
+		if StationSites.intersect(geo.station_sites,ring,origin):continue
 		var centre:=Vector2.ZERO
 		for p in ring: centre+=p
 		centre/=ring.size()
@@ -269,6 +272,7 @@ func _planting() -> void:
 		var p:=Vector3(rng.randf_range(0,512),0,rng.randf_range(0,512))
 		var kind:=_class_at(p.x,p.z)
 		if kind in [4,5,6,7,8]: continue
+		if StationSites.contains(geo.station_sites,p.x+origin.x,p.z+origin.z,12):continue
 		var rail: Dictionary=geo.nearest_rail(p.x+origin.x,p.z+origin.z)
 		if rail.distance<(60 if rail.get("depot",false) else 27) or _near_mapped_rail(Vector2(p.x,p.z),8): continue
 		if kind==2 and i%5!=0: continue
@@ -281,6 +285,7 @@ func _planting() -> void:
 		var p:=Vector3(rng.randf_range(0,512),0,rng.randf_range(0,512))
 		var kind:=_class_at(p.x,p.z)
 		if kind in [5,6,7,8,4]: continue
+		if StationSites.contains(geo.station_sites,p.x+origin.x,p.z+origin.z,2):continue
 		var rail: Dictionary=geo.nearest_rail(p.x+origin.x,p.z+origin.z)
 		if rail.distance<(45 if rail.get("depot",false) else 15) or rail.distance>120: continue
 		p.y=_ground(p.x,p.z)

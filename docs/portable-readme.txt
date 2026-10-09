@@ -2,6 +2,15 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R15: new coastal station architecture from the reviewed Blender masters.
+52 active station models, including furnished interiors, signs and distinctive
+roof/facade details. Viranialur uses its photographed open shelters. Full visible
+geometry is retained; materials are translated for real-time rendering.
+Platforms/tracks retain the CSV game layout. Source static yards are not overlaid.
+R14 saves remain compatible. See guides/station-model-port.md for coverage.
+Playtest: visit Kumbalam, Turavur, Kollam and Neyyattinkara from the dispatcher;
+use the external free camera to inspect the frontages and supported floor bases.
+
 Kerala Coast R14: Save / Load journeys from Esc or controller Menu.
 Five numbered slots plus Quick save. Ctrl+S quick-saves; Ctrl+L opens Load.
 Trains, signal routes, dispatcher plans, passengers, timetable/depot progress,

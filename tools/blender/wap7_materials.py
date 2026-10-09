@@ -42,6 +42,17 @@ float grain(vec3 p, float detail, float rough, float lac) {
  }
  return total/max(weight,0.0001);
 }
+vec2 brick_pattern(vec3 p, float width, float height, float offset, float frequency, float squash, float squash_frequency, float mortar, float smoothness, float bias) {
+ float row=floor(p.y/max(height,0.000001));
+ float w=width*(mod(row,max(squash_frequency,1.0))<0.5 ? squash : 1.0);
+ float shift=mod(row,max(frequency,1.0))<0.5 ? offset*w : 0.0;
+ vec2 cell=vec2((p.x+shift)/max(w,0.000001),p.y/max(height,0.000001));
+ vec2 edge=min(fract(cell),1.0-fract(cell))*vec2(w,height);
+ float distance=min(edge.x,edge.y);
+ float joint=1.0-smoothstep(mortar,mortar+max(smoothness,0.00001),distance);
+ float tint=clamp(fract(sin(dot(floor(cell),vec2(12.9898,78.233)))*43758.5453)+bias,0.0,1.0);
+ return vec2(joint,tint);
+}
 vec3 bump_normal(vec3 n, vec3 p, float h, float strength) {
  vec3 px=dFdx(p), py=dFdy(p);
  vec3 r1=cross(py,n), r2=cross(n,px); float det=dot(px,r1);
@@ -109,6 +120,12 @@ class Compiler:
             expr=factor
             if name=='Color':
                 kind='vec4'; expr=f'mix({a("Color1",kind)},{a("Color2",kind)},{factor})'
+        elif t=='TEX_BRICK':
+            coord=a('Vector','vec3') if n.inputs['Vector'].is_linked else 'generated_position'
+            pattern=f'brick_pattern(({coord})*({a("Scale")}),{a("Brick Width")},{a("Row Height")},{num(n.offset)},{num(n.offset_frequency)},{num(n.squash)},{num(n.squash_frequency)},{a("Mortar Size")},{a("Mortar Smooth")},{a("Bias")})'
+            expr=f'({pattern}).x'
+            if name=='Color':
+                kind='vec4'; expr=f'mix(mix({a("Color1",kind)},{a("Color2",kind)},({pattern}).y),{a("Mortar",kind)},({pattern}).x)'
         elif t=='MATH':
             x,y,z=(a(i) for i in range(3)); op=n.operation
             expr={'ADD':f'({x}+{y})','SUBTRACT':f'({x}-{y})','MULTIPLY':f'({x}*{y})',
