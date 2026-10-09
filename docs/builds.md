@@ -164,7 +164,9 @@ fleet's rebuild instructions, scope and playtest checklist are in
 [`imported-fleet.md`](imported-fleet.md).
 
 This is a personal playtest build: see the sound provenance in `docs/assets.md`.
-No code signing, installer, save/load or automatic update system is supplied.
+Windows Authenticode signing and a system installer are not supplied. Save/Load
+is available in game. The portable Update & Play launcher now provides signed,
+resumable block updates; see [incremental-updates.md](incremental-updates.md).
 
 ## Download over the LAN
 

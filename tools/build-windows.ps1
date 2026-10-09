@@ -1,4 +1,9 @@
-param([switch]$SkipTests, [ValidatePattern('^[A-Za-z0-9_-]+$')][string]$BuildName = 'TrainGame-Windows')
+param(
+    [switch]$SkipTests,
+    [ValidatePattern('^[A-Za-z0-9_-]+$')][string]$BuildName = 'TrainGame-Windows',
+    [switch]$SkipZip,
+    [ValidateRange(0,2147483647)][int]$UpdateSequence = 0
+)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path $PSScriptRoot -Parent
 $engine = Join-Path $projectRoot '.local/godot/Godot_v4.7.2-stable_win64_console.exe'
@@ -8,6 +13,13 @@ if (-not (Test-Path $engine) -or -not (Test-Path $template)) {
 }
 $buildRoot = Join-Path $projectRoot "export/$BuildName"
 $archivePath = Join-Path $projectRoot "export/$BuildName.zip"
+# Signed block URLs are immutable, including while another PC is downloading.
+if (Test-Path -LiteralPath (Join-Path $projectRoot "export/updates/$BuildName.json")) {
+    throw 'This build is published for incremental updates. Use a new BuildName and increasing UpdateSequence.'
+}
+if ($UpdateSequence -gt 0 -and !(Test-Path -LiteralPath (Join-Path $projectRoot '.local/update-signing-private.pem'))) {
+    throw 'Restore the update signing key before publishing. See docs/incremental-updates.md.'
+}
 # The download page treats the checksum as the completion marker. A rebuild
 # must not advertise the old ZIP while export/compression is still in progress.
 if (Test-Path -LiteralPath ($archivePath + '.sha256')) {
@@ -57,10 +69,22 @@ try {
         "$( (Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash.ToLower() )  $name"
     }
     $hashes | Set-Content -LiteralPath (Join-Path $buildRoot 'SHA256SUMS.txt') -Encoding ascii
-    Compress-Archive -LiteralPath $buildRoot -DestinationPath $archivePath -CompressionLevel Optimal -Force
-    "$( (Get-FileHash -LiteralPath $archivePath -Algorithm SHA256).Hash.ToLower() )  $BuildName.zip" |
-        Set-Content -LiteralPath ($archivePath + '.sha256') -Encoding ascii
-    Get-Item $archivePath | Select-Object FullName, Length
+    if ($UpdateSequence -gt 0) {
+        & (Join-Path $PSScriptRoot 'updater/build-launcher.ps1')
+        foreach ($launcherFile in @('Update and Play.exe', 'UPDATER-README.txt')) {
+            Copy-Item -LiteralPath (Join-Path $projectRoot "export/updater/$launcherFile") -Destination (Join-Path $buildRoot $launcherFile) -Force
+        }
+    }
+    if (!$SkipZip) {
+        Compress-Archive -LiteralPath $buildRoot -DestinationPath $archivePath -CompressionLevel Optimal -Force
+        "$( (Get-FileHash -LiteralPath $archivePath -Algorithm SHA256).Hash.ToLower() )  $BuildName.zip" |
+            Set-Content -LiteralPath ($archivePath + '.sha256') -Encoding ascii
+        Get-Item $archivePath | Select-Object FullName, Length
+    }
+    if ($UpdateSequence -gt 0) {
+        & node.exe (Join-Path $PSScriptRoot 'updater/publish.mjs') "--build=$BuildName" "--sequence=$UpdateSequence"
+        if ($LASTEXITCODE -ne 0) { throw 'Incremental publication failed; previous release remains available.' }
+    }
 } finally {
     Pop-Location
 }

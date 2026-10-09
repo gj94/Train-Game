@@ -57,7 +57,7 @@ $availableBuilds = @('R18', 'R17', 'R16', 'R15', 'R14', 'R13', 'R12', 'R11', 'R1
     $archive = Join-Path $projectRoot "export/TrainGame-Kerala-Coast-$_-Windows.zip"
     (Test-Path -LiteralPath $archive) -and (Test-Path -LiteralPath "$archive.sha256")
 }
-if (!$availableBuilds) { throw 'Build a supported Windows ZIP with its checksum first.' }
+if (!$availableBuilds -and !(Test-Path -LiteralPath (Join-Path $projectRoot 'export/updates/latest.json'))) { throw 'Publish an incremental update or build a supported Windows ZIP first.' }
 $serverArgs = @('"' + $serverScript + '"', "--host=$BindAddress", "--port=$Port", "--prefix=$($ip.PrefixLength)")
 $child = Start-Process -FilePath $nodePath -ArgumentList $serverArgs -WorkingDirectory $projectRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $projectRoot '.local/lan-share.out.log') -RedirectStandardError (Join-Path $projectRoot '.local/lan-share.err.log')
 Start-Sleep -Milliseconds 800

@@ -1,10 +1,11 @@
 // Small read-only LAN download service. No dependencies or directory browsing.
 import http from 'node:http';
 import { createReadStream } from 'node:fs';
-import { stat } from 'node:fs/promises';
+import { stat, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 import { parseArgs } from 'node:util';
+import { updateRoutes } from './updater/routes.mjs';
 
 const { values } = parseArgs({ options: {
   host: { type: 'string' }, port: { type: 'string', default: '8765' },
@@ -27,7 +28,11 @@ if (!host.startsWith('192.168.') && !host.startsWith('10.') && (address >>> 20) 
 }
 const mask = (0xffffffff << (32 - prefix)) >>> 0;
 const exportRoot = fileURLToPath(new URL('../export/', import.meta.url));
+const updateEntry = updateRoutes(exportRoot);
 const files = new Map([
+  ['/TrainGame-Updater.zip', ['TrainGame-Updater.zip', 'application/zip']],
+  ['/TrainGame-Updater.zip.sha256', ['TrainGame-Updater.zip.sha256', 'text/plain; charset=utf-8']],
+  ['/updater/instructions', ['updater/UPDATER-README.txt', 'text/plain; charset=utf-8']],
   ['/TrainGame-Kerala-Coast-R18-Windows.zip', ['TrainGame-Kerala-Coast-R18-Windows.zip', 'application/zip']],
   ['/TrainGame-Kerala-Coast-R18-Windows.zip.sha256', ['TrainGame-Kerala-Coast-R18-Windows.zip.sha256', 'text/plain; charset=utf-8']],
   ['/kerala-r18/README.txt', ['TrainGame-Kerala-Coast-R18-Windows/README.txt', 'text/plain; charset=utf-8']],
@@ -147,12 +152,25 @@ const server = http.createServer(async (req, res) => {
       const stations = r15 + (r15Info ? saved.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : saved);
       const scenery = r16 + (r16Info ? stations.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : stations);
       const audio = r17 + (r17Info ? scenery.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : scenery);
-      const sections = r18 + (r18Info ? audio.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : audio);
+      let updater = '';
+      let updateVersion = '';
+      try {
+        const info = await stat(join(exportRoot, 'TrainGame-Updater.zip'));
+        await stat(join(exportRoot, 'updates/latest.json'));
+        await stat(join(exportRoot, 'TrainGame-Updater.zip.sha256'));
+        const signed = JSON.parse(await readFile(join(exportRoot, 'updates/latest.json'), 'utf8'));
+        const release = JSON.parse(Buffer.from(signed.payload, 'base64'));
+        if (!/^TrainGame-[A-Za-z0-9_-]+$/.test(release.version)) throw Error('Invalid update version');
+        updateVersion = release.version;
+        updater = `<h2>Already installed? Update only what changed</h2><p><a class="download" href="/TrainGame-Updater.zip">Get Update &amp; Play · ${(info.size / 1024).toFixed(0)} KiB</a></p><p>One-time setup: extract this tiny ZIP beside your existing <b>TrainGame.exe</b> and <b>TrainGame.pck</b>. Open <b>Update and Play.exe</b> for future releases. It keeps unchanged data in place and downloads only changed blocks. No fresh full ZIP or reinstall required.</p><p>R17 → R18 changes about 17 MB of the main game pack. Interrupted updates resume through the launcher. Saved journeys stay in place. Use <b>Play installed</b> when the host is offline.</p><p><a href="/updater/instructions">Setup and recovery guide</a> · <a href="/TrainGame-Updater.zip.sha256">Launcher SHA-256</a></p><h2>First installation / full downloads</h2>`;
+      } catch { /* The existing ZIP downloads remain available before updater publication. */ }
+      const fullDownloads = r18 + (r18Info ? audio.replaceAll('Latest:', 'Fallback:').replaceAll('Download latest build', 'Download fallback') : audio);
+      const sections = updater + (updateVersion ? `<p>Current updater release: <b>${updateVersion}</b></p>` + fullDownloads.replaceAll('Latest:', 'Full install:').replaceAll('Download latest build', 'Download full build') : fullDownloads);
       const body = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Train Game download</title><style>body{max-width:720px;margin:48px auto;padding:24px;font:18px/1.6 system-ui;background:#101c28;color:#e5edf4}a{color:#83cfff}h1{line-height:1.2}.download{display:inline-block;background:#83cfff;color:#101c28;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold}small{color:#afc0ce}</style><h1>Train Game</h1>${sections}<ol><li>Download and extract the entire ZIP.</li><li>Open <b>TrainGame.exe</b> and keep its PCK beside it.</li><li>Start a fresh scenario and press F1 for the briefing.</li></ol><p>No Godot or Blender installation is needed. Recent fallback builds are retained below the latest download; much older builds have been removed to free space.</p><small>Keep the host PC awake until your download finishes.</small></html>`;
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': Buffer.byteLength(body) });
       return res.end(req.method === 'HEAD' ? undefined : body);
     }
-    const entry = files.get(path);
+    const entry = files.get(path) ?? await updateEntry(path);
     if (!entry) return text(res, 404, 'Not found.\n', req.method);
     const file = join(exportRoot, entry[0]);
     const info = await stat(file);

@@ -1,5 +1,45 @@
 # Progress
 
+## 2026-10-09 — Incremental LAN updater
+- Added a small native Windows Update & Play launcher for existing portable
+  installations, with an editable LAN address, progress and offline Play.
+  It compares 64 KiB hashes, downloads changed ranges, and patches only those
+  ranges in place. Unchanged PCK/assets/EXE bytes are retained. Saves, preferences
+  and extra user files are untouched. No additional runtime install or admin.
+- RSA-signed catalogues, verified blocks and final file hashes, exclusive game
+  file locks, a per-installation lock, bounded paths and downgrade rejection.
+  All changed blocks are durably staged before a signed pending plan is flushed;
+  an interrupted apply resumes forward, including offline from its local cache.
+  Download failures leave existing game bytes intact. Cache is removed only after
+  verified completion; Play is blocked during an unfinished apply.
+- R17 → R18 comparison across the actual 177 exported files: 17,187,465 bytes
+  changed, including 17,148,488 in the PCK. With its 2,811,117-byte catalogue,
+  roughly 20 MB download and 40 MB logical writes (staging/apply/state), versus
+  1.68 GB ZIP download and approximately 3.71 GB ZIP-plus-extraction writes.
+  Actual SSD write amplification is not measured; savings depend on the release.
+- LAN server exposes only published manifest-listed resources, with existing
+  byte ranges and subnet restrictions. Published release names are immutable.
+  build-windows.ps1 now supports increasing UpdateSequence and SkipZip for future
+  releases. Signing private key stays in ignored .local; pinned public key is
+  committed. See docs/incremental-updates.md for release and recovery procedures.
+- All 383 headless game tests pass. Nineteen native updater fixture groups pass,
+  covering changed/no-op writes, interruption at six phases, offline recovery,
+  corruption, dropped requests, bad ranges, running-game locks, signature/path/
+  downgrade rejection, growth/shrink and server whitelisting. Live LAN catalogue,
+  PCK range hash, updater download and invalid-path checks pass. Actual launcher
+  against R18 returns zero downloaded game bytes and zero game writes. No game
+  distribution launch or re-extraction.
+- Player check: close the game, extract the tiny TrainGame-Updater.zip beside
+  the current TrainGame.exe/PCK and open Update and Play.exe. Use Update & Play
+  for future builds; use Play installed when the host is asleep. Reopen this
+  launcher after interruption; do not directly start the game during a pending
+  apply or delete .train-update. Latest game remains R18.
+- Published TrainGame-Updater.zip at the existing LAN page: 15,323 bytes,
+  SHA-256 `a8835a87d8a28c266ced5c19f42f592cfde7da65a6e635741103a60cfedad12b`.
+  Verified the downloaded launcher ZIP against its sidecar. The GUI also lets
+  players choose their existing game folder and defaults to declining a full
+  installation if the selected folder lacks its EXE or PCK.
+
 ## 2026-10-09 — R18 controller camera flow
 - Fresh starts use pilot view. From pilot the first D-pad press selects the
   matching head-out: right for right, left for left. The full reversible cycle

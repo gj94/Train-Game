@@ -45,6 +45,10 @@ To make a standalone Windows copy for another PC, run
 `powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1`.
 Matching SHA-512-verified 4.7.2 templates are in `.local/export-templates/`.
 The portable ZIP is `export/TrainGame-Windows.zip`; see `docs/builds.md`.
+Existing installations can now use the tiny `export/TrainGame-Updater.zip` from
+the LAN page. Publish routine releases with a new `-BuildName`, increasing
+`-UpdateSequence` and `-SkipZip`; see `docs/incremental-updates.md`. Preserve the
+private `.local/update-signing-private.pem` when migrating this build PC.
 
 The execution-policy option applies only to the launched process. Do not import while another editor is importing.
 For a GUI executable without a console, use `.local/godot/Godot_v4.7.2-stable_win64.exe --path . --editor`.
