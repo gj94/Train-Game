@@ -36,6 +36,13 @@
   verandas and compound walls; NCJ's northern approach for open rice parcels and
   banana planting. F4 clears the HUD. Revisit after a distant station jump to check
   deterministic placement and inspect clear roads/platforms from ground level.
+- Prepared the standalone `export/TrainGame-Kerala-Coast-R22-Windows.zip` from
+  clean source `6ff8930` (1,694,070,182 bytes). SHA-256:
+  `d24b5aa86fd790fe1e8cdaedbe82c89561b128066122e1c151b2a4caa82097ba`.
+  Release export, read-only PCK resource audit and all 186 ZIP entry CRCs passed;
+  guides/screenshots and licences are included. No extraction or game launch.
+  The signed incremental-update channel remains on R21; this is a fresh portable
+  ZIP. Source changes are committed locally and were not pushed in this session.
 
 ## 2026-10-09 — R21 formation limits and physical speed boards
 - Removed K1's 65 km/h scenario override. All 32 built-in services now use their
