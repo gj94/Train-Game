@@ -33,6 +33,12 @@
   controls before trying driving triggers. Switch back, return to pilot with a
   zoom trigger held and confirm the handle stays set. Save/load a free viewpoint.
   See `docs/controllers.md` for both layouts and the updated headlamp binding.
+- Published `TrainGame-Kerala-Coast-R18-Windows.zip` from clean source `5386b42`:
+  1,684,814,266 bytes; SHA-256
+  `8c5fcfcdc7861337962b6d0dde144d408891f9a75e5e4ff91f6574b4eac484f5`.
+  R18 is latest at `http://192.168.8.183:8765/`; verified catalogue, HEAD size,
+  HTTP 206 ZIP range, checksum sidecar, README and controller guide. Source and
+  publication record pushed to `origin/codex/port-indian-rail-assets`.
 
 ## 2026-10-09 — R17 free-camera audio receiver
 - Fixed exterior track sound listening beside the camera's orbit pivot instead
