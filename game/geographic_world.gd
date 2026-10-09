@@ -44,6 +44,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	coordinate_origin=Vector3(floorf(position.x/1024)*1024,0,floorf(position.z/1024)*1024)
 	geo=GeoData.new(world.scenery.route)
 	geo.station_sites=preload("res://game/coastal_station_sites.gd").build(world)
+	geo.vegetation_clearance=preload("res://game/vegetation_clearance.gd").build(world)
 	_noise_tex=NoiseTexture2D.new()
 	_noise_tex.width=256; _noise_tex.height=256; _noise_tex.seamless=true
 	var noise:=FastNoiseLite.new(); noise.frequency=.012
@@ -55,6 +56,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 		assets.asset(kind)
 	for kind in ["coconut_palm","mango_tree","rain_tree","verge_patch","kerala_tvc_heritage","kerala_ers_entry","kerala_ncj_entry","kerala_coastal_station","passenger_man","passenger_sari","passenger_phone","passenger_sari_blue","tea_kiosk","hatchback","auto_rickshaw","motorcycle"]:
 		assets.asset(kind)
+	assets.meshes["coastal_grass"]=[{mesh=preload("res://game/coastal_groundcover.gd").mesh(assets.material("grass")),transform=Transform3D.IDENTITY}]
 	_make_materials()
 	track_template=TrackView.new()
 	track_template.wv=self
@@ -71,6 +73,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	for i in 2:
 		var data:=GeoData.new(world.scenery.route)
 		data.station_sites=geo.station_sites
+		data.vegetation_clearance=geo.vegetation_clearance
 		workers.append({thread=null,job={},geo=data})
 	_loading_layer=CanvasLayer.new(); _loading_layer.layer=8
 	parent.add_child(_loading_layer)
@@ -107,6 +110,16 @@ func _make_materials() -> void:
 	road.set_shader_parameter("surface_rough",ph_tex("aerial_asphalt_01","rough"))
 	road.set_shader_parameter("metres",5.0)
 	materials.road=road
+	materials.station_asphalt=road.duplicate()
+	materials.station_asphalt.set_shader_parameter("road_surface",false)
+	materials.station_asphalt.set_shader_parameter("tint",Vector3(.40,.42,.41))
+	materials.station_fence=mat(Color(.13,.20,.17))
+	materials.station_boundary=ShaderMaterial.new()
+	materials.station_boundary.shader=load("res://game/shaders/station_boundary.gdshader")
+	materials.station_boundary.set_shader_parameter("concrete_albedo",ph_tex("brushed_concrete","diff"))
+	materials.station_boundary.set_shader_parameter("concrete_normal",ph_tex("brushed_concrete","nor_gl"))
+	materials.station_white=mat(Color(.78,.77,.69))
+	materials.station_drain=mat(Color(.075,.085,.08))
 	materials.road_shoulder=pbr("red_laterite_soil_stones",2.5,Color(.40,.37,.30))
 	materials.ballast=pbr("gravel_floor_02",2.0,Color(.40,.39,.35))
 	materials.metal=steel()

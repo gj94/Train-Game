@@ -2,6 +2,15 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R20: grounded station surroundings and denser coastal vegetation.
+Connected entrance paving, organised parking, crossing/ramp, drains, planting
+and precast concrete boundary fencing matching the supplied reference.
+Platform backs/ends are closed; Kumbalam no longer has a redundant footbridge.
+Nearby 3D grass, shrubs and denser trees respect tracks and platform clearance.
+Use R3 free camera to inspect Kumbalam, Turavur, Ernakulam and Virani Alur.
+See guides/station-surroundings.md. Existing saves remain compatible.
+Use Update and Play.exe to download only changed blocks.
+
 Kerala Coast R19: continuous camera movement inside every passenger coach.
 Press D-pad Down/Up to choose a coach, then use LS to move/strafe and RS to look.
 No Y press is needed. LS now moves you along the interior instead of zooming or

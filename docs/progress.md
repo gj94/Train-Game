@@ -1,5 +1,45 @@
 # Progress
 
+## 2026-10-09 — R20 grounded stations and dense coastal planting
+- Researched the Ministry of Railways' station circulation guidance; rebuilt
+  connected entrance paving, protected footways/crossings, vehicle lanes,
+  parking, planted pockets, covered drains and boundaries around the retained
+  detailed station models. Geometry remains an informed reconstruction, not a
+  surveyed redevelopment. See docs/station-surroundings.md for source and scope.
+- Shared immutable civil footprints now cover 56 station sites plus ERS east,
+  grading station compounds and excluding intersecting procedural scenery.
+  Platform rear/end faces and lower gaps are closed. Road gates connect to
+  57 accepted mapped-road links; water, houses and steep shortcuts are rejected.
+  The indexed access check avoids an initially expensive all-polygon scan.
+- Added original precast concrete palisades based on the user's fence photo,
+  with slats, bevelled heads, cross rails, weathered posts and entrance openings.
+  Outer platform boundaries exclude islands; through halts retain compact
+  facilities. Removed Kumbalam's redundant single-platform FOB and connected
+  multi-platform footbridge stairs to deck/platform, clearing canopy conflicts.
+- Added nearby instanced 3D grass, denser shrubs and a richer palm/broadleaf
+  canopy. Immutable clearance includes actual running/depot tracks, platforms
+  and signal posts. Ground cover also respects mapped buildings, roads, water,
+  cultivated fields and station compounds. Grass shares a 1,152-triangle mesh,
+  fades at 125 m in 48 m cells and casts no shadows. Trees use matching 64 m
+  geometry/impostor batches with earlier 115/175 m transitions to bound cost.
+- All 394 headless tests pass; all 15 focused surroundings checks pass after
+  final presentation adjustments. Coverage includes all-site grading, running
+  line preservation, one-platform FOB exclusion, islands, access/water/building
+  rejection, open shelters, grass mesh budget and track/platform/depot clearance.
+  Reviewed native source forecourt/platform/ground views at KUMM, TUVR, ERS,
+  TVC and VRLR, including close-up entrances. No distribution launch/extraction.
+  Known sandbox certificate/shader-cache warnings remain; no script/shader
+  failures in the successful capture runs.
+- Dense first-pass vegetation was too expensive; tightened geometry cells and
+  distance transitions. Final Kumbalam source captures report 15.7–16.6 million
+  rendered primitives versus 23.8–27.7 million in the first dense pass. These
+  are scene counters including shadows, not an FPS guarantee for the user's PC.
+- Player check: use R3 free camera at Kumbalam, Turavur and Ernakulam to inspect
+  building bases, closed platform edges, gates, parking and concrete fencing.
+  Check Turavur's stairs/canopy and Virani Alur's open-shelter boundary, then
+  travel beside the dense verge and check clear ballast/platforms and smooth
+  vegetation distance transitions. Existing saves/operating CSV remain intact.
+
 ## 2026-10-09 — R19 movement in D-pad-selected coach interiors
 - Fixed the missed passenger-camera context in R18: automatic LS movement entry
   only handled the driver's cab. D-pad-selected coach views still zoomed in the

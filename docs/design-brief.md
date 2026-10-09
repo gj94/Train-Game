@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **9 Oct 2026 station setting:** grounded station compounds with controlled
+  entrances, connected pedestrian/vehicle circulation and precast concrete
+  boundary fencing matching the supplied reference. Dense Kerala planting and
+  nearby 3D grass must respect actual tracks, platforms and mapped obstacles,
+  with distance transitions to contain the rendering cost.
 - **9 Oct 2026 camera flow:** pilot by default; left/right from pilot enters the
   matching head-out before cycling. Up/down moves one coach toward loco/tail
   without wrapping. LS moves continuously inside the cab or selected passenger

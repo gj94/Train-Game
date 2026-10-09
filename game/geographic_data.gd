@@ -10,6 +10,7 @@ var segments := []
 var tile_keys := {}
 var station_bins := {}
 var station_sites := {}
+var vegetation_clearance
 var operating_ways := {}
 var bridge_bins := {}
 var bridges: Array = []

@@ -15,7 +15,7 @@ const TREES := {
 	"mango_tree":Vector2(12.399399,3.950090),
 	"rain_tree":Vector2(15.785943,4.540256),
 	"tree_small_02":Vector2(6.295639,2.275827)}
-const TREE_DETAIL_DISTANCE := 270.0
+const TREE_DETAIL_DISTANCE := 175.0
 var bounds := []
 var catalog: Dictionary = {}
 func _init(world_view=null) -> void:
@@ -134,7 +134,7 @@ func _flush_geometry() -> void:
 		for part in asset(kind):
 			var transforms:=[]
 			for placement in placements[kind]: transforms.append(placement*part.transform)
-			for group in Cells.split(transforms,128.0 if TREES.has(kind) or kind in ["grass_tuft","verge_patch","reeds","shrub"] else 256.0).values():
+			for group in Cells.split(transforms,48.0 if kind=="coastal_grass" else (64.0 if TREES.has(kind) else (128.0 if kind in ["grass_tuft","verge_patch","reeds","shrub"] else 256.0))).values():
 				var mm:=MultiMesh.new()
 				mm.transform_format=MultiMesh.TRANSFORM_3D
 				mm.use_custom_data=true
@@ -153,15 +153,16 @@ func _flush_geometry() -> void:
 				batch.multimesh=mm
 				batch.visibility_range_end=_range(kind)
 				batch.visibility_range_end_margin=28 if TREES.has(kind) else 35
-				if TREES.has(kind) or kind=="verge_patch": batch.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
-				if kind in ["grass_tuft","verge_patch","reeds"]: batch.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				if TREES.has(kind) or kind in ["verge_patch","coastal_grass"]: batch.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
+				if kind in ["grass_tuft","verge_patch","coastal_grass","reeds"]: batch.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 				if kind in ["mango_tree","rain_tree"]: batch.lod_bias=1.0
 				view.root.add_child(batch)
 func _range(kind: String) -> float:
-	if kind=="tree_small_02": return 150.0
+	if kind in ["tree_small_02","mango_tree","rain_tree"]: return 115.0
 	if TREES.has(kind): return TREE_DETAIL_DISTANCE
 	if kind.begins_with("passenger_"): return 350.0
 	if kind=="telecom_mast": return 3500
+	if kind=="coastal_grass": return 125
 	if kind=="verge_patch": return 150
 	if kind=="grass_tuft": return 135
 	if kind=="reeds": return 210
@@ -180,7 +181,7 @@ func _flush_impostors(kind: String) -> void:
 	mat.set_shader_parameter("colour_atlas",load(ROOT+"impostors/"+kind+"_albedo.png"))
 	mat.set_shader_parameter("normal_atlas",load(ROOT+"impostors/"+kind+"_normal.png"))
 	mesh.material=mat
-	for group in Cells.split(placements[kind],128).values():
+	for group in Cells.split(placements[kind],64).values():
 		var mm:=MultiMesh.new()
 		mm.transform_format=MultiMesh.TRANSFORM_3D
 		mm.mesh=mesh

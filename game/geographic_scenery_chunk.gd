@@ -72,7 +72,7 @@ func _ground(x: float,z: float) -> float:
 	var key:=Vector2(x,z)
 	if ground_samples.has(key):return ground_samples[key]
 	var height: float=geo.ground_at(origin.x+x,origin.z+z)
-	if _class_at(x,z)==4:
+	if _class_at(x,z)==4 and not StationSites.contains(geo.station_sites,origin.x+x,origin.z+z):
 		for water in water_levels:
 			if _inside(Vector2(x,z),water.geometry): height=minf(height,water.height-.5)
 	ground_samples[key]=height
@@ -143,7 +143,7 @@ func _road(feature: Dictionary) -> void:
 			var steps:=maxi(1,ceili(a.distance_to(b)/8.0))
 			for j in steps:
 				var p:=a.lerp(b,j/float(steps)); var q:=a.lerp(b,(j+1)/float(steps))
-				if not bridge and StationSites.contains(geo.station_sites,(p.x+q.x)*.5+origin.x,(p.z+q.z)*.5+origin.z,width*.5+4,true):continue
+				if not bridge and StationSites.road_blocked(geo.station_sites,(p.x+q.x)*.5+origin.x,(p.z+q.z)*.5+origin.z,width*.5):continue
 				p.y=_ground(p.x,p.z)+.07; q.y=_ground(q.x,q.z)+.07
 
 				if bridge: p.y+=5.8; q.y+=5.8
@@ -293,28 +293,31 @@ func _register_occupied(features: Array) -> void:
 				for i in range(1,line.size()):
 					occupancy.add_road(Vector2(line[i-1][0],line[i-1][1]),Vector2(line[i][0],line[i][1]),half_width+1)
 func _planting() -> void:
-	for i in 650:
+	for i in 1800:
 		var p:=Vector3(rng.randf_range(0,512),0,rng.randf_range(0,512))
 		var kind:=_class_at(p.x,p.z)
 		if kind in [4,5,6,7,8]: continue
 		if StationSites.contains(geo.station_sites,p.x+origin.x,p.z+origin.z,12):continue
 		var rail: Dictionary=geo.nearest_rail(p.x+origin.x,p.z+origin.z)
-		if rail.distance<(60 if rail.get("depot",false) else 27) or _near_mapped_rail(Vector2(p.x,p.z),8): continue
-		if kind==2 and i%5!=0: continue
+		if rail.distance<14 or _near_mapped_rail(Vector2(p.x,p.z),9):continue
+		if geo.vegetation_clearance!=null and not geo.vegetation_clearance.clear(Vector2(p.x+origin.x,p.z+origin.z),5.5):continue
+		if kind==2 and i%9!=0:continue
 		if not occupancy.clear(Vector2(p.x,p.z),3.5):continue
 		p.y=Foundations.surface_height(_ground,p.x,p.z)
-		var choice: String=["coconut_palm","coconut_palm","coconut_palm","coconut_palm","young_palm","young_palm","tree_small_02","mango_tree","rain_tree"][rng.randi_range(0,8)]
+		var choice: String=["coconut_palm","coconut_palm","young_palm","tree_small_02","tree_small_02","mango_tree","mango_tree","rain_tree","rain_tree"][rng.randi_range(0,8)]
 		if kind==3 and rng.randf()<.55: choice="rain_tree"
 		var scale:=rng.randf_range(.72,1.28)
 		library.place(choice,p,rng.randf()*TAU,Vector3.ONE*scale)
-	for i in 1200:
+	for i in 2200:
 		var p:=Vector3(rng.randf_range(0,512),0,rng.randf_range(0,512))
 		var kind:=_class_at(p.x,p.z)
 		if kind in [5,6,7,8,4]: continue
 		if StationSites.contains(geo.station_sites,p.x+origin.x,p.z+origin.z,2):continue
 		var rail: Dictionary=geo.nearest_rail(p.x+origin.x,p.z+origin.z)
-		if rail.distance<(45 if rail.get("depot",false) else 15) or rail.distance>120: continue
+		if rail.distance<8 or rail.distance>130:continue
+		if geo.vegetation_clearance!=null and not geo.vegetation_clearance.clear(Vector2(p.x+origin.x,p.z+origin.z),2.5):continue
 		if not occupancy.clear(Vector2(p.x,p.z),2.5) or _near_mapped_rail(Vector2(p.x,p.z),5):continue
 		p.y=Foundations.surface_height(_ground,p.x,p.z)
-		var choice: String="verge_patch" if i%4!=0 else "shrub"
+		var choice: String="shrub" if i%3!=0 else "reeds"
 		library.place(choice,p,rng.randf()*TAU,Vector3.ONE*rng.randf_range(.7,1.25))
+	preload("res://game/coastal_vegetation.gd").groundcover(self)

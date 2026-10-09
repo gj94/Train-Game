@@ -1,28 +1,8 @@
 extends RefCounted
 ## Immutable station footprints shared by terrain/scenery workers.
-const Placement:=preload("res://game/coastal_station_placement.gd")
 static func build(world: RailWorld) -> Dictionary:
-	var bins:={}
-	for station in world.stations:
-		if not Placement.available(station.code):continue
-		var code:=Placement.asset_code(station.code).to_lower()
-		var source: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ported/station_"+code+"_detail/provenance.json"))
-		var site:=Placement.site(world,station,Vector3.ZERO)
-		var assembly:=Placement.layout(site.position,site.forward,site.right,source.source_bounds,source.placement)
-		var size: Vector2=assembly.footprint
-		var p: Vector3=assembly.position
-		var right: Vector3=assembly.basis.z
-		var yard: bool=not station.get("through_halt",false)
-		var centre: Vector3=p-right*(15 if yard else 0)
-		var extent:=Vector2(maxf(size.x,100 if yard else 0)+4,size.y+(32 if yard else 4))
-		var zone:={centre=centre,basis=assembly.basis,extent=extent,solid_centre=p,solid_extent=size+Vector2.ONE*2,height=p.y-.10,code=station.code}
-		var radius:=extent.length()*.5+15
-		for x in range(floori((centre.x-radius)/512),floori((centre.x+radius)/512)+1):
-			for z in range(floori((centre.z-radius)/512),floori((centre.z+radius)/512)+1):
-				var key:=Vector2i(x,z)
-				if not bins.has(key):bins[key]=[]
-				bins[key].append(zone)
-	return bins
+	return preload("res://game/station_precinct_plan.gd").build(world)
+
 
 static func contains(bins: Dictionary,x: float,z: float,margin: float=0,solid: bool=false) -> bool:
 	for zone in bins.get(Vector2i(floori(x/512),floori(z/512)),[]):
@@ -51,9 +31,12 @@ static func intersect(bins: Dictionary,ring: PackedVector2Array,origin: Vector3)
 		if not Geometry2D.intersect_polygons(ring,polygon).is_empty():return true
 	return false
 
-static func ground(bins: Dictionary,x: float,z: float,height: float) -> float:
+static func road_blocked(bins: Dictionary,x: float,z: float,margin: float) -> bool:
 	for zone in bins.get(Vector2i(floori(x/512),floori(z/512)),[]):
+		if zone.get("access_zone",false):continue
 		var p: Vector3=Vector3(x,zone.centre.y,z)-zone.centre
-		if absf(p.dot(zone.basis.x))<=zone.extent.x*.5 and absf(p.dot(zone.basis.z))<=zone.extent.y*.5:
-			return minf(height,zone.height)
-	return height
+		if absf(p.dot(zone.basis.x))<zone.extent.x*.5+margin and absf(p.dot(zone.basis.z))<zone.extent.y*.5+margin:return true
+	return false
+
+static func ground(bins: Dictionary,x: float,z: float,height: float) -> float:
+	return preload("res://game/station_precinct_plan.gd").ground(bins,x,z,height)

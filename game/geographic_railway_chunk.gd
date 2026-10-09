@@ -50,12 +50,14 @@ func build_station(index: int) -> Dictionary:
 			var right:=graph.tangent(road,s,1).cross(Vector3.UP)
 			var near:=right*side*2.02
 			var far_edge:=right*side*platform_far
+			preload("res://game/station_platform_civil.gd").edge(batch,geo,a,b,right,side,detail.platform_width,origin,s==ceili(start),s+8>=floori(end))
 			batch.quad("platform",a+near+Vector3.UP*1.26,b+near+Vector3.UP*1.26,b+far_edge+Vector3.UP*1.26,a+far_edge+Vector3.UP*1.26,Vector3.UP)
 			batch.quad("concrete",a+near+Vector3.UP*.20,b+near+Vector3.UP*.20,b+near+Vector3.UP*1.26,a+near+Vector3.UP*1.26,-right*side)
 			batch.quad("paint",a+near+right*side*.18+Vector3.UP*1.268,b+near+right*side*.18+Vector3.UP*1.268,b+near+right*side*.37+Vector3.UP*1.268,a+near+right*side*.37+Vector3.UP*1.268,Vector3.UP,Color(.78,.70,.30))
 		var shelter_half:=48.0 if station.get("through_halt",false) else 180.0
 		if station.code=="VRLR":shelter_half=0.0 # Exact authored open shelters below.
 		for s in range(ceili(e.length*.5-shelter_half),floori(e.length*.5+shelter_half),12):
+			if preload("res://game/station_platform_civil.gd").has_bridge(station) and s-e.length*.5>50 and s-e.length*.5<82:continue
 			var p:=graph.position_relative(road,s,origin)
 			var f:=graph.tangent(road,s,1)
 			var right:=f.cross(Vector3.UP)
@@ -80,6 +82,7 @@ func build_station(index: int) -> Dictionary:
 			batch.box("sign",position+Vector3.UP*3.45,Vector3(5.6,1.5,.10),Color(.91,.72,.20),basis)
 			for x in [-2.4,2.4]: batch.box("concrete",position+basis.x*x+Vector3.UP*2.45,Vector3(.13,2.4,.13))
 			preload("res://game/station_nameboard.gd").add(root,station,position+Vector3.UP*3.45,basis)
+	preload("res://game/station_platform_civil.gd").perimeter(batch,geo,world,station,origin)
 	# Frontage runs along the railway, with the distinctive entrance facing out.
 	var road: String=station.platform_tracks[0]
 	var midpoint: float=graph.edges[road].length*.5
@@ -120,32 +123,12 @@ func build_station(index: int) -> Dictionary:
 		for x in range(-7,8,3):
 			batch.box("architecture",position+f*x-right*4.03+Vector3.UP*1.8,Vector3(1.3,1.8,.06),Color(.1,.16,.17,4.0/15.0),basis)
 	if station.get("through_halt",false):
+		preload("res://game/station_precinct_view.gd").halt_boundary(batch,geo,station,origin)
 		batch.finish(root,materials,"Railway")
 		return {node=root,origin=origin}
 	_add_authored_annexes(station,p,f,right,right_extent)
-	# Passenger bridge with open balustrades and supported stairs, clear of OHE.
-	var bridge_s: float=midpoint+60
-	var bridge_p:=graph.position_relative(road,bridge_s,origin)
-	var bridge_f:=graph.tangent(road,bridge_s,1)
-	var bridge_right:=bridge_f.cross(Vector3.UP)
-	var left:=left_extent-7
-	var width:=right_extent+7
-	batch.beam("concrete",bridge_p+bridge_right*left+Vector3.UP*8.05,bridge_p+bridge_right*width+Vector3.UP*8.05,3.2,Color.WHITE,.35)
-	for lateral in [left+1,width-1]:
-		var base: Vector3=bridge_p+bridge_right*lateral
-		for along in [-1.25,1.25]:
-			batch.box("metal",base+bridge_f*along+Vector3.UP*4.5,Vector3(.22,8.7,.22))
-		for step in 39:
-			var y:=1.3+step*.175
-			var centre: Vector3=base+bridge_f*(2+step*.28)
-			batch.box("concrete",centre+Vector3.UP*y,Vector3(2.1,.16,.30),Color.WHITE,Basis.looking_at(bridge_f))
-	for k in range(0,ceili((width-left)/.35)):
-		var centre:=bridge_p+bridge_right*(left+k*.35)+Vector3.UP*8.65
-		for side in [-1,1]: batch.box("metal",centre+bridge_f*side*1.5,Vector3(.04,1.1,.04))
-	for side in [-1,1]: batch.beam("metal",bridge_p+bridge_right*left+bridge_f*side*1.5+Vector3.UP*9.2,bridge_p+bridge_right*width+bridge_f*side*1.5+Vector3.UP*9.2,.06)
-	# Forecourt paving, waiting passengers and small platform kiosks.
-	batch.box("forecourt",position-right*15-Vector3.UP*.02,Vector3(100,.18,13),Color.WHITE,basis)
-	preload("res://game/geographic_station_foundation.gd").draw(batch,geo,position-right*15-Vector3.UP*.10,basis,Vector2(100,13),origin)
+	preload("res://game/station_platform_civil.gd").bridge(batch,world,station,origin)
+
 	var context:=Context.new(); context.root=root
 	var props:=Library.new(context); props.meshes=assets.meshes; props.finishes=assets.finishes
 	var rng:=RandomNumberGenerator.new(); rng.seed=hash(station.code)
@@ -155,40 +138,21 @@ func build_station(index: int) -> Dictionary:
 		if detail.platform_width<=0:continue
 		var side: float=detail.platform_side
 		for i in (8 if station.major else 4):
-			var s: float=edge.length*.5+rng.randf_range(-240,240)
+			var s: float=edge.length*.5+(-160+i*38 if station.major else -75+i*45)
 			var forward:=graph.tangent(eid,s,1)
-			var at:=graph.position_relative(eid,s,origin)+forward.cross(Vector3.UP)*side*rng.randf_range(2.4,2.02+detail.platform_width-.3)+Vector3.UP*1.27
+			var at:=graph.position_relative(eid,s,origin)+forward.cross(Vector3.UP)*side*(2.02+maxf(.8,detail.platform_width-.9))+Vector3.UP*1.27
 			props.place(["passenger_man","passenger_sari","passenger_phone","passenger_sari_blue"][i%4],at,rng.randf()*TAU)
 		var at:=graph.position_relative(eid,edge.length*.5-110,origin)
 		var forward:=graph.tangent(eid,edge.length*.5-110,1)
-		if detail.platform_width>=3:
+		if detail.platform_width>=4.4:
 			props.place("tea_kiosk",at+forward.cross(Vector3.UP)*side*(2.02+detail.platform_width*.6)+Vector3.UP*1.27,atan2(forward.x,forward.z))
-	for i in 14 if station.major else 5:
-		props.place("auto_rickshaw" if i%3==0 else "hatchback",position-right*15+f*(-38+i*5),atan2(right.x,right.z))
-	_forecourt_details(position,f,right,basis,props)
+	preload("res://game/station_precinct_view.gd").draw(batch,geo,world,station,origin,props)
 	props.flush()
 	batch.finish(root,materials,"Railway")
 	return {node=root,origin=origin}
 
-func _forecourt_details(p: Vector3,f: Vector3,right: Vector3,basis: Basis,props) -> void:
-	# All planting/furniture stays within the existing reserved 100 x 13 m apron.
-	for x in [-46,-27,27,46]:
-		var at: Vector3=p+f*x-right*20
-		batch.box("concrete",at+Vector3.UP*.28,Vector3(3.3,.5,1.6),Color.WHITE,basis)
-		batch.box("road_shoulder",at+Vector3.UP*.54,Vector3(3.0,.04,1.3),Color.WHITE,basis)
-		for offset in [-.9,0,.9]:
-			props.place("shrub",at+f*offset+Vector3.UP*.54,float(x),Vector3(.65,.55,.65))
-	for x in range(-48,49,4):
-		if abs(x)<8:continue # pedestrian entrance
-		var at: Vector3=p+f*x-right*9
-		batch.box("metal",at+Vector3.UP*.52,Vector3(.09,1.04,.09),Color.WHITE,basis)
-		batch.box("paint",at+Vector3.UP*.85,Vector3(.11,.12,.11),Color.WHITE,basis)
-	for x in range(-44,45,5):
-		if abs(x)<8:continue
-		var at: Vector3=p+f*x-right*16+Vector3.UP*.08
-		batch.box("paint",at,Vector3(.07,.012,4.4),Color.WHITE,basis)
-	for side in [-1,1]:
-		batch.box("concrete",p+f*side*29-right*21.35+Vector3.UP*.08,Vector3(41,.18,.26),Color.WHITE,basis)
+
+
 func _label(text: String,position: Vector3,basis: Basis,pixel: float,color: Color,distance: float) -> void:
 	var label:=Label3D.new()
 	var font:=SystemFont.new(); font.font_names=PackedStringArray(["Nirmala UI","Arial"])

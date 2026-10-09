@@ -22,8 +22,11 @@ func test_planting_clearance_crosses_tile_boundary():
 	if not Sites.contains(data,535,510,12):return "Tree crown intrudes from adjacent tile"
 	return not Sites.contains(data,550,510,12)
 
-func test_ground_infill_does_not_raise_lower_terrain_or_affect_outside():
+func test_ground_grades_station_site_without_changing_outside():
 	var data:=bins()
 	if not is_equal_approx(Sites.ground(data,510,510,6),1.8):return "Terrain would bury the station plinth"
-	if not is_equal_approx(Sites.ground(data,510,510,-1),-1):return "Lower ground was raised instead of using a retaining foundation"
+	if not is_equal_approx(Sites.ground(data,510,510,-1),1.8):return "Station slab is perched over unfilled lower ground"
+	if not is_equal_approx(Sites.ground(data,510,526,-1),-1):return "Grading extended inward toward running tracks"
+	var blend:=Sites.ground(data,536,510,-1)
+	if blend<=-1 or blend>=1.8:return "Station embankment has no transition to natural terrain"
 	return is_equal_approx(Sites.ground(data,600,600,6),6)
