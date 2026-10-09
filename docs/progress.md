@@ -25,6 +25,12 @@
   RS looks, A passes prompted interior doorways, and L3 returns to pilot. Repeat
   in middle/tail coaches on a moving train and check that the viewpoint stays
   inside the chosen carriage through curves. No Y press is required.
+- Published R19 from clean source `53560c5` as signed update sequence 19 at
+  `http://192.168.8.183:8765/`, without another full ZIP. R18 → R19 changes
+  15,485,239 bytes across the installed files; 18,296,356 bytes including the
+  signed catalogue (about 18.3 MB download). Verified the public-key signature,
+  latest-page selection, a changed PCK range/hash, updated controller guide and
+  clean source metadata. Source and publication record pushed to GitHub.
 
 ## 2026-10-09 — Incremental LAN updater
 - Added a small native Windows Update & Play launcher for existing portable
