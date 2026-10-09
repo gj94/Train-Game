@@ -26,6 +26,13 @@
   service while retaining your driving assignment. L3 returns to pilot; cycle
   to passenger to compare the existing interior mix. Existing R14-R16 saves work.
   See `docs/enhanced-audio.md` for checks and reproduction steps.
+- Published `TrainGame-Kerala-Coast-R17-Windows.zip` from clean source `8efaf41`:
+  1,684,802,418 bytes; SHA-256
+  `851636d2b1be45f950fcff1b99dbc5aba17dd20f4f57bbfdad476fd8aa4afd1b`.
+  R17 is the sole latest entry at `http://192.168.8.183:8765/`. Verified HTTP
+  HEAD size, byte-range ZIP download, checksum sidecar, README and audio guide.
+  Existing builds remain fallbacks. Source pushed to
+  `origin/codex/port-indian-rail-assets`; no distribution launch or extraction.
 
 ## 2026-10-09 — R16 coastal graphics
 - Connected the detailed scenery kit to suitable mapped building footprints;
