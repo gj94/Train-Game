@@ -21,10 +21,11 @@ func run(owner) -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	Engine.max_fps=0
 	RenderingServer.viewport_set_measure_render_time(get_viewport().get_viewport_rid(),true)
+	DisplayServer.window_move_to_foreground()
 	for name in ClassDB.class_get_integer_constant_list("Performance"):
 		if "PIPELINE_COMPILATIONS" in name:_pipeline_monitors.append({name=name,id=ClassDB.class_get_integer_constant("Performance",name)})
 	var pipeline_names:=PackedStringArray(_pipeline_monitors.map(func(m):return m.name))
-	_csv.store_line(HEADER+(","+",".join(pipeline_names) if not pipeline_names.is_empty() else ""))
+	_csv.store_line(HEADER+",window_focused,window_mode"+(","+",".join(pipeline_names) if not pipeline_names.is_empty() else ""))
 	var settings:={}
 	for property in ProjectSettings.get_property_list():
 		if str(property.name).begins_with("rendering/"):settings[property.name]=ProjectSettings.get_setting(property.name)
@@ -143,6 +144,7 @@ func _sample(phase: String) -> Array:
 		Performance.get_monitor(Performance.MEMORY_STATIC),Performance.get_monitor(Performance.OBJECT_NODE_COUNT),Performance.get_monitor(Performance.OBJECT_RESOURCE_COUNT),
 		active,game.wv.queue.size(),game.wv._activating.size(),game.wv.loaded.size(),game.wv._warm.size(),game.wv.cache_hits,game.wv.completed_jobs,
 		int(game.wv.loading),game.train_views.size(),game.world.trains.size(),game.world.time,game.train.speed,camera.x,camera.y,camera.z,pipelines]
+	row.append_array([int(DisplayServer.window_is_focused()),DisplayServer.window_get_mode()])
 	row.append_array(compilation_counts)
 	return row
 
@@ -154,8 +156,10 @@ func _save_case(label: String,samples: Array,began: int) -> void:
 		for sample in samples:values.append(sample[column])
 		result.metrics[headers[column]]=stats(values)
 	result.loading_frames=0
+	result.unfocused_frames=0
 	for sample in samples:
 		result.loading_frames+=sample[30]
+		result.unfocused_frames+=int(sample[39]==0)
 		_csv.store_csv_line(PackedStringArray(sample.map(func(value):return str(value))))
 	_csv.flush()
 	result.completed_jobs=samples[-1][29]-samples[0][29]

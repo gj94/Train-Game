@@ -81,7 +81,9 @@ try {
             $arguments+=@('--','--benchmark',('"--benchmark-output='+$output.Replace('\','/')+'"'))
             if ($Quick) { $arguments+='--benchmark-quick' }
             Write-Host "Running $label. Leave the game focused; it controls the cameras and exits automatically."
-            $gameProcess=Start-Process -FilePath $Executable -ArgumentList $arguments -PassThru -WindowStyle Hidden
+            # This is the visible game under test. Helpers remain hidden; keeping
+            # the game foreground avoids driver background-app FPS limits.
+            $gameProcess=Start-Process -FilePath $Executable -ArgumentList $arguments -PassThru -WindowStyle Normal
             $started=[DateTime]::UtcNow
             $lastTime=$started
             $lastCpu=0.0
@@ -134,6 +136,8 @@ try {
                 $result=Get-Content -LiteralPath $output -Raw | ConvertFrom-Json
                 $results.Add([pscustomobject]@{run=$label;exit_code=$exitCode;report=$result})
                 if (!$result.complete) { $allPassed=$false;$warnings.Add("$label did not complete all stages.") }
+                $unfocused=($result.cases | Measure-Object -Property unfocused_frames -Sum).Sum
+                if ($unfocused -gt 0) { $warnings.Add("$label contains $unfocused unfocused frames; driver background limits may affect those samples.") }
                 $expected=$sizes[$resolutionName].Split('x')
                 if ($result.resolution[0] -ne [int]$expected[0] -or $result.resolution[1] -ne [int]$expected[1]) {
                     $warnings.Add("$label ran at a different window size. Use the actual resolution recorded in its report.")

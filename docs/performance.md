@@ -45,7 +45,7 @@ mode as a quality setting. `-Quick` is a developer validation run, not a benchma
   CPU/GPU render time, engine/game/simulation/train/crowd/HUD/audio-control costs,
   draw calls, primitives, graphics allocations, object counts, active workers,
   backlog, activation queue, residency, cache hits, simulation/camera state and
-  available pipeline-compilation counters.
+  focus/window state and individual pipeline-compilation counters.
 - **Each run's jobs.json**: request/submission/start/completion times for scenery
   and station preparation, cancellation state, and main-thread activation events.
 - **system-telemetry.jsonl**: timestamped process CPU/core use, RAM, thread/handle
