@@ -27,7 +27,7 @@ establish that the whole northern coastal line is in double-line operation.
 The game snapshot is not certification of every commissioning change after
 those sources; see the station audit for unresolved infrastructure details.
 
-- The default is K1 among **32 scheduled passenger workings**. The others use AI;
+- The default is K1 among **100 scheduled passenger workings**. The others use AI;
   automatic dispatch also requests routes for your manually driven train.
 - The top-right HUD shows the next scheduled station, distance in **metres**
   and approximate **in-game minutes**, replacing the camera label. Estimates
@@ -56,7 +56,7 @@ those sources; see the station audit for unresolved infrastructure details.
   this exact track/signalling graph. Use the route's platform identifiers and
   allow several hours for a full journey. Rehearsal is independent of the live
   run; it can take time on this full-scale route. Exported stop markers retain
-  their exact positions. Up to 64 services and 64 stops per service are supported.
+  their exact positions. Up to 256 services and 64 stops per service are supported.
   Set priority from 1–100 (higher first) and a service speed cap.
   Begin at a station with a departure signal; unsignalled halts can be
   intermediate or final stops, not service origins.
@@ -68,28 +68,14 @@ those sources; see the station audit for unresolved infrastructure details.
   The pause menu has direct rate buttons. Streaming can pause advancement when
   scenery is not ready; high rates are subject to the PC's simulation capacity.
 
-These are designed game services, **not published Indian Railways timetables**:
-
-| ID | Working | Departure | Priority |
-|---|---|---|---:|
-| K1 | WAP-7 + ICF all-stop passenger, Ernakulam–Nagercoil, 110 km/h equipment limit | 08:00 | 20 |
-| K2 | Northbound LHB, Turavur–Ernakulam | 08:00 | 70 |
-| K3 | Vande Bharat 8, Kumbalam–Nagercoil | 08:18 | 95 |
-| K4 | Northbound ICF, Ambalappuzha–Ernakulam | 08:45 | 40 |
-| K5 | Vande Bharat 16, Cherthala–Nagercoil | 09:08 | 100 |
-| K6 | Priority LHB, Kayamkulam–Kollam | 10:58 | 80 |
-| K7 | Northbound LHB, Eraniel–TVC | 13:30 | 65 |
-
-K8–K32 add 25 regional workings: southbound intercity, passenger and VB trains
-between Ernakulam and Kadakavur, and northbound services between Nagercoil Town
-and Ernakulam. Departures span 08:10–14:30, with priorities 30–100. Their exact
-origins, calls, departures and priorities are in `sim/timetables/kerala_regional.json`
-and visible in F1, the dispatcher roster and F5. Each starts in a separate road;
-destinations use separately allocated roads so completed services do not stack
-on the same terminal block. All 32 exist from the start and remain simulated.
-Nearby models/audio load within 3.2 km and unload beyond 4.5 km; your assigned
-train and a train being viewed stay loaded. This does not remove distant trains
-from the dispatcher or signalling.
+The current [100-service operating day](busy-timetable.md) has 24 full ERS–NCJ
+workings, including one VB in each direction, 12 ERS–TVC intercity workings and
+64 regional workings. Both VBs stop at ERS, ALLP, KYJ, QLN, TVC, KZT and NCJ.
+The timetable is an authored game scenario, not the published railway timetable.
+Future services enter a clear origin berth near departure; completed stock runs
+to depot. The old 32-train scenario remains a graphics benchmark/legacy fixture.
+Detailed train models/audio stream near the observer while the complete railway
+continues to simulate, independently of what is visible.
 
 Select K1 on the desk to drive the slow passenger. Meets and overtakes are
 chosen from current positions, expected arrivals, booked release times,
@@ -97,7 +83,7 @@ reachable roads and priorities. They are not fixed events. If you run late,
 expresses proceed when they have a safe route; they do not wait for a scripted
 overtake. At a single-line crossing the first approaching train is assigned an
 available loop. A booked origin, occupied road or already committed route can
-constrain that choice. Final trains remain at their destination roads.
+constrain that choice. Finished trains unload and run under signals to depot.
 
 Single and double main-line sections have automatic blocks roughly 1 km apart.
 On single line, a direction lock covers the whole interval between passing
@@ -192,7 +178,7 @@ Native inspection: `tools/check_kerala_geography.gd`; long AI rehearsal:
    after a stop. Check red-signal waits, departure times,
    and the cadence of joints from pilot and passenger views.
 2. In D, select TVC then VISIT YARD. Inspect its frontage and platforms; repeat
-   ERS and NCJ. F returns to your service. Switch directly between K1 and K7 to
+   ERS and NCJ. F returns to your service. Switch directly between K1 and an active NCJ service to
    exercise a transfer across the whole map.
 3. Ride K1 south of Kumbalam across the long Aroor backwater bridge. Check shore
    alignment, deck clearance, OHE and distant water as the train moves.

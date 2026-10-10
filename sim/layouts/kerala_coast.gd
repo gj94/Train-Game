@@ -3,6 +3,7 @@ extends RefCounted
 ## Pure data/simulation: no scene nodes, GPU resources or view state.
 const ROOT := "res://data/routes/kerala_coast/"
 const Stock := preload("res://sim/stock/ported_stock.gd")
+const Busy := preload("res://sim/timetables/kerala_busy.gd")
 const SERVICE_COUNT := 32
 static var _source := {}
 var data: Dictionary
@@ -293,6 +294,7 @@ static func build_traffic(busy: bool = false) -> RailWorld:
 	for station in w.stations: stations[station.code] = station
 	var departures:={"K1":"08:00","K2":"08:00","K3":"08:18","K4":"08:45","K5":"09:08","K6":"10:58","K7":"13:30"}
 	var priorities:={"K1":20,"K2":70,"K3":95,"K4":40,"K5":100,"K6":80,"K7":65}
+	var profiles := {}
 	# Fictional regional workings spread encounters across the full stopping run.
 	# Unique origin and terminating loop roads keep through mains available.
 	var regional: Array=JSON.parse_string(FileAccess.get_file_as_string("res://sim/timetables/kerala_regional.json"))
@@ -302,11 +304,13 @@ static func build_traffic(busy: bool = false) -> RailWorld:
 		priorities[row[0]]=int(row[8])
 	if busy:
 		definitions.clear()
-		for row in preload("res://sim/timetables/kerala_busy.gd").definitions(w):
+		for row in Busy.definitions(w):
 			definitions.append(row.slice(0,7));departures[row[0]]=row[7];priorities[row[0]]=int(row[8])
+			profiles[row[0]]=row[9]
 	for d in definitions:
 		var t := Train.new(d[0],1)
-		Stock.configure(t,d[2],"passenger" if d[0]=="K1" else "")
+		var profile: String=profiles.get(d[0],"")
+		Stock.configure(t,d[2],Busy.PROFILES[profile].formation if busy else ("passenger" if d[0]=="K1" else ""))
 		t.service_name=d[1]
 		t.dispatch_priority=priorities[t.id]
 		var stops := []
@@ -342,9 +346,11 @@ static func build_traffic(busy: bool = false) -> RailWorld:
 					if not stops.is_empty() and is_inf(w._stop_distance(stops[-1].block,d[3],stops[-1].position_m,goal,[])):continue
 					block=candidate;break
 				assert(station.platform_details[block].platform_width>0,"No reachable passenger face at "+station.code+" for "+t.id+" after "+str(stops))
-			if i>0: minutes += absf(station.s-stations[d[4][i-1]].s)/1000.0/(45.0 if t.id=="K1" else 75.0)*60.0+1.8
+			if i>0:
+				if busy:minutes+=stops[-1].dwell_minutes+Busy.running_minutes(w,profile,stations[d[4][i-1]],station)
+				else:minutes+=absf(station.s-stations[d[4][i-1]].s)/1000.0/(45.0 if t.id=="K1" else 75.0)*60.0+1.8
 			stops.append({name=station.name,block=block,direction=d[3],minutes_from_origin=snappedf(minutes,.1),
-				dwell_minutes=1.0 if t.id=="K1" else .5,position_m=preload("res://sim/berth_clearance.gd").marker(w,t,block,d[3])})
+				dwell_minutes=(0.0 if i==0 else Busy.dwell(profile,station.code)) if busy else (1.0 if t.id=="K1" else .5),position_m=preload("res://sim/berth_clearance.gd").marker(w,t,block,d[3])})
 		t.path = [{edge=stops[0].block,dir=d[3]}]
 		w.trains[t.id] = t
 		var result := w.set_timetable(t.id,{name=d[1],departure=departures[t.id],day=1,stops=stops})

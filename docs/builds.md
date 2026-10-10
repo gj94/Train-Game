@@ -17,8 +17,8 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current release: **R26**, with 18 live graphics controls. Per the user's request,
-publish this as a full ZIP only and remove previous exports/ZIPs after verification:
+Historical R26 introduced 18 live graphics controls. It was published as a
+full ZIP only under the user's requested reset of download history:
 `-BuildName TrainGame-Kerala-Coast-R26-Windows -UpdateSequence 28 -FullDownloadOnly`.
 The signed catalogue is retained locally, but the LAN server blocks incremental
 endpoints and the standalone updater download for this release. The full ZIP

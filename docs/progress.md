@@ -1,5 +1,107 @@
 # Progress
 
+## Next after R28 — Kollam and Thiruvananthapuram map correction
+- User subsequently asked to focus only on timetable fixes first. Map work is
+  paused, including its diagnostic simulation. All prototype map changes remain
+  isolated under ignored `.local/`; production geometry is unchanged.
+- User reports buildings occupying tracks and double tracks narrowing into one
+  before spreading out again. Finish R28 publication first; this map correction
+  is the next task, not part of the timetable release currently under audit.
+- User clarified: visible sharp/angular corners in the rails themselves should
+  become smooth continuous curves. Correct the actual alignment followed by
+  both rendered rails and trains. Measure heading/curvature transitions while
+  preserving platform/point geometry and safe clearances.
+- Inspect actual operating track envelopes, including wide station yards and
+  depot leads, against complete building footprints. The mapped-building filter
+  currently uses the building centre's distance from the geographic route.
+- Verify main-line continuity, crossovers and station throats against railway
+  evidence. Retain the user-authoritative CSV platform totals; a platform count
+  must not be confused with the number of running lines. Check both the physical
+  graph and rendered tracks, then regress signalling and dispatch on any changed
+  topology. Do not describe reconstructed throat geometry as surveyed geometry.
+- Read-only diagnosis: U-minus-D lateral offsets change sign between section
+  and station at CHPD–KYJ, STKT–MQO, TVP–TVC and NJT–NCJ. Interpolating these
+  unreviewed offsets can cross the main roads without a graph junction. Inspect
+  their physical track identity before applying a consistent lane assignment.
+  Source alignment samples also contain a ~16-degree heading change over two
+  adjacent 10 m chords near BRAM (chainage 219.097 km), ~11.5 degrees near NEM
+  (214.608 km), and ~5.4 degrees by QLN (142.098 km). These are measured defects,
+  not surveyed railway curve radii. No map geometry has been changed for R28.
+- A read-only footprint audit reproduces surviving mapped buildings intersecting
+  the 2.5 m track envelope around QLN (40 distinct IDs) and TVC (14). It applies
+  the current station-site and route-centre filters first; see ignored local
+  diagnostics `.local/map_before.gd`, `map-before.json` and
+  `map-before-collisions.json` for the baseline. These counts concern mapped
+  footprints and require visual review; authored station assemblies are separate.
+- While release audits run, `.local/map-next/` holds an isolated, uncommitted
+  prototype (not used by the game or R28): 40 m Gaussian horizontal smoothing
+  with a 300 m endpoint taper, continuous Hermite normals, physically longer
+  station ladders, consistent D/U side identity within double-line corridors,
+  outward depot leads and outermost-first stabling fan branches. Source route,
+  operations and game scripts remain unchanged. Candidate all-100 call reachability
+  and full-rake capacity pass. A centreline intersection audit finds none outside
+  shared point protection; further topology/legacy-scenario and visual checks remain.
+- Prototype diagnostics: `.local/check_map_candidate.gd` reduces the worst sampled
+  bend from 24.25° to 2.52° and removes 1,083 sampled outer-offset jumps >3 cm.
+  `.local/check_clearance_candidate.gd` tests complete building polygons against
+  all rail segments: eight synthetic cases pass; the previously measured QLN/TVC
+  footprint overlaps are filtered (40/14) in under 40 ms per whole audit area.
+  The source converter still needs the reproducible implementation, formal tests,
+  actual game integration, visual review and publication after R28.
+
+## 2026-10-10 — Full-route busy timetable (R28 validation in progress)
+- Replaced the short-shuttle generator with 24 ERS–NCJ workings, 12 ERS–TVC
+  intercity workings and 64 regional workings. Exactly 100 services, 08:00–22:10;
+  late trains finish on day 2. B001 is ERS 08:35 → NCJ, eight-car VB; B012 is
+  NCJ 09:10 → ERS, sixteen-car VB. Both call at all seven requested major stops.
+- K1 remains the slow 08:00 through passenger. Local/intercity rakes use 20
+  seated coaches; expresses use 22 homogeneous ICF/LHB coaches. Booked running
+  allowances and dwell vary by service class; equipment/line speed caps are unchanged.
+- Historical railway evidence informs service roles. This is an authored scenario,
+  not a published IR timetable. CSV platform counts remain authoritative;
+  northbound locals omit TZH/VELI/VRLR where the current game lacks a reachable
+  northbound passenger face. There are 1,530 subsequent calls plus 100 origins.
+- Full-day trials exposed a real TVC terminal deadlock: a northbound terminating
+  train was routed onto the D side, then opposed an arriving southbound train
+  while clearing to depot. Terminal candidates and receiving-capacity checks now
+  preserve the outgoing lane on double line; compatible alternatives remain usable.
+  Three regressions failed before the fix; all four terminal regressions pass.
+- Initial traffic density overloaded the northern single line. The revised roster
+  retains all 24 full-route trains and moves more regional capacity to double-line
+  QLN–TVC: 48 workings now use the northern single line, down from 64. Failed
+  trials and checkpoint replays are diagnostic evidence, not release certification.
+- Validation: 514 headless tests pass on this revision, including nine timetable/
+  import checks. Earlier native source journey/roster/handover checks passed 19/19
+  (dummy audio output; not a listening test). The v8 evening audit caught a typed-platform cycle: B044 held Kumbalam
+  while B041/B047 held both Turavur passenger roads. A new admission guard now
+  checks the next single-line station and preserves a compatible opposing escape
+  berth, including committed arrivals and the final home-signal platform choice.
+  Ten focused regressions pass, including the formerly failing admission cases,
+  prepared home-route ownership (counted once) and a moving
+  three-full-rake crossing. All 514 headless tests now pass. The replay clears the previous cycle;
+  B041 moves from 18:00 to 18:30 to reduce evening congestion. Fresh v12
+  baseline/+10-minute audits were superseded by the ALLP fix described below.
+  Dispatcher fixes are committed/pushed separately from the unreleased roster.
+- The evening replay then exposed a contradictory ALLP platform promise: a train
+  already cleared into P2 was promised P1 by future-clearance planning, while the
+  P1 occupant accepted an advisory overtake hold for that incoming train. Reproduced
+  both defects in focused regressions (three failed before their respective fixes).
+  Future planning now preserves existing arrival authority and its participants'
+  departure order supersedes advisory overtakes. All 517 headless tests pass,
+  including 21 future-clearance tests; the five download-catalogue tests also pass.
+  Fresh v13 baseline/+10-minute audits and an evening diagnostic replay are running
+  against the corrected source; R28 is not yet certified. The delayed run records
+  K1's actual origin departure at 08:10, versus 08:00:44.95 in the baseline.
+- R27 remains the game download. The LAN page offers the 321 KiB timetable as an
+  explicit preview requiring the runtime update. Five catalogue tests pass; the
+  publisher refuses failed/stale audits and incompatible released runtime. Immutable
+  filenames keep in-flight downloads consistent. R28 will contain both a full ZIP
+  and signed incremental updates, then the compatible timetable can be certified.
+- Playtest after release: start a fresh Kerala scenario, inspect B001/B012 and their
+  seven major calls in Dispatch. Drive K1 or hand over with A; observe dynamic
+  crossing/overtake advice. Skip to afternoon/evening and verify depot clearances.
+  Existing saves/drafts retain their original traffic. No distribution gameplay test.
+
 ## 2026-10-10 — R27 published with full and incremental downloads
 - Published TrainGame-Kerala-Coast-R27-Windows from clean runtime commit
   `86a7848`; signed update sequence 29. Full ZIP: 1,833,301,125 bytes, 223 entries,

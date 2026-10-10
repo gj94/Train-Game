@@ -130,7 +130,7 @@ func test_stall_detector_exempts_future_departures():
 
 func test_terminal_arrival_can_use_another_compatible_platform():
 	var w:=Kerala.build_traffic(true)
-	var t: Train=w.trains.B011
+	var t: Train=w.trains.B012 # full-route northbound service terminates at ERS
 	w.trains.clear()
 	t.lifecycle="active";t.timetable.index=t.timetable.stops.size()-1;t.timetable.at_stop=false
 	var home:={}

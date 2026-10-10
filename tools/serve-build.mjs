@@ -3,7 +3,7 @@ import http from 'node:http';
 import { createReadStream } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { join } from 'node:path';
+import { join, basename } from 'node:path';
 import { parseArgs } from 'node:util';
 import { currentRelease, downloadRoutes, downloadPage } from './download-catalogue.mjs';
 
@@ -74,7 +74,7 @@ const server = http.createServer(async (req, res) => {
     }
     res.writeHead(status, { 'Content-Type': entry[1], 'Content-Length': end - start + 1,
       'Accept-Ranges': 'bytes', ETag: etag, 'Last-Modified': info.mtime.toUTCString(),
-      ...(path.endsWith('.zip') ? { 'Content-Disposition': `attachment; filename="${entry[0]}"` } : {}) });
+      ...(path.endsWith('.zip') || entry[2] ? { 'Content-Disposition': `attachment; filename="${entry[2] ?? basename(entry[0])}"` } : {}) });
     if (req.method === 'HEAD') return res.end();
     const stream = createReadStream(file, { start, end });
     stream.on('error', () => res.destroy());

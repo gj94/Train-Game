@@ -1,37 +1,99 @@
 # Kerala Coast: 100-service operating day
 
-Fictional gameplay timetable on the existing coastal alignment and CSV-authoritative
-platform inventory. It is not a published Indian Railways working timetable.
-K1 remains the default full-length ICF stopping passenger, serving all 55 open
-stations from Ernakulam to Nagercoil. There is no artificial speed cap.
+The revised day has **24 full ERS–NCJ workings**, **12 ERS–TVC intercity workings**
+and **64 regional workings**, including exactly **two full-route Vande Bharats,
+one in each direction**. Departures run from 08:00 to 22:10; late workings finish
+on day 2. K1 remains the default 08:00 WAP-7 + ICF passenger, calling at all 55
+open stations. Equipment and line limits govern speed; local services are slower
+because of their stops, acceleration, dwell and dispatch priority.
 
-| Services | Working | Departures | Interval per direction |
-|---|---|---|---|
-| K1 | ERS–NCJ, all open stations | 08:00 | One through passenger |
-| B001–B010 | ERS–Kayamkulam | 08:12–12:42 | 30 minutes |
-| B011–B020 | Kayamkulam–ERS | 08:00–12:30 | 30 minutes |
-| B021–B050 | Kollam–TVC | 08:05–13:53 | 12 minutes |
-| B051–B080 | TVC–Kollam | 08:11–13:59 | 12 minutes |
-| B081–B090 | TVC–Nagercoil | 08:25–14:25 | 40 minutes |
-| B091–B099 | Nagercoil–TVC | 08:05–13:25 | 40 minutes |
+This is an authored, deliberately busy game operating day, **not a published
+Indian Railways working timetable**. It uses the coastal route and the user's
+CSV platform inventory. Long-distance services enter/leave the model at its
+ERS/NCJ boundaries; off-map destinations and physical rake rotations are not
+simulated. Saves retain their existing timetable: start a fresh Kerala scenario
+without loading an old save to use this revision. Saved service-designer drafts
+also retain their authored services; they are not silently overwritten.
 
-The repeating stock pattern is ICF passenger, LHB intercity, VB8, LHB intercity,
-ICF passenger, VB16. Priorities are 35, 70, 95 and 100 respectively; K1 is 20.
-Vande Bharat workings omit intermediate secondary calls. Dispatch chooses actual
-crossings and overtakes dynamically; these are not scripted meets.
+| Workings | Route / role | Calling pattern |
+|---:|---|---|
+| 24 | ERS–NCJ, 12 each way | Two VBs, 20 expresses and two through passengers |
+| 12 | ERS–TVC, 6 each way | Seated intercity; ordinary and limited-stop patterns |
+| 6 | ERS–Kayamkulam, 3 each way | Coastal passenger |
+| 6 | ERS–Alappuzha, 3 each way | Short coastal passenger |
+| 40 | Kollam–TVC, 20 each way | Regional services, closer morning/evening intervals |
+| 12 | TVC–NCJ, 6 each way | Cape passenger |
 
-The double-track central section carries the highest frequency. Single-track
-sections have wider headways to leave capacity for crossings and the stopping
-passenger. Origin and destination roads are selected for directional reachability,
-real passenger faces and full-rake clearance.
+The VBs are **B001, ERS 08:35 → NCJ (8 cars)** and **B012, NCJ 09:10 → ERS
+(16 cars)**. Both call at **Ernakulam Junction, Alappuzha, Kayamkulam Junction,
+Kollam Junction, Thiruvananthapuram Central, Kulitturai and Nagercoil Junction**,
+in their direction of travel. Both have priority 100. There are no short VB
+commuter workings. K1 departs before the southbound VB, so the dispatcher must
+find a safe overtaking opportunity rather than holding K1 at ERS for it.
 
-Terminal arrivals may use another compatible passenger face when their booked
-platform is busy. Interlocking, full-tail clearance, lane connectivity and the
-station's real passenger-face inventory still apply. A long train spanning plain
-approach blocks no longer blocks its own home-signal point solely because its
-tail is on the preceding block; genuine point/branch occupation stays protected.
+Other priorities are 85 for limited expresses, 75 for conventional expresses,
+70 for intercity, 45 for capital regional, 30 for other passengers and 20 for K1.
+Actual progress, reachable receiving roads and interlocking determine crossings
+and overtakes; there are no scripted passing events or forced priority signals.
+
+WAP expresses use 22 homogeneous ICF or LHB coaches. Intercity and local workings
+use 20 seated coaches, rather than assigning sleeper formations to every shuttle.
+VB formations remain fixed at eight/sixteen cars. The existing asset set lacks
+utility/guard/power cars; these are representative rakes, not exact real diagrams.
+
+Calls have at least a minute of dwell, normally two at major junctions and four
+at TVC for through expresses/VBs (three for passengers/intercity). Booked times
+include the preceding dwell, stop acceleration/braking and distinct running
+allowances for single/double line and service class. These are planning averages,
+not new train speed caps. Most ERS departures are about half an hour apart;
+some following evening workings are grouped to leave an opposing crossing window
+on the northern single line. Full-day traffic checks, rather than a uniform
+departure interval, establish whether those slots work.
+
+Local services call at all open, directionally accessible passenger faces in
+their sector. **Takazhi, Veli and Viranialur currently have only a southbound
+passenger face in the CSV-based game geometry. Northbound locals omit those
+three calls.** This is a documented layout limitation, not a claim about actual
+railway service at those stations. Tirunettur is closed in the register.
+
+Origin, destination and intermediate roads must have a real passenger face,
+directional connectivity and full-rake clearance. Compatible alternative terminal
+faces remain available dynamically. Completed trains unload and clear to depot.
+
+## Research and adaptation
+
+- [Southern Railway, 27 October 2023](https://images.assettype.com/thefourthonline/2023-10/055534eb-3171-4ce5-a1a4-01ccba4bda81/Clarification_to_media_on_Vande_Bharat_trains.pdf)
+  describes scheduled coastal VB crossings with Alappuzha–ERS and ERS–Kayamkulam
+  passengers, plus Jan Shatabdi and Ernad traffic. It supports a mixture of
+  through expresses and regional stopping trains, with planned crossing capacity.
+  This is historical operating context, not a current departure-time source.
+- The [Ministry of Railways list dated 18 March 2026](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2242000&lang=1&reg=1)
+  lists TVC–Mangaluru and TVC–Kasaragod VBs, plus NCJ–Chennai and ERS–Bengaluru
+  services. The full coastal **ERS–NCJ VB pair here is the user's requested
+  scenario adaptation**, not an assertion that that exact pair is published.
+- Game IDs, departure slots, intermediate calling patterns, formations and
+  priorities are authored for this route's current operating geometry. Stock
+  families, major stations and the division between locals/intercity/expresses
+  follow those service roles without inventing real train numbers.
 
 ## Service lifecycle
+
+The [importable service file](../art/timetables/kerala-coast-100-through-services.json)
+uses the existing R27 service format and unchanged route signature. In **F5 →
+Import**, select it, choose K1 (or another service), then use **Play**. Export
+your existing draft first if you want to retain it. No full game download is
+needed to load the timetable as an authored scenario. A running save keeps its
+old traffic; importing starts a new scenario.
+
+**Compatibility while validation is in progress:** the new terminal/depot
+protection requires a game update after R27. The current small JSON remains a
+preview, not a validated R27 scenario. The LAN page identifies this explicitly.
+
+Regenerate the file after changing the timetable with:
+
+```powershell
+& $godot --headless --path . --script res://tools/export_busy_timetable.gd -- --output=art/timetables/kerala-coast-100-through-services.json
+```
 
 - Future services remain off-network until two minutes before departure. They
   take no track, route authority, passenger animation or detailed train geometry.
@@ -89,8 +151,25 @@ Use the portable Godot console executable from `docs/pc-setup.md`:
 The operating-day audit records all arrivals, completed calls, stationary delay
 beyond booked/passenger release, the longest such continuous delay, active-train
 peak, depot completion, safety events and elapsed wall time. Early arrival waits
-are not included in that delay metric. A wait over 30 minutes stops the audit for diagnosis; passing
-that guard alone is not a satisfactory service-quality result.
+are not included in that delay metric. Any continuous delay over 30 minutes fails
+the service-quality check, even if every train eventually finishes. The audit
+continues collecting other problem slots, but aborts at 45 minutes to diagnose a
+likely stalled working. These limits are audit guards, not changes to dispatch.
+Diagnostic continuations retain their original schedule and are explicitly
+labelled; they cannot certify a changed timetable.
+
+The LAN site offers this timetable separately from the full game. Run
+`node tools/publish-timetable.mjs` to publish a clearly labelled preview, then
+add `--verified --baseline=<report.json> --delayed=<report.json>` only after
+both fresh full-day audits pass. Publication checks the simulation-source digest,
+every booked call, departure and priority, complete depot clearance, zero safety
+events and the continuous-wait limit. The delayed run must hold K1 for at least
+ten minutes. Immutable data filenames and an atomic catalogue update preserve
+downloads already in progress. The catalogue binds compatibility to the current
+game build; publishing another build hides the old timetable until reviewed.
+Certification also compares the released simulation code with the tested runtime
+(excluding timetable definitions), so a dispatcher fix cannot be certified for
+an executable that does not contain it.
 
 The physics remains in 50 ms slices. A two-second rehearsal request performs 40
 physics slices; it does not skip signals or replace train motion with arithmetic
@@ -107,8 +186,9 @@ A complete unexplained standstill ends a rehearsal after five simulated minutes,
 without waiting for the two-hour timetable timeout. Booked departures, passenger
 exchange, depot release and manual/operator holds are exempt.
 
-## Recorded validation — 10 October 2026
+## Historical R27 validation — superseded short-corridor timetable
 
+The following figures belong to the older R27 timetable, not the revised full-route day.
 Both complete operating days finished at 15:58. All 100 services departed their
 origins, recorded all 467 subsequent booked arrivals and cleared fully to depot.
 K1 served all 55 open stations. Neither run recorded a safety protection event.

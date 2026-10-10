@@ -1,6 +1,19 @@
 TRAIN GAME - KERALA COAST
 
-R27: 100-service operating day, simulation-only skip and seated passenger AI.
+R28: full-route 100-service timetable and protected terminal/depot exits.
+24 full ERS-NCJ workings include exactly two Vande Bharats, one each way:
+B001 ERS 08:35 -> NCJ (8 cars), B012 NCJ 09:10 -> ERS (16 cars).
+Both serve ALLP, KYJ, QLN, TVC and KZT between their endpoints.
+12 ERS-TVC intercity workings and 64 regional workings complete the day.
+This is an authored busy scenario, not a published Indian Railways timetable.
+Start a fresh Kerala game to use it; older saves retain their original traffic.
+F5 > Import can also load guides/timetables/kerala-coast-100-through-services.json.
+Select K1 and Play; exporting your current designer draft first preserves it.
+Terminal platform assignment now keeps a suitable forward exit to depot.
+See guides/busy-timetable.md for the full audit results and known layout limits.
+Use Update and Play.exe, or extract the complete full ZIP into a game folder.
+
+R27 introduced simulation-only skip and seated passenger AI:
 Menu / Esc > Skip to time / future stop advances the actual railway with every
 train under AI. Rendering and audio stop during the advance. Return to the same
 train if available, otherwise a station platform; choose Resume AI or Take control.
@@ -8,23 +21,20 @@ Sitting in a passenger seat hands driving to AI and blocks driving inputs.
 E / Y stands up. D-pad left/right cycles both row head-outs and your seat;
 Q / Shift+E selects either side. LS click returns to pilot. AI stays on until takeover.
 The loading screen now shows this release's build name and source revision.
-100/100 services completed baseline and ten-minute-late audits without safety
-events. Busy single-line traffic can still produce delays: worst final arrival
-29 minutes baseline / 38 minutes delayed; longest excess standstill 13 minutes.
-See guides/busy-timetable.md for results and controls.
+The R27 short-corridor timetable's historical audit is retained in the guide;
+its delay figures do not describe the revised full-route R28 timetable.
 
 Windows x86-64 portable playtest build
 
-THIS BUILD
+EARLIER CHANGES
 Kerala Coast R26: individually adjustable graphics with saved local preferences.
 Menu / Esc -> Graphics settings: 18 options in four groups, plus Performance,
 Balanced and High presets. Controller: D-pad / LS move, A select, B back.
 Changes apply live; use Resume and compare, then F10 for the performance overlay.
 High preserves the R25 defaults. Balanced is a useful starting point to tune.
 Use -SavedGraphics with Benchmark.ps1 to measure your chosen settings.
-See guides/graphics-settings.md. This release is a full download: extract the
-entire ZIP and launch TrainGame.exe. The included Update and Play.exe is ready
-for the next release, when full downloads and incremental updates both return.
+See guides/graphics-settings.md. R26 was distributed as a full download only;
+full downloads and signed incremental updates are available again from R27.
 
 EARLIER CHANGES
 Kerala Coast R25: railway corridor rendering and bounded external cameras.

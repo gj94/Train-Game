@@ -46,26 +46,28 @@ func run() -> void:
 	game._set_time_scale(1)
 	game._process(.3)
 	check(game.hud._mode.text.split("\n")[0]==text_at_eight,"ETA remains in world minutes at any time scale")
+	var remote_service: Train=game.world.active_trains().filter(func(t):return t.timetable.stops[0].block.begins_with("NCJ_") and t.path[0].dir==-1)[0]
+	var remote_id: String=remote_service.id
 	var resident_before: int=game.train_views.size()
 	var buses_before:=AudioServer.bus_count
 	game.train.controller=.3
-	game._view_train_only("B011")
+	game._view_train_only(remote_id)
 	check(game.train.id=="K1" and game.train.controller==.3,"view-only distant train preserves driving assignment and handle")
-	check(game.train_views.has("B011") and game.train_audio.has("B011"),"view-only loads distant train and sound")
-	check(game.traffic_presentation.followed_service=="B011","followed service remains pinned during camera transfer")
+	check(game.train_views.has(remote_id) and game.train_audio.has(remote_id),"view-only loads distant train and sound")
+	check(game.traffic_presentation.followed_service==remote_id,"followed service remains pinned during camera transfer")
 	game._pilot_camera()
 	game.cam.global_transform=game.cam._target()
 	game._process(.6)
 	await process_frame;await process_frame
-	check(not game.train_views.has("B011") and not game.train_audio.has("B011"),"returning to pilot releases distant presentation")
+	check(not game.train_views.has(remote_id) and not game.train_audio.has(remote_id),"returning to pilot releases distant presentation")
 	check(game.train_views.size()==resident_before and AudioServer.bus_count==buses_before,"temporary view releases its nodes and audio buses")
 	game._select_train("B020")
 	check(game.train.id=="K1" and not game.train_views.has("B020"),"future service cannot create a ghost train or take control before entry")
-	game._select_train("B011")
+	game._select_train(remote_id)
 	game.cam.global_transform=game.cam._target()
 	game._process(.3)
-	check(game.train.id=="B011" and game.tv==game.train_views.B011 and game.audio==game.train_audio.B011,"distant service handover loads valid view and audio")
-	check("Haripad" in game.hud._mode.text,"HUD switches to new service's booked stop immediately")
+	check(game.train.id==remote_id and game.tv==game.train_views[remote_id] and game.audio==game.train_audio[remote_id],"distant service handover loads valid view and audio")
+	check(remote_service.timetable.stops[1].name in game.hud._mode.text,"HUD switches to new service's booked stop immediately")
 	check(game.world.trains.K1.automatic,"old service remains simulated under AI")
 	game._select_train("K1")
 	game._pilot_camera()
@@ -82,10 +84,10 @@ func run() -> void:
 	await shot("dispatcher")
 	var snapshot: Dictionary=game.world.dispatcher().snapshot()
 	check(snapshot.services.size()==100,"dispatcher exposes every scheduled service")
-	game._view_train_only("B011")
-	game.world.trains.B011.lifecycle="stored"
+	game._view_train_only(remote_id)
+	game.world.trains[remote_id].lifecycle="stored"
 	game.traffic_presentation.update(1.0)
-	check(not game.train_views.has("B011") and game.traffic_presentation.followed_service.is_empty() and not game.cam.follow,"depot storage releases a watched AI train without a ghost or dangling camera follow")
+	check(not game.train_views.has(remote_id) and game.traffic_presentation.followed_service.is_empty() and not game.cam.follow,"depot storage releases a watched AI train without a ghost or dangling camera follow")
 	print("Journey / traffic: %d checks, %d failures" % [checks,failures])
 	game.queue_free()
 	await process_frame;await process_frame

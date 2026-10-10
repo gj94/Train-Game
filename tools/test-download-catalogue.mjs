@@ -50,3 +50,47 @@ test('unfinished ZIPs, malformed policies and mismatched manifests fail closed',
   await writeFile(join(root,'download-release.json'),JSON.stringify({format:1,build:'../secret',incremental:true}));
   assert.equal(await currentRelease(root),null);
 });
+
+test('timetable download is explicit, has an attachment filename and preserves full/update downloads',async t=>{
+  const {root,release,route}=await fixture(t); release.incremental=true;
+  const file='Kerala-Coast-100-Through-Services.json';
+  await mkdir(join(root,'timetables'));
+  await writeFile(join(root,'timetables',file),'{"services":[]}');
+  await writeFile(join(root,'timetables',file+'.sha256'),'checksum');
+  await writeFile(join(root,'timetables/README.txt'),'F5 then Import');
+  const policy={format:1,build:release.build,file,status:'validating'};
+  await writeFile(join(root,'timetables/catalogue.json'),JSON.stringify(policy));
+  assert.deepEqual(await route('/timetables/current.json',release),['timetables/'+file,'application/json; charset=utf-8',file]);
+  assert(await route('/timetables/current.json.sha256',release));
+  assert(await route('/timetables/instructions',release));
+  assert(await route('/'+release.build+'.zip',release));
+  assert(await route('/updates/latest.json',release));
+  let page=await downloadPage(root,release);
+  assert(page.includes('Preview: full-day'));assert(page.includes('Download timetable only'));
+  assert(page.includes('Import'));assert(page.includes('Incremental updates'));
+  policy.requires_update=true;
+  await writeFile(join(root,'timetables/catalogue.json'),JSON.stringify(policy));
+  page=await downloadPage(root,release);
+  assert(page.includes('A game update is required'));assert(!page.includes('No new full game ZIP is needed'));
+  policy.status='verified';await writeFile(join(root,'timetables/catalogue.json'),JSON.stringify(policy));
+  assert.equal(await route('/timetables/current.json',release),null,'outdated runtime cannot claim validation');
+  policy.requires_update=false;
+  policy.status='verified';await writeFile(join(root,'timetables/catalogue.json'),JSON.stringify(policy));
+  page=await downloadPage(root,release);
+  assert(page.includes('Validated: full operating day'));assert(!page.includes('Preview: full-day'));
+  assert.equal(await route('/timetables/catalogue.json',release),null);
+  assert.equal(await route('/timetables/'+file,release),null);
+  assert.equal(await route('/timetables/../.local/key',release),null);
+  release.build='TrainGame-Next-Windows';
+  assert.equal(await route('/timetables/current.json',release),null);
+});
+
+test('missing or malformed timetable publications are never offered',async t=>{
+  const {root,release,route}=await fixture(t);
+  await mkdir(join(root,'timetables'));
+  for (const file of ['../secret.json','Kerala-Coast-x.json','x.json','Kerala-Coast-x.json\"']) {
+    await writeFile(join(root,'timetables/catalogue.json'),JSON.stringify({format:1,build:release.build,file,status:'validating'}));
+    assert.equal(await route('/timetables/current.json',release),null);
+    assert(!(await downloadPage(root,release)).includes('Download timetable only'));
+  }
+});
