@@ -1,5 +1,25 @@
 # Progress
 
+## 2026-10-10 — R27 published with full and incremental downloads
+- Published TrainGame-Kerala-Coast-R27-Windows from clean runtime commit
+  `86a7848`; signed update sequence 29. Full ZIP: 1,833,301,125 bytes, 223 entries,
+  SHA-256 `cbc2168f589c3dbe17049ef5fd5ebd74c154b772865b6973040f402ff24f3c7c`.
+- LAN: http://192.168.8.183:8765/. Verified current-only R27 catalogue, matching
+  signed manifest, clean BUILD.txt identity, three full-ZIP byte ranges and three
+  update-block hashes. Required archive entries and embedded BUILD.txt checked;
+  no distribution gameplay test. Source/UI validation is recorded below.
+- Updater is enabled again alongside the full ZIP. Compared with R26's manifest,
+  32,275 fixed-position blocks change (~2.114 GB); the full compressed ZIP is
+  smaller (~1.833 GB). Pack offsets moved, so this release does not demonstrate
+  a small incremental download. Improving pack/chunk stability remains worthwhile.
+  The R26 archive/export is retained locally but no longer advertised or served.
+- Source skip harness now drains pending scenery workers while the render loop
+  is alive before freeing its fixture, avoiding a teardown wait. Rechecked all
+  20 skip cases and clean process exit; this is test cleanup, not a runtime change.
+- The loading screen reads `TrainGame-Kerala-Coast-R27-Windows · 86a7848` in the
+  package. E/Y seats hand driving to AI; seated D-pad left/right uses both row
+  head-outs. Menu → Skip to time / future stop advances all-AI simulation.
+
 ## 2026-10-10 — 100-service day, faster rehearsal, skip and passenger seats
 - Fresh Kerala games now use 100 scheduled workings; K1 remains the default
   all-stop ICF passenger. Frequent central double-line services and wider

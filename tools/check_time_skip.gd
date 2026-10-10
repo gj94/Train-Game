@@ -70,6 +70,11 @@ func run() -> void:
 	while g.wv.loading and Time.get_ticks_msec()-began<120000:
 		g.wv.update();await process_frame
 	check(not g.wv.loading,"destination scenery finishes loading after skip")
+	# Drain outstanding far-scenery jobs while the render loop can still run.
+	# Joining a worker inside scene teardown can otherwise await that loop.
+	g.wv.queue.clear();began=Time.get_ticks_msec()
+	while (not g.wv._asset_worker.job.is_empty() or g.wv.workers.any(func(w):return not w.runner.job.is_empty()) or not g.wv._activating.is_empty()) and Time.get_ticks_msec()-began<120000:
+		g.wv.update();g.wv.queue.clear();await process_frame
 	print("Time skip: %d checks, %d failures" % [checks,failures])
 	g.queue_free();await process_frame;await process_frame
 	quit(1 if failures else 0)

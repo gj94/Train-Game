@@ -1,5 +1,12 @@
 # Windows portable build
 
+Current download: **R27**, published 10 October 2026 from `86a7848`.
+Full ZIP and signed incremental updates are enabled at the LAN address recorded
+in `.local/lan-share.json`. The loading screen displays the packaged build name
+and source revision. Only the current release is served. R26→R27 currently
+changes ~2.114 GB of packed blocks; the full ZIP is ~1.833 GB. See
+[busy-timetable.md](busy-timetable.md) for the 100-service day and skip controls.
+
 Run `powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1` from this
 checkout. It runs the headless suite, track/joint geometry, fleet-finish, rendered-motion and live audio-player checks,
 imported-asset checks, QoL, six-train and
