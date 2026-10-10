@@ -25,9 +25,10 @@ These are bounded look-ahead checks, not a proof that every arbitrary timetable
 or manual intervention is deadlock-free. Test new rosters across a full day,
 including delayed driving, and retain the dispatcher's live blocker diagnostics.
 
-Validation: eight exit-capacity regressions cover both arrival orders, typed
+Validation: ten exit-capacity regressions cover both arrival orders, typed
 platform alternatives, nonstopping opponents, committed and unreserved approach
-claims, the final home choice, and a moving three-full-rake crossing. Four
-terminal tests cover directional depot clearance. All 512 headless tests passed
+claims, the final home choice, a prepared home beyond an automatic signal without double-counting its owner,
+and a moving three-full-rake crossing. Four
+terminal tests cover directional depot clearance. All 514 headless tests passed
 on 10 October 2026. The evening checkpoint replay clears the previously cyclic
 Kumbalam–Turavur situation; the roster still needs its final full-day audit.

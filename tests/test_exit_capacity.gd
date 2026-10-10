@@ -109,3 +109,37 @@ func test_approaching_local_counts_before_its_home_route_is_reserved():
 	north.timetable.index=1;north.timetable.at_stop=false
 	var south:=add(w,"S",["ERS_P1","KUMM_P3","TUVR_P2","SRTL_P1"],1)
 	return rejection(w,south,"Turavur").get("blocked",false)
+
+func prepared_fixture() -> Dictionary:
+	var w:=fixture()
+	add(w,"N1",["TUVR_P3","KUMM_P3","ERS_P4"],-1)
+	var north:=add(w,"N2",["SRTL_P2","TUVR_P2","KUMM_P3","ERS_P6"],-1)
+	var home:={}
+	for sig in w.signals.values():
+		if sig.dir==-1 and w.route_options(sig.id).any(func(o):return o.edges[-1].edge=="TUVR_P2"):
+			home=sig;break
+	assert(not home.is_empty())
+	var previous:={}
+	for id in w.automatic_signals:
+		if w.route_options(id).any(func(o):return o.destination==home.id):previous=w.signals[id];break
+	assert(not previous.is_empty())
+	w.place_train(north,previous.edge,previous.s+100,-1)
+	north.timetable.index=1;north.timetable.at_stop=false
+	assert(w.set_route(previous.id,home.id).ok)
+	var option: Dictionary=w.route_options(home.id).filter(func(o):return o.edges[-1].edge=="TUVR_P2")[0]
+	assert(w.set_route(home.id,option.destination).ok)
+	assert(home.owner=="") # prepared ahead of the next automatic signal
+	var south:=add(w,"S",["ERS_P1","KUMM_P3","TUVR_P2","SRTL_P1"],1)
+	return {world=w,south=south}
+
+func test_prepared_home_route_counts_its_approaching_owner_only_once():
+	var f:=prepared_fixture()
+	var claims: Array=Planner.new()._station_claims(f.world,preload("res://sim/priority_dispatch.gd").station(f.world,"TUVR_P2"))
+	if claims.size()!=2 or claims.any(func(c):return c.id not in ["N1","N2"]):return "Prepared home has an anonymous/double berth claim"
+	return rejection(f.world,f.south,"Turavur").get("blocked",false)
+
+func test_prepared_arrival_does_not_consume_two_platforms_and_cause_false_hold():
+	var f:=prepared_fixture()
+	f.world.trains.erase("N1")
+	return rejection(f.world,f.south,"").is_empty()
+

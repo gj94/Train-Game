@@ -128,8 +128,7 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 			if other == t: continue
 			if not future.assigned(other,destination.code).is_empty():continue # its exclusive berth is already removed from available
 			if destination.platform_tracks.any(func(r): return occupancy.get(r, "") == other.id):continue
-			var ns: Dictionary=w.next_signal(other)
-			var committed: Array=w.signals[ns.id].route if not ns.is_empty() else []
+			var committed: Array=_committed_routes(w,other)
 			# An already committed receiving platform is excluded from available,
 			# so its owner must not also consume a second berth in this count.
 			if committed.any(func(p):return p.edge in destination.platform_tracks):continue
@@ -209,10 +208,28 @@ func _road_owners(w,st: Dictionary) -> Dictionary:
 			var owner: String=sig.owner
 			if owner.is_empty():
 				for other: Train in w.active_trains():
-					if w.next_signal(other).get("id","")==sig.id:
+					var next: Dictionary=w.next_signal(other)
+					if next.is_empty():continue
+					var ahead: Dictionary=w.signals[next.id]
+					if ahead.owner not in ["",other.id]:continue
+					if next.id==sig.id or (ahead.cleared and ahead.destination==sig.id):
 						owner=other.id;break
 			result[part.edge]=owner
 	return result
+
+func _committed_routes(w,t: Train) -> Array:
+	var next: Dictionary=w.next_signal(t)
+	if next.is_empty():return []
+	var signal_data: Dictionary=w.signals[next.id]
+	if signal_data.owner not in ["",t.id]:return []
+	var committed: Array=signal_data.route
+	# Approach preparation may reserve the home while the next signal is still
+	# automatic. Count its platform once for its train, never as an anonymous
+	# reservation plus a second unallocated approach claim.
+	if signal_data.cleared and w.signals.has(signal_data.destination):
+		var prepared: Dictionary=w.signals[signal_data.destination]
+		if prepared.owner in ["",t.id]:committed=committed+prepared.route
+	return committed
 
 func _station_claims(w,st: Dictionary) -> Array:
 	# Alternatives are read-only. Never retain occupation across candidate calls
@@ -228,8 +245,7 @@ func _station_claims(w,st: Dictionary) -> Array:
 		claims.append({id=id,roads=[road]})
 	for other: Train in w.active_trains():
 		if known.has(other.id):continue
-		var ns: Dictionary=w.next_signal(other)
-		var committed: Array=w.signals[ns.id].route if not ns.is_empty() else []
+		var committed: Array=_committed_routes(w,other)
 		# A train already admitted into either approach owns capacity even before
 		# a particular platform has been selected at its home signal.
 		for segment in other.path+committed:
