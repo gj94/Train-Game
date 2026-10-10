@@ -40,5 +40,7 @@ and a moving three-full-rake crossing. Four
 terminal tests cover directional depot clearance. Three future-clearance regressions
 cover the ALLP home-route conflict and existing/new advisory overtakes during a
 planned crossing. All 517 headless tests passed on 10 October 2026.
-The earlier evening checkpoint replay clears the previously cyclic
-Kumbalam–Turavur situation; the roster still needs its final full-day audit.
+The final fresh baseline and ten-minute-late-start audits each complete all
+100 services and 1,530 subsequent calls with zero safety events, then clear every
+train to depot. The longest continuous delay beyond release is 28.17 minutes.
+See `busy-timetable.md` and the R28 evidence for the tested scenario and limits.

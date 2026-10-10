@@ -49,7 +49,7 @@
   The source converter still needs the reproducible implementation, formal tests,
   actual game integration, visual review and publication after R28.
 
-## 2026-10-10 — Full-route busy timetable (R28 validation in progress)
+## 2026-10-10 — Full-route busy timetable (R28 validated, packaging)
 - Replaced the short-shuttle generator with 24 ERS–NCJ workings, 12 ERS–TVC
   intercity workings and 64 regional workings. Exactly 100 services, 08:00–22:10;
   late trains finish on day 2. B001 is ERS 08:35 → NCJ, eight-car VB; B012 is
@@ -89,14 +89,18 @@
   Future planning now preserves existing arrival authority and its participants'
   departure order supersedes advisory overtakes. All 517 headless tests pass,
   including 21 future-clearance tests; the five download-catalogue tests also pass.
-  Fresh v13 baseline/+10-minute audits and an evening diagnostic replay are running
-  against the corrected source; R28 is not yet certified. The delayed run records
-  K1's actual origin departure at 08:10, versus 08:00:44.95 in the baseline.
-- R27 remains the game download. The LAN page offers the 321 KiB timetable as an
-  explicit preview requiring the runtime update. Five catalogue tests pass; the
-  publisher refuses failed/stale audits and incompatible released runtime. Immutable
-  filenames keep in-flight downloads consistent. R28 will contain both a full ZIP
-  and signed incremental updates, then the compatible timetable can be certified.
+  Fresh v13 baseline/+10-minute audits both pass: 100/100 in depot, 1,530 subsequent
+  calls, zero safety events, finish 03:16:56 on day 2. Peak passenger workings 23;
+  longest extra wait 28.17 min (B013), worst final delay 32.70 min (B015), p95 17.58
+  min, median non-negative delay zero. K1's initial delay is absorbed in early calls;
+  its actual origin departure is 08:10:00.10 versus 08:00:44.95. Both runs observe
+  K1 overtaken by B001 at MAKM, B024 at STKT and B002 at NYY. Evidence is committed
+  under `art/performance/timetable-through-2026-10-10/`; source code `4cbb726`.
+- R28 packaging follows the successful audits and the user's requested advance
+  notice. It includes a full ZIP and signed incremental updates. The timetable
+  publisher refuses failed/stale audits and incompatible released runtime; it will
+  certify the small JSON against R28 after the new game is published. R27 remains
+  served until packaging completes. No extracted-distribution gameplay test.
 - Playtest after release: start a fresh Kerala scenario, inspect B001/B012 and their
   seven major calls in Dispatch. Drive K1 or hand over with A; observe dynamic
   crossing/overtake advice. Skip to afternoon/evening and verify depot clearances.

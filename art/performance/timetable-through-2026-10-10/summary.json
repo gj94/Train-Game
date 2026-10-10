@@ -1,0 +1,81 @@
+{
+  "source_digest": "8d005da082ab9cf4ac21bea656eb3d052caf640b8fc6c249e106b33e9b43058c",
+  "stats": {
+    "baseline": {
+      "finished": 100,
+      "clock": "03:16:56",
+      "peak_active": 23,
+      "subsequent_calls": 1530,
+      "median_lateness_minutes": 0.0,
+      "p95_lateness_minutes": 17.579166663789,
+      "worst_lateness_minutes": 32.70083332924467,
+      "worst_lateness_service": "B015",
+      "longest_continuous_wait_minutes": 28.166666666666668,
+      "longest_wait_service": "B013",
+      "wall_seconds": 2616.827,
+      "K1_origin_departure": 28844.95,
+      "K1_final_arrival": 55556.0499997509,
+      "K1_overtakes": [
+        {
+          "kind": "overtake",
+          "other": "B001",
+          "station": "MAKM",
+          "time": 33408.050000008,
+          "train": "K1"
+        },
+        {
+          "kind": "overtake",
+          "other": "B024",
+          "station": "STKT",
+          "time": 40412.0499999713,
+          "train": "K1"
+        },
+        {
+          "kind": "overtake",
+          "other": "B002",
+          "station": "NYY",
+          "time": 50483.5499998247,
+          "train": "K1"
+        }
+      ]
+    },
+    "delay": {
+      "finished": 100,
+      "clock": "03:16:56",
+      "peak_active": 23,
+      "subsequent_calls": 1530,
+      "median_lateness_minutes": 0.0,
+      "p95_lateness_minutes": 17.579166663789,
+      "worst_lateness_minutes": 32.70083332924467,
+      "worst_lateness_service": "B015",
+      "longest_continuous_wait_minutes": 28.166666666666668,
+      "longest_wait_service": "B013",
+      "wall_seconds": 2717.327,
+      "K1_origin_departure": 29400.1,
+      "K1_final_arrival": 55556.0499997509,
+      "K1_overtakes": [
+        {
+          "kind": "overtake",
+          "other": "B001",
+          "station": "MAKM",
+          "time": 33408.050000008,
+          "train": "K1"
+        },
+        {
+          "kind": "overtake",
+          "other": "B024",
+          "station": "STKT",
+          "time": 40412.0499999713,
+          "train": "K1"
+        },
+        {
+          "kind": "overtake",
+          "other": "B002",
+          "station": "NYY",
+          "time": 50483.5499998247,
+          "train": "K1"
+        }
+      ]
+    }
+  }
+}

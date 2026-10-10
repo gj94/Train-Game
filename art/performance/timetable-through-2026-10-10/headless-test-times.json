@@ -1,0 +1,2070 @@
+[
+	{
+		"seconds": 34.306302,
+		"test": "test_service_pack.gd::test_rehearsal_completes_default_and_reports_an_occupied_terminal"
+	},
+	{
+		"seconds": 30.202207,
+		"test": "test_exit_capacity.gd::test_three_full_rakes_complete_the_crossing_without_a_cycle"
+	},
+	{
+		"seconds": 23.577942,
+		"test": "test_depot_workings.gd::test_delayed_arrival_orders_keep_depot_capacity_for_every_default_service"
+	},
+	{
+		"seconds": 16.513053,
+		"test": "test_traffic_service.gd::test_real_departure_queue_releases_and_all_six_finish_safely"
+	},
+	{
+		"seconds": 13.527445,
+		"test": "test_corridor.gd::test_six_train_station_saturation_and_recovery"
+	},
+	{
+		"seconds": 4.843869,
+		"test": "test_corridor.gd::test_wap7_round_trip_uses_both_running_lines"
+	},
+	{
+		"seconds": 4.71483,
+		"test": "test_terminal_exit.gd::test_northbound_terminal_and_southbound_arrival_both_clear_to_depot"
+	},
+	{
+		"seconds": 4.199625,
+		"test": "test_track_speed_boards.gd::test_legacy_builtin_checkpoint_cap_upgrades_but_authored_caps_survive"
+	},
+	{
+		"seconds": 3.797166,
+		"test": "test_service_lifecycle.gd::test_current_dictionary_session_does_not_break_legacy_speed_migration"
+	},
+	{
+		"seconds": 3.655734,
+		"test": "test_save_game.gd::test_future_clearance_commitments_resume_and_checkpoint_stays_immutable"
+	},
+	{
+		"seconds": 3.494927,
+		"test": "test_service_lifecycle.gd::test_busy_pack_round_trip_keeps_scheduled_services_and_depots"
+	},
+	{
+		"seconds": 3.433701,
+		"test": "test_busy_timetable.gd::test_importable_timetable_matches_defaults_and_decodes_all_workings"
+	},
+	{
+		"seconds": 3.380266,
+		"test": "test_save_game.gd::test_complete_kerala_traffic_snapshot_restores_all_services"
+	},
+	{
+		"seconds": 3.250738,
+		"test": "test_interior_navigation.gd::test_seat_and_cab_standing_clearance_in_every_detailed_model"
+	},
+	{
+		"seconds": 3.221483,
+		"test": "test_save_game.gd::test_empty_stock_and_reserved_depot_resume_with_passenger_results"
+	},
+	{
+		"seconds": 3.149168,
+		"test": "test_save_game.gd::test_platform_inventory_change_invalidates_old_checkpoint"
+	},
+	{
+		"seconds": 2.734722,
+		"test": "test_corridor.gd::test_lhb_berths_on_extended_corridor"
+	},
+	{
+		"seconds": 2.66971,
+		"test": "test_service_lifecycle.gd::test_busy_save_round_trip_preserves_lifecycle"
+	},
+	{
+		"seconds": 2.546702,
+		"test": "test_berth_clearance.gd::test_import_and_operator_platform_assignment_reject_short_clearance"
+	},
+	{
+		"seconds": 2.212735,
+		"test": "test_train_build_queue.gd::test_partial_formation_is_hidden_and_published_only_when_complete"
+	},
+	{
+		"seconds": 2.211731,
+		"test": "test_kerala_route.gd::test_kerala_services_export_and_import_preserve_placement"
+	},
+	{
+		"seconds": 2.079575,
+		"test": "test_train_build_queue.gd::test_shared_scene_requests_and_explicit_handover_complete_both_trains"
+	},
+	{
+		"seconds": 2.060759,
+		"test": "test_save_game.gd::test_depot_unloading_keeps_shared_passenger_timetable"
+	},
+	{
+		"seconds": 2.04597,
+		"test": "test_save_game.gd::test_passenger_exchange_resumes_without_double_counting"
+	},
+	{
+		"seconds": 2.033496,
+		"test": "test_train_build_queue.gd::test_cancelled_partial_train_cannot_reappear_and_can_be_requested_again"
+	},
+	{
+		"seconds": 1.855613,
+		"test": "test_first_line.gd::test_drive_into_loop_and_stop_at_red"
+	},
+	{
+		"seconds": 1.824944,
+		"test": "test_track_speed_boards.gd::test_rendered_posts_clear_every_track_platform_and_signal_footprint"
+	},
+	{
+		"seconds": 1.722031,
+		"test": "test_station_precinct.gd::test_every_authored_station_and_ers_annex_has_grounding_and_clutter_exclusion"
+	},
+	{
+		"seconds": 1.457755,
+		"test": "test_save_game.gd::test_turavur_overtake_wait_age_and_route_locks_survive"
+	},
+	{
+		"seconds": 1.421115,
+		"test": "test_depot_workings.gd::test_all_32_default_terminals_have_distinct_reachable_full_rake_depot_berths"
+	},
+	{
+		"seconds": 1.381615,
+		"test": "test_overtake_commitment.gd::test_unavailable_arrived_express_does_not_block_everyone_forever"
+	},
+	{
+		"seconds": 1.343209,
+		"test": "test_service_lifecycle.gd::test_busy_day_has_100_reachable_full_rakes_and_no_initial_overlap"
+	},
+	{
+		"seconds": 1.185993,
+		"test": "test_station_scale.gd::test_long_rake_stops_on_both_loop_roads_and_releases_entrance_points"
+	},
+	{
+		"seconds": 1.168383,
+		"test": "test_dispatch.gd::test_complete_opposing_meet_and_tail_release"
+	},
+	{
+		"seconds": 1.139187,
+		"test": "test_platform_navigation.gd::test_platform_sweeps_stop_at_edges_and_obstacles"
+	},
+	{
+		"seconds": 1.131087,
+		"test": "test_track_speed_boards.gd::test_all_builtin_services_use_formation_cap_and_k1_can_exceed_65"
+	},
+	{
+		"seconds": 1.126516,
+		"test": "test_busy_timetable.gd::test_exactly_two_full_route_vbs_one_each_direction_with_major_calls"
+	},
+	{
+		"seconds": 1.120403,
+		"test": "test_automatic_driving.gd::test_lookahead_is_not_cut_off_by_twenty_short_edges"
+	},
+	{
+		"seconds": 1.099484,
+		"test": "test_scenery.gd::test_settlements_and_fields_clear_actual_railway_and_roads"
+	},
+	{
+		"seconds": 1.095029,
+		"test": "test_wap7.gd::test_complete_outbound_and_cab_two_return"
+	},
+	{
+		"seconds": 1.053128,
+		"test": "test_audio.gd::test_game_audio_scripts_compile"
+	},
+	{
+		"seconds": 1.045653,
+		"test": "test_service_lifecycle.gd::test_terminal_arrival_can_use_another_compatible_platform"
+	},
+	{
+		"seconds": 0.89574,
+		"test": "test_timetable.gd::test_station_dwell_at_60hz_does_not_count_residual_braking_as_departure"
+	},
+	{
+		"seconds": 0.750748,
+		"test": "test_station_scale.gd::test_origin_and_terminal_keep_whole_rake_at_platform"
+	},
+	{
+		"seconds": 0.749203,
+		"test": "test_scenery.gd::test_scenery_plan_is_reproducible_without_advancing_simulation"
+	},
+	{
+		"seconds": 0.746291,
+		"test": "test_save_game.gd::test_roundtrip_running_trains_continue_identically"
+	},
+	{
+		"seconds": 0.686828,
+		"test": "test_timetable.gd::test_terminal_arrival_remains_complete_after_midnight"
+	},
+	{
+		"seconds": 0.654098,
+		"test": "test_lhb.gd::test_lhb_arrives_with_all_coaches_inside_kadalur"
+	},
+	{
+		"seconds": 0.651971,
+		"test": "test_service_pack.gd::test_invalid_imports_never_return_a_partially_built_world"
+	},
+	{
+		"seconds": 0.632321,
+		"test": "test_kerala_route.gd::test_geographic_operational_graph_and_booked_services_are_reachable"
+	},
+	{
+		"seconds": 0.620099,
+		"test": "test_timetable.gd::test_late_arrival_gets_full_dwell_and_offsets_stay_fixed"
+	},
+	{
+		"seconds": 0.609923,
+		"test": "test_manual_stops.gd::test_missed_first_call_explains_kumbalam_deadlock_and_explicit_skip_releases_free_road"
+	},
+	{
+		"seconds": 0.592913,
+		"test": "test_timetable.gd::test_timetable_rejects_wrong_platform_route"
+	},
+	{
+		"seconds": 0.58969,
+		"test": "test_depot_workings.gd::test_depot_terrain_matches_tracks_and_excludes_mapped_buildings"
+	},
+	{
+		"seconds": 0.589114,
+		"test": "test_delete_service.gd::test_deletion_clears_crossing_holds_and_future_reservations"
+	},
+	{
+		"seconds": 0.579646,
+		"test": "test_future_clearance.gd::test_both_approaches_clear_but_occupied_vb_platform_stays_red"
+	},
+	{
+		"seconds": 0.579187,
+		"test": "test_delete_service.gd::test_deleted_parked_service_can_unblock_a_receiving_platform"
+	},
+	{
+		"seconds": 0.577748,
+		"test": "test_dispatch_engine.gd::test_inspection_does_not_hide_or_remove_a_crossing_hold"
+	},
+	{
+		"seconds": 0.575089,
+		"test": "test_dispatch_engine.gd::test_stale_hold_identity_removed_after_service_replacement"
+	},
+	{
+		"seconds": 0.573299,
+		"test": "test_future_clearance.gd::test_future_crossing_reserves_three_distinct_compatible_berths"
+	},
+	{
+		"seconds": 0.572771,
+		"test": "test_future_clearance.gd::test_planned_opponent_stays_until_full_incoming_tail_arrives"
+	},
+	{
+		"seconds": 0.570101,
+		"test": "test_receiving_capacity.gd::test_early_arrival_does_not_wait_for_opponent_without_a_usable_platform"
+	},
+	{
+		"seconds": 0.569297,
+		"test": "test_delete_service.gd::test_deletion_preserves_other_train_authority"
+	},
+	{
+		"seconds": 0.565608,
+		"test": "test_future_clearance.gd::test_future_vacater_does_not_accept_a_new_advisory_overtake"
+	},
+	{
+		"seconds": 0.565169,
+		"test": "test_future_clearance.gd::test_inspection_does_not_create_an_optimistic_plan"
+	},
+	{
+		"seconds": 0.564128,
+		"test": "test_berth_clearance.gd::test_every_kerala_platform_and_siding_holds_full_express_clear_of_both_throats"
+	},
+	{
+		"seconds": 0.562198,
+		"test": "test_future_clearance.gd::test_manual_player_gets_approach_authority_without_losing_control"
+	},
+	{
+		"seconds": 0.562042,
+		"test": "test_future_clearance.gd::test_plan_snapshot_is_isolated_from_ui_mutation"
+	},
+	{
+		"seconds": 0.560606,
+		"test": "test_future_clearance.gd::test_new_plan_cannot_steal_an_existing_crossings_resources"
+	},
+	{
+		"seconds": 0.557872,
+		"test": "test_station_register.gd::test_closed_tirunettur_is_preserved_geographically_but_not_bookable"
+	},
+	{
+		"seconds": 0.557834,
+		"test": "test_trackside_collection.gd::test_native_building_atlases_cover_six_palettes_and_eight_views"
+	},
+	{
+		"seconds": 0.557387,
+		"test": "test_delete_service.gd::test_deleted_service_leaves_no_occupation_or_owned_route"
+	},
+	{
+		"seconds": 0.55398,
+		"test": "test_future_clearance.gd::test_unrelated_train_cannot_take_escape_corridor_or_berth"
+	},
+	{
+		"seconds": 0.552938,
+		"test": "test_future_clearance.gd::test_vacater_manual_or_unscheduled_cannot_promise_a_vacancy"
+	},
+	{
+		"seconds": 0.552761,
+		"test": "test_future_clearance.gd::test_operator_hold_or_red_on_vacater_refuses_plan"
+	},
+	{
+		"seconds": 0.551769,
+		"test": "test_future_clearance.gd::test_occupied_escape_berths_are_not_replaced_by_another_forecast"
+	},
+	{
+		"seconds": 0.5499,
+		"test": "test_berth_clearance.gd::test_all_default_calls_and_manual_arrival_tolerance_keep_rear_clear"
+	},
+	{
+		"seconds": 0.548828,
+		"test": "test_manual_stops.gd::test_manual_stop_accepts_full_train_inside_platform_without_precise_marker"
+	},
+	{
+		"seconds": 0.548633,
+		"test": "test_future_clearance.gd::test_vacater_must_escape_away_from_incoming_approach"
+	},
+	{
+		"seconds": 0.547641,
+		"test": "test_manual_stops.gd::test_manual_stop_outside_platform_is_not_counted"
+	},
+	{
+		"seconds": 0.54712,
+		"test": "test_future_clearance.gd::test_received_train_can_follow_vacater_under_normal_block_protection"
+	},
+	{
+		"seconds": 0.54573,
+		"test": "test_future_clearance.gd::test_late_vacater_does_not_time_out_and_release_a_reserved_platform"
+	},
+	{
+		"seconds": 0.545653,
+		"test": "test_platform_navigation.gd::test_tea_kiosk_collision_covers_its_full_authored_body"
+	},
+	{
+		"seconds": 0.544387,
+		"test": "test_future_clearance.gd::test_incoming_section_cannot_already_contain_an_unrelated_service"
+	},
+	{
+		"seconds": 0.543739,
+		"test": "test_delete_service.gd::test_delete_rejects_missing_current_and_last_service"
+	},
+	{
+		"seconds": 0.54356,
+		"test": "test_dispatch_engine.gd::test_full_receiving_station_prevents_single_line_entry"
+	},
+	{
+		"seconds": 0.543394,
+		"test": "test_future_clearance.gd::test_future_crossing_order_overrides_an_existing_advisory_overtake"
+	},
+	{
+		"seconds": 0.543291,
+		"test": "test_dispatch_engine.gd::test_end_call_rejects_nonpassenger_storage_road"
+	},
+	{
+		"seconds": 0.54038,
+		"test": "test_busy_timetable.gd::test_authored_day_retains_legacy_benchmark_fixture"
+	},
+	{
+		"seconds": 0.539853,
+		"test": "test_platform_navigation.gd::test_only_passenger_platforms_provide_walking_surface"
+	},
+	{
+		"seconds": 0.533517,
+		"test": "test_future_clearance.gd::test_far_future_departure_is_not_an_admission_promise"
+	},
+	{
+		"seconds": 0.528792,
+		"test": "test_future_clearance.gd::test_platform_preference_is_respected_before_planning"
+	},
+	{
+		"seconds": 0.522969,
+		"test": "test_dispatch_engine.gd::test_manual_route_request_honours_receiving_capacity"
+	},
+	{
+		"seconds": 0.518387,
+		"test": "test_receiving_capacity.gd::test_crossing_hold_is_withdrawn_if_opponents_only_platform_becomes_unusable"
+	},
+	{
+		"seconds": 0.510186,
+		"test": "test_terminal_exit.gd::test_occupied_booked_terminal_can_still_use_compatible_alternative"
+	},
+	{
+		"seconds": 0.504661,
+		"test": "test_exit_capacity.gd::test_committed_kumbalam_arrival_protects_last_turavur_face"
+	},
+	{
+		"seconds": 0.502306,
+		"test": "test_track_speed_boards.gd::test_kerala_boards_are_finite_legal_and_every_release_is_tail_safe"
+	},
+	{
+		"seconds": 0.5021,
+		"test": "test_terminal_exit.gd::test_terminal_candidates_preserve_the_outbound_running_line"
+	},
+	{
+		"seconds": 0.498118,
+		"test": "test_dispatch_engine.gd::test_platform_preference_rejects_unreachable_and_nonpassenger_roads"
+	},
+	{
+		"seconds": 0.497697,
+		"test": "test_terminal_exit.gd::test_receiving_capacity_does_not_count_an_opposite_line_terminal_face"
+	},
+	{
+		"seconds": 0.497158,
+		"test": "test_exit_capacity.gd::test_prepared_home_route_counts_its_approaching_owner_only_once"
+	},
+	{
+		"seconds": 0.496945,
+		"test": "test_overtake_commitment.gd::test_fresh_overtake_does_not_inherit_earlier_signal_wait_age"
+	},
+	{
+		"seconds": 0.496767,
+		"test": "test_overtake_commitment.gd::test_manual_driver_remains_held_without_control_handover"
+	},
+	{
+		"seconds": 0.496711,
+		"test": "test_exit_capacity.gd::test_home_platform_selection_cannot_consume_the_escape_face"
+	},
+	{
+		"seconds": 0.49297,
+		"test": "test_overtake_commitment.gd::test_arrived_vb_keeps_overtake_order_after_long_crossing_wait"
+	},
+	{
+		"seconds": 0.491674,
+		"test": "test_overtake_commitment.gd::test_replanning_never_revokes_existing_express_authority"
+	},
+	{
+		"seconds": 0.490891,
+		"test": "test_overtake_commitment.gd::test_northbound_overtake_preserves_order_on_the_other_loop"
+	},
+	{
+		"seconds": 0.49024,
+		"test": "test_exit_capacity.gd::test_nonstopping_opponent_can_escape_via_nonplatform_main"
+	},
+	{
+		"seconds": 0.490102,
+		"test": "test_exit_capacity.gd::test_kumbalam_admission_preserves_escape_for_two_turavur_locals"
+	},
+	{
+		"seconds": 0.488308,
+		"test": "test_exit_capacity.gd::test_spare_compatible_kumbalam_face_allows_crossing"
+	},
+	{
+		"seconds": 0.487958,
+		"test": "test_exit_capacity.gd::test_last_turavur_face_cannot_trap_opposing_kumbalam_passenger"
+	},
+	{
+		"seconds": 0.486238,
+		"test": "test_priority_dispatch.gd::test_first_arrival_uses_loop_when_opposing_train_is_on_a_long_single_section"
+	},
+	{
+		"seconds": 0.482395,
+		"test": "test_priority_dispatch.gd::test_free_opposite_line_loop_cannot_be_used_for_a_same_direction_overtake"
+	},
+	{
+		"seconds": 0.481658,
+		"test": "test_exit_capacity.gd::test_approaching_local_counts_before_its_home_route_is_reserved"
+	},
+	{
+		"seconds": 0.480166,
+		"test": "test_kerala_route.gd::test_automatic_sections_stop_at_controlled_station_homes"
+	},
+	{
+		"seconds": 0.477444,
+		"test": "test_kerala_route.gd::test_large_stopping_scenario_has_separate_origins_and_terminal_roads"
+	},
+	{
+		"seconds": 0.47635,
+		"test": "test_station_register.gd::test_storage_track_does_not_become_a_third_karunagappalli_passing_loop"
+	},
+	{
+		"seconds": 0.475638,
+		"test": "test_kerala_route.gd::test_mapped_halts_do_not_invent_passing_loops"
+	},
+	{
+		"seconds": 0.472721,
+		"test": "test_service_lifecycle.gd::test_tail_on_point_branch_still_blocks_route_alignment"
+	},
+	{
+		"seconds": 0.472172,
+		"test": "test_service_lifecycle.gd::test_entry_preserves_sole_passenger_face_for_incoming_train"
+	},
+	{
+		"seconds": 0.47152,
+		"test": "test_future_clearance.gd::test_existing_home_authority_cannot_be_replaced_by_a_future_platform_promise"
+	},
+	{
+		"seconds": 0.469154,
+		"test": "test_station_audit.gd::test_goods_roads_are_not_passenger_platforms"
+	},
+	{
+		"seconds": 0.468252,
+		"test": "test_station_audit.gd::test_commissioned_southern_double_line_and_nagercoil_town_loop"
+	},
+	{
+		"seconds": 0.467305,
+		"test": "test_future_clearance.gd::test_wrong_length_or_platform_face_refuses_future_berth"
+	},
+	{
+		"seconds": 0.463867,
+		"test": "test_station_register.gd::test_every_csv_platform_count_matches_the_generated_world"
+	},
+	{
+		"seconds": 0.431032,
+		"test": "test_automatic_driving.gd::test_weak_brakes_look_ahead_beyond_five_kilometres"
+	},
+	{
+		"seconds": 0.428863,
+		"test": "test_service_lifecycle.gd::test_long_rake_on_short_tvc_approach_does_not_block_its_own_point"
+	},
+	{
+		"seconds": 0.425381,
+		"test": "test_lhb.gd::test_lhb_red_signal_stop_with_tail_clear"
+	},
+	{
+		"seconds": 0.423251,
+		"test": "test_dispatch_engine.gd::test_platform_request_survives_departure_call_index_change"
+	},
+	{
+		"seconds": 0.401888,
+		"test": "test_station_register.gd::test_one_platform_crossing_can_forecast_vb_departure_without_admitting_to_occupied_road"
+	},
+	{
+		"seconds": 0.386401,
+		"test": "test_timetable.gd::test_stop_is_mandatory_even_with_onward_route_clear"
+	},
+	{
+		"seconds": 0.385083,
+		"test": "test_receiving_capacity.gd::test_arrival_road_must_allow_departure_toward_the_following_call"
+	},
+	{
+		"seconds": 0.367396,
+		"test": "test_time_skip.gd::test_stop_skip_waits_for_actual_arrival_not_the_booked_time"
+	},
+	{
+		"seconds": 0.36707,
+		"test": "test_wap7.gd::test_wap7_ai_stops_at_uncleared_maruthur_starter"
+	},
+	{
+		"seconds": 0.362541,
+		"test": "test_exit_capacity.gd::test_prepared_arrival_does_not_consume_two_platforms_and_cause_false_hold"
+	},
+	{
+		"seconds": 0.353932,
+		"test": "test_depot_workings.gd::test_empty_stock_obeys_signals_and_clears_full_tail_to_depot"
+	},
+	{
+		"seconds": 0.343534,
+		"test": "test_dispatch_engine.gd::test_occupied_platform_does_not_hide_free_kumbalam_alternative"
+	},
+	{
+		"seconds": 0.336871,
+		"test": "test_dispatch_engine.gd::test_missed_call_is_not_blame_on_an_unrelated_occupied_road"
+	},
+	{
+		"seconds": 0.335906,
+		"test": "test_receiving_capacity.gd::test_opposing_claim_from_the_other_section_prevents_kumbalam_deadlock"
+	},
+	{
+		"seconds": 0.334897,
+		"test": "test_receiving_capacity.gd::test_early_manual_passenger_claim_is_respected_when_opponent_replans"
+	},
+	{
+		"seconds": 0.334703,
+		"test": "test_receiving_capacity.gd::test_departed_vb_releases_a_second_passenger_berth_for_opposing_claims"
+	},
+	{
+		"seconds": 0.331067,
+		"test": "test_overtake_commitment.gd::test_overtake_survives_head_departure_until_full_tail_clearance"
+	},
+	{
+		"seconds": 0.327307,
+		"test": "test_dispatch_engine.gd::test_receiving_capacity_claim_counts_committed_following_train"
+	},
+	{
+		"seconds": 0.319981,
+		"test": "test_receiving_capacity.gd::test_nonplatform_main_is_not_spare_capacity_for_stopping_train"
+	},
+	{
+		"seconds": 0.308509,
+		"test": "test_station_register.gd::test_two_reported_platforms_do_not_invent_a_dhanuvachapuram_passing_loop"
+	},
+	{
+		"seconds": 0.293064,
+		"test": "test_overtake_commitment.gd::test_unarrived_express_can_still_be_replanned_after_a_long_overtake_hold"
+	},
+	{
+		"seconds": 0.288253,
+		"test": "test_platform_acoustics.gd::test_generated_squeal_bank_lossless_and_bounded"
+	},
+	{
+		"seconds": 0.252879,
+		"test": "test_joint_video_audio.gd::test_lhb_pair_intervals_follow_speed_in_both_directions"
+	},
+	{
+		"seconds": 0.224939,
+		"test": "test_interior_navigation.gd::test_compartment_side_doors_come_from_source_headers"
+	},
+	{
+		"seconds": 0.221604,
+		"test": "test_platform_acoustics.gd::test_swept_contact_times_both_directions_and_frame_rates"
+	},
+	{
+		"seconds": 0.187319,
+		"test": "test_interior_navigation.gd::test_real_fleet_profiles_have_supported_floors_and_crouch_superset"
+	},
+	{
+		"seconds": 0.181602,
+		"test": "test_automatic_driving.gd::test_fast_forward_preserves_braking_curve"
+	},
+	{
+		"seconds": 0.126684,
+		"test": "test_train_build_queue.gd::test_shared_audio_contacts_keep_separate_playback_and_reject_another_graph"
+	},
+	{
+		"seconds": 0.104069,
+		"test": "test_automatic_driving.gd::test_buffer_stop_and_equipment_cap"
+	},
+	{
+		"seconds": 0.104046,
+		"test": "test_automatic_driving.gd::test_reverse_direction_brakes_before_lower_limit"
+	},
+	{
+		"seconds": 0.098186,
+		"test": "test_automatic_driving.gd::test_brakes_gradually_well_before_lower_limit"
+	},
+	{
+		"seconds": 0.096657,
+		"test": "test_audio_output_timing.gd::test_website_39m_contacts_keep_speed_dependent_axle_pairs"
+	},
+	{
+		"seconds": 0.09158,
+		"test": "test_automatic_driving.gd::test_station_stop_is_accurate_with_gradual_braking"
+	},
+	{
+		"seconds": 0.08935,
+		"test": "test_save_game.gd::test_invalid_version_geometry_and_reference_reject_without_mutation"
+	},
+	{
+		"seconds": 0.087461,
+		"test": "test_body_v2.gd::test_channel_routing_preserves_full_pcm_and_decay"
+	},
+	{
+		"seconds": 0.085412,
+		"test": "test_timetable.gd::test_early_arrival_waits_for_booked_departure_then_for_route"
+	},
+	{
+		"seconds": 0.08314,
+		"test": "test_timetable.gd::test_overnight_offsets_are_absolute_not_reset_at_midnight"
+	},
+	{
+		"seconds": 0.081311,
+		"test": "test_dispatch.gd::test_ai_brakes_for_red_beyond_yellow"
+	},
+	{
+		"seconds": 0.078454,
+		"test": "test_service_pack.gd::test_rake_profiles_survive_export_and_validate_full_length"
+	},
+	{
+		"seconds": 0.075947,
+		"test": "test_interior_navigation.gd::test_wap_machinery_door_is_bidirectional_and_external_walls_are_not_doors"
+	},
+	{
+		"seconds": 0.073029,
+		"test": "test_save_game.gd::test_corrupt_slot_preserves_backup_and_cannot_escape_save_directory"
+	},
+	{
+		"seconds": 0.072928,
+		"test": "test_save_game.gd::test_atomic_slot_overwrite_and_previous_backup"
+	},
+	{
+		"seconds": 0.070908,
+		"test": "test_save_game.gd::test_deleted_services_and_operator_changes_stay_deleted_and_set"
+	},
+	{
+		"seconds": 0.070377,
+		"test": "test_approach_routing.gd::test_free_home_is_prepared_before_passing_approach_signal"
+	},
+	{
+		"seconds": 0.067845,
+		"test": "test_body_v2.gd::test_body_v2_timing_at_all_speeds_and_directions"
+	},
+	{
+		"seconds": 0.064722,
+		"test": "test_automatic_driving.gd::test_red_signal_stop_uses_partial_brake_and_keeps_clearance"
+	},
+	{
+		"seconds": 0.060208,
+		"test": "test_service_pack.gd::test_import_validation_does_not_mutate_input_or_another_world"
+	},
+	{
+		"seconds": 0.057671,
+		"test": "test_graphics_options.gd::test_every_option_is_reachable_and_nested_back_preserves_context"
+	},
+	{
+		"seconds": 0.056565,
+		"test": "test_time_skip.gd::test_skip_uses_real_motion_and_ai_dispatch_and_stops_at_exact_clock"
+	},
+	{
+		"seconds": 0.050237,
+		"test": "test_automatic_driving.gd::test_cruise_holds_speed_without_power_coast_chatter"
+	},
+	{
+		"seconds": 0.04826,
+		"test": "test_signals.gd::test_passing_clear_signal_puts_it_back_and_releases_route"
+	},
+	{
+		"seconds": 0.046533,
+		"test": "test_service_pack.gd::test_default_round_trip_preserves_stock_times_and_physical_placement"
+	},
+	{
+		"seconds": 0.043906,
+		"test": "test_dispatch_engine.gd::test_static_decisions_do_not_flood_journal"
+	},
+	{
+		"seconds": 0.043387,
+		"test": "test_service_pack.gd::test_custom_ids_and_any_service_can_be_the_manual_working"
+	},
+	{
+		"seconds": 0.041821,
+		"test": "test_busy_timetable.gd::test_local_and_intercity_formations_are_seated_and_speeds_are_not_capped"
+	},
+	{
+		"seconds": 0.040426,
+		"test": "test_service_pack.gd::test_overnight_departures_and_missing_optional_fields_normalize"
+	},
+	{
+		"seconds": 0.039053,
+		"test": "test_ride_dynamics.gd::test_fast_forward_stays_finite_and_within_suspension_travel"
+	},
+	{
+		"seconds": 0.038845,
+		"test": "test_passenger_service.gd::test_paused_time_and_fast_forward_preserve_the_same_journeys"
+	},
+	{
+		"seconds": 0.038196,
+		"test": "test_geographic_foundations.gd::test_first_two_stops_have_bridge_supports_across_mapped_backwaters"
+	},
+	{
+		"seconds": 0.037932,
+		"test": "test_ported_stock.gd::test_imported_reversal_preserves_axle_locations"
+	},
+	{
+		"seconds": 0.037726,
+		"test": "test_dispatch_engine.gd::test_put_to_red_is_not_undone_by_auto_dispatch"
+	},
+	{
+		"seconds": 0.034228,
+		"test": "test_coach_rattle.gd::test_icf_is_more_active_than_lhb_and_speed_changes_cadence_not_pitch"
+	},
+	{
+		"seconds": 0.033783,
+		"test": "test_timetable.gd::test_only_origin_route_is_needed_to_start"
+	},
+	{
+		"seconds": 0.033276,
+		"test": "test_busy_timetable.gd::test_regional_calls_follow_open_reachable_platforms"
+	},
+	{
+		"seconds": 0.031799,
+		"test": "test_joint_video_audio.gd::test_same_axle_hits_visible_joint_spacing"
+	},
+	{
+		"seconds": 0.031151,
+		"test": "test_passenger_service.gd::test_station_layout_paths_cover_every_model_seat_and_door"
+	},
+	{
+		"seconds": 0.030984,
+		"test": "test_automatic_driving.gd::test_sudden_close_red_overrides_comfort_rate"
+	},
+	{
+		"seconds": 0.027905,
+		"test": "test_station_scale.gd::test_every_platform_keeps_full_vehicle_envelope_clear"
+	},
+	{
+		"seconds": 0.027103,
+		"test": "test_station_precinct.gd::test_civil_grading_does_not_raise_running_tracks_at_any_station"
+	},
+	{
+		"seconds": 0.025457,
+		"test": "test_audio.gd::test_exported_model_matches_the_fit"
+	},
+	{
+		"seconds": 0.025447,
+		"test": "test_track_speed_boards.gd::test_restricted_track_remains_in_force_until_tail_leaves"
+	},
+	{
+		"seconds": 0.023931,
+		"test": "test_automatic_driving.gd::test_speed_increase_waits_for_tail_to_clear_restriction"
+	},
+	{
+		"seconds": 0.02146,
+		"test": "test_timetable.gd::test_manual_arrival_and_ai_handoff_keep_timetable_progress"
+	},
+	{
+		"seconds": 0.021239,
+		"test": "test_dispatch_engine.gd::test_engine_dispatches_without_scene_or_explicit_update_loop"
+	},
+	{
+		"seconds": 0.020124,
+		"test": "test_ported_stock.gd::test_second_axle_stays_clang_in_either_travel_direction"
+	},
+	{
+		"seconds": 0.019064,
+		"test": "test_timetable.gd::test_due_train_waits_for_route_then_departs_automatically"
+	},
+	{
+		"seconds": 0.018985,
+		"test": "test_dispatch_engine.gd::test_decisions_are_deterministic"
+	},
+	{
+		"seconds": 0.017249,
+		"test": "test_ported_stock.gd::test_imported_consists_have_safe_station_capacity"
+	},
+	{
+		"seconds": 0.016851,
+		"test": "test_joint_video_audio.gd::test_acceleration_braking_and_stop_do_not_duplicate_contacts"
+	},
+	{
+		"seconds": 0.01524,
+		"test": "test_lhb.gd::test_loaded_rake_accelerates_slower_than_light_engine"
+	},
+	{
+		"seconds": 0.014872,
+		"test": "test_dispatch_engine.gd::test_disabled_engine_observes_but_does_not_set_routes"
+	},
+	{
+		"seconds": 0.01439,
+		"test": "test_track_and_train.gd::test_train_top_speed_is_capped"
+	},
+	{
+		"seconds": 0.01407,
+		"test": "test_trackside_collection.gd::test_impostor_atlases_use_mipmaps_and_preserve_rgb_normals"
+	},
+	{
+		"seconds": 0.013043,
+		"test": "test_dispatch_engine.gd::test_dynamic_priority_changes_first_departure_without_hardcoded_id"
+	},
+	{
+		"seconds": 0.012953,
+		"test": "test_dispatch_engine.gd::test_operator_hold_and_release"
+	},
+	{
+		"seconds": 0.012546,
+		"test": "test_dispatch_engine.gd::test_auto_off_removes_discretionary_holds_without_revoking_routes"
+	},
+	{
+		"seconds": 0.012501,
+		"test": "test_dispatch_engine.gd::test_put_to_red_retains_approach_lock"
+	},
+	{
+		"seconds": 0.012135,
+		"test": "test_ride_dynamics.gd::test_spatial_roughness_is_repeatable_across_frame_rates"
+	},
+	{
+		"seconds": 0.012085,
+		"test": "test_rake_livery.gd::test_all_coach_classes_keep_family_paint_and_authored_surface_detail"
+	},
+	{
+		"seconds": 0.010647,
+		"test": "test_traffic_service.gd::test_manual_player_gets_routes_without_ai_taking_the_controls"
+	},
+	{
+		"seconds": 0.009462,
+		"test": "test_dispatch_engine.gd::test_engine_manual_authority_does_not_change_handle_or_driver"
+	},
+	{
+		"seconds": 0.00939,
+		"test": "test_dispatch_engine.gd::test_operator_hold_does_not_accumulate_traffic_priority"
+	},
+	{
+		"seconds": 0.009283,
+		"test": "test_platform_acoustics.gd::test_impact_wavefront_guard_preserves_all_imminent_arrivals"
+	},
+	{
+		"seconds": 0.008861,
+		"test": "test_timetable.gd::test_clear_route_does_not_allow_early_departure"
+	},
+	{
+		"seconds": 0.008628,
+		"test": "test_train_motion.gd::test_uniform_render_motion_at_mismatched_frame_rates"
+	},
+	{
+		"seconds": 0.008599,
+		"test": "test_passenger_service.gd::test_origin_has_destination_bound_passengers_and_exact_model_capacity"
+	},
+	{
+		"seconds": 0.008477,
+		"test": "test_time_skip.gd::test_time_skip_across_midnight_keeps_day_and_live_scheduled_entry"
+	},
+	{
+		"seconds": 0.007982,
+		"test": "test_ride_dynamics.gd::test_stationary_train_settles_without_random_shake"
+	},
+	{
+		"seconds": 0.007578,
+		"test": "test_dispatch_engine.gd::test_snapshot_cannot_mutate_engine_state"
+	},
+	{
+		"seconds": 0.007406,
+		"test": "test_trackside_collection.gd::test_grass_density_lods_keep_real_height_and_reduce_geometry"
+	},
+	{
+		"seconds": 0.007364,
+		"test": "test_dispatch_engine.gd::test_operator_commands_reject_invalid_targets_atomically"
+	},
+	{
+		"seconds": 0.006987,
+		"test": "test_corridor.gd::test_independent_arrivals_and_conflicting_departures"
+	},
+	{
+		"seconds": 0.006204,
+		"test": "test_passenger_service.gd::test_alight_before_boarding_and_never_sell_the_same_seat_twice"
+	},
+	{
+		"seconds": 0.006038,
+		"test": "test_body_v2.gd::test_approved_source_files_are_byte_identical"
+	},
+	{
+		"seconds": 0.005955,
+		"test": "test_performance_streaming.gd::test_worker_shutdown_reclaims_an_unconsumed_result_and_idle_workers"
+	},
+	{
+		"seconds": 0.005854,
+		"test": "test_performance_streaming.gd::test_persistent_workers_reuse_thread_and_publish_complete_results"
+	},
+	{
+		"seconds": 0.005806,
+		"test": "test_platform_acoustics.gd::test_website_onboard_balance_and_wavefront"
+	},
+	{
+		"seconds": 0.005704,
+		"test": "test_dispatch_engine.gd::test_forecast_marks_signal_wait_as_uncertain"
+	},
+	{
+		"seconds": 0.005677,
+		"test": "test_traffic_service.gd::test_mixed_passenger_services_fit_their_platforms"
+	},
+	{
+		"seconds": 0.005634,
+		"test": "test_dispatch_engine.gd::test_decision_log_is_bounded_and_monotonic"
+	},
+	{
+		"seconds": 0.005253,
+		"test": "test_vegetation_clearance.gd::test_grass_mesh_is_bounded_bent_geometry_with_fixed_triangle_budget"
+	},
+	{
+		"seconds": 0.004977,
+		"test": "test_dispatch_engine.gd::test_waiting_age_prevents_permanent_priority_starvation"
+	},
+	{
+		"seconds": 0.004965,
+		"test": "test_dispatch_engine.gd::test_automatic_signal_cannot_be_overridden"
+	},
+	{
+		"seconds": 0.004828,
+		"test": "test_dispatch_engine.gd::test_world_owns_one_engine_without_reference_cycle"
+	},
+	{
+		"seconds": 0.004693,
+		"test": "test_corridor.gd::test_route_paths_have_no_reversals_or_duplicate_exits"
+	},
+	{
+		"seconds": 0.004407,
+		"test": "test_busy_timetable.gd::test_dwell_and_arrivals_include_junction_work_and_remain_monotone"
+	},
+	{
+		"seconds": 0.00396,
+		"test": "test_graphics_options.gd::test_local_preferences_round_trip_and_reject_corrupt_values"
+	},
+	{
+		"seconds": 0.003629,
+		"test": "test_corridor.gd::test_terminal_crossovers_reach_all_four_platforms"
+	},
+	{
+		"seconds": 0.003614,
+		"test": "test_station_register.gd::test_register_source_hash_is_pinned"
+	},
+	{
+		"seconds": 0.0036,
+		"test": "test_trackside_collection.gd::test_all_52_source_entries_have_runtime_geometry_and_provenance"
+	},
+	{
+		"seconds": 0.003502,
+		"test": "test_corridor.gd::test_double_track_and_four_platforms"
+	},
+	{
+		"seconds": 0.003404,
+		"test": "test_dispatch_engine.gd::test_advisory_cycle_releases_one_hold_and_prevents_immediate_recreation"
+	},
+	{
+		"seconds": 0.003229,
+		"test": "test_ride_dynamics.gd::test_curve_loading_rolls_opposite_directions"
+	},
+	{
+		"seconds": 0.003202,
+		"test": "test_ride_dynamics.gd::test_braking_and_acceleration_pitch_in_opposite_directions"
+	},
+	{
+		"seconds": 0.003189,
+		"test": "test_route_distances.gd::test_long_directed_route_has_no_64_edge_limit"
+	},
+	{
+		"seconds": 0.002929,
+		"test": "test_interior_navigation.gd::test_sweep_stops_at_wall_even_after_long_frame"
+	},
+	{
+		"seconds": 0.002882,
+		"test": "test_dispatch.gd::test_terminal_platform_does_not_intersect_converging_track"
+	},
+	{
+		"seconds": 0.002764,
+		"test": "test_graphics_layout.gd::test_explicit_height_and_industrial_storeys_remain_mapped"
+	},
+	{
+		"seconds": 0.002728,
+		"test": "test_graphics_layout.gd::test_tower_and_tiny_buildings_keep_real_envelope"
+	},
+	{
+		"seconds": 0.00264,
+		"test": "test_passenger_service.gd::test_exchange_interlocks_manual_traction_until_every_door_closes"
+	},
+	{
+		"seconds": 0.002612,
+		"test": "test_passenger_service.gd::test_terminal_unloads_everyone_and_never_boards_depot_passengers"
+	},
+	{
+		"seconds": 0.002606,
+		"test": "test_ported_stock.gd::test_long_rake_mass_traction_and_stopping_passenger_geometry"
+	},
+	{
+		"seconds": 0.002538,
+		"test": "test_coach_rattle.gd::test_rattle_events_are_repeatable_and_silent_stopped_or_paused"
+	},
+	{
+		"seconds": 0.002531,
+		"test": "test_audio.gd::test_hit_count_is_axles_times_joints"
+	},
+	{
+		"seconds": 0.002445,
+		"test": "test_platform_acoustics.gd::test_low_speed_rolling_and_squeal_match_javascript"
+	},
+	{
+		"seconds": 0.002222,
+		"test": "test_passenger_service.gd::test_mid_exchange_interruption_does_not_duplicate_or_lose_people"
+	},
+	{
+		"seconds": 0.002162,
+		"test": "test_platform_acoustics.gd::test_stable_axle_identity_after_reversing"
+	},
+	{
+		"seconds": 0.002071,
+		"test": "test_platform_acoustics.gd::test_actual_turnout_has_eleven_contacts_without_periodic_duplicates"
+	},
+	{
+		"seconds": 0.002034,
+		"test": "test_signals.gd::test_spad_applies_emergency_brake"
+	},
+	{
+		"seconds": 0.001993,
+		"test": "test_platform_acoustics.gd::test_sweep_acceleration_pause_and_teleport"
+	},
+	{
+		"seconds": 0.001831,
+		"test": "test_kerala_scenery.gd::test_road_facing_building_keeps_all_new_assets_inside_rotated_envelope"
+	},
+	{
+		"seconds": 0.001797,
+		"test": "test_platform_acoustics.gd::test_benchmark_squeal_state_matches_new_javascript"
+	},
+	{
+		"seconds": 0.001739,
+		"test": "test_body_v2.gd::test_website_axle_identity_and_load_mapping"
+	},
+	{
+		"seconds": 0.001697,
+		"test": "test_scenery.gd::test_building_clearance_footprints_enclose_exported_model_bounds"
+	},
+	{
+		"seconds": 0.001647,
+		"test": "test_graphics_layout.gd::test_detailed_building_stays_within_rotated_mapped_footprint"
+	},
+	{
+		"seconds": 0.001642,
+		"test": "test_scenery.gd::test_decorative_traffic_stays_on_roads_and_wraps_smoothly"
+	},
+	{
+		"seconds": 0.001551,
+		"test": "test_busy_timetable.gd::test_workings_cover_morning_evening_and_have_feasible_origin_headways"
+	},
+	{
+		"seconds": 0.001546,
+		"test": "test_automatic_driving.gd::test_emergency_and_occupied_block_protection_remain_immediate"
+	},
+	{
+		"seconds": 0.001512,
+		"test": "test_station_audit.gd::test_every_station_has_research_evidence_without_claiming_certification"
+	},
+	{
+		"seconds": 0.001414,
+		"test": "test_busy_timetable.gd::test_multiple_long_distance_workings_in_both_directions"
+	},
+	{
+		"seconds": 0.001403,
+		"test": "test_performance_streaming.gd::test_activation_budget_preserves_transforms_and_rebase_then_cancels"
+	},
+	{
+		"seconds": 0.001381,
+		"test": "test_graphics_layout.gd::test_irregular_footprint_keeps_mapped_geometry"
+	},
+	{
+		"seconds": 0.001373,
+		"test": "test_kerala_scenery.gd::test_new_asset_geometry_has_bounded_cost_and_portable_manifest"
+	},
+	{
+		"seconds": 0.001344,
+		"test": "test_ported_stock.gd::test_imported_formation_geometry"
+	},
+	{
+		"seconds": 0.001338,
+		"test": "test_dispatch.gd::test_large_step_cannot_enter_occupied_block"
+	},
+	{
+		"seconds": 0.001328,
+		"test": "test_graphics_layout.gd::test_detail_placement_is_deterministic"
+	},
+	{
+		"seconds": 0.001313,
+		"test": "test_render_budget.gd::test_streaming_retains_rail_signals_outside_detailed_scenery_radius"
+	},
+	{
+		"seconds": 0.001286,
+		"test": "test_graphics_layout.gd::test_skewed_footprint_cannot_gain_corners"
+	},
+	{
+		"seconds": 0.001249,
+		"test": "test_trackside_collection.gd::test_baked_impostors_exist_for_each_catalog_entry"
+	},
+	{
+		"seconds": 0.001151,
+		"test": "test_trackside_collection.gd::test_authored_tree_lods_reduce_geometry_and_have_continuous_ranges"
+	},
+	{
+		"seconds": 0.001094,
+		"test": "test_vegetation_clearance.gd::test_new_grass_can_grow_beside_track_without_entering_ballast"
+	},
+	{
+		"seconds": 0.001056,
+		"test": "test_track_detail.gd::test_distant_meshes_reduce_work_and_keep_sleeper_bounds"
+	},
+	{
+		"seconds": 0.001024,
+		"test": "test_service_progress.gd::test_origin_is_counted_and_next_stop_is_not_origin"
+	},
+	{
+		"seconds": 0.00101,
+		"test": "test_passenger_service.gd::test_dispatch_departure_forecast_includes_the_door_closing_time"
+	},
+	{
+		"seconds": 0.000956,
+		"test": "test_platform_navigation.gd::test_all_detailed_models_have_bilateral_source_doors"
+	},
+	{
+		"seconds": 0.000928,
+		"test": "test_track_speed_boards.gd::test_facing_fork_has_road_qualified_speed_and_ignores_live_switch_state"
+	},
+	{
+		"seconds": 0.000912,
+		"test": "test_wap7.gd::test_wap7_exported_speed_dial_and_digital_agree"
+	},
+	{
+		"seconds": 0.000898,
+		"test": "test_service_progress.gd::test_arrival_counts_once_and_selects_following_stop"
+	},
+	{
+		"seconds": 0.000883,
+		"test": "test_time_skip.gd::test_existing_safety_event_does_not_retrigger_but_new_event_stops_skip"
+	},
+	{
+		"seconds": 0.000862,
+		"test": "test_timetable.gd::test_scenario_loads_block_based_timetables"
+	},
+	{
+		"seconds": 0.000841,
+		"test": "test_track_speed_boards.gd::test_longer_supported_train_extends_termination_clearance"
+	},
+	{
+		"seconds": 0.000824,
+		"test": "test_platform_camera.gd::test_spectator_uses_real_platform_height_and_clearance"
+	},
+	{
+		"seconds": 0.0008,
+		"test": "test_time_skip.gd::test_cancel_keeps_advanced_state_and_ai_driving"
+	},
+	{
+		"seconds": 0.000731,
+		"test": "test_service_progress.gd::test_completed_journey_has_no_next_stop"
+	},
+	{
+		"seconds": 0.000635,
+		"test": "test_cab.gd::test_exported_speedometer_points_at_marked_values"
+	},
+	{
+		"seconds": 0.000631,
+		"test": "test_station_audit.gd::test_all_nameboards_have_three_languages_and_tamil_in_tamil_nadu"
+	},
+	{
+		"seconds": 0.000608,
+		"test": "test_track_speed_boards.gd::test_signs_mark_exact_reduction_and_full_rake_release_in_both_directions"
+	},
+	{
+		"seconds": 0.000588,
+		"test": "test_wap7.gd::test_wap7_emergency_indications_override_power"
+	},
+	{
+		"seconds": 0.00058,
+		"test": "test_track_speed_boards.gd::test_equal_speed_blocks_do_not_produce_duplicate_indicators"
+	},
+	{
+		"seconds": 0.000578,
+		"test": "test_track_speed_boards.gd::test_subsequent_lower_limit_suppresses_premature_termination"
+	},
+	{
+		"seconds": 0.000566,
+		"test": "test_performance_streaming.gd::test_warm_cache_is_bounded_without_evicting_visible_chunks"
+	},
+	{
+		"seconds": 0.000566,
+		"test": "test_lhb.gd::test_passenger_formation_fits_platforms"
+	},
+	{
+		"seconds": 0.000561,
+		"test": "test_vegetation_clearance.gd::test_platform_exclusion_uses_outer_edge_not_route_centreline"
+	},
+	{
+		"seconds": 0.000557,
+		"test": "test_track_and_train.gd::test_train_accelerates_and_brakes"
+	},
+	{
+		"seconds": 0.000551,
+		"test": "test_kerala_route.gd::test_dispatcher_reserves_a_route_containing_an_unsignalled_halt"
+	},
+	{
+		"seconds": 0.000547,
+		"test": "test_track_speed_boards.gd::test_merge_from_slower_branch_cannot_inherit_early_release"
+	},
+	{
+		"seconds": 0.000536,
+		"test": "test_lhb.gd::test_lhb_cannot_magically_reverse_locomotive_and_coaches"
+	},
+	{
+		"seconds": 0.000527,
+		"test": "test_wap7.gd::test_light_engine_profile_and_starter"
+	},
+	{
+		"seconds": 0.000527,
+		"test": "test_station_precinct.gd::test_access_links_leave_through_real_boundary_gates_and_keep_roads_visible"
+	},
+	{
+		"seconds": 0.000523,
+		"test": "test_vegetation_clearance.gd::test_clearance_preserves_other_running_lines_and_depot_spurs"
+	},
+	{
+		"seconds": 0.000519,
+		"test": "test_wap7.gd::test_cannot_change_cab_while_moving"
+	},
+	{
+		"seconds": 0.0005,
+		"test": "test_dispatch.gd::test_route_selection_aligns_points_and_locks_exit"
+	},
+	{
+		"seconds": 0.000492,
+		"test": "test_dispatch.gd::test_route_cannot_be_changed_while_reserved"
+	},
+	{
+		"seconds": 0.000468,
+		"test": "test_track_speed_boards.gd::test_one_way_directions_and_buffer_ends"
+	},
+	{
+		"seconds": 0.000464,
+		"test": "test_dispatch.gd::test_independent_arrivals_into_different_loop_roads"
+	},
+	{
+		"seconds": 0.000431,
+		"test": "test_first_line.gd::test_reverse_and_return_westbound"
+	},
+	{
+		"seconds": 0.000427,
+		"test": "test_first_line.gd::test_every_signal_block_ends_somewhere_sensible"
+	},
+	{
+		"seconds": 0.000406,
+		"test": "test_passenger_service.gd::test_unscheduled_free_drive_has_riders_without_a_departure_hold"
+	},
+	{
+		"seconds": 0.000403,
+		"test": "test_first_line.gd::test_layout_builds_and_train_is_placed"
+	},
+	{
+		"seconds": 0.000395,
+		"test": "test_ported_stock.gd::test_imported_family_and_vb_handedness"
+	},
+	{
+		"seconds": 0.000392,
+		"test": "test_passenger_service.gd::test_no_exchange_while_moving_at_signals_or_without_a_platform"
+	},
+	{
+		"seconds": 0.000389,
+		"test": "test_approach_routing.gd::test_prepared_home_keeps_starter_red_for_booked_stop"
+	},
+	{
+		"seconds": 0.000387,
+		"test": "test_timetable.gd::test_invalid_timetable_is_rejected_atomically"
+	},
+	{
+		"seconds": 0.000383,
+		"test": "test_dispatch.gd::test_same_berth_opposing_arrivals_are_refused"
+	},
+	{
+		"seconds": 0.000381,
+		"test": "test_track_detail.gd::test_track_reference_switch_restores_full_distance_and_far_replacement"
+	},
+	{
+		"seconds": 0.00038,
+		"test": "test_dispatch.gd::test_manually_driven_service_can_complete"
+	},
+	{
+		"seconds": 0.000378,
+		"test": "test_dispatch.gd::test_failed_route_has_no_partial_point_changes"
+	},
+	{
+		"seconds": 0.000369,
+		"test": "test_dispatch.gd::test_passed_signal_cannot_cancel_before_first_route_edge"
+	},
+	{
+		"seconds": 0.000366,
+		"test": "test_service_lifecycle.gd::test_scheduled_services_have_no_occupancy_or_route_claims"
+	},
+	{
+		"seconds": 0.000361,
+		"test": "test_audio.gd::test_bogie_pair_hits_same_joint_one_wheelbase_apart"
+	},
+	{
+		"seconds": 0.000355,
+		"test": "test_service_lifecycle.gd::test_inactive_dispatch_states_are_inspectable_without_authority"
+	},
+	{
+		"seconds": 0.000354,
+		"test": "test_service_lifecycle.gd::test_step_refreshes_newly_entered_occupancy"
+	},
+	{
+		"seconds": 0.000352,
+		"test": "test_ohe_clearance.gd::test_shared_yard_gantry_clears_tracks_and_outer_platforms"
+	},
+	{
+		"seconds": 0.000352,
+		"test": "test_audio.gd::test_joints_are_fixed_on_the_track"
+	},
+	{
+		"seconds": 0.00035,
+		"test": "test_service_lifecycle.gd::test_removing_future_service_does_not_cancel_active_departure"
+	},
+	{
+		"seconds": 0.000349,
+		"test": "test_kerala_route.gd::test_halt_departure_uses_existing_section_authority_with_next_signal_red"
+	},
+	{
+		"seconds": 0.000348,
+		"test": "test_graphics_options.gd::test_vegetation_lods_keep_matching_instances_and_restore_exactly"
+	},
+	{
+		"seconds": 0.000338,
+		"test": "test_priority_dispatch.gd::test_idle_automatic_routes_do_not_keep_single_line_locked"
+	},
+	{
+		"seconds": 0.000336,
+		"test": "test_berth_clearance.gd::test_short_road_and_unusable_stop_marker_rejected_even_if_edge_is_long"
+	},
+	{
+		"seconds": 0.000324,
+		"test": "test_approach_routing.gd::test_occupied_platform_keeps_approach_yellow_and_home_red"
+	},
+	{
+		"seconds": 0.000319,
+		"test": "test_approach_routing.gd::test_manual_player_gets_same_lookahead_but_unsupervised_manual_does_not"
+	},
+	{
+		"seconds": 0.000319,
+		"test": "test_service_progress.gd::test_solo_drive_has_no_fictitious_schedule"
+	},
+	{
+		"seconds": 0.000316,
+		"test": "test_time_skip.gd::test_invalid_targets_leave_driving_and_dispatch_unchanged"
+	},
+	{
+		"seconds": 0.000309,
+		"test": "test_joint_video_audio.gd::test_variant_pair_stays_together_and_has_no_speed_parameter"
+	},
+	{
+		"seconds": 0.000306,
+		"test": "test_priority_dispatch.gd::test_single_line_allows_following_but_blocks_opposing_entry"
+	},
+	{
+		"seconds": 0.000299,
+		"test": "test_dispatch.gd::test_no_route_means_red_even_with_empty_track"
+	},
+	{
+		"seconds": 0.000283,
+		"test": "test_service_lifecycle.gd::test_stall_detector_exempts_future_departures"
+	},
+	{
+		"seconds": 0.000279,
+		"test": "test_service_lifecycle.gd::test_route_direction_index_survives_multiple_physics_slices"
+	},
+	{
+		"seconds": 0.000277,
+		"test": "test_cab.gd::test_cab_emergency_overrides_traction_indication"
+	},
+	{
+		"seconds": 0.000272,
+		"test": "test_approach_routing.gd::test_operator_red_and_train_hold_block_lookahead"
+	},
+	{
+		"seconds": 0.000266,
+		"test": "test_ohe_clearance.gd::test_double_track_supports_are_outside_both_lines"
+	},
+	{
+		"seconds": 0.000265,
+		"test": "test_traffic_service.gd::test_assignment_is_reproducible_and_reaches_every_service"
+	},
+	{
+		"seconds": 0.000265,
+		"test": "test_depot_workings.gd::test_no_free_depot_keeps_train_protected_and_retries_after_space_frees"
+	},
+	{
+		"seconds": 0.000262,
+		"test": "test_ohe_clearance.gd::test_curved_parallel_track_supports_clear_actual_segments"
+	},
+	{
+		"seconds": 0.000262,
+		"test": "test_joint_video_audio.gd::test_stationary_axles_produce_no_impacts"
+	},
+	{
+		"seconds": 0.000253,
+		"test": "test_depot_workings.gd::test_operator_hold_survives_handover_to_depot"
+	},
+	{
+		"seconds": 0.000253,
+		"test": "test_depot_workings.gd::test_depot_lease_is_released_when_operator_deletes_service"
+	},
+	{
+		"seconds": 0.000251,
+		"test": "test_signals.gd::test_three_aspects_follow_next_signal"
+	},
+	{
+		"seconds": 0.000244,
+		"test": "test_approach_routing.gd::test_no_speculative_route_beyond_red_or_occupied_approach"
+	},
+	{
+		"seconds": 0.000227,
+		"test": "test_graphics_options.gd::test_live_environment_viewport_and_crowd_mapping"
+	},
+	{
+		"seconds": 0.000226,
+		"test": "test_priority_dispatch.gd::test_first_arrival_takes_crossing_loop_and_expectation_expires"
+	},
+	{
+		"seconds": 0.000223,
+		"test": "test_service_lifecycle.gd::test_entry_waits_until_preparation_and_admits_only_one_train"
+	},
+	{
+		"seconds": 0.000222,
+		"test": "test_kerala_scenery.gd::test_refined_shore_perimeter_matches_coarse_neighbour_edges"
+	},
+	{
+		"seconds": 0.000219,
+		"test": "test_priority_dispatch.gd::test_priority_and_actual_progress_determine_overtake_request"
+	},
+	{
+		"seconds": 0.000218,
+		"test": "test_audio.gd::test_crossing_onto_the_next_edge"
+	},
+	{
+		"seconds": 0.000209,
+		"test": "test_signals.gd::test_conflicting_route_refused"
+	},
+	{
+		"seconds": 0.000204,
+		"test": "test_priority_dispatch.gd::test_red_single_line_advice_names_opposing_train_without_creating_a_hold"
+	},
+	{
+		"seconds": 0.0002,
+		"test": "test_camera_audio.gd::test_free_camera_receiver_uses_eye_instead_of_orbit_pivot"
+	},
+	{
+		"seconds": 0.000196,
+		"test": "test_depot_workings.gd::test_head_in_depot_does_not_mark_train_stabled_before_tail_clearance"
+	},
+	{
+		"seconds": 0.000196,
+		"test": "test_ohe_clearance.gd::test_yard_support_row_avoids_the_passenger_footbridge"
+	},
+	{
+		"seconds": 0.000195,
+		"test": "test_dispatch.gd::test_approach_cancellation_keeps_points_locked_until_stopped"
+	},
+	{
+		"seconds": 0.000194,
+		"test": "test_service_lifecycle.gd::test_occupied_and_reserved_origin_block_entry"
+	},
+	{
+		"seconds": 0.00019,
+		"test": "test_depot_workings.gd::test_unloading_does_not_teleport_or_clear_the_occupied_platform"
+	},
+	{
+		"seconds": 0.000185,
+		"test": "test_approach_routing.gd::test_lookahead_cannot_skip_a_booked_call_on_approach"
+	},
+	{
+		"seconds": 0.000184,
+		"test": "test_service_lifecycle.gd::test_stored_trains_have_no_occupancy_but_retain_results"
+	},
+	{
+		"seconds": 0.00018,
+		"test": "test_graphics_options.gd::test_presets_are_valid_and_custom_is_detected"
+	},
+	{
+		"seconds": 0.000177,
+		"test": "test_ohe_clearance.gd::test_chunk_and_parallel_road_boundaries_do_not_duplicate_supports"
+	},
+	{
+		"seconds": 0.000176,
+		"test": "test_approach_routing.gd::test_read_only_assessment_does_not_prepare_route"
+	},
+	{
+		"seconds": 0.000167,
+		"test": "test_performance.gd::test_scenery_boxes_share_material_batch_without_changing_corners"
+	},
+	{
+		"seconds": 0.000163,
+		"test": "test_signals.gd::test_route_locks_switch_until_signal_put_back"
+	},
+	{
+		"seconds": 0.00016,
+		"test": "test_signals.gd::test_occupied_block_turns_cleared_signal_red"
+	},
+	{
+		"seconds": 0.000158,
+		"test": "test_audio.gd::test_running_backwards_hits_the_same_joints"
+	},
+	{
+		"seconds": 0.000158,
+		"test": "test_render_budget.gd::test_free_camera_clamps_input_and_saved_altitude_without_accumulating"
+	},
+	{
+		"seconds": 0.000157,
+		"test": "test_signals.gd::test_cannot_clear_through_trailing_switch_set_against"
+	},
+	{
+		"seconds": 0.000157,
+		"test": "test_performance.gd::test_arrival_convergence_matches_original_twelve_iteration_solver"
+	},
+	{
+		"seconds": 0.000155,
+		"test": "test_service_lifecycle.gd::test_player_stock_is_not_stored_under_the_camera"
+	},
+	{
+		"seconds": 0.000149,
+		"test": "test_kerala_scenery.gd::test_boat_hull_respects_water_holes_tile_edges_and_road_clearance"
+	},
+	{
+		"seconds": 0.000149,
+		"test": "test_dispatch.gd::test_tail_keeps_block_occupied_after_head_leaves"
+	},
+	{
+		"seconds": 0.000147,
+		"test": "test_depot_workings.gd::test_passenger_timetable_cannot_book_a_depot_as_a_passenger_platform"
+	},
+	{
+		"seconds": 0.000145,
+		"test": "test_dispatch.gd::test_shared_throat_conflicts_even_when_blocks_differ"
+	},
+	{
+		"seconds": 0.000138,
+		"test": "test_signals.gd::test_cannot_clear_into_occupied_block"
+	},
+	{
+		"seconds": 0.000128,
+		"test": "test_automatic_driving.gd::test_stationary_hold_releases_into_gradual_power"
+	},
+	{
+		"seconds": 0.000121,
+		"test": "test_lhb.gd::test_full_length_audio_axles_match_formation"
+	},
+	{
+		"seconds": 0.000112,
+		"test": "test_train_motion.gd::test_render_keeps_tail_history_across_edge_boundary"
+	},
+	{
+		"seconds": 0.000112,
+		"test": "test_signals.gd::test_emergency_release_only_at_stand"
+	},
+	{
+		"seconds": 0.000109,
+		"test": "test_ride_dynamics.gd::test_joint_impulse_changes_with_speed_and_bogie_end"
+	},
+	{
+		"seconds": 0.000109,
+		"test": "test_priority_dispatch.gd::test_section_name_containing_station_prefix_is_not_a_platform"
+	},
+	{
+		"seconds": 0.000109,
+		"test": "test_train_motion.gd::test_point_cache_follows_interpolation_rebase_and_external_edits"
+	},
+	{
+		"seconds": 0.000107,
+		"test": "test_train_motion.gd::test_render_crossing_in_reverse_direction"
+	},
+	{
+		"seconds": 0.000107,
+		"test": "test_train_motion.gd::test_render_curve_stays_on_track_and_leaves_simulation_untouched"
+	},
+	{
+		"seconds": 0.000105,
+		"test": "test_station_precinct.gd::test_single_platform_kumbalam_has_no_generic_footbridge"
+	},
+	{
+		"seconds": 0.000103,
+		"test": "test_signals.gd::test_next_signal_distance"
+	},
+	{
+		"seconds": 0.000101,
+		"test": "test_coastal_station_sites.gd::test_building_crossing_site_is_removed_even_when_centre_is_outside"
+	},
+	{
+		"seconds": 0.0001,
+		"test": "test_train_motion.gd::test_render_teleport_and_cab_reversal_snap"
+	},
+	{
+		"seconds": 0.000097,
+		"test": "test_platform_camera.gd::test_free_optical_zoom_preserves_eye_and_origin_rebase"
+	},
+	{
+		"seconds": 0.000095,
+		"test": "test_kerala_scenery.gd::test_bank_grading_is_local_and_ignores_tile_clipping_edges"
+	},
+	{
+		"seconds": 0.000095,
+		"test": "test_signals.gd::test_uncleared_signal_is_red"
+	},
+	{
+		"seconds": 0.000094,
+		"test": "test_route_distances.gd::test_turnout_branches_cannot_shortcut_across_the_toe"
+	},
+	{
+		"seconds": 0.000094,
+		"test": "test_timetable.gd::test_24_hour_clock_and_day_rollover"
+	},
+	{
+		"seconds": 0.00009,
+		"test": "test_dispatch.gd::test_signal_query_honours_search_distance"
+	},
+	{
+		"seconds": 0.000089,
+		"test": "test_station_precinct.gd::test_access_cannot_cross_water_or_buildings"
+	},
+	{
+		"seconds": 0.000088,
+		"test": "test_camera.gd::test_mouse_look_stays_on_release_and_recenters_explicitly"
+	},
+	{
+		"seconds": 0.000084,
+		"test": "test_render_budget.gd::test_corridor_tiles_retain_bends_depots_and_negative_coordinates"
+	},
+	{
+		"seconds": 0.000082,
+		"test": "test_body_v2.gd::test_joint_selection_uses_one_visible_gap"
+	},
+	{
+		"seconds": 0.000078,
+		"test": "test_interior_navigation.gd::test_wall_sliding_and_diagonal_corner"
+	},
+	{
+		"seconds": 0.000078,
+		"test": "test_interior_navigation.gd::test_floor_steps_and_holes_block_movement"
+	},
+	{
+		"seconds": 0.000075,
+		"test": "test_track_and_train.gd::test_advance_through_switch_and_trim_tail"
+	},
+	{
+		"seconds": 0.000075,
+		"test": "test_graphics_options.gd::test_legacy_canopy_and_new_streamed_geometry_use_current_preferences"
+	},
+	{
+		"seconds": 0.000072,
+		"test": "test_geographic_foundations.gd::test_building_footing_follows_sloping_ground_on_every_side"
+	},
+	{
+		"seconds": 0.000069,
+		"test": "test_trackside_collection.gd::test_cached_polygon_query_preserves_islands_and_multiple_water_bodies"
+	},
+	{
+		"seconds": 0.000068,
+		"test": "test_ride_dynamics.gd::test_one_rail_point_contact_rolls_body_to_correct_side"
+	},
+	{
+		"seconds": 0.000067,
+		"test": "test_dispatch_engine.gd::test_dependency_cycles_and_acyclic_queues"
+	},
+	{
+		"seconds": 0.000067,
+		"test": "test_dispatch_engine.gd::test_footprint_forward_across_block_boundary_is_exact"
+	},
+	{
+		"seconds": 0.000066,
+		"test": "test_scenery.gd::test_clearance_checks_segment_interiors_and_negative_cells"
+	},
+	{
+		"seconds": 0.000063,
+		"test": "test_platform_acoustics.gd::test_sparse_history_matches_complete_history"
+	},
+	{
+		"seconds": 0.000059,
+		"test": "test_camera_audio.gd::test_receiver_orientation_follows_free_camera"
+	},
+	{
+		"seconds": 0.000059,
+		"test": "test_listener_perspective.gd::test_head_out_does_not_use_enclosed_cab_filter"
+	},
+	{
+		"seconds": 0.000058,
+		"test": "test_kerala_route.gd::test_coastal_route_is_full_scale_and_follows_the_requested_junctions"
+	},
+	{
+		"seconds": 0.000057,
+		"test": "test_track_and_train.gd::test_locate_behind_and_reverse"
+	},
+	{
+		"seconds": 0.000055,
+		"test": "test_track_and_train.gd::test_curvature_zero_on_straight_and_positive_on_curve"
+	},
+	{
+		"seconds": 0.000055,
+		"test": "test_camera_audio.gd::test_free_camera_receiver_survives_origin_rebase"
+	},
+	{
+		"seconds": 0.000054,
+		"test": "test_track_and_train.gd::test_edge_length_and_position"
+	},
+	{
+		"seconds": 0.000053,
+		"test": "test_graphics_options.gd::test_buildings_transition_together_and_rail_geometry_is_untouched"
+	},
+	{
+		"seconds": 0.000053,
+		"test": "test_kerala_scenery.gd::test_precise_small_water_overrides_dry_landcover_raster"
+	},
+	{
+		"seconds": 0.000053,
+		"test": "test_render_budget.gd::test_mouse_controller_and_old_orbit_distance_share_limits"
+	},
+	{
+		"seconds": 0.000053,
+		"test": "test_interior_navigation.gd::test_crouch_only_clearance_and_nearest_limit"
+	},
+	{
+		"seconds": 0.000053,
+		"test": "test_render_budget.gd::test_height_limit_uses_rebased_terrain_and_leaves_onboard_views_alone"
+	},
+	{
+		"seconds": 0.000051,
+		"test": "test_scenery.gd::test_land_index_blocks_roads_and_buildings_across_cell_boundaries"
+	},
+	{
+		"seconds": 0.00005,
+		"test": "test_camera_audio.gd::test_actual_listener_keeps_explicit_reference_override"
+	},
+	{
+		"seconds": 0.00005,
+		"test": "test_camera_audio.gd::test_reference_mode_preserves_website_platform_receiver"
+	},
+	{
+		"seconds": 0.000048,
+		"test": "test_busy_timetable.gd::test_southbound_vb_can_catch_default_passenger_before_tvc"
+	},
+	{
+		"seconds": 0.000048,
+		"test": "test_kerala_scenery.gd::test_boat_rejects_narrow_island_between_sample_points"
+	},
+	{
+		"seconds": 0.000047,
+		"test": "test_ride_dynamics.gd::test_pause_does_not_integrate_and_reset_clears_impulses"
+	},
+	{
+		"seconds": 0.000046,
+		"test": "test_platform_acoustics.gd::test_curve_squeal_rear_axle_and_both_rails"
+	},
+	{
+		"seconds": 0.000045,
+		"test": "test_scenery.gd::test_raised_curbs_leave_junctions_and_bus_bays_open"
+	},
+	{
+		"seconds": 0.000045,
+		"test": "test_scenery.gd::test_scenery_library_does_not_keep_unloaded_world_alive"
+	},
+	{
+		"seconds": 0.000045,
+		"test": "test_camera_audio.gd::test_platform_walk_is_exterior_even_with_walking_camera_mode"
+	},
+	{
+		"seconds": 0.000045,
+		"test": "test_performance_streaming.gd::test_benchmark_statistics_preserve_long_stalls_and_original_samples"
+	},
+	{
+		"seconds": 0.000041,
+		"test": "test_route_distances.gd::test_geographic_interpolation_preserves_subcentimetre_steps"
+	},
+	{
+		"seconds": 0.00004,
+		"test": "test_track_and_train.gd::test_odometer_counts_travel_but_not_past_buffers"
+	},
+	{
+		"seconds": 0.000039,
+		"test": "test_track_and_train.gd::test_train_stops_at_buffer"
+	},
+	{
+		"seconds": 0.000038,
+		"test": "test_track_and_train.gd::test_reverse_refused_while_moving"
+	},
+	{
+		"seconds": 0.000037,
+		"test": "test_platform_camera.gd::test_closed_station_is_skipped_and_no_station_is_safe"
+	},
+	{
+		"seconds": 0.000037,
+		"test": "test_performance.gd::test_spatial_batches_preserve_every_world_transform"
+	},
+	{
+		"seconds": 0.000036,
+		"test": "test_graphics_layout.gd::test_vegetation_road_clearance_crosses_spatial_cells"
+	},
+	{
+		"seconds": 0.000032,
+		"test": "test_audio_output_timing.gd::test_buffered_prediction_keeps_full_attack_at_multiple_speeds"
+	},
+	{
+		"seconds": 0.000031,
+		"test": "test_platform_acoustics.gd::test_history_interpolation_and_reset"
+	},
+	{
+		"seconds": 0.000031,
+		"test": "test_station_precinct.gd::test_halting_shelter_does_not_raise_entire_trackside_terrain"
+	},
+	{
+		"seconds": 0.00003,
+		"test": "test_graphics_layout.gd::test_vegetation_clearance_covers_building_edge_and_interior"
+	},
+	{
+		"seconds": 0.00003,
+		"test": "test_listener_perspective.gd::test_walking_uses_the_actual_carriage_acoustic_profile"
+	},
+	{
+		"seconds": 0.00003,
+		"test": "test_track_and_train.gd::test_switch_facing_follows_setting"
+	},
+	{
+		"seconds": 0.000028,
+		"test": "test_listener_perspective.gd::test_seated_reference_profiles_remain_unchanged"
+	},
+	{
+		"seconds": 0.000026,
+		"test": "test_dispatch_engine.gd::test_footprint_reverse_preserves_actual_head_tail_positions"
+	},
+	{
+		"seconds": 0.000025,
+		"test": "test_track_and_train.gd::test_switch_trailing_detects_against"
+	},
+	{
+		"seconds": 0.000023,
+		"test": "test_platform_camera.gd::test_free_look_rotates_without_orbiting_and_follow_resets_it"
+	},
+	{
+		"seconds": 0.000022,
+		"test": "test_journey_hud.gd::test_distance_is_metres_and_eta_is_in_game_minutes"
+	},
+	{
+		"seconds": 0.000022,
+		"test": "test_platform_camera.gd::test_flat_platform_fallback_stays_within_rectangle"
+	},
+	{
+		"seconds": 0.000021,
+		"test": "test_receiving_capacity.gd::test_typed_berths_use_matching_instead_of_counting_all_roads"
+	},
+	{
+		"seconds": 0.00002,
+		"test": "test_coastal_station_sites.gd::test_ground_grades_station_site_without_changing_outside"
+	},
+	{
+		"seconds": 0.000019,
+		"test": "test_train_visibility.gd::test_4090_laptop_cache_budget_exceeds_active_allocation_with_headroom"
+	},
+	{
+		"seconds": 0.000019,
+		"test": "test_controller.gd::test_stick_drift_is_silent_and_diagonal_is_bounded"
+	},
+	{
+		"seconds": 0.000019,
+		"test": "test_track_and_train.gd::test_buffer_stop_has_no_next"
+	},
+	{
+		"seconds": 0.000018,
+		"test": "test_audio.gd::test_every_bogie_is_cling_then_clang"
+	},
+	{
+		"seconds": 0.000017,
+		"test": "test_coach_rattle.gd::test_rattle_seeks_and_long_frames_do_not_emit_a_backlog"
+	},
+	{
+		"seconds": 0.000017,
+		"test": "test_body_v2.gd::test_rolling_power_normalization_prevents_long_rake_boost"
+	},
+	{
+		"seconds": 0.000015,
+		"test": "test_controller_tsw.gd::test_tsw_bumpers_do_not_cross_coast"
+	},
+	{
+		"seconds": 0.000014,
+		"test": "test_coastal_station_sites.gd::test_forecourt_keeps_access_road_but_excludes_building_overlap"
+	},
+	{
+		"seconds": 0.000013,
+		"test": "test_body_v2.gd::test_equal_power_pan_and_approved_distance_law"
+	},
+	{
+		"seconds": 0.000013,
+		"test": "test_station_precinct.gd::test_island_faces_do_not_receive_perimeter_fences"
+	},
+	{
+		"seconds": 0.000013,
+		"test": "test_platform_navigation.gd::test_stationary_brake_does_not_make_traction_whine"
+	},
+	{
+		"seconds": 0.000012,
+		"test": "test_audio.gd::test_rake_geometry"
+	},
+	{
+		"seconds": 0.000012,
+		"test": "test_geographic_foundations.gd::test_bridge_decks_keep_fractional_endpoints_and_chunk_seams_closed"
+	},
+	{
+		"seconds": 0.000012,
+		"test": "test_kerala_scenery.gd::test_field_bunds_agree_across_positive_and_negative_tile_boundaries"
+	},
+	{
+		"seconds": 0.00001,
+		"test": "test_station_scale.gd::test_published_vehicle_dimensions_and_formation"
+	},
+	{
+		"seconds": 0.00001,
+		"test": "test_journey_hud.gd::test_signal_wait_is_not_presented_as_a_promised_arrival_time"
+	},
+	{
+		"seconds": 0.000009,
+		"test": "test_lhb.gd::test_passenger_audio_is_local_to_the_selected_coach"
+	},
+	{
+		"seconds": 0.000009,
+		"test": "test_timetable.gd::test_time_parser_rejects_invalid_24_hour_times"
+	},
+	{
+		"seconds": 0.000009,
+		"test": "test_audio.gd::test_teleport_and_reset_do_not_burst"
+	},
+	{
+		"seconds": 0.000008,
+		"test": "test_platform_navigation.gd::test_engine_pitch_follows_speed_and_level_follows_load"
+	},
+	{
+		"seconds": 0.000008,
+		"test": "test_train_visibility.gd::test_passenger_and_walking_restore_current_and_gangway_neighbours"
+	},
+	{
+		"seconds": 0.000008,
+		"test": "test_train_visibility.gd::test_pilot_retains_own_cab_but_skips_hidden_coaches_and_ai_interiors"
+	},
+	{
+		"seconds": 0.000008,
+		"test": "test_coastal_station_sites.gd::test_planting_clearance_crosses_tile_boundary"
+	},
+	{
+		"seconds": 0.000008,
+		"test": "test_audio.gd::test_laws_are_unity_at_the_takes_speed"
+	},
+	{
+		"seconds": 0.000008,
+		"test": "test_controller.gd::test_trigger_brake_priority_and_analog_range"
+	},
+	{
+		"seconds": 0.000007,
+		"test": "test_controller_tsw.gd::test_tsw_trigger_analog_hold_and_limits"
+	},
+	{
+		"seconds": 0.000007,
+		"test": "test_journey_hud.gd::test_missing_route_and_missed_stop_never_format_infinity_as_minutes"
+	},
+	{
+		"seconds": 0.000006,
+		"test": "test_dispatch_engine.gd::test_prediction_accounts_for_acceleration_and_speed"
+	},
+	{
+		"seconds": 0.000006,
+		"test": "test_geographic_foundations.gd::test_ground_sampler_matches_both_rendered_cell_triangles"
+	},
+	{
+		"seconds": 0.000006,
+		"test": "test_performance_streaming.gd::test_worker_budget_reserves_cpu_capacity"
+	},
+	{
+		"seconds": 0.000006,
+		"test": "test_journey_hud.gd::test_no_schedule_and_completed_service_are_distinct"
+	},
+	{
+		"seconds": 0.000004,
+		"test": "test_controller.gd::test_menu_stick_uses_one_direction_and_requires_deliberate_deflection"
+	},
+	{
+		"seconds": 0.000004,
+		"test": "test_train_visibility.gd::test_pilot_has_no_seated_crowd_even_in_adjacent_ai_coach"
+	},
+	{
+		"seconds": 0.000004,
+		"test": "test_train_visibility.gd::test_shadow_hulls_preserve_nearby_and_occupied_car_detail"
+	},
+	{
+		"seconds": 0.000004,
+		"test": "test_train_visibility.gd::test_benchmark_override_is_reversible_and_not_a_gameplay_setting"
+	},
+	{
+		"seconds": 0.000004,
+		"test": "test_controller_tsw.gd::test_tsw_trigger_braking_overrides_power_and_release"
+	},
+	{
+		"seconds": 0.000004,
+		"test": "test_performance.gd::test_stationary_arrival_does_not_repeat_identical_route_queries"
+	},
+	{
+		"seconds": 0.000003,
+		"test": "test_joint_video_audio.gd::test_reference_rhythm_is_not_embedded_in_a_strike"
+	},
+	{
+		"seconds": 0.000003,
+		"test": "test_smoke.gd::test_runner_works"
+	},
+	{
+		"seconds": 0.000002,
+		"test": "test_audio.gd::test_joint_character_is_stable"
+	},
+	{
+		"seconds": 0.000002,
+		"test": "test_train_visibility.gd::test_camera_transition_preserves_nearby_interiors_and_reverse_cab"
+	},
+	{
+		"seconds": 0.000002,
+		"test": "test_audio.gd::test_distance_fade"
+	},
+	{
+		"seconds": 0.000002,
+		"test": "test_train_visibility.gd::test_exterior_restores_near_ai_windows_but_not_distant_furnishings"
+	}
+]

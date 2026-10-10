@@ -85,9 +85,10 @@ your existing draft first if you want to retain it. No full game download is
 needed to load the timetable as an authored scenario. A running save keeps its
 old traffic; importing starts a new scenario.
 
-**Compatibility while validation is in progress:** the new terminal/depot
-protection requires a game update after R27. The current small JSON remains a
-preview, not a validated R27 scenario. The LAN page identifies this explicitly.
+**Use R28 or newer for this validated timetable.** R28 adds the terminal/depot,
+receiving-capacity and future-clearance fixes exercised by the full-day audits.
+The JSON uses the older import format, but that does not make the earlier
+dispatcher runtime compatible with this traffic load.
 
 Regenerate the file after changing the timetable with:
 
@@ -185,6 +186,48 @@ than trusting a stale cache. Trains entering or leaving depot refresh occupancy.
 A complete unexplained standstill ends a rehearsal after five simulated minutes,
 without waiting for the two-hour timetable timeout. Booked departures, passenger
 exchange, depot release and manual/operator holds are exempt.
+
+## R28 validation — full-route timetable
+
+Both fresh operating-day audits finished at **03:16:56 on day 2**. All 100
+services departed their origins, served all **1,530 subsequent arrivals** and
+cleared fully to depot. Neither run recorded a safety event or a continuous
+delay beyond release exceeding the 30-minute quality limit. The source hash
+and per-service results are preserved in
+[`timetable-through-2026-10-10`](../art/performance/timetable-through-2026-10-10/).
+
+| Measure | Baseline | K1 held until 08:10 |
+|---|---:|---:|
+| Completed services in depot | 100 / 100 | 100 / 100 |
+| Subsequent calls served | 1,530 / 1,530 | 1,530 / 1,530 |
+| Peak active passenger workings | 23 | 23 |
+| Median final arrival delay | 0.00 min | 0.00 min |
+| 95th percentile final arrival delay | 17.58 min | 17.58 min |
+| Worst final arrival delay | 32.70 min (B015) | 32.70 min (B015) |
+| Longest continuous delay beyond release | 28.17 min (B013) | 28.17 min (B013) |
+
+K1 actually departs at 08:00:44.95 in the baseline and 08:10:00.10 in the delayed
+run. Its initial delay is absorbed during the early calls; later traffic converges,
+so the identical final figures are expected. K1 is overtaken by B001 at Mararikulam,
+B024 at Sasthamkotta and B002 at Neyyattinkara in both runs. These are observed
+dispatch decisions, not scripted events. K1's longest extra stand is 28.03 minutes.
+
+The roster remains busy: single-line crossings can require waits approaching half
+an hour. The median reports non-negative lateness, with early arrivals counted as
+zero. Waiting before booked/passenger release is excluded from the extra-delay
+metric. Manual driving, operator holds and edited services may change the outcome.
+
+All **517 headless tests** and five download-catalogue tests pass. The new
+regressions cover directional terminal exits, compatible escape capacity,
+prepared home-route ownership and contradictory ALLP crossing/overtake promises.
+The full-day runs took 43.61 / 45.29 wall minutes while running concurrently;
+these are development-PC simulation audits, not a controlled CPU comparison or
+a 4090 Laptop graphics measurement. No extracted-distribution gameplay test.
+
+Playtest R28 with a fresh Kerala scenario: inspect the two full-route VBs and
+their major calls, drive K1 or use A for AI, then use Skip to inspect afternoon
+crossings and the B020/B021 overtake at ALLP around 21:00. Completed services
+should leave the running lines for depot. Existing saves retain their old roster.
 
 ## Historical R27 validation — superseded short-corridor timetable
 

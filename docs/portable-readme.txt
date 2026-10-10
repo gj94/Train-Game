@@ -10,6 +10,10 @@ Start a fresh Kerala game to use it; older saves retain their original traffic.
 F5 > Import can also load guides/timetables/kerala-coast-100-through-services.json.
 Select K1 and Play; exporting your current designer draft first preserves it.
 Terminal platform assignment now keeps a suitable forward exit to depot.
+Admission preserves opposing escape capacity, and future crossing plans respect
+already-cleared platforms and cannot conflict with separate advisory overtakes.
+Both full-day audits: 100/100 services and 1,530 subsequent calls, zero safety events.
+Longest extra wait: 28.17 min; worst final arrival delay: 32.70 min. 517 tests pass.
 See guides/busy-timetable.md for the full audit results and known layout limits.
 Use Update and Play.exe, or extract the complete full ZIP into a game folder.
 
