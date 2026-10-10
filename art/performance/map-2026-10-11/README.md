@@ -26,3 +26,6 @@ current simulation and all five hashes in `map-inputs.json` were verified.
 The delayed run holds K1 until 08:10; its initial delay is absorbed at early calls,
 so later traffic converges. These are full fresh runs, not resumed checkpoints.
 The raw route-to-final conversion was also reproduced byte-for-byte.
+
+R29 publication/archive/LAN checks and obsolete-build cleanup are recorded in
+`release.json`. Export source: `cb271d0`; signed update sequence 31.

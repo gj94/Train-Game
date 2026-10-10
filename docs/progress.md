@@ -1,5 +1,21 @@
 # Progress
 
+## 2026-10-11 — R29 published: map corrections and verified timetable
+- Published `TrainGame-Kerala-Coast-R29-Windows` from clean commit `cb271d0`,
+  signed sequence 31, at http://192.168.8.183:8765/. ZIP: 1,837,349,509 bytes,
+  269 entries; SHA-256 `fad8bb5d47ade9782f522b964d4262eb7b7a95035ede6fa28db9c292eda79450`.
+- Archive checksum/CRC, required files, clean BUILD identity, signature, three ZIP
+  ranges and three updater blocks passed. Bundled raw map evidence and timetable
+  match their source bytes; the separately downloaded timetable is certified for R29.
+  No extracted-distribution gameplay test. Evidence: `map-2026-10-11/release.json`.
+- R28-to-R29 incremental transfer is 2.133 GB versus the 1.837 GB full ZIP;
+  the full ZIP is smaller this time. Removed R28's directory/ZIP/checksum only
+  after checking verified R29, idle LAN transfers and exact export paths, freeing
+  4.088 GB. Small historical manifests remain; only R29 is downloadable.
+- Fresh scenario/matching service pack required because rail geometry changed.
+  Playtest QLN/TVC yards and their double approaches, NEM/BRAM curves, then
+  AI/Skip through crossings, overtakes and terminal depot clearances.
+
 ## 2026-10-11 — Map corrections and full timetable regression complete
 - User resumed map work after R28. Integrated smooth plan alignment, continuous
   offset normals, longer full-rake station ladders, consistent double-line sides,
@@ -28,7 +44,7 @@
   match the tested simulation digest and regenerated service pack. Runtime map
   conversion reproduces route/operations byte-for-byte from the R28 raw input.
   Download instructions now explicitly require matching geometry. Five catalogue
-  tests pass. R29 packaging is next; R28 remains live until publication.
+  tests pass. R29 is published with the evidence and matching timetable.
 - Playtest: fresh scenario required; inspect QLN/TVC yards and distinct double
   approaches, then ride NEM/BRAM curves. Use AI / Skip to inspect crossings,
   priority overtakes and depot clearances. R28 saves/service files are incompatible.
