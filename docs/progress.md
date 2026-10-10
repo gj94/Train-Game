@@ -1,6 +1,6 @@
 # Progress
 
-## 2026-10-11 — Map corrections and timetable regression in progress
+## 2026-10-11 — Map corrections and full timetable regression complete
 - User resumed map work after R28. Integrated smooth plan alignment, continuous
   offset normals, longer full-rake station ladders, consistent double-line sides,
   outward depot leads and noncrossing stabling fans. All CSV platform totals and
@@ -18,8 +18,20 @@
   Kumbalam future-clearance and receiving-capacity suites pass (21 + 8 tests).
 - All 533 headless tests pass; six Python converter regressions pass.
 - Regenerated/import-validated the 100-service pack for the new geometry signature.
-  Fresh baseline/+600 s day audits are running as `.local/map-v1-*.json`.
-  The unchanged R28 download remains live until validation is complete.
+  Fresh baseline/+600 s day audits both pass: 100/100 in depot, all 1,530 subsequent
+  calls and origin departures, zero safety events, finish 03:18:14 on day 2.
+  Peak active passenger workings 23; median final delay 1.85 min, p95 16.60 min,
+  worst 33.89 min (B015), longest extra wait 29.57 min (K1). Compared with R28,
+  longest wait increases 1m24s; p95 lateness improves about 59s. No timetable slots
+  or calling patterns were retimed. K1's initial delay is absorbed at early calls.
+- Raw evidence and map hashes: `art/performance/map-2026-10-11/`. Both audits
+  match the tested simulation digest and regenerated service pack. Runtime map
+  conversion reproduces route/operations byte-for-byte from the R28 raw input.
+  Download instructions now explicitly require matching geometry. Five catalogue
+  tests pass. R29 packaging is next; R28 remains live until publication.
+- Playtest: fresh scenario required; inspect QLN/TVC yards and distinct double
+  approaches, then ride NEM/BRAM curves. Use AI / Skip to inspect crossings,
+  priority overtakes and depot clearances. R28 saves/service files are incompatible.
 
 ## 2026-10-10 — R28 published: full-route busy timetable and dispatcher fixes
 - Published `TrainGame-Kerala-Coast-R28-Windows` from clean export `17f7a78`,

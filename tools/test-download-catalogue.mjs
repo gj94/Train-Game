@@ -71,7 +71,7 @@ test('timetable download is explicit, has an attachment filename and preserves f
   policy.requires_update=true;
   await writeFile(join(root,'timetables/catalogue.json'),JSON.stringify(policy));
   page=await downloadPage(root,release);
-  assert(page.includes('A game update is required'));assert(!page.includes('No new full game ZIP is needed'));
+  assert(page.includes('A game update is required'));assert(!page.includes('only the timetable JSON is needed'));
   policy.status='verified';await writeFile(join(root,'timetables/catalogue.json'),JSON.stringify(policy));
   assert.equal(await route('/timetables/current.json',release),null,'outdated runtime cannot claim validation');
   policy.requires_update=false;

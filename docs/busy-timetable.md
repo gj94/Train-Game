@@ -11,9 +11,9 @@ This is an authored, deliberately busy game operating day, **not a published
 Indian Railways working timetable**. It uses the coastal route and the user's
 CSV platform inventory. Long-distance services enter/leave the model at its
 ERS/NCJ boundaries; off-map destinations and physical rake rotations are not
-simulated. Saves retain their existing timetable: start a fresh Kerala scenario
-without loading an old save to use this revision. Saved service-designer drafts
-also retain their authored services; they are not silently overwritten.
+simulated. Start a fresh Kerala scenario for the corrected map: R28 saves and
+service files have an incompatible geometry signature. Service-designer drafts
+are not silently overwritten; import the new matching pack to use this roster.
 
 | Workings | Route / role | Calling pattern |
 |---:|---|---|
@@ -85,8 +85,9 @@ Export your existing draft first if you want to retain it. This map update needs
 its matching game build; R28 saves and service files cannot be transferred onto
 changed track geometry. Importing starts a new scenario.
 
-The R28 results below document the prior map. Fresh full-day baseline and delayed
-runs validate the corrected map separately; see [map corrections](map-corrections.md).
+Fresh full-day baseline and delayed runs both pass on the corrected map; see
+the R29 results below and [map corrections](map-corrections.md). The historical
+R28 figures remain separately labelled for comparison.
 
 Regenerate the file after changing the timetable with:
 
@@ -185,7 +186,46 @@ A complete unexplained standstill ends a rehearsal after five simulated minutes,
 without waiting for the two-hour timetable timeout. Booked departures, passenger
 exchange, depot release and manual/operator holds are exempt.
 
-## R28 validation — full-route timetable
+## R29 validation — corrected railway map
+
+Both fresh runs finish at **03:18:14 on day 2**, with every service fully in depot,
+all 100 origin departures and **1,530 subsequent calls** recorded. There are
+**zero safety events**, missed calls or services exceeding the unchanged
+30-minute continuous extra-wait limit. The roster, priorities and departure slots
+are unchanged; the importable file contains corrected map positions/signature.
+
+| Measure | Baseline | K1 held until 08:10 |
+|---|---:|---:|
+| Completed services in depot | 100 / 100 | 100 / 100 |
+| Subsequent calls served | 1,530 / 1,530 | 1,530 / 1,530 |
+| Peak active passenger workings | 23 | 23 |
+| Median final arrival delay | 1.85 min | 1.85 min |
+| 95th percentile final arrival delay | 16.60 min | 16.60 min |
+| Worst final arrival delay | 33.89 min (B015) | 33.89 min (B015) |
+| Longest continuous delay beyond release | 29.57 min (K1) | 29.57 min (K1) |
+
+K1 departs at 08:00:44.95 / 08:10:00.10 and reaches NCJ at 15:28:14 in both runs.
+The initial delay is absorbed during early calls; later traffic converges. Its
+observed overtakes remain B001 at Mararikulam, B024 at Sasthamkotta and B002 at
+Neyyattinkara. Both full-route VBs serve their seven booked stations and clear
+to their terminal depots.
+
+Relative to R28, the longest extra wait increases by 1 minute 24 seconds and the
+worst final delay by about 1 minute 11 seconds; p95 lateness improves by about
+59 seconds. The changed station approaches affect timings, but all services
+still complete. Manual driving, holds and edited services may change the result.
+
+All **533 headless tests**, six Python geometry tests and five download-catalogue
+tests pass. The full-day runs took 49.83 / 49.89 wall minutes concurrently on the
+development PC; this is not a controlled performance comparison or target-GPU
+benchmark. No exported-distribution gameplay test was performed.
+Evidence: [`map-2026-10-11`](../art/performance/map-2026-10-11/).
+
+Playtest with a fresh Kerala scenario: inspect QLN/TVC yards and their approaches,
+ride the NEM/BRAM curves, then use AI and Skip to Time to observe crossings,
+overtakes and depot clearances. Old-map saves are rejected before state replacement.
+
+## Historical R28 validation — prior map, full-route timetable
 
 Both fresh operating-day audits finished at **03:16:56 on day 2**. All 100
 services departed their origins, served all **1,530 subsequent arrivals** and

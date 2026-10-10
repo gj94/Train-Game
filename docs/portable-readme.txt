@@ -1,20 +1,23 @@
 TRAIN GAME - KERALA COAST
 
-R28: full-route 100-service timetable and protected terminal/depot exits.
-24 full ERS-NCJ workings include exactly two Vande Bharats, one each way:
-B001 ERS 08:35 -> NCJ (8 cars), B012 NCJ 09:10 -> ERS (16 cars).
+R29: corrected railway map and verified 100-service timetable.
+Buildings and roof overhangs clear operating tracks at Kollam and TVC.
+Double running lines keep their sides; longer turnouts and smooth rail curves
+remove abrupt direction changes. Outer yards and track shoulders are grounded.
+All CSV platform totals and existing single/double section designations remain.
+
+START A FRESH KERALA SCENARIO. Track geometry changed: R28 saves and service
+files cannot be loaded on this map. Import the matching file under
+F5 > Import: guides/timetables/kerala-coast-100-through-services.json.
+The existing 100-service roster and departure slots are retained, including
+B001 ERS 08:35 -> NCJ VB (8 cars) and B012 NCJ 09:10 -> ERS VB (16 cars).
 Both serve ALLP, KYJ, QLN, TVC and KZT between their endpoints.
-12 ERS-TVC intercity workings and 64 regional workings complete the day.
-This is an authored busy scenario, not a published Indian Railways timetable.
-Start a fresh Kerala game to use it; older saves retain their original traffic.
-F5 > Import can also load guides/timetables/kerala-coast-100-through-services.json.
-Select K1 and Play; exporting your current designer draft first preserves it.
-Terminal platform assignment now keeps a suitable forward exit to depot.
-Admission preserves opposing escape capacity, and future crossing plans respect
-already-cleared platforms and cannot conflict with separate advisory overtakes.
-Both full-day audits: 100/100 services and 1,530 subsequent calls, zero safety events.
-Longest extra wait: 28.17 min; worst final arrival delay: 32.70 min. 517 tests pass.
-See guides/busy-timetable.md for the full audit results and known layout limits.
+
+Both fresh full-day audits pass: 100/100 trains in depot, 1,530 subsequent calls,
+zero safety events. Longest extra wait 29.57 min; p95 final delay 16.60 min;
+worst final delay 33.89 min. 533 headless tests pass. Manual driving can vary this.
+See guides/map-corrections.md and guides/busy-timetable.md for evidence and
+playtest steps. Map layouts are a reconstruction, not surveyed working diagrams.
 Use Update and Play.exe, or extract the complete full ZIP into a game folder.
 
 R27 introduced simulation-only skip and seated passenger AI:

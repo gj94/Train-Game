@@ -54,10 +54,20 @@ Source-scene captures review QLN/TVC yards, TVC double-line approach, and the
 curves near QLN, NEM and BRAM. These are native Godot renders on the development
 Radeon 780M, not performance measurements on the target RTX 4090 Laptop.
 
-Full headless regressions and fresh 100-service baseline/+600 s operating-day
-checks are required after the map change. Final results are recorded in the
-progress log and evidence directory when complete. Old R28 evidence does not
-certify the changed map.
+All **533 headless tests**, six Python converter tests and five download-catalogue
+checks pass. Both fresh baseline/+600 s operating-day audits pass on this map:
+**100/100 services in depot, 1,530 subsequent calls, zero safety events**, finishing
+at **03:18:14 on day 2**. Peak active passenger workings: 23. The longest extra
+continuous wait is 29.57 minutes (K1), below the unchanged 30-minute quality limit;
+p95 final delay is 16.60 minutes, worst 33.89 minutes (B015), median 1.85 minutes.
+
+Against R28, the longest wait rises from 28.17 to 29.57 minutes; p95 final delay
+falls from 17.58 to 16.60 minutes. Longer reconstructed station approaches change
+travel times, so this is not a claim of identical timings. No departure slots or
+calling patterns were retimed to obtain a pass. The ten-minute initial K1 delay
+is absorbed at early calls and later traffic converges. Raw reports, map hashes,
+comparison and visual evidence are in
+[`map-2026-10-11`](../art/performance/map-2026-10-11/).
 
 ## Compatibility and playtest
 
