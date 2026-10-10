@@ -40,6 +40,10 @@
   from that clean source. The LAN page prioritizes Update & Play over old ZIPs.
   Signature, three HTTP range hashes, all 52 exported model entries and required
   catalogues passed verification. No extracted-distribution playtest was run.
+- Corrected a stale R23 label in the packaged instructions via immutable
+  **R24-ReadmeFix1**, sequence **26**, documentation source `e647a3f`. Only
+  README/BUILD changed from sequence 25; EXE/PCK hashes are identical. This is
+  the current updater release; the original published R24 remains immutable.
 
 Player checks: update through Update & Play, drive ERS–Kumbalam, and approach
 trees/houses in free camera to inspect distance transitions. Switch pilot →

@@ -1,6 +1,8 @@
 # Incremental Windows updates
 
-Current publication: **R24**, sequence **25**, built from `ca30706`. It includes
+Current publication: **R24-ReadmeFix1**, sequence **26**, with game binaries
+from `ca30706` and corrected instructions from `e647a3f`. Only README/BUILD
+changed from the initial R24 sequence 25; EXE/PCK hashes are identical. It includes
 the detailed Kerala trackside collection, distant scenery representations,
 camera-aware train/passenger visibility and the five-train benchmark. Use
 Update & Play; a new full ZIP is not required. The retained R23 ZIP is a fallback
