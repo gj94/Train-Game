@@ -10,5 +10,11 @@ if ($LASTEXITCODE -ne 0) { throw 'Launcher compilation failed.' }
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'README.txt') -Destination (Join-Path $OutputDirectory 'UPDATER-README.txt') -Force
 $archive = Join-Path $projectRoot 'export/TrainGame-Updater.zip'
 Compress-Archive -LiteralPath (Join-Path $OutputDirectory 'Update and Play.exe'),(Join-Path $OutputDirectory 'UPDATER-README.txt') -DestinationPath $archive -Force
-"$((Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLower())  TrainGame-Updater.zip" | Set-Content -LiteralPath ($archive + '.sha256') -Encoding ascii
+# Match the main portable builder: some stripped PowerShell hosts cannot
+# autoload Get-FileHash. Stream through .NET rather than depending on that module.
+$archiveStream = [IO.File]::OpenRead($archive)
+$archiveHasher = [Security.Cryptography.SHA256]::Create()
+try { $archiveHash = [BitConverter]::ToString($archiveHasher.ComputeHash($archiveStream)).Replace('-','').ToLowerInvariant() }
+finally { $archiveHasher.Dispose(); $archiveStream.Dispose() }
+"$archiveHash  TrainGame-Updater.zip" | Set-Content -LiteralPath ($archive + '.sha256') -Encoding ascii
 Get-Item -LiteralPath $archive | Select-Object Name,Length
