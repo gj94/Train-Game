@@ -727,6 +727,10 @@ func _set_time_scale(value: int) -> void:
 	hud.toast("Normal time" if value==1 else "Fast forward ×%d · Shift+T returns to normal time" % value)
 
 func _ui_action(action: String) -> void:
+	# Button signals can still arrive even while this node's processing is disabled.
+	if time_skip!=null and time_skip.running():
+		if action in ["skip:cancel","skip:back"]:time_skip.cancel()
+		return
 	if action.begins_with("skip:"):
 		time_skip.action(action);return
 	if action=="graphics" or action.begins_with("graphics:"):
@@ -996,7 +1000,8 @@ func _notification(what: int) -> void:
 		if what == NOTIFICATION_APPLICATION_FOCUS_OUT: controller.window_focus(false)
 		elif what == NOTIFICATION_APPLICATION_FOCUS_IN: controller.window_focus(true)
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		if time_skip!=null and time_skip.running():time_skip.back()
+		if time_skip!=null and time_skip.running():
+			time_skip.request_quit();return
 		_request_action("quit")
 	elif what == NOTIFICATION_APPLICATION_FOCUS_OUT and not paused:
 		# Alt-tab cannot leave a manually driven train accelerating unattended.

@@ -5,6 +5,19 @@ const Profile:=preload("res://game/performance_profile.gd")
 class EmptyBoards:
 	var jobs:=[]
 
+func test_worker_busy_clears_only_after_callback_finishes_without_consuming_result():
+	var worker:=Worker.new();var gate:=Semaphore.new()
+	worker.start(func(_job):gate.wait();return {complete=true})
+	worker.submit({id="handoff"})
+	var valid: bool=worker.busy()
+	gate.post()
+	var deadline:=Time.get_ticks_msec()+5000
+	while worker.busy() and Time.get_ticks_msec()<deadline:OS.delay_usec(200)
+	valid=valid and not worker.busy() and not worker.job.is_empty()
+	var result: Dictionary=worker.take()
+	worker.close()
+	return valid and not result.is_empty() and result.result.complete
+
 func test_persistent_workers_reuse_thread_and_publish_complete_results():
 	var workers:=[]
 	for i in 4:

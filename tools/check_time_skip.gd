@@ -46,10 +46,41 @@ func run() -> void:
 	check(g.paused and g.hud.modal=="time_skip","completion pauses for player choice")
 	await shot("complete")
 	g.time_skip.start(g.world.clock_seconds()+3600)
-	await process_frame
+	while g.time_skip._preparing:await process_frame
+	check(g.time_skip._worker!=null,"dedicated simulation worker owns the live railway")
+	# Stale button callbacks cannot leave the progress page or touch live state.
+	g._ui_action("resume");g._ui_action("save:quick")
+	g.time_skip.action("skip:resume")
+	check(g.paused and g.hud.modal=="time_skip","other UI actions are blocked during worker ownership")
+	# A connected controller's menu/hint path must work without reading a train.
+	var selected_train=g.train
+	var controller_focused: bool=g.controller._focused
+	g.train=null
+	g.controller.active_device=123;g.controller.controller_mode=true;g.controller._focused=true
+	g.controller._process(.016)
+	check(g.hud._pad_hint.text.contains("D-pad / LS move"),"connected controller menu hints do not read worker-owned train state")
+	g.train=selected_train
+	g.controller.active_device=-1;g.controller._focused=controller_focused
+	var cancelled:=Time.get_ticks_msec()
 	g.controller._back()
+	check(g.time_skip.running(),"controller Back requests asynchronous cancellation")
+	while g.time_skip.running():await process_frame
 	check(g.time_skip.trial.done and not g.time_skip.trial.ok and not g.get_viewport().disable_3d,"controller Back cancels and restores rendering")
+	check(Time.get_ticks_msec()-cancelled<2000,"cancellation returns promptly at a simulation step boundary")
 	check(g.world.trains.values().all(func(t):return t.automatic),"cancellation retains AI")
+	g.time_skip.start(g.world.clock_seconds()+3600)
+	while g.time_skip._preparing:await process_frame
+	g.controller.active_device=123
+	g.controller._connection_changed(123,false)
+	while g.time_skip.running():await process_frame
+	check(not g.time_skip.trial.ok and g.paused and g.hud.modal=="time_skip","controller disconnection stops safely without exposing the live railway")
+	g.time_skip.start(g.world.clock_seconds()+3600)
+	while g.time_skip._preparing:await process_frame
+	g._notification(Node.NOTIFICATION_WM_CLOSE_REQUEST)
+	check(g.time_skip.running() and g.hud.modal=="time_skip","window close waits for worker cancellation")
+	while g.time_skip.running():await process_frame
+	check(g.hud.modal=="confirm" and g._pending_action=="quit","quit confirmation opens only after worker returns")
+	g._cancel_action()
 	# Exercise the off-network return path; lifecycle/depot movement has separate
 	# pure-simulation coverage and a full-day 100-service audit.
 	g.train.lifecycle="stored"
@@ -75,6 +106,10 @@ func run() -> void:
 	g.wv.queue.clear();began=Time.get_ticks_msec()
 	while (not g.wv._asset_worker.job.is_empty() or g.wv.workers.any(func(w):return not w.runner.job.is_empty()) or not g.wv._activating.is_empty()) and Time.get_ticks_msec()-began<120000:
 		g.wv.update();g.wv.queue.clear();await process_frame
-	print("Time skip: %d checks, %d failures" % [checks,failures])
+	g.time_skip.start(g.world.clock_seconds()+3600)
+	while g.time_skip._preparing:await process_frame
+	check(g.time_skip._worker!=null,"worker active before scene teardown")
 	g.queue_free();await process_frame;await process_frame
+	check(not root.disable_3d and not AudioServer.is_bus_mute(0),"scene teardown joins the worker and restores viewport/audio")
+	print("Time skip: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)

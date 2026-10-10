@@ -34,6 +34,13 @@ func take() -> Dictionary:
 	_mutex.unlock()
 	return result
 
+func busy() -> bool:
+	# A completed result may stay queued while skip owns the live railway.
+	_mutex.lock()
+	var value:=not job.is_empty() and not _ready
+	_mutex.unlock()
+	return value
+
 func _run() -> void:
 	while true:
 		_wake.wait()

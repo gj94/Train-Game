@@ -108,6 +108,10 @@ func _connection_changed(device: int, connected: bool) -> void:
 		_axes.fill(0)
 		_buttons.clear()
 		neutralize()
+		if game.time_skip!=null and game.time_skip.running():
+			game.time_skip.cancel()
+			game.hud.toast("Controller disconnected · stopping the advance",true)
+			return
 		game._set_paused(true)
 		game.hud.show_modal("pause",game.labels_enabled)
 		_set_mode(true)
@@ -411,11 +415,15 @@ func _process(delta: float) -> void:
 		var zoom := float(int(_buttons.has(JOY_BUTTON_RIGHT_SHOULDER))-int(_buttons.has(JOY_BUTTON_LEFT_SHOULDER)))
 		Camera.apply(game.cam,look,left if game.cam.mode == 0 else Vector2.ZERO,zoom,delta)
 		# Passenger LS translation is handled by CameraMotion in both layouts.
+	# Menu navigation must not read train state while the skip worker owns it.
+	if _ui_open():
+		var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect/select · LB/RB areas · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
+		game.hud.set_controller_hint(menu_hint)
+		return
 	var driving_hint: String=TSW.hint(self) if tsw_layout or game.walker.active else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · D-pad cameras · LS click pilot · RS click free"
 	if game.cam.mode==2:driving_hint="LS move inside coach · RS look · D-pad up/down coaches · LS click pilot · RS click free"
 	if CameraMotion.is_free(game.cam):driving_hint=CameraMotion.hint(self)
-	var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect/select · LB/RB areas · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
-	game.hud.set_controller_hint((menu_hint if _ui_open() else driving_hint) if _armed or _ui_open() else "Release controller sticks, triggers and buttons to continue")
+	game.hud.set_controller_hint(driving_hint if _armed else "Release controller sticks, triggers and buttons to continue")
 
 func _scroll_tree(node: Node, offset: Vector2) -> void:
 	# Tree owns internal scrollbars; it exposes no public scrollbar getter.

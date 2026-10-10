@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **11 Oct 2026 threaded skip:** let the simulation advance independently of the
+  progress UI on a worker; preserve ordered signalling/occupancy and existing
+  stop/cancel behaviour. Compare original and threaded progress from identical
+  busy-timetable state with 60 wall seconds each, including an uncapped control
+  and deterministic state-equivalence checks. Report measured gains honestly.
 - **10 Oct 2026 through traffic:** retain 100 services, with many full ERS–NCJ
   workings and exactly two Vande Bharats, one in each direction, serving major
   stations. Use distinct passenger/intercity/express calling patterns, junction

@@ -1,0 +1,17 @@
+{
+  "native_source_game": {
+    "script_errors": 0,
+    "audio_driver": "Dummy",
+    "passed": 30,
+    "failed": 0,
+    "script": "res://tools/check_time_skip.gd"
+  },
+  "new_build_published": false,
+  "headless": {
+    "command": "godot --headless --path . --script res://tests/run_tests.gd",
+    "passed": 540,
+    "failed": 0
+  },
+  "distribution_tested": false,
+  "godot_import_passed": true
+}

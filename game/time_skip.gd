@@ -1,6 +1,7 @@
 extends Node
 ## Rendering-free forward simulation, with a responsive 2D progress menu.
 const Advance := preload("res://sim/time_skip.gd")
+const Worker := preload("res://sim/time_skip_worker.gd")
 const Clock := preload("res://sim/world_clock.gd")
 var game
 var trial
@@ -8,12 +9,18 @@ var selected_clock := 0.0
 var _saved := {}
 var _started := 0
 var _refresh := 0.0
+var _worker
+var _preparing := false
+var _cancel_requested := false
+var _quit_requested := false
+var _target := ""
 
 func _ready() -> void:
 	process_mode=Node.PROCESS_MODE_ALWAYS
 
 func running() -> bool:
-	return trial!=null and not trial.done
+	# Main-thread ownership flag, never inspect worker-owned trial/world here.
+	return not _saved.is_empty()
 
 func show_page(title: String, body: String, options: Array) -> void:
 	game.hud.save_menu={title=title,body=body,options=options}
@@ -46,6 +53,9 @@ func stop_page() -> void:
 	show_page("CHOOSE A FUTURE STOP","Advance until your service actually arrives, including dispatch waits and crossings. The booked time is a guide.",options)
 
 func action(command: String) -> void:
+	if running():
+		if command in ["skip:cancel","skip:back"]:cancel()
+		return
 	var parts:=command.split(":")
 	match parts[1]:
 		"open":open()
@@ -60,7 +70,7 @@ func action(command: String) -> void:
 		"stop":start(-1,int(parts[2]))
 		"start_time":start(selected_clock)
 		"cancel":
-			if running():trial.cancel();finish()
+			cancel()
 		"resume":
 			game.hud.show_modal("");game._set_paused(false)
 		"drive":
@@ -75,6 +85,7 @@ func start(clock: float, stop: int=-1) -> void:
 	if not result.ok:
 		trial=null;game.hud.toast(result.reason,true);return
 	game._set_paused(true)
+	game.dispatcher.set_open(false)
 	game.dispatcher.auto_dispatch=true
 	game.walker.stop()
 	game.controller.neutralize()
@@ -85,25 +96,62 @@ func start(clock: float, stop: int=-1) -> void:
 	game.get_viewport().disable_3d=true
 	AudioServer.set_bus_mute(0,true)
 	_started=Time.get_ticks_msec();_refresh=0
-	show_page("ADVANCING THE RAILWAY","Starting simulation…",[["Stop advancing here","skip:cancel"]])
+	_target=Clock.format_time(trial.target_clock)
+	if stop>=0:_target=game.train.timetable.stops[stop].name
+	_cancel_requested=false;_quit_requested=false;_preparing=true
+	show_page("ADVANCING THE RAILWAY","Finishing current scenery jobs before advancing…",[["Stop advancing here","skip:cancel"]])
+
+func _scenery_busy() -> bool:
+	if not game.geographic_drive:return false
+	# Do not join render workers here: their GPU uploads need the UI/render loop.
+	# New jobs cannot start with game processing disabled. Finished results wait
+	# for normal scenery activation after the simulation worker has returned.
+	if game.wv._asset_worker!=null and game.wv._asset_worker.busy():return true
+	return game.wv.workers.any(func(w):return w.runner.busy())
 
 func _process(delta: float) -> void:
 	if not running():return
-	var until:=Time.get_ticks_usec()+12000
-	while Time.get_ticks_usec()<until and not trial.done:trial.step()
+	if _preparing:
+		if _cancel_requested:
+			trial.cancel();finish();return
+		if _scenery_busy():return
+		_preparing=false;_worker=Worker.new()
+		var error: Error=_worker.start(trial)
+		if error!=OK:
+			_worker=null
+			game.hud.toast("Simulation worker unavailable; advancing on the main thread",true)
+	var progress: Dictionary
+	if _worker!=null:
+		var result: Dictionary=_worker.take()
+		if not result.is_empty():
+			trial=result.trial;_worker=null;finish();return
+		progress=_worker.progress()
+	else:
+		# Fail safely on machines where creating a thread is unavailable.
+		if _cancel_requested:trial.cancel()
+		var until:=Time.get_ticks_usec()+12000
+		while Time.get_ticks_usec()<until and not trial.done:trial.step()
+		if trial.done:finish();return
+		progress={clock=game.world.clock_seconds(),start_clock=trial.start_clock}
 	_refresh-=delta
 	if _refresh<=0:
 		_refresh=.2
-		var simulated: float=game.world.clock_seconds()-trial.start_clock
+		var simulated: float=progress.clock-progress.start_clock
 		var elapsed:=maxf(.001,(Time.get_ticks_msec()-_started)/1000.0)
-		var target: String=Clock.format_time(trial.target_clock)
-		if trial.stop_index>=0:
-			var schedule=game.train.completed_timetable if game.train.completed_timetable!=null else game.train.timetable
-			target=schedule.stops[trial.stop_index].name
-		game.hud._body.text="Now: day %d · %s\nTarget: %s\n%.1f world minutes advanced · %.1f× real time\n\nAll services use AI. 3D rendering and sound are disabled.\nStopping keeps the simulation at its current time." % [game.world.clock_day(),game.world.clock_text(),target,simulated/60,simulated/elapsed]
-	if trial.done:finish()
+		game.hud._body.text="Now: day %d · %s\nTarget: %s\n%.1f world minutes advanced · %.1f× real time\n\nAll services use AI. 3D rendering and sound are disabled.\n%s" % [Clock.day(progress.clock),Clock.format_time(progress.clock),_target,simulated/60,simulated/elapsed,"Stopping after the current simulation step…" if _cancel_requested else "Stopping keeps the simulation at its current time."]
+
+func cancel() -> void:
+	if not running():return
+	_cancel_requested=true
+	if _worker!=null:_worker.request_cancel()
+
+func request_quit() -> void:
+	_quit_requested=true
+	cancel()
 
 func finish() -> void:
+	assert(_worker==null) # World ownership must be joined before presentation reads it.
+	_preparing=false
 	game.process_mode=_saved.process
 	game.hud.process_mode=_saved.hud_process
 	game.controller.process_mode=_saved.controller_process
@@ -137,11 +185,19 @@ func finish() -> void:
 	var options: Array=[["Resume with AI driving","skip:resume"],["Open Dispatch","skip:dispatch"],["Skip further…","skip:open"]]
 	if available:options.insert(1,["Take control of this train","skip:drive"])
 	show_page("ADVANCE COMPLETE" if trial.ok else "ADVANCE STOPPED",trial.report+"\n"+("You are back in "+game.train.id+" with AI driving." if available else "Your service has finished or is unavailable. You are outside on a station platform; choose another active service in Dispatch.")+"\nPaused while you choose what to do next.",options)
+	if _quit_requested:game._request_action("quit")
 
 func back() -> void:
-	if running():trial.cancel();finish()
+	if running():cancel()
 	else:game.hud.show_modal("pause",game.labels_enabled)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if game.hud.modal=="time_skip" and event.is_action_pressed("ui_cancel"):
 		back();get_viewport().set_input_as_handled()
+
+func _exit_tree() -> void:
+	if _worker!=null:_worker.close();_worker=null
+	if not _saved.is_empty():
+		AudioServer.set_bus_mute(0,_saved.mute)
+		get_viewport().disable_3d=_saved.disable_3d
+		_saved.clear()

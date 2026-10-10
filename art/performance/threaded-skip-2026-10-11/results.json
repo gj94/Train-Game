@@ -1,0 +1,70 @@
+{
+	"cpu": "AMD Ryzen 7 7840HS w/ Radeon 780M Graphics",
+	"engine": "4.7.2-stable (official)",
+	"equivalence": {
+		"all_snapshot_fields_equal": true,
+		"end": {
+			"active": 15,
+			"clock": "09:10:00",
+			"events": [],
+			"recorded_arrivals": 66
+		},
+		"simulated_seconds": 600
+	},
+	"logical_processors": 16,
+	"method": "Same restored all-AI 09:00 100-service state; unchanged 0.2 s skip batches / 0.05 s physics; sequential modes. Headless frame-budget emulation, not rendered UI.",
+	"runs": [
+		{
+			"active": 17,
+			"cancel_ms": 0.004,
+			"clock": "09:33:12",
+			"events": [],
+			"frames": 3599,
+			"max_frame_ms": 26.328,
+			"mean_fps": 59.9743841556442,
+			"mode": "original_60fps",
+			"p95_frame_ms": 19.084,
+			"recorded_arrivals": 104,
+			"simulated_seconds": 1992.60000000725,
+			"speedup": 33.2050452539516,
+			"wall_seconds": 60.008953
+		},
+		{
+			"active": 17,
+			"cancel_ms": 16.682,
+			"clock": "09:36:02",
+			"events": [],
+			"frames": 3602,
+			"max_frame_ms": 16.76,
+			"mean_fps": 60.0024130898279,
+			"mode": "threaded_60fps",
+			"p95_frame_ms": 16.68,
+			"recorded_arrivals": 108,
+			"simulated_seconds": 2162.60000000787,
+			"speedup": 36.0247691694987,
+			"wall_seconds": 60.030919
+		},
+		{
+			"active": 17,
+			"cancel_ms": 0.004,
+			"clock": "09:36:28",
+			"events": [],
+			"frames": 3996,
+			"max_frame_ms": 35.829,
+			"mean_fps": 66.5985548113606,
+			"mode": "original_uncapped",
+			"p95_frame_ms": 19.114,
+			"recorded_arrivals": 110,
+			"simulated_seconds": 2188.80000000796,
+			"speedup": 36.4792084013104,
+			"wall_seconds": 60.001302
+		}
+	],
+	"start": {
+		"active": 12,
+		"clock": "09:00:00",
+		"events": [],
+		"recorded_arrivals": 53
+	},
+	"wall_budget_seconds": 60.0
+}

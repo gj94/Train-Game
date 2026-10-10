@@ -1,5 +1,37 @@
 # Progress
 
+## 2026-10-11 — Threaded skip implemented and benchmarked
+- Skip to time/stop now gives a dedicated worker exclusive ownership of the live
+  railway while the main thread keeps the progress menu/controller responsive.
+  Waits for in-flight scenery work before handoff; publishes copied scalar progress
+  through a mutex. No save/load reconstruction, timestep changes or omitted work.
+  Dispatch, reservations and train movement retain their deterministic serial order.
+- Cancellation is asynchronous at 0.2 s batch boundaries. Join before restoring
+  scene/audio reads; block stale UI commands. Controller disconnect cancels, window
+  close waits then opens quit confirmation, and teardown joins/restores global state.
+  A thread-creation failure falls back to the previous frame-budget implementation.
+- Requested 60-wall-second A/B from the same all-AI 09:00 100-service checkpoint,
+  measured sequentially on Ryzen 7 7840HS / Godot 4.7.2: original at 60 FPS advanced
+  1,992.6 world seconds (33.21x); worker at 60 FPS 2,162.6 s (36.02x), **8.49% more
+  throughput**. Uncapped original: 2,188.8 s (36.48x). Worker reaches 98.75% of the
+  serial ceiling; this separates UI and simulation, not all-core railway physics.
+  Main-loop p95 interval 19.084 -> 16.680 ms. All three have zero safety events.
+- This is a headless frame-scheduling benchmark, not GPU/native-game FPS or a
+  measurement on the target i9-13980HX / RTX 4090 Laptop / 64 GB. Twelve services
+  active at checkpoint, seventeen at the end of both capped runs. Do not compare
+  this short sample directly with the 23x full-day audit or extrapolate target speed.
+- Equal 600 s busy-state replay produces exactly equal full snapshots at 09:10,
+  including passengers/arrivals, signals, dispatch and depots. All **540 headless
+  tests** and **30 native source-game integration checks** pass. Native automation
+  uses dummy audio; mute state restored, no audible playback assessment. No new
+  distribution built or published; R29 remains available. Implementation/results
+  and reproduction: `docs/threaded-skip.md`, `tools/benchmark_time_skip.gd`,
+  `art/performance/threaded-skip-2026-10-11/`.
+- Playtest next build: Pause -> Skip forward by 30 minutes; watch live progress,
+  cancel with B/Esc and resume AI/take control. Repeat to Next stop and verify actual
+  arrival. Disconnect controller / close window mid-skip; return safely before the
+  next menu. User requested notification before preparing another build.
+
 ## 2026-10-11 — Skip-speed diagnosis (no runtime change)
 - Skip advances on the main thread with a nominal 12 ms budget per UI frame;
   frame caps/v-sync can reduce its CPU duty cycle. Both skip and headless audit
