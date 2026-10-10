@@ -1,5 +1,53 @@
 # Progress
 
+## 2026-10-11 — Verify busy-station rendering feedback
+- Corrected benchmark/F10 timing collection: queue GPU/CPU timing getters on the
+  render thread and publish copied values through a bounded mutex-protected
+  mailbox. The old per-frame getters forced renderer synchronization; an initial
+  separate-thread probe exposed this and was discarded.
+- Corrected source-game A/B, Godot 4.7.2, 1600x900 High, Ryzen 7 7840HS / Radeon
+  780M, five trains / 91 vehicles / 5,580 passengers: moving median frame time
+  safe 61.10 ms vs separate 46.22 ms (24.36% lower), p95 75.47 vs 58.04 ms.
+  Stationary views barely changed. Both reports pass the fixture auditor and have
+  zero unfocused/loading frames in measured cases. No target-PC extrapolation.
+- Safe mode has empty stderr. Separate mode still logs four empty-image errors,
+  shader metadata synchronization during vehicle construction and a shutdown
+  render-thread error/two leaks. Keep the renderer default unchanged.
+- Inspected captures and source GLB counts: LHB 31-35 nodes, 111-138 surfaces.
+  Material batching remains a candidate; preserve authored coordinate transforms,
+  doors, moving parts, visibility and LODs. No asset or normal-play ownership
+  refactor in this change. See `docs/render-thread-2026-10-11.md` and its raw
+  evidence folder. R29 remains the public download.
+- Validation: 550 headless tests pass with four simulation workers (including
+  two telemetry queue/teardown tests), clean import, both full crowded reports
+  audited. Repeat the two documented renderer modes on the target PC; inspect
+  errors as well as FPS before selecting a mode.
+
+## 2026-10-11 — Actual multicore simulation experiment
+- Added opt-in `-- --simulation-workers=4`: WorkerThreadPool runs independent
+  per-train passenger processing and AI geometry/braking look-ahead concurrently.
+  Join before ordered depot decisions, live signal/occupancy checks and movement.
+  Defer passenger timetable releases to each train's original turn; invalidate
+  prepared geometry after a point change. No timestep changes or skipped services.
+- Tuned away no-op jobs and repeated owner-thread track traversal. Same-checkpoint
+  60 s rendering-free tests on Ryzen 7 7840HS: serial 35.93x / repeat 35.36x,
+  four workers 36.90x, eight 36.35x. Four gains about 3.50% over the mean controls.
+  Reversed-order 40-world-minute replay: four 64.877 s, serial 68.682 s (5.86%
+  throughput gain). Full saved railway states match exactly, zero safety events.
+  Equal 600 s tests match for 0/1/2/4/8 workers, but that shorter workload is
+  slightly slower with four workers. Default remains serial; no target-i9 claim.
+- Implementation, commands and raw evidence: `docs/parallel-simulation.md` and
+  `art/performance/parallel-simulation-2026-10-11/`. R29 download unchanged.
+- Validation: **550 headless tests, 0 failures**, with the four-worker path
+  enabled; **32 native skip checks, 0 failures**, clean stderr and import.
+  Native checks use Dummy audio (mute/restoration state, not audible playback).
+  Eight new simulation tests cover exact states, live signal/occupancy changes,
+  deferred passenger release, worker ownership, strategy changes and nested
+  skip cancellation. Source hashes match the timed benchmark implementation.
+- Playtest from source with four workers: Skip 30 minutes, B/Esc cancel, Next
+  stop actual arrival, resume/take over, controller disconnect/window close,
+  save/load and busy-station passenger/depot behavior. Compare with zero workers.
+
 ## 2026-10-11 — Threaded skip implemented and benchmarked
 - Skip to time/stop now gives a dedicated worker exclusive ownership of the live
   railway while the main thread keeps the progress menu/controller responsive.

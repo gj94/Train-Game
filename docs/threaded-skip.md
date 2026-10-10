@@ -5,8 +5,10 @@ thread. The main thread displays progress and handles keyboard, mouse and
 controller cancellation. Normal driving is unchanged.
 
 This removes the old 12 ms-per-frame simulation allowance. It does **not** divide
-one railway across all CPU cores: dispatch, route reservations and train movement
-still run in their original deterministic order on one worker. Each train must
+one railway across all CPU cores by default: dispatch, route reservations and train movement
+still run in their original deterministic order on one worker. An optional
+[multicore experiment](parallel-simulation.md) distributes per-train passenger
+work and AI look-ahead across a CPU pool, with separate benchmark results. Each train must
 see the preceding train's updated occupancy. Parallelising those mutations would
 introduce conflicting authorities and change the timetable.
 

@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **11 Oct 2026 multicore simulation:** try actual parallel work within one
+  railway, beyond separating skip from its UI. Preserve deterministic signalling,
+  live occupancy and passenger/timetable results; compare worker counts against
+  the serial path from identical state, with 60 wall seconds per run. Keep an
+  experimental strategy opt-in unless measurements justify enabling it.
 - **11 Oct 2026 threaded skip:** let the simulation advance independently of the
   progress UI on a worker; preserve ordered signalling/occupancy and existing
   stop/cancel behaviour. Compare original and threaded progress from identical

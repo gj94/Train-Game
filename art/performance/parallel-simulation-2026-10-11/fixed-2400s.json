@@ -1,0 +1,49 @@
+{
+	"checkpoint_sha256": "792b738a999e300a2bed8b63884fda137a0533956223c64a253baf58ad7b04a2",
+	"cpu": "AMD Ryzen 7 7840HS w/ Radeon 780M Graphics",
+	"engine": "4.7.2-stable (official)",
+	"logical_processors": 16,
+	"runs": [
+		{
+			"active": 17,
+			"clock": "09:40:00",
+			"events": [],
+			"parallel_batches": 48004,
+			"pool_thread_ids": [
+				5,
+				7,
+				12,
+				9,
+				14,
+				15,
+				20,
+				17,
+				19,
+				22,
+				23,
+				26,
+				30,
+				28
+			],
+			"same_state": true,
+			"simulated_seconds": 2399.99999999999,
+			"speedup": 36.9929925407329,
+			"wall_seconds": 64.877152,
+			"workers": 4
+		},
+		{
+			"active": 17,
+			"clock": "09:40:00",
+			"events": [],
+			"parallel_batches": 0,
+			"pool_thread_ids": [],
+			"same_state": true,
+			"simulated_seconds": 2399.99999999999,
+			"speedup": 34.943749008835,
+			"wall_seconds": 68.681812,
+			"workers": 0
+		}
+	],
+	"sim_budget": 2400.0,
+	"wall_budget": 60.0
+}

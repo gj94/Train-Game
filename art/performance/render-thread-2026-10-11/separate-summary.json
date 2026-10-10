@@ -1,0 +1,1055 @@
+{
+  "adapter": "AMD Radeon 780M Graphics",
+  "engine": "4.7.2-stable (official)",
+  "fixture": {
+    "note": "Five occupied full formations on separate ERS platform roads; dispatcher paused for reproducible rendering comparison. Live simulation is measured separately.",
+    "passengers": 5580,
+    "services": [
+      {
+        "id": "K1",
+        "length": 466.5,
+        "passengers": 1720,
+        "rake": "passenger",
+        "road": "ERS_P1",
+        "stock": "ported:icf"
+      },
+      {
+        "id": "K2",
+        "length": 548.56,
+        "passengers": 1323,
+        "rake": "express",
+        "road": "ERS_P2",
+        "stock": "ported:lhb"
+      },
+      {
+        "id": "K3",
+        "length": 192.0,
+        "passengers": 421,
+        "rake": "fixed",
+        "road": "ERS_P3",
+        "stock": "ported:vb8"
+      },
+      {
+        "id": "K4",
+        "length": 511.094,
+        "passengers": 1220,
+        "rake": "express",
+        "road": "ERS_P4",
+        "stock": "ported:icf"
+      },
+      {
+        "id": "K5",
+        "length": 384.0,
+        "passengers": 896,
+        "rake": "fixed",
+        "road": "ERS_P5",
+        "stock": "ported:vb16"
+      }
+    ],
+    "trains": 5,
+    "vehicles": 91
+  },
+  "cases": [
+    {
+      "view": "pilot",
+      "comparison": [
+        {
+          "mode": "full",
+          "pixels": [
+            1600,
+            900
+          ],
+          "frames": 224,
+          "frame_median_ms": 53.587,
+          "frame_p95_ms": 54.776,
+          "frame_p99_ms": 55.492,
+          "gpu_median_ms": 52.3769989013672,
+          "primitives": 15378762.0,
+          "draws": 4479.0,
+          "gpu_bytes": 4946429664.0,
+          "traffic": {
+            "detailed_shadow_parts": 2457,
+            "maximum_coach_build_ms": 5219.782,
+            "rendered_passengers": 140,
+            "rendered_platform": 0,
+            "rendered_seated": 140,
+            "resident_trains": 5,
+            "shadow_hulls": 0,
+            "simulated_passengers": 5580,
+            "visible_interior_groups": 202
+          },
+          "unfocused_frames": 0
+        },
+        {
+          "mode": "culled",
+          "pixels": [
+            1600,
+            900
+          ],
+          "frames": 224,
+          "frame_median_ms": 53.364,
+          "frame_p95_ms": 55.781,
+          "frame_p99_ms": 56.752,
+          "gpu_median_ms": 51.9830017089844,
+          "primitives": 14283272.0,
+          "draws": 4458.0,
+          "gpu_bytes": 4946429664.0,
+          "traffic": {
+            "detailed_shadow_parts": 177,
+            "maximum_coach_build_ms": 5219.782,
+            "rendered_passengers": 0,
+            "rendered_platform": 0,
+            "rendered_seated": 0,
+            "resident_trains": 5,
+            "shadow_hulls": 84,
+            "simulated_passengers": 5580,
+            "visible_interior_groups": 6
+          },
+          "unfocused_frames": 0
+        }
+      ],
+      "median_frame_time_reduction_percent": 0.4161457069811858
+    },
+    {
+      "view": "passenger",
+      "comparison": [
+        {
+          "mode": "full",
+          "pixels": [
+            1600,
+            900
+          ],
+          "frames": 214,
+          "frame_median_ms": 56.1,
+          "frame_p95_ms": 57.479,
+          "frame_p99_ms": 58.025,
+          "gpu_median_ms": 54.8030014038086,
+          "primitives": 18628143.0,
+          "draws": 5207.0,
+          "gpu_bytes": 4946697728.0,
+          "traffic": {
+            "detailed_shadow_parts": 2457,
+            "maximum_coach_build_ms": 5219.782,
+            "rendered_passengers": 140,
+            "rendered_platform": 0,
+            "rendered_seated": 140,
+            "resident_trains": 5,
+            "shadow_hulls": 0,
+            "simulated_passengers": 5580,
+            "visible_interior_groups": 202
+          },
+          "unfocused_frames": 0
+        },
+        {
+          "mode": "culled",
+          "pixels": [
+            1600,
+            900
+          ],
+          "frames": 219,
+          "frame_median_ms": 54.759,
+          "frame_p95_ms": 55.71,
+          "frame_p99_ms": 56.578,
+          "gpu_median_ms": 53.435001373291,
+          "primitives": 17297323.0,
+          "draws": 5202.0,
+          "gpu_bytes": 4946697728.0,
+          "traffic": {
+            "detailed_shadow_parts": 338,
+            "maximum_coach_build_ms": 5219.782,
+            "rendered_passengers": 140,
+            "rendered_platform": 0,
+            "rendered_seated": 140,
+            "resident_trains": 5,
+            "shadow_hulls": 78,
+            "simulated_passengers": 5580,
+            "visible_interior_groups": 22
+          },
+          "unfocused_frames": 0
+        }
+      ],
+      "median_frame_time_reduction_percent": 2.390374331550804
+    },
+    {
+      "view": "platform",
+      "comparison": [
+        {
+          "mode": "full",
+          "pixels": [
+            1600,
+            900
+          ],
+          "frames": 226,
+          "frame_median_ms": 53.16,
+          "frame_p95_ms": 54.574,
+          "frame_p99_ms": 55.41,
+          "gpu_median_ms": 51.8129997253418,
+          "primitives": 18110242.0,
+          "draws": 4140.0,
+          "gpu_bytes": 4946697728.0,
+          "traffic": {
+            "detailed_shadow_parts": 2457,
+            "maximum_coach_build_ms": 5219.782,
+            "rendered_passengers": 140,
+            "rendered_platform": 0,
+            "rendered_seated": 140,
+            "resident_trains": 5,
+            "shadow_hulls": 0,
+            "simulated_passengers": 5580,
+            "visible_interior_groups": 202
+          },
+          "unfocused_frames": 0
+        },
+        {
+          "mode": "culled",
+          "pixels": [
+            1600,
+            900
+          ],
+          "frames": 235,
+          "frame_median_ms": 51.181,
+          "frame_p95_ms": 51.997,
+          "frame_p99_ms": 52.581,
+          "gpu_median_ms": 49.8409996032715,
+          "primitives": 16330321.0,
+          "draws": 3926.0,
+          "gpu_bytes": 4946697728.0,
+          "traffic": {
+            "detailed_shadow_parts": 423,
+            "maximum_coach_build_ms": 5219.782,
+            "rendered_passengers": 140,
+            "rendered_platform": 0,
+            "rendered_seated": 140,
+            "resident_trains": 5,
+            "shadow_hulls": 74,
+            "simulated_passengers": 5580,
+            "visible_interior_groups": 12
+          },
+          "unfocused_frames": 0
+        }
+      ],
+      "median_frame_time_reduction_percent": 3.722723852520693
+    },
+    {
+      "view": "overview",
+      "comparison": [
+        {
+          "mode": "full",
+          "pixels": [
+            1600,
+            900
+          ],
+          "frames": 270,
+          "frame_median_ms": 44.494,
+          "frame_p95_ms": 45.553,
+          "frame_p99_ms": 46.269,
+          "gpu_median_ms": 43.1180000305176,
+          "primitives": 14583823.0,
+          "draws": 6611.0,
+          "gpu_bytes": 4934994960.0,
+          "traffic": {
+            "detailed_shadow_parts": 2457,
+            "maximum_coach_build_ms": 5219.782,
+            "rendered_passengers": 0,
+            "rendered_platform": 0,
+            "rendered_seated": 0,
+            "resident_trains": 5,
+            "shadow_hulls": 0,
+            "simulated_passengers": 5580,
+            "visible_interior_groups": 202
+          },
+          "unfocused_frames": 0
+        },
+        {
+          "mode": "culled",
+          "pixels": [
+            1600,
+            900
+          ],
+          "frames": 286,
+          "frame_median_ms": 42.037,
+          "frame_p95_ms": 43.209,
+          "frame_p99_ms": 43.763,
+          "gpu_median_ms": 40.7389984130859,
+          "primitives": 12060058.0,
+          "draws": 6468.0,
+          "gpu_bytes": 4934994960.0,
+          "traffic": {
+            "detailed_shadow_parts": 0,
+            "maximum_coach_build_ms": 5219.782,
+            "rendered_passengers": 0,
+            "rendered_platform": 0,
+            "rendered_seated": 0,
+            "resident_trains": 5,
+            "shadow_hulls": 91,
+            "simulated_passengers": 5580,
+            "visible_interior_groups": 0
+          },
+          "unfocused_frames": 0
+        }
+      ],
+      "median_frame_time_reduction_percent": 5.522092866453909
+    }
+  ],
+  "live": {
+    "traffic": {
+      "detailed_shadow_parts": 0,
+      "maximum_coach_build_ms": 5219.782,
+      "rendered_passengers": 0,
+      "rendered_platform": 0,
+      "rendered_seated": 0,
+      "resident_trains": 5,
+      "shadow_hulls": 91,
+      "simulated_passengers": 5580,
+      "travelled_metres": {
+        "K1": 23.620344972253,
+        "K2": 23.620344972253,
+        "K3": 23.620344972253,
+        "K4": 23.620344972253,
+        "K5": 23.620344972253
+      },
+      "visible_interior_groups": 0
+    },
+    "frame_ms": {
+      "maximum": 64.742,
+      "mean": 47.4428853754941,
+      "median": 46.216,
+      "minimum": 36.325,
+      "over_16_7": 253,
+      "over_33_3": 253,
+      "over_50": 68,
+      "over_8_3": 253,
+      "p95": 58.04,
+      "p99": 62.461
+    },
+    "simulation_ms": {
+      "maximum": 20.063,
+      "mean": 2.26690513833992,
+      "median": 1.801,
+      "minimum": 1.062,
+      "over_16_7": 1,
+      "over_33_3": 0,
+      "over_50": 0,
+      "over_8_3": 10,
+      "p95": 3.037,
+      "p99": 12.947
+    },
+    "train_ms": {
+      "maximum": 17.791,
+      "mean": 15.1067786561265,
+      "median": 15.682,
+      "minimum": 10.506,
+      "over_16_7": 25,
+      "over_33_3": 0,
+      "over_50": 0,
+      "over_8_3": 253,
+      "p95": 16.957,
+      "p99": 17.46
+    }
+  },
+  "build_steps": [
+    {
+      "assembly_ms": 300.166,
+      "audio_ms": 0.0,
+      "car": 0,
+      "finish_ms": 0.0,
+      "id": "K10",
+      "model": "vb_dtc",
+      "total_ms": 300.166
+    },
+    {
+      "assembly_ms": 229.436,
+      "audio_ms": 0.0,
+      "car": 1,
+      "finish_ms": 0.0,
+      "id": "K10",
+      "model": "vb_mc",
+      "total_ms": 229.437
+    },
+    {
+      "assembly_ms": 346.001,
+      "audio_ms": 0.0,
+      "car": 2,
+      "finish_ms": 0.0,
+      "id": "K10",
+      "model": "vb_tc_ec",
+      "total_ms": 346.002
+    },
+    {
+      "assembly_ms": 245.535,
+      "audio_ms": 0.0,
+      "car": 3,
+      "finish_ms": 0.0,
+      "id": "K10",
+      "model": "vb_mc2",
+      "total_ms": 245.535
+    },
+    {
+      "assembly_ms": 25.716,
+      "audio_ms": 0.0,
+      "car": 4,
+      "finish_ms": 0.0,
+      "id": "K10",
+      "model": "vb_mc2",
+      "total_ms": 25.716
+    },
+    {
+      "assembly_ms": 232.658,
+      "audio_ms": 0.0,
+      "car": 5,
+      "finish_ms": 0.0,
+      "id": "K10",
+      "model": "vb_tc_cc",
+      "total_ms": 232.659
+    },
+    {
+      "assembly_ms": 94.252,
+      "audio_ms": 0.0,
+      "car": 6,
+      "finish_ms": 0.0,
+      "id": "K10",
+      "model": "vb_mc",
+      "total_ms": 94.252
+    },
+    {
+      "assembly_ms": 82.659,
+      "audio_ms": 29.196,
+      "car": 7,
+      "finish_ms": 2.47,
+      "id": "K10",
+      "model": "vb_dtc",
+      "total_ms": 114.325
+    },
+    {
+      "assembly_ms": 59.387,
+      "audio_ms": 0.0,
+      "car": 0,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "wap7",
+      "total_ms": 59.389
+    },
+    {
+      "assembly_ms": 333.612,
+      "audio_ms": 0.0,
+      "car": 1,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_gs",
+      "total_ms": 333.613
+    },
+    {
+      "assembly_ms": 25.026,
+      "audio_ms": 0.0,
+      "car": 2,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_gs",
+      "total_ms": 25.026
+    },
+    {
+      "assembly_ms": 330.312,
+      "audio_ms": 0.0,
+      "car": 3,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_sl",
+      "total_ms": 330.313
+    },
+    {
+      "assembly_ms": 21.317,
+      "audio_ms": 0.0,
+      "car": 4,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_sl",
+      "total_ms": 21.318
+    },
+    {
+      "assembly_ms": 62.724,
+      "audio_ms": 0.0,
+      "car": 5,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_sl",
+      "total_ms": 62.724
+    },
+    {
+      "assembly_ms": 154.619,
+      "audio_ms": 0.0,
+      "car": 6,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_sl",
+      "total_ms": 154.62
+    },
+    {
+      "assembly_ms": 79.923,
+      "audio_ms": 0.0,
+      "car": 7,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_sl",
+      "total_ms": 79.925
+    },
+    {
+      "assembly_ms": 74.82,
+      "audio_ms": 0.0,
+      "car": 8,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_sl",
+      "total_ms": 74.821
+    },
+    {
+      "assembly_ms": 79.938,
+      "audio_ms": 0.0,
+      "car": 9,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_sl",
+      "total_ms": 79.939
+    },
+    {
+      "assembly_ms": 76.934,
+      "audio_ms": 0.0,
+      "car": 10,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_sl",
+      "total_ms": 76.934
+    },
+    {
+      "assembly_ms": 78.837,
+      "audio_ms": 0.0,
+      "car": 11,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_sl",
+      "total_ms": 78.838
+    },
+    {
+      "assembly_ms": 77.41,
+      "audio_ms": 0.0,
+      "car": 12,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_sl",
+      "total_ms": 77.411
+    },
+    {
+      "assembly_ms": 4719.957,
+      "audio_ms": 0.0,
+      "car": 13,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_3a",
+      "total_ms": 4719.958
+    },
+    {
+      "assembly_ms": 109.344,
+      "audio_ms": 0.0,
+      "car": 14,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_3a",
+      "total_ms": 109.344
+    },
+    {
+      "assembly_ms": 77.844,
+      "audio_ms": 0.0,
+      "car": 15,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_3a",
+      "total_ms": 77.845
+    },
+    {
+      "assembly_ms": 75.397,
+      "audio_ms": 0.0,
+      "car": 16,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_3a",
+      "total_ms": 75.398
+    },
+    {
+      "assembly_ms": 70.351,
+      "audio_ms": 0.0,
+      "car": 17,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_3a",
+      "total_ms": 70.352
+    },
+    {
+      "assembly_ms": 71.933,
+      "audio_ms": 0.0,
+      "car": 18,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_3a",
+      "total_ms": 71.934
+    },
+    {
+      "assembly_ms": 4586.855,
+      "audio_ms": 0.0,
+      "car": 19,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_2a",
+      "total_ms": 4586.856
+    },
+    {
+      "assembly_ms": 72.855,
+      "audio_ms": 0.0,
+      "car": 20,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_2a",
+      "total_ms": 72.856
+    },
+    {
+      "assembly_ms": 4732.178,
+      "audio_ms": 0.0,
+      "car": 21,
+      "finish_ms": 0.0,
+      "id": "K2",
+      "model": "lhb_1a",
+      "total_ms": 4732.179
+    },
+    {
+      "assembly_ms": 99.828,
+      "audio_ms": 32.878,
+      "car": 22,
+      "finish_ms": 2.533,
+      "id": "K2",
+      "model": "lhb_gs",
+      "total_ms": 135.239
+    },
+    {
+      "assembly_ms": 91.386,
+      "audio_ms": 0.0,
+      "car": 0,
+      "finish_ms": 0.0,
+      "id": "K3",
+      "model": "vb_dtc",
+      "total_ms": 91.386
+    },
+    {
+      "assembly_ms": 82.518,
+      "audio_ms": 0.0,
+      "car": 1,
+      "finish_ms": 0.0,
+      "id": "K3",
+      "model": "vb_mc",
+      "total_ms": 82.519
+    },
+    {
+      "assembly_ms": 84.702,
+      "audio_ms": 0.0,
+      "car": 2,
+      "finish_ms": 0.0,
+      "id": "K3",
+      "model": "vb_tc_ec",
+      "total_ms": 84.703
+    },
+    {
+      "assembly_ms": 83.009,
+      "audio_ms": 0.0,
+      "car": 3,
+      "finish_ms": 0.0,
+      "id": "K3",
+      "model": "vb_mc2",
+      "total_ms": 83.009
+    },
+    {
+      "assembly_ms": 81.794,
+      "audio_ms": 0.0,
+      "car": 4,
+      "finish_ms": 0.0,
+      "id": "K3",
+      "model": "vb_mc2",
+      "total_ms": 81.794
+    },
+    {
+      "assembly_ms": 82.969,
+      "audio_ms": 0.0,
+      "car": 5,
+      "finish_ms": 0.0,
+      "id": "K3",
+      "model": "vb_tc_cc",
+      "total_ms": 82.97
+    },
+    {
+      "assembly_ms": 85.268,
+      "audio_ms": 0.0,
+      "car": 6,
+      "finish_ms": 0.0,
+      "id": "K3",
+      "model": "vb_mc",
+      "total_ms": 85.269
+    },
+    {
+      "assembly_ms": 81.335,
+      "audio_ms": 30.656,
+      "car": 7,
+      "finish_ms": 1.746,
+      "id": "K3",
+      "model": "vb_dtc",
+      "total_ms": 113.737
+    },
+    {
+      "assembly_ms": 38.07,
+      "audio_ms": 0.0,
+      "car": 0,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "wap7",
+      "total_ms": 38.071
+    },
+    {
+      "assembly_ms": 168.205,
+      "audio_ms": 0.0,
+      "car": 1,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_gs",
+      "total_ms": 168.206
+    },
+    {
+      "assembly_ms": 143.023,
+      "audio_ms": 0.0,
+      "car": 2,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_gs",
+      "total_ms": 143.024
+    },
+    {
+      "assembly_ms": 5140.611,
+      "audio_ms": 0.0,
+      "car": 3,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_sl",
+      "total_ms": 5140.612
+    },
+    {
+      "assembly_ms": 118.279,
+      "audio_ms": 0.0,
+      "car": 4,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_sl",
+      "total_ms": 118.28
+    },
+    {
+      "assembly_ms": 114.681,
+      "audio_ms": 0.0,
+      "car": 5,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_sl",
+      "total_ms": 114.682
+    },
+    {
+      "assembly_ms": 115.97,
+      "audio_ms": 0.0,
+      "car": 6,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_sl",
+      "total_ms": 115.971
+    },
+    {
+      "assembly_ms": 118.568,
+      "audio_ms": 0.0,
+      "car": 7,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_sl",
+      "total_ms": 118.569
+    },
+    {
+      "assembly_ms": 117.066,
+      "audio_ms": 0.0,
+      "car": 8,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_sl",
+      "total_ms": 117.067
+    },
+    {
+      "assembly_ms": 119.518,
+      "audio_ms": 0.0,
+      "car": 9,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_sl",
+      "total_ms": 119.519
+    },
+    {
+      "assembly_ms": 118.727,
+      "audio_ms": 0.0,
+      "car": 10,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_sl",
+      "total_ms": 118.728
+    },
+    {
+      "assembly_ms": 116.143,
+      "audio_ms": 0.0,
+      "car": 11,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_sl",
+      "total_ms": 116.144
+    },
+    {
+      "assembly_ms": 113.499,
+      "audio_ms": 0.0,
+      "car": 12,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_sl",
+      "total_ms": 113.5
+    },
+    {
+      "assembly_ms": 5127.254,
+      "audio_ms": 0.0,
+      "car": 13,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_3a",
+      "total_ms": 5127.255
+    },
+    {
+      "assembly_ms": 127.195,
+      "audio_ms": 0.0,
+      "car": 14,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_3a",
+      "total_ms": 127.196
+    },
+    {
+      "assembly_ms": 114.499,
+      "audio_ms": 0.0,
+      "car": 15,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_3a",
+      "total_ms": 114.5
+    },
+    {
+      "assembly_ms": 115.276,
+      "audio_ms": 0.0,
+      "car": 16,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_3a",
+      "total_ms": 115.277
+    },
+    {
+      "assembly_ms": 115.329,
+      "audio_ms": 0.0,
+      "car": 17,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_3a",
+      "total_ms": 115.33
+    },
+    {
+      "assembly_ms": 137.477,
+      "audio_ms": 0.0,
+      "car": 18,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_3a",
+      "total_ms": 137.478
+    },
+    {
+      "assembly_ms": 5219.782,
+      "audio_ms": 0.0,
+      "car": 19,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_2a",
+      "total_ms": 5219.782
+    },
+    {
+      "assembly_ms": 119.541,
+      "audio_ms": 0.0,
+      "car": 20,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_2a",
+      "total_ms": 119.542
+    },
+    {
+      "assembly_ms": 5199.174,
+      "audio_ms": 0.0,
+      "car": 21,
+      "finish_ms": 0.0,
+      "id": "K4",
+      "model": "icf_1a",
+      "total_ms": 5199.175
+    },
+    {
+      "assembly_ms": 119.199,
+      "audio_ms": 25.97,
+      "car": 22,
+      "finish_ms": 2.816,
+      "id": "K4",
+      "model": "icf_gs",
+      "total_ms": 147.984
+    },
+    {
+      "assembly_ms": 95.801,
+      "audio_ms": 0.0,
+      "car": 0,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_dtc",
+      "total_ms": 95.802
+    },
+    {
+      "assembly_ms": 81.163,
+      "audio_ms": 0.0,
+      "car": 1,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_mc",
+      "total_ms": 81.164
+    },
+    {
+      "assembly_ms": 80.478,
+      "audio_ms": 0.0,
+      "car": 2,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_tc_cc",
+      "total_ms": 80.479
+    },
+    {
+      "assembly_ms": 83.228,
+      "audio_ms": 0.0,
+      "car": 3,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_mc2",
+      "total_ms": 83.229
+    },
+    {
+      "assembly_ms": 83.791,
+      "audio_ms": 0.0,
+      "car": 4,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_mc",
+      "total_ms": 83.792
+    },
+    {
+      "assembly_ms": 80.96,
+      "audio_ms": 0.0,
+      "car": 5,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_tc_cc",
+      "total_ms": 80.961
+    },
+    {
+      "assembly_ms": 84.12,
+      "audio_ms": 0.0,
+      "car": 6,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_mc2",
+      "total_ms": 84.121
+    },
+    {
+      "assembly_ms": 4025.98,
+      "audio_ms": 0.0,
+      "car": 7,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_ndtc_ec",
+      "total_ms": 4025.98
+    },
+    {
+      "assembly_ms": 4037.486,
+      "audio_ms": 0.0,
+      "car": 8,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_ndtc_ec2",
+      "total_ms": 4037.487
+    },
+    {
+      "assembly_ms": 88.609,
+      "audio_ms": 0.0,
+      "car": 9,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_mc2",
+      "total_ms": 88.61
+    },
+    {
+      "assembly_ms": 81.451,
+      "audio_ms": 0.0,
+      "car": 10,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_tc_cc",
+      "total_ms": 81.452
+    },
+    {
+      "assembly_ms": 83.817,
+      "audio_ms": 0.0,
+      "car": 11,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_mc",
+      "total_ms": 83.818
+    },
+    {
+      "assembly_ms": 82.93,
+      "audio_ms": 0.0,
+      "car": 12,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_mc2",
+      "total_ms": 82.931
+    },
+    {
+      "assembly_ms": 82.824,
+      "audio_ms": 0.0,
+      "car": 13,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_tc_cc",
+      "total_ms": 82.825
+    },
+    {
+      "assembly_ms": 86.211,
+      "audio_ms": 0.0,
+      "car": 14,
+      "finish_ms": 0.0,
+      "id": "K5",
+      "model": "vb_mc",
+      "total_ms": 86.212
+    },
+    {
+      "assembly_ms": 82.266,
+      "audio_ms": 25.753,
+      "car": 15,
+      "finish_ms": 2.098,
+      "id": "K5",
+      "model": "vb_dtc",
+      "total_ms": 110.117
+    }
+  ],
+  "note": "Same-process paused rendering A/B, followed by a separate live five-train coasting phase."
+}

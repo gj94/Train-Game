@@ -22,18 +22,26 @@ static func setup(t: Train) -> void:
 		cars.append({model=entry.model,seats=seats,ids=ids})
 	t.passengers={cars=cars,initial=initial,boarded=0,alighted=0,onboard=initial,serial=serial,visit=-1,phase="riding",events=[],elapsed=0.0,duration=0.0,door_open=0.0,road="",side=0,revision=0}
 
-static func update(w, t: Train, dt: float) -> void:
-	setup(t)
-	if t.passengers.is_empty():return
-	var p:=t.passengers
-	if t.completed_timetable!=null and t.depot.get("phase","") in ["working","stabled"]:return
+static func commit_release(t: Train, release: float) -> void:
+	if release<0:return
 	var tt=t.completed_timetable if t.completed_timetable!=null else t.timetable
-	if tt==null:return
+	tt.passenger_release=release
+
+## Mutates only this train's passenger data. Timetable release is returned for
+## ordered commit, so parallel exchange cannot expose a later train's new dwell
+## to the dispatcher/driver before the original sequential update would do so.
+static func update(w, t: Train, dt: float, defer_release: bool=false) -> float:
+	setup(t)
+	if t.passengers.is_empty():return -1.0
+	var p:=t.passengers
+	if t.completed_timetable!=null and t.depot.get("phase","") in ["working","stabled"]:return -1.0
+	var tt=t.completed_timetable if t.completed_timetable!=null else t.timetable
+	if tt==null:return -1.0
 	if p.phase in ["opening","exchange","closing"]:
 		# Defensive against teleports or external train movement: close openings
 		# and stop transfers. Ordinary controls are traction-interlocked below.
 		if t.speed>.05 or t.path[0].edge!=p.road:
-			_cancel(p);return
+			_cancel(p);return -1.0
 		p.elapsed+=maxf(0,dt)
 		p.door_open=clampf(minf(p.elapsed/OPEN_SECONDS,(p.duration-p.elapsed)/CLOSE_SECONDS),0,1)
 		p.phase="opening" if p.elapsed<OPEN_SECONDS else ("closing" if p.elapsed>=p.duration-CLOSE_SECONDS else "exchange")
@@ -49,15 +57,17 @@ static func update(w, t: Train, dt: float) -> void:
 				else:p.onboard-=1;p.alighted+=1
 		if p.elapsed>=p.duration:
 			p.phase="ready";p.door_open=0.0;p.revision+=1
-		return
-	if not tt.at_stop or tt.index==p.visit or t.speed>.001:return
-	if tt.index==0 and w.clock_seconds()<tt.departure-60:return
+		return -1.0
+	if not tt.at_stop or tt.index==p.visit or t.speed>.001:return -1.0
+	if tt.index==0 and w.clock_seconds()<tt.departure-60:return -1.0
 	var stop: Dictionary=tt.stops[tt.index]
-	if t.path[0].edge!=stop.block or t.path[0].dir!=stop.direction:return
+	if t.path[0].edge!=stop.block or t.path[0].dir!=stop.direction:return -1.0
 	var platform:=platform_at(w,stop.block)
-	if platform.is_empty() or not Berth.fits(w,t,stop.block,t.head_s,stop.direction):return
+	if platform.is_empty() or not Berth.fits(w,t,stop.block,t.head_s,stop.direction):return -1.0
 	_begin(t,tt.index,tt.stops.size(),platform)
-	tt.passenger_release=w.clock_seconds()+p.duration
+	var release: float=w.clock_seconds()+p.duration
+	if not defer_release:tt.passenger_release=release
+	return release
 
 static func _destination(rng: RandomNumberGenerator, call: int, calls: int) -> int:
 	# Local journeys dominate the stopping service; some riders stay to terminus.

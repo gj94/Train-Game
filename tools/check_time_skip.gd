@@ -21,6 +21,10 @@ func run() -> void:
 	var began:=Time.get_ticks_msec()
 	while g.wv.loading and Time.get_ticks_msec()-began<120000:await process_frame
 	g.set_process(false);g.cam.set_process(false)
+	var requested_workers:=RailWorld.requested_simulation_workers()
+	if requested_workers>1:
+		check(g.world.simulation_workers==requested_workers,"source game enables the requested simulation pool")
+		g.world.trace_parallel=true
 	var clock: float=g.world.clock_seconds()
 	var motion_distance: float=g.train_motions.K1._current_odometer
 	g.dispatcher.auto_dispatch=false
@@ -39,6 +43,9 @@ func run() -> void:
 	check(g.hud.can_process() and g.controller.can_process(),"progress menu and controller remain responsive")
 	await shot("progress")
 	while g.time_skip.running():await process_frame
+	if requested_workers>1:
+		check(g.world.parallel_threads.size()>1,"skip executes per-train simulation work on multiple pool threads")
+		g.world.trace_parallel=false
 	check(absf(g.world.clock_seconds()-clock-180)<.001,"returns at chosen time")
 	check(g.train.odometer>motion_distance and absf(g.train_motions.K1._current_odometer-g.train.odometer)<.01,"real motion advanced and interpolation reset")
 	check(not g.get_viewport().disable_3d and not AudioServer.is_bus_mute(0),"rendering and sound state restored")

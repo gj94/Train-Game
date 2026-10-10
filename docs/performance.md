@@ -2,6 +2,9 @@
 
 For CPU-only timetable profiling, the 100-service operating-day audits and
 rendering-free time skips, see [the timetable guide](busy-timetable.md).
+For the measured multicore experiment, see [parallel simulation](parallel-simulation.md).
+The [render-thread investigation](render-thread-2026-10-11.md) explains the
+corrected asynchronous timing collection and the current coach surface counts.
 The graphics benchmark retains its original 32-service fixture for comparable
 measurements; ordinary play starts the new 100-service day.
 

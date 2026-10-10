@@ -6,6 +6,10 @@ var _label: Label
 var _elapsed := 0.0
 var _frames: Array=[]
 var _last_frame_usec:=0
+var _render_timing:=preload("res://game/render_telemetry.gd").new()
+
+func _exit_tree() -> void:
+	_render_timing.close()
 
 func _ready() -> void:
 	layer=20
@@ -41,7 +45,7 @@ func _process(delta: float) -> void:
 		audio_ms+=sound.last_process_ms
 		pending+=sound._events.size()
 	var fps:=Performance.get_monitor(Performance.TIME_FPS)
-	var gpu:=RenderingServer.viewport_get_measured_render_time_gpu(get_viewport().get_viewport_rid())
+	var gpu:=_render_timing.sample(get_viewport().get_viewport_rid()).x
 	var timing = preload("res://game/audio_output_timing.gd")
 	timing.refresh()
 	var ordered:=_frames.duplicate();ordered.sort()

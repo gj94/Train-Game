@@ -21,11 +21,12 @@ static func urgent(t: Train, distance: float, end_speed: float) -> bool:
 	var required := maxf(0.0, t.speed * t.speed - end_speed * end_speed)
 	return required > 2.0 * t.service_decel * .8 * maxf(.01, distance)
 
-static func drive(w, t: Train, stop_at: float, dt: float) -> void:
+## Geometry/speed-only work: safe to evaluate for different trains concurrently
+## while the simulation owner holds the railway at a physics-slice barrier.
+static func speed_envelope(w, t: Train) -> Dictionary:
 	var line_limit: float = w.speed_limit_for(t)
 	var target := maxf(0.0, minf(line_limit, t.max_speed) - LIMIT_MARGIN)
-	target = minf(target, curve(t, stop_at, 0.0))
-	var must_brake := urgent(t, stop_at, 0.0)
+	var must_brake := false
 	var lookahead := horizon(t, line_limit)
 	var cur: Dictionary = t.path[0]
 	var distance: float = absf(w.graph.exit_s(cur.edge, cur.dir) - t.head_s)
@@ -43,6 +44,12 @@ static func drive(w, t: Train, stop_at: float, dt: float) -> void:
 		must_brake = must_brake or urgent(t, distance, posted_limit)
 		cur = nxt
 		distance += w.graph.edges[cur.edge].length
+	return {target=target,must_brake=must_brake,horizon=lookahead}
+
+static func drive(w, t: Train, stop_at: float, dt: float, prepared: Dictionary={}) -> void:
+	var envelope:=speed_envelope(w,t) if prepared.is_empty() else prepared
+	var target:=minf(envelope.target,curve(t,stop_at,0.0))
+	var must_brake: bool=envelope.must_brake or urgent(t,stop_at,0.0)
 	if must_brake or (stop_at < .7 and t.speed < .08):
 		t.controller = -1.0
 		return

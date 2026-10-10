@@ -8,6 +8,7 @@ var _csv: FileAccess
 var _quick:=false
 var _last:=0
 var _pipeline_monitors:=[]
+var _render_timing:=preload("res://game/render_telemetry.gd").new()
 const HEADER:="ticks_us,unix_time,phase,frame_ms,gpu_ms,render_cpu_ms,engine_process_ms,engine_physics_ms,game_main_ms,simulation_ms,train_ms,crowd_ms,world_ms,hud_ms,audio_control_ms,draw_calls,primitives,gpu_bytes,texture_bytes,buffer_bytes,static_memory_bytes,nodes,resources,active_workers,queued_jobs,activating_chunks,resident_chunks,warm_chunks,cache_hits,completed_jobs,loading,presented_trains,simulated_trains,simulation_time,train_speed_mps,camera_x,camera_y,camera_z,pipeline_compilations"
 
 func run(owner) -> void:
@@ -35,6 +36,8 @@ func run(owner) -> void:
 		logical_cpus=OS.get_processor_count(),engine=Engine.get_version_info(),os=OS.get_name(),debug_build=OS.is_debug_build(),
 		unavailable_metrics=[] if OS.is_debug_build() else ["static_memory_bytes"],
 		monitor_note="Some built-in engine counters refresh up to one second late; wall-clock frame timing and custom stage timings are per frame.",
+		render_timing_note="Asynchronous render-thread readback; GPU/CPU render samples may lag the main-thread frame. No main-thread timing getter barriers.",
+		engine_arguments=OS.get_cmdline_args(),
 		resolution=[get_window().size.x,get_window().size.y],viewport_size=get_viewport().get_visible_rect().size,
 		render_target_size=[get_viewport().get_texture().get_width(),get_viewport().get_texture().get_height()],
 		refresh_hz=DisplayServer.screen_get_refresh_rate(),vsync=DisplayServer.window_get_vsync_mode(),
@@ -210,9 +213,9 @@ func _sample(phase: String) -> Array:
 		pipelines+=count;compilation_counts.append(count)
 	var camera: Vector3=game.cam.global_position+game.wv.coordinate_origin
 	var costs: Dictionary=game.frame_costs
+	var render_times:=_render_timing.sample(get_viewport().get_viewport_rid())
 	var row: Array=[now,Time.get_unix_time_from_system(),phase,delta,
-		RenderingServer.viewport_get_measured_render_time_gpu(get_viewport().get_viewport_rid()),
-		RenderingServer.viewport_get_measured_render_time_cpu(get_viewport().get_viewport_rid()),
+		render_times.x,render_times.y,
 		Performance.get_monitor(Performance.TIME_PROCESS)*1000,Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)*1000,
 		costs.get("total",0),game.simulation_ms,costs.get("trains",0),costs.get("crowd",0),costs.get("world",0),costs.get("hud",0),audio_ms,
 		Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME),
@@ -263,3 +266,6 @@ func _write() -> void:
 	file.store_string(JSON.stringify(report,"\t"))
 	var jobs:=FileAccess.open(output.get_basename()+"-jobs.json",FileAccess.WRITE)
 	if jobs!=null:jobs.store_string(JSON.stringify(game.wv.job_trace,"\t"))
+
+func _exit_tree() -> void:
+	_render_timing.close()

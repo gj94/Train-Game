@@ -1,0 +1,115 @@
+{
+	"checkpoint_sha256": "792b738a999e300a2bed8b63884fda137a0533956223c64a253baf58ad7b04a2",
+	"cpu": "AMD Ryzen 7 7840HS w/ Radeon 780M Graphics",
+	"engine": "4.7.2-stable (official)",
+	"logical_processors": 16,
+	"runs": [
+		{
+			"active": 15,
+			"clock": "09:10:00",
+			"events": [],
+			"parallel_batches": 0,
+			"pool_thread_ids": [],
+			"same_state": true,
+			"simulated_seconds": 599.999999999993,
+			"speedup": 43.8452487790372,
+			"wall_seconds": 13.684493,
+			"workers": 0
+		},
+		{
+			"active": 15,
+			"clock": "09:10:00",
+			"events": [],
+			"parallel_batches": 12004,
+			"pool_thread_ids": [
+				1
+			],
+			"same_state": true,
+			"simulated_seconds": 599.999999999993,
+			"speedup": 42.7975289562726,
+			"wall_seconds": 14.019501,
+			"workers": 1
+		},
+		{
+			"active": 15,
+			"clock": "09:10:00",
+			"events": [],
+			"parallel_batches": 12004,
+			"pool_thread_ids": [
+				5,
+				6,
+				7,
+				8,
+				9,
+				11,
+				12,
+				13
+			],
+			"same_state": true,
+			"simulated_seconds": 599.999999999993,
+			"speedup": 43.2184895613296,
+			"wall_seconds": 13.882947,
+			"workers": 2
+		},
+		{
+			"active": 15,
+			"clock": "09:10:00",
+			"events": [],
+			"parallel_batches": 12004,
+			"pool_thread_ids": [
+				14,
+				16,
+				18,
+				19,
+				20,
+				27,
+				30,
+				32,
+				5,
+				7,
+				6,
+				8,
+				9,
+				12,
+				11,
+				13
+			],
+			"same_state": true,
+			"simulated_seconds": 599.999999999993,
+			"speedup": 43.5472738317894,
+			"wall_seconds": 13.77813,
+			"workers": 4
+		},
+		{
+			"active": 15,
+			"clock": "09:10:00",
+			"events": [],
+			"parallel_batches": 12004,
+			"pool_thread_ids": [
+				14,
+				18,
+				19,
+				20,
+				5,
+				6,
+				7,
+				8,
+				9,
+				11,
+				12,
+				13,
+				16,
+				27,
+				30,
+				32
+			],
+			"same_state": true,
+			"simulated_seconds": 599.999999999993,
+			"speedup": 42.8731896795653,
+			"wall_seconds": 13.99476,
+			"workers": 8
+		}
+	],
+	"sim_budget": 600.0,
+	"wall_budget": 60.0
+}

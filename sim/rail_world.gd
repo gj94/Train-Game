@@ -17,6 +17,7 @@ const Timetable := preload("res://sim/timetable.gd")
 const Depot := preload("res://sim/depot_workings.gd")
 const Passengers := preload("res://sim/passenger_service.gd")
 const AutomaticControl := preload("res://sim/automatic_control.gd")
+const ParallelLookahead := preload("res://sim/parallel_lookahead.gd")
 
 var graph := TrackGraph.new()
 var signals := {}        # route sections are immutable paths, independent of later point settings
@@ -65,6 +66,20 @@ var _automatic_set := {}
 var _automatic_set_size := -1
 var _auto_direction_snapshot: Dictionary = {}
 var _updating_automatic := false
+## 0 = original serial work, 1 = serial preparation control, 2+ = real CPU pool.
+## Kept separate from saves: execution strategy must never change world state.
+var simulation_workers := requested_simulation_workers()
+var trace_parallel := false
+var parallel_threads := {}
+var parallel_batches := 0
+var _parallel_lookahead
+var _point_revision := 0
+
+static func requested_simulation_workers() -> int:
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--simulation-workers="):
+			return clampi(int(arg.trim_prefix("--simulation-workers=")),0,mini(8,maxi(1,OS.get_processor_count()-2)))
+	return 0
 
 
 # --- building ---------------------------------------------------------------
@@ -561,12 +576,24 @@ func step(dt: float) -> void:
 		_step_route_directions=_reservation_directions()
 		if profile_enabled: stamp = _profile_phase("reservation_index", stamp)
 		_within_step=true
-		for t in active_trains():
-			Passengers.update(self,t,slice)
+		var prepared: Array[Dictionary]=[]
+		var point_revision:=_point_revision
+		if simulation_workers>0:
+			if _parallel_lookahead==null:_parallel_lookahead=ParallelLookahead.new()
+			prepared=_parallel_lookahead.prepare(self,_active_trains,simulation_workers,trace_parallel,slice)
+			parallel_batches+=1
+			if trace_parallel:
+				for result in prepared:
+					if not result.is_empty():parallel_threads[result.thread]=true
+		if profile_enabled:stamp=_profile_phase("parallel_lookahead",stamp)
+		for train_index in _active_trains.size():
+			var t: Train=_active_trains[train_index]
+			if prepared.is_empty() or prepared[train_index].is_empty():Passengers.update(self,t,slice)
+			else:Passengers.commit_release(t,prepared[train_index].passenger_release)
 			Depot.update(self,t)
 			if profile_enabled: stamp = _profile_phase("passengers_and_depots", stamp)
 			if t.automatic:
-				_drive_automatic(t, slice)
+				_drive_automatic(t, slice,prepared[train_index] if not prepared.is_empty() and prepared[train_index].has("envelope") and point_revision==_point_revision else {})
 			if profile_enabled: stamp = _profile_phase("driving", stamp)
 			var previous_distance: float = t.odometer
 			var previous_path: Array = t.path.duplicate() if t.speed > 0 or t.controller > 0 else []
@@ -651,7 +678,7 @@ func single_line_directions() -> Dictionary:
 
 ## Braking curves include signals, buffers, occupied blocks and lower speed
 ## limits ahead. AI never requests or changes a route by itself.
-func _drive_automatic(t: Train, dt: float = .05) -> void:
+func _drive_automatic(t: Train, dt: float = .05, prepared: Dictionary = {}) -> void:
 	if t.emergency:
 		t.status = "Emergency — release at stand"
 		t.controller = -1.0
@@ -673,7 +700,7 @@ func _drive_automatic(t: Train, dt: float = .05) -> void:
 				t.status=scenario_hold
 				t.controller=-1.0
 				return
-			var starter := next_signal(t)
+			var starter: Dictionary=next_signal(t) if prepared.is_empty() else prepared.next_signal
 			var inside_reserved_section:=false
 			if _signals_on.get(_key(t.path[0].edge,t.path[0].dir),[]).is_empty():
 				for signal_data in routed_signals():
@@ -688,17 +715,23 @@ func _drive_automatic(t: Train, dt: float = .05) -> void:
 			t.status = "Missed stop: " + scheduled_stop.block
 			t.controller = -1.0
 			return
-	var lookahead := AutomaticControl.horizon(t, speed_limit_for(t))
-	var buffer := distance_to_buffer(t, lookahead)
+	var lookahead: float=AutomaticControl.horizon(t, speed_limit_for(t)) if prepared.is_empty() else prepared.envelope.horizon
+	var buffer: float=distance_to_buffer(t, lookahead) if prepared.is_empty() else prepared.buffer
 	var stop_at := buffer - 7.0
-	var ns := next_signal(t)
+	var ns: Dictionary=next_signal(t) if prepared.is_empty() else prepared.next_signal
 	t.status = "Empty stock to " + t.depot.name if Depot.active(t) else "Running to " + t.destination
-	stop_at = minf(stop_at, _distance_to_red(t, lookahead) - 6.0)
+	var red_distance:=INF
+	if prepared.is_empty():red_distance=_distance_to_red(t,lookahead)
+	else:
+		for candidate in prepared.red_candidates:
+			if aspect(candidate.id)==Aspect.RED:
+				red_distance=candidate.distance;break
+	stop_at = minf(stop_at, red_distance - 6.0)
 	if not ns.is_empty() and aspect(ns.id) == Aspect.RED:
 		stop_at = minf(stop_at, ns.distance - 6.0)
 		if t.speed < 0.1:
 			t.status = "Waiting for " + ns.id
-	stop_at = minf(stop_at, _distance_to_obstruction(t, lookahead) - 3.0)
+	stop_at = minf(stop_at, _distance_to_obstruction(t, lookahead,prepared) - 3.0)
 	if not scheduled_stop.is_empty():
 		var to_stop := _stop_distance(t.path[0].edge, t.path[0].dir, t.head_s, scheduled_stop, [])
 		if is_inf(to_stop):
@@ -716,7 +749,7 @@ func _drive_automatic(t: Train, dt: float = .05) -> void:
 				if not contains_stop and is_inf(_stop_distance(last.edge, last.dir, graph.entry_s(last.edge, last.dir), scheduled_stop, [])):
 					stop_at = minf(stop_at, ns.distance - 6.0)
 					t.status = "Route must serve " + scheduled_stop.block
-	AutomaticControl.drive(self, t, stop_at, dt)
+	AutomaticControl.drive(self, t, stop_at, dt,{} if prepared.is_empty() else prepared.envelope)
 	if t.service_complete and not Depot.active(t):
 		t.controller = -1.0
 
@@ -753,11 +786,16 @@ func _reservation_directions() -> Dictionary:
 	return _direction_claims
 
 
-func _distance_to_obstruction(t: Train, horizon: float = INF) -> float:
+func _distance_to_obstruction(t: Train, horizon: float = INF, prepared: Dictionary = {}) -> float:
 	# Route paths are constant within a physics slice; occupancy is not. Keep
 	# each earlier train's movement visible to the trains updated after it.
 	var occupied := occupancy()
 	var directions: Dictionary=_step_route_directions if _within_step else _reservation_directions()
+	if not prepared.is_empty():
+		for candidate in prepared.obstruction_candidates:
+			if (occupied.has(candidate.edge) and occupied[candidate.edge]!=t.id) or candidate.against or int(directions.get(candidate.edge,0)) & (2 if candidate.dir>0 else 1):
+				return candidate.distance
+		return INF
 	var cur: Dictionary = t.path[0]
 	var distance := absf(graph.exit_s(cur.edge, cur.dir) - t.head_s)
 	for i in graph.edges.size():
@@ -811,6 +849,7 @@ func _step_train(t: Train, dt: float) -> void:
 						r.seen = true
 		if nxt.against:
 			graph.switches[nxt.switch].reversed = not graph.switches[nxt.switch].reversed
+			_point_revision+=1 # Later trains must discard precomputed geometry.
 			_event("warning", "Train %s ran through switch %s set against it" % [t.id, nxt.switch], t.id)
 	if res.get("buffer", false) and hit_speed > 1.5:
 		_event("warning", "Train %s hit the buffer stop at %d km/h" % [t.id, roundi(hit_speed * 3.6)], t.id)
