@@ -34,7 +34,8 @@ static func arrival_seconds(w, t: Train, target: float) -> float:
 		var stop: Dictionary = tt.stops[i]
 		var e: Dictionary = w.graph.edges[stop.block]
 		var s: float = lerpf(e.get("chainage_start", 0), e.get("chainage_end", 0), stop.s / e.length)
-		if (s - at) * direction <= 100 or (target - s) * direction <= 500: continue
+		if (target - s) * direction <= 500: break
+		if (s - at) * direction <= 100: continue
 		seconds += stop.dwell_minutes * 60 + limit / maxf(.1, t.max_accel) * .5 + limit / maxf(.1, t.service_decel) * .5
 	return seconds
 

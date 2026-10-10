@@ -25,7 +25,7 @@ static func conflict(w: RailWorld,t: Train,st: Dictionary) -> Dictionary:
 	var at:=chainage(w,t)
 	var best:={}
 	var best_eta:=INF
-	for other: Train in w.trains.values():
+	for other: Train in w.active_trains():
 		if other==t or other.service_complete:continue
 		var other_at:=chainage(w,other)
 		var other_eta:=eta(w,other,st.s)
@@ -89,7 +89,7 @@ static func update(w: RailWorld) -> void:
 				if w.dispatch_history.size()>128:w.dispatch_history.pop_front()
 			w.dispatch_holds.erase(id)
 	# A newly approaching express can also overtake a service already dwelling.
-	for t: Train in w.trains.values():
+	for t: Train in w.active_trains():
 		if t.service_complete or w.dispatch_holds.has(t.id) or t.timetable==null or not t.timetable.at_stop:continue
 		var st:=station(w,t.path[0].edge)
 		var decision:=conflict(w,t,st)
@@ -140,7 +140,7 @@ static func refresh_notices(w: RailWorld) -> void:
 	if not w.scenery.get("geographic",false):return
 	w.dispatch_notices.clear()
 	var occ:=w.occupancy()
-	for t: Train in w.trains.values():
+	for t: Train in w.active_trains():
 		if t.service_complete or w.dispatch_holds.has(t.id):continue
 		var ns:=w.next_signal(t)
 		if ns.is_empty() or ns.distance>1500 or w.aspect(ns.id)!=RailWorld.Aspect.RED:continue
@@ -148,7 +148,7 @@ static func refresh_notices(w: RailWorld) -> void:
 		for option in w.route_options(ns.id):
 			for entry in option.edges:
 				var section: String=w.single_line_sections.get(entry.edge,"")
-				for other: Train in w.trains.values():
+				for other: Train in w.active_trains():
 					if other==t:continue
 					if not section.is_empty() and other.path.any(func(p):return w.single_line_sections.get(p.edge,"")==section and p.dir!=entry.dir):
 						blocker=other;break

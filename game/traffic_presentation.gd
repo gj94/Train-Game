@@ -51,6 +51,7 @@ func ensure_audio(id: String) -> void:
 	body.setup(game,game.train_views[id],sound)
 
 func distance_to(id: String) -> float:
+	if game.world.trains[id].lifecycle != "active": return INF
 	var motion=game.train_motions[id]
 	# Include the tail: long formations must not vanish beside the camera.
 	return minf(motion.point(0).distance_to(game.cam.global_position),motion.point(game.world.trains[id].length).distance_to(game.cam.global_position))
@@ -64,6 +65,19 @@ func update(delta: float) -> void:
 	var candidate:=""
 	var nearest:=INF
 	for id in game.world.trains:
+		if game.world.trains[id].lifecycle != "active":
+			if id==followed_service:
+				followed_service=""
+				game.cam.follow=false
+				game.cam.follow_point=Callable()
+			if roots.has(id):
+				# Keep the selected observer binding valid after its service stores;
+				# its hidden view/audio are released on the next service handover.
+				if id==game.train.id:
+					roots[id].visible=false
+					if game.train_audio.has(id):game.train_audio[id].set_paused(true)
+				else:release(id)
+			continue
 		if id==game.train.id or id==followed_service: continue
 		var distance:=distance_to(id)
 		if roots.has(id):

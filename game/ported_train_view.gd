@@ -27,6 +27,7 @@ var lamps: Array = []
 var passenger_coach := 0
 var passenger_bay := 0
 var passenger_seat := false
+var passenger_head_out := false
 var passenger_seat_index := -1
 var walk_car := -1
 var walk_eye := Vector3.ZERO
@@ -244,6 +245,14 @@ func cab_transform() -> Transform3D:
 
 
 func head_out_transform(side: int) -> Transform3D:
+	if passenger_head_out:
+		var car: Node3D=cars[passenger_coach]
+		var eye: Vector3=car.to_local(passenger_transform().origin)
+		var direction: float=-1.0 if formation[passenger_coach].reverse else 1.0
+		if train.cab_end==2:direction*=-1
+		eye.x=side*1.90*direction
+		var forward: Vector3=car.global_basis*Vector3(0,-.025,-direction)
+		return Transform3D(Basis.looking_at(forward,car.global_basis.y),car.to_global(eye))
 	var i := cars.size() - 1 if train.cab_end == 2 else 0
 	var opposite := cars.size() == 1 and train.cab_end == 2
 	var eye := _v(specs[i].eyes[1 if opposite else 0].position)

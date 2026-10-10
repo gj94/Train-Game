@@ -58,7 +58,7 @@ func run_cycle(route_trains: bool = true) -> void:
 		if w.time<_advisory_release_until.get(id,-1):w.dispatch_holds.erase(id)
 	for id in _advisory_release_until.keys():
 		if w.time>=_advisory_release_until[id]:_advisory_release_until.erase(id)
-	var services: Array = w.trains.values()
+	var services: Array = w.active_trains().duplicate()
 	services.sort_custom(func(a,b):
 		var sa := _effective_priority(w, a); var sb := _effective_priority(w, b)
 		return sa > sb if sa != sb else a.id < b.id)
@@ -78,6 +78,9 @@ func run_cycle(route_trains: bool = true) -> void:
 		if signature != _last_state.get(t.id, ""):
 			_last_state[t.id] = signature
 			_record(w, "decision", t.id, state.reason if not state.reason.is_empty() else state.status.capitalize())
+	for t: Train in w.trains.values():
+		if t.lifecycle == "active": continue
+		states[t.id] = {id=t.id,name=t.service_name,priority=t.dispatch_priority,status="scheduled" if t.lifecycle=="scheduled" else "complete",reason=t.status,signal_id="",signal_distance=INF,destination="",effective_priority=t.dispatch_priority,hold={},wait_seconds=0.0,blockers=[],alternatives=[],call={}}
 	_reconcile_waits(w, route_trains)
 	w.dispatch_notices.clear()
 	for id in states:
@@ -304,7 +307,7 @@ func route_preview(source: String, destination: String) -> Dictionary:
 	if w == null: return {ok=false,reason="Simulation unavailable"}
 	var reason: String=w.route_reason(source,destination)
 	if not reason.is_empty():return {ok=false,reason=reason}
-	for t: Train in w.trains.values():
+	for t: Train in w.active_trains():
 		var ns: Dictionary=w.next_signal(t)
 		if ns.get("id","")!=source or t.timetable==null:continue
 		var planned_hold: String=future_clearances.hold(w,t)
@@ -345,6 +348,12 @@ func delete_service(id: String, protected_service: String="") -> Dictionary:
 	if id==manual_service or id==protected_service:return {ok=false,reason="Take control of another service before deleting your assigned train"}
 	if w.trains.size()<=1:return {ok=false,reason="Keep at least one service in the scenario"}
 	var t: Train=w.trains[id]
+	if t.lifecycle!="active":
+		w.trains.erase(id)
+		for state in [operator_holds,platform_preferences,states,_wait_since,_last_state,_advisory_release_until]:state.erase(id)
+		_record(w,"service_deleted",id,"Removed off-network service "+t.service_name)
+		run_cycle(enabled)
+		return {ok=true,reason=""}
 	var next: Dictionary=w.next_signal(t)
 	var released: Array=[]
 	for sig in w.signals.values():

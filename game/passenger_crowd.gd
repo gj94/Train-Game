@@ -52,7 +52,7 @@ func update() -> void:
 		if not game.world.trains.has(id):_events.erase(id)
 	var seated:=[];var moving:=[]
 	for id in game.train_views:
-		if not game.world.trains.has(id):continue
+		if not game.world.trains.has(id) or game.world.trains[id].lifecycle!="active":continue
 		var t: Train=game.world.trains[id];var view=game.train_views[id]
 		var p:=t.passengers
 		if p.is_empty():continue

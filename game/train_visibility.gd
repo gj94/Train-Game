@@ -28,7 +28,7 @@ static func detailed_shadows(mode: int,own: bool,car: int,occupied: int,distance
 
 static func occupied_car(game) -> int:
 	if game.walker!=null and game.walker.active and not game.walker.platform.outside:return game.walker.car
-	if game.cam.mode==PASSENGER:return game.tv.passenger_coach
+	if game.cam.mode==PASSENGER or (game.cam.mode==HEAD_OUT and game.tv.get("passenger_head_out")==true):return game.tv.passenger_coach
 	return game.tv.cars.size()-1 if game.train.cab_end==2 else 0
 
 static func apply(game,view,id: String) -> void:

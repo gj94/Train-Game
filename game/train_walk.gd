@@ -91,7 +91,9 @@ func toggle_seat() -> void:
 		stand()
 
 func stand() -> bool:
+	if game.train.lifecycle!="active":return false
 	if game.paused or not game.hud.modal.is_empty() or game.dispatcher._root.visible: return false
+	if game._passenger_head_out():game._enter_passenger()
 	if game.cam.mode not in [1,2,3]: game._pilot_camera()
 	car=game.tv.passenger_coach if game.cam.mode==2 else (game.tv.cars.size()-1 if game.train.cab_end==2 else 0)
 	nav=navigation(car)
@@ -106,6 +108,8 @@ func stand() -> bool:
 	eye_height=clampf(eye.y-nav.floor_height(position),1.0,1.58)
 	_train_id=game.train.id
 	active=true
+	game.tv.passenger_seat=false
+	game._passenger_seating_changed()
 	_lamp.visible=lamp_enabled
 	game.cam.set_mode(4)
 	game.cam._blend=1

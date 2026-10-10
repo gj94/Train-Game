@@ -10,7 +10,8 @@ static func describe(world: RailWorld, train: Train, traffic: bool, auto_dispatc
 	if not expectation.is_empty():text+="[b]DISPATCH EXPECTATION[/b] "+expectation+"\n\n"
 	if world.scenery.get("geographic",false):
 		text+="[b]DYNAMIC TRAFFIC[/b] The stopping passenger has priority 20 and calls at every stop. Faster expresses and Vande Bharat services have higher priorities. Expect several meets and opportunities for overtaking; their locations change with actual running. A delayed passenger does not hold an express just to stage an overtake. First arrival takes an available loop for a single-line crossing. Follow the live wait indication and signals.\n"
-		for service in world.trains.values():text+="%s · priority %d · %s\n" % [service.id,service.dispatch_priority,service.service_name]
+		text+="100-service operating day: future trains enter at a free origin berth two minutes before departure. Completed workings unload, run to depot and enter storage. D shows scheduled, running and completed services. Take over a train once it has entered the railway.\n"
+		for service in world.active_trains():text+="%s · priority %d · %s\n" % [service.id,service.dispatch_priority,service.service_name]
 		text+="T cycles fast forward up to ×32; Shift+T returns to ×1. All trains and the clock advance together.\n\n"
 	if traffic:
 		text += "You are driving one of %d scheduled services. The other %d run under AI control.\n" % [world.trains.size(),world.trains.size()-1]

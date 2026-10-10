@@ -24,7 +24,7 @@ func update(w, engine, discover: bool) -> void:
 			plans.erase(p)
 	if not enabled or not discover or w.time < _next_search: return
 	_next_search = w.time + 10.0
-	var trains: Array = w.trains.values()
+	var trains: Array = w.active_trains().duplicate()
 	trains.sort_custom(func(a,b):return a.id<b.id)
 	for t: Train in trains:
 		if t.service_complete or t.timetable==null or (not t.automatic and engine.manual_service!=t.id):continue
@@ -65,7 +65,7 @@ func propose(w, engine, t: Train) -> Dictionary:
 		var escape_free: Array=escape.station.platform_tracks.filter(func(r):return not occ.has(r) and not _reserved(w,r))
 		var escape_roads:=Berths.roads(w,v,escape.station,escape.edge,v.path[0].dir,escape_free)
 		if escape_roads.is_empty():continue
-		for o: Train in w.trains.values():
+		for o: Train in w.active_trains():
 			if o==t or o==v or _participant(o.id) or not o.automatic or _unavailable(engine,o):continue
 			if engine.inhibited_signals.has(w.next_signal(o).get("id","")):continue
 			if o.timetable==null or o.service_complete or o.path[0].dir==t.path[0].dir:continue
@@ -108,7 +108,7 @@ func _reserved(w,road: String) -> bool:
 	return w.signals.values().any(func(sig):return sig.route.any(func(e):return e.edge==road))
 
 func _exclusive(w,sections: Array,actors: Array) -> bool:
-	for t: Train in w.trains.values():
+	for t: Train in w.active_trains():
 		if t.id not in actors and t.path.any(func(seg):return w.single_line_sections.get(seg.edge,"") in sections):return false
 	for sig in w.signals.values():
 		if sig.id in w.automatic_signals or not sig.route.any(func(seg):return w.single_line_sections.get(seg.edge,"") in sections):continue

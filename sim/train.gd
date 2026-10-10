@@ -25,6 +25,7 @@ var cab_end := 1               # physical driving end, preserved when the head r
 var can_change_ends := true    # a single locomotive + coaches needs a run-round instead
 var destination := ""
 var service_complete := false
+var lifecycle := "active" # scheduled off-network / active physical train / stored in depot
 var status := "Manual driving"
 var timetable = null          # optional pure-sim timetable working
 var completed_timetable = null # passenger result retained during empty-stock working

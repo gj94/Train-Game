@@ -74,7 +74,7 @@ static func free_platform(g) -> void:
 static func step_coach(g, direction: int) -> void:
 	if not g._has_passengers():select(g,"pilot");return
 	var coaches: Array=g.tv.passenger_coaches()
-	var index: int=coaches.find(g.tv.passenger_coach) if g.cam.mode==2 else -1
+	var index: int=coaches.find(g.tv.passenger_coach) if g.cam.mode==2 or g._passenger_head_out() else -1
 	if g.walker.active:index=coaches.find(g.walker.car)
 	var next:=clampi(index+direction,-1,coaches.size()-1)
 	if next<0:select(g,"pilot");return
@@ -100,9 +100,16 @@ static func button(pad, event: InputEventJoypadButton) -> bool:
 		step_coach(g,-1 if id==JOY_BUTTON_DPAD_UP else 1)
 	else:
 		pad._camera_down=false
-		var choices:=presets(g)
-		var next:=posmod(choices.find(current(g))+(-1 if id==JOY_BUTTON_DPAD_LEFT else 1),choices.size())
-		select(g,choices[next])
+		var direction: int=-1 if id==JOY_BUTTON_DPAD_LEFT else 1
+		if g.cam.mode==2 or g._passenger_head_out():
+			var side: int=g.cam.head_out_side if g._passenger_head_out() else 0
+			var next: int=posmod(side+direction+1,3)-1
+			if next==0:g._enter_passenger()
+			else:g._head_out_camera(next,false)
+		else:
+			var choices:=presets(g)
+			var next:=posmod(choices.find(current(g))+direction,choices.size())
+			select(g,choices[next])
 	if walking or (was_free and (g.cam.mode!=0 or g.cam.follow)):pad.neutralize()
 	return true
 

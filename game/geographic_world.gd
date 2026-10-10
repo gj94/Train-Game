@@ -116,6 +116,15 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	_loading_label.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
 	_loading_label.add_theme_font_size_override("font_size",24)
 	_loading_panel.add_child(_loading_label)
+	var version:=Label.new()
+	version.name="BuildVersion"
+	version.text=preload("res://game/build_version.gd").current()
+	version.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+	version.offset_top=-48;version.offset_bottom=-16
+	version.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	version.add_theme_font_size_override("font_size",16)
+	version.modulate=Color(.70,.79,.77)
+	_loading_panel.add_child(version)
 	_request(position)
 
 func _make_materials() -> void:

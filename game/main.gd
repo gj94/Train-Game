@@ -66,6 +66,7 @@ var _interior_view := false
 var graphics_options := preload("res://game/graphics_options.gd").new()
 var display_options := preload("res://game/display_options.gd").new()
 var save_load
+var time_skip
 var _resume: Dictionary = {}
 var profiling := false
 var frame_costs := {}
@@ -135,7 +136,8 @@ func _ready() -> void:
 	elif not authored_pack.is_empty():
 		pass
 	elif geographic_drive:
-		world = Kerala.build_traffic()
+		# Keep the established graphics benchmark and historical source fixtures comparable.
+		world = Kerala.build_traffic(not benchmark and not get_tree().get_meta("legacy_kerala_traffic",false))
 		traffic_drive = true
 		imported_fleet = ""
 		wap7_drive = false
@@ -160,7 +162,7 @@ func _ready() -> void:
 		var seed_value: int = get_tree().get_meta("traffic_seed", 0 if geographic_drive else randi())
 		get_tree().set_meta("traffic_seed", seed_value)
 		get_tree().set_meta("traffic_drive", true)
-		train = world.trains[world.trains.keys()[posmod(seed_value,world.trains.size())]] if geographic_drive else world.trains[Traffic.selected_service(seed_value)]
+		train = world.active_trains()[posmod(seed_value,world.active_trains().size())] if geographic_drive else world.trains[Traffic.selected_service(seed_value)]
 	wv = preload("res://game/geographic_world.gd").new() if geographic_drive else WorldView.new()
 	if geographic_drive: wv.selected_train = train.id
 	wv.graphics_options=graphics_options
@@ -220,6 +222,7 @@ func _ready() -> void:
 	dispatcher.open_changed.connect(func(value): hud.set_desk_open(value))
 	if _resume.is_empty():world.dispatcher().manual_service=train.id if traffic_drive else ""
 	dispatcher.station_view_requested.connect(_visit_station)
+	dispatcher.driver_locked=_passenger_seated
 	dispatcher.drive_requested.connect(_enter_cab)
 	dispatcher.pause_requested.connect(_toggle_pause)
 	dispatcher.restart_requested.connect(func(): _request_action("restart"))
@@ -265,6 +268,9 @@ func _ready() -> void:
 	graphics_options.apply()
 	if not _service_error.is_empty(): hud.toast("Service file could not start: "+_service_error,true)
 	save_load=preload("res://game/save_load.gd").new(self)
+	time_skip=preload("res://game/time_skip.gd").new()
+	time_skip.game=self
+	add_child(time_skip)
 	if not _resume.is_empty():
 		save_load.restore_view(_resume.session)
 		_resume.clear()
@@ -291,7 +297,8 @@ func _physics_process(delta: float) -> void:
 	var pad_target: float=controller.drive_handle(train.controller,HANDLE_RATE*delta) if controller!=null else train.controller
 	if dispatcher._root.visible or (walker!=null and walker.active): pad_target=train.controller
 	var pad_intent: float=controller.drive_input() if controller!=null else 0.0
-	if dispatcher._root.visible or (walker!=null and walker.active): dir=0.0;pad_intent=0.0
+	if _passenger_seated():train.automatic=true
+	if dispatcher._root.visible or (walker!=null and walker.active) or train.lifecycle!="active" or _passenger_seated(): dir=0.0;pad_intent=0.0
 	if dir!=0.0 or pad_intent!=0.0:
 		var key_target:=clampf(train.controller+dir*HANDLE_RATE*delta,-1,1)
 		train.automatic=false
@@ -323,6 +330,10 @@ func _geographic_frame() -> void:
 
 func _render_trains(fraction: float,ride_delta: float=0.0) -> void:
 	for id in train_views:
+		if world.trains[id].lifecycle!="active":
+			if traffic_presentation.roots.has(id):traffic_presentation.roots[id].visible=false
+			if train_audio.has(id):train_audio[id].set_paused(true)
+			continue
 		train_motions[id].sample(fraction)
 		if geographic_drive and cam!=null:
 			var nearby: bool=id==train.id or traffic_presentation.distance_to(id)<2200.0
@@ -432,6 +443,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				elif hud.modal == "help": _close_help()
 				elif hud.modal == "confirm": _cancel_action()
 				elif hud.modal == "saved_games": save_load.back()
+				elif hud.modal == "time_skip": time_skip.back()
 				elif hud.modal.begins_with("graphics"): graphics_options.back()
 				elif hud.modal != "" and hud.modal != "pause": hud.show_modal("pause", labels_enabled)
 				else: _toggle_pause()
@@ -464,6 +476,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			if event.physical_keycode==KEY_C: walker.toggle_crouch()
 			if event.physical_keycode==KEY_L: walker.toggle_lamp()
 			get_viewport().set_input_as_handled()
+			return
+		if _passenger_seated() and event.physical_keycode in [KEY_A,KEY_X,KEY_H,KEY_SPACE,KEY_R,KEY_P]:
+			hud.toast("AI drives while you are seated · E / Y to stand up")
 			return
 		match event.physical_keycode:
 			KEY_F5: _open_services()
@@ -565,6 +580,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_HOME:
 				if _has_passengers() and cam.mode == CameraRig.Mode.PASSENGER:
 					tv.passenger_seat = not tv.passenger_seat
+					_passenger_seating_changed()
 					cam._look = Vector2.ZERO
 				elif cam.mode == CameraRig.Mode.CAB and train.stock_kind.begins_with("ported:"):
 					var position_name: String = tv.cycle_cab_position()
@@ -598,10 +614,11 @@ func _set_cab_visuals(cab: bool) -> void:
 		traffic_presentation.followed_service=""
 		cam.follow_point=tv.overview_position
 	if walker!=null and cam.mode!=CameraRig.Mode.WALKING: walker.stop()
+	if cam.mode!=CameraRig.Mode.HEAD_OUT and tv.get("passenger_head_out")!=null:tv.passenger_head_out=false
 	tv.set_cab_view(cab)
 	audio.interior_listener = TrainAudio.DRIVER
 	if _has_passengers():
-		tv.set_passenger_view(false)
+		tv.set_passenger_view(_passenger_head_out())
 	wv.set_labels_visible(labels_enabled and not cab and not hud.clean_view)
 	for sound in train_audio.values():
 		if sound != audio:
@@ -615,6 +632,7 @@ func _set_cab_visuals(cab: bool) -> void:
 
 
 func _pilot_camera() -> void:
+	if not _available_train():return
 	traffic_presentation.followed_service=""
 	cam.follow_point=tv.overview_position
 	# View changes are not a command to reset the power/brake handle or AI.
@@ -626,9 +644,13 @@ func _pilot_camera() -> void:
 
 
 func _head_out_camera(side: int, toggle: bool=true) -> void:
+	if not _available_train():return
+	var passenger: bool=cam.mode==CameraRig.Mode.PASSENGER or _passenger_head_out()
 	if toggle and cam.mode == CameraRig.Mode.HEAD_OUT and cam.head_out_side == side:
-		_pilot_camera()
+		if passenger:_enter_passenger()
+		else:_pilot_camera()
 		return
+	if tv.get("passenger_head_out")!=null:tv.passenger_head_out=passenger
 	if cam.mode == CameraRig.Mode.OVERVIEW: _desk_before_cab = dispatcher._root.visible
 	cam.set_head_out(side)
 	_set_cab_visuals(false)
@@ -637,6 +659,7 @@ func _head_out_camera(side: int, toggle: bool=true) -> void:
 
 
 func _enter_cab() -> void:
+	if not _available_train():return
 	if cam.mode == CameraRig.Mode.OVERVIEW:
 		_desk_before_cab = dispatcher._root.visible
 	train.automatic = false
@@ -662,13 +685,16 @@ func _passenger_preset(index: int) -> void:
 
 
 func _enter_passenger() -> void:
+	if not _available_train():return
 	if walker!=null: walker.stop()
-	# Looking around as a passenger preserves the current driver's controls.
+	# A seated passenger hands driving to AI; aisle movement remains independent.
 	if cam.mode == CameraRig.Mode.OVERVIEW:
 		_desk_before_cab = dispatcher._root.visible
 	_set_cab_visuals(false)
 	tv.set_passenger_view(true)
 	cam.set_mode(CameraRig.Mode.PASSENGER)
+	if tv.get("passenger_head_out")!=null:tv.passenger_head_out=false
+	_passenger_seating_changed()
 	_interior_view = true
 	wv.set_labels_visible(false)
 	audio.set_interior(true)
@@ -701,6 +727,8 @@ func _set_time_scale(value: int) -> void:
 	hud.toast("Normal time" if value==1 else "Fast forward ×%d · Shift+T returns to normal time" % value)
 
 func _ui_action(action: String) -> void:
+	if action.begins_with("skip:"):
+		time_skip.action(action);return
 	if action=="graphics" or action.begins_with("graphics:"):
 		if action=="graphics":
 			_set_paused(true);hud.show_modal("graphics")
@@ -968,6 +996,7 @@ func _notification(what: int) -> void:
 		if what == NOTIFICATION_APPLICATION_FOCUS_OUT: controller.window_focus(false)
 		elif what == NOTIFICATION_APPLICATION_FOCUS_IN: controller.window_focus(true)
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		if time_skip!=null and time_skip.running():time_skip.back()
 		_request_action("quit")
 	elif what == NOTIFICATION_APPLICATION_FOCUS_OUT and not paused:
 		# Alt-tab cannot leave a manually driven train accelerating unattended.
@@ -1002,7 +1031,7 @@ func _on_service_deleted(id: String) -> void:
 	_journey_refresh=0
 
 func _view_train_only(id: String) -> void:
-	if not world.trains.has(id): return
+	if not world.trains.has(id) or world.trains[id].lifecycle != "active": return
 	traffic_presentation.ensure_view(id)
 	traffic_presentation.ensure_audio(id)
 	traffic_presentation.followed_service=id
@@ -1016,7 +1045,7 @@ func _view_train_only(id: String) -> void:
 	hud.toast("Viewing "+id+" · still driving "+train.id+" · 4 returns to your pilot seat")
 
 func _select_train(id: String) -> void:
-	if id == train.id or not world.trains.has(id):
+	if id == train.id or not world.trains.has(id) or world.trains[id].lifecycle != "active":
 		return
 	traffic_presentation.ensure_view(id)
 	traffic_presentation.ensure_audio(id)
@@ -1091,5 +1120,22 @@ func _switch_lhb() -> void:
 	get_tree().call_deferred("reload_current_scene")
 
 
+func _available_train() -> bool:
+	if train.lifecycle=="active":return true
+	hud.toast("This service is off the railway · choose an active train in Dispatch",true)
+	return false
+
+func _passenger_head_out() -> bool:
+	return cam.mode==CameraRig.Mode.HEAD_OUT and tv.get("passenger_head_out")==true
+
+func _passenger_seated() -> bool:
+	return _has_passengers() and tv.passenger_seat and (cam.mode==CameraRig.Mode.PASSENGER or _passenger_head_out())
+
+func _passenger_seating_changed() -> void:
+	if _passenger_seated():train.automatic=true
+	_drive_keys_armed=false
+	if controller!=null:controller.neutralize()
+
 func _has_passengers() -> bool:
+	if train.lifecycle!="active":return false
 	return train != null and train.stock_kind in ["lhb", "ported:icf", "ported:lhb", "ported:vb8", "ported:vb16"]

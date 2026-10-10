@@ -1,0 +1,17 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SLOW test_corridor.gd::test_six_train_station_saturation_and_recovery 8.67s
+SLOW test_corridor.gd::test_wap7_round_trip_uses_both_running_lines 2.97s
+SLOW test_depot_workings.gd::test_delayed_arrival_orders_keep_depot_capacity_for_every_default_service 13.95s
+SLOW test_save_game.gd::test_complete_kerala_traffic_snapshot_restores_all_services 2.56s
+SLOW test_save_game.gd::test_future_clearance_commitments_resume_and_checkpoint_stays_immutable 2.69s
+SLOW test_save_game.gd::test_empty_stock_and_reserved_depot_resume_with_passenger_results 2.26s
+SLOW test_save_game.gd::test_platform_inventory_change_invalidates_old_checkpoint 2.52s
+Scenery plan: 1967 buildings; 942 fields; 95 road sections; 1222 props; 853 planted trees
+SLOW test_service_lifecycle.gd::test_busy_pack_round_trip_keeps_scheduled_services_and_depots 2.02s
+SLOW test_service_lifecycle.gd::test_busy_save_round_trip_preserves_lifecycle 2.29s
+SLOW test_service_lifecycle.gd::test_current_dictionary_session_does_not_break_legacy_speed_migration 3.37s
+SLOW test_service_pack.gd::test_rehearsal_completes_default_and_reports_an_occupied_terminal 30.93s
+SLOW test_track_speed_boards.gd::test_legacy_builtin_checkpoint_cap_upgrades_but_authored_caps_survive 2.68s
+SLOW test_traffic_service.gd::test_real_departure_queue_releases_and_all_six_finish_safely 10.11s
+Tests: 491 passed, 0 failed

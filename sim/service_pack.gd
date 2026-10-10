@@ -6,8 +6,8 @@ const FirstLine := preload("res://sim/layouts/first_line.gd")
 const Traffic := preload("res://sim/layouts/traffic_service.gd")
 const Stock := preload("res://sim/stock/ported_stock.gd")
 const Clock := preload("res://sim/world_clock.gd")
-const MAX_SERVICES := 64
-const MAX_BYTES := 262144
+const MAX_SERVICES := 256
+const MAX_BYTES := 2097152
 
 static func layout_id(world: RailWorld) -> String:
 	if world.scenery.get("geographic",false): return "kerala_coast"
@@ -43,8 +43,8 @@ static func signature(world: RailWorld) -> String:
 		parts.append("%s|%s|%d|%.3f" % [id,sig.edge,sig.dir,sig.s])
 	return "\n".join(parts).sha256_text()
 
-static func defaults(layout: String = "southern_corridor") -> Dictionary:
-	var world := Kerala.build_traffic() if layout == "kerala_coast" else (Traffic.build() if layout == "southern_corridor" else FirstLine.build_dispatch())
+static func defaults(layout: String = "southern_corridor", busy: bool = false) -> Dictionary:
+	var world := Kerala.build_traffic(busy) if layout == "kerala_coast" else (Traffic.build() if layout == "southern_corridor" else FirstLine.build_dispatch())
 	var services: Array = []
 	for train in world.trains.values():
 		if not train.stock_kind.begins_with("ported:"):
@@ -57,7 +57,7 @@ static func defaults(layout: String = "southern_corridor") -> Dictionary:
 			stops.append({name=stop.name,block=stop.block,direction=stop.direction,
 				minutes_from_origin=stop.minutes_from_origin,dwell_minutes=stop.dwell_minutes})
 			stops[-1].position_m=stop.s
-		services.append({id=train.id,name=train.service_name,
+		services.append({id=train.id,name=train.service_name,scheduled_entry=busy,
 			stock=train.stock_kind.trim_prefix("ported:"),
 			rake=train.rake_profile,
 			speed_limit_kmh=train.max_speed*3.6,
@@ -68,7 +68,7 @@ static func defaults(layout: String = "southern_corridor") -> Dictionary:
 		world_start=Clock.format_time(world.clock_start),day=Clock.day(world.clock_start),services=services}
 
 static func decode(text: String, expected_layout: String = "") -> Dictionary:
-	if text.to_utf8_buffer().size() > MAX_BYTES: return _error("Service file exceeds 256 KiB")
+	if text.to_utf8_buffer().size() > MAX_BYTES: return _error("Service file exceeds 2 MiB")
 	var parser := JSON.new()
 	if parser.parse(text) != OK:
 		return _error("JSON line %d: %s" % [parser.get_error_line()+1,parser.get_error_message()])
@@ -148,13 +148,16 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 			if before.block == after.block or not is_finite(world._stop_distance(before.block,before.direction,before.s,after,[])):
 				return _error(id + ": no forward route from " + before.block + " to " + after.block + "; automatic reversals are not supported")
 		var origin: Dictionary = schedule.stops[0]
-		if occupied.has(origin.block): return _error(id + ": origin " + origin.block + " is already occupied by " + occupied[origin.block])
-		occupied[origin.block] = id
+		if not definition.get("scheduled_entry",false) and occupied.has(origin.block): return _error(id + ": origin " + origin.block + " is already occupied by " + occupied[origin.block])
+		if not definition.get("scheduled_entry",false): occupied[origin.block] = id
 		world.place_train(train,origin.block,origin.s,origin.direction)
 		train.service_name = definition.name
 		train.automatic = true
 		train.controller = -1.0
 		train.status = "Awaiting booked departure and route"
+		if not definition.get("scheduled_entry",false) is bool: return _error(id+": scheduled_entry must be true or false")
+		if definition.get("scheduled_entry",false): train.lifecycle="scheduled"
+	preload("res://sim/service_lifecycle.gd").update(world)
 	var normalized: Dictionary = data.duplicate(true)
 	normalized.day = int(data.get("day",1))
 	for definition in normalized.services:

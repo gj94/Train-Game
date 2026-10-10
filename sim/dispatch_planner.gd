@@ -8,6 +8,8 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 	var result: Array = []
 	if t.timetable == null: return result
 	var stop: Dictionary = t.timetable.stop_ahead()
+	var booked_station: Dictionary=Policy.station(w,stop.block)
+	var flexible_terminal: bool=w.scenery.get("geographic",false) and booked_station.get("platform_details",{}).get(stop.block,{}).get("platform_width",0)>0
 	var options: Array = w.route_options(signal_id)
 	var preferred: Dictionary = Policy.choose_platform(w, t, options, stop)
 	for option in options:
@@ -26,7 +28,7 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 		if stopping:
 			if st.get("platform_details", {}).get(last.edge, {}).get("platform_width", 1) <= 0: reason = "No passenger platform on this road"
 			if preload("res://sim/berth_clearance.gd").capacity(w,last.edge) < t.length: reason = "Formation is too long for this road's clear platform length"
-		if stopping and (t.timetable.index < t.timetable.stops.size()-1 or platform==last.edge):
+		if stopping and (flexible_terminal or t.timetable.index < t.timetable.stops.size()-1 or platform==last.edge):
 			goal.block = last.edge
 			goal.s = preload("res://sim/berth_clearance.gd").marker(w,t,last.edge,last.dir)
 			changes_stop = true
@@ -84,7 +86,7 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 		var blocked: Array = []
 		var available: Array = []
 		var approaches := {}
-		for sig in w.signals.values():
+		for sig in w.routed_signals():
 			for r in sig.route:
 				if r.edge in destination.platform_tracks: approaches[r.edge] = sig.id
 		for road: String in destination.platform_tracks:
@@ -106,7 +108,7 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 			return {reason="Receiving roads at %s are occupied or committed; wait before entering %s" % [destination.code, section], blockers=blocked}
 		# Following trains already inside the single section need a berth first.
 		var claims: Array=[{id=t.id,roads=own_roads}]
-		for other: Train in w.trains.values():
+		for other: Train in w.active_trains():
 			if other == t: continue
 			if not future.assigned(other,destination.code).is_empty():continue # its exclusive berth is already removed from available
 			if destination.platform_tracks.any(func(r): return occupancy.get(r, "") == other.id):continue

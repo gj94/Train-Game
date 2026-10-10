@@ -278,7 +278,7 @@ func _depot_exit(w: RailWorld, st: Dictionary, start: String, dir: int, lane: St
 func _depot_edge(w: RailWorld, id: String, a: String, b: String, dir: int, speed: float, offset: float=INF) -> void:
 	_edge(w,id,a if dir==1 else b,b if dir==1 else a,speed,0,offset)
 
-static func build_traffic() -> RailWorld:
+static func build_traffic(busy: bool = false) -> RailWorld:
 	var w := build()
 	var calls: Array=w.stations.filter(func(s):return s.passenger_open).map(func(s):return s.code)
 	var definitions := [
@@ -300,6 +300,10 @@ static func build_traffic() -> RailWorld:
 		definitions.append(row.slice(0,7))
 		departures[row[0]]=row[7]
 		priorities[row[0]]=int(row[8])
+	if busy:
+		definitions.clear()
+		for row in preload("res://sim/timetables/kerala_busy.gd").definitions(w):
+			definitions.append(row.slice(0,7));departures[row[0]]=row[7];priorities[row[0]]=int(row[8])
 	for d in definitions:
 		var t := Train.new(d[0],1)
 		Stock.configure(t,d[2],"passenger" if d[0]=="K1" else "")
@@ -311,11 +315,24 @@ static func build_traffic() -> RailWorld:
 			var station: Dictionary = stations[d[4][i]]
 			var road: int = d[5] if i==0 else (d[6] if i==d[4].size()-1 else (1 if d[3]==1 else 2))
 			if t.id=="K1":road=1
-			if t.id=="K2" and station.code=="KUMM":road=1
-			if t.id=="K4" and station.code=="MAKM":road=1
-			if t.id=="K7" and station.code=="NYY":road=1
+			if not busy and t.id=="K2" and station.code=="KUMM":road=1
+			if not busy and t.id=="K4" and station.code=="MAKM":road=1
+			if not busy and t.id=="K7" and station.code=="NYY":road=1
 			if i>0 and i<d[4].size()-1 and not w.graph.edges.has("%s_P%d" % [station.code,road]):road=1
 			var block := "%s_P%d" % [station.code,road]
+			if busy and t.id!="K1":
+				var candidates: Array=station.platform_tracks.filter(func(r):return station.platform_details[r].platform_width>0 and not station.platform_details[r].get("storage",false))
+				var lane: String="D" if d[3]>0 else "U"
+				candidates.sort_custom(func(a,b):
+					var aa: Dictionary=station.platform_details[a];var bb: Dictionary=station.platform_details[b]
+					var ac: int=(0 if aa.lane==lane else 100)+(0 if aa.road>2 and (i==0 or i==d[4].size()-1) else 10)+int(aa.road)
+					var bc: int=(0 if bb.lane==lane else 100)+(0 if bb.road>2 and (i==0 or i==d[4].size()-1) else 10)+int(bb.road)
+					return ac<bc)
+				for candidate in candidates:
+					if not w.graph.allows(candidate,d[3]):continue
+					var goal:={block=candidate,direction=d[3],s=preload("res://sim/berth_clearance.gd").marker(w,t,candidate,d[3])}
+					if not stops.is_empty() and is_inf(w._stop_distance(stops[-1].block,d[3],stops[-1].position_m,goal,[])):continue
+					block=candidate;break
 			# Book an actual passenger face, rather than relying on the dispatcher
 			# to repair a placeholder through-road stop after the service starts.
 			if station.platform_details[block].platform_width<=0:
@@ -324,7 +341,7 @@ static func build_traffic() -> RailWorld:
 					var goal:={block=candidate,direction=d[3],s=preload("res://sim/berth_clearance.gd").marker(w,t,candidate,d[3])}
 					if not stops.is_empty() and is_inf(w._stop_distance(stops[-1].block,d[3],stops[-1].position_m,goal,[])):continue
 					block=candidate;break
-				assert(station.platform_details[block].platform_width>0,"No reachable passenger face at "+station.code)
+				assert(station.platform_details[block].platform_width>0,"No reachable passenger face at "+station.code+" for "+t.id+" after "+str(stops))
 			if i>0: minutes += absf(station.s-stations[d[4][i-1]].s)/1000.0/(45.0 if t.id=="K1" else 75.0)*60.0+1.8
 			stops.append({name=station.name,block=block,direction=d[3],minutes_from_origin=snappedf(minutes,.1),
 				dwell_minutes=1.0 if t.id=="K1" else .5,position_m=preload("res://sim/berth_clearance.gd").marker(w,t,block,d[3])})
@@ -335,4 +352,8 @@ static func build_traffic() -> RailWorld:
 		w.place_train(t,stops[0].block,stops[0].position_m,d[3])
 		t.automatic = true
 		t.controller = -1.0
+		if busy and t.id != "K1":
+			t.lifecycle = "scheduled"
+			t.status = "Scheduled · prepares two minutes before departure"
+	if busy: preload("res://sim/service_lifecycle.gd").update(w)
 	return w

@@ -236,7 +236,7 @@ func _draw() -> void:
 		draw_line(p-Vector2(0,8),p+Vector2(0,8),TEXT,3)
 		var target: String="BUFFER:"+id
 		_hits.append({key=target,kind="destination",id=target,rect=Rect2(p-Vector2(12,12),Vector2(24,24)),p=p})
-	for t: Train in world.trains.values():
+	for t: Train in world.active_trains():
 		var intervals:=Footprint.intervals(world.graph,t)
 		last_footprints[t.id]=intervals
 		var highlighted: bool=t.id==inspected_train
@@ -286,7 +286,7 @@ func _draw_minimap() -> void:
 	var view:=Rect2(Vector2(_mini.position.x+(center_s-span*.5-full_start)/total*_mini.size.x,_mini.position.y),Vector2(span/total*_mini.size.x,_mini.size.y))
 	draw_rect(view.intersection(_mini),Color("#294a60"))
 	draw_rect(view.intersection(_mini),MINT,false,1)
-	for t: Train in world.trains.values():
+	for t: Train in world.active_trains():
 		var x:=_mini.position.x+(_s(t.path[0].edge,t.head_s)-full_start)/total*_mini.size.x
 		draw_line(Vector2(x,_mini.position.y+5),Vector2(x,_mini.end.y-5),AMBER,2)
 

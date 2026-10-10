@@ -1,0 +1,92 @@
+{
+  "environment": "Local development PC (Radeon 780M); simulation CPU timings, not target 4090 Laptop GPU results",
+  "audit_timing_note": "Both operating days ran concurrently with other checks; wall times are not comparative benchmarks",
+  "wait_definition": "Stationary delay beyond booked/passenger release (speed < 0.1 m/s), excluding initial deliberate delay. This is not every red-signal stand, including early arrivals.",
+  "call_definition": "Raw completed_calls counts recorded arrivals, excluding the origin departure. Each service must record calls - 1 arrivals.",
+  "audits": {
+    "baseline": {
+      "ok": true,
+      "finished_depot": 100,
+      "services": 100,
+      "finish_clock": "15:58:00",
+      "peak_active_services": 25,
+      "safety_events": 0,
+      "expected_arrivals": 467,
+      "recorded_arrivals": 467,
+      "all_calls_recorded": true,
+      "final_arrival_delay": {
+        "median_minutes": 2.2837499977589086,
+        "p95_minutes": 16.990833333652166,
+        "max_minutes": 28.812500000157335,
+        "worst_service": "B012"
+      },
+      "longest_continuous_stationary_delay": {
+        "median_minutes": 0.016666666666666666,
+        "p95_minutes": 10.533333333333333,
+        "max_minutes": 13.033333333333333,
+        "worst_service": "K1"
+      },
+      "total_stationary_delay_per_train": {
+        "median_minutes": 0.016666666666666666,
+        "p95_minutes": 15.066666666666666,
+        "max_minutes": 48.266666666666666,
+        "worst_service": "K1"
+      },
+      "K1": {
+        "arrival_delay_seconds": 0.0,
+        "arrived": true,
+        "calls": 55,
+        "completed_calls": 54,
+        "id": "K1",
+        "max_wait_seconds": 782.0,
+        "name": "Coastal Stopping Passenger · Ernakulam to Nagercoil",
+        "road": "NCJ_DEPOT_RD_ROAD1",
+        "stabled": true,
+        "status": "Stabled in Nagercoil Junction depot · south D1",
+        "wait_seconds": 2896.0
+      }
+    },
+    "K1_10_minutes_late": {
+      "ok": true,
+      "finished_depot": 100,
+      "services": 100,
+      "finish_clock": "15:58:00",
+      "peak_active_services": 24,
+      "safety_events": 0,
+      "expected_arrivals": 467,
+      "recorded_arrivals": 467,
+      "all_calls_recorded": true,
+      "final_arrival_delay": {
+        "median_minutes": 2.212499998245283,
+        "p95_minutes": 17.999999996647666,
+        "max_minutes": 37.5583333305695,
+        "worst_service": "B008"
+      },
+      "longest_continuous_stationary_delay": {
+        "median_minutes": 0.0,
+        "p95_minutes": 10.533333333333333,
+        "max_minutes": 13.033333333333333,
+        "worst_service": "K1"
+      },
+      "total_stationary_delay_per_train": {
+        "median_minutes": 0.0,
+        "p95_minutes": 15.4,
+        "max_minutes": 47.233333333333334,
+        "worst_service": "K1"
+      },
+      "K1": {
+        "arrival_delay_seconds": 0.0,
+        "arrived": true,
+        "calls": 55,
+        "completed_calls": 54,
+        "id": "K1",
+        "max_wait_seconds": 782.0,
+        "name": "Coastal Stopping Passenger · Ernakulam to Nagercoil",
+        "road": "NCJ_DEPOT_RD_ROAD1",
+        "stabled": true,
+        "status": "Stabled in Nagercoil Junction depot · south D1",
+        "wait_seconds": 2834.0
+      }
+    }
+  }
+}

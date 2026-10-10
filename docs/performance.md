@@ -1,5 +1,10 @@
 # Performance and target-PC benchmark
 
+For CPU-only timetable profiling, the 100-service operating-day audits and
+rendering-free time skips, see [the timetable guide](busy-timetable.md).
+The graphics benchmark retains its original 32-service fixture for comparable
+measurements; ordinary play starts the new 100-service day.
+
 Per-option controls are now available under **Menu → Graphics settings**. See
 [the graphics guide](graphics-settings.md) for presets and the 18 live controls.
 Add `-SavedGraphics` to `Benchmark.ps1` to measure your saved preferences; otherwise

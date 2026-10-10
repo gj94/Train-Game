@@ -5,7 +5,7 @@ const Store := preload("res://persistence/save_store.gd")
 const META := ["route","small_test_layout","imported_fleet","wap7_drive","lhb_drive","traffic_drive","traffic_seed","service_pack","player_service"]
 const FLAGS := ["geographic_drive","traffic_drive","imported_fleet","wap7_drive","lhb_drive","authored_pack","labels_enabled","time_scale"]
 const CAMERA := ["mode","yaw","pitch","distance","cab_fov","head_out_side","follow","_look","free_flight","free_fov"]
-const VIEW := ["passenger_coach","passenger_bay","passenger_seat","passenger_seat_index","cab_position"]
+const VIEW := ["passenger_coach","passenger_bay","passenger_seat","passenger_seat_index","cab_position","passenger_head_out"]
 const WALK := ["active","car","position","crouched","eye_height","lamp_enabled"]
 const MAP := ["focus_index","center_s","span","vertical_pan","follow_train","show_blocks"]
 var game
@@ -126,7 +126,9 @@ func restore_view(session: Dictionary) -> void:
 	game._set_paused(true)
 	game.labels_enabled=session.labels_enabled
 	game._set_time_scale(session.time_scale)
-	Snapshot.apply(game.tv,session.view,VIEW)
+	var view_state: Dictionary={passenger_head_out=false}
+	view_state.merge(session.view,true)
+	Snapshot.apply(game.tv,view_state,VIEW)
 	game._render_trains(1.0)
 	var camera_state: Dictionary={free_flight=false,free_fov=65.0}
 	camera_state.merge(session.camera,true) # R14-R17 saves predate the platform free view.
@@ -136,6 +138,7 @@ func restore_view(session: Dictionary) -> void:
 	game._set_cab_visuals(game.cam.mode==1)
 	if game.cam.mode==2:
 		game.tv.set_passenger_view(true);game._interior_view=true;game.audio.set_interior(true)
+	game._passenger_seating_changed()
 	if session.walk.active:
 		var walk=game.walker
 		Snapshot.apply(walk,session.walk,WALK)

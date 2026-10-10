@@ -131,7 +131,7 @@ func _neutral() -> bool:
 func drive_input() -> float:
 	if active_device < 0 or not _armed or not _focused or game.paused or _ui_open() or _context not in ["drive","free"]: return 0
 	if CameraMotion.is_free(game.cam)!=(_context=="free"):return 0
-	if game.walker.active or _camera_down or _operation_down: return 0
+	if game.walker.active or game._passenger_seated() or _camera_down or _operation_down: return 0
 	if CameraMotion.is_free(game.cam) and not _free_train_controls:return 0
 	if tsw_layout and _axes[4]<=.06:
 		if _buttons.has(JOY_BUTTON_LEFT_SHOULDER): return 1.0 if game.train.controller<0 else 0.0
@@ -345,6 +345,7 @@ func _back() -> void:
 	match game.hud.modal:
 		"confirm": game._cancel_action()
 		"saved_games": game.save_load.back()
+		"time_skip": game.time_skip.back()
 		"help": game._close_help()
 		"progress": game._close_progress()
 		"pause": game._ui_action("resume")

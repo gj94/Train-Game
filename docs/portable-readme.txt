@@ -1,4 +1,18 @@
 TRAIN GAME - KERALA COAST
+
+R27: 100-service operating day, simulation-only skip and seated passenger AI.
+Menu / Esc > Skip to time / future stop advances the actual railway with every
+train under AI. Rendering and audio stop during the advance. Return to the same
+train if available, otherwise a station platform; choose Resume AI or Take control.
+Sitting in a passenger seat hands driving to AI and blocks driving inputs.
+E / Y stands up. D-pad left/right cycles both row head-outs and your seat;
+Q / Shift+E selects either side. LS click returns to pilot. AI stays on until takeover.
+The loading screen now shows this release's build name and source revision.
+100/100 services completed baseline and ten-minute-late audits without safety
+events. Busy single-line traffic can still produce delays: worst final arrival
+29 minutes baseline / 38 minutes delayed; longest excess standstill 13 minutes.
+See guides/busy-timetable.md for results and controls.
+
 Windows x86-64 portable playtest build
 
 THIS BUILD
@@ -296,8 +310,8 @@ RUN ON ANOTHER PC
    Esc/controller Menu offers the same action. Your choice is remembered.
 
 START PLAYING
-You start in the K1 stopping passenger among 32 Kerala Coast services: WAP-7/LHB,
-WAP-7/ICF and Vande Bharat. The other 31 trains use AI. Automatic dispatch
+You start in the K1 stopping passenger among 100 Kerala Coast services: WAP-7/LHB,
+WAP-7/ICF and Vande Bharat. The other 99 services use AI, entering from depot near departure. Automatic dispatch
 sets safe routes for everyone, including your manually driven service.
 Wait at red while earlier trains clear shared routes and occupied platforms.
 F1 opens your scenario briefing: your service, stops, expected traffic and job.

@@ -10,22 +10,17 @@ static func blockers(w, signal_id: String, option: Dictionary) -> Array:
 		if occupancy.has(entry.edge):
 			_add(result, seen, occupancy[entry.edge], "occupied", entry.edge)
 		var section: String = w.single_line_sections.get(entry.edge, "")
-		for t: Train in w.trains.values():
+		for t: Train in w.active_trains():
 			if not section.is_empty() and t.path.any(func(p): return w.single_line_sections.get(p.edge, "") == section and p.dir != entry.dir):
 				_add(result, seen, t.id, "single_line", section)
 			if entry.switch != "" and w._train_near_switch(t, entry.switch):
-				var ns: Dictionary = w.next_signal(t)
-				if ns.is_empty() or ns.id != signal_id or t.path.size() > 1:
+				if not w._train_waiting_before_point(t,entry.switch,signal_id):
 					_add(result, seen, t.id, "point_clearance", entry.switch)
-		for sig in w.signals.values():
-			if sig.id == signal_id: continue
-			var overlaps: bool = sig.route.any(func(r): return r.edge == entry.edge or (entry.switch != "" and r.switch == entry.switch))
-			var opposed: bool = not section.is_empty() and sig.id not in w.automatic_signals and sig.route.any(func(r): return w.single_line_sections.get(r.edge, "") == section and r.dir != entry.dir)
-			if not overlaps and not opposed: continue
+		for sig in w.conflicting_signals(entry,signal_id):
 			var owner: String = sig.owner
 			if owner.is_empty():
 				var distance := INF
-				for t: Train in w.trains.values():
+				for t: Train in w.active_trains():
 					var ns: Dictionary = w.next_signal(t)
 					if not ns.is_empty() and ns.id == sig.id and ns.distance < distance:
 						owner = t.id; distance = ns.distance

@@ -1,6 +1,7 @@
 extends "res://tools/check_walking_playable.gd"
 ## Source integration for model doors, platform collision, audio and camera shortcuts.
 func _initialize() -> void:
+	set_meta("legacy_kerala_traffic",true)
 	set_meta("route","kerala_coast");set_meta("traffic_seed",0)
 	family="platform"
 	call_deferred("run")

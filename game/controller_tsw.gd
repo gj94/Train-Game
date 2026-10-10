@@ -12,6 +12,7 @@ LS click returns to pilot · RS click selects FREE camera on the nearest platfor
 Free: LS moves, RS looks, RT/LT zoom, LB/RB lower/raise.
 Hold RS for 0.65 s to switch triggers between zoom and train control; release controls after switching.
 Y stand up / sit down · A context interaction · B back. Change ends in X → Driving actions.
+Passenger seat: AI drives; stand up before driving again. D-pad left/right leans out at your row.
 Tap X for Train & view actions. Hold X+A AI/manual, X+B emergency, X+RB coast, X+Y horn.
 View/Back opens dispatch; hold View for service progress. Menu/Start pauses.
 
@@ -106,6 +107,7 @@ static func process(pad, left: Vector2, right: Vector2, delta: float) -> void:
 
 static func hint(pad) -> String:
 
+	if pad.game._passenger_seated():return "AI driving · D-pad left/right seat and row head-outs · Y stand · LS click pilot · View map"
 	if pad._operation_down:return "X held · A AI/manual · B emergency brake · RB coast · Y horn"
 	if pad._camera_down:return "Hold RS to switch free-camera triggers · release controls after switching"
 	if pad.game.walker.active and pad.game.walker.platform.outside:return "LS walk · RS look · RT run · A board · B crouch · X + D-pad up lamp · LS click pilot · RS click free"

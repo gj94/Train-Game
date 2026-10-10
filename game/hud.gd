@@ -233,9 +233,9 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 		_buttons.remove_child(button)
 		button.queue_free()
 	_body.scroll_to_line(0)
-	_body.size_flags_vertical=Control.SIZE_FILL if kind=="saved_games" else Control.SIZE_EXPAND_FILL
-	_body.custom_minimum_size.y=125 if kind=="saved_games" else 0
-	_button_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL if kind=="saved_games" else Control.SIZE_FILL
+	_body.size_flags_vertical=Control.SIZE_FILL if kind in ["saved_games","time_skip"] else Control.SIZE_EXPAND_FILL
+	_body.custom_minimum_size.y=210 if kind=="time_skip" else (125 if kind=="saved_games" else 0)
+	_button_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL if kind in ["saved_games","time_skip"] else Control.SIZE_FILL
 	if kind.begins_with("graphics"):preload("res://game/graphics_menu.gd").build(self,kind)
 	match kind:
 		"pause":
@@ -248,6 +248,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, ("Return to window" if DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN,DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN] else "Enter fullscreen")+"  ·  F11 / Alt+Enter", "fullscreen")
 			_button(_buttons, "Graphics settings…", "graphics")
 			_button(_buttons, "Journey progress  ·  F12", "progress")
+			_button(_buttons, "Skip to time / future stop…", "skip:open")
 			_button(_buttons, "Scenario & controls  ·  F1", "help")
 			_button(_buttons, "Train & view actions…", "controller_actions")
 			_button(_buttons, "Controller settings & layout…", "controllers")
@@ -264,7 +265,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Traffic / solo fleet…  ·  F9", "fleet")
 			_button(_buttons, "Restart current services…", "restart")
 			_button(_buttons, "Quit to desktop…", "quit")
-		"saved_games":
+		"saved_games", "time_skip":
 			_heading.text=save_menu.get("title","SAVED JOURNEYS")
 			_body.text=save_menu.get("body","")
 			for entry in save_menu.get("options",[]):

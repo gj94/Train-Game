@@ -146,3 +146,19 @@ See [Passengers](passengers.md) for behaviour, controls and remaining limits.
 5. Open dispatch/pause while holding RT, then close it. Release controls before
    moving again. Sit while holding W or RT: the train handle must stay unchanged
    until the control is released and deliberately pressed again.
+
+
+## Passenger seats and row head-out views
+
+Sitting in a passenger seat automatically hands driving to AI. While seated,
+traction, brake, horn, reverser and AI/manual shortcuts cannot operate the train.
+Stand with E / controller Y (or move the left stick from the seated interior)
+before resuming normal input. AI stays in charge until an explicit takeover;
+standing never silently cuts its power or brakes.
+
+From the passenger seat, D-pad left/right cycles left head-out, the same seat,
+and right head-out. Keyboard Q and Shift+E choose the two sides; pressing the
+same head-out shortcut again returns inside. Both views use the exact row and
+carriage, follow its motion, and account for reversed coaches. D-pad up/down
+continues through coaches, and LS click returns to pilot. Save/load preserves
+the selected seat and side, including its AI control lock.

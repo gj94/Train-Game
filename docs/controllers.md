@@ -166,3 +166,9 @@ remain available and replace the controller hints when used.
 Automated checks inject standard-layout events into the real Godot viewport and
 exercise the game, native dropdowns and focus navigation. They do not substitute
 for testing a physical pad, its wireless driver, vibration or the feel of the controls.
+
+
+Passenger-seat context: sitting hands driving to AI and blocks driving inputs.
+Y stands up; AI remains in control until takeover. D-pad left/right cycles
+between both head-out sides at that row and the original seat. D-pad up/down
+still selects the neighbouring coach; LS click returns to pilot.

@@ -4,7 +4,7 @@ const Pack := preload("res://sim/service_pack.gd")
 const Timetable := preload("res://sim/timetable.gd")
 const VERSION := 1
 const WORLD := ["time","clock_start","protection","signals","depot_reservations","dispatch_notices","dispatch_holds","dispatch_history","events","_event_seq","_next_auto_update"]
-const TRAIN := ["id","length","path","head_s","speed","odometer","controller","emergency","automatic","service_name","stock_kind","rake_profile","cab_end","can_change_ends","destination","service_complete","status","depot","passengers","dispatch_priority","mass","max_power","max_accel","max_speed","service_decel","emergency_decel"]
+const TRAIN := ["lifecycle","id","length","path","head_s","speed","odometer","controller","emergency","automatic","service_name","stock_kind","rake_profile","cab_end","can_change_ends","destination","service_complete","status","depot","passengers","dispatch_priority","mass","max_power","max_accel","max_speed","service_decel","emergency_decel"]
 const TIMETABLE := ["departure","stops","index","at_stop","actual_arrivals","actual_departures","missed_stop","passenger_release"]
 const DISPATCH := ["enabled","manual_service","hold_maruthur","operator_holds","inhibited_signals","platform_preferences","states","journal","alerts","revision","cycles","_next_tick","_wait_since","_last_state","_advisory_release_until","_seq"]
 const FUTURE := ["enabled","plans","_next_search"]
@@ -46,7 +46,7 @@ static func restore(data) -> Dictionary:
 	if data.get("version")!=VERSION:return error("This save uses an unsupported version")
 	if not data.get("layout") is String or data.layout not in ["kerala_coast","southern_corridor","first_line"]:return error("Unknown saved railway")
 	if not data.get("world") is Dictionary or not data.get("dispatcher") is Dictionary or not data.get("future") is Dictionary or not data.get("switches") is Dictionary or not data.get("session") is Dictionary:return error("Incomplete save")
-	if not data.get("trains") is Array or data.trains.is_empty() or data.trains.size()>64:return error("Invalid saved service list")
+	if not data.get("trains") is Array or data.trains.is_empty() or data.trains.size()>256:return error("Invalid saved service list")
 	data=data.duplicate(true) # Restoring/stepping must never mutate the checkpoint.
 	var w:=Pack.blank(data.layout)
 	if data.get("layout_signature")!=signature(w):return error("The track, platforms or signalling layout has changed; this save cannot be resumed in this build")
@@ -59,6 +59,8 @@ static func restore(data) -> Dictionary:
 	w.trains.clear()
 	for entry in data.trains:
 		if not entry is Dictionary or not entry.get("id") is String or entry.id.is_empty() or w.trains.has(entry.id):return error("Invalid or duplicate train")
+		if not entry.has("lifecycle"): entry.lifecycle="active"
+		if entry.lifecycle not in ["active","scheduled","stored"]: return error("Invalid service lifecycle")
 		var t:=Train.new(entry.id,1)
 		if not matches(t,entry,TRAIN):return error("Incomplete train "+entry.id)
 		for key in ["length","head_s","speed","odometer","controller","mass","max_power","max_accel","max_speed","service_decel","emergency_decel"]:
@@ -113,7 +115,9 @@ static func matches(object, data: Dictionary, names: Array) -> bool:
 
 static func _legacy_passenger_cap(data: Dictionary, t: Train) -> bool:
 	var session: Dictionary=data.session
-	if session.get("authored_pack",true)!=false:return false
+	var authored=session.get("authored_pack",true)
+	var builtin: bool=(authored is bool and not authored) or (authored is Dictionary and authored.is_empty())
+	if not builtin:return false
 	var meta=session.get("meta",{})
 	if not meta is Dictionary or meta.has("service_pack"):return false
 	return data.layout=="kerala_coast" and t.id=="K1" and t.stock_kind=="ported:icf" and t.rake_profile=="passenger" and is_equal_approx(t.max_speed,65.0/3.6)

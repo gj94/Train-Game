@@ -34,6 +34,7 @@ var dwell_field: SpinBox
 var marker_field: LineEdit
 var dialog: FileDialog
 var confirm_play: ConfirmationDialog
+var scheduled_entry: CheckButton
 var _loading := false
 var _save_delay := -1.0
 var _trial
@@ -114,6 +115,11 @@ func _ready() -> void:
 	var dispatching:=_row(fields)
 	priority_field=_spin(dispatching,"Dispatch priority · higher runs first",1,100,1,func(v):_service().priority=int(v);_changed())
 	speed_field=_spin(dispatching,"Service speed cap · km/h",5,180,5,func(v):_service().speed_limit_kmh=v;_changed())
+	scheduled_entry=CheckButton.new()
+	scheduled_entry.text="Enter from depot near departure (wait for a free origin berth)"
+	fields.add_child(scheduled_entry)
+	scheduled_entry.toggled.connect(func(v):
+		if not _loading: _service().scheduled_entry=v; _changed())
 	var timing := _row(fields)
 	departure_field = _line(timing,"Departure HH:MM[:SS]",func(v): _service().departure=v; _changed())
 	departure_day = _spin(timing,"Day",1,365,1,func(v): _service().day=int(v); _changed())
@@ -223,7 +229,7 @@ func _button(parent: Node, text: String, action: Callable) -> Button:
 func open(world: RailWorld, active_pack: Dictionary = {}) -> void:
 	layout = Pack.layout_id(world)
 	if draft.is_empty() or draft.layout != layout:
-		draft = active_pack.duplicate(true) if not active_pack.is_empty() else Pack.defaults(layout)
+		draft = active_pack.duplicate(true) if not active_pack.is_empty() else Pack.defaults(layout,layout=="kerala_coast")
 		if active_pack.is_empty() and FileAccess.file_exists(save_path):
 			var saved := _read_file(save_path)
 			if saved.ok: draft=saved.data
@@ -291,6 +297,7 @@ func _load_service() -> void:
 	_refresh_rakes()
 	priority_field.value=service.get("priority",50)
 	speed_field.value=service.get("speed_limit_kmh",_stock_speed())
+	scheduled_entry.button_pressed=service.get("scheduled_entry",false)
 	departure_field.text=service.departure
 	departure_day.value=service.get("day",1)
 	direction_field.select(0 if service.stops[0].direction==1 else 1)
@@ -438,6 +445,8 @@ func _test_traffic() -> void:
 func _request_play() -> void:
 	var result := Pack.build(draft,layout)
 	if not result.ok: _status(result.reason,true); return
+	if result.world.trains[_service().id].lifecycle != "active":
+		_status("This service has not entered the railway yet. Start with K1, then take over this service from Dispatch after its booked entry.",true); return
 	_pending_pack=result.data
 	_pending_service=_service().id
 	_save_draft()
@@ -456,7 +465,7 @@ func _process(delta: float) -> void:
 		if _save_delay<0: _save_draft()
 	if _trial==null: return
 	var until := Time.get_ticks_usec()+4000
-	while Time.get_ticks_usec()<until and not _trial.done: _trial.step()
+	while Time.get_ticks_usec()<until and not _trial.done: _trial.step(.2)
 	if _trial.done:
 		_status(_trial.report,not _trial.ok)
 		if _trial.ok: _tested_json=JSON.stringify(draft)

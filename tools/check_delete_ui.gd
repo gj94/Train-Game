@@ -3,6 +3,7 @@ var game
 var checks:=0
 var failures:=0
 func _initialize() -> void:
+	set_meta("legacy_kerala_traffic",true)
 	set_meta("route","kerala_coast");set_meta("traffic_seed",0)
 	call_deferred("run")
 func check(ok: bool,message: String) -> void:

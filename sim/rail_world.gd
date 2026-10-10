@@ -46,6 +46,19 @@ var _next_auto_update := 0.0
 var _route_distances
 var _route_options_cache := {}
 var _route_topology_size := ""
+var profile_enabled := false
+var profile_usec := {}
+var _cached_occupancy := {}
+var _cache_occupancy := false
+var _active_trains: Array = []
+var _route_signals := {}
+var _claims_dirty := true
+var _edge_claims := {}
+var _point_claims := {}
+var _direction_claims := {}
+var _section_claims := {}
+var _section_directions := {}
+var _next_service_entry := 0.0
 var _within_step := false
 var _step_route_directions := {}
 var _automatic_set := {}
@@ -119,9 +132,54 @@ func set_timetable(train_id: String, definition: Dictionary) -> Dictionary:
 	return result
 
 ## edge id -> train id, for every occupied edge.
+func _index_route_claims() -> void:
+	if _cache_occupancy and not _claims_dirty: return
+	_edge_claims.clear();_point_claims.clear();_direction_claims.clear();_section_claims.clear();_section_directions.clear()
+	_ensure_automatic_index()
+	for sig in routed_signals():
+		for road in sig.route:
+			_edge_claims[road.edge]=sig.id
+			if road.switch!="": _point_claims[road.switch]=sig.id
+			_direction_claims[road.edge]=int(_direction_claims.get(road.edge,0)) | (1 if road.dir>0 else 2)
+			var section: String=single_line_sections.get(road.edge,"")
+			if not section.is_empty() and not _automatic_set.has(sig.id):
+				_section_directions[section]=road.dir
+				var key: String=section+":"+str(road.dir)
+				if not _section_claims.has(key):_section_claims[key]={}
+				_section_claims[key][sig.id]=true
+	_claims_dirty=false
+
+
+func conflicting_signals(entry: Dictionary, excluded: String) -> Array:
+	_index_route_claims()
+	var ids := {}
+	for sid in [_edge_claims.get(entry.edge,""),_point_claims.get(entry.switch,"")]:
+		if not sid.is_empty() and sid!=excluded: ids[sid]=true
+	var section: String=single_line_sections.get(entry.edge,"")
+	for sid in _section_claims.get(section+":"+str(-entry.dir),{}):
+		if sid!=excluded: ids[sid]=true
+	return ids.keys().map(func(id):return signals[id])
+
+
+func _ensure_automatic_index() -> void:
+	if _automatic_set_size==automatic_signals.size():return
+	_automatic_set={}
+	for sid in automatic_signals:_automatic_set[sid]=true
+	_automatic_set_size=automatic_signals.size()
+
+
+func routed_signals() -> Array:
+	return _route_signals.values() if _cache_occupancy else signals.values().filter(func(s): return not s.route.is_empty())
+
+
+func active_trains() -> Array:
+	return _active_trains if _cache_occupancy else trains.values().filter(func(t): return t.lifecycle == "active")
+
+
 func occupancy() -> Dictionary:
+	if _cache_occupancy: return _cached_occupancy
 	var occ := {}
-	for t in trains.values():
+	for t in active_trains():
 		for seg in t.path:
 			occ[seg.edge] = t.id
 	return occ
@@ -225,11 +283,11 @@ func curvature_at(train: Train, span: float = 10.0) -> float:
 
 ## Why a switch can't be thrown right now, or "" if it can.
 func switch_lock_reason(node_id: String) -> String:
-	for sig in signals.values():
+	for sig in routed_signals():
 		for r in sig.route:
 			if r.switch == node_id:
 				return "locked by route from signal " + sig.id
-	for t in trains.values():
+	for t in active_trains():
 		if _train_near_switch(t, node_id):
 			return "train %s occupies the point clearance zone" % t.id
 	return ""
@@ -250,6 +308,20 @@ func _train_near_switch(t: Train, node_id: String) -> bool:
 			return true
 		remaining -= covered
 	return false
+
+
+## A long train can span several plain approach blocks while its head waits
+## before the home signal. Only that approach is exempt from point clearance;
+## a tail on either branch still prevents throwing the point underneath it.
+func _train_waiting_before_point(t: Train, node_id: String, signal_id: String) -> bool:
+	var head: Dictionary=t.path[0]
+	var sig: Dictionary=signals[signal_id]
+	if head.edge!=sig.edge or head.dir!=sig.dir or graph.exit_node(head.edge,head.dir)!=node_id:return false
+	if (sig.s-t.head_s)*head.dir<0:return false
+	for i in range(1,t.path.size()):
+		var edge: Dictionary=graph.edges[t.path[i].edge]
+		if edge.a==node_id or edge.b==node_id:return false
+	return true
 
 
 # --- controls ---------------------------------------------------------------
@@ -275,6 +347,7 @@ func set_signal(sig_id: String, want: bool) -> Dictionary:
 		sig.cleared = false
 		if sig.owner == "" and not _approach_locked(sig_id):
 			sig.route = []
+			_claims_dirty=true
 		else:
 			sig.cancel_pending = true
 		return {ok = true, reason = ""}
@@ -381,20 +454,18 @@ func route_reason(sig_id: String, destination: String) -> String:
 		if not section.is_empty() and direction_locks.has(section) and direction_locks[section]!=entry.dir:
 			return "Single line "+section+" is locked for opposing traffic"
 	var occ := occupancy()
+	_index_route_claims()
 	for e in candidate.edges:
 		if occ.has(e.edge):
 			return "Block %s occupied by %s" % [e.edge, occ[e.edge]]
-		for other in signals.values():
-			for r in other.route:
-				if r.edge == e.edge or (e.switch != "" and e.switch == r.switch):
-					return "Conflicts with route from " + other.id
+		var conflict: String=_edge_claims.get(e.edge,_point_claims.get(e.switch,""))
+		if not conflict.is_empty(): return "Conflicts with route from " + conflict
 		if e.switch != "":
-			for t in trains.values():
+			for t in active_trains():
 				if not _train_near_switch(t, e.switch):
 					continue
 				# The train waiting at this entrance may occupy its approach.
-				var ns := next_signal(t)
-				if ns.is_empty() or ns.id != sig_id or t.path.size() > 1:
+				if not _train_waiting_before_point(t,e.switch,sig_id):
 					return "Point clearance zone occupied by " + t.id
 	return ""
 
@@ -414,11 +485,13 @@ func set_route(sig_id: String, destination: String) -> Dictionary:
 	sig.owner = ""
 	sig.cancel_pending = false
 	sig.cleared = true
+	if _cache_occupancy: _route_signals[sig_id] = sig
+	_claims_dirty=true
 	return {ok = true, reason = ""}
 
 
 func _approach_locked(sig_id: String) -> bool:
-	for t in trains.values():
+	for t in active_trains():
 		var ns := next_signal(t)
 		if not ns.is_empty() and ns.id == sig_id and t.speed > 0.1 and ns.distance < t.braking_distance() * 1.3 + 25.0:
 			return true
@@ -463,21 +536,46 @@ func release_emergency(train_id: String) -> Dictionary:
 func step(dt: float) -> void:
 	# Bound movement even at accelerated time / long frames. Each train sees
 	# the preceding train's updated occupancy before it is allowed to move.
+	_active_trains = active_trains()
+	_cached_occupancy = occupancy()
+	_route_signals.clear()
+	_claims_dirty=true
+	for sig in signals.values():
+		if not sig.route.is_empty(): _route_signals[sig.id] = sig
+	_cache_occupancy = true
 	var remaining := maxf(dt, 0.0)
 	while remaining > 0.000001:
 		var slice := minf(remaining, 0.05)
+		var stamp := Time.get_ticks_usec() if profile_enabled else 0
 		time += slice
+		if time >= _next_service_entry:
+			_next_service_entry = time + 1.0
+			_cache_occupancy = false
+			preload("res://sim/service_lifecycle.gd").update(self)
+			_active_trains = active_trains()
+			_cached_occupancy = occupancy()
+			_cache_occupancy = true
 		if _dispatcher != null: _dispatcher.advance()
 		_update_automatic_blocks()
+		if profile_enabled: stamp = _profile_phase("dispatch_and_signals", stamp)
 		_step_route_directions=_reservation_directions()
+		if profile_enabled: stamp = _profile_phase("reservation_index", stamp)
 		_within_step=true
-		for t in trains.values():
+		for t in active_trains():
 			Passengers.update(self,t,slice)
 			Depot.update(self,t)
+			if profile_enabled: stamp = _profile_phase("passengers_and_depots", stamp)
 			if t.automatic:
 				_drive_automatic(t, slice)
+			if profile_enabled: stamp = _profile_phase("driving", stamp)
 			var previous_distance: float = t.odometer
+			var previous_path: Array = t.path.duplicate() if t.speed > 0 or t.controller > 0 else []
 			_step_train(t, slice)
+			if not previous_path.is_empty():
+				for seg in previous_path:
+					if _cached_occupancy.get(seg.edge, "") == t.id: _cached_occupancy.erase(seg.edge)
+				for seg in t.path: _cached_occupancy[seg.edge] = t.id
+			if profile_enabled: stamp = _profile_phase("movement", stamp)
 			if t.timetable != null:
 				t.timetable.observe(t, clock_seconds(), t.odometer > previous_distance + 0.000001, _arrival_tolerance(t))
 				t.service_complete = t.completed_timetable!=null or t.timetable.complete()
@@ -486,10 +584,21 @@ func step(dt: float) -> void:
 			elif t.destination != "" and t.speed < 0.01 and distance_to_buffer(t, 15.0) < 12.0:
 				t.service_complete = true
 				t.status = "Arrived at " + t.destination
+			if profile_enabled: stamp = _profile_phase("timetable", stamp)
 		_release_routes()
+		if profile_enabled: stamp = _profile_phase("route_release", stamp)
 		_within_step=false
-		_step_route_directions.clear()
+		_step_route_directions={}
 		remaining -= slice
+	_cache_occupancy = false
+	_cached_occupancy.clear()
+	_active_trains.clear()
+
+
+func _profile_phase(phase: String, start: int) -> int:
+	var now := Time.get_ticks_usec()
+	profile_usec[phase] = int(profile_usec.get(phase, 0)) + now - start
+	return now
 
 
 func _arrival_tolerance(t: Train) -> float:
@@ -516,7 +625,7 @@ func _update_automatic_blocks() -> void:
 		var sig: Dictionary=signals[sid]
 		var section: String=single_line_sections.get(sig.edge,"")
 		if not section.is_empty() and not directions.has(section) and sig.owner.is_empty():
-			sig.route=[];sig.cleared=false
+			sig.route=[];sig.cleared=false;_claims_dirty=true
 	for sid in automatic_signals:
 		var section: String=single_line_sections.get(signals[sid].edge,"")
 		if not section.is_empty() and directions.get(section,0)!=signals[sid].dir:continue
@@ -530,20 +639,14 @@ func _update_automatic_blocks() -> void:
 	_auto_direction_snapshot={}
 
 func single_line_directions() -> Dictionary:
-	var result:={}
-	if single_line_sections.is_empty():return result
-	if _automatic_set_size!=automatic_signals.size():
-		_automatic_set={}
-		for sid in automatic_signals:_automatic_set[sid]=true
-		_automatic_set_size=automatic_signals.size()
-	for t in trains.values():
+	if single_line_sections.is_empty():return {}
+	_index_route_claims()
+	var result: Dictionary=_section_directions.duplicate()
+	for t in active_trains():
 		for seg in t.path:
 			if single_line_sections.has(seg.edge):result[single_line_sections[seg.edge]]=seg.dir
-	for sig in signals.values():
-		if _automatic_set.has(sig.id):continue
-		for entry in sig.route:
-			if single_line_sections.has(entry.edge):result[single_line_sections[entry.edge]]=entry.dir
 	return result
+
 
 
 ## Braking curves include signals, buffers, occupied blocks and lower speed
@@ -573,7 +676,7 @@ func _drive_automatic(t: Train, dt: float = .05) -> void:
 			var starter := next_signal(t)
 			var inside_reserved_section:=false
 			if _signals_on.get(_key(t.path[0].edge,t.path[0].dir),[]).is_empty():
-				for signal_data in signals.values():
+				for signal_data in routed_signals():
 					if signal_data.owner==t.id and signal_data.route.any(func(r): return r.edge==t.path[0].edge and r.dir==t.path[0].dir):
 						inside_reserved_section=true
 			if not inside_reserved_section and (starter.is_empty() or aspect(starter.id) == Aspect.RED):
@@ -646,11 +749,8 @@ func _distance_to_red(t: Train, horizon: float = 5000.0) -> float:
 ## A hard block boundary prevents collisions even with driver protection off.
 ## This also protects against routes revoked after a signal was passed.
 func _reservation_directions() -> Dictionary:
-	var directions := {}
-	for signal_data in signals.values():
-		for road in signal_data.route:
-			directions[road.edge]=int(directions.get(road.edge,0)) | (1 if road.dir>0 else 2)
-	return directions
+	_index_route_claims()
+	return _direction_claims
 
 
 func _distance_to_obstruction(t: Train, horizon: float = INF) -> float:
@@ -684,7 +784,7 @@ func _step_train(t: Train, dt: float) -> void:
 	var d := t.speed * dt
 	if d <= 0.0:
 		return
-	var obstruction := _distance_to_obstruction(t)
+	var obstruction := _distance_to_obstruction(t, d + 1.0)
 	if d >= obstruction - 0.1:
 		d = maxf(0.0, obstruction - 0.1)
 		if not t.emergency:
@@ -729,12 +829,15 @@ func _on_pass_signal(t: Train, sig_id: String) -> void:
 
 func _release_routes() -> void:
 	var occ := occupancy()
-	for sig in signals.values():
+	for sig in routed_signals():
 		if sig.route.is_empty():
+			_route_signals.erase(sig.id)
 			continue
+		if sig.owner == "" and not sig.cancel_pending: continue
 		if sig.cancel_pending and sig.owner == "" and not _approach_locked(sig.id):
 			sig.route = []
 			sig.cancel_pending = false
+			_claims_dirty=true
 			continue
 		var keep := []
 		for r in sig.route:
@@ -744,6 +847,7 @@ func _release_routes() -> void:
 			# turnout, while keeping the occupied berth reserved.
 			if r.seen and r.switch != "" and not _train_near_switch(trains[sig.owner], r.switch):
 				r.switch = ""
+				_claims_dirty=true
 			if occ.has(r.edge) or not r.seen:
 				keep.append(r)
 			# seen and now clear: released
@@ -753,6 +857,7 @@ func _release_routes() -> void:
 		# the entrance attached to that berth prevented multi-platform arrivals.
 		if sig.owner != "" and occ.get(sig.edge, "") != sig.owner and keep.all(func(r): return r.seen and r.switch == ""):
 			keep.clear()
+		if keep.size()!=sig.route.size(): _claims_dirty=true
 		sig.route = keep
 		if keep.is_empty():
 			sig.owner = ""

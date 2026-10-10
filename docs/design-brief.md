@@ -9,6 +9,14 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **10 Oct 2026 skip forward:** choose a future clock time or scheduled stop;
+  disable 3D rendering and presentation updates while the real railway advances
+  under AI. Return to the same train when available, or to a station platform;
+  keep AI driving until the user chooses to take over. Allow cancellation.
+- **10 Oct 2026 busy timetable:** design 100 services with dynamic dispatch,
+  scheduled entry, full-rake platform clearance and terminal/depot turnover.
+  Audit a full operating day and delayed driving; measure and reduce rehearsal
+  CPU bottlenecks without relaxing signalling protection.
 - **10 Oct 2026 AI driving:** build braking gradually and early for station
   stops, signals and upcoming lower speed limits. Avoid rapid power/coast/brake
   switching; retain immediate protection and full-rake speed-limit clearance.

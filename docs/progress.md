@@ -1,5 +1,55 @@
 # Progress
 
+## 2026-10-10 — 100-service day, faster rehearsal, skip and passenger seats
+- Fresh Kerala games now use 100 scheduled workings; K1 remains the default
+  all-stop ICF passenger. Frequent central double-line services and wider
+  single-line headways retain dynamic priorities, crossings and overtakes.
+  CSV platform inventory, full-rake clearance and equipment speeds are retained.
+- Future services enter only a clear, unreserved full-length berth near departure;
+  entry preserves receiving capacity. Completed stock follows signals to depot,
+  then enters offstage storage after ten minutes when not player-assigned.
+  Designer/import/save support scheduled/active/stored states and 256 services.
+- Full-day baseline and K1 +10-minute runs each completed all 100 workings to
+  depot at 15:58, all 467 subsequent arrivals plus 100 origin departures, with
+  zero safety events. Peak active passenger workings: 25 / 24. Longest stationary
+  delay beyond booked/passenger release: 13.03 minutes. Worst final arrival
+  delay: 28.81 / 37.56 minutes; median 2.28 / 2.21. Northern single-line crossings
+  and overtakes cause the outliers; these are not zero-delay guarantees.
+- Audits found and fixed terminal arrivals ignoring compatible alternative
+  passenger faces, and a long train incorrectly blocking its own point because
+  its tail occupied earlier plain approach blocks. Actual point occupation,
+  lane connectivity, interlocking and receiving berth checks stay enforced.
+- CPU profile: 600 simulated seconds with the legacy 32-service fixture fell
+  from 27.75 to 14.15 wall seconds (~49% less). Step-local occupancy, route claim
+  indexing, bounded searches and release scans remove repeated work. Final
+  profile includes the predictive AI driver; dispatch/signalling is now ~61%
+  of time. This is a development-PC CPU result, not a 4090 Laptop GPU benchmark.
+  Graphics benchmark retains its 32-service fixture for comparison. Rehearsal
+  fails a wholly unexplained five-minute standstill early and yields smaller
+  batches to the UI. Normal 50 ms physics remains unchanged.
+- Menu → Skip to time / future stop disables 3D/presentation and audio while
+  the real world advances under all-AI driving/dispatch. Supports exact clock,
+  midnight, actual future-stop arrival, responsive cancel and protection stops.
+  Interpolation/audio histories reset on return; unavailable/stored service
+  returns to a platform observer. Completion is paused with AI/Take control
+  choices. Fixed a pre-existing Dictionary/bool check in legacy save migration.
+- Sitting in a passenger seat now enables AI and blocks driving/driver-toggle
+  inputs until leaving the seat. Standing restores normal input options while
+  leaving AI in charge until takeover. D-pad left/right cycles that exact row's
+  head-outs and seat; reversed stock is supported. Saved seat/head-out states
+  restore AI, and old saves default safely. Loading shows packaged build identity.
+- Validation: 491 headless tests passed; native source checks: 20 skip cases,
+  19 journey/traffic cases and 58 passenger/control/save/version cases across
+  ICF/LHB/VB8/VB16. Evidence: art/performance/timetable-2026-10-10/.
+  No distribution playtest, per user preference. User subsequently authorised
+  preparing/publishing R27 with full and incremental download support.
+- Playtest: start a fresh Kerala game and inspect all 100 services in Dispatch.
+  Menu → Skip → Next stop; verify AI return and Take control. Skip beyond the
+  service end to check platform return. D-pad down into a coach, move LS, face
+  an empty seat and press Y; verify AI, blocked triggers/X+A, both row head-outs,
+  Y stand and LS click pilot, then deliberate takeover. Save/load while leaning
+  out. Confirm the loading screen reads R27 in the packaged build.
+
 ## 2026-10-10 — Gradual predictive AI driving
 - Replaced the power/coast/full-brake thresholds with a pure-simulation speed
   controller. It compensates running resistance to hold a steady cruise and

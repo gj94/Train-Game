@@ -336,7 +336,9 @@ func _set_route() -> void:
 func _change_priority(delta: int) -> void:
 	engine.set_priority(inspected_train,clampi(world.trains[inspected_train].dispatch_priority+delta,0,100));_refresh()
 
+var driver_locked: Callable
 func toggle_driver() -> void:
+	if driver_locked.is_valid() and driver_locked.call():return
 	var t: Train=world.trains[selected_train]
 	t.automatic=not t.automatic
 	if not t.automatic:t.controller=0
@@ -407,7 +409,8 @@ func _refresh() -> void:
 	var complete: int=world.trains.values().filter(func(t):return t.service_complete).size()
 	var held: int=engine.states.values().filter(func(s):return s.status in ["waiting","held","blocked"]).size()
 	var stabled: int=world.trains.values().filter(func(t):return t.depot.get("phase","")=="stabled").size()
-	_status.text="%d services / %d waiting / %d arrived / %d in depot" % [world.trains.size(),held,complete,stabled]
+	var scheduled: int=world.trains.values().filter(func(t):return t.lifecycle=="scheduled").size()
+	_status.text="%d services / %d scheduled / %d waiting / %d arrived / %d in depot" % [world.trains.size(),scheduled,held,complete,stabled]
 	for id in _roster:
 		var t: Train=world.trains[id];var state: Dictionary=engine.states.get(id,{})
 		_roster[id].text="%s  %s   %d km/h\n%s\n%s" % [id,"●" if id==inspected_train else "",roundi(t.speed*3.6),t.service_name,state.get("status","observing").to_upper()]
@@ -428,6 +431,10 @@ func _refresh() -> void:
 	_hold_service.text="Release operator hold" if engine.operator_holds.has(inspected_train) else "Hold at next controlled signal"
 	_priority.text="Priority  %d" % t.dispatch_priority
 	_take.text="Return to your cab" if inspected_train==selected_train else "Take control…"
+	_take.disabled=t.lifecycle!="active"
+	_view.disabled=t.lifecycle!="active"
+	_hold_service.disabled=t.lifecycle!="active"
+	if t.lifecycle!="active": _inspect_stats.text="%s · %.1f m\n%s" % [t.lifecycle.capitalize(),t.length,t.path[0].edge]
 	_delete_service.disabled=inspected_train==selected_train
 	var key: String=str(call.get("block",""))+":"+inspected_train
 	if key!=_last_platform_key:
