@@ -3,10 +3,14 @@ extends RefCounted
 const Policy := preload("res://sim/priority_dispatch.gd")
 const Resources := preload("res://sim/dispatch_resources.gd")
 var _section_ends := {}
+var _outbound_sections := {}
+var _evaluating := false
+var _claim_cache := {}
 
 func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 	var result: Array = []
 	if t.timetable == null: return result
+	_evaluating=true;_claim_cache.clear()
 	var stop: Dictionary = t.timetable.stop_ahead()
 	var booked_station: Dictionary=Policy.station(w,stop.block)
 	var flexible_terminal: bool=w.scenery.get("geographic",false) and booked_station.get("platform_details",{}).get(stop.block,{}).get("platform_width",0)>0
@@ -40,6 +44,8 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 		if option.edges.any(func(r): return r.edge == goal.block and r.dir == goal.direction): distance = 0.0
 		if is_inf(distance): reason = "Cannot reach next call: " + stop.name
 		var following_index: int=t.timetable.index+(1 if t.timetable.at_stop else 0)+1
+		if stopping and following_index>=t.timetable.stops.size() and not preload("res://sim/depot_workings.gd").terminal_road_compatible(w,st,last.edge,last.dir):
+			reason="Terminal platform must preserve the outgoing running line for depot clearance"
 		if stopping and following_index<t.timetable.stops.size():
 			var following: Dictionary=t.timetable.stops[following_index]
 			if is_inf(w._stop_distance(last.edge,last.dir,w.graph.entry_s(last.edge,last.dir),following,[])):
@@ -65,6 +71,7 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 		result.append({destination=option.destination, option=option, cost=cost,
 			stop=goal if changes_stop else {}, hold=hold, reason=reason, blockers=blockers,
 			eligible=not is_inf(distance), available=reason.is_empty()})
+	_evaluating=false;_claim_cache.clear()
 	result.sort_custom(func(a,b): return a.cost < b.cost if a.cost != b.cost else a.destination < b.destination)
 	return result
 
@@ -75,6 +82,13 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 	if w.depots.has(option.edges[-1].edge):
 		if preload("res://sim/depot_workings.gd").active(t) and option.edges[-1].edge==t.depot.road:return {}
 		return {reason="Depot road reserved for an assigned empty-stock working",blockers=[]}
+	# Recheck the actual platform at the home signal. A choice made here must
+	# not consume the escape road protected when entering the approach.
+	var last: Dictionary=option.edges[-1]
+	var arrival: Dictionary=Policy.station(w,last.edge)
+	if not arrival.is_empty() and not arrival.get("through_halt",false):
+		var exit_check:=_escape_capacity(w,t,arrival,last.dir,[last.edge])
+		if not exit_check.is_empty():return exit_check
 	for entry in option.edges:
 		var section: String = w.single_line_sections.get(entry.edge, "")
 		if section.is_empty() or t.path.any(func(p): return w.single_line_sections.get(p.edge, "") == section): continue
@@ -98,6 +112,8 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 				blocked.append({train=occupancy[road], kind="receiving_road", resource=road})
 			elif not approaches.has(road): available.append(road)
 		var own_roads:=_receiving_roads(w,t,destination,entry.edge,entry.dir,available)
+		var exit_check:=_escape_capacity(w,t,destination,entry.dir,own_roads)
+		if not exit_check.is_empty():return exit_check
 		# Capacity means a road this particular service can use. A through main
 		# without a passenger face cannot receive a booked station call.
 		if own_roads.is_empty():
@@ -166,3 +182,95 @@ func _exit_station(w, section: String, direction: int) -> Dictionary:
 		if d >= -10 and d < distance: best = st; distance = d
 	_section_ends[key] = best
 	return best
+
+func _outbound_single(w,st: Dictionary,direction: int) -> String:
+	var key: String=st.code+str(direction)
+	if _outbound_sections.has(key):return _outbound_sections[key]
+	var seen:={}
+	for section: String in w.single_line_sections.values():
+		if seen.has(section):continue
+		seen[section]=true
+		if _exit_station(w,section,-direction).get("code","")==st.code:
+			_outbound_sections[key]=section
+			return section
+	_outbound_sections[key]=""
+	return ""
+
+func _road_owners(w,st: Dictionary) -> Dictionary:
+	var result:={}
+	var occupancy: Dictionary=w.occupancy()
+	var future=w.dispatcher().future_clearances
+	for road in st.platform_tracks:
+		if occupancy.has(road):result[road]=occupancy[road]
+		elif not future.owner(road).is_empty():result[road]=future.owner(road)
+	for sig in w.routed_signals():
+		for part in sig.route:
+			if part.edge not in st.platform_tracks or result.has(part.edge):continue
+			var owner: String=sig.owner
+			if owner.is_empty():
+				for other: Train in w.active_trains():
+					if w.next_signal(other).get("id","")==sig.id:
+						owner=other.id;break
+			result[part.edge]=owner
+	return result
+
+func _station_claims(w,st: Dictionary) -> Array:
+	# Alternatives are read-only. Never retain occupation across candidate calls
+	# because the dispatcher may grant a route to another service between them.
+	if _evaluating and _claim_cache.has(st.code):return _claim_cache[st.code]
+	var owners:=_road_owners(w,st)
+	var claims:=[]
+	var known:={}
+	for road in owners:
+		var id: String=owners[road] if not str(owners[road]).is_empty() else "reserved:"+road
+		if known.has(id):continue
+		known[id]=true
+		claims.append({id=id,roads=[road]})
+	for other: Train in w.active_trains():
+		if known.has(other.id):continue
+		var ns: Dictionary=w.next_signal(other)
+		var committed: Array=w.signals[ns.id].route if not ns.is_empty() else []
+		# A train already admitted into either approach owns capacity even before
+		# a particular platform has been selected at its home signal.
+		for segment in other.path+committed:
+			var section: String=w.single_line_sections.get(segment.edge,"")
+			if section.is_empty() or _exit_station(w,section,segment.dir).get("code","")!=st.code:continue
+			claims.append({id=other.id,roads=_receiving_roads(w,other,st,segment.edge,segment.dir,st.platform_tracks)})
+			known[other.id]=true
+			break
+	if _evaluating:_claim_cache[st.code]=claims
+	return claims
+
+func _escape_capacity(w,t: Train,st: Dictionary,direction: int,own_roads: Array) -> Dictionary:
+	if own_roads.is_empty() or preload("res://sim/depot_workings.gd").active(t):return {}
+	var future=w.dispatcher().future_clearances
+	if not future.assigned(t,st.code).is_empty():return {} # exclusive, checked escape transaction
+	# A terminating service clears to its local depot, not the next station.
+	if t.timetable==null or str(t.timetable.stops[-1].block).get_slice("_P",0)==st.code:return {}
+	var section:=_outbound_single(w,st,direction)
+	if section.is_empty():return {}
+	var next:=_exit_station(w,section,direction)
+	if next.is_empty():return {}
+	var claims:=_station_claims(w,next).filter(func(c):return c.id!=t.id)
+	if claims.is_empty():return {}
+	var next_roads:=_receiving_roads(w,t,next,own_roads[0],direction,next.platform_tracks)
+	if next_roads.is_empty():return {} # route compatibility is handled by candidates
+	var onward:={id=t.id,roads=next_roads}
+	if _can_berth(claims+[onward]):return {}
+	# Same-direction traffic can leave away from our receiving station. It does
+	# not establish a circular dependency, even when more than one berth is busy.
+	var opposing:=claims.filter(func(c):return not w.trains.has(c.id) or w.trains[c.id].path[0].dir!=direction)
+	if _can_berth(opposing+[onward]):return {}
+	var here:=_station_claims(w,st).filter(func(c):return c.id!=t.id)
+	here.append({id=t.id,roads=own_roads})
+	var blockers: Array=[]
+	for claim in opposing:
+		var other: Train=w.trains.get(claim.id)
+		if other==null:continue
+		var remaining:=opposing.filter(func(c):return c.id!=other.id)
+		if not _can_berth(remaining+[onward]):continue
+		var escape:=_receiving_roads(w,other,st,other.path[0].edge,-direction,st.platform_tracks)
+		if _can_berth(here+[{id=other.id,roads=escape}]):return {}
+		blockers.append({train=other.id,kind="exit_capacity",resource=next.code})
+	if blockers.is_empty():return {} # no proved two-station opposing cycle
+	return {reason="Expect a wait before %s: preserve a crossing platform for opposing services at %s" % [st.name,next.name],blockers=blockers}

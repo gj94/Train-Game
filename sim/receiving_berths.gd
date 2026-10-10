@@ -17,6 +17,7 @@ static func roads(w,t: Train,st: Dictionary,edge: String,direction: int,free: Ar
 		if not w.graph.allows(road,direction):continue
 		if not call.is_empty() and st.get("platform_details",{}).get(road,{}).get("platform_width",1)<=0:continue
 		if final_call and road!=call.block and not (w.scenery.get("geographic",false) and st.get("platform_details",{}).get(call.block,{}).get("platform_width",0)>0):continue
+		if final_call and not preload("res://sim/depot_workings.gd").terminal_road_compatible(w,st,road,direction):continue
 		if preload("res://sim/berth_clearance.gd").capacity(w,road,not call.is_empty())<t.length:continue
 		var goal:={block=road,direction=direction,s=preload("res://sim/berth_clearance.gd").marker(w,t,road,direction,not call.is_empty())}
 		if is_inf(w._stop_distance(edge,direction,w.graph.entry_s(edge,direction),goal,[])):continue

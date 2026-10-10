@@ -4,6 +4,18 @@ const Berth := preload("res://sim/berth_clearance.gd")
 const Timetable := preload("res://sim/timetable.gd")
 const UNLOAD_SECONDS := 90.0
 
+static func terminal_road_compatible(w, station: Dictionary, road: String, direction: int) -> bool:
+	if w.depots.is_empty() or not w.scenery.get("geographic",false):return true
+	var sections: Array=w.scenery.route.sections
+	var index: int=w.stations.find(station)+(0 if direction>0 else -1)
+	if index<0 or index>=sections.size() or sections[index].tracks==1:return true
+	# A terminal still needs its forward empty-stock exit. Putting a northbound
+	# arrival on the D side at TVC traps it against an approaching southbound
+	# train on the same lead. Preserve the outgoing lane on a double line;
+	# single-line loops and route-boundary terminal alternatives remain usable.
+	var lane: String=station.get("platform_details",{}).get(road,{}).get("lane","")
+	return lane not in ["D","U"] or lane==("D" if direction>0 else "U")
+
 static func active(t: Train) -> bool:
 	return t.depot.get("phase", "") == "working"
 
