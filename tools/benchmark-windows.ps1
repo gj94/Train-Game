@@ -6,6 +6,7 @@ param(
     [string]$ProjectPath='',
     [switch]$Quick,
     [switch]$CrowdedOnly,
+    [switch]$RenderCosts,
     [switch]$SkipHardware,
     [ValidateSet('','inventory','counters')][string]$Collector='',
     [string]$CollectorFolder='',
@@ -128,6 +129,7 @@ function Read-Inventory {
         render_thread=$RenderThread
         quick_validation=[bool]$Quick
         crowded_only=[bool]$CrowdedOnly
+        render_costs=[bool]$RenderCosts
         telemetry_interval_seconds=1
         cpu_temperature='Unavailable through standard Windows counters; not estimated.'
     }
@@ -201,6 +203,7 @@ try {
             $arguments+=@('--','--benchmark',('"--benchmark-output='+$output.Replace('\','/')+'"'))
             if ($Quick) { $arguments+='--benchmark-quick' }
             if ($CrowdedOnly) { $arguments+='--benchmark-traffic-only' }
+            if ($RenderCosts) { $arguments+='--benchmark-render-costs' }
             Write-BenchmarkStatus "Running $label. Leave the game focused; it controls the cameras and exits automatically."
             # This is the visible game under test. Helpers remain hidden; keeping
             # the game foreground avoids driver background-app FPS limits.

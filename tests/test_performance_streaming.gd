@@ -81,6 +81,7 @@ func test_warm_cache_is_bounded_without_evicting_visible_chunks():
 	var cached:=Node3D.new();cached.visible=false;view.root.add_child(cached)
 	view.loaded[id]={node=cached};view._warm[id]=Time.get_ticks_msec()
 	view.world=RailWorld.new();view.speed_boards=EmptyBoards.new()
+	view.corridor_tiles[Vector2i.ZERO]=true
 	view._loading_panel=ColorRect.new();view.root.add_child(view._loading_panel)
 	view._loading_label=Label.new();view.root.add_child(view._loading_label)
 	view._request(Vector3(256,0,256))

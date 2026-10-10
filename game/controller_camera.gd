@@ -117,7 +117,7 @@ static func apply(camera, look: Vector2, pan: Vector2, zoom: float, delta: float
 	elif camera.mode == 0:
 		camera.yaw -= look.x * 2.2 * delta
 		camera.pitch = clampf(camera.pitch-look.y*1.6*delta,-1.5,-.05)
-		camera.distance = clampf(camera.distance*exp(-zoom*1.2*delta),3,3000)
+		camera.distance = clampf(camera.distance*exp(-zoom*1.2*delta),3,preload("res://game/railway_render_budget.gd").ORBIT_DISTANCE)
 		if pan.length_squared() > 0:
 			camera.follow = false
 			var right: Vector3 = camera.global_basis.x

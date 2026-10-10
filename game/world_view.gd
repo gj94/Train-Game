@@ -179,9 +179,13 @@ func _build_environment() -> void:
 	env.glow_bloom = 0.0
 	env.glow_hdr_threshold = 1.2
 	env.fog_enabled = true
-	env.fog_mode = Environment.FOG_MODE_EXPONENTIAL
+	env.fog_mode = Environment.FOG_MODE_DEPTH
+	env.fog_depth_begin = preload("res://game/railway_render_budget.gd").FOG_BEGIN
+	env.fog_depth_end = preload("res://game/railway_render_budget.gd").FOG_END
+	env.fog_depth_curve = 1.25
 	env.fog_light_color = Color(0.78, 0.84, 0.85)
-	env.fog_density = 0.00018
+	# Depth fog uses maximum opacity, unlike exponential fog's density.
+	env.fog_density = 1.0
 	env.fog_sky_affect = 0.15
 	env.fog_aerial_perspective = 0.6
 	env.adjustment_enabled = true
@@ -198,7 +202,7 @@ func _build_environment() -> void:
 	sun.shadow_enabled = true
 	sun.shadow_blur = 1.2
 	sun.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS
-	sun.directional_shadow_max_distance = 700.0
+	sun.directional_shadow_max_distance = 300.0
 	sun.directional_shadow_blend_splits = true
 	sun.rotation_degrees = Vector3(-32, -42, 0)
 	root.add_child(sun)

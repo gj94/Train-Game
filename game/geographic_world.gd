@@ -46,6 +46,8 @@ var selected_train := ""
 var initial_station := ""
 var _view_tick := 0
 var camera_absolute := Vector3.ZERO
+const Budget := preload("res://game/railway_render_budget.gd")
+var corridor_tiles: Dictionary={}
 
 func build(w: RailWorld,parent: Node3D) -> void:
 	collect_timing=parent.get_tree().get_meta("benchmark",false)
@@ -87,6 +89,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	track_template.single_fishplate=track_template._fishplate_mesh(true)
 	track_template.wv=null
 	_index_track()
+	corridor_tiles=Budget.corridor_tiles(geo.segments)
 	speed_boards=preload("res://game/track_speed_board_view.gd").new(world,geo.vegetation_clearance)
 	for board in speed_boards.jobs:
 		var p:=Vector2(board.point.x,board.point.z)
@@ -197,30 +200,31 @@ func _request(focus: Vector3) -> void:
 	var cell:=Vector2i(floori(focus.x/512),floori(focus.z/512))
 	_last_cell=cell
 	wanted.clear()
-	for x in range(cell.x-3,cell.x+4):
-		for z in range(cell.y-3,cell.y+4):
+	for x in range(cell.x-4,cell.x+5):
+		for z in range(cell.y-4,cell.y+5):
 			var key:=Vector2i(x,z)
 			var p:=Vector3(x*512+256,0,z*512+256)
 			var d:=Vector2(p.x-focus.x,p.z-focus.z).length_squared()
-			if d>1900*1900: continue
-			_add_job({id="tile:"+str(key),kind="tile",key=key,point=p,priority=d+10000})
+			if Budget.tile_distance_squared(key,512,focus)<=Budget.DETAIL_RADIUS*Budget.DETAIL_RADIUS:
+				var kind: String="tile" if corridor_tiles.has(key) else "landscape"
+				_add_job({id=kind+":"+str(key),kind=kind,key=key,point=p,priority=d+10000})
 			for index in track_index.get(key,[]):
 				var job: Dictionary=track_jobs[index].duplicate()
 				var distance:=Vector2(job.point.x-focus.x,job.point.z-focus.z).length_squared()
-				if distance>1650*1650: continue
+				if distance>Budget.RAIL_RADIUS*Budget.RAIL_RADIUS: continue
 				job.priority=distance*.70
 				_add_job(job)
 				var ohe:=job.duplicate(); ohe.id="ohe:"+job.id; ohe.kind="ohe"; ohe.priority+=120000
 				_add_job(ohe)
 	var near_tiles: Array=[]
 	for job in wanted.values():
-		if job.kind=="tile": near_tiles.append(job.key)
+		if job.kind in ["tile","landscape"]: near_tiles.append(job.key)
 	var far_cell:=Vector2i(floori(focus.x/2048),floori(focus.z/2048))
-	for x in range(far_cell.x-4,far_cell.x+5):
-		for z in range(far_cell.y-4,far_cell.y+5):
+	for x in range(far_cell.x-2,far_cell.x+3):
+		for z in range(far_cell.y-2,far_cell.y+3):
 			var p:=Vector3(x*2048+1024,0,z*2048+1024)
 			var d:=Vector2(p.x-focus.x,p.z-focus.z).length_squared()
-			if d>9500*9500: continue
+			if Budget.tile_distance_squared(Vector2i(x,z),2048,focus)>Budget.BACKGROUND_RADIUS*Budget.BACKGROUND_RADIUS: continue
 			var holes: Array=[]
 			for tile in near_tiles:
 				if tile.x>=x*4 and tile.x<x*4+4 and tile.y>=z*4 and tile.y<z*4+4: holes.append(tile)
@@ -228,15 +232,15 @@ func _request(focus: Vector3) -> void:
 	for index in world.stations.size():
 		var station: Dictionary=world.stations[index]
 		var d:=Vector2(station.origin.x-focus.x,station.origin.z-focus.z).length_squared()
-		if d<2000*2000: _add_job({id="station:"+station.code,kind="station",index=index,point=station.origin,priority=d+3000})
+		if d<Budget.STATION_RADIUS*Budget.STATION_RADIUS: _add_job({id="station:"+station.code,kind="station",index=index,point=station.origin,priority=d+3000})
 	for sid in world.signals:
 		var sig: Dictionary=world.signals[sid]
 		var p:=world.graph.position(sig.edge,sig.s)
 		var d:=Vector2(p.x-focus.x,p.z-focus.z).length_squared()
-		if d<1650*1650: _add_job({id="signal:"+sid,kind="signal",sid=sid,point=p,priority=d})
+		if d<Budget.RAIL_RADIUS*Budget.RAIL_RADIUS: _add_job({id="signal:"+sid,kind="signal",sid=sid,point=p,priority=d})
 	for board in speed_boards.jobs:
 		var d:=Vector2(board.point.x-focus.x,board.point.z-focus.z).length_squared()
-		if d<1650*1650:
+		if d<Budget.RAIL_RADIUS*Budget.RAIL_RADIUS:
 			var job: Dictionary=board.duplicate();job.priority=d;_add_job(job)
 	queue.clear()
 	for id in wanted:
@@ -270,7 +274,7 @@ func _remove(id: String) -> void:
 func _worker(job: Dictionary,index: int) -> Dictionary:
 	var data=workers[index].geo
 	match job.kind:
-		"tile","far": return SceneryChunk.new(data,materials,assets).build(job.key,job.kind=="far",job.get("holes",[]))
+		"tile","landscape","far": return SceneryChunk.new(data,materials,assets).build(job.key,job.kind=="far",job.get("holes",[]),job.kind!="landscape")
 		"station": return RailwayChunk.new(world,data,materials,assets).build_station(job.index)
 		"ohe": return RailwayChunk.new(world,data,materials,assets).build_ohe(job.edge,job.start,job.end,ohe_layout)
 		"track": return TrackChunk.new(track_template,world.graph).build(job.edge,job.start,job.end,job.nodes)

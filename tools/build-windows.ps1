@@ -62,12 +62,15 @@ try {
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/assets.md') -Destination (Join-Path $buildRoot 'ASSET-SOURCES.md')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/ported/station-notices') -Destination $buildRoot -Recurse -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/trackside/notices') -Destination (Join-Path $buildRoot 'guides/trackside-notices') -Recurse -Force
-    foreach ($guide in @('performance.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
+    foreach ($guide in @('performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/crowded-2026-10-10') -Destination (Join-Path $buildRoot 'guides/crowded-benchmark-evidence') -Recurse -Force
     $crowdedGuide = Join-Path $buildRoot 'guides/crowded-benchmark-2026-10-10.md'
     [IO.File]::WriteAllText($crowdedGuide, [IO.File]::ReadAllText($crowdedGuide).Replace('../art/performance/crowded-2026-10-10/', 'crowded-benchmark-evidence/'))
+    Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/corridor-2026-10-10') -Destination (Join-Path $buildRoot 'guides/corridor-rendering-evidence') -Recurse -Force
+    $corridorGuide = Join-Path $buildRoot 'guides/corridor-rendering-2026-10-10.md'
+    [IO.File]::WriteAllText($corridorGuide, [IO.File]::ReadAllText($corridorGuide).Replace('../art/performance/corridor-2026-10-10/', 'corridor-rendering-evidence/'))
     Copy-Item -LiteralPath (Join-Path $projectRoot 'data/routes/kerala_coast/README.md') -Destination (Join-Path $buildRoot 'MAP-DATA-LICENSE.md')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/scenery/coastal-fidelity') -Destination (Join-Path $buildRoot 'guides') -Recurse -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/scenery/kerala-variety') -Destination (Join-Path $buildRoot 'guides') -Recurse -Force

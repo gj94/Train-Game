@@ -51,7 +51,7 @@ func set_view(mode: String) -> void:
 		"overview":
 			var pose: Transform3D=game.tv.cars[mini(6,game.tv.cars.size()-1)].global_transform
 			var target: Vector3=pose.origin-pose.basis.x*20
-			var eye: Vector3=target+pose.basis.x*110+pose.basis.z*200+Vector3.UP*95
+			var eye: Vector3=target+pose.basis.x*110+pose.basis.z*200+Vector3.UP*55
 			game.cam.enter_free(eye,(target-eye).normalized())
 			game._set_cab_visuals(false);game.dispatcher.set_open(false)
 		"platform":

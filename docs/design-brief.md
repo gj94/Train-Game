@@ -9,6 +9,10 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **10 Oct 2026 camera/rendering bounds:** limit 3D camera height and view
+  distance, concentrating scenery along the railway instead of rendering broad
+  districts. Preserve nearby stations, water, cab movement and full-route
+  simulation/dispatcher navigation; validate the five-occupied-train case.
 - **10 Oct 2026 crowded-scene performance:** port the remote Kerala scenery
   collection; preserve close detail and use authored LODs, baked impostors and
   view-aware interior/passenger culling. Benchmark five occupied full formations

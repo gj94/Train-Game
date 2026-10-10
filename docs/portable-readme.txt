@@ -2,6 +2,16 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R25: railway corridor rendering and bounded external cameras.
+External cameras stop at 60 m above terrain; orbit zoom stops at 300 m.
+The view ends at 2.2 km with distance haze. Detailed scenery is concentrated
+within roughly 220 m of the railway; off-route ground and water remain.
+Train simulation and the dispatcher map retain their full operating range.
+Use Update and Play.exe to download changed blocks from the LAN server.
+See guides/corridor-rendering-2026-10-10.md for measured GPU costs.
+Add -RenderCosts to the crowded benchmark command below for category profiling.
+
+EARLIER CHANGES
 Kerala Coast R24: detailed trackside scenery and crowded-train rendering.
 Nearby models retain detail; distant scenery uses LODs and baked images.
 Pilot view skips seated passenger meshes; coach/platform views restore them.

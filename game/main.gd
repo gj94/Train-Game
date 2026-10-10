@@ -167,6 +167,7 @@ func _ready() -> void:
 		if not geographic_drive or t.id==train.id: traffic_presentation.ensure_view(t.id)
 	tv = train_views[train.id]
 	cam = CameraRig.new()
+	if geographic_drive: cam.ground_height = wv.terrain_height
 	cam.cab_transform = tv.cab_transform
 	cam.head_out_transform = tv.head_out_transform
 	cam.follow_point = tv.overview_position
@@ -188,7 +189,7 @@ func _ready() -> void:
 		geographic_listener.source_camera = cam
 		geographic_listener.coordinate_origin = wv.coordinate_origin
 		geographic_listener.sync(cam,wv.coordinate_origin)
-		cam.far = 12000.0
+		cam.far = CameraRig.Budget.VIEW_DISTANCE
 	for id in train_views: traffic_presentation.ensure_audio(id)
 	audio = train_audio[train.id]
 	# Rail-joint markers: yellow bars that flash red whenever an axle hits them (J toggles).

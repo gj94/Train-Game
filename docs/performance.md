@@ -192,3 +192,42 @@ Implementation references:
 [Godot threading](https://docs.godotengine.org/en/stable/tutorials/performance/thread_safe_apis.html),
 [Godot performance monitors](https://docs.godotengine.org/en/stable/classes/class_performance.html),
 [NVIDIA telemetry](https://docs.nvidia.com/deploy/nvidia-smi/index.html).
+
+## Railway corridor rendering (R25)
+
+The 3D camera now stops at **60 m above local terrain**, with orbit distance
+limited to **300 m** and the far clip at **2,200 m**. Distance haze blends the
+last kilometre into the horizon. These limits also apply to controller input
+and restored external cameras. Onboard views and the 2D dispatcher map retain
+their existing movement and navigation.
+
+Detailed 512 m tiles are requested within 1,150 m of the observer and must
+intersect the railway corridor. Buildings, trees and crops concentrate within
+220 m of the route, including depot branches. Other nearby tiles retain mapped
+ground and water, with no decorative buildings or planting. Shared terrain
+edge samples preserve tile joins. Cheap background terrain covers the full
+view beyond them. Stations retain a 2 km streaming radius; track, overhead
+equipment, signals and speed boards retain 1,650 m. The simulation continues
+to operate the entire route.
+
+To playtest, use R3 at a station, hold RB to climb, and confirm the camera stops
+60 m above the ground and descends immediately with LB. Check mouse/controller
+orbit zoom, then return to pilot with L3. Inspect nearby vegetation, platform
+boundaries and backwaters at ERS and Kumbalam. Load an older save with an elevated
+external view, then verify its height is bounded and its service is unchanged.
+The existing five-train benchmark records camera height, far clip and requested
+chunk kinds alongside frame timings. Its overview now uses a 55 m offset;
+older 95 m overview captures are not directly comparable.
+
+Source profiling can additionally isolate render costs with
+`--benchmark --benchmark-traffic-only --benchmark-diagnose --benchmark-render-costs`.
+This holds the five-train overview still and removes one geometry group or
+effect at a time, restoring it before the next capture. Compare median GPU
+milliseconds with the starting/ending baselines. Savings overlap and must not
+be added: hiding an object also changes its shadows, occlusion and lighting.
+Station-asset contents are grouped together; the source-triangle inventory is
+only a geometry estimate, not a substitute for GPU timing.
+
+On the playing PC, run `powershell -NoProfile -ExecutionPolicy Bypass -File
+.\Benchmark.ps1 -CrowdedOnly -RenderCosts -Resolution 1440p` from the game
+folder. The returned ZIP includes GPU timings and the category screenshots.

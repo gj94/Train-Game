@@ -1,0 +1,138 @@
+{
+  "adapter": "AMD Radeon 780M Graphics",
+  "pixels": [
+    1600,
+    900
+  ],
+  "baseline_start_ms": 56.1389999389648,
+  "baseline_end_ms": 55.8769989013672,
+  "costs": [
+    {
+      "group": "vegetation",
+      "gpu_without_ms": 36.6189994812012,
+      "saving_ms": 19.5200004577636
+    },
+    {
+      "group": "all_trains",
+      "gpu_without_ms": 45.1580009460449,
+      "saving_ms": 10.9809989929199
+    },
+    {
+      "group": "shadows",
+      "gpu_without_ms": 48.5299987792969,
+      "saving_ms": 7.609001159667898
+    },
+    {
+      "group": "stations_and_buildings",
+      "gpu_without_ms": 50.1150016784668,
+      "saving_ms": 6.023998260498004
+    },
+    {
+      "group": "terrain_and_water",
+      "gpu_without_ms": 50.6710014343262,
+      "saving_ms": 5.467998504638601
+    },
+    {
+      "group": "ssil_enabled",
+      "gpu_without_ms": 53.693000793457,
+      "saving_ms": 2.4459991455077983
+    },
+    {
+      "group": "permanent_way",
+      "gpu_without_ms": 53.7980003356934,
+      "saving_ms": 2.340999603271399
+    },
+    {
+      "group": "other_scenery",
+      "gpu_without_ms": 54.1080017089844,
+      "saving_ms": 2.0309982299803977
+    },
+    {
+      "group": "glow_enabled",
+      "gpu_without_ms": 55.4150009155273,
+      "saving_ms": 0.7239990234375
+    },
+    {
+      "group": "ssao_enabled",
+      "gpu_without_ms": 56.2060012817383,
+      "saving_ms": -0.06700134277350145
+    }
+  ],
+  "matched_views": [
+    {
+      "view": "pilot",
+      "before_frame_ms": 55.612,
+      "after_frame_ms": 51.598,
+      "before_draws": 10008.0,
+      "after_draws": 3611.0,
+      "before_primitives": 16993197.0,
+      "after_primitives": 14766916.0,
+      "presentation": {
+        "camera_height": 3.70099460107799,
+        "far_clip": 2200.0,
+        "streamed_kinds": {
+          "far": 13,
+          "landscape": 13,
+          "ohe": 70,
+          "signal": 15,
+          "speed_board": 89,
+          "station": 1,
+          "tile": 11,
+          "track": 70
+        }
+      }
+    },
+    {
+      "view": "passenger",
+      "before_frame_ms": 57.21,
+      "after_frame_ms": 54.493,
+      "before_draws": 11101.0,
+      "after_draws": 4397.0,
+      "before_primitives": 19581054.0,
+      "after_primitives": 16787315.0,
+      "presentation": {
+        "camera_height": 3.30119130287821,
+        "far_clip": 2200.0,
+        "streamed_kinds": {
+          "far": 13,
+          "landscape": 13,
+          "ohe": 70,
+          "signal": 15,
+          "speed_board": 89,
+          "station": 1,
+          "tile": 11,
+          "track": 70
+        }
+      }
+    },
+    {
+      "view": "platform",
+      "before_frame_ms": 51.932,
+      "after_frame_ms": 49.72,
+      "before_draws": 12884.0,
+      "after_draws": 3797.0,
+      "before_primitives": 21237051.0,
+      "after_primitives": 17202614.0,
+      "presentation": {
+        "camera_height": 2.65070785566526,
+        "far_clip": 2200.0,
+        "streamed_kinds": {
+          "far": 13,
+          "landscape": 13,
+          "ohe": 70,
+          "signal": 15,
+          "speed_board": 89,
+          "station": 1,
+          "tile": 11,
+          "track": 70
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Measured on Radeon 780M, not RTX 4090 Laptop.",
+    "Leave-one-group-out GPU savings overlap and must not be added.",
+    "Older 95 m overview/live-camera results are not comparable to the new 55 m offset.",
+    "Matched-view before/after runs occurred in separate processes; small timing differences include run variation."
+  ]
+}

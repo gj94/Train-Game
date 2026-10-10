@@ -120,6 +120,10 @@ func _crowded_traffic() -> void:
 	preload("res://game/train_visibility.gd").benchmark_full_interiors=false
 	if "--benchmark-diagnose" in OS.get_cmdline_user_args():
 		await _diagnose_traffic(fixture)
+	if "--benchmark-render-costs" in OS.get_cmdline_user_args():
+		fixture.set_view("overview")
+		if not await _settle("render_costs"):return
+		await preload("res://game/render_cost_benchmark.gd").run(self)
 	await _live_crowded(fixture)
 
 func _live_crowded(fixture) -> void:
@@ -231,6 +235,10 @@ func _save_case(label: String,samples: Array,began: int) -> void:
 		result.unfocused_frames+=int(sample[39]==0)
 		_csv.store_csv_line(PackedStringArray(sample.map(func(value):return str(value))))
 	_csv.flush()
+	result.presentation={camera_height=game.cam.global_position.y-game.wv.terrain_height(game.cam.global_position.x,game.cam.global_position.z),
+		far_clip=game.cam.far,streamed_kinds={}}
+	for job in game.wv.wanted.values():
+		result.presentation.streamed_kinds[job.kind]=result.presentation.streamed_kinds.get(job.kind,0)+1
 	result.completed_jobs=samples[-1][29]-samples[0][29]
 	result.cache_hits=samples[-1][28]-samples[0][28]
 	report.cases.append(result)

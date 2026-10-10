@@ -20,7 +20,7 @@ static func crops(c) -> void:
 			var p:=Vector2(x,z);var absolute:=p+Vector2(c.origin.x,c.origin.z)
 			if parcel_edge(absolute)<1.2:continue
 			var rail: Dictionary=c.geo.nearest_rail(absolute.x,absolute.y)
-			if rail.distance>550 or not dry_clear(c,p,1.4):continue
+			if rail.distance>preload("res://game/railway_render_budget.gd").CORRIDOR_WIDTH or not dry_clear(c,p,1.4):continue
 			var stage:=parcel_stage(absolute)
 			if stage<.19 or stage>.92:continue
 			var jitter:=Vector2(posmod(x*17+z*13,11)-5,posmod(x*7+z*19,11)-5)*.035
@@ -37,7 +37,8 @@ static func dry_clear(c,p: Vector2,radius: float=2.5) -> bool:
 			if c._inside(q,water.geometry):return false
 	var absolute:=p+Vector2(c.origin.x,c.origin.z)
 	if Sites.contains(c.geo.station_sites,absolute.x,absolute.y,radius+3):return false
-	if c.geo.nearest_rail(absolute.x,absolute.y).distance<22+radius:return false
+	var distance: float=c.geo.nearest_rail(absolute.x,absolute.y).distance
+	if distance<22+radius or distance>preload("res://game/railway_render_budget.gd").CORRIDOR_WIDTH:return false
 	if c._near_mapped_rail(p,10+radius) or not c.occupancy.clear(p,radius):return false
 	if c.geo.vegetation_clearance!=null and not c.geo.vegetation_clearance.clear(absolute,radius):return false
 	return true

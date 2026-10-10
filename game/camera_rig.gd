@@ -14,6 +14,8 @@ var _close_driving_blend := false
 var _blend_reference := Transform3D()
 
 const BLEND_TIME := 1.1
+const Budget := preload("res://game/railway_render_budget.gd")
+var ground_height: Callable
 
 var mode := Mode.OVERVIEW
 var pivot := Vector3.ZERO
@@ -41,7 +43,7 @@ var _follow_anchor_valid := false
 
 
 func _ready() -> void:
-	far = 6000.0
+	far = Budget.VIEW_DISTANCE
 	near = 0.1
 	if follow_point.is_valid():
 		pivot = follow_point.call()
@@ -106,8 +108,13 @@ func set_head_out(side: int) -> void:
 	set_mode(Mode.HEAD_OUT)
 
 
+func _bound_eye(eye: Vector3) -> Vector3:
+	var ground: float=ground_height.call(eye.x,eye.z) if ground_height.is_valid() else 0.0
+	return Budget.bound_eye(eye,ground)
+
 func _target() -> Transform3D:
 	if mode == Mode.OVERVIEW and free_flight:
+		pivot=_bound_eye(pivot)
 		return Transform3D(Basis.from_euler(Vector3(pitch,yaw,0)),pivot)
 	if mode == Mode.WALKING and walking_transform.is_valid():
 		var t: Transform3D=walking_transform.call()
@@ -125,8 +132,9 @@ func _target() -> Transform3D:
 		var t: Transform3D = cab_transform.call()
 		t.basis = t.basis * Basis.from_euler(Vector3(_look.y, _look.x, 0))
 		return t
+	distance=clampf(distance,3.0,Budget.ORBIT_DISTANCE)
 	var offset := Basis.from_euler(Vector3(pitch, yaw, 0)) * Vector3(0, 0, distance)
-	var pos := pivot + offset
+	var pos := _bound_eye(pivot + offset)
 	# Frame the railway in the open area above and left of the route desk.
 	var right := Basis(Vector3.UP, yaw).x
 	var target := pivot + right * distance * 0.12 - Vector3.UP * distance * 0.10
@@ -169,6 +177,8 @@ func _process(delta: float) -> void:
 	else:
 		global_transform = target
 		fov = target_fov
+	# Old saves and blends must obey the same ceiling as live input.
+	if mode == Mode.OVERVIEW: global_position=_bound_eye(global_position)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -194,7 +204,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				else:distance = maxf(3.0, distance * 0.88)
 			elif mb.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				if free_flight:free_fov=minf(85,free_fov+4)
-				else:distance = minf(3000.0, distance / 0.88)
+				else:distance = minf(Budget.ORBIT_DISTANCE, distance / 0.88)
 	elif event is InputEventMouseMotion and _dragging != 0:
 		var rel := (event as InputEventMouseMotion).relative
 		if _dragging == MOUSE_BUTTON_RIGHT:

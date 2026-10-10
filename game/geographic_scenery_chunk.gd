@@ -25,6 +25,7 @@ var library
 var occupancy:=preload("res://game/geographic_scenery_occupancy.gd").new()
 const BuildingLayout:=preload("res://game/geographic_building_layout.gd")
 const Kerala:=preload("res://game/kerala_scenery.gd")
+const Budget:=preload("res://game/railway_render_budget.gd")
 var tile_features: Array=[]
 
 func _init(data, shared_materials: Dictionary, shared_assets) -> void:
@@ -32,7 +33,7 @@ func _init(data, shared_materials: Dictionary, shared_assets) -> void:
 	materials=shared_materials
 	assets=shared_assets
 
-func build(key: Vector2i, far_tile: bool=false, holes: Array=[]) -> Dictionary:
+func build(key: Vector2i, far_tile: bool=false, holes: Array=[], detailed: bool=true) -> Dictionary:
 	near_tiles=holes
 	origin=Vector3(key.x*(2048 if far_tile else 512),0,key.y*(2048 if far_tile else 512))
 	root=Node3D.new()
@@ -50,7 +51,15 @@ func build(key: Vector2i, far_tile: bool=false, holes: Array=[]) -> Dictionary:
 		if feature.kind=="water":
 			water_levels.append({geometry=feature.geometry,height=feature.get("water_height",0.0)})
 	_index_shores()
+	# Shared 8 m edge samples keep landscape/detail tile seams watertight.
 	_terrain(512,64,false)
+	if not detailed:
+		# Preserve mapped backwaters and land cover without off-route objects.
+		for feature in tile_features:
+			if feature.kind=="water":_water(feature)
+			elif feature.kind=="stream":_stream(feature)
+		batch.finish(root,materials,"Landscape")
+		return {node=root,origin=origin}
 	var context:=Context.new()
 	context.root=root
 	library=Library.new(context)
@@ -220,6 +229,7 @@ func _road(feature: Dictionary) -> void:
 			var steps:=maxi(1,ceili(a.distance_to(b)/8.0))
 			for j in steps:
 				var p:=a.lerp(b,j/float(steps)); var q:=a.lerp(b,(j+1)/float(steps))
+				if not _corridor((p.x+q.x)*.5,(p.z+q.z)*.5):continue
 				if not bridge and StationSites.road_blocked(geo.station_sites,(p.x+q.x)*.5+origin.x,(p.z+q.z)*.5+origin.z,width*.5):continue
 				p.y=_ground(p.x,p.z)+.07; q.y=_ground(q.x,q.z)+.07
 
@@ -264,6 +274,8 @@ func _building(feature: Dictionary) -> void:
 		for p in ring: centre+=p
 		centre/=ring.size()
 		var rail: Dictionary=geo.nearest_rail(origin.x+centre.x,origin.z+centre.y)
+		# Keep a whole footprint if any of its envelope reaches the corridor.
+		if rail.distance>Budget.CORRIDOR_WIDTH and not Array(ring).any(func(p):return _corridor(p.x,p.y)):continue
 		if rail.distance<(60 if rail.get("depot",false) else 22): continue # reconstructed track/workshop clearance
 		var levels:=clampi(int(feature.tags.get("building:levels","2" if seed_value%4==0 else "1")),1,18)
 		var height:=maxf(2.8,float(feature.tags.get("height",str(levels*3.1)).trim_suffix(" m")))
@@ -342,7 +354,8 @@ func _mapped_rail(feature: Dictionary) -> void:
 			for j in count:
 				var p:=a.lerp(b,j/float(count)); var q:=a.lerp(b,(j+1)/float(count))
 				var centre:=p.lerp(q,.5)
-				if geo.nearest_rail(origin.x+centre.x,origin.z+centre.z).distance<26: continue
+				var distance: float=geo.nearest_rail(origin.x+centre.x,origin.z+centre.z).distance
+				if distance<26 or distance>Budget.CORRIDOR_WIDTH: continue
 				p.y=_ground(p.x,p.z)+.12; q.y=_ground(q.x,q.z)+.12
 				var side: Vector3=(q-p).normalized().cross(Vector3.UP)
 				batch.quad("ballast",p-side*2.1,q-side*2.1,q+side*2.1,p+side*2.1,Vector3.UP)
@@ -375,6 +388,9 @@ func _register_occupied(features: Array) -> void:
 			for line in _lines(feature.geometry):
 				for i in range(1,line.size()):
 					occupancy.add_road(Vector2(line[i-1][0],line[i-1][1]),Vector2(line[i][0],line[i][1]),half_width+1)
+func _corridor(x: float,z: float) -> bool:
+	return geo.nearest_rail(origin.x+x,origin.z+z).distance<=Budget.CORRIDOR_WIDTH
+
 func _planting() -> void:
 	for i in 1800:
 		var p:=Vector3(rng.randf_range(0,512),0,rng.randf_range(0,512))
@@ -382,7 +398,9 @@ func _planting() -> void:
 		if kind in [4,5,6,7,8]: continue
 		if StationSites.contains(geo.station_sites,p.x+origin.x,p.z+origin.z,12):continue
 		var rail: Dictionary=geo.nearest_rail(p.x+origin.x,p.z+origin.z)
-		if rail.distance<14 or _near_mapped_rail(Vector2(p.x,p.z),9):continue
+		if rail.distance<14 or rail.distance>Budget.CORRIDOR_WIDTH or _near_mapped_rail(Vector2(p.x,p.z),9):continue
+		# Thin the outer tree band so the corridor does not end in a square wall.
+		if rail.distance>160 and posmod(hash(Vector2i(roundi(p.x+origin.x),roundi(p.z+origin.z))),1000)*.001<smoothstep(160,Budget.CORRIDOR_WIDTH,rail.distance):continue
 		if geo.vegetation_clearance!=null and not geo.vegetation_clearance.clear(Vector2(p.x+origin.x,p.z+origin.z),5.5):continue
 		# Cultivated land stays open; palms belong on the planted bunds.
 		if kind==2 and (Kerala.parcel_edge(Vector2(p.x+origin.x,p.z+origin.z))>3.5 or i%3!=0):continue

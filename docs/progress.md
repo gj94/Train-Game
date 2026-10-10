@@ -1,5 +1,30 @@
 # Progress
 
+## 2026-10-10 — Bounded external cameras, railway corridor and GPU isolation
+- Added shared presentation budgets: external camera 60 m above terrain,
+  orbit distance 300 m, far clip 2.2 km. Mouse/controller input, camera blends
+  and older saved views use the same limits. Onboard movement and dispatcher
+  map navigation remain independent; geographic height uses the rebased terrain.
+- Stream detailed scenery only around the railway/depot corridor, with objects
+  roughly within 220 m of the route. Other nearby tiles keep ground/water only;
+  coarse background coverage shrinks from a 9.5 km radius to 2.6 km. Common
+  terrain edge samples, fading outer planting, depth haze and 300 m shadows
+  bound the scene without affecting services, rail signalling or passenger sim.
+- Added opt-in leave-one-category-out GPU profiling and portable `-RenderCosts`.
+  At 1600×900 on the 780M: vegetation removal saves 19.52 ms, five trains 10.98,
+  shadows 7.61, station/building geometry 6.02 and terrain/water 5.47. These
+  overlap and must not be summed. Target RTX 4090 Laptop remains unmeasured.
+- Native five-train audit passed (91 vehicles / 5,580 passengers, all moving
+  in the live phase). Matched pilot/passenger/platform views use 60–71% fewer
+  draw calls, with a modest 4.3–7.2% median frame-time reduction locally.
+  The lower overview is not a valid before/after timing comparison.
+- Validation: **447 passed, 0 failed**; final native/parse logs clean. Inspected
+  ERS and Kumbalam water/landscape views. No extracted-distribution playtest.
+  Full results and repeatable commands: `docs/corridor-rendering-2026-10-10.md`.
+- Playtest R3 → RB height ceiling → LB descent, maximum mouse/controller orbit,
+  L3 pilot return, and an older high-camera save. Inspect the nearby station and
+  water; confirm dispatcher zoom and the whole-route service continue normally.
+
 ## 2026-10-10 — Detailed trackside collection and crowded-train performance
 - Ported the user's pinned `16c06aee` Kerala trackside collection: 44 designs
   plus eight authored tree LOD alternatives. Source archive/member hashes,
