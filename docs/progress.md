@@ -34,6 +34,15 @@
   current-release LAN catalogue, full-only endpoint gating and three catalogue
   regressions. Older exports, ZIPs and obsolete manifests are removed only after
   the new full archive is ready. The updater remains included for future releases.
+- Published **TrainGame-Kerala-Coast-R26-Windows.zip** from clean runtime commit
+  `af38f31`: **1,832,910,158 bytes**, 208 files, SHA-256
+  `513ec6ac7987e8e31310871cb2d60b09d6262c4f5be9beab477d2a52a47057c6`.
+  Verified required ZIP entries, complete archive hash and three served byte ranges.
+  Removed 63 previous-version paths, reclaiming **68,288,020,396 bytes (63.6 GiB)**.
+  LAN serves only the R26 full ZIP/checksum/guides; previous ZIPs, updater download
+  and incremental endpoints return 404. Internal signed baseline sequence is 28;
+  next release uses 29+ and offers both formats. LAN server PID 14624 on
+  `http://192.168.8.183:8765/`. No extracted-distribution playtest performed.
 
 ## 2026-10-10 — Bounded external cameras, railway corridor and GPU isolation
 - Added shared presentation budgets: external camera 60 m above terrain,
