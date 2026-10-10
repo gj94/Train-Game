@@ -21,6 +21,8 @@ def build():
     rows=list(csv.DictReader(raw.decode('utf-8-sig').splitlines()))
     path=DATA/'operations.json'
     ops=json.loads(path.read_text(encoding='utf-8'))
+    if ops.get('geometry_revision'):
+        raise ValueError('Regenerate raw operations with station_operations.py before changing the CSV inventory; then run rail_geometry.py. Reapplying original offsets to normalized running lines is unsafe.')
     signs=json.loads((DATA/'station-signs.json').read_text(encoding='utf-8'))
     by_code={s['code']:s for s in ops['stations']}
     decisions=[]

@@ -277,6 +277,12 @@ func _building(feature: Dictionary) -> void:
 		# Keep a whole footprint if any of its envelope reaches the corridor.
 		if rail.distance>Budget.CORRIDOR_WIDTH and not Array(ring).any(func(p):return _corridor(p.x,p.y)):continue
 		if rail.distance<(60 if rail.get("depot",false) else 22): continue # reconstructed track/workshop clearance
+		# Use the complete footprint against every actual running road, depot lead,
+		# platform and signal. The route centre misses outer yards and large roofs.
+		if geo.vegetation_clearance!=null:
+			var envelope:=PackedVector2Array()
+			for p in ring:envelope.append(centre+(p-centre)*1.06+Vector2(origin.x,origin.z))
+			if not geo.vegetation_clearance.clear_polygon(envelope,.8):continue
 		var levels:=clampi(int(feature.tags.get("building:levels","2" if seed_value%4==0 else "1")),1,18)
 		var height:=maxf(2.8,float(feature.tags.get("height",str(levels*3.1)).trim_suffix(" m")))
 		var footing:=Foundations.outline(ring,_ground)

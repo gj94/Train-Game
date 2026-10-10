@@ -1,53 +1,25 @@
 # Progress
 
-## Next after R28 — Kollam and Thiruvananthapuram map correction
-- User subsequently asked to focus only on timetable fixes first. Map work is
-  paused, including its diagnostic simulation. All prototype map changes remain
-  isolated under ignored `.local/`; production geometry is unchanged.
-- User reports buildings occupying tracks and double tracks narrowing into one
-  before spreading out again. R28 is published; this map correction remains
-  paused as the next separate task, outside the timetable release.
-- User clarified: visible sharp/angular corners in the rails themselves should
-  become smooth continuous curves. Correct the actual alignment followed by
-  both rendered rails and trains. Measure heading/curvature transitions while
-  preserving platform/point geometry and safe clearances.
-- Inspect actual operating track envelopes, including wide station yards and
-  depot leads, against complete building footprints. The mapped-building filter
-  currently uses the building centre's distance from the geographic route.
-- Verify main-line continuity, crossovers and station throats against railway
-  evidence. Retain the user-authoritative CSV platform totals; a platform count
-  must not be confused with the number of running lines. Check both the physical
-  graph and rendered tracks, then regress signalling and dispatch on any changed
-  topology. Do not describe reconstructed throat geometry as surveyed geometry.
-- Read-only diagnosis: U-minus-D lateral offsets change sign between section
-  and station at CHPD–KYJ, STKT–MQO, TVP–TVC and NJT–NCJ. Interpolating these
-  unreviewed offsets can cross the main roads without a graph junction. Inspect
-  their physical track identity before applying a consistent lane assignment.
-  Source alignment samples also contain a ~16-degree heading change over two
-  adjacent 10 m chords near BRAM (chainage 219.097 km), ~11.5 degrees near NEM
-  (214.608 km), and ~5.4 degrees by QLN (142.098 km). These are measured defects,
-  not surveyed railway curve radii. No map geometry has been changed for R28.
-- A read-only footprint audit reproduces surviving mapped buildings intersecting
-  the 2.5 m track envelope around QLN (40 distinct IDs) and TVC (14). It applies
-  the current station-site and route-centre filters first; see ignored local
-  diagnostics `.local/map_before.gd`, `map-before.json` and
-  `map-before-collisions.json` for the baseline. These counts concern mapped
-  footprints and require visual review; authored station assemblies are separate.
-- While release audits run, `.local/map-next/` holds an isolated, uncommitted
-  prototype (not used by the game or R28): 40 m Gaussian horizontal smoothing
-  with a 300 m endpoint taper, continuous Hermite normals, physically longer
-  station ladders, consistent D/U side identity within double-line corridors,
-  outward depot leads and outermost-first stabling fan branches. Source route,
-  operations and game scripts remain unchanged. Candidate all-100 call reachability
-  and full-rake capacity pass. A centreline intersection audit finds none outside
-  shared point protection; further topology/legacy-scenario and visual checks remain.
-- Prototype diagnostics: `.local/check_map_candidate.gd` reduces the worst sampled
-  bend from 24.25° to 2.52° and removes 1,083 sampled outer-offset jumps >3 cm.
-  `.local/check_clearance_candidate.gd` tests complete building polygons against
-  all rail segments: eight synthetic cases pass; the previously measured QLN/TVC
-  footprint overlaps are filtered (40/14) in under 40 ms per whole audit area.
-  The source converter still needs the reproducible implementation, formal tests,
-  actual game integration, visual review and publication after R28.
+## 2026-10-11 — Map corrections and timetable regression in progress
+- User resumed map work after R28. Integrated smooth plan alignment, continuous
+  offset normals, longer full-rake station ladders, consistent double-line sides,
+  outward depot leads and noncrossing stabling fans. All CSV platform totals and
+  single/double section designations are preserved. See `map-corrections.md`.
+- Complete building roof envelopes now clear every actual track/platform/signal.
+  Outer yards have indexed ground formation; 25 m main-line terrain samples and
+  a sloped soil skirt close the former shoulder gaps. QLN/TVC sampled ground
+  mismatch is 0.1141 m; the 0.15 m test passes without relaxing its threshold.
+- Equal 5 m bend sampling: worst 19.656° before / 2.850° after. Sampled outer-road
+  jumps >3 cm: 1,083 before / zero after. Independent crossing audit: all 802
+  edges positive; zero intersections outside protected points. Register: 56/56.
+- Source-scene renders reviewed QLN/TVC yards, TVC approach and NEM/BRAM curves.
+  Old fixture failures exposed stale road/home IDs; tests now locate current
+  authorities or reproduce the original short-block defect synthetically. The
+  Kumbalam future-clearance and receiving-capacity suites pass (21 + 8 tests).
+- All 533 headless tests pass; six Python converter regressions pass.
+- Regenerated/import-validated the 100-service pack for the new geometry signature.
+  Fresh baseline/+600 s day audits are running as `.local/map-v1-*.json`.
+  The unchanged R28 download remains live until validation is complete.
 
 ## 2026-10-10 — R28 published: full-route busy timetable and dispatcher fixes
 - Published `TrainGame-Kerala-Coast-R28-Windows` from clean export `17f7a78`,

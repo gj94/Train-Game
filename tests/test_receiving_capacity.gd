@@ -24,7 +24,7 @@ func test_opposing_claim_from_the_other_section_prevents_kumbalam_deadlock():
 	w.trains.K1.automatic=false
 	w.trains.K1.controller=.7
 	e.run_cycle(true)
-	if w.signals["TUVR-N3"].route.is_empty(): return "Higher priority northbound train did not depart"
+	if w.signals[w.next_signal(w.trains.K2).id].route.is_empty(): return "Higher priority northbound train did not depart"
 	if not w.signals["ERS-S1"].route.is_empty(): return "Both approaches were granted the same remaining passenger platform"
 	return w.trains.K1.controller==.7 and e.states.K1.blockers.any(func(b):return b.train=="K2")
 
@@ -35,13 +35,13 @@ func test_early_manual_passenger_claim_is_respected_when_opponent_replans():
 	t.timetable.index=2;t.timetable.at_stop=false;t.automatic=false
 	var e=w.dispatcher();e.manual_service="K1"
 	e.run_cycle(true)
-	return w.signals["TUVR-N3"].route.is_empty() and not w.signals[w.next_signal(t).id].route.is_empty()
+	return w.signals[w.next_signal(w.trains.K2).id].route.is_empty() and not w.signals[w.next_signal(t).id].route.is_empty()
 
 func test_departed_vb_releases_a_second_passenger_berth_for_opposing_claims():
 	var w:=fixture()
 	w.trains.erase("K3")
 	w.dispatcher().run_cycle(true)
-	return not w.signals["ERS-S1"].route.is_empty() and not w.signals["TUVR-N3"].route.is_empty()
+	return not w.signals["ERS-S1"].route.is_empty() and not w.signals[w.next_signal(w.trains.K2).id].route.is_empty()
 
 func test_typed_berths_use_matching_instead_of_counting_all_roads():
 	return Planner._can_berth([{id="express",roads=["P1","P2"]},{id="local",roads=["P1"]}]) and not Planner._can_berth([{id="A",roads=["P2"]},{id="B",roads=["P2"]}])

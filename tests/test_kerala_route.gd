@@ -74,23 +74,24 @@ func test_automatic_sections_stop_at_controlled_station_homes():
 			return "Automatic signal would operate a station point: "+id
 	return true
 
-func test_large_stopping_scenario_has_separate_origins_and_terminal_roads():
+func test_large_stopping_scenario_has_clear_origins_and_accessible_terminal_roads():
 	var world:=Kerala.build_traffic()
 	var origins:={}
-	var termini:={}
 	var stocks:={}
 	var north:=0
 	var south:=0
 	for t in world.trains.values():
 		var first: Dictionary=t.timetable.stops[0]
 		var last: Dictionary=t.timetable.stops[-1]
-		if origins.has(first.block): return "Overlapping origin: "+first.block
-		if termini.has(last.block): return "Completed services share a terminal: "+last.block
+		if t.lifecycle!="scheduled":
+			if origins.has(first.block):return "Overlapping active origin: "+first.block
+			origins[first.block]=true
+		for stop in [first,last]:
+			var station: Dictionary=preload("res://sim/priority_dispatch.gd").station(world,stop.block)
+			if not preload("res://sim/depot_workings.gd").terminal_road_compatible(world,station,stop.block,stop.direction):return "Terminal blocks the opposing running line: "+stop.block
 		for block in [first.block,last.block]:
 			var st: Dictionary=preload("res://sim/priority_dispatch.gd").station(world,block)
 			if st.platform_details[block].platform_width<=0: return "Passenger origin/terminus lacks a platform: "+block
-		origins[first.block]=true
-		termini[last.block]=true
 		stocks[t.stock_kind]=true
 		if first.direction>0: south+=1
 		else: north+=1
@@ -102,6 +103,11 @@ func test_kerala_services_export_and_import_preserve_placement():
 	var result: Dictionary=pack.decode(JSON.stringify(data),"kerala_coast")
 	if not result.ok: return result.reason
 	if result.world.trains.size()!=32: return "Service import lost trains"
+	var scheduled:=0
+	for definition in data.services:
+		if definition.scheduled_entry:scheduled+=1
+		if definition.scheduled_entry and result.world.trains[definition.id].lifecycle!="scheduled":return "Queued origin was activated during import"
+	if scheduled==0:return "Shared origins must enter from supply"
 	for t in result.world.trains.values():
 		if t.path.size()!=1 or absf(t.head_s-t.timetable.stops[0].s)>.01: return "Placement changed"
 	return true

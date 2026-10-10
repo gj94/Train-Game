@@ -244,7 +244,9 @@ func _bed_segment(st: SurfaceTool, a: Dictionary, b: Dictionary, origin: Vector3
 			var valley := .238-(absf(gap)*.5-1.875)*(.226/.6)
 			profile = [Vector2(left-2.475,.012),Vector2(left-1.875,.238),Vector2(left+1.875,.238),
 				Vector2((left+right)*.5,valley),Vector2(right-1.875,.238),Vector2(right+1.875,.238),Vector2(right+2.475,.012)]
-		if soil: profile = [Vector2(left-3.35,.006),Vector2(right+3.35,.006)]
+		# Close the earth shoulder into the terrain. A single floating plane
+		# exposed a slit below the ballast on grades and reconstructed yards.
+		if soil: profile = [Vector2(left-3.95,-.65),Vector2(left-3.35,.006),Vector2(right+3.35,.006),Vector2(right+3.95,-.65)]
 		var row := []
 		for k in profile.size():
 			var v: Vector2 = profile[k]

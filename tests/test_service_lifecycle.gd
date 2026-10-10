@@ -147,14 +147,29 @@ func test_terminal_arrival_can_use_another_compatible_platform():
 	var candidates: Array=preload("res://sim/dispatch_planner.gd").new().candidates(w,t,home.id)
 	return candidates.any(func(o):return o.available and not o.stop.is_empty() and o.stop.block!="ERS_P3")
 
+func _short_approach() -> RailWorld:
+	# Preserve the old TVC short-block defect independently of changing map IDs.
+	var w:=RailWorld.new()
+	for item in [["A",-500,0],["B",0,0],["P",400,0],["C",800,0],["D",800,15]]:
+		w.graph.add_node(item[0],Vector3(item[1],0,item[2]))
+	w.graph.add_edge("PREVIOUS","A","B",[],25,1)
+	w.graph.add_edge("APPROACH","B","P",[],25,1)
+	w.graph.add_edge("MAIN","P","C",[],25,1)
+	w.graph.add_edge("LOOP","P","D",[],25,1)
+	w.graph.add_switch("P","APPROACH","MAIN","LOOP",195)
+	w.add_signal("HOME","APPROACH",1,15)
+	w.add_signal("MAIN_EXIT","MAIN",1,300)
+	w.add_signal("LOOP_EXIT","LOOP",1,300)
+	return w
+
 func test_long_rake_on_short_tvc_approach_does_not_block_its_own_point():
-	var w:=Kerala.build()
-	var sig: Dictionary=w.signals["TVP_TVC_D1-H"]
+	var w:=_short_approach()
+	var sig: Dictionary=w.signals.HOME
 	var t:=Train.new("LONG",610)
 	w.place_train(t,sig.edge,sig.s-12,1)
 	# place_train cannot trace backwards through a one-way running block;
 	# supply the tail path that normal forward travel creates here.
-	t.path.append({edge="TVP_TVC_D0",dir=1})
+	t.path.append({edge="PREVIOUS",dir=1})
 	if t.path.size()<2:return "Fixture must span multiple approach blocks"
 	var option: Dictionary=w.route_options(sig.id)[0]
 	if not w._train_near_switch(t,option.edges[0].switch):return "Fixture must occupy the approach clearance zone"
@@ -163,8 +178,8 @@ func test_long_rake_on_short_tvc_approach_does_not_block_its_own_point():
 	return w.set_route(sig.id,option.destination).ok
 
 func test_tail_on_point_branch_still_blocks_route_alignment():
-	var w:=Kerala.build()
-	var sig: Dictionary=w.signals["TVP_TVC_D1-H"]
+	var w:=_short_approach()
+	var sig: Dictionary=w.signals.HOME
 	var option: Dictionary=w.route_options(sig.id)[0]
 	var point: String=option.edges[0].switch
 	var branch: String=w.graph.switches[point].reverse

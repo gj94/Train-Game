@@ -45,11 +45,15 @@ func test_northbound_terminal_and_southbound_arrival_both_clear_to_depot():
 	var south:=Train.new("SOUTH",180)
 	south.timetable=preload("res://sim/timetable.gd").new()
 	south.timetable.departure=w.clock_seconds()
-	south.timetable.stops=[{block="TVP_P1",name="Previous",direction=1,s=500.0,minutes_from_origin=0.0,dwell_minutes=0.0},{block="TVC_P3",name="TVC",direction=1,s=800.0,minutes_from_origin=1.0,dwell_minutes=0.0}]
+	south.timetable.stops=[{block="TVP_P1",name="Previous",direction=1,s=500.0,minutes_from_origin=0.0,dwell_minutes=0.0},{block="TVC_P1",name="TVC",direction=1,s=800.0,minutes_from_origin=1.0,dwell_minutes=0.0}]
 	south.timetable.index=1;south.timetable.at_stop=false
 	south.timetable.actual_arrivals.assign([-1.0,-1.0]);south.timetable.actual_departures.assign([w.clock_seconds(),-1.0])
 	south.automatic=true
-	var sig: Dictionary=w.signals["TVP_TVC_D1-H"]
+	var sig:={}
+	for candidate in w.signals.values():
+		if candidate.dir==1 and w.route_options(candidate.id).any(func(o):return o.edges[-1].edge=="TVC_P1"):
+			sig=candidate;break
+	if sig.is_empty():return "Missing southbound terminal home"
 	w.place_train(south,sig.edge,sig.s-150,1)
 	w.dispatcher().enabled=true
 	for i in 600:

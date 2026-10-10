@@ -57,7 +57,7 @@ static func defaults(layout: String = "southern_corridor", busy: bool = false) -
 			stops.append({name=stop.name,block=stop.block,direction=stop.direction,
 				minutes_from_origin=stop.minutes_from_origin,dwell_minutes=stop.dwell_minutes})
 			stops[-1].position_m=stop.s
-		services.append({id=train.id,name=train.service_name,scheduled_entry=busy,
+		services.append({id=train.id,name=train.service_name,scheduled_entry=busy or train.lifecycle=="scheduled",
 			stock=train.stock_kind.trim_prefix("ported:"),
 			rake=train.rake_profile,
 			speed_limit_kmh=train.max_speed*3.6,

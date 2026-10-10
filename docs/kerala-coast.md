@@ -159,13 +159,17 @@ python tools/maps/kerala_route.py sections
 python tools/maps/kerala_route.py features
 python tools/maps/kerala_route.py tiles
 python tools/maps/station_operations.py
+python tools/maps/rail_geometry.py --source data/routes/kerala_coast --output data/routes/kerala_coast --dependencies .local/kerala-route/python
 ```
 
 Geofabrik: `https://download.geofabrik.de/asia/india/southern-zone-261006.osm.pbf`.
 SRTM: `https://opentopography.s3.sdsc.edu/raster/SRTM_GL1/SRTM_GL1_srtm/N08E076.tif`
 (substitute the four tile names in the data README). The feature extraction is
 the slowest step. Do not run `terrain` after `sections`/`tiles` without regenerating
-those later steps, because it rebuilds the route manifest.
+those later steps, because it rebuilds the route manifest. Run the curve/side
+postprocessor last: it is idempotent and records its source digest. CSV application
+rejects already-normalized operations to prevent restoring obsolete side offsets;
+regenerate raw operations before applying a changed register. See [map corrections](map-corrections.md).
 
 Blender: background `tools/blender/build_kerala_stations.py`; editable source
 models are in `art/scenery/`. Never run this in an open user Blender session.

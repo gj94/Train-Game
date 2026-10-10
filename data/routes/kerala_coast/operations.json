@@ -32,7 +32,7 @@
           "service": "siding",
           "mapped_offset": -3.852,
           "road": 3,
-          "lane": "U",
+          "lane": "D",
           "platform_side": 1,
           "platform_width": 3.43,
           "register_original_offset": -4.5
@@ -43,7 +43,7 @@
           "service": "main",
           "road": 4,
           "lane": "U",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": -14.291
         },
@@ -63,7 +63,7 @@
           "service": "main",
           "road": 6,
           "lane": "U",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": -34.823
         }
@@ -130,7 +130,7 @@
           "service": "siding",
           "road": 3,
           "lane": "D",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": -5.094
         }
@@ -476,8 +476,8 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 1034298611,
+          "offset": -15.441,
+          "osm_way": 640907588,
           "service": "main",
           "road": 1,
           "lane": "D",
@@ -485,8 +485,8 @@
           "platform_width": 3.43
         },
         {
-          "offset": -15.441,
-          "osm_way": 640907588,
+          "offset": 0.0,
+          "osm_way": 1034298611,
           "service": "main",
           "road": 2,
           "lane": "U",
@@ -498,7 +498,7 @@
           "osm_way": 640907594,
           "service": "main",
           "road": 3,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43
         }
@@ -517,24 +517,24 @@
       "through": true,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 619910191,
+          "offset": -8.0,
+          "osm_way": 619910178,
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
-          "register_original_offset": 0.0
+          "register_original_offset": -6.027
         },
         {
-          "offset": -8.0,
-          "osm_way": 619910178,
+          "offset": 0.0,
+          "osm_way": 619910191,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
-          "register_original_offset": -6.027
+          "register_original_offset": 0.0
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
@@ -551,21 +551,21 @@
       "through": true,
       "roads": [
         {
-          "offset": -0.0,
-          "osm_way": 467777629,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -7.73,
           "osm_way": 1034621330,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -0.0,
+          "osm_way": 467777629,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -583,21 +583,21 @@
       "through": false,
       "roads": [
         {
-          "offset": -0.0,
-          "osm_way": 520216267,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": -1,
-          "platform_width": 0
-        },
-        {
           "offset": -6.029,
           "osm_way": 1034621330,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 0
+        },
+        {
+          "offset": -0.0,
+          "osm_way": 520216267,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 0
         },
         {
@@ -605,7 +605,7 @@
           "osm_way": 640907597,
           "service": "siding",
           "road": 3,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43
         },
@@ -614,7 +614,7 @@
           "osm_way": 640907598,
           "service": "siding",
           "road": 4,
-          "lane": "U",
+          "lane": "D",
           "platform_side": -1,
           "platform_width": 3.43
         }
@@ -633,32 +633,32 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 520216267,
+          "offset": -8.0,
+          "osm_way": 1034621330,
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
-          "register_original_offset": 0.0
+          "register_original_offset": -5.751
         },
         {
-          "offset": -8.0,
-          "osm_way": 1034621330,
+          "offset": 0.0,
+          "osm_way": 520216267,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
-          "register_original_offset": -5.751
+          "register_original_offset": 0.0
         },
         {
           "offset": 8.296,
           "osm_way": 640907608,
           "service": "siding",
           "road": 3,
-          "lane": "D",
-          "platform_side": 1,
+          "lane": "U",
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": 10.545
         },
@@ -667,7 +667,7 @@
           "osm_way": 640907610,
           "service": "siding",
           "road": 4,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
           "register_original_offset": 17.08
@@ -751,7 +751,7 @@
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": -0.0
         },
@@ -806,7 +806,7 @@
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": -0.0
         },
@@ -836,7 +836,7 @@
           "service": "siding",
           "road": 4,
           "lane": "D",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": -13.058
         },
@@ -917,21 +917,21 @@
       "through": true,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 617379924,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -6.822,
           "osm_way": 661604990,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 0.0,
+          "osm_way": 617379924,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -949,8 +949,8 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 331666080,
+          "offset": -5.113,
+          "osm_way": 661604991,
           "service": "main",
           "road": 1,
           "lane": "D",
@@ -958,8 +958,8 @@
           "platform_width": 0
         },
         {
-          "offset": -5.113,
-          "osm_way": 661604991,
+          "offset": 0.0,
+          "osm_way": 331666080,
           "service": "main",
           "road": 2,
           "lane": "U",
@@ -971,7 +971,7 @@
           "osm_way": 546758557,
           "service": "main",
           "road": 3,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43
         },
@@ -980,7 +980,7 @@
           "osm_way": 546758556,
           "service": "main",
           "road": 4,
-          "lane": "U",
+          "lane": "D",
           "platform_side": -1,
           "platform_width": 3.43
         }
@@ -999,32 +999,32 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 242028390,
+          "offset": -8.0,
+          "osm_way": 70655547,
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
-          "register_original_offset": -0.0
+          "register_original_offset": -4.833
         },
         {
-          "offset": -8.0,
-          "osm_way": 70655547,
+          "offset": 0.0,
+          "osm_way": 242028390,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
-          "register_original_offset": -4.833
+          "register_original_offset": -0.0
         },
         {
           "offset": 11.121,
           "osm_way": 242027823,
           "service": "siding",
           "road": 3,
-          "lane": "D",
-          "platform_side": 1,
+          "lane": "U",
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": 14.288
         },
@@ -1033,7 +1033,7 @@
           "osm_way": 242028206,
           "service": "siding",
           "road": 4,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
           "register_original_offset": 18.231
@@ -1043,7 +1043,7 @@
           "osm_way": 827738556,
           "service": "siding",
           "road": 5,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
           "register_original_offset": 32.585
@@ -1053,8 +1053,8 @@
           "osm_way": 550863735,
           "service": "siding",
           "road": 6,
-          "lane": "D",
-          "platform_side": 1,
+          "lane": "U",
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": 45.62
         },
@@ -1063,7 +1063,7 @@
           "osm_way": 916892584,
           "service": "siding",
           "road": 7,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
           "register_original_offset": 50.406
@@ -1073,7 +1073,7 @@
           "osm_way": 242026931,
           "service": "siding",
           "road": 8,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
           "register_original_offset": 55.259
@@ -1083,7 +1083,7 @@
           "osm_way": 242026932,
           "service": "siding",
           "road": 9,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
           "register_original_offset": 61.793
@@ -1093,7 +1093,7 @@
           "osm_way": 519646401,
           "service": "siding",
           "road": 10,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
           "register_original_offset": 68.684
@@ -1103,7 +1103,7 @@
           "osm_way": 242027571,
           "service": "siding",
           "road": 11,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
           "register_original_offset": 84.453
@@ -1113,7 +1113,7 @@
           "osm_way": 632923357,
           "service": "siding",
           "road": 12,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
           "register_original_offset": 88.539
@@ -1133,22 +1133,22 @@
       "through": true,
       "roads": [
         {
-          "offset": -0.009,
-          "osm_way": 101048963,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -4.5,
           "osm_way": 608428999,
           "service": "main",
           "mapped_offset": -4.021,
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -0.009,
+          "osm_way": 101048963,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -1166,21 +1166,21 @@
       "through": true,
       "roads": [
         {
-          "offset": -0.026,
-          "osm_way": 101048963,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -6.946,
           "osm_way": 608428999,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -0.026,
+          "osm_way": 101048963,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -1198,31 +1198,31 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 519426841,
+          "offset": -11.856,
+          "osm_way": 519426849,
           "service": "main",
           "road": 1,
           "lane": "D",
           "platform_side": 1,
           "platform_width": 3.43,
-          "register_original_offset": 0.0
+          "register_original_offset": -13.982
         },
         {
-          "offset": -11.856,
-          "osm_way": 519426849,
+          "offset": 0.0,
+          "osm_way": 519426841,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
-          "register_original_offset": -13.982
+          "register_original_offset": 0.0
         },
         {
           "offset": 8.0,
           "osm_way": 641573557,
           "service": "siding",
           "road": 3,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
           "register_original_offset": 4.541
@@ -1232,8 +1232,8 @@
           "osm_way": 641573559,
           "service": "siding",
           "road": 4,
-          "lane": "U",
-          "platform_side": 1,
+          "lane": "D",
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": -19.856
         }
@@ -1252,22 +1252,22 @@
       "through": true,
       "roads": [
         {
-          "offset": -0.094,
-          "osm_way": 608428993,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -4.5,
           "osm_way": 236119109,
           "service": "main",
           "mapped_offset": -2.736,
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -0.094,
+          "osm_way": 608428993,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -1285,21 +1285,21 @@
       "through": true,
       "roads": [
         {
-          "offset": 0.01,
-          "osm_way": 608428993,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -4.909,
           "osm_way": 236119109,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 0.01,
+          "osm_way": 608428993,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -1317,21 +1317,21 @@
       "through": false,
       "roads": [
         {
-          "offset": -0.003,
-          "osm_way": 608428994,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 0
-        },
-        {
           "offset": -5.62,
           "osm_way": 514398904,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 0
+        },
+        {
+          "offset": -0.003,
+          "osm_way": 608428994,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         },
         {
@@ -1339,7 +1339,7 @@
           "osm_way": 514398901,
           "service": "siding",
           "road": 3,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43
         },
@@ -1348,7 +1348,7 @@
           "osm_way": 514398903,
           "service": "siding",
           "road": 4,
-          "lane": "U",
+          "lane": "D",
           "platform_side": -1,
           "platform_width": 3.43
         }
@@ -1367,21 +1367,21 @@
       "through": true,
       "roads": [
         {
-          "offset": -0.05,
-          "osm_way": 608428987,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -9.683,
           "osm_way": 148462098,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -0.05,
+          "osm_way": 608428987,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -1399,31 +1399,31 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 514385379,
+          "offset": -10.856,
+          "osm_way": 514385383,
           "service": "main",
           "road": 1,
           "lane": "D",
           "platform_side": 1,
           "platform_width": 3.43,
-          "register_original_offset": 0.0
+          "register_original_offset": -13.023
         },
         {
-          "offset": -10.856,
-          "osm_way": 514385383,
+          "offset": 0.0,
+          "osm_way": 514385379,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
-          "register_original_offset": -13.023
+          "register_original_offset": 0.0
         },
         {
           "offset": 8.0,
           "osm_way": 514385380,
           "service": "siding",
           "road": 3,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
           "register_original_offset": 5.092
@@ -1433,8 +1433,8 @@
           "osm_way": 514385381,
           "service": "siding",
           "road": 4,
-          "lane": "U",
-          "platform_side": 1,
+          "lane": "D",
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": -18.856
         }
@@ -1453,21 +1453,21 @@
       "through": true,
       "roads": [
         {
-          "offset": -0.0,
-          "osm_way": 738434645,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -7.194,
           "osm_way": 738434644,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -0.0,
+          "osm_way": 738434645,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -1485,21 +1485,21 @@
       "through": true,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 965152762,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -5.367,
           "osm_way": 796439515,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 0.0,
+          "osm_way": 965152762,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -1517,21 +1517,21 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.005,
-          "osm_way": 608428982,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 0
-        },
-        {
           "offset": -5.92,
           "osm_way": 90772767,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 0.005,
+          "osm_way": 608428982,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         },
         {
@@ -1539,13 +1539,13 @@
           "osm_way": 641627322,
           "service": "siding",
           "road": 3,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
-          "platform_width": 3.43
+          "platform_width": 0
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers.",
+      "geometry_scope": "Mapped road count and side; throat geometry reconstructed. Road IDs are game IDs, not official platform numbers. Two faces placed on the running roads for directional access; precise platform numbering unresolved.",
       "passenger_open": true,
       "register_platforms": 2,
       "register_code": "MQU",
@@ -1558,21 +1558,21 @@
       "through": true,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 608428982,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -5.763,
           "osm_way": 90772767,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": 0.0,
+          "osm_way": 608428982,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -1590,39 +1590,39 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 608428982,
+          "offset": -8.0,
+          "osm_way": 90772767,
           "service": "main",
           "road": 1,
           "lane": "D",
           "platform_side": 1,
           "platform_width": 3.43,
-          "register_original_offset": 0.0
+          "register_original_offset": -5.423
         },
         {
-          "offset": -8.0,
-          "osm_way": 90772767,
+          "offset": 0.0,
+          "osm_way": 608428982,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
-          "register_original_offset": -5.423
+          "register_original_offset": 0.0
         },
         {
           "offset": -16.0,
           "osm_way": 641627329,
           "service": "siding",
           "road": 3,
-          "lane": "U",
-          "platform_side": 1,
+          "lane": "D",
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": -10.069
         },
         {
           "road": 4,
           "offset": 8.0,
-          "lane": "D",
+          "lane": "U",
           "service": "siding",
           "osm_way": null,
           "platform_width": 0,
@@ -1645,24 +1645,24 @@
       "through": true,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 608428982,
+          "offset": -8.0,
+          "osm_way": 90772767,
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
-          "register_original_offset": -0.154
+          "register_original_offset": -5.63
         },
         {
-          "offset": -8.0,
-          "osm_way": 90772767,
+          "offset": 0.0,
+          "osm_way": 608428982,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
-          "register_original_offset": -5.63
+          "register_original_offset": -0.154
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
@@ -1679,24 +1679,24 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 762403627,
+          "offset": -8.0,
+          "osm_way": 762403625,
           "service": "main",
           "road": 1,
           "lane": "D",
-          "platform_side": 1,
+          "platform_side": -1,
           "platform_width": 3.43,
-          "register_original_offset": 0.0
+          "register_original_offset": -5.598
         },
         {
-          "offset": -8.0,
-          "osm_way": 762403625,
+          "offset": 0.0,
+          "osm_way": 762403627,
           "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
-          "register_original_offset": -5.598
+          "register_original_offset": 0.0
         },
         {
           "offset": 8.0,
@@ -1704,7 +1704,7 @@
           "service": "siding",
           "mapped_offset": 3.861,
           "road": 3,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
           "register_original_offset": 4.5
@@ -1712,7 +1712,7 @@
         {
           "road": 4,
           "offset": -20.402,
-          "lane": "U",
+          "lane": "D",
           "service": "siding",
           "osm_way": null,
           "platform_width": 3.43,
@@ -1723,7 +1723,7 @@
         {
           "road": 5,
           "offset": 16.0,
-          "lane": "D",
+          "lane": "U",
           "service": "siding",
           "osm_way": null,
           "platform_width": 3.43,
@@ -1734,11 +1734,11 @@
         {
           "road": 6,
           "offset": -29.402,
-          "lane": "U",
+          "lane": "D",
           "service": "siding",
           "osm_way": null,
           "platform_width": 3.43,
-          "platform_side": 1,
+          "platform_side": -1,
           "evidence": "Reconstructed position for CSV running-loop/platform inventory",
           "register_original_offset": -27
         }
@@ -1757,21 +1757,21 @@
       "through": true,
       "roads": [
         {
-          "offset": -0.0,
-          "osm_way": 385040650,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43
-        },
-        {
           "offset": -5.362,
           "osm_way": 608428979,
           "service": "main",
+          "road": 1,
+          "lane": "D",
+          "platform_side": -1,
+          "platform_width": 3.43
+        },
+        {
+          "offset": -0.0,
+          "osm_way": 385040650,
+          "service": "main",
           "road": 2,
           "lane": "U",
-          "platform_side": -1,
+          "platform_side": 1,
           "platform_width": 3.43
         }
       ],
@@ -2117,7 +2117,7 @@
           "road": 3,
           "osm_way": 1180712997,
           "offset": -21.6,
-          "lane": "U",
+          "lane": "D",
           "service": "main",
           "platform_width": 0,
           "platform_side": -1,
@@ -2200,7 +2200,7 @@
           "lane": "U",
           "service": "main",
           "platform_width": 3.43,
-          "platform_side": -1,
+          "platform_side": 1,
           "evidence": "Third road reported by both station sources; position reconstructed from platform polygon 1180712996"
         }
       ],
@@ -2220,32 +2220,32 @@
       "through": false,
       "roads": [
         {
-          "offset": 0.0,
-          "osm_way": 992276367,
-          "service": "main",
-          "road": 1,
-          "lane": "D",
-          "platform_side": 1,
-          "platform_width": 3.43,
-          "register_original_offset": -0.001
-        },
-        {
           "offset": -8.0,
           "osm_way": 992276369,
           "service": "main",
           "mapped_offset": -3.534,
+          "road": 1,
+          "lane": "D",
+          "platform_side": 1,
+          "platform_width": 3.43,
+          "register_original_offset": -4.5
+        },
+        {
+          "offset": 0.0,
+          "osm_way": 992276367,
+          "service": "main",
           "road": 2,
           "lane": "U",
           "platform_side": 1,
           "platform_width": 0,
-          "register_original_offset": -4.5
+          "register_original_offset": -0.001
         },
         {
           "offset": -16.0,
           "osm_way": 96236046,
           "service": "siding",
           "road": 3,
-          "lane": "U",
+          "lane": "D",
           "platform_side": 1,
           "platform_width": 0,
           "register_original_offset": -8.659
@@ -2255,7 +2255,7 @@
           "osm_way": 514385391,
           "service": "siding",
           "road": 4,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
           "register_original_offset": 13.764
@@ -2265,7 +2265,7 @@
           "osm_way": 383031403,
           "service": "siding",
           "road": 5,
-          "lane": "D",
+          "lane": "U",
           "platform_side": 1,
           "platform_width": 3.43,
           "register_original_offset": 19.888
@@ -2275,8 +2275,8 @@
           "osm_way": 514385387,
           "service": "siding",
           "road": 6,
-          "lane": "U",
-          "platform_side": 1,
+          "lane": "D",
+          "platform_side": -1,
           "platform_width": 3.43,
           "register_original_offset": -34.726
         }
@@ -2426,7 +2426,9 @@
       "end": 75058.828,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -8.895
+      "parallel_offset": -8.895,
+      "down_offset": -8.895,
+      "up_offset": 0
     },
     {
       "a": "TZH",
@@ -2435,7 +2437,9 @@
       "end": 81687.201,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -12.342
+      "parallel_offset": -12.342,
+      "down_offset": -12.342,
+      "up_offset": 0
     },
     {
       "a": "KVTA",
@@ -2444,7 +2448,9 @@
       "end": 87524.821,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -6.334
+      "parallel_offset": -6.334,
+      "down_offset": -6.334,
+      "up_offset": 0
     },
     {
       "a": "HAD",
@@ -2453,7 +2459,9 @@
       "end": 92702.276,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -6.751
+      "parallel_offset": -6.751,
+      "down_offset": -6.751,
+      "up_offset": 0
     },
     {
       "a": "CHPD",
@@ -2462,7 +2470,9 @@
       "end": 100522.939,
       "mapped_parallel_fraction": 0.981,
       "tracks": 2,
-      "parallel_offset": -8.809
+      "parallel_offset": -8.809,
+      "down_offset": -8.809,
+      "up_offset": 0
     },
     {
       "a": "KYJ",
@@ -2471,7 +2481,9 @@
       "end": 106468.214,
       "mapped_parallel_fraction": 0.946,
       "tracks": 2,
-      "parallel_offset": 4.992
+      "parallel_offset": 4.992,
+      "down_offset": 0,
+      "up_offset": 4.992
     },
     {
       "a": "OCR",
@@ -2480,7 +2492,9 @@
       "end": 114139.887,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": 5.475
+      "parallel_offset": 5.475,
+      "down_offset": 0,
+      "up_offset": 5.475
     },
     {
       "a": "KPY",
@@ -2489,7 +2503,9 @@
       "end": 121791.956,
       "mapped_parallel_fraction": 0.804,
       "tracks": 2,
-      "parallel_offset": 10.487
+      "parallel_offset": 10.487,
+      "down_offset": 0,
+      "up_offset": 10.487
     },
     {
       "a": "STKT",
@@ -2498,7 +2514,9 @@
       "end": 126304.697,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -5.662
+      "parallel_offset": -5.662,
+      "down_offset": -5.662,
+      "up_offset": 0
     },
     {
       "a": "MQO",
@@ -2507,7 +2525,9 @@
       "end": 132099.021,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -16.31
+      "parallel_offset": -16.31,
+      "down_offset": -16.31,
+      "up_offset": 0
     },
     {
       "a": "PRND",
@@ -2516,7 +2536,9 @@
       "end": 141159.076,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -5.485
+      "parallel_offset": -5.485,
+      "down_offset": -5.485,
+      "up_offset": 0
     },
     {
       "a": "QLN",
@@ -2525,7 +2547,9 @@
       "end": 145940.135,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -5.138
+      "parallel_offset": -5.138,
+      "down_offset": -5.138,
+      "up_offset": 0
     },
     {
       "a": "IRP",
@@ -2534,7 +2558,9 @@
       "end": 150060.364,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -10.232
+      "parallel_offset": -10.232,
+      "down_offset": -10.232,
+      "up_offset": 0
     },
     {
       "a": "MYY",
@@ -2543,7 +2569,9 @@
       "end": 153633.529,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -12.568
+      "parallel_offset": -12.568,
+      "down_offset": -12.568,
+      "up_offset": 0
     },
     {
       "a": "PVU",
@@ -2552,7 +2580,9 @@
       "end": 158161.173,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -11.936
+      "parallel_offset": -11.936,
+      "down_offset": -11.936,
+      "up_offset": 0
     },
     {
       "a": "KFI",
@@ -2561,7 +2591,9 @@
       "end": 161016.486,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -5.987
+      "parallel_offset": -5.987,
+      "down_offset": -5.987,
+      "up_offset": 0
     },
     {
       "a": "EVA",
@@ -2570,7 +2602,9 @@
       "end": 164822.046,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -6.308
+      "parallel_offset": -6.308,
+      "down_offset": -6.308,
+      "up_offset": 0
     },
     {
       "a": "VAK",
@@ -2579,7 +2613,9 @@
       "end": 171207.074,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -5.385
+      "parallel_offset": -5.385,
+      "down_offset": -5.385,
+      "up_offset": 0
     },
     {
       "a": "AMY",
@@ -2588,7 +2624,9 @@
       "end": 173974.351,
       "mapped_parallel_fraction": 0.909,
       "tracks": 2,
-      "parallel_offset": -5.104
+      "parallel_offset": -5.104,
+      "down_offset": -5.104,
+      "up_offset": 0
     },
     {
       "a": "KVU",
@@ -2597,7 +2635,9 @@
       "end": 177070.705,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -10.886
+      "parallel_offset": -10.886,
+      "down_offset": -10.886,
+      "up_offset": 0
     },
     {
       "a": "CRY",
@@ -2606,7 +2646,9 @@
       "end": 181126.217,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -9.366
+      "parallel_offset": -9.366,
+      "down_offset": -9.366,
+      "up_offset": 0
     },
     {
       "a": "PGZ",
@@ -2615,7 +2657,9 @@
       "end": 184489.836,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -4.578
+      "parallel_offset": -4.578,
+      "down_offset": -4.578,
+      "up_offset": 0
     },
     {
       "a": "MQU",
@@ -2624,7 +2668,9 @@
       "end": 188385.654,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -4.664
+      "parallel_offset": -4.664,
+      "down_offset": -4.664,
+      "up_offset": 0
     },
     {
       "a": "KXP",
@@ -2633,7 +2679,9 @@
       "end": 192407.505,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -6.479
+      "parallel_offset": -6.479,
+      "down_offset": -6.479,
+      "up_offset": 0
     },
     {
       "a": "KZK",
@@ -2642,7 +2690,9 @@
       "end": 196382.442,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -6.597
+      "parallel_offset": -6.597,
+      "down_offset": -6.597,
+      "up_offset": 0
     },
     {
       "a": "VELI",
@@ -2651,7 +2701,9 @@
       "end": 198576.719,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -8.185
+      "parallel_offset": -8.185,
+      "down_offset": -8.185,
+      "up_offset": 0
     },
     {
       "a": "TVCN",
@@ -2660,7 +2712,9 @@
       "end": 203279.092,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -6.022
+      "parallel_offset": -6.022,
+      "down_offset": -6.022,
+      "up_offset": 0
     },
     {
       "a": "TVP",
@@ -2669,7 +2723,9 @@
       "end": 205769.843,
       "mapped_parallel_fraction": 1.0,
       "tracks": 2,
-      "parallel_offset": -6.081
+      "parallel_offset": -6.081,
+      "down_offset": -6.081,
+      "up_offset": 0
     },
     {
       "a": "TVC",
@@ -2770,7 +2826,9 @@
       "tracks": 2,
       "parallel_offset": 11.2,
       "note": "Commissioned double line; prior OSM construction classification superseded by dated report.",
-      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027",
+      "down_offset": 0,
+      "up_offset": 11.2
     },
     {
       "a": "VRLR",
@@ -2781,7 +2839,9 @@
       "tracks": 2,
       "parallel_offset": 6.0,
       "note": "Commissioned double line; prior OSM construction classification superseded by dated report.",
-      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027",
+      "down_offset": 0,
+      "up_offset": 6.0
     },
     {
       "a": "NJT",
@@ -2792,7 +2852,9 @@
       "tracks": 2,
       "parallel_offset": 6.0,
       "note": "Commissioned double line; prior OSM construction classification superseded by dated report.",
-      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027"
+      "commissioning_source": "https://www.newindianexpress.com/states/kerala/2026/Oct/04/thiruvananthapuram-kanyakumari-third-railway-lines-dpr-to-be-submitted-by-march-2027",
+      "down_offset": 0,
+      "up_offset": 6.0
     }
   ],
   "station_register": {
@@ -2800,5 +2862,11 @@
     "sha256": "069b6e591029b8e9c04123385c8b2fc7ba731a0af936fdbd000628fc08ee0a00",
     "applied": "2026-10-09",
     "authority": "User requested CSV platform counts, including reported/disputed figures."
+  },
+  "geometry_revision": "continuous-curves-lht-v1",
+  "running_side": {
+    "rule": "Left-hand running on paired lines",
+    "source": "https://indianrailways.gov.in/railwayboard/uploads/directorate/safety/SR_SR/SR_SR_CHAP4.pdf",
+    "scope": "General rule 4.06; local exceptions and precise pointwork not independently surveyed"
   }
 }

@@ -16,11 +16,11 @@ func test_future_crossing_reserves_three_distinct_compatible_berths():
 	var w:=_world();var e=_activate(w)
 	if e.future_clearances.plans.size()!=1:return "No crossing plan"
 	var p: Dictionary=e.future_clearances.plans[0]
-	return p.incoming=="K1" and p.opponent=="K2" and p.vacater=="K3" and p.future_road=="KUMM_P3" and p.opponent_road=="KUMM_P2" and p.escape_road=="TUVR_P2"
+	return p.incoming=="K1" and p.opponent=="K2" and p.vacater=="K3" and p.future_road=="KUMM_P3" and p.opponent_road=="KUMM_P2" and p.escape_road=="TUVR_P3"
 
 func test_both_approaches_clear_but_occupied_vb_platform_stays_red():
 	var w:=_world();var e=_activate(w)
-	if w.aspect("ERS-S1")==RailWorld.Aspect.RED or w.aspect("TUVR-N3")==RailWorld.Aspect.RED:return "Safe approach was not admitted"
+	if w.aspect("ERS-S1")==RailWorld.Aspect.RED or w.aspect(w.next_signal(w.trains.K2).id)==RailWorld.Aspect.RED:return "Safe approach was not admitted"
 	w.place_train(w.trains.K1,preload("res://tests/kerala_fixture.gd").kumbalam_approach(w),w.graph.edges[preload("res://tests/kerala_fixture.gd").kumbalam_approach(w)].length-80,1)
 	w.trains.K1.timetable.index=2;w.trains.K1.timetable.at_stop=false
 	e.run_cycle(true)
@@ -42,7 +42,7 @@ func test_operator_hold_or_red_on_vacater_refuses_plan():
 
 func test_occupied_escape_berths_are_not_replaced_by_another_forecast():
 	var w:=_world();var e=w.dispatcher()
-	for road in ["TUVR_P1","TUVR_P2"]:
+	for road in ["TUVR_P1","TUVR_P3"]: # K2 already occupies P2
 		w.place_train(Train.new("BLOCK_"+road,100),road,500,1)
 	return e.future_clearances.propose(w,e,w.trains.K1).is_empty()
 
@@ -68,7 +68,7 @@ func test_wrong_length_or_platform_face_refuses_future_berth():
 
 func test_new_plan_cannot_steal_an_existing_crossings_resources():
 	var w:=_world();var e=_activate(w)
-	return e.future_clearances.propose(w,e,w.trains.K1).is_empty() and e.future_clearances.owner("KUMM_P3")=="K1" and e.future_clearances.owner("TUVR_P2")=="K3"
+	return e.future_clearances.propose(w,e,w.trains.K1).is_empty() and e.future_clearances.owner("KUMM_P3")=="K1" and e.future_clearances.owner("TUVR_P3")=="K3"
 
 func test_planned_opponent_stays_until_full_incoming_tail_arrives():
 	var w:=_world();var e=_activate(w)
@@ -91,7 +91,7 @@ func test_unrelated_train_cannot_take_escape_corridor_or_berth():
 	var w:=_world();var e=_activate(w)
 	var other:=Train.new("OTHER",100)
 	var section_option:={edges=[{edge="KUMM_AROR_M0",dir=1}]}
-	var berth_option:={edges=[{edge="TUVR_P2",dir=1}]}
+	var berth_option:={edges=[{edge="TUVR_P3",dir=1}]}
 	return not e.future_clearances.section_reason(w,other,section_option).is_empty() and not e.future_clearances.section_reason(w,other,berth_option).is_empty()
 
 func test_received_train_can_follow_vacater_under_normal_block_protection():

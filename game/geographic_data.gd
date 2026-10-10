@@ -34,21 +34,48 @@ func _init(data: Dictionary = {}) -> void:
 			bridge_bins[key].append(span)
 	var points: Array = route.alignment
 
-	for i in range(0,points.size()-1,10):
-		var j := mini(i+10,points.size()-1)
+	for i in range(0,points.size()-1,5):
+		var j := mini(i+5,points.size()-1)
 		var a := Vector3(points[i][0],points[i][1],points[i][2])
 		var b := Vector3(points[j][0],points[j][1],points[j][2])
 		var chain: float = route.chainage[i]
 		var bridge := false
 
 		var index := segments.size()
-		segments.append({a=a,b=b,s=chain,bridge=bridge})
+		segments.append({a=a,b=b,s=chain,end_s=route.chainage[j],bridge=bridge})
 		for x in range(floori(minf(a.x,b.x)/CELL)-1,floori(maxf(a.x,b.x)/CELL)+2):
 			for z in range(floori(minf(a.z,b.z)/CELL)-1,floori(maxf(a.z,b.z)/CELL)+2):
 				var key := Vector2i(x,z)
 				if not rail_bins.has(key): rail_bins[key] = []
 				rail_bins[key].append(index)
 	preload("res://game/geographic_depot_ground.gd").install(self,route)
+
+## Ground outer platform roads and longer station ladders beyond the ordinary
+## 32 m formation. Keep the inexpensive main-line/depot index, and share the
+## additions with workers rather than rebuilding their immutable geometry.
+func install_railway(world: RailWorld) -> void:
+	for id: String in world.graph.edges:
+		var edge: Dictionary=world.graph.edges[id]
+		if "_DEPOT_" in id:continue # already installed from route.depot_alignment
+		var lateral: float=maxf(absf(edge.lateral),maxf(absf(world.graph.nodes[edge.a].lateral),absf(world.graph.nodes[edge.b].lateral)))
+		if lateral<=24:continue
+		var count:=maxi(1,ceili(edge.length/25.0))
+		for i in count:
+			var start: float=edge.length*i/float(count)
+			var end: float=edge.length*(i+1)/float(count)
+			var a:=world.graph.position(id,start);var b:=world.graph.position(id,end)
+			var sa: float=lerpf(edge.chainage_start,edge.chainage_end,i/float(count))
+			var sb: float=lerpf(edge.chainage_start,edge.chainage_end,(i+1)/float(count))
+			var index:=segments.size()
+			segments.append({a=a,b=b,s=sa,end_s=sb,bridge=false,depot=false,yard=true})
+			for x in range(floori(minf(a.x,b.x)/CELL)-1,floori(maxf(a.x,b.x)/CELL)+2):
+				for z in range(floori(minf(a.z,b.z)/CELL)-1,floori(maxf(a.z,b.z)/CELL)+2):
+					var key:=Vector2i(x,z)
+					if not rail_bins.has(key):rail_bins[key]=[]
+					rail_bins[key].append(index)
+
+func share_railway(source) -> void:
+	segments=source.segments;rail_bins=source.rail_bins
 
 func tile(key: Vector2i) -> Dictionary:
 	if not tile_keys.has(key): return {}
@@ -90,7 +117,7 @@ func nearest_rail(x: float,z: float) -> Dictionary:
 		var along := clampf((p-a).dot(b-a)/maxf(.001,(b-a).length_squared()),0,1)
 		var d := p.distance_to(a.lerp(b,along))
 		if d<best.distance:
-			best={distance=d,height=lerpf(segment.a.y,segment.b.y,along),s=segment.s+along*a.distance_to(b),bridge=segment.bridge,depot=segment.get("depot",false)}
+			best={distance=d,height=lerpf(segment.a.y,segment.b.y,along),s=lerpf(segment.s,segment.get("end_s",segment.s+a.distance_to(b)),along),bridge=segment.bridge,depot=segment.get("depot",false),yard=segment.get("yard",false)}
 	best.bridge=not best.get("depot",false) and not bridge_at(best.s).is_empty()
 	return best
 
@@ -102,7 +129,7 @@ func bridge_at(s: float) -> Dictionary:
 func ground_at(x: float,z: float) -> float:
 	var height := height_at(x,z)
 	var rail := nearest_rail(x,z)
-	var width: float=12.0 if rail.get("depot",false) else station_bins.get(floori(rail.s/500),32)
+	var width: float=12.0 if rail.get("depot",false) or rail.get("yard",false) else station_bins.get(floori(rail.s/500),32)
 	if rail.distance<width+58:
 		if rail.bridge:
 			# SRTM can capture bridge/embankment tops. Keep natural lower ground,

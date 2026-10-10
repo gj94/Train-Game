@@ -64,13 +64,18 @@ try {
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/assets.md') -Destination (Join-Path $buildRoot 'ASSET-SOURCES.md')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/ported/station-notices') -Destination $buildRoot -Recurse -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/trackside/notices') -Destination (Join-Path $buildRoot 'guides/trackside-notices') -Recurse -Force
-    foreach ($guide in @('busy-timetable.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
+    foreach ($guide in @('busy-timetable.md', 'map-corrections.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/timetable-2026-10-10') -Destination (Join-Path $buildRoot 'guides/timetable-evidence') -Recurse -Force
     $timetableGuide = Join-Path $buildRoot 'guides/busy-timetable.md'
     [IO.File]::WriteAllText($timetableGuide, [IO.File]::ReadAllText($timetableGuide).Replace('../art/performance/timetable-2026-10-10/', 'timetable-evidence/'))
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/timetable-through-2026-10-10') -Destination (Join-Path $buildRoot 'guides/timetable-through-evidence') -Recurse -Force
+    Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/map-2026-10-11') -Destination (Join-Path $buildRoot 'guides/map-evidence') -Recurse -Force
+    foreach ($guideName in @('map-corrections.md', 'busy-timetable.md')) {
+        $mapGuide = Join-Path $buildRoot "guides/$guideName"
+        [IO.File]::WriteAllText($mapGuide, [IO.File]::ReadAllText($mapGuide).Replace('../art/performance/map-2026-10-11/', 'map-evidence/'))
+    }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/timetables') -Destination (Join-Path $buildRoot 'guides/timetables') -Recurse -Force
     [IO.File]::WriteAllText($timetableGuide, [IO.File]::ReadAllText($timetableGuide).Replace('../art/performance/timetable-through-2026-10-10/', 'timetable-through-evidence/').Replace('../art/timetables/', 'timetables/'))
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/crowded-2026-10-10') -Destination (Join-Path $buildRoot 'guides/crowded-benchmark-evidence') -Recurse -Force

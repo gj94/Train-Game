@@ -21,13 +21,35 @@ static func build() -> RailWorld:
 
 func point(s: float, offset: float = 0.0) -> Array:
 	var index := clampi(distance.bsearch(clampf(s,0,distance[-1]))-1,0,distance.size()-2)
-	var weight := (s-distance[index])/(distance[index+1]-distance[index])
-	var a: Array = data.alignment[index]
-	var b: Array = data.alignment[index+1]
-	var dx: float = b[0]-a[0]
-	var dz: float = b[2]-a[2]
-	var length := sqrt(dx*dx+dz*dz)
-	return [lerpf(a[0],b[0],weight)-dz/length*offset,lerpf(a[1],b[1],weight),lerpf(a[2],b[2],weight)+dx/length*offset]
+	var h: float=distance[index+1]-distance[index]
+	var t: float=(s-distance[index])/h
+	var a: Array=data.alignment[index]
+	var b: Array=data.alignment[index+1]
+	var left:=maxi(0,index-1)
+	var right:=mini(distance.size()-1,index+2)
+	var before: Array=data.alignment[left]
+	var after: Array=data.alignment[right]
+	var ax: float=(b[0]-before[0])/(distance[index+1]-distance[left])
+	var az: float=(b[2]-before[2])/(distance[index+1]-distance[left])
+	var bx: float=(after[0]-a[0])/(distance[right]-distance[index])
+	var bz: float=(after[2]-a[2])/(distance[right]-distance[index])
+	var x: float
+	var z: float
+	var dx: float
+	var dz: float
+	if t<0 or t>1:
+		# Buffer ends may extend outside the imported polyline: no cubic extrapolation.
+		dx=(b[0]-a[0])/h;dz=(b[2]-a[2])/h
+		x=a[0]+t*h*dx;z=a[2]+t*h*dz
+	else:
+		var t2:=t*t;var t3:=t2*t
+		# Local differences avoid cancellation in 200 km geographic coordinates.
+		x=a[0]+(-2*t3+3*t2)*(b[0]-a[0])+(t3-2*t2+t)*h*ax+(t3-t2)*h*bx
+		z=a[2]+(-2*t3+3*t2)*(b[2]-a[2])+(t3-2*t2+t)*h*az+(t3-t2)*h*bz
+		dx=(-6*t2+6*t)*(b[0]-a[0])/h+(3*t2-4*t+1)*ax+(3*t2-2*t)*bx
+		dz=(-6*t2+6*t)*(b[2]-a[2])/h+(3*t2-4*t+1)*az+(3*t2-2*t)*bz
+	var length:=sqrt(dx*dx+dz*dz)
+	return [x-dz/length*offset,lerpf(a[1],b[1],t),z+dx/length*offset]
 
 func _node(w: RailWorld, id: String, s: float, offset: float) -> void:
 	w.graph.add_metric_node(id,point(s,offset))
@@ -40,7 +62,8 @@ func _edge(w: RailWorld, id: String, a: String, b: String, speed: float = 80, di
 	var oa: float = w.graph.nodes[a].lateral
 	var ob: float = w.graph.nodes[b].lateral
 	var middle := []
-	for s in range(ceili(sa/5)*5,floori(sb/5)*5+1,5):
+	for sample in range(ceili(sa/2.5),floori(sb/2.5)+1):
+		var s: float=sample*2.5
 		if s<=sa+.001 or s>=sb-.001: continue
 		var off := lerpf(oa,ob,smoothstep(sa,sb,s))
 		if not is_inf(middle_offset):
@@ -79,8 +102,13 @@ func _build() -> RailWorld:
 		st.roads=st.operating_roads.size()
 		# Extra ladder turnouts need extra throat length, not progressively shorter
 		# passenger roads. Retain a full 1 km road beyond the innermost turnouts.
-		var per_lane:=maxi(st.operating_roads.filter(func(r):return r.lane=="D" and not r.get("storage",false)).size(),st.operating_roads.filter(func(r):return r.lane=="U" and not r.get("storage",false)).size())
-		st.yard_half=520.0+maxi(0,per_lane-2)*22.0
+		var ladder_length:=0.0
+		for lane in ["D","U"]:
+			var roads: Array=st.operating_roads.filter(func(r):return r.lane==lane and not r.get("storage",false))
+			var length:=0.0
+			for j in maxi(0,roads.size()-2):length+=_ladder_span(roads[j].offset,roads[j+1].offset)
+			ladder_length=maxf(ladder_length,length)
+		st.yard_half=520.0+ladder_length
 		st.platform_details={}
 		w.stations.append(st)
 		_station(w,st,i)
@@ -121,17 +149,21 @@ func _build() -> RailWorld:
 	w._update_automatic_blocks()
 	return w
 
+func _ladder_span(a: float,b: float) -> float:
+	var offset:=absf(b-a)
+	return maxf(100.0,maxf(offset*13.0,sqrt(6.0*offset*250.0)))
+
 func _station(w: RailWorld, st: Dictionary, index: int) -> void:
 	var c: String = st.code
 	var s: float = st.s
 	if st.through_halt:
 		for p in range(1,st.roads+1):
-			var lane: String="M" if st.roads==1 else ("D" if p==1 else "U")
+			var lane: String="M" if st.roads==1 else st.operating_roads[p-1].lane
 			var offset: float=st.operating_roads[p-1].offset
 			_node(w,c+"_L"+lane,s-500,offset)
 			_node(w,c+"_R"+lane,s+500,offset)
-			var id: String="%s_P%d" % [c,p]
-			_edge(w,id,c+"_L"+lane,c+"_R"+lane,90,0 if st.roads==1 else (1 if p==1 else -1))
+			var id: String="%s_P%d" % [c,st.operating_roads[p-1].road]
+			_edge(w,id,c+"_L"+lane,c+"_R"+lane,90,0 if st.roads==1 else (1 if lane=="D" else -1))
 			st.platform_tracks.append(id)
 			st.track_z.append(offset)
 			st.platform_details[id]=st.operating_roads[p-1]
@@ -152,6 +184,7 @@ func _station(w: RailWorld, st: Dictionary, index: int) -> void:
 		var roads: Array=st.operating_roads.filter(func(r):return r.lane==lane and not r.get("storage",false))
 		var left: String=c+"_L"+lane
 		var right: String=c+"_R"+lane
+		var ladder_distance:=0.0
 		for j in roads.size():
 			var road: Dictionary=roads[j]
 			var id: String="%s_P%d" % [c,road.road]
@@ -165,8 +198,9 @@ func _station(w: RailWorld, st: Dictionary, index: int) -> void:
 			if j<roads.size()-2:
 				var next_left: String=c+"_L"+lane+str(j)
 				var next_right: String=c+"_R"+lane+str(j)
-				_node(w,next_left,s-st.yard_half+(j+1)*22,roads[j+1].offset)
-				_node(w,next_right,s+st.yard_half-(j+1)*22,roads[j+1].offset)
+				ladder_distance+=_ladder_span(road.offset,roads[j+1].offset)
+				_node(w,next_left,s-st.yard_half+ladder_distance,roads[j+1].offset)
+				_node(w,next_right,s+st.yard_half-ladder_distance,roads[j+1].offset)
 				_edge(w,c+"_LADDER_L"+lane+str(j),left,next_left,25)
 				_edge(w,c+"_LADDER_R"+lane+str(j),next_right,right,25)
 				left=next_left;right=next_right
@@ -215,7 +249,7 @@ func _section(w: RailWorld, section: Dictionary, index: int) -> void:
 		var previous := start
 		for block in blocks:
 			var node := end if block==blocks-1 else "%s_%s_%d_%s" % [a.code,b.code,block,lane]
-			if node!=end: _node(w,node,lerpf(sa,sb,(block+1)/float(blocks)),0 if lane=="D" else section.parallel_offset)
+			if node!=end: _node(w,node,lerpf(sa,sb,(block+1)/float(blocks)),section.get("down_offset",0) if lane=="D" else section.get("up_offset",section.parallel_offset))
 			var id := "%s_%s_%s%d" % [a.code,b.code,lane,block]
 			var direction := 1 if lane=="D" else -1
 			_edge(w,id,previous,node,100,direction)
@@ -254,7 +288,10 @@ func _depot_exit(w: RailWorld, st: Dictionary, start: String, dir: int, lane: St
 	var key: String=st.code+"_DEPOT_"+("R" if dir==1 else "L")+lane
 	var s: float=w.graph.nodes[start].chainage
 	var offset: float=w.graph.nodes[start].lateral
-	var side:= -1.0 if lane=="D" else 1.0
+	var side:=1.0
+	if lane in ["D","U"]:
+		var other: float=st.operating_roads[1 if lane=="D" else 0].offset
+		side=signf(offset-other)
 	var junction: String=key+"_J"
 	_node(w,junction,s+dir*220,offset)
 	_depot_edge(w,key+"_ACCESS",start,junction,dir,40)
@@ -263,7 +300,7 @@ func _depot_exit(w: RailWorld, st: Dictionary, start: String, dir: int, lane: St
 	_depot_edge(w,key+"_LEAD",junction,gate,dir,25)
 	for road in range(1,5):
 		var end: String=key+"_B"+str(road)
-		var lateral: float=offset+side*(80+road*9)
+		var lateral: float=offset+side*(80+(5-road)*9)
 		_node(w,end,s+dir*(1800+road*30),lateral)
 		var id: String=key+"_ROAD"+str(road)
 		_depot_edge(w,id,gate,end,dir,15,lateral)
@@ -324,19 +361,19 @@ static func build_traffic(busy: bool = false) -> RailWorld:
 			if not busy and t.id=="K7" and station.code=="NYY":road=1
 			if i>0 and i<d[4].size()-1 and not w.graph.edges.has("%s_P%d" % [station.code,road]):road=1
 			var block := "%s_P%d" % [station.code,road]
-			if busy and t.id!="K1":
-				var candidates: Array=station.platform_tracks.filter(func(r):return station.platform_details[r].platform_width>0 and not station.platform_details[r].get("storage",false))
-				var lane: String="D" if d[3]>0 else "U"
-				candidates.sort_custom(func(a,b):
-					var aa: Dictionary=station.platform_details[a];var bb: Dictionary=station.platform_details[b]
-					var ac: int=(0 if aa.lane==lane else 100)+(0 if aa.road>2 and (i==0 or i==d[4].size()-1) else 10)+int(aa.road)
-					var bc: int=(0 if bb.lane==lane else 100)+(0 if bb.road>2 and (i==0 or i==d[4].size()-1) else 10)+int(bb.road)
-					return ac<bc)
-				for candidate in candidates:
-					if not w.graph.allows(candidate,d[3]):continue
-					var goal:={block=candidate,direction=d[3],s=preload("res://sim/berth_clearance.gd").marker(w,t,candidate,d[3])}
-					if not stops.is_empty() and is_inf(w._stop_distance(stops[-1].block,d[3],stops[-1].position_m,goal,[])):continue
-					block=candidate;break
+			var candidates: Array=station.platform_tracks.filter(func(r):return station.platform_details[r].platform_width>0 and not station.platform_details[r].get("storage",false))
+			var lane: String="D" if d[3]>0 else "U"
+			candidates.sort_custom(func(a,b):
+				var aa: Dictionary=station.platform_details[a];var bb: Dictionary=station.platform_details[b]
+				var ac: int=(1000 if not busy and i==0 and w.trains.values().any(func(existing):return existing.timetable.stops[0].block==a) else 0)+(0 if aa.lane==lane else 100)+(0 if not busy and a==block else 20)+(0 if aa.road>2 and t.id!="K1" and (i==0 or i==d[4].size()-1) else 10)+int(aa.road)
+				var bc: int=(1000 if not busy and i==0 and w.trains.values().any(func(existing):return existing.timetable.stops[0].block==b) else 0)+(0 if bb.lane==lane else 100)+(0 if not busy and b==block else 20)+(0 if bb.road>2 and t.id!="K1" and (i==0 or i==d[4].size()-1) else 10)+int(bb.road)
+				return ac<bc)
+			for candidate in candidates:
+				if not w.graph.allows(candidate,d[3]):continue
+				if i==0 and not preload("res://sim/depot_workings.gd").terminal_road_compatible(w,station,candidate,d[3]):continue
+				var goal:={block=candidate,direction=d[3],s=preload("res://sim/berth_clearance.gd").marker(w,t,candidate,d[3])}
+				if not stops.is_empty() and is_inf(w._stop_distance(stops[-1].block,d[3],stops[-1].position_m,goal,[])):continue
+				block=candidate;break
 			# Book an actual passenger face, rather than relying on the dispatcher
 			# to repair a placeholder through-road stop after the service starts.
 			if station.platform_details[block].platform_width<=0:
@@ -358,7 +395,7 @@ static func build_traffic(busy: bool = false) -> RailWorld:
 		w.place_train(t,stops[0].block,stops[0].position_m,d[3])
 		t.automatic = true
 		t.controller = -1.0
-		if busy and t.id != "K1":
+		if t.id!="K1" and (busy or w.trains.values().any(func(existing):return existing.id!=t.id and existing.timetable.stops[0].block==stops[0].block)):
 			t.lifecycle = "scheduled"
 			t.status = "Scheduled · prepares two minutes before departure"
 	if busy: preload("res://sim/service_lifecycle.gd").update(w)

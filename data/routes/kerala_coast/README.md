@@ -65,3 +65,11 @@ doubling, and distinguishes goods roads from passenger platforms. It runs as
 part of `tools/maps/station_operations.py`; rerunning the pipeline preserves
 these corrections. Source way/polygon IDs and reconstruction notes accompany
 the corrected roads. Exact terminal bays still require current station plans.
+
+The 11 October geometry revision `continuous-curves-lht-v1` smooths horizontal
+alignment within 4.908 m, keeps original station/bridge chainage and elevations,
+and normalizes running-line sides. Run `tools/maps/rail_geometry.py` last, after
+raw operations and the CSV register. It records source-alignment provenance and
+is idempotent; applying the CSV again to normalized operations is refused.
+Yard ladders and platform-to-road assignments remain reconstructed geometry.
+See `docs/map-corrections.md` for methods, checks and save compatibility.

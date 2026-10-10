@@ -59,6 +59,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	var position:=world.graph.position(t.path[0].edge,t.head_s)
 	coordinate_origin=Vector3(floorf(position.x/1024)*1024,0,floorf(position.z/1024)*1024)
 	geo=GeoData.new(world.scenery.route)
+	geo.install_railway(world)
 	geo.station_sites=preload("res://game/coastal_station_sites.gd").build(world)
 	geo.vegetation_clearance=preload("res://game/vegetation_clearance.gd").build(world)
 	_noise_tex=NoiseTexture2D.new()
@@ -98,6 +99,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	performance=preload("res://game/performance_profile.gd").settings()
 	for i in performance.workers:
 		var data:=GeoData.new(world.scenery.route)
+		data.share_railway(geo)
 		data.station_sites=geo.station_sites
 		data.vegetation_clearance=geo.vegetation_clearance
 		var runner:=StreamWorker.new()

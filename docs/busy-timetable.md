@@ -79,16 +79,14 @@ faces remain available dynamically. Completed trains unload and clear to depot.
 ## Service lifecycle
 
 The [importable service file](../art/timetables/kerala-coast-100-through-services.json)
-uses the existing R27 service format and unchanged route signature. In **F5 →
-Import**, select it, choose K1 (or another service), then use **Play**. Export
-your existing draft first if you want to retain it. No full game download is
-needed to load the timetable as an authored scenario. A running save keeps its
-old traffic; importing starts a new scenario.
+uses the existing service-file format with the corrected map's geometry signature.
+In **F5 → Import**, select it, choose K1 (or another service), then use **Play**.
+Export your existing draft first if you want to retain it. This map update needs
+its matching game build; R28 saves and service files cannot be transferred onto
+changed track geometry. Importing starts a new scenario.
 
-**Use R28 or newer for this validated timetable.** R28 adds the terminal/depot,
-receiving-capacity and future-clearance fixes exercised by the full-day audits.
-The JSON uses the older import format, but that does not make the earlier
-dispatcher runtime compatible with this traffic load.
+The R28 results below document the prior map. Fresh full-day baseline and delayed
+runs validate the corrected map separately; see [map corrections](map-corrections.md).
 
 Regenerate the file after changing the timetable with:
 
