@@ -35,6 +35,11 @@
   live phase, which measured 70.26 ms median / 82.87 ms p95 on the 780M. Largest
   build step is still 349.30 ms (first-use VB assembly). Full evidence and limits:
   `docs/crowded-benchmark-2026-10-10.md`; target-PC performance remains unmeasured.
+- Committed/pushed implementation `ca30706` on `codex/port-indian-rail-assets`.
+  Published **TrainGame-Kerala-Coast-R24-Windows**, signed update sequence **25**,
+  from that clean source. The LAN page prioritizes Update & Play over old ZIPs.
+  Signature, three HTTP range hashes, all 52 exported model entries and required
+  catalogues passed verification. No extracted-distribution playtest was run.
 
 Player checks: update through Update & Play, drive ERS–Kumbalam, and approach
 trees/houses in free camera to inspect distance transitions. Switch pilot →

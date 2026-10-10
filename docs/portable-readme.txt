@@ -2,6 +2,16 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R24: detailed trackside scenery and crowded-train rendering.
+Nearby models retain detail; distant scenery uses LODs and baked images.
+Pilot view skips seated passenger meshes; coach/platform views restore them.
+The new stress test covers 5 trains, 91 vehicles and 5,580 passengers.
+For only that test, open PowerShell in this folder and run:
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Benchmark.ps1 -CrowdedOnly -Resolution 1440p
+See guides/trackside-collection.md and guides/crowded-benchmark-2026-10-10.md.
+The RTX 4090 Laptop target remains i9-13980HX / 16 GB VRAM / 64 GB RAM.
+
+BENCHMARK AND EARLIER CHANGES
 Kerala Coast R23: threaded streaming and detailed target-PC benchmarking.
 Double-click "Run Performance Benchmark.cmd" for automatic 1440p and 4K tests.
 Allow 10-20 minutes. Leave the game focused and let it control the cameras.

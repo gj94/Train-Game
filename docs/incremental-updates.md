@@ -1,5 +1,11 @@
 # Incremental Windows updates
 
+Current publication: **R24**, sequence **25**, built from `ca30706`. It includes
+the detailed Kerala trackside collection, distant scenery representations,
+camera-aware train/passenger visibility and the five-train benchmark. Use
+Update & Play; a new full ZIP is not required. The retained R23 ZIP is a fallback
+bootstrap and should be updated before testing the latest changes.
+
 The LAN page now offers a 15 KB **Update & Play** download. Extract its two files
 beside an existing `TrainGame.exe` and `TrainGame.pck`, then use the launcher for
 future releases. It updates that same installation. It also supports a fresh

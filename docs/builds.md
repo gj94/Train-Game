@@ -10,6 +10,12 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
+Current updater build: **R24**, with the detailed trackside collection and
+five-train benchmark. Runtime source is `ca30706`, verified with 442 headless
+tests and the native crowded capture. Publish normal future builds using a new
+`-BuildName`, increasing `-UpdateSequence`, and `-SkipZip`. The retained R23 ZIP
+is an older bootstrap; use Update & Play for the current release.
+
 R22 adds the researched Kerala scenery kit, contextual working banks, improved
 shoreline terrain, road-facing homes and crop parcels. Its standalone ZIP is
 `export/TrainGame-Kerala-Coast-R22-Windows.zip` (1,694,070,182 bytes), built from
@@ -17,7 +23,7 @@ clean source `6ff8930`. The resource audit and ZIP CRC check passed without
 launching/extracting the game. It includes `guides/kerala-scenery.md` and visual
 checks under `guides/kerala-variety`. The signed updater remains on R21.
 
-Current standalone geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R22-Windows -SkipTests`
+Historical standalone geographic/fleet build: `-BuildName TrainGame-Kerala-Coast-R22-Windows -SkipTests`
 after the headless tests and applicable source checks. It includes OSM attribution,
 route data and the enhanced VB material indices. The low-detail WAP/MEMU and WAG
 showcases are excluded. Fresh launch is the K1 stopping passenger; PROGRESS/F12
