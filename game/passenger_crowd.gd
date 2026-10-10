@@ -9,6 +9,7 @@ var batches:=[]
 var _paths:={}
 var _events:={}
 var _seat_poses:={}
+var render_budget:=1.0
 var visible_count:=0
 var seated_count:=0
 var moving_count:=0
@@ -63,7 +64,8 @@ func update() -> void:
 			if not near or p.cars[car].seats.is_empty():continue
 			var policy:=preload("res://game/train_visibility.gd")
 			var occupied: int=policy.occupied_car(game) if id==game.train.id else -100
-			if not policy.seated_allowed(game.cam.mode,id==game.train.id,car,occupied,transform.origin.distance_to(game.cam.global_position),game.cam._blend<1.0):continue
+			var detail_factor: float=game.graphics_options.values.train_detail if game.get("graphics_options")!=null else 1.0
+			if not policy.seated_allowed(game.cam.mode,id==game.train.id,car,occupied,transform.origin.distance_to(game.cam.global_position)/detail_factor,game.cam._blend<1.0):continue
 			var c: Dictionary=p.cars[car]
 			var poses: Array=_seats(c.model,view.specs[car].passengers)
 			for seat in c.seats.size():
@@ -95,9 +97,10 @@ func update() -> void:
 	seated.sort_custom(func(a,b):return a.distance<b.distance)
 	moving.sort_custom(func(a,b):return a.distance<b.distance)
 	for b in batches:b.count=0;b.material.set_shader_parameter("simulation_time",_clock)
-	for i in mini(MAX_SEATED,seated.size()):_draw(seated[i])
-	for i in mini(MAX_MOVING,moving.size()):_draw(moving[i])
-	seated_count=mini(MAX_SEATED,seated.size());moving_count=mini(MAX_MOVING,moving.size())
+	seated_count=mini(floori(MAX_SEATED*render_budget),seated.size())
+	moving_count=mini(floori(MAX_MOVING*render_budget),moving.size())
+	for i in seated_count:_draw(seated[i])
+	for i in moving_count:_draw(moving[i])
 	visible_count=0
 	for b in batches:b.mm.visible_instance_count=b.count;visible_count+=b.count
 

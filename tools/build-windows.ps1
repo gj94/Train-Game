@@ -2,9 +2,11 @@ param(
     [switch]$SkipTests,
     [ValidatePattern('^[A-Za-z0-9_-]+$')][string]$BuildName = 'TrainGame-Windows',
     [switch]$SkipZip,
+    [switch]$FullDownloadOnly,
     [ValidateRange(0,2147483647)][int]$UpdateSequence = 0
 )
 $ErrorActionPreference = 'Stop'
+if ($FullDownloadOnly -and $SkipZip) { throw 'A full-download-only release requires a full ZIP.' }
 # Streaming .NET hashing also works in hosts where Get-FileHash autoloading is
 # unavailable. The PCK can be close to 2 GB; never load it into a byte array.
 function Get-PortableSha256([string]$Path) {
@@ -62,7 +64,7 @@ try {
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/assets.md') -Destination (Join-Path $buildRoot 'ASSET-SOURCES.md')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/ported/station-notices') -Destination $buildRoot -Recurse -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/trackside/notices') -Destination (Join-Path $buildRoot 'guides/trackside-notices') -Recurse -Force
-    foreach ($guide in @('performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
+    foreach ($guide in @('graphics-settings.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/crowded-2026-10-10') -Destination (Join-Path $buildRoot 'guides/crowded-benchmark-evidence') -Recurse -Force
@@ -87,7 +89,7 @@ try {
         "$(Get-PortableSha256 $file)  $name"
     }
     $hashes | Set-Content -LiteralPath (Join-Path $buildRoot 'SHA256SUMS.txt') -Encoding ascii
-    if ($UpdateSequence -gt 0) {
+    if ($UpdateSequence -gt 0 -or $FullDownloadOnly) {
         & (Join-Path $PSScriptRoot 'updater/build-launcher.ps1')
         foreach ($launcherFile in @('Update and Play.exe', 'UPDATER-README.txt')) {
             Copy-Item -LiteralPath (Join-Path $projectRoot "export/updater/$launcherFile") -Destination (Join-Path $buildRoot $launcherFile) -Force
@@ -103,6 +105,11 @@ try {
         & node.exe (Join-Path $PSScriptRoot 'updater/publish.mjs') "--build=$BuildName" "--sequence=$UpdateSequence"
         if ($LASTEXITCODE -ne 0) { throw 'Incremental publication failed; previous release remains available.' }
     }
+    # Publish the download choice last, after all advertised files are complete.
+    $releasePolicy = Join-Path $projectRoot 'export/download-release.json'
+    $policyJson = @{format=1;build=$BuildName;incremental=($UpdateSequence -gt 0 -and !$FullDownloadOnly)} | ConvertTo-Json
+    [IO.File]::WriteAllText(($releasePolicy + '.tmp'), $policyJson, [Text.UTF8Encoding]::new($false))
+    Move-Item -LiteralPath ($releasePolicy + '.tmp') -Destination $releasePolicy -Force
 } finally {
     Pop-Location
 }

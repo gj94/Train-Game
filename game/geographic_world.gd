@@ -313,6 +313,7 @@ func _activate() -> void:
 			var child: Node=result.node.get_child(0)
 			result.node.remove_child(child)
 			pending.holder.add_child(child)
+			if graphics_options!=null:graphics_options.apply_tree(child)
 			children+=1
 			if children>=performance.activation_children or Time.get_ticks_usec()-began>=performance.activation_usec:return
 		result.node.free()

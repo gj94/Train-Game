@@ -39,6 +39,8 @@ func run(owner) -> void:
 		render_target_size=[get_viewport().get_texture().get_width(),get_viewport().get_texture().get_height()],
 		refresh_hz=DisplayServer.screen_get_refresh_rate(),vsync=DisplayServer.window_get_vsync_mode(),
 		streaming_profile=game.wv.performance,rendering_settings=settings,
+		graphics_preferences=game.graphics_options.values.duplicate(),graphics_preset=game.graphics_options.preset_name(),
+		graphics_note="High baseline unless --benchmark-saved-graphics; benchmark always disables V-sync and frame cap.",
 		initialization_ms=Time.get_ticks_msec(),traffic_seed=0,raw_frames=csv_path,
 		pipeline_monitor_names=_pipeline_monitors.map(func(m):return m.name),cases=[]}
 	_write()
@@ -107,6 +109,7 @@ func _crowded_traffic() -> void:
 			preload("res://game/track_detail.gd").set_reference(game.wv.root,full)
 			preload("res://game/building_impostors.gd").set_reference(game.wv.root,full)
 			preload("res://game/coastal_groundcover.gd").set_reference(game.wv.root,full)
+			if not full:game.graphics_options.apply_tree(game.wv.root)
 			for i in 45:await get_tree().process_frame
 			await _capture("five_trains_"+mode+("_full" if full else "_culled"),12)
 			var counts: Dictionary=fixture.counters()

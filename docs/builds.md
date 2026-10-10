@@ -10,11 +10,18 @@ packaging immediately after the required headless suite and applicable source
 checks have passed on the current code.
 Do not run an export while the editor is importing.
 
-Current updater build: **R24**, with the detailed trackside collection and
-five-train benchmark. Runtime source is `ca30706`, verified with 442 headless
-tests and the native crowded capture. Publish normal future builds using a new
-`-BuildName`, increasing `-UpdateSequence`, and `-SkipZip`. The retained R23 ZIP
-is an older bootstrap; use Update & Play for the current release.
+Current release: **R26**, with 18 live graphics controls. Per the user's request,
+publish this as a full ZIP only and remove previous exports/ZIPs after verification:
+`-BuildName TrainGame-Kerala-Coast-R26-Windows -UpdateSequence 28 -FullDownloadOnly`.
+The signed catalogue is retained locally, but the LAN server blocks incremental
+endpoints and the standalone updater download for this release. The full ZIP
+contains the updater for future use. Launch `TrainGame.exe` after extracting R26.
+
+From **R27 onwards**, publish both the full ZIP and signed incremental catalogue:
+use a fresh `-BuildName` and increasing `-UpdateSequence` (29 or greater), and omit
+both `-SkipZip` and `-FullDownloadOnly`. `export/download-release.json` switches
+the LAN page only after packaging completes. The server exposes only that current
+release; there are no hard-coded version lists or older fallback download links.
 
 R22 adds the researched Kerala scenery kit, contextual working banks, improved
 shoreline terrain, road-facing homes and crop parcels. Its standalone ZIP is

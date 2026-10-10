@@ -17,6 +17,7 @@ const AxleJoint := preload("res://game/axle_joint.gd")
 const HDRI := "res://assets/polyhaven/hdri/kloofendal_43d_clear_puresky_2k.hdr"
 const Details := preload("res://game/station_details.gd")
 
+var graphics_options
 var world: RailWorld
 var root: Node3D
 var signal_lamps := {}            # signal id -> [green, yellow, red] MeshInstance3D

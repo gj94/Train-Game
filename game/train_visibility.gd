@@ -32,16 +32,17 @@ static func occupied_car(game) -> int:
 	return game.tv.cars.size()-1 if game.train.cab_end==2 else 0
 
 static func apply(game,view,id: String) -> void:
+	var detail_factor: float=game.graphics_options.values.train_detail if game.get("graphics_options")!=null else 1.0
 	var own: bool=id==game.train.id
 	var occupied:=occupied_car(game) if own else -100
 	var blending: bool=game.cam._blend<1.0
 	for car in view.interior_meshes.size():
 		var distance: float=view.cars[car].global_position.distance_to(game.cam.global_position)
-		var allowed:=interior_allowed(game.cam.mode,own,car,occupied,distance,blending)
+		var allowed:=interior_allowed(game.cam.mode,own,car,occupied,distance/detail_factor,blending)
 		if view.interior_visible[car]!=allowed:
 			for mesh in view.interior_meshes[car]:mesh.visible=allowed
 			view.interior_visible[car]=allowed
-		var detailed:=detailed_shadows(game.cam.mode,own,car,occupied,distance)
+		var detailed:=detailed_shadows(game.cam.mode,own,car,occupied,distance/detail_factor)
 		if view.shadow_detail[car]!=detailed:
 			for part in view.shadow_parts[car]:
 				part.node.cast_shadow=part.mode if detailed else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF

@@ -1,5 +1,10 @@
 # Performance and target-PC benchmark
 
+Per-option controls are now available under **Menu → Graphics settings**. See
+[the graphics guide](graphics-settings.md) for presets and the 18 live controls.
+Add `-SavedGraphics` to `Benchmark.ps1` to measure your saved preferences; otherwise
+the benchmark uses the High baseline. Both modes disable frame caps and V-sync.
+
 Confirmed target from the 10 October report: Core i9-13980HX, RTX 4090 Laptop GPU
 with 16 GB VRAM, 64 GB RAM and an NVMe SSD. This supersedes the earlier assumed
 desktop RTX 4080 target. The benchmark requests 2560×1440 and 3840×2160 by default;

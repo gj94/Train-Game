@@ -63,6 +63,7 @@ var _paused_before_help := false
 var _paused_before_progress := false
 var _pending_action := ""
 var _interior_view := false
+var graphics_options := preload("res://game/graphics_options.gd").new()
 var display_options := preload("res://game/display_options.gd").new()
 var save_load
 var _resume: Dictionary = {}
@@ -77,7 +78,12 @@ func _ready() -> void:
 	if benchmark:
 		get_tree().set_meta("traffic_seed",0)
 		get_tree().set_meta("benchmark",true)
-	if "--script" not in OS.get_cmdline_args() and not benchmark:display_options.restore()
+	if "--script" not in OS.get_cmdline_args() and not benchmark:
+		display_options.restore()
+		graphics_options.restore()
+	# Reproducible benchmarks default to High; opt in to saved preferences explicitly.
+	if benchmark and "--benchmark-saved-graphics" in OS.get_cmdline_user_args():graphics_options.restore()
+	graphics_options.game=self
 	# Custom railway interpolation needs a clock without physics-jitter correction.
 	Engine.physics_jitter_fix = 0.0
 	AudioServer.playback_speed_scale=1.0
@@ -157,6 +163,7 @@ func _ready() -> void:
 		train = world.trains[world.trains.keys()[posmod(seed_value,world.trains.size())]] if geographic_drive else world.trains[Traffic.selected_service(seed_value)]
 	wv = preload("res://game/geographic_world.gd").new() if geographic_drive else WorldView.new()
 	if geographic_drive: wv.selected_train = train.id
+	wv.graphics_options=graphics_options
 	wv.build(world, self)
 	traffic_presentation=preload("res://game/traffic_presentation.gd").new()
 	traffic_presentation.game=self
@@ -197,6 +204,7 @@ func _ready() -> void:
 	wv.set_joints_visible(false)
 
 	hud = Hud.new()
+	hud.graphics_options=graphics_options
 	add_child(hud)
 	hud.action_requested.connect(_ui_action)
 	dispatcher = Dispatcher.new()
@@ -254,6 +262,7 @@ func _ready() -> void:
 	passenger_crowd=preload("res://game/passenger_crowd.gd").new()
 	add_child(passenger_crowd)
 	passenger_crowd.setup(self)
+	graphics_options.apply()
 	if not _service_error.is_empty(): hud.toast("Service file could not start: "+_service_error,true)
 	save_load=preload("res://game/save_load.gd").new(self)
 	if not _resume.is_empty():
@@ -423,6 +432,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				elif hud.modal == "help": _close_help()
 				elif hud.modal == "confirm": _cancel_action()
 				elif hud.modal == "saved_games": save_load.back()
+				elif hud.modal.begins_with("graphics"): graphics_options.back()
 				elif hud.modal != "" and hud.modal != "pause": hud.show_modal("pause", labels_enabled)
 				else: _toggle_pause()
 				return
@@ -691,6 +701,11 @@ func _set_time_scale(value: int) -> void:
 	hud.toast("Normal time" if value==1 else "Fast forward ×%d · Shift+T returns to normal time" % value)
 
 func _ui_action(action: String) -> void:
+	if action=="graphics" or action.begins_with("graphics:"):
+		if action=="graphics":
+			_set_paused(true);hud.show_modal("graphics")
+		else:graphics_options.action(action)
+		return
 	if action.begins_with("save:"):
 		save_load.action(action)
 		return

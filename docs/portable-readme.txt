@@ -2,6 +2,17 @@ TRAIN GAME - KERALA COAST
 Windows x86-64 portable playtest build
 
 THIS BUILD
+Kerala Coast R26: individually adjustable graphics with saved local preferences.
+Menu / Esc -> Graphics settings: 18 options in four groups, plus Performance,
+Balanced and High presets. Controller: D-pad / LS move, A select, B back.
+Changes apply live; use Resume and compare, then F10 for the performance overlay.
+High preserves the R25 defaults. Balanced is a useful starting point to tune.
+Use -SavedGraphics with Benchmark.ps1 to measure your chosen settings.
+See guides/graphics-settings.md. This release is a full download: extract the
+entire ZIP and launch TrainGame.exe. The included Update and Play.exe is ready
+for the next release, when full downloads and incremental updates both return.
+
+EARLIER CHANGES
 Kerala Coast R25: railway corridor rendering and bounded external cameras.
 External cameras stop at 60 m above terrain; orbit zoom stops at 300 m.
 The view ends at 2.2 km with distance haze. Detailed scenery is concentrated

@@ -340,6 +340,8 @@ func _back() -> void:
 	if _service_ui():
 		game._close_services()
 		return
+	if game.hud.modal.begins_with("graphics"):
+		game.graphics_options.back();return
 	match game.hud.modal:
 		"confirm": game._cancel_action()
 		"saved_games": game.save_load.back()

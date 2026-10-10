@@ -53,11 +53,12 @@ if ($Action -eq 'Firewall') {
     "Firewall ready: TCP $Port on $BindAddress, Private profile, local subnet only."
     return
 }
-$availableBuilds = @('R23', 'R18', 'R17', 'R16', 'R15', 'R14', 'R13', 'R12', 'R11', 'R10', 'R9', 'R8', 'R7', 'R6') | Where-Object {
-    $archive = Join-Path $projectRoot "export/TrainGame-Kerala-Coast-$_-Windows.zip"
-    (Test-Path -LiteralPath $archive) -and (Test-Path -LiteralPath "$archive.sha256")
-}
-if (!$availableBuilds -and !(Test-Path -LiteralPath (Join-Path $projectRoot 'export/updates/latest.json'))) { throw 'Publish an incremental update or build a supported Windows ZIP first.' }
+$policyPath = Join-Path $projectRoot 'export/download-release.json'
+if (!(Test-Path -LiteralPath $policyPath)) { throw 'Build and publish the current download first (download-release.json is missing).' }
+$policy = Get-Content -LiteralPath $policyPath -Raw | ConvertFrom-Json
+if ($policy.format -ne 1 -or $policy.build -notmatch '^TrainGame-[A-Za-z0-9_-]+$') { throw 'Invalid download policy.' }
+$archive = Join-Path $projectRoot ('export/' + $policy.build + '.zip')
+if (!((Test-Path -LiteralPath $archive) -and (Test-Path -LiteralPath "$archive.sha256")) -and !$policy.incremental) { throw 'The current full ZIP is not ready.' }
 $serverArgs = @('"' + $serverScript + '"', "--host=$BindAddress", "--port=$Port", "--prefix=$($ip.PrefixLength)")
 $child = Start-Process -FilePath $nodePath -ArgumentList $serverArgs -WorkingDirectory $projectRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $projectRoot '.local/lan-share.out.log') -RedirectStandardError (Join-Path $projectRoot '.local/lan-share.err.log')
 Start-Sleep -Milliseconds 800

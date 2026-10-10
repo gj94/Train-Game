@@ -7,6 +7,7 @@ param(
     [switch]$Quick,
     [switch]$CrowdedOnly,
     [switch]$RenderCosts,
+    [switch]$SavedGraphics,
     [switch]$SkipHardware,
     [ValidateSet('','inventory','counters')][string]$Collector='',
     [string]$CollectorFolder='',
@@ -130,6 +131,7 @@ function Read-Inventory {
         quick_validation=[bool]$Quick
         crowded_only=[bool]$CrowdedOnly
         render_costs=[bool]$RenderCosts
+        saved_graphics=[bool]$SavedGraphics
         telemetry_interval_seconds=1
         cpu_temperature='Unavailable through standard Windows counters; not estimated.'
     }
@@ -204,6 +206,7 @@ try {
             if ($Quick) { $arguments+='--benchmark-quick' }
             if ($CrowdedOnly) { $arguments+='--benchmark-traffic-only' }
             if ($RenderCosts) { $arguments+='--benchmark-render-costs' }
+            if ($SavedGraphics) { $arguments+='--benchmark-saved-graphics' }
             Write-BenchmarkStatus "Running $label. Leave the game focused; it controls the cameras and exits automatically."
             # This is the visible game under test. Helpers remain hidden; keeping
             # the game foreground avoids driver background-app FPS limits.

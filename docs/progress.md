@@ -1,5 +1,40 @@
 # Progress
 
+## 2026-10-10 — Live graphics settings and controller navigation
+- Added Menu / Esc → Graphics settings with 18 individually selectable controls:
+  render scale, MSAA/FXAA, V-sync/frame cap, shadow resolution/distance/filtering,
+  SSAO/SSIL/bloom, view distance, vegetation density/detail, building detail,
+  automatic mesh LOD, external train detail and animated passenger budget.
+- Performance, Balanced and High presets apply live. High preserves R25 defaults;
+  individual changes become Custom. Preferences persist per PC in `graphics.cfg`,
+  independently of journey saves and updates. Mouse, keyboard and controller use
+  the existing focus system; A selects, B/Esc return one level, focus returns to
+  the edited setting. Per-setting descriptions explain visual and GPU tradeoffs.
+- Runtime application updates active/cached scenery and every newly activated
+  streaming child. Paired vegetation/building LOD transitions remain aligned;
+  silhouettes retain their far range; density restores original instance counts.
+  Occupied interiors remain present. Passenger loads/boarding, physics and
+  dispatch never consume graphics preferences. Corrected startup order so saved
+  passenger budgets apply after the crowd is created.
+- Benchmark launcher accepts `-SavedGraphics` and reports the actual preference
+  set; default remains a reproducible High baseline. Both disable frame cap and
+  V-sync. No target-PC FPS claim: native validation used the Radeon 780M.
+- Validation: **454 headless tests passed, 0 failed**; native source test passed
+  **29 checks** across High → Balanced → Performance → High in pilot, passenger
+  and overview, retaining **5 trains / 91 vehicles / 5,580 simulated passengers**.
+  Controller events, saved values and the startup-order regression passed.
+  Inspected menu/choice screens and High/Performance views; no distribution run.
+  Evidence: `art/performance/graphics-2026-10-10/`; guide: `docs/graphics-settings.md`.
+- Playtest: Menu → Graphics → Balanced; resume and compare F10 at the same camera.
+  Change a single vegetation/shadow option, verify B navigation, visit a passenger
+  coach, restore High, then quit/reopen to confirm preferences persist. On the
+  target 4090 Laptop, run `Benchmark.ps1 -CrowdedOnly -SavedGraphics -Resolution 1440p`.
+- Release policy updated at the user's request: R26 is a full ZIP only; subsequent
+  releases must include both full ZIPs and incremental updates. Added an explicit
+  current-release LAN catalogue, full-only endpoint gating and three catalogue
+  regressions. Older exports, ZIPs and obsolete manifests are removed only after
+  the new full archive is ready. The updater remains included for future releases.
+
 ## 2026-10-10 — Bounded external cameras, railway corridor and GPU isolation
 - Added shared presentation budgets: external camera 60 m above terrain,
   orbit distance 300 m, far clip 2.2 km. Mouse/controller input, camera blends
