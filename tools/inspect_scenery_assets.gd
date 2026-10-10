@@ -8,6 +8,8 @@ func capture() -> void:
 	view.root=stage
 	view._build_environment()
 	var lib=load("res://game/scenery_library.gd").new(view)
+	lib.prepare_impostors()
+	preload("res://game/trackside_assets.gd").prepare(lib)
 	var names:=["tiled_house","courtyard_house","shop_house","corner_shop","apartments_3","warehouse","water_tower"]
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--only="): names=Array(arg.trim_prefix("--only=").split(","))
@@ -33,13 +35,13 @@ func capture() -> void:
 						mat.transparency=BaseMaterial3D.TRANSPARENCY_DISABLED
 						mat.alpha_antialiasing_mode=BaseMaterial3D.ALPHA_ANTIALIASING_OFF
 						mat.normal_enabled=false
-					print("MATERIAL ",mat.resource_name," tint ",mat.albedo_color," UV ",mat.uv1_scale,"/",mat.uv1_offset," tex ",mat.albedo_texture.resource_path)
+					print("MATERIAL ",mat.resource_name," tint ",mat.albedo_color," UV ",mat.uv1_scale,"/",mat.uv1_offset," tex ",mat.albedo_texture.resource_path if mat.albedo_texture!=null else "none")
 	for i in names.size(): lib.place(names[i],Vector3(i*100,0,0))
 	lib.flush()
 	if "--impostor" in OS.get_cmdline_user_args():
 		for node in stage.get_children():
 			if node is MultiMeshInstance3D:
-				if node.name.begins_with("Canopy_"):
+				if node.name.begins_with("Canopy_") or node.get_meta("impostor",false):
 					node.visibility_range_begin=0
 					node.visibility_range_end=0
 					node.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_DISABLED

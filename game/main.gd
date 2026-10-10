@@ -326,6 +326,8 @@ func _render_trains(fraction: float,ride_delta: float=0.0) -> void:
 		if "ride" in view and view.ride!=null and train_audio.has(id):
 			view.ride.update(ride_delta,train_audio[id].layout)
 		view.update()
+		if "interior_meshes" in view and cam!=null:
+			preload("res://game/train_visibility.gd").apply(self,view,id)
 
 
 func _process(delta: float) -> void:

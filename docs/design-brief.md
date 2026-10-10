@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **10 Oct 2026 crowded-scene performance:** port the remote Kerala scenery
+  collection; preserve close detail and use authored LODs, baked impostors and
+  view-aware interior/passenger culling. Benchmark five occupied full formations
+  together, including pilot, passenger, platform and overview cameras. Stream
+  AI presentation incrementally; never couple passenger simulation to visibility.
 - **9 Oct 2026 scenery variety:** research the Kerala coastal landscape and add
   considered architectural, agricultural, shoreline and planting variety. Keep
   mapped geography and rail clearance; avoid repeating one generic house/forest

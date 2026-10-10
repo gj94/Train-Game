@@ -2,6 +2,17 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-10: user-authorized Kerala Trackside Collection from
+`gj94/transport-fever-3-mods`, pinned to
+`16c06aee07c70eea5ed74e8420116998c27a4895`. All 52 source entries have verified
+GLB hashes in `assets/models/trackside/manifest.json`. Original PBR geometry and
+textures are ported as shared static glTF resources; supplied tree LODs and
+14 eight-view albedo/normal impostor bakes provide distance rendering.
+Source and font notices are in `assets/models/trackside/notices/` and copied
+into portable builds. This is the user's original collection, not a blanket
+claim that all source content is CC0. See `trackside-collection.md` for coverage,
+conversion, placement limits and reproduction commands.
+
 2026-10-09 Kerala scenery variety: eleven original procedural Blender masters
 and GLBs (veranda house, laterite cottage, balcony villa, coastal shop, banana,
 two boats, well, net rack, green/ripe rice). `tools/blender/scenery_kerala.py`

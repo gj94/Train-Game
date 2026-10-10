@@ -57,6 +57,7 @@ func build(key: Vector2i, far_tile: bool=false, holes: Array=[]) -> Dictionary:
 	library.meshes=assets.meshes
 	library.impostors=assets.impostors
 	library.finishes=assets.finishes
+	library.catalog=assets.catalog
 	_register_occupied(tile.get("features",[]))
 	for feature in tile.get("features",[]):
 		match feature.kind:
@@ -66,6 +67,7 @@ func build(key: Vector2i, far_tile: bool=false, holes: Array=[]) -> Dictionary:
 			"building": _building(feature)
 			"rail": _mapped_rail(feature)
 	Kerala.dress(self,tile_features)
+	preload("res://game/trackside_dressing.gd").add(self)
 	batch.finish(root,materials,"Geography")
 	_planting()
 	library.flush()
@@ -115,17 +117,25 @@ func _index_shores() -> void:
 							shore_bins[key].append({a=a,b=b,height=water.height})
 
 func _inside(point: Vector2,geometry: Dictionary) -> bool:
-	var polygons: Array=geometry.coordinates if geometry.type=="MultiPolygon" else [geometry.coordinates]
-	for poly in polygons:
+	# Each worker owns these tile dictionaries. Compile polygon rings once,
+	# not for every blade/terrain sample; islands retain exact hole semantics.
+	if not geometry.has("prepared_rings"):
+		var compiled:=[]
+		var source: Array=geometry.coordinates if geometry.type=="MultiPolygon" else [geometry.coordinates]
+		for poly in source:
+			var rings:=[]
+			for raw in poly:
+				var ring:=PackedVector2Array()
+				for p in raw:ring.append(Vector2(p[0],p[1]))
+				rings.append(ring)
+			compiled.append(rings)
+		geometry.prepared_rings=compiled
+	for poly in geometry.prepared_rings:
 		if poly.is_empty(): continue
-		var outer:=PackedVector2Array()
-		for p in poly[0]: outer.append(Vector2(p[0],p[1]))
-		if not Geometry2D.is_point_in_polygon(point,outer): continue
+		if not Geometry2D.is_point_in_polygon(point,poly[0]): continue
 		var hole:=false
 		for i in range(1,poly.size()):
-			var ring:=PackedVector2Array()
-			for p in poly[i]: ring.append(Vector2(p[0],p[1]))
-			if Geometry2D.is_point_in_polygon(point,ring): hole=true; break
+			if Geometry2D.is_point_in_polygon(point,poly[i]): hole=true; break
 		if not hole: return true
 	return false
 
@@ -386,6 +396,7 @@ func _planting() -> void:
 		var banana_interval:=3 if rail.get("s",0.0)>230000 else 5
 		if kind in [0,1,2] and rail.distance<350 and i%banana_interval==0 and Kerala.dry_clear(self,Vector2(p.x,p.z),3.3):choice="banana_clump"
 		elif kind==2:choice="coconut_palm" if i%2==0 else "young_palm"
+		if choice=="coconut_palm" and i%3==0:choice="tf3_KL_LS_Coconut_Leaning_B"
 		var scale:=rng.randf_range(.72,1.28)
 		library.place(choice,p,rng.randf()*TAU,Vector3.ONE*scale)
 	for i in 2200:
@@ -399,7 +410,7 @@ func _planting() -> void:
 		if geo.vegetation_clearance!=null and not geo.vegetation_clearance.clear(Vector2(p.x+origin.x,p.z+origin.z),2.5):continue
 		if not occupancy.clear(Vector2(p.x,p.z),2.5) or _near_mapped_rail(Vector2(p.x,p.z),5):continue
 		p.y=Foundations.surface_height(_ground,p.x,p.z)
-		var choice: String="shrub" if i%3!=0 else "reeds"
+		var choice: String=["shrub","tf3_KL_LS_Fern_Clump","tf3_KL_LS_Colocasia_Clump","reeds","tf3_KL_LS_Pandanus_Clump"][i%5]
 		library.place(choice,p,rng.randf()*TAU,Vector3.ONE*rng.randf_range(.7,1.25))
 	preload("res://game/coastal_vegetation.gd").groundcover(self)
 	Kerala.crops(self)

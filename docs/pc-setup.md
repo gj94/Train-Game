@@ -3,6 +3,16 @@
 Configured 30 September 2026. Checkout: `D:\ClaudeWS\train-game`.
 Read this file for machine paths; CLAUDE.md also contains historical paths from the other PC.
 
+## Performance target (confirmed 10 October 2026)
+
+The playing PC is a **Core i9-13980HX, RTX 4090 Laptop GPU with 16 GB VRAM,
+64 GB RAM and NVMe storage**, as recorded in the returned benchmark. It is not
+a desktop RTX 4090/4080. This development PC uses a Radeon 780M; local frame
+times must not be presented as target-PC results. Preserve this distinction in
+future optimization and benchmark work. See `docs/performance.md` and
+`docs/benchmark-2026-10-10.md`. Requested 4K is not proof of a 4K render: verify
+the screenshot dimensions in each run.
+
 ## Installed and verified
 
 - Existing Node: `C:\Users\Gokul\Documents\Node_v24\node.exe` (24.15.0).

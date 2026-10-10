@@ -9,16 +9,67 @@ See [the first target-PC analysis](benchmark-2026-10-10.md) for results and
 limitations, including the non-4K size of the run labelled 4K, train-creation
 stalls and the cache profile's RTX 4080-only rule.
 
+The new scenery/performance build adds a reproducible five-train stress fixture:
+WAP-7 + ICF passenger, WAP-7 + LHB express, another ICF rake, VB8 and VB16 on
+separate ERS roads. **91 vehicles and 5,580 onboard passengers** remain resident.
+Pilot, passenger, platform and elevated overview cases each compare full-detail
+reference rendering with the optimized presentation in the same process.
+The reference enables all train interiors/eligible nearby seated passengers,
+original detailed vehicle shadows/LOD bias and original-distance track detail,
+building geometry and grass density.
+It is an A/B rendering diagnostic, not a separate historical release benchmark.
+
+The A/B fixture pauses dispatch for reproducible rendering. It verifies that
+five trains and their passenger population survive every view, pilot has no
+seated meshes, and the passenger camera still has people. The regular benchmark
+also retains its separate 75-second live 32-service simulation phase. A final
+12-second crowded phase releases all five formations to coast at an initial
+2 m/s, entirely within their separate station roads. Their travelled metres,
+CPU simulation/motion costs and passenger counts are recorded. This controlled
+fixture measures crowded movement; it is not a timetable or dispatcher test.
+Passenger meshes are observer-local: at most 140 seated and 80 platform/moving
+actors, not one mesh for every simulated passenger. Pilot view skips the seated
+population entirely. Counts for both groups appear in each stress-case JSON.
+
+To run only the crowded fixture on the other PC after updating:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Benchmark.ps1 -CrowdedOnly -Resolution 1440p
+```
+
+The ordinary launcher runs it automatically after the existing route sequence.
+Each case records the actual captured pixel dimensions. Keep the game focused;
+do not infer native 4K from a requested resolution alone.
+
+RTX 4090 Laptop now receives a measured-allocation warm-cache ceiling of 8 GiB
+and up to 96 retained chunks. RTX 4080 Laptop uses 6 GiB; recognized large desktop
+GPUs use 10 GiB. These are conservative cache trimming thresholds, not total
+VRAM caps or automatic measurements of every GPU model's installed memory.
+Nearby AI resources load in the background and assemble one coach per frame;
+the JSON reports the largest nonblocking assembly step. Initial player creation
+and an explicit immediate handover can still synchronously finish a formation.
+
+Full nearby scenery geometry is retained. Supplied tree LODs, model-baked
+impostors, distant track silhouettes and camera-dependent train visibility are
+documented in [the collection port](trackside-collection.md).
+The [R24 development capture](crowded-benchmark-2026-10-10.md) records the
+five-train comparison, moving-phase results and remaining loading hitches.
+
 ## Run on the target PC
 
-**R23 launcher fix:** if you downloaded the original R23 game ZIP, also download
+Use **Update & Play v2** to install the current build before benchmarking. R24
+includes the crowded fixture and its `-CrowdedOnly` switch; the original R23
+launcher does not support that switch.
+
+**Historical R23 launcher fix:** if you downloaded the original R23 game ZIP, also download
 `TrainGame-Benchmark-Fix-1.zip` from the LAN page and extract its contents beside
 `TrainGame.exe`, replacing `Benchmark.ps1` and `Run Performance Benchmark.cmd`.
 The fixed launcher displays **Train Game benchmark - launcher 2** immediately.
 The original game executable and PCK stay the same. The incremental updater also
 delivers this fix in sequence 24 (`R23-BenchmarkFix1`).
 
-1. Extract the entire R23 portable ZIP onto the SSD.
+1. Update the installation on the SSD using Update & Play, or extract the entire
+   current portable download for a fresh installation.
 2. Close other games and heavy background work. Keep the normal driver settings;
    do not change overclocks or clear shader caches for this run.
 3. Double-click **Run Performance Benchmark.cmd**. No Godot, Python, administrator

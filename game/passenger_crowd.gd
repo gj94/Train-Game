@@ -10,6 +10,8 @@ var _paths:={}
 var _events:={}
 var _seat_poses:={}
 var visible_count:=0
+var seated_count:=0
+var moving_count:=0
 
 var _clock:=0.0
 var platforms:=preload("res://game/passenger_platform.gd").new()
@@ -59,6 +61,9 @@ func update() -> void:
 			var side:=roundi(p.side*t.path[0].dir*view._direction(car))
 			if car<view.passenger_portals.size():view.passenger_portals[car].update(side,p.door_open if near else 0.0)
 			if not near or p.cars[car].seats.is_empty():continue
+			var policy:=preload("res://game/train_visibility.gd")
+			var occupied: int=policy.occupied_car(game) if id==game.train.id else -100
+			if not policy.seated_allowed(game.cam.mode,id==game.train.id,car,occupied,transform.origin.distance_to(game.cam.global_position),game.cam._blend<1.0):continue
 			var c: Dictionary=p.cars[car]
 			var poses: Array=_seats(c.model,view.specs[car].passengers)
 			for seat in c.seats.size():
@@ -92,6 +97,7 @@ func update() -> void:
 	for b in batches:b.count=0;b.material.set_shader_parameter("simulation_time",_clock)
 	for i in mini(MAX_SEATED,seated.size()):_draw(seated[i])
 	for i in mini(MAX_MOVING,moving.size()):_draw(moving[i])
+	seated_count=mini(MAX_SEATED,seated.size());moving_count=mini(MAX_MOVING,moving.size())
 	visible_count=0
 	for b in batches:b.mm.visible_instance_count=b.count;visible_count+=b.count
 

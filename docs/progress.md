@@ -1,5 +1,47 @@
 # Progress
 
+## 2026-10-10 — Detailed trackside collection and crowded-train performance
+- Ported the user's pinned `16c06aee` Kerala trackside collection: 44 designs
+  plus eight authored tree LOD alternatives. Source archive/member hashes,
+  metric bounds, source PBR textures and notices are retained. Full geometry
+  remains nearby; detailed houses, shop/workshop, vegetation, canoe, maintenance
+  and utility props are integrated through the existing placement constraints.
+- Baked eight-view distant images for 14 source assets and nine existing house
+  families (all six facade palettes). All 46 albedo/normal atlases are mipmapped
+  and GPU-compressed, with full RGB object normals. Added distance-dependent
+  grass density and simpler distant sleepers/fastenings. Rails, joint spacing,
+  track layouts, global AA/lighting and passenger simulation are unchanged.
+- Pilot view omits seated passenger meshes and unoccupied interiors. Passenger,
+  walking and nearby external views restore visible occupants/interiors. Nearby
+  vehicles retain detailed shadows; distant vehicles use simple shadow hulls.
+- AI scene resources load in the background and assemble one vehicle per frame;
+  partial formations stay hidden until complete. Contact geometry is shared by
+  train sound instances; sweeps, voices and acoustic histories stay independent.
+  First-use material assembly and explicit handover can still cause stalls.
+- Added an isolated five-train ERS benchmark: 91 vehicles, 5,580 passengers,
+  four camera A/B pairs, loading timings, and a live coasting phase with measured
+  travel for every train. The regular 32-service benchmark remains available.
+  Performance claims must distinguish the Radeon 780M development PC from the
+  confirmed i9-13980HX / RTX 4090 Laptop 16 GB / 64 GB target. Its warm cache
+  ceiling is now 8 GiB instead of the erroneous 2 GiB fallback.
+- Validation: **442 passed, 0 failed**, with a clean final headless log. The
+  dummy renderer uses synchronous resource loads after concurrent shader-RID
+  initialization errors were caught; native gameplay retains threaded loading.
+  Native source track/motion and audio-routing/free-camera checks passed.
+  Compressed impostor previews were inspected in the native renderer.
+- Final native five-train capture passed its audit at verified 1600×900, without
+  script/renderer errors. Static median frame times improved 2.6–7.3% locally;
+  rendered primitives fell 10.8–18.0%. All five formations moved 23.65 m in the
+  live phase, which measured 70.26 ms median / 82.87 ms p95 on the 780M. Largest
+  build step is still 349.30 ms (first-use VB assembly). Full evidence and limits:
+  `docs/crowded-benchmark-2026-10-10.md`; target-PC performance remains unmeasured.
+
+Player checks: update through Update & Play, drive ERS–Kumbalam, and approach
+trees/houses in free camera to inspect distance transitions. Switch pilot →
+passenger → platform and confirm visible people/interiors return. On the target
+laptop, run `Benchmark.ps1 -CrowdedOnly -Resolution 1440p` from the updated game
+folder (see `docs/performance.md`) and return its Documents report ZIP.
+
 ## 2026-10-10 — Player benchmark reviewed; AI model quality verified
 - Read the complete `TrainGame-Benchmark-20261010-000502.zip` returned from the
   i9-13980HX / RTX 4090 Laptop / 64 GB PC. Corrected the assumed target in

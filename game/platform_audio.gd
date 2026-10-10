@@ -53,7 +53,7 @@ func horn() -> void:
 	if is_instance_valid(engine): engine.horn()
 
 func setup(t: Train,w: RailWorld,listener: Node3D,axles: Array) -> void:
-	layout=Contacts.new(w.graph)
+	if layout==null or layout.graph!=w.graph:layout=Contacts.new(w.graph)
 	super.setup(t,w,listener,axles)
 	_track.stop(); _track.stream.polyphony=128; _track.play(); _track_pb=_track.get_stream_playback()
 	_hiss=AudioEffectHighShelfFilter.new()

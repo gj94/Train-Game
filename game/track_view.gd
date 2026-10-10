@@ -55,6 +55,7 @@ func build(view) -> void:
 	wv = null # WorldView retains this adapter; do not create a RefCounted cycle.
 
 func _materials() -> void:
+	preload("res://game/track_detail.gd").prepare()
 	for kind in ["ballast", "concrete", "rail"]:
 		var m := ShaderMaterial.new()
 		m.shader = load("res://game/shaders/track_" + kind + ".gdshader")
@@ -462,6 +463,7 @@ func _instances(mesh: Mesh, transforms: Array, parent: Node3D, material: Materia
 	mi.visibility_range_fade_mode = GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
 	if label=="LooseGranite": mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	parent.add_child(mi)
+	preload("res://game/track_detail.gd").attach(mi,label,distance,transforms)
 
 func _sleeper_mesh(flat_bearer: bool = false) -> ArrayMesh:
 	var st := SurfaceTool.new()

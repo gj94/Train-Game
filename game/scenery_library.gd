@@ -22,6 +22,7 @@ var catalog: Dictionary = {}
 func _init(world_view=null) -> void:
 	_view_ref=weakref(world_view) if world_view!=null else null
 func place(kind: String,position: Vector3,angle: float=0.0,scale: Vector3=Vector3.ONE) -> void:
+	if catalog.has("tf3_BLD_Home_Verandah_01"):kind=preload("res://game/trackside_assets.gd").resolve(kind)
 	if not placements.has(kind): placements[kind]=[]
 	placements[kind].append(Transform3D(Basis(Vector3.UP,angle).scaled_local(scale),position))
 	counts[kind]=counts.get(kind,0)+1
@@ -93,7 +94,8 @@ func material(kind: String) -> Material:
 	return mat
 func asset(kind: String) -> Array:
 	if meshes.has(kind): return meshes[kind]
-	var scene: PackedScene=load(ROOT+kind+".glb")
+	var path: String="res://assets/models/trackside/"+kind.trim_prefix("tf3_")+".gltf" if kind.begins_with("tf3_") else ROOT+kind+".glb"
+	var scene: PackedScene=load(path)
 	assert(scene!=null,"Scenery asset missing: "+kind)
 	var instance:=scene.instantiate()
 	var parts:=[]
@@ -108,7 +110,11 @@ func _collect(node: Node,parent: Transform3D,parts: Array) -> void:
 		var mesh: Mesh=node.mesh.duplicate()
 		for surface in mesh.get_surface_count():
 			var source: Material=node.get_active_material(surface)
-			if source!=null and source.resource_name.begins_with("PH_"):
+			if source is StandardMaterial3D and source.resource_name.begins_with("TF3_"):
+				var retained: StandardMaterial3D=source.duplicate()
+				retained.texture_filter=BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+				mesh.surface_set_material(surface,retained)
+			elif source!=null and source.resource_name.begins_with("PH_"):
 				var original: StandardMaterial3D=source.duplicate()
 				original.texture_filter=BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 				if original.resource_name.contains("leaves"):
@@ -136,6 +142,15 @@ func flush() -> void:
 	placements.clear()
 func _flush_geometry() -> void:
 	for kind in placements:
+		if preload("res://game/building_impostors.gd").catalog.has(kind) and impostors.has(kind):
+			preload("res://game/building_impostors.gd").flush(self,kind)
+			continue
+		if kind=="coastal_grass" and meshes.has("coastal_grass_medium"):
+			preload("res://game/coastal_groundcover.gd").flush(self)
+			continue
+		if kind.begins_with("tf3_"):
+			preload("res://game/trackside_assets.gd").flush(self,kind)
+			continue
 		for part in asset(kind):
 			var transforms:=[]
 			for placement in placements[kind]: transforms.append(placement*part.transform)
@@ -180,6 +195,7 @@ func _range(kind: String) -> float:
 	return 1800
 func prepare_impostors() -> void:
 	for kind in TREES:impostors[kind]=_impostor_mesh(kind)
+	preload("res://game/building_impostors.gd").prepare(self)
 
 func _impostor_mesh(kind: String) -> QuadMesh:
 	var size: Vector2=TREES[kind]

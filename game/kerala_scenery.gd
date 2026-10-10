@@ -87,7 +87,9 @@ static func _shores(c,counts: Dictionary) -> void:
 					var boat:=p-normal*3.6
 					if not water_envelope(c,boat,tangent,water.geometry):continue
 					var kind: String="country_canoe" if rng.randf()<.72 else "fishing_skiff"
-					c.library.place(kind,Vector3(boat.x,water.height+.06,boat.y),atan2(tangent.x,tangent.y))
+					var ported: bool=kind=="country_canoe" and c.library.catalog.has("tf3_KL_LS_Country_Canoe")
+					# Source canoe runs along X; its marked waterline is 20 cm above the keel.
+					c.library.place(kind,Vector3(boat.x,water.height+(-.20 if ported else .06),boat.y),atan2(tangent.x,tangent.y)-(PI*.5 if ported else 0.0))
 					counts.boats+=1
 					# A grounded bamboo net rack belongs on dry bank, away from boat.
 					var rack:=bank+tangent*7

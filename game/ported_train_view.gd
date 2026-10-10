@@ -17,6 +17,12 @@ var bogies: Array = []
 var axles: Array = []
 var pantographs: Array = []
 var glass: Array = []
+var interior_meshes: Array = []
+var interior_visible: Array = []
+var shadow_parts: Array = []
+var shadow_proxies: Array = []
+var shadow_detail: Array = []
+static var _shadow_box: BoxMesh
 var lamps: Array = []
 var passenger_coach := 0
 var passenger_bay := 0
@@ -31,83 +37,116 @@ var _last_odometer := 0.0
 var _wheel_angles: Array[float] = []
 var _interior_light: OmniLight3D
 var _equipment_cab := 0
+var _build_parent: Node3D
+var _build_catalog: Dictionary = {}
 
 
 func build(t: Train, g: TrackGraph, parent: Node3D, _world_view) -> void:
+	begin_build(t,g,parent)
+	while not build_next_car():pass
+	finish_build()
+
+func begin_build(t: Train,g: TrackGraph,parent: Node3D) -> void:
+	_build_parent=parent
 	train = t
 	graph = g
 	choice = t.stock_kind.trim_prefix("ported:")
 	formation = Stock.formation(choice, t.rake_profile)
-	var catalog: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ported/manifest.json"))
-	for entry in formation:
-		var spec: Dictionary = catalog[entry.model]
-		specs.append(spec)
-		var car := Node3D.new()
-		car.name = "%s_%s_%d" % [t.id, entry.model, cars.size()]
-		parent.add_child(car)
-		cars.append(car)
-		var model: Node3D = (load("res://assets/models/ported/%s.glb" % entry.model) as PackedScene).instantiate()
-		car.add_child(model)
-		if entry.model != "wap7" and spec.get("detailed_materials",false):
-			preload("res://game/authored_vehicle_materials.gd").apply(model,entry.model)
-		else:
-			preload("res://game/fleet_surface.gd").apply(model, entry.model.begins_with("vb_"))
-		models.append(model)
-		passenger_portals.append(preload("res://game/passenger_portals.gd").new(model,entry.model,spec))
-		var car_bogies := []
-		for pivot in spec.bogies:
-			car_bogies.append(model.find_child(pivot.node, true, false))
-		bogies.append(car_bogies)
-		var car_axles := []
-		for pivot in spec.axles:
-			car_axles.append(model.find_child(pivot.node, true, false))
-		axles.append(car_axles)
-		_wheel_angles.append(0.0)
-		var car_pantos := []
-		for mechanism in spec.pantographs:
-			var pivots := []
-			for node_name in mechanism.nodes:
-				pivots.append(model.find_child(node_name, true, false))
-			car_pantos.append(pivots)
-		pantographs.append(car_pantos)
-		var car_glass := []
-		for mesh in model.find_children("*", "MeshInstance3D", true, false):
-			# Engine-generated mesh LODs handle distant views. Interior-only groups
-			# disappear beyond 100 m, keeping full detail for onboard cameras.
-			if "INTERIOR" in str(mesh.name):
-				mesh.visibility_range_end = 100.0
-				mesh.visibility_range_end_margin = 15.0
-			for surface in mesh.mesh.get_surface_count():
-				var material: Material = mesh.get_active_material(surface)
-				if material is ShaderMaterial and material.get_meta("optical_glass",false):
-					var role := material.resource_name.to_lower()
-					if (entry.model != "wap7" and spec.get("detailed_materials",false)) or "laminated_cab_glass" in role or "windscreen" in role:
-						var clear := material.duplicate() as ShaderMaterial
-						clear.set_shader_parameter("onboard_glass",true)
-						car_glass.append({node=mesh,surface=surface,clear=clear,exterior=material})
-				if material is StandardMaterial3D and material.transparency != BaseMaterial3D.TRANSPARENCY_DISABLED:
-					var clear := material.duplicate() as StandardMaterial3D
-					clear.albedo_color.a = 0
-					car_glass.append({node = mesh, surface = surface, clear = clear, exterior = material})
-		glass.append(car_glass)
-		var front := SpotLight3D.new()
-		front.position = Vector3(0, 2.25, -entry.pitch * .5 + .30)
-		front.spot_range = 100
-		front.spot_angle = 25
-		front.light_color = Color("fff1d7")
-		front.light_energy = 2.5
-		car.add_child(front)
-		var rear := SpotLight3D.new()
-		rear.position = Vector3(0, 2.25, entry.pitch * .5 - .30)
-		rear.rotation.y = PI
-		rear.spot_range = 100
-		rear.spot_angle = 25
-		rear.light_color = front.light_color
-		rear.light_energy = 2.5
-		car.add_child(rear)
-		lamps.append([front, rear])
+	_build_catalog=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ported/manifest.json"))
+
+func build_next_car() -> bool:
+	if cars.size()>=formation.size():return true
+	var entry: Dictionary=formation[cars.size()]
+	var catalog:=_build_catalog
+	var parent:=_build_parent
+	var t:=train
+	var spec: Dictionary = catalog[entry.model]
+	specs.append(spec)
+	var car := Node3D.new()
+	car.name = "%s_%s_%d" % [t.id, entry.model, cars.size()]
+	parent.add_child(car)
+	cars.append(car)
+	var model: Node3D = (load("res://assets/models/ported/%s.glb" % entry.model) as PackedScene).instantiate()
+	car.add_child(model)
+	if entry.model != "wap7" and spec.get("detailed_materials",false):
+		preload("res://game/authored_vehicle_materials.gd").apply(model,entry.model)
+	else:
+		preload("res://game/fleet_surface.gd").apply(model, entry.model.begins_with("vb_"))
+	models.append(model)
+	passenger_portals.append(preload("res://game/passenger_portals.gd").new(model,entry.model,spec))
+	var car_bogies := []
+	for pivot in spec.bogies:
+		car_bogies.append(model.find_child(pivot.node, true, false))
+	bogies.append(car_bogies)
+	var car_axles := []
+	for pivot in spec.axles:
+		car_axles.append(model.find_child(pivot.node, true, false))
+	axles.append(car_axles)
+	_wheel_angles.append(0.0)
+	var car_pantos := []
+	for mechanism in spec.pantographs:
+		var pivots := []
+		for node_name in mechanism.nodes:
+			pivots.append(model.find_child(node_name, true, false))
+		car_pantos.append(pivots)
+	pantographs.append(car_pantos)
+	var car_glass := []
+	var car_interiors := []
+	var car_shadows := []
+	for mesh in model.find_children("*", "MeshInstance3D", true, false):
+		car_shadows.append({node=mesh,mode=mesh.cast_shadow})
+		# Engine-generated mesh LODs handle distant views. Interior-only groups
+		# disappear beyond 100 m, keeping full detail for onboard cameras.
+		if "INTERIOR" in str(mesh.name):
+			car_interiors.append(mesh)
+			mesh.visibility_range_end = 100.0
+			mesh.visibility_range_end_margin = 15.0
+		for surface in mesh.mesh.get_surface_count():
+			var material: Material = mesh.get_active_material(surface)
+			if material is ShaderMaterial and material.get_meta("optical_glass",false):
+				var role := material.resource_name.to_lower()
+				if (entry.model != "wap7" and spec.get("detailed_materials",false)) or "laminated_cab_glass" in role or "windscreen" in role:
+					var clear := material.duplicate() as ShaderMaterial
+					clear.set_shader_parameter("onboard_glass",true)
+					car_glass.append({node=mesh,surface=surface,clear=clear,exterior=material})
+			if material is StandardMaterial3D and material.transparency != BaseMaterial3D.TRANSPARENCY_DISABLED:
+				var clear := material.duplicate() as StandardMaterial3D
+				clear.albedo_color.a = 0
+				car_glass.append({node = mesh, surface = surface, clear = clear, exterior = material})
+	glass.append(car_glass)
+	interior_meshes.append(car_interiors)
+	interior_visible.append(true)
+	shadow_parts.append(car_shadows)
+	shadow_detail.append(true)
+	if _shadow_box==null:_shadow_box=BoxMesh.new();_shadow_box.size=Vector3.ONE
+	var proxy:=MeshInstance3D.new();proxy.name="DistantShadowHull";proxy.mesh=_shadow_box
+	proxy.scale=Vector3(3.05,2.9,entry.pitch-1.4);proxy.position=Vector3(0,2.7,0)
+	proxy.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+	proxy.visible=false;proxy.visibility_range_end=400.0
+	car.add_child(proxy);shadow_proxies.append(proxy)
+	var front := SpotLight3D.new()
+	front.position = Vector3(0, 2.25, -entry.pitch * .5 + .30)
+	front.spot_range = 100
+	front.spot_angle = 25
+	front.light_color = Color("fff1d7")
+	front.light_energy = 2.5
+	car.add_child(front)
+	var rear := SpotLight3D.new()
+	rear.position = Vector3(0, 2.25, entry.pitch * .5 - .30)
+	rear.rotation.y = PI
+	rear.spot_range = 100
+	rear.spot_angle = 25
+	rear.light_color = front.light_color
+	rear.light_energy = 2.5
+	car.add_child(rear)
+	lamps.append([front, rear])
+	return cars.size()==formation.size()
+
+func finish_build() -> void:
+	assert(cars.size()==formation.size())
 	ride=preload("res://game/vehicle_ride.gd").new(self)
-	_interior_setup(parent)
+	_interior_setup(_build_parent)
+	_build_parent=null;_build_catalog={}
 	passenger_coach = 1 if choice in ["icf", "lhb"] else 0
 	update()
 

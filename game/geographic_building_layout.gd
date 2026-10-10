@@ -27,7 +27,7 @@ static func fit(ring: PackedVector2Array,levels: int,tags: Dictionary,seed_value
 		if levels>2:return {}
 		kinds=["warehouse" if size.x*size.y>280 else "workshop"]
 	elif levels==1:
-		kinds=["kerala_veranda","laterite_cottage","tiled_house","tiled_cottage","kerala_bungalow"]
+		kinds=["kerala_veranda","laterite_cottage","tf3_BLD_Home_Concrete_01","tiled_house","tiled_cottage","kerala_bungalow"]
 		if tags.has("shop") or tags.get("building","") in ["retail","commercial"]:kinds=["coastal_shop"]
 	elif levels==2:kinds=["balcony_villa","townhouse","shop_house"]
 	elif levels==3:kinds=["apartments_3"]

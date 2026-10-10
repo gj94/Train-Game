@@ -45,6 +45,11 @@ func run(owner) -> void:
 	game._set_paused(true);game.hud.show_modal("")
 	if not await _settle("startup"):return
 	report.ready_ms=Time.get_ticks_msec()
+	if OS.get_cmdline_user_args().has("--benchmark-traffic-only"):
+		await _crowded_traffic()
+		report.complete=not report.has("error");report.finished_ms=Time.get_ticks_msec()
+		_write();_csv.close();print("BENCHMARK_COMPLETE ",ProjectSettings.globalize_path(output))
+		get_tree().quit(0 if report.complete else 1);return
 	await _capture("cab_static",8)
 	game._passenger_preset(0)
 	if not await _settle("passenger"):return
@@ -83,11 +88,70 @@ func run(owner) -> void:
 	game._pilot_camera()
 	if not await _settle("cab_return"):return
 	await _capture("cab_return",8)
-	report.complete=true;report.finished_ms=Time.get_ticks_msec()
+	await _crowded_traffic()
+	report.complete=not report.has("error");report.finished_ms=Time.get_ticks_msec()
 	_write();_csv.close()
 	print("BENCHMARK_COMPLETE ",ProjectSettings.globalize_path(output))
 	# This runner belongs to game, so queue shutdown after all results are saved.
 	get_tree().quit()
+
+func _crowded_traffic() -> void:
+	var fixture:=preload("res://game/traffic_benchmark.gd").new()
+	report.traffic_fixture=fixture.setup(game)
+	if not await _settle("five_trains"):return
+	for mode in ["pilot","passenger","platform","overview"]:
+		fixture.set_view(mode)
+		if not await _settle("five_"+mode):return
+		for full in [true,false]:
+			preload("res://game/train_visibility.gd").benchmark_full_interiors=full
+			preload("res://game/track_detail.gd").set_reference(game.wv.root,full)
+			preload("res://game/building_impostors.gd").set_reference(game.wv.root,full)
+			preload("res://game/coastal_groundcover.gd").set_reference(game.wv.root,full)
+			for i in 45:await get_tree().process_frame
+			await _capture("five_trains_"+mode+("_full" if full else "_culled"),12)
+			var counts: Dictionary=fixture.counters()
+			report.cases[-1].traffic=counts
+			if counts.resident_trains!=5 or counts.simulated_passengers!=report.traffic_fixture.passengers:
+				report.error="Crowded fixture lost a train or passenger"
+			if mode=="pilot" and not full and counts.rendered_seated!=0:
+				report.error="Pilot view still renders seated passengers"
+			if mode=="passenger" and not full and counts.rendered_seated==0:
+				report.error="Passenger view lost its visible passengers"
+	preload("res://game/train_visibility.gd").benchmark_full_interiors=false
+	if "--benchmark-diagnose" in OS.get_cmdline_user_args():
+		await _diagnose_traffic(fixture)
+	await _live_crowded(fixture)
+
+func _live_crowded(fixture) -> void:
+	fixture.set_view("overview")
+	if not await _settle("five_live"):return
+	var before: Dictionary=fixture.begin_coasting()
+	await _capture("five_trains_live",12)
+	game._set_paused(true)
+	var counts: Dictionary=fixture.counters()
+	counts["travelled_metres"]={}
+	for id in fixture.ids:
+		counts.travelled_metres[id]=game.world.trains[id].odometer-before[id]
+		if counts.travelled_metres[id]<=1.0:report.error="Crowded live train did not move: "+id
+	report.cases[-1].traffic=counts
+	report.formation_build_steps=game.traffic_presentation.builds.timings
+	if counts.resident_trains!=5:report.error="Crowded live fixture lost a train"
+
+func _diagnose_traffic(fixture) -> void:
+	fixture.set_view("overview")
+	report.source_geometry_inventory=preload("res://game/render_inventory.gd").collect(game.wv.root,game.cam)
+	var visibility:={}
+	for chunk in game.wv.loaded.values():
+		visibility[chunk.node]=chunk.node.visible
+		chunk.node.hide()
+	for i in 45:await get_tree().process_frame
+	await _capture("diagnostic_trains_only",8)
+	for node in visibility:
+		if is_instance_valid(node):node.visible=visibility[node]
+	for parent in game.traffic_presentation.roots.values():parent.hide()
+	for i in 45:await get_tree().process_frame
+	await _capture("diagnostic_world_only",8)
+	for parent in game.traffic_presentation.roots.values():parent.show()
 
 func _settle(label: String) -> bool:
 	var began:=Time.get_ticks_msec()
@@ -95,7 +159,7 @@ func _settle(label: String) -> bool:
 	for i in 10:
 		await get_tree().process_frame
 		samples.append(_sample("loading_"+label))
-	while game.wv.loading or game.wv.has_pending_work():
+	while game.wv.loading or game.wv.has_pending_work() or not game.traffic_presentation.builds.pending.is_empty():
 		await get_tree().process_frame
 		samples.append(_sample("loading_"+label))
 		if Time.get_ticks_msec()-began>300000:
@@ -120,7 +184,10 @@ func _capture(label: String,seconds: float,start: Vector3=Vector3.ZERO,direction
 	_save_case(label,samples,began)
 	if DisplayServer.get_name()!="headless":
 		await RenderingServer.frame_post_draw
-		get_viewport().get_texture().get_image().save_png(output.get_basename()+"-"+label+".png")
+		var captured:=get_viewport().get_texture().get_image()
+		report.cases[-1].captured_pixels=[captured.get_width(),captured.get_height()]
+		report.cases[-1].window_pixels=[get_window().size.x,get_window().size.y]
+		captured.save_png(output.get_basename()+"-"+label+".png")
 
 func _sample(phase: String) -> Array:
 	var now:=Time.get_ticks_usec()

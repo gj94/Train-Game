@@ -71,7 +71,10 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	for kind in ["coconut_palm","mango_tree","rain_tree","verge_patch","kerala_tvc_heritage","kerala_ers_entry","kerala_ncj_entry","kerala_coastal_station","passenger_man","passenger_sari","passenger_phone","passenger_sari_blue","tea_kiosk","hatchback","auto_rickshaw","motorcycle"]:
 		assets.asset(kind)
 	assets.meshes["coastal_grass"]=[{mesh=preload("res://game/coastal_groundcover.gd").mesh(assets.material("grass")),transform=Transform3D.IDENTITY}]
+	assets.meshes["coastal_grass_medium"]=[{mesh=preload("res://game/coastal_groundcover.gd").mesh(assets.material("grass"),96,2.0),transform=Transform3D.IDENTITY}]
+	assets.meshes["coastal_grass_far"]=[{mesh=preload("res://game/coastal_groundcover.gd").mesh(assets.material("grass"),24,4.0),transform=Transform3D.IDENTITY}]
 	assets.prepare_impostors()
+	preload("res://game/trackside_assets.gd").prepare(assets)
 	_make_materials()
 	track_template=TrackView.new()
 	track_template.wv=self
