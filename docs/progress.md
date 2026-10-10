@@ -1,5 +1,27 @@
 # Progress
 
+## 2026-10-11 — Skip-speed diagnosis (no runtime change)
+- Skip advances on the main thread with a nominal 12 ms budget per UI frame;
+  frame caps/v-sync can reduce its CPU duty cycle. Both skip and headless audit
+  call the same world simulation with 50 ms physical slices. Skip uses 0.2 s
+  batches; the headless audit uses 2 s batches and rebuilds per-call caches less often.
+- R29 full-day audits averaged 23.25x / 23.21x (69,494 simulated seconds in
+  2,989.50 / 2,993.60 wall seconds). Those were two concurrent independent worlds,
+  each serial internally, not one multicore railway simulation.
+- Isolated comparison from the same all-AI 09:00 checkpoint, measuring 600 s:
+  raw 2 s batches 48.52x (12.37 s), skip's 0.2 s batches 44.60x (13.45 s),
+  15 active trains, zero events in both. No UI/render budget in this comparison.
+  Development PC only; no measurement on the user's i9/4090 Laptop.
+  AI driving and dispatch/signalling are the largest sampled CPU phases.
+  Temporary reproduction/results: `.local/compare_skip.gd` and
+  `.local/skip-comparison.json`. Early 08:00 profile has fewer moving services
+  and is not comparable to the busy state or full-day average.
+- Next optimization candidates: simulation-owned worker independent of UI;
+  immutable parallel AI/route calculations followed by deterministic serial
+  validation/commit of occupancy and route authorities. Moving a serial loop to
+  a worker alone does not distribute it across cores. No threading/runtime or
+  published-build changes made during this investigation; no new playtest needed.
+
 ## 2026-10-11 — R29 published: map corrections and verified timetable
 - Published `TrainGame-Kerala-Coast-R29-Windows` from clean commit `cb271d0`,
   signed sequence 31, at http://192.168.8.183:8765/. ZIP: 1,837,349,509 bytes,
