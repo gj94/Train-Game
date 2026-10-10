@@ -24,6 +24,10 @@
 - Playtest R3 → RB height ceiling → LB descent, maximum mouse/controller orbit,
   L3 pilot return, and an older high-camera save. Inspect the nearby station and
   water; confirm dispatcher zoom and the whole-route service continue normally.
+- Committed/pushed implementation `9780a21`; published immutable
+  **TrainGame-Kerala-Coast-R25-Windows**, signed update sequence **27**, from
+  clean tracked source. Verified catalogue signature, three served PCK range
+  hashes, required camera/profile scripts and the updater-first LAN page.
 
 ## 2026-10-10 — Detailed trackside collection and crowded-train performance
 - Ported the user's pinned `16c06aee` Kerala trackside collection: 44 designs
