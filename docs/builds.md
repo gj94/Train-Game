@@ -1,11 +1,27 @@
 # Windows portable build
 
 Current release: **R28**, full-route 100-service timetable and dispatcher fixes.
+Published 10 October 2026 from clean runtime export `17f7a78`, signed sequence 30.
+Full ZIP: 1,829,203,359 bytes, SHA-256
+`28e841e1587d28ac8db8507f0e6d56c89994759251db779ad0cd78c1bbdaf27a`.
+R27→R28 changes 2,122,647,854 bytes of fixed-position update blocks, so the full
+ZIP is the smaller download for this release. Both methods remain available.
+R26/R27 export folders and ZIPs were removed after verification and an idle-LAN
+check, freeing 8,180,213,883 bytes. Their small signed manifests remain for history.
 Full ZIP and signed incremental updates are enabled at the LAN address recorded
 in `.local/lan-share.json`. The loading screen displays the packaged build name
 and source revision. Only the current release is served. Check `BUILD.txt` and
 the signed update manifest for its source identity and sizes. See
 [busy-timetable.md](busy-timetable.md) for the 100-service day and skip controls.
+
+R28 archive CRC, required contents, clean BUILD identity, update signature,
+three ZIP ranges, three update-block hashes and the separately certified timetable
+download passed. No distribution gameplay test. The updater build helper was
+repaired to hash with .NET where PowerShell cannot load Get-FileHash; packaging
+resumed from the completed game export without rewriting the asset pack.
+The bundled guide reports contain `Infinity` markers for absent signal-distance
+diagnostics; corrected repository evidence retains the original Godot JSON syntax.
+Measured timetable results and the playable runtime are unchanged.
 
 Run `powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1` from this
 checkout. It runs the headless suite, track/joint geometry, fleet-finish, rendered-motion and live audio-player checks,

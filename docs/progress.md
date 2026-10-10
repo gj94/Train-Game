@@ -5,8 +5,8 @@
   paused, including its diagnostic simulation. All prototype map changes remain
   isolated under ignored `.local/`; production geometry is unchanged.
 - User reports buildings occupying tracks and double tracks narrowing into one
-  before spreading out again. Finish R28 publication first; this map correction
-  is the next task, not part of the timetable release currently under audit.
+  before spreading out again. R28 is published; this map correction remains
+  paused as the next separate task, outside the timetable release.
 - User clarified: visible sharp/angular corners in the rails themselves should
   become smooth continuous curves. Correct the actual alignment followed by
   both rendered rails and trains. Measure heading/curvature transitions while
@@ -49,7 +49,24 @@
   The source converter still needs the reproducible implementation, formal tests,
   actual game integration, visual review and publication after R28.
 
-## 2026-10-10 — Full-route busy timetable (R28 validated, packaging)
+## 2026-10-10 — R28 published: full-route busy timetable and dispatcher fixes
+- Published `TrainGame-Kerala-Coast-R28-Windows` from clean export `17f7a78`,
+  signed update sequence 30, at http://192.168.8.183:8765/. Full ZIP is
+  1,829,203,359 bytes with 234 entries; SHA-256
+  `28e841e1587d28ac8db8507f0e6d56c89994759251db779ad0cd78c1bbdaf27a`.
+  Full ZIP CRC/contents/BUILD identity, signed manifest, three ZIP ranges and
+  three update blocks passed. Timetable JSON is certified for R28 against both
+  fresh reports. No distribution gameplay test. Publication evidence: `release.json`.
+- R27→R28 changes ~2.123 GB of fixed-position update blocks, making the 1.829 GB
+  full ZIP the smaller choice this time. Both are served. R26/R27 folders, ZIPs
+  and sidecars were removed after checking idle LAN connections and resolved
+  export paths, freeing 8.180 GB. Only R28 is downloadable; small old manifests remain.
+- Packaging encountered unavailable PowerShell Get-FileHash in the launcher helper.
+  Replaced it with .NET streaming SHA-256, verified its ZIP checksum, committed/pushed,
+  then resumed packaging without re-exporting the large PCK. The two bundled guide
+  reports have Infinity markers in absent-signal diagnostics; repository copies now
+  preserve the original Godot JSON. Metrics, certificates and runtime are unchanged;
+  the already signed R28 files were kept immutable.
 - Replaced the short-shuttle generator with 24 ERS–NCJ workings, 12 ERS–TVC
   intercity workings and 64 regional workings. Exactly 100 services, 08:00–22:10;
   late trains finish on day 2. B001 is ERS 08:35 → NCJ, eight-car VB; B012 is
@@ -96,11 +113,10 @@
   its actual origin departure is 08:10:00.10 versus 08:00:44.95. Both runs observe
   K1 overtaken by B001 at MAKM, B024 at STKT and B002 at NYY. Evidence is committed
   under `art/performance/timetable-through-2026-10-10/`; source code `4cbb726`.
-- R28 packaging follows the successful audits and the user's requested advance
-  notice. It includes a full ZIP and signed incremental updates. The timetable
-  publisher refuses failed/stale audits and incompatible released runtime; it will
-  certify the small JSON against R28 after the new game is published. R27 remains
-  served until packaging completes. No extracted-distribution gameplay test.
+- R28 publication followed the successful audits and the user's requested advance
+  notice. The timetable publisher checked source digest, every booked call,
+  departure, priority, completed depot and wait limit before marking the small
+  JSON verified and compatible. Source, fixes and evidence are committed/pushed.
 - Playtest after release: start a fresh Kerala scenario, inspect B001/B012 and their
   seven major calls in Dispatch. Drive K1 or hand over with A; observe dynamic
   crossing/overtake advice. Skip to afternoon/evening and verify depot clearances.

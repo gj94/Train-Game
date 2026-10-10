@@ -35,3 +35,9 @@ Audits ran concurrently on the development PC (43.61 / 45.29 wall minutes),
 not as a controlled performance comparison or a target RTX 4090 Laptop graphics
 benchmark. No extracted-distribution gameplay test was run. Manual driving and
 edited timetables can produce different outcomes.
+
+`release.json` records the published R28 ZIP, signature/LAN checks and old-build
+cleanup. The two guide report copies inside the immutable R28 ZIP were rewritten
+by an intermediate serializer and contain `Infinity` for absent signal distances.
+The repository copies preserve the original Godot JSON (`1e99999`); use these
+copies with strict JSON parsers. All measured timetable fields are unchanged.
