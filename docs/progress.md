@@ -1,5 +1,65 @@
 # Progress
 
+## 2026-10-10 — Gradual predictive AI driving
+- Replaced the power/coast/full-brake thresholds with a pure-simulation speed
+  controller. It compensates running resistance to hold a steady cruise and
+  changes the handle by at most 35 percentage points per simulated second in
+  normal running. Stops and restrictions use a 45%-service braking curve with
+  four seconds of anticipation for releasing traction and building brake.
+- Lookahead now follows braking distance, speed and braking strength instead
+  of stopping at 1 km / 20 track edges. Red signals, buffers, obstructions and
+  lower speed boards share this advance planning; restrictions remain in force
+  until the entire formation clears. Close hazards bypass the comfort ramp;
+  emergency/block protection, station dwell and holding brakes remain effective.
+- Reproduced 1,205 cruise power/coast mode changes in 90 seconds before the fix.
+  New regression coverage checks stable cruise, graded braking, both directions,
+  many short edges, weak-brake lookahead beyond 5 km, station/buffer/red stops,
+  late red signals, occupied blocks, tail clearance, departure and fast-forward.
+  The 13 new tests pass. An isolated copy containing only this change plus
+  committed simulation code passed all **71 driving/signal/timetable tests**.
+  The complete working-checkout headless suite passed **479 tests, 0 failed**.
+- Measured source simulation: a 144→40 km/h scenario started braking 2,257 m
+  before the board, peaked at 54% brake and entered at 38.74 km/h. A 100 km/h
+  red-signal approach began braking 1,267 m ahead, peaked at 41% above 1 km/h
+  and stopped 6.51 m short without protection intervention. Full brake
+  remains normal at a stand; these are simulation results, not a live playtest.
+- Player check from the updated source: press keyboard A to select AI; watch a
+  station approach and a lower speed board. Brake percentage should build
+  gradually, speed should be compliant before the board, and power should stay
+  restrained until the tail clears. On open line, check for steady power rather
+  than rapid Coast/Power flickering. No downloadable release has been built.
+
+## 2026-10-10 — AI power/coast chatter and full-brake diagnosis
+- Confirmed `_drive_automatic` uses instantaneous speed thresholds: power below
+  target minus 0.5 m/s, coast in the middle, full service brake above target plus
+  0.15 m/s or within 0.7 m of the stopping target. At the power/coast boundary,
+  the request jumps between about 35% traction and zero; there is no persistent
+  driving mode, separate entry/exit thresholds or control-rate limit.
+- The stopping curve assumes 65% service deceleration but the brake request is
+  always 100%, encouraging brake/release pulses while following the curve.
+  Stops, dwell, route holds and passenger exchange also explicitly hold full
+  service brake. Emergency is a separate simulation flag and HUD label.
+- Explanation only; no driving logic changed. A future fix should use stable
+  mode transitions and graded traction/braking, retaining immediate protection,
+  with regressions for cruise chatter, braking smoothness and stopping safety.
+
+## 2026-10-10 — Passenger-view performance photo reviewed
+- Photo reads 59 FPS / 16.9 ms per frame, GPU 13.6 ms, p95 17.9 ms and
+  p99 25.9 ms. The overlay's frame time is derived from averaged FPS; GPU time
+  is the latest viewport query, while percentiles use 240 wall-clock samples.
+  These are different measurement windows, not additive CPU/GPU timings.
+- Near-60 FPS pacing makes V-sync/frame limiting the first check (V-sync is
+  enabled by default). CPU/render submission or simulation can also limit
+  throughput; this photo alone does not establish the cause. The earlier R23
+  target-PC benchmark supports a CPU component to live-traffic jitter, but is
+  not a measurement of this photo/build. Streaming is only 0.13 ms in the photo.
+- Next diagnostic: at the same view, set Graphics V-sync Off and Frame limit
+  Unlimited, then compare FPS/GPU time; repeat at 50% render scale. If pacing
+  remains near 60, check driver/display limits before attributing it to CPU.
+  Analysis only; no runtime settings or gameplay changed.
+- The headless run started during this review was interrupted before a result;
+  no new test pass count or benchmark result is claimed.
+
 ## 2026-10-10 — Live graphics settings and controller navigation
 - Added Menu / Esc → Graphics settings with 18 individually selectable controls:
   render scale, MSAA/FXAA, V-sync/frame cap, shadow resolution/distance/filtering,

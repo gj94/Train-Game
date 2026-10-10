@@ -53,13 +53,20 @@ func acceleration() -> float:
 		a -= emergency_decel
 	elif controller > 0.0:
 		if speed < max_speed:
-			var force := minf(mass * max_accel, max_power / maxf(speed, 1.0))
-			a += controller * force / mass
+			a += controller * traction_acceleration()
 	elif controller < 0.0:
 		a += controller * service_decel
 	# Running resistance (Davis-style: rolling + aerodynamic).
-	a -= 0.006 + 0.00004 * speed * speed
+	a -= running_resistance()
 	return a
+
+
+func traction_acceleration() -> float:
+	return minf(mass * max_accel, max_power / maxf(speed, 1.0)) / mass
+
+
+func running_resistance() -> float:
+	return 0.006 + 0.00004 * speed * speed
 
 
 func update_speed(dt: float) -> void:

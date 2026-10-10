@@ -16,6 +16,7 @@ const Clock := preload("res://sim/world_clock.gd")
 const Timetable := preload("res://sim/timetable.gd")
 const Depot := preload("res://sim/depot_workings.gd")
 const Passengers := preload("res://sim/passenger_service.gd")
+const AutomaticControl := preload("res://sim/automatic_control.gd")
 
 var graph := TrackGraph.new()
 var signals := {}        # route sections are immutable paths, independent of later point settings
@@ -474,7 +475,7 @@ func step(dt: float) -> void:
 			Passengers.update(self,t,slice)
 			Depot.update(self,t)
 			if t.automatic:
-				_drive_automatic(t)
+				_drive_automatic(t, slice)
 			var previous_distance: float = t.odometer
 			_step_train(t, slice)
 			if t.timetable != null:
@@ -547,7 +548,7 @@ func single_line_directions() -> Dictionary:
 
 ## Braking curves include signals, buffers, occupied blocks and lower speed
 ## limits ahead. AI never requests or changes a route by itself.
-func _drive_automatic(t: Train) -> void:
+func _drive_automatic(t: Train, dt: float = .05) -> void:
 	if t.emergency:
 		t.status = "Emergency — release at stand"
 		t.controller = -1.0
@@ -584,16 +585,17 @@ func _drive_automatic(t: Train) -> void:
 			t.status = "Missed stop: " + scheduled_stop.block
 			t.controller = -1.0
 			return
-	var buffer := distance_to_buffer(t)
+	var lookahead := AutomaticControl.horizon(t, speed_limit_for(t))
+	var buffer := distance_to_buffer(t, lookahead)
 	var stop_at := buffer - 7.0
 	var ns := next_signal(t)
 	t.status = "Empty stock to " + t.depot.name if Depot.active(t) else "Running to " + t.destination
-	stop_at = minf(stop_at, _distance_to_red(t) - 6.0)
+	stop_at = minf(stop_at, _distance_to_red(t, lookahead) - 6.0)
 	if not ns.is_empty() and aspect(ns.id) == Aspect.RED:
 		stop_at = minf(stop_at, ns.distance - 6.0)
 		if t.speed < 0.1:
 			t.status = "Waiting for " + ns.id
-	stop_at = minf(stop_at, _distance_to_obstruction(t) - 3.0)
+	stop_at = minf(stop_at, _distance_to_obstruction(t, lookahead) - 3.0)
 	if not scheduled_stop.is_empty():
 		var to_stop := _stop_distance(t.path[0].edge, t.path[0].dir, t.head_s, scheduled_stop, [])
 		if is_inf(to_stop):
@@ -611,23 +613,7 @@ func _drive_automatic(t: Train) -> void:
 				if not contains_stop and is_inf(_stop_distance(last.edge, last.dir, graph.entry_s(last.edge, last.dir), scheduled_stop, [])):
 					stop_at = minf(stop_at, ns.distance - 6.0)
 					t.status = "Route must serve " + scheduled_stop.block
-	var target := minf(speed_limit_for(t) - 0.4, sqrt(maxf(0.0, 2.0 * t.service_decel * 0.65 * stop_at)))
-	var cur: Dictionary = t.path[0]
-	var distance := absf(graph.exit_s(cur.edge, cur.dir) - t.head_s)
-	for i in 20:
-		var nxt := graph.next(cur.edge, cur.dir)
-		if nxt.is_empty() or distance > 1000.0:
-			break
-		var limit: float = graph.edges[nxt.edge].speed_limit - 0.4
-		target = minf(target, sqrt(maxf(0.0, limit * limit + 2.0 * t.service_decel * 0.65 * maxf(0.0, distance - 12.0))))
-		cur = nxt
-		distance += graph.edges[cur.edge].length
-	if stop_at < 0.7 or t.speed > target + 0.15:
-		t.controller = -1.0
-	elif t.speed < target - 0.5:
-		t.controller = clampf((target - t.speed) * 0.7, 0.0, 1.0)
-	else:
-		t.controller = 0.0
+	AutomaticControl.drive(self, t, stop_at, dt)
 	if t.service_complete and not Depot.active(t):
 		t.controller = -1.0
 
@@ -639,18 +625,18 @@ func _stop_distance(edge: String, dir: int, from_s: float, stop: Dictionary, vis
 	return _route_distances.distance(edge,dir,from_s,stop)
 
 
-func _distance_to_red(t: Train) -> float:
+func _distance_to_red(t: Train, horizon: float = 5000.0) -> float:
 	var cur: Dictionary = t.path[0]
 	var from_s := t.head_s
 	var distance := 0.0
-	for i in 64:
+	for i in graph.edges.size():
 		for sid in _signals_on.get(_key(cur.edge, cur.dir), []):
 			var ahead: float = (signals[sid].s - from_s) * cur.dir
 			if ahead >= 0 and aspect(sid) == Aspect.RED:
 				return distance + ahead
 		distance += absf(graph.exit_s(cur.edge, cur.dir) - from_s)
 		var nxt := graph.next(cur.edge, cur.dir)
-		if nxt.is_empty() or distance > 5000:
+		if nxt.is_empty() or distance > horizon:
 			return INF
 		cur = nxt
 		from_s = graph.entry_s(cur.edge, cur.dir)
@@ -667,14 +653,15 @@ func _reservation_directions() -> Dictionary:
 	return directions
 
 
-func _distance_to_obstruction(t: Train) -> float:
+func _distance_to_obstruction(t: Train, horizon: float = INF) -> float:
 	# Route paths are constant within a physics slice; occupancy is not. Keep
 	# each earlier train's movement visible to the trains updated after it.
 	var occupied := occupancy()
 	var directions: Dictionary=_step_route_directions if _within_step else _reservation_directions()
 	var cur: Dictionary = t.path[0]
 	var distance := absf(graph.exit_s(cur.edge, cur.dir) - t.head_s)
-	for i in 64:
+	for i in graph.edges.size():
+		if distance > horizon: return INF
 		var nxt := graph.next(cur.edge, cur.dir)
 		if nxt.is_empty():
 			return INF

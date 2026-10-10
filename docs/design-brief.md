@@ -9,6 +9,9 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **10 Oct 2026 AI driving:** build braking gradually and early for station
+  stops, signals and upcoming lower speed limits. Avoid rapid power/coast/brake
+  switching; retain immediate protection and full-rake speed-limit clearance.
 - **10 Oct 2026 camera/rendering bounds:** limit 3D camera height and view
   distance, concentrating scenery along the railway instead of rendering broad
   districts. Preserve nearby stations, water, cab movement and full-route
