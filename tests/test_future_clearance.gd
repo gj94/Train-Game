@@ -119,3 +119,39 @@ func test_plan_snapshot_is_isolated_from_ui_mutation():
 	var w:=_world();var e=_activate(w)
 	var snapshot: Dictionary=e.snapshot();snapshot.future_plans[0].received=true
 	return not e.future_clearances.plans[0].received
+
+func test_existing_home_authority_cannot_be_replaced_by_a_future_platform_promise():
+	var f:=preload("res://tests/test_exit_capacity.gd").new()
+	var w: RailWorld=f.fixture();var e=w.dispatcher()
+	var t: Train=f.add(w,"I",["AMPA_P2","ALLP_P2","MAKM_P2"],-1)
+	var v: Train=f.add(w,"V",["ALLP_P1","MAKM_P2","SRTL_P2"],-1)
+	f.add(w,"O",["MAKM_P3","ALLP_P3","AMPA_P1"],1)
+	v.timetable.departure+=300
+	var home:={}
+	for sig in w.signals.values():
+		if sig.dir==-1 and w.route_options(sig.id).any(func(o):return o.edges[-1].edge=="ALLP_P2"):
+			home=sig;break
+	if home.is_empty():return "Fixture has no ALLP home"
+	w.place_train(t,home.edge,home.s+80,-1);t.timetable.index=1;t.timetable.at_stop=false
+	var option: Dictionary=w.route_options(home.id).filter(func(o):return o.edges[-1].edge=="ALLP_P2")[0]
+	var granted: Dictionary=w.set_route(home.id,option.destination)
+	if not granted.ok:return granted.reason
+	# ALLP's depot access is still part of the approach section after the home.
+	# A later promise of P1 would conflict with the committed arrival into P2.
+	return e.future_clearances.propose(w,e,t).is_empty()
+
+func test_future_crossing_order_overrides_an_existing_advisory_overtake():
+	var w:=_world();var e=_activate(w)
+	w.place_train(w.trains.K1,preload("res://tests/kerala_fixture.gd").kumbalam_approach(w),50,1)
+	w.trains.K1.timetable.index=2;w.trains.K1.timetable.at_stop=false
+	w.dispatch_holds.K3={kind="overtake",other="K1",station="KUMM",chainage=8000,direction=1,created=w.time,arrived=true}
+	preload("res://sim/priority_dispatch.gd").update(w)
+	return not w.dispatch_holds.has("K3") and not e.future_clearances.hold(w,w.trains.K3).is_empty()
+
+func test_future_vacater_does_not_accept_a_new_advisory_overtake():
+	var w:=_world();var e=_activate(w)
+	w.trains.K1.dispatch_priority=100;w.trains.K3.dispatch_priority=10
+	w.place_train(w.trains.K1,preload("res://tests/kerala_fixture.gd").kumbalam_approach(w),50,1)
+	w.trains.K1.timetable.index=2;w.trains.K1.timetable.at_stop=false
+	preload("res://sim/priority_dispatch.gd").update(w)
+	return not w.dispatch_holds.has("K3")

@@ -42,6 +42,7 @@ func propose(w, engine, t: Train) -> Dictionary:
 	if approach.is_empty():return {}
 	var st: Dictionary=approach.station
 	if st.through_halt:return {}
+	if _arrival_fixed(w,t,st):return {}
 	var occ: Dictionary=w.occupancy()
 	var free: Array=st.platform_tracks.filter(func(road):return not occ.has(road) and not _reserved(w,road))
 	var own_free:=Berths.roads(w,t,st,approach.edge,t.path[0].dir,free)
@@ -61,6 +62,7 @@ func propose(w, engine, t: Train) -> Dictionary:
 		if Berths.roads(w,t,st,approach.edge,t.path[0].dir,[road]).is_empty():continue
 		var escape:=_approach(w,v)
 		if escape.is_empty() or escape.section==approach.section or escape.station.code==st.code:continue
+		if _arrival_fixed(w,v,escape.station):continue
 		# The vacater must leave AWAY from the incoming train's single line.
 		var escape_free: Array=escape.station.platform_tracks.filter(func(r):return not occ.has(r) and not _reserved(w,r))
 		var escape_roads:=Berths.roads(w,v,escape.station,escape.edge,v.path[0].dir,escape_free)
@@ -71,6 +73,7 @@ func propose(w, engine, t: Train) -> Dictionary:
 			if o.timetable==null or o.service_complete or o.path[0].dir==t.path[0].dir:continue
 			var other:=_approach(w,o)
 			if other.is_empty() or other.station.code!=st.code or other.section!=escape.section:continue
+			if _arrival_fixed(w,o,st):continue
 			var other_roads:=Berths.roads(w,o,st,other.edge,o.path[0].dir,free)
 			if other_roads.is_empty():continue
 			if Planner._can_berth([{id=t.id,roads=own_free},{id=o.id,roads=other_roads}]):continue
@@ -87,6 +90,12 @@ func propose(w, engine, t: Train) -> Dictionary:
 				approach_section=approach.section,escape_section=escape.section,direction=t.path[0].dir,
 				received=false,opponent_received=false,escaped=false,created=w.time}
 	return {}
+
+func _arrival_fixed(w,t: Train,st: Dictionary) -> bool:
+	# A home route may still traverse a single-line depot access, but its
+	# platform is already committed. Never promise a different arrival road.
+	# Include prepared homes beyond the next automatic signal as well.
+	return (t.path+_planner._committed_routes(w,t)).any(func(seg):return seg.edge in st.platform_tracks)
 
 func _approach(w,t: Train) -> Dictionary:
 	var ns: Dictionary=w.next_signal(t)
@@ -124,6 +133,11 @@ func _departure_committed(w,t: Train,section: String) -> bool:
 
 func _participant(id: String) -> bool:
 	return plans.any(func(p):return id in [p.incoming,p.opponent,p.vacater])
+
+func controls_order(id: String) -> bool:
+	# These three movements already have an interdependent departure order.
+	# A separate priority overtake must not hold the promised platform vacater.
+	return _participant(id)
 
 static func _contained(t: Train,road: String) -> bool:
 	return t.path.size()==1 and t.path[0].edge==road

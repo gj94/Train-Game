@@ -20,6 +20,7 @@ static func eta(w: RailWorld,t: Train,s: float) -> float:
 
 static func conflict(w: RailWorld,t: Train,st: Dictionary) -> Dictionary:
 	if st.is_empty() or st.through_halt:return {}
+	if w.dispatcher().future_clearances.controls_order(t.id):return {}
 	var direction: int=t.path[0].dir
 	var own_eta:=eta(w,t,st.s)
 	var at:=chainage(w,t)
@@ -67,6 +68,9 @@ static func _crossing_window(w: RailWorld,t: Train,other: Train,st: Dictionary) 
 static func update(w: RailWorld) -> void:
 	if not w.scenery.get("geographic",false):return
 	for id in w.dispatch_holds.keys():
+		if w.dispatcher().future_clearances.controls_order(id):
+			w.dispatch_holds.erase(id)
+			continue
 		var hold: Dictionary=w.dispatch_holds[id]
 		var t: Train=w.trains[id]
 		var other: Train=w.trains[hold.other]
@@ -103,7 +107,8 @@ static func _passing_road_available(w: RailWorld,other: Train,st: Dictionary,hel
 	var occ:=w.occupancy()
 	var direction: int=other.path[0].dir
 	var approach: float=(st.s-chainage(w,other))*direction
-	var free: Array=st.platform_tracks.filter(func(r):return r!=held_edge and not occ.has(r))
+	var future=w.dispatcher().future_clearances
+	var free: Array=st.platform_tracks.filter(func(r):return r!=held_edge and not occ.has(r) and future.owner(r) in ["",other.id])
 	var compatible:=preload("res://sim/receiving_berths.gd").roads(w,other,st,other.path[0].edge,direction,free)
 	for road: String in compatible:
 		var goal:={block=road,direction=direction,s=w.graph.edges[road].length*.5}
