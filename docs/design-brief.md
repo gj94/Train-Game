@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **11 Oct 2026 day/night:** make the world dark at night and transition through
+  dawn/day/dusk using the timetable clock. Preserve pause, fast forward,
+  save/load and rendering-free skip behavior. Provide readable local station
+  and train lighting with bounded rendering cost; distinguish a representative
+  daily cycle from seasonal/weather/astronomical simulation.
 - **11 Oct 2026 multicore simulation:** try actual parallel work within one
   railway, beyond separating skip from its UI. Preserve deterministic signalling,
   live occupancy and passenger/timetable results; compare worker counts against

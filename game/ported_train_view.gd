@@ -127,18 +127,22 @@ func build_next_car() -> bool:
 	car.add_child(proxy);shadow_proxies.append(proxy)
 	var front := SpotLight3D.new()
 	front.position = Vector3(0, 2.25, -entry.pitch * .5 + .30)
-	front.spot_range = 100
+	front.spot_range = 180
 	front.spot_angle = 25
 	front.light_color = Color("fff1d7")
-	front.light_energy = 2.5
+	front.light_energy = 5.0
+	front.shadow_enabled=false
+	front.distance_fade_enabled=true;front.distance_fade_begin=350;front.distance_fade_length=100
 	car.add_child(front)
 	var rear := SpotLight3D.new()
 	rear.position = Vector3(0, 2.25, entry.pitch * .5 - .30)
 	rear.rotation.y = PI
-	rear.spot_range = 100
+	rear.spot_range = 180
 	rear.spot_angle = 25
 	rear.light_color = front.light_color
-	rear.light_energy = 2.5
+	rear.light_energy = 5.0
+	rear.shadow_enabled=false
+	rear.distance_fade_enabled=true;rear.distance_fade_begin=350;rear.distance_fade_length=100
 	car.add_child(rear)
 	lamps.append([front, rear])
 	return cars.size()==formation.size()

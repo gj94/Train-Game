@@ -92,7 +92,7 @@ func apply_tree(node: Node) -> void:
 		env.fog_depth_begin=values.view_distance*(1000.0/2200.0)
 		env.fog_depth_end=values.view_distance*(2050.0/2200.0)
 	elif node is DirectionalLight3D:
-		node.shadow_enabled=values.shadows>0
+		node.shadow_enabled=values.shadows>0 and not node.get_meta("no_night_shadow",false)
 		node.directional_shadow_max_distance=values.shadow_distance
 	elif node is GeometryInstance3D:
 		apply_geometry(node)

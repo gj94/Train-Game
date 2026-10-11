@@ -1,5 +1,35 @@
 # Progress
 
+## 2026-10-11 — Clock-driven dawn, dusk and night
+- Added a pure timetable-clock daylight model and presentation-owned sky/sun/
+  moon/fog updates. Representative tropical equinox: sunrise about 06:20,
+  sunset 18:20; no calendar, weather or lunar-phase claim. Pause, fast forward,
+  saved clocks and time-skip restoration use the same cycle.
+- Cached incremental sky radiance; normal refresh requires five simulated
+  seconds and at least half a real second. Time-skip completion applies the
+  destination lighting after joining its worker, before the next rendered frame.
+- Canopy/forecourt fixtures follow existing station geometry and origin shifts.
+  Two instanced draws, at most 96 nearby fixtures / 24 shadow-free local lights;
+  exclude unloaded stations. VRLR's distinct authored open shelters remain
+  excluded pending individual roof datums. Leading headlights reach 180 m;
+  existing local cab/coach illumination remains readable. Moon has no shadows
+  even when changing graphics presets.
+- Validation: **558 headless tests, 0 failures**; **23 native day/night checks**
+  across eight captured views; **33 native skip checks with four simulation
+  workers**, all passed with empty stderr; clean Godot import. Dummy audio used for native checks.
+  Inspected day/dusk/night/dawn platforms, night cab/passenger and overview.
+- Development 780M, High, 1600x900: platform median 34.04 ms midday, 43.07 ms
+  sunset and 25.66 ms night. Five trains / 91 vehicles / 5,580 passengers remain
+  resident. Short paused observations; no focus audit or target-4090 FPS claim.
+  Dusk combines low sun shadows and lamps. Raw logs, source hashes and captures:
+  `art/performance/day-night-2026-10-11/`; details in `docs/day-night.md`.
+- Playtest from source: Skip forward → Choose clock time → 18:15, then 22:00,
+  then next morning 06:20. Inspect platforms and onboard views, pause/fast
+  forward, save night/load after daylight, and retain disabled shadows across
+  clock changes. A finished service returns to a platform; choose an active
+  evening service to check onboard lighting. R29 remains the public download;
+  no new distribution prepared.
+
 ## 2026-10-11 — Verify busy-station rendering feedback
 - Corrected benchmark/F10 timing collection: queue GPU/CPU timing getters on the
   render thread and publish copied values through a bounded mutex-protected

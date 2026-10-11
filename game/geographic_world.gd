@@ -19,7 +19,6 @@ var completed_jobs := 0
 var last_stream_ms := 0.0
 var collect_timing := false
 var job_trace := []
-var coordinate_origin := Vector3.ZERO
 var geo
 var ohe_layout
 var speed_boards
@@ -67,6 +66,7 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	var noise:=FastNoiseLite.new(); noise.frequency=.012
 	_noise_tex.noise=noise
 	_build_environment()
+	night_lights.add_forecourts(world,geo.station_sites)
 	assets=Library.new(self)
 	assets.catalog=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/scenery/manifest.json"))
 	for kind in preload("res://game/geographic_building_layout.gd").KINDS+preload("res://game/kerala_scenery.gd").ASSETS+["young_palm","tree_small_02","shrub","reeds"]:
@@ -374,6 +374,7 @@ func _refresh_loading() -> void:
 func update() -> void:
 	if closing: return
 	var began:=Time.get_ticks_usec()
+	update_environment()
 	var camera:=root.get_viewport().get_camera_3d()
 	if camera!=null:
 		camera_absolute=camera.global_position+coordinate_origin
@@ -441,6 +442,11 @@ func rebase(origin: Vector3) -> void:
 	for chunk in loaded.values(): chunk.node.position=chunk.origin-origin
 	for pending in _activating.values():pending.holder.position=pending.result.origin-origin
 	if _joints_on: _make_joint_markers()
+	update_environment(true)
+
+func station_is_present(code: String) -> bool:
+	var id:="station:"+code
+	return loaded.has(id) and loaded[id].node.visible
 
 func terrain_height(x: float,z: float) -> float:
 	return geo.ground_at(x+coordinate_origin.x,z+coordinate_origin.z)

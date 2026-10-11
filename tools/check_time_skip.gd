@@ -47,6 +47,7 @@ func run() -> void:
 		check(g.world.parallel_threads.size()>1,"skip executes per-train simulation work on multiple pool threads")
 		g.world.trace_parallel=false
 	check(absf(g.world.clock_seconds()-clock-180)<.001,"returns at chosen time")
+	check(absf(g.wv.day_night._clock-g.world.clock_seconds())<.001,"destination lighting is restored before the first resumed draw")
 	check(g.train.odometer>motion_distance and absf(g.train_motions.K1._current_odometer-g.train.odometer)<.01,"real motion advanced and interpolation reset")
 	check(not g.get_viewport().disable_3d and not AudioServer.is_bus_mute(0),"rendering and sound state restored")
 	check(g.train.id=="K1" and g.cam.mode==1 and g.train.automatic,"same train pilot seat with AI still driving")

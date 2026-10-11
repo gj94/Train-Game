@@ -180,6 +180,7 @@ func finish() -> void:
 		game._set_cab_visuals(false)
 		game.controller._free_train_controls=false
 	game.train.automatic=true
+	game.wv.update_environment(true) # Joined worker: restore the destination sky before the next draw.
 	game.controller.neutralize();game._drive_keys_armed=false
 	game._set_paused(true)
 	var options: Array=[["Resume with AI driving","skip:resume"],["Open Dispatch","skip:dispatch"],["Skip further…","skip:open"]]

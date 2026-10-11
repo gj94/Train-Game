@@ -18,6 +18,9 @@ const HDRI := "res://assets/polyhaven/hdri/kloofendal_43d_clear_puresky_2k.hdr"
 const Details := preload("res://game/station_details.gd")
 
 var graphics_options
+var coordinate_origin := Vector3.ZERO
+var day_night
+var night_lights
 var world: RailWorld
 var root: Node3D
 var signal_lamps := {}            # signal id -> [green, yellow, red] MeshInstance3D
@@ -157,12 +160,13 @@ func box_m(size: Vector3, pos: Vector3, material: Material, parent: Node3D = nul
 # --- environment -------------------------------------------------------------
 
 func _build_environment() -> void:
-	var sky_mat := PanoramaSkyMaterial.new()
-	sky_mat.panorama = load(HDRI)
-	sky_mat.energy_multiplier = 1.0
+	var sky_mat := ShaderMaterial.new()
+	sky_mat.shader=preload("res://game/shaders/day_night_sky.gdshader")
+	sky_mat.set_shader_parameter("daylight_panorama",load(HDRI))
 	var sky := Sky.new()
 	sky.sky_material = sky_mat
 	sky.radiance_size = Sky.RADIANCE_SIZE_256
+	sky.process_mode=Sky.PROCESS_MODE_INCREMENTAL
 	var env := Environment.new()
 	env.background_mode = Environment.BG_SKY
 	env.sky = sky
@@ -206,7 +210,22 @@ func _build_environment() -> void:
 	sun.directional_shadow_max_distance = 300.0
 	sun.directional_shadow_blend_splits = true
 	sun.rotation_degrees = Vector3(-32, -42, 0)
+	sun.name="Sunlight"
 	root.add_child(sun)
+	day_night=preload("res://game/day_night.gd").new(env,sun,root)
+	var lighting_world: RailWorld=world if world!=null else RailWorld.new() # Standalone asset review tools.
+	day_night.update(lighting_world.clock_seconds(),true)
+	night_lights=preload("res://game/station_lighting.gd").new(lighting_world,root)
+
+func station_is_present(_code: String) -> bool:
+	return true
+
+func update_environment(force: bool=false) -> void:
+	if day_night==null or world==null:return
+	day_night.update(world.clock_seconds(),force)
+	var camera:=root.get_viewport().get_camera_3d()
+	if camera!=null:
+		night_lights.update(camera.global_position+coordinate_origin,coordinate_origin,day_night.state.night,station_is_present,force)
 
 
 # --- track -------------------------------------------------------------------
@@ -704,6 +723,7 @@ func _clickable(node: Node3D, size: Vector3, offset: Vector3, info: Dictionary) 
 # --- per-frame updates -------------------------------------------------------
 
 func update() -> void:
+	update_environment()
 	track_view.update_points()
 	var dark := Color(0.1, 0.1, 0.1)
 	var colors := [Color(0.1, 1.0, 0.35), Color(1.0, 0.72, 0.05), Color(1.0, 0.08, 0.05)]
