@@ -31,3 +31,10 @@ Prepared sources and their checksums live in `data/service_starts/` and
 `data/railway_times/`; export refuses stale simulation/route fingerprints.
 Preparation processes own independent serial railways. Normal-play simulation
 ownership and timetable timings are unchanged.
+
+`release.json`, `archive.json` and `cleanup.json` record the published R30
+sequence 32 / clean export `1ec0cb5`: all packaged state hashes, 272 archive
+CRCs, signed update, six sampled LAN byte ranges and retired R29 cleanup.
+The standalone pack-audit script needed an explicit String type when parsed
+outside the project; it was corrected and the read-only audit passed. This
+does not change the exported game, which excludes developer tools.

@@ -34,7 +34,13 @@
   assignment, moving AI entry/takeover, exact station landings with obstacle
   clearance, platform save/Continue and post-depot station visits. Fixed preview
   clipping and misleading stopped-train advice while a service is moving.
-  R30 packaging is next; R29 remains public until packaging completes.
+  Published **R30**, clean export `1ec0cb5`, signed sequence **32**. Full ZIP
+  2,497,162,192 bytes; R29 incremental changes 2,870,584,926 bytes. Both are on
+  the LAN page. All 272 archive CRCs, SHA-256, packaged 333-state hashes,
+  launch/night resources, signature and six sampled LAN ranges passed. No
+  extracted-distribution gameplay test. The read-only package verifier needed
+  an explicit String declaration; corrected and passed without changing game
+  payloads. Removed R29 after an idle-LAN check, freeing 4,105,327,679 bytes.
 - Evidence: `art/performance/service-selection-2026-10-11/`. Implementation and
   regeneration: `docs/service-selection.md`. The four preparation processes own
   independent time ranges; normal-play simulation threading is unchanged.

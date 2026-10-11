@@ -1,31 +1,34 @@
 # Windows portable build
 
-Current release: **R29**, corrected Kerala railway geometry and verified
-100-service timetable. Published 11 October 2026 from clean export `cb271d0`,
-signed update sequence **31**, at http://192.168.8.183:8765/.
-Full ZIP: **1,837,349,509 bytes**, SHA-256
-`fad8bb5d47ade9782f522b964d4262eb7b7a95035ede6fa28db9c292eda79450`.
-R28-to-R29 changes 2,133,052,605 bytes of fixed-position update blocks, so the
+Current release: **R30**, service selection, five-minute railway browsing and
+clock-driven day/night. Published 11 October 2026 from clean export `1ec0cb5`,
+signed update sequence **32**, at http://192.168.8.183:8765/.
+Full ZIP: **2,497,162,192 bytes**, SHA-256
+`0d1e757d8f045af04ac25202cbdc78980a30055f8f0f57e8f8793077d46d2b87`.
+R29-to-R30 changes 2,870,584,926 bytes of fixed-position update blocks, so the
 full ZIP is the smaller download this time. Both methods are available.
 
-**Start a fresh Kerala scenario.** R28 saves and service files have an incompatible
-geometry signature; use the matching bundled/importable service pack. The roster
-and departure slots are unchanged. See [map-corrections.md](map-corrections.md)
-and [busy-timetable.md](busy-timetable.md) for playtest steps and complete evidence.
+Choose any of 100 prepared departures, review every stop and sort by scheduled
+average speed. Explore by time offers **233 five-minute states**, from 08:00 to
+day 2 03:20, with a dispatcher preview, active AI-train entry and station walking.
+R29 saves remain compatible. R28 saves/service files retain their incompatible
+geometry signature. See [service-selection.md](service-selection.md),
+[day-night.md](day-night.md) and [busy-timetable.md](busy-timetable.md).
 
-All 533 headless tests, six geometry tests and five catalogue tests pass. Both
-fresh operating-day audits complete 100 services and all 1,530 subsequent calls,
-with zero safety events. Longest extra wait is 29.57 minutes, p95 final lateness
-16.60 minutes, worst final lateness 33.89 minutes. Manual driving can change these.
+Validation: full 572-test headless suite, then 13 save and five timeline tests;
+23 native service-selection and 28 native timeline checks, all passed. Full-day
+preparation finishes all 100 trains safely in depot; maximum extra wait is 1,774
+seconds and worst arrival delay 33.9 minutes. All 333 prepared states round-trip
+exactly. The AI baseline preserves earlier delays; manual driving can change them.
 
-Full archive CRC, checksum, contents/BUILD identity, signed update manifest,
-three ZIP ranges and three update-block hashes passed. The bundled map audit
-reports and matching timetable are byte-identical to the verified source files.
-No extracted-distribution gameplay test. Publication evidence:
-[`map-2026-10-11/release.json`](../art/performance/map-2026-10-11/release.json).
+All 272 archive-file CRCs, ZIP checksum, contents/clean BUILD identity, signed
+manifest, three ZIP ranges and three update-block hashes passed. The read-only
+PCK audit verified all 333 states plus launch/night resources. Packaged guides
+match source. No extracted-distribution gameplay test. Publication evidence:
+[`service-selection-2026-10-11/release.json`](../art/performance/service-selection-2026-10-11/release.json).
 
-R28's export directory, ZIP and sidecar were removed after verification and
-an idle-LAN check, freeing **4,088,053,689 bytes**. Only R29 is downloadable;
+R29's export directory, ZIP and sidecar were removed after verification and
+an idle-LAN check, freeing **4,105,327,679 bytes**. Only R30 is downloadable;
 small older signed manifests remain. The server is confined to the private LAN.
 The loading screen displays the build name and source revision; `BUILD.txt`
 and the signed manifest record the exact export identity.

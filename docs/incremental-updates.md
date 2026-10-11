@@ -1,12 +1,13 @@
 # Incremental Windows updates
 
-Current publication: **R24-ReadmeFix1**, sequence **26**, with game binaries
-from `ca30706` and corrected instructions from `e647a3f`. Only README/BUILD
-changed from the initial R24 sequence 25; EXE/PCK hashes are identical. It includes
-the detailed Kerala trackside collection, distant scenery representations,
-camera-aware train/passenger visibility and the five-train benchmark. Use
-Update & Play; a new full ZIP is not required. The retained R23 ZIP is a fallback
-bootstrap and should be updated before testing the latest changes.
+Current publication: **R30**, sequence **32**, from clean source `1ec0cb5`.
+It includes service selection, every five-minute baseline railway state and
+clock-driven day/night. Both the full ZIP and Update & Play are available.
+The complete ZIP is 2,497,162,192 bytes; an R29 installation needs
+2,870,584,926 bytes of changed blocks, so the ZIP uses less download bandwidth
+for this release. The updater still updates the existing installation in place.
+Only the latest full release is offered; retired R29 payloads have been removed.
+See [builds.md](builds.md) for checksums and verification evidence.
 
 The LAN page now offers a 15 KB **Update & Play** download. Extract its two files
 beside an existing `TrainGame.exe` and `TrainGame.pck`, then use the launcher for

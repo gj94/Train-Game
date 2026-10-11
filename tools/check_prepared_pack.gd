@@ -7,7 +7,7 @@ func _initialize() -> void:
 		if not ResourceLoader.exists("res://"+path):printerr("Missing resource: "+path);quit(1);return
 	var counts:=[]
 	for folder in ["service_starts","railway_times"]:
-		var base:="res://data/"+folder+"/"
+		var base: String="res://data/"+folder+"/"
 		var data=JSON.parse_string(FileAccess.get_file_as_string(base+"catalogue.json"))
 		if not data is Dictionary or not data.get("complete",false):printerr("Incomplete packaged catalogue: "+folder);quit(1);return
 		var rows: Array=data.services if folder=="service_starts" else data.states
