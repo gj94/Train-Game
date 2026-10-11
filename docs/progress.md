@@ -1,5 +1,36 @@
 # Progress
 
+## 2026-10-11 — Second B012 crash without capture
+- User reports another crash slightly beyond the original location, this time
+  without a debugger. Capture is therefore not required to reproduce a crash;
+  whether both incidents share the same native fault is still unknown.
+- Inspected timing paths: hidden scenery expires after 120 real seconds (or
+  earlier under cache pressure); nearby train presentation checks every 0.5 s
+  and loads/unloads by distance; service activation follows the railway clock.
+  These are investigation candidates, not confirmed defects. No game changes.
+- Next capture: use v3 attachment after normal loading and record game clock,
+  location and real minutes since loading. Compare its exception and stack with
+  the first report before choosing a fix. The earlier x8 replay does not match
+  normal-speed resource lifetimes and does not rule out a timing-related issue.
+- User also reports approximately 140 km/h in a 100 km/h section and repeated
+  scenery popping. Streaming requests depend on camera position (220 m travel
+  or a 512 m cell crossing), not the posted speed limit. Higher speed increases
+  scenery turnover; it does not select a separate overspeed loading path.
+- Found a potential visual gap in distant terrain: background job IDs include
+  the near-tile hole mask, and `_request` hides the old version immediately while
+  its replacement can still be queued/building. This explains a possible
+  terrain pop, not yet the user's unidentified objects or the native crash.
+  Need distinguish whole-object disappearance from mesh/impostor transitions;
+  keep R30 unchanged for the user's pending capture.
+- Clarification: trees and trackside objects, together with their shadows.
+  Imported tree meshes switch at 45/95/190 m at full vegetation distance;
+  LOD2 (95 m onward) and impostors explicitly disable shadow casting. Mesh
+  parts and impostors also split spatial batches independently after offsets,
+  so matching numeric ranges do not guarantee matching bounds/instance groups.
+  These are concrete visibility/shadow suspects; no target-PC reproduction yet.
+- Validation: unchanged game passed all 573 headless tests; this does not test
+  the reported native GPU-rendered failure or visually confirm the popping.
+
 ## 2026-10-11 — Correct crash-capture licence acceptance and loading overhead
 - The v1 double-click launcher omitted `-AcceptLicense`, although the original
   test supplied it directly. ProcDump refused first use in the piped console.
