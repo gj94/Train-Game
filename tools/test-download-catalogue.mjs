@@ -97,7 +97,7 @@ test('missing or malformed timetable publications are never offered',async t=>{
 
 test('crash capture is opt-in, complete and strictly allowlisted, without changing release routes', async t => {
   const {root,release,route}=await fixture(t);
-  const file='TrainGame-Crash-Capture-v1.zip';
+  const file='TrainGame-Crash-Capture-v3.zip';
   await mkdir(join(root,'diagnostics'));
   await writeFile(join(root,'diagnostics',file),'capture');
   assert.equal(await route('/'+file,release),null);
@@ -106,7 +106,7 @@ test('crash capture is opt-in, complete and strictly allowlisted, without changi
   assert.deepEqual(await route('/'+file,release),['diagnostics/'+file,'application/zip']);
   assert(await route('/'+file+'.sha256',release));
   assert((await downloadPage(root,release)).includes('Capture a crash'));
-  for (const path of ['/diagnostics/'+file,'/diagnostics/session.dmp','/TrainGame-Crash-Capture-v2.zip','/diagnostics/../.local/key']) assert.equal(await route(path,release),null);
+  for (const path of ['/diagnostics/'+file,'/diagnostics/session.dmp','/TrainGame-Crash-Capture-v1.zip','/TrainGame-Crash-Capture-v2.zip','/diagnostics/../.local/key']) assert.equal(await route(path,release),null);
   assert(await route('/'+release.build+'.zip',release));
   assert.equal(await route('/'+file,null),null);
 });

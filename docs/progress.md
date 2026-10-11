@@ -1,5 +1,32 @@
 # Progress
 
+## 2026-10-11 — Correct crash-capture licence acceptance and loading overhead
+- The v1 double-click launcher omitted `-AcceptLicense`, although the original
+  test supplied it directly. ProcDump refused first use in the piped console.
+  Fixed the shipped CMD to pass the switch, explain acceptance, and preserve
+  the script exit code. The PS script passes `-accepteula` and gives an actionable
+  failure if called without acceptance; missing game output is no longer
+  mistaken for a successful normal exit.
+- Tests now execute the actual CMD, including paths with spaces, normal exit,
+  deliberate helper crash/verified exception dump, omitted-acceptance failure
+  and unsigned-tool rejection. All passed, as did six download-catalogue tests.
+- Published separate **v2**, 4,381 bytes, on the LAN page; downloaded it back,
+  checked SHA-256 and inspected the packaged CMD acceptance switch. R30 unchanged.
+- After the user reported heavy slowdown, removed verbose logging and added
+  **Attach Crash Capture.cmd**: load the game normally, then attach to the sole
+  matching executable path/PID without restarting it. This avoids debugger
+  overhead during initial loading; remaining target-PC overhead is unmeasured.
+  The normal shared Godot log is copied only as best-effort context. Capture
+  under launch remains available for startup crashes, also with verbose off.
+- **v3**, 5,544 bytes, supersedes v2. Launch/attach/crash tests prove normal
+  startup before attachment, exact target PID, a subsequent exception dump,
+  verbose disabled, clear licence/missing-game errors and unsigned-tool rejection.
+  Six catalogue tests and **573 headless tests** passed; headless stderr empty.
+- Playtest: replace capture files with v3, open TrainGame.exe normally, load
+  B012 into its cab, then open Attach Crash Capture.cmd before driving onward.
+  Either launcher accepts the Microsoft Sysinternals licence. Capture begins
+  only once ProcDump attaches; the underlying R30 game crash remains unconfirmed.
+
 ## 2026-10-11 — Investigate B012 crash after Nagercoil Town
 - Windows Event 1000 identifies access violation `c0000005` in R30's
   `TrainGame.exe`, RVA `0240f6bb`. PE timestamp matches the published executable;

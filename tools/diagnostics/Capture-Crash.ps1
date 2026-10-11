@@ -1,6 +1,7 @@
 param(
     [string]$Executable = (Join-Path $PSScriptRoot 'TrainGame.exe'),
-    [switch]$AcceptLicense
+    [switch]$AcceptLicense,
+    [switch]$Attach
 )
 $ErrorActionPreference = 'Stop'
 
@@ -23,6 +24,17 @@ try {
     $gameFolder = Split-Path -Parent $Executable
     if (!(Test-Path -LiteralPath (Join-Path $gameFolder 'TrainGame.pck') -PathType Leaf)) {
         throw 'TrainGame.pck is missing beside the executable. Use the extracted game folder.'
+    }
+    if (!$AcceptLicense) {
+        throw 'To accept the Microsoft Sysinternals licence and start capture, open Capture Crash.cmd or run this script with -AcceptLicense.'
+    }
+    $targetProcess=$null
+    if ($Attach) {
+        $targetCandidates=@(Get-Process -Name ([IO.Path]::GetFileNameWithoutExtension($Executable)) -ErrorAction SilentlyContinue |
+            Where-Object { try { $_.Path -eq $Executable } catch { $false } })
+        if ($targetCandidates.Count -ne 1) { throw 'Open TrainGame.exe normally, load your service, then run Attach Crash Capture.cmd. Exactly one game from this folder must be running.' }
+        $targetProcess=$targetCandidates[0]
+        $null=$targetProcess.Handle
     }
     $diagnostics = Join-Path $gameFolder 'diagnostics'
     $toolFolder = Join-Path $diagnostics 'tools'
@@ -55,7 +67,9 @@ try {
         procdump_version = [Diagnostics.FileVersionInfo]::GetVersionInfo($procdump).FileVersion
         windows_version = [Environment]::OSVersion.VersionString
         powershell_version = $PSVersionTable.PSVersion.ToString()
-        capture = 'One unhandled-exception minidump; verbose engine log; no persistent crash-debugger registration'
+        capture = 'One unhandled-exception minidump; verbose logging disabled; no persistent crash-debugger registration'
+        mode = $(if($Attach){'attach'}else{'launch'})
+        attached_pid = $(if($Attach){$targetProcess.Id}else{$null})
     }
     $metadata | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $session 'session.json') -Encoding UTF8
     foreach ($name in @('BUILD.txt','README.txt')) {
@@ -63,15 +77,20 @@ try {
         if (Test-Path -LiteralPath $source -PathType Leaf) { Copy-Item -LiteralPath $source -Destination $session }
     }
     Write-Host ''
-    Write-Host 'Launching your existing game with crash capture. Play normally.'
-    Write-Host 'On first use, Microsoft may show its ProcDump license agreement.'
+    if ($Attach) { Write-Host ('Attaching crash capture to your already running game, PID '+$targetProcess.Id+'. Play normally.') }
+    else { Write-Host 'Launching your existing game with crash capture. Play normally.' }
+    Write-Host 'Passing -accepteula to Microsoft ProcDump (accepts its Sysinternals licence).'
     Write-Host 'Keep this window open until the game exits. Capture does not change your saves or graphics settings.'
     Write-Host ('Results: ' + $session)
-    $arguments = @('-mm','-e','-n','1','-x',$session,$Executable,'--verbose','--log-file',(Join-Path $session 'godot.log'))
-    if ($AcceptLicense) { $arguments = @('-accepteula') + $arguments }
+    if ($Attach) {
+        if ($targetProcess.HasExited) { throw 'The game exited before capture could attach. Start it again and retry.' }
+        $arguments = @('-accepteula','-mm','-e','-n','1',[string]$targetProcess.Id,$session)
+    } else {
+        $arguments = @('-accepteula','-mm','-e','-n','1','-x',$session,$Executable,'--log-file',(Join-Path $session 'godot.log'))
+    }
     Push-Location -LiteralPath $gameFolder
     try {
-        # Remain attached only to this newly launched process. No -i, -k or registry changes.
+        # Only this launched or explicitly matched process. No global debugger registration or -k.
         # Native stderr can be normal diagnostic output on Windows PowerShell.
         $ErrorActionPreference = 'Continue'
         & $procdump @arguments 2>&1 | ForEach-Object {
@@ -84,6 +103,13 @@ try {
     $metadata.procdump_exit_code = $captureExit
     $metadata.finished_utc = [DateTime]::UtcNow.ToString('o')
     $metadata | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $session 'session.json') -Encoding UTF8
+    if ($Attach) {
+        # Best-effort context: this is the shared user log, not a per-process log.
+        $normalLog=Join-Path $env:APPDATA 'Godot/app_userdata/Train Game/logs/godot.log'
+        try {
+            if (Test-Path -LiteralPath $normalLog -PathType Leaf) { Copy-Item -LiteralPath $normalLog -Destination (Join-Path $session 'shared-godot.log') }
+        } catch { Write-Host 'The existing game log could not be copied; dump capture is unaffected.' }
+    }
     # Best-effort, only this executable's recent application crash events.
     try {
         $events = @(Get-WinEvent -FilterHashtable @{LogName='Application';Id=1000,1001;StartTime=$started.AddSeconds(-5)} -MaxEvents 80 -ErrorAction Stop |
@@ -92,6 +118,9 @@ try {
         ('<Events>' + ($events -join [Environment]::NewLine) + '</Events>') | Set-Content -LiteralPath (Join-Path $session 'crash-events.xml') -Encoding UTF8
     } catch { 'No matching Windows crash event available: ' + $_.Exception.Message | Set-Content -LiteralPath (Join-Path $session 'events-status.txt') }
     $dumps = @(Get-ChildItem -LiteralPath $session -Filter '*.dmp' -File)
+    if ($dumps.Count -eq 0 -and ((!$Attach -and !(Test-Path -LiteralPath (Join-Path $session 'godot.log'))) -or ($Attach -and $captureExit -ne 0))) {
+        throw ('The game did not produce a log or dump. ProcDump may have failed to launch it. See ' + (Join-Path $session 'console.txt'))
+    }
     if ($dumps.Count -eq 0) {
         Write-Host 'No crash dump was captured. A normal exit does not create a dump.'
     } else { Write-Host ('Captured ' + $dumps.Count + ' crash dump. It contains memory from this game process.') }
