@@ -1,5 +1,28 @@
 # Progress
 
+## 2026-10-11 — Investigate B012 crash after Nagercoil Town
+- Windows Event 1000 identifies access violation `c0000005` in R30's
+  `TrainGame.exe`, RVA `0240f6bb`. PE timestamp matches the published executable;
+  no matching Windows symbols available. Root cause remains unconfirmed.
+- Native source replay loaded the exact B012 09:10 NCJ–ERS departure, AI pilot
+  at x8, and completed 12,003 m through Nagercoil Town and Virani Alur to
+  09:19:27, with 728 activated scenery jobs and clean menu return/exit.
+  Development 780M, not the target 4090. WASAPI failed locally and fell back to
+  Dummy audio; this replay does not rule out the target-PC crash or audio issues.
+- Added a separate small crash-capture launcher: verified Microsoft ProcDump,
+  one unhandled-exception minidump, verbose logs and build identity, locally
+  zipped. No global debugger setup, automatic upload, game/settings replacement
+  or new game release. Private dumps stay outside source control/public downloads.
+  Published the 4,052-byte kit on the existing LAN page and verified its
+  downloaded SHA-256; the R30 full download remains available.
+- Validation: normal exit, deliberate helper exception with verified minidump
+  exception record, paths with spaces and unsigned-tool rejection all passed;
+  six download-catalogue tests and all **573 headless tests** passed (empty
+  headless stderr). See `docs/crash-diagnostics.md`.
+- Next playtest: extract capture scripts beside the existing TrainGame.exe,
+  open Capture Crash.cmd, select B012 and drive beyond Nagercoil Town. After a
+  crash, send the ZIP in diagnostics so the failing native stack can be examined.
+
 ## 2026-10-11 — Service browser and prepared five-minute railway
 - Added a controller-friendly landing screen for all 100 services: period/search
   filters, full booked arrival/departure lists, route distance and scheduled
