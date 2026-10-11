@@ -26,6 +26,8 @@ func capture_session() -> Dictionary:
 	for key in ["traffic_drive","imported_fleet","wap7_drive","lhb_drive"]:meta[key]=game.get(key)
 	var data:=Snapshot.fields(game,FLAGS)
 	data.player=game.train.id;data.meta=meta
+	data.prepared_service=game._prepared_id
+	data.prepared_time=game._prepared_time
 	data.camera=Snapshot.fields(game.cam,CAMERA)
 	data.camera.pivot=game.cam.pivot+(game.wv.coordinate_origin if game.geographic_drive else Vector3.ZERO)
 	data.view=Snapshot.fields(game.tv,VIEW)

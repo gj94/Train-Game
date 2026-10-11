@@ -1,7 +1,8 @@
 extends RefCounted
 ## Data-only files with a checksum, verified temporary write and previous backup.
 const Snapshot := preload("res://sim/world_snapshot.gd")
-const MAX_BYTES := 32*1024*1024
+# A completed 100-service day retains passenger exchange records for every rake.
+const MAX_BYTES := 64*1024*1024
 const MAGIC := "TRAINGAME-SAVE-1\n"
 const SLOTS := ["quick","1","2","3","4","5"]
 var directory := "user://saves"
@@ -56,5 +57,5 @@ func slots() -> Array:
 	for slot in SLOTS:
 		var saved:=read_slot(slot);var backup:=read_slot(slot,true)
 		result.append({id=slot,exists=FileAccess.file_exists(path(slot)),ok=saved.ok,reason=saved.reason,
-			summary=saved.data.summary if saved.ok else {},backup=backup.ok})
+			summary=saved.data.summary if saved.ok else {},backup=backup.ok,backup_summary=backup.data.summary if backup.ok else {}})
 	return result

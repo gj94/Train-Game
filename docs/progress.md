@@ -1,5 +1,48 @@
 # Progress
 
+## 2026-10-11 — Service browser and prepared five-minute railway
+- Added a controller-friendly landing screen for all 100 services: period/search
+  filters, full booked arrival/departure lists, route distance and scheduled
+  average-speed sorting including dwell. K1 remains the default. Exact origin
+  checkpoints start paused in the pilot seat with manual control/brakes applied.
+- Added Explore by time: five-minute baseline states, zoomable read-only dispatch
+  preview, active service inspection and explicit AI-pilot or station-platform
+  entry. Entry preserves moving trains, controls, locks and authority exactly.
+  Station entry uses bounded walking; boarding/taking over remains explicit.
+  This is the precomputed all-AI history, not a forecast of an altered live save.
+- Continue/Saved journeys restore existing runs. Returning to the menu confirms
+  loss of unsaved progress and drains scenery work before teardown. Saves retain
+  original departure/time identity for restart. Large late-day passenger histories
+  now have a 64 MiB save limit; discovery and railway loading use workers.
+- Full-day preparation finished all **100 services safely in depot**, with no
+  safety events; maximum extra wait 1,774 s and worst arrival delay 33.9 minutes.
+  Every departure checkpoint round-trips exactly. Export gates check checksums,
+  engine/layout and fingerprints of **4,821 simulation/route inputs**.
+- Departure states: 165.8 MiB total. Measured 22:08 B011 state: 3.60 MiB compressed,
+  29.21 MiB serialized, 164.94 MiB restored Godot heap and 297.89 MiB transient
+  decode+restore. Simulation allocations only; graphics are not duplicated.
+  Preview loading retains only the current and incoming world, not the entire day.
+- Prepared **233 five-minute states**, 08:00 through day 2 03:20; all restore
+  byte-for-byte with zero safety events. Four isolated workers took 1,099.3 s.
+  Timeline storage is 542.1 MiB; final-state restored heap 177.0 MiB, transient
+  decode+restore 321.4 MiB. Both prepared sets total 707.9 MiB on disk.
+- Validation: **572-test full headless suite**, subsequent **13 save tests**
+  including the new large-save regression, **five timeline tests**, **23 native
+  departure/UI checks** and **28 native timeline checks**, all passed with empty
+  stderr. Clean import. Source-game checks cover
+  controller selection, stops/sorting, cancellation, night lighting, manual/AI
+  assignment, moving AI entry/takeover, exact station landings with obstacle
+  clearance, platform save/Continue and post-depot station visits. Fixed preview
+  clipping and misleading stopped-train advice while a service is moving.
+  R30 packaging is next; R29 remains public until packaging completes.
+- Evidence: `art/performance/service-selection-2026-10-11/`. Implementation and
+  regeneration: `docs/service-selection.md`. The four preparation processes own
+  independent time ranges; normal-play simulation threading is unchanged.
+- Playtest: choose Night and drive a service; sort fastest/slowest and scroll its
+  stops; save/return/Continue. Then Explore by time → 20:00, zoom a station, join
+  a moving AI train and take over. Visit TVC, walk/board, save and continue.
+  Scrub quickly and cancel while loading; inspect the final 03:20 platform state.
+
 ## 2026-10-11 — Clock-driven dawn, dusk and night
 - Added a pure timetable-clock daylight model and presentation-owned sky/sun/
   moon/fog updates. Representative tropical equinox: sunrise about 06:20,

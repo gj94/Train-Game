@@ -1,0 +1,37 @@
+{
+  "service_starts": {
+    "count": 100,
+    "compressed_bytes": 173878584,
+    "average_bytes": 1738785.84,
+    "min_bytes": 154983,
+    "max_bytes": 3777641,
+    "audit": {
+      "clock": 98294.0000018011,
+      "events": [],
+      "finished": 100,
+      "maximum_wait": 1774,
+      "ok": true,
+      "report": "All 100 services arrived safely and cleared to depot where provided. Latest passenger arrival delay: 33.9 min. Manual driving may change the outcome.",
+      "wall_seconds": 2589.839
+    }
+  },
+  "railway_times": {
+    "count": 233,
+    "compressed_bytes": 568414642,
+    "average_bytes": 2439547.819742489,
+    "min_bytes": 154983,
+    "max_bytes": 4041771,
+    "audit": {
+      "events": [],
+      "longest_worker_seconds": 1095.81,
+      "ok": true,
+      "parallel_workers": 4,
+      "round_trips": 233,
+      "states": 233,
+      "steps": 29225,
+      "worker_seconds": 3693.605
+    },
+    "first_clock": 28800,
+    "last_clock": 98400
+  }
+}

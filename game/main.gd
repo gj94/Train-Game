@@ -68,6 +68,10 @@ var display_options := preload("res://game/display_options.gd").new()
 var save_load
 var time_skip
 var _resume: Dictionary = {}
+var _prepared: Dictionary = {}
+var _prepared_id := ""
+var _prepared_time := -1.0
+var _returning_menu := false
 var profiling := false
 var frame_costs := {}
 var simulation_ms := 0.0
@@ -89,8 +93,16 @@ func _ready() -> void:
 	Engine.physics_jitter_fix = 0.0
 	AudioServer.playback_speed_scale=1.0
 	_resume=get_tree().get_meta("resume_session",{})
+	_prepared=get_tree().get_meta("prepared_start",{})
+	if not _prepared.is_empty():
+		get_tree().remove_meta("prepared_start")
+		_prepared_id=_prepared.service if _prepared.get("mode","departure")=="departure" else ""
+		if _prepared.has("timeline"):_prepared_time=_prepared.world.clock_seconds()
+		get_tree().set_meta("route","kerala_coast")
 	if not _resume.is_empty():
 		get_tree().remove_meta("resume_session")
+		_prepared_id=_resume.session.get("prepared_service","")
+		_prepared_time=_resume.session.get("prepared_time",-1.0)
 		preload("res://game/save_load.gd").prepare_metadata(get_tree(),_resume.session)
 	var default_route:="kerala_coast"
 	if get_tree().get_meta("small_test_layout",false) or not str(get_tree().get_meta("imported_fleet","")).is_empty() or Array(OS.get_cmdline_user_args()).any(func(a):return a.begins_with("--fleet=") or a in ["--wap7","--lhb","--memu"]):default_route="southern_corridor"
@@ -130,7 +142,9 @@ func _ready() -> void:
 		else:
 			_service_error = result.reason
 			get_tree().remove_meta("service_pack")
-	if not _resume.is_empty():
+	if not _prepared.is_empty():
+		world=_prepared.world;traffic_drive=true;imported_fleet="";wap7_drive=false;lhb_drive=false
+	elif not _resume.is_empty():
 		world=_resume.world
 		preload("res://sim/world_snapshot.gd").apply(self,_resume.session,preload("res://game/save_load.gd").FLAGS)
 	elif not authored_pack.is_empty():
@@ -153,7 +167,9 @@ func _ready() -> void:
 			PortedStock.configure(service,"lhb")
 			world.place_train(service,service.path[0].edge,service.head_s,service.path[0].dir)
 	train = world.trains.values()[0]
-	if not _resume.is_empty():
+	if not _prepared.is_empty():
+		train=world.trains[_prepared.service]
+	elif not _resume.is_empty():
 		train=world.trains[_resume.session.player]
 	elif not authored_pack.is_empty():
 		var chosen: String = get_tree().get_meta("player_service",train.id)
@@ -213,14 +229,15 @@ func _ready() -> void:
 	add_child(dispatcher)
 	dispatcher.selected_train = train.id
 	dispatcher.auto_dispatch = world.dispatcher().enabled if not _resume.is_empty() else traffic_drive
-	dispatcher.setup(world,not _resume.is_empty())
+	dispatcher.setup(world,not _resume.is_empty() or not _prepared.is_empty())
 	dispatcher.hold_arrivals=world.dispatcher().hold_maruthur
 	dispatcher.services_requested.connect(_open_services)
 	dispatcher.train_selected.connect(_select_train)
 	dispatcher.view_train_requested.connect(_view_train_only)
 	dispatcher.service_deleted.connect(_on_service_deleted)
 	dispatcher.open_changed.connect(func(value): hud.set_desk_open(value))
-	if _resume.is_empty():world.dispatcher().manual_service=train.id if traffic_drive else ""
+	if _resume.is_empty() and (_prepared.is_empty() or _prepared.get("mode","departure")=="departure"):
+		world.dispatcher().manual_service=train.id if traffic_drive else ""
 	dispatcher.station_view_requested.connect(_visit_station)
 	dispatcher.driver_locked=_passenger_seated
 	dispatcher.drive_requested.connect(_enter_cab)
@@ -235,6 +252,9 @@ func _ready() -> void:
 	get_tree().auto_accept_quit = false
 	if not _resume.is_empty():
 		pass # Restored controls, authority and timetable must not be initialized again.
+	elif not _prepared.is_empty():
+		if _prepared.get("mode","departure")=="departure":_enter_cab();train.controller=-1.0
+		elif _prepared.mode=="ride":_pilot_camera()
 	elif traffic_drive:
 		_enter_cab()
 		train.controller = -1.0
@@ -274,10 +294,30 @@ func _ready() -> void:
 	if not _resume.is_empty():
 		save_load.restore_view(_resume.session)
 		_resume.clear()
+	if not _prepared.is_empty():
+		if _prepared.get("mode","")=="station":_prepared_platform(_prepared.spot)
+		var message: String="YOUR SERVICE: "+train.id if _prepared.get("mode","departure")=="departure" else ("AI driving · "+train.id if _prepared.mode=="ride" else "ON PLATFORM: "+_prepared.spot.station)
+		_prepared.clear();_set_paused(true);_drive_keys_armed=false;controller.neutralize()
+		hud.show_modal("pause",labels_enabled)
+		hud.toast(message+" · "+world.clock_text()+" · Resume when ready")
 	if benchmark:
 		var runner:=preload("res://game/performance_benchmark.gd").new()
 		add_child(runner)
 		runner.run.call_deferred(self)
+
+
+func _prepared_platform(spot: Dictionary) -> void:
+	# Enter the same bounded pedestrian mode used when alighting from a train.
+	_set_cab_visuals(false)
+	walker.car=0;walker.nav=walker.navigation(0);walker._train_id=train.id
+	walker.position=Vector2.ZERO;walker.eye_height=1.58;walker.active=true
+	walker.platform.surface=preload("res://game/platform_navigation.gd").new(world,spot.road)
+	walker.platform.position=spot.point;walker.platform.outside=true
+	tv.walk_car=-1;tv._apply_glass();tv._interior_light.visible=false
+	cam.set_meta("on_platform",true);cam.set_mode(CameraRig.Mode.WALKING)
+	cam._look=Vector2(atan2(-spot.forward.x,-spot.forward.z),0)
+	cam._blend=1;cam.global_transform=cam._target();cam._follow_anchor_valid=false
+	audio.set_interior(false);audio.reset_positions();walker.neutralize()
 
 
 func _physics_process(delta: float) -> void:
@@ -304,6 +344,7 @@ func _physics_process(delta: float) -> void:
 		train.automatic=false
 		# The strongest brake request wins across keyboard and controller.
 		train.controller=minf(key_target,pad_target) if dir<0 or pad_target<train.controller else maxf(key_target,pad_target)
+	if traffic_drive and not train.automatic:world.dispatcher().manual_service=train.id
 	for motion in train_motions.values(): motion.begin_tick()
 	var remaining:=delta*time_scale
 	while remaining>.000001:
@@ -727,6 +768,7 @@ func _set_time_scale(value: int) -> void:
 	hud.toast("Normal time" if value==1 else "Fast forward ×%d · Shift+T returns to normal time" % value)
 
 func _ui_action(action: String) -> void:
+	if _returning_menu:return
 	# Button signals can still arrive even while this node's processing is disabled.
 	if time_skip!=null and time_skip.running():
 		if action in ["skip:cancel","skip:back"]:time_skip.cancel()
@@ -815,7 +857,7 @@ func _ui_action(action: String) -> void:
 			_toggle_labels()
 			hud.show_modal("pause", labels_enabled)
 		"fullscreen": _toggle_fullscreen()
-		"restart", "wap7", "lhb", "traffic", "quit": _request_action(action)
+		"restart", "landing", "wap7", "lhb", "traffic", "quit": _request_action(action)
 		"cancel": _cancel_action()
 		"confirm": _confirm_action()
 
@@ -911,6 +953,7 @@ func _request_action(action: String) -> void:
 	_pending_action = action
 	_set_paused(true)
 	var descriptions := {"restart": "Restart the current services from the beginning.",
+		"landing": "Return to the service selection screen.",
 		"wap7": "Start the detailed WAP-7 with mixed ICF coaches.",
 		"lhb": "Start the detailed WAP-7 with mixed LHB coaches.",
 		"traffic": "Start six mixed passenger services and assign you a random train.",
@@ -932,6 +975,12 @@ func _cancel_action() -> void:
 func _confirm_action() -> void:
 	var action := _pending_action
 	_pending_action = ""
+	if action=="landing" or (action=="restart" and (not _prepared_id.is_empty() or _prepared_time>=0)):
+		var timeline: bool=action=="restart" and _prepared_time>=0
+		if timeline:get_tree().set_meta("timeline_clock",_prepared_time)
+		elif action=="restart":get_tree().set_meta("launch_service",_prepared_id)
+		_return_to_landing(timeline)
+		return
 	if action != "restart" and get_tree().has_meta("service_pack"): get_tree().remove_meta("service_pack")
 	if action.begins_with("route:"):
 		get_tree().set_meta("route",action.trim_prefix("route:"))
@@ -961,6 +1010,22 @@ func _confirm_action() -> void:
 		"wap7": _switch_scenario()
 		"lhb": _switch_lhb()
 		"quit": get_tree().quit()
+
+func _return_to_landing(timeline: bool=false) -> void:
+	_returning_menu=true;_set_paused(true);set_process(false);cam.set_process(false)
+	hud.save_menu={title="RETURNING TO SERVICES",body="Finishing nearby scenery work…",options=[]}
+	hud.show_modal("saved_games");controller.neutralize()
+	# GPU uploads must finish while the render loop is alive, before tree teardown.
+	if geographic_drive:
+		wv.queue.clear()
+		var began:=Time.get_ticks_msec()
+		while time_skip._scenery_busy() or not wv._activating.is_empty():
+			wv.update();wv.queue.clear()
+			await get_tree().process_frame
+			if Time.get_ticks_msec()-began>120000:
+				_returning_menu=false;set_process(true);cam.set_process(true)
+				hud.show_modal("pause");hud.toast("Scenery is still busy. Try returning to the menu again.",true);return
+	get_tree().change_scene_to_file.call_deferred("res://game/launch_timeline.tscn" if timeline else "res://game/launch.tscn")
 
 
 func _toggle_labels() -> void:

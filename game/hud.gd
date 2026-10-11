@@ -264,6 +264,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Kerala Coast / Southern corridor…  ·  F7", "routes")
 			_button(_buttons, "Traffic / solo fleet…  ·  F9", "fleet")
 			_button(_buttons, "Restart current services…", "restart")
+			_button(_buttons, "Choose another service / main menu…", "landing")
 			_button(_buttons, "Quit to desktop…", "quit")
 		"saved_games", "time_skip":
 			_heading.text=save_menu.get("title","SAVED JOURNEYS")

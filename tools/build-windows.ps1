@@ -40,6 +40,10 @@ New-Item -ItemType Directory -Path (Join-Path $buildRoot 'guides') -Force | Out-
 $exportLog = Join-Path $projectRoot '.local/windows-export.log'
 Push-Location $projectRoot
 try {
+    & node.exe (Join-Path $PSScriptRoot 'verify-service-starts.mjs')
+    if ($LASTEXITCODE -ne 0) { throw 'Prepared service starts are missing, stale or invalid. Regenerate before exporting.' }
+    & node.exe (Join-Path $PSScriptRoot 'verify-railway-times.mjs')
+    if ($LASTEXITCODE -ne 0) { throw 'Five-minute railway states are missing, stale or invalid. Regenerate before exporting.' }
     if (-not $SkipTests) {
         foreach ($script in @('tests/run_tests.gd', 'tools/check_controller_playable.gd', 'tools/check_track.gd', 'tools/check_fleet_finish.gd', 'tools/check_ported_assets.gd', 'tools/check_wap7_detail.gd', 'tools/check_wap7_controls.gd', 'tools/check_motion_playable.gd', 'tools/check_body_v2_audio.gd', 'tools/check_platform_audio.gd', 'tools/check_audio_routing.gd', 'tools/check_platform_integration.gd', 'tools/check_qol.gd', 'tools/check_traffic_playable.gd', 'tools/check_corridor_playable.gd', 'tools/check_ported_playable.gd', 'tools/check_scenery_playable.gd')) {
             $checkLog = Join-Path $projectRoot ('.local/build-check-' + [IO.Path]::GetFileNameWithoutExtension($script) + '.log')
@@ -64,7 +68,7 @@ try {
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/assets.md') -Destination (Join-Path $buildRoot 'ASSET-SOURCES.md')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/ported/station-notices') -Destination $buildRoot -Recurse -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/trackside/notices') -Destination (Join-Path $buildRoot 'guides/trackside-notices') -Recurse -Force
-    foreach ($guide in @('busy-timetable.md', 'map-corrections.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
+    foreach ($guide in @('service-selection.md', 'day-night.md', 'busy-timetable.md', 'map-corrections.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/timetable-2026-10-10') -Destination (Join-Path $buildRoot 'guides/timetable-evidence') -Recurse -Force
@@ -107,7 +111,13 @@ try {
         }
     }
     if (!$SkipZip) {
-        Compress-Archive -LiteralPath $buildRoot -DestinationPath $archivePath -CompressionLevel Optimal -Force
+        # Stream large packs: Compress-Archive's per-file 2 GiB limit is too low
+        # once the prepared railway states are included. ZipFile supports ZIP64.
+        Add-Type -AssemblyName System.IO.Compression.FileSystem
+        $temporaryArchive = $archivePath + '.tmp'
+        if (Test-Path -LiteralPath $temporaryArchive) { Remove-Item -LiteralPath $temporaryArchive }
+        [IO.Compression.ZipFile]::CreateFromDirectory($buildRoot, $temporaryArchive, [IO.Compression.CompressionLevel]::Optimal, $true)
+        Move-Item -LiteralPath $temporaryArchive -Destination $archivePath -Force
         "$(Get-PortableSha256 $archivePath)  $BuildName.zip" |
             Set-Content -LiteralPath ($archivePath + '.sha256') -Encoding ascii
         Get-Item $archivePath | Select-Object FullName, Length

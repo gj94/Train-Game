@@ -7,6 +7,17 @@ const Fixture:=preload("res://tests/overtake_fixture.gd")
 func _same(a,b) -> bool:
 	return var_to_bytes(a)==var_to_bytes(b)
 
+func test_large_busy_day_save_preserves_bytes_above_32_mib():
+	var store:=Store.new("res://.local/save-tests/large-day")
+	var checkpoint:=Snapshot.capture(Traffic.build())
+	# Exercise the storage boundary without depending on generated release data.
+	var padding:=PackedByteArray();padding.resize(33*1024*1024);padding[-1]=157
+	checkpoint.extra=padding
+	var written:=store.write_slot("1",checkpoint,{title="Full operating day"})
+	if not written.ok:return written.reason
+	var loaded:=store.read_slot("1")
+	return loaded.ok and loaded.data.checkpoint.extra.size()==padding.size() and loaded.data.checkpoint.extra[-1]==157
+
 func test_roundtrip_running_trains_continue_identically():
 	var w:=Traffic.build();w.dispatcher().enabled=true
 	for i in 60:w.step(1)

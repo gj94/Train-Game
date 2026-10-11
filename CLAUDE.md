@@ -20,7 +20,9 @@ Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
 - Blender MCP connector (`mcp__Blender__*`) needs Blender open with the MCP add-on server started.
 - PowerShell execution policy blocks `npm.ps1`/`npx.ps1`; call `npm.cmd` / `npx.cmd` instead.
 
-Fresh launches now select K1, the slow Kerala Coast passenger in a 100-service operating day.
+Fresh launches open the service browser, defaulting to K1, the slow Kerala Coast
+passenger in a 100-service operating day. Prepared service departures and the
+five-minute baseline browser are described in `docs/service-selection.md`.
 Future trains enter from depot supply near departure; see `docs/busy-timetable.md`.
 Auto dispatch includes the selected manual driver. F1 explains the current
 scenario; PROGRESS/F12 shows stop counts and next-stop estimates. F9 offers

@@ -11,6 +11,8 @@ static func shape(value, schema: Dictionary) -> bool:
 static func check(w: RailWorld, s: Dictionary) -> String:
 	if not shape(s,{player=TYPE_STRING,meta=TYPE_DICTIONARY,authored_pack=TYPE_DICTIONARY,followed=TYPE_STRING,geographic_drive=TYPE_BOOL,traffic_drive=TYPE_BOOL,imported_fleet=TYPE_STRING,wap7_drive=TYPE_BOOL,lhb_drive=TYPE_BOOL,labels_enabled=TYPE_BOOL,time_scale=TYPE_INT}):return "Saved scenario information is incomplete"
 	if not w.trains.has(s.player) or s.time_scale not in [1,2,4,8,16,32]:return "Invalid saved service or simulation speed"
+	if s.has("prepared_service") and (not s.prepared_service is String or (not s.prepared_service.is_empty() and not w.trains.has(s.prepared_service))):return "Invalid saved starting service"
+	if s.has("prepared_time") and (not (s.prepared_time is float or s.prepared_time is int) or not is_finite(s.prepared_time) or s.prepared_time< -1):return "Invalid saved starting time"
 	if s.geographic_drive!=w.scenery.get("geographic",false):return "Saved scenario does not match the railway"
 	if not s.imported_fleet.is_empty() and s.imported_fleet not in Stock.CHOICES:return "Unknown saved solo formation"
 	if not shape(s.get("camera"),{mode=TYPE_INT,yaw=TYPE_FLOAT,pitch=TYPE_FLOAT,distance=TYPE_FLOAT,cab_fov=TYPE_FLOAT,head_out_side=TYPE_INT,follow=TYPE_BOOL,_look=TYPE_VECTOR2,pivot=TYPE_VECTOR3}):return "Invalid saved camera"

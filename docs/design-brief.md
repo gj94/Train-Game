@@ -9,6 +9,15 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **11 Oct 2026 service selection:** land on a controller-friendly timetable
+  browser; start any bundled service directly at its prepared departure state,
+  including night departures, with the full railway history and AI traffic
+  intact. Offer saved journeys and a confirmed return to selection. Precompute
+  and validate starts before release rather than replaying the day on launch.
+  Show every booked stop and sort by scheduled average speed including dwell.
+  Also offer every five-minute baseline time, with a read-only dispatcher preview
+  and explicit entry to an active AI-driven service or any open station platform.
+  Keep current-save time skipping distinct from starting a new baseline journey.
 - **11 Oct 2026 day/night:** make the world dark at night and transition through
   dawn/day/dusk using the timetable clock. Preserve pause, fast forward,
   save/load and rendering-free skip behavior. Provide readable local station

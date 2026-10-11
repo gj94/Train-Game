@@ -1,13 +1,43 @@
 TRAIN GAME - KERALA COAST
 
+R30: choose your service at launch, including direct night departures.
+Browse all 100 services by departure period, calling station, or scheduled
+average speed. Review every booked arrival/departure. Select a service and
+choose Drive this service; its complete railway state is already prepared.
+You begin paused at the origin, in the pilot seat, with brakes applied.
+Resume when ready. Other trains and the dispatcher remain under AI.
+Controller: D-pad/LS navigate, A select/start, B back, LB/RB filter,
+X sort, RS scroll stops. Fullscreen: F11 / Alt+Enter or the menu button.
+Continue latest save and Saved journeys restore your existing run, paused.
+Menu > Choose another service / main menu protects unsaved progress with
+a confirmation. Save first to keep your current journey.
+
+Explore by time: choose any prepared five-minute block across the operating
+day. Inspect the zoomable dispatcher preview, then explicitly join an active
+service in the pilot seat with AI driving, or visit any open station platform
+in walking mode. Both start paused with the existing railway state intact.
+LB/RB steps five minutes; with map focus LS pans and triggers zoom.
+This starts a new AI-baseline journey. It does not rewind a save; in-game
+Skip forward remains the way to advance your existing driving history.
+
+Dawn, sunset and darkness now follow the timetable clock, with local platform
+lighting, moonlight and headlights. Sunrise is around 06:20, sunset 18:20.
+The prepared service states preserve the earlier AI-operated traffic history;
+signals and delays still apply. Custom F5 timetables retain their existing
+start behavior and do not reuse these built-in states.
+See guides/service-selection.md and guides/day-night.md.
+R29 saves remain compatible; R28 geometry remains incompatible.
+
+EARLIER CHANGES
 R29: corrected railway map and verified 100-service timetable.
 Buildings and roof overhangs clear operating tracks at Kollam and TVC.
 Double running lines keep their sides; longer turnouts and smooth rail curves
 remove abrupt direction changes. Outer yards and track shoulders are grounded.
 All CSV platform totals and existing single/double section designations remain.
 
-START A FRESH KERALA SCENARIO. Track geometry changed: R28 saves and service
-files cannot be loaded on this map. Import the matching file under
+If upgrading from R28 or older, start a fresh Kerala journey. Track geometry
+changed in R29: R28 saves and service files cannot be loaded on this map.
+For custom timetable import, use the matching file under
 F5 > Import: guides/timetables/kerala-coast-100-through-services.json.
 The existing 100-service roster and departure slots are retained, including
 B001 ERS 08:35 -> NCJ VB (8 cars) and B012 NCJ 09:10 -> ERS VB (16 cars).

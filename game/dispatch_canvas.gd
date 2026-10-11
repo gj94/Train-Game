@@ -144,7 +144,7 @@ func _line_segment(id: String,from_s: float,to_s: float,width: float,color: Colo
 
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO,size),PAPER)
-	if world==null or _edges.is_empty():return
+	if world==null or _edges.is_empty() or size.x<64 or size.y<160:return
 	_hits.clear();last_footprints.clear()
 	var tick: float=pow(10,floor(log(span/6)/log(10)))
 	if span/tick>12:tick*=2
