@@ -1,5 +1,13 @@
 TRAIN GAME - KERALA COAST
 
+R31: steadier scenery transitions, lit homes and lower retained station memory.
+Trees use consistent detail/shadow bounds and denser distant view atlases.
+Terrain replacements appear only when complete. Warm/cool domestic windows,
+shutter seams and nearby porch lights follow the clock. Tree material batches
+retain source geometry while reducing draw calls. These changes do not yet
+eliminate all loading pauses; development-PC frame-rate results are mixed.
+Try B012 past Nagercoil Town and B011's 22:10 departure from ERS at night.
+
 R30: choose your service at launch, including direct night departures.
 Browse all 100 services by departure period, calling station, or scheduled
 average speed. Review every booked arrival/departure. Select a service and
@@ -26,7 +34,7 @@ The prepared service states preserve the earlier AI-operated traffic history;
 signals and delays still apply. Custom F5 timetables retain their existing
 start behavior and do not reuse these built-in states.
 See guides/service-selection.md and guides/day-night.md.
-R29 saves remain compatible; R28 geometry remains incompatible.
+R29 and R30 saves remain compatible; R28 geometry remains incompatible.
 
 EARLIER CHANGES
 R29: corrected railway map and verified 100-service timetable.
@@ -429,6 +437,9 @@ graphics can be slow with this detailed route. First launch may take time while
 the graphics driver prepares shaders. Do not run directly inside the ZIP.
 If something fails, include the log from:
 %APPDATA%\Godot\app_userdata\Train Game\logs\godot.log
+Also include journey-current.jsonl and journey-previous.jsonl from that folder.
+These small local logs record service/location and streaming activity every five
+seconds; no debugger or verbose mode is needed. They do not replace a crash dump.
 The executable is an unsigned personal development build.
 
 PERSONAL PLAYTEST COPY

@@ -309,6 +309,14 @@ func _prepare_station(job: Dictionary) -> Dictionary:
 	if world.depots.values().any(func(d):return d.station==code):AuthoredStation.prepare("ERS_WORKSHOP")
 	return {code=code}
 
+func _station_prepared(job: Dictionary) -> bool:
+	if not _prepared_stations.has(job.id):return false
+	var code: String=world.stations[job.index].code
+	if AuthoredStation.available(code) and not AuthoredStation.is_prepared(code):return false
+	if code=="ERS" and not AuthoredStation.is_prepared("ERS_EAST"):return false
+	if world.depots.values().any(func(d):return d.station==code) and not AuthoredStation.is_prepared("ERS_WORKSHOP"):return false
+	return true
+
 func has_pending_work() -> bool:
 	return not queue.is_empty() or not _activating.is_empty() or workers.any(func(w):return not w.runner.job.is_empty()) or (_asset_worker!=null and not _asset_worker.job.is_empty())
 
@@ -416,7 +424,7 @@ func update() -> void:
 				result.node.position=result.origin-coordinate_origin
 				root.add_child(result.node); loaded[job.id]=result
 			else:
-				if job.kind=="station" and not _prepared_stations.has(job.id):
+				if job.kind=="station" and not _station_prepared(job):
 					if _asset_worker.job.is_empty():_asset_worker.submit(job)
 					queue.append(job)
 				else:worker.runner.submit(job)

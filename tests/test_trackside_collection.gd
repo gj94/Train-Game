@@ -55,9 +55,14 @@ func test_baked_impostors_exist_for_each_catalog_entry():
 	if atlases.size()!=14:return "Incomplete bake"
 	for key in atlases:
 		var name: String=key.trim_prefix("tf3_")
+		var views:=64 if name in Collection.TREES else 8
+		var columns:=8 if views==64 else 4
+		if atlases[key].width<=0 or atlases[key].views!=views or int(atlases[key].get("columns",4))!=columns:return "Invalid atlas projection"
 		for channel in ["albedo","normal"]:
-			if not FileAccess.file_exists(Collection.ROOT+"impostors/"+name+"_"+channel+".png"):return "Missing atlas"
-		if atlases[key].width<=0 or atlases[key].views!=8:return "Invalid atlas projection"
+			var image:=Image.new()
+			var path: String=Collection.ROOT+"impostors/"+name+"_"+channel+".png"
+			if image.load_png_from_buffer(FileAccess.get_file_as_bytes(path))!=OK:return "Missing or invalid atlas"
+			if image.get_size()!=Vector2i(columns*256,views/columns*256):return "Atlas dimensions do not match shader projection"
 	return true
 
 func test_cached_polygon_query_preserves_islands_and_multiple_water_bodies():

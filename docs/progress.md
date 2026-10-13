@@ -33,6 +33,37 @@
   KZT. Windows recorded c0000005 in the source editor binary, RVA031c5fde. An
   import ended three seconds earlier, so this run is confounded. It is **not a
   passed one-hour soak** or a confirmed match to the user's release crash.
+- The captured repeat completed 3,670 seconds with no exception or terrain
+  coverage errors, over 31.8 km B012 and 33.3 km B011, returning both worlds to the
+  menu successfully. It covers the initial night/shadow stage; a final longer
+  soak will cover the subsequent cache, batching and diagnostic changes.
+- Eight-entry station caches preserve live consumers and reprepare evicted
+  assets. Native 22 checks passed, with identical live/revisit images and about
+  161 MiB fewer GPU allocations than retaining 17 station bundles.
+- Saved material batches for four tree families keep source triangles/automatic
+  LODs. Native 12 checks passed:104→47 draws, unchanged triangle counts. Dense
+  64-view tree impostors remove the rejected eight-view blend's double-trunk
+  artifact; native turn continuity and the 108 LOD checks pass. Houses: 30 checks pass.
+- A 12 km 140 km/h camera sweep/reversal passed 153 coverage samples and 9 origin
+  shifts with no coverage errors; five samples observed brief loading. It is
+  a paused camera stress test, not a 140 km/h driving/physics reproduction.
+- Release play gains bounded, five-second local journey journals, written by
+  one sleeping worker. Nested settings are copied before crossing threads; disk
+  stalls drop samples rather than blocking play. This is context, not a crash fix.
+- Whole-scene development-GPU timings show a small fidelity cost in several
+  views; do not claim a global FPS win. See `performance.md` and raw evidence.
+- Final full headless suite: **590 passed, zero failures, empty stderr**. The
+  existing atlas guard now checks both expected view count and actual PNG size.
+  Final five-train native benchmark passed at1600×900:91vehicles/5,580passengers,
+  pilot seated meshes0, all five trains moved23.62m. A90-minute captured x1
+  day/night soak started04:32; final result and release publication remain pending.
+
+Specific playtest after the build: start B012 at NCJ, drive past Nagercoil Town
+and watch nearby palms/shadows while changing between pilot and passenger views.
+Start B011 (22:10 from ERS) or Explore at 22:00 for lit homes/porches and station
+platforms; move away and back to check distant windows remain lit. Use the
+existing crowded benchmark on the 4090 Laptop PC. If a crash recurs, keep the
+two journey journals plus a capture-kit dump; the native fault is not diagnosed.
   A new hour-long run started02:58:42 with ProcDump attached after loading and
   with source imports/bakes suspended. Logs/dumps remain private under `.local`.
 

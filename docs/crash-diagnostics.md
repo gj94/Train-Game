@@ -1,5 +1,27 @@
 # R30 crash investigation and capture
 
+## Overnight build: lightweight journey context
+
+Release play now keeps `journey-current.jsonl` and `journey-previous.jsonl` beside
+the ordinary Godot log. Each is bounded to256KiB, with a flushed sample every
+five seconds. Samples identify the service, track position, speed, camera,
+clock, recent gap between main-loop updates, origin and scenery jobs. Gaps can
+include suspension/time skip; debug-only heap data is null in release builds.
+A header records the
+build, renderer mode and graphics preferences. No GPU readbacks, per-frame file
+writes, verbose engine trace, debugger attachment or upload is involved. A single
+sleeping writer thread performs file writes/rotation; the main loop queues a
+bounded record and never waits for the disk during play.
+
+The journal is disabled for editor/source runs and standard benchmarks; native
+soak tools explicitly enable a separate journal under their output directory.
+It avoids reading the railway while the time-skip worker owns it. Rotation and
+flushing tests verify that the latest written sample is readable immediately and
+the two-file size limit is respected. This gives context after a crash; it does
+not identify a native stack or replace the capture kit below.
+
+Location: `%APPDATA%\Godot\app_userdata\Train Game\logs\`.
+
 ## Report, 11 October 2026
 
 The player reported a crash while manually driving the northbound Vande Bharat

@@ -94,6 +94,22 @@ import. All 46 new atlas images use high-quality GPU compression and mipmaps;
 their normal images keep all three RGB channels rather than tangent-normal
 packing. This is necessary for both distant filtering and texture bandwidth.
 
+The four large tree families now use 64 azimuths, blended between adjacent
+views. Rebuild those with `--views=64 --samples=4
+--only=KL_LS_Coconut_Tall_A,KL_LS_Coconut_Leaning_B,KL_LS_Coconut_Juvenile_C,KL_LS_Jackfruit_Tree`
+after the Blender script's `--` separator. Other assets retain their eight-view
+atlases without blending: broad blends caused doubled trunks/walls. The denser
+tree atlases use about 37 MiB more compressed texture memory across all four
+families. Import before starting the game; never rebake/import during a drive.
+
+After source model import, run Godot headlessly with
+`--script res://tools/bake_tree_batches.gd`. This saves four families × three
+visual LODs plus four shadow meshes under `trackside/batched/`. Constant opaque
+materials share a vertex-colour PBR surface; original positions, normals and
+automatic LOD indices survive. Textured surfaces retain their materials. The
+manifest records source glTF hashes and surface counts. Source models remain
+available as a fallback and for the native `check_tree_palette.gd` comparison.
+
 For source visual checks, use `tools/inspect_scenery_assets.gd` with
 `--only=tf3_BLD_Home_Verandah_01,tf3_KL_LS_Coconut_Tall_A` and repeat with
 `--impostor`. The latter forces the far representation near the camera so its

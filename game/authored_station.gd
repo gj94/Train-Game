@@ -1,16 +1,17 @@
 extends RefCounted
 ## Detailed source building assemblies. Track/signalling remain simulation-owned.
-static var _prepared := {}
-static var _mutex := Mutex.new()
+static var _cache:=preload("res://game/immutable_asset_cache.gd").new(8)
 
 static func available(code: String) -> bool:
 	return code in ["ERS","TVC","NCJ"] or preload("res://game/coastal_station_placement.gd").available(code)
 
+static func is_prepared(code: String) -> bool:
+	var key: String="station_"+preload("res://game/coastal_station_placement.gd").asset_code(code).to_lower()
+	return _cache.contains(key)
+
 static func prepare(code: String) -> Dictionary:
 	var key: String="station_"+preload("res://game/coastal_station_placement.gd").asset_code(code).to_lower()
-	_mutex.lock()
-	var cached: Dictionary=_prepared.get(key,{})
-	_mutex.unlock()
+	var cached: Dictionary=_cache.fetch(key)
 	if not cached.is_empty():return cached
 	var scene: PackedScene=load("res://assets/models/ported/"+key+".glb")
 	var source: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ported/"+key+"_detail/provenance.json"))
@@ -19,11 +20,7 @@ static func prepare(code: String) -> Dictionary:
 	var warm: Node3D=scene.instantiate()
 	preload("res://game/authored_vehicle_materials.gd").apply(warm,key)
 	warm.free()
-	_mutex.lock()
-	_prepared[key]={scene=scene,bounds=source.source_bounds,placement=placement}
-	cached=_prepared[key]
-	_mutex.unlock()
-	return cached
+	return _cache.publish(key,{scene=scene,bounds=source.source_bounds,placement=placement})
 
 static func add_building(parent: Node3D, code: String, position: Vector3, forward: Vector3, right: Vector3, centered: bool=false) -> Dictionary:
 	var prepared:=prepare(code)

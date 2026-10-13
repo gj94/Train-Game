@@ -25,7 +25,7 @@ static func groups(placements: Array,parts: Array,cell_size: float=64.0) -> Arra
 			var box: AABB=pose*model_bounds
 			bounds=box if first else bounds.merge(box)
 			first=false
-		group.bounds=bounds.grow(.08) # Small leaf/blade wind displacement.
+		group.bounds=bounds.grow(.25) # Covers .13 m foliage wind and scaled instances.
 		result.append(group)
 	return result
 

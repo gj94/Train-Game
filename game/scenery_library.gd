@@ -19,6 +19,7 @@ const TREES := {
 const TREE_DETAIL_DISTANCE := 175.0
 var bounds := []
 var catalog: Dictionary = {}
+var use_batches:=true
 func _init(world_view=null) -> void:
 	_view_ref=weakref(world_view) if world_view!=null else null
 func place(kind: String,position: Vector3,angle: float=0.0,scale: Vector3=Vector3.ONE) -> void:
@@ -94,6 +95,11 @@ func material(kind: String) -> Material:
 	return mat
 func asset(kind: String) -> Array:
 	if meshes.has(kind): return meshes[kind]
+	if use_batches and kind.begins_with("tf3_"):
+		var batch_path: String="res://assets/models/trackside/batched/"+kind.trim_prefix("tf3_")+".res"
+		if ResourceLoader.exists(batch_path):
+			meshes[kind]=[{mesh=load(batch_path),transform=Transform3D.IDENTITY}]
+			return meshes[kind]
 	var path: String="res://assets/models/trackside/"+kind.trim_prefix("tf3_")+".gltf" if kind.begins_with("tf3_") else ROOT+kind+".glb"
 	var scene: PackedScene=load(path)
 	assert(scene!=null,"Scenery asset missing: "+kind)

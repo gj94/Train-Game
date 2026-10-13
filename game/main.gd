@@ -75,6 +75,7 @@ var _returning_menu := false
 var profiling := false
 var frame_costs := {}
 var simulation_ms := 0.0
+var journey_diagnostics:=preload("res://game/journey_diagnostics.gd").new()
 
 
 func _ready() -> void:
@@ -304,6 +305,15 @@ func _ready() -> void:
 		var runner:=preload("res://game/performance_benchmark.gd").new()
 		add_child(runner)
 		runner.run.call_deferred(self)
+	elif not OS.has_feature("editor"):
+		journey_diagnostics.start({build=preload("res://game/build_version.gd").current(),
+			engine=Engine.get_version_info().string,adapter=RenderingServer.get_video_adapter_name(),
+			render_thread=ProjectSettings.get_setting("rendering/driver/threads/thread_model",1),
+			started=Time.get_datetime_string_from_system(),graphics=graphics_options.values})
+
+
+func _exit_tree() -> void:
+	journey_diagnostics.close()
 
 
 func _prepared_platform(spot: Dictionary) -> void:
@@ -393,6 +403,7 @@ func _render_trains(fraction: float,ride_delta: float=0.0) -> void:
 
 
 func _process(delta: float) -> void:
+	journey_diagnostics.sample(self,Time.get_ticks_msec())
 	var began:=Time.get_ticks_usec() if profiling else 0
 	var stamp:=began
 	if geographic_drive: _geographic_frame()

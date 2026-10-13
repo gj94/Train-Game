@@ -1,5 +1,44 @@
 # Performance and target-PC benchmark
 
+## 14 October overnight scenery pass
+
+Shared scenery bounds keep every detail level and shadow caster at the same
+distance from the camera. Stable background terrain patches replace repeated
+whole-chunk rebuilds; detailed tiles replace them only after activation finishes.
+Station scene/material caches now retain eight station bundles, while active
+chunks retain their own resources. A 17-station native comparison used
+564,048,096 versus 733,133,120 bytes of GPU allocations (about 161 MiB less).
+The live station survived eviction and its revisit image was pixel-identical.
+This is an isolated cache fixture, not a whole-game VRAM prediction.
+
+Four tree families use offline material batches and separate cheap shadow
+surfaces. The native four-tree comparison went from 104 to 47 draw calls with
+identical visual triangle counts. Source/batched image RMS was 0.404–0.419 on
+the 0–255 scale; original geometry and imported automatic LOD indices remain.
+Distant trees now blend 64 closely spaced views. The turn test reduced its
+largest quarter-degree frame difference from 2.255 to 0.367 RMS, avoiding the
+doubled trunks observed with a rejected broad eight-view blend. A 97-tree grove
+measured 3.668/3.674/3.683 ms GPU for nearest/blended/nearest views on the 780M.
+These microbenchmarks demonstrate the local changes, not an equivalent FPS gain.
+
+The complete paused five-train day/night fixture remained valid (23 checks;
+91 vehicles and 5,580 simulated passengers), but short whole-scene observations
+were 1–7% slower in several views after the combined fidelity/streaming changes.
+For example, median GPU time was 28.856→29.695 ms on the daytime platform,
+21.518→21.943 ms at night and 38.024→41.028 ms for the daytime overview.
+These were separate development-PC runs, not a thermal-controlled target-PC A/B.
+Do not advertise a general frame-rate increase from the draw-call reduction.
+Raw results and visual evidence are under
+`art/performance/overnight-2026-10-14/`. The target remains the i9-13980HX /
+RTX 4090 Laptop 16 GB, and needs its own returned benchmark.
+
+The final occupied-train benchmark completed at 1600×900 with five formations,
+91 vehicles and 5,580 passengers. Pilot view rendered zero seated passengers;
+the passenger view retained 140 nearby seated meshes. All five trains moved
+23.62 m in the live case. Median live costs were 12.92 ms for train presentation,
+14.39 ms total game code and 42.73 ms GPU on the 780M. This identifies moving
+train presentation as remaining CPU work; the scenery changes do not resolve it.
+
 For CPU-only timetable profiling, the 100-service operating-day audits and
 rendering-free time skips, see [the timetable guide](busy-timetable.md).
 For the measured multicore experiment, see [parallel simulation](parallel-simulation.md).

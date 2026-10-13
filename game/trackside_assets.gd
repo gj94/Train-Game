@@ -25,7 +25,8 @@ static func prepare(library) -> void:
 		library.catalog[kind]=catalog[kind]
 	for name in TREES:
 		var kind: String="tf3_"+name
-		library.meshes["shadow:"+kind]=preload("res://game/scenery_shadow.gd").build(library.asset(kind+"_LOD2"))
+		var shadow_path: String=ROOT+"batched/"+name+"_shadow.res"
+		library.meshes["shadow:"+kind]=[{mesh=load(shadow_path),transform=Transform3D.IDENTITY}] if library.use_batches and ResourceLoader.exists(shadow_path) else preload("res://game/scenery_shadow.gd").build(library.asset(kind+"_LOD2"))
 	for alias in ALIASES:
 		library.catalog[alias]=catalog["tf3_"+ALIASES[alias]]
 	for kind in atlases:
@@ -34,6 +35,9 @@ static func prepare(library) -> void:
 		mesh.center_offset=Vector3(0,float(entry.centre[1]),0)
 		var mat:=ShaderMaterial.new();mat.shader=load("res://game/shaders/scenery_impostor.gdshader")
 		mat.set_shader_parameter("centre_y",0.0)
+		mat.set_shader_parameter("view_count",float(entry.get("views",8)))
+		mat.set_shader_parameter("atlas_columns",float(entry.get("columns",4)))
+		mat.set_shader_parameter("blend_views",int(entry.get("views",8))>=64)
 		var name: String=kind.trim_prefix("tf3_")
 		mat.set_shader_parameter("colour_atlas",load(ROOT+"impostors/"+name+"_albedo.png"))
 		mat.set_shader_parameter("normal_atlas",load(ROOT+"impostors/"+name+"_normal.png"))

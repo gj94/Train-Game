@@ -1,7 +1,9 @@
 extends RefCounted
 ## Per-car source graph materials and shared simplified shadow geometry.
-static var _bundles := {}
-static var _mutex := Mutex.new()
+# A route contains dozens of detailed stations. Chunks keep their live resources;
+# the lookup cache must not pin every passed station until the process exits.
+# The finite rolling-stock catalogue retains its existing reusable bundles.
+static var _cache:=preload("res://game/immutable_asset_cache.gd").new(8,"station_")
 
 static func apply(model: Node3D, key: String) -> Dictionary:
 	var bundle:=_bundle(model,key)
@@ -30,9 +32,7 @@ static func apply(model: Node3D, key: String) -> Dictionary:
 	return stats
 
 static func _bundle(model: Node3D,key: String) -> Dictionary:
-	_mutex.lock()
-	var cached: Dictionary=_bundles.get(key,{})
-	_mutex.unlock()
+	var cached: Dictionary=_cache.fetch(key)
 	if not cached.is_empty():return cached
 	# Build privately, then publish an immutable bundle. A station loader never
 	# holds the cache lock while doing I/O or contends with live train materials.
@@ -71,8 +71,4 @@ static func _bundle(model: Node3D,key: String) -> Dictionary:
 				material.set_shader_parameter("noise_volume",load("res://assets/models/ported/wap7_detail/microfinish.res"))
 				material.set_meta("optical_glass",entry.glass)
 				materials[identity]=material
-	_mutex.lock()
-	if not _bundles.has(key):_bundles[key]={materials=materials,shadows=meshes}
-	cached=_bundles[key]
-	_mutex.unlock()
-	return cached
+	return _cache.publish(key,{materials=materials,shadows=meshes})

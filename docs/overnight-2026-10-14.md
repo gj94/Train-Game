@@ -91,11 +91,72 @@ disable only after the overnight work and publication are complete.
 
 ## Active processes and outputs
 
+- 03:44: all587 headless tests passed after bounded station caches and optional
+  palette helper. The captured x1 soak passed its former crash location and
+  returned to the menu; its second journey is now south of Kumbalam at night.
+  New candidate: blend adjacent atlas angles instead of snapping eight-view
+  tree/building impostors. Native turn continuity/GPU comparison is prepared.
+  Conservative foliage bounds now allow0.25m for wind and scaled instances.
+- Added release-only local journey breadcrumbs (two256KiB files, five-second
+  flushed samples, no GPU queries). Two unit tests pass, including avoiding
+  worker-owned railway reads during skip. Source soak harnesses explicitly enable
+  their own output-folder journal; the already-running soak predates this code.
+
+- 03:29: night lighting/shadow stage committed and pushed as `86d441c`; all582
+  headless tests passed (evidence in `art/performance/overnight-2026-10-14/`).
+  Captured repeat still running without coverage errors. Do not import until it
+  ends. Prepared optional constant-material tree batching prototype; its2 unit
+  tests pass, but production does not use it yet and native validation is pending.
+- Station PackedScene and finish/shadow caches were unbounded strong caches.
+  Implemented synchronized eight-station LRU caches, retaining active consumers
+  and rolling-stock bundles; residency checks now reprepare evicted stations.
+  Three focused tests pass, including concurrent publication and resource release.
+  A native16-station/revisit harness is ready for after the active captured soak.
+  These changes are uncommitted and not covered by the currently running process.
+
 - Baseline day/night: `.local/overnight-2026-10-14/baseline/`; process identity
   recorded in that directory when launched. Check it before starting another
   graphics benchmark; do not overlap GPU measurements.
 
 ## Remaining / handoff
+
+- 04:39: final590headless tests pass with empty stderr. Initial run's one
+  failure was an old eight-view-only atlas expectation; now validates64-view
+  tree atlas dimensions too. Journal deep-copies nested preferences for worker
+  rotation; its3focused tests and final full suite pass.
+- Crowded native benchmark complete04:32, actual1600x900,91vehicles/5,580pax,
+  zero pilot seated meshes,140in passenger view, all5moved23.62m. Median live
+  train12.916ms/game14.393ms/GPU42.727ms on780M. Rawreport copied to evidence.
+- Final90min soak gamePID14440 began04:32:03, ready23.9s. Automated wrapper's
+  WindowsPowerShell5.1 signature-module import failed, leaving game alive.
+  Main shell verified Microsoft signature and attached ProcDumpPID22864 manually
+  after readiness. Capture is active, no dump/error so far. `.local/.../final-soak/`
+  holds journal/samples/results. Expectedfinish~06:03; no imports/rebakes allowed.
+- LAN server restored at04:29, PID12420, same192.168.8.183:8765, HTTP200.
+  It still advertisesR30 until R31publication. Do not publish until after06:00.
+- Explored skipping repeated render-motion path checks in an ignored headless
+  microbenchmark. Inconsistent timing under active soak; no production change.
+
+- 04:17: captured x1 soak completed at03:59:55: 3,670s, B01231.8km and
+  B01133.3km, zero coverage errors, both worlds released on return to menu.
+  Signed Microsoft ProcDump attached after readiness; no exception/dump. This
+  covers86d441c, not the subsequent changes below. Initial crash remains unproven.
+- Station LRU native22checks passed. A17-station reference retained733,133,120B
+  GPU allocations versus564,048,096B with8-entry caches; live station and revisit
+  pictures were pixel-identical. Isolated fixture, not whole-game VRAM.
+- Shipping material-batched trees:12native checks passed, draws104→47 with
+  identical primitive counts, source/image RMS0.404–0.419/255. Assets preserve
+  original geometry and automatic LODs; saved offline to avoid runtime readback.
+- Rejected eight-view blending (doubled leaning trunk). Four tree families now
+  have64-view atlases. Native quarter-degree turn steps max RMS2.255→0.367/255;
+  97-tree grove median GPU3.668/3.674/3.683ms nearest/blended/nearest on780M.
+  Inspected zoom image has no doubled trunk. Extra atlas memory is the tradeoff.
+- Native final house30/0 and LOD108/0 passed. Day/night comparison is running
+  under final-native.ps1, followed by12km140km/h camera sweep/reversal.
+- Lightweight journey logger now uses one sleeping worker and one pending
+  record;3tests pass. It will be exercised in final native soak and release.
+- No running import/bake. Last import completed before native checks. All later
+  graphics/game runs must continue to use stable assets without reimporting.
 
 Finish native night-house review, compare day/night and occupied-train performance,
 extend fast/reverse streaming checks, run the full suite, commit/push and publish

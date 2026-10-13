@@ -1,4 +1,4 @@
-"""Eight-view albedo/normal impostors of the actual ported scenery, background only."""
+"""Multi-view albedo/normal impostors of the actual source; background only."""
 import bpy
 import json
 import math
@@ -10,6 +10,12 @@ import numpy as np
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'assets/models/trackside/impostors'
 TILE=256
+VIEWS=int(next((a[8:] for a in sys.argv if a.startswith('--views=')),'8'))
+COLUMNS=8 if VIEWS>=32 else 4
+ROWS=VIEWS//COLUMNS
+SAMPLES=int(next((a[10:] for a in sys.argv if a.startswith('--samples=')),'1'))
+OUT=Path(next((a[9:] for a in sys.argv if a.startswith('--output=')),str(OUT)))
+assert VIEWS in (8,16,32,64) and SAMPLES>=1
 NAMES=['BLD_Home_Verandah_01','BLD_Cottage_Hipped_01','BLD_Home_Concrete_01',
        'BLD_TeaShop_Open_01','BLD_Workshop_Corrugated_01','BLD_CoirYard_Shed_01',
        'KL_LS_Coconut_Tall_A','KL_LS_Coconut_Leaning_B','KL_LS_Coconut_Juvenile_C',
@@ -19,7 +25,7 @@ NAMES=['BLD_Home_Verandah_01','BLD_Cottage_Hipped_01','BLD_Home_Concrete_01',
 
 def bake(name):
     bpy.ops.wm.read_factory_settings(use_empty=True)
-    bpy.ops.import_scene.gltf(filepath=str(OUT.parent/(name+'.gltf')))
+    bpy.ops.import_scene.gltf(filepath=str(ROOT/'assets/models/trackside'/(name+'.gltf')))
     objects=[o for o in bpy.context.scene.objects if o.type=='MESH']
     vertices=[o.matrix_world@v.co for o in objects for v in o.data.vertices]
     lo=Vector([min(v[i] for v in vertices) for i in range(3)])
@@ -29,7 +35,7 @@ def bake(name):
     side=max(radius*2.08,(hi.z-lo.z)*1.06)
     scene=bpy.context.scene
     scene.render.engine='CYCLES'
-    scene.cycles.samples=1
+    scene.cycles.samples=SAMPLES
     scene.cycles.use_denoising=False
     scene.render.resolution_x=TILE;scene.render.resolution_y=TILE
     scene.render.resolution_percentage=100;scene.render.film_transparent=True
@@ -45,7 +51,7 @@ def bake(name):
         p=next(n for n in m.node_tree.nodes if n.type=='BSDF_PRINCIPLED')
         channels[m.name]={key:(p.inputs[key].links[0].from_socket if p.inputs[key].is_linked else tuple(p.inputs[key].default_value) if key=='Base Color' else p.inputs[key].default_value) for key in ['Base Color','Alpha']}
     for mode in ['albedo','normal']:
-        atlas=np.zeros((TILE*2,TILE*4,4),dtype=np.float32)
+        atlas=np.zeros((TILE*ROWS,TILE*COLUMNS,4),dtype=np.float32)
         for m in materials:
             nodes=m.node_tree.nodes;links=m.node_tree.links
             output=next(n for n in nodes if n.type=='OUTPUT_MATERIAL')
@@ -70,21 +76,23 @@ def bake(name):
                 links.new(transparent.outputs[0],mix.inputs[1]);links.new(emission.outputs[0],mix.inputs[2])
                 links.new(mix.outputs[0],output.inputs['Surface'])
             else:links.new(emission.outputs[0],output.inputs['Surface'])
-        for angle in range(8):
-            theta=angle*math.tau/8
+        for angle in range(VIEWS):
+            theta=angle*math.tau/VIEWS
             cam.location=centre+Vector((math.sin(theta)*50,-math.cos(theta)*50,0))
             cam.rotation_euler=(centre-cam.location).to_track_quat('-Z','Y').to_euler()
-            path=ROOT/'.local/trackside-source/impostor-tile.png'
+            scratch=ROOT/'.local'
+            scratch.mkdir(parents=True,exist_ok=True)
+            path=scratch/'impostor-tile.png'
             scene.render.filepath=str(path);bpy.ops.render.render(write_still=True)
             image=bpy.data.images.load(str(path),check_existing=False)
             pixels=np.empty(TILE*TILE*4,dtype=np.float32);image.pixels.foreach_get(pixels)
             bpy.data.images.remove(image)
-            atlas[(angle//4)*TILE:(angle//4+1)*TILE,(angle%4)*TILE:(angle%4+1)*TILE]=pixels.reshape(TILE,TILE,4)
-        image=bpy.data.images.new(name+'_'+mode,width=TILE*4,height=TILE*2,alpha=True,float_buffer=False)
+            atlas[(angle//COLUMNS)*TILE:(angle//COLUMNS+1)*TILE,(angle%COLUMNS)*TILE:(angle%COLUMNS+1)*TILE]=pixels.reshape(TILE,TILE,4)
+        image=bpy.data.images.new(name+'_'+mode,width=TILE*COLUMNS,height=TILE*ROWS,alpha=True,float_buffer=False)
         image.alpha_mode='STRAIGHT';image.colorspace_settings.name='sRGB'
         image.pixels.foreach_set(atlas.ravel());image.filepath_raw=str(OUT/(name+'_'+mode+'.png'))
         image.file_format='PNG';image.save()
-    return dict(width=side,centre=[centre.x,centre.z,-centre.y],views=8,tile_pixels=TILE)
+    return dict(width=side,centre=[centre.x,centre.z,-centre.y],views=VIEWS,columns=COLUMNS,tile_pixels=TILE,samples=SAMPLES)
 
 
 if __name__=='__main__':

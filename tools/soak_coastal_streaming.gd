@@ -54,6 +54,9 @@ func load_service(id: String) -> bool:
 		await process_frame
 		if Time.get_ticks_msec()-began>180000:return false
 	game.train.automatic=true;game.world.dispatcher().manual_service=""
+	# Explicitly exercise the release-only bounded logger in this source harness.
+	game.journey_diagnostics=preload("res://game/journey_diagnostics.gd").new(output+"/journal")
+	game.journey_diagnostics.start({build="Source native soak",service=id})
 	game._set_time_scale(1);game._set_paused(false);game.hud.show_modal("")
 	return true
 
