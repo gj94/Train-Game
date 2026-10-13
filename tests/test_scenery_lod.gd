@@ -64,3 +64,16 @@ func test_tree_shadows_survive_detail_changes_and_obey_shadow_settings():
 		else:ok=ok and node.cast_shadow==GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	library.view.root.free()
 	return ok and shadow_count==1
+
+func test_shadow_batch_keeps_all_triangles_and_rejects_alpha_or_deformation():
+	var cube:=BoxMesh.new();var material:=StandardMaterial3D.new();cube.material=material
+	var parts:=[{mesh=cube,transform=Transform3D(Basis(Vector3.UP,.4),Vector3(4,2,-3))},
+		{mesh=cube,transform=Transform3D.IDENTITY}]
+	var result: Array=preload("res://game/scenery_shadow.gd").build(parts)
+	if result.size()!=1 or result[0].mesh.get_surface_count()!=1:return "Shadow geometry was not consolidated"
+	var data: Array=result[0].mesh.surface_get_arrays(0)
+	if data[Mesh.ARRAY_INDEX].size()!=cube.surface_get_arrays(0)[Mesh.ARRAY_INDEX].size()*2:return "Source shadow triangles changed"
+	var bounds: AABB=parts[0].transform*cube.get_aabb()
+	if not result[0].mesh.get_aabb().grow(.001).encloses(bounds):return "Transformed source silhouette lost"
+	material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+	return preload("res://game/scenery_shadow.gd").build(parts)==parts

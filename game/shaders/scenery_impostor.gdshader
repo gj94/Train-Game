@@ -4,8 +4,13 @@ uniform sampler2D colour_atlas : source_color, filter_linear_mipmap_anisotropic,
 uniform sampler2D normal_atlas : source_color, filter_linear_mipmap, repeat_disable;
 uniform float centre_y = 5.0;
 uniform float palettes = 1.0;
+uniform sampler2D window_mask : source_color, filter_linear_mipmap, repeat_disable;
+uniform bool has_window_mask = false;
+uniform float window_night = 0.0;
+uniform float window_occupancy = .7;
 varying flat float view_index;
 varying flat float palette_index;
+varying flat float home_seed;
 varying mat3 object_rotation;
 varying vec3 object_scale;
 void vertex() {
@@ -21,6 +26,7 @@ void vertex() {
  angle=atan(scale_z*sin(angle),scale_x*cos(angle));
  view_index=mod(floor(angle/(2.0*PI)*8.0+.5)+8.0,8.0);
  palette_index=min(palettes-1.0,floor(INSTANCE_CUSTOM.x*palettes));
+ home_seed=INSTANCE_CUSTOM.x;
  object_scale=vec3(scale_x,scale_y,scale_z);
  object_rotation=mat3(normalize(MODEL_MATRIX[0].xyz),normalize(MODEL_MATRIX[1].xyz),normalize(MODEL_MATRIX[2].xyz));
  MODELVIEW_MATRIX=VIEW_MATRIX*mat4(vec4(right*horizontal_scale,0),vec4(0,scale_y,0,0),vec4(to_camera*horizontal_scale,0),vec4(origin,1));
@@ -32,6 +38,12 @@ void fragment() {
  vec2 uv=(clamp(UV,vec2(.0015),vec2(.9985))+tile)/vec2(4,2.0*palettes);
  vec4 colour=texture(colour_atlas,uv);
  ALBEDO=colour.rgb;
+ if(has_window_mask && window_night>0.0) {
+  vec2 window_uv=(clamp(UV,vec2(.0015),vec2(.9985))+vec2(mod(view_index,4.0),1.0-floor(view_index/4.0)))/vec2(4,2);
+  float lit=window_night*smoothstep(home_seed-.055,home_seed+.055,window_occupancy);
+  vec3 warmth=mix(vec3(1.0,.64,.30),vec3(.68,.83,1.0),step(.83,fract(home_seed*5.71)));
+  EMISSION=warmth*lit*2.8*texture(window_mask,window_uv).r;
+ }
  ALPHA=colour.a;
  ALPHA_SCISSOR_THRESHOLD=.24;
  ALPHA_ANTIALIASING_EDGE=.18;

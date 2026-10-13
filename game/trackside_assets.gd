@@ -23,6 +23,9 @@ static func prepare(library) -> void:
 	for kind in catalog:
 		library.asset(kind)
 		library.catalog[kind]=catalog[kind]
+	for name in TREES:
+		var kind: String="tf3_"+name
+		library.meshes["shadow:"+kind]=preload("res://game/scenery_shadow.gd").build(library.asset(kind+"_LOD2"))
 	for alias in ALIASES:
 		library.catalog[alias]=catalog["tf3_"+ALIASES[alias]]
 	for kind in atlases:
@@ -34,6 +37,9 @@ static func prepare(library) -> void:
 		var name: String=kind.trim_prefix("tf3_")
 		mat.set_shader_parameter("colour_atlas",load(ROOT+"impostors/"+name+"_albedo.png"))
 		mat.set_shader_parameter("normal_atlas",load(ROOT+"impostors/"+name+"_normal.png"))
+		if ResourceLoader.exists(ROOT+"impostors/"+name+"_windows.png"):
+			mat.set_shader_parameter("window_mask",load(ROOT+"impostors/"+name+"_windows.png"))
+			mat.set_shader_parameter("has_window_mask",true)
 		mesh.material=mat;library.impostors[kind]=mesh
 
 static func levels(kind: String) -> Array:
@@ -62,7 +68,7 @@ static func flush(library,kind: String) -> void:
 	if tree:
 		# One inexpensive, stable caster survives the visual LOD transitions.
 		# This replaces the expensive near-tree shadows rather than adding them.
-		for part in library.asset(chain[-1].kind):
+		for part in library.meshes.get("shadow:"+kind,library.asset(chain[-1].kind)):
 			var entry: Dictionary=part.duplicate()
 			entry.begin=0.0;entry.end=300.0;entry.impostor=false;entry.shadow=true
 			parts.append(entry)

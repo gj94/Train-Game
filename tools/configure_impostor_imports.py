@@ -9,12 +9,16 @@ ROOT = Path(__file__).resolve().parents[1]
 def atlas_paths():
     base = ROOT / 'assets/models/scenery/impostors'
     for kind in json.loads((base / 'buildings_catalog.json').read_text()):
-        for channel in ('albedo', 'normal'):
-            yield base / f'{kind}_{channel}.png'
+        for channel in ('albedo', 'normal', 'windows'):
+            image = base / f'{kind}_{channel}.png'
+            if image.exists():
+                yield image
     base = ROOT / 'assets/models/trackside/impostors'
     for kind in json.loads((base / 'catalog.json').read_text()):
-        for channel in ('albedo', 'normal'):
-            yield base / f'{kind.removeprefix("tf3_")}_{channel}.png'
+        for channel in ('albedo', 'normal', 'windows'):
+            image = base / f'{kind.removeprefix("tf3_")}_{channel}.png'
+            if image.exists():
+                yield image
 
 
 def configure():

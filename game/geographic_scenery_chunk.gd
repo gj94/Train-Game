@@ -91,9 +91,10 @@ func build(key: Vector2i, far_tile: bool=false, holes: Array=[], detailed: bool=
 	preload("res://game/trackside_dressing.gd").add(self)
 	batch.finish(root,materials,"Geography")
 	_planting()
+	var night_sites: Array=preload("res://game/night_windows.gd").porch_sites(library)
 	library.flush()
 	library=null
-	return {node=root,origin=origin}
+	return {node=root,origin=origin,night_sites=night_sites}
 
 func _class_at(x: float,z: float) -> int:
 	if mask.size()!=4096: return 0
@@ -333,7 +334,8 @@ func _building(feature: Dictionary) -> void:
 					var p:=a.lerp(b,(column+.5)/columns)+Vector3.UP*(floor_index*3.1+1.65)+normal*.035
 					var right:=along*minf(.68,span/columns*.31)
 					var up:=Vector3.UP*.68
-					var glass:=Color(.10,.17,.18,4.0/15.0)
+					var room_seed:=float(posmod(seed_value+floor_index*37+column*17+i*11,127))/126.0
+					var glass:=Color(room_seed,.17,.18,4.0/15.0)
 					batch.quad("architecture",p-right-up,p+right-up,p+right+up,p-right+up,normal,glass)
 					if rail.distance>420: continue
 					var frame:=Color(.24,.24,.20,0) if seed_value%3 else Color(.51,.50,.43,0)

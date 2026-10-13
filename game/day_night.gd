@@ -7,6 +7,7 @@ var moon: DirectionalLight3D
 var sky_material: ShaderMaterial
 var state: Dictionary={}
 var updates:=0
+var windows:=preload("res://game/night_windows.gd").new()
 var _clock:=-INF
 var _wall:=-1000000
 
@@ -26,6 +27,7 @@ func update(clock: float,force: bool=false) -> bool:
 		if now-_wall<500 and absf(clock-_clock)<300.0:return false
 	_clock=clock;_wall=now;updates+=1
 	state=Daylight.sample(clock)
+	windows.update(state.night,state.hour)
 	sun.basis=Basis.looking_at(-state.sun,Vector3.UP)
 	sun.light_energy=state.sun_energy;sun.visible=state.sun_energy>.0001
 	sun.light_color=Color(1.0,.96,.89).lerp(Color(1.0,.43,.16),state.warmth*.8)
@@ -39,3 +41,7 @@ func update(clock: float,force: bool=false) -> bool:
 	environment.fog_light_color=Color(.055,.075,.115).lerp(Color(.78,.84,.85),state.daylight)
 	environment.fog_light_color=environment.fog_light_color.lerp(Color(.55,.27,.14),state.twilight*.22)
 	return true
+
+func bind_scenery(library,extras: Array=[]) -> void:
+	windows.bind(library,extras)
+	windows.update(state.get("night",0.0),state.get("hour",12.0))

@@ -99,11 +99,11 @@ func asset(kind: String) -> Array:
 	assert(scene!=null,"Scenery asset missing: "+kind)
 	var instance:=scene.instantiate()
 	var parts:=[]
-	_collect(instance,Transform3D.IDENTITY,parts)
+	_collect(instance,Transform3D.IDENTITY,parts,kind)
 	instance.free()
 	meshes[kind]=parts
 	return parts
-func _collect(node: Node,parent: Transform3D,parts: Array) -> void:
+func _collect(node: Node,parent: Transform3D,parts: Array,asset_kind: String="") -> void:
 	var pose:=parent
 	if node is Node3D: pose=parent*node.transform
 	if node is MeshInstance3D:
@@ -113,7 +113,14 @@ func _collect(node: Node,parent: Transform3D,parts: Array) -> void:
 			if source is StandardMaterial3D and source.resource_name.begins_with("TF3_"):
 				var retained: StandardMaterial3D=source.duplicate()
 				retained.texture_filter=BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
-				mesh.surface_set_material(surface,retained)
+				var windows:=preload("res://game/night_windows.gd")
+				var shutter: bool=windows.is_shutter(asset_kind,source.resource_name)
+				# The shop's glass includes cups/bottles. Only the residential
+				# masters use this material for a small fixed lamp lens.
+				var home: bool=asset_kind.begins_with("tf3_BLD_Home_") or asset_kind=="tf3_BLD_Cottage_Hipped_01"
+				if (home and source.resource_name.ends_with("_glass")) or shutter:
+					mesh.surface_set_material(surface,windows.window_material(retained,shutter))
+				else:mesh.surface_set_material(surface,retained)
 			elif source!=null and source.resource_name.begins_with("PH_"):
 				var original: StandardMaterial3D=source.duplicate()
 				original.texture_filter=BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
@@ -134,7 +141,7 @@ func _collect(node: Node,parent: Transform3D,parts: Array) -> void:
 				var kind: String=source.resource_name.trim_prefix("SC_") if source!=null else "detail"
 				mesh.surface_set_material(surface,material(kind))
 		parts.append({mesh=mesh,transform=pose})
-	for child in node.get_children(): _collect(child,pose,parts)
+	for child in node.get_children(): _collect(child,pose,parts,asset_kind)
 func flush() -> void:
 	_flush_geometry()
 	placements.clear()

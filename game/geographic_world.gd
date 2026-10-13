@@ -14,6 +14,7 @@ var _asset_worker
 var _prepared_stations := {}
 var _activating := {}
 var _warm := {} # Hidden scene trees retain uploaded buffers for nearby revisits.
+var residential_lights
 var cache_hits := 0
 var completed_jobs := 0
 var last_stream_ms := 0.0
@@ -79,6 +80,8 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	assets.prepare_impostors()
 	preload("res://game/trackside_assets.gd").prepare(assets)
 	_make_materials()
+	day_night.bind_scenery(assets,[materials.architecture])
+	residential_lights=preload("res://game/residential_lighting.gd").new(root)
 	track_template=TrackView.new()
 	track_template.wv=self
 	track_template._materials()
@@ -458,6 +461,12 @@ func rebase(origin: Vector3) -> void:
 func station_is_present(code: String) -> bool:
 	var id:="station:"+code
 	return loaded.has(id) and loaded[id].node.visible
+
+func update_environment(force: bool=false) -> void:
+	super.update_environment(force)
+	if residential_lights==null or day_night==null or day_night.state.is_empty():return
+	var camera:=root.get_viewport().get_camera_3d()
+	if camera!=null:residential_lights.update(loaded,camera.global_position+coordinate_origin,coordinate_origin,day_night.state.night,day_night.state.hour,force)
 
 func terrain_height(x: float,z: float) -> float:
 	return geo.ground_at(x+coordinate_origin.x,z+coordinate_origin.z)

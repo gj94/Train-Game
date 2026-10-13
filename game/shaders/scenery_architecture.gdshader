@@ -10,6 +10,8 @@ uniform sampler2D roof_rough : hint_roughness_r, filter_linear_mipmap_anisotropi
 uniform sampler2D aged_wall : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D aged_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform bool instanced_palette = true;
+uniform float window_night = 0.0;
+uniform float window_occupancy = .7;
 varying vec3 local_pos;
 varying vec3 local_normal;
 varying vec3 world_pos;
@@ -68,6 +70,11 @@ void fragment() {
   metal=.36; rough=.55; weather=.35;
   paint*=mix(.68,1.02,noise(uv*vec2(3.1,.2)));
  } else if(category==4) {
+	 float home_seed=instanced_palette ? variation.x : COLOR.r;
+	 if(!instanced_palette) paint=vec3(.10,.17,.18);
+	 float lit=window_night*smoothstep(home_seed-.055,home_seed+.055,window_occupancy);
+	 vec3 warmth=mix(vec3(1.0,.64,.30),vec3(.68,.83,1.0),step(.83,fract(home_seed*5.71)));
+	 EMISSION=warmth*lit*2.8;
   metal=.16; rough=.20; weather=.04;
   float room=hash(floor(vec2(uv.x/1.6,local_pos.y/3.15)));
   paint*=mix(.15,.57,room);

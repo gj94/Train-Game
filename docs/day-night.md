@@ -25,8 +25,18 @@ calendar dates, seasonal variation, weather or real lunar phases.
   Unloaded/hidden station chunks have no fixtures or lights. Floating-origin
   rebasing keeps these aligned with the station geometry.
 - VRLR's separately authored open shelters are excluded from the generic canopy
-  placement until their individual roof datums are surveyed. This first pass
-  does not add lights to every building or distant town.
+  placement until their individual roof datums are surveyed.
+- Domestic windows now emit warm or cool light, with a deterministic occupancy
+  rhythm that decreases overnight. Existing authored glass and closed wooden
+  shutters retain their daytime PBR inputs. Geometry-derived eight-view masks
+  keep distant impostor windows lit too; mapped buildings carry per-window
+  occupancy seeds. Shop glassware is excluded from emission.
+- Porch fixtures are instanced (up to 96 nearby), with eight persistent,
+  shadow-free local lights. Slots fade before retirement and retain their house
+  identity as distance ordering changes. Scenery streaming/origin shifts update
+  the fixtures; hidden chunks cannot leave orphan lights. Remote buildings use
+  material emission without one dynamic light per home. These are artistic
+  residential lighting patterns, not surveyed electrical/window inventories.
 - Moonlight never adds a directional shadow pass. Graphics shadow preferences
   remain respected. Leading train headlights reach 180 m; reversed formations
   retain the existing leading-end selection. Existing local cab/coach lights
@@ -97,4 +107,5 @@ To reproduce from source (Dummy audio checks state only):
    that the preference remains off. Walk/reposition along a station and check
    that lamps stay attached to roofs and posts through camera/origin changes.
 
-The published R29 download is unchanged; this feature is currently in source.
+R30 includes the initial day/night cycle. The overnight residential-lighting
+improvements are in source pending the next validated release.

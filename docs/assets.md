@@ -2,6 +2,14 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-14: fifteen night-window masks are baked from the existing building
+geometry/material categories by `tools/bake_night_windows.gd`, using the same
+eight viewpoints as the albedo atlases. They reuse the original asset provenance;
+no photograph pixels or external artwork were added. Residential wooden shutters
+show narrow light seams; shop glassware is deliberately excluded. Small porch
+fixtures are original procedural geometry. Source PBR colour, normal, roughness
+and metallic inputs remain intact in daytime.
+
 2026-10-10: user-authorized Kerala Trackside Collection from
 `gj94/transport-fever-3-mods`, pinned to
 `16c06aee07c70eea5ed74e8420116998c27a4895`. All 52 source entries have verified

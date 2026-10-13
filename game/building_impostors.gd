@@ -15,6 +15,9 @@ static func prepare(library) -> void:
 		material.set_shader_parameter("centre_y",0.0);material.set_shader_parameter("palettes",6.0)
 		material.set_shader_parameter("colour_atlas",load(ROOT+kind+"_albedo.png"))
 		material.set_shader_parameter("normal_atlas",load(ROOT+kind+"_normal.png"))
+		if ResourceLoader.exists(ROOT+kind+"_windows.png"):
+			material.set_shader_parameter("window_mask",load(ROOT+kind+"_windows.png"))
+			material.set_shader_parameter("has_window_mask",true)
 		quad.material=material;library.impostors[kind]=quad
 		var hull:=BoxMesh.new();hull.size=Vector3(data.size[0],data.size[1],data.size[2])
 		hulls[kind]=hull

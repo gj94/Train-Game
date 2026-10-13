@@ -18,6 +18,23 @@
   zero terrain coverage errors; the full one-hour soak is still running.
 - Night houses/porches, further native visual/performance comparisons, release
   packaging and publication remain in progress. The R30 crash cause is unproven.
+- Domestic windows and shutter seams now follow a deterministic night occupancy
+  rhythm; matching geometry-derived masks retain lights in distant impostors.
+  Eight persistent, shadow-free porch lights illuminate nearby entrances, with
+  up to 96 instanced fixtures. Source daytime PBR texture channels are preserved;
+  shop cups/bottles are excluded from emission. Thirty native house checks and
+  the updated **582-test headless suite** passed. Broader route QA remains active.
+- Imported tree shadow casters consolidate their unchanged authored LOD2
+  geometry into a single opaque surface. The native comparison reduced test-scene
+  draws from 129 to 49 at 60 m with image RMS 0.059 on the 0–255 scale. Original
+  per-material automatic simplification/culling was about 2% cheaper in triangle
+  count; the combined surface reduces submission cost. Isolated GPU timing pending.
+- The first x1 soak terminated at 02:54:39 after 29 minutes / 29.6 km approaching
+  KZT. Windows recorded c0000005 in the source editor binary, RVA031c5fde. An
+  import ended three seconds earlier, so this run is confounded. It is **not a
+  passed one-hour soak** or a confirmed match to the user's release crash.
+  A new hour-long run started02:58:42 with ProcDump attached after loading and
+  with source imports/bakes suspended. Logs/dumps remain private under `.local`.
 
 ## 2026-10-11 — Second B012 crash without capture
 - User reports another crash slightly beyond the original location, this time
