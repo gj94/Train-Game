@@ -7,6 +7,9 @@ shutter seams and nearby porch lights follow the clock. Tree material batches
 retain source geometry while reducing draw calls. These changes do not yet
 eliminate all loading pauses; development-PC frame-rate results are mixed.
 Try B012 past Nagercoil Town and B011's 22:10 departure from ERS at night.
+Known investigation: one late-night source-test capture lost the 3D view;
+focused route and camera replays did not reproduce it. The cause is unresolved.
+If this happens during play, keep the journey logs described below.
 
 R30: choose your service at launch, including direct night departures.
 Browse all 100 services by departure period, calling station, or scheduled

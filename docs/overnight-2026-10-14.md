@@ -173,3 +173,25 @@ after the 06:00 minimum. Record concrete results here as they complete.
 - Required 06:00 minimum elapsed. Proceed with one R31 export, signed sequence33,
   full archive/resource/LAN verification and guarded R30 retirement. Do not rerun
   extracted-distribution gameplay checks. Disable the heartbeat after publication.
+
+## Publication hold: final image review
+
+- 06:04: the completed soak's B011 end screenshot shows only the night background
+  and HUD, despite clean coverage/error checks. Hold R31 export while investigating;
+  the soak proves its recorded invariants, not that every captured view is correct.
+- A fresh B011 departure and passenger/pilot/head-out switches have a visible,
+  lit cab. Native moving replay is active in `night-camera-moving/` (PID8036),
+  capturing every5km atx16. No game code or assets changed; no import is running.
+- Source validation/evidence committed and pushed as dbfbf40. R31 is not exported
+  or published yet. Do not let the heartbeat publish without resolving this hold.
+
+- 06:20: bounded follow-up completed without game changes. A fresh B011 cab,
+  passenger/pilot return, B012→menu→B011 transition, and43km moving replay all
+  render lit interiors. Twenty switches while moving passed camera ownership,
+  root visibility and image-content checks (minimum bright fraction0.381).
+  Each follow-up has empty stderr. These do not reproduce the original image;
+  its cause remains unknown and it is retained as `camera-anomaly.png`.
+- Publication decision: release the verified scenery/lighting changes, with the
+  anomalous capture explicitly documented as unresolved. Do not claim the image
+  proves a lighting failure or that these replays fix it. No speculative game
+  patch was made. Native crash diagnosis also remains open. R31 export can proceed.

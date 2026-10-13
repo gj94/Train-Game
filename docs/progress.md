@@ -36,6 +36,11 @@
   source engine and development GPU limit this evidence. The earlier captured
   3,670-second repeat also passed; the first run's crash coincided with an import
   and remains undiagnosed. No import/bake ran during either clean repeat.
+- Visual caveat: the final B011 screenshot unexpectedly contained only the
+  night background and HUD. Fresh launch, service-change and43km replays showed
+  lit interiors, and20moving camera switches passed ownership/visibility/image
+  checks. The original capture remains unexplained; it is not a passed visual
+  assertion or a confirmed lighting defect. Evidence is retained for follow-up.
 - Five occupied formations retained 91 vehicles and 5,580 passengers. Pilot
   seated meshes stayed at zero; passenger view retained 140. All five moved.
   Median moving-train presentation was 12.92 ms on the 780M and remains a CPU
