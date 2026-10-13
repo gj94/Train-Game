@@ -23,11 +23,14 @@ These microbenchmarks demonstrate the local changes, not an equivalent FPS gain.
 
 The complete paused five-train day/night fixture remained valid (23 checks;
 91 vehicles and 5,580 simulated passengers), but short whole-scene observations
-were 1–7% slower in several views after the combined fidelity/streaming changes.
+were 1–8% slower in several views after the combined fidelity/streaming changes.
 For example, median GPU time was 28.856→29.695 ms on the daytime platform,
 21.518→21.943 ms at night and 38.024→41.028 ms for the daytime overview.
 These were separate development-PC runs, not a thermal-controlled target-PC A/B.
 Do not advertise a general frame-rate increase from the draw-call reduction.
+The denser tree atlases add approximately 37 MiB of compressed texture storage
+when all four families are resident. They trade a little memory for smoother
+distant silhouettes; the authored near geometry remains unchanged.
 Raw results and visual evidence are under
 `art/performance/overnight-2026-10-14/`. The target remains the i9-13980HX /
 RTX 4090 Laptop 16 GB, and needs its own returned benchmark.

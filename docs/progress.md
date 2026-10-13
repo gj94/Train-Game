@@ -1,71 +1,57 @@
 # Progress
 
-## 2026-10-14 — Overnight streaming and scenery detail pass (in progress)
-- User requested work through at least 06:00 Singapore time, followed by a
-  build. Work ledger and continuation instructions: `overnight-2026-10-14.md`.
-- Native baseline captured eight day/night views with five occupied formations
-  on the development 780M; 23 checks passed. These are not 4090 Laptop timings.
-- All variants of a scenery asset now share source placement groups, density
-  ordering and conservative static bounds. This addresses mismatched culling
-  centres and avoids automatic MultiMesh bound recomputation. Imported trees
-  use their cheapest authored geometry for stable, separately budgeted shadows.
-- Background terrain uses stable 512 m patches inside cached 2 km chunks.
-  Near-tile mask changes no longer rebuild whole distant meshes; a patch is
-  hidden only when its detailed tile is resident. Staged geometry is revealed
-  once complete, and near requests have a 240 m retention band.
-- Validation: 577 headless tests passed with empty stderr; 108 native imported
-  LOD/transform/bounds checks passed. The initial x1 B012 native journey reports
-  zero terrain coverage errors; the full one-hour soak is still running.
-- Night houses/porches, further native visual/performance comparisons, release
-  packaging and publication remain in progress. The R30 crash cause is unproven.
-- Domestic windows and shutter seams now follow a deterministic night occupancy
-  rhythm; matching geometry-derived masks retain lights in distant impostors.
-  Eight persistent, shadow-free porch lights illuminate nearby entrances, with
-  up to 96 instanced fixtures. Source daytime PBR texture channels are preserved;
-  shop cups/bottles are excluded from emission. Thirty native house checks and
-  the updated **582-test headless suite** passed. Broader route QA remains active.
-- Imported tree shadow casters consolidate their unchanged authored LOD2
-  geometry into a single opaque surface. The native comparison reduced test-scene
-  draws from 129 to 49 at 60 m with image RMS 0.059 on the 0–255 scale. Original
-  per-material automatic simplification/culling was about 2% cheaper in triangle
-  count; the combined surface reduces submission cost. Isolated GPU timing pending.
-- The first x1 soak terminated at 02:54:39 after 29 minutes / 29.6 km approaching
-  KZT. Windows recorded c0000005 in the source editor binary, RVA031c5fde. An
-  import ended three seconds earlier, so this run is confounded. It is **not a
-  passed one-hour soak** or a confirmed match to the user's release crash.
-- The captured repeat completed 3,670 seconds with no exception or terrain
-  coverage errors, over 31.8 km B012 and 33.3 km B011, returning both worlds to the
-  menu successfully. It covers the initial night/shadow stage; a final longer
-  soak will cover the subsequent cache, batching and diagnostic changes.
-- Eight-entry station caches preserve live consumers and reprepare evicted
-  assets. Native 22 checks passed, with identical live/revisit images and about
-  161 MiB fewer GPU allocations than retaining 17 station bundles.
-- Saved material batches for four tree families keep source triangles/automatic
-  LODs. Native 12 checks passed:104→47 draws, unchanged triangle counts. Dense
-  64-view tree impostors remove the rejected eight-view blend's double-trunk
-  artifact; native turn continuity and the 108 LOD checks pass. Houses: 30 checks pass.
-- A 12 km 140 km/h camera sweep/reversal passed 153 coverage samples and 9 origin
-  shifts with no coverage errors; five samples observed brief loading. It is
-  a paused camera stress test, not a 140 km/h driving/physics reproduction.
-- Release play gains bounded, five-second local journey journals, written by
-  one sleeping worker. Nested settings are copied before crossing threads; disk
-  stalls drop samples rather than blocking play. This is context, not a crash fix.
-- Whole-scene development-GPU timings show a small fidelity cost in several
-  views; do not claim a global FPS win. See `performance.md` and raw evidence.
-- Final full headless suite: **590 passed, zero failures, empty stderr**. The
-  existing atlas guard now checks both expected view count and actual PNG size.
-  Final five-train native benchmark passed at1600×900:91vehicles/5,580passengers,
-  pilot seated meshes0, all five trains moved23.62m. A90-minute captured x1
-  day/night soak started04:32; final result and release publication remain pending.
+## 2026-10-14 — Overnight scenery, night lighting and performance pass
+- Worked from 02:05 through the user's 06:00 Singapore minimum. Source work is
+  committed in a49dc3e, 86d441c and ed03bac. R31 packaging/publication follows
+  final source validation; see `overnight-2026-10-14.md` for the work ledger.
+- Scenery variants share placement groups, density order and conservative
+  bounds. Separately budgeted tree shadows use cheap authored geometry through
+  the detail transitions. Stable 512 m background patches remain visible until
+  detailed terrain is active; incomplete staged chunks stay hidden. Near-tile
+  retention reduces repeated retirement/reload near request boundaries.
+- Four tree families now use offline material batches and 64-view distant
+  atlases. Source triangles and imported automatic LOD indices are retained.
+  Native comparisons reduced 104 draws to 47 with unchanged visual triangle
+  counts. Distant turn continuity improved without the double-trunk artifact
+  seen in the rejected eight-view blend. Added atlas memory is about 37 MiB.
+- Eight-entry station scene/material caches retain active consumers and
+  reprepare evicted resources. A 17-station native fixture saved about 161 MiB
+  of GPU allocations; the live and revisited station images were identical.
+- Homes have deterministic warm/cool lit windows and shutter seams, matching
+  distant window masks, 96 instanced porch fixtures and eight persistent local
+  lights. Daytime PBR inputs remain intact; shop glassware does not emit light.
+- Release play records two bounded 256 KiB journey journals at five-second
+  intervals. One sleeping writer handles disk work; the frame loop does not
+  wait on writes or inspect a worker-owned railway during time skip.
+- Final headless suite: **590 passed, zero failures, empty stderr**. Native
+  checks passed for houses (30), LOD/bounds (108), station caches (22), tree
+  batches (12), tree shadows (14), and the eight-view day/night fixture (23).
+- A 12 km, 140 km/h camera sweep/reversal passed 153 terrain coverage samples
+  and nine origin shifts. Five samples saw brief loading. This pauses the
+  railway; it is a streaming stress check, not an overspeed-driving test.
+- The final captured x1 soak completed **5457.2 seconds**:
+  B012 daylight 47.84 km and B011 night 42.82 km,
+  zero terrain coverage errors, no engine stderr or exception dump, and both
+  worlds released on menu return. Both journals ended cleanly. Dummy audio,
+  source engine and development GPU limit this evidence. The earlier captured
+  3,670-second repeat also passed; the first run's crash coincided with an import
+  and remains undiagnosed. No import/bake ran during either clean repeat.
+- Five occupied formations retained 91 vehicles and 5,580 passengers. Pilot
+  seated meshes stayed at zero; passenger view retained 140. All five moved.
+  Median moving-train presentation was 12.92 ms on the 780M and remains a CPU
+  bottleneck. Whole-scene GPU observations were 1–8% slower in several views;
+  do not claim a global FPS improvement or extrapolate to the 4090 Laptop.
+- The timetable, physics, save topology and approved audio are unchanged.
+  Target remains i9-13980HX / RTX 4090 Laptop 16 GB / 64 GB RAM. Raw evidence is
+  in `art/performance/overnight-2026-10-14/`; see `performance.md` for limits.
 
-Specific playtest after the build: start B012 at NCJ, drive past Nagercoil Town
-and watch nearby palms/shadows while changing between pilot and passenger views.
-Start B011 (22:10 from ERS) or Explore at 22:00 for lit homes/porches and station
-platforms; move away and back to check distant windows remain lit. Use the
-existing crowded benchmark on the 4090 Laptop PC. If a crash recurs, keep the
-two journey journals plus a capture-kit dump; the native fault is not diagnosed.
-  A new hour-long run started02:58:42 with ProcDump attached after loading and
-  with source imports/bakes suspended. Logs/dumps remain private under `.local`.
+Playtest R31: drive B012 from NCJ past Nagercoil Town and watch palm silhouettes
+and shadows through pilot/passenger changes. Start B011 at 22:10 from ERS to
+inspect lit homes and porches; move away and back to check distant windows.
+Run the crowded benchmark on the target laptop. Remaining work includes moving
+train CPU cost, residual loading pauses and the undiagnosed native crash. If it
+recurs, preserve the journey journals and a capture-kit dump. This pass does not
+establish Train Sim World visual parity or prove the target-PC crash fixed.
 
 ## 2026-10-11 — Second B012 crash without capture
 - User reports another crash slightly beyond the original location, this time

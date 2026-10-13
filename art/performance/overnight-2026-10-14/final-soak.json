@@ -1,0 +1,50 @@
+{
+  "source_game_commit": "ed03bac",
+  "completed": "2026-10-14T06:03:24.3925761+08:00",
+  "wall_seconds": 5457.219,
+  "adapter": "AMD Radeon 780M Graphics",
+  "journeys": [
+    {
+      "service": "B011",
+      "samples": 272,
+      "metres": 42815.4049615393,
+      "coverage_errors": 0.0,
+      "samples_loading": 0,
+      "origin_positions": 44,
+      "peak_heap_bytes": 1240725103.0,
+      "peak_video_bytes": 3717699072.0,
+      "final_edge": "TRVZ_MAKM_M3"
+    },
+    {
+      "service": "B012",
+      "samples": 271,
+      "metres": 47839.3599734413,
+      "coverage_errors": 0.0,
+      "samples_loading": 0,
+      "origin_positions": 23,
+      "peak_heap_bytes": 991714654.0,
+      "peak_video_bytes": 4077311680.0,
+      "final_edge": "DAVM_P1"
+    }
+  ],
+  "worlds_released": [
+    true,
+    true
+  ],
+  "journals": [
+    {
+      "service": "B011",
+      "bytes": 248933,
+      "clean_scene_exit": true
+    },
+    {
+      "service": "B012",
+      "bytes": 250967,
+      "clean_scene_exit": true
+    }
+  ],
+  "stderr_bytes": 0,
+  "exception_dumps": 0,
+  "note": "Source-game x1 stability soak; dummy audio; development GPU; not an isolated performance benchmark.",
+  "target_pc_crash_resolved": false
+}

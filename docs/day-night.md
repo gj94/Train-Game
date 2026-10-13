@@ -107,5 +107,8 @@ To reproduce from source (Dummy audio checks state only):
    that the preference remains off. Walk/reposition along a station and check
    that lamps stay attached to roofs and posts through camera/origin changes.
 
-R30 includes the initial day/night cycle. The overnight residential-lighting
-improvements are in source pending the next validated release.
+R30 introduced the day/night cycle. R31 adds residential window emission,
+distant window masks and the bounded porch-light pool. The overnight native
+house checks passed 30 assertions; the complete regression suite passed 590.
+See [performance.md](performance.md) for the new development-PC measurements
+and their limits.

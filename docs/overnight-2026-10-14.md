@@ -161,3 +161,15 @@ disable only after the overnight work and publication are complete.
 Finish native night-house review, compare day/night and occupied-train performance,
 extend fast/reverse streaming checks, run the full suite, commit/push and publish
 after the 06:00 minimum. Record concrete results here as they complete.
+
+## Final source validation
+
+- 2026-10-14T06:03:24.3925761+08:00: final captured soak passed 5457.2s,
+  B012 47.84km and B011 42.82km. Zero coverage
+  errors, empty stderr, zero dumps, both worlds released and both journals closed.
+  Source game code is ed03bac; only documentation changed during this soak.
+- No imports or rebakes during the final run. Native crash remains undiagnosed;
+  these development-GPU/source/Dummy-audio runs are not a target-PC reproduction.
+- Required 06:00 minimum elapsed. Proceed with one R31 export, signed sequence33,
+  full archive/resource/LAN verification and guarded R30 retirement. Do not rerun
+  extracted-distribution gameplay checks. Disable the heartbeat after publication.
