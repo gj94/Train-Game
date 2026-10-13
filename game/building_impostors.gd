@@ -21,24 +21,19 @@ static func prepare(library) -> void:
 
 static func flush(library,kind: String) -> void:
 	var data: Dictionary=catalog[kind]
-	for group in Cells.split(library.placements[kind],64).values():
+	var offset:=Transform3D(Basis.IDENTITY,Vector3(data.centre[0],0,data.centre[2]))
+	var shadow_offset:=offset;shadow_offset.origin.y=data.centre[1]
+	var parts: Array=library.asset(kind).duplicate()
+	parts.append({mesh=library.impostors[kind],transform=offset,impostor=true})
+	parts.append({mesh=hulls[kind],transform=shadow_offset})
+	for group in preload("res://game/scenery_lod.gd").groups(library.placements[kind],parts):
 		for part in library.asset(kind):
 			_batch(library,kind,group,part.mesh,part.transform,0,NEAR,0)
-		var offset:=Transform3D(Basis.IDENTITY,Vector3(data.centre[0],0,data.centre[2]))
 		_batch(library,kind,group,library.impostors[kind],offset,NEAR,1800,1)
-		offset.origin.y=data.centre[1]
-		_batch(library,kind,group,hulls[kind],offset,NEAR,700,2)
+		_batch(library,kind,group,hulls[kind],shadow_offset,NEAR,700,2)
 
 static func _batch(library,kind: String,group: Dictionary,mesh: Mesh,offset: Transform3D,start: float,finish: float,role: int) -> void:
-	var mm:=MultiMesh.new();mm.transform_format=MultiMesh.TRANSFORM_3D;mm.use_custom_data=true
-	mm.mesh=mesh;mm.instance_count=group.transforms.size()
-	for i in group.transforms.size():
-		var pose: Transform3D=group.transforms[i]
-		mm.set_instance_transform(i,pose*offset)
-		var point: Vector3=group.origin+pose.origin
-		var seed:=float(posmod(roundi(point.x*17+point.z*31),127))/126.0
-		mm.set_instance_custom_data(i,Color(seed,.5,.5,1))
-	var node:=MultiMeshInstance3D.new();node.multimesh=mm;node.position=group.origin
+	var node:=preload("res://game/scenery_lod.gd").instance(group,{mesh=mesh,transform=offset})
 	node.name="HouseLOD_"+str(role)+"_"+kind
 	node.set_meta("house_lod_role",role);node.set_meta("scenery_kind",kind)
 	node.visibility_range_begin=start;node.visibility_range_end=finish
@@ -46,7 +41,7 @@ static func _batch(library,kind: String,group: Dictionary,mesh: Mesh,offset: Tra
 	node.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
 	if role==1:
 		node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		node.extra_cull_margin=float(catalog[kind].width);node.set_meta("impostor",true)
+		node.set_meta("impostor",true)
 	elif role==2:node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
 	library.view.root.add_child(node)
 

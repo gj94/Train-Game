@@ -28,16 +28,11 @@ static func mesh(material: Material,blades: int=384,width_scale: float=1.0) -> A
 static func flush(library) -> void:
 	var kinds:=["coastal_grass","coastal_grass_medium","coastal_grass_far"]
 	var starts:=[0.0,50.0,90.0];var ends:=[50.0,90.0,125.0]
-	for group in preload("res://game/spatial_batches.gd").split(library.placements.coastal_grass,48).values():
+	var parts:=[]
+	for kind in kinds:parts.append({mesh=library.meshes[kind][0].mesh,transform=Transform3D.IDENTITY})
+	for group in preload("res://game/scenery_lod.gd").groups(library.placements.coastal_grass,parts,48):
 		for level in 3:
-			var mm:=MultiMesh.new();mm.transform_format=MultiMesh.TRANSFORM_3D;mm.use_custom_data=true
-			mm.mesh=library.meshes[kinds[level]][0].mesh;mm.instance_count=group.transforms.size()
-			for i in group.transforms.size():
-				mm.set_instance_transform(i,group.transforms[i])
-				var p: Vector3=group.origin+group.transforms[i].origin
-				var seed:=float(posmod(roundi(p.x*17+p.z*31),127))/126.0
-				mm.set_instance_custom_data(i,Color(seed,.5,.5,1))
-			var node:=MultiMeshInstance3D.new();node.multimesh=mm;node.position=group.origin
+			var node:=preload("res://game/scenery_lod.gd").instance(group,parts[level])
 			node.name="GrassLOD_"+str(level);node.set_meta("grass_lod",level)
 			node.set_meta("scenery_kind","coastal_grass")
 			node.visibility_range_begin=starts[level];node.visibility_range_end=ends[level]

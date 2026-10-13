@@ -40,9 +40,21 @@ func build(key: Vector2i, far_tile: bool=false, holes: Array=[], detailed: bool=
 	root.name=("DistantTerrain_" if far_tile else "Geography_")+"%d_%d" % [key.x,key.y]
 	batch=MeshBuilder.new()
 	if far_tile:
-		_terrain(2048,16,true)
-		batch.finish(root,materials,"Terrain")
-		return {node=root,origin=origin}
+		# Stable 512 m patches replace the old near-hole-dependent 2 km mesh.
+		# The main thread masks a patch only once its near tile is resident.
+		var base:=origin
+		var patches:={}
+		near_tiles=[]
+		for z in 4:
+			for x in 4:
+				var tile:=Vector2i(key.x*4+x,key.y*4+z)
+				origin=base+Vector3(x*512,0,z*512)
+				var patch:=Node3D.new();patch.name="TerrainPatch_%d_%d" % [tile.x,tile.y]
+				patch.position=origin-base
+				_terrain(512,4,true);batch.finish(patch,materials,"Terrain")
+				root.add_child(patch);patches[tile]=patch
+		origin=base
+		return {node=root,origin=origin,terrain_patches=patches}
 	var tile: Dictionary=geo.tile(key)
 	tile_features=tile.get("features",[])
 	mask=Marshalls.base64_to_raw(tile.get("mask",""))

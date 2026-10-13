@@ -210,14 +210,17 @@ func _request(focus: Vector3) -> void:
 	_last_focus=focus
 	var cell:=Vector2i(floori(focus.x/512),floori(focus.z/512))
 	_last_cell=cell
-	wanted.clear()
+	var previous: Dictionary=wanted
+	wanted={}
 	for x in range(cell.x-4,cell.x+5):
 		for z in range(cell.y-4,cell.y+5):
 			var key:=Vector2i(x,z)
 			var p:=Vector3(x*512+256,0,z*512+256)
 			var d:=Vector2(p.x-focus.x,p.z-focus.z).length_squared()
-			if Budget.tile_distance_squared(key,512,focus)<=Budget.DETAIL_RADIUS*Budget.DETAIL_RADIUS:
-				var kind: String="tile" if corridor_tiles.has(key) else "landscape"
+			var kind: String="tile" if corridor_tiles.has(key) else "landscape"
+			# Retain tiles across a full request interval to avoid boundary chatter.
+			var detail_radius: float=Budget.DETAIL_RADIUS+(240.0 if previous.has(kind+":"+str(key)) else 0.0)
+			if Budget.tile_distance_squared(key,512,focus)<=detail_radius*detail_radius:
 				_add_job({id=kind+":"+str(key),kind=kind,key=key,point=p,priority=d+10000})
 			for index in track_index.get(key,[]):
 				var job: Dictionary=track_jobs[index].duplicate()
@@ -227,19 +230,13 @@ func _request(focus: Vector3) -> void:
 				_add_job(job)
 				var ohe:=job.duplicate(); ohe.id="ohe:"+job.id; ohe.kind="ohe"; ohe.priority+=120000
 				_add_job(ohe)
-	var near_tiles: Array=[]
-	for job in wanted.values():
-		if job.kind in ["tile","landscape"]: near_tiles.append(job.key)
 	var far_cell:=Vector2i(floori(focus.x/2048),floori(focus.z/2048))
 	for x in range(far_cell.x-2,far_cell.x+3):
 		for z in range(far_cell.y-2,far_cell.y+3):
 			var p:=Vector3(x*2048+1024,0,z*2048+1024)
 			var d:=Vector2(p.x-focus.x,p.z-focus.z).length_squared()
 			if Budget.tile_distance_squared(Vector2i(x,z),2048,focus)>Budget.BACKGROUND_RADIUS*Budget.BACKGROUND_RADIUS: continue
-			var holes: Array=[]
-			for tile in near_tiles:
-				if tile.x>=x*4 and tile.x<x*4+4 and tile.y>=z*4 and tile.y<z*4+4: holes.append(tile)
-			_add_job({id="far:%d:%d:%s" % [x,z,str(holes).md5_text()],kind="far",key=Vector2i(x,z),holes=holes,point=p,priority=d+9000000})
+			_add_job({id="far:%d:%d" % [x,z],kind="far",key=Vector2i(x,z),point=p,priority=d+1200000})
 	for index in world.stations.size():
 		var station: Dictionary=world.stations[index]
 		var d:=Vector2(station.origin.x-focus.x,station.origin.z-focus.z).length_squared()
@@ -267,7 +264,18 @@ func _request(focus: Vector3) -> void:
 		if not _warm.has(id):
 			loaded[id].node.visible=false
 			_warm[id]=Time.get_ticks_msec()
+	_sync_terrain_patches()
 	_refresh_loading()
+
+func _sync_terrain_patches() -> void:
+	for chunk in loaded.values():
+		if not chunk.has("terrain_patches"):continue
+		for tile in chunk.terrain_patches:
+			var near_id: String=("tile:" if corridor_tiles.has(tile) else "landscape:")+str(tile)
+			# Requested/half-assembled geometry is not coverage. Warm tiles are
+			# hidden, so immediately restore the existing coarse patch behind them.
+			var covered: bool=loaded.has(near_id) and loaded[near_id].node.visible
+			chunk.terrain_patches[tile].visible=not covered
 
 func _add_job(job: Dictionary) -> void:
 	if collect_timing:job.requested_usec=Time.get_ticks_usec()
@@ -308,6 +316,7 @@ func _stage(id: String,result: Dictionary) -> void:
 	holder.name=result.node.name if not str(result.node.name).is_empty() else "StreamedChunk"
 	for key in result.node.get_meta_list():holder.set_meta(key,result.node.get_meta(key))
 	holder.position=result.origin-coordinate_origin
+	holder.visible=false
 	root.add_child(holder)
 	_activating[id]={result=result,holder=holder}
 
@@ -331,6 +340,8 @@ func _activate() -> void:
 		result.node=pending.holder
 		if result.has("adapter"):result.adapter.root=result.node
 		loaded[id]=result
+		result.node.visible=true
+		_sync_terrain_patches()
 		_activating.erase(id)
 		completed_jobs+=1
 		if collect_timing:job_trace.append({id=id,event="activated",ticks_usec=Time.get_ticks_usec()})

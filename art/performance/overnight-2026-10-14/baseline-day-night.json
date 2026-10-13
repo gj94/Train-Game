@@ -1,0 +1,171 @@
+{
+	"adapter": "AMD Radeon 780M Graphics",
+	"cases": [
+		{
+			"fixtures": 91,
+			"frame_median_ms": 30.125,
+			"frame_p95_ms": 30.791,
+			"frames": 166,
+			"gpu_median_ms": 28.8560009002686,
+			"hour": 12.0,
+			"name": "platform_day",
+			"pixels": [
+				1600,
+				900
+			],
+			"station_lights": 0
+		},
+		{
+			"fixtures": 91,
+			"frame_median_ms": 28.988,
+			"frame_p95_ms": 29.861,
+			"frames": 173,
+			"gpu_median_ms": 27.7450008392334,
+			"hour": 18.25,
+			"name": "platform_sunset",
+			"pixels": [
+				1600,
+				900
+			],
+			"station_lights": 24
+		},
+		{
+			"fixtures": 91,
+			"frame_median_ms": 22.785,
+			"frame_p95_ms": 23.5,
+			"frames": 220,
+			"gpu_median_ms": 21.5179996490479,
+			"hour": 22.0,
+			"name": "platform_night",
+			"pixels": [
+				1600,
+				900
+			],
+			"station_lights": 24
+		},
+		{
+			"fixtures": 91,
+			"frame_median_ms": 22.763,
+			"frame_p95_ms": 23.643,
+			"frames": 220,
+			"gpu_median_ms": 21.6070003509521,
+			"hour": 6.2,
+			"name": "platform_dawn",
+			"pixels": [
+				1600,
+				900
+			],
+			"station_lights": 24
+		},
+		{
+			"fixtures": 0,
+			"frame_median_ms": 36.219,
+			"frame_p95_ms": 37.05,
+			"frames": 138,
+			"gpu_median_ms": 34.9519996643066,
+			"hour": 22.0,
+			"name": "cab_night",
+			"pixels": [
+				1600,
+				900
+			],
+			"station_lights": 0
+		},
+		{
+			"fixtures": 0,
+			"frame_median_ms": 40.477,
+			"frame_p95_ms": 41.258,
+			"frames": 124,
+			"gpu_median_ms": 39.2130012512207,
+			"hour": 22.0,
+			"name": "passenger_night",
+			"pixels": [
+				1600,
+				900
+			],
+			"station_lights": 0
+		},
+		{
+			"fixtures": 2,
+			"frame_median_ms": 30.77,
+			"frame_p95_ms": 31.714,
+			"frames": 162,
+			"gpu_median_ms": 29.5310001373291,
+			"hour": 22.0,
+			"name": "five_trains_night",
+			"pixels": [
+				1600,
+				900
+			],
+			"station_lights": 0
+		},
+		{
+			"fixtures": 2,
+			"frame_median_ms": 39.495,
+			"frame_p95_ms": 41.131,
+			"frames": 127,
+			"gpu_median_ms": 38.023998260498,
+			"hour": 12.0,
+			"name": "five_trains_day",
+			"pixels": [
+				1600,
+				900
+			],
+			"station_lights": 0
+		}
+	],
+	"checks": 23,
+	"complete": true,
+	"cpu": "AMD Ryzen 7 7840HS w/ Radeon 780M Graphics",
+	"engine": "4.7.2-stable (official)",
+	"failures": 0,
+	"fixture": {
+		"note": "Five occupied full formations on separate ERS platform roads; dispatcher paused for reproducible rendering comparison. Live simulation is measured separately.",
+		"passengers": 5580,
+		"services": [
+			{
+				"id": "K1",
+				"length": 466.5,
+				"passengers": 1720,
+				"rake": "passenger",
+				"road": "ERS_P1",
+				"stock": "ported:icf"
+			},
+			{
+				"id": "K2",
+				"length": 548.56,
+				"passengers": 1323,
+				"rake": "express",
+				"road": "ERS_P2",
+				"stock": "ported:lhb"
+			},
+			{
+				"id": "K3",
+				"length": 192.0,
+				"passengers": 421,
+				"rake": "fixed",
+				"road": "ERS_P3",
+				"stock": "ported:vb8"
+			},
+			{
+				"id": "K4",
+				"length": 511.094,
+				"passengers": 1220,
+				"rake": "express",
+				"road": "ERS_P4",
+				"stock": "ported:icf"
+			},
+			{
+				"id": "K5",
+				"length": 384.0,
+				"passengers": 896,
+				"rake": "fixed",
+				"road": "ERS_P5",
+				"stock": "ported:vb16"
+			}
+		],
+		"trains": 5,
+		"vehicles": 91
+	},
+	"note": "Paused source-game lighting comparison; not a timetable or target-PC benchmark."
+}

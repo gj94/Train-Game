@@ -88,14 +88,12 @@ func test_streaming_retains_rail_signals_outside_detailed_scenery_radius():
 			if not stream.corridor_tiles.has(wanted.key):return "Detailed off-route tile"
 		elif wanted.kind=="landscape":landscape+=1
 		elif wanted.kind=="far":backgrounds.append(wanted)
-	# Every view-frustum ground sample has background coverage, with holes only
-	# where a requested detailed or landscape tile supplies the surface.
+	# Background geometry has stable identities independent of near-tile masks.
 	for x in range(-2200,2201,200):
 		for z in range(-2200,2201,200):
 			if Vector2(x,z).length()>2200:continue
 			var key:=Vector2i(floori(x/2048.0),floori(z/2048.0))
 			if not backgrounds.any(func(b):return b.key==key):return "Background coverage hole"
 	for bg in backgrounds:
-		for tile in bg.holes:
-			if not stream.wanted.has("tile:"+str(tile)) and not stream.wanted.has("landscape:"+str(tile)):return "Unfilled terrain hole"
+		if bg.has("holes") or bg.id!="far:%d:%d" % [bg.key.x,bg.key.y]:return "Background depends on changing near mask"
 	return detail>0 and landscape>0 and detail<detail+landscape and backgrounds.size()<20

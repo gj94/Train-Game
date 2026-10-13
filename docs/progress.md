@@ -1,5 +1,24 @@
 # Progress
 
+## 2026-10-14 — Overnight streaming and scenery detail pass (in progress)
+- User requested work through at least 06:00 Singapore time, followed by a
+  build. Work ledger and continuation instructions: `overnight-2026-10-14.md`.
+- Native baseline captured eight day/night views with five occupied formations
+  on the development 780M; 23 checks passed. These are not 4090 Laptop timings.
+- All variants of a scenery asset now share source placement groups, density
+  ordering and conservative static bounds. This addresses mismatched culling
+  centres and avoids automatic MultiMesh bound recomputation. Imported trees
+  use their cheapest authored geometry for stable, separately budgeted shadows.
+- Background terrain uses stable 512 m patches inside cached 2 km chunks.
+  Near-tile mask changes no longer rebuild whole distant meshes; a patch is
+  hidden only when its detailed tile is resident. Staged geometry is revealed
+  once complete, and near requests have a 240 m retention band.
+- Validation: 577 headless tests passed with empty stderr; 108 native imported
+  LOD/transform/bounds checks passed. The initial x1 B012 native journey reports
+  zero terrain coverage errors; the full one-hour soak is still running.
+- Night houses/porches, further native visual/performance comparisons, release
+  packaging and publication remain in progress. The R30 crash cause is unproven.
+
 ## 2026-10-11 — Second B012 crash without capture
 - User reports another crash slightly beyond the original location, this time
   without a debugger. Capture is therefore not required to reproduce a crash;

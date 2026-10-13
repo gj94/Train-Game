@@ -137,11 +137,12 @@ func _collect(node: Node,parent: Transform3D,parts: Array) -> void:
 	for child in node.get_children(): _collect(child,pose,parts)
 func flush() -> void:
 	_flush_geometry()
-	for kind in placements:
-		if TREES.has(kind): _flush_impostors(kind)
 	placements.clear()
 func _flush_geometry() -> void:
 	for kind in placements:
+		if TREES.has(kind):
+			_flush_tree(kind)
+			continue
 		if preload("res://game/building_impostors.gd").catalog.has(kind) and impostors.has(kind):
 			preload("res://game/building_impostors.gd").flush(self,kind)
 			continue
@@ -210,24 +211,20 @@ func _impostor_mesh(kind: String) -> QuadMesh:
 	mesh.material=mat
 	return mesh
 
-func _flush_impostors(kind: String) -> void:
-	var size: Vector2=TREES[kind]
+func _flush_tree(kind: String) -> void:
+	var Lod:=preload("res://game/scenery_lod.gd")
 	var mesh: QuadMesh=impostors[kind] if impostors.has(kind) else _impostor_mesh(kind)
-	for group in Cells.split(placements[kind],64).values():
-		var mm:=MultiMesh.new()
-		mm.transform_format=MultiMesh.TRANSFORM_3D
-		mm.mesh=mesh
-		mm.instance_count=group.transforms.size()
-		for i in group.transforms.size(): mm.set_instance_transform(i,group.transforms[i])
-		var batch:=MultiMeshInstance3D.new()
-		batch.name="Canopy_"+kind
-		batch.position=group.origin
-		batch.multimesh=mm
-		batch.extra_cull_margin=size.x
-		batch.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		batch.visibility_range_begin=_range(kind)
-		batch.visibility_range_begin_margin=28
-		batch.visibility_range_end=2700
-		batch.visibility_range_end_margin=180
-		batch.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
-		view.root.add_child(batch)
+	var parts: Array=asset(kind).duplicate()
+	parts.append({mesh=mesh,transform=Transform3D.IDENTITY,impostor=true})
+	for group in Lod.groups(placements[kind],parts):
+		for part in parts:
+			var silhouette: bool=part.get("impostor",false)
+			var node:=Lod.instance(group,part)
+			node.name=("Canopy_" if silhouette else "District_")+kind
+			node.set_meta("scenery_kind",kind);node.set_meta("impostor",silhouette)
+			node.visibility_range_begin=_range(kind) if silhouette else 0
+			node.visibility_range_end=2700 if silhouette else _range(kind)
+			node.visibility_range_begin_margin=28;node.visibility_range_end_margin=180 if silhouette else 28
+			node.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
+			if silhouette:node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			view.root.add_child(node)

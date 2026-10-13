@@ -121,6 +121,13 @@ func apply_geometry(node: GeometryInstance3D) -> void:
 	node.visibility_range_end=base.end if silhouette else base.end*factor
 	node.visibility_range_begin_margin=base.begin_margin*factor
 	node.visibility_range_end_margin=base.end_margin if silhouette else base.end_margin*factor
+	if node.get_meta("scenery_shadow",false):
+		# Tree shadows have their own cheap geometry and follow the shadow
+		# budget, not the changing distance of the visible foliage mesh.
+		node.visibility_range_begin=0
+		node.visibility_range_end=values.shadow_distance
+		node.visibility_range_end_margin=minf(40.0,values.shadow_distance*.2)
+		node.visible=values.shadows>0
 	if vegetation and node is MultiMeshInstance3D:
 		var total: int=node.multimesh.instance_count if base.count<0 else base.count
 		node.multimesh.visible_instance_count=base.count if values.vegetation_density==1.0 else maxi(1,floori(total*values.vegetation_density)) if total>0 else 0

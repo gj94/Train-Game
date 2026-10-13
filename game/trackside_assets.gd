@@ -2,6 +2,7 @@ extends RefCounted
 ## Verified source PBR meshes, authored tree LODs and baked distant silhouettes.
 const ROOT:="res://assets/models/trackside/"
 const Cells:=preload("res://game/spatial_batches.gd")
+const Lod:=preload("res://game/scenery_lod.gd")
 const ALIASES:={
 	"coconut_palm":"KL_LS_Coconut_Tall_A","young_palm":"KL_LS_Coconut_Juvenile_C",
 	"mango_tree":"KL_LS_Jackfruit_Tree","banana_clump":"KL_LS_Banana_Clump",
@@ -47,33 +48,36 @@ static func levels(kind: String) -> Array:
 
 static func flush(library,kind: String) -> void:
 	var chain:=levels(kind)
+	var parts:=[]
+	var tree: bool=kind.trim_prefix("tf3_") in TREES
 	for level in chain:
 		for part in library.asset(level.kind):
-			var transforms:=[]
-			for placement in library.placements[kind]:transforms.append(placement*part.transform)
-			_batches(library,kind,part.mesh,transforms,level.begin,level.end,false)
-	if not atlases.has(kind):return
-	var transforms:=[]
-	var centre: Array=atlases[kind].centre
-	for placement in library.placements[kind]:
-		transforms.append(placement*Transform3D(Basis.IDENTITY,Vector3(centre[0],0,centre[2])))
-	var finish:=1800.0 if kind.contains("BLD_") else (2700.0 if kind.trim_prefix("tf3_") in TREES else 420.0)
-	_batches(library,kind,library.impostors[kind],transforms,chain[-1].end,finish,true)
-
-static func _batches(library,kind: String,mesh: Mesh,transforms: Array,start: float,finish: float,impostor: bool) -> void:
-	# All levels use the same cell origins, so transitions cannot open a gap.
-	for group in Cells.split(transforms,32.0 if "Rice_Tuft" in kind else 64.0).values():
-		var mm:=MultiMesh.new();mm.transform_format=MultiMesh.TRANSFORM_3D
-		mm.mesh=mesh;mm.instance_count=group.transforms.size()
-		for i in group.transforms.size():mm.set_instance_transform(i,group.transforms[i])
-		var node:=MultiMeshInstance3D.new();node.multimesh=mm;node.position=group.origin
-		node.name=("Impostor_" if impostor else "Trackside_")+kind
-		node.set_meta("scenery_kind",kind);node.set_meta("impostor",impostor)
-		node.visibility_range_begin=start;node.visibility_range_end=finish
-		node.visibility_range_begin_margin=8;node.visibility_range_end_margin=8
-		node.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
-		if impostor:
-			node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-			node.extra_cull_margin=float(atlases[kind].width)
-		elif start>=95 or "Rice_Tuft" in kind:node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		library.view.root.add_child(node)
+			var entry: Dictionary=part.duplicate()
+			entry.begin=level.begin;entry.end=level.end;entry.impostor=false
+			parts.append(entry)
+	if atlases.has(kind):
+		var centre: Array=atlases[kind].centre
+		parts.append({mesh=library.impostors[kind],transform=Transform3D(Basis.IDENTITY,Vector3(centre[0],0,centre[2])),
+			begin=chain[-1].end,end=1800.0 if kind.contains("BLD_") else (2700.0 if tree else 420.0),impostor=true})
+	if tree:
+		# One inexpensive, stable caster survives the visual LOD transitions.
+		# This replaces the expensive near-tree shadows rather than adding them.
+		for part in library.asset(chain[-1].kind):
+			var entry: Dictionary=part.duplicate()
+			entry.begin=0.0;entry.end=300.0;entry.impostor=false;entry.shadow=true
+			parts.append(entry)
+	for group in Lod.groups(library.placements[kind],parts,32.0 if "Rice_Tuft" in kind else 64.0):
+		for part in parts:
+			var node:=Lod.instance(group,part)
+			node.name=("Impostor_" if part.impostor else "Trackside_")+kind
+			node.set_meta("scenery_kind",kind);node.set_meta("impostor",part.impostor)
+			node.visibility_range_begin=part.begin;node.visibility_range_end=part.end
+			node.visibility_range_begin_margin=12;node.visibility_range_end_margin=12
+			node.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
+			if part.get("shadow",false):
+				node.name="TreeShadow_"+kind;node.set_meta("scenery_shadow",true)
+				node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+				node.visibility_range_end_margin=40
+			elif tree or part.impostor or "Rice_Tuft" in kind:
+				node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			library.view.root.add_child(node)

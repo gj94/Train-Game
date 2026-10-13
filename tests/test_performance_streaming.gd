@@ -67,10 +67,11 @@ func test_activation_budget_preserves_transforms_and_rebase_then_cancels():
 	view.wanted={a={}}
 	view._stage("a",{node=source,origin=Vector3(2048,0,0)})
 	view._activate()
-	var valid: bool=view._activating.a.holder.get_child_count()==2 and not view.loaded.has("a")
+	var valid: bool=view._activating.a.holder.get_child_count()==2 and not view.loaded.has("a") and not view._activating.a.holder.visible
 	view.rebase(Vector3(1024,0,0))
 	view._activate();view._activate()
 	valid=valid and view.loaded.a.node.position==Vector3(1024,0,0) and view.loaded.a.node.get_child_count()==5
+	valid=valid and view.loaded.a.node.visible
 	valid=valid and view.loaded.a.node.get_meta("kerala_details").fields==12
 	for i in 5:valid=valid and view.loaded.a.node.get_child(i).position==Vector3(i,1,2)
 	var cancelled:=Node3D.new();cancelled.add_child(Node3D.new())
@@ -79,6 +80,35 @@ func test_activation_budget_preserves_transforms_and_rebase_then_cancels():
 	valid=valid and not view._activating.has("cancelled") and not view.loaded.has("cancelled")
 	view.root.free()
 	return valid
+
+func test_coarse_terrain_remains_until_near_geometry_is_ready_and_returns_on_retirement():
+	var view:=View.new();view.root=Node3D.new()
+	var patch:=Node3D.new();view.root.add_child(patch)
+	view.loaded["far:0:0"]={node=Node3D.new(),terrain_patches={Vector2i.ZERO:patch}}
+	view.root.add_child(view.loaded["far:0:0"].node)
+	var id:="landscape:"+str(Vector2i.ZERO)
+	view.wanted[id]={}
+	view._sync_terrain_patches()
+	var ok:=patch.visible # Requesting geometry alone must never expose a hole.
+	var near_node:=Node3D.new();view.root.add_child(near_node);near_node.visible=false
+	view.loaded[id]={node=near_node}
+	view._sync_terrain_patches();ok=ok and patch.visible
+	near_node.visible=true;view._sync_terrain_patches();ok=ok and not patch.visible
+	near_node.visible=false;view._sync_terrain_patches();ok=ok and patch.visible
+	view.root.free();return ok
+
+func test_background_jobs_survive_near_tile_changes_and_cache_requests_do_not_chatter():
+	var view:=View.new();view.root=Node3D.new();view.world=RailWorld.new();view.speed_boards=EmptyBoards.new()
+	view._loading_panel=ColorRect.new();view.root.add_child(view._loading_panel)
+	view._loading_label=Label.new();view.root.add_child(view._loading_label)
+	view._request(Vector3(200,0,200))
+	var old: Dictionary=view.wanted.duplicate()
+	view._request(Vector3(420,0,200))
+	var shared:=0;var ok:=true
+	for id in old:
+		if old[id].kind=="far" and view.wanted.has(id):shared+=1
+		if old[id].kind in ["tile","landscape"] and not view.wanted.has(id):ok=false
+	view.root.free();return ok and shared>3
 
 func test_warm_cache_is_bounded_without_evicting_visible_chunks():
 	var view:=View.new()
