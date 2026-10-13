@@ -1,37 +1,44 @@
 # Windows portable build
 
-Current release: **R30**, service selection, five-minute railway browsing and
-clock-driven day/night. Published 11 October 2026 from clean export `1ec0cb5`,
-signed update sequence **32**, at http://192.168.8.183:8765/.
-Full ZIP: **2,497,162,192 bytes**, SHA-256
-`0d1e757d8f045af04ac25202cbdc78980a30055f8f0f57e8f8793077d46d2b87`.
-R29-to-R30 changes 2,870,584,926 bytes of fixed-position update blocks, so the
-full ZIP is the smaller download this time. Both methods are available.
+Current release: **R31**, smoother scenery transitions, residential night lighting
+and bounded station resource caches. Published 14 October 2026 from clean export
+`2fe99d9`, signed update sequence **33**, at
+http://192.168.8.183:8765/.
+Full ZIP: **2,552,571,142 bytes**, SHA-256
+`d1a0b36d0ceb90a0f98ddd6e65e2cfb6dc40ddd8de5a967c05b82c1fe4a7e19e`.
+R30-to-R31 changes 2,956,501,229 bytes of fixed-position
+update blocks and reuses 141,789,798 bytes. The full
+ZIP is the smaller download for this asset-heavy release; both methods work.
 
-Choose any of 100 prepared departures, review every stop and sort by scheduled
-average speed. Explore by time offers **233 five-minute states**, from 08:00 to
-day 2 03:20, with a dispatcher preview, active AI-train entry and station walking.
-R29 saves remain compatible. R28 saves/service files retain their incompatible
-geometry signature. See [service-selection.md](service-selection.md),
-[day-night.md](day-night.md) and [busy-timetable.md](busy-timetable.md).
+R31 preserves all 100 service starts and 233 five-minute railway states, service
+selection, Explore by time and the full 100-service operating day. R29/R30 saves
+remain compatible; R28 geometry remains incompatible. Prepared-state checks
+verified the 100 departures/4,821 inputs and all 233 exact timeline states before
+export. See [service-selection.md](service-selection.md) and [day-night.md](day-night.md).
 
-Validation: full 572-test headless suite, then 13 save and five timeline tests;
-23 native service-selection and 28 native timeline checks, all passed. Full-day
-preparation finishes all 100 trains safely in depot; maximum extra wait is 1,774
-seconds and worst arrival delay 33.9 minutes. All 333 prepared states round-trip
-exactly. The AI baseline preserves earlier delays; manual driving can change them.
+Validation: **590 headless tests passed**, relevant native lighting/LOD/cache
+checks, the five-occupied-train fixture, a 12 km camera streaming/reversal sweep,
+and a 5,457-second captured x1 day/night soak covering 90.65 km. Both soak worlds
+released on menu return, with no terrain coverage errors, stderr or exception
+dump. Source-game/Dummy-audio/780M results are not a 4090 Laptop certification.
+Whole-scene performance was mixed; moving-train CPU work remains. One final
+night screenshot unexpectedly lost the 3D view and remains unexplained; fresh,
+service-change, 43 km route and 20 moving-camera-switch checks did not reproduce it.
+The existing native crash also remains undiagnosed. See [performance.md](performance.md)
+and [progress.md](progress.md) for measurements and limits.
 
-All 272 archive-file CRCs, ZIP checksum, contents/clean BUILD identity, signed
-manifest, three ZIP ranges and three update-block hashes passed. The read-only
-PCK audit verified all 333 states plus launch/night resources. Packaged guides
-match source. No extracted-distribution gameplay test. Publication evidence:
-[`service-selection-2026-10-11/release.json`](../art/performance/service-selection-2026-10-11/release.json).
+All 272 archive-file CRCs, 270 managed-file SHA-256 hashes, ZIP checksum, clean
+BUILD identity, signed catalogue, three ZIP ranges, three update blocks and six
+complete served files passed. The 382-check PCK audit verified new resources,
+all 333 prepared states and excluded source/test/private files. No extracted
+distribution gameplay test was run. Evidence:
+[`overnight-2026-10-14/publication.json`](../art/performance/overnight-2026-10-14/publication.json).
 
-R29's export directory, ZIP and sidecar were removed after verification and
-an idle-LAN check, freeing **4,105,327,679 bytes**. Only R30 is downloadable;
-small older signed manifests remain. The server is confined to the private LAN.
-The loading screen displays the build name and source revision; `BUILD.txt`
-and the signed manifest record the exact export identity.
+R30's export directory, ZIP and sidecar were removed after hash/inventory and
+idle-LAN checks, freeing **5,508,930,818 bytes**. Only R31 is
+downloadable; small older signed manifests remain. The server stays on the
+private LAN. The loading screen, BUILD.txt and signed catalogue identify the
+exact export revision.
 
 Run `powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1` from this
 checkout. It runs the headless suite, track/joint geometry, fleet-finish, rendered-motion and live audio-player checks,

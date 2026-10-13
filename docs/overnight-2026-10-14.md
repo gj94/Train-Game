@@ -195,3 +195,16 @@ after the 06:00 minimum. Record concrete results here as they complete.
   anomalous capture explicitly documented as unresolved. Do not claim the image
   proves a lighting failure or that these replays fix it. No speculative game
   patch was made. Native crash diagnosis also remains open. R31 export can proceed.
+
+## Publication complete
+
+- R31 exported from clean 2fe99d9 and published 06:24:04, signed sequence 33.
+  Full ZIP 2,552,571,142 bytes, SHA-256 d1a0b36d0ceb90a0f98ddd6e65e2cfb6dc40ddd8de5a967c05b82c1fe4a7e19e.
+- 382 PCK resource checks, 272 ZIP CRCs, 270 managed-file hashes, signature and
+  LAN range/full-file checks passed. No distribution gameplay test.
+- R30 payload retirement completed 2026-10-14T06:26:56.1194155+08:00, freeing
+  5,508,930,818 bytes after verifying 272 files and idle access.
+  Older signed catalogues remain. No user recordings or local test data removed.
+- Final source/performance limitations and the unreproduced dark capture are
+  explicit in the release documentation. Continuation heartbeat is now PAUSED;
+  the app confirmed the update after publication and verification completed.

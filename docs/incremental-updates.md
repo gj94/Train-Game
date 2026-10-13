@@ -1,13 +1,14 @@
 # Incremental Windows updates
 
-Current publication: **R30**, sequence **32**, from clean source `1ec0cb5`.
-It includes service selection, every five-minute baseline railway state and
-clock-driven day/night. Both the full ZIP and Update & Play are available.
-The complete ZIP is 2,497,162,192 bytes; an R29 installation needs
-2,870,584,926 bytes of changed blocks, so the ZIP uses less download bandwidth
-for this release. The updater still updates the existing installation in place.
-Only the latest full release is offered; retired R29 payloads have been removed.
-See [builds.md](builds.md) for checksums and verification evidence.
+Current publication: **R31**, sequence **33**, from clean source
+`2fe99d9`. It adds smoother scenery transitions,
+lit homes and bounded station caches. Both the full ZIP and Update & Play are
+available. The ZIP is 2,552,571,142 bytes; an R30 installation needs
+2,956,501,229 bytes of changed blocks while reusing
+141,789,798 bytes. The compressed ZIP is the smaller
+download this time; the updater still updates the existing installation in place.
+Only R31 is offered. Retired R30 payloads were removed after verification; old
+signed catalogues remain. See [builds.md](builds.md) for checksums and evidence.
 
 The LAN page now offers a 15 KB **Update & Play** download. Extract its two files
 beside an existing `TrainGame.exe` and `TrainGame.pck`, then use the launcher for

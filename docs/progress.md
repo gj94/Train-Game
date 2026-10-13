@@ -2,8 +2,9 @@
 
 ## 2026-10-14 — Overnight scenery, night lighting and performance pass
 - Worked from 02:05 through the user's 06:00 Singapore minimum. Source work is
-  committed in a49dc3e, 86d441c and ed03bac. R31 packaging/publication follows
-  final source validation; see `overnight-2026-10-14.md` for the work ledger.
+  committed in a49dc3e, 86d441c and ed03bac. R31 was exported cleanly from
+  2fe99d9 and published at 06:24, signed sequence 33. ZIP/PCK/signature/LAN checks
+  passed; R30 retirement freed 5.51 GB. See `builds.md` and the overnight ledger.
 - Scenery variants share placement groups, density order and conservative
   bounds. Separately budgeted tree shadows use cheap authored geometry through
   the detail transitions. Stable 512 m background patches remain visible until
@@ -37,8 +38,8 @@
   3,670-second repeat also passed; the first run's crash coincided with an import
   and remains undiagnosed. No import/bake ran during either clean repeat.
 - Visual caveat: the final B011 screenshot unexpectedly contained only the
-  night background and HUD. Fresh launch, service-change and43km replays showed
-  lit interiors, and20moving camera switches passed ownership/visibility/image
+  night background and HUD. Fresh launch, service-change and 43 km replays showed
+  lit interiors, and 20 moving camera switches passed ownership/visibility/image
   checks. The original capture remains unexplained; it is not a passed visual
   assertion or a confirmed lighting defect. Evidence is retained for follow-up.
 - Five occupied formations retained 91 vehicles and 5,580 passengers. Pilot
