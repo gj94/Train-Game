@@ -1,5 +1,9 @@
 # Detailed ICF and LHB coaches
 
+See the 14 October [train fidelity pass](train-fidelity.md) for the additional
+vertex occlusion, shadow-proxy visibility fix and fixed ceiling lighting. These
+retain the source geometry and material graphs described here.
+
 The seven classes in each family now use the user's detailed v02 masters from
 `gj94/transport-fever-3-mods`, checkpoint
 `e209ff54ff5cd00bb0761761bdbe124cac6bf7cd` on

@@ -85,7 +85,6 @@ func run() -> void:
 			view.update()
 			camera.global_position=car.global_transform*shot[1]
 			camera.look_at(car.global_transform*shot[2])
-			if shot[0]=="machinery": view._interior_light.global_position=camera.global_position
 			for frame in 20: await process_frame
 			await RenderingServer.frame_post_draw
 			root.get_texture().get_image().save_png("res://.local/wap7-detail/"+shot[0]+".png")

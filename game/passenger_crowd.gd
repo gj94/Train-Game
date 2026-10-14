@@ -34,6 +34,7 @@ func setup(owner) -> void:
 		var mm:=MultiMesh.new();mm.transform_format=MultiMesh.TRANSFORM_3D;mm.use_custom_data=true
 		mm.mesh=mesh;mm.instance_count=MAX_SEATED+MAX_MOVING;mm.visible_instance_count=0
 		instance.multimesh=mm;instance.name=KINDS[i];instance.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		instance.layers |= 2 # Occupied-car ceiling lamps also illuminate its passengers.
 		add_child(instance)
 		batches.append({node=instance,mm=mm,material=material,asset_pose=part.transform,count=0})
 

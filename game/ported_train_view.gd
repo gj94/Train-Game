@@ -36,7 +36,9 @@ var cab_on := false
 var cab_position := 0
 var _last_odometer := 0.0
 var _wheel_angles: Array[float] = []
-var _interior_light: OmniLight3D
+var _interior_light: Node3D
+var _interior_fixtures: Array[OmniLight3D] = []
+var _lit_car := -1
 var _equipment_cab := 0
 var _build_parent: Node3D
 var _build_catalog: Dictionary = {}
@@ -95,10 +97,17 @@ func build_next_car() -> bool:
 	var car_interiors := []
 	var car_shadows := []
 	for mesh in model.find_children("*", "MeshInstance3D", true, false):
+		# Most stock isolates its interior. ICF shell/roof batches also carry
+		# the inner lining; LHB/VB body batches also hold the floor. Keep lamps
+		# off bogies and exterior locomotive paint.
+		var part_name:=str(mesh.name)
+		var shared_lining: bool=(entry.model.begins_with("icf_") and ("SHELL_SIDE" in part_name or "ROOF_ASSEMBLY" in part_name or "END_" in part_name)) or ((entry.model.begins_with("lhb_") or entry.model.begins_with("vb_")) and "BODY" in part_name)
+		if "INTERIOR" in part_name or "door" in part_name.to_lower() or shared_lining:
+			mesh.layers |= 2
 		car_shadows.append({node=mesh,mode=mesh.cast_shadow})
 		# Engine-generated mesh LODs handle distant views. Interior-only groups
 		# disappear beyond 100 m, keeping full detail for onboard cameras.
-		if "INTERIOR" in str(mesh.name):
+		if "INTERIOR" in str(mesh.name) and not str(mesh.name).begins_with("Shadow_"):
 			car_interiors.append(mesh)
 			mesh.visibility_range_end = 100.0
 			mesh.visibility_range_end_margin = 15.0
@@ -157,14 +166,39 @@ func finish_build() -> void:
 
 
 func _interior_setup(parent: Node3D) -> void:
-	_interior_light = OmniLight3D.new()
-	_interior_light.name = "ImportedInteriorLight"
-	_interior_light.light_color = Color("e4eef5")
-	_interior_light.light_energy = .55
-	_interior_light.omni_range = 8
-	_interior_light.shadow_enabled = false
+	_interior_light = Node3D.new()
+	_interior_light.name = "InteriorFixtures"
 	_interior_light.visible = false
 	parent.add_child(_interior_light)
+	# One bounded rig follows the occupied carriage. Sources stay at ceiling
+	# fittings, rather than acting as a torch attached to the camera.
+	for i in 4:
+		var fixture:=OmniLight3D.new()
+		fixture.name="CeilingLight%d"%i
+		fixture.light_color=Color("f4f0e6")
+		# Approximate a broad fluorescent diffuser, not a point-bulb glint.
+		fixture.light_specular=0.0
+		fixture.shadow_enabled=false
+		fixture.light_cull_mask=2
+		_interior_light.add_child(fixture)
+		_interior_fixtures.append(fixture)
+
+func update_interior_lighting() -> void:
+	if _interior_light==null:return
+	var active:=walk_car if walk_car>=0 else (passenger_coach if passenger_on else (cars.size()-1 if train.cab_end==2 else 0))
+	if active==_lit_car:return
+	_lit_car=active
+	_interior_light.reparent(cars[active],false)
+	_interior_light.transform=Transform3D.IDENTITY
+	var key: String=formation[active].model
+	for i in _interior_fixtures.size():
+		var fixture:=_interior_fixtures[i]
+		if key=="wap7":
+			fixture.position=Vector3(0,3.55,[-8.25,-5.0,5.0,8.25][i])
+			fixture.omni_range=3.8;fixture.light_energy=.50
+		else:
+			fixture.position=Vector3(0,3.15 if key.begins_with("icf_") else 3.42,[-8.1,-2.7,2.7,8.1][i])
+			fixture.omni_range=6.1;fixture.light_energy=.95
 
 
 func _point(back: float) -> Vector3:
@@ -214,9 +248,7 @@ func update() -> void:
 			lamps[i][0].visible = leading and sign_dir > 0
 			lamps[i][1].visible = leading and sign_dir < 0
 	_equipment_cab=train.cab_end
-	if _interior_light != null and (cab_on or passenger_on):
-		var camera := passenger_transform() if passenger_on else cab_transform()
-		_interior_light.global_position = camera.origin + Vector3.UP * .5
+	if cab_on or passenger_on or walk_car>=0:update_interior_lighting()
 
 
 func _update_pantographs(index: int) -> void:
@@ -291,6 +323,7 @@ func _apply_glass() -> void:
 		for pane in glass[i]:
 			pane.node.set_surface_override_material(pane.surface, pane.clear if i == active and (cab_on or passenger_on or walk_car>=0) else pane.exterior)
 	_interior_light.visible = cab_on or passenger_on or walk_car>=0
+	if _interior_light.visible:update_interior_lighting()
 
 
 func passenger_coaches() -> Array:

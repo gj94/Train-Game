@@ -31,6 +31,18 @@ static func occupied_car(game) -> int:
 	if game.cam.mode==PASSENGER or (game.cam.mode==HEAD_OUT and game.tv.get("passenger_head_out")==true):return game.tv.passenger_coach
 	return game.tv.cars.size()-1 if game.train.cab_end==2 else 0
 
+static func set_shadow_detail(parts: Array,detailed: bool) -> void:
+	for part in parts:
+		if part.mode==GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY:
+			# OFF stops casting, but makes a shadow-only mesh DRAW as ordinary
+			# geometry. Hide these simplified proxies; never expose them over the
+			# authored body/interior when a camera crosses the detail boundary.
+			part.node.cast_shadow=part.mode
+			part.node.visible=detailed
+		else:
+			part.node.cast_shadow=part.mode if detailed else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		part.node.lod_bias=1.0 if detailed else .5
+
 static func apply(game,view,id: String) -> void:
 	var detail_factor: float=game.graphics_options.values.train_detail if game.get("graphics_options")!=null else 1.0
 	var own: bool=id==game.train.id
@@ -44,9 +56,6 @@ static func apply(game,view,id: String) -> void:
 			view.interior_visible[car]=allowed
 		var detailed:=detailed_shadows(game.cam.mode,own,car,occupied,distance/detail_factor)
 		if view.shadow_detail[car]!=detailed:
-			for part in view.shadow_parts[car]:
-				part.node.cast_shadow=part.mode if detailed else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-				# Roughly two-pixel mesh error for distant vehicles; occupied detail stays intact.
-				part.node.lod_bias=1.0 if detailed else .5
+			set_shadow_detail(view.shadow_parts[car],detailed)
 			view.shadow_proxies[car].visible=not detailed
 			view.shadow_detail[car]=detailed

@@ -134,7 +134,7 @@
     "source_objects": 12359,
     "mesh_groups": 24,
     "triangles": 2885744,
-    "output_sha256": "18984eac18e3e84076550b3459097bf9d5d992315506e72624bbe4d1c66ba42a",
+    "output_sha256": "ad64caffb9c42ea6cb50271d05125e5bd9df3c5e9d05958258c46c69751e32d9",
     "detailed_materials": true,
     "source_revision": "de45b4e0e4194af47b1182800b7d103409c69478",
     "visible_source_objects": 12331,
@@ -158,13 +158,25 @@
         "uri": "wap7_detail/geometry_3.bin",
         "byteLength": 36255756,
         "sha256": "857394db8e2e96ec2129b5bdd9778b3e8117851a9d8d1b7644ed9dea51636284"
+      },
+      {
+        "uri": "wap7_detail/occlusion.bin",
+        "byteLength": 11026668,
+        "sha256": "9f10a733edbd34a0b8016a46d8c8cd6ef59edb8e501cca5e409d2dea87a7a2c2"
       }
     ],
     "material_count": 109,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 107006,
-    "shadow_sha256": "d9aed2da4e8c39fd2aada3da2fdcdff2f8da190f34d120601ec568dee4bcda73"
+    "shadow_sha256": "d9aed2da4e8c39fd2aada3da2fdcdff2f8da190f34d120601ec568dee4bcda73",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "vb_dtc": {
     "id": "vb_dtc",
@@ -783,7 +795,7 @@
     "source_objects": 2203,
     "mesh_groups": 13,
     "triangles": 1515756,
-    "output_sha256": "8e295075129e4a1cd4beeb8cb1a1ecc327fc627b3819bf22de2bd524f21768d7",
+    "output_sha256": "a8df08909ada236ab1c846a3d4934c74886711ef18b1f6030f99b226e6f8dc19",
     "detailed_materials": true,
     "source_revision": "91bcc2899eeedccb7497374227d1c81562279640",
     "visible_source_objects": 2138,
@@ -797,13 +809,25 @@
         "uri": "vb_dtc_detail/geometry_1.bin",
         "byteLength": 25607732,
         "sha256": "d68471289018adec0ffeb32b5bad2478aee1cbc8f62721030f6b0190657a184c"
+      },
+      {
+        "uri": "vb_dtc_detail/occlusion.bin",
+        "byteLength": 4506436,
+        "sha256": "1a666e55ffa53e3df0319c34ec24d4307f7df7172cab9a22e690e827697b399d"
       }
     ],
     "material_count": 57,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 102243,
-    "shadow_sha256": "692a0475188197fc3dce51bae6fe1044cafa4cf6cdaccdb296085c2220a06d9f"
+    "shadow_sha256": "692a0475188197fc3dce51bae6fe1044cafa4cf6cdaccdb296085c2220a06d9f",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "wag12b_a": {
     "id": "wag12b_a",
@@ -1203,7 +1227,7 @@
     "source_objects": 5667,
     "mesh_groups": 22,
     "triangles": 730626,
-    "output_sha256": "df2f0c5bb6e5b8a7c1a27aa94ae75851f2c407238580585556709e27f66fcb35",
+    "output_sha256": "d8d830aa04d4d9e4c605f28e66e7215c5a005c6e5b985d4afcb8cf1b8ef1ab44",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 5606,
@@ -1212,13 +1236,25 @@
         "uri": "icf_1a_detail/geometry_0.bin",
         "byteLength": 46352292,
         "sha256": "f780fa413ea50a2beb59a5a05cc536dc3577a598839aa8d5dd63c84302aef290"
+      },
+      {
+        "uri": "icf_1a_detail/occlusion.bin",
+        "byteLength": 3042728,
+        "sha256": "7423f246295b7a1b115697f99f55d7841dbedfc1c3bba6b670bda9752c039dba"
       }
     ],
     "material_count": 32,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 34326,
-    "shadow_sha256": "7323984811bee1636a28a8a5e7723dc08561a92b784bfe318f73335d365b3144"
+    "shadow_sha256": "7323984811bee1636a28a8a5e7723dc08561a92b784bfe318f73335d365b3144",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "icf_2a": {
     "id": "icf_2a",
@@ -1852,7 +1888,7 @@
     "source_objects": 7274,
     "mesh_groups": 22,
     "triangles": 939749,
-    "output_sha256": "100d1ad08bc8410bc69c1ee86625033be8a4c08fa2b34ca17104d506fea36c08",
+    "output_sha256": "948b04b79a7da52c25b80c41bda0c4b512af694cebba6e47ab3f240d2115f188",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 7157,
@@ -1866,13 +1902,25 @@
         "uri": "icf_2a_detail/geometry_1.bin",
         "byteLength": 5632960,
         "sha256": "3b4f15fbf1884b4d789999033fb568f6d24bc5401fca690cbdd0369ad2281eb6"
+      },
+      {
+        "uri": "icf_2a_detail/occlusion.bin",
+        "byteLength": 3612980,
+        "sha256": "d69429a10db835740deacb2e63372bb0165d66d633b64ed8a274d347c4299c44"
       }
     ],
     "material_count": 32,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 48967,
-    "shadow_sha256": "f8464adbac469950c61ab493f58d8adf24d298c902457324d9cc96cb3433403b"
+    "shadow_sha256": "f8464adbac469950c61ab493f58d8adf24d298c902457324d9cc96cb3433403b",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "icf_3a": {
     "id": "icf_3a",
@@ -2722,7 +2770,7 @@
     "source_objects": 6167,
     "mesh_groups": 22,
     "triangles": 770137,
-    "output_sha256": "8834755b0192fcc9caad5efe2591b30233f83a1138c38cd963bdb32ed19a3c1d",
+    "output_sha256": "24288b9fa5563a898be096909a4f26a64807b87ed4b692c34967723f521a46d5",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 6014,
@@ -2731,13 +2779,25 @@
         "uri": "icf_3a_detail/geometry_0.bin",
         "byteLength": 47253452,
         "sha256": "303a6e4c62db34309d8aadcfdf480b0ab021fa71d67baf57bf4acd6f00362fc3"
+      },
+      {
+        "uri": "icf_3a_detail/occlusion.bin",
+        "byteLength": 3082492,
+        "sha256": "c9bda664cab11967c7be55a050d8867206c9b61c1fbec30570460919dfacc996"
       }
     ],
     "material_count": 31,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 38657,
-    "shadow_sha256": "48f824de55a89050cb247870260ec3ca056b1ae6317d8f77ab1bdb063f2ba85c"
+    "shadow_sha256": "48f824de55a89050cb247870260ec3ca056b1ae6317d8f77ab1bdb063f2ba85c",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "icf_2s": {
     "id": "icf_2s",
@@ -4115,7 +4175,7 @@
     "source_objects": 7147,
     "mesh_groups": 21,
     "triangles": 1017016,
-    "output_sha256": "eaf3fc29f6d1d511ec387668369b1c821c6e72aa97e02767fa61347f38e6e058",
+    "output_sha256": "cf28a2ae5b0b084b63d3f4d166e9a953714db2b6ae50afe1380023b7b40ddfa4",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 7015,
@@ -4129,13 +4189,25 @@
         "uri": "icf_2s_detail/geometry_1.bin",
         "byteLength": 10431816,
         "sha256": "4ace939193fddaf4e4c93a1b61e8c15d9a4bf4e8c553b4cd284ea20dcc48c7c3"
+      },
+      {
+        "uri": "icf_2s_detail/occlusion.bin",
+        "byteLength": 3774184,
+        "sha256": "3b5b5cf5a297b5be8a8fc49e32b904e28f8503820e2ab27229661b234a687c78"
       }
     ],
     "material_count": 31,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 42144,
-    "shadow_sha256": "ce9205262c737e76dfea1236563e4d8635de7b12a36a0cd1ef02b51a3e9931f0"
+    "shadow_sha256": "ce9205262c737e76dfea1236563e4d8635de7b12a36a0cd1ef02b51a3e9931f0",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "icf_cc": {
     "id": "icf_cc",
@@ -5093,7 +5165,7 @@
     "source_objects": 7715,
     "mesh_groups": 22,
     "triangles": 1219284,
-    "output_sha256": "6e68283d083701c6bda0638b4bb7d6d1479ff7a9fb44b223fd07307aa306e77c",
+    "output_sha256": "9280c0950b6e2ccdfd128652af256f26ac618c979618e7c13c4d730fd521145c",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 7617,
@@ -5107,13 +5179,25 @@
         "uri": "icf_cc_detail/geometry_1.bin",
         "byteLength": 17774252,
         "sha256": "36f0a58e2c0157158b7276f176ef3d9b5b060e677ba867a979d491082e6d06d3"
+      },
+      {
+        "uri": "icf_cc_detail/occlusion.bin",
+        "byteLength": 4174600,
+        "sha256": "aa4613608be75a5b4638d2371797b59d3ed863437cb145d70aaf4a3b4c4ee317"
       }
     ],
     "material_count": 32,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 42044,
-    "shadow_sha256": "b7a2ad35e34bc3069b9cdcff6ffdd04a577e66d34b0b9d7563a74bb7cf6c25e9"
+    "shadow_sha256": "b7a2ad35e34bc3069b9cdcff6ffdd04a577e66d34b0b9d7563a74bb7cf6c25e9",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "icf_sl": {
     "id": "icf_sl",
@@ -6059,7 +6143,7 @@
     "source_objects": 7678,
     "mesh_groups": 21,
     "triangles": 841933,
-    "output_sha256": "4f65f2f536a79304a4d106b19eea08cc85d54675f03bd737eac717abee80612d",
+    "output_sha256": "fa238df74c8cbd91f9832ac2ccd365d9d4c16074c24c63ff90aaf1c633f00f26",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 7510,
@@ -6073,13 +6157,25 @@
         "uri": "icf_sl_detail/geometry_1.bin",
         "byteLength": 4977448,
         "sha256": "781e2d8717312cf67329f82b6a78f6c6e077067c0b7885101f52dc15209d0531"
+      },
+      {
+        "uri": "icf_sl_detail/occlusion.bin",
+        "byteLength": 3602340,
+        "sha256": "305462f3f681b05eb6e8cfe7ea6a00bd4b0d82de19297aa9f40e6cbca987e832"
       }
     ],
     "material_count": 31,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 46073,
-    "shadow_sha256": "64461bb9bca00af58312654c35ec6bd156e7f3431243fd3581685a9577100f09"
+    "shadow_sha256": "64461bb9bca00af58312654c35ec6bd156e7f3431243fd3581685a9577100f09",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "icf_gs": {
     "id": "icf_gs",
@@ -7457,7 +7553,7 @@
     "source_objects": 6886,
     "mesh_groups": 21,
     "triangles": 737418,
-    "output_sha256": "e20b459a6c6d45c807a21f7a63c73ffcb9f88254110b4f580c7977451a0e2b78",
+    "output_sha256": "5d58dd8cc8d92c955bbf1bd9e8dcd351c9e2f724e0e71e5a458fa6018b5bce8b",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 6754,
@@ -7466,13 +7562,25 @@
         "uri": "icf_gs_detail/geometry_0.bin",
         "byteLength": 50160180,
         "sha256": "7804243c5f2630062f2446be499c3f15928b71d7af43afd21b81ddfa789a9aad"
+      },
+      {
+        "uri": "icf_gs_detail/occlusion.bin",
+        "byteLength": 3246592,
+        "sha256": "f1d367478c2074ba94d40806cd6f7a6b8f09cc7606b800b020aa48922a863636"
       }
     ],
     "material_count": 31,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 39516,
-    "shadow_sha256": "1dda7666ce3e5805921f23e640691ccce0bd9f60c38846a6d8f48626eb1a1b9d"
+    "shadow_sha256": "1dda7666ce3e5805921f23e640691ccce0bd9f60c38846a6d8f48626eb1a1b9d",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "lhb_1a": {
     "id": "lhb_1a",
@@ -7842,7 +7950,7 @@
     "source_objects": 6616,
     "mesh_groups": 15,
     "triangles": 866992,
-    "output_sha256": "e5bca19bc286433fe93be2cc8cf714982eb5d35a0e0f01b8ca7e0ffc77bd2c2c",
+    "output_sha256": "16205e41a59950f0da0fdf5b6750d2585825283ee5c5797762c3feb740f20e1b",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 6500,
@@ -7856,13 +7964,25 @@
         "uri": "lhb_1a_detail/geometry_1.bin",
         "byteLength": 13717392,
         "sha256": "dd930d1879d0b8999111fbd76bdfd30b025fa086fd70bd5ce0ff4e3ee59640e7"
+      },
+      {
+        "uri": "lhb_1a_detail/occlusion.bin",
+        "byteLength": 4137696,
+        "sha256": "1a9813695bfb34b5ab067cd5c7b4d0570279290e4edaea02930dffe8b979c59d"
       }
     ],
     "material_count": 54,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 39006,
-    "shadow_sha256": "c24ce224ca0436e13f9388e6e2ce9d2b530dbcc93dcf7ca3aa591cd537cf74d2"
+    "shadow_sha256": "c24ce224ca0436e13f9388e6e2ce9d2b530dbcc93dcf7ca3aa591cd537cf74d2",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "lhb_2a": {
     "id": "lhb_2a",
@@ -8568,7 +8688,7 @@
     "source_objects": 6455,
     "mesh_groups": 15,
     "triangles": 901564,
-    "output_sha256": "1a1c302ce3aab4a06ae21cc70cdc85b7f49a7ad59f9d481bdf9b8528b919a581",
+    "output_sha256": "9b10ef0e087ad99c58c3355c22f39d6ae59582a45e1e18c23d284f3f6c40656d",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 6283,
@@ -8582,13 +8702,25 @@
         "uri": "lhb_2a_detail/geometry_1.bin",
         "byteLength": 12536632,
         "sha256": "8f3678f30887a63c7aecf6b16e0b5465a003576a13583b2399c69958ef8723f6"
+      },
+      {
+        "uri": "lhb_2a_detail/occlusion.bin",
+        "byteLength": 4061372,
+        "sha256": "30eb7c32663cf0729a036de966125461eca779b0a5a4a4a70225d8a118bd636e"
       }
     ],
     "material_count": 51,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 37634,
-    "shadow_sha256": "7939ab55739354a47f589cb8bf260f0cb2af420962a86728b13e1d43e601dac7"
+    "shadow_sha256": "7939ab55739354a47f589cb8bf260f0cb2af420962a86728b13e1d43e601dac7",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "lhb_3a": {
     "id": "lhb_3a",
@@ -9534,7 +9666,7 @@
     "source_objects": 5831,
     "mesh_groups": 15,
     "triangles": 875768,
-    "output_sha256": "cff30d3d7363bd4354afc23bea8684a766f778e4acb28637d82b47c9a8b7370c",
+    "output_sha256": "e60d567902a4cea2a70b0ec69be9f0df28c43cbde534216744b1e4b0f58f1c49",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 5619,
@@ -9548,13 +9680,25 @@
         "uri": "lhb_3a_detail/geometry_1.bin",
         "byteLength": 11096744,
         "sha256": "84459ba207f34e64fd5d020f3a7748de687e0feec2e0ca785b7377a6c80a19b5"
+      },
+      {
+        "uri": "lhb_3a_detail/occlusion.bin",
+        "byteLength": 3959848,
+        "sha256": "9cc2f9a33fa1ecc97baace04257e81e67a7f5a9afa3bfee89b2a7feee86e5ea8"
       }
     ],
     "material_count": 51,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 36454,
-    "shadow_sha256": "3a95f869cd6ddbf97dc833306ea48941c156deff1e0101d7b097f9756623d1f1"
+    "shadow_sha256": "3a95f869cd6ddbf97dc833306ea48941c156deff1e0101d7b097f9756623d1f1",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "lhb_2s": {
     "id": "lhb_2s",
@@ -10860,7 +11004,7 @@
     "source_objects": 5396,
     "mesh_groups": 15,
     "triangles": 1074848,
-    "output_sha256": "6ff57c40b588f3f4c45321d83dfde053ed00bc2a77ffdc0c20967ddf1a958cce",
+    "output_sha256": "14c276bd654e19d57326f922c5176d6e1d1fa2b2abf27a655cb916144cf81ddd",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 5227,
@@ -10874,13 +11018,25 @@
         "uri": "lhb_2s_detail/geometry_1.bin",
         "byteLength": 25068944,
         "sha256": "690ccfc6d7139760ed4b37ba8316c6492deb79c78779af3f6510521f1328d094"
+      },
+      {
+        "uri": "lhb_2s_detail/occlusion.bin",
+        "byteLength": 4698468,
+        "sha256": "1df19ec8618425f39e05106974f20c21cc0ecebb620be89880990eaaad0f1167"
       }
     ],
     "material_count": 33,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 40554,
-    "shadow_sha256": "295420023f948379723cd65d8568d1189dc6df9b254c78cd9bef0392f559396e"
+    "shadow_sha256": "295420023f948379723cd65d8568d1189dc6df9b254c78cd9bef0392f559396e",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "lhb_cc": {
     "id": "lhb_cc",
@@ -11898,7 +12054,7 @@
     "source_objects": 7551,
     "mesh_groups": 15,
     "triangles": 2061664,
-    "output_sha256": "28f5e10e35b17c64462fca578ca29f85c12d0fed5b67cd12f271c9f7771ea5b6",
+    "output_sha256": "3b2d6da49e913ed912e800cef02ad46ea8066489b7147f5c7e47458411a5211f",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 7405,
@@ -11917,13 +12073,25 @@
         "uri": "lhb_cc_detail/geometry_2.bin",
         "byteLength": 30052464,
         "sha256": "b2c1159b89106431e4ea0843bbb8e3d466fe63dae132aa2eac2898c5da5fa98f"
+      },
+      {
+        "uri": "lhb_cc_detail/occlusion.bin",
+        "byteLength": 7651776,
+        "sha256": "5583da4f13be57cc92af0eceb618402bc3e175c13212e26c5dfcddb18c8f2046"
       }
     ],
     "material_count": 53,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 74828,
-    "shadow_sha256": "c282dd018270f8da9dd1ca37937ae31fa5b5c280abab4ef2cc48b8a4460be41a"
+    "shadow_sha256": "c282dd018270f8da9dd1ca37937ae31fa5b5c280abab4ef2cc48b8a4460be41a",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "lhb_sl": {
     "id": "lhb_sl",
@@ -12965,7 +13133,7 @@
     "source_objects": 5984,
     "mesh_groups": 15,
     "triangles": 853752,
-    "output_sha256": "1c1c012a9fba48a66fd21059e4f47f561dd138f8072c754706c8af103518c977",
+    "output_sha256": "f5fb76b2029edd937cfefa48d1f04dcda11a39ab4134e729e09028f7e79c9d5a",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 5757,
@@ -12979,13 +13147,25 @@
         "uri": "lhb_sl_detail/geometry_1.bin",
         "byteLength": 16363496,
         "sha256": "f24bd794888b04601b5fe2a84d4a628d102a1f7377366e6455d77418783ba57a"
+      },
+      {
+        "uri": "lhb_sl_detail/occlusion.bin",
+        "byteLength": 4295620,
+        "sha256": "0e2b31ceed97ce2cf471f9c0ecf5f858ff1808e4b19ea64401c9297e56abc5e1"
       }
     ],
     "material_count": 33,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 33578,
-    "shadow_sha256": "f038c96e8ee0fb7e7d0fde73320ef8ac5036aa940fb3a693ab33a8b131d13ca5"
+    "shadow_sha256": "f038c96e8ee0fb7e7d0fde73320ef8ac5036aa940fb3a693ab33a8b131d13ca5",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "lhb_gs": {
     "id": "lhb_gs",
@@ -14267,7 +14447,7 @@
     "source_objects": 5512,
     "mesh_groups": 17,
     "triangles": 791568,
-    "output_sha256": "3f3a258dc86a1b62891b28b667fee8db6ad3ad559150954dfc4ee26f22f2544f",
+    "output_sha256": "6b49cda9bc519dd963c07ebd521d9ad8c834aefe339ce5a4d7278e72b5ad1d76",
     "detailed_materials": true,
     "source_revision": "e209ff54ff5cd00bb0761761bdbe124cac6bf7cd",
     "visible_source_objects": 5343,
@@ -14281,13 +14461,25 @@
         "uri": "lhb_gs_detail/geometry_1.bin",
         "byteLength": 11565192,
         "sha256": "fe40f8db1b492598abf362a6701ef3447b8f6810da97bc03a488b784635f7614"
+      },
+      {
+        "uri": "lhb_gs_detail/occlusion.bin",
+        "byteLength": 4029580,
+        "sha256": "6f97ce91d6b56e372544049936039e5fe8106869beb16775f65de84d8f4b460f"
       }
     ],
     "material_count": 32,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 31582,
-    "shadow_sha256": "3101adf80ebafb2187c78209ba98d3e2d2da4a3e411dfae7ba5c8bc0fa8f576b"
+    "shadow_sha256": "3101adf80ebafb2187c78209ba98d3e2d2da4a3e411dfae7ba5c8bc0fa8f576b",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "vb_mc": {
     "id": "vb_mc",
@@ -15305,7 +15497,7 @@
     "source_objects": 1936,
     "mesh_groups": 12,
     "triangles": 1946716,
-    "output_sha256": "fcd8b37383314d042c3972db87eff0db79212c1aba494e54c9d3af109ef5cbce",
+    "output_sha256": "a7179ffb2e277b4db2c552748f39b66278f236083cae759b142d115599355251",
     "detailed_materials": true,
     "source_revision": "91bcc2899eeedccb7497374227d1c81562279640",
     "visible_source_objects": 1844,
@@ -15319,13 +15511,25 @@
         "uri": "vb_mc_detail/geometry_1.bin",
         "byteLength": 42148296,
         "sha256": "05205ba87594bc1646af5340f693898b8c4b21c2dd2b4e8871307978b95d0ac1"
+      },
+      {
+        "uri": "vb_mc_detail/occlusion.bin",
+        "byteLength": 5245308,
+        "sha256": "0825959e5ffdbdceede6a36aa99d559cd15d7ce971d7ae0d91db7a4fcd3accc3"
       }
     ],
     "material_count": 36,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 140496,
-    "shadow_sha256": "5938d83684c1f0ae428a6e2ad82076a190fcde52e56f7601ea6f34fb4c4d8b61"
+    "shadow_sha256": "5938d83684c1f0ae428a6e2ad82076a190fcde52e56f7601ea6f34fb4c4d8b61",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "vb_mc2": {
     "id": "vb_mc2",
@@ -16343,7 +16547,7 @@
     "source_objects": 1937,
     "mesh_groups": 12,
     "triangles": 1946928,
-    "output_sha256": "955f49207c3c8d633e4a761cb7591a8d7d5e7a787c8b50e69ded3a3d0e47bb7f",
+    "output_sha256": "5591b23bca25f13c90a55ab30231b94b2d84e9bdfb272400a33ae89ac77de201",
     "detailed_materials": true,
     "source_revision": "91bcc2899eeedccb7497374227d1c81562279640",
     "visible_source_objects": 1845,
@@ -16357,13 +16561,25 @@
         "uri": "vb_mc2_detail/geometry_1.bin",
         "byteLength": 42162784,
         "sha256": "a1ddbda67aa699325a97c036ce6fa2c7475622da7f4ce83a24c98d544f42cb6c"
+      },
+      {
+        "uri": "vb_mc2_detail/occlusion.bin",
+        "byteLength": 5246252,
+        "sha256": "33f70d9544d1ab7d69e2b5b0a0ea1c6717b3c8b7bf742910766b64d45a4d0e7e"
       }
     ],
     "material_count": 36,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 140506,
-    "shadow_sha256": "a0bd4fe7542900e551c2992147cbc24102fd3743a3f18f22a5010f0d2a66a836"
+    "shadow_sha256": "a0bd4fe7542900e551c2992147cbc24102fd3743a3f18f22a5010f0d2a66a836",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "vb_tc_cc": {
     "id": "vb_tc_cc",
@@ -17393,7 +17609,7 @@
     "source_objects": 2717,
     "mesh_groups": 39,
     "triangles": 2211172,
-    "output_sha256": "fa66dc627364f81cee52335e5ee3a74e160f65cd8b86a0c603aac08681da0bee",
+    "output_sha256": "901004213c44d71911189470386f947fff4e7b1043cad7c59383503857219718",
     "detailed_materials": true,
     "source_revision": "91bcc2899eeedccb7497374227d1c81562279640",
     "visible_source_objects": 2594,
@@ -17412,13 +17628,25 @@
         "uri": "vb_tc_cc_detail/geometry_2.bin",
         "byteLength": 10630000,
         "sha256": "ad528a05ae3dc07288539fdb62e7f45176dafc4d8aba358ee66225b6c869b89b"
+      },
+      {
+        "uri": "vb_tc_cc_detail/occlusion.bin",
+        "byteLength": 6100420,
+        "sha256": "59d09358d0aa26731f956cad73a8328fa6b8236305079db1ed4657868066caf6"
       }
     ],
     "material_count": 48,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 167862,
-    "shadow_sha256": "c001c1939fd7a15dd5c1380adb104621114c1832cafe1c8e6e9d0d1366d86d02"
+    "shadow_sha256": "c001c1939fd7a15dd5c1380adb104621114c1832cafe1c8e6e9d0d1366d86d02",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "vb_tc_ec": {
     "id": "vb_tc_ec",
@@ -18136,7 +18364,7 @@
     "source_objects": 2660,
     "mesh_groups": 39,
     "triangles": 2580824,
-    "output_sha256": "76c06d370dd34d82e87e8ac523de654705e3e6054ba363cff04c64a3992039ea",
+    "output_sha256": "b7341afafd40941ff60286bf27d61dbb8509239667006ca2cc060d366a32c836",
     "detailed_materials": true,
     "source_revision": "91bcc2899eeedccb7497374227d1c81562279640",
     "visible_source_objects": 2563,
@@ -18155,13 +18383,25 @@
         "uri": "vb_tc_ec_detail/geometry_2.bin",
         "byteLength": 19190040,
         "sha256": "662ed4a57189011cc8156b6f59bfe7cc6f3058c60685d956f8ef9f8f6ace669c"
+      },
+      {
+        "uri": "vb_tc_ec_detail/occlusion.bin",
+        "byteLength": 6716740,
+        "sha256": "04196c9232f86fd3b4d79ecc4573d648112ed80ac929ccfe8b2ca1f4230da58f"
       }
     ],
     "material_count": 49,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 141772,
-    "shadow_sha256": "12ff9feca486ab8acf824f7cfbe03b2920e7905bf8aa7f4e8c21b25273c50116"
+    "shadow_sha256": "12ff9feca486ab8acf824f7cfbe03b2920e7905bf8aa7f4e8c21b25273c50116",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "vb_ndtc_ec": {
     "id": "vb_ndtc_ec",
@@ -18867,7 +19107,7 @@
     "source_objects": 1888,
     "mesh_groups": 12,
     "triangles": 2309336,
-    "output_sha256": "acd679bacbde5bf2bf4fb7d0060352dd5720445ff018341e0e2aae95871b8cd1",
+    "output_sha256": "ee501e5fb81634d91cb1917fc2ff34afc90f2b12fb925dff969e2121ffe979ff",
     "detailed_materials": true,
     "source_revision": "91bcc2899eeedccb7497374227d1c81562279640",
     "visible_source_objects": 1822,
@@ -18886,13 +19126,25 @@
         "uri": "vb_ndtc_ec_detail/geometry_2.bin",
         "byteLength": 7047072,
         "sha256": "acdbf13f0a97ca0c56fbb0b71e7e23e22bb19008d2d3a2511b485c2767e73093"
+      },
+      {
+        "uri": "vb_ndtc_ec_detail/occlusion.bin",
+        "byteLength": 5774092,
+        "sha256": "6355ca795efcaa8f20b6cc2870d325a7b15f327d6bc8f065f9231709f4ce5a44"
       }
     ],
     "material_count": 38,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 114398,
-    "shadow_sha256": "0b062fff08130565b7f14c8e18f9afe9d62aa34a203b3939aac38b7c96b66815"
+    "shadow_sha256": "0b062fff08130565b7f14c8e18f9afe9d62aa34a203b3939aac38b7c96b66815",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "vb_ndtc_ec2": {
     "id": "vb_ndtc_ec2",
@@ -19598,7 +19850,7 @@
     "source_objects": 1888,
     "mesh_groups": 12,
     "triangles": 2309536,
-    "output_sha256": "f11b08d8c748bae6806da0eebe1450a460c4dc885a441e80edaa4f94858114f1",
+    "output_sha256": "5014bb156fe680ee2ab2620e32298a2de22c78e794128c37c5d4ab9ef8440496",
     "detailed_materials": true,
     "source_revision": "91bcc2899eeedccb7497374227d1c81562279640",
     "visible_source_objects": 1822,
@@ -19617,13 +19869,25 @@
         "uri": "vb_ndtc_ec2_detail/geometry_2.bin",
         "byteLength": 7220768,
         "sha256": "feb03a7b834d8723e55124f6be801fd4dbd5f05a21b5d16d80b12fb3e0eb1ab4"
+      },
+      {
+        "uri": "vb_ndtc_ec2_detail/occlusion.bin",
+        "byteLength": 5774940,
+        "sha256": "d5b3bfbc27f393216ce22b7cdb72a959189da3acf12fd5690e8a6a72485661da"
       }
     ],
     "material_count": 38,
     "coordinate_encoding": "TEXCOORD_1 = generated.xy; TEXCOORD_2 = object.xy; TEXCOORD_3 = object.z/generated.z (32-bit floats)",
     "hidden_legacy_excluded": true,
     "shadow_triangles": 114186,
-    "shadow_sha256": "c8beeadd85cc92c42a44551f87911a7f080d1e73045ef98b8e41996a36e9e2ab"
+    "shadow_sha256": "c8beeadd85cc92c42a44551f87911a7f080d1e73045ef98b8e41996a36e9e2ab",
+    "occlusion": {
+      "version": 1,
+      "samples": 24,
+      "contact_m": 0.55,
+      "enclosure_m": 5.0,
+      "probe_cell_m": 0.02
+    }
   },
   "wag9": {
     "id": "wag9",

@@ -70,5 +70,6 @@ static func _bundle(model: Node3D,key: String) -> Dictionary:
 					material.set_shader_parameter(uniform,load(root+"textures/"+str(entry.textures[uniform])))
 				material.set_shader_parameter("noise_volume",load("res://assets/models/ported/wap7_detail/microfinish.res"))
 				material.set_meta("optical_glass",entry.glass)
+				preload("res://game/train_material_finish.gd").apply(material,key)
 				materials[identity]=material
 	return _cache.publish(key,{materials=materials,shadows=meshes})

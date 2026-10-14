@@ -18,6 +18,14 @@ void sky() {
  vec3 photograph=min(texture(daylight_panorama,SKY_COORDS).rgb,vec3(2.0));
  vec3 night_sky=mix(vec3(.002,.004,.012),vec3(.009,.015,.028),horizon);
  vec3 colour=mix(night_sky,photograph,daylight);
+ // A pure-sky photograph contains bright sky even below the horizon. Feeding
+ // that to the lighting cubemap made underframes/chrome reflect an open sky
+ // through the ground. Supply a muted ground hemisphere for ambient/reflection
+ // sampling only; the visible sky and sun/moon cycle remain unchanged.
+ if (AT_CUBEMAP_PASS) {
+  vec3 ground=mix(vec3(.0015,.002,.003),vec3(.075,.068,.052),daylight);
+  colour=mix(colour,ground,1.0-smoothstep(-.15,.035,direction.y));
+ }
  float toward_sun=pow(max(dot(direction,normalize(vec3(sun_direction.x,.04,sun_direction.z))),0.0),5.0);
  colour+=vec3(.50,.125,.028)*twilight*horizon*(.18+.82*toward_sun);
  float sun_dot=dot(direction,sun_direction);

@@ -31,6 +31,19 @@ func test_4090_laptop_cache_budget_exceeds_active_allocation_with_headroom():
 func test_shadow_hulls_preserve_nearby_and_occupied_car_detail():
 	return Policy.detailed_shadows(Policy.CAB,true,0,0,0) and not Policy.detailed_shadows(Policy.CAB,true,4,0,80) and Policy.detailed_shadows(0,false,0,-100,20) and not Policy.detailed_shadows(0,false,0,-100,200)
 
+func test_distant_shadow_proxies_never_become_visible_train_geometry():
+	var hull:=MeshInstance3D.new()
+	hull.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+	var body:=MeshInstance3D.new()
+	body.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	var parts:=[{node=hull,mode=hull.cast_shadow},{node=body,mode=body.cast_shadow}]
+	var ok:=true
+	for detailed in [false,true,false,true]:
+		Policy.set_shadow_detail(parts,detailed)
+		ok=ok and hull.cast_shadow==GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY and hull.visible==detailed and body.visible
+	hull.free();body.free()
+	return ok
+
 func test_benchmark_override_is_reversible_and_not_a_gameplay_setting():
 	Policy.benchmark_full_interiors=true
 	var full:=Policy.interior_allowed(Policy.CAB,false,0,-100,10) and Policy.seated_allowed(Policy.CAB,true,1,0,24) and Policy.detailed_shadows(0,false,0,-100,250)

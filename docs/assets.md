@@ -2,6 +2,12 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-14: derived train contact/enclosure visibility buffers are baked from
+the existing pinned WAP-7, ICF, LHB and Vande Bharat geometry. They contain no
+new external artwork. `tools/blender/bake_train_occlusion.py` adds four bytes
+per existing vertex without changing the original geometry or texture streams;
+the existing source provenance and licences apply. See `train-fidelity.md`.
+
 2026-10-14: fifteen night-window masks are baked from the existing building
 geometry/material categories by `tools/bake_night_windows.gd`, using the same
 eight viewpoints as the albedo atlases. They reuse the original asset provenance;

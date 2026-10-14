@@ -1,5 +1,48 @@
 # Progress
 
+## 2026-10-14 — Train fidelity and material lighting
+- Fixed the shadow-detail transition exposing simplified shadow-only meshes as
+  visible train geometry. Shadow proxies remain shadow-only and are hidden when
+  unnecessary; interior visibility no longer overrides their state.
+- Baked geometry-derived contact/enclosure visibility for all **22** detailed
+  WAP-7, ICF, LHB and VB variants. All **31,388,331** source triangles, original
+  geometry streams, pivots and texture pixels survive. Added vertex buffers
+  total **102.8 MiB** across the catalogue. No source mesh decimation was added.
+- Corrected the redundant backface-normal flip in the train material exporter
+  extension. It had made VB flooring and inner sheets face away from lights.
+  Added softly emitting authored lamp diffusers and four fixed ceiling lights
+  on the occupied carriage, replacing the camera-following interior light.
+  Shared body batches containing floors receive the lights; terrain does not.
+- The reflection/ambient cubemap has a subdued ground hemisphere instead of
+  reflecting a bright sky through the ground. The visible sky/clock cycle stays
+  intact. AI interiors, seated-passenger culling and automatic LODs remain.
+- **595 headless tests passed, zero failures, empty stderr**. All three existing
+  family port audits and the 22-model preservation audit passed. Forty final
+  native day/night review captures completed; five representative models had
+  zero visible-pixel change across each shadow-budget switch with shadows off.
+  A VB night-floor regression also passed (0.358 luminance; minimum 0.10).
+- Measured stage GPU costs increased, particularly when the added vertex
+  attributes retain more generated LOD triangles. WAP pilot was 17.89→18.14 ms,
+  LHB aisle 23.40→24.69 ms, VB EC aisle 26.75→29.24 ms; WAP exterior was
+  14.93→19.14 ms. These are single-run 780M observations, not target-PC results.
+- The five-train native benchmark passed with 91 vehicles, 5,580 simulated
+  passengers, zero loading during measurement and all five formations moving.
+  Pilot seated rendering remained zero; passenger view retained 140. Static
+  busy-view frame medians were 2.6–12.7% slower than R31, with roughly 100 MB
+  additional GPU allocations. Moving train CPU cost remains about 13 ms.
+- Integrated day/sunset/night/dawn checks passed **23 assertions** across eight
+  actual-game views, including lit passengers and five resident formations.
+- See `train-fidelity.md` and the unretouched before/after gallery in
+  `art/performance/train-fidelity-2026-10-14/`. Timetable, physics, audio and save
+  format are unchanged. This source pass has not replaced the R31 download.
+
+Playtest: inspect WAP-7 from the platform, move beyond 65 m and return to check
+for crude overlay geometry. Walk through an ICF/LHB carriage and VB EC at day
+and night; the ceiling light should remain fixed while the camera moves and
+the aisle floor should be lit. Repeat the crowded benchmark on the i9-13980HX /
+RTX 4090 Laptop. Blender Cycles lighting parity and the native NCJ crash are
+not established by these checks.
+
 ## 2026-10-14 — Overnight scenery, night lighting and performance pass
 - Worked from 02:05 through the user's 06:00 Singapore minimum. Source work is
   committed in a49dc3e, 86d441c and ed03bac. R31 was exported cleanly from

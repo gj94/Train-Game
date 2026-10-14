@@ -40,6 +40,7 @@ static func apply(model: Node3D) -> Dictionary:
 				for uniform in entry.textures:
 					material.set_shader_parameter(uniform,load("res://assets/models/ported/wap7_detail/textures/"+entry.textures[uniform]))
 				material.set_meta("optical_glass",entry.glass)
+				preload("res://game/train_material_finish.gd").apply(material,"wap7")
 				_materials[key] = material
 			var material: ShaderMaterial = _materials[key]
 			mesh.set_surface_override_material(i,material)

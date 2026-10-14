@@ -1,5 +1,10 @@
 # WAP-7 detailed v0.2
 
+The 14 October [train fidelity pass](train-fidelity.md) adds derived vertex
+occlusion, fixes shadow-proxy visibility and updates occupied-car lighting.
+The geometry and source images described below remain intact. Timings below
+describe the original port, not the current lighting/bake changes.
+
 The imported WAP-7 uses the user's detailed 39002 master from
 [`transport-fever-3-mods`](https://github.com/gj94/transport-fever-3-mods/tree/de45b4e0e4194af47b1182800b7d103409c69478/wap7_photoreal_v02),
 pinned to `de45b4e0e4194af47b1182800b7d103409c69478`.

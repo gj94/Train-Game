@@ -187,7 +187,7 @@ func update(delta: float) -> void:
 	eye_height=move_toward(eye_height,.94 if crouched else 1.58,delta*3.6)
 	game.tv.walk_car=car
 	game.tv.walk_eye=Vector3(position.x,nav.floor_height(position)+eye_height,position.y)
-	game.tv._interior_light.global_position=camera_transform().origin+Vector3.UP*.25
+	game.tv.update_interior_lighting()
 	game.audio.interior_listener=audio_position()
 	_fade_time=maxf(0,_fade_time-delta)
 	_fade.color.a=clampf(_fade_time/.22,0,1)

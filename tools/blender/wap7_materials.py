@@ -240,4 +240,11 @@ def export_materials(materials, directory, prefix='wap7'):
     for entry in output:
         entry['name'] = prefix + entry['name'][4:]
         entry['shader'] = prefix + entry['shader'][4:]
+        if prefix.startswith(('wap7', 'icf_', 'lhb_', 'vb_')):
+            # Keep the graph/source-value layout intact. White vertex colours
+            # are neutral until the separate lossless visibility bake is run.
+            import sys
+            sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+            from install_train_occlusion_shaders import extend
+            entry['code'] = extend(entry['code'])
     return output

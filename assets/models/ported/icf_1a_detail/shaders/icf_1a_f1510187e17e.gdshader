@@ -1,5 +1,6 @@
 shader_type spatial;
 render_mode cull_disabled;
+#include "res://game/shaders/train_occlusion.gdshaderinc"
 uniform mat4 author_from_mesh;
 uniform sampler3D noise_volume : filter_linear, repeat_enable;
 uniform bool onboard_glass = false;
@@ -38,7 +39,6 @@ vec3 bump_normal(vec3 n, vec3 p, float h, float strength) {
 
 uniform float source_values[25];
 void fragment() {
- if (!FRONT_FACING) { NORMAL = -NORMAL; }
  vec3 n0 = author_position;
  vec4 n1 = mix(vec4(source_values[0],source_values[1],source_values[2],source_values[3]),vec4(source_values[4],source_values[5],source_values[6],source_values[7]),mod(dot(floor((n0)*(source_values[8])),vec3(source_values[9])),source_values[10]));
  float n2 = grain((generated_position)*(source_values[11]),source_values[12],source_values[13],source_values[14]);
@@ -48,4 +48,6 @@ void fragment() {
  METALLIC = source_values[20];
  EMISSION = (vec3(source_values[21],source_values[22],source_values[23])*source_values[24]);
  NORMAL = n3;
+ AO = train_ambient_visibility(COLOR.rg);
+ EMISSION = max(EMISSION, train_ceiling_emission(author_position.z));
 }

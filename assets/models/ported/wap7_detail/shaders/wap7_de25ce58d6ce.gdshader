@@ -1,5 +1,6 @@
 shader_type spatial;
 render_mode cull_disabled;
+#include "res://game/shaders/train_occlusion.gdshaderinc"
 uniform mat4 author_from_mesh;
 uniform sampler3D noise_volume : filter_linear, repeat_enable;
 uniform bool onboard_glass = false;
@@ -40,7 +41,6 @@ uniform sampler2D tex1 : filter_linear_mipmap_anisotropic, repeat_disable;
 uniform sampler2D tex2 : filter_linear_mipmap_anisotropic, repeat_disable;
 uniform float source_values[66];
 void fragment() {
- if (!FRONT_FACING) { NORMAL = -NORMAL; }
  vec3 n0 = vec3(UV.x,source_values[0]-UV.y,source_values[1]);
  vec4 n1 = texture(tex0,vec2((n0).x,source_values[2]-(n0).y));
  vec4 n2 = texture(tex1,vec2((n0).x,source_values[3]-(n0).y));
@@ -50,4 +50,6 @@ void fragment() {
  METALLIC = mix(mix(source_values[33],source_values[34],dot(n2.rgb,vec3(source_values[35],source_values[36],source_values[37]))),source_values[38],dot(n3.rgb,vec3(source_values[39],source_values[40],source_values[41])));
  EMISSION = mix(mix((vec3(source_values[42],source_values[43],source_values[44])*source_values[45]),(vec3(source_values[46],source_values[47],source_values[48])*source_values[49]),dot(n2.rgb,vec3(source_values[50],source_values[51],source_values[52]))),(vec3(source_values[53],source_values[54],source_values[55])*source_values[56]),dot(n3.rgb,vec3(source_values[57],source_values[58],source_values[59])));
  NORMAL = mix(mix(NORMAL,NORMAL,dot(n2.rgb,vec3(source_values[60],source_values[61],source_values[62]))),NORMAL,dot(n3.rgb,vec3(source_values[63],source_values[64],source_values[65])));
+ AO = train_ambient_visibility(COLOR.rg);
+ EMISSION = max(EMISSION, train_ceiling_emission(author_position.z));
 }

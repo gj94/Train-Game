@@ -1,0 +1,200 @@
+{
+  "note": "Separate whole-game 1600x900 development-PC runs; R31 overnight baseline vs final train-fidelity source. Not target-PC results or isolated bake cost.",
+  "cases": [
+    {
+      "view": "five_trains_pilot_culled",
+      "before_pixels": [
+        1600,
+        900
+      ],
+      "after_pixels": [
+        1600,
+        900
+      ],
+      "frame_ms": {
+        "before": 51.59,
+        "after": 52.938
+      },
+      "gpu_ms": {
+        "before": 50.1959991455078,
+        "after": 51.5060005187988
+      },
+      "train_ms": {
+        "before": 2.492,
+        "after": 2.375
+      },
+      "render_cpu_ms": {
+        "before": 7.98000001907349,
+        "after": 7.83099985122681
+      },
+      "draw_calls": {
+        "before": 4193.0,
+        "after": 4193.0
+      },
+      "primitives": {
+        "before": 22131383.0,
+        "after": 22158289.0
+      },
+      "gpu_bytes": {
+        "before": 4981003520.0,
+        "after": 5083359328.0
+      }
+    },
+    {
+      "view": "five_trains_passenger_culled",
+      "before_pixels": [
+        1600,
+        900
+      ],
+      "after_pixels": [
+        1600,
+        900
+      ],
+      "frame_ms": {
+        "before": 52.853,
+        "after": 56.407
+      },
+      "gpu_ms": {
+        "before": 51.4799995422363,
+        "after": 54.9519996643066
+      },
+      "train_ms": {
+        "before": 2.614,
+        "after": 2.514
+      },
+      "render_cpu_ms": {
+        "before": 10.6400003433228,
+        "after": 10.6090002059937
+      },
+      "draw_calls": {
+        "before": 5039.0,
+        "after": 5034.0
+      },
+      "primitives": {
+        "before": 25537868.0,
+        "after": 26043617.0
+      },
+      "gpu_bytes": {
+        "before": 4981271584.0,
+        "after": 5083627712.0
+      }
+    },
+    {
+      "view": "five_trains_platform_culled",
+      "before_pixels": [
+        1600,
+        900
+      ],
+      "after_pixels": [
+        1600,
+        900
+      ],
+      "frame_ms": {
+        "before": 50.385,
+        "after": 54.75
+      },
+      "gpu_ms": {
+        "before": 48.9729995727539,
+        "after": 53.4370002746582
+      },
+      "train_ms": {
+        "before": 2.586,
+        "after": 2.509
+      },
+      "render_cpu_ms": {
+        "before": 7.17999982833862,
+        "after": 7.05499982833862
+      },
+      "draw_calls": {
+        "before": 3601.0,
+        "after": 3599.0
+      },
+      "primitives": {
+        "before": 22854989.0,
+        "after": 23948803.0
+      },
+      "gpu_bytes": {
+        "before": 4981271584.0,
+        "after": 5083627712.0
+      }
+    },
+    {
+      "view": "five_trains_overview_culled",
+      "before_pixels": [
+        1600,
+        900
+      ],
+      "after_pixels": [
+        1600,
+        900
+      ],
+      "frame_ms": {
+        "before": 41.933,
+        "after": 47.259
+      },
+      "gpu_ms": {
+        "before": 40.6080017089844,
+        "after": 45.8759994506836
+      },
+      "train_ms": {
+        "before": 2.949,
+        "after": 2.886
+      },
+      "render_cpu_ms": {
+        "before": 11.4779996871948,
+        "after": 10.78600025177
+      },
+      "draw_calls": {
+        "before": 7032.0,
+        "after": 6628.0
+      },
+      "primitives": {
+        "before": 17520771.0,
+        "after": 19334152.0
+      },
+      "gpu_bytes": {
+        "before": 4979800464.0,
+        "after": 5079273008.0
+      }
+    },
+    {
+      "view": "five_trains_live",
+      "before_pixels": [
+        1600,
+        900
+      ],
+      "after_pixels": [
+        1600,
+        900
+      ],
+      "frame_ms": {
+        "before": 59.847,
+        "after": 56.572
+      },
+      "gpu_ms": {
+        "before": 42.7270011901855,
+        "after": 47.1479988098145
+      },
+      "train_ms": {
+        "before": 12.916,
+        "after": 13.193
+      },
+      "render_cpu_ms": {
+        "before": 8.36900043487549,
+        "after": 8.89099979400635
+      },
+      "draw_calls": {
+        "before": 7053.0,
+        "after": 6643.0
+      },
+      "primitives": {
+        "before": 17842420.0,
+        "after": 19736346.0
+      },
+      "gpu_bytes": {
+        "before": 4980062768.0,
+        "after": 5079535312.0
+      }
+    }
+  ]
+}

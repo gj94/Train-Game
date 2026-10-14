@@ -1,5 +1,6 @@
 shader_type spatial;
 render_mode cull_disabled;
+#include "res://game/shaders/train_occlusion.gdshaderinc"
 uniform mat4 author_from_mesh;
 uniform sampler3D noise_volume : filter_linear, repeat_enable;
 uniform bool onboard_glass = false;
@@ -39,7 +40,6 @@ uniform sampler2D tex0 : source_color, filter_linear_mipmap_anisotropic, repeat_
 uniform sampler2D tex1 : source_color, filter_linear_mipmap_anisotropic, repeat_disable;
 uniform float source_values[19];
 void fragment() {
- if (!FRONT_FACING) { NORMAL = -NORMAL; }
  vec4 n0 = texture(tex0,vec2((vec3(UV.x,source_values[0]-UV.y,source_values[1])).x,source_values[2]-(vec3(UV.x,source_values[3]-UV.y,source_values[4])).y));
  float n1 = texture(tex1,vec2((vec3(UV.x,source_values[5]-UV.y,source_values[6])).x,source_values[7]-(vec3(UV.x,source_values[8]-UV.y,source_values[9])).y)).a;
  ALBEDO = n0.rgb;
@@ -49,4 +49,6 @@ void fragment() {
  NORMAL = NORMAL;
  ALPHA = n1;
  ALPHA_SCISSOR_THRESHOLD = source_values[18];
+ AO = train_ambient_visibility(COLOR.rg);
+ EMISSION = max(EMISSION, train_ceiling_emission(author_position.z));
 }

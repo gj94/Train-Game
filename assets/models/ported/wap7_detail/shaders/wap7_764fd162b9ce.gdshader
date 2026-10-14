@@ -1,5 +1,6 @@
 shader_type spatial;
 render_mode cull_disabled;
+#include "res://game/shaders/train_occlusion.gdshaderinc"
 uniform mat4 author_from_mesh;
 uniform sampler3D noise_volume : filter_linear, repeat_enable;
 uniform bool onboard_glass = false;
@@ -38,7 +39,6 @@ vec3 bump_normal(vec3 n, vec3 p, float h, float strength) {
 
 uniform float source_values[40];
 void fragment() {
- if (!FRONT_FACING) { NORMAL = -NORMAL; }
  ALBEDO = mix(vec3(source_values[0]),vec3(source_values[1],source_values[2],source_values[3]),source_values[4]);
  ROUGHNESS = clamp(mix(source_values[5],source_values[6],source_values[7]),source_values[8],source_values[9]);
  METALLIC = mix(source_values[10],source_values[11],source_values[12]);
@@ -48,4 +48,6 @@ void fragment() {
  ALPHA = mix(mix(source_values[26],source_values[27],source_values[28]),clamp(source_values[29]+fresnel*source_values[30],source_values[31],source_values[32]),mix(source_values[33],source_values[34],source_values[35]));
  METALLIC = source_values[36]; SPECULAR = source_values[37];
  if (onboard_glass) { ALPHA *= source_values[38]; SPECULAR = source_values[39]; }
+ AO = train_ambient_visibility(COLOR.rg);
+ EMISSION = max(EMISSION, train_ceiling_emission(author_position.z));
 }
