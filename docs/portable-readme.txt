@@ -1,5 +1,24 @@
 TRAIN GAME - KERALA COAST
 
+R32: improved train surface depth and interior lighting across all 22 detailed
+WAP-7, ICF, LHB and Vande Bharat variants. Original geometry and textures remain.
+Fixed simplified shadow meshes appearing over trains and inverted lighting on
+inner surfaces. Ceiling lights stay attached to the carriage while you move.
+See guides/train-fidelity.md and guides/train-fidelity-evidence/gallery.html.
+
+THIS RELEASE: FULL DOWNLOAD ONLY
+Extract the complete R32 ZIP into a new folder and launch TrainGame.exe.
+Update and Play.exe is included for FUTURE incremental releases; R32 itself
+is not offered through the updater. You can also use Play installed (offline).
+Keep this complete installation for future updates. Saved journeys and graphics
+preferences are stored separately in your Windows user profile.
+R29-R31 saves remain compatible. The known native crash is still under investigation.
+Source checks passed: 595 headless tests, day/night checks and five occupied
+formations (91 vehicles, 5,580 passengers). Extra shading costs GPU time;
+Radeon 780M measurements are not RTX 4090 Laptop results. Please inspect the
+WAP exterior near/far and walk through an LHB or VB coach at night.
+
+EARLIER CHANGES
 R31: steadier scenery transitions, lit homes and lower retained station memory.
 Trees use consistent detail/shadow bounds and denser distant view atlases.
 Terrain replacements appear only when complete. Warm/cool domestic windows,

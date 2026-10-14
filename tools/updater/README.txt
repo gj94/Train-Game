@@ -1,5 +1,11 @@
 TRAIN GAME - UPDATE & PLAY v2
 
+FULL-DOWNLOAD-ONLY RELEASES
+Follow the main README.txt for the current release. If it says full download
+only, install its complete ZIP and start TrainGame.exe (or Play installed
+offline). The included updater is ready for later incremental releases; it
+cannot fetch a release while the server offers that release as full ZIP only.
+
 R23 / BENCHMARK SUPPORT
 Replace the previous Update and Play.exe with this v2 launcher once. R23 includes
 the performance improvements, Kerala scenery and both benchmark launcher files.

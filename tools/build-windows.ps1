@@ -83,6 +83,12 @@ try {
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/timetables') -Destination (Join-Path $buildRoot 'guides/timetables') -Recurse -Force
     [IO.File]::WriteAllText($timetableGuide, [IO.File]::ReadAllText($timetableGuide).Replace('../art/performance/timetable-through-2026-10-10/', 'timetable-through-evidence/').Replace('../art/timetables/', 'timetables/'))
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/crowded-2026-10-10') -Destination (Join-Path $buildRoot 'guides/crowded-benchmark-evidence') -Recurse -Force
+    Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/train-fidelity.md') -Destination (Join-Path $buildRoot 'guides/train-fidelity.md')
+    Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/train-fidelity-2026-10-14') -Destination (Join-Path $buildRoot 'guides/train-fidelity-evidence') -Recurse -Force
+    $fidelityGuide = Join-Path $buildRoot 'guides/train-fidelity.md'
+    [IO.File]::WriteAllText($fidelityGuide, [IO.File]::ReadAllText($fidelityGuide).Replace('../art/performance/train-fidelity-2026-10-14/', 'train-fidelity-evidence/'))
+    $fidelityGallery = Join-Path $buildRoot 'guides/train-fidelity-evidence/gallery.html'
+    [IO.File]::WriteAllText($fidelityGallery, [IO.File]::ReadAllText($fidelityGallery).Replace('../../../docs/train-fidelity.md', '../train-fidelity.md'))
     $crowdedGuide = Join-Path $buildRoot 'guides/crowded-benchmark-2026-10-10.md'
     [IO.File]::WriteAllText($crowdedGuide, [IO.File]::ReadAllText($crowdedGuide).Replace('../art/performance/crowded-2026-10-10/', 'crowded-benchmark-evidence/'))
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/corridor-2026-10-10') -Destination (Join-Path $buildRoot 'guides/corridor-rendering-evidence') -Recurse -Force
