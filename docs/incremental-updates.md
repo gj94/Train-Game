@@ -1,16 +1,20 @@
 # Incremental Windows updates
 
-Current publication: **R31**, sequence **33**, from clean source
-`2fe99d9`. It adds smoother scenery transitions,
-lit homes and bounded station caches. Both the full ZIP and Update & Play are
-available. The ZIP is 2,552,571,142 bytes; an R30 installation needs
-2,956,501,229 bytes of changed blocks while reusing
-141,789,798 bytes. The compressed ZIP is the smaller
-download this time; the updater still updates the existing installation in place.
-Only R31 is offered. Retired R30 payloads were removed after verification; old
-signed catalogues remain. See [builds.md](builds.md) for checksums and evidence.
+Current publication: **R32**, sequence **34**, from clean source **d849f35**.
+This release is **full download only**, as requested. Extract its complete
+2,610,886,783-byte ZIP and run `TrainGame.exe` or choose **Play installed (offline)**.
+The full installation includes `Update and Play.exe` for later releases. The
+server currently blocks incremental endpoints and the standalone updater ZIP;
+the signed R32 file/block catalogue is retained locally for future updates.
+Only R32 is offered. R31 payloads were retired after verification; old signed
+catalogues remain. See [builds.md](builds.md) for checksums and evidence.
 
-The LAN page now offers a 15 KB **Update & Play** download. Extract its two files
+For the next release, publish a fresh version with sequence **35 or greater**
+and omit `-FullDownloadOnly`. This re-enables both full downloads and incremental
+updates. Existing R32 folders can then update in place; the launcher discovers
+reusable blocks from their files even without a prior installed-version record.
+
+When incremental downloads are enabled, the LAN page offers a small **Update & Play** download. Extract its two files
 beside an existing `TrainGame.exe` and `TrainGame.pck`, then use the launcher for
 future releases. It updates that same installation. It also supports a fresh
 install into an empty folder, although the full ZIP compresses a first download

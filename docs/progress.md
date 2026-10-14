@@ -1,5 +1,30 @@
 # Progress
 
+## 2026-10-14 — R32 full-download publication
+- Published **R32** from clean source **d849f35**, signed catalogue sequence
+  **34**, at http://192.168.8.183:8765/. Full ZIP is **2,610,886,783 bytes**.
+- Full download only: updater routes and standalone updater ZIP are disabled.
+  The full package includes `Update and Play.exe`; the signed catalogue remains
+  available locally for future releases. Next publication can re-enable both
+  methods with a fresh build and sequence 35 or higher.
+- Shipped the completed train-fidelity pass, its guide and before/after gallery.
+  Original geometry remains intact. No gameplay/simulation/audio changes were
+  made during packaging. Existing 595-test source verification was reused;
+  download-catalogue tests passed 6/6 and the updater harness passed 23 checks.
+- Read-only PCK audit passed **3,600 checks**: 22 detailed variants, 3,206
+  contact-shaded surfaces, all 100 departures and 233 timeline states. ZIP CRCs
+  passed for all 311 files, with all 309 managed hashes, clean source identity,
+  signature, checksum and three served ranges verified. Full-only endpoint
+  policy passed. No extracted-distribution gameplay test was run.
+- Retired R31's verified export directory, ZIP and sidecar after idle-LAN checks,
+  reclaiming **5,650,894,197 bytes**. Small old signed catalogues are preserved.
+  Evidence: `art/performance/r32-release-2026-10-14/`.
+
+Playtest: extract R32 fresh and launch `TrainGame.exe`; check R32 on the loading
+screen. Inspect the WAP-7 near and beyond 65 m, then walk through an LHB or VB
+carriage at night. Ceiling lamps should stay fixed and the aisle remain lit.
+The i9/4090 Laptop benchmark and native crash diagnosis are still outstanding.
+
 ## 2026-10-14 — Train fidelity and material lighting
 - Fixed the shadow-detail transition exposing simplified shadow-only meshes as
   visible train geometry. Shadow proxies remain shadow-only and are hidden when
@@ -34,7 +59,7 @@
   actual-game views, including lit passengers and five resident formations.
 - See `train-fidelity.md` and the unretouched before/after gallery in
   `art/performance/train-fidelity-2026-10-14/`. Timetable, physics, audio and save
-  format are unchanged. This source pass has not replaced the R31 download.
+  format are unchanged. This source pass is now included in R32 above.
 
 Playtest: inspect WAP-7 from the platform, move beyond 65 m and return to check
 for crude overlay geometry. Walk through an ICF/LHB carriage and VB EC at day

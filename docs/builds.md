@@ -1,6 +1,38 @@
 # Windows portable build
 
-Current release: **R31**, smoother scenery transitions, residential night lighting
+Current release: **R32 — full download only**, with improved train surface depth,
+corrected inner-surface lighting and fixed shadow proxies across all 22 detailed
+WAP-7, ICF, LHB and Vande Bharat variants. Published 14 October 2026 from clean
+source **d849f35**, signed catalogue sequence **34**, at
+http://192.168.8.183:8765/.
+Full ZIP: **2,610,886,783 bytes** (2.61 GB), SHA-256
+`bb756536539085ad6a2711e98dec4ebbb34798576062201502986cd21cda4c6c`.
+
+Extract the full ZIP into a new folder and start `TrainGame.exe`. The included
+`Update and Play.exe` is ready for future incremental releases; R32 is not
+available through incremental endpoints or the standalone updater download.
+Its signed file/block catalogue remains on the build PC as the future baseline.
+R29–R31 saves remain compatible. Timetable, physics and audio are unchanged.
+The native crash investigation remains open.
+
+The current runtime already passed **595 headless tests**, 22-model preservation
+checks, native day/night reviews and the five-occupied-train benchmark. Packaging
+used `-SkipTests` after that verification; no gameplay code changed in this
+release preparation. Download-catalogue tests (6) and updater checks (23) passed.
+The read-only PCK audit passed **3,600 checks**, including all 22 detailed models,
+3,206 contact-shaded surfaces, 100 service starts and 233 timeline states.
+All **311 archive-file CRCs** and **309 managed-file SHA-256 hashes**, the ZIP
+checksum, clean BUILD identity, signature and three served ZIP ranges passed.
+No extracted-distribution gameplay test was run. The package includes the train
+fidelity guide and before/after gallery. Evidence:
+[`r32-release-2026-10-14/publication.json`](../art/performance/r32-release-2026-10-14/publication.json).
+
+Only R32 is downloadable. R31's export directory, ZIP and sidecar were removed
+after inventory/hash and idle-LAN checks, freeing **5,650,894,197 bytes**. Older
+signed catalogues remain. Target-PC performance and crash resolution are not
+established by development-PC checks; see [train-fidelity.md](train-fidelity.md).
+
+Previous release: **R31**, smoother scenery transitions, residential night lighting
 and bounded station resource caches. Published 14 October 2026 from clean export
 `2fe99d9`, signed update sequence **33**, at
 http://192.168.8.183:8765/.
@@ -57,8 +89,8 @@ The signed catalogue is retained locally, but the LAN server blocks incremental
 endpoints and the standalone updater download for this release. The full ZIP
 contains the updater for future use. Launch `TrainGame.exe` after extracting R26.
 
-From **R27 onwards**, publish both the full ZIP and signed incremental catalogue:
-use a fresh `-BuildName` and increasing `-UpdateSequence` (29 or greater), and omit
+For the next release after R32, publish both the full ZIP and signed incremental
+catalogue: use a fresh `-BuildName` and increasing `-UpdateSequence` (35 or greater), and omit
 both `-SkipZip` and `-FullDownloadOnly`. `export/download-release.json` switches
 the LAN page only after packaging completes. The server exposes only that current
 release; there are no hard-coded version lists or older fallback download links.
@@ -256,12 +288,12 @@ selected LAN address/interface, TCP port 8765, the Private profile and the local
 subnet. It does not change the network category or disable Windows Firewall.
 Use `-BindAddress <IPv4>` if more than one connected network is available.
 
-The read-only server shows the current signed release and **Update & Play v2**
-first. It supports existing installations and fresh installs into an empty game
-folder. Older full ZIPs, including R23, remain collapsed under a fallback section;
-update after extracting one. Current builds include both benchmark launchers.
-The server supports byte ranges for resuming downloads.
-Stop it before replacing the archive with a new build, then start it again.
+The read-only server offers only the release selected by `download-release.json`.
+R32 is full-download only; standalone updater and incremental endpoints are
+disabled. Future releases can enable both methods. Current builds include both
+benchmark launchers, and the server supports byte ranges for resuming downloads.
+Published payloads are immutable. Build under a new version and switch the policy
+only after packaging finishes; the running server does not need a restart.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/share-build.ps1 -Action Status
