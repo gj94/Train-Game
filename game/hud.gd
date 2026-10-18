@@ -43,7 +43,7 @@ P train protection on / off
 F2 detailed WAP-7 + ICF · F3 detailed WAP-7 + LHB
 F9 new random traffic service / solo imported fleet
 F5 imports/exports service definitions. Changing scenario or restarting asks first.
-Running progress is not saved; service files start a fresh timetable.
+Recovery saves rotate automatically. Service definition files start a fresh timetable.
 
 [b]SOUND & DIAGNOSTICS[/b]
 [ / ] track sound quieter / louder (2 dB)
@@ -243,6 +243,8 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_body.text = "Resume to continue the current service.\n[b]F4[/b] clears the screen; [b]D[/b] opens dispatch."
 			_button(_buttons, "Resume  ·  Esc", "resume")
 			_button(_buttons, "Save journey…", "save:menu:save")
+			_button(_buttons, "Audio settings…", "audio:open")
+			_button(_buttons, "Journey tools & recovery…", "journey:open")
 			_button(_buttons, "Load journey…  ·  Ctrl+L", "save:menu:load")
 			_button(_buttons, "Quick save  ·  Ctrl+S", "save:quick")
 			_button(_buttons, ("Return to window" if DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN,DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN] else "Enter fullscreen")+"  ·  F11 / Alt+Enter", "fullscreen")
@@ -401,6 +403,7 @@ func refresh(s: Dictionary) -> void:
 	_info.text = "%s   ·   %s\n%s   ·   %s / %s%s" % [speed, handle, signal_text, s.train_id, "AI" if s.automatic else "MANUAL", "  [color=#ffca72]PROTECTION OFF[/color]" if not s.protection else ""]
 	_dispatch_notice.text=s.get("dispatch_expectation","")
 	_dispatch_notice.visible=not clean_view and not desk_open and modal.is_empty() and not _dispatch_notice.text.is_empty()
+	_info.text+="\n"+s.get("route_ahead","") if not s.get("route_ahead","").is_empty() else ""
 	_mode.text = preload("res://game/journey_hud.gd").text(s.get("journey",{}))+"\nD%d  %s  ·  ×%d" % [s.world_day, s.world_clock, s.time_scale]
 	# Emergency feedback survives clean view; other diagnostics stay optional.
 	if clean_view and s.emergency and modal == "":

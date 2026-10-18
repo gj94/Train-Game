@@ -254,6 +254,7 @@ func interact() -> void:
 			var found: Dictionary=nav.nearest(target.point,crouched,.3)
 			if found.is_empty(): return
 			position=found.point
+			if "interior_sound" in game and game.interior_sound!=null:game.interior_sound.play("door",.45)
 			_refresh_exits()
 			_fade_time=.22
 		"gangway": _gangway(target.car)

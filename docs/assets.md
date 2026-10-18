@@ -321,3 +321,13 @@ notes, DejaVu/Bitstream and Noto/SIL OFL notices are retained in
 Original packed sign textures and geometry/text outlines are retained.
 See `docs/station-model-port.md` for precise scope, material approximations and
 the distinction between authored buildings and the live CSV operating layout.
+
+## R33 journey sound layers
+
+`assets/sounds/journey/` contains eleven original, seeded 48 kHz mono PCM16
+fan, air, wake and interaction approximations. They are synthesized, not recorded
+Indian rolling stock. Canonical source: sibling
+`railway-clang-simulator/src/journey-sounds.mjs` and
+`tools/export-journey-sounds.mjs`; recovery copies in `tools/audio-source/`.
+`provenance.json` records source and WAV hashes. No external samples were added
+and the approved joint, rolling and squeal banks remain unchanged.

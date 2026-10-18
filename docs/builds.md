@@ -289,8 +289,8 @@ subnet. It does not change the network category or disable Windows Firewall.
 Use `-BindAddress <IPv4>` if more than one connected network is available.
 
 The read-only server offers only the release selected by `download-release.json`.
-R32 is full-download only; standalone updater and incremental endpoints are
-disabled. Future releases can enable both methods. Current builds include both
+R33 offers a full ZIP and signed incremental updates for existing installations.
+R32 was the full-download baseline. Current builds include both
 benchmark launchers, and the server supports byte ranges for resuming downloads.
 Published payloads are immutable. Build under a new version and switch the policy
 only after packaging finishes; the running server does not need a restart.

@@ -59,7 +59,8 @@ func open(kind: String) -> void:
 	game._set_paused(true);game.dispatcher.set_open(false);game._restore_ui()
 	var options:=[["Back","save:back"],["Open saves folder","save:folder"]]
 	for slot in store.slots():
-		var label: String="Quick save" if slot.id=="quick" else "Slot "+slot.id
+		if kind=="save" and slot.id in Store.AUTO:continue
+		var label: String=Store.label(slot.id)
 		var detail: String="Empty"
 		if slot.ok:
 			var s: Dictionary=slot.summary
@@ -69,7 +70,7 @@ func open(kind: String) -> void:
 		if kind=="load" and slot.backup:options.append([label+" — previous backup","save:backup:"+slot.id])
 	if kind=="load" and options.size()==2:options.append(["No saves yet — save your current journey first","save:back"])
 	show("SAVE JOURNEY" if kind=="save" else "LOAD JOURNEY",
-		"Five manual slots and a separate quick save. Loading resumes paused.\nEach overwrite keeps the previous save as a backup.\n"+ProjectSettings.globalize_path(store.directory),options)
+		"Five manual slots, quick save and three rotating recovery slots. Loading resumes paused.\nEach overwrite keeps the previous save as a backup.\n"+ProjectSettings.globalize_path(store.directory),options)
 
 func show(title: String, body: String, options: Array) -> void:
 	game.hud.save_menu={title=title,body=body,options=options}
@@ -107,11 +108,14 @@ func action(command: String) -> void:
 				var result:=save(pending.slot)
 				if result.ok:open("save")
 			elif pending.get("kind")=="load":
+				game.journey_tools.autosave("Before loading another journey",true)
 				game.get_tree().set_meta("resume_session",pending.result)
 				game.get_tree().call_deferred("reload_current_scene")
 				pending.clear()
 
 func back() -> void:
+	var action: String=game.hud.save_menu.get("back_action","save:back")
+	if action!="save:back":game._ui_action(action);return
 	if not pending.is_empty():open(page)
 	else:game.hud.show_modal("pause",game.labels_enabled)
 

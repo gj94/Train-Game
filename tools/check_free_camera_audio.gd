@@ -54,7 +54,9 @@ func _run() -> void:
 	sound.set_process(false);sound.listener_owner=sound
 	car=Node3D.new();root.add_child(car);car.position=Vector3(244,0,0)
 	engine=preload("res://game/engine_audio.gd").new();root.add_child(engine)
-	engine.setup({train=train,cam=camera},{train=train,cars=[car],formation=[{model="wap7"}]},sound)
+	var settings:=preload("res://game/audio_preferences.gd").new()
+	var motion:=preload("res://game/train_motion.gd").new(train,world.graph)
+	engine.setup({train=train,cam=camera,world=world,audio_options=settings,audio_space={}},{train=train,cars=[car],formation=[{model="wap7"}],motion=motion},sound)
 	engine.set_process(false)
 	rolling=capture(sound._buses[0]);traction=capture(engine.BUS)
 	move_to(Vector3(244,2,200));var far_pcm: Vector2=await measure()

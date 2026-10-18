@@ -8,6 +8,7 @@ const TRAIN := ["lifecycle","id","length","path","head_s","speed","odometer","co
 const TIMETABLE := ["departure","stops","index","at_stop","actual_arrivals","actual_departures","missed_stop","passenger_release"]
 const DISPATCH := ["enabled","manual_service","hold_maruthur","operator_holds","inhibited_signals","platform_preferences","states","journal","alerts","revision","cycles","_next_tick","_wait_since","_last_state","_advisory_release_until","_seq"]
 const FUTURE := ["enabled","plans","_next_search"]
+const ARRIVAL := ["station_approach","horn_sequence","horn_pending_at","horn_emitted_at"]
 
 static func signature(w: RailWorld) -> String:
 	# Platform faces/clearance and depot inventory affect valid saved movements too.
@@ -32,6 +33,7 @@ static func capture(w: RailWorld, session: Dictionary = {}) -> Dictionary:
 	var trains:=[];var switches:={}
 	for t: Train in w.trains.values():
 		var data:=fields(t,TRAIN)
+		data.merge(fields(t,ARRIVAL))
 		data.timetable=fields(t.timetable,TIMETABLE) if t.timetable!=null else null
 		data.completed_timetable=fields(t.completed_timetable,TIMETABLE) if t.completed_timetable!=null else null
 		data.shared_timetable=t.timetable!=null and t.timetable==t.completed_timetable
@@ -71,6 +73,14 @@ static func restore(data) -> Dictionary:
 		var stock=preload("res://sim/stock/ported_stock.gd")
 		if stock.resolve_profile(entry.stock_kind.trim_prefix("ported:"),entry.rake_profile) not in stock.profiles(entry.stock_kind.trim_prefix("ported:")):return error("Invalid saved rake")
 		apply(t,entry,TRAIN)
+		# Optional extension: R29-R32 journeys retain compatibility.
+		for key in ARRIVAL:
+			if entry.has(key):
+				if typeof(entry[key]) != typeof(t.get(key)): return error("Invalid arrival state")
+				t.set(key,entry[key])
+		if not t.station_approach.is_empty():
+			if not t.station_approach.get("key") is String or not (t.station_approach.get("ceiling") is float) or not is_finite(t.station_approach.ceiling) or t.station_approach.ceiling<0:return error("Invalid approach speed")
+		if t.horn_sequence<0 or not is_finite(t.horn_pending_at) or not is_finite(t.horn_emitted_at):return error("Invalid departure cue")
 		# R20 and earlier built-in K1 saves retain the retired scenario cap.
 		# Authored packs (including deliberately slower services) remain untouched.
 		if _legacy_passenger_cap(data,t):t.max_speed=110.0/3.6

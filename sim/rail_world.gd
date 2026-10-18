@@ -596,6 +596,7 @@ func step(dt: float) -> void:
 				_drive_automatic(t, slice,prepared[train_index] if not prepared.is_empty() and prepared[train_index].has("envelope") and point_revision==_point_revision else {})
 			if profile_enabled: stamp = _profile_phase("driving", stamp)
 			var previous_distance: float = t.odometer
+			var leaving_platform: bool = t.timetable != null and t.timetable.at_stop and not t.timetable.complete() and t.completed_timetable == null
 			var previous_path: Array = t.path.duplicate() if t.speed > 0 or t.controller > 0 else []
 			_step_train(t, slice)
 			if not previous_path.is_empty():
@@ -605,6 +606,8 @@ func step(dt: float) -> void:
 			if profile_enabled: stamp = _profile_phase("movement", stamp)
 			if t.timetable != null:
 				t.timetable.observe(t, clock_seconds(), t.odometer > previous_distance + 0.000001, _arrival_tolerance(t))
+			preload("res://sim/departure_cues.gd").update(t,clock_seconds(),leaving_platform and t.timetable != null and not t.timetable.at_stop)
+			if t.timetable != null:
 				t.service_complete = t.completed_timetable!=null or t.timetable.complete()
 				if t.service_complete and t.depot.is_empty():
 					t.status = "Arrived at " + t.destination
@@ -732,6 +735,8 @@ func _drive_automatic(t: Train, dt: float = .05, prepared: Dictionary = {}) -> v
 		if t.speed < 0.1:
 			t.status = "Waiting for " + ns.id
 	stop_at = minf(stop_at, _distance_to_obstruction(t, lookahead,prepared) - 3.0)
+	var station_distance := INF
+	var station_zone := 0.0
 	if not scheduled_stop.is_empty():
 		var to_stop := _stop_distance(t.path[0].edge, t.path[0].dir, t.head_s, scheduled_stop, [])
 		if is_inf(to_stop):
@@ -739,6 +744,8 @@ func _drive_automatic(t: Train, dt: float = .05, prepared: Dictionary = {}) -> v
 			t.status = "Cannot reach stop: " + scheduled_stop.block
 			return
 		stop_at = minf(stop_at, to_stop)
+		station_distance = to_stop
+		station_zone = maxf(900.0, float(graph.edges[scheduled_stop.block].length) + 250.0)
 		# A cleared route to the wrong platform is still wrong for this
 		# working. Stop at its entrance; never move points on the AI's behalf.
 		if not ns.is_empty() and signals[ns.id].cleared:
@@ -749,7 +756,7 @@ func _drive_automatic(t: Train, dt: float = .05, prepared: Dictionary = {}) -> v
 				if not contains_stop and is_inf(_stop_distance(last.edge, last.dir, graph.entry_s(last.edge, last.dir), scheduled_stop, [])):
 					stop_at = minf(stop_at, ns.distance - 6.0)
 					t.status = "Route must serve " + scheduled_stop.block
-	AutomaticControl.drive(self, t, stop_at, dt,{} if prepared.is_empty() else prepared.envelope)
+	AutomaticControl.drive(self, t, stop_at, dt,{} if prepared.is_empty() else prepared.envelope,station_distance,station_zone)
 	if t.service_complete and not Depot.active(t):
 		t.controller = -1.0
 

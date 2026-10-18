@@ -4,7 +4,19 @@ const Snapshot := preload("res://sim/world_snapshot.gd")
 # A completed 100-service day retains passenger exchange records for every rake.
 const MAX_BYTES := 64*1024*1024
 const MAGIC := "TRAINGAME-SAVE-1\n"
-const SLOTS := ["quick","1","2","3","4","5"]
+const MANUAL := ["quick","1","2","3","4","5"]
+const AUTO := ["auto1","auto2","auto3"]
+const SLOTS := ["quick","1","2","3","4","5","auto1","auto2","auto3"]
+static func label(slot: String) -> String:
+	return "Quick save" if slot=="quick" else ("Recovery "+slot.trim_prefix("auto") if slot in AUTO else "Slot "+slot)
+func next_auto() -> String:
+	var chosen: String=AUTO[0];var oldest:="9999"
+	for slot in AUTO:
+		var saved:=read_slot(slot)
+		if not saved.ok:return slot
+		var when: String=saved.data.summary.get("saved_at","")
+		if when<oldest:oldest=when;chosen=slot
+	return chosen
 var directory := "user://saves"
 
 func _init(root: String="user://saves") -> void:

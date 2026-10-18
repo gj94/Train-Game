@@ -33,7 +33,7 @@ func setup(owner,train_view,track_sound) -> void:
 
 func _process(delta: float) -> void:
 	if game==null:return
-	var quiet: bool=track._paused or track.reference_mode
+	var quiet: bool=track._paused or track.reference_mode or game.audio_options.reference
 	for voice in voices:
 		voice.player.stream_paused=quiet
 		if not voice.player.playing:continue
@@ -52,7 +52,7 @@ func _process(delta: float) -> void:
 		play_event(state.car,event)
 
 func play_event(car: int,event: Dictionary) -> bool:
-	if track._paused or track.reference_mode or amount<=0:return false
+	if track._paused or track.reference_mode or game.audio_options.reference or amount<=0:return false
 	var available:={}
 	for voice in voices:
 		if not voice.player.playing:available=voice;break

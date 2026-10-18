@@ -30,6 +30,7 @@ func ensure_audio(id: String) -> void:
 	if game.train_audio.has(id): return
 	ensure_view(id)
 	var sound:=Sound.new()
+	sound.game=game
 	game.add_child(sound)
 	sound.motion=game.train_motions[id]
 	if shared_contacts!=null and shared_contacts.graph==game.world.graph:sound.layout=shared_contacts
@@ -49,6 +50,8 @@ func ensure_audio(id: String) -> void:
 	body.name="CoachRattleAudio"
 	roots[id].add_child(body)
 	body.setup(game,game.train_views[id],sound)
+	var air:=preload("res://game/train_air_audio.gd").new()
+	roots[id].add_child(air);air.setup(game,game.train_views[id],sound)
 
 func distance_to(id: String) -> float:
 	if game.world.trains[id].lifecycle != "active": return INF

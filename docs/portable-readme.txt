@@ -1,22 +1,26 @@
 TRAIN GAME - KERALA COAST
 
-R32: improved train surface depth and interior lighting across all 22 detailed
-WAP-7, ICF, LHB and Vande Bharat variants. Original geometry and textures remain.
-Fixed simplified shadow meshes appearing over trains and inverted lighting on
-inner surfaces. Ceiling lights stay attached to the carriage while you move.
-See guides/train-fidelity.md and guides/train-fidelity-evidence/gallery.html.
+R33: smoother AI station approaches, paired departure horns, richer cabin and
+passing-train acoustics, and journey recovery tools. AI no longer accelerates
+again after clearing an entry speed restriction during a booked arrival.
 
-THIS RELEASE: FULL DOWNLOAD ONLY
-Extract the complete R32 ZIP into a new folder and launch TrainGame.exe.
-Update and Play.exe is included for FUTURE incremental releases; R32 itself
-is not offered through the updater. You can also use Play installed (offline).
-Keep this complete installation for future updates. Saved journeys and graphics
-preferences are stored separately in your Windows user profile.
-R29-R31 saves remain compatible. The known native crash is still under investigation.
-Source checks passed: 595 headless tests, day/night checks and five occupied
-formations (91 vehicles, 5,580 passengers). Extra shading costs GPU time;
-Radeon 780M measurements are not RTX 4090 Laptop results. Please inspect the
-WAP exterior near/far and walk through an LHB or VB coach at night.
+DOWNLOAD OR UPDATE
+Download the complete R33 ZIP for a new installation. Existing R32 installations
+can use Update and Play.exe to fetch changed blocks; keep the whole installed
+folder so unchanged data can be reused. Saves and preferences live separately
+in your Windows user profile. Earlier compatible saves remain loadable.
+
+Pause > Audio settings: speaker/headphone/quiet/reference presets and separate
+layer volumes. The approved track PCM is preserved. New fan, air and interaction
+sounds are synthesized approximations, not new field recordings.
+Pause > Journey tools: three rotating recovery saves, clearance notifications,
+route-ahead information, view bookmarks and a local diagnostic ZIP.
+Load journey or Saved journeys on the landing page includes recovery slots.
+Every booked-platform departure has two horn calls 3.5 simulation seconds apart.
+See guides/journey-audio-and-comfort.md for details and playtest steps.
+
+The existing native-crash investigation is not yet resolved. Recovery saves
+limit lost progress; retain diagnostic logs if another crash occurs.
 
 EARLIER CHANGES
 R31: steadier scenery transitions, lit homes and lower retained station memory.

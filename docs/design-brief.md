@@ -9,6 +9,14 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **18 Oct 2026 journey realism:** smoothly brake AI station arrivals without
+  a power burst when entry restrictions end; recover normally after a full red
+  stand. Sound two automatic horn calls a few seconds apart on every booked
+  platform departure, including manual driving. Preserve safety and save/load.
+- **18 Oct 2026 sound and QoL:** position-dependent compartment transmission,
+  passing-train motion/air, own-car structure response and contextual foley;
+  preserve the approved reference. Add layer controls/presets, rotating recovery
+  saves, proceed alerts, route-ahead guidance, camera bookmarks and local diagnostics.
 - **11 Oct 2026 service selection:** land on a controller-friendly timetable
   browser; start any bundled service directly at its prepared departure state,
   including night departures, with the full railway history and AI traffic

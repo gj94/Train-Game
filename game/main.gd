@@ -66,6 +66,11 @@ var _interior_view := false
 var graphics_options := preload("res://game/graphics_options.gd").new()
 var display_options := preload("res://game/display_options.gd").new()
 var save_load
+var audio_options := preload("res://game/audio_preferences.gd").new()
+var audio_space := {}
+var audio_previous_eye := Vector3(INF,INF,INF)
+var journey_tools
+var interior_sound
 var time_skip
 var _resume: Dictionary = {}
 var _prepared: Dictionary = {}
@@ -289,6 +294,8 @@ func _ready() -> void:
 	graphics_options.apply()
 	if not _service_error.is_empty(): hud.toast("Service file could not start: "+_service_error,true)
 	save_load=preload("res://game/save_load.gd").new(self)
+	journey_tools=preload("res://game/journey_tools.gd").new();journey_tools.game=self;add_child(journey_tools)
+	interior_sound=preload("res://game/interior_audio.gd").new();interior_sound.game=self;add_child(interior_sound)
 	time_skip=preload("res://game/time_skip.gd").new()
 	time_skip.game=self
 	add_child(time_skip)
@@ -313,6 +320,7 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
+	if journey_tools!=null:journey_tools.close()
 	journey_diagnostics.close()
 
 
@@ -412,6 +420,7 @@ func _process(delta: float) -> void:
 	if profiling:
 		frame_costs.trains=(Time.get_ticks_usec()-stamp)*.001;stamp=Time.get_ticks_usec()
 	if walker!=null: walker.update(delta)
+	audio_space=preload("res://game/listening_space.gd").sample(self,delta)
 	if passenger_crowd!=null:passenger_crowd.update()
 	if profiling:
 		frame_costs.crowd=(Time.get_ticks_usec()-stamp)*.001;stamp=Time.get_ticks_usec()
@@ -439,6 +448,7 @@ func _process(delta: float) -> void:
 	var ns := world.next_signal(train)
 	hud.refresh({
 		journey=_journey_snapshot,
+		route_ahead=journey_tools.route_text if journey_tools!=null else "",
 		dispatch_expectation=_journey_snapshot.get("dispatch_expectation",""),
 		train_id = train.id,
 		stock_kind = train.stock_kind,
@@ -784,6 +794,10 @@ func _ui_action(action: String) -> void:
 	if time_skip!=null and time_skip.running():
 		if action in ["skip:cancel","skip:back"]:time_skip.cancel()
 		return
+	if action.begins_with("audio:"):
+		preload("res://game/audio_menu.gd").action(self,action);return
+	if action.begins_with("journey:"):
+		journey_tools.action(action);return
 	if action.begins_with("skip:"):
 		time_skip.action(action);return
 	if action=="graphics" or action.begins_with("graphics:"):
@@ -986,6 +1000,7 @@ func _cancel_action() -> void:
 func _confirm_action() -> void:
 	var action := _pending_action
 	_pending_action = ""
+	journey_tools.autosave("Before "+action,true)
 	if action=="landing" or (action=="restart" and (not _prepared_id.is_empty() or _prepared_time>=0)):
 		var timeline: bool=action=="restart" and _prepared_time>=0
 		if timeline:get_tree().set_meta("timeline_clock",_prepared_time)

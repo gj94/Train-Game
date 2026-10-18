@@ -233,7 +233,7 @@ func _saved_entries() -> Array:
 		for backup in [false,true]:
 			if not (slot.backup if backup else slot.ok):continue
 			var info: Dictionary=slot.backup_summary if backup else slot.summary
-			entries.append({id=slot.id+("-backup" if backup else ""),slot=slot.id,backup=backup,name=("Quick save" if slot.id=="quick" else "Slot "+slot.id)+(" · backup" if backup else "")+" · "+str(info.get("title","Journey")),
+			entries.append({id=slot.id+("-backup" if backup else ""),slot=slot.id,backup=backup,name=(preload("res://persistence/save_store.gd").label(slot.id))+(" · backup" if backup else "")+" · "+str(info.get("title","Journey")),
 				service=info.get("service",""),clock="Day %d · %s" % [info.get("day",1),info.get("clock","")],saved_at=info.get("saved_at","")})
 	entries.sort_custom(func(a,b):return a.saved_at>b.saved_at)
 	return entries

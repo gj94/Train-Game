@@ -84,6 +84,7 @@ func start(clock: float, stop: int=-1) -> void:
 	var result: Dictionary=trial.to_stop(game.train.id,stop) if stop>=0 else trial.to_time(clock)
 	if not result.ok:
 		trial=null;game.hud.toast(result.reason,true);return
+	game.journey_tools.autosave("Before time skip",true)
 	game._set_paused(true)
 	game.dispatcher.set_open(false)
 	game.dispatcher.auto_dispatch=true

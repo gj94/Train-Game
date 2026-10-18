@@ -1,5 +1,70 @@
 # Progress
 
+## 2026-10-18 — Journey audio, recovery tools and station driving (R33 preparation)
+- Implemented the previous audio review and six QoL candidates. Listener position
+  now changes compartment transmission; moving AI sources use relative Doppler;
+  nose/body/wake air, own-car joint response, stock-specific auxiliaries and
+  walking/door/brake foley have independent layers. Approved reference PCM stays
+  unchanged. New ambience is authored synthesis, not measured field recordings.
+- Added controller-accessible audio presets/layer controls, three rotating recovery
+  slots with asynchronous detached writes, proceed notifications, route-ahead
+  information, three saved viewpoints/previous-view return and local diagnostic ZIPs.
+- AI arrivals retain a decreasing speed ceiling through entry-restriction clearance,
+  use a gentler final stopping curve, and can restart normally after a complete red
+  signal stand. Safety braking remains immediate. Both manual and AI booked platform
+  departures sound two horn calls 3.5 simulation seconds apart, saved with the railway.
+- RDSO guidance informed the distinction between service comfort and emergency
+  capability. The numerical comfort tuning is authored, not a measured WAP brake
+  profile. See [journey-audio-and-comfort.md](journey-audio-and-comfort.md).
+- Native five-rake audio stress checks passed with 93 vehicles/15 traction emitters:
+  no clipping, sealed-cab attenuation, paired horns and pause. Added engine/air work
+  measured about 0.22 ms median on the development PC. This fixture does not render
+  scenery/passengers and is not a target i9/4090 Laptop FPS benchmark.
+- Source-scene checks passed menu navigation, camera restoration, asynchronous
+  recovery save/readback and diagnostic ZIP contents. Approved reference routing,
+  platform integration and external-camera audio checks also passed.
+- All 613 headless tests pass. Full-day timetable audit and prepared-state
+  regeneration are running. Publication remains gated on their completion; R32
+  is still served. Native integration and audio results are recorded in
+  `art/performance/r33-release-2026-10-18/`.
+
+Playtest after R33 publication: hand a stopping service to AI and watch an entry
+restriction clear without a second run-up. Observe the gentle final metres and two
+horn calls on departure; repeat the horns with manual driving. Compare WAP pilot/
+machinery aisle, coach centre/vestibule/head-out and passing traffic at 60/100 km/h.
+Use Pause → Audio settings and Journey tools; restore a saved viewpoint, load a
+recovery, and create a diagnostic ZIP. Check crowded play on the target laptop.
+
+## 2026-10-15 — Audio realism and QoL review (analysis only)
+- Inspected the active platform/traction/rattle players, listener ownership,
+  walking context, bus routing and original enhanced reference Acoustics.md.
+  No game code, sound banks or release payloads changed; no new listening test.
+- Confirmed onboard mode forces rolling/squeal radial velocity to zero for
+  every source train, including passing AI trains. Native traction/horn Doppler
+  is also disabled. External motion needs a source/listener-relative policy.
+- Cab impact/squeal filters depend on camera category/distance rather than
+  window/door transmission or room geometry. Rolling has a speed shelf only;
+  own-train traction receives a flat 0.6 gain, while passing traction does not
+  receive that reduction. No separate carbody-borne joint transmission exists.
+- Wind-like texture is part of the shared eight-second bogie rolling loop;
+  neither reference nor runtime has an independent passing-train slipstream
+  layer. The rolling speed multiplier caps near 94 km/h. WAP/VB traction uses
+  the same three synthesized harmonic loops. Active walking, doors and brake
+  actions have no dedicated foley routing. Shared track-bus compression merits
+  a multi-train listening/capture check; masking is a hypothesis, not measured.
+- Recommended order: correct passing-source motion and interior routing;
+  establish cab/doorway/vestibule acoustic zones and stock-specific source
+  layers; then add position-dependent pass-by rushing and environment response.
+  Preserve approved reference mode for A/B checks rather than retuning its PCM.
+- QoL candidates: rotating crash-recovery autosaves, clearance notifications,
+  compact upcoming-route/stop guidance, audio presets and layer controls,
+  saved interior viewpoints, and a one-action diagnostic bundle.
+
+Suggested future checks: identical cab walks at rest/60/100 km/h; own-train
+versus opposing/overtaking traffic from cab/head-out/platform; five audible
+trains; paired native captures on headphones and speakers. No playtest or build
+is required for this analysis-only session.
+
 ## 2026-10-14 — R32 full-download publication
 - Published **R32** from clean source **d849f35**, signed catalogue sequence
   **34**, at http://192.168.8.183:8765/. Full ZIP is **2,610,886,783 bytes**.

@@ -1,5 +1,5 @@
 extends RefCounted
-## Continuous, predictive driving. Only the saved controller handle carries state.
+## Continuous, predictive driving with a saved, monotone station approach.
 ## Authority/stop selection belongs to RailWorld; this never clears a signal.
 const COMFORT_FRACTION := .45
 const RESPONSE_SECONDS := 2.0
@@ -46,9 +46,46 @@ static func speed_envelope(w, t: Train) -> Dictionary:
 		distance += w.graph.edges[cur.edge].length
 	return {target=target,must_brake=must_brake,horizon=lookahead}
 
-static func drive(w, t: Train, stop_at: float, dt: float, prepared: Dictionary={}) -> void:
+static func station_curve(t: Train, distance: float) -> float:
+	# Partial service braking followed by a gentler final walking-speed stop.
+	# This is an authored comfort profile, not an emergency braking curve.
+	var comfort := t.service_decel * COMFORT_FRACTION
+	var final_decel := minf(.18, comfort)
+	var final_speed := 2.5
+	var final_distance := final_speed * final_speed / (2 * final_decel)
+	var usable := maxf(0, distance - .35 - t.speed * 1.6)
+	return sqrt(2 * final_decel * usable) if usable < final_distance else sqrt(final_speed * final_speed + 2 * comfort * (usable - final_distance))
+
+static func arrival_target(t: Train, distance: float, zone: float, target: float) -> float:
+	if t.timetable == null or t.timetable.at_stop or not is_finite(distance):
+		t.station_approach.clear()
+		return target
+	var stop: Dictionary = t.timetable.stop_ahead()
+	var key := "%d:%s:%d" % [t.timetable.index, stop.block, stop.direction]
+	if t.station_approach.get("key", "") != key: t.station_approach.clear()
+	if distance <= zone and t.station_approach.is_empty() and t.speed>2.5 and (t.controller < -.015 or t.path[0].edge == stop.block):
+		t.station_approach = {key=key, ceiling=maxf(2.0,t.speed)}
+	if not t.station_approach.is_empty():
+		# A complete stand short of the berth ends the uninterrupted arrival.
+		# Restart under the same station/signal curves, then latch again when
+		# braking resumes. Never crawl hundreds of metres on a stale ceiling.
+		if t.speed<.08 and distance>60:
+			t.station_approach.restarting=true
+			t.station_approach.ceiling=t.max_speed
+		if t.station_approach.get("restarting",false):
+			if t.speed>2.5 and t.controller<-.015:
+				t.station_approach.erase("restarting")
+				t.station_approach.ceiling=t.speed
+		else:
+			t.station_approach.ceiling=minf(t.station_approach.ceiling,maxf(2.0,t.speed))
+			target=minf(target,t.station_approach.ceiling)
+	return minf(target,station_curve(t,distance))
+
+static func drive(w, t: Train, stop_at: float, dt: float, prepared: Dictionary={}, station_distance: float=INF, station_zone: float=0.0) -> void:
 	var envelope:=speed_envelope(w,t) if prepared.is_empty() else prepared
-	var target:=minf(envelope.target,curve(t,stop_at,0.0))
+	var station_is_nearest := is_finite(station_distance) and absf(stop_at-station_distance)<.01
+	var target:=minf(envelope.target,station_curve(t,stop_at) if station_is_nearest else curve(t,stop_at,0.0))
+	target=arrival_target(t,station_distance,station_zone,target)
 	var must_brake: bool=envelope.must_brake or urgent(t,stop_at,0.0)
 	if must_brake or (stop_at < .7 and t.speed < .08):
 		t.controller = -1.0

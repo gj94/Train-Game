@@ -67,3 +67,11 @@ tests controller confirmation/cancellation and moving-coach restoration. Add
    each and continue walking/boarding. Check head-out and free-camera views too.
 4. Overwrite a numbered slot, then load its previous backup. Cancel a load and
    check that the current journey is still intact.
+
+## R33 recovery and diagnostics
+
+Pause → Journey tools provides three rotating recovery slots, written every five
+minutes of active play and before skips/scenario changes. Manual slots and Quick
+save are independent. Load recovery entries from Load journey or the landing
+page. The same menu creates a local diagnostic ZIP with a railway checkpoint,
+settings and recent logs. See [Journey tools](journey-audio-and-comfort.md).

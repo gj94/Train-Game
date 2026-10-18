@@ -32,6 +32,10 @@ var completed_timetable = null # passenger result retained during empty-stock wo
 var depot: Dictionary = {}     # unloading / working / stabled, separate from passenger completion
 var passengers: Dictionary = {} # journey destinations and timed platform exchanges
 var dispatch_priority := 50   # larger number gets the earliest available route
+var station_approach: Dictionary = {} # persistent arrival speed ceiling
+var horn_sequence := 0
+var horn_pending_at := -1.0
+var horn_emitted_at := -1.0
 
 # Performance — defaults roughly an 8-car Indian Railways MEMU.
 var mass := 400000.0            # kg

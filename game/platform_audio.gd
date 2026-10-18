@@ -7,6 +7,30 @@ const Contacts := preload("res://game/track_contacts.gd")
 const Sweep := preload("res://game/contact_sweep.gd")
 const History := preload("res://game/acoustic_history.gd")
 const Timing := preload("res://game/audio_output_timing.gd")
+const Space := preload("res://game/listening_space.gd")
+var game
+var listening := {}
+var _transmission: AudioEffectLowPassFilter
+var _body_player: AudioStreamPlayer
+var _body_pb: AudioStreamPlaybackPolyphonic
+var _body_filter: AudioEffectLowPassFilter
+var _air_room: AudioEffectReverb
+var _room: AudioEffectReverb
+var _body_ids := []
+var _body_context := ""
+
+func enhanced() -> bool:
+	return game!=null and not reference_mode and not game.audio_options.reference
+
+func received(layer: String="track") -> Vector2:
+	return Space.response(listening,game.train==train,layer) if enhanced() else Vector2(1,18000)
+
+func source_pitch(position: Vector3, velocity: Vector3, rolling: bool=false) -> float:
+	if not enhanced():
+		var radial: float=0 if _onboard() else velocity.dot(position-_ear.position)/maxf(.1,position.distance_to(_ear.position))
+		return Model.rolling_pitch(radial) if rolling else 343/(343+radial)
+	if _onboard() and game.train==train:return 1.0
+	return Space.doppler(position,_ear.position,velocity,_receiver_velocity)
 const MAX_IMPACT_CHANNELS := 128
 const MAX_JOINT_ROUTES := 24
 const MAX_SQUEAL_VOICES := 12
@@ -59,6 +83,15 @@ func setup(t: Train,w: RailWorld,listener: Node3D,axles: Array) -> void:
 	_hiss=AudioEffectHighShelfFilter.new()
 	_hiss.cutoff_hz=900; _hiss.resonance=.5; _hiss.db=AudioEffectFilter.FILTER_6DB; _hiss.gain=1.0
 	var rolling_bus := _make_filter_bus("rolling",_hiss)
+	_transmission=AudioEffectLowPassFilter.new();_transmission.cutoff_hz=18000
+	AudioServer.add_bus_effect(AudioServer.get_bus_index(rolling_bus),_transmission)
+	_air_room=AudioEffectReverb.new();_air_room.room_size=.35;_air_room.wet=0;_air_room.dry=1;_air_room.damping=.8
+	AudioServer.add_bus_effect(AudioServer.get_bus_index(rolling_bus),_air_room)
+	_body_filter=AudioEffectLowPassFilter.new();_body_filter.cutoff_hz=650
+	var body_bus:=_make_filter_bus("structure",_body_filter)
+	_room=AudioEffectReverb.new();_room.room_size=.25;_room.damping=.85;_room.wet=0;_room.dry=1
+	AudioServer.add_bus_effect(AudioServer.get_bus_index(body_bus),_room)
+	_body_player=_poly_player(12);_body_player.bus=body_bus;_body_pb=_body_player.get_stream_playback()
 	# Desktop streaming ignores play_stream's per-substream bus argument.
 	# Route the owning AudioStreamPlayer so the shelf reaches the actual PCM.
 	_rolling.bus=rolling_bus
@@ -94,6 +127,9 @@ func set_axles(axles: Array) -> void:
 
 func reset_positions() -> void:
 	super.reset_positions()
+	_body_ids.clear()
+	if _body_player!=null:
+		_body_player.stop();_body_player.play();_body_pb=_body_player.get_stream_playback()
 	_sweep.reset(); _history.clear(); _last_history=-1
 	_cancel_events(true)
 	_recent.clear(); _owner_context.clear()
@@ -103,6 +139,9 @@ func reset_positions() -> void:
 func set_paused(value: bool) -> void:
 	_paused=value
 	reset_positions()
+	if value:
+		if _room!=null:_room.wet=0
+		if _air_room!=null:_air_room.wet=0
 	for player in get_children():
 		if player is AudioStreamPlayer: player.stream_paused=value
 
@@ -112,6 +151,10 @@ func _make_filter_bus(label: String,effect: AudioEffect) -> String:
 	var index := AudioServer.bus_count-1
 	AudioServer.set_bus_name(index,name)
 	AudioServer.set_bus_send(index,BUS)
+	if game!=null:
+		var destination: String="RailRolling" if label=="rolling" else ("RailSqueal" if label.begins_with("squeal") else ("CoachBody" if label=="structure" else "RailImpacts"))
+		preload("res://game/audio_preferences.gd").bus(destination,"TrainOutput")
+		AudioServer.set_bus_send(index,BUS if game.audio_options.reference else destination)
 	AudioServer.add_bus_effect(index,effect)
 	_buses.append(name)
 	return name
@@ -190,6 +233,14 @@ func _process(delta: float) -> void:
 
 func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 	if layout==null or _paused: return
+	if game!=null:listening=game.audio_space
+	var context:="%s:%d" % [train.id,int(listening.get("car",-1))] if enhanced() and game.train==train and listening.get("inside",false) else ""
+	if context!=_body_context:
+		_body_context=context;_body_ids.clear()
+		_body_player.stop();_body_player.play();_body_pb=_body_player.get_stream_playback()
+	if _transmission!=null:_transmission.cutoff_hz=lerpf(_transmission.cutoff_hz,received().y,1-exp(-delta/.1))
+	if _room!=null:_room.wet=float(listening.get("room",0)) if enhanced() else 0.0
+	if _air_room!=null:_air_room.wet=float(listening.get("room",0))*.6 if enhanced() else 0.0
 	_time+=delta
 	Timing.refresh()
 	_start_window=maxf(.16,Timing.prediction_seconds(delta,simulation_rate)+.02)
@@ -214,6 +265,7 @@ func _track_sound(v: float,kmh: float,delta: float=1.0/60.0) -> void:
 	var target := _listener()
 	if _ear.is_empty(): _ear=target.duplicate(); _previous_target=target.position
 	_receiver_velocity=(target.position-_previous_target)/maxf(.00001,delta)
+	if enhanced() and _onboard():_receiver_velocity=listening.get("velocity",Vector3.ZERO)
 	if _receiver_velocity.length()>100: _receiver_velocity=Vector3.ZERO
 	_previous_target=target.position
 	var smooth := 1-exp(-delta/(.008 if _onboard() else .035))
@@ -301,6 +353,9 @@ func _schedule(axle: int,contact: Dictionary,relative: float) -> void:
 	# Retained contacts keep physical identity even when voice-budget virtualized.
 	# Inaudible remote contacts never enter the costly retarded-arrival queue.
 	_events.append(event)
+	if enhanced() and listening.get("inside",false) and game.train==train and identity.vehicle==int(listening.get("car",-1)):
+		var strength: float=.18 if str(listening.model).begins_with("icf_") else .10
+		_body_ids.append({at=time-Data.KERNEL_LEAD,car=identity.vehicle,variant=variant,gain=gain*strength})
 	if arrival-_time<=_start_window: _start_event(event)
 
 func _start_event(event: Dictionary) -> void:
@@ -318,13 +373,14 @@ func _start_event(event: Dictionary) -> void:
 	else:
 		event.route=route.bus; event.playback=route.playback
 		route.player.volume_db=_track.volume_db
-		var gains: Vector2 = Acoustics.stereo(source,_ear.position,_ear.forward,_ear.up,600 if event.bypass else 1600)*event.gain
+		var gains: Vector2 = Acoustics.stereo(source,_ear.position,_ear.forward,_ear.up,600 if event.bypass else 1600)*event.gain*received().x
 		var buffered := Timing.delay_seconds()*simulation_rate
 		output_delay_ms=Timing.delay_seconds()*1000
 		var offset := maxf(0,Data.PAD-delay+buffered)
 		event.output_delay=buffered; event.offset=offset; event.scheduled_at=_time
 		for side in 2:
-			event.ids.append(event.playback.play_stream(_routed[event.variant][side],offset,linear_to_db(maxf(.000001,gains[side])),1))
+			event.ids.append(event.playback.play_stream(_routed[event.variant][side],offset,linear_to_db(maxf(.000001,gains[side])),Space.doppler(source,_ear.position,Vector3.ZERO,_receiver_velocity) if enhanced() else 1.0))
+
 		route.until=maxf(route.until,event.end); route.priority=event.priority
 		if -1 in event.ids:
 			for id in event.ids:
@@ -359,12 +415,18 @@ func _route_for(contact: Dictionary,priority: float,bypass: bool) -> Dictionary:
 	AudioServer.remove_bus_effect(index,0)
 	slot.filter=slot.filter.duplicate()
 	AudioServer.add_bus_effect(index,slot.filter)
-	slot.filter.cutoff_hz=Acoustics.impact_cutoff(contact.source,_ear.position,_onboard(),_enclosed_cab(),_owner_context.get("side",.4))
+	slot.filter.cutoff_hz=minf(received().y,Acoustics.impact_cutoff(contact.source,_ear.position,_onboard(),_enclosed_cab(),_owner_context.get("side",.4)))
 	AudioServer.set_bus_effect_enabled(index,0,not bypass)
 	slot.key=contact.key; slot.source=contact.source; slot.bypass=bypass; slot.until=_time; slot.priority=priority
 	return slot
 
 func _update_events(delta: float) -> void:
+	for i in range(_body_ids.size()-1,-1,-1):
+		var body: Dictionary=_body_ids[i]
+		if body.at<=_time+Timing.delay_seconds()*simulation_rate:
+			if enhanced() and game.train==train and listening.get("inside",false) and listening.get("car",-1)==body.car:
+				_body_pb.play_stream(_kernels[body.variant],maxf(0,_time-body.at+Timing.delay_seconds()*simulation_rate),linear_to_db(maxf(.000001,body.gain)),1)
+			_body_ids.remove_at(i)
 	var onboard:=_onboard()
 	var receiver: Vector3=_receiver_at(0.0) if onboard else _ear.position
 	var window:=_start_window+.02
@@ -393,11 +455,13 @@ func _update_events(delta: float) -> void:
 			for id in event.ids: event.playback.stop_stream(id)
 			_events.remove_at(i); continue
 		if not event.ids.is_empty():
-			var gains: Vector2 = Acoustics.stereo(event.source,_ear.position,_ear.forward,_ear.up)*event.gain
+			var gains: Vector2 = Acoustics.stereo(event.source,_ear.position,_ear.forward,_ear.up)*event.gain*received().x
 			for side in event.ids.size(): event.playback.set_stream_volume(event.ids[side],linear_to_db(maxf(.000001,gains[side])))
 	for route in _routes:
 		if route.until<_time: continue
 		var cutoff := Acoustics.impact_cutoff(route.source,_ear.position,_onboard(),_enclosed_cab(),_owner_context.get("side",.4))
+		cutoff=minf(cutoff,received().y)
+		if enhanced() and game.audio_options.headphones:cutoff=minf(cutoff,Space.directional_cutoff(route.source,_ear.position,_ear.forward))
 		route.filter.cutoff_hz=lerpf(route.filter.cutoff_hz,cutoff,1-exp(-delta/.05))
 
 func _update_rolling(v: float,delta: float) -> void:
@@ -417,9 +481,8 @@ func _update_rolling(v: float,delta: float) -> void:
 		var b: Dictionary=_bogies[i]
 		b.position=b.position.lerp(b.target,1-exp(-delta/(.008 if _onboard() else .04))) if b.started else b.target
 		b.started=true
-		var radial: float=0 if _onboard() else b.velocity.dot(b.target-_ear.position)/maxf(.001,distances[i])
-		b.pitch=lerpf(b.pitch,Model.rolling_pitch(radial),1-exp(-delta/.04))
-		var gains := Acoustics.stereo(b.position,_ear.position,_ear.forward,_ear.up,600)*_roll_gain*Data.MASTER*track_level
+		b.pitch=lerpf(b.pitch,source_pitch(b.target,b.velocity,true),1-exp(-delta/.04))
+		var gains := Acoustics.stereo(b.position,_ear.position,_ear.forward,_ear.up,600)*_roll_gain*Data.MASTER*track_level*received().x
 		for side in 2:
 			_roll_pb.set_stream_volume(b.ids[side],linear_to_db(maxf(gains[side],.000001)))
 			_roll_pb.set_stream_pitch_scale(b.ids[side],b.pitch)
@@ -510,14 +573,14 @@ func _update_squeal(v: float,delta: float) -> void:
 		voice.gain=lerpf(voice.gain,goal,1-exp(-delta/(.075 if voice.wanted else .055)))
 		if not state.is_empty():
 			voice.position=voice.position.lerp(state.source,1-exp(-delta/.012))
-			var radial: float=0 if _onboard() else state.velocity.dot(state.source-_ear.position)/maxf(.1,state.distance)
-			voice.pitch=lerpf(voice.pitch,343/(343+radial),1-exp(-delta/.06))
+			voice.pitch=lerpf(voice.pitch,source_pitch(state.source,state.velocity),1-exp(-delta/.06))
 			var cutoff: float=(3200 if _enclosed_cab() else 12000)/(1+maxf(0,state.distance-4)/30)
+			cutoff=minf(cutoff,received().y)
 			voice.cutoff=lerpf(voice.cutoff,cutoff,1-exp(-delta/.06))
 			voice.filter.cutoff_hz=voice.cutoff
 			voice.edge_db=lerpf(voice.edge_db,state.edge_db,1-exp(-delta/.08))
 			voice.texture.gain=pow(10,voice.edge_db/40)
-		var gains: Vector2 = Acoustics.stereo(voice.position,_ear.position,_ear.forward,_ear.up)*voice.gain*Data.MASTER*track_level
+		var gains: Vector2 = Acoustics.stereo(voice.position,_ear.position,_ear.forward,_ear.up)*voice.gain*Data.MASTER*track_level*received().x
 		for side in 2:
 			voice.playback.set_stream_volume(voice.ids[side],linear_to_db(maxf(.000001,gains[side])))
 			voice.playback.set_stream_pitch_scale(voice.ids[side],voice.pitch)
@@ -537,3 +600,13 @@ func _exit_tree() -> void:
 		var index := AudioServer.get_bus_index(name)
 		if index>=0: AudioServer.remove_bus(index)
 	_buses.clear()
+
+func refresh_mix() -> void:
+	for name in _buses:
+		var destination:="RailImpacts"
+		if name.ends_with("-rolling"):destination="RailRolling"
+		elif name.ends_with("-structure"):destination="CoachBody"
+		elif "-squeal" in name:destination="RailSqueal"
+		var index:=AudioServer.get_bus_index(name)
+		if index>=0:AudioServer.set_bus_send(index,BUS if not enhanced() else destination)
+	reset_positions()
