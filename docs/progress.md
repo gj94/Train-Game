@@ -1,5 +1,40 @@
 # Progress
 
+## 2026-10-18 — Controller QoL (source update after R33)
+- X now opens common train actions directly, with explicit AI/manual labels and
+  disabled driving actions while seated as a passenger. Holding X displays its
+  current shortcuts; sticks cannot accidentally move the view while using them.
+  Existing driving bindings, L3 pilot, R3 free and D-pad coach stepping remain.
+- Fixed the passenger-camera cycle trap: ordinary first/middle/last coach presets
+  participate in the complete Left/Right cycle again. Deliberately occupied seats
+  retain the same-row left/interior/right head-out loop and AI driving lock.
+- Back now returns to the actual caller through train/camera/coach/controller
+  menus and the audio/journey tools, restoring the parent's selected row. Quick
+  actions entered from gameplay close directly to gameplay; entry from Pause
+  returns paused. Confirmation focus is not restored onto destructive actions.
+- Added progress indicators for View and R3 holds. An initial held R3 can enter
+  free view and switch trigger roles in one gesture. Full release is still needed
+  before driving; X-combination releases also prevent held triggers/bumpers leaking.
+- Routed X+A through the guarded handover path instead of bypassing passenger-seat
+  protection; AI/manual changes now report who is driving. Transient help is hidden
+  on pause, UI changes and focus loss. No simulation or save-format changes.
+- Validation: **619 headless tests**, **48 native controller QoL checks**, **112
+  camera-cycle checks** and **130 coach/free-camera navigation checks** pass.
+  The native source-scene fixture checks actual gamepad events, GUI focus, nested
+  Back, seated locks, held-input isolation and hold feedback. Inspected 1280×720
+  menu/shortcut screenshots; the graphics compatibility renderer and dummy audio
+  were used for UI validation, not a visual-fidelity, audio or target-PC benchmark.
+- No export or distribution test. **R33 is still the published download**; these
+  changes are available in the source checkout for the next release.
+
+Playtest from source: tap X, hand driving to AI, and hold X to inspect its shortcuts.
+Visit Camera & passengers → passenger list → any-coach list; press B repeatedly and
+check that focus returns to the row you left. Repeat through Audio and Journey tools.
+Cycle Left/Right through all ordinary coach views, then sit and check both row
+head-outs. Hold R3 from pilot until the trigger-mode switch completes; release all
+controls before driving. Hold View for progress. A physical Xbox-controller comfort
+check on the target laptop remains the user's playtest.
+
 ## 2026-10-18 — R33 publication
 - Published **R33** from clean source **34da952**, signed catalogue sequence **35**,
   at http://192.168.8.183:8765/. Full ZIP: **2,615,212,221 bytes** (2.62 GB), SHA-256

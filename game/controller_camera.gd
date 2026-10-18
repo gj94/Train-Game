@@ -101,7 +101,9 @@ static func button(pad, event: InputEventJoypadButton) -> bool:
 	else:
 		pad._camera_down=false
 		var direction: int=-1 if id==JOY_BUTTON_DPAD_LEFT else 1
-		if g.cam.mode==2 or g._passenger_head_out():
+		# Only a deliberately occupied passenger seat owns the row head-out loop.
+		# Aisle/preset views must remain part of the complete camera cycle.
+		if g._passenger_seated():
 			var side: int=g.cam.head_out_side if g._passenger_head_out() else 0
 			var next: int=posmod(side+direction+1,3)-1
 			if next==0:g._enter_passenger()
@@ -111,6 +113,10 @@ static func button(pad, event: InputEventJoypadButton) -> bool:
 			var next:=posmod(choices.find(current(g))+direction,choices.size())
 			select(g,choices[next])
 	if walking or (was_free and (g.cam.mode!=0 or g.cam.follow)):pad.neutralize()
+	if id==JOY_BUTTON_RIGHT_STICK and not was_free:
+		# Preserve this deliberate hold across the initial transition to free view.
+		# The gesture blocks all movement/driving; switching still needs full release.
+		pad._context="free";pad._camera_down=true;pad._camera_hold_time=0;pad._armed=true
 	return true
 
 

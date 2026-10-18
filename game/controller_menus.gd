@@ -14,11 +14,15 @@ static func build(hud, kind: String) -> void:
 				["Invert vertical look: " + ("ON" if options.get("invert",false) else "OFF"),"pad_setting:invert"],
 				["Vibration: %d%%" % roundi(options.get("vibration",.35)*100),"pad_setting:vibration"],
 				["Restore controller defaults","pad_setting:defaults"],
-				["Back","fleet_back"]]
+				["Back","pad_back"]]
 		"controller_actions":
+			var state: Dictionary=hud.controller_options
+			var locked: bool=state.get("passenger_seated",false)
 			hud._heading.text = "TRAIN & VIEW ACTIONS"
-			hud._body.text = "Choose a group. Selecting an action resumes the simulation.\nD-pad / left stick move · A select · B back."
-			entries = [["Driving & signals","train_controls"],["Camera & passengers","view_controls"],["Sound & joint diagnostics","sound_controls"],["Back","fleet_back"]]
+			hud._body.text = ("[b]AI is driving · passenger seat[/b]\nStand before using driving commands." if locked else ("[b]AI is driving[/b]" if state.get("automatic",false) else "[b]You are driving[/b]"))+"\nA select · B return"+(" · Hold X in gameplay to see shortcuts." if state.get("chords",true) else " · Layout: Train Game legacy")
+			entries = [["Resume journey" if state.get("quick_from_game",false) else "Back","pad_back"]]
+			if locked:entries.append(["Stand up from passenger seat","padcmd:stand"])
+			entries.append_array([["Take over driving" if state.get("automatic",false) else "Let AI drive","padcmd:ai"],["Sound horn","padcmd:horn"],["Coast","padcmd:coast"],["Release emergency brake" if state.get("emergency",false) else "Emergency brake","padcmd:emergency"],["Journey progress","padcmd:progress"],["Dispatch desk","padcmd:dispatch"],["Camera & passengers…","view_controls"],["Driving & signals…","train_controls"],["Sound & audio settings…","sound_controls"],["Controller settings…","controllers"]])
 		"train_controls":
 			hud._heading.text = "DRIVING & SIGNALS"
 			hud._body.text = "Obey signals and speed limits. Emergency release and changing ends still require a stand."
@@ -38,4 +42,10 @@ static func build(hud, kind: String) -> void:
 			hud._heading.text = "SOUND & JOINT DIAGNOSTICS"
 			hud._body.text = "Adjust track sound and second-axle balance, or show the physical contact markers."
 			entries = [["Audio mix & presets…","audio:open"],["Recovery & local diagnostics…","journey:open"],["Track sound quieter","padcmd:track_down"],["Track sound louder","padcmd:track_up"],["Second axle quieter","padcmd:clang_down"],["Second axle louder","padcmd:clang_up"],["Rail-joint markers ON / OFF","padcmd:joints"],["Performance overlay ON / OFF","padcmd:performance"],["Back","controller_actions"]]
-	for entry in entries: hud._button(hud._buttons,entry[0],entry[1])
+	for entry in entries:
+		var action: String="pad_back" if entry[0]=="Back" else entry[1]
+		var button: Button=hud._button(hud._buttons,entry[0],action)
+		if hud.controller_options.get("passenger_seated",false) and action in ["padcmd:ai","padcmd:horn","padcmd:coast","padcmd:emergency","padcmd:reverse","padcmd:protection"]:
+			button.disabled=true;button.tooltip_text="AI drives while you occupy a passenger seat. Stand first."
+		elif action=="padcmd:reverse" and not hud.controller_options.get("stopped",true):
+			button.disabled=true;button.tooltip_text="Stop the train before changing ends."

@@ -4,6 +4,8 @@ const Shape := preload("res://game/controller_math.gd")
 const Camera := preload("res://game/controller_camera.gd")
 const TSW := preload("res://game/controller_tsw.gd")
 const CameraMotion := preload("res://game/controller_camera_motion.gd")
+const Assist := preload("res://game/controller_assist.gd")
+const MENU_PAGES := ["controller_actions","train_controls","view_controls","sound_controls","points","controllers","passengers","coaches"]
 const HELP := TSW.HELP
 const LEGACY_HELP := """[b]XBOX CONTROLLER · 360 / ONE / SERIES / ELITE[/b]
 RT increase power / release brake · LT reduce power / apply brake.
@@ -43,6 +45,7 @@ const KEYS := {
 	"protection":KEY_P, "time":KEY_T, "history":KEY_F8, "performance":KEY_F10,
 	"track_down":KEY_BRACKETLEFT, "track_up":KEY_BRACKETRIGHT,
 	"clang_down":KEY_COMMA, "clang_up":KEY_PERIOD, "joints":KEY_J,
+	"progress":KEY_F12,
 }
 var game
 var active_device := -1
@@ -59,6 +62,7 @@ var _free_train_controls := false
 
 var _operation_down := false
 var _operation_used := false
+var _operation_time := 0.0
 var _view_down := false
 var _view_used := false
 var _view_time := 0.0
@@ -69,9 +73,14 @@ var _focused := true
 var _context := ""
 var _direction := Vector2i.ZERO
 var _repeat_time := 0.0
+var _assist
+var _menu_parents := {}
+var _returning_menu := false
 
 func _ready() -> void:
 	_load_settings()
+	_assist = Assist.new()
+	game.hud.add_child(_assist)
 	Input.ignore_joypad_on_unfocused_application = true
 	# This router owns pad repeat, focus and popup input; keep native keyboard bindings.
 	for action in InputMap.get_actions():
@@ -119,6 +128,7 @@ func _connection_changed(device: int, connected: bool) -> void:
 
 func neutralize() -> void:
 	TSW.reset(self)
+	if _assist != null: _assist.hide()
 	_armed = false
 	_direction = Vector2i.ZERO
 	_repeat_time = 0
@@ -148,7 +158,7 @@ func drive_handle(current: float, travel: float) -> float:
 	return TSW.handle(self,current,travel) if tsw_layout else clampf(current+direction*travel,-1,1)
 
 func walk_input() -> Vector2:
-	if active_device<0 or not _armed or not _focused or game.paused or _ui_open() or _camera_down: return Vector2.ZERO
+	if active_device<0 or not _armed or not _focused or game.paused or _ui_open() or _camera_down or _operation_down: return Vector2.ZERO
 	return Shape.stick(Vector2(_axes[0],_axes[1]),deadzone)
 
 func walk_running() -> bool:
@@ -243,13 +253,39 @@ func shortcut(action: String) -> void:
 	event.set_meta("controller_command",true)
 	event.pressed = true
 	# Reuse the keyboard command path without injecting a held keyboard state.
+	var was_ai: bool = game.train.automatic
 	game._unhandled_input(event)
+	if action=="ai" and game.train.automatic!=was_ai:
+		var binding: String="X + A" if tsw_layout or game.walker.active else "A"
+		game.hud.toast("AI driving · "+binding+" to take over" if game.train.automatic else "You are driving · handle at coast")
 
 func perform(action: String) -> void:
 	game.hud.show_modal("")
 	game._set_paused(false)
 	if action.begins_with("station"): game.cam.set_mode(0)
 	shortcut(action)
+
+func remember_menu_entry(page: String) -> void:
+	if _returning_menu or page not in MENU_PAGES or game.hud.modal==page:return
+	# Store the actual caller, including an empty caller for an X tap in gameplay.
+	_menu_parents[page]=game.hud.modal
+
+func remember_overlay_entry(page: String) -> void:
+	if not _returning_menu and game.hud.modal!="saved_games":_menu_parents[page]=game.hud.modal
+
+func menu_back(page: String="") -> void:
+	if page.is_empty():page=game.hud.modal
+	var parent: String=_menu_parents.get(page,"pause")
+	if parent==page:parent="pause"
+	_returning_menu=true
+	if parent.is_empty():
+		game.hud.show_modal("");game._set_paused(false)
+	elif parent=="pause":game.hud.show_modal("pause",game.labels_enabled)
+	else:game._ui_action(parent)
+	_returning_menu=false
+
+func action_context() -> Dictionary:
+	return {automatic=game.train.automatic, passenger_seated=game._passenger_seated(), walking=game.walker.active, emergency=game.train.emergency, stopped=absf(game.train.speed)<.1, quick_from_game=_menu_parents.get("controller_actions","pause")=="", chords=tsw_layout or game.walker.active}
 
 func _service_ui() -> bool:
 	return game.get("service_editor") != null and game.service_editor.visible
@@ -344,6 +380,8 @@ func _back() -> void:
 	if _service_ui():
 		game._close_services()
 		return
+	if game.hud.modal in MENU_PAGES:
+		menu_back();return
 	if game.hud.modal.begins_with("graphics"):
 		game.graphics_options.back();return
 	match game.hud.modal:
@@ -384,7 +422,9 @@ func _process(delta: float) -> void:
 		if context=="free":_free_train_controls=false
 		_context = context
 		neutralize()
-	if active_device < 0 or not _focused: return
+	if active_device < 0 or not _focused:
+		if _assist!=null:_assist.hide()
+		return
 	if not _armed and _neutral(): _armed = true
 	if not game.paused and not _ui_open() and _armed:CameraMotion.tick(self,delta)
 	var right := Shape.stick(Vector2(_axes[2],_axes[3]),deadzone)
@@ -415,14 +455,15 @@ func _process(delta: float) -> void:
 		var zoom := float(int(_buttons.has(JOY_BUTTON_RIGHT_SHOULDER))-int(_buttons.has(JOY_BUTTON_LEFT_SHOULDER)))
 		Camera.apply(game.cam,look,left if game.cam.mode == 0 else Vector2.ZERO,zoom,delta)
 		# Passenger LS translation is handled by CameraMotion in both layouts.
+	if _assist!=null:_assist.update_pad(self)
 	# Menu navigation must not read train state while the skip worker owns it.
 	if _ui_open():
 		var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect/select · LB/RB areas · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
 		game.hud.set_controller_hint(menu_hint)
 		return
 	var driving_hint: String=TSW.hint(self) if tsw_layout or game.walker.active else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · D-pad cameras · LS click pilot · RS click free"
-	if game.cam.mode==2:driving_hint="LS move inside coach · RS look · D-pad up/down coaches · LS click pilot · RS click free"
-	if CameraMotion.is_free(game.cam):driving_hint=CameraMotion.hint(self)
+	if game.cam.mode==2 and not game._passenger_seated():driving_hint="LS move inside coach · RS look · D-pad up/down coaches · LS click pilot · RS click free · X actions"
+	if CameraMotion.is_free(game.cam) and not _operation_down:driving_hint=CameraMotion.hint(self)
 	game.hud.set_controller_hint(driving_hint if _armed else "Release controller sticks, triggers and buttons to continue")
 
 func _scroll_tree(node: Node, offset: Vector2) -> void:
@@ -454,6 +495,7 @@ func open_settings() -> void:
 	var name := Input.get_joy_name(active_device) if active_device >= 0 else "No controller connected"
 	if name.is_empty(): name = "Standard gamepad"
 	game.hud.controller_options = {name=name,deadzone=deadzone,sensitivity=sensitivity,invert=invert_y,vibration=vibration,tsw=tsw_layout}
+	game.hud.controller_options.merge(action_context(),true)
 	game.hud.controller_help = HELP if tsw_layout else LEGACY_HELP
 	game.hud.show_modal("controllers")
 

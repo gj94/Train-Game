@@ -13,7 +13,8 @@ Free: LS moves, RS looks, RT/LT zoom, LB/RB lower/raise.
 Hold RS for 0.65 s to switch triggers between zoom and train control; release controls after switching.
 Y stand up / sit down · A context interaction · B back. Change ends in X → Driving actions.
 Passenger seat: AI drives; stand up before driving again. D-pad left/right leans out at your row.
-Tap X for Train & view actions. Hold X+A AI/manual, X+B emergency, X+RB coast, X+Y horn.
+Tap X for quick Train & view actions. Hold X to see its button shortcuts.
+Hold X+A AI/manual, X+B emergency, X+RB coast, X+Y horn.
 View/Back opens dispatch; hold View for service progress. Menu/Start pauses.
 
 [b]ON FOOT[/b]
@@ -47,6 +48,7 @@ static func reset(pad) -> void:
 	pad._camera_down=false
 	pad._camera_hold_time=0
 	pad._operation_down=false
+	pad._operation_time=0
 	pad._view_down=false
 
 static func button(pad, event: InputEventJoypadButton) -> void:
@@ -55,10 +57,12 @@ static func button(pad, event: InputEventJoypadButton) -> void:
 
 	if id==JOY_BUTTON_X:
 		if event.pressed:
-			pad._operation_down=true;pad._operation_used=false
+			pad._operation_down=true;pad._operation_used=false;pad._operation_time=0
 		elif pad._operation_down:
+			var used: bool=pad._operation_used
 			pad._operation_down=false
-			if not pad._operation_used: g._ui_action("controller_actions")
+			if not used: g._ui_action("controller_actions")
+			else:pad.neutralize() # A held horn/run/bumper must not leak into driving.
 		return
 	if id==JOY_BUTTON_BACK:
 		if event.pressed: pad._view_down=true;pad._view_used=false;pad._view_time=0
@@ -70,7 +74,7 @@ static func button(pad, event: InputEventJoypadButton) -> void:
 	if pad._operation_down:
 		pad._operation_used=true
 		match id:
-			JOY_BUTTON_A: g.dispatcher.toggle_driver()
+			JOY_BUTTON_A: pad.shortcut("ai")
 			JOY_BUTTON_B:
 				pad.shortcut("emergency")
 				if g.train.emergency: pad._rumble()
@@ -92,6 +96,10 @@ static func button(pad, event: InputEventJoypadButton) -> void:
 
 static func process(pad, left: Vector2, right: Vector2, delta: float) -> void:
 	var g=pad.game
+	if pad._operation_down:
+		pad._operation_time+=delta
+		return
+	if pad._camera_down:return
 
 	if pad._view_down:
 		pad._view_time+=delta

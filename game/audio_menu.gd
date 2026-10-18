@@ -1,9 +1,10 @@
 extends RefCounted
 const NAMES:={"master":"Master volume","traction":"Motors, fans & horn","rolling":"Rolling wheels","impacts":"Rail joints","squeal":"Curve squeal","wind":"Passing air & wind","body":"Coach body & rattles","ambience":"Interior & movement"}
 static func show(game,page: String="open",focus: int=0) -> void:
+	game.controller.remember_overlay_entry("audio")
 	game._set_paused(true);game.dispatcher.set_open(false)
 	var prefs=game.audio_options
-	var options:=[["Back","save:back"]]
+	var options:=[["Back","pad_return:audio"]]
 	var title:="AUDIO";var body:="Tune the mix for your speakers or headphones. Settings are saved for this PC.\nReference keeps the approved track mix for comparison."
 	if page=="levels":
 		title="AUDIO LAYERS";body="Choose a layer to adjust its volume. Changes take effect when you resume."

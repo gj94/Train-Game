@@ -69,8 +69,9 @@ func _process(delta: float) -> void:
 			if normal_on_clear and game.time_scale!=1:game._set_time_scale(1)
 		_held.clear()
 func show() -> void:
+	game.controller.remember_overlay_entry("journey")
 	game._set_paused(true);game.dispatcher.set_open(false)
-	var options:=[["Back","save:back"]]
+	var options:=[["Back","pad_return:journey"]]
 	for item in [["autosaves","Five-minute recovery saves"],["clearance_alert","Proceed-signal notification"],["normal_on_clear","Return to ×1 when cleared"],["route_strip","Route-ahead information"]]:
 		options.append([item[1]+": "+("ON" if get(item[0]) else "OFF"),"journey:toggle:"+item[0]])
 	options.append(["Save a recovery point now","journey:save"])
@@ -81,6 +82,7 @@ func show() -> void:
 	options.append(["Create local diagnostic ZIP","journey:diagnostics"])
 	options.append(["Open diagnostics folder","journey:folder"])
 	game.save_load.show("JOURNEY TOOLS","Recovery saves rotate through three slots every five minutes of active play, and always before a time skip or scenario change. Load them from Load journey.\nViewpoints belong to their service; restoring a passenger seat still hands driving to AI.\nDiagnostics stay on this PC until you choose to share them.",options)
+	game.hud.save_menu.back_action="pad_return:journey"
 func action(command: String) -> void:
 	var parts:=command.split(":")
 	match parts[1]:

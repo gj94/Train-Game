@@ -75,6 +75,8 @@ var _shade: ColorRect
 var _heading: Label
 var _body: RichTextLabel
 var _buttons: VBoxContainer
+var _menu_focus := {}
+var _dialog: PanelContainer
 var _toast_time := 0.0
 var _critical_toast := false
 var can_skip_stop := false
@@ -145,6 +147,8 @@ func _ready() -> void:
 	_pad_hint.add_theme_constant_override("outline_size", 5)
 	_pad_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_pad_hint.visible = false
+	get_viewport().size_changed.connect(_resize_modal)
+	_resize_modal()
 
 func _panel_style() -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
@@ -196,6 +200,7 @@ func _build_modal() -> void:
 	_shade.color = Color(0.005, 0.015, 0.025, 0.72)
 	_shade.mouse_filter = Control.MOUSE_FILTER_STOP
 	var dialog := PanelContainer.new()
+	_dialog=dialog
 	_shade.add_child(dialog)
 	dialog.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 	dialog.offset_left = -400
@@ -227,15 +232,18 @@ func _build_modal() -> void:
 	_shade.visible = false
 
 func show_modal(kind: String, labels_on: bool = false, description: String = "") -> void:
+	var old_focus:=get_viewport().gui_get_focus_owner()
+	if old_focus!=null and _buttons.is_ancestor_of(old_focus):
+		_menu_focus[modal]=old_focus.get_meta("action","")
 	modal = kind
 	_shade.visible = kind != ""
 	for button in _buttons.get_children():
 		_buttons.remove_child(button)
 		button.queue_free()
 	_body.scroll_to_line(0)
-	_body.size_flags_vertical=Control.SIZE_FILL if kind in ["saved_games","time_skip"] else Control.SIZE_EXPAND_FILL
-	_body.custom_minimum_size.y=210 if kind=="time_skip" else (125 if kind=="saved_games" else 0)
-	_button_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL if kind in ["saved_games","time_skip"] else Control.SIZE_FILL
+	_body.size_flags_vertical=Control.SIZE_FILL if kind in ["saved_games","time_skip","controller_actions"] else Control.SIZE_EXPAND_FILL
+	_body.custom_minimum_size.y=210 if kind=="time_skip" else (125 if kind=="saved_games" else (100 if kind=="controller_actions" else 0))
+	_button_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL if kind in ["saved_games","time_skip","controller_actions"] else Control.SIZE_FILL
 	if kind.begins_with("graphics"):preload("res://game/graphics_menu.gd").build(self,kind)
 	match kind:
 		"pause":
@@ -281,7 +289,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_heading.text = "GO TO PASSENGER COACH"
 			_body.text = "Works while moving, including WAP-7 trains.\nYou keep your service, power/brake and AI setting. Y / E stands to walk inside; LS click returns to the pilot.\nThis is a viewpoint transfer; WAP-7 has no passenger gangway."
 			for coach in controller_options.get("coaches",[]):_button(_buttons,coach.label,"coach:"+str(coach.index))
-			_button(_buttons,"Back","passengers")
+			_button(_buttons,"Back","pad_back")
 		"passengers":
 			_heading.text = "PASSENGER COACHES"
 			_body.text = "Go to a coach while moving, including WAP-7 trains. Your driving controls stay set.\nY / E stands to walk inside; LS click returns to the pilot.\n[b]1 / 2 / 3[/b] selects first/middle/last; [b]PgUp/PgDn[/b] visits any coach."
@@ -289,7 +297,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "First passenger coach  ·  Alt+1", "pax:0")
 			_button(_buttons, "Middle passenger coach  ·  Alt+2", "pax:1")
 			_button(_buttons, "Last passenger coach  ·  Alt+3", "pax:2")
-			_button(_buttons, "Back", "fleet_back")
+			_button(_buttons, "Back", "pad_back")
 		"progress":
 			_heading.text = "JOURNEY PROGRESS  /  PAUSED"
 			_body.text = description
@@ -324,6 +332,13 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 		if focus != null: focus.release_focus()
 	_refresh_visibility()
 
+func _resize_modal() -> void:
+	if _dialog==null:return
+	var available:=get_viewport().get_visible_rect().size-Vector2(32,32)
+	var half:=Vector2(minf(800,available.x),minf(730,available.y))*.5
+	_dialog.offset_left=-half.x;_dialog.offset_right=half.x
+	_dialog.offset_top=-half.y;_dialog.offset_bottom=half.y
+
 func focus_action(action: String) -> void:
 	for button in _buttons.get_children():
 		if button.get_meta("action","")==action:
@@ -331,6 +346,11 @@ func focus_action(action: String) -> void:
 
 func focus_first() -> void:
 	if modal.is_empty(): return
+	# Confirmations always start on Cancel, never a remembered destructive action.
+	if modal in ["pause","controller_actions","train_controls","view_controls","sound_controls","points","controllers","passengers","coaches"]:
+		for button in _buttons.get_children():
+			if button.get_meta("action","")==_menu_focus.get(modal,"") and not button.disabled:
+				button.grab_focus();return
 	for button in _buttons.get_children():
 		if not button.disabled and button.is_visible_in_tree():
 			button.grab_focus()

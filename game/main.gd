@@ -794,6 +794,11 @@ func _ui_action(action: String) -> void:
 	if time_skip!=null and time_skip.running():
 		if action in ["skip:cancel","skip:back"]:time_skip.cancel()
 		return
+	if action=="pad_back":controller._back();return
+	if action.begins_with("pad_return:"):controller.menu_back(action.trim_prefix("pad_return:"));return
+	if action in ControllerInput.MENU_PAGES:
+		controller.remember_menu_entry(action)
+		hud.controller_options.merge(controller.action_context(),true)
 	if action.begins_with("audio:"):
 		preload("res://game/audio_menu.gd").action(self,action);return
 	if action.begins_with("journey:"):

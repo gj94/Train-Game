@@ -14,6 +14,8 @@ static func tick(pad, delta: float) -> void:
 		pad.neutralize()
 static func input(pad, left: Vector2, right: Vector2, delta: float) -> bool:
 	var g=pad.game
+	if pad._operation_down:return false # Modifier router owns the assist and both sticks.
+	if pad._camera_down:return true # Holding RS changes mode; it must not move/zoom.
 	if pad._view_down:return false # Keep the held View/progress gesture in its router.
 	if is_free(g.cam):
 		var look: Vector2=right*pad.sensitivity

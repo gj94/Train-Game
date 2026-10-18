@@ -12,6 +12,31 @@ Connect over USB or a Windows-supported wireless connection before or during pla
 Elite paddles use the buttons assigned in the controller's own profile. The Xbox
 Guide button remains a Windows function. No additional game driver is required.
 
+## Controller QoL update (after R33; not yet published)
+
+- Tap **X** for direct AI handover, horn, coast, emergency brake, journey progress
+  and dispatch actions. The menu names the current driver and disables driving
+  commands while you occupy a passenger seat. Existing X combinations still work.
+- Hold **X** to display a compact, state-aware shortcut legend. Both sticks stop
+  moving the viewpoint while you choose. After a combination, release the controls
+  before driving again so a held run/zoom trigger or bumper cannot change power.
+- **B** returns one level through train actions, cameras, passengers, coaches,
+  controller settings, audio and journey tools, restoring the parent action row. An X menu opened from gameplay
+  returns straight to gameplay; one opened from Pause returns to Pause. Confirmation
+  dialogs continue to start on Cancel.
+- **View** and **RS** holds show a progress indicator. Holding RS on the initial
+  transition into free view now completes the gesture without a second press.
+- Ordinary passenger camera presets participate in the full Left/Right camera
+  cycle again. Only an occupied passenger seat uses the local seat/left-head-out/
+  right-head-out loop. L3 pilot, R3 free and Up/Down coach stepping are unchanged.
+- AI/manual changes show explicit feedback. The X+A chord obeys the same
+  passenger-seat lock as the keyboard and menus.
+
+Validation uses `tools/check_controller_qol.gd` against the source scene, plus
+the headless controller tests and existing camera-cycle/navigation checks. It does
+not launch an extracted download. Hold legends are presentation only; no changes
+to railway simulation or saved-journey format.
+
 ## Default: TSW-style immersive
 
 Based on Dovetail's [Train Sim World Controls Guide](https://support.dovetailgames.com/hc/en-us/articles/36105734473234-Train-Sim-World-Controls-Guide)

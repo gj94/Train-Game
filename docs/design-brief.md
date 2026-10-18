@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **18 Oct 2026 controller QoL:** expose frequent driving actions without nested
+  menus or memorised combinations; show contextual shortcut and hold feedback.
+  Preserve the requested camera buttons, fix camera-cycle traps, return through
+  menu parents with remembered focus, and prevent held-input or passenger-seat
+  transitions from accidentally taking control of the train.
 - **18 Oct 2026 journey realism:** smoothly brake AI station arrivals without
   a power burst when entry restrictions end; recover normally after a full red
   stand. Sound two automatic horn calls a few seconds apart on every booked
