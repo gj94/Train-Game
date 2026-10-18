@@ -65,3 +65,12 @@ func test_machinery_transition_is_continuous_while_walking():
 	var before:=Space.response(Space.compartment("wap7",Vector3(0,2,5.99),20.4,0),true,"traction")
 	var after:=Space.response(Space.compartment("wap7",Vector3(0,2,6.01),20.4,0),true,"traction")
 	return absf(before.x-after.x)<.01 and absf(before.y-after.y)<100
+
+func test_passing_body_rush_does_not_jump_a_coach_length() -> bool:
+	var air:=preload("res://game/train_air_audio.gd")
+	var first:=Transform3D(Basis(Vector3.UP,.7),Vector3(100,0,50))
+	var second:=first*Transform3D(Basis.IDENTITY,Vector3(0,0,24))
+	var listener:=first*Vector3(8,3,12)
+	var before:=air.body_position(first,24,listener)
+	var after:=air.body_position(second,24,listener)
+	return before.distance_to(after)<.21 and before.distance_to(listener)<9 and after.distance_to(listener)<9

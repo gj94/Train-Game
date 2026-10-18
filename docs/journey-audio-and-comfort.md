@@ -37,6 +37,8 @@ power/brake handle ramp is retained; this is not a complete pneumatic brake-pipe
   do not become fictitious velocities.
 - Each nearby train has three bounded air sources: nose, nearest body and wake.
   Air continues to build above 100 km/h; body/gap exposure and distance shape a pass.
+  The body rush follows the closest point along a car, avoiding a car-length jump
+  when the nearest coach changes.
   Open head-out viewpoints expose the listener to own-train air.
 - The occupied car has a separate low-frequency joint/body response scheduled at
   physical wheel contact, alongside the airborne rail sound. It does not remain
@@ -84,9 +86,13 @@ Open **Pause → Journey tools & recovery** (also reachable with controller focu
 
 ## Validation and playtest
 
-The source headless suite passed 613 tests, including station-entry restriction
+The source headless suite passed 614 tests, including station-entry restriction
 regressions in both directions, a short leg, red-signal recovery, departure horn
 spacing, acoustic transmission/Doppler, save compatibility and recovery rotation.
+The full operating-day audit completed all 100 services, including depot clearance,
+with no safety events. Longest stationary wait was 29 min 14 s; maximum passenger
+arrival delay was 33.9 min. All 100 departures and 233 five-minute baseline states
+were regenerated and exactly round-tripped. Manual driving can change the outcome.
 Native source checks cover the menus, bookmark return, detached asynchronous save,
 local diagnostic ZIP, free-camera sound, reference routing and five nearby rakes.
 The five-rake fixture checks output headroom, sealed-cab attenuation, paired horns

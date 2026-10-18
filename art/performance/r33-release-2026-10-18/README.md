@@ -1,6 +1,6 @@
 # R33 source and publication checks
 
-All 613 source headless tests pass. Native source probes cover the new menus,
+All 614 source headless tests pass. Native source probes cover the new menus,
 bookmarks, detached recovery saves and local diagnostic bundles. Audio captures
 use Godot's native mixer with a Dummy output; they are measured signal checks,
 not a claim of subjective listening on the playing PC.
@@ -14,5 +14,8 @@ The UI probe used Compatibility rendering; the preceding source-scene check also
 passed on the normal rendering configuration. Renderer feature warnings in the
 Compatibility log are expected. The free-camera capture fell back to Dummy audio.
 
-Full-day audit, prepared-state integrity and publication evidence are added after
-those release gates finish. No extracted-distribution gameplay test is planned.
+The full-day audit completed all 100 services and depot clearance without safety
+errors. Longest stationary wait: 1,754 seconds. All 100 departures and 233
+five-minute states were regenerated and exactly restored; 4,822 input hashes match.
+Publication evidence is added after packaging. No extracted-distribution gameplay
+test is planned.

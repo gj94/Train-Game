@@ -18,15 +18,20 @@
   profile. See [journey-audio-and-comfort.md](journey-audio-and-comfort.md).
 - Native five-rake audio stress checks passed with 93 vehicles/15 traction emitters:
   no clipping, sealed-cab attenuation, paired horns and pause. Added engine/air work
-  measured about 0.22 ms median on the development PC. This fixture does not render
+  measured about 0.26 ms median on the development PC. This fixture does not render
   scenery/passengers and is not a target i9/4090 Laptop FPS benchmark.
 - Source-scene checks passed menu navigation, camera restoration, asynchronous
   recovery save/readback and diagnostic ZIP contents. Approved reference routing,
   platform integration and external-camera audio checks also passed.
-- All 613 headless tests pass. Full-day timetable audit and prepared-state
-  regeneration are running. Publication remains gated on their completion; R32
-  is still served. Native integration and audio results are recorded in
-  `art/performance/r33-release-2026-10-18/`.
+- All 614 headless tests pass. The full-day baseline cleared all 100 services to
+  depot with no safety events. Maximum stationary wait was 1,754 seconds (20 s
+  below R32); maximum terminal passenger delay remains 33.9 minutes. The dynamic
+  timetable still contains delays: this is a baseline audit, not a guarantee for
+  every manual-driving variation.
+- Rebuilt and exactly round-tripped all 100 departure snapshots and 233
+  five-minute railway states. Their 4,822 railway input hashes are verified.
+  Evidence: `art/performance/r33-release-2026-10-18/`. Packaging follows these
+  completed release gates; R32 remains available until R33 publication.
 
 Playtest after R33 publication: hand a stopping service to AI and watch an entry
 restriction clear without a second run-up. Observe the gentle final metres and two

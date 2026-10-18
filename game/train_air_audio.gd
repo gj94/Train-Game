@@ -13,6 +13,12 @@ static func air_level(speed: float, distance: float, own: bool, exposure: float)
 	if distance>150:return 0.0
 	var level:=pow(clampf(speed/30,0,2),1.7)*.65
 	return level*(exposure if own else 1.0)
+static func body_position(frame: Transform3D, length: float, listener: Vector3) -> Vector3:
+	# A distributed body source follows the closest point along the car. Choosing
+	# another coach must not jump the rush a whole car length across the listener.
+	var local:=frame.affine_inverse()*listener
+	var end:=maxf(.1,length*.5-.1)
+	return frame*Vector3(0,1.5,clampf(local.z,-end,end))
 func setup(owner,train_view,track_sound) -> void:
 	game=owner;view=train_view;track=track_sound
 	bus=Layers.filtered_bus(self,"air","TrainWind")
@@ -40,7 +46,7 @@ func _process(delta: float) -> void:
 	for i in 3:
 		var car: Node3D=view.cars[indices[i]]
 		var length: float=view.formation[indices[i]].pitch
-		voices[i].global_position=car.to_global(Vector3(0,1.5,(length*.5 if i==0 else (-length*.5 if i==2 else 0))))
+		voices[i].global_position=body_position(car.global_transform,length,game.cam.global_position) if i==1 else car.to_global(Vector3(0,1.5,length*.5 if i==0 else -length*.5))
 		var distance: float=voices[i].global_position.distance_to(game.cam.global_position)
 		var exposure: float=game.audio_space.get("exposure",1.0)
 		var level:=air_level(view.train.speed,distance,own,exposure)*response.x
