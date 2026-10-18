@@ -1,18 +1,21 @@
 # Incremental Windows updates
 
-Current publication: **R32**, sequence **34**, from clean source **d849f35**.
-This release is **full download only**, as requested. Extract its complete
-2,610,886,783-byte ZIP and run `TrainGame.exe` or choose **Play installed (offline)**.
-The full installation includes `Update and Play.exe` for later releases. The
-server currently blocks incremental endpoints and the standalone updater ZIP;
-the signed R32 file/block catalogue is retained locally for future updates.
-Only R32 is offered. R31 payloads were retired after verification; old signed
-catalogues remain. See [builds.md](builds.md) for checksums and evidence.
+Current publication: **R33**, sequence **35**, from clean source **34da952**.
+Both full downloads and incremental updates are enabled at
+http://192.168.8.183:8765/. Existing R32 folders can run `Update and Play.exe`;
+the launcher discovers reusable blocks even without an installed-version record.
 
-For the next release, publish a fresh version with sequence **35 or greater**
-and omit `-FullDownloadOnly`. This re-enables both full downloads and incremental
-updates. Existing R32 folders can then update in place; the launcher discovers
-reusable blocks from their files even without a prior installed-version record.
+Measured R32 → R33: **2,998,559,677 changed bytes**, **165,591,919 reused bytes**,
+plus the 4,399,569-byte signed catalogue. The full **2,615,212,221-byte ZIP** is
+the smaller download for this release. Regenerated states/new resources shift
+pack contents, so this transition does not provide the savings of a small code
+update. Both installation methods work; choose the full ZIP if download size is
+your priority. Saved journeys and settings remain in the Windows user profile.
+
+Only R33 is offered. R32 payloads were retired after verification; old signed
+catalogues remain. See [builds.md](builds.md) for checksums and evidence. Future
+publications must use a fresh version and sequence **36 or greater**; omit
+`-FullDownloadOnly` to retain both download methods.
 
 When incremental downloads are enabled, the LAN page offers a small **Update & Play** download. Extract its two files
 beside an existing `TrainGame.exe` and `TrainGame.pck`, then use the launcher for

@@ -1,6 +1,33 @@
 # Progress
 
-## 2026-10-18 — Journey audio, recovery tools and station driving (R33 preparation)
+## 2026-10-18 — R33 publication
+- Published **R33** from clean source **34da952**, signed catalogue sequence **35**,
+  at http://192.168.8.183:8765/. Full ZIP: **2,615,212,221 bytes** (2.62 GB), SHA-256
+  `60dda6f6e7b85ecfb9964a8f873d290359d042e5b2850c956925ad1cdc330a8b`.
+- Both full and incremental downloads are enabled. R32 → R33 changes
+  **2,998,559,677 bytes** and reuses **165,591,919 bytes** of fixed-position blocks.
+  The full ZIP is the smaller download for this release; updater support remains
+  available for convenience and future releases. Saves/settings remain separate.
+- Validation: 614 headless tests; all 100 services finish and clear to depot;
+  100 exact departure snapshots and 233 exact five-minute states; native audio,
+  menu, recovery-save and diagnostic checks. The baseline has no safety events,
+  a 1,754-second maximum stationary wait and 33.9-minute maximum arrival delay.
+- Read-only PCK audit passed 3,623 checks, preserving 22 detailed variants and
+  3,206 contact-shaded surfaces. All 312 ZIP CRCs, 310 managed hashes, clean BUILD
+  identity, signed catalogue, checksum and three ZIP/PCK served ranges passed.
+  No extracted-distribution gameplay test was run, as requested.
+- Retired R32's verified export directory, ZIP and sidecar after checking contents
+  and idle LAN state, freeing **5,771,865,002 bytes**. Small signed catalogues remain.
+  Only R33 is downloadable. Evidence: `art/performance/r33-release-2026-10-18/`.
+
+Playtest: start K1 and use A to let AI drive; watch the entry-restriction clearance
+and final station stop, then listen for two departure horns. Compare cab, machinery
+space, passenger vestibule and head-out audio while moving and during a train pass.
+Open Pause → Audio settings / Journey tools; try a viewpoint, recovery load and
+local diagnostic ZIP. Test manually driven departures too. Target-laptop listening
+and performance remain user checks; the pre-existing native crash is not declared fixed.
+
+## 2026-10-18 — Journey audio, recovery tools and station driving
 - Implemented the previous audio review and six QoL candidates. Listener position
   now changes compartment transmission; moving AI sources use relative Doppler;
   nose/body/wake air, own-car joint response, stock-specific auxiliaries and
@@ -30,8 +57,8 @@
   every manual-driving variation.
 - Rebuilt and exactly round-tripped all 100 departure snapshots and 233
   five-minute railway states. Their 4,822 railway input hashes are verified.
-  Evidence: `art/performance/r33-release-2026-10-18/`. Packaging follows these
-  completed release gates; R32 remains available until R33 publication.
+  Evidence: `art/performance/r33-release-2026-10-18/`. These completed release
+  gates are included in the R33 publication above.
 
 Playtest after R33 publication: hand a stopping service to AI and watch an entry
 restriction clear without a second run-up. Observe the gentle final metres and two

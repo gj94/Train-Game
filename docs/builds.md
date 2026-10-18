@@ -1,6 +1,32 @@
 # Windows portable build
 
-Current release: **R32 — full download only**, with improved train surface depth,
+Current release: **R33 — full download and incremental updates**, with smoother AI
+station approaches, paired departure horns, positional cabin/pass-by acoustics,
+audio controls and journey recovery tools. Published 18 October 2026 from clean
+source **34da952**, signed catalogue sequence **35**, at
+http://192.168.8.183:8765/.
+Full ZIP: **2,615,212,221 bytes** (2.62 GB), SHA-256
+`60dda6f6e7b85ecfb9964a8f873d290359d042e5b2850c956925ad1cdc330a8b`.
+
+For R32 → R33 the updater downloads **2,998,559,677 bytes** of changed blocks,
+plus its signed catalogue, and reuses **165,591,919 bytes**. The full ZIP is the
+smaller download this time. Both methods are supported; existing compatible saves
+and preferences remain usable. See [journey-audio-and-comfort.md](journey-audio-and-comfort.md).
+
+All **614 headless tests** pass. The full operating-day audit completes all 100
+services and depot clearance with no safety events. All 100 departure states and
+233 five-minute states were regenerated and exactly restored. Native source checks
+cover audio, menus, recovery and diagnostics. The PCK passed **3,623 checks**,
+including all 22 detailed variants and 3,206 contact-shaded surfaces. Every one of
+312 ZIP files passed CRC checks; all 310 managed hashes, clean source identity,
+signature, checksum and three served ZIP/PCK ranges passed. No extracted-package
+gameplay test was run. Evidence: [R33 publication](../art/performance/r33-release-2026-10-18/publication.json).
+
+Only R33 is downloadable. R32's verified export directory, ZIP and sidecar were
+retired after idle-LAN checks, freeing **5,771,865,002 bytes**. Small historical
+signed catalogues remain. The existing native-crash investigation remains open.
+
+Previous release: **R32 — full download only**, with improved train surface depth,
 corrected inner-surface lighting and fixed shadow proxies across all 22 detailed
 WAP-7, ICF, LHB and Vande Bharat variants. Published 14 October 2026 from clean
 source **d849f35**, signed catalogue sequence **34**, at
@@ -89,8 +115,8 @@ The signed catalogue is retained locally, but the LAN server blocks incremental
 endpoints and the standalone updater download for this release. The full ZIP
 contains the updater for future use. Launch `TrainGame.exe` after extracting R26.
 
-For the next release after R32, publish both the full ZIP and signed incremental
-catalogue: use a fresh `-BuildName` and increasing `-UpdateSequence` (35 or greater), and omit
+For releases after R33, publish both the full ZIP and signed incremental
+catalogue: use a fresh `-BuildName` and increasing `-UpdateSequence` (36 or greater), and omit
 both `-SkipZip` and `-FullDownloadOnly`. `export/download-release.json` switches
 the LAN page only after packaging completes. The server exposes only that current
 release; there are no hard-coded version lists or older fallback download links.
