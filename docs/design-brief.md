@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **20 Oct 2026 service traffic preview:** show every baseline-simulated crossing
+  and completed overtake for the selected home-page service, with approximate
+  time, location and the other train. Keep selection instant, show reciprocal
+  overtake roles, support controller scrolling, and distinguish the baseline
+  from dynamic outcomes after manual driving.
 - **20 Oct 2026 stationary visuals and controls:** smooth outside-world shadows
   on stationary trains, consolidate duplicate speed boards without changing
   operating limits, and map RB to power reduction / LB to brake release, both

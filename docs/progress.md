@@ -1,5 +1,42 @@
 # Progress
 
+## 2026-10-20 — Per-service simulated traffic preview
+
+- Home-page service details now have Stops and Traffic tabs. Each service shows
+  every baseline-observed crossing and completed overtake, approximate clock
+  time, station/interstation location, other service ID/name and reciprocal
+  overtake roles. Counts remain visible beside the calling pattern. Controller
+  Y switches tabs; RS scrolls; selection preserves the tab and resets its scroll.
+  Saved journeys never show unrelated baseline events.
+- Replayed the unchanged 100-service railway from verified five-minute states
+  in four contiguous offline intervals. A continuous observer processes 34,801
+  two-second samples across interval boundaries. Recorded **469 crossings and
+  46 completed overtakes**, including opposing passes on double track. K1 has
+  19 crossings and is overtaken three times. Train-centre passage gives the
+  displayed time; overtakes require full-formation clearance, excluding spawn,
+  depot and adjacent-platform nose-shuffling artifacts.
+- All replay intervals are free of safety events and match existing baseline
+  endpoint train positions within 0.0000213 m; three match exactly. Operational
+  simulation, routes and prepared snapshots are unchanged. Driving can still
+  change the traffic: this preview neither reserves routes nor promises waits.
+- The shipped preview is **115,080 bytes** and needs no simulation at selection.
+  Runtime rejects a mismatched departure catalogue; export additionally checks
+  timeline/observer provenance, every service, full-day coverage and boundaries.
+  Added repeatable offline preparation and verification commands to
+  `docs/service-selection.md`.
+- Validation: **637 headless tests**, nine encounter-detector tests and **118
+  native menu checks** pass. Inspected real K1/VB/overnight lists at 1600×900 and
+  1280×720, including complete scroll reach, controller flow and missing-data
+  fallback. Existing 100 departure and 233 timeline states still verify.
+  Evidence: `art/performance/service-traffic-2026-10-20/`.
+- Source update only; **R34 remains the published download**.
+
+Playtest: select K1 on the home page and press Y. Scroll to the B001 overtake at
+Mararikulam around 09:16, then select B001 and check the reciprocal wording/time.
+Use RS to reach the final encounter, Y to return to stops, and select a night
+service to see day-2 times. Starting a service must remain a separate A action;
+manual delays may change the baseline encounters shown.
+
 ## 2026-10-20 — Stationary shadows, shared speed boards and bumper reductions
 
 - Found direct sunlight behind the sky's five-simulation-second update gate.

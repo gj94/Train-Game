@@ -5,6 +5,7 @@ const Store:=preload("res://persistence/save_store.gd")
 const Snapshot:=preload("res://sim/world_snapshot.gd")
 const Clock:=preload("res://sim/world_clock.gd")
 const Briefing:=preload("res://persistence/service_briefing.gd")
+const Traffic:=preload("res://persistence/service_traffic.gd")
 const SORTS:=["Departure · earliest first","Average speed · fastest first","Average speed · slowest first","Service name · A–Z"]
 const STOCK:={icf="WAP-7 + ICF",lhb="WAP-7 + LHB",vb8="Vande Bharat · 8 cars",vb16="Vande Bharat · 16 cars"}
 const FILTERS:=["All departures","Morning","Afternoon","Evening","Night"]
@@ -27,6 +28,15 @@ var description: Label
 var calls_grid: GridContainer
 var briefing: Label
 var detail_scroll: ScrollContainer
+var detail_tabs: HBoxContainer
+var stops_tab: Button
+var traffic_tab: Button
+var traffic_summary: Label
+var traffic_list: VBoxContainer
+var traffic_data: Dictionary={}
+var traffic_reason:="Traffic preview is unavailable for this timetable."
+var traffic_rows: Array=[]
+var detail_mode:=0
 var status: Label
 var count_label: Label
 var start_button: Button
@@ -58,7 +68,11 @@ func _ready() -> void:
 	Input.joy_connection_changed.connect(func(_device,_connected):_axes=Vector2.ZERO;_scroll_axis=0.0)
 	_build()
 	var catalogue:=Starts.catalogue(directory)
-	if catalogue.ok:services=catalogue.data.services
+	if catalogue.ok:
+		services=catalogue.data.services
+		var traffic:=Traffic.catalogue(services,directory)
+		if traffic.ok:traffic_data=traffic.data
+		else:traffic_reason=traffic.reason
 	else:status.text=catalogue.reason
 	continue_button.disabled=true;continue_button.text="Checking saves…";saved_button.disabled=true
 	save_worker=Thread.new()
@@ -138,19 +152,23 @@ func _build() -> void:
 	var panel:=PanelContainer.new();panel.custom_minimum_size.x=390;panel.size_flags_horizontal=SIZE_EXPAND_FILL;panel.size_flags_stretch_ratio=.75
 	panel.add_theme_stylebox_override("panel",_box(Color("102631")));columns.add_child(panel)
 	var details:=VBoxContainer.new();details.add_theme_constant_override("separation",10);panel.add_child(details)
-	_label(details,"YOUR NEXT JOURNEY",14,Color("86e4be"))
 	departure=_label(details,"",30)
 	detail_title=_label(details,"Choose a service",21);detail_title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	detail_tabs=HBoxContainer.new();detail_tabs.add_theme_constant_override("separation",8);details.add_child(detail_tabs)
+	stops_tab=_button(detail_tabs,"Stops",func():set_detail_mode(0));stops_tab.toggle_mode=true;stops_tab.size_flags_horizontal=SIZE_EXPAND_FILL
+	traffic_tab=_button(detail_tabs,"Traffic",func():set_detail_mode(1));traffic_tab.toggle_mode=true;traffic_tab.size_flags_horizontal=SIZE_EXPAND_FILL
+	traffic_summary=_label(details,"",14,Color("a8bdc6"));traffic_summary.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;details.add_child(scroll)
 	detail_scroll=scroll
 	var body:=VBoxContainer.new();body.size_flags_horizontal=SIZE_EXPAND_FILL;body.add_theme_constant_override("separation",20);scroll.add_child(body)
 	description=_label(body,"",16);description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	calls_grid=GridContainer.new();calls_grid.columns=3;calls_grid.add_theme_constant_override("h_separation",18);calls_grid.add_theme_constant_override("v_separation",12);body.add_child(calls_grid)
 	briefing=_label(body,"",16,Color("a8bdc6"));briefing.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	traffic_list=VBoxContainer.new();traffic_list.add_theme_constant_override("separation",12);body.add_child(traffic_list)
 	start_button=_button(details,"Drive this service",start_selected);start_button.custom_minimum_size.y=60
 	start_button.add_theme_stylebox_override("normal",_box(Color("265e4a"),Color("86e4be")))
 	status=_label(outer,"",16,Color("efc382"));status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	_label(outer,"D-pad / LS navigate · A select · B back · LB / RB filter · X sort · RS scroll stops · F11 fullscreen",15,Color("a8bdc6"))
+	_label(outer,"D-pad / LS navigate · A select · B back · LB / RB filter · X sort · Y stops / traffic · RS scroll · F11 fullscreen",15,Color("a8bdc6"))
 	_label(outer,preload("res://game/build_version.gd").current(),13,Color("7895a2"))
 	busy_panel=PanelContainer.new();add_child(busy_panel);busy_panel.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	busy_panel.add_theme_stylebox_override("panel",_box(Color(.02,.06,.08,.98)))
@@ -195,7 +213,9 @@ func refresh() -> void:
 	count_label.text=("%d / %d services · Start at the origin · Dynamic AI traffic" % [shown.size(),services.size()]) if page=="services" else "Saved journeys · Load paused · Previous backups are available"
 	start_button.text="Drive this service" if page=="services" else "Load saved journey"
 	start_button.disabled=shown.is_empty()
-	if shown.is_empty():selected={};detail_title.text="No matching journeys";departure.text="";description.text="Try another departure filter or clear the search.";calls_grid.hide();briefing.text="";return
+	if shown.is_empty():
+		selected={};detail_title.text="No matching journeys";departure.text="";description.text="Try another departure filter or clear the search."
+		description.show();calls_grid.hide();briefing.text="";detail_tabs.hide();traffic_summary.hide();traffic_list.hide();return
 	var index:=0
 	for i in shown.size():
 		if shown[i].id==previous:index=i;break
@@ -206,8 +226,11 @@ func _select(index: int) -> void:
 	selected=shown[index];detail_title.text=selected.name
 	detail_scroll.scroll_vertical=0
 	for child in calls_grid.get_children():calls_grid.remove_child(child);child.queue_free()
+	for child in traffic_list.get_children():traffic_list.remove_child(child);child.queue_free()
+	traffic_rows=[];detail_tabs.visible=page=="services";traffic_summary.visible=page=="services"
 	calls_grid.visible=page=="services";briefing.text=""
 	if page=="saves":
+		description.show();briefing.show();traffic_list.hide()
 		departure.text=selected.get("clock","")
 		description.text="Service "+selected.get("service","")+"\n\nSaved "+selected.get("saved_at","")+"\n\nThe complete railway and your viewpoint will be restored, paused."
 		return
@@ -226,6 +249,34 @@ func _select(index: int) -> void:
 	briefing.text="Start paused in the pilot seat, with brakes applied. Earlier traffic and delays are preserved."
 	if not selected.get("departure_advice","").is_empty():briefing.text+="\n\nDispatcher at departure\n"+selected.departure_advice
 	briefing.text+="\n\nCrossings and overtakes are decided dynamically; the signals and dispatcher give current instructions as you drive."
+	traffic_rows=Traffic.for_service(traffic_data,selected.id)
+	stops_tab.text="Stops · %d" % selected.calls.size();traffic_tab.text="Traffic · %d" % traffic_rows.size() if not traffic_data.is_empty() else "Traffic"
+	traffic_summary.text="AI baseline · "+Traffic.summary(traffic_rows) if not traffic_data.is_empty() else "Traffic preview unavailable"
+	_build_traffic()
+	set_detail_mode(detail_mode)
+
+func set_detail_mode(mode: int) -> void:
+	if page!="services" or selected.is_empty():return
+	detail_mode=clampi(mode,0,1);detail_scroll.scroll_vertical=0
+	stops_tab.set_pressed_no_signal(detail_mode==0);traffic_tab.set_pressed_no_signal(detail_mode==1)
+	description.visible=detail_mode==0;calls_grid.visible=detail_mode==0;briefing.visible=detail_mode==0;traffic_list.visible=detail_mode==1
+
+func _build_traffic() -> void:
+	var note:=_label(traffic_list,"Approximate times; your driving can change encounters. Crossings include opposing passes on double track, which may need no wait.",14,Color("a8bdc6"))
+	note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	if traffic_data.is_empty() or traffic_rows.is_empty():
+		note=_label(traffic_list,traffic_reason if traffic_data.is_empty() else "No crossings or completed overtakes during this service in the baseline run.",17)
+		note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;return
+	var names:={}
+	for row in services:names[row.id]=row.name
+	for event in traffic_rows:
+		var card:=PanelContainer.new();var style:=_box(Color("0c202a"));style.set_content_margin_all(10);card.add_theme_stylebox_override("panel",style);traffic_list.add_child(card)
+		var lines:=VBoxContainer.new();lines.add_theme_constant_override("separation",4);card.add_child(lines)
+		var heading:=HBoxContainer.new();lines.add_child(heading)
+		_label(heading,Traffic.time_text(event.time),17,Color("86e4be"))
+		var kind:=_label(heading,event.role,14,Color("efc382") if event.kind=="overtake" else Color("a8bdc6"));kind.size_flags_horizontal=SIZE_EXPAND_FILL;kind.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
+		note=_label(lines,event.other+" · "+names.get(event.other,event.other),16);note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+		note=_label(lines,event.location+(" · route km %.1f" % (event.chainage_m/1000.0) if event.station.is_empty() else ""),14,Color("a8bdc6"));note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 
 func _saved_entries() -> Array:
 	var entries:=[]
@@ -337,6 +388,7 @@ func _input(event: InputEvent) -> void:
 		JOY_BUTTON_RIGHT_SHOULDER:set_period(period+1)
 		JOY_BUTTON_X:
 			if page=="services":sort_mode=posmod(sort_mode+1,SORTS.size());refresh()
+		JOY_BUTTON_Y:set_detail_mode(1-detail_mode)
 		JOY_BUTTON_A:
 			var focus:=get_viewport().gui_get_focus_owner()
 			if focus==roster:start_button.grab_focus()

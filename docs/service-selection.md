@@ -24,6 +24,39 @@ retain the real progress, delays and viewpoint of that run. Loading never
 replaces an ongoing journey with the baseline. Invalid or incompatible saves
 report their error on the menu without starting a different service.
 
+## Traffic preview for each service
+
+Select a departure, then choose **Traffic** beside **Stops**, or press **Y** on
+the controller. The summary counts crossings, trains you overtake and trains
+that overtake you. The scrollable list shows every recorded encounter for that
+service, in time order, with the other service's ID/name, station or interstation
+section, and approximate clock time. Right stick scrolls; Y returns to stops.
+Changing services keeps the chosen tab and returns its list to the top. This
+does not start a journey or transfer control. Saved journeys do not show this
+unrelated baseline preview.
+
+These are **observed results of the complete AI-run baseline**, including its
+delays, rather than intersections of booked arrival times. Crossings include
+opposing trains passing on double track, so an entry does not imply a signal
+stop. Overtakes identify who actually passes whom. Driving differently changes
+future dispatch decisions; the list is a preview, never a reservation or an
+instruction to ignore signals.
+
+Times are rounded to the nearest minute, prefixed with `~`, and labelled day 2
+after midnight. They describe the point where the two train centres pass. An
+overtake is only retained once both complete formations have reversed their
+running order. This avoids reporting adjacent-platform nose shuffling as an
+overtake. Empty-stock/depot movements and mere train spawning are excluded.
+The location uses the simulated route's chainage and station yard bounds;
+interstation kilometre values are route distances, not official mileposts.
+
+`data/service_starts/traffic.json` is small presentation data loaded once at
+the home page. Selection never runs the railway. Its departure-catalogue hash
+must match or the UI explains that the preview is unavailable while still
+allowing a valid service to start. The release gate additionally checks the
+five-minute baseline, observer source hashes, service coverage, full-day sample
+coverage and continuous replay boundaries.
+
 From play, **Menu → Choose another service / main menu** asks for confirmation,
 then returns to selection. Save first to retain progress. **Restart current
 services** reloads the chosen departure state for journeys begun from this screen,
@@ -67,7 +100,8 @@ the browser at its original time, including after save/load.
 - D-pad or left stick navigates; A on the list moves to the start button, and A
   there starts the selected journey. B returns to the list or cancels a load.
 - LB/RB cycles departure filters. X cycles sorting; the Sort by dropdown also
-  supports mouse/keyboard/controller. Right stick scrolls the full calling list.
+  supports mouse/keyboard/controller. Y switches Stops/Traffic; right stick
+  scrolls the full calling list or traffic preview.
 - Keyboard arrows/Tab/Enter navigate. F11 or Alt+Enter changes fullscreen.
 
 The browser itself loads no train models or 3D world. Checkpoint reading and
@@ -148,8 +182,12 @@ Measure again after changing passenger records or the timetable:
 node tools/verify-service-starts.mjs
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/prepare-railway-times.ps1 -Workers 4
 node tools/verify-railway-times.mjs
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/prepare-service-traffic.ps1 -Workers 4
+node tools/verify-service-traffic.mjs
+node --test tools/test-traffic-encounters.mjs
 & .local/godot/Godot_v4.7.2-stable_win64_console.exe --headless --path . --script res://tests/run_tests.gd
 & .local/godot/Godot_v4.7.2-stable_win64_console.exe --path . --audio-driver Dummy --script res://tools/check_service_selection.gd
+& .local/godot/Godot_v4.7.2-stable_win64_console.exe --path . --audio-driver Dummy --script res://tools/check_service_traffic.gd
 & .local/godot/Godot_v4.7.2-stable_win64_console.exe --path . --audio-driver Dummy --script res://tools/check_railway_timeline.gd
 ```
 
@@ -159,6 +197,15 @@ cannot be selected or exported. Do not run the editor importer during these
 checks. The native check uses isolated save slots and source gameplay; it does
 not launch or extract a distribution. `--preview` is a separately labelled,
 temporary partial-catalogue UI check and is not a release validation.
+
+Traffic preparation restores disjoint contiguous intervals from the verified
+five-minute states, replays the unchanged serial railway in two-second steps,
+and records head/centre/tail chainages. Each interval must reach the existing
+baseline endpoint within 0.1 metre and without safety events. A single observer
+then consumes the merged continuous samples, retaining encounter history across
+interval boundaries. Raw recordings stay under `.local/`; only the small final
+catalogue ships. Regenerate it after preparing changed departures/timeline
+states or changing the observer. No operational simulation files are modified.
 
 The normal benchmark arguments bypass the landing screen; `--direct` provides
 the old direct start for development. Native tools that explicitly load
@@ -184,3 +231,6 @@ the old direct start for development. Native tools that explicitly load
    Verify the requested station, night lighting and all-AI traffic remain.
 9. Rapidly scrub times and cancel/back while loading. No stale preview or unwanted
    train entry should appear; the chosen time must match the displayed clock.
+10. Select K1 and press Y. Scroll its crossings/overtakes, then select each VB.
+    Confirm that a shared encounter has the same time/location and reciprocal
+    overtake wording. Try an overnight service and check the day-2 times.

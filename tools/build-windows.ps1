@@ -44,6 +44,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Prepared service starts are missing, stale or invalid. Regenerate before exporting.' }
     & node.exe (Join-Path $PSScriptRoot 'verify-railway-times.mjs')
     if ($LASTEXITCODE -ne 0) { throw 'Five-minute railway states are missing, stale or invalid. Regenerate before exporting.' }
+    & node.exe (Join-Path $PSScriptRoot 'verify-service-traffic.mjs')
+    if ($LASTEXITCODE -ne 0) { throw 'Service traffic preview is missing, stale or invalid. Regenerate before exporting.' }
     if (-not $SkipTests) {
         foreach ($script in @('tests/run_tests.gd', 'tools/check_controller_playable.gd', 'tools/check_track.gd', 'tools/check_fleet_finish.gd', 'tools/check_ported_assets.gd', 'tools/check_wap7_detail.gd', 'tools/check_wap7_controls.gd', 'tools/check_motion_playable.gd', 'tools/check_body_v2_audio.gd', 'tools/check_platform_audio.gd', 'tools/check_audio_routing.gd', 'tools/check_platform_integration.gd', 'tools/check_qol.gd', 'tools/check_traffic_playable.gd', 'tools/check_corridor_playable.gd', 'tools/check_ported_playable.gd', 'tools/check_scenery_playable.gd')) {
             $checkLog = Join-Path $projectRoot ('.local/build-check-' + [IO.Path]::GetFileNameWithoutExtension($script) + '.log')
