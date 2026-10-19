@@ -125,7 +125,7 @@ func drive_input() -> float:
 	if CameraMotion.is_free(game.cam)!=(_context=="free"):return 0
 	if game.train.automatic or game.walker.active or game._passenger_seated() or game.cam.mode==2 or _dpad_button!=-1 or _operation_down or _view_down: return 0
 	if CameraMotion.is_free(game.cam):return 0
-	return Shape.handle(_axes[5],_axes[4])
+	return TSW.direction(self,game.train.controller)
 
 func drive_handle(current: float, travel: float) -> float:
 	var direction:=drive_input()

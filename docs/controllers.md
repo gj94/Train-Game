@@ -1,6 +1,6 @@
 # Xbox controller
 
-R34 controls. Xbox 360, One, Series and Elite use Godot's
+Current source controls (after R34). Xbox 360, One, Series and Elite use Godot's
 standard layout. Elite paddles follow the controller's own assigned buttons.
 
 Open **Menu → Controller layout** for separate **Driving**, **Walking**,
@@ -18,9 +18,14 @@ vertical inversion and vibration. Old layout preferences migrate to this scheme.
 | Hold X (0.65 s) | Take manual control at coast; release inputs before driving |
 | Y | Stand up; AI takes over |
 | A | Context interaction / confirm |
-| RB | Cycle headlight beam: bright → off → dim |
+| RB | Reduce power toward coast; never applies braking |
+| LB | Release braking toward coast; never applies power |
 | Menu | Pause, save/load, settings and remaining actions |
 | Tap View / hold View | Dispatch / service progress |
+
+Hold a bumper to reduce its matching range; release to hold. Bumpers stop at
+coast, override simultaneous triggers and never take control from AI. Walking
+keeps RB as the torch; headlights no longer use a driving bumper.
 
 Released triggers hold the selected handle. LT wins simultaneous trigger input.
 Crossing zero pauses at coast for 0.24 seconds with a light vibration. Continue

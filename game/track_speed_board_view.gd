@@ -11,6 +11,10 @@ func _init(world: RailWorld, exclusion=null) -> void:
 	var clearance := Clearance.new(world.graph)
 	var groups := {}
 	for board: Dictionary in Plan.build(world):
+		# Depot ladders are approached under their entry board/signals. Fanning
+		# their 1.2 km warnings backwards across every passenger road filled
+		# whole platforms with unrelated depot cautions.
+		if board.kind=="caution" and depot_branch(board.source) and not depot_branch(board.edge):continue
 		var key := "%s:%d:%d" % [board.edge,board.dir,roundi(board.s)]
 		if not groups.has(key):groups[key]=[]
 		groups[key].append(board)
@@ -28,12 +32,79 @@ func _init(world: RailWorld, exclusion=null) -> void:
 		var point := p+left*offset
 		var route := Plan.label(board.edge) if offset>4.0 else ""
 		jobs.append({id="speed-board:"+key,kind="speed_board",point=point,forward=f,plates=plates,road=route,rail_y=p.y})
+	jobs=consolidate(jobs)
 	for pair in [["yellow",Color("eac327")],["black",Color("171b18")],["white",Color("d5d3c6")],["steel",Color("4e544e")]]:
 		var mat := StandardMaterial3D.new()
 		mat.albedo_color=pair[1];mat.roughness=.68
 		mat.vertex_color_use_as_albedo=true
 		if pair[0]=="steel":mat.metallic=.65
 		materials[pair[0]]=mat
+
+static func depot_branch(edge: String) -> bool:
+	# ACCESS is a through-running segment at the junction, despite its prefix.
+	return "_DEPOT_" in edge and not edge.ends_with("_ACCESS")
+
+## Shared verge positions must produce shared, road-qualified signs, not a
+## forest of overlapping masts. Release masts stay separate from starts/cautions.
+## Start/caution anchors move earlier; release anchors move later, never earlier.
+static func consolidate(source: Array) -> Array:
+	var result:=[]
+	for item: Dictionary in source:
+		var job: Dictionary=item.duplicate(true)
+		job.members=[{point=job.point,id=job.id}]
+		for plate: Dictionary in job.plates:
+			plate.roads=[plate.route if not plate.route.is_empty() else Plan.label(plate.edge)]
+		var target: Dictionary={}
+		for candidate: Dictionary in result:
+			if job.forward.dot(candidate.forward)<.995:continue
+			# A caution may share a mast with a nearby start. A release cannot:
+			# it must remain after tail clearance, rather than moving upstream.
+			var releasing: bool=job.plates.any(func(p):return p.kind=="termination")
+			if releasing!=candidate.plates.any(func(p):return p.kind=="termination"):continue
+			# A pre-existing mixed boundary has incompatible movement bounds:
+			# leave it exactly where it is instead of moving either plate unsafely.
+			if releasing and (not job.plates.all(func(p):return p.kind=="termination") or not candidate.plates.all(func(p):return p.kind=="termination")):continue
+			if not candidate.members.all(func(m):return m.point.distance_to(job.point)<=8.0):continue
+			target=candidate;break
+		if target.is_empty():result.append(job);continue
+		var along: float=(job.point-target.point).dot(target.forward)
+		if (job.plates[0].kind=="termination" and along>0) or (job.plates[0].kind!="termination" and along<0):
+			target.point=job.point;target.rail_y=job.rail_y;target.forward=job.forward
+		target.members.append_array(job.members)
+		for plate: Dictionary in job.plates:
+			var existing: Array=target.plates.filter(func(p):return p.kind==plate.kind and is_equal_approx(p.limit,plate.limit))
+			if existing.is_empty():target.plates.append(plate)
+			else:
+				for road: String in plate.roads:
+					if road not in existing[0].roads:existing[0].roads.append(road)
+	for job: Dictionary in result:
+		# Even one original mast can contain equivalent route-qualified plates.
+		var plates:=[]
+		for plate: Dictionary in job.plates:
+			var same: Array=plates.filter(func(p):return p.kind==plate.kind and is_equal_approx(p.limit,plate.limit))
+			if same.is_empty():plates.append(plate)
+			else:
+				for road: String in plate.roads:
+					if road not in same[0].roads:same[0].roads.append(road)
+		job.plates=plates
+		for plate: Dictionary in job.plates:
+			plate.roads.sort()
+			if job.members.size()>1 or plate.roads.size()>1:
+				plate.route=road_label(plate.roads)
+	return result
+
+static func road_label(roads: Array) -> String:
+	var station: String=roads[0].get_slice(" ",0)+" "
+	if roads.all(func(r):return r.begins_with(station+"P") and r.trim_prefix(station+"P").is_valid_int()):
+		var numbers: Array=roads.map(func(r):return r.trim_prefix(station+"P").to_int());numbers.sort()
+		var ranges:=[];var first: int=numbers[0];var last:=first
+		for number: int in numbers.slice(1):
+			if number==last+1:last=number;continue
+			ranges.append("P%d"%first if first==last else "P%d–P%d"%[first,last]);first=number;last=number
+		ranges.append("P%d"%first if first==last else "P%d–P%d"%[first,last])
+		return station+" / ".join(ranges)
+	var result: String=station+" / ".join(roads.map(func(r):return r.trim_prefix(station))) if roads.all(func(r):return r.begins_with(station)) else " / ".join(roads)
+	return result if result.length()<=26 else "\n".join(roads)
 
 func build(job: Dictionary, geo=null) -> Dictionary:
 	var origin := Vector3(floorf(job.point.x/256)*256,0,floorf(job.point.z/256)*256)
@@ -47,21 +118,28 @@ func build(job: Dictionary, geo=null) -> Dictionary:
 	assembly.basis=Basis.looking_at(job.forward,Vector3.UP)
 	var batch := Batch.new()
 	var plates: Array=job.plates
-	var height := 2.7+maxi(0,plates.size()-1)*1.22
+	var slots:=[]
+	var height:=2.7
+	for plate: Dictionary in plates:
+		var route: String=plate.route if not plate.route.is_empty() else job.road
+		var slot:=1.22+maxi(0,route.split("\n").size()-1)*.24
+		slots.append(slot);height+=slot
+	height-=1.22
 	batch.box("white",Vector3(0,-(base_height-ground)*.5+.09,0),Vector3(.52,base_height-ground+.34,.52))
 	for i in ceili(height/.3):
 		var h := minf(.3,height-i*.3)
 		batch.box("black" if i%2 else "white",Vector3(0,i*.3+h*.5,0),Vector3(.085,h,.085))
+	var y:=height
 	for i in plates.size():
 		var plate: Dictionary=plates[i]
-		var y := height-i*1.22
 		_face(batch,plate.kind,y)
 		if plate.kind=="speed":_text(assembly,str(roundi(plate.limit*3.6)),Vector3(0,y-.055,.067),.0046,72)
 		elif plate.kind=="termination":
 			_text(assembly,"T/P",Vector3(0,y,.067),.0043,72)
 			_plaque(batch,assembly,str(roundi(plate.limit*3.6))+" km/h",y-.62)
 		var route: String=plate.route if not plate.route.is_empty() else job.road
-		if not route.is_empty():_plaque(batch,assembly,route,y-(.91 if plate.kind=="termination" else .63))
+		if not route.is_empty():_plaque(batch,assembly,route,y-(.91 if plate.kind=="termination" else .63)-maxi(0,route.split("\n").size()-1)*.12)
+		y-=slots[i]
 	batch.finish(assembly,materials,"Indicator")
 	return {node=node,origin=origin}
 
@@ -86,8 +164,11 @@ func _face(batch,kind: String,y: float) -> void:
 	for x in [-.17,.17]:batch.box("steel",Vector3(x,y,.060),Vector3(.013,.013,.007))
 
 func _plaque(batch,root: Node3D,text: String,y: float) -> void:
-	batch.box("yellow",Vector3(0,y,.045),Vector3(1.3,.24,.028))
-	_text(root,text,Vector3(0,y,.066),minf(.0028,1.15/maxf(text.length()*36.0,1.0)),64)
+	var lines:=text.split("\n")
+	var longest:=1
+	for line in lines:longest=maxi(longest,line.length())
+	batch.box("yellow",Vector3(0,y,.045),Vector3(1.6,.24*lines.size(),.028))
+	_text(root,text,Vector3(0,y,.066),minf(.0028,1.45/(longest*36.0)),64)
 
 func _text(root: Node3D,value: String,p: Vector3,pixel: float,size: int) -> void:
 	var label := Label3D.new()

@@ -1,0 +1,12 @@
+{
+  "service_starts": 100,
+  "railway_inputs": 4822,
+  "timeline_states": 233,
+  "source_gates_passed": true,
+  "commands": [
+    "node tools/verify-service-starts.mjs",
+    "node tools/verify-railway-times.mjs"
+  ],
+  "new_full_day_simulation_run": false,
+  "existing_full_day_audit_still_matches_source": true
+}

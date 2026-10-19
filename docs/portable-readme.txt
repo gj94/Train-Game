@@ -43,7 +43,8 @@ A             Context interaction / confirm.
 Y             Stand up (AI takes over) / sit at nearby driver controls.
 Tap X         Give driving to AI.
 Hold X        Take manual control at coast; release controls before driving.
-RB            Headlights: bright / off / dim.
+RB / LB       Reduce power / release brake. Both stop at coast; neither
+              enters the opposite range or takes control from AI.
 View          Tap dispatch / hold service progress.
 Menu          Pause, settings, save/load and remaining train actions.
 

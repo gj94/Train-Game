@@ -1,5 +1,38 @@
 # Progress
 
+## 2026-10-20 — Stationary shadows, shared speed boards and bumper reductions
+
+- Found direct sunlight behind the sky's five-simulation-second update gate.
+  With fixed train/camera, this made outside-world shadows jump. Direct light
+  now follows every changed simulation clock; the expensive sky/windows retain
+  caching and pause/skip/load behavior. Native WAP-7/external-caster comparison
+  removes the five-second stepping. Fine raster shimmer remains; this does not
+  establish resolution of a separate paused-world or streaming artifact.
+- Consolidated nearby same-facing verge posts and equivalent plates with road
+  labels, including compact genuine ranges such as ERS P1–P6. Separate limits,
+  directions and releases remain distinguishable; starts can move earlier and
+  releases later, while mixed start/release boundaries stay fixed.
+- Removed depot-branch caution fan-out from passenger roads, preserving actual
+  depot entry plates and through-running ACCESS warnings. The whole-route audit
+  falls from 1,058 to 713 masts and from 458 to six nearby same-facing post pairs.
+  Remaining pairs have different meanings. All track/platform clearances pass.
+  Simulation speed limits, dispatch, save geometry and prepared states are unchanged.
+- Driving RB reduces power to coast; LB releases braking to coast. Neither crosses
+  into the opposite range or takes AI ownership. Bumpers no longer change
+  headlights; walking RB remains the torch. Updated guide, hints and shipped docs.
+- Validation: **633 headless tests pass**; 73 native controller checks pass;
+  inspected guide and sign layouts. Fixed-camera shadow sampling used Forward+
+  on the development Radeon 780M, not the RTX 4090 Laptop. A PCF-only comparison
+  did not improve fine shimmer, so the existing shadow quality is preserved.
+  All 100 prepared departures / 233 timeline states verify against unchanged
+  railway inputs. Evidence: `art/performance/shadow-board-controls-2026-10-20/`.
+- Source update only; **R34 remains the published download**.
+
+Playtest: park beneath overhead equipment/trees, keep the camera still and compare
+running clock versus pause. Inspect ERS/ALLP/TVC signs and road plaques. Hold RB
+from applied power and LB from applied brake: both stop at coast. Verify they
+leave AI in control, then open Menu → Controller layout → Driving.
+
 ## 2026-10-19 — R34 publication
 
 - Published **R34** from clean source **d726793**, signed catalogue sequence **36**,

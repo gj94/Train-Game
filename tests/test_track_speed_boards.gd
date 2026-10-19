@@ -131,3 +131,47 @@ func test_rendered_posts_clear_every_track_platform_and_signal_footprint():
 		if not rails.clear_point(job.point,3.04) or not footprint.clear(Vector2(job.point.x,job.point.z),.79):
 			return "Sign footprint obstruction: "+job.id
 	return true
+
+func job(id: String,kind: String,point: Vector3,limit: float,road: String,dir: int=1) -> Dictionary:
+	return {id=id,point=point,rail_y=0.0,forward=Vector3.RIGHT*dir,road=road,
+		plates=[{edge=road,kind=kind,limit=limit,route=""}]}
+
+func test_shared_verge_posts_merge_roads_but_keep_direction_and_release_safety():
+	var view=preload("res://game/track_speed_board_view.gd")
+	var source=[job("one","speed",Vector3(100,0,8),35,"TEST_P1"),job("two","speed",Vector3(102,0,8),35,"TEST_P2"),job("reverse","speed",Vector3(101,0,8),35,"TEST_P1",-1)]
+	var posts: Array=view.consolidate(source)
+	if posts.size()!=2 or posts[0].plates.size()!=1 or posts[0].point.x!=100:return "Duplicate verge post / moved start later"
+	if not posts[0].plates[0].route.contains("P1") or not posts[0].plates[0].route.contains("P2"):return "Lost road qualification"
+	var ends: Array=view.consolidate([job("a","termination",Vector3(100,0,8),90,"TEST_P1"),job("b","termination",Vector3(102,0,8),90,"TEST_P2")])
+	return ends.size()==1 and ends[0].point.x==102 and source[0].plates[0].route==""
+
+func test_consolidation_preserves_distinct_limits_and_separate_restrictions():
+	var view=preload("res://game/track_speed_board_view.gd")
+	var posts: Array=view.consolidate([job("a","speed",Vector3.ZERO,35,"TEST_P1"),job("b","speed",Vector3.RIGHT,25,"TEST_P2"),job("c","speed",Vector3.RIGHT*50,35,"TEST_P1")])
+	return posts.size()==2 and posts[0].plates.size()==2 and posts[1].point.x==50
+
+func test_depot_cautions_do_not_fan_out_across_passenger_roads():
+	var w:=Kerala.build()
+	var view=preload("res://game/track_speed_board_view.gd").new(w)
+	var depot_starts:=0;var access_cautions:=0
+	for post in view.jobs:
+		var unique:={}
+		for plate in post.plates:
+			if plate.kind=="caution" and view.depot_branch(plate.source) and not view.depot_branch(plate.edge):return "Depot caution on passenger road"
+			if plate.kind=="speed" and "_DEPOT_" in plate.source:depot_starts+=1
+			if plate.kind=="caution" and plate.source.ends_with("_ACCESS"):access_cautions+=1
+			var key: String=plate.kind+str(plate.limit)
+			if unique.has(key):return "Repeated same plate on shared mast"
+			unique[key]=true
+	return depot_starts>0 and access_cautions>0
+
+func test_shared_road_labels_compact_only_genuinely_contiguous_roads():
+	var view=preload("res://game/track_speed_board_view.gd")
+	return view.road_label(["ERS P1","ERS P2","ERS P3"])=="ERS P1–P3" and view.road_label(["ERS P1","ERS P3"])=="ERS P1 / P3"
+
+func test_mixed_start_and_release_boundary_never_moves_during_consolidation():
+	var view=preload("res://game/track_speed_board_view.gd")
+	var mixed:=job("a","speed",Vector3(100,0,0),35,"TEST_P1")
+	mixed.plates.append({edge="TEST_P1",kind="termination",limit=90,route=""})
+	var posts: Array=view.consolidate([mixed,job("b","termination",Vector3(102,0,0),90,"TEST_P2")])
+	return posts.size()==2 and posts[0].point.x==100 and posts[1].point.x==102

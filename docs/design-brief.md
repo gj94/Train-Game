@@ -9,6 +9,10 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **20 Oct 2026 stationary visuals and controls:** smooth outside-world shadows
+  on stationary trains, consolidate duplicate speed boards without changing
+  operating limits, and map RB to power reduction / LB to brake release, both
+  clamped at coast. Remove the driving-bumper headlight action.
 - **19 Oct 2026 controls and signals:** context-based Xbox controls with RT/LT
   combined handle/coast detent, B horn, tap X AI / hold X takeover, automatic AI
   when standing, exterior-only camera cycling and independent carriage walking.

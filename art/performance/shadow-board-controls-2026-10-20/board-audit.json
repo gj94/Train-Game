@@ -1,0 +1,232 @@
+{
+  "source_plan_boards": 1085,
+  "posts_before": 1058,
+  "posts_after": 713,
+  "same_facing_pairs_within_8m_before": 458,
+  "same_facing_pairs_within_8m_after": 6,
+  "remaining_pairs": [
+    {
+      "a": "speed-board:ERS_P1:1:385",
+      "b": "speed-board:ERS_P1:1:379",
+      "d": 5.4603271484375,
+      "plates_a": [
+        {
+          "dir": 1,
+          "edge": "ERS_P1",
+          "id": "caution:ERS_P1:1:385:0:",
+          "kind": "caution",
+          "limit": 0.0,
+          "roads": [
+            "ERS P1",
+            "ERS P2"
+          ],
+          "route": "ERS P1 / P2",
+          "s": 385.020263671875,
+          "source": "ERS_RLEAD_D"
+        }
+      ],
+      "plates_b": [
+        {
+          "clearance": 600.0,
+          "dir": 1,
+          "edge": "ERS_P1",
+          "id": "termination:ERS_P1:1:379:40:",
+          "kind": "termination",
+          "limit": 11.1111111111111,
+          "roads": [
+            "ERS P1",
+            "ERS P2"
+          ],
+          "route": "ERS P1 / P2",
+          "s": 379.479965209961,
+          "source": "ERS_DEPOT_LD_ACCESS"
+        }
+      ]
+    },
+    {
+      "a": "speed-board:TVCN_LADDER_LD0:1:10",
+      "b": "speed-board:TVCN_LADDER_LD0:1:15",
+      "d": 4.87456798553467,
+      "plates_a": [
+        {
+          "dir": 1,
+          "edge": "TVCN_LADDER_LD0",
+          "id": "caution:TVCN_LADDER_LD0:1:10:0:",
+          "kind": "caution",
+          "limit": 0.0,
+          "roads": [
+            "TVCN POINTS"
+          ],
+          "route": "TVCN POINTS",
+          "s": 10.0403900146484,
+          "source": "TVCN_LADDER_RD0"
+        }
+      ],
+      "plates_b": [
+        {
+          "clearance": 600.0,
+          "dir": 1,
+          "edge": "TVCN_LADDER_LD0",
+          "id": "termination:TVCN_LADDER_LD0:1:15:25:",
+          "kind": "termination",
+          "limit": 6.94444444444444,
+          "roads": [
+            "TVCN P1",
+            "TVCN POINTS"
+          ],
+          "route": "TVCN P1 / POINTS",
+          "s": 14.7618865966797,
+          "source": "TVCN_DEPOT_LD_LEAD"
+        }
+      ]
+    },
+    {
+      "a": "speed-board:TVCN_LADDER_RD0:-1:153",
+      "b": "speed-board:TVCN_DEPOT_RD_ACCESS:-1:0",
+      "d": 7.31335115432739,
+      "plates_a": [
+        {
+          "dir": -1,
+          "edge": "TVCN_LADDER_RD0",
+          "id": "caution:TVCN_LADDER_RD0:-1:153:0:",
+          "kind": "caution",
+          "limit": 0.0,
+          "roads": [
+            "TVCN POINTS"
+          ],
+          "route": "TVCN POINTS",
+          "s": 153.01171875,
+          "source": "TVCN_LADDER_LD0"
+        }
+      ],
+      "plates_b": [
+        {
+          "dir": -1,
+          "edge": "TVCN_DEPOT_RD_ACCESS",
+          "id": "speed:TVCN_DEPOT_RD_ACCESS:-1:0:25:TVCN POINTS",
+          "kind": "speed",
+          "limit": 6.94444444444444,
+          "roads": [
+            "TVCN POINTS"
+          ],
+          "route": "TVCN POINTS",
+          "s": 0.0,
+          "source": "TVCN_LADDER_RD0"
+        }
+      ]
+    },
+    {
+      "a": "speed-board:TVC_P1:1:385",
+      "b": "speed-board:TVC_P1:1:380",
+      "d": 4.58055591583252,
+      "plates_a": [
+        {
+          "dir": 1,
+          "edge": "TVC_P1",
+          "id": "caution:TVC_P1:1:385:0:",
+          "kind": "caution",
+          "limit": 0.0,
+          "roads": [
+            "TVC P1",
+            "TVC P2"
+          ],
+          "route": "TVC P1 / P2",
+          "s": 384.5927734375,
+          "source": "TVC_RLEAD_D"
+        }
+      ],
+      "plates_b": [
+        {
+          "clearance": 600.0,
+          "dir": 1,
+          "edge": "TVC_P1",
+          "id": "termination:TVC_P1:1:380:40:",
+          "kind": "termination",
+          "limit": 11.1111111111111,
+          "roads": [
+            "TVC P1",
+            "TVC P2"
+          ],
+          "route": "TVC P1 / P2",
+          "s": 380.028945922852,
+          "source": "TVC_DEPOT_LD_ACCESS"
+        }
+      ]
+    },
+    {
+      "a": "speed-board:QLN_DEPOT_RU_ACCESS:-1:0",
+      "b": "speed-board:QLN_DEPOT_RU_ACCESS:-1:1",
+      "d": 0.597541332244873,
+      "plates_a": [
+        {
+          "dir": -1,
+          "edge": "QLN_DEPOT_RU_ACCESS",
+          "id": "speed:QLN_DEPOT_RU_ACCESS:-1:0:25:QLN POINTS",
+          "kind": "speed",
+          "limit": 6.94444444444444,
+          "roads": [
+            "QLN POINTS"
+          ],
+          "route": "QLN POINTS",
+          "s": 0.0,
+          "source": "QLN_LADDER_RU0"
+        }
+      ],
+      "plates_b": [
+        {
+          "clearance": 600.0,
+          "dir": -1,
+          "edge": "QLN_DEPOT_RU_ACCESS",
+          "id": "termination:QLN_DEPOT_RU_ACCESS:-1:1:25:",
+          "kind": "termination",
+          "limit": 6.94444444444444,
+          "roads": [
+            "QLN DEPOT"
+          ],
+          "route": "",
+          "s": 0.597885131835938,
+          "source": "QLN_DEPOT_RU_LEAD"
+        }
+      ]
+    },
+    {
+      "a": "speed-board:TVC_DEPOT_LU_ACCESS:1:220",
+      "b": "speed-board:TVC_DEPOT_LD_ACCESS:1:213",
+      "d": 7.09490251541138,
+      "plates_a": [
+        {
+          "dir": 1,
+          "edge": "TVC_DEPOT_LU_ACCESS",
+          "id": "speed:TVC_DEPOT_LU_ACCESS:1:220:25:TVC POINTS",
+          "kind": "speed",
+          "limit": 6.94444444444444,
+          "roads": [
+            "TVC POINTS"
+          ],
+          "route": "TVC POINTS",
+          "s": 220.293426513672,
+          "source": "TVC_LADDER_LU0"
+        }
+      ],
+      "plates_b": [
+        {
+          "clearance": 600.0,
+          "dir": 1,
+          "edge": "TVC_DEPOT_LD_ACCESS",
+          "id": "termination:TVC_DEPOT_LD_ACCESS:1:213:25:",
+          "kind": "termination",
+          "limit": 6.94444444444444,
+          "roads": [
+            "TVC DEPOT"
+          ],
+          "route": "TVC DEPOT",
+          "s": 212.883483886719,
+          "source": "TVC_DEPOT_LD_LEAD"
+        }
+      ]
+    }
+  ],
+  "simulation_limits_changed": false,
+  "depot_entry_plates_retained": true,
+  "through_access_cautions_retained": true
+}

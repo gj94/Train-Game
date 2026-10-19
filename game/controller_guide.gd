@@ -7,7 +7,7 @@ const PAGES := [
 		["X","Let AI drive","Tap and release. AI takes over without moving your viewpoint."],
 		["HOLD X","Take manual control","Hold 0.65 seconds from pilot or a following view. The handle starts at coast; release controls before driving."],
 		["Y","Leave the seat","Stand inside the cab. AI takes over automatically."],
-		["RB","Headlights","Cycle bright, off and dim. Emergency brake is available through Menu → Train & view actions (keyboard Space)."]]],
+		["RB / LB","Power down / brake release","Hold RB to reduce power; hold LB to release the brake. Both stop at coast and never enter the opposite range. Emergency brake remains in the menu / keyboard Space."]]],
 	["WALKING","Explore the moving train while AI handles the driving.",[
 		["LS / RS","Move / look","Left stick walks and strafes within the carriage. Right stick looks around."],
 		["L3","Walk / run","Click the left stick to toggle running. Triggers never operate traction on foot."],

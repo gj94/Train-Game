@@ -12,7 +12,8 @@ Right/left D-pad starts with the matching head-out, then cycles following exteri
 Hold left/right D-pad to return to pilot; exterior views keep your current driver.
 Up/down D-pad moves one carriage toward loco/tail, standing with AI driving.
 Hold up/down to return to the loco standing. Y takes the nearby driver's seat.
-RS look · R3 recenter · LS adjusts following camera distance/angle · RB headlights.
+RB reduces power to coast · LB releases brake to coast; neither crosses into the opposite range.
+RS look · R3 recenter · LS adjusts following camera distance/angle.
 
 [b]WALKING & PASSENGERS[/b]
 LS walk · L3 toggle run · RS look · A interact or sit · RB torch.
@@ -30,8 +31,19 @@ Release controls after a menu, handover or reconnect before operating again."""
 static func down(pad, button: int) -> bool:
 	return pad._buttons.has(button)
 
+static func direction(pad, current: float) -> float:
+	# Bumpers only relax the matching range. They never cross coast, add
+	# traction/braking or let a held trigger undo a reduction simultaneously.
+	if down(pad,JOY_BUTTON_RIGHT_SHOULDER) or down(pad,JOY_BUTTON_LEFT_SHOULDER):
+		if current>0 and down(pad,JOY_BUTTON_RIGHT_SHOULDER):return -1.0
+		if current<0 and down(pad,JOY_BUTTON_LEFT_SHOULDER):return 1.0
+		return 0.0
+	return Shape.handle(pad._axes[5],pad._axes[4])
+
 static func handle(pad, current: float, travel: float) -> float:
-	var direction := Shape.handle(pad._axes[5],pad._axes[4])
+	var direction := direction(pad,current)
+	if down(pad,JOY_BUTTON_RIGHT_SHOULDER) or down(pad,JOY_BUTTON_LEFT_SHOULDER):
+		return move_toward(current,0.0,travel) if direction!=0 else current
 	if direction==0:return current
 	if current==0 and pad._coast_direction==signf(direction) and pad._coast_time<COAST_PAUSE:return 0
 	var target:=clampf(current+direction*travel,-1,1)
@@ -93,8 +105,7 @@ static func button(pad, event: InputEventJoypadButton) -> void:
 				else:g.hud.toast("A sits in a passenger seat · hold D-pad up/down to return to the loco")
 		JOY_BUTTON_RIGHT_SHOULDER:
 			if g.walker.active:g.walker.toggle_lamp()
-			elif not g._passenger_seated() and g.tv.has_method("cycle_headlights"):
-				g.hud.toast("Headlights · "+g.tv.cycle_headlights())
+
 
 static func process(pad, left: Vector2, right: Vector2, delta: float) -> void:
 	var g=pad.game
@@ -126,4 +137,4 @@ static func process(pad, left: Vector2, right: Vector2, delta: float) -> void:
 static func hint(pad) -> String:
 	if pad.game._passenger_seated():return "AI driving · D-pad left/right row head-outs · Y stand · A interact · hold Up/Down loco"
 	if pad.game.walker.active:return "AI driving · LS walk · L3 run · RS look · A interact/sit · Y driver seat · RB torch · hold Up/Down loco"
-	return "RT/LT handle · B horn · Y stand · X AI / hold X manual · D-pad cameras / hold Left/Right pilot · RB lights · Menu controls"
+	return "RT/LT handle · B horn · Y stand · X AI / hold X manual · D-pad cameras / hold Left/Right pilot · RB power down / LB brake release · Menu controls"

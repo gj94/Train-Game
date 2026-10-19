@@ -14,6 +14,24 @@ train can use that speed on a track supporting it, but not through a 35 km/h loo
 Manual traction cuts out at equipment maximum; the AI also brakes for the line,
 signals, trains and scheduled stops. The HUD speed limit covers the entire rake.
 
+## 20 October 2026 — shared verge signs
+
+The presentation now consolidates nearby same-facing posts after track/platform
+clearance placement. Equivalent plates share one mast with retained road labels
+(e.g. ERS P1–P6); different limits remain separate plates. Opposing directions
+and separate restrictions are preserved. Starts/cautions may move up to 8 m
+upstream when shared; releases may move downstream, never upstream. Mixed
+start/release boundaries retain their original position.
+
+Depot-branch advance cautions no longer fan back 1.2 km across all passenger
+roads. Entry speed plates remain. Through-running depot ACCESS segments retain
+their warnings, despite their names. Engineering limit data, tail-clearance
+logic, dispatch, saved journeys and prepared timetable states are unchanged.
+The whole-route audit reduces 1,058 masts to 713. Same-facing post pairs within
+8 m fall from 458 to six; those remaining pairs have separate release/start or
+caution meanings. Track/platform/structure clearances pass across the route.
+This is reconstructed gameplay signage, not a claim about surveyed IR locations.
+
 ## Reading the boards
 
 - Yellow fishtail: a restriction is ahead, 1,200 m away along the track.
@@ -54,8 +72,9 @@ termination at the longest passenger-train length beyond the restricted area.
 illustrates the shapes, striped posts and 1,200 m advance caution.
 
 These are Indian-style signs for the game's reconstructed operations, not a
-survey of actual ERS–NCJ board locations. The start board coincides with the
-game's exact limit boundary; this is not a temporary worksite's 30 m offset.
+survey of actual ERS–NCJ board locations. The unmerged start board coincides with the
+game's limit boundary; shared verge posts can be up to 8 m earlier as above.
+This is not a temporary worksite's 30 m offset.
 Road plaques, auxiliary release numbers and tall outer-yard placement are
 gameplay adaptations; real intermediate-track indicators may use low boards.
 No source PDF imagery is bundled or reused as game artwork.

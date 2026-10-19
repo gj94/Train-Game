@@ -112,3 +112,27 @@ distant window masks and the bounded porch-light pool. The overnight native
 house checks passed 30 assertions; the complete regression suite passed 590.
 See [performance.md](performance.md) for the new development-PC measurements
 and their limits.
+
+## Stationary shadow stepping — 20 October 2026
+
+Direct sunlight previously shared the sky's five-simulation-second refresh gate.
+This moved its shadow map in discrete steps even with a stationary train and
+camera. Direct sun/moon transforms now follow every changed simulation clock;
+paused clocks do no work. Sky radiance and window materials retain the existing
+bounded refresh, and skip/load changes still apply immediately.
+
+The fixed-camera WAP-7 fixture (`tools/check_stationary_shadows.gd`) isolates
+external overhead casters from streaming, vehicle motion and wind. Across 81
+samples over 20 simulated seconds, the old light moved only four times; the
+new light moves on all 80 changed clocks. Its largest sampled direction step
+falls from 0.000364 to 0.0000182. Peak frame difference in the body crop falls
+from 0.193 to 0.120 on an 8-bit scale, but mean difference rises from 0.009 to
+0.106 because shadows now change continuously. Fine raster shimmer remains;
+this is evidence for removing periodic jumps, not proof of eliminating every
+shadow artifact. Disabling contact-hardening gave no meaningful improvement
+and is not adopted. Paused light transforms remain exact. Tests used the
+Radeon 780M development PC, not the target RTX 4090 Laptop.
+
+Godot documents incremental sky radiance updates across multiple frames:
+[Sky process modes](https://docs.godotengine.org/en/stable/classes/class_sky.html).
+We keep that expensive path separate from direct illumination.

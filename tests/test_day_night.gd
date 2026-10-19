@@ -92,3 +92,21 @@ func test_detailed_route_fixtures_follow_canopies_and_platforms():
 	pool.update(observer,Vector3.ZERO,1,Callable(),true)
 	var ok: bool=sites>100 and pool.active_lights>0 and pool.active_lights<=24
 	root.free();return ok
+
+func test_direct_shadow_light_moves_between_cached_sky_updates():
+	var s:=scene();var cycle=s.view.day_night
+	cycle.update(16*3600,true)
+	var sky_updates: int=cycle.updates
+	var previous: Basis=cycle.sun.basis
+	var ok:=true
+	for frame in range(1,121):
+		var clock:=16*3600+frame/30.0
+		cycle.update(clock)
+		var expected:=Basis.looking_at(-Cycle.sample(clock).sun,Vector3.UP)
+		if cycle.sun.basis==previous or not cycle.sun.basis.is_equal_approx(expected):ok=false
+		previous=cycle.sun.basis
+	ok=ok and cycle.updates==sky_updates
+	var light_updates: int=cycle.light_updates
+	for i in 20:cycle.update(16*3600+4.0)
+	ok=ok and cycle.light_updates==light_updates
+	s.root.free();return ok
