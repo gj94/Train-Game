@@ -4,8 +4,8 @@ const Snapshot := preload("res://sim/world_snapshot.gd")
 const Store := preload("res://persistence/save_store.gd")
 const META := ["route","small_test_layout","imported_fleet","wap7_drive","lhb_drive","traffic_drive","traffic_seed","service_pack","player_service"]
 const FLAGS := ["geographic_drive","traffic_drive","imported_fleet","wap7_drive","lhb_drive","authored_pack","labels_enabled","time_scale"]
-const CAMERA := ["mode","yaw","pitch","distance","cab_fov","head_out_side","follow","_look","free_flight","free_fov"]
-const VIEW := ["passenger_coach","passenger_bay","passenger_seat","passenger_seat_index","cab_position","passenger_head_out"]
+const CAMERA := ["mode","yaw","pitch","distance","cab_fov","head_out_side","follow","_look","free_flight","free_fov","follow_preset"]
+const VIEW := ["passenger_coach","passenger_bay","passenger_seat","passenger_seat_index","cab_position","passenger_head_out","headlight_mode"]
 const WALK := ["active","car","position","crouched","eye_height","lamp_enabled"]
 const MAP := ["focus_index","center_s","span","vertical_pan","follow_train","show_blocks"]
 var game
@@ -132,20 +132,23 @@ func restore_view(session: Dictionary) -> void:
 	game._set_paused(true)
 	game.labels_enabled=session.labels_enabled
 	game._set_time_scale(session.time_scale)
-	var view_state: Dictionary={passenger_head_out=false}
+	var view_state: Dictionary={passenger_head_out=false,headlight_mode=2}
 	view_state.merge(session.view,true)
 	Snapshot.apply(game.tv,view_state,VIEW)
+	if game.tv.has_method("apply_headlights"):game.tv.apply_headlights()
 	game._render_trains(1.0)
-	var camera_state: Dictionary={free_flight=false,free_fov=65.0}
+	var camera_state: Dictionary={free_flight=false,free_fov=65.0,follow_preset="follow_close"}
 	camera_state.merge(session.camera,true) # R14-R17 saves predate the platform free view.
 	Snapshot.apply(game.cam,camera_state,CAMERA)
 	game.cam.pivot=session.camera.pivot-(game.wv.coordinate_origin if game.geographic_drive else Vector3.ZERO)
 	game.cam._blend=1.0;game.cam._follow_anchor_valid=false
 	game._set_cab_visuals(game.cam.mode==1)
+	if game.cam.mode==0 and game.cam.follow:preload("res://game/controller_camera.gd").anchor(game)
 	if game.cam.mode==2:
 		game.tv.set_passenger_view(true);game._interior_view=true;game.audio.set_interior(true)
 	game._passenger_seating_changed()
 	if session.walk.active:
+		game.train.automatic=true
 		var walk=game.walker
 		Snapshot.apply(walk,session.walk,WALK)
 		walk._train_id=game.train.id;walk.nav=walk.navigation(walk.car);walk._refresh_exits()

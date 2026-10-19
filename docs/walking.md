@@ -7,66 +7,48 @@ prompt. The WAP-7 has no passenger gangway: use a passenger camera preset to ent
 its coaches, or step out onto a platform at a stop and board a coach doorway.
 The Kerala route supports platform walking beside your assigned train.
 
-You can transfer to **any passenger coach while moving**, including behind a
-WAP-7: open Pause/Start → **Go to passenger coach…** → **Go to any passenger coach…**,
-select Coach 1–20/22, then
-move **LS** to move around inside immediately, or press **Y/E** to stand explicitly.
-The same list is under Camera & passengers. D-pad Down/Up selects each coach in
-order; LS translates continuously inside that coach and RS looks around. Your
-position follows its movement and rotation instead of staying behind in the world.
-This changes your viewpoint without handing over your service or changing the
-power/brake handle or AI setting. **Left-stick click / 4** returns to the pilot.
-For quick access, D-pad left/right cycles the first, middle and last coach views;
-keyboard Alt+1/2/3 does the same. Physical alighting remains restricted to a stop.
+D-pad Down/Up transfers to the next passenger carriage toward the tail/loco,
+including while moving. You arrive standing, free to move with LS and look with RS.
+AI drives whenever you get up or transfer to a carriage. Hold either vertical
+D-pad direction to return to the loco standing; Y sits at the nearby controls,
+then hold X to take over. Hold Left/Right to return directly to pilot, preserving AI.
+The passenger-coach menu and keyboard presets remain available; press Y/E to stand
+from those viewpoints. Left/right camera cycling includes exterior follow views only.
 
-From the WAP driver's seat at ERS: keep manual control with the brake applied,
-press **Y/E**, then face the cab side door beside the platform. Use **A/left
-click** at **Step onto platform**, walk back along the train and board **coach 1**.
-There is no walkable end connection through the locomotive coupler. The cab
-prompt and F1 help now explain this; the locomotive is not counted as coach 1.
+There is no walkable WAP end connection through the coupler. Use D-pad carriage
+transfer, or stop beside a platform and use A/left click at the cab side door to
+alight, walk along the platform, and board a passenger coach.
 
 ## Controls
 
-| Action | Keyboard / mouse | Xbox, either layout while on foot |
+| Action | Keyboard / mouse | Xbox |
 | --- | --- | --- |
 | Walk / strafe | WASD | Left stick |
-| Look | Right-drag, direction stays on release | Right stick |
-| Run | Hold Shift | Hold RT while moving |
-| Crouch / stand | C | B |
-| Sit near a seat | E | Y |
-| Use displayed seat / interior doorway / gangway | Left click | A |
-| Headlamp | L | Hold X + D-pad up |
-| Dispatch | 9 | Tap View / Back |
-| Service progress | F12 | Hold View / Back |
-| Return to pilot | 4 | Left-stick click |
-| External free camera | Tab, then pan to detach | Right-stick click |
-| Cycle all cameras | Camera & passengers menu | D-pad left / right |
-| Move viewpoint one coach toward loco / tail | PgUp / PgDn | D-pad up / down (Up ends at pilot) |
+| Look | Right-drag; direction stays on release | Right stick |
+| Run | Hold Shift | L3 toggle |
+| Crouch / stand | C | Camera & passengers menu |
+| Sit in a passenger seat | E or left click | A interact |
+| Stand / sit at nearby driver controls | E | Y |
+| Use a door / gangway / board / alight | Left click | A |
+| Headlamp | L | RB |
+| Dispatch / progress | 9 / F12 | View tap / hold |
+| Return to pilot | 4 | Hold Left/Right D-pad |
+| Return to loco standing | 4 then E | Hold Up/Down D-pad |
+| Following exterior cameras | Camera menu | Left/Right D-pad |
+| Next carriage toward loco / tail | PgUp / PgDn | Up/Down D-pad |
+| External free camera | Tab, then pan to detach | Camera & passengers menu |
 
-| Left head-out | Q | Left-stick click, then D-pad left |
-| First / middle / last passenger coach | Alt+1 / Alt+2 / Alt+3 | Cycle with D-pad or Camera & passengers menu |
-
-From the pilot seat or any passenger viewpoint, moving the left stick enters
-continuous interior movement with no extra button. This includes a coach selected
-with D-pad Down/Up, camera cycling or the passenger menu. The baked clearance keeps
-movement out of walls and desks; left-stick click returns to the pilot. Explicit
-Y/E standing and sitting remain available. Use A at interior-doorway prompts.
-
-On keyboard **Shift+E** now selects the right head-out view; Q still selects the
-left. The default controller layout follows TSW's immersive contexts; see
-[controllers.md](controllers.md) for driving, shared camera shortcuts and the legacy option.
-
-Getting up and sitting down preserve the driver and the latched power/brake
-handle. Enable AI before leaving the controls if you want it to drive. Walking
-does not pause the railway; dispatch and all other trains keep running. In the
-default controller layout, X+A explicitly toggles AI and X+B explicitly applies
-emergency braking. Menu → Train & view actions has these commands in both layouts.
-Release walking keys/sticks/triggers when returning to driving or closing a menu.
+See [controllers.md](controllers.md) and the in-game Controller layout page for
+driving, walking, camera and menu contexts. Standing and sitting preserve the
+latched handle initially, but AI is responsible for operating it once you get up.
+Triggers never take control on foot or from a passenger seat. Returning to the
+driver's seat does not silently take over: hold X explicitly. Walking does not
+pause the railway or the other services.
 
 At a stand, walk up to an exterior door on the platform side and look toward it.
 Use **A / left click** when **Step onto platform** appears. Walk along the
 platform, face another doorway and use **Board coach…**. The train and dispatcher
-keep running; enabling AI can make your train leave while you remain outside.
+keep running; AI may depart while you remain outside.
 Boarding requires your train to be stopped beside you. Camera shortcuts can
 return to your train; boarding does not change your driving assignment.
 
@@ -125,7 +107,7 @@ sweeps, corners, floor steps, crouch clearance, all model profiles, seat standin
 space, WAP machinery access and compartment door metadata. The native integration
 harness uses `tools/check_walking_playable.gd -- --fleet=icf` (also `lhb`, `vb8`,
 `vb16`; `--kerala` checks the default geographic scenario) to check the actual camera, sound listener, seating, controller contexts
-and coach transitions. Legacy controller/menu/dispatch coverage remains separate.
+and coach transitions. The current control scheme is covered by check_controller_qol.gd.
 
 ## Playtest
 
@@ -136,7 +118,7 @@ See [Passengers](passengers.md) for behaviour, controls and remaining limits.
 
 1. In the starting WAP-7, press Y/E, turn around, and approach the machinery door.
    Use A/left-click at the prompt. Return through it and sit back down with Y/E.
-2. Enable AI using X+A (or keyboard A before standing), enter the first/middle/last
+2. Tap X to enable AI (standing also enables it), enter the first/middle/last
    passenger coach, stand, walk and run down the aisle. Seats and partitions should
    stop you. Crouch and try the headlamp; sit in a different seat.
 3. At a coach end, look toward the next coach and use the gangway prompt. Turn
@@ -152,13 +134,12 @@ See [Passengers](passengers.md) for behaviour, controls and remaining limits.
 
 Sitting in a passenger seat automatically hands driving to AI. While seated,
 traction, brake, horn, reverser and AI/manual shortcuts cannot operate the train.
-Stand with E / controller Y (or move the left stick from the seated interior)
-before resuming normal input. AI stays in charge until an explicit takeover;
+Stand with E / controller Y to move around the carriage. AI stays in charge until an explicit takeover;
 standing never silently cuts its power or brakes.
 
 From the passenger seat, D-pad left/right cycles left head-out, the same seat,
 and right head-out. Keyboard Q and Shift+E choose the two sides; pressing the
 same head-out shortcut again returns inside. Both views use the exact row and
 carriage, follow its motion, and account for reversed coaches. D-pad up/down
-continues through coaches, and LS click returns to pilot. Save/load preserves
+continues through coaches standing, and holding Left/Right returns to pilot. Save/load preserves
 the selected seat and side, including its AI control lock.

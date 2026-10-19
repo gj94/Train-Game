@@ -460,6 +460,7 @@ func _process(delta: float) -> void:
 		emergency = train.emergency,
 		next_signal = ns,
 		next_aspect = world.aspect(ns.id) if not ns.is_empty() else 0,
+		show_signal_aspect=journey_tools.show_signal_aspect if journey_tools!=null else true,
 		buffer = world.distance_to_buffer(train, 600.0),
 		protection = world.protection,
 		cab = cam.mode == CameraRig.Mode.CAB,
@@ -857,7 +858,7 @@ func _ui_action(action: String) -> void:
 		"services": _open_services()
 		"controllers": controller.open_settings()
 		"points": controller.open_points()
-		"controller_actions", "train_controls", "view_controls", "sound_controls":
+		"controller_actions", "train_controls", "view_controls", "sound_controls", "controller_guide":
 			_set_paused(true)
 			hud.show_modal(action)
 		"coaches":

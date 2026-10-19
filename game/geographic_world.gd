@@ -443,11 +443,7 @@ func update() -> void:
 		for sid in signal_lamps:
 			if _warm.has("signal:"+sid):continue
 			var aspect:=world.aspect(sid)
-			if signal_lamps[sid][0].get_meta("aspect",-1)==aspect:continue
-			signal_lamps[sid][0].set_meta("aspect",aspect)
-			var lit:=0 if aspect==RailWorld.Aspect.GREEN else (1 if aspect==RailWorld.Aspect.YELLOW else 2)
-			for i in 3:
-				signal_lamps[sid][i].material_override=mat([Color(.1,1,.35),Color(1,.72,.05),Color(1,.08,.05)][i],true) if i==lit else mat(Color(.08,.08,.08))
+			preload("res://game/signal_asset.gd").apply(signal_lamps[sid],aspect)
 		_refresh_loading()
 	if _joints_on and camera_absolute.distance_squared_to(_joint_focus)>150*150: _make_joint_markers()
 	last_stream_ms=(Time.get_ticks_usec()-began)*.001

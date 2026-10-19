@@ -83,22 +83,17 @@ func run() -> void:
 	var pos:Vector2=walk.position
 	axis(JOY_AXIS_LEFT_Y,-1);axis(JOY_AXIS_TRIGGER_RIGHT,1)
 	for i in 10: walk.update(.1);game._physics_process(.016)
-	check(game.train.controller==.35 and not game.train.automatic,"walking/running cannot alter driver/handle")
+	check(game.train.automatic,"walking/running leaves the train with AI")
 	check(walk.nav.allowed(walk.position),"cab equipment blocks movement")
 	axis(JOY_AXIS_LEFT_Y,0);axis(JOY_AXIS_TRIGGER_RIGHT,0);await frames()
-	await tap(JOY_BUTTON_B)
-	check(walk.crouched,"B crouches on foot")
-	await tap(JOY_BUTTON_B)
-	await tap(JOY_BUTTON_DPAD_UP)
-	check(walk.lamp_enabled and walk._lamp.visible,"headlamp is available on foot")
+	await tap(JOY_BUTTON_LEFT_STICK);check(pad._running,"L3 toggles running")
+	await tap(JOY_BUTTON_RIGHT_SHOULDER)
+	check(walk.lamp_enabled and walk._lamp.visible,"RB torch is available on foot")
 	await tap(JOY_BUTTON_BACK)
 	check(game.dispatcher._root.visible and walk.active,"View opens dispatch without leaving on-foot state")
 	await tap(JOY_BUTTON_B)
 	check(not game.dispatcher._root.visible,"B closes dispatch")
-	button(JOY_BUTTON_X,true);button(JOY_BUTTON_B,true);await frames()
-	button(JOY_BUTTON_B,false);button(JOY_BUTTON_X,false);await frames()
-	check(game.train.emergency,"X+B deliberate emergency works on foot")
-	game.train.speed=0;game.train.emergency=false
+	await tap(JOY_BUTTON_B);check(not game.train.emergency,"B does not apply emergency on foot")
 	# Sample all coaches, including opposite-facing trailing VB cab and EC cars.
 	for car in game.tv.passenger_coaches():
 		game.tv.passenger_coach=car;game.tv.passenger_seat=true;game.tv.passenger_seat_index=0
@@ -128,6 +123,7 @@ func run() -> void:
 	check(absf(game.cam._look.x)<=PI,"on-foot look wraps through a full turn")
 	game.cam._look=Vector2.ZERO;await shot("aisle")
 	var original_car:int=walk.car
+	var passage_trace:=[]
 	for attempt in 5:
 		var entries:Array=walk.nav.room_exits(walk.position)
 		var chosen:Dictionary={}
@@ -136,9 +132,10 @@ func run() -> void:
 		if chosen.is_empty():break
 		walk.position=chosen.point;walk.crouched=true
 		game.cam._look=Vector2(PI,0);walk.update(.016)
+		passage_trace.append({car=walk.car,position=walk.position,target=walk.target})
 		walk.interact();await frames()
 		if walk.car!=original_car:break
-	check(walk.car==original_car+1,"doorway sequence reaches next passenger coach")
+	check(walk.car==original_car+1,"doorway sequence reaches next passenger coach · "+str(passage_trace))
 	check(walk.nav.allowed(walk.position,true),"gangway lands on supported interior floor")
 	for i in 18:walk.update(.016)
 	await shot("gangway")
@@ -161,7 +158,7 @@ func run() -> void:
 	var held:=InputEventKey.new()
 	held.physical_keycode=KEY_W;held.pressed=true
 	Input.parse_input_event(held);Input.flush_buffered_events()
-	game._pilot_camera();game.train.controller=.2
+	game._pilot_camera();game.train.automatic=false;game.train.controller=.2
 	game._physics_process(.1)
 	check(game.train.controller==.2,"held W cannot leak from walking into traction")
 	held=held.duplicate();held.pressed=false;Input.parse_input_event(held);Input.flush_buffered_events()
@@ -169,10 +166,10 @@ func run() -> void:
 	walk.stand();await frames()
 	# Changing view must stop walking and its headlamp; AI is preserved.
 	game.train.automatic=true
-	await tap(JOY_BUTTON_LEFT_STICK)
-	check(not walk.active and game.cam.mode==1 and not walk._lamp.visible,"L3 returns pilot without accidental tap-toggle")
+	button(JOY_BUTTON_DPAD_LEFT,true);pad._process(.7);button(JOY_BUTTON_DPAD_LEFT,false);await frames()
+	check(not walk.active and game.cam.mode==1 and not walk._lamp.visible,"held horizontal D-pad returns pilot without a tap action")
 	check(game.train.automatic,"pilot shortcut preserves AI")
-	button(JOY_BUTTON_BACK,true);pad._process(.6);button(JOY_BUTTON_BACK,false);await frames()
+	button(JOY_BUTTON_BACK,true);pad._process(.7);button(JOY_BUTTON_BACK,false);await frames()
 	check(game.hud.modal=="progress" and not game.dispatcher._root.visible,"hold View shows progress without opening dispatch")
 	await tap(JOY_BUTTON_B)
 	game.train.automatic=false;game.train.controller=0
@@ -193,7 +190,7 @@ func run() -> void:
 	Input.parse_input_event(brake_key);Input.flush_buffered_events()
 	game.train.controller=1;game.train.automatic=true
 	game._physics_process(.016)
-	check(not game.train.automatic,"explicit power input takes manual control even at handle limit")
+	check(game.train.automatic,"triggers cannot take control from AI, even at handle limit")
 	axis(JOY_AXIS_TRIGGER_RIGHT,0)
 	print("Walking "+family+": %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)

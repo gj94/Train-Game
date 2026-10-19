@@ -20,8 +20,10 @@ static func check(w: RailWorld, s: Dictionary) -> String:
 	if s.camera.has("free_flight"):
 		if not shape(s.camera,{free_flight=TYPE_BOOL,free_fov=TYPE_FLOAT}):return "Invalid saved free camera"
 		if s.camera.free_fov<18 or s.camera.free_fov>85 or (s.camera.free_flight and (s.camera.mode!=0 or s.camera.follow)):return "Invalid saved free camera mode"
+	if s.camera.has("follow_preset") and s.camera.follow_preset not in ["follow","follow_close","follow_far","follow_tail"]:return "Invalid saved following camera"
 	if not shape(s.get("view"),{passenger_coach=TYPE_INT,passenger_bay=TYPE_INT,passenger_seat=TYPE_BOOL,passenger_seat_index=TYPE_INT,cab_position=TYPE_INT}):return "Invalid saved passenger view"
 	if s.view.has("passenger_head_out") and (typeof(s.view.passenger_head_out)!=TYPE_BOOL or (s.view.passenger_head_out and s.camera.mode!=3)):return "Invalid saved passenger head-out view"
+	if s.view.has("headlight_mode") and (typeof(s.view.headlight_mode)!=TYPE_INT or s.view.headlight_mode not in [0,1,2]):return "Invalid saved headlights"
 	var t: Train=w.trains[s.player]
 	var formation:=Stock.formation(t.stock_kind.trim_prefix("ported:"),t.rake_profile)
 	if s.view.passenger_coach<0 or s.view.passenger_coach>=formation.size() or s.view.passenger_bay<0 or s.view.cab_position<0 or s.view.cab_position>3:return "Saved viewpoint is outside this train"

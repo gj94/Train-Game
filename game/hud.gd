@@ -15,7 +15,7 @@ Tab cab / exterior · A selected train AI / manual
 E stand up / sit down near a seat. On foot: WASD walk, Shift run, C crouch, L headlamp.
 Right-drag looks all around; left click uses the seat / doorway / gangway prompt.
 WAP-7 has no coach gangway. At a platform stop: cab side door → platform → coach door.
-9 opens dispatch while walking. Current driver and power/brake stay set.
+9 opens dispatch while walking. Getting up hands driving to AI; sitting does not take it back.
 F follow train · 1 / 2 / 3 visit a station
 Outside: right-drag orbit, left-drag pan, wheel zoom
 Cab / passenger: right-drag look (stays on release), wheel zoom, middle-click recenter.
@@ -75,6 +75,7 @@ var _shade: ColorRect
 var _heading: Label
 var _body: RichTextLabel
 var _buttons: VBoxContainer
+var control_guide
 var _menu_focus := {}
 var _dialog: PanelContainer
 var _toast_time := 0.0
@@ -230,6 +231,9 @@ func _build_modal() -> void:
 	_buttons.add_theme_constant_override("separation", 8)
 	_button_scroll.add_child(_buttons)
 	_shade.visible = false
+	control_guide=preload("res://game/controller_guide.gd").new()
+	control_guide.go_back=func():action_requested.emit("pad_back")
+	_shade.add_child(control_guide);control_guide.hide()
 
 func show_modal(kind: String, labels_on: bool = false, description: String = "") -> void:
 	var old_focus:=get_viewport().gui_get_focus_owner()
@@ -237,6 +241,10 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 		_menu_focus[modal]=old_focus.get_meta("action","")
 	modal = kind
 	_shade.visible = kind != ""
+	_dialog.visible=kind!="controller_guide"
+	control_guide.visible=kind=="controller_guide"
+	if kind=="controller_guide":
+		control_guide.open(control_guide.page);_refresh_visibility();return
 	for button in _buttons.get_children():
 		_buttons.remove_child(button)
 		button.queue_free()
@@ -252,7 +260,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Resume  ·  Esc", "resume")
 			_button(_buttons, "Save journey…", "save:menu:save")
 			_button(_buttons, "Audio settings…", "audio:open")
-			_button(_buttons, "Journey tools & recovery…", "journey:open")
+			_button(_buttons, "HUD, journey tools & recovery…", "journey:open")
 			_button(_buttons, "Load journey…  ·  Ctrl+L", "save:menu:load")
 			_button(_buttons, "Quick save  ·  Ctrl+S", "save:quick")
 			_button(_buttons, ("Return to window" if DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN,DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN] else "Enter fullscreen")+"  ·  F11 / Alt+Enter", "fullscreen")
@@ -261,7 +269,8 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Skip to time / future stop…", "skip:open")
 			_button(_buttons, "Scenario & controls  ·  F1", "help")
 			_button(_buttons, "Train & view actions…", "controller_actions")
-			_button(_buttons, "Controller settings & layout…", "controllers")
+			_button(_buttons, "Controller layout: driving / walking / cameras…", "controller_guide")
+			_button(_buttons, "Controller preferences…", "controllers")
 			_button(_buttons, "Service designer / import / export  ·  F5", "services")
 			_button(_buttons, "Go to passenger coach…", "passengers")
 			for rate in [1,2,4,8,16,32]:
@@ -346,6 +355,7 @@ func focus_action(action: String) -> void:
 
 func focus_first() -> void:
 	if modal.is_empty(): return
+	if modal=="controller_guide":control_guide.tabs[control_guide.page].grab_focus();return
 	# Confirmations always start on Cancel, never a remembered destructive action.
 	if modal in ["pause","controller_actions","train_controls","view_controls","sound_controls","points","controllers","passengers","coaches"]:
 		for button in _buttons.get_children():
@@ -414,10 +424,7 @@ func refresh(s: Dictionary) -> void:
 	var speed := "[b]%d[/b] km/h  ·  Limit %d" % [kmh, lim]
 	if over:
 		speed = "[color=#ff7868]" + speed + "  OVERSPEED[/color]"
-	var signal_text := "No signal ahead"
-	if not s.next_signal.is_empty():
-		var aspects := ["[color=#ff7868]RED[/color]", "[color=#ffca72]YELLOW[/color]", "[color=#72e6be]GREEN[/color]"]
-		signal_text = "%s  %s  ·  %d m" % [s.next_signal.id, aspects[s.next_aspect], roundi(s.next_signal.distance)]
+	var signal_text := preload("res://game/signal_readout.gd").text(s.next_signal,s.next_aspect,s.get("show_signal_aspect",true))
 	if s.buffer < 500.0:
 		signal_text += "  ·  Buffer %d m" % roundi(s.buffer)
 	_info.text = "%s   ·   %s\n%s   ·   %s / %s%s" % [speed, handle, signal_text, s.train_id, "AI" if s.automatic else "MANUAL", "  [color=#ffca72]PROTECTION OFF[/color]" if not s.protection else ""]

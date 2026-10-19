@@ -5,37 +5,9 @@ const Camera := preload("res://game/controller_camera.gd")
 const TSW := preload("res://game/controller_tsw.gd")
 const CameraMotion := preload("res://game/controller_camera_motion.gd")
 const Assist := preload("res://game/controller_assist.gd")
-const MENU_PAGES := ["controller_actions","train_controls","view_controls","sound_controls","points","controllers","passengers","coaches"]
+const MENU_PAGES := ["controller_actions","train_controls","view_controls","sound_controls","points","controllers","passengers","coaches","controller_guide"]
 const HELP := TSW.HELP
-const LEGACY_HELP := """[b]XBOX CONTROLLER · 360 / ONE / SERIES / ELITE[/b]
-RT increase power / release brake · LT reduce power / apply brake.
-Release the triggers to hold the current handle; LT wins if both are pressed.
-A AI/manual · B emergency brake (again at a stand to release) · X coast.
-Y cab/exterior · View/Back passenger/cab · Menu/Start pause.
-Right stick look/orbit · LB/RB zoom out/in · Right stick click external FREE.
-Left stick moves around the cab, pans exterior or moves within a passenger coach.
-From pilot, D-pad left/right enters the matching head-out; repeat to cycle.
-D-pad down/up moves one coach toward the tail/loco, with no wrap.
-Free: RT/LT zoom, LB/RB lower/raise. Hold RS 0.65 s to switch triggers to/from train control.
-Left stick click returns to pilot. Open dispatch from Train & view actions.
-Stand/sit is under Menu → Train & view actions → Camera & passengers.
-On foot in either layout: LS walk, RS look, RT run, B crouch, Y sit, A interact.
-X + D-pad up headlamp. Camera shortcuts stay the same on foot.
-
-[b]MENUS & DISPATCH[/b]
-D-pad / left stick move focus · A select/open · B back/cancel.
-LB/RB previous/next control; in a dropdown, previous/next page.
-Right stick scrolls Help or the timetable (horizontal and vertical).
-Dispatch: left stick pan, LT/RT zoom, D-pad map targets, A inspect.
-LB/RB switch desk areas · X locate inspected train · Y fit whole route.
-Right stick scrolls the inspector; View/Back switches to the timetable.
-Choose View train to watch without changing your service. Take control asks first.
-Menu → Train & view actions provides every remaining driving/camera/sound action.
-
-Disconnecting or losing window focus pauses the simulation.
-After connecting, resuming or closing a menu, release sticks, buttons and
-triggers before driving again. Reconnection never resumes automatically.
-Keyboard and mouse remain available."""
+const LEGACY_HELP := HELP # Old callers/settings migrate to the same scheme.
 const KEYS := {
 	"pilot":KEY_4, "head_left":KEY_Q, "head_right":KEY_E,
 	"ai":KEY_A, "emergency":KEY_SPACE, "coast":KEY_X, "reverse":KEY_R,
@@ -56,6 +28,12 @@ var invert_y := false
 var vibration := .35
 var settings_path := "user://controller.cfg"
 var tsw_layout := true
+var _dpad_button := -1
+var _dpad_time := 0.0
+var _dpad_used := false
+var _running := false
+var _coast_direction := 0.0
+var _coast_time := 0.0
 var _camera_down := false
 var _camera_hold_time := 0.0
 var _free_train_controls := false
@@ -145,24 +123,21 @@ func _neutral() -> bool:
 func drive_input() -> float:
 	if active_device < 0 or not _armed or not _focused or game.paused or _ui_open() or _context not in ["drive","free"]: return 0
 	if CameraMotion.is_free(game.cam)!=(_context=="free"):return 0
-	if game.walker.active or game._passenger_seated() or _camera_down or _operation_down: return 0
-	if CameraMotion.is_free(game.cam) and not _free_train_controls:return 0
-	if tsw_layout and _axes[4]<=.06:
-		if _buttons.has(JOY_BUTTON_LEFT_SHOULDER): return 1.0 if game.train.controller<0 else 0.0
-		if _buttons.has(JOY_BUTTON_RIGHT_SHOULDER): return -1.0 if game.train.controller>0 else 0.0
+	if game.train.automatic or game.walker.active or game._passenger_seated() or game.cam.mode==2 or _dpad_button!=-1 or _operation_down or _view_down: return 0
+	if CameraMotion.is_free(game.cam):return 0
 	return Shape.handle(_axes[5],_axes[4])
 
 func drive_handle(current: float, travel: float) -> float:
 	var direction:=drive_input()
 	if direction==0: return current
-	return TSW.handle(self,current,travel) if tsw_layout else clampf(current+direction*travel,-1,1)
+	return TSW.handle(self,current,travel)
 
 func walk_input() -> Vector2:
-	if active_device<0 or not _armed or not _focused or game.paused or _ui_open() or _camera_down or _operation_down: return Vector2.ZERO
+	if active_device<0 or not _armed or not _focused or game.paused or _ui_open() or _dpad_button!=-1 or _operation_down or _view_down: return Vector2.ZERO
 	return Shape.stick(Vector2(_axes[0],_axes[1]),deadzone)
 
 func walk_running() -> bool:
-	return walk_input()!=Vector2.ZERO and Shape.trigger(_axes[5])>.2
+	return walk_input()!=Vector2.ZERO and _running
 
 func _set_mode(value: bool) -> void:
 	if value == controller_mode: return
@@ -197,12 +172,13 @@ func _input(event: InputEvent) -> void:
 	if intentional: _set_mode(true)
 	if event is InputEventJoypadMotion:
 		if event.axis >= 0 and event.axis < 6: _axes[event.axis] = clampf(event.axis_value,-1,1)
+		if Shape.handle(_axes[5],_axes[4])==0:_coast_direction=0
 		return
 	if event.pressed: _buttons[event.button_index] = true
 	else: _buttons.erase(event.button_index)
 	if not game.paused and not _ui_open() and _armed and Camera.button(self,event): return
 	if not event.pressed:
-		if (tsw_layout or game.walker.active) and _armed and not game.paused and not _ui_open(): TSW.button(self,event)
+		if _armed and not game.paused and not _ui_open(): TSW.button(self,event)
 		return
 	if event.button_index == JOY_BUTTON_START:
 		_close_popups()
@@ -211,6 +187,8 @@ func _input(event: InputEvent) -> void:
 		return
 	if _ui_open():
 		_ensure_focus()
+		if game.hud.modal=="controller_guide" and event.button_index in [JOY_BUTTON_LEFT_SHOULDER,JOY_BUTTON_RIGHT_SHOULDER]:
+			game.hud.control_guide.open(game.hud.control_guide.page+(-1 if event.button_index==JOY_BUTTON_LEFT_SHOULDER else 1));return
 		if game.hud.modal.is_empty() and _popup()==null:
 			if game.dispatcher._confirm.visible:
 				if event.button_index==JOY_BUTTON_B: game.dispatcher.cancel_handover();return
@@ -229,21 +207,13 @@ func _input(event: InputEvent) -> void:
 				if game.hud.modal.is_empty(): game.dispatcher.toggle_timetable()
 		return
 	if game.paused: return
-	if tsw_layout or game.walker.active:
-		if _armed: TSW.button(self,event)
-		return
-	match event.button_index:
-		JOY_BUTTON_A: shortcut("ai")
-		JOY_BUTTON_B:
-			shortcut("emergency")
-			if game.train.emergency: _rumble()
-		JOY_BUTTON_X: shortcut("coast")
-		JOY_BUTTON_Y: shortcut("view")
-		JOY_BUTTON_BACK: shortcut("passenger")
+	if _armed: TSW.button(self,event)
 
 
 
 func shortcut(action: String) -> void:
+	if action=="ai":TSW.driver(self,game.train.automatic);return
+	if action=="free":Camera.free_platform(game);return
 	if action=="stand": game.walker.toggle_seat();return
 	if action=="crouch": game.walker.toggle_crouch();return
 	if not KEYS.has(action): return
@@ -253,11 +223,7 @@ func shortcut(action: String) -> void:
 	event.set_meta("controller_command",true)
 	event.pressed = true
 	# Reuse the keyboard command path without injecting a held keyboard state.
-	var was_ai: bool = game.train.automatic
 	game._unhandled_input(event)
-	if action=="ai" and game.train.automatic!=was_ai:
-		var binding: String="X + A" if tsw_layout or game.walker.active else "A"
-		game.hud.toast("AI driving · "+binding+" to take over" if game.train.automatic else "You are driving · handle at coast")
 
 func perform(action: String) -> void:
 	game.hud.show_modal("")
@@ -267,7 +233,7 @@ func perform(action: String) -> void:
 
 func remember_menu_entry(page: String) -> void:
 	if _returning_menu or page not in MENU_PAGES or game.hud.modal==page:return
-	# Store the actual caller, including an empty caller for an X tap in gameplay.
+	# Store the actual caller, including actions entered directly from gameplay.
 	_menu_parents[page]=game.hud.modal
 
 func remember_overlay_entry(page: String) -> void:
@@ -325,7 +291,7 @@ func _ensure_focus() -> void:
 			game.service_editor.roster.grab_focus()
 		return
 	var focus := get_viewport().gui_get_focus_owner()
-	var container: Control = game.hud._buttons if not game.hud.modal.is_empty() else game.dispatcher._root
+	var container: Control = game.hud.control_guide if game.hud.modal=="controller_guide" else (game.hud._buttons if not game.hud.modal.is_empty() else game.dispatcher._root)
 	if focus == null or not focus.is_visible_in_tree() or not container.is_ancestor_of(focus):
 		if not game.hud.modal.is_empty(): game.hud.focus_first()
 		else: game.dispatcher.focus_first()
@@ -426,7 +392,6 @@ func _process(delta: float) -> void:
 		if _assist!=null:_assist.hide()
 		return
 	if not _armed and _neutral(): _armed = true
-	if not game.paused and not _ui_open() and _armed:CameraMotion.tick(self,delta)
 	var right := Shape.stick(Vector2(_axes[2],_axes[3]),deadzone)
 	var left := Shape.stick(Vector2(_axes[0],_axes[1]),deadzone)
 	if _ui_open():
@@ -441,29 +406,22 @@ func _process(delta: float) -> void:
 			else:_ui_pulse("ui_right" if d.x > 0 else ("ui_left" if d.x < 0 else ("ui_down" if d.y > 0 else "ui_up"))))
 		if _service_ui():
 			_scroll_tree(game.service_editor.panel,right*650*delta)
+		elif game.hud.modal=="controller_guide":
+			game.hud.control_guide.scroll.scroll_vertical+=roundi(right.y*650*delta)
 		elif not game.hud.modal.is_empty():
 			game.hud._body.get_v_scroll_bar().value += right.y*650*delta
 		elif game.dispatcher.timetable_open:
 			_scroll_tree(game.dispatcher._timetable._table,right*650*delta)
-	elif not game.paused and _armed and CameraMotion.input(self,left,right,delta):
-		pass
-	elif not game.paused and _armed and (tsw_layout or game.walker.active):
-		TSW.process(self,left,right,delta)
 	elif not game.paused and _armed:
-		var look := right*sensitivity
-		if invert_y: look.y = -look.y
-		var zoom := float(int(_buttons.has(JOY_BUTTON_RIGHT_SHOULDER))-int(_buttons.has(JOY_BUTTON_LEFT_SHOULDER)))
-		Camera.apply(game.cam,look,left if game.cam.mode == 0 else Vector2.ZERO,zoom,delta)
-		# Passenger LS translation is handled by CameraMotion in both layouts.
+		TSW.process(self,left,right,delta)
 	if _assist!=null:_assist.update_pad(self)
 	# Menu navigation must not read train state while the skip worker owns it.
 	if _ui_open():
 		var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect/select · LB/RB areas · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
 		game.hud.set_controller_hint(menu_hint)
 		return
-	var driving_hint: String=TSW.hint(self) if tsw_layout or game.walker.active else "RT/LT power/brake · A AI · B emergency · Y view · View/Back passenger · Menu/Start pause · D-pad cameras · LS click pilot · RS click free"
-	if game.cam.mode==2 and not game._passenger_seated():driving_hint="LS move inside coach · RS look · D-pad up/down coaches · LS click pilot · RS click free · X actions"
-	if CameraMotion.is_free(game.cam) and not _operation_down:driving_hint=CameraMotion.hint(self)
+	var driving_hint: String=TSW.hint(self)
+	if CameraMotion.is_free(game.cam):driving_hint="AI driving · LS move · RS look · RT/LT zoom · hold D-pad Left/Right pilot · Menu controls"
 	game.hud.set_controller_hint(driving_hint if _armed else "Release controller sticks, triggers and buttons to continue")
 
 func _scroll_tree(node: Node, offset: Vector2) -> void:
@@ -476,6 +434,10 @@ func _scroll_tree(node: Node, offset: Vector2) -> void:
 func _rumble() -> void:
 	if vibration > 0 and active_device in Input.get_connected_joypads():
 		Input.start_joy_vibration(active_device,vibration*.6,vibration,.15)
+
+func coast_tick() -> void:
+	if vibration>0 and active_device in Input.get_connected_joypads():
+		Input.start_joy_vibration(active_device,vibration*.22,vibration*.1,.055)
 
 func _stop_vibration() -> void:
 	if active_device in Input.get_connected_joypads(): Input.stop_joy_vibration(active_device)
@@ -501,7 +463,6 @@ func open_settings() -> void:
 
 func change_setting(name: String) -> void:
 	match name:
-		"layout": tsw_layout=not tsw_layout
 		"deadzone": deadzone = .12 if deadzone >= .30 else snappedf(deadzone+.06,.01)
 		"sensitivity": sensitivity = .5 if sensitivity >= 2.0 else sensitivity+.25
 		"invert": invert_y = not invert_y
@@ -529,7 +490,8 @@ func _load_settings() -> void:
 	sensitivity = _number(config,"sensitivity",1,.25,3)
 	vibration = _number(config,"vibration",.35,0,1)
 	invert_y = config.get_value("controller","invert_y",false) == true
-	tsw_layout = config.get_value("controller","tsw_layout",true) == true
+	# Retain hardware preferences, migrate both old layouts to the context scheme.
+	tsw_layout = true
 
 func _save_settings() -> void:
 	var config := ConfigFile.new()

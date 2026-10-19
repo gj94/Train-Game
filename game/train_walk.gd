@@ -108,6 +108,7 @@ func stand() -> bool:
 	eye_height=clampf(eye.y-nav.floor_height(position),1.0,1.58)
 	_train_id=game.train.id
 	active=true
+	game.train.automatic=true
 	game.tv.passenger_seat=false
 	game._passenger_seating_changed()
 	_lamp.visible=lamp_enabled
@@ -196,7 +197,8 @@ func update(delta: float) -> void:
 	var interact: String="A" if game.hud.controller_active else "Left click"
 	var fallback: String="WAP-7 has no coach gangway · use a cab side door at a platform" if game.tv.formation[car].model=="wap7" else "Look toward a seat or an interior doorway"
 	var action: String=target.get("label",fallback)
-	if target.get("kind","") in ["seat","driver"]: action=control+" · "+action
+	if target.get("kind","")=="driver": action=control+" · "+action
+	elif target.get("kind","")=="seat":action=("A" if game.hud.controller_active else "E")+" · "+action
 	elif target.get("kind","") in ["alight","board","door","gangway"]: action=interact+" · "+action
 	_prompt.text=action
 
@@ -226,7 +228,9 @@ func _seat_target(require_facing: bool=true) -> Dictionary:
 func _interaction() -> Dictionary:
 	if platform.outside: return platform.boarding_target()
 	var door: Dictionary=platform.inside_target()
-	if not door.is_empty(): return door
+	# A nearby closed/unsupported exterior exit must not mask an aligned interior
+	# doorway or gangway. Keep usable platform exits available as before.
+	if not door.is_empty() and door.get("kind","")!="platform_blocked":return door
 	var forward:=Basis(Vector3.UP,game.cam._look.x)*Vector3.FORWARD
 	for entry in exits:
 		var facing: Vector2=(entry.bridge.point-entry.point).normalized() if not entry.bridge.is_empty() else Vector2(0,entry.direction)
@@ -241,7 +245,7 @@ func _interaction() -> Dictionary:
 		# Do not label a short furniture alcove as the end of the carriage.
 		if absf(entry.point.y)<float(game.tv.specs[car].pitch)*.5-3.0: continue
 		return {kind="gangway",car=next,label="Through gangway to coach "+str(next if game.tv.choice in ["icf","lhb"] else next+1)}
-	return _seat_target()
+	return door if not door.is_empty() else _seat_target()
 
 func interact() -> void:
 	if not active: return

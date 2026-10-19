@@ -1,199 +1,102 @@
 # Xbox controller
 
-Save/Load: press Menu and choose **Save journey**, **Load journey** or **Quick save**.
-D-pad / left stick selects; A activates; B goes back. Load/overwrite confirmations
-start on Cancel. Loaded journeys remain paused until Resume. See [Save/Load](save-load.md).
+Current source controls (after R33). Xbox 360, One, Series and Elite use Godot's
+standard layout. Elite paddles follow the controller's own assigned buttons.
 
-Fullscreen: press Menu and choose **Fullscreen / Windowed**.
-The preference is saved. Keyboard F11 or Alt+Enter works in menus too.
+Open **Menu → Controller layout** for separate **Driving**, **Walking**,
+**Cameras** and **Menus** pages. LB/RB switches tabs, RS scrolls, A selects and
+B returns to the caller. Controller preferences retain deadzone, look sensitivity,
+vertical inversion and vibration. Old layout preferences migrate to this scheme.
 
-Uses Godot's standard gamepad mapping for Xbox 360, One, Series and Elite pads.
-Connect over USB or a Windows-supported wireless connection before or during play.
-Elite paddles use the buttons assigned in the controller's own profile. The Xbox
-Guide button remains a Windows function. No additional game driver is required.
+## Driving
 
-## Controller QoL update (after R33; not yet published)
-
-- Tap **X** for direct AI handover, horn, coast, emergency brake, journey progress
-  and dispatch actions. The menu names the current driver and disables driving
-  commands while you occupy a passenger seat. Existing X combinations still work.
-- Hold **X** to display a compact, state-aware shortcut legend. Both sticks stop
-  moving the viewpoint while you choose. After a combination, release the controls
-  before driving again so a held run/zoom trigger or bumper cannot change power.
-- **B** returns one level through train actions, cameras, passengers, coaches,
-  controller settings, audio and journey tools, restoring the parent action row. An X menu opened from gameplay
-  returns straight to gameplay; one opened from Pause returns to Pause. Confirmation
-  dialogs continue to start on Cancel.
-- **View** and **RS** holds show a progress indicator. Holding RS on the initial
-  transition into free view now completes the gesture without a second press.
-- Ordinary passenger camera presets participate in the full Left/Right camera
-  cycle again. Only an occupied passenger seat uses the local seat/left-head-out/
-  right-head-out loop. L3 pilot, R3 free and Up/Down coach stepping are unchanged.
-- AI/manual changes show explicit feedback. The X+A chord obeys the same
-  passenger-seat lock as the keyboard and menus.
-
-Validation uses `tools/check_controller_qol.gd` against the source scene, plus
-the headless controller tests and existing camera-cycle/navigation checks. It does
-not launch an extracted download. Hold legends are presentation only; no changes
-to railway simulation or saved-journey format.
-
-## Default: TSW-style immersive
-
-Based on Dovetail's [Train Sim World Controls Guide](https://support.dovetailgames.com/hc/en-us/articles/36105734473234-Train-Sim-World-Controls-Guide)
-(consulted 8 October 2026). Train Game uses one combined power/brake handle, so
-the power/brake buttons operate that handle; it does not simulate TSW's separate
-train-specific handles or every cab instrument interaction.
-
-| Control | Action |
-| --- | --- |
-| RT / RB | Increase / reduce power |
-| LT / LB | Apply / release brake |
-| Y | Stand up / sit near a seat |
-| A | Use displayed on-foot interaction |
-| B | Back / cancel in menus |
-| X tap | Open Train & view actions |
-| X held + A / B / RB / Y | AI/manual / emergency brake / coast / horn |
-| Right stick | Look / orbit |
-| D-pad left / right | Previous / next camera, wrapping through all available views |
-| Right-stick click | External **free** camera at passenger eye height on the nearest open station platform |
-| Left stick | Move continuously inside the cab or selected passenger coach; walk / strafe; free-camera movement |
-| Left-stick click | Return directly to the pilot seat, including from walking |
-| Hold right-stick click for 0.65 s | Toggle free-camera triggers between zoom and train control; release controls to arm |
-| D-pad up / down | Forward / back one passenger coach, stopping at the pilot / last coach |
-| Free-camera RT / LT | Optical zoom in / out by default |
-| Free-camera RB / LB | Raise / lower viewpoint while triggers are in zoom mode |
-| View / Back | Tap dispatch; hold journey progress |
-| Menu / Start | Pause / back |
-
-LT takes priority. RB stops at coast without applying a brake; LB releases a
-brake without applying traction. RT moves the combined handle toward power,
-including out of its braking range. Release controls to hold the selected handle.
-An intentional driving-handle input takes over from AI. View-only camera presets
-preserve AI; the existing cab/exterior toggle enters manual driving on return.
-
-Fresh scenarios start in the pilot seat; loading a save restores its viewpoint.
-The camera cycle is pilot → right head-out → WAP-7 assistant
-seat / cab overview / machinery aisle (where supported) → first / middle / last
-passenger coach → following exterior → free exterior → left head-out → pilot. Left reverses
-the cycle. Switching with keyboard or menus updates the cycle's starting point.
-Thus the first press from pilot always goes to the head-out on the pressed side.
-Up/down visits every passenger coach in formation order, skipping non-passenger
-vehicles and respecting the driving end. Neither end wraps. This also works on foot.
-Free exterior stays fixed in the world until you move it; LS moves and RS turns
-at your eye. Entering it places you on an open station platform near the previous
-viewpoint. RT/LT change the lens without moving you. Repeated short RS clicks
-keep your position. Hold RS to switch RT/LT back to train control; the HUD names
-the current trigger function. A held trigger never transfers directly into driving.
-L3 returns to pilot and requires release if you were holding a zoom/run trigger.
-Moving LS in the cab **or any passenger view**, including immediately after
-D-pad Down/Up, enters continuous interior movement without pressing Y first.
-LS moves forward/back and sideways; RS looks. The viewpoint stays attached to
-that individual carriage through movement and curves. Reach the aisle ends,
-using A at an interior-doorway prompt if needed; walls and furniture retain
-their clearances. LS does not zoom or jump between passenger bays. Movement
-preserves the handle and AI. Y still stands/sits explicitly.
-These three shortcuts apply in both layouts and on foot, while menus and dispatch
-retain D-pad navigation. They preserve your service, AI setting and driving handle.
-
-On foot, RT runs, A uses the displayed seat/doorway/gangway/platform prompt, B
-crouches and X + D-pad up toggles a headlamp. Walking inputs cannot alter traction. See [walking.md](walking.md)
-for keyboard equivalents, current door transitions and a complete playtest.
-
-## Optional previous Train Game layout
-
-Select **Controller settings & layout → Layout** to restore these bindings.
-While on foot, the walking bindings above apply in both layouts. Use Menu →
-Train & view actions → Camera & passengers → Stand up / sit down to leave a seat
-in the legacy layout.
-
-| Control | Action |
+| Input | Action |
 | --- | --- |
 | RT / LT | Increase / decrease the combined power/brake handle |
-| A | Toggle AI/manual driving |
-| B | Emergency brake; press again at a stand to release |
-| X | Coast |
-| Y | Cab / exterior |
-| View / Back | Passenger / cab |
-| Menu / Start | Pause / back |
-| Right stick | Look in cab/passenger; orbit outside |
-| LB / RB | Zoom out / in; lower / raise in free-camera zoom mode |
-| Right stick click | External free camera |
-| Left stick | Move continuously inside the cab or selected coach; pan outside |
-| Left stick click | Return to pilot |
-| D-pad left / right | Previous / next camera, same cycle as the default layout |
-| D-pad up / down | Forward / back one passenger coach, stopping at pilot / tail |
+| B | Horn, including following exterior views |
+| Tap X | Give driving to AI |
+| Hold X (0.65 s) | Take manual control at coast; release inputs before driving |
+| Y | Stand up; AI takes over |
+| A | Context interaction / confirm |
+| RB | Cycle headlight beam: bright → off → dim |
+| Menu | Pause, save/load, settings and remaining actions |
+| Tap View / hold View | Dispatch / service progress |
 
-Both layouts use RT/LT for free-camera zoom by default. Hold RS for 0.65 s to
-toggle train control, then release all controls before using the new function.
+Released triggers hold the selected handle. LT wins simultaneous trigger input.
+Crossing zero pauses at coast for 0.24 seconds with a light vibration. Continue
+holding to cross, or release/re-pull to cross immediately. Triggers never silently
+take driving from AI. There is no emergency-brake face/bumper binding; it remains
+in Menu → Train & view actions and on keyboard Space.
 
-Triggers adjust the handle at a rate proportional to their deflection. Release
-them to hold the handle. LT takes priority if both are pressed. A deliberate
-trigger input takes over from AI. The middle coach is available under
-Menu → Go to passenger coach. Choose a preset, or Go to any passenger coach
-for the numbered list. This works while moving behind a WAP-7. Y stands inside;
-left-stick click returns to pilot without changing your driving assignment.
-Non-passenger vans are skipped.
+## Walking and passenger seats
+
+| Input | Action |
+| --- | --- |
+| LS / RS | Walk and strafe / look |
+| L3 | Toggle walk/run |
+| A | Interact, sit in an available passenger seat, use doors and gangways |
+| Y | Stand from a seat, or sit at nearby driver controls |
+| RB | Torch |
+| D-pad Down / Up | Move one passenger carriage toward tail / locomotive, standing |
+| Hold either Up/Down (0.65 s) | Return to locomotive standing |
+
+Getting up, changing carriage and entering free observer view give driving to AI.
+Returning to the driver's seat leaves AI enabled until explicit takeover. Taking
+manual control is blocked on foot or in a passenger viewpoint. D-pad transfers
+work in a moving WAP formation despite the lack of a physical locomotive gangway.
+The end of the rake does not wrap. Vertical order follows the active driving end.
+
+At a passenger seat, D-pad Left/Right cycles the row's left head-out, interior and
+right head-out. It preserves the selected coach and seat. Y stands up. At a stopped
+platform, use A at the appropriate doorway to board/alight.
+
+## Cameras
+
+From pilot, the first D-pad Right is right head-out and the first Left is left
+head-out. Subsequent horizontal taps cycle only these following views:
+
+Right head-out → close exterior → far exterior → rear of train → left head-out.
+
+The cycle wraps; holding either horizontal direction returns to pilot. It does
+not visit passenger or free cameras. These camera changes preserve driver/handle.
+LS changes distance and angle in a following exterior view without detaching.
+RS looks/orbits; R3 recenters. Up/Down enters carriage walking as described above.
+L3 does not move you to pilot, and R3 does not select free camera.
+
+Free observer view is under Camera & passengers in Train & view actions. It starts
+at the nearest station platform; LS moves, RS looks and RT/LT zooms. AI drives.
+Hold horizontal D-pad to return to pilot. Holds execute without first firing taps;
+focus loss, pauses and reconnects cancel incomplete gestures.
 
 ## Menus and dispatch
 
-D-pad or left stick moves menu focus; A selects and B goes back. In the dispatcher,
-LS pans the map, LT/RT zoom, D-pad selects targets, LB/RB switches desk areas,
-X locates the inspected train and Y fits the whole route. In dropdowns,
-LB/RB moves by a page. B closes a dropdown before closing the desk. The right
-stick scrolls Help/settings and the timetable, including its horizontal columns.
-View/Back switches the open dispatch desk between map and timetable.
+D-pad/LS navigates, A confirms, B goes back, RS scrolls, LB/RB changes focus areas.
+In Dispatch, LS pans, triggers zoom, D-pad selects a target, A inspects, X locates,
+Y fits the route and View opens the timetable. Inspecting another train does not
+hand over your service. Save/load and fullscreen remain under Pause.
 
-Menu → Train & view actions contains the other commands: horn, change ends,
-next signal routes, manual point control, station views, seat/aisle, original LHB
-berths, simulation speed, train protection, event history and sound diagnostics.
-The sound/diagnostics group also exposes the live performance overlay (F10).
-Manual point control uses the same occupancy and route locks as mouse input.
-The pause menu also exposes display settings, all fleet choices, restart and quit.
+The HUD indicates AI/manual ownership. A hold-progress panel explains pending
+X, View and D-pad gestures. Disconnect/focus loss pauses; release controls before
+resuming. Keyboard and mouse remain available.
 
-## Settings and safety
+## Signal HUD
 
-Menu → Controller settings & layout selects TSW-style/legacy and adjusts stick deadzone, look sensitivity,
-vertical inversion and vibration strength. Settings persist in
-`user://controller.cfg`. Emergency braking produces a brief vibration where the
-Windows connection supports it; connection-specific vibration needs hardware testing.
+Pause → **HUD, journey tools & recovery → Next-signal HUD** chooses
+**Aspect + distance** (existing default) or **Distance only**. Distance-only mode
+has a neutral distance readout with no aspect word/colour. It also suppresses
+proceed notifications/chimes and automatic return to ×1 on clearance, which would
+otherwise reveal the hidden aspect. Dispatch remains a complete operational view.
+The preference persists independently of saved journeys.
 
-One controller owns driving at a time. Other pads do not move the selected train.
-Disconnecting the active pad or losing application focus pauses the game.
-Reconnecting does not resume it. After menus close or focus returns, release the
-sticks, triggers and buttons before applying driving input. Keyboard and mouse
-remain available and replace the controller hints when used.
+## Validation and playtest
 
-## Playtest
+The current source-scene regression is `tools/check_controller_qol.gd`, supporting
+`--fleet=lhb`, `icf`, `vb8` and `vb16`. The camera/navigation entry points delegate
+to it. Walking geometry/acoustics retain their separate fixture. Headless tests
+cover handle shaping/detent, ownership, menu parents and signal presentation.
 
-1. In the legacy layout, start a fresh scenario with the pad connected. Check RT/LT partial
-   input, releasing to hold, X coast, A AI takeover and B emergency/release.
-2. Cycle every camera in both directions with D-pad left/right. L3 must return
-   to pilot and R3 to free exterior from each view. Leave the train moving under
-   AI: free camera stays behind; following exterior follows it. Stand up and
-   repeat the shortcuts; verify a held run trigger cannot become traction.
-   From pilot, Right must first choose right head-out and Left the left one.
-   Step Down through the full rake, then Up to pilot; neither end wraps.
-   Move LS in the cab and check movement around the desk; L3 returns to the seat.
-   Press Down, then move LS without pressing Y: walk to the end of the coach,
-   look with RS and check the lens stays unchanged. Repeat in a middle and tail
-   coach while the train moves; the camera must travel and turn with its coach.
-   R3 should place you on a nearby platform. RT/LT zoom without changing power;
-   hold R3 to switch to driving, release everything, then use a fresh trigger.
-   Hold R3 again to restore zoom. RB/LB raise/lower the free camera in zoom mode.
-3. Navigate Help and settings without the mouse. Scroll the text and all pause
-   buttons. Change a setting, restart the game, and check that it persists.
-4. Open dispatch using View (default layout) or Train & view actions. Select a signal and destination, set a safe route, put it
-   to red, switch services and view the timetable. Try a locked point: it must refuse.
-5. Hold RT while pausing/resuming: the handle must wait for release and a fresh
-   press. Disconnect/reconnect while moving, then Alt-Tab: the game must pause.
-6. Cancel restart/quit with B and use keyboard Space after closing the desk.
-
-Automated checks inject standard-layout events into the real Godot viewport and
-exercise the game, native dropdowns and focus navigation. They do not substitute
-for testing a physical pad, its wireless driver, vibration or the feel of the controls.
-
-
-Passenger-seat context: sitting hands driving to AI and blocks driving inputs.
-Y stands up; AI remains in control until takeover. D-pad left/right cycles
-between both head-out sides at that row and the original seat. D-pad up/down
-still selects the neighbouring coach; LS click returns to pilot.
+On a physical controller: cross coast slowly in both directions; check the vibration
+and hold duration. Stand with Y, walk, tap Down through coaches, sit using A and
+try both row head-outs. Hold Up to the loco, Y to sit and X to take over. Check that
+following views retain manual driving. Read all guide tabs and try distance-only
+signals in daylight/night. Synthetic event tests do not validate physical pad feel.

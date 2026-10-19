@@ -6,9 +6,9 @@ static func build(hud, kind: String) -> void:
 		"controllers":
 			var options: Dictionary = hud.controller_options
 			hud._heading.text = "CONTROLLER"
-			hud._body.text = options.get("name","No controller connected") + "\n\n" + hud.controller_help
+			hud._body.text = options.get("name","No controller connected") + "\nAdjust your hardware preferences. Open Controller layout for the separate driving, walking and camera pages."
 			entries = [
-				["Layout: " + ("TSW-style immersive" if options.get("tsw",true) else "Train Game legacy"),"pad_setting:layout"],
+				["View controller layout…","controller_guide"],
 				["Stick deadzone: %d%%" % roundi(options.get("deadzone",.18)*100),"pad_setting:deadzone"],
 				["Look sensitivity: %.2f×" % options.get("sensitivity",1.0),"pad_setting:sensitivity"],
 				["Invert vertical look: " + ("ON" if options.get("invert",false) else "OFF"),"pad_setting:invert"],
@@ -19,7 +19,7 @@ static func build(hud, kind: String) -> void:
 			var state: Dictionary=hud.controller_options
 			var locked: bool=state.get("passenger_seated",false)
 			hud._heading.text = "TRAIN & VIEW ACTIONS"
-			hud._body.text = ("[b]AI is driving · passenger seat[/b]\nStand before using driving commands." if locked else ("[b]AI is driving[/b]" if state.get("automatic",false) else "[b]You are driving[/b]"))+"\nA select · B return"+(" · Hold X in gameplay to see shortcuts." if state.get("chords",true) else " · Layout: Train Game legacy")
+			hud._body.text = ("[b]AI is driving · passenger seat[/b]\nStand before using driving commands." if locked else ("[b]AI is driving[/b]" if state.get("automatic",false) else "[b]You are driving[/b]"))+"\nA select · B return"+" · X hands over to AI; hold X takes control."
 			entries = [["Resume journey" if state.get("quick_from_game",false) else "Back","pad_back"]]
 			if locked:entries.append(["Stand up from passenger seat","padcmd:stand"])
 			entries.append_array([["Take over driving" if state.get("automatic",false) else "Let AI drive","padcmd:ai"],["Sound horn","padcmd:horn"],["Coast","padcmd:coast"],["Release emergency brake" if state.get("emergency",false) else "Emergency brake","padcmd:emergency"],["Journey progress","padcmd:progress"],["Dispatch desk","padcmd:dispatch"],["Camera & passengers…","view_controls"],["Driving & signals…","train_controls"],["Sound & audio settings…","sound_controls"],["Controller settings…","controllers"]])
@@ -29,8 +29,8 @@ static func build(hud, kind: String) -> void:
 			entries = [["AI / manual driver","padcmd:ai"],["Coast","padcmd:coast"],["Emergency brake / release","padcmd:emergency"],["Change driving ends","padcmd:reverse"],["Horn","padcmd:horn"],["Next signal route desk","padcmd:route"],["Manual point control…","points"],["Dispatch desk","padcmd:dispatch"],["Timetable","padcmd:timetable"],["Simulation speed ×1 / ×2 / ×4","padcmd:time"],["Train protection ON / OFF","padcmd:protection"],["Event history","padcmd:history"],["Back","controller_actions"]]
 		"view_controls":
 			hud._heading.text = "CAMERA & PASSENGERS"
-			hud._body.text = "Passenger controls apply to trains with passenger interiors.\nRight stick looks. Y stands/sits in the TSW-style layout.\nD-pad left/right cameras · up/down one coach · LS click pilot.\nRS click free at nearest platform; RT/LT zoom; hold RS switches triggers.\nLS moves inside the cab or selected coach; RS looks. No Y needed. On foot: RT run, B crouch, X + D-pad up lamp."
-			entries = [["View bookmarks & journey tools…","journey:open"],["Stand up / sit down","padcmd:stand"],["Crouch / stand on foot","padcmd:crouch"],["Pilot seat","padcmd:pilot"],["Left head-out / return","padcmd:head_left"],["Right head-out / return","padcmd:head_right"],["Cab / exterior","padcmd:view"],["Passenger / cab","padcmd:passenger"],["Go to passenger coach (also while moving)…","passengers"],["Cab position / passenger aisle or seat","padcmd:seat"],["Fold / lower berths (original LHB)","padcmd:berths"],["Follow train","padcmd:follow"],["Chennapuram view","padcmd:station1"],["Maruthur view","padcmd:station2"],["Kadalur view","padcmd:station3"],["Back","controller_actions"]]
+			hud._body.text = "Y stands; AI takes over. A interacts or sits. D-pad up/down moves between carriages standing; hold either to return to the loco. Hold left/right to return to pilot, then hold X to take control. See Controller layout for all contexts."
+			entries = [["Controller layout…","controller_guide"],["Free camera at nearest platform","padcmd:free"],["View bookmarks & journey tools…","journey:open"],["Stand up / sit down","padcmd:stand"],["Crouch / stand on foot","padcmd:crouch"],["Pilot seat","padcmd:pilot"],["Left head-out / return","padcmd:head_left"],["Right head-out / return","padcmd:head_right"],["Cab / exterior","padcmd:view"],["Passenger / cab","padcmd:passenger"],["Go to passenger coach (also while moving)…","passengers"],["Cab position / passenger aisle or seat","padcmd:seat"],["Fold / lower berths (original LHB)","padcmd:berths"],["Follow train","padcmd:follow"],["Chennapuram view","padcmd:station1"],["Maruthur view","padcmd:station2"],["Kadalur view","padcmd:station3"],["Back","controller_actions"]]
 		"points":
 			hud._heading.text = "MANUAL POINT CONTROL"
 			hud._body.text = "A toggles a point. Occupied and route-locked points refuse movement.\nUse the dispatch desk to set complete routes and clear signals."

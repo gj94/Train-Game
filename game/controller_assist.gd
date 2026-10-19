@@ -24,22 +24,19 @@ func _ready() -> void:
 
 func update_pad(pad) -> void:
 	if not pad.controller_mode or not pad._armed or pad.game.paused or pad._ui_open():hide();return
-	if pad._operation_down and pad._operation_time>=.18:
-		var locked: bool=pad.game._passenger_seated()
-		heading.text="X HELD · TRAIN SHORTCUTS"
-		detail.text="Passenger seat · AI drives. Stand with Y before using driving commands." if locked else (
-			"[color=#8be39b][b]A[/b][/color]  "+("Take over driving" if pad.game.train.automatic else "Let AI drive")+
-			"     [color=#ffda85][b]Y[/b][/color]  Horn\n[color=#ff9595][b]B[/b][/color]  "+("Release emergency" if pad.game.train.emergency else "Emergency brake")+"     [b]RB[/b]  Coast")
-		if pad.game.walker.active:detail.text+="\n[b]D-pad Up[/b]  Headlamp"
-		detail.text+="\nRelease X for the action menu · combinations still work"
-		if pad._operation_used:detail.text=detail.text.replace("Release X for the action menu · combinations still work","Release controls to continue")
-		progress.hide();show()
-	elif pad._camera_down and preload("res://game/controller_camera_motion.gd").is_free(pad.game.cam):
-		heading.text="HOLD RS · "+("USE TRIGGERS TO ZOOM" if pad._free_train_controls else "USE TRIGGERS TO DRIVE")
-		detail.text="Release all controls after switching."
-		progress.value=clampf(pad._camera_hold_time/.65,0,1)*100;progress.show();show()
+	var elapsed:=0.0
+	if pad._operation_down:
+		heading.text="HOLD X · TAKE CONTROL"
+		detail.text="Release early to let AI drive." if not pad._operation_used else "Return to the pilot seat before taking control."
+		elapsed=pad._operation_time
+	elif pad._dpad_button!=-1:
+		var horizontal: bool=pad._dpad_button in [JOY_BUTTON_DPAD_LEFT,JOY_BUTTON_DPAD_RIGHT]
+		heading.text="HOLD · "+("RETURN TO PILOT" if horizontal else "RETURN TO LOCO STANDING")
+		detail.text="Release early to "+("change view." if horizontal else "move one carriage.")
+		elapsed=pad._dpad_time
 	elif pad._view_down:
 		heading.text="HOLD VIEW · JOURNEY PROGRESS"
 		detail.text="Release early to open Dispatch."
-		progress.value=clampf(pad._view_time/.55,0,1)*100;progress.show();show()
-	else:hide()
+		elapsed=pad._view_time
+	else:hide();return
+	progress.value=clampf(elapsed/.65,0,1)*100;progress.show();show()

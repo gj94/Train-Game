@@ -1,5 +1,53 @@
 # Progress
 
+## 2026-10-19 — Context controller scheme, guide and lineside signals
+
+- Replaced the old controller layouts/chords with the requested scheme: RT/LT
+  combined handle with a 0.24-second coast detent and light haptic tick; B horn;
+  A interaction/confirmation; Y stand/driver seat; tap X AI / hold X manual.
+  Standing automatically enables AI. Returning to the seat preserves AI until
+  explicit takeover, which starts at coast and requires released controls.
+- Horizontal D-pad taps enter the matching head-out first and cycle only close,
+  far, rear and head-out following views. Holding either side returns pilot.
+  Vertical taps transfer to one passenger carriage standing under AI; holding
+  either direction returns to the locomotive standing. Passenger-seat horizontal
+  taps retain the exact row's two head-outs. Holds never also trigger their taps.
+  R3 recenters, L3 toggles running, RB operates headlights/torch, View taps/holds
+  open dispatch/progress. Emergency stays in menus/keyboard, with no dedicated
+  controller button. Free observer view is available through the camera menu.
+- Added a responsive Controller layout page with Driving, Walking, Cameras and
+  Menus tabs, controller focus, shoulder-tab switching and scroll support.
+  Updated current help/hints/docs and retained actual menu-parent navigation.
+  Existing hardware preferences migrate to the new scheme. Headlight mode and
+  rear-follow anchoring round-trip through saves; older saves retain defaults.
+- Added a persistent next-signal HUD choice under HUD, journey tools & recovery.
+  Distance only removes the aspect word/colour and suppresses clearance chimes,
+  proceed notifications and automatic speed reset on clearance. Dispatch still
+  shows its operational state; train protection and railway rules are unchanged.
+- Rebuilt signal heads with shared housing/visor/backplate/ladder batches,
+  physical identification plates and directional ribbed lenses. A bounded optical
+  footprint keeps the active lens readable at distance without disabling depth
+  or fog. Both route renderers share the asset and avoid redundant aspect writes.
+  Original procedural artwork; IRISET sighting/LED references are in assets.md.
+- Fixed a walking interaction found during regression: a blocked exterior-door
+  notice no longer masks an aligned interior doorway or gangway.
+- Validation: **625 headless tests pass**. Source-scene controls: **70 checks each**
+  with LHB, VB8 and VB16; **69 ICF checks** on the preceding fixture revision
+  (the added check verifies seat-fixture availability). **181 LHB walking checks**
+  pass. **22 Forward+ optics checks** cover all aspects at 20/200/600 m in day and
+  night with game tone mapping/glow/fog, rear rejection and wall occlusion.
+  Inspected 1280×720 guide/settings screenshots. Evidence is under
+  `art/performance/controller-signal-2026-10-19/`. Development Radeon 780M,
+  not a target-4090 benchmark or a physical-controller/haptic comfort test.
+- Source update only: no export or distribution test. **R33 remains the download.**
+
+Playtest from source: use RT/LT through coast, then tap X and verify triggers leave
+AI in charge. Hold X, release, and drive. Y → D-pad Down → A at a seat should let
+you walk/sit while AI drives; try both row head-outs. Hold Up → Y → hold X returns
+you to manual driving. Check horizontal tap/hold behavior, follow camera movement,
+RB lights/torch, guide tabs and Back navigation. Choose Distance only in Journey
+tools, then read the actual lineside lamps on a clear approach by day and night.
+
 ## 2026-10-19 — Joint/body-motion verification (analysis only)
 - Confirmed that the published R33 source (`34da952`, also identified in its
   BUILD.txt) already contains the unchanged ride solver and axle-contact adapter.

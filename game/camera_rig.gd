@@ -25,6 +25,7 @@ var distance := 205.0
 var cab_fov := 70.0
 var cab_yaw_limit := 2.6
 var follow := true
+var follow_preset := "follow_close"
 var free_flight := false
 var free_fov := 65.0
 

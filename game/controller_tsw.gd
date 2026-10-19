@@ -1,123 +1,129 @@
 extends RefCounted
-## Immersive TSW-style contexts, adapted to this game's combined traction handle.
+## Context controls. Tap actions run on release; holds never fire a tap first.
 const Shape := preload("res://game/controller_math.gd")
 const Camera := preload("res://game/controller_camera.gd")
-const HELP := """[b]XBOX CONTROLLER · TSW-STYLE IMMERSIVE[/b]
-Driving: RT increase power · RB reduce power · LT apply brake · LB release brake.
-The combined handle holds its position when released. Braking takes priority.
-RS look · LS moves freely along the cab or selected coach interior (no Y needed).
-From pilot: D-pad right → right head-out; left → left head-out. Repeat to cycle.
-D-pad down moves back one coach; up moves forward one coach, stopping at pilot.
-LS click returns to pilot · RS click selects FREE camera on the nearest platform.
-Free: LS moves, RS looks, RT/LT zoom, LB/RB lower/raise.
-Hold RS for 0.65 s to switch triggers between zoom and train control; release controls after switching.
-Y stand up / sit down · A context interaction · B back. Change ends in X → Driving actions.
-Passenger seat: AI drives; stand up before driving again. D-pad left/right leans out at your row.
-Tap X for quick Train & view actions. Hold X to see its button shortcuts.
-Hold X+A AI/manual, X+B emergency, X+RB coast, X+Y horn.
-View/Back opens dispatch; hold View for service progress. Menu/Start pauses.
+const HOLD := .65
+const COAST_PAUSE := .24
+const HELP := """[b]XBOX · DRIVING[/b]
+RT increase handle · LT decrease handle. Release to hold; a short detent pauses at coast.
+B horn · A interact · Y stand (AI takes over).
+Tap X gives driving to AI; hold X takes manual control at coast. Sit at the controls first.
+Right/left D-pad starts with the matching head-out, then cycles following exterior views.
+Hold left/right D-pad to return to pilot; exterior views keep your current driver.
+Up/down D-pad moves one carriage toward loco/tail, standing with AI driving.
+Hold up/down to return to the loco standing. Y takes the nearby driver's seat.
+RS look · R3 recenter · LS adjusts following camera distance/angle · RB headlights.
 
-[b]ON FOOT[/b]
-LS walk/strafe · RS look · RT run · B crouch/stand.
-Y sit in a nearby seat · A use the displayed seat/doorway/gangway interaction.
-Hold X + D-pad up toggles your headlamp. X opens train/view actions.
-Camera shortcuts stay the same on foot; LS click returns to the pilot.
-The walking controls do not operate traction. The current driver/handle stays set.
-Doorway and gangway prompts move you through with a brief transition.
-At a stop beside a platform, A leaves through an exterior door or boards a coach.
+[b]WALKING & PASSENGERS[/b]
+LS walk · L3 toggle run · RS look · A interact or sit · RB torch.
+Y stands from a seat, or sits at nearby driving controls. AI stays in control until hold X.
+In a passenger seat, left/right D-pad cycles the same row's head-outs and interior.
+At a stopped platform, A at a doorway boards/alights. Moving between WAP and coaches uses D-pad.
 
-[b]MENUS & DISPATCH[/b]
-D-pad / LS navigate · A select · B cancel · LB/RB focus areas · RS scroll.
-Dispatch: LS pan, LT/RT zoom, D-pad targets, A inspect, X locate, Y fit route.
-View another train without giving up your service; Take control asks first.
-Disconnect/focus loss pauses; release controls after reconnecting or closing UI.
-Settings also offers the previous Train Game controller layout."""
+[b]MENUS[/b]
+View tap: dispatch · View hold: progress · Menu: pause, save/load, settings and actions.
+A confirm · B back · D-pad/LS navigate · RS scroll · LB/RB focus areas.
+Dispatch: LS pan, LT/RT zoom, A inspect, X locate, Y fit, View timetable.
+Emergency brake remains in Train & view actions and on keyboard Space.
+Release controls after a menu, handover or reconnect before operating again."""
+
 static func down(pad, button: int) -> bool:
 	return pad._buttons.has(button)
 
 static func handle(pad, current: float, travel: float) -> float:
-	var brake := Shape.trigger(pad._axes[4])
-	var power := Shape.trigger(pad._axes[5])
-	if brake>0: return maxf(-1,current-brake*travel)
-	if down(pad,JOY_BUTTON_LEFT_SHOULDER): return minf(0,current+travel) if current<0 else current
-	if down(pad,JOY_BUTTON_RIGHT_SHOULDER): return maxf(0,current-travel) if current>0 else current
-	if power>0: return minf(1,current+power*travel)
-	return current
+	var direction := Shape.handle(pad._axes[5],pad._axes[4])
+	if direction==0:return current
+	if current==0 and pad._coast_direction==signf(direction) and pad._coast_time<COAST_PAUSE:return 0
+	var target:=clampf(current+direction*travel,-1,1)
+	if current!=0 and signf(current)!=signf(target):
+		pad._coast_direction=signf(direction);pad._coast_time=0
+		pad.coast_tick()
+		return 0
+	return target
 
 static func reset(pad) -> void:
-	pad._camera_down=false
-	pad._camera_hold_time=0
-	pad._operation_down=false
-	pad._operation_time=0
-	pad._view_down=false
+	pad._camera_down=false;pad._camera_hold_time=0
+	pad._operation_down=false;pad._operation_time=0
+	pad._view_down=false;pad._dpad_button=-1;pad._dpad_time=0
+	pad._coast_direction=0;pad._coast_time=0;pad._running=false
+
+static func driver(pad, manual: bool) -> void:
+	var g=pad.game
+	if manual:
+		if g.walker.active or g._passenger_seated() or g.cam.mode==2 or (g.cam.mode==0 and not g.cam.follow):
+			g.hud.toast("Return to the pilot seat before taking control");return
+		if g.train.lifecycle!="active":return
+		g.train.controller=0.0
+		g.train.automatic=false
+		g.hud.toast("You are driving · handle at coast")
+	else:
+		g.train.automatic=true
+		g.hud.toast("AI driving · hold X from the pilot or following camera to take over")
+	pad.neutralize()
 
 static func button(pad, event: InputEventJoypadButton) -> void:
 	var g=pad.game
 	var id:=event.button_index
-
 	if id==JOY_BUTTON_X:
 		if event.pressed:
 			pad._operation_down=true;pad._operation_used=false;pad._operation_time=0
 		elif pad._operation_down:
 			var used: bool=pad._operation_used
 			pad._operation_down=false
-			if not used: g._ui_action("controller_actions")
-			else:pad.neutralize() # A held horn/run/bumper must not leak into driving.
+			if not used:driver(pad,false)
 		return
 	if id==JOY_BUTTON_BACK:
-		if event.pressed: pad._view_down=true;pad._view_used=false;pad._view_time=0
+		if event.pressed:pad._view_down=true;pad._view_used=false;pad._view_time=0
 		elif pad._view_down:
 			pad._view_down=false
-			if not pad._view_used: pad.shortcut("dispatch")
+			if not pad._view_used:pad.shortcut("dispatch")
 		return
-	if not event.pressed: return
-	if pad._operation_down:
-		pad._operation_used=true
-		match id:
-			JOY_BUTTON_A: pad.shortcut("ai")
-			JOY_BUTTON_B:
-				pad.shortcut("emergency")
-				if g.train.emergency: pad._rumble()
-			JOY_BUTTON_RIGHT_SHOULDER: pad.shortcut("coast")
-			JOY_BUTTON_Y: pad.shortcut("horn")
-			JOY_BUTTON_DPAD_UP:g.walker.toggle_lamp()
-		return
-	if g.walker.active:
-		match id:
-			JOY_BUTTON_A:g.walker.interact()
-			JOY_BUTTON_Y:g.walker.toggle_seat()
-			JOY_BUTTON_B:g.walker.toggle_crouch()
-		return
+	if not event.pressed or pad._operation_down or pad._dpad_button!=-1:return
 	match id:
-		JOY_BUTTON_Y:g.walker.toggle_seat()
 		JOY_BUTTON_A:
-			if g.cam.mode==2:g.walker.toggle_seat()
-
+			if g.walker.active:g.walker.interact()
+			elif g.cam.mode==2:g.walker.toggle_seat()
+		JOY_BUTTON_B:
+			if not g.walker.active and not g._passenger_seated() and g.cam.mode!=2 and not (g.cam.mode==0 and not g.cam.follow):pad.shortcut("horn")
+		JOY_BUTTON_Y:
+			if not g.walker.active:g.walker.stand()
+			else:
+				var seat: Dictionary=g.walker._seat_target(false) if not g.walker.platform.outside else {}
+				if seat.get("kind","")=="driver":g.walker.sit(seat)
+				else:g.hud.toast("A sits in a passenger seat · hold D-pad up/down to return to the loco")
+		JOY_BUTTON_RIGHT_SHOULDER:
+			if g.walker.active:g.walker.toggle_lamp()
+			elif not g._passenger_seated() and g.tv.has_method("cycle_headlights"):
+				g.hud.toast("Headlights · "+g.tv.cycle_headlights())
 
 static func process(pad, left: Vector2, right: Vector2, delta: float) -> void:
 	var g=pad.game
+	if Shape.handle(pad._axes[5],pad._axes[4])==0:pad._coast_direction=0
+	else:pad._coast_time+=delta
 	if pad._operation_down:
 		pad._operation_time+=delta
+		if pad._operation_time>=HOLD and not pad._operation_used:
+			pad._operation_used=true;driver(pad,true)
 		return
-	if pad._camera_down:return
-
+	if pad._dpad_button!=-1:
+		Camera.hold(pad,delta)
+		return
 	if pad._view_down:
 		pad._view_time+=delta
-		if pad._view_time>.55 and not pad._view_used:
+		if pad._view_time>=HOLD and not pad._view_used:
 			pad._view_used=true;g._toggle_progress()
-			return
+		return
 	var look: Vector2=right*pad.sensitivity
-	if pad.invert_y: look.y=-look.y
-	var zoom: float=-left.y if g.cam.mode==3 else 0.0
-	if g.walker.active and not pad._camera_down: zoom=0
-
-	Camera.apply(g.cam,look,left if g.cam.mode==0 and not pad._camera_down else Vector2.ZERO,zoom,delta)
+	if pad.invert_y:look.y=-look.y
+	if g.cam.mode==0 and not g.cam.follow:
+		Camera.apply(g.cam,look,left,Shape.trigger(pad._axes[5])-Shape.trigger(pad._axes[4]),delta)
+	elif g.cam.mode==0:
+		# Following cameras stay attached while the stick adjusts the composition.
+		look.x+=left.x*.6
+		Camera.apply(g.cam,look,Vector2.ZERO,-left.y,delta)
+	else:Camera.apply(g.cam,look,Vector2.ZERO,0,delta)
 
 static func hint(pad) -> String:
-
-	if pad.game._passenger_seated():return "AI driving · D-pad left/right seat and row head-outs · Y stand · LS click pilot · View map"
-	if pad._operation_down:return "X held · A AI/manual · B emergency brake · RB coast · Y horn"
-	if pad._camera_down:return "Hold RS to switch free-camera triggers · release controls after switching"
-	if pad.game.walker.active and pad.game.walker.platform.outside:return "LS walk · RS look · RT run · A board · B crouch · X + D-pad up lamp · LS click pilot · RS click free"
-	if pad.game.walker.active:return "LS walk · RS look · RT run · B crouch · Y sit · A interact · D-pad left/right cameras · LS click pilot"
-	return "RT/RB power · LT/LB brake · D-pad left/right cameras · LS click pilot · RS click free · Y stand · X actions · View map"
+	if pad.game._passenger_seated():return "AI driving · D-pad left/right row head-outs · Y stand · A interact · hold Up/Down loco"
+	if pad.game.walker.active:return "AI driving · LS walk · L3 run · RS look · A interact/sit · Y driver seat · RB torch · hold Up/Down loco"
+	return "RT/LT handle · B horn · Y stand · X AI / hold X manual · D-pad cameras / hold Left/Right pilot · RB lights · Menu controls"

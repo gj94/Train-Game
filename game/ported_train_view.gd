@@ -24,6 +24,16 @@ var shadow_proxies: Array = []
 var shadow_detail: Array = []
 static var _shadow_box: BoxMesh
 var lamps: Array = []
+var headlight_mode := 2
+
+func cycle_headlights() -> String:
+	headlight_mode=(headlight_mode+1)%3
+	apply_headlights()
+	return ["OFF","DIM","BRIGHT"][headlight_mode]
+
+func apply_headlights() -> void:
+	for pair in lamps:
+		for lamp in pair:lamp.light_energy=[0.0,1.5,5.0][headlight_mode]
 var passenger_coach := 0
 var passenger_bay := 0
 var passenger_seat := false

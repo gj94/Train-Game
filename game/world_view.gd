@@ -606,25 +606,15 @@ func _build_signal(sid: String) -> void:
 
 	box_m(Vector3(0.6, 0.4, 0.6), Vector3(0, 0.2, 0), pbr("brushed_concrete", 1.0), node)
 	box_m(Vector3(0.16, 5.4, 0.16), Vector3(0, 2.9, 0), steel(), node)
-	box(Vector3(0.6, 1.65, 0.3), Vector3(0, 5.6, 0), Color(0.05, 0.05, 0.05), node)
-	box(Vector3(0.9, 1.95, 0.04), Vector3(0, 5.6, 0.12), Color(0.03, 0.03, 0.03), node)    # backplate
-	# Signal post marking: white plate with black band.
-	box(Vector3(0.5, 0.3, 0.05), Vector3(0, 3.8, -0.12), Color(0.95, 0.95, 0.95), node)
-	box(Vector3(0.5, 0.08, 0.06), Vector3(0, 3.8, -0.12), Color(0.05, 0.05, 0.05), node)
-	var lamps := []
-	for k in 3:  # top to bottom: green, yellow, red
-		box(Vector3(0.4, 0.06, 0.25), Vector3(0, 6.24 - k * 0.5, -0.25), Color(0.05, 0.05, 0.05), node)   # hood
-		var lamp := MeshInstance3D.new()
-		var sm := SphereMesh.new()
-		sm.radius = 0.15
-		sm.height = 0.3
-		sm.radial_segments = 12
-		sm.rings = 6
-		lamp.mesh = sm
-		lamp.position = Vector3(0, 6.1 - k * 0.5, -0.12)
-		node.add_child(lamp)
-		lamps.append(lamp)
-	signal_lamps[sid] = lamps
+	var lamps:=preload("res://game/signal_asset.gd").build(node)
+	signal_lamps[sid]=lamps
+	# Physical identification plate remains readable up close, without a HUD marker.
+	box(Vector3(.5,.23,.05),Vector3(0,3.8,-.13),Color("e2dfcf"),node)
+	var identifier:=Label3D.new()
+	identifier.text=sid;identifier.font_size=48;identifier.pixel_size=.002
+	identifier.modulate=Color("151b1b");identifier.outline_size=0
+	identifier.rotation.y=PI;identifier.position=Vector3(0,3.8,-.16)
+	node.add_child(identifier)
 	if sid in world.automatic_signals:
 		box(Vector3(.44,.5,.06),Vector3(0,4.25,-.13),Color("e7e4d6"),node)
 		var plate := Label3D.new()
@@ -725,13 +715,9 @@ func _clickable(node: Node3D, size: Vector3, offset: Vector3, info: Dictionary) 
 func update() -> void:
 	update_environment()
 	track_view.update_points()
-	var dark := Color(0.1, 0.1, 0.1)
-	var colors := [Color(0.1, 1.0, 0.35), Color(1.0, 0.72, 0.05), Color(1.0, 0.08, 0.05)]
 	for sid in signal_lamps:
-		var a := world.aspect(sid)
-		var lit := 0 if a == RailWorld.Aspect.GREEN else (1 if a == RailWorld.Aspect.YELLOW else 2)
-		for k in 3:
-			signal_lamps[sid][k].material_override = mat(colors[k], true) if k == lit else mat(dark)
+		var a:=world.aspect(sid)
+		preload("res://game/signal_asset.gd").apply(signal_lamps[sid],a)
 		if route_indicators.has(sid):
 			route_indicators[sid].text = world.signals[sid].destination.right(1) if a != RailWorld.Aspect.RED else ""
 	for nid in switch_markers:

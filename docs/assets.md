@@ -2,6 +2,22 @@
 
 Every third-party asset must be listed here before it is committed. CC0 preferred.
 
+2026-10-19: signal heads, visors, backing plates, lens optics and rear ladders in
+`game/signal_asset.gd` / `signal_lens.gdshader` are original procedural artwork,
+not copied meshes or photograph pixels. Static head/metal geometry and materials
+are shared between signals; only the active optical surface changes with aspect.
+The central luminous disc is approximately 125 mm at close range. A bounded
+4.5-pixel optical footprint preserves distant sampling; depth tests, front-facing
+visibility and normal route fog still apply.
+
+Reference: IRISET's [Colour Light & Automatic Signalling, printed page 54](https://cse.iitkgp.ac.in/~chitta/CRR/sigDocs/S10-ColorAutoSig.pdf)
+describes 600 m clear-day LED aspect visibility and 125 mm main-signal units.
+This training reference informed the game's sighting target, not a claim of
+photometric certification or guaranteed visibility around curves/through obstructions.
+Forward+ captures check red/yellow/green at 20, 200 and 600 m in day/night,
+plus rear-face and intervening-wall rejection. See
+[controller/signal evidence](../art/performance/controller-signal-2026-10-19/README.md).
+
 2026-10-14: derived train contact/enclosure visibility buffers are baked from
 the existing pinned WAP-7, ICF, LHB and Vande Bharat geometry. They contain no
 new external artwork. `tools/blender/bake_train_occlusion.py` adds four bytes
