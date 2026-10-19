@@ -1,5 +1,17 @@
 # Progress
 
+## 2026-10-19 — Joint/body-motion verification (analysis only)
+- Confirmed that the published R33 source (`34da952`, also identified in its
+  BUILD.txt) already contains the unchanged ride solver and axle-contact adapter.
+  Actual joints/turnout contacts drive each body's heave, pitch and roll; onboard
+  cameras share that transform while bogies retain their track poses. Roughness,
+  traction/braking and curves provide additional tuned ride cues.
+- Re-ran all eight ride-dynamics headless regressions: eight pass. This was source
+  inspection and solver verification, not a new visual playtest. The effect uses
+  authored spring/impulse tuning, not measured full suspension physics. Controller
+  rumble is currently an emergency-brake cue, not driven by wheel/joint contacts.
+- No gameplay, sound data or download changed; no new playtest is required.
+
 ## 2026-10-18 — Controller QoL (source update after R33)
 - X now opens common train actions directly, with explicit AI/manual labels and
   disabled driving actions while seated as a passenger. Holding X displays its
