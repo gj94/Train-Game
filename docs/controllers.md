@@ -1,6 +1,6 @@
 # Xbox controller
 
-Current source controls (after R33). Xbox 360, One, Series and Elite use Godot's
+R34 controls. Xbox 360, One, Series and Elite use Godot's
 standard layout. Elite paddles follow the controller's own assigned buttons.
 
 Open **Menu → Controller layout** for separate **Driving**, **Walking**,

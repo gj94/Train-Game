@@ -1,5 +1,14 @@
 # Progress
 
+## 2026-10-19 — R34 release preparation
+
+- Refreshed the portable README for the implemented controller scheme, signal
+  HUD option, installation/update flow and current save behavior. Replaced
+  obsolete accumulated control instructions with links to the shipped guides.
+- Packaging uses the already-passed 625 headless tests and native controller,
+  walking and optics checks below. No gameplay or simulation code changed.
+  R33 remains downloadable until R34 has finished packaging.
+
 ## 2026-10-19 — Context controller scheme, guide and lineside signals
 
 - Replaced the old controller layouts/chords with the requested scheme: RT/LT
