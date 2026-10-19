@@ -1,6 +1,29 @@
 # Windows portable build
 
-Current release: **R33 — full download and incremental updates**, with smoother AI
+Current release: **R34 — full download and incremental updates**, with the new
+context controller scheme, four-tab control guide, coast notch, passenger
+movement controls, optional distance-only signal HUD and improved signal heads.
+Published 19 October 2026 from clean source **d726793**, catalogue sequence **36**,
+at http://192.168.8.183:8765/.
+Full ZIP: **2,610,017,334 bytes**, SHA-256
+`bb78760077aa39fa417a3f03c6576ad49df9e31dbe99841fdd706256e9c12801`.
+
+R33 → R34 downloads **3,002,944,416 changed bytes**, plus its signed catalogue,
+and reuses **161,192,641 bytes**. The full ZIP is smaller for this transition.
+Existing compatible saves/settings remain usable. See [controllers.md](controllers.md).
+
+Game code passed **625 headless tests**, native controller/walking checks and
+22 signal optics checks before packaging. Release gates verified 100 service
+starts and 233 five-minute states. All 312 archive CRCs,
+310 managed hashes, clean BUILD identity, signature/checksum and
+three served ZIP/PCK ranges passed. No extracted-package gameplay test was run.
+Evidence: [R34 publication](../art/performance/r34-release-2026-10-19/publication.json).
+
+Only R34 is offered. R33's verified export directory, ZIP and checksum were retired after idle-LAN
+checks, freeing **5,779,396,178 bytes**. Historical signed catalogues remain.
+The existing native-crash investigation remains open.
+
+Previous release: **R33 — full download and incremental updates**, with smoother AI
 station approaches, paired departure horns, positional cabin/pass-by acoustics,
 audio controls and journey recovery tools. Published 18 October 2026 from clean
 source **34da952**, signed catalogue sequence **35**, at
@@ -115,8 +138,8 @@ The signed catalogue is retained locally, but the LAN server blocks incremental
 endpoints and the standalone updater download for this release. The full ZIP
 contains the updater for future use. Launch `TrainGame.exe` after extracting R26.
 
-For releases after R33, publish both the full ZIP and signed incremental
-catalogue: use a fresh `-BuildName` and increasing `-UpdateSequence` (36 or greater), and omit
+For releases after R34, publish both the full ZIP and signed incremental
+catalogue: use a fresh `-BuildName` and increasing `-UpdateSequence` (37 or greater), and omit
 both `-SkipZip` and `-FullDownloadOnly`. `export/download-release.json` switches
 the LAN page only after packaging completes. The server exposes only that current
 release; there are no hard-coded version lists or older fallback download links.

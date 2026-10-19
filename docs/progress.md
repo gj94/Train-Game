@@ -1,5 +1,28 @@
 # Progress
 
+## 2026-10-19 — R34 publication
+
+- Published **R34** from clean source **d726793**, signed catalogue sequence **36**,
+  at http://192.168.8.183:8765/. Full ZIP: **2,610,017,334 bytes**, SHA-256
+  `bb78760077aa39fa417a3f03c6576ad49df9e31dbe99841fdd706256e9c12801`.
+- Includes the context controller scheme, four-page layout guide, coast notch,
+  passenger-carriage movement, optional distance-only next-signal HUD and improved
+  physical signal heads. Shipped instructions now match those controls.
+- Full and incremental downloads are enabled. R33 → R34 changes **3,002,944,416 bytes**
+  and reuses **161,192,641 bytes**. The full ZIP is smaller for this transition.
+- Validation reuses the unchanged game code's **625 headless tests**, native
+  controller/walking and 22 signal optics checks below. Packaging verified 100
+  prepared starts and 233 five-minute states. All 312 ZIP CRCs,
+  310 managed hashes, clean BUILD identity, signed catalogue/checksum
+  and three served ZIP/PCK ranges pass. No extracted-distribution gameplay test.
+- R33's verified export directory, ZIP and checksum were retired after idle-LAN
+  checks, freeing **5,779,396,178 bytes**. Historical signed catalogues remain.
+  Evidence: `art/performance/r34-release-2026-10-19/`.
+
+Playtest: open Menu → Controller layout. Try RT/LT through coast; Y → D-pad Down
+→ A at a passenger seat; hold Up → Y → hold X to resume manual driving. Enable
+Distance only in HUD, journey tools & recovery and read the lineside lamps.
+
 ## 2026-10-19 — R34 release preparation
 
 - Refreshed the portable README for the implemented controller scheme, signal
@@ -7,7 +30,7 @@
   obsolete accumulated control instructions with links to the shipped guides.
 - Packaging uses the already-passed 625 headless tests and native controller,
   walking and optics checks below. No gameplay or simulation code changed.
-  R33 remains downloadable until R34 has finished packaging.
+  Included in the completed R34 publication above.
 
 ## 2026-10-19 — Context controller scheme, guide and lineside signals
 
@@ -48,7 +71,7 @@
   Inspected 1280×720 guide/settings screenshots. Evidence is under
   `art/performance/controller-signal-2026-10-19/`. Development Radeon 780M,
   not a target-4090 benchmark or a physical-controller/haptic comfort test.
-- Source update only: no export or distribution test. **R33 remains the download.**
+- Included in R34; source validation below preceded its publication.
 
 Playtest from source: use RT/LT through coast, then tap X and verify triggers leave
 AI in charge. Hold X, release, and drive. Y → D-pad Down → A at a seat should let

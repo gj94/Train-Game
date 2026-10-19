@@ -1,21 +1,18 @@
 # Incremental Windows updates
 
-Current publication: **R33**, sequence **35**, from clean source **34da952**.
-Both full downloads and incremental updates are enabled at
-http://192.168.8.183:8765/. Existing R32 folders can run `Update and Play.exe`;
-the launcher discovers reusable blocks even without an installed-version record.
+Current publication: **R34**, sequence **36**, from clean source **d726793**.
+Full downloads and incremental updates are enabled at http://192.168.8.183:8765/.
+Existing installations can use `Update and Play.exe`; save data/settings remain
+in the Windows user profile.
 
-Measured R32 → R33: **2,998,559,677 changed bytes**, **165,591,919 reused bytes**,
-plus the 4,399,569-byte signed catalogue. The full **2,615,212,221-byte ZIP** is
-the smaller download for this release. Regenerated states/new resources shift
-pack contents, so this transition does not provide the savings of a small code
-update. Both installation methods work; choose the full ZIP if download size is
-your priority. Saved journeys and settings remain in the Windows user profile.
+Measured R33 → R34: **3,002,944,416 changed bytes**, **161,192,641 reused bytes**, plus
+the signed catalogue. Full ZIP: **2,610,017,334 bytes**. The full ZIP is smaller for this transition.
 
-Only R33 is offered. R32 payloads were retired after verification; old signed
-catalogues remain. See [builds.md](builds.md) for checksums and evidence. Future
-publications must use a fresh version and sequence **36 or greater**; omit
-`-FullDownloadOnly` to retain both download methods.
+Only R34 is offered. R33's verified export directory, ZIP and checksum were retired after idle-LAN
+checks, freeing **5,779,396,178 bytes**. Historical signed catalogues remain.
+See [builds.md](builds.md) for checksums and evidence. Future publications need a
+fresh version and sequence **37 or greater**; omit `-FullDownloadOnly` to retain
+both download methods.
 
 When incremental downloads are enabled, the LAN page offers a small **Update & Play** download. Extract its two files
 beside an existing `TrainGame.exe` and `TrainGame.pck`, then use the launcher for
