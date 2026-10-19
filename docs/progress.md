@@ -1,5 +1,16 @@
 # Progress
 
+## 2026-10-20 — R35 release preparation
+
+- Preparing R35 with all changes through `7ee3e2d`: simulated service traffic
+  previews, continuous direct sunlight, consolidated speed boards and driving
+  bumper power/brake reductions. Updated the shipped README and playtest steps.
+- Reuses the unchanged game code's 637 passing headless tests, nine encounter
+  tests and 118 native menu checks, plus the shadow/board/controller checks
+  below. Packaging will verify all prepared railways and traffic provenance.
+  Full ZIP and incremental updates are enabled for this release; no extracted
+  distribution gameplay test is requested.
+
 ## 2026-10-20 — Per-service simulated traffic preview
 
 - Home-page service details now have Stops and Traffic tabs. Each service shows

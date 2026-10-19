@@ -1,11 +1,13 @@
-TRAIN GAME - KERALA COAST R34
+TRAIN GAME - KERALA COAST R35
 
-R34: context-based Xbox controls, a coast notch, separate Driving/Walking/Camera
-control pages, an optional distance-only next-signal HUD, and clearer lineside
-signals. R33's station approaches, paired horns and positional audio remain.
+R35: simulated crossings and overtakes for every service on the home page,
+smoother moving-clock sunlight/shadows, consolidated lineside speed boards,
+and driving RB/LB for power reduction/brake release, both stopping at coast.
+Includes the controller layout pages, distance-only signal HUD, station
+approaches, paired horns, positional audio and all earlier improvements.
 
 DOWNLOAD OR UPDATE
-Download the complete R34 ZIP for a new installation. Existing installations
+Download the complete R35 ZIP for a new installation. Existing installations
 can use Update and Play.exe to fetch changed blocks; keep the whole installed
 folder so unchanged data can be reused. Saves and preferences live separately
 in your Windows user profile. R29 and newer compatible saves remain loadable;
@@ -24,6 +26,9 @@ START PLAYING
 Choose any service on the landing page. K1 is the slow stopping passenger.
 The timetable has 100 services, including full-route Vande Bharats in both
 directions. Review each service's stops and scheduled timings before starting.
+Choose Traffic or press Y for the baseline crossings/overtakes, with times,
+locations and other service names. RS scrolls; Y returns to stops. These are
+the simulated AI baseline, not fixed promises: your driving can change them.
 You begin paused in the pilot seat. Other trains and dispatch run under AI.
 Explore by time starts at a prepared five-minute point; join an active service
 under AI or visit a station. These states reflect baseline AI traffic history.
@@ -72,7 +77,14 @@ next aspect and clearance cues. Read the physical signal lamps; protection and
 dispatch rules are unchanged. Default remains Aspect + distance. Improved lens,
 visors and backplates make the lineside signals clearer at distance by day/night.
 
-TRY THE NEW CONTROLS
+TRY THIS RELEASE
+Select K1 > Traffic (Y), scroll to B001 overtaking at Mararikulam around 09:16,
+then select B001 and compare its reciprocal entry. Try a night service's day-2
+times. Check stationary shadows with the clock running and paused, and the
+shared speed-board posts at station approaches. RB reduces power to coast;
+LB releases brake to coast. Neither changes headlights or takes over from AI.
+
+TRY THE CONTROLS
 Use RT/LT through coast. Tap X and confirm triggers leave AI in charge. Hold X,
 release the controls, then drive. Y -> D-pad Down -> A at a passenger seat should
 let you walk/sit while AI drives. Try both row head-outs. Hold Up -> Y -> hold X
