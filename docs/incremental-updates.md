@@ -1,17 +1,17 @@
 # Incremental Windows updates
 
-Current publication: **R34**, sequence **36**, from clean source **d726793**.
+Current publication: **R35**, sequence **37**, from clean source **8cf6710**.
 Full downloads and incremental updates are enabled at http://192.168.8.183:8765/.
 Existing installations can use `Update and Play.exe`; save data/settings remain
 in the Windows user profile.
 
-Measured R33 → R34: **3,002,944,416 changed bytes**, **161,192,641 reused bytes**, plus
-the signed catalogue. Full ZIP: **2,610,017,334 bytes**. The full ZIP is smaller for this transition.
+Measured R34 → R35: **2,999,784,946 changed bytes**, **164,483,480 reused bytes**, plus
+the signed catalogue. Full ZIP: **2,610,041,904 bytes**. The full ZIP is smaller for this transition.
 
-Only R34 is offered. R33's verified export directory, ZIP and checksum were retired after idle-LAN
-checks, freeing **5,779,396,178 bytes**. Historical signed catalogues remain.
+R34's verified export directory, ZIP and checksum were retired after idle-LAN
+checks, freeing **5,774,186,752 bytes**. Historical signed catalogues remain.
 See [builds.md](builds.md) for checksums and evidence. Future publications need a
-fresh version and sequence **37 or greater**; omit `-FullDownloadOnly` to retain
+fresh version and sequence **38 or greater**; omit `-FullDownloadOnly` to retain
 both download methods.
 
 When incremental downloads are enabled, the LAN page offers a small **Update & Play** download. Extract its two files

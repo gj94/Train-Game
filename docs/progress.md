@@ -1,13 +1,36 @@
 # Progress
 
+## 2026-10-20 — R35 publication
+
+- Published **R35** from clean source **8cf6710**, signed sequence **37**, at
+  http://192.168.8.183:8765/. Full ZIP: **2,610,041,904 bytes**, SHA-256
+  `e98bfd98e19cbe3a6cdf219424b5e707e4613c3e76ab632241ea3b880bba0d82`.
+- Includes all changes through `7ee3e2d`: service traffic previews, continuous
+  direct sunlight, consolidated speed boards and driving bumper reductions.
+- Full and incremental downloads work. R34 → R35 changes **2,999,784,946 bytes**
+  and reuses **164,483,480 bytes**. The full ZIP is smaller for this transition.
+- Reuses 637 passing headless tests, nine detector tests and 118 native menu
+  checks. Packaging verifies 100 departures, 233 timeline states and 515 traffic
+  encounters; 312 archive CRCs, 310 managed hashes,
+  source identity, updated guides, signature/checksum and served byte ranges
+  pass. No extracted-distribution gameplay test.
+- R34's verified export directory, ZIP and checksum were retired after idle-LAN
+  checks, freeing **5,774,186,752 bytes**. Historical signed catalogues remain.
+  Evidence: `art/performance/r35-release-2026-10-20/`.
+
+Playtest: select K1 → Traffic (Y), scroll with RS, then compare B001's
+reciprocal Mararikulam overtake around 09:16. Try an overnight service's day-2
+times. Check stationary shadows with running/paused clock and shared station
+speed boards. Driving RB reduces power and LB releases brake, both to coast.
+
 ## 2026-10-20 — R35 release preparation
 
-- Preparing R35 with all changes through `7ee3e2d`: simulated service traffic
+- Prepared R35 with all changes through `7ee3e2d`: simulated service traffic
   previews, continuous direct sunlight, consolidated speed boards and driving
   bumper power/brake reductions. Updated the shipped README and playtest steps.
 - Reuses the unchanged game code's 637 passing headless tests, nine encounter
   tests and 118 native menu checks, plus the shadow/board/controller checks
-  below. Packaging will verify all prepared railways and traffic provenance.
+  below. Publication above verifies prepared railways and traffic provenance.
   Full ZIP and incremental updates are enabled for this release; no extracted
   distribution gameplay test is requested.
 
@@ -40,7 +63,7 @@
   1280×720, including complete scroll reach, controller flow and missing-data
   fallback. Existing 100 departure and 233 timeline states still verify.
   Evidence: `art/performance/service-traffic-2026-10-20/`.
-- Source update only; **R34 remains the published download**.
+- Included in the R35 publication above.
 
 Playtest: select K1 on the home page and press Y. Scroll to the B001 overtake at
 Mararikulam around 09:16, then select B001 and check the reciprocal wording/time.
@@ -74,7 +97,7 @@ manual delays may change the baseline encounters shown.
   did not improve fine shimmer, so the existing shadow quality is preserved.
   All 100 prepared departures / 233 timeline states verify against unchanged
   railway inputs. Evidence: `art/performance/shadow-board-controls-2026-10-20/`.
-- Source update only; **R34 remains the published download**.
+- Included in the R35 publication above.
 
 Playtest: park beneath overhead equipment/trees, keep the camera still and compare
 running clock versus pause. Inspect ERS/ALLP/TVC signs and road plaques. Hold RB
