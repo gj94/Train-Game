@@ -52,7 +52,24 @@ outgoing running line for their empty-stock depot movement. This prevents a
 northbound arrival at TVC from clearing to depot against a southbound arrival
 on the same lead.
 
-## Forward planning, 20 October 2026
+## Shared wait age and operating-day validation
+
+Successive optional overtakes share the booked call's ready-to-depart age,
+measured after scheduled departure, minimum dwell and passenger exchange.
+Changing the blocking express does not restart that age. Ten minutes is a soft
+target; optional new passes should not extend the shared budget beyond thirty.
+An express already alongside retains its committed pass and full-tail protection.
+Neither a comfort target nor an audit limit can force a signal clear.
+
+Both refreshed baselines and a ten-minute delayed-K1 day complete all calls
+and depot movements without safety events. Their combined and station-only
+wait populations meet the requested cumulative 70% / 90% / 98% / 100% below
+10 / 20 / 30 / 45 minutes. Per-service outcomes vary; the audit reports them,
+including heavy accumulated lateness. See [the complete results](intensive-timetable.md).
+The fresh TVCN replays select P2 northbound and P1 southbound, with home routes
+prepared 5.36 and 5.38 km ahead respectively.
+
+## R37 forward-planning validation, 20 October 2026
 
 An automatic train that is already overdue can still supply a future platform
 vacancy. The three-train planner estimates when the opposing arrival will clear

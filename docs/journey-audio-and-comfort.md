@@ -1,4 +1,4 @@
-# Journey acoustics, station approaches and recovery — R33
+# Journey acoustics, station approaches and recovery
 
 ## What changes in play
 
@@ -56,8 +56,9 @@ power/brake handle ramp is retained; this is not a complete pneumatic brake-pipe
   acoustic ray tracing, or a survey of each real carriage's insulation.
 
 Open **Pause → Audio settings**. Choose Speakers, Headphones, Quiet/night, or
-Approved track reference. **Layer volumes** independently adjusts master, machinery,
-rolling, rail joints, squeal, air, coach body and interior sounds. Reference disables
+Approved track reference. Open **Rail & wheels**, **Wind & passing trains**,
+**Motors & equipment**, **Interior & movement**, or **All sound layers** to adjust
+individual channels. Master has its own control. Reference disables
 new body/air/foley overlays and retains the approved track routing/compression.
 Wide-range gameplay separates layers and uses a final limiter; quiet mode adds
 compression before that limiter. The reference remains a comparison tool, not a

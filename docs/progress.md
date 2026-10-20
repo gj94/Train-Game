@@ -1,61 +1,66 @@
 # Progress
 
-## 2026-10-20 — Detailed mixer and alternate timetable (validation in progress)
+## 2026-10-20 — Validated mixer and alternate timetable; R38 preparation
 
-- Latest user acceptance: allow substantial accumulated passenger lateness;
-  require at least 70% of meaningful extra waits under 10 minutes, 90% under
-  20, 98% under 30 and all under 45. Ten minutes is not a hard cutoff.
-  Successive expresses share a booked call's ready-to-depart age; optional
-  holds cannot restart the shared thirty-minute starvation budget. Existing
-  arrived express authority, tail clearance and crossing locks remain protected.
-  Fourteen overtake commitment tests pass, including explicit >10-minute
-  permission, save/load and non-resetting waits. Four wait-distribution unit
-  tests plus four independent publication-gate tests pass.
-  Audits record per-call and per-signal standstill totals and reason breakdowns.
-  Scheduled dwell, passenger exchange and injected manual pauses are excluded;
-  episodes below 30 seconds are reported separately, not used to dilute long
-  holds. Fresh v10 standard/intensive baselines and delayed K1 are running.
-  Earlier v9 runs were stopped after the acceptance target changed. V7 standard
-  is only a prior-behaviour comparison, not current release data.
-- B042/B002 investigated against R37's measured replay: B002 arrives at SRTL
-  10:27:27 but is booked out at 10:35:30; B042 arrives 10:32:37 and leaves
-  10:33:41, leading to the repeat pass at MAKM. The standard day is preserved.
-- Split fifteen gameplay audio channels plus Master, with grouped explanations,
-  independent levels/mutes, shared-setting migration and per-channel reset.
-  Own/passing air, floor/metal rattles, motors/fans/horn/compressor and
-  ventilation/footsteps/doors/brake air now have separate controls. Source PCM,
-  axle/contact timing and approved reference routing are unchanged.
-- **684 headless tests pass**, plus 30 native output-isolation checks, 63 menu
-  navigation checks and the five-train/93-vehicle native audio rehearsal.
-  R37's standard preview passed all 3,366 checks / 1,020 reciprocal cards.
-- Added an operating-day selector and independent departure/time-browser paths,
-  with save/restart metadata. Authoring a 140-service alternative and measuring
-  ten distinct K1 overtakers. First candidate was stopped for southern
-  single-line congestion; extras now concentrate on the doubled middle route.
-  Fixed three faults exposed during review: wrong source signal when preferring
-  a prepared home route (both TVCN VBs took slower loops); a future crossing
-  promise beyond a terminating service's destination; and a through train
-  taking the last passenger face needed by an already admitted opponent.
-  The capacity guard preserves exclusive, ordered future-vacancy plans.
-  Both TVCN replays take mains, the actual orphaned Nemom state clears, and
-  delayed KZT still receives the VB safely with its home prepared 4.41 km ahead.
-  The standard replay also exposed a four-service Turavur/Kumbalam cycle.
-  New road choices now preserve existing arrivals' onward escape, and capacity
-  forecasts cannot assume a same-direction occupant can depart against an
-  opposing train in its exit section. Both regressions were observed failing
-  before correction. The unchanged 14:25 railway fixture now clears all four
-  services with no safety events (maximum extra wait 27m22s).
-  A larger-day candidate achieved ten distinct baseline overtakers (twelve in
-  the delayed run) but failed the wait gate at KZK: four additional QLN–TVC
-  expresses prolonged an existing queue beyond 45 minutes. Those six capital
-  relief services now run hourly from 16:10 to 21:10. A focused retimed replay
-  clears KZK with a 26m22s maximum wait; fresh full-day validation is still required.
-  Fresh full-day baseline and midday-delayed K1 audits are running. **No alternate
-  timetable or new release has been published yet.**
+- Added fifteen independent sound channels plus Master, with explanations,
+  levels/mutes, presets, reset and migration of existing shared settings. Own
+  wind and passing air are separate; approved PCM and wheel-contact timing
+  remain unchanged.
+- The home screen now selects Standard (100 services) or Intensive (140), each
+  with 233 fresh five-minute states, its own departures and measured traffic.
+  Save/Continue and Restart retain the selected day. Controller navigation
+  reaches the selector; the 720p layout reclaims empty status-message space.
+- Intensive K1 is the slowest scheduled service: 55 calls, 515.1 booked minutes,
+  32.2 km/h scheduled average, with equipment limits unchanged. Thirteen
+  distinct trains overtake it in the baseline. Its recorded longest extra
+  station wait is 15m52s; it finishes 22m17s late.
+- All three full-day runs complete every call and clear every service to depot
+  with zero safety events: Standard 100 / 1,530 subsequent calls; Intensive
+  baseline and ten-minute midday K1 pause each 140 / 1,726. All meet the user's
+  cumulative wait targets: 70% under ten minutes, 90% under twenty, 98% under
+  thirty and all under forty-five. Ten minutes is not a hard maximum.
+  Station percentages are 75.70 / 95.33 / 100 / 100 (Standard),
+  72.73 / 98.70 / 100 / 100 (Intensive), and 71.52 / 98.01 / 99.34 / 100
+  (delayed Intensive). Meaningful waits exclude booked dwell, passenger
+  exchange, explicit manual pauses and episodes below thirty seconds.
+- These are whole-day targets, not per-service guarantees. Intensive K1 has
+  nine of thirteen meaningful waits under ten minutes (69.2%); four of its
+  55 calls exceed ten minutes of extra station waiting. In the delayed day,
+  eighteen trains overtake it, six calls exceed ten minutes, its longest
+  station hold is 26m22s and destination lateness is 99m37s. The longest
+  continuous wait anywhere is 27m50s / 22m32s / 38m30s respectively.
+  Aggregate destination lateness is reported, never hidden by padding.
+- Successive optional overtakes share a call's ready-to-depart age; a new
+  blocker cannot reset the thirty-minute starvation budget. Existing express
+  authority, full-tail clearance and crossing protection remain authoritative.
+  A separate player-assigned replay pauses K1 13:00–13:10, retains route
+  preparation for all 600 seconds, then advances 93.5 km through 17:00 without
+  safety events.
+- Fixed TVCN's wrong-source-signal main-road selection: both freshly replayed
+  VBs use their mains, prepared about 5.4 km ahead. Added receiving-road and
+  onward-escape checks for already admitted trains; the real Turavur cycle
+  clears. Unfulfilled crossing promises cannot survive a participant finishing
+  its service. Existing exclusive future-vacancy plans retain protection.
+- B042's reverse pass was caused by B002's early Cherthala arrival and later
+  booked departure. Intensive tightens B002's running allowances; both complete
+  Intensive runs have no reverse pass. Standard booked times are preserved.
+- Validation: 684 headless tests, then 23 prepared-data/operating-day tests;
+  eight independent Node wait/timing-gate tests; 16 native selector checks;
+  3,378 Standard and 5,592 Intensive traffic-menu checks, covering all 2,746
+  reciprocal cards. Native mixer checks cover 63 menu actions, 30 output
+  isolation cases and five rakes / 93 vehicles. Dummy audio captures are not a
+  hardware listening test. Screenshots inspected at 1280×720.
+- Isolated development-PC CPU sample: 22 versus 32 active trains at 12:05;
+  median simulation call 1.972 versus 2.537 ms, p99 8.598 versus 9.804 ms.
+  This excludes rendering and does not predict the target i9/4090 Laptop FPS.
+- Evidence: `art/performance/intensive-2026-10-20/`. Both source-matched
+  baselines are staged and validated. **R38 has not been published yet.**
 
-Playtest after preparation: independently mute rolling/joints/wind, compare
-head-out and passing trains, then compare both operating days, K1 traffic and
-B042/B002. Save/Continue and Restart must retain the chosen operating day.
+Playtest after publication: choose Intensive, sort by slowest average and inspect
+K1's Stops/Traffic; compare B042's preview in both days. Start, save, Continue and
+Restart an Intensive journey. In Pause → Audio settings, independently change
+rolling hiss, clacks, squeal, own wind and passing air. Check both TVCN main-line
+passes and a delayed K1 under the dispatcher's live advice.
 
 ## 2026-10-20 — R37 published; full download and R36 updates
 

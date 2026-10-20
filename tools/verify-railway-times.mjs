@@ -1,6 +1,7 @@
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
+import {ceilFiveMinute} from './lib/time-grid.mjs';
 const root=new URL('../',import.meta.url);
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const departure=await readFile(new URL('data/service_starts/catalogue.json',root));
@@ -17,6 +18,6 @@ for(const row of data.states){
   if(previous!==null)assert.equal(row.clock-previous,300);previous=row.clock;
   assert.equal(sha(await readFile(new URL('data/railway_times/'+row.file,root))),row.sha256,`Changed time state: ${row.id}`);
 }
-assert.equal(data.states[0].clock,Math.ceil(Math.min(...source.services.map(r=>r.start_clock))/300)*300);
-assert.equal(data.states.at(-1).clock,Math.ceil(source.audit.clock/300)*300);
+assert.equal(data.states[0].clock,ceilFiveMinute(Math.min(...source.services.map(r=>r.start_clock))));
+assert.equal(data.states.at(-1).clock,ceilFiveMinute(source.audit.clock));
 console.log(`Five-minute railway verified: ${data.states.length} exact restored states; full operating day; no safety events.`);

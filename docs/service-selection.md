@@ -5,6 +5,9 @@ separately prepared **Intensive · 140 services**. Departure search/sort, Stops,
 Traffic and Explore by time use the selected day. Saved journeys retain their
 own railway and day regardless of the menu selection. See
 [the intensive timetable](intensive-timetable.md) for its design and validation.
+From the service list, D-pad left moves to the departure filters and D-pad up
+reaches the operating-day selector; A opens it. Empty status messages take no
+space, leaving more room for stops and traffic on a 720p display.
 
 The game opens on a controller-friendly Kerala Coast service screen. It lists
 the selected operating day, with departure filters, search, route,

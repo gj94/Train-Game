@@ -10,10 +10,12 @@ A **3D train game** where I can be either a **dispatcher** or a **driver**, and 
 
 ### Core requirements
 - **20 Oct 2026 wait comfort:** slow passengers may accumulate substantial delay
-  while giving way. Target five to ten minutes of extra waiting at each stop;
-  do not optimise away total lateness by padding the passenger schedule. Share
-  one ready-to-depart age across successive express overtakes, keep booked
-  dwell/passenger exchange separate, and retain physical route protection.
+  while giving way. Aim for at least 70% of meaningful extra waits under ten
+  minutes, 90% under twenty, 98% under thirty and all under forty-five. Ten
+  minutes is not a hard maximum. Do not hide lateness by padding the passenger
+  schedule. Share one ready-to-depart age across successive express overtakes,
+  keep booked dwell/passenger exchange separate, and retain physical route
+  protection.
 - **20 Oct 2026 detailed sound and alternate operating days:** independently mix
   rolling hiss, joint clacks, squeal, own wind, passing air, floor thumps, rattles,
   traction, fans, horns, compressor, ventilation, footsteps, doors and brake air.

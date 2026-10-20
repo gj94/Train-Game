@@ -1,4 +1,5 @@
 import {assertWaitQuality} from './lib/wait-quality.mjs';
+import {ceilFiveMinute} from './lib/time-grid.mjs';
 import {readFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
@@ -38,8 +39,8 @@ for(const [path,digest]of Object.entries(traffic.observer_sources)){
   assert.equal(sha((await readFile(path,'utf8')).replaceAll('\r\n','\n')),digest,'Stale alternate preview: '+path);
 }
 let previous=-1;
-assert.equal(times.states[0].clock,Math.ceil(Math.min(...starts.services.map(s=>s.start_clock))/300)*300);
-assert.equal(times.states.at(-1).clock,Math.ceil(starts.audit.clock/300)*300);
+assert.equal(times.states[0].clock,ceilFiveMinute(Math.min(...starts.services.map(s=>s.start_clock))));
+assert.equal(times.states.at(-1).clock,ceilFiveMinute(starts.audit.clock));
 assert.equal(traffic.audit.sample_seconds,2);
 assert.equal(traffic.audit.samples,(times.states.at(-1).clock-times.states[0].clock)/2+1);
 for(const row of times.states){
@@ -49,7 +50,8 @@ const ids=starts.services.map(s=>s.id);
 assert.equal(new Set(ids).size,140);
 for(const row of starts.services){
   assert.equal(row.calls.length,row.stops);
-  assert.equal(row.calls.at(-1).arrival-row.departure,row.duration);
+  // JSON decimals can differ by a few ulps after subtracting clock times.
+  assert.ok(Math.abs(row.calls.at(-1).arrival-row.departure-row.duration)<1e-6,'Scheduled duration differs for '+row.id);
   assert.ok(Math.abs(row.average_kmh-row.distance_m/row.duration*3.6)<1e-8);
 }
 assert.deepEqual([...traffic.services].sort(),[...ids].sort());

@@ -20,7 +20,13 @@ func run() -> void:
 	page.store=preload("res://persistence/save_store.gd").new("res://.local/operating-days-ui/saves")
 	root.add_child(page);await frames()
 	check(page.services.size()==100,"Standard day is intact")
-	page.timetable_picker.grab_focus()
+	page.roster.grab_focus();page._navigate(Vector2i.LEFT)
+	for _i in 6:
+		if root.gui_get_focus_owner()==page.timetable_picker:break
+		page._navigate(Vector2i.UP)
+	check(root.gui_get_focus_owner()==page.timetable_picker,"D-pad reaches operating-day selector from roster")
+	if root.gui_get_focus_owner()!=page.timetable_picker:
+		page.queue_free();await frames();quit(1);return
 	var a:=InputEventJoypadButton.new();a.button_index=JOY_BUTTON_A;a.pressed=true;page._input(a);await frames()
 	check(page.timetable_picker.get_popup().visible,"Controller opens operating-day selector")
 	page.timetable_picker.get_popup().hide();page.select_timetable(1);await frames()

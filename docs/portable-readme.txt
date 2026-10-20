@@ -4,7 +4,7 @@ R38: detailed sound mixer, alternate operating day and safer route allocation.
 Use Operating day on the home page to choose Standard (100 services) or
 Intensive (140 services). Each has its own departures, five-minute railway
 states and simulated crossings/overtakes preview. K1 is the slowest scheduled
-service in Intensive, with at least ten distinct overtaking trains in its
+service in Intensive, with thirteen distinct overtaking trains in its
 validated AI baseline. Manual driving changes the actual encounters.
 Sound settings separately control rail hiss, joint clacks, squeal, own wind,
 passing air, floor thumps, metallic rattles, motors, fans, horns, compressor,
@@ -16,6 +16,7 @@ Wait quality is audited across the day: at least 70% of meaningful extra waits
 under 10 minutes, 90% under 20, 98% under 30 and all under 45. Ten minutes is
 not a hard signal timeout. Slow passengers may accumulate substantial lateness
 while yielding; existing route and crossing protections always apply.
+These are whole-day targets, not a guarantee for each manually driven journey.
 
 Includes forward planning for station crossings and earlier home clearance.
 The dispatcher can reserve a future platform after an overdue AI train leaves,

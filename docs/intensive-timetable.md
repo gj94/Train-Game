@@ -41,8 +41,43 @@ below 45 minutes. Every longer-than-ten-minute station call has its reason total
 listed in the audit.
 
 Release preparation rejects incomplete traffic, safety events, a B042 reverse
-pass of B002, missed wait-distribution targets, and fewer than ten distinct K1
-overtakers. Fresh full-day and delayed-driver results are still pending.
+pass of B002 in Intensive, missed whole-day wait targets, and fewer than ten
+distinct K1 overtakers. All three complete source-matched rehearsals pass.
+Every service completes every call and clears to depot: 100 services / 1,530
+subsequent calls in Standard; 140 / 1,726 in each Intensive run.
+
+| Meaningful extra station waits | Count | Under 10 min | Under 20 min | Under 30 min | Under 45 min |
+|---|---:|---:|---:|---:|---:|
+| Standard | 107 | 75.70% | 95.33% | 100.00% | 100.00% |
+| Intensive | 154 | 72.73% | 98.70% | 100.00% | 100.00% |
+| Intensive, K1 paused ten minutes | 151 | 71.52% | 98.01% | 99.34% | 100.00% |
+
+The combined station-and-signal populations also pass: 80.57%, 82.27% and
+83.33% are below ten minutes respectively. Longest continuous extra waits
+anywhere are 27m50s, 22m32s and 38m30s. Timings are sampled every two seconds.
+
+K1 has **thirteen distinct overtakers** in the baseline and eighteen after the
+midday pause. Its baseline longest extra station hold is 15m52s and destination
+lateness is 22m17s. Four of its 55 calls exceed ten minutes of extra station
+waiting. Among its thirteen meaningful waits, nine (69.2%) are below ten
+minutes. After the injected pause, twelve of nineteen (63.2%) are below ten,
+six station calls exceed ten, the longest station hold is 26m22s, and it arrives
+99m37s late. These whole-day targets are **not per-service guarantees**.
+The worst baseline destination delay across all services is 107.6 minutes;
+the audit retains that cost even though each continuous hold stays under 23.
+
+The full delayed-day audit resumes AI after manually braking K1 13:00–13:10.
+A separate focused replay sets the actual player-assignment field, preserves
+player route preparation throughout the pause and continues through 17:00.
+It advances K1 another 93.5 km without safety events. Disturbed states are
+never offered as selectable baselines.
+
+Both operating days have 233 restored-and-compared five-minute states.
+Their traffic previews contain 469 crossings / 43 completed overtakes
+(Standard) and 780 / 81 (Intensive). The source UI checks every reciprocal
+card, all three roles, controller navigation, and operating-day identity.
+Full per-service and per-call results are retained in
+`art/performance/intensive-2026-10-20/summary.json` and the adjacent audits.
 
 ## Why B042 passed B002 back in the standard day
 

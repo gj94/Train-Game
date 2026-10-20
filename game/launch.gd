@@ -87,8 +87,11 @@ func _ready() -> void:
 		for row in services:
 			if row.id==restart:_begin("service",row);break
 
+func _set_status(message: String) -> void:
+	status.text=message;status.visible=not message.is_empty()
+
 func _load_catalogue() -> void:
-	services=[];traffic_data={};status.text=""
+	services=[];traffic_data={};_set_status("")
 	traffic_reason="Traffic preview is unavailable for this timetable."
 	var catalogue:=Starts.catalogue(directory)
 	if catalogue.ok:
@@ -96,7 +99,7 @@ func _load_catalogue() -> void:
 		var traffic:=Traffic.catalogue(services,directory)
 		if traffic.ok:traffic_data=traffic.data
 		else:traffic_reason=traffic.reason
-	else:status.text=catalogue.reason
+	else:_set_status(catalogue.reason)
 
 func select_timetable(index: int) -> void:
 	if worker!=null or starting or index<0 or index>=Days.DAYS.size():return
@@ -179,7 +182,7 @@ func _build() -> void:
 	columns.add_child(roster);roster.item_selected.connect(_select);roster.item_activated.connect(func(_i):start_button.grab_focus())
 	var panel:=PanelContainer.new();panel.custom_minimum_size.x=390;panel.size_flags_horizontal=SIZE_EXPAND_FILL;panel.size_flags_stretch_ratio=.75
 	panel.add_theme_stylebox_override("panel",_box(Color("102631")));columns.add_child(panel)
-	var details:=VBoxContainer.new();details.add_theme_constant_override("separation",10);panel.add_child(details)
+	var details:=VBoxContainer.new();details.add_theme_constant_override("separation",8);panel.add_child(details)
 	departure=_label(details,"",30)
 	detail_title=_label(details,"Choose a service",21);detail_title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	detail_tabs=HBoxContainer.new();detail_tabs.add_theme_constant_override("separation",8);details.add_child(detail_tabs)
@@ -193,7 +196,7 @@ func _build() -> void:
 	calls_grid=GridContainer.new();calls_grid.columns=3;calls_grid.add_theme_constant_override("h_separation",18);calls_grid.add_theme_constant_override("v_separation",12);body.add_child(calls_grid)
 	briefing=_label(body,"",16,Color("a8bdc6"));briefing.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	traffic_list=VBoxContainer.new();traffic_list.add_theme_constant_override("separation",12);body.add_child(traffic_list)
-	start_button=_button(details,"Drive this service",start_selected);start_button.custom_minimum_size.y=60
+	start_button=_button(details,"Drive this service",start_selected);start_button.custom_minimum_size.y=52
 	start_button.add_theme_stylebox_override("normal",_box(Color("265e4a"),Color("86e4be")))
 	status=_label(outer,"",16,Color("efc382"));status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	_label(outer,"D-pad / LS navigate · A select · B back · LB / RB filter · X sort · Y stops / traffic · RS scroll · F11 fullscreen",15,Color("a8bdc6"))
@@ -330,11 +333,11 @@ func start_selected() -> void:
 
 func _begin(kind: String,row: Dictionary) -> void:
 	if worker!=null or starting:return
-	cancelled=false;status.text="";busy_panel.show();busy_label.text="Loading "+row.name+"…\nRestoring the railway; no day-long simulation needed."
+	cancelled=false;_set_status("");busy_panel.show();busy_label.text="Loading "+row.name+"…\nRestoring the railway; no day-long simulation needed."
 	content.hide();cancel_button.grab_focus()
 	worker=Thread.new()
 	var error:=worker.start(_read_request.bind(kind,row.duplicate(true)))
-	if error!=OK:worker=null;busy_panel.hide();content.show();status.text="Could not start loading: "+error_string(error);roster.grab_focus()
+	if error!=OK:worker=null;busy_panel.hide();content.show();_set_status("Could not start loading: "+error_string(error));roster.grab_focus()
 
 func _read_request(kind: String,row: Dictionary) -> Dictionary:
 	if kind=="service":
@@ -358,7 +361,7 @@ func _process(delta: float) -> void:
 		var result: Dictionary=worker.wait_to_finish();worker=null
 		if quitting:get_tree().quit();return
 		if cancelled:busy_panel.hide();content.show();roster.grab_focus();return
-		if not result.ok:busy_panel.hide();content.show();status.text=result.reason;roster.grab_focus();return
+		if not result.ok:busy_panel.hide();content.show();_set_status(result.reason);roster.grab_focus();return
 		starting=true;busy_label.text="Loading the train and nearby scenery…"
 		if result.has("service"):
 			Starts.select(result.world,result.service)

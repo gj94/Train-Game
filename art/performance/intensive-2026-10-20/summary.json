@@ -1,0 +1,1247 @@
+{
+  "runs": {
+    "standard": {
+      "services": 100,
+      "total": 100,
+      "clock": 98400.0000000001,
+      "calls": 1530,
+      "safety_events": 0,
+      "maximum_wait_minutes": 27.833333333333332,
+      "total_wait_train_minutes": 1085.6333333333334,
+      "maximum_destination_delay_minutes": 33.094166662572334,
+      "delayed_service": "K1",
+      "forced_delay_seconds": 0,
+      "wall_seconds": 4882.829,
+      "wait_quality": {
+        "bins": [
+          141,
+          27,
+          7,
+          0,
+          0
+        ],
+        "brief_count": 661,
+        "count": 175,
+        "cumulative": [
+          {
+            "count": 141,
+            "fraction": 0.805714285714286,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 168,
+            "fraction": 0.96,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 175,
+            "fraction": 1,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 175,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 1670,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "station_wait_quality": {
+        "bins": [
+          81,
+          21,
+          5,
+          0,
+          0
+        ],
+        "brief_count": 9,
+        "count": 107,
+        "cumulative": [
+          {
+            "count": 81,
+            "fraction": 0.757009345794393,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 102,
+            "fraction": 0.953271028037383,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 107,
+            "fraction": 1,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 107,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 1670,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "sources_match_prepared_baseline": true,
+      "k1_wait_quality": {
+        "ok": false,
+        "minimum_seconds": 30,
+        "count": 4,
+        "brief_count": 24,
+        "bins": [
+          3,
+          0,
+          1,
+          0,
+          0
+        ],
+        "cumulative": [
+          {
+            "under_seconds": 600,
+            "required": 0.7,
+            "count": 3,
+            "fraction": 0.75,
+            "met": true
+          },
+          {
+            "under_seconds": 1200,
+            "required": 0.9,
+            "count": 3,
+            "fraction": 0.75,
+            "met": false
+          },
+          {
+            "under_seconds": 1800,
+            "required": 0.98,
+            "count": 4,
+            "fraction": 1,
+            "met": true
+          },
+          {
+            "under_seconds": 2700,
+            "required": 1,
+            "count": 4,
+            "fraction": 1,
+            "met": true
+          }
+        ],
+        "maximum": 1670
+      },
+      "k1_station_wait_quality": {
+        "ok": false,
+        "minimum_seconds": 30,
+        "count": 3,
+        "brief_count": 0,
+        "bins": [
+          2,
+          0,
+          1,
+          0,
+          0
+        ],
+        "cumulative": [
+          {
+            "under_seconds": 600,
+            "required": 0.7,
+            "count": 2,
+            "fraction": 0.6666666666666666,
+            "met": false
+          },
+          {
+            "under_seconds": 1200,
+            "required": 0.9,
+            "count": 2,
+            "fraction": 0.6666666666666666,
+            "met": false
+          },
+          {
+            "under_seconds": 1800,
+            "required": 0.98,
+            "count": 3,
+            "fraction": 1,
+            "met": true
+          },
+          {
+            "under_seconds": 2700,
+            "required": 1,
+            "count": 3,
+            "fraction": 1,
+            "met": true
+          }
+        ],
+        "maximum": 1670
+      },
+      "k1_destination_delay_minutes": 4.777499995849084
+    },
+    "intensive": {
+      "services": 140,
+      "total": 140,
+      "clock": 98400.0000000001,
+      "calls": 1726,
+      "safety_events": 0,
+      "maximum_wait_minutes": 22.533333333333335,
+      "total_wait_train_minutes": 1553.9333333333334,
+      "maximum_destination_delay_minutes": 107.59749999578183,
+      "delayed_service": "K1",
+      "forced_delay_seconds": 0,
+      "wall_seconds": 5665.031,
+      "wait_quality": {
+        "bins": [
+          232,
+          47,
+          3,
+          0,
+          0
+        ],
+        "brief_count": 898,
+        "count": 282,
+        "cumulative": [
+          {
+            "count": 232,
+            "fraction": 0.822695035460993,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 279,
+            "fraction": 0.98936170212766,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 282,
+            "fraction": 1,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 282,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 1352,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "station_wait_quality": {
+        "bins": [
+          112,
+          40,
+          2,
+          0,
+          0
+        ],
+        "brief_count": 13,
+        "count": 154,
+        "cumulative": [
+          {
+            "count": 112,
+            "fraction": 0.727272727272727,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 152,
+            "fraction": 0.987012987012987,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 154,
+            "fraction": 1,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 154,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 1328,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "sources_match_prepared_baseline": true,
+      "k1_wait_quality": {
+        "ok": false,
+        "minimum_seconds": 30,
+        "count": 13,
+        "brief_count": 38,
+        "bins": [
+          9,
+          4,
+          0,
+          0,
+          0
+        ],
+        "cumulative": [
+          {
+            "under_seconds": 600,
+            "required": 0.7,
+            "count": 9,
+            "fraction": 0.6923076923076923,
+            "met": false
+          },
+          {
+            "under_seconds": 1200,
+            "required": 0.9,
+            "count": 13,
+            "fraction": 1,
+            "met": true
+          },
+          {
+            "under_seconds": 1800,
+            "required": 0.98,
+            "count": 13,
+            "fraction": 1,
+            "met": true
+          },
+          {
+            "under_seconds": 2700,
+            "required": 1,
+            "count": 13,
+            "fraction": 1,
+            "met": true
+          }
+        ],
+        "maximum": 952
+      },
+      "k1_station_wait_quality": {
+        "ok": false,
+        "minimum_seconds": 30,
+        "count": 9,
+        "brief_count": 1,
+        "bins": [
+          5,
+          4,
+          0,
+          0,
+          0
+        ],
+        "cumulative": [
+          {
+            "under_seconds": 600,
+            "required": 0.7,
+            "count": 5,
+            "fraction": 0.5555555555555556,
+            "met": false
+          },
+          {
+            "under_seconds": 1200,
+            "required": 0.9,
+            "count": 9,
+            "fraction": 1,
+            "met": true
+          },
+          {
+            "under_seconds": 1800,
+            "required": 0.98,
+            "count": 9,
+            "fraction": 1,
+            "met": true
+          },
+          {
+            "under_seconds": 2700,
+            "required": 1,
+            "count": 9,
+            "fraction": 1,
+            "met": true
+          }
+        ],
+        "maximum": 952
+      },
+      "k1_destination_delay_minutes": 22.28583332785083
+    },
+    "intensive_delayed": {
+      "services": 140,
+      "total": 140,
+      "clock": 98400.0000000001,
+      "calls": 1726,
+      "safety_events": 0,
+      "maximum_wait_minutes": 38.5,
+      "total_wait_train_minutes": 1642.8333333333333,
+      "maximum_destination_delay_minutes": 101.80999999586616,
+      "delayed_service": "K1",
+      "forced_delay_seconds": 600,
+      "wall_seconds": 3677.229,
+      "wait_quality": {
+        "bins": [
+          245,
+          45,
+          3,
+          1,
+          0
+        ],
+        "brief_count": 909,
+        "count": 294,
+        "cumulative": [
+          {
+            "count": 245,
+            "fraction": 0.833333333333333,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 290,
+            "fraction": 0.986394557823129,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 293,
+            "fraction": 0.996598639455782,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 294,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 2308,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "station_wait_quality": {
+        "bins": [
+          108,
+          40,
+          2,
+          1,
+          0
+        ],
+        "brief_count": 14,
+        "count": 151,
+        "cumulative": [
+          {
+            "count": 108,
+            "fraction": 0.71523178807947,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 148,
+            "fraction": 0.980132450331126,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 150,
+            "fraction": 0.993377483443709,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 151,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 2308,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "sources_match_prepared_baseline": true,
+      "k1_wait_quality": {
+        "ok": false,
+        "minimum_seconds": 30,
+        "count": 19,
+        "brief_count": 34,
+        "bins": [
+          12,
+          5,
+          2,
+          0,
+          0
+        ],
+        "cumulative": [
+          {
+            "under_seconds": 600,
+            "required": 0.7,
+            "count": 12,
+            "fraction": 0.631578947368421,
+            "met": false
+          },
+          {
+            "under_seconds": 1200,
+            "required": 0.9,
+            "count": 17,
+            "fraction": 0.8947368421052632,
+            "met": false
+          },
+          {
+            "under_seconds": 1800,
+            "required": 0.98,
+            "count": 19,
+            "fraction": 1,
+            "met": true
+          },
+          {
+            "under_seconds": 2700,
+            "required": 1,
+            "count": 19,
+            "fraction": 1,
+            "met": true
+          }
+        ],
+        "maximum": 1582
+      },
+      "k1_station_wait_quality": {
+        "ok": false,
+        "minimum_seconds": 30,
+        "count": 10,
+        "brief_count": 1,
+        "bins": [
+          4,
+          4,
+          2,
+          0,
+          0
+        ],
+        "cumulative": [
+          {
+            "under_seconds": 600,
+            "required": 0.7,
+            "count": 4,
+            "fraction": 0.4,
+            "met": false
+          },
+          {
+            "under_seconds": 1200,
+            "required": 0.9,
+            "count": 8,
+            "fraction": 0.8,
+            "met": false
+          },
+          {
+            "under_seconds": 1800,
+            "required": 0.98,
+            "count": 10,
+            "fraction": 1,
+            "met": true
+          },
+          {
+            "under_seconds": 2700,
+            "required": 1,
+            "count": 10,
+            "fraction": 1,
+            "met": true
+          }
+        ],
+        "maximum": 1582
+      },
+      "k1_destination_delay_minutes": 99.61916666504884
+    }
+  },
+  "traffic": {
+    "standard": {
+      "ok": true,
+      "sample_seconds": 2,
+      "samples": 34801,
+      "safety_events": [],
+      "distinct_k1_overtakers": [
+        "B001",
+        "B024",
+        "B002"
+      ],
+      "partitions": [
+        {
+          "first": 28800,
+          "last": 98400.0000000001,
+          "steps": 34800,
+          "boundary_error_m": 0
+        }
+      ],
+      "crossing_count": 469,
+      "overtake_count": 43
+    },
+    "intensive": {
+      "ok": true,
+      "sample_seconds": 2,
+      "samples": 34801,
+      "safety_events": [],
+      "distinct_k1_overtakers": [
+        "B001",
+        "B024",
+        "D114",
+        "D100",
+        "B002",
+        "D115",
+        "D101",
+        "D116",
+        "D102",
+        "D103",
+        "D104",
+        "D105",
+        "B025"
+      ],
+      "partitions": [
+        {
+          "first": 28800,
+          "last": 98400.0000000001,
+          "steps": 34800,
+          "boundary_error_m": 0
+        }
+      ],
+      "crossing_count": 780,
+      "overtake_count": 81
+    }
+  },
+  "k1": {
+    "duration_minutes": 515.1,
+    "scheduled_average_kmh": 32.2035033575379,
+    "stops": 55,
+    "overtakes": [
+      {
+        "time": 31996.92188375204,
+        "chainage_m": 24023.2316186899,
+        "a": "B001",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "B001",
+        "cleared": 32118.0000000033,
+        "station": "TUVR",
+        "location": "Turavur"
+      },
+      {
+        "time": 40034.08542053747,
+        "chainage_m": 101022.614729692,
+        "a": "B024",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "B024",
+        "cleared": 40101.9999999758,
+        "station": "KYJ",
+        "location": "Kayamkulam Junction"
+      },
+      {
+        "time": 40907.29843186927,
+        "chainage_m": 106967.888072309,
+        "a": "D114",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "D114",
+        "cleared": 40961.9999999633,
+        "station": "OCR",
+        "location": "Ochira"
+      },
+      {
+        "time": 41207.29843186493,
+        "chainage_m": 106967.888072309,
+        "a": "D100",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "D100",
+        "cleared": 41261.9999999589,
+        "station": "OCR",
+        "location": "Ochira"
+      },
+      {
+        "time": 43373.53649814761,
+        "chainage_m": 132598.695151102,
+        "a": "B002",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "B002",
+        "cleared": 43395.9999999278,
+        "station": "PRND",
+        "location": "Perinad"
+      },
+      {
+        "time": 43579.58926757874,
+        "chainage_m": 132598.695151102,
+        "a": "D115",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "D115",
+        "cleared": 43601.9999999248,
+        "station": "PRND",
+        "location": "Perinad"
+      },
+      {
+        "time": 43857.180037949496,
+        "chainage_m": 132598.695151102,
+        "a": "D101",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "D101",
+        "cleared": 43877.9999999208,
+        "station": "PRND",
+        "location": "Perinad"
+      },
+      {
+        "time": 43990.12013131933,
+        "chainage_m": 132598.695151102,
+        "a": "D116",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "D116",
+        "cleared": 44011.9999999189,
+        "station": "PRND",
+        "location": "Perinad"
+      },
+      {
+        "time": 47255.97624436645,
+        "chainage_m": 154133.203259311,
+        "a": "D102",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "D102",
+        "cleared": 47411.9999998694,
+        "station": "PVU",
+        "location": "Paravur"
+      },
+      {
+        "time": 47730.0289147423,
+        "chainage_m": 154133.203259311,
+        "a": "D103",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "D103",
+        "cleared": 47797.9999998638,
+        "station": "PVU",
+        "location": "Paravur"
+      },
+      {
+        "time": 49894.04530239201,
+        "chainage_m": 174474.025162972,
+        "a": "D104",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "D104",
+        "cleared": 49915.999999833,
+        "station": "KVU",
+        "location": "Kadakavur"
+      },
+      {
+        "time": 50192.18929079549,
+        "chainage_m": 174474.025162972,
+        "a": "D105",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "D105",
+        "cleared": 50213.9999998286,
+        "station": "KVU",
+        "location": "Kadakavur"
+      },
+      {
+        "time": 53281.70909767289,
+        "chainage_m": 199076.397571531,
+        "a": "B025",
+        "b": "K1",
+        "kind": "overtake",
+        "overtaker": "B025",
+        "cleared": 53347.999999783,
+        "station": "TVCN",
+        "location": "Thiruvananthapuram North"
+      }
+    ]
+  },
+  "b042_b002": {
+    "standard": [
+      {
+        "time": 37159.08341204026,
+        "chainage_m": 24023.2316187227,
+        "a": "B002",
+        "b": "B042",
+        "kind": "overtake",
+        "overtaker": "B002",
+        "cleared": 37190.0000000182,
+        "station": "TUVR",
+        "location": "Turavur"
+      },
+      {
+        "time": 38020.00737777076,
+        "chainage_m": 34018.3364837346,
+        "a": "B002",
+        "b": "B042",
+        "kind": "overtake",
+        "overtaker": "B042",
+        "cleared": 38092.000000005,
+        "station": "SRTL",
+        "location": "Cherthala"
+      },
+      {
+        "time": 38899.2405351357,
+        "chainage_m": 44921.115652654,
+        "a": "B002",
+        "b": "B042",
+        "kind": "overtake",
+        "overtaker": "B002",
+        "cleared": 39327.999999987,
+        "station": "MAKM",
+        "location": "Mararikulam"
+      }
+    ],
+    "intensive": [
+      {
+        "time": 37159.08341204026,
+        "chainage_m": 24023.2316187227,
+        "a": "B002",
+        "b": "B042",
+        "kind": "overtake",
+        "overtaker": "B002",
+        "cleared": 37190.0000000182,
+        "station": "TUVR",
+        "location": "Turavur"
+      }
+    ]
+  },
+  "r37_baseline": {
+    "services": 100,
+    "total": 100,
+    "clock": "03:18:14",
+    "calls": 1530,
+    "safety_events": 0,
+    "maximum_wait_minutes": 28.166666666666668,
+    "total_wait_train_minutes": 822.0333333333333,
+    "maximum_destination_delay_minutes": 37.809166678692165,
+    "delayed_service": "K1",
+    "forced_delay_seconds": 0,
+    "wall_seconds": 3206.882
+  },
+  "wait_measurement_note": "R38 also counts red-signal stands before the next booked departure time; old total-wait figures are not directly comparable. Destination arrival delays remain comparable.",
+  "standard_delay_changes": [
+    {
+      "id": "B009",
+      "arrival_delay_change_seconds": 1652.1000011313
+    },
+    {
+      "id": "B044",
+      "arrival_delay_change_seconds": 954.050000568532
+    },
+    {
+      "id": "B006",
+      "arrival_delay_change_seconds": 756.900000044057
+    },
+    {
+      "id": "B080",
+      "arrival_delay_change_seconds": 483.250000028129
+    },
+    {
+      "id": "B030",
+      "arrival_delay_change_seconds": 438.24999999362
+    },
+    {
+      "id": "K1",
+      "arrival_delay_change_seconds": 286.649999750945
+    },
+    {
+      "id": "B074",
+      "arrival_delay_change_seconds": 241.049999996489
+    },
+    {
+      "id": "B083",
+      "arrival_delay_change_seconds": 228.50000001330102
+    },
+    {
+      "id": "B033",
+      "arrival_delay_change_seconds": 210.550000012241
+    },
+    {
+      "id": "B007",
+      "arrival_delay_change_seconds": 192.10000065132
+    },
+    {
+      "id": "B067",
+      "arrival_delay_change_seconds": 155.70000000906268
+    },
+    {
+      "id": "B062",
+      "arrival_delay_change_seconds": 110.50000000643199
+    },
+    {
+      "id": "B001",
+      "arrival_delay_change_seconds": 110.09999999840494
+    },
+    {
+      "id": "B047",
+      "arrival_delay_change_seconds": 70.50000000410398
+    },
+    {
+      "id": "B019",
+      "arrival_delay_change_seconds": 70.300000004092
+    },
+    {
+      "id": "B076",
+      "arrival_delay_change_seconds": 1.4999999999780016
+    },
+    {
+      "id": "B004",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B008",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B010",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B011",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B012",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B016",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B017",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B023",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B032",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B035",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B036",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B037",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B038",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B039",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B042",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B043",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B045",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B046",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B048",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B049",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B050",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B052",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B053",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B055",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B057",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B058",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B061",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B065",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B069",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B070",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B071",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B073",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B075",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B077",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B078",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B081",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B082",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B084",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B085",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B086",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B087",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B088",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B089",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B090",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B091",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B093",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B094",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B095",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B097",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B098",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B099",
+      "arrival_delay_change_seconds": 0
+    },
+    {
+      "id": "B041",
+      "arrival_delay_change_seconds": -0.5000000000291003
+    },
+    {
+      "id": "B064",
+      "arrival_delay_change_seconds": -16.50000000095997
+    },
+    {
+      "id": "B024",
+      "arrival_delay_change_seconds": -17.44999999974999
+    },
+    {
+      "id": "B013",
+      "arrival_delay_change_seconds": -17.999999999730107
+    },
+    {
+      "id": "B072",
+      "arrival_delay_change_seconds": -44.499999999351985
+    },
+    {
+      "id": "B079",
+      "arrival_delay_change_seconds": -45.15000000262802
+    },
+    {
+      "id": "B015",
+      "arrival_delay_change_seconds": -48.999999999280135
+    },
+    {
+      "id": "B051",
+      "arrival_delay_change_seconds": -56.94999999917486
+    },
+    {
+      "id": "B031",
+      "arrival_delay_change_seconds": -59.2499998282947
+    },
+    {
+      "id": "B092",
+      "arrival_delay_change_seconds": -89.1500003725523
+    },
+    {
+      "id": "B029",
+      "arrival_delay_change_seconds": -98.45000000574511
+    },
+    {
+      "id": "B026",
+      "arrival_delay_change_seconds": -100.75000000586499
+    },
+    {
+      "id": "B066",
+      "arrival_delay_change_seconds": -117.50000000683897
+    },
+    {
+      "id": "B018",
+      "arrival_delay_change_seconds": -123.800000099378
+    },
+    {
+      "id": "B068",
+      "arrival_delay_change_seconds": -133.50000000048698
+    },
+    {
+      "id": "B054",
+      "arrival_delay_change_seconds": -163.24999999761997
+    },
+    {
+      "id": "B059",
+      "arrival_delay_change_seconds": -172.25000001002599
+    },
+    {
+      "id": "B028",
+      "arrival_delay_change_seconds": -179.95000001048948
+    },
+    {
+      "id": "B027",
+      "arrival_delay_change_seconds": -195.450000011391
+    },
+    {
+      "id": "B022",
+      "arrival_delay_change_seconds": -238.400001195347
+    },
+    {
+      "id": "B003",
+      "arrival_delay_change_seconds": -250.89999999635597
+    },
+    {
+      "id": "B063",
+      "arrival_delay_change_seconds": -322.250000018743
+    },
+    {
+      "id": "B040",
+      "arrival_delay_change_seconds": -327.949999693854
+    },
+    {
+      "id": "B056",
+      "arrival_delay_change_seconds": -388.249999994346
+    },
+    {
+      "id": "B060",
+      "arrival_delay_change_seconds": -505.450000029421
+    },
+    {
+      "id": "B025",
+      "arrival_delay_change_seconds": -582.4499999915281
+    },
+    {
+      "id": "B096",
+      "arrival_delay_change_seconds": -590.799999773677
+    },
+    {
+      "id": "B014",
+      "arrival_delay_change_seconds": -694.199999989899
+    },
+    {
+      "id": "B005",
+      "arrival_delay_change_seconds": -863.600000131613
+    },
+    {
+      "id": "B020",
+      "arrival_delay_change_seconds": -877.95000070869
+    },
+    {
+      "id": "B034",
+      "arrival_delay_change_seconds": -968.05000005633
+    },
+    {
+      "id": "B021",
+      "arrival_delay_change_seconds": -1228.0000000714772
+    },
+    {
+      "id": "B002",
+      "arrival_delay_change_seconds": -1460.94999975158
+    }
+  ]
+}
