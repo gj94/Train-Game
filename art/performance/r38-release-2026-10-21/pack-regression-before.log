@@ -1,0 +1,11 @@
+file:///D:/ClaudeWS/train-game/tools/updater/publish.mjs:56
+          throw Error('Unexpected asset pack path: ' + name);
+                ^
+
+Error: Unexpected asset pack path: packs/railway-intensive-10.pck
+    at walk (file:///D:/ClaudeWS/train-game/tools/updater/publish.mjs:56:17)
+    at async walk (file:///D:/ClaudeWS/train-game/tools/updater/publish.mjs:53:9)
+    at async catalogue (file:///D:/ClaudeWS/train-game/tools/updater/publish.mjs:61:3)
+    at async file:///D:/ClaudeWS/train-game/tools/updater/test-packs.mjs:57:19
+
+Node.js v24.15.0

@@ -14,6 +14,10 @@ downloads. New releases need both a full ZIP and signed incremental publication.
   insertion/order changes cannot reshuffle the other buckets. Imported blobs
   follow their source assets. No model simplification, audio processing or
   resource recompression occurs. Only the PCK container changes.
+  Alternate timetable snapshots use the existing generic `resources` family,
+  separately from Standard's `railway` buckets. This preserves the fixed path
+  allowlist in the v3 launchers already shipped with R36/R37; a newly invented
+  family name would require replacing those launchers first.
 - A minimal bootstrap mounts the explicit pack list before loading the service
   browser and any game asset preloads. Source/editor runs use the same browser
   without external packs. Missing packs produce a repair message.

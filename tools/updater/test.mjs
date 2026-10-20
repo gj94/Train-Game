@@ -215,7 +215,12 @@ try {
   const pattern = randomBytes(24000), periodic = Buffer.alloc(BLOCK * 20 + 17);
   for (let i = 0; i < periodic.length; i++) periodic[i] = pattern[i % pattern.length];
   await writeFile(join(target, 'TrainGame.pck'), periodic);
-  await modern(32); await makeArchive(); await modern(32, true);
+  await writeFile(join(target, 'packs/resources-1f.pck'), 'prepared alternate timetable payload\n');
+  await modern(32);
+  const additionalDay = await client(v3); assert.equal(additionalDay.code, 0, additionalDay.err); await same(v3);
+  assert.equal((await stat(join(v3, 'packs/audio-00.pck'))).mtimeMs, stableTime);
+  pass('installed v3 accepts added alternate timetable pack without replacing stable assets');
+  await makeArchive(); await modern(32, true);
   await verifyArchive(archivePath, manifest, join(temp, 'verify.json'));
   const staleArchive = structuredClone(manifest); staleArchive.files[0].sha256 = '0'.repeat(64);
   await assert.rejects(verifyArchive(archivePath, staleArchive, join(temp, 'verify.json')), /ZIP differs/);

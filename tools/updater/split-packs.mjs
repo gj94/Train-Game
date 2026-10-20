@@ -78,9 +78,11 @@ export async function writePack(path, entries, engine) {
   await rename(path + '.tmp', path);
 }
 function family(path) {
-  // A new operating day must not reshuffle all existing snapshot packs.
+  // Keep alternate days separate from the standard railway buckets, using
+  // the generic family already accepted by the installed R36/R37 v3 clients.
+  // New family names would require replacing those launchers first.
   const day = path.match(/^data\/timetables\/([a-z0-9_-]+)\/.*\.bin$/);
-  if (day) return 'railway-' + day[1];
+  if (day) return 'resources';
   if (/^data\/(railway_times|service_starts)\/.*\.bin$/.test(path)) return 'railway';
   if (/^data\/(routes|interiors)\//.test(path)) return 'route';
   if (path.startsWith('assets/sounds/')) return 'audio';

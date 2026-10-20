@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { splitPack, readPack, writePack } from './split-packs.mjs';
+import { catalogue } from './publish.mjs';
 
 const root = join('.local', `pack-tests-${Date.now()}`);
 await mkdir(root, { recursive: true });
@@ -49,10 +50,18 @@ const differences = [...first.files].filter(([path, bytes]) => !bytes.equals(mod
 assert.equal(differences.length, 1); assert.match(differences[0], /^packs\/trains-/);
 const timetable = await build('timetable', entries.map(e => e.path.includes('/intensive/') ? entry(e.path, 'changed intensive state') : e));
 const dayChanges = [...first.files].filter(([path, bytes]) => !bytes.equals(timetable.files.get(path))).map(([path]) => path);
-assert.equal(dayChanges.length,1);assert.match(dayChanges[0],/^packs\/railway-intensive-/);
+assert.equal(dayChanges.length,1);assert.match(dayChanges[0],/^packs\/resources-/);
+// Exercise the consumer boundary as well as the splitter: older launchers
+// accept a fixed set of pack families, so an invented family is not deployable.
+await writeFile(join(root, 'first/TrainGame.exe'), 'fixture executable');
+const published = await catalogue(join(root, 'first'), 'TrainGame-Pack-Test', 1,
+  { payloadDirectory: join(root, 'payloads') });
+assert.equal(published.minimumLauncher, 3);
+assert.deepEqual(published.files.filter(f => f.path.startsWith('packs/')).map(f => f.path).sort(),
+  [...first.files.keys()].filter(p => p.startsWith('packs/')).sort());
 const corrupted = await readFile(join(root, 'first.pck')); corrupted[corrupted.length - 16] ^= 1;
 await writeFile(join(root, 'bad.pck'), corrupted);
 await assert.rejects(splitPack(join(root, 'bad.pck'), join(root, 'bad-output')), /checksum/);
 await assert.rejects(splitPack(join(root, 'first/TrainGame.pck'), join(root, 'resplit')), /already been partitioned/);
-console.log(JSON.stringify({ checks: 7, exactResources: entries.length, stablePacksAfterScriptChange: first.report.packs,
-  checksCovered: ['exact resource bytes', 'deterministic export ordering', 'script growth isolation', 'one model pack changes', 'independent timetable pack', 'corrupt input rejection', 'double partition rejection'], fixtureDirectory: root }));
+console.log(JSON.stringify({ checks: 8, exactResources: entries.length, stablePacksAfterScriptChange: first.report.packs,
+  checksCovered: ['exact resource bytes', 'deterministic export ordering', 'script growth isolation', 'one model pack changes', 'independent timetable pack', 'v3 publication compatibility', 'corrupt input rejection', 'double partition rejection'], fixtureDirectory: root }));

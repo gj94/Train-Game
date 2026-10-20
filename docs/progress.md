@@ -1,5 +1,21 @@
 # Progress
 
+## 2026-10-21 — R38 updater compatibility checked before publication
+
+- The first export completed, but publication correctly rejected the new
+  `railway-intensive` pack family. No R38 signed catalogue was published and
+  the LAN download policy remained on R37.
+- Alternate timetable states now use the existing generic `resources` family,
+  keeping Standard's railway buckets separate while remaining compatible with
+  the installed R36/R37 v3 updater. The native updater core is unchanged from
+  R37. Eight split-pack/publication checks and 48 native updater checks pass,
+  including adding the alternate pack to an existing v3 installation without
+  replacing stable assets. The added publication regression failed before
+  the correction. Only the 32 incompatible packs from the unpublished attempt
+  were removed before rebuilding.
+- Railway inputs, prepared states, simulation and gameplay remain unchanged.
+  Release evidence is in `art/performance/r38-release-2026-10-21/`.
+
 ## 2026-10-20 — Validated mixer and alternate timetable; R38 preparation
 
 - Added fifteen independent sound channels plus Master, with explanations,
