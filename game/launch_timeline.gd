@@ -36,6 +36,8 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	Engine.max_fps=60;Input.mouse_mode=Input.MOUSE_MODE_VISIBLE;get_tree().auto_accept_quit=false
 	Input.joy_connection_changed.connect(func(_device,_connected):_pan=Vector2.ZERO;_zoom=0)
+	if directory==Times.DIRECTORY:
+		directory=preload("res://persistence/operating_days.gd").definition(str(get_tree().get_meta("timetable_id","standard"))).times
 	_build()
 	var catalogue:=Times.catalogue(directory)
 	if not catalogue.ok:status.text=catalogue.reason;slider.editable=false;return
@@ -53,7 +55,7 @@ func _build() -> void:
 	for side in ["left","right","top","bottom"]:margin.add_theme_constant_override("margin_"+side,24)
 	var body:=VBoxContainer.new();body.add_theme_constant_override("separation",16);margin.add_child(body)
 	var header:=HBoxContainer.new();body.add_child(header)
-	var brand:=UI.label(header,"EXPLORE THE RAILWAY",27);brand.size_flags_horizontal=SIZE_EXPAND_FILL
+	var brand:=UI.label(header,"EXPLORE · "+preload("res://persistence/operating_days.gd").definition(str(get_tree().get_meta("timetable_id","standard"))).name,24);brand.size_flags_horizontal=SIZE_EXPAND_FILL
 	UI.button(header,"Back to departures",_back).size_flags_horizontal=SIZE_SHRINK_CENTER
 	UI.button(header,"Fullscreen",func():display.toggle()).size_flags_horizontal=SIZE_SHRINK_CENTER
 	UI.label(body,"Choose a time, inspect the dispatcher, then join a train or a station. Each start is a new journey from the AI-run baseline.",17,UI.MUTED)
@@ -194,9 +196,7 @@ func _enter(choice: Dictionary) -> void:
 	entering=true;board_button.disabled=true;visit_button.disabled=true
 	# Keep the exact AI controls, speeds and reservations in both entry modes.
 	choice.world=world;choice.timeline=states[requested].id
-	for key in preload("res://game/save_load.gd").META:
-		if get_tree().has_meta(key):get_tree().remove_meta(key)
-	get_tree().set_meta("prepared_start",choice)
+	preload("res://persistence/operating_days.gd").stage_start(get_tree(),choice)
 	get_tree().change_scene_to_file.call_deferred("res://game/main.tscn")
 
 func _back() -> void:

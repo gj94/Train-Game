@@ -19,6 +19,18 @@ func update(w, engine, discover: bool) -> void:
 		p.received = p.received or _contained(w.trains[p.incoming],p.future_road)
 		p.opponent_received = p.opponent_received or _contained(w.trains[p.opponent],p.opponent_road)
 		p.escaped = p.escaped or _contained(w.trains[p.vacater],p.escape_road)
+		# A completed/replaced working cannot fulfil an outstanding arrival.
+		# Withdraw only the planning promise; physical routes and occupation
+		# remain protected by the ordinary interlocking. Late/emergency/manual
+		# participants stay reserved while their working remains active.
+		var abandoned:=false
+		for actor in [{id=p.incoming,arrived=p.received},{id=p.opponent,arrived=p.opponent_received},{id=p.vacater,arrived=p.escaped}]:
+			var t: Train=w.trains[actor.id]
+			if not actor.arrived and (t.lifecycle!="active" or t.service_complete):abandoned=true
+		if abandoned:
+			engine._record(w,"crossing_cancelled",p.incoming,"Working ended before its planned arrival at "+p.station)
+			plans.erase(p)
+			continue
 		if p.received and p.escaped and not w.trains[p.opponent].path.any(func(seg):return seg.edge==p.opponent_road):
 			engine._record(w,"crossing_complete",p.incoming,"Planned platform succession completed at "+p.station)
 			plans.erase(p)
@@ -125,8 +137,23 @@ func _approach(w,t: Train) -> Dictionary:
 			if section.is_empty():continue
 			var destination: Dictionary=_planner._exit_station(w,section,entry.dir)
 			if destination.is_empty():continue
+			if not _working_reaches(w,t,destination):continue
 			return {section=section,station=destination,edge=entry.edge}
 	return {}
+
+func _working_reaches(w,t: Train,destination: Dictionary) -> bool:
+	# Route options can continue beyond the final passenger stop into a depot
+	# junction. Only promise stations reached by this working before a reversal.
+	if t.timetable==null or t.service_complete:return false
+	var direction: int=t.path[0].dir
+	for i in range(t.timetable.index,t.timetable.stops.size()):
+		var stop: Dictionary=t.timetable.stops[i]
+		if int(stop.direction)!=direction:return false
+		if stop.block in destination.platform_tracks:return true
+		var edge: Dictionary=w.graph.edges[stop.block]
+		var at: float=lerpf(edge.get("chainage_start",0),edge.get("chainage_end",0),stop.s/edge.length)
+		if (at-float(destination.s))*direction>0:return true
+	return false
 
 func _unavailable(engine,t: Train) -> bool:
 	return t.service_complete or t.emergency or engine.operator_holds.has(t.id) or (t.timetable!=null and t.timetable.missed_stop)

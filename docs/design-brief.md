@@ -9,6 +9,14 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **20 Oct 2026 detailed sound and alternate operating days:** independently mix
+  rolling hiss, joint clacks, squeal, own wind, passing air, floor thumps, rattles,
+  traction, fans, horns, compressor, ventilation, footsteps, doors and brake air.
+  Preserve existing settings when splitting shared channels. Investigate the
+  B042/B002 reverse overtake and correct its schedule in a separate, larger
+  selectable timetable. Keep the original day; require at least ten distinct
+  overtakers of the slowest through passenger in the audited AI baseline,
+  without speed caps, forced passes or weaker interlocking.
 - **20 Oct 2026 manual departure horns:** automatic paired departure horns apply
   only to AI driving. Taking manual control stops an automatic call and cancels
   the queued second call; the player's horn button remains independent.

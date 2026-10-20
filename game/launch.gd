@@ -6,10 +6,14 @@ const Snapshot:=preload("res://sim/world_snapshot.gd")
 const Clock:=preload("res://sim/world_clock.gd")
 const Briefing:=preload("res://persistence/service_briefing.gd")
 const Traffic:=preload("res://persistence/service_traffic.gd")
+const Days:=preload("res://persistence/operating_days.gd")
 const SORTS:=["Departure · earliest first","Average speed · fastest first","Average speed · slowest first","Service name · A–Z"]
 const STOCK:={icf="WAP-7 + ICF",lhb="WAP-7 + LHB",vb8="Vande Bharat · 8 cars",vb16="Vande Bharat · 16 cars"}
 const FILTERS:=["All departures","Morning","Afternoon","Evening","Night"]
 var directory:=Starts.DIRECTORY
+var timetable_id:="standard"
+var timetable_picker: OptionButton
+var timetable_description: Label
 var store:=Store.new()
 var services: Array=[]
 var shown: Array=[]
@@ -66,14 +70,10 @@ func _ready() -> void:
 	Engine.max_fps=60;Input.mouse_mode=Input.MOUSE_MODE_VISIBLE
 	get_tree().auto_accept_quit=false
 	Input.joy_connection_changed.connect(func(_device,_connected):_axes=Vector2.ZERO;_scroll_axis=0.0)
+	timetable_id=Days.definition(str(get_tree().get_meta("timetable_id","standard"))).id
+	if directory==Starts.DIRECTORY:directory=Days.definition(timetable_id).starts
 	_build()
-	var catalogue:=Starts.catalogue(directory)
-	if catalogue.ok:
-		services=catalogue.data.services
-		var traffic:=Traffic.catalogue(services,directory)
-		if traffic.ok:traffic_data=traffic.data
-		else:traffic_reason=traffic.reason
-	else:status.text=catalogue.reason
+	_load_catalogue()
 	continue_button.disabled=true;continue_button.text="Checking saves…";saved_button.disabled=true
 	save_worker=Thread.new()
 	if save_worker.start(_saved_entries)!=OK:
@@ -86,6 +86,27 @@ func _ready() -> void:
 		get_tree().remove_meta("launch_service")
 		for row in services:
 			if row.id==restart:_begin("service",row);break
+
+func _load_catalogue() -> void:
+	services=[];traffic_data={};status.text=""
+	traffic_reason="Traffic preview is unavailable for this timetable."
+	var catalogue:=Starts.catalogue(directory)
+	if catalogue.ok:
+		services=catalogue.data.services
+		var traffic:=Traffic.catalogue(services,directory)
+		if traffic.ok:traffic_data=traffic.data
+		else:traffic_reason=traffic.reason
+	else:status.text=catalogue.reason
+
+func select_timetable(index: int) -> void:
+	if worker!=null or starting or index<0 or index>=Days.DAYS.size():return
+	timetable_id=Days.DAYS[index].id;directory=Days.DAYS[index].starts
+	get_tree().set_meta("timetable_id",timetable_id)
+	for key in ["timeline_index","timeline_clock"]:
+		if get_tree().has_meta(key):get_tree().remove_meta(key)
+	timetable_picker.select(index);timetable_description.text=Days.DAYS[index].description
+	_load_catalogue()
+	selected={id="K1"};page="services";period=0;search.text="";refresh();roster.grab_focus()
 
 func _bypass() -> bool:
 	if get_tree().has_meta("resume_session"):return true
@@ -133,6 +154,13 @@ func _build() -> void:
 	_button(top,"Fullscreen",func():display.toggle())
 	_button(top,"Quit",_quit)
 	_label(outer,"Ernakulam Junction — Alappuzha — Thiruvananthapuram — Nagercoil",17,Color("a8bdc6"))
+	var day_row:=HBoxContainer.new();day_row.add_theme_constant_override("separation",16);outer.add_child(day_row)
+	_label(day_row,"Operating day",17,Color("a8bdc6"))
+	timetable_picker=OptionButton.new();timetable_picker.custom_minimum_size=Vector2(300,42);day_row.add_child(timetable_picker)
+	for day in Days.DAYS:timetable_picker.add_item(day.name)
+	timetable_picker.select(Days.index_of(timetable_id));timetable_picker.item_selected.connect(select_timetable)
+	timetable_description=_label(day_row,Days.definition(timetable_id).description,15,Color("a8bdc6"))
+	timetable_description.size_flags_horizontal=SIZE_EXPAND_FILL;timetable_description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	var filter_row:=HBoxContainer.new();filter_row.add_theme_constant_override("separation",8);outer.add_child(filter_row)
 	for i in FILTERS.size():
 		var index:=i
@@ -311,7 +339,7 @@ func _begin(kind: String,row: Dictionary) -> void:
 func _read_request(kind: String,row: Dictionary) -> Dictionary:
 	if kind=="service":
 		var result:=Starts.load_start(row,directory)
-		if result.ok:result.service=row.id
+		if result.ok:result.service=row.id;result.timetable_id=timetable_id
 		return result
 	var saved:=store.read_slot(row.slot,row.backup)
 	if not saved.ok:return saved
@@ -334,14 +362,12 @@ func _process(delta: float) -> void:
 		starting=true;busy_label.text="Loading the train and nearby scenery…"
 		if result.has("service"):
 			Starts.select(result.world,result.service)
-			for key in preload("res://game/save_load.gd").META:
-				if get_tree().has_meta(key):get_tree().remove_meta(key)
-			get_tree().set_meta("prepared_start",result)
+			Days.stage_start(get_tree(),result)
 		else:get_tree().set_meta("resume_session",result)
 		get_tree().change_scene_to_file.call_deferred("res://game/main.tscn")
 		return
 	if not _focused or starting or roster==null:return
-	if sort_button.get_popup().visible:_axes=Vector2.ZERO;_scroll_axis=0;return
+	if sort_button.get_popup().visible or timetable_picker.get_popup().visible:_axes=Vector2.ZERO;_scroll_axis=0;return
 	if absf(_scroll_axis)>.25:detail_scroll.scroll_vertical+=roundi(_scroll_axis*delta*650)
 	var direction:=Vector2i(signi(roundi(_axes.x)),signi(roundi(_axes.y)))
 	if direction==Vector2i.ZERO:_direction=direction;_repeat=0;return
@@ -366,7 +392,7 @@ func _navigate(direction: Vector2i) -> void:
 
 func _input(event: InputEvent) -> void:
 	if not _focused or roster==null:return
-	if sort_button.get_popup().visible:return
+	if sort_button.get_popup().visible or timetable_picker.get_popup().visible:return
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode==KEY_F11 or (event.keycode==KEY_ENTER and event.alt_pressed):display.toggle();accept_event()
 		elif event.keycode==KEY_ESCAPE:_back();accept_event()
@@ -393,6 +419,7 @@ func _input(event: InputEvent) -> void:
 			var focus:=get_viewport().gui_get_focus_owner()
 			if focus==roster:start_button.grab_focus()
 			elif focus==sort_button:sort_button.show_popup()
+			elif focus==timetable_picker:timetable_picker.show_popup()
 			elif focus is Button and not focus.disabled:focus.pressed.emit()
 
 func _back() -> void:

@@ -2,7 +2,7 @@ extends RefCounted
 ## Pause-menu workflow; the railway snapshot itself has no presentation dependencies.
 const Snapshot := preload("res://sim/world_snapshot.gd")
 const Store := preload("res://persistence/save_store.gd")
-const META := ["route","small_test_layout","imported_fleet","wap7_drive","lhb_drive","traffic_drive","traffic_seed","service_pack","player_service"]
+const META := ["route","small_test_layout","imported_fleet","wap7_drive","lhb_drive","traffic_drive","traffic_seed","service_pack","player_service","timetable_id"]
 const FLAGS := ["geographic_drive","traffic_drive","imported_fleet","wap7_drive","lhb_drive","authored_pack","labels_enabled","time_scale"]
 const CAMERA := ["mode","yaw","pitch","distance","cab_fov","head_out_side","follow","_look","free_flight","free_fov","follow_preset"]
 const VIEW := ["passenger_coach","passenger_bay","passenger_seat","passenger_seat_index","cab_position","passenger_head_out","headlight_mode"]

@@ -143,3 +143,52 @@ func test_prepared_arrival_does_not_consume_two_platforms_and_cause_false_hold()
 	f.world.trains.erase("N1")
 	return rejection(f.world,f.south,"").is_empty()
 
+func test_through_train_cannot_steal_last_passenger_road_from_admitted_opponent():
+	var w:=fixture()
+	add(w,"K1",["TUVR_P2","SRTL_P1"],1)
+	var opponent:=add(w,"B045",["SRTL_P2","TUVR_P2","KUMM_P3"],-1)
+	w.place_train(opponent,"TUVR_VAY_M0",500,-1)
+	opponent.timetable.index=1;opponent.timetable.at_stop=false
+	var vb:=add(w,"VB",["KUMM_P3","ALLP_P1"],1)
+	var home:={}
+	for sig in w.signals.values():
+		if sig.dir==1 and w.route_options(sig.id).any(func(o):return o.edges[-1].edge=="TUVR_P1"):
+			home=sig;break
+	assert(not home.is_empty())
+	w.place_train(vb,home.edge,home.s-100,1)
+	vb.timetable.index=1;vb.timetable.at_stop=false
+	var candidates: Array=Planner.new().candidates(w,vb,home.id)
+	var main: Array=candidates.filter(func(c):return c.option.edges[-1].edge=="TUVR_P1")
+	var loop: Array=candidates.filter(func(c):return c.option.edges[-1].edge=="TUVR_P3")
+	if main.size()!=1 or not main[0].available:return "Through main should remain usable"
+	return loop.size()==1 and not loop[0].available and loop[0].blockers.any(func(b):return b.train=="B045")
+
+func test_through_road_assignment_preserves_an_admitted_trains_onward_escape():
+	var w:=fixture()
+	add(w,"B037",["KUMM_P3","TUVR_P2","SRTL_P1"],1)
+	var local:=add(w,"B013",["SRTL_P2","TUVR_P2","KUMM_P3","ERS_P4"],-1)
+	w.place_train(local,"TUVR_VAY_M0",500,-1)
+	local.timetable.index=1;local.timetable.at_stop=false
+	var express:=add(w,"B005",["KUMM_P3","SRTL_P1"],1)
+	var home:={}
+	for sig in w.signals.values():
+		if sig.dir==1 and w.route_options(sig.id).any(func(o):return o.edges[-1].edge=="TUVR_P1"):
+			home=sig;break
+	assert(not home.is_empty())
+	w.place_train(express,home.edge,home.s-100,1)
+	express.timetable.index=1;express.timetable.at_stop=false
+	var choices: Array=Planner.new().candidates(w,express,home.id)
+	var main: Array=choices.filter(func(c):return c.option.edges[-1].edge=="TUVR_P1")
+	var loops: Array=choices.filter(func(c):return c.option.edges[-1].edge in ["TUVR_P2","TUVR_P3"])
+	if main.size()!=1 or not main[0].available:return "Through main must keep both crossing passenger faces available"
+	return loops.size()==2 and loops.all(func(c):return not c.available and c.blockers.any(func(b):return b.train=="B013"))
+
+func test_same_direction_occupant_cannot_be_assumed_to_leave_against_admitted_opponent():
+	var w:=fixture()
+	add(w,"B005",["TUVR_P2","SRTL_P1"],1)
+	var north:=add(w,"B013",["SRTL_P2","TUVR_P2","KUMM_P3","ERS_P4"],-1)
+	w.place_train(north,"TUVR_VAY_M0",500,-1)
+	north.timetable.index=1;north.timetable.at_stop=false
+	var south:=add(w,"B037",["ERS_P3","KUMM_P3","TUVR_P2","SRTL_P1"],1)
+	return rejection(w,south,"Turavur").get("blocked",false)
+

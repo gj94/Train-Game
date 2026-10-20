@@ -114,3 +114,48 @@ func test_first_arrival_uses_loop_when_opposing_train_is_on_a_long_single_sectio
 	w.dispatch_holds[first.id]=chosen.hold
 	var nem: Dictionary=w.stations.filter(func(s):return s.code=="NEM")[0]
 	return Priority.conflict(w,later,nem).is_empty() # must proceed to the agreed meet at NYY
+
+func _tvcn_approach(direction: int) -> Dictionary:
+	var f:=preload("res://tests/test_exit_capacity.gd").new()
+	var w: RailWorld=f.fixture()
+	var roads: Array=["KZK_P1","TVC_P1"] if direction==1 else ["TVC_P2","QLN_P2"]
+	var t: Train=f.add(w,"VB",roads,direction)
+	t.dispatch_priority=100;t.max_speed=160.0/3.6
+	var edge: String="KZK_VELI_D2" if direction==1 else "TVCN_TVP_U2"
+	w.place_train(t,edge,w.graph.edges[edge].length*.5,direction)
+	t.timetable.index=1;t.timetable.at_stop=false
+	var home: String="VELI_TVCN_D0-H" if direction==1 else "TVCN_TVP_U0-H"
+	assert(w.next_signal(t).id in w.automatic_signals)
+	return {w=w,t=t,home=home,main="TVCN_P1" if direction==1 else "TVCN_P2"}
+
+func _first_available(f: Dictionary) -> Dictionary:
+	var candidates: Array=preload("res://sim/dispatch_planner.gd").new().candidates(f.w,f.t,f.home)
+	var available:=candidates.filter(func(c):return c.available)
+	return available[0] if not available.is_empty() else {}
+
+func test_southbound_through_vb_prepared_across_automatic_blocks_uses_clear_main():
+	var f:=_tvcn_approach(1)
+	var chosen:=_first_available(f)
+	return not chosen.is_empty() and chosen.option.edges[-1].edge==f.main
+
+func test_northbound_through_vb_prepared_across_automatic_blocks_uses_clear_main():
+	var f:=_tvcn_approach(-1)
+	var chosen:=_first_available(f)
+	return not chosen.is_empty() and chosen.option.edges[-1].edge==f.main
+
+func test_through_vb_can_use_clear_loop_when_main_is_occupied():
+	for direction in [1,-1]:
+		var f:=_tvcn_approach(direction)
+		f.w.place_train(Train.new("OCCUPANT",100),f.main,500,direction)
+		var chosen:=_first_available(f)
+		if chosen.is_empty() or chosen.option.edges[-1].edge==f.main:return "Occupied main preferred"
+	return true
+
+func test_prepared_loop_is_retained_for_a_slower_service_yielding_to_express():
+	var f:=_tvcn_approach(1)
+	f.t.dispatch_priority=20;f.t.max_speed=110.0/3.6
+	var faster:=Train.new("FASTER",100)
+	f.w.place_train(faster,f.t.path[0].edge,maxf(10,f.t.head_s-250),1)
+	faster.dispatch_priority=100;faster.max_speed=160.0/3.6
+	var chosen:=_first_available(f)
+	return not chosen.is_empty() and chosen.option.edges[-1].edge!=f.main and chosen.hold.get("other","")=="FASTER"

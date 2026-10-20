@@ -9,16 +9,20 @@ func _initialize() -> void:
 		for relative in index.packs:
 			if not ProjectSettings.load_resource_pack(args[0].get_base_dir().path_join(relative),false):
 				printerr("Split pack mount failed: "+relative);quit(1);return
-	for path in ["game/launch.tscn","game/launch.gd","game/launch_timeline.tscn","game/launch_timeline.gd","game/day_night.gd","persistence/service_starts.gd","persistence/railway_times.gd"]:
+	for path in ["game/launch.tscn","game/launch.gd","game/launch_timeline.tscn","game/launch_timeline.gd","game/day_night.gd","game/audio_menu.gd","persistence/operating_days.gd","persistence/service_starts.gd","persistence/railway_times.gd"]:
 		if not ResourceLoader.exists("res://"+path):printerr("Missing resource: "+path);quit(1);return
-	var counts:=[]
-	for folder in ["service_starts","railway_times"]:
-		var base: String="res://data/"+folder+"/"
-		var data=JSON.parse_string(FileAccess.get_file_as_string(base+"catalogue.json"))
-		if not data is Dictionary or not data.get("complete",false):printerr("Incomplete packaged catalogue: "+folder);quit(1);return
-		var rows: Array=data.services if folder=="service_starts" else data.states
-		for row in rows:
-			if FileAccess.get_sha256(base+row.file)!=row.sha256:printerr("Packaged state differs: "+row.id);quit(1);return
-		counts.append(rows.size())
-	if counts[0]!=100 or counts[1]<100:printerr("Prepared states missing");quit(1);return
-	print("Prepared pack audit: %d service starts, %d time states and launch/night resources verified. Gameplay not launched." % counts);quit()
+	for day in [
+		{name="Standard",starts="service_starts",times="railway_times",count=100},
+		{name="Intensive",starts="timetables/intensive/starts",times="timetables/intensive/times",count=140}]:
+		var counts:=[]
+		for folder in [day.starts,day.times]:
+			var base: String="res://data/"+folder+"/"
+			var data=JSON.parse_string(FileAccess.get_file_as_string(base+"catalogue.json"))
+			if not data is Dictionary or not data.get("complete",false):printerr("Incomplete packaged catalogue: "+folder);quit(1);return
+			var rows: Array=data.services if folder==day.starts else data.states
+			for row in rows:
+				if FileAccess.get_sha256(base+row.file)!=row.sha256:printerr("Packaged state differs: "+row.id);quit(1);return
+			counts.append(rows.size())
+		if counts[0]!=day.count or counts[1]<100:printerr("Prepared states missing for "+day.name);quit(1);return
+		print("%s: %d service starts, %d time states verified." % [day.name,counts[0],counts[1]])
+	print("Prepared pack audit passed. Launch/night/mixer resources verified. Gameplay not launched.");quit()

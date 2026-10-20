@@ -164,8 +164,12 @@ static func refresh_notices(w: RailWorld) -> void:
 			var action:="crosses" if blocker.path[0].dir!=t.path[0].dir else "clears the section"
 			w.dispatch_notices[t.id]="Expect a wait here until %s (%s) %s" % [blocker.service_name,blocker.id,action]
 
-static func choose_platform(w: RailWorld,t: Train,options: Array,stop: Dictionary) -> Dictionary:
+static func choose_platform(w: RailWorld,t: Train,options: Array,stop: Dictionary,signal_id: String="") -> Dictionary:
 	if not w.scenery.get("geographic",false) or options.is_empty():return {}
+	# Advance preparation can be several automatic signals beyond next_signal.
+	# Check these alternatives from their own home, otherwise every platform is
+	# rejected and the planner falls back to geometric route length.
+	if signal_id.is_empty():signal_id=w.next_signal(t).get("id","")
 	var st:=station(w,options[0].edges[-1].edge)
 	if st.is_empty() or st.through_halt:return {}
 	var stopping: bool=station(w,stop.block).get("code","")==st.code
@@ -181,7 +185,7 @@ static func choose_platform(w: RailWorld,t: Train,options: Array,stop: Dictionar
 		var road: int=int(last.edge.get_slice("_P",1))
 		if stopping and st.platform_details[last.edge].platform_width<=0:continue
 		var is_loop: bool=road!=primary and (road>2 or _single_both(w,st))
-		if w.route_reason(w.next_signal(t).id,option.destination)!="":continue
+		if w.route_reason(signal_id,option.destination)!="":continue
 		var goal:=stop.duplicate()
 		if stopping:
 			goal.block=last.edge;goal.s=preload("res://sim/berth_clearance.gd").marker(w,t,last.edge,last.dir)

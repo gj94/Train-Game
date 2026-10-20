@@ -191,3 +191,39 @@ func test_later_booked_platform_occupant_does_not_block_a_current_crossing():
 	var w:=_world();var e=w.dispatcher()
 	_other_platform_departure(w,false)
 	return not e.future_clearances.propose(w,e,w.trains.K1).is_empty()
+
+func test_terminating_tvc_service_cannot_promise_a_later_nemom_arrival():
+	var f:=preload("res://tests/test_exit_capacity.gd").new()
+	var w: RailWorld=f.fixture()
+	var t: Train=f.add(w,"TERMINATOR",["TVP_P1","TVC_P1"],1)
+	w.place_train(t,"TVC_P1",preload("res://sim/berth_clearance.gd").marker(w,t,"TVC_P1",1),1)
+	t.timetable.index=1;t.timetable.at_stop=true
+	return w.dispatcher().future_clearances._approach(w,t).is_empty()
+
+func test_completed_incoming_service_releases_unfulfilled_virtual_reservation():
+	var w:=_world();var e=_activate(w)
+	w.place_train(w.trains.K2,"KUMM_P2",400,-1)
+	w.trains.K1.service_complete=true
+	e.future_clearances.update(w,e,false)
+	return e.future_clearances.plans.is_empty() and e.future_clearances.hold(w,w.trains.K2).is_empty()
+
+func test_stored_participant_cannot_keep_an_orphaned_crossing_plan():
+	var w:=_world();var e=_activate(w)
+	w.trains.K1.lifecycle="stored"
+	e.future_clearances.update(w,e,false)
+	return e.future_clearances.plans.is_empty() and e.future_clearances.owner("KUMM_P3").is_empty()
+
+func test_planned_opponent_can_enter_while_future_road_is_still_occupied_by_vacater():
+	var w:=_world();var e=_activate(w)
+	var t: Train=w.trains.K2
+	var plan: Dictionary=e.future_clearances.plans[0]
+	var home:={}
+	for sig in w.signals.values():
+		if sig.dir==-1 and w.route_options(sig.id).any(func(o):return o.edges[-1].edge==plan.opponent_road):
+			home=sig;break
+	assert(not home.is_empty())
+	w.place_train(t,home.edge,home.s+100,-1)
+	t.timetable.index=1;t.timetable.at_stop=false
+	var candidates: Array=Planner.new().candidates(w,t,home.id)
+	var assigned: Array=candidates.filter(func(c):return c.option.edges[-1].edge==plan.opponent_road)
+	return assigned.size()==1 and assigned[0].available

@@ -1,6 +1,19 @@
-TRAIN GAME - KERALA COAST R37
+TRAIN GAME - KERALA COAST R38
 
-R37: forward planning for station crossings and earlier home-signal clearance.
+R38: detailed sound mixer, alternate operating day and safer route allocation.
+Use Operating day on the home page to choose Standard (100 services) or
+Intensive (140 services). Each has its own departures, five-minute railway
+states and simulated crossings/overtakes preview. K1 is the slowest scheduled
+service in Intensive, with at least ten distinct overtaking trains in its
+validated AI baseline. Manual driving changes the actual encounters.
+Sound settings separately control rail hiss, joint clacks, squeal, own wind,
+passing air, floor thumps, metallic rattles, motors, fans, horns, compressor,
+ventilation, footsteps, doors and brake air. Existing mixer settings migrate.
+Through VBs prefer the clear main at Trivandrum North. Receiving-road checks
+preserve platforms needed by approaching trains, and future crossing plans
+cannot depend on a train continuing beyond its final station.
+
+Includes forward planning for station crossings and earlier home clearance.
 The dispatcher can reserve a future platform after an overdue AI train leaves,
 while protecting the opposing arrival and the departing train's escape.
 Manual driving disables automatic departure horns; your horn button still works.
@@ -12,7 +25,7 @@ Includes the controller layout pages, distance-only signal HUD, station
 approaches, positional audio and all earlier improvements.
 
 DOWNLOAD OR UPDATE
-R37 supports full downloads and incremental updates. If you installed R36,
+R38 supports full downloads and incremental updates. If you installed R36 or R37,
 close the game and open its included Update and Play.exe to update that folder.
 It downloads compressed changed blocks or the full ZIP, whichever is smaller,
 and reuses unchanged data. For a fresh installation, extract the complete ZIP,

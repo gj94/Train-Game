@@ -1,5 +1,42 @@
 # Progress
 
+## 2026-10-20 — Detailed mixer and alternate timetable (validation in progress)
+
+- B042/B002 investigated against R37's measured replay: B002 arrives at SRTL
+  10:27:27 but is booked out at 10:35:30; B042 arrives 10:32:37 and leaves
+  10:33:41, leading to the repeat pass at MAKM. The standard day is preserved.
+- Split fifteen gameplay audio channels plus Master, with grouped explanations,
+  independent levels/mutes, shared-setting migration and per-channel reset.
+  Own/passing air, floor/metal rattles, motors/fans/horn/compressor and
+  ventilation/footsteps/doors/brake air now have separate controls. Source PCM,
+  axle/contact timing and approved reference routing are unchanged.
+- **674 headless tests pass**, plus 30 native output-isolation checks, 63 menu
+  navigation checks and the five-train/93-vehicle native audio rehearsal.
+  R37's standard preview passed all 3,366 checks / 1,020 reciprocal cards.
+- Added an operating-day selector and independent departure/time-browser paths,
+  with save/restart metadata. Authoring a 140-service alternative and measuring
+  ten distinct K1 overtakers. First candidate was stopped for southern
+  single-line congestion; extras now concentrate on the doubled middle route.
+  Fixed three faults exposed during review: wrong source signal when preferring
+  a prepared home route (both TVCN VBs took slower loops); a future crossing
+  promise beyond a terminating service's destination; and a through train
+  taking the last passenger face needed by an already admitted opponent.
+  The capacity guard preserves exclusive, ordered future-vacancy plans.
+  Both TVCN replays take mains, the actual orphaned Nemom state clears, and
+  delayed KZT still receives the VB safely with its home prepared 4.41 km ahead.
+  The standard replay also exposed a four-service Turavur/Kumbalam cycle.
+  New road choices now preserve existing arrivals' onward escape, and capacity
+  forecasts cannot assume a same-direction occupant can depart against an
+  opposing train in its exit section. Both regressions were observed failing
+  before correction. The unchanged 14:25 railway fixture now clears all four
+  services with no safety events (maximum extra wait 27m22s).
+  Fresh full-day baseline and midday-delayed K1 audits are running. **No alternate
+  timetable or new release has been published yet.**
+
+Playtest after preparation: independently mute rolling/joints/wind, compare
+head-out and passing trains, then compare both operating days, K1 traffic and
+B042/B002. Save/Continue and Restart must retain the chosen operating day.
+
 ## 2026-10-20 — R37 published; full download and R36 updates
 
 - Published from clean source **525da55**, signed sequence **39**, at

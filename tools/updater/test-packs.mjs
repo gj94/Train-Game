@@ -19,6 +19,7 @@ const entries = [
   entry(imported, 'unchanged detailed geometry'),
   entry('assets/sounds/body_v2/joint.wav', 'unchanged audio'),
   entry('data/railway_times/0800.bin', 'unchanged railway'),
+  entry('data/timetables/intensive/starts/K1.bin', 'independent railway'),
   entry('data/routes/kerala_coast/tiles/0.json', 'unchanged route'),
 ];
 async function build(name, list) {
@@ -46,9 +47,12 @@ for (const [path, bytes] of first.files) if (path.startsWith('packs/')) assert.d
 const model = await build('model', entries.map(e => e.path === imported ? entry(e.path, 'changed geometry with extra detail') : e));
 const differences = [...first.files].filter(([path, bytes]) => !bytes.equals(model.files.get(path))).map(([path]) => path);
 assert.equal(differences.length, 1); assert.match(differences[0], /^packs\/trains-/);
+const timetable = await build('timetable', entries.map(e => e.path.includes('/intensive/') ? entry(e.path, 'changed intensive state') : e));
+const dayChanges = [...first.files].filter(([path, bytes]) => !bytes.equals(timetable.files.get(path))).map(([path]) => path);
+assert.equal(dayChanges.length,1);assert.match(dayChanges[0],/^packs\/railway-intensive-/);
 const corrupted = await readFile(join(root, 'first.pck')); corrupted[corrupted.length - 16] ^= 1;
 await writeFile(join(root, 'bad.pck'), corrupted);
 await assert.rejects(splitPack(join(root, 'bad.pck'), join(root, 'bad-output')), /checksum/);
 await assert.rejects(splitPack(join(root, 'first/TrainGame.pck'), join(root, 'resplit')), /already been partitioned/);
-console.log(JSON.stringify({ checks: 6, exactResources: entries.length, stablePacksAfterScriptChange: first.report.packs,
-  checksCovered: ['exact resource bytes', 'deterministic export ordering', 'script growth isolation', 'one model pack changes', 'corrupt input rejection', 'double partition rejection'], fixtureDirectory: root }));
+console.log(JSON.stringify({ checks: 7, exactResources: entries.length, stablePacksAfterScriptChange: first.report.packs,
+  checksCovered: ['exact resource bytes', 'deterministic export ordering', 'script growth isolation', 'one model pack changes', 'independent timetable pack', 'corrupt input rejection', 'double partition rejection'], fixtureDirectory: root }));

@@ -1,7 +1,13 @@
 # Choosing a service at launch
 
+Use **Operating day** to choose the existing **Standard · 100 services** or the
+separately prepared **Intensive · 140 services**. Departure search/sort, Stops,
+Traffic and Explore by time use the selected day. Saved journeys retain their
+own railway and day regardless of the menu selection. See
+[the intensive timetable](intensive-timetable.md) for its design and validation.
+
 The game opens on a controller-friendly Kerala Coast service screen. It lists
-the bundled 100-service operating day, with departure filters, search, route,
+the selected operating day, with departure filters, search, route,
 formation, complete booked calling pattern, route distance, booked duration and
 starting time. Sort by departure, scheduled average speed (either direction),
 or service name. Average speed is track distance between booked stop markers

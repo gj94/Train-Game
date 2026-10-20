@@ -16,7 +16,7 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 	var booked_station: Dictionary=Policy.station(w,stop.block)
 	var flexible_terminal: bool=w.scenery.get("geographic",false) and booked_station.get("platform_details",{}).get(stop.block,{}).get("platform_width",0)>0
 	var options: Array = w.route_options(signal_id)
-	var preferred: Dictionary = Policy.choose_platform(w, t, options, stop)
+	var preferred: Dictionary = Policy.choose_platform(w, t, options, stop, signal_id)
 	for option in options:
 		var last: Dictionary = option.edges[-1]
 		var st: Dictionary = Policy.station(w, last.edge)
@@ -88,6 +88,21 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 	var last: Dictionary=option.edges[-1]
 	var arrival: Dictionary=Policy.station(w,last.edge)
 	if not arrival.is_empty() and not arrival.get("through_halt",false):
+		# Admission into either approach already reserves compatible capacity.
+		# Assigning an individual road must preserve that matching: a through
+		# train cannot consume the last passenger face while leaving only a
+		# non-platform main for an opponent already inside the single section.
+		# An exclusive succession plan already proves an ordered vacancy. Do
+		# not count its incoming train and the current vacater as simultaneous
+		# occupants of two berths; the opponent must arrive before either moves.
+		var future=w.dispatcher().future_clearances
+		if future.assigned(t,arrival.code).is_empty():
+			var claims:=_station_claims(w,arrival).filter(func(c):return c.id!=t.id)
+			if not _can_berth(claims+[{id=t.id,roads=[last.edge]}]):
+				return {reason="Preserve a compatible receiving road at "+arrival.name+" for admitted services",
+					blockers=claims.map(func(c):return {train=c.id,kind="receiving_capacity",resource=arrival.code})}
+			var protected_exits:=_preserve_arrival_exits(w,t,arrival,[last.edge])
+			if not protected_exits.is_empty():return protected_exits
 		var exit_check:=_escape_capacity(w,t,arrival,last.dir,[last.edge])
 		if not exit_check.is_empty():return exit_check
 	for entry in option.edges:
@@ -115,6 +130,8 @@ func admission_reason(w, t: Train, option: Dictionary) -> Dictionary:
 		var own_roads:=_receiving_roads(w,t,destination,entry.edge,entry.dir,available)
 		var exit_check:=_escape_capacity(w,t,destination,entry.dir,own_roads)
 		if not exit_check.is_empty():return exit_check
+		var protected_exits:=_preserve_arrival_exits(w,t,destination,own_roads)
+		if not protected_exits.is_empty():return protected_exits
 		# Capacity means a road this particular service can use. A through main
 		# without a passenger face cannot receive a booked station call.
 		if own_roads.is_empty():
@@ -281,7 +298,23 @@ func _station_claims(w,st: Dictionary) -> Array:
 	if _evaluating:_claim_cache[st.code]=claims
 	return claims
 
-func _escape_capacity(w,t: Train,st: Dictionary,direction: int,own_roads: Array) -> Dictionary:
+func _preserve_arrival_exits(w,t: Train,st: Dictionary,roads: Array) -> Dictionary:
+	# A new berth must not remove the crossing space an already admitted
+	# service needs at its next station. Check its escape with this candidate's
+	# actual road, replacing (rather than duplicating) any flexible old claim.
+	if roads.is_empty():return {}
+	var proposed:={id=t.id,roads=roads}
+	for claim in _station_claims(w,st):
+		if claim.id==t.id:continue
+		var other: Train=w.trains.get(claim.id)
+		if other==null or other.path.is_empty():continue
+		var check:=_escape_capacity(w,other,st,other.path[0].dir,claim.roads,proposed)
+		if check.is_empty():continue
+		return {reason="Preserve the onward crossing route for "+other.id+" at "+st.name,
+			blockers=[{train=other.id,kind="onward_capacity",resource=st.code}]+check.get("blockers",[])}
+	return {}
+
+func _escape_capacity(w,t: Train,st: Dictionary,direction: int,own_roads: Array,proposed: Dictionary={}) -> Dictionary:
 	if own_roads.is_empty() or preload("res://sim/depot_workings.gd").active(t):return {}
 	var future=w.dispatcher().future_clearances
 	if not future.assigned(t,st.code).is_empty():return {} # exclusive, checked escape transaction
@@ -291,22 +324,35 @@ func _escape_capacity(w,t: Train,st: Dictionary,direction: int,own_roads: Array)
 	if section.is_empty():return {}
 	var next:=_exit_station(w,section,direction)
 	if next.is_empty():return {}
-	var claims:=_station_claims(w,next).filter(func(c):return c.id!=t.id)
+	# A proposed arrival may itself be leaving the next station. Its departure
+	# releases that old berth; physical routes still protect the move and tail.
+	var proposed_id: String=proposed.get("id","")
+	var claims:=_station_claims(w,next).filter(func(c):return c.id!=t.id and c.id!=proposed_id)
 	if claims.is_empty():return {}
 	var next_roads:=_receiving_roads(w,t,next,own_roads[0],direction,next.platform_tracks)
 	if next_roads.is_empty():return {} # route compatibility is handled by candidates
 	var onward:={id=t.id,roads=next_roads}
 	if _can_berth(claims+[onward]):return {}
-	# Same-direction traffic can leave away from our receiving station. It does
-	# not establish a circular dependency, even when more than one berth is busy.
-	var opposing:=claims.filter(func(c):return not w.trains.has(c.id) or w.trains[c.id].path[0].dir!=direction)
+	# Same-direction traffic can normally leave away from our receiving
+	# station. It cannot do so while an admitted opponent occupies that single
+	# approach: assuming its berth will clear would create a four-train cycle.
+	var away_section:=_outbound_single(w,next,direction)
+	var away_blocked:=false
+	if not away_section.is_empty():
+		for claim in claims:
+			var arriving: Train=w.trains.get(claim.id)
+			if arriving==null or arriving.path[0].dir==direction:continue
+			if (arriving.path+_committed_routes(w,arriving)).any(func(p):return w.single_line_sections.get(p.edge,"")==away_section):
+				away_blocked=true;break
+	var opposing:=claims.filter(func(c):return away_blocked or not w.trains.has(c.id) or w.trains[c.id].path[0].dir!=direction)
 	if _can_berth(opposing+[onward]):return {}
-	var here:=_station_claims(w,st).filter(func(c):return c.id!=t.id)
+	var here:=_station_claims(w,st).filter(func(c):return c.id!=t.id and c.id!=proposed_id)
 	here.append({id=t.id,roads=own_roads})
+	if not proposed.is_empty():here.append(proposed)
 	var blockers: Array=[]
 	for claim in opposing:
 		var other: Train=w.trains.get(claim.id)
-		if other==null:continue
+		if other==null or other.path[0].dir==direction:continue
 		var remaining:=opposing.filter(func(c):return c.id!=other.id)
 		if not _can_berth(remaining+[onward]):continue
 		var escape:=_receiving_roads(w,other,st,other.path[0].edge,-direction,st.platform_tracks)

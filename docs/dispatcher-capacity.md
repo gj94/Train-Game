@@ -4,6 +4,21 @@ The dispatcher checks passenger faces and full-rake clearance before admitting
 traffic into a single-line section. Through trains can use a road without a
 platform; a booked passenger call cannot.
 
+At the home signal, the chosen road must still leave a compatible road for
+**every service already admitted to either approach**. Choosing a loop merely
+because it is free can otherwise strand a stopping opponent when the only
+remaining road has no platform. A bounded future-succession plan keeps its
+separate proof of ordered arrivals; its incoming train and current vacater are
+not counted as simultaneous occupants of two different platforms.
+
+Advance platform selection evaluates route availability from the actual home
+being prepared, even when the train's next signal is an automatic block. This
+fixes the clear-main bypass at Trivandrum North: the old lookup rejected all
+preferred options from the wrong source and fell back to the shortest geometry.
+Both through VBs now use their directional mains when available. Existing
+authorities, occupied roads, passenger-platform requirements and planned
+crossings still take precedence.
+
 Admission also looks one controlled station beyond the receiving station. If
 opposing trains hold all usable onward berths, the incoming service must leave
 a compatible road on which at least one opponent can cross. Bipartite matching
@@ -11,10 +26,13 @@ accounts for each service's platform, length, direction and following call.
 
 This includes physical occupants, reserved arrival roads and trains already
 inside either approach section, even before their home route selects a platform.
-The selected road is checked again at the home signal. Same-direction traffic
-can leave away from the incoming train and does not establish this circular
-wait. Existing exclusive future-clearance transactions retain their checked
-escape reservation. Ordinary interlocking remains authoritative.
+The selected road is checked again at the home signal. New admissions and road
+assignments also preserve the onward escape of services already admitted.
+Same-direction traffic can normally leave away from the incoming train, but its
+berth cannot be assumed free while an opposing arrival occupies its exit
+section. That distinction prevents the four-train Turavur/Kumbalam cycle.
+Existing exclusive future-clearance transactions retain their checked escape
+reservation. Ordinary interlocking remains authoritative.
 
 A future crossing cannot replace a platform route that is already committed,
 including a home prepared beyond the next automatic signal. ALLP's depot access
@@ -23,6 +41,11 @@ already-routed train appear available for a second, contradictory platform promi
 Participants in an active three-train crossing follow its departure order rather
 than accepting a separate advisory overtake. Reserved crossing roads are excluded
 from unrelated overtaking opportunities.
+
+Plans cannot promise an arrival beyond a service's final destination or next
+reversal. An unfulfilled participant that finishes or enters storage cancels
+the virtual promise; it never cancels physical occupation or interlocked routes.
+Active late, manual or emergency-held arrivals retain their protection.
 
 A separate terminal rule keeps terminating trains on a road with access to the
 outgoing running line for their empty-stock depot movement. This prevents a

@@ -46,6 +46,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Five-minute railway states are missing, stale or invalid. Regenerate before exporting.' }
     & node.exe (Join-Path $PSScriptRoot 'verify-service-traffic.mjs')
     if ($LASTEXITCODE -ne 0) { throw 'Service traffic preview is missing, stale or invalid. Regenerate before exporting.' }
+    & node.exe (Join-Path $PSScriptRoot 'verify-timetable-variants.mjs')
+    if ($LASTEXITCODE -ne 0) { throw 'Alternate timetable is missing, stale or not fully validated.' }
     if (-not $SkipTests) {
         foreach ($script in @('tests/run_tests.gd', 'tools/check_controller_playable.gd', 'tools/check_track.gd', 'tools/check_fleet_finish.gd', 'tools/check_ported_assets.gd', 'tools/check_wap7_detail.gd', 'tools/check_wap7_controls.gd', 'tools/check_motion_playable.gd', 'tools/check_body_v2_audio.gd', 'tools/check_platform_audio.gd', 'tools/check_audio_routing.gd', 'tools/check_platform_integration.gd', 'tools/check_qol.gd', 'tools/check_traffic_playable.gd', 'tools/check_corridor_playable.gd', 'tools/check_ported_playable.gd', 'tools/check_scenery_playable.gd')) {
             $checkLog = Join-Path $projectRoot ('.local/build-check-' + [IO.Path]::GetFileNameWithoutExtension($script) + '.log')
@@ -77,7 +79,7 @@ try {
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/assets.md') -Destination (Join-Path $buildRoot 'ASSET-SOURCES.md')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/ported/station-notices') -Destination $buildRoot -Recurse -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/trackside/notices') -Destination (Join-Path $buildRoot 'guides/trackside-notices') -Recurse -Force
-    foreach ($guide in @('journey-audio-and-comfort.md', 'service-selection.md', 'day-night.md', 'busy-timetable.md', 'map-corrections.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
+    foreach ($guide in @('journey-audio-and-comfort.md', 'service-selection.md', 'intensive-timetable.md', 'day-night.md', 'busy-timetable.md', 'map-corrections.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/timetable-2026-10-10') -Destination (Join-Path $buildRoot 'guides/timetable-evidence') -Recurse -Force

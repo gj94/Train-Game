@@ -14,7 +14,11 @@ const timeline = JSON.parse(timelineBytes);
 assert.equal(traffic.version, 1); assert.equal(traffic.complete, true); assert.equal(traffic.audit.ok, true);
 assert.equal(traffic.engine, starts.engine); assert.equal(traffic.start_sha256, sha(bytes)); assert.equal(traffic.timeline_sha256, sha(timelineBytes));
 assert.deepEqual([...traffic.services].sort(), starts.services.map(s => s.id).sort());
-for (const path of ['tools/record_service_traffic.gd', 'tools/lib/traffic-encounters.mjs', 'tools/prepare-service-traffic.mjs']) {
+const observerPaths=traffic.preparation==='serial-operating-day'
+  ? ['tools/prepare_timetable_variant.gd','tools/record_service_traffic.gd','tools/lib/traffic-encounters.mjs','tools/finalize_timetable_variant.mjs']
+  : ['tools/record_service_traffic.gd', 'tools/lib/traffic-encounters.mjs', 'tools/prepare-service-traffic.mjs'];
+assert.deepEqual(Object.keys(traffic.observer_sources).sort(),[...observerPaths].sort());
+for (const path of observerPaths) {
   assert.equal(sha((await readFile(join(root, path), 'utf8')).replaceAll('\r\n', '\n')), traffic.observer_sources[path], `Traffic observer changed: ${path}. Regenerate preview.`);
 }
 assert.equal(traffic.audit.sample_seconds, 2); assert.deepEqual(traffic.audit.safety_events, []);

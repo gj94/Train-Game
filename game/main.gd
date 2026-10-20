@@ -105,6 +105,7 @@ func _ready() -> void:
 		_prepared_id=_prepared.service if _prepared.get("mode","departure")=="departure" else ""
 		if _prepared.has("timeline"):_prepared_time=_prepared.world.clock_seconds()
 		get_tree().set_meta("route","kerala_coast")
+		get_tree().set_meta("timetable_id",_prepared.get("timetable_id","standard"))
 	if not _resume.is_empty():
 		get_tree().remove_meta("resume_session")
 		_prepared_id=_resume.session.get("prepared_service","")
