@@ -1,0 +1,87 @@
+{
+  "baseline": "885dc17",
+  "fixture_mib": 32,
+  "fixtureDirectory": "D:\\ClaudeWS\\train-game\\.local\\updater-transfer-benchmark-1792516523001",
+  "environment": "Development PC, same-host loopback; real disk, native .NET clients; 0 and injected 5 ms per HTTP request. Not target-PC LAN throughput.",
+  "integrity": "All final game bytes match; no production installation or download server changed.",
+  "samples": [
+    {
+      "client": "v3",
+      "added_request_latency_ms": 0,
+      "wall_seconds": 7.672265899999999,
+      "http_requests": 513,
+      "max_concurrent_requests": 1,
+      "network_bytes": 27964117,
+      "end_to_end_mib_s": 3.4759822601924415,
+      "version": "TrainGame-Benchmark",
+      "downloadedBytes": 27964117,
+      "writtenBytes": 33554463,
+      "reusedBytes": 1024,
+      "method": "compressed-blocks",
+      "plannedDownloadBytes": 27964117
+    },
+    {
+      "client": "v4",
+      "added_request_latency_ms": 0,
+      "wall_seconds": 0.7108688999999995,
+      "http_requests": 9,
+      "max_concurrent_requests": 4,
+      "network_bytes": 27964117,
+      "end_to_end_mib_s": 37.51558151422775,
+      "version": "TrainGame-Benchmark",
+      "downloadedBytes": 27964117,
+      "writtenBytes": 33554463,
+      "reusedBytes": 1024,
+      "method": "compressed-blocks",
+      "plannedDownloadBytes": 27964117,
+      "downloadRequests": 9,
+      "cacheFlushes": 9,
+      "downloadSeconds": 0.1810051
+    },
+    {
+      "client": "v4",
+      "added_request_latency_ms": 5,
+      "wall_seconds": 0.6631702999999998,
+      "http_requests": 9,
+      "max_concurrent_requests": 4,
+      "network_bytes": 27964117,
+      "end_to_end_mib_s": 40.21389402372121,
+      "version": "TrainGame-Benchmark",
+      "downloadedBytes": 27964117,
+      "writtenBytes": 33554463,
+      "reusedBytes": 1024,
+      "method": "compressed-blocks",
+      "plannedDownloadBytes": 27964117,
+      "downloadRequests": 9,
+      "cacheFlushes": 9,
+      "downloadSeconds": 0.19320779999999999
+    },
+    {
+      "client": "v3",
+      "added_request_latency_ms": 5,
+      "wall_seconds": 17.2936884,
+      "http_requests": 513,
+      "max_concurrent_requests": 1,
+      "network_bytes": 27964117,
+      "end_to_end_mib_s": 1.5421036592679322,
+      "version": "TrainGame-Benchmark",
+      "downloadedBytes": 27964117,
+      "writtenBytes": 33554463,
+      "reusedBytes": 1024,
+      "method": "compressed-blocks",
+      "plannedDownloadBytes": 27964117
+    }
+  ],
+  "comparisons": [
+    {
+      "added_request_latency_ms": 0,
+      "wall_speedup": 10.792800050754794,
+      "request_reduction_percent": 98.24561403508771
+    },
+    {
+      "added_request_latency_ms": 5,
+      "wall_speedup": 26.077296284227454,
+      "request_reduction_percent": 98.24561403508771
+    }
+  ]
+}

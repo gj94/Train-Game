@@ -3,7 +3,7 @@ import { catalogue, envelope, verifyArchive, BLOCK } from './publish.mjs';
 import { updateRoutes } from './routes.mjs';
 import { createServer } from 'node:http';
 import { generateKeyPairSync, randomBytes } from 'node:crypto';
-import { mkdir, writeFile, readFile, cp, stat } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, cp, stat, truncate, readdir } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
 import { spawn } from 'node:child_process';
 import { join } from 'node:path';
@@ -39,6 +39,7 @@ await writeFile(join(target, 'README.txt'), 'small updated guide\n');
 let manifest = await catalogue(target, 'TrainGame-Test', 20);
 assert.equal(manifest.minimumLauncher, 1, 'Older game-only releases remain compatible with launcher v1');
 let signed = envelope(manifest, keys.privateKey), fail = '', ranges = 0, bytes = 0;
+let delayMs = 0, active = 0, maxActive = 0, requests = [];
 const payloadDirectory = join(temp, 'payloads');
 const archivePath = join(temp, 'TrainGame-Test.zip');
 // A tiny ZIP writer used only for fixtures. The production full ZIP is built
@@ -71,10 +72,16 @@ const server = createServer(async (req, res) => {
   if (!isZip && !manifest.files.some(f => (isPayload ? f.path + '.blocks' : f.path) === name)) { res.writeHead(404); return res.end(); }
   const range = /^bytes=(\d+)-(\d+)$/.exec(req.headers.range ?? '');
   if (!range) { res.writeHead(416); return res.end(); }
+  active++; maxActive = Math.max(maxActive, active);
+  res.once('close', () => active--);
   const all = await readFile(isZip ? archivePath : join(isPayload ? payloadDirectory : target, name));
+  if (res.destroyed) return;
   const start = +range[1], end = +range[2]; ranges++;
+  requests.push({start, end, name, isZip});
+  if (delayMs) await new Promise(resolve => setTimeout(resolve, delayMs));
   let data = Buffer.from(all.subarray(start, end + 1)); bytes += data.length;
   if (fail === 'corrupt') data[0] ^= 0xff;
+  if (fail === 'tail-corrupt') data[data.length - 1] ^= 0xff;
   if (fail === 'drop' && ranges >= 2) { req.socket.destroy(); return; }
   if (fail !== 'no-range') res.writeHead(206, { 'Content-Range': `bytes ${start}-${end}/${all.length}` });
   res.end(data);
@@ -168,7 +175,7 @@ try {
   assert.equal(JSON.parse(recoveredBenchmark.out).downloadedBytes, 0); await same(interruptedBenchmark); fail = '';
   pass('new benchmark files recover after an interrupted apply while offline');
   const supportedSigned = signed;
-  signed = envelope({ ...manifest, minimumLauncher: 4 }, keys.privateKey);
+  signed = envelope({ ...manifest, minimumLauncher: 5 }, keys.privateKey);
   assert.match((await client(normal)).err, /Download the latest launcher/);
   assert.equal((await stat(join(normal, 'TrainGame.pck'))).mtimeMs, gameBefore);
   signed = supportedSigned; pass('future launcher requirement rejected before touching game data');
@@ -296,5 +303,86 @@ try {
     ['update-payloads/TrainGame-Test/packs/audio-00.pck.blocks', 'application/octet-stream']);
   assert.equal(await v3Routes('/update-payloads/TrainGame-Test/Other.ps1.blocks'), null);
   pass('server exposes only signed compressed payloads');
+  // Larger fixtures exercise actual batching/concurrency and the v4 cache,
+  // rather than only the small correctness cases above.
+  const denseBase = join(temp, 'v4-dense-base');
+  await cp(target, denseBase, {recursive:true});
+  const dense = randomBytes(BLOCK * 256 + 31);
+  for (let i = 0; i < 256; i += 3) dense.fill(0, i * BLOCK + BLOCK / 2, (i + 1) * BLOCK);
+  await writeFile(join(target, 'TrainGame.pck'), dense); await modern(50);
+  const denseBytes = manifest.files.find(f => f.path === 'TrainGame.pck').encodedSizes.reduce((n, v) => n + Math.abs(v), 0);
+  const denseFixture = async name => { const dir=join(temp,name); await cp(denseBase,dir,{recursive:true}); return dir; };
+  const denseDir = await denseFixture('v4-dense');
+  delayMs=15; ranges=0; requests=[]; maxActive=0;
+  const batched = await client(denseDir); assert.equal(batched.code,0,batched.err); await same(denseDir);
+  const batchInfo=JSON.parse(batched.out);
+  assert.equal(batchInfo.downloadedBytes,denseBytes); assert.equal(ranges,5);
+  assert.equal(batchInfo.downloadRequests,5); assert(maxActive>1 && maxActive<=4,`concurrent requests: ${maxActive}, remaining: ${active}`);
+  assert(requests.every(r=>r.end-r.start+1<=4*1024*1024));
+  assert(batchInfo.cacheFlushes<=5);
+  assert(!(await readdir(join(denseDir,'.train-update'))).some(n=>n.endsWith('.block')||n==='blocks-v4.cache'));
+  delayMs=0;
+  pass('257 mixed raw/gzip blocks: five bounded requests, concurrent fetches, five cache flushes at most, exact output');
+  for (const fault of ['tail-corrupt','drop']) {
+    const dir=await denseFixture('v4-batch-'+fault); fail=fault; ranges=0;
+    const rejected=await client(dir); assert.equal(rejected.code,1);
+    assert.deepEqual(await readFile(join(dir,'TrainGame.pck')),await readFile(join(denseBase,'TrainGame.pck')));
+    fail=''; const retry=await client(dir); assert.equal(retry.code,0,retry.err); await same(dir);
+    pass('batched '+fault+' joins workers without changing installed game; retry succeeds');
+  }
+  const torn=await denseFixture('v4-torn-tail');
+  assert.match((await client(torn,'cache-write')).err,/Injected interruption/);
+  const tornPath=join(torn,'.train-update/blocks-v4.cache'), tornSize=(await stat(tornPath)).size;
+  await truncate(tornPath,tornSize-7);
+  const repairedTail=await client(torn); assert.equal(repairedTail.code,0,repairedTail.err); await same(torn);
+  pass('truncated journal record after interruption is discarded and fetched again');
+  const checkpointed=await denseFixture('v4-cache-checkpoint');
+  assert.match((await client(checkpointed,'cache-durable')).err,/Injected interruption/);
+  const checkpointRetry=await client(checkpointed); assert.equal(checkpointRetry.code,0,checkpointRetry.err); await same(checkpointed);
+  assert(JSON.parse(checkpointRetry.out).downloadedBytes<denseBytes);
+  pass('durable batch checkpoint resumes without downloading its verified records again');
+  const damagedJournal=await denseFixture('v4-damaged-pending');
+  assert.match((await client(damagedJournal,'pending')).err,/Injected interruption/);
+  const journalPath=join(damagedJournal,'.train-update/blocks-v4.cache'), journal=await readFile(journalPath);
+  journal[68]^=0xff; await writeFile(journalPath,journal); fail='offline';
+  assert.equal((await client(damagedJournal)).code,1);
+  assert.deepEqual(await readFile(join(damagedJournal,'TrainGame.pck')),await readFile(join(denseBase,'TrainGame.pck')));
+  fail=''; ranges=0; const journalRepair=await client(damagedJournal);
+  assert.equal(journalRepair.code,0,journalRepair.err); assert.equal(ranges,1); await same(damagedJournal);
+  pass('damaged pending cache blocks mutation offline; online repair fetches only the damaged record');
+  const legacyPending=await denseFixture('v4-legacy-pending'), legacyState=join(legacyPending,'.train-update');
+  await mkdir(legacyState,{recursive:true}); await writeFile(join(legacyState,'pending.json'),signed);
+  for(const f of manifest.files) {
+    const contents=await readFile(join(target,f.path));
+    for(let i=0;i<f.chunks.length;i++) await writeFile(join(legacyState,f.chunks[i]+'.block'),contents.subarray(i*BLOCK,(i+1)*BLOCK));
+  }
+  fail='offline'; const legacyRecovery=await client(legacyPending); fail='';
+  assert.equal(legacyRecovery.code,0,legacyRecovery.err); assert.equal(JSON.parse(legacyRecovery.out).downloadedBytes,0); await same(legacyPending);
+  pass('v4 finishes an old signed pending plan using legacy individual cache files entirely offline');
+  // Sparse holes must not turn into overfetches of installed good blocks.
+  const sparseOld=randomBytes(BLOCK*256), sparseNew=Buffer.from(sparseOld);
+  await writeFile(join(target,'TrainGame.pck'),sparseOld);
+  const sparseBase=join(temp,'v4-sparse-base'); await cp(target,sparseBase,{recursive:true});
+  for(let i=0;i<256;i+=2) randomBytes(BLOCK).copy(sparseNew,i*BLOCK);
+  await writeFile(join(target,'TrainGame.pck'),sparseNew); await modern(60);
+  const sparseDir=join(temp,'v4-sparse'); await cp(sparseBase,sparseDir,{recursive:true});
+  delayMs=10; ranges=0; requests=[]; maxActive=0;
+  const sparseResult=await client(sparseDir); delayMs=0;
+  assert.equal(sparseResult.code,0,sparseResult.err); await same(sparseDir);
+  const sparseInfo=JSON.parse(sparseResult.out);
+  assert.equal(ranges,128); assert.equal(sparseInfo.downloadedBytes,128*BLOCK);
+  assert(sparseInfo.cacheFlushes<=3); assert(maxActive>1&&maxActive<=4);
+  assert(requests.every(r=>r.start%(2*BLOCK)===0&&r.end-r.start+1===BLOCK));
+  pass('sparse changes fetch only missing ranges; many requests share a few durable cache flushes');
+  await makeArchive(); await modern(60,true);
+  assert(manifest.archive.size>sparseInfo.downloadedBytes);
+  const timeChoice=join(temp,'v4-time-choice'); await cp(sparseBase,timeChoice,{recursive:true});
+  delayMs=40; ranges=0; const timed=await client(timeChoice); delayMs=0;
+  assert.equal(timed.code,0,timed.err); await same(timeChoice);
+  const timedInfo=JSON.parse(timed.out);
+  assert.equal(timedInfo.method,'full-archive');
+  assert.equal(timedInfo.downloadedBytes,manifest.archive.size+4*BLOCK);
+  assert(ranges<15);
+  pass('measured per-request cost chooses a larger ZIP when sparse block transfers are estimated slower');
   console.log(JSON.stringify({ checks, fixtureDirectory: temp }));
 } finally { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); }

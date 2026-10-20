@@ -48,7 +48,7 @@ namespace TrainGameUpdater {
             FormBorderStyle = FormBorderStyle.FixedDialog; MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen; Font = new Font("Segoe UI", 10);
             Controls.Add(new Label { Text = "Train Game", Font = new Font("Segoe UI", 23, FontStyle.Bold), Bounds = new Rectangle(26, 18, 560, 46) });
-            Controls.Add(new Label { Text = "Keep this installation. Automatically choose the smaller download.", Bounds = new Rectangle(28, 70, 586, 28) });
+            Controls.Add(new Label { Text = "Keep this installation. Fast, verified updates with resumable downloads.", Bounds = new Rectangle(28, 70, 586, 28) });
             location.Text = "Game folder (click to change): " + directory;
             location.AutoEllipsis = true; location.Bounds = new Rectangle(28, 108, 584, 28); Controls.Add(location);
             location.LinkClicked += delegate {

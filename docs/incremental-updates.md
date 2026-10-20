@@ -1,5 +1,42 @@
 # Incremental Windows updates
 
+## V4 transfer optimization — prepared for the next release
+
+V4 keeps the existing signed catalogue and 64 KiB block hashes. It combines
+adjacent missing blocks into requests bounded by 4 MiB of both encoded and
+decoded data, with at most four downloads in flight. Sparse changes do not
+download unchanged gaps. Each block is still independently decoded and hashed.
+
+The resumable cache is now one append-only journal, with durable checkpoints
+roughly every 4 MiB and a final flush before any installed file is changed.
+Incomplete records are discarded on retry; corrupt records are downloaded
+again. Old separate `.block` caches and signed pending transactions remain
+readable, including offline completion after an interrupted apply.
+
+For sufficiently fragmented transfers, four useful initial batches measure
+request latency and throughput. The client may select the signed full archive
+when its estimated remaining transfer time is substantially lower, subject to
+temporary disk space. This is an estimate, not a guarantee of the fastest path.
+
+**Existing installations need the small v4 launcher replacement to gain these
+optimizations.** It does not overwrite its running executable. Existing v3
+launchers still accept the unchanged catalogue protocol.
+
+Development-PC loopback comparison against shipped source `885dc17`, with a
+32 MiB mixed raw/gzip fixture and verified identical output:
+
+| Added latency per request | V3 elapsed | V4 elapsed | HTTP requests |
+| --- | ---: | ---: | ---: |
+| None | 7.67 s | 0.71 s | 513 → 9 |
+| 5 ms | 17.29 s | 0.66 s | 513 → 9 |
+
+These single-run measurements include real disk/cache/apply work; they are
+not RTX 4090 laptop or LAN throughput claims. V4 used at most four concurrent
+requests and nine durable cache flushes. All 57 native regression checks and
+684 headless game checks passed. Evidence:
+`art/performance/updater-v4-2026-10-21/`. Reproduce with
+`node tools/updater/benchmark-transfer.mjs --mib=32 --baseline=885dc17`.
+
 ## V3 implementation — shipped in R36
 
 R36 ships **Update & Play v3** and the stable asset-pack layout as a full ZIP.

@@ -1,5 +1,28 @@
 # Progress
 
+## 2026-10-21 — Faster verified downloads prepared for the next release
+
+- V4 batches adjacent missing blocks into at most 4 MiB requests, pipelines
+  four bounded workers and uses one recoverable cache journal. Every block,
+  range, signature and final file is still checked; game writes begin only
+  after the complete cache and signed pending plan are durable. Cancellation
+  aborts and joins downloads before releasing installation locks.
+- Useful probe batches estimate transfer time for fragmented changes; the
+  signed ZIP may win even when it is larger. No unchanged gaps are fetched by
+  the block path. UI reports transfer rate. Existing users need the small v4
+  launcher replacement for faster transfers; catalogue compatibility is kept.
+- All 57 native tests pass, including bounded concurrency, truncated/corrupt
+  cache, failed ranges, interruption recovery and legacy offline pending
+  recovery. GUI compilation and 684 headless game checks pass. No full-day
+  timetable was rerun, per user instruction.
+- A 32 MiB mixed fixture against shipped v3 used 513 → 9 requests and
+  7.67 → 0.71 seconds; with 5 ms/request added, 17.29 → 0.66 seconds.
+  These are development-PC loopback/disk measurements, not target LAN claims.
+  Evidence: `art/performance/updater-v4-2026-10-21/`.
+- R38 remains live and unchanged. The expanded overnight request now includes
+  overhead supports/shadows and road/station/water consistency, followed by
+  a new release after at least three hours. See `overnight-2026-10-21.md`.
+
 ## 2026-10-21 — Investigated slow verified-block downloads
 
 - User reports the full ZIP reaches about 200 MB/s on the target PC while

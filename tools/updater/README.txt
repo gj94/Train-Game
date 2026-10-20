@@ -1,4 +1,4 @@
-TRAIN GAME - UPDATE & PLAY v3
+TRAIN GAME - UPDATE & PLAY v4
 
 FULL-DOWNLOAD-ONLY RELEASES
 Follow the main README.txt for the current release. If it says full download
@@ -6,11 +6,11 @@ only, install its complete ZIP and start TrainGame.exe (or Play installed
 offline). The included updater is ready for later incremental releases; it
 cannot fetch a release while the server offers that release as full ZIP only.
 
-V3 / SMALLER UPDATES
-Replace the previous Update and Play.exe with this v3 launcher once. Older
-launchers cannot install the new split-pack releases and will ask you to update
-the launcher before changing game data. V3 can still update older releases and
-finish their interrupted updates. It does not replace its own running EXE.
+V4 / FASTER UPDATES
+Replace the previous Update and Play.exe with this v4 launcher once, while the
+old launcher is closed. V3 remains compatible with current split-pack releases
+but lacks these speed improvements. V4 also reads older catalogues and finishes
+their interrupted updates. It does not replace its own running EXE.
 
 The first move from the old single-pack releases can require a large download.
 After that, code/UI changes reuse separate train, sound, scenery, route and
@@ -28,8 +28,15 @@ in the launcher if that PC's address changes. The game runs locally afterward.
 You can make a desktop shortcut to this launcher.
 
 The launcher reads your installation and fetches signed release information.
-It compares the compressed missing-block download with the full ZIP and
-automatically chooses the smaller transfer. Download progress shows that choice.
+It normally starts with the smaller of the missing blocks and the full ZIP.
+When many small requests are needed, a useful first batch measures network
+costs; it may switch to the ZIP if that is estimated to finish substantially
+sooner and enough temporary disk space is available. This estimate is not a
+guarantee. Download progress shows the method and block-transfer speed.
+Adjacent blocks are fetched together in batches of up to 4 MiB, with up to four
+requests in flight. Each 64 KiB block is still verified individually. Verified
+blocks go into one cache with periodic durable checkpoints, not thousands of
+separate files. Nothing is applied until the complete cache and plan are durable.
 Compressed blocks expand back to their exact original bytes; incompressible
 blocks transfer as raw bytes. The full-ZIP route can resume a partial download.
 Even when ZIP wins, only changed blocks are applied to the installation.
@@ -46,7 +53,9 @@ endurance, but checking large files still takes time.
 
 INTERRUPTION / OFFLINE
 Before applying: a failed download leaves the existing game unchanged; Play
-installed (offline) remains available. Reopening Update reuses verified blocks.
+installed (offline) remains available. Reopening Update rechecks and reuses
+complete cache records. A power loss can require downloading the last incomplete
+batch again. After an interrupted v4 update, continue with v4 or newer.
 During applying: reopen this launcher and click Update & Play. It completes the
 recorded update first, using the verified local blocks even if the host is off.
 Do NOT start TrainGame.exe directly or delete .train-update while applying or
