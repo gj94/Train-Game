@@ -1,21 +1,23 @@
-TRAIN GAME - KERALA COAST R36
+TRAIN GAME - KERALA COAST R37
 
-R36: stable asset packs and Update & Play v3 for smaller future updates.
-All models, textures and audio retain their exported quality. This release
-establishes the new installation layout with a complete ZIP.
+R37: forward planning for station crossings and earlier home-signal clearance.
+The dispatcher can reserve a future platform after an overdue AI train leaves,
+while protecting the opposing arrival and the departing train's escape.
+Manual driving disables automatic departure horns; your horn button still works.
+AI-driven services keep their two departure calls.
 Includes R35's simulated crossings and overtakes on the home page,
 smoother moving-clock sunlight/shadows, consolidated lineside speed boards,
 and driving RB/LB for power reduction/brake release, both stopping at coast.
 Includes the controller layout pages, distance-only signal HUD, station
-approaches, paired horns, positional audio and all earlier improvements.
+approaches, positional audio and all earlier improvements.
 
 DOWNLOAD OR UPDATE
-R36 is FULL DOWNLOAD ONLY. Close the game and extract the complete ZIP into a
-new folder, including packs/. Start TrainGame.exe, or choose Play installed
-(offline) in the included Update and Play.exe. R36 is not offered through the
-updater. From the next release, use this included v3 launcher to update this
-same folder. It downloads compressed changed blocks or the full ZIP, whichever
-is smaller, and reuses unchanged data. Keep the whole installation together.
+R37 supports full downloads and incremental updates. If you installed R36,
+close the game and open its included Update and Play.exe to update that folder.
+It downloads compressed changed blocks or the full ZIP, whichever is smaller,
+and reuses unchanged data. For a fresh installation, extract the complete ZIP,
+including packs/, and start TrainGame.exe or the included updater's Play.
+Keep the whole installation together.
 Saves and preferences live separately
 in your Windows user profile. R29 and newer compatible saves remain loadable;
 R28 geometry is incompatible, so start a fresh journey if upgrading from R28.
@@ -103,8 +105,9 @@ Save and Load journey are available from Pause; the landing page has Saved
 journeys and Continue latest save. Save before changing service or quitting.
 Journey tools include three rotating recovery saves, route-ahead information,
 view bookmarks and a local diagnostic ZIP. Audio settings provide presets and
-separate layer volumes. Every booked-platform departure has two horn calls
-3.5 simulation seconds apart. See guides/journey-audio-and-comfort.md.
+separate layer volumes. AI-driven platform departures have two horn calls
+3.5 simulation seconds apart; manual driving uses your horn button.
+See guides/journey-audio-and-comfort.md.
 
 GRAPHICS AND BENCHMARK
 Menu > Graphics settings has individual settings and Performance/Balanced/High

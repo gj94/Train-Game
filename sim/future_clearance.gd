@@ -57,8 +57,10 @@ func propose(w, engine, t: Train) -> Dictionary:
 		if engine.inhibited_signals.has(w.next_signal(v).get("id","")):continue
 		if v.path[0].dir!=t.path[0].dir or not _contained(v,road) or v.speed>.01:continue
 		if v.timetable==null or not v.timetable.at_stop or v.timetable.complete():continue
-		var release: float=v.timetable.release_time()-w.clock_seconds()
-		if release<0 or release>HORIZON:continue
+		# An overdue AI departure can still vacate after its opposing arrival.
+		# Readiness is not a prediction that an occupied route is already clear.
+		var release: float=maxf(0,v.timetable.release_time()-w.clock_seconds())
+		if release>HORIZON:continue
 		if Berths.roads(w,t,st,approach.edge,t.path[0].dir,[road]).is_empty():continue
 		var escape:=_approach(w,v)
 		if escape.is_empty() or escape.section==approach.section or escape.station.code==st.code:continue
@@ -80,16 +82,33 @@ func propose(w, engine, t: Train) -> Dictionary:
 			# No optimistic chain of future vacancies: the escape berth is free NOW.
 			var actors: Array=[t.id,o.id,v.id]
 			if actors.any(func(id):return engine.platform_preferences.has(id)):continue
+			# This transaction protects the whole exit section for its vacater.
+			# Do not monopolise it while another platform occupant is already
+			# due to leave that way. Ordinary admission can serve that queue.
+			if _waiting_departure(w,st,actors,v.path[0].dir):continue
 			var sections: Array=[approach.section,escape.section]
 			if not _exclusive(w,sections,actors):continue
 			if plans.any(func(p):return p.station==st.code or p.escape_station==st.code or p.station==escape.station.code or p.escape_station==escape.station.code or p.approach_section in sections or p.escape_section in sections):continue
 			if _departure_committed(w,o,approach.section):continue
-			if Prediction.arrival_seconds(w,o,st.s)>HORIZON or Prediction.arrival_seconds(w,t,st.s)>release+300:continue
+			var opposing_eta:=Prediction.arrival_seconds(w,o,st.s)
+			var incoming_eta:=Prediction.arrival_seconds(w,t,st.s)
+			var exit_signal: Dictionary=w.next_signal(v)
+			if exit_signal.is_empty():continue
+			var tail_clearance:=Prediction.travel_seconds(exit_signal.distance+v.length,0,minf(v.max_speed,40.0/3.6),v.max_accel)
+			var ready:=maxf(release,opposing_eta)+tail_clearance
+			if opposing_eta>HORIZON or incoming_eta>HORIZON or incoming_eta>ready+300:continue
 			return {station=st.code,escape_station=escape.station.code,incoming=t.id,opponent=o.id,vacater=v.id,
 				future_road=road,opponent_road=other_roads[0],escape_road=escape_roads[0],
 				approach_section=approach.section,escape_section=escape.section,direction=t.path[0].dir,
 				received=false,opponent_received=false,escaped=false,created=w.time}
 	return {}
+
+func _waiting_departure(w,st: Dictionary,actors: Array,direction: int) -> bool:
+	for other: Train in w.active_trains():
+		if other.id in actors or other.path[0].dir!=direction:continue
+		if other.timetable==null or not other.timetable.at_stop or other.timetable.release_time()>w.clock_seconds():continue
+		if other.path.any(func(seg):return seg.edge in st.platform_tracks):return true
+	return false
 
 func _arrival_fixed(w,t: Train,st: Dictionary) -> bool:
 	# A home route may still traverse a single-line depot access, but its
@@ -123,7 +142,7 @@ func _exclusive(w,sections: Array,actors: Array) -> bool:
 		if sig.id in w.automatic_signals or not sig.route.any(func(seg):return w.single_line_sections.get(seg.edge,"") in sections):continue
 		var found:=false
 		for id in actors:
-			if sig.owner==id or w.next_signal(w.trains[id]).get("id","")==sig.id:found=true
+			if sig.owner==id or _planner.approach_signals(w,w.trains[id]).any(func(a):return a.id==sig.id):found=true
 		if not found:return false
 	return true
 

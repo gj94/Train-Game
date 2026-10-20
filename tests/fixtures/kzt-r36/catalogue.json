@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "engine": "4.7.2-stable (official)",
+  "complete": true,
+  "services": [
+    {
+      "average_kmh": 71.0350613122323,
+      "calls": [
+        {
+          "arrival": 33000.0,
+          "departure": 33000.0,
+          "distance_m": 0.0,
+          "name": "Nagercoil Junction"
+        },
+        {
+          "arrival": 34614.0,
+          "departure": 34734.0,
+          "distance_m": 33153.849861145,
+          "name": "Kulitturai"
+        },
+        {
+          "arrival": 36762.0,
+          "departure": 37002.0,
+          "distance_m": 71013.4339675903,
+          "name": "Thiruvananthapuram Central"
+        },
+        {
+          "arrival": 39816.0,
+          "departure": 39936.0,
+          "distance_m": 135580.311332703,
+          "name": "Kollam Junction"
+        },
+        {
+          "arrival": 41736.0,
+          "departure": 41856.0,
+          "distance_m": 176203.358467102,
+          "name": "Kayamkulam Junction"
+        },
+        {
+          "arrival": 43884.0,
+          "departure": 44004.0,
+          "distance_m": 219547.738319397,
+          "name": "Alappuzha"
+        },
+        {
+          "arrival": 47010.0,
+          "departure": 47130.0,
+          "distance_m": 276444.780273438,
+          "name": "Ernakulam Junction"
+        }
+      ],
+      "cars": 16,
+      "departure": 33000.0,
+      "departure_advice": "",
+      "destination": "Ernakulam Junction",
+      "distance_m": 276444.780273438,
+      "duration": 14010.0,
+      "file": "B012.bin",
+      "id": "B012",
+      "name": "Coastal Vande Bharat · Nagercoil to Ernakulam",
+      "origin": "Nagercoil Junction",
+      "sha256": "e8e7d9f590b991107befc4107055d8899dda762d2668c26563934e6d46302791",
+      "start_clock": 32882.0000000061,
+      "stock": "vb16",
+      "stops": 7
+    }
+  ],
+  "provenance": {
+    "release": "R36",
+    "source_commit": "e34b614",
+    "original_catalogue_sha256": "49b33e3c806ee185c91fb44939c4c1d7daa246edd858d20d8f7ec040f3bde2af",
+    "purpose": "Exact reported NCJ-ERS Vande Bharat departure; preserves all 100 services and original signalling state for forward-dispatch regression."
+  }
+}

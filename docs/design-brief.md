@@ -9,6 +9,15 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **20 Oct 2026 manual departure horns:** automatic paired departure horns apply
+  only to AI driving. Taking manual control stops an automatic call and cancels
+  the queued second call; the player's horn button remains independent.
+- **20 Oct 2026 forward dispatch:** admit a following train against a protected
+  future platform vacancy even when the automatic vacater is already overdue.
+  Preserve the opposing arrival, full-rake clearance and the vacater's escape
+  berth. Prepare station arrivals across clear automatic blocks earlier, report
+  the full continuous clearance, and validate the complete busy timetable plus
+  delayed driving before refreshing the prepared departures and traffic preview.
 - **20 Oct 2026 smaller updates:** preserve exported resource fidelity while
   splitting stable bulk assets from code/UI; compress update transfers and
   automatically choose the smaller of missing blocks and the full ZIP. Keep
@@ -35,7 +44,7 @@ A **3D train game** where I can be either a **dispatcher** or a **driver**, and 
 - **18 Oct 2026 journey realism:** smoothly brake AI station arrivals without
   a power burst when entry restrictions end; recover normally after a full red
   stand. Sound two automatic horn calls a few seconds apart on every booked
-  platform departure, including manual driving. Preserve safety and save/load.
+  platform departure (AI only since 20 October). Preserve safety and save/load.
 - **18 Oct 2026 sound and QoL:** position-dependent compartment transmission,
   passing-train motion/air, own-car structure response and contextual foley;
   preserve the approved reference. Add layer controls/presets, rotating recovery

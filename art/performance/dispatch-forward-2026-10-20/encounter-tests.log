@@ -1,0 +1,17 @@
+✔ opposing crossing uses actual movement and interpolated time, once (7.0395ms)
+✔ full formation overtake in either direction, correct overtaker (0.73ms)
+✔ centre shuffle and abandoned pass are not completed overtakes (0.1411ms)
+✔ spawn, removal and direction change cannot fabricate a pass (0.0977ms)
+✔ an already-overlapping spawn has no proven overtake order (0.0963ms)
+✔ same pair can genuinely overtake again later, with reversed roles (0.5683ms)
+✔ a sample exactly on alignment does not double count (0.1257ms)
+✔ midnight is absolute and long/missing samples are rejected (0.3034ms)
+✔ location distinguishes station yard and interstation pass (0.2222ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.8754

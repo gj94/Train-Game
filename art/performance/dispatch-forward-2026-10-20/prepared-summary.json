@@ -1,0 +1,90 @@
+{
+  "departures": 100,
+  "five_minute_states": 233,
+  "departure_audit": {
+    "clock": 98294.0000018011,
+    "events": [],
+    "finished": 100,
+    "maximum_wait": 1690.0,
+    "ok": true,
+    "report": "All 100 services arrived safely and cleared to depot where provided. Latest passenger arrival delay: 37.8 min. Manual driving may change the outcome.",
+    "wall_seconds": 3514.971
+  },
+  "traffic_audit": {
+    "ok": true,
+    "sample_seconds": 2,
+    "samples": 34801,
+    "partitions": [
+      {
+        "first": 28800,
+        "last": 37500,
+        "steps": 4350,
+        "boundary_error_m": 0,
+        "wall_seconds": 398.212
+      },
+      {
+        "first": 37500,
+        "last": 46200,
+        "steps": 4350,
+        "boundary_error_m": 0,
+        "wall_seconds": 580.933
+      },
+      {
+        "first": 46200,
+        "last": 54900,
+        "steps": 4350,
+        "boundary_error_m": 0,
+        "wall_seconds": 587.989
+      },
+      {
+        "first": 54900,
+        "last": 63600,
+        "steps": 4350,
+        "boundary_error_m": 0,
+        "wall_seconds": 633.15
+      },
+      {
+        "first": 63600,
+        "last": 72300,
+        "steps": 4350,
+        "boundary_error_m": 0.00281754924799316,
+        "wall_seconds": 620.829
+      },
+      {
+        "first": 72300,
+        "last": 81000,
+        "steps": 4350,
+        "boundary_error_m": 1.33830326376483e-05,
+        "wall_seconds": 535.077
+      },
+      {
+        "first": 81000,
+        "last": 89700,
+        "steps": 4350,
+        "boundary_error_m": 1.34267611429095e-05,
+        "wall_seconds": 241.635
+      },
+      {
+        "first": 89700,
+        "last": 98400,
+        "steps": 4350,
+        "boundary_error_m": 0,
+        "wall_seconds": 94.724
+      }
+    ],
+    "safety_events": [],
+    "crossing_count": 470,
+    "overtake_count": 40
+  },
+  "traffic_ui": {
+    "checks": 3366,
+    "encounter_cards": 1020,
+    "failures": 0,
+    "roles": {
+      "Crossing": 940,
+      "Overtakes you": 40,
+      "You overtake": 40
+    },
+    "services": 100
+  }
+}

@@ -1,0 +1,677 @@
+{
+  "baseline-full": {
+    "ok": true,
+    "finished": 100,
+    "total": 100,
+    "clock": "03:18:14",
+    "source_digest": "4970fac24afe2e1afc621783eee40d8867e02b55fa25a924d5a6a10894f860a1",
+    "events": 0,
+    "calls": 1530,
+    "expected_calls": 1530,
+    "total_wait_seconds": 48008.0,
+    "longest_wait_seconds": 1754.0,
+    "total_arrival_delay_seconds": 25289.85000574071,
+    "max_arrival_delay_seconds": 2034.64999975362,
+    "wall_seconds": 2916.839,
+    "player_delay": 0.0,
+    "delay_service": "K1",
+    "delay_at": 0
+  },
+  "final-full": {
+    "ok": true,
+    "finished": 100,
+    "total": 100,
+    "clock": "03:18:14",
+    "source_digest": "74ca05e0955d592b7562cf07a221d37f2e08596c49fa8a720b48f237db823ee1",
+    "events": 0,
+    "calls": 1530,
+    "expected_calls": 1530,
+    "total_wait_seconds": 49322.0,
+    "longest_wait_seconds": 1690.0,
+    "total_arrival_delay_seconds": 30867.650006694992,
+    "max_arrival_delay_seconds": 2268.55000072153,
+    "wall_seconds": 3206.882,
+    "player_delay": 0.0,
+    "delay_service": "K1",
+    "delay_at": 0.0
+  },
+  "final-delay": {
+    "ok": true,
+    "finished": 100,
+    "total": 100,
+    "clock": "03:18:22",
+    "source_digest": "74ca05e0955d592b7562cf07a221d37f2e08596c49fa8a720b48f237db823ee1",
+    "events": 0,
+    "calls": 1530,
+    "expected_calls": 1530,
+    "total_wait_seconds": 49322.0,
+    "longest_wait_seconds": 1690.0,
+    "total_arrival_delay_seconds": 30867.650006694992,
+    "max_arrival_delay_seconds": 2268.55000072153,
+    "wall_seconds": 3217.035,
+    "player_delay": 600.0,
+    "delay_service": "K1",
+    "delay_at": 0.0
+  },
+  "final-vb-delay": {
+    "ok": true,
+    "finished": 100,
+    "total": 100,
+    "clock": "03:18:14",
+    "source_digest": "74ca05e0955d592b7562cf07a221d37f2e08596c49fa8a720b48f237db823ee1",
+    "events": 0,
+    "calls": 1530,
+    "expected_calls": 1530,
+    "total_wait_seconds": 48944.0,
+    "longest_wait_seconds": 1690.0,
+    "total_arrival_delay_seconds": 30523.40000672003,
+    "max_arrival_delay_seconds": 2268.55000072153,
+    "wall_seconds": 3275.826,
+    "player_delay": 600.0,
+    "delay_service": "B012",
+    "delay_at": 4980.0
+  },
+  "service_changes": [
+    {
+      "id": "K1",
+      "name": "Coastal Stopping Passenger \u00b7 Ernakulam to Nagercoil",
+      "wait_change_seconds": -1766.0,
+      "arrival_change_seconds": -370.14999974973
+    },
+    {
+      "id": "B074",
+      "name": "Capital Regional 07 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": -462.0,
+      "arrival_change_seconds": -361.549999994735
+    },
+    {
+      "id": "B020",
+      "name": "Malabar Express 07 \u00b7 NCJ\u2013ERS",
+      "wait_change_seconds": -326.0,
+      "arrival_change_seconds": -298.85000001741
+    },
+    {
+      "id": "B033",
+      "name": "Backwater Intercity 04 \u00b7 TVC\u2013ERS",
+      "wait_change_seconds": -560.0,
+      "arrival_change_seconds": -208.150000012101
+    },
+    {
+      "id": "B001",
+      "name": "Coastal Vande Bharat \u00b7 Ernakulam to Nagercoil",
+      "wait_change_seconds": -6.0,
+      "arrival_change_seconds": -110.09999999840494
+    },
+    {
+      "id": "B054",
+      "name": "Capital Regional 07 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 96.0,
+      "arrival_change_seconds": -70.749999998975
+    },
+    {
+      "id": "B064",
+      "name": "Capital Regional 17 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 112.0,
+      "arrival_change_seconds": -62.650000003661034
+    },
+    {
+      "id": "B056",
+      "name": "Capital Regional 09 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 66.0,
+      "arrival_change_seconds": -13.749999999804004
+    },
+    {
+      "id": "B076",
+      "name": "Capital Regional 09 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": -842.0,
+      "arrival_change_seconds": -1.4999999999780016
+    },
+    {
+      "id": "B004",
+      "name": "Cape Express 03 \u00b7 ERS\u2013NCJ",
+      "wait_change_seconds": 70.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B005",
+      "name": "Cape Express 04 \u00b7 ERS\u2013NCJ",
+      "wait_change_seconds": -164.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B006",
+      "name": "Cape Express 05 \u00b7 ERS\u2013NCJ",
+      "wait_change_seconds": -54.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B007",
+      "name": "Cape Express 06 \u00b7 ERS\u2013NCJ",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B008",
+      "name": "Cape Express 07 \u00b7 ERS\u2013NCJ",
+      "wait_change_seconds": 132.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B009",
+      "name": "Cape Express 08 \u00b7 ERS\u2013NCJ",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B010",
+      "name": "Cape Express 09 \u00b7 ERS\u2013NCJ",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B011",
+      "name": "Cape Express 10 \u00b7 ERS\u2013NCJ",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B012",
+      "name": "Coastal Vande Bharat \u00b7 Nagercoil to Ernakulam",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B015",
+      "name": "Malabar Express 02 \u00b7 NCJ\u2013ERS",
+      "wait_change_seconds": 180.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B016",
+      "name": "Malabar Express 03 \u00b7 NCJ\u2013ERS",
+      "wait_change_seconds": 132.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B017",
+      "name": "Malabar Express 04 \u00b7 NCJ\u2013ERS",
+      "wait_change_seconds": -2.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B019",
+      "name": "Malabar Express 06 \u00b7 NCJ\u2013ERS",
+      "wait_change_seconds": 168.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B022",
+      "name": "Malabar Express 09 \u00b7 NCJ\u2013ERS",
+      "wait_change_seconds": -2.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B023",
+      "name": "Malabar Express 10 \u00b7 NCJ\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B030",
+      "name": "Backwater Intercity 01 \u00b7 TVC\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B032",
+      "name": "Backwater Intercity 03 \u00b7 TVC\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B035",
+      "name": "Backwater Intercity 06 \u00b7 TVC\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B036",
+      "name": "Coastal Passenger 01 \u00b7 ERS\u2013KYJ",
+      "wait_change_seconds": 172.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B037",
+      "name": "Coastal Passenger 02 \u00b7 ERS\u2013KYJ",
+      "wait_change_seconds": 12.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B038",
+      "name": "Coastal Passenger 03 \u00b7 ERS\u2013KYJ",
+      "wait_change_seconds": -558.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B039",
+      "name": "Coastal Passenger 01 \u00b7 KYJ\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B040",
+      "name": "Coastal Passenger 02 \u00b7 KYJ\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B041",
+      "name": "Coastal Passenger 03 \u00b7 KYJ\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B043",
+      "name": "Alappuzha Passenger 02 \u00b7 ERS\u2013ALLP",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B044",
+      "name": "Alappuzha Passenger 03 \u00b7 ERS\u2013ALLP",
+      "wait_change_seconds": -112.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B045",
+      "name": "Alappuzha Passenger 01 \u00b7 ALLP\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B046",
+      "name": "Alappuzha Passenger 02 \u00b7 ALLP\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B048",
+      "name": "Capital Regional 01 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B049",
+      "name": "Capital Regional 02 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B050",
+      "name": "Capital Regional 03 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B052",
+      "name": "Capital Regional 05 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B053",
+      "name": "Capital Regional 06 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B055",
+      "name": "Capital Regional 08 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B057",
+      "name": "Capital Regional 10 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 2.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B058",
+      "name": "Capital Regional 11 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B060",
+      "name": "Capital Regional 13 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 114.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B061",
+      "name": "Capital Regional 14 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B062",
+      "name": "Capital Regional 15 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B065",
+      "name": "Capital Regional 18 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B067",
+      "name": "Capital Regional 20 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B068",
+      "name": "Capital Regional 01 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B069",
+      "name": "Capital Regional 02 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B070",
+      "name": "Capital Regional 03 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B071",
+      "name": "Capital Regional 04 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B072",
+      "name": "Capital Regional 05 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B073",
+      "name": "Capital Regional 06 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B075",
+      "name": "Capital Regional 08 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B077",
+      "name": "Capital Regional 10 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B078",
+      "name": "Capital Regional 11 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B080",
+      "name": "Capital Regional 13 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B081",
+      "name": "Capital Regional 14 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B082",
+      "name": "Capital Regional 15 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B084",
+      "name": "Capital Regional 17 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B085",
+      "name": "Capital Regional 18 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B086",
+      "name": "Capital Regional 19 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B087",
+      "name": "Capital Regional 20 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B088",
+      "name": "Cape Passenger 01 \u00b7 TVC\u2013NCJ",
+      "wait_change_seconds": -310.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B089",
+      "name": "Cape Passenger 02 \u00b7 TVC\u2013NCJ",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B090",
+      "name": "Cape Passenger 03 \u00b7 TVC\u2013NCJ",
+      "wait_change_seconds": -16.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B091",
+      "name": "Cape Passenger 04 \u00b7 TVC\u2013NCJ",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B092",
+      "name": "Cape Passenger 05 \u00b7 TVC\u2013NCJ",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B093",
+      "name": "Cape Passenger 06 \u00b7 TVC\u2013NCJ",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B094",
+      "name": "Cape Passenger 01 \u00b7 NCJ\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B095",
+      "name": "Cape Passenger 02 \u00b7 NCJ\u2013TVC",
+      "wait_change_seconds": 234.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B097",
+      "name": "Cape Passenger 04 \u00b7 NCJ\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B098",
+      "name": "Cape Passenger 05 \u00b7 NCJ\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B099",
+      "name": "Cape Passenger 06 \u00b7 NCJ\u2013TVC",
+      "wait_change_seconds": 28.0,
+      "arrival_change_seconds": 0.0
+    },
+    {
+      "id": "B047",
+      "name": "Alappuzha Passenger 03 \u00b7 ALLP\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.04999999998801741
+    },
+    {
+      "id": "B013",
+      "name": "Northbound Coastal Passenger \u00b7 Nagercoil to Ernakulam",
+      "wait_change_seconds": 180.0,
+      "arrival_change_seconds": 0.04999999999017746
+    },
+    {
+      "id": "B042",
+      "name": "Alappuzha Passenger 01 \u00b7 ERS\u2013ALLP",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 0.049999999994952304
+    },
+    {
+      "id": "B096",
+      "name": "Cape Passenger 03 \u00b7 NCJ\u2013TVC",
+      "wait_change_seconds": -2.0,
+      "arrival_change_seconds": 0.5
+    },
+    {
+      "id": "B051",
+      "name": "Capital Regional 04 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 4.499999999934502
+    },
+    {
+      "id": "B031",
+      "name": "Backwater Intercity 02 \u00b7 TVC\u2013ERS",
+      "wait_change_seconds": -40.0,
+      "arrival_change_seconds": 25.6499999996231
+    },
+    {
+      "id": "B014",
+      "name": "Malabar Express 01 \u00b7 NCJ\u2013ERS",
+      "wait_change_seconds": 24.0,
+      "arrival_change_seconds": 25.99999999962006
+    },
+    {
+      "id": "B079",
+      "name": "Capital Regional 12 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": -14.0,
+      "arrival_change_seconds": 45.15000000262802
+    },
+    {
+      "id": "B024",
+      "name": "Capital Intercity 01 \u00b7 ERS\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 98.44999999857119
+    },
+    {
+      "id": "B029",
+      "name": "Capital Intercity 06 \u00b7 ERS\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 98.45000000574511
+    },
+    {
+      "id": "B026",
+      "name": "Capital Intercity 03 \u00b7 ERS\u2013TVC",
+      "wait_change_seconds": 108.0,
+      "arrival_change_seconds": 100.75000000586499
+    },
+    {
+      "id": "B025",
+      "name": "Capital Intercity 02 \u00b7 ERS\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 102.94999999850609
+    },
+    {
+      "id": "B027",
+      "name": "Capital Intercity 04 \u00b7 ERS\u2013TVC",
+      "wait_change_seconds": -2.0,
+      "arrival_change_seconds": 102.95000000600703
+    },
+    {
+      "id": "B018",
+      "name": "Malabar Express 05 \u00b7 NCJ\u2013ERS",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 123.800000099378
+    },
+    {
+      "id": "B083",
+      "name": "Capital Regional 16 \u00b7 TVC\u2013QLN",
+      "wait_change_seconds": 50.0,
+      "arrival_change_seconds": 144.000000008382
+    },
+    {
+      "id": "B066",
+      "name": "Capital Regional 19 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": -472.0,
+      "arrival_change_seconds": 146.00000000849798
+    },
+    {
+      "id": "B063",
+      "name": "Capital Regional 16 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": -2.0,
+      "arrival_change_seconds": 147.75000000858597
+    },
+    {
+      "id": "B003",
+      "name": "Cape Express 02 \u00b7 ERS\u2013NCJ",
+      "wait_change_seconds": 130.0,
+      "arrival_change_seconds": 167.49999999757
+    },
+    {
+      "id": "B059",
+      "name": "Capital Regional 12 \u00b7 QLN\u2013TVC",
+      "wait_change_seconds": 0.0,
+      "arrival_change_seconds": 172.25000001002599
+    },
+    {
+      "id": "B028",
+      "name": "Capital Intercity 05 \u00b7 ERS\u2013TVC",
+      "wait_change_seconds": 2.0,
+      "arrival_change_seconds": 179.95000001048948
+    },
+    {
+      "id": "B002",
+      "name": "Cape Express 01 \u00b7 ERS\u2013NCJ",
+      "wait_change_seconds": 2000.0,
+      "arrival_change_seconds": 1460.94999975158
+    },
+    {
+      "id": "B021",
+      "name": "Malabar Express 08 \u00b7 NCJ\u2013ERS",
+      "wait_change_seconds": 1348.0,
+      "arrival_change_seconds": 1659.0000000965651
+    },
+    {
+      "id": "B034",
+      "name": "Backwater Intercity 05 \u00b7 TVC\u2013ERS",
+      "wait_change_seconds": 1666.0,
+      "arrival_change_seconds": 2268.55000072153
+    }
+  ],
+  "method": "Fresh full operating days, all services AI except the specified temporary manual brake; waiting excludes booked dwell and deliberately paused driving. Wall times were concurrent development-PC runs, not a performance comparison."
+}

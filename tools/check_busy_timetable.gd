@@ -11,11 +11,15 @@ func _init() -> void:
 	var history := []
 	var seen_history := {}
 	var offset := 0.0
+	var delay_at := 0.0
+	var delay_service := "K1"
 	var output := ".local/busy-timetable.json"
 	var resume := ""
 	var prior_wall := 0.0
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--delay="): offset=float(arg.trim_prefix("--delay="))
+		if arg.begins_with("--delay-at="): delay_at=float(arg.trim_prefix("--delay-at="))
+		if arg.begins_with("--delay-service="): delay_service=arg.trim_prefix("--delay-service=")
 		if arg.begins_with("--output="): output=arg.trim_prefix("--output=")
 		if arg.begins_with("--resume="): resume=arg.trim_prefix("--resume=")
 	var w: RailWorld
@@ -31,22 +35,30 @@ func _init() -> void:
 		w=restored.world
 		metrics=previous.services;peak=previous.peak_active_services;history=previous.history
 		offset=previous.player_delay;prior_wall=previous.wall_seconds;source_revision=previous.source_digest
+		delay_at=previous.get("player_delay_at",0.0);delay_service=previous.get("player_delay_service","K1")
 		for event in history:seen_history[JSON.stringify(event)]=true
+	if not w.trains.has(delay_service) or offset<0 or delay_at<0:
+		printerr("Invalid delayed service or delay timing");quit(1);return
+	if offset>0:w.dispatcher().manual_service=delay_service
 	var trial := Trial.new(w)
 	for t: Train in w.trains.values():
 		if not metrics.has(t.id):metrics[t.id]={id=t.id,name=t.service_name,priority=t.dispatch_priority,wait_seconds=0.0,max_wait_seconds=0.0,calls=t.timetable.stops.size(),booked_stops=t.timetable.stops.duplicate(true),departure=t.timetable.departure}
 		consecutive[t.id]=metrics[t.id].get("current_wait_seconds",0.0)
 		resumed_wait[t.id]=consecutive[t.id] if not resume.is_empty() else 0.0
 	while not trial.done:
-		if offset>0 and w.time<offset: w.trains.K1.automatic=false;w.trains.K1.controller=-1.0
-		else: w.trains.K1.automatic=true
+		var paused: bool=offset>0 and w.time>=delay_at and w.time<delay_at+offset
+		if paused: w.trains[delay_service].automatic=false;w.trains[delay_service].controller=-1.0
+		else: w.trains[delay_service].automatic=true
 		trial.step()
 		for event in w.dispatch_history:
 			var key: String=JSON.stringify(event)
 			if not seen_history.has(key):history.append(event.duplicate());seen_history[key]=true
 		peak=maxi(peak,w.active_trains().filter(func(t):return not t.service_complete).size())
 		for t: Train in w.active_trains():
-			var waiting: bool=not t.service_complete and t.speed<.1 and w.clock_seconds()>t.timetable.release_time()+2 and w.time>=offset
+			# Preserve the original initial-delay metric; a later disturbance
+			# excludes only its deliberately paused driver, not affected traffic.
+			var observing: bool=w.time>=offset if delay_at==0 else not (paused and t.id==delay_service)
+			var waiting: bool=not t.service_complete and t.speed<.1 and w.clock_seconds()>t.timetable.release_time()+2 and observing
 			if waiting:
 				metrics[t.id].wait_seconds+=2.0;consecutive[t.id]+=2.0
 				metrics[t.id].max_wait_seconds=maxf(metrics[t.id].max_wait_seconds,consecutive[t.id])
@@ -82,7 +94,7 @@ func _init() -> void:
 		if Depot.finished(w,t):finished+=1
 	var excessive: Array=metrics.values().filter(func(m):return m.max_wait_seconds>1800).map(func(m):return m.id)
 	if trial.ok and not excessive.is_empty():trial.ok=false;trial.report="All services finished, but waits over 30 minutes need timetable review: "+str(excessive)
-	var result:={source_digest=source_revision,resumed_from=resume,excessive_wait_services=excessive,ok=trial.ok,report=trial.report,finished=finished,total=w.trains.size(),peak_active_services=peak,clock=w.clock_text(),simulation_seconds=w.time,wall_seconds=prior_wall+(Time.get_ticks_msec()-began)/1000.0,player_delay=offset,services=metrics,events=w.events,alerts=w.dispatcher().alerts,history=history,states=w.dispatcher().states}
+	var result:={source_digest=source_revision,resumed_from=resume,excessive_wait_services=excessive,ok=trial.ok,report=trial.report,finished=finished,total=w.trains.size(),peak_active_services=peak,clock=w.clock_text(),simulation_seconds=w.time,wall_seconds=prior_wall+(Time.get_ticks_msec()-began)/1000.0,player_delay=offset,player_delay_service=delay_service,player_delay_at=delay_at,services=metrics,events=w.events,alerts=w.dispatcher().alerts,history=history,states=w.dispatcher().states}
 	FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify(result,"\t"))
 	if not trial.ok:
 		var state: Dictionary=preload("res://sim/world_snapshot.gd").capture(w)

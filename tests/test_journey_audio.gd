@@ -3,6 +3,48 @@ const Space:=preload("res://game/listening_space.gd")
 const Air:=preload("res://game/train_air_audio.gd")
 const Snapshot:=preload("res://sim/world_snapshot.gd")
 const Store:=preload("res://persistence/save_store.gd")
+const EngineSound:=preload("res://game/engine_audio.gd")
+const Cues:=preload("res://sim/departure_cues.gd")
+
+func test_manual_departure_consumes_both_horns_without_playback():
+	var audio:=EngineSound.new();var t:=Train.new("H",200);audio.train=t;t.automatic=false
+	Cues.update(t,100,true)
+	var silent:=not audio._departure_horn_due(false,100)
+	Cues.update(t,103.5,false)
+	silent=silent and not audio._departure_horn_due(false,103.5)
+	t.automatic=true
+	silent=silent and not audio._departure_horn_due(false,103.6)
+	audio.free();return silent
+
+func test_ai_departure_keeps_two_calls_once_each():
+	var audio:=EngineSound.new();var t:=Train.new("H",200);audio.train=t;t.automatic=true
+	Cues.update(t,100,true)
+	var first:=audio._departure_horn_due(false,100)
+	var repeated:=audio._departure_horn_due(false,100.1)
+	Cues.update(t,103.5,false)
+	var second:=audio._departure_horn_due(false,103.5)
+	audio.free();return first and second and not repeated
+
+func test_takeover_cancels_queued_second_horn_even_after_handing_back():
+	var audio:=EngineSound.new();var t:=Train.new("H",200);audio.train=t;t.automatic=true
+	Cues.update(t,100,true);audio._departure_horn_due(false,100)
+	t.automatic=false;audio._departure_horn_due(false,101)
+	t.automatic=true
+	Cues.update(t,103.5,false)
+	var cancelled:=not audio._departure_horn_due(false,103.5)
+	Cues.update(t,200,true)
+	var next_departure:=audio._departure_horn_due(false,200)
+	audio.free();return cancelled and next_departure
+
+func test_paused_and_stale_horns_are_consumed_without_late_replay():
+	var audio:=EngineSound.new();var t:=Train.new("H",200);audio.train=t;t.automatic=true
+	Cues.update(t,100,true)
+	var silent:=not audio._departure_horn_due(true,100)
+	silent=silent and not audio._departure_horn_due(false,100.1)
+	Cues.update(t,103.5,false)
+	silent=silent and not audio._departure_horn_due(false,105)
+	audio.free();return silent
+
 func test_passing_train_doppler_accounts_for_listener_motion():
 	var ear:=Vector3.ZERO;var incoming:=Vector3(0,0,-100)
 	var source_v:=Vector3(0,0,30);var listener_v:=Vector3(0,0,-20)

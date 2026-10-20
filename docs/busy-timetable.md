@@ -142,6 +142,8 @@ Use the portable Godot console executable from `docs/pc-setup.md`:
 ```powershell
 & $godot --headless --path . --script res://tools/check_busy_timetable.gd -- --output=.local/busy.json
 & $godot --headless --path . --script res://tools/check_busy_timetable.gd -- --delay=600 --output=.local/busy-delay.json
+# Hold the NCJ–ERS VB for ten minutes from 09:23 (4,980 seconds after 08:00).
+& $godot --headless --path . --script res://tools/check_busy_timetable.gd -- --delay=600 --delay-at=4980 --delay-service=B012 --output=.local/busy-vb-delay.json
 & $godot --headless --path . --script res://tools/profile_timetable.gd -- --seconds=600 --output=.local/profile.json
 & $godot --headless --path . --script res://tests/run_tests.gd -- --timings=.local/test-times.json
 # Use the native renderer for this source UI integration check:
@@ -186,7 +188,34 @@ A complete unexplained standstill ends a rehearsal after five simulated minutes,
 without waiting for the two-hour timetable timeout. Booked departures, passenger
 exchange, depot release and manual/operator holds are exempt.
 
-## R29 validation — corrected railway map
+## R37 validation — forward dispatch
+
+Three fresh operating-day runs complete **100/100 services and 1,530/1,530
+subsequent calls**, with every service cleared to depot and no safety events:
+the AI baseline, K1 held for ten minutes at the origin, and B012 held for ten
+minutes from 09:23 after its future KZT platform is promised. No checkpoint
+continuation is used for these results.
+
+| Measure | Previous baseline | Forward dispatch | K1 +10 min | B012 +10 min at 09:23 |
+|---|---:|---:|---:|---:|
+| Longest continuous extra wait | 29m14s | 28m10s | 28m10s | 28m10s |
+| Total stationary extra wait, train-minutes | 800.13 | 822.03 | 822.03 | 815.73 |
+| Largest destination arrival delay | 33m55s | 37m49s | 37m49s | 37m49s |
+| Last depot clearance | 03:18:14 | 03:18:14 | 03:18:22 | 03:18:14 |
+
+The reported R36 B012 departure is also replayed separately from its fixed saved
+railway: its ERL stand disappears and the KZT home is prepared about 4.41 km ahead,
+instead of 1.55 km. A manual delay after the promise retains the protected
+receiving road and prevents an early opposing release.
+
+This improves that approach and passes the continuous-wait safety/quality gates;
+it is not a globally optimal delay allocation. Total baseline waiting rises
+about 2.7%, and some evening northbound expresses arrive later. The schedule,
+train priorities and audit limits have not been loosened. See
+[dispatcher-capacity.md](dispatcher-capacity.md) for the bounded forecast and
+the guard against reserving an exit ahead of another ready platform departure.
+
+## Historical R29 validation — corrected railway map
 
 Both fresh runs finish at **03:18:14 on day 2**, with every service fully in depot,
 all 100 origin departures and **1,530 subsequent calls** recorded. There are

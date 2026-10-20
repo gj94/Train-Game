@@ -11,11 +11,13 @@ it does not retain a crawl-speed ceiling from that stand. Short station-to-stati
 The policy applies to the AI driver, including when you hand over your service.
 Manual driving remains yours.
 
-Every departure from a booked platform produces two automatic horn calls. The first
+An AI-driven departure from a booked platform produces two automatic horn calls. The first
 starts when the train moves away; the second follows 3.5 **simulation seconds** later.
-Each call lasts about 1.15 simulation seconds. This works for AI and manually driven
-services. Saving preserves a pending second call, and loading a distant train does
-not replay old horn events. Your manual horn remains available. Fast-forwarding
+Each call lasts about 1.15 simulation seconds. Manual driving suppresses automatic
+calls. Taking over stops an automatic call already playing and cancels the second
+call in that pair, even if you hand back to AI before it is due. Your manual horn
+remains available. Saving preserves simulation cue timing, and loading a distant
+train does not replay old horn events. Fast-forwarding
 compresses the interval along with the railway clock.
 
 The braking design is informed by RDSO's trainset specification: service braking is
@@ -99,12 +101,13 @@ The five-rake fixture checks output headroom, sealed-cab attenuation, paired hor
 and pause. It measures audio work only, with no scenery/passenger rendering; it is
 not an end-to-end performance benchmark of the target i9/RTX 4090 Laptop.
 
-1. Start a stopping service and press A for AI. Observe entry-restriction clearance:
+1. Start a stopping service and tap controller X for AI. Observe entry-restriction clearance:
    the train should continue its approach without a second acceleration burst.
    Watch the final few metres and listen for two horn calls on the next departure.
-2. Repeat with manual driving: the paired horn should still occur when leaving a
-   booked platform. Stop at a red approach and verify AI can finish the arrival once
-   a valid route becomes available.
+2. Repeat with manual driving: there should be no automatic departure horns;
+   B must still sound your horn. Take over between the AI's first and second calls:
+   the second must be cancelled. Stop at a red approach and verify AI can finish
+   the arrival once a valid route becomes available.
 3. At 60 and 100 km/h, walk between the WAP pilot area and machinery aisle; compare
    coach centre, ICF window, vestibule and head-out. Listen to opposing traffic from
    a sealed coach and then from the platform. Compare Speakers and Reference.

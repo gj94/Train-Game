@@ -94,27 +94,24 @@ func _effective_priority(w, t: Train) -> float:
 	return t.dispatch_priority + minf(110, maxf(0, w.time - _wait_since.get(t.id, w.time)) / 20.0)
 
 func _prepare_approach(w, t: Train) -> void:
-	# Prepare the controlled entrance beyond a clear final automatic block.
-	# Never look through a red block, another train or a booked intermediate stop.
+	# Plan the station entrance about three running minutes ahead. Traverse only
+	# clear automatic routes; never reserve through a leader or an earlier call.
 	if not t.automatic and t.id!=manual_service:return
-	var next: Dictionary=w.next_signal(t)
-	if next.is_empty() or next.id not in w.automatic_signals:return
-	if w.aspect(next.id)==RailWorld.Aspect.RED:return
-	var automatic: Dictionary=w.signals[next.id]
-	var home_id: String=automatic.destination
-	if not w.signals.has(home_id) or home_id in w.automatic_signals:return
+	var approach: Array=_planner.approach_signals(w,t)
+	if approach.size()<2:return
+	var home_id: String=approach[-1].id
+	if home_id in w.automatic_signals:return
 	var home: Dictionary=w.signals[home_id]
 	if not home.route.is_empty():return
-	var distance: float=next.distance
-	for entry in automatic.route:
-		distance+=absf((home.s if entry.edge==home.edge else w.graph.exit_s(entry.edge,entry.dir))-w.graph.entry_s(entry.edge,entry.dir))
-	if distance>clampf(t.braking_distance()+500,1500,3500):return
+	var distance: float=approach[-1].distance
+	var horizon:=clampf(maxf(t.braking_distance()+500,t.speed*180),2500,6000)
+	if distance>horizon:return
 	var call: Dictionary=t.timetable.stop_ahead() if t.timetable!=null else {}
 	if not call.is_empty():
 		var to_call: float=w._stop_distance(t.path[0].edge,t.path[0].dir,t.head_s,call,[])
 		if to_call<distance:return
 	var prepared:=_evaluate(w,t,true,{id=home_id,distance=distance})
-	if prepared.status=="cleared":_record(w,"approach_route",t.id,"Prepared "+home_id+" ahead of "+next.id)
+	if prepared.status=="cleared":_record(w,"approach_route",t.id,"Prepared "+home_id+" ahead of "+approach[0].id)
 
 func _evaluate(w, t: Train, route_trains: bool, approach: Dictionary = {}) -> Dictionary:
 	var ns: Dictionary = w.next_signal(t) if approach.is_empty() else approach
@@ -146,6 +143,14 @@ func _evaluate(w, t: Train, route_trains: bool, approach: Dictionary = {}) -> Di
 		state.destination=sig.destination
 		state.reason="Authority to " + sig.destination if sig.cleared else "Signal at red; route locked until safe release"
 		state.status="cleared" if w.aspect(ns.id) != RailWorld.Aspect.RED else "waiting"
+		if state.status=="cleared" and approach.is_empty():
+			# Show the full contiguous clearance, including an already-prepared
+			# home, while retaining the immediate route destination for the desk.
+			var authority: String=sig.destination
+			for ahead in _planner.approach_signals(w,t):
+				if w.aspect(ahead.id)==RailWorld.Aspect.RED:break
+				authority=w.signals[ahead.id].destination
+			state.reason="Authority to "+authority
 		if state.status=="waiting":
 			state.blockers=Resources.blockers(w,ns.id,{edges=sig.route}).filter(func(b):return b.train!=t.id)
 			if sig.cleared:state.reason="Waiting for occupied or conflicting authority ahead to clear"

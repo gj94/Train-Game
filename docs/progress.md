@@ -1,5 +1,49 @@
 # Progress
 
+## 2026-10-20 — Forward dispatcher, manual horns and R37 preparation
+
+- Future platform succession can use an overdue AI departure, with a bounded
+  arrival/tail-clearance forecast, separate opposing road and currently free
+  escape berth. Physical interlocking still controls every movement. A new plan
+  cannot reserve the exit ahead of an unrelated platform occupant already due
+  to depart. This guard fixed an evening ALLP regression caught before release.
+- Home preparation follows consecutive clear automatic blocks, about three
+  current-speed minutes ahead (2.5–6 km). Occupation, signal holds and booked
+  intervening stops stop the search. Prepared platform ownership follows that
+  approach; advice now reports the furthest continuous authority.
+- The fixed R36 B012 departure and freshly regenerated departure both remove
+  the approximately 4m14s ERL stand and prepare KZT's home 4.41 km ahead, versus
+  1.55 km previously. A ten-minute pause after the platform promise completes
+  safely; the opponent waits until the whole VB is received.
+- Automatic departure horns now play only under AI control. Manual takeover
+  stops the automatic blast and consumes the pending second cue, even if AI
+  is restored before it falls due. The manual B/H horn remains independent.
+- Fresh baseline, K1 +10-minute origin delay and B012 +10-minute delay from
+  09:23 all finish 100 services, 1,530 subsequent calls and depot clearance
+  without safety events. Longest continuous extra wait is 28m10s (was 29m14s).
+  This is not a global delay improvement: baseline total waiting rises 2.7%,
+  and maximum destination delay rises from 33m55s to 37m49s. Some evening
+  northbound expresses lose time; per-service changes are retained in evidence.
+- Regenerated and verified all 100 departures and 233 five-minute states.
+  Traffic replay records 470 crossings and 40 completed overtakes. The real
+  service menu passes 3,366 checks over all 1,020 reciprocal cards, including
+  **Crossing**, **You overtake**, **Overtakes you**, time/location/other service,
+  and controller Y switching. These remain approximate AI-baseline encounters.
+- **654 headless tests pass** (650 independent tests, then four against completed
+  traffic data), plus the native dispatcher desk, five-train audio and four
+  delayed-crossing rehearsals. Audio uses the Dummy mixer, not a hardware
+  listening test. The obsolete six-MEMU corridor harness fails its old default
+  setup assertion; the current dispatcher integration check passes.
+- Evidence: `art/performance/dispatch-forward-2026-10-20/`. The preserved R36
+  fixture and repeatable KZT/traffic-menu checks are committed with the change.
+  R37 packaging follows; no extracted-distribution gameplay test is requested.
+
+Playtest: start the NCJ 09:10 → ERS VB, let AI traverse ERL/KZT, then repeat with
+a manual delay near ERL. Check earlier home clearance and the opposing train's
+full-tail wait. Take control between the two AI departure horns: the second
+should remain silent, while B/H still works. On the home page, press Y for
+Traffic and select both participants of an overtake to see reciprocal wording.
+
 ## 2026-10-20 — KZT approach signal timing investigated (no game changes)
 
 - User clarified that the green signals face the approaching NCJ–ERS VB.

@@ -1,0 +1,18 @@
+[
+	{
+		"seconds": 0.035635,
+		"test": "test_service_traffic.gd::test_shipped_preview_covers_all_departures_and_is_reciprocal"
+	},
+	{
+		"seconds": 0.00009,
+		"test": "test_service_traffic.gd::test_preview_rejects_stale_incomplete_and_corrupt_catalogues"
+	},
+	{
+		"seconds": 0.000065,
+		"test": "test_service_traffic.gd::test_preview_roles_are_reciprocal_and_do_not_mutate_shared_data"
+	},
+	{
+		"seconds": 0.000028,
+		"test": "test_service_traffic.gd::test_traffic_summary_and_midnight_use_selected_service_perspective"
+	}
+]

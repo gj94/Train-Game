@@ -1,0 +1,111 @@
+Prepared starts verified: 100 services; 4822 railway inputs; full-day audit passed.
+Preparing independent timeline partition 0 / 8 (PID 5056)
+Preparing independent timeline partition 1 / 8 (PID 15324)
+Preparing independent timeline partition 2 / 8 (PID 19684)
+Preparing independent timeline partition 3 / 8 (PID 24120)
+Preparing independent timeline partition 4 / 8 (PID 22060)
+Preparing independent timeline partition 5 / 8 (PID 24492)
+Preparing independent timeline partition 6 / 8 (PID 21512)
+Preparing independent timeline partition 7 / 8 (PID 19672)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TIMELINE MERGED {"events":[],"longest_worker_seconds":700.029,"ok":true,"parallel_workers":8,"round_trips":233,"states":233,"steps":35699,"worker_seconds":4854.416}
+Five-minute railway verified: 233 exact restored states; full operating day; no safety events.
+Timeline prepared in 704.1 wall seconds using 8 isolated workers.
+Prepared starts verified: 100 services; 4822 railway inputs; full-day audit passed.
+Five-minute railway verified: 233 exact restored states; full operating day; no safety events.
+✔ opposing crossing uses actual movement and interpolated time, once (6.5121ms)
+✔ full formation overtake in either direction, correct overtaker (0.7047ms)
+✔ centre shuffle and abandoned pass are not completed overtakes (0.1303ms)
+✔ spawn, removal and direction change cannot fabricate a pass (0.0889ms)
+✔ an already-overlapping spawn has no proven overtake order (0.0914ms)
+✔ same pair can genuinely overtake again later, with reversed roles (0.4984ms)
+✔ a sample exactly on alignment does not double count (0.1167ms)
+✔ midnight is absolute and long/missing samples are rejected (0.2791ms)
+✔ location distinguishes station yard and interstation pass (0.1978ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93.3401
+Replaying traffic partition 0 / 8 (PID 25032)
+Replaying traffic partition 1 / 8 (PID 23848)
+Replaying traffic partition 2 / 8 (PID 12848)
+Replaying traffic partition 3 / 8 (PID 10200)
+Replaying traffic partition 4 / 8 (PID 7876)
+Replaying traffic partition 5 / 8 (PID 24476)
+Replaying traffic partition 6 / 8 (PID 14312)
+Replaying traffic partition 7 / 8 (PID 18824)
+{
+  "services": 100,
+  "events": 510,
+  "ok": true,
+  "sample_seconds": 2,
+  "samples": 34801,
+  "partitions": [
+    {
+      "first": 28800,
+      "last": 37500,
+      "steps": 4350,
+      "boundary_error_m": 0,
+      "wall_seconds": 398.212
+    },
+    {
+      "first": 37500,
+      "last": 46200,
+      "steps": 4350,
+      "boundary_error_m": 0,
+      "wall_seconds": 580.933
+    },
+    {
+      "first": 46200,
+      "last": 54900,
+      "steps": 4350,
+      "boundary_error_m": 0,
+      "wall_seconds": 587.989
+    },
+    {
+      "first": 54900,
+      "last": 63600,
+      "steps": 4350,
+      "boundary_error_m": 0,
+      "wall_seconds": 633.15
+    },
+    {
+      "first": 63600,
+      "last": 72300,
+      "steps": 4350,
+      "boundary_error_m": 0.00281754924799316,
+      "wall_seconds": 620.829
+    },
+    {
+      "first": 72300,
+      "last": 81000,
+      "steps": 4350,
+      "boundary_error_m": 0.0000133830326376483,
+      "wall_seconds": 535.077
+    },
+    {
+      "first": 81000,
+      "last": 89700,
+      "steps": 4350,
+      "boundary_error_m": 0.0000134267611429095,
+      "wall_seconds": 241.635
+    },
+    {
+      "first": 89700,
+      "last": 98400,
+      "steps": 4350,
+      "boundary_error_m": 0,
+      "wall_seconds": 94.724
+    }
+  ],
+  "safety_events": [],
+  "crossing_count": 470,
+  "overtake_count": 40
+}
+Traffic preview verified: 100 services; 470 crossings, 40 completed overtakes; entire baseline covered.
+PREPARED_DATA_COMPLETE

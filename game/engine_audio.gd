@@ -16,6 +16,7 @@ const Layers := preload("res://game/audio_layers.gd")
 const Space := preload("res://game/listening_space.gd")
 var acoustic_bus := {}
 var _horn_seen := 0
+var _horn_blocked_through := 0
 var _horn_end := -1.0
 var _clock := 0.0
 var _compressor: AudioStreamPlayer3D
@@ -49,6 +50,7 @@ static func _make_loops() -> void:
 func setup(owner,train_view,track_sound) -> void:
 	game=owner;view=train_view;train=view.train;track=track_sound
 	_horn_seen=train.horn_sequence
+	_departure_horn_due(true,game.world.clock_seconds())
 	_is_vb=str(view.formation[0].model).begins_with("vb_")
 	acoustic_bus=Layers.filtered_bus(self,"traction",BUS)
 	_make_loops()
@@ -88,6 +90,16 @@ func horn() -> void:
 		horn_player.position=Vector3(0,2,0)
 		horn_player.play();_horn_end=-1.0
 
+func _departure_horn_due(paused: bool, now: float) -> bool:
+	# Consume automatic cues even in manual mode. Taking over also cancels
+	# the remainder of this pair, including a second call not yet emitted.
+	if not train.automatic:
+		_horn_blocked_through=maxi(_horn_blocked_through,train.horn_sequence+(1 if train.horn_pending_at>=0 else 0))
+	if _horn_seen==train.horn_sequence:return false
+	_horn_seen=train.horn_sequence
+	var age:=now-train.horn_emitted_at
+	return train.automatic and not paused and _horn_seen>_horn_blocked_through and age>=0 and age<.6
+
 func _process(delta: float) -> void:
 	if game==null: return
 	var paused: bool=track._paused
@@ -106,11 +118,11 @@ func _process(delta: float) -> void:
 	var receiver: Vector3=game.audio_space.get("velocity",Vector3.ZERO)
 	var shift:=Space.doppler(view.cars[0].global_position,game.cam.global_position,velocity,receiver)
 	_clock=game.world.clock_seconds()
-	if _horn_seen!=train.horn_sequence:
-		_horn_seen=train.horn_sequence
-		if not paused and _clock-train.horn_emitted_at<.6:
-			horn();_horn_end=_clock+1.15
-	if _horn_end>=0 and _clock>=_horn_end:horn_player.stop();_horn_end=-1.0
+	if _departure_horn_due(paused,_clock):
+		horn();_horn_end=_clock+1.15
+	# A manual button horn uses _horn_end=-1 and is never stopped here.
+	if _horn_end>=0 and (not train.automatic or _clock>=_horn_end):
+		horn_player.stop();_horn_end=-1.0
 	_compressor.stream_paused=paused
 	var cycle:=fposmod(_clock+posmod(hash(train.id),71),71)
 	var compressor_gain:=smoothstep(0,1,cycle)*(1-smoothstep(7,9,cycle))*.32*cabin_gain

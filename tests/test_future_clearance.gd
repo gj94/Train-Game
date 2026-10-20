@@ -155,3 +155,39 @@ func test_future_vacater_does_not_accept_a_new_advisory_overtake():
 	w.trains.K1.timetable.index=2;w.trains.K1.timetable.at_stop=false
 	preload("res://sim/priority_dispatch.gd").update(w)
 	return not w.dispatch_holds.has("K3")
+
+func test_overdue_automatic_vacater_can_still_supply_a_protected_future_platform():
+	var w:=_world();var e=w.dispatcher()
+	w.trains.K3.timetable.departure-=3600
+	var p: Dictionary=e.future_clearances.propose(w,e,w.trains.K1)
+	return not p.is_empty() and p.vacater=="K3" and p.future_road=="KUMM_P3" and p.escape_road=="TUVR_P3"
+
+func test_overdue_vacater_still_requires_an_available_escape_and_driver():
+	var w:=_world();var e=w.dispatcher()
+	w.trains.K3.timetable.departure-=3600;w.trains.K3.emergency=true
+	if not e.future_clearances.propose(w,e,w.trains.K1).is_empty():return "Emergency-held departure promised"
+	w.trains.K3.emergency=false;w.trains.K3.automatic=false
+	return e.future_clearances.propose(w,e,w.trains.K1).is_empty()
+
+func test_overdue_vacater_does_not_reserve_a_crossing_for_an_unreasonably_distant_arrival():
+	var w:=_world();var e=w.dispatcher()
+	w.trains.K3.timetable.departure-=3600;w.trains.K1.max_speed=1
+	return e.future_clearances.propose(w,e,w.trains.K1).is_empty()
+
+func _other_platform_departure(w,ready: bool) -> Train:
+	var t:=Train.new("OTHER",100);w.place_train(t,"KUMM_P1",500,1)
+	t.timetable=preload("res://sim/timetable.gd").new()
+	t.timetable.stops=w.trains.K3.timetable.stops.duplicate(true)
+	t.timetable.stops[0].block="KUMM_P1"
+	t.timetable.departure=w.clock_seconds()+(-1 if ready else 3600)
+	return t
+
+func test_future_plan_cannot_monopolise_exit_ahead_of_another_ready_departure():
+	var w:=_world();var e=w.dispatcher()
+	_other_platform_departure(w,true)
+	return e.future_clearances.propose(w,e,w.trains.K1).is_empty()
+
+func test_later_booked_platform_occupant_does_not_block_a_current_crossing():
+	var w:=_world();var e=w.dispatcher()
+	_other_platform_departure(w,false)
+	return not e.future_clearances.propose(w,e,w.trains.K1).is_empty()

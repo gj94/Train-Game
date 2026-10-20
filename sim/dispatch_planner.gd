@@ -6,11 +6,12 @@ var _section_ends := {}
 var _outbound_sections := {}
 var _evaluating := false
 var _claim_cache := {}
+var _approach_cache := {}
 
 func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 	var result: Array = []
 	if t.timetable == null: return result
-	_evaluating=true;_claim_cache.clear()
+	_evaluating=true;_claim_cache.clear();_approach_cache.clear()
 	var stop: Dictionary = t.timetable.stop_ahead()
 	var booked_station: Dictionary=Policy.station(w,stop.block)
 	var flexible_terminal: bool=w.scenery.get("geographic",false) and booked_station.get("platform_details",{}).get(stop.block,{}).get("platform_width",0)>0
@@ -71,7 +72,7 @@ func candidates(w, t: Train, signal_id: String, platform: String = "") -> Array:
 		result.append({destination=option.destination, option=option, cost=cost,
 			stop=goal if changes_stop else {}, hold=hold, reason=reason, blockers=blockers,
 			eligible=not is_inf(distance), available=reason.is_empty()})
-	_evaluating=false;_claim_cache.clear()
+	_evaluating=false;_claim_cache.clear();_approach_cache.clear()
 	result.sort_custom(func(a,b): return a.cost < b.cost if a.cost != b.cost else a.destination < b.destination)
 	return result
 
@@ -208,28 +209,51 @@ func _road_owners(w,st: Dictionary) -> Dictionary:
 			var owner: String=sig.owner
 			if owner.is_empty():
 				for other: Train in w.active_trains():
-					var next: Dictionary=w.next_signal(other)
-					if next.is_empty():continue
-					var ahead: Dictionary=w.signals[next.id]
-					if ahead.owner not in ["",other.id]:continue
-					if next.id==sig.id or (ahead.cleared and ahead.destination==sig.id):
+					if approach_signals(w,other).any(func(a):return a.id==sig.id):
 						owner=other.id;break
 			result[part.edge]=owner
 	return result
 
 func _committed_routes(w,t: Train) -> Array:
-	var next: Dictionary=w.next_signal(t)
-	if next.is_empty():return []
-	var signal_data: Dictionary=w.signals[next.id]
-	if signal_data.owner not in ["",t.id]:return []
-	var committed: Array=signal_data.route
-	# Approach preparation may reserve the home while the next signal is still
-	# automatic. Count its platform once for its train, never as an anonymous
-	# reservation plus a second unallocated approach claim.
-	if signal_data.cleared and w.signals.has(signal_data.destination):
-		var prepared: Dictionary=w.signals[signal_data.destination]
-		if prepared.owner in ["",t.id]:committed=committed+prepared.route
+	var committed: Array=[]
+	# Attribute a prepared home to the leading train across the whole clear
+	# approach, not an anonymous reservation plus a second capacity claim.
+	for ahead in approach_signals(w,t):
+		var sig: Dictionary=w.signals[ahead.id]
+		if sig.owner not in ["",t.id]:break
+		committed.append_array(sig.route)
 	return committed
+
+func approach_signals(w,t: Train) -> Array:
+	if _evaluating and _approach_cache.has(t.id):return _approach_cache[t.id]
+	var result: Array=[]
+	var next: Dictionary=w.next_signal(t)
+	var seen:={}
+	var occ: Dictionary=w.occupancy()
+	for _i in 64:
+		if next.is_empty() or seen.has(next.id):break
+		seen[next.id]=true
+		var sig: Dictionary=w.signals[next.id]
+		if sig.owner not in ["",t.id]:break
+		result.append(next)
+		if next.id not in w.automatic_signals:break
+		if w.dispatcher().inhibited_signals.has(next.id):break
+		if not sig.cleared or sig.route.is_empty() or not sig.owner.is_empty():break
+		if sig.route.any(func(p):return occ.has(p.edge) or (p.switch!="" and w.graph.switches[p.switch].reversed!=p.reversed)):break
+		if not w.signals.has(sig.destination):break
+		var destination: Dictionary=w.signals[sig.destination]
+		# Signals sit before edge ends. Include that remaining distance too.
+		var distance: float=next.distance+absf(w.graph.exit_s(sig.edge,sig.dir)-sig.s)
+		if destination.edge==sig.edge:
+			distance=next.distance+(destination.s-sig.s)*sig.dir
+		else:
+			for entry in sig.route:
+				distance+=absf((destination.s if entry.edge==destination.edge else w.graph.exit_s(entry.edge,entry.dir))-w.graph.entry_s(entry.edge,entry.dir))
+				if entry.edge==destination.edge:break
+		if distance<=next.distance:break
+		next={id=sig.destination,distance=distance}
+	if _evaluating:_approach_cache[t.id]=result
+	return result
 
 func _station_claims(w,st: Dictionary) -> Array:
 	# Alternatives are read-only. Never retain occupation across candidate calls

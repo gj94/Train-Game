@@ -71,11 +71,23 @@ func run() -> void:
 	check(metrics.outside.peak<1 and metrics.sealed.peak<1,"five trains do not clip output")
 	check(metrics.outside.samples>20000 and metrics.outside.rms>.001,"native mixer produced audible signal")
 	var train: Train=game.train;var engine=items[0].engine;var track=items[0].sound
+	train.automatic=true
 	train.horn_sequence+=1;train.horn_emitted_at=world.clock_seconds();engine._process(.01)
 	check(engine.horn_player.playing,"first departure horn plays")
 	world.time+=1.2;engine._process(.01);check(not engine.horn_player.playing,"first departure horn releases")
 	world.time+=2.3;train.horn_sequence+=1;train.horn_emitted_at=world.clock_seconds();engine._process(.01)
 	check(engine.horn_player.playing,"second departure horn plays after gap")
+	train.automatic=false;engine._process(.01)
+	check(not engine.horn_player.playing,"manual takeover stops automatic horn")
+	world.time+=3.5;train.horn_sequence+=1;train.horn_emitted_at=world.clock_seconds()
+	train.horn_pending_at=world.clock_seconds()+3.5;engine._process(.01)
+	check(not engine.horn_player.playing,"manual departure does not sound automatic horn")
+	train.automatic=true;world.time+=3.5;train.horn_sequence+=1
+	train.horn_pending_at=-1;train.horn_emitted_at=world.clock_seconds();engine._process(.01)
+	check(not engine.horn_player.playing,"takeover cancels pending second call after handback")
+	train.automatic=false;engine.horn();engine._process(.01)
+	check(engine.horn_player.playing,"manual horn button still works under manual control")
+	engine.horn_player.stop()
 	for item in items:item.sound.set_paused(true)
 	metrics.paused=await measure()
 	check(metrics.paused.tail_rms<.00001,"pause silences all train layers")
