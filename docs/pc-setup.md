@@ -49,15 +49,15 @@ Dispatcher scene integration check (after the headless test suite):
 & .\.local\godot\Godot_v4.7.2-stable_win64_console.exe --headless --path . --script res://tools/check_corridor_playable.gd
 ```
 
-The current six-train playtest and route sequence are in `docs/dispatching.md`.
+The default is the 100-service Kerala timetable; see `docs/busy-timetable.md`.
 
 To make a standalone Windows copy for another PC, run
 `powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1`.
 Matching SHA-512-verified 4.7.2 templates are in `.local/export-templates/`.
-The portable ZIP is `export/TrainGame-Windows.zip`; see `docs/builds.md`.
-R36 is a full-download baseline with updater v3 and a required `packs/` folder.
-From R37, use its included launcher for updates. Publish routine releases with
-a new `-BuildName` and increasing `-UpdateSequence` (39+); include the full ZIP
+The current ZIP is `export/TrainGame-Kerala-Coast-R37-Windows.zip`; see `docs/builds.md`.
+R37 supports full downloads and updates through R36's included v3 launcher.
+The complete `packs/` folder is required. Publish subsequent releases with
+a new `-BuildName` and increasing `-UpdateSequence` (40+); include the full ZIP
 and omit both `-SkipZip` and `-FullDownloadOnly` so the launcher can select the
 smaller transfer. See `docs/incremental-updates.md`. Preserve the
 private `.local/update-signing-private.pem` when migrating this build PC.

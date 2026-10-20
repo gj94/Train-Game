@@ -51,17 +51,22 @@ verification is `tools/check_split_boot.gd`.
 
 ## Published release and historical measurements
 
-Current publication: **R36**, signed baseline **38**, clean source **e34b614**.
-**Full download only** at http://192.168.8.183:8765/. ZIP: **2,615,996,795 bytes**.
-The included launcher is v3. Use `TrainGame.exe` or offline Play for this release.
-Saves/settings remain in the Windows user profile.
+Current publication: **R37**, signed sequence **39**, clean source **525da55**.
+**Full and incremental downloads** at http://192.168.8.183:8765/. ZIP:
+**2,615,707,467 bytes**. R36's included v3 launcher updates the existing folder;
+new installations can extract the complete R37 ZIP. Saves/settings remain in
+the Windows user profile.
 
-R35's verified export directory, ZIP and checksum were retired after idle-LAN
-checks, freeing **5,774,342,691 bytes**. Historical signed catalogues remain.
-See [builds.md](builds.md) for checksums and verification. Future publications
-need a fresh version and sequence **39 or greater**; omit `-FullDownloadOnly`
-and `-SkipZip` so both methods are available. The signed R36 catalogue and
-compressed payloads are retained locally but hidden by download policy.
+R36 → R37 reuses **2,418,084,286 bytes**. Changed target blocks total
+**745,887,678 bytes**, with **668,133,498 bytes** of estimated unique compressed
+payload plus the **4,855,521-byte** signed catalogue. Native package mounting,
+archive/file hashes, signature and served compressed block checks pass. See
+[builds.md](builds.md) for the checksum and complete release evidence.
+
+R36's verified export directory, ZIP and checksum were retired after idle-LAN
+checks, freeing **5,780,431,608 bytes**. Historical signed catalogues remain.
+Future publications need a fresh version and sequence **40 or greater**; omit
+`-FullDownloadOnly` and `-SkipZip` so both methods are available.
 
 Historical R34 → R35: 2,999,784,946 changed bytes versus a 2,610,041,904-byte ZIP.
 That release used the old monolithic layout; R36 establishes stable asset packs
@@ -168,7 +173,7 @@ named build and publish both a full ZIP and its compressed update catalogue:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1 `
-  -BuildName TrainGame-Kerala-Coast-R37-Windows -UpdateSequence 39 -SkipTests
+  -BuildName TrainGame-Kerala-Coast-R38-Windows -UpdateSequence 40 -SkipTests
 ```
 
 Use `-SkipTests` only after checks have passed for the source being exported.
@@ -181,7 +186,7 @@ The launcher checks again whenever Update & Play is clicked.
 To publish an already-exported folder:
 
 ```powershell
-node.exe tools/updater/publish.mjs --build=TrainGame-Kerala-Coast-R37-Windows --sequence=39
+node.exe tools/updater/publish.mjs --build=TrainGame-Kerala-Coast-R38-Windows --sequence=40
 ```
 
 Published build folders/identifiers are immutable. The build script refuses to

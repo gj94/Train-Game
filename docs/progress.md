@@ -1,5 +1,29 @@
 # Progress
 
+## 2026-10-20 — R37 published; full download and R36 updates
+
+- Published from clean source **525da55**, signed sequence **39**, at
+  http://192.168.8.183:8765/. Full ZIP: **2,615,707,467 bytes**, SHA-256
+  `02b1596b39ed71fd42a922c1fd154b82c3c9eda5ea6372be037003dc75999575`.
+- Both full downloads and the R36 v3 updater are enabled. The update reuses
+  2,418,084,286 bytes; estimated compressed unique blocks are 668,133,498 bytes,
+  plus the 4,855,521-byte signed catalogue. Assets retain their exported content.
+- All 472 ZIP CRCs / 470 managed hashes, source identity, 160-pack inventory,
+  signature/checksum and served ZIP/PCK/compressed payload ranges pass. Native
+  read-only mounting verifies 100 departures, 233 timeline states, 470 crossings
+  and 40 overtakes. No extracted-distribution gameplay test.
+- Reuses the validated 654 source tests, 3,366 menu checks and three complete
+  100-service day audits below. Baseline waiting/arrival trade-offs are recorded,
+  not hidden by the improved KZT replay.
+- R36's verified export directory, ZIP and checksum were retired after idle-LAN
+  checks, freeing **5,780,431,608 bytes**. Historical catalogues remain. Evidence:
+  `art/performance/r37-release-2026-10-20/`. Next release is R38 / sequence 40+.
+
+Install/playtest: use R36's Update & Play, or extract all of the R37 ZIP including
+`packs/`. Check the R37 version label. Start the NCJ 09:10 VB and compare ERL/KZT
+clearances; take manual control between departure horns; press Y in the service
+browser and inspect the reciprocal Crossing / You overtake / Overtakes you cards.
+
 ## 2026-10-20 — Forward dispatcher, manual horns and R37 preparation
 
 - Future platform succession can use an overdue AI departure, with a bounded
