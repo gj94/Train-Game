@@ -13,6 +13,12 @@
   pack and server checks; only release documentation changed. Export gates,
   archive integrity, launcher identity and LAN publication still require
   verification. No repeated distribution gameplay test.
+- The first archive publication was correctly blocked: Windows .NET Framework
+  exposes DOS-created ZIP entry names with backslashes. Publisher and launcher
+  now canonicalize separators for signed-path matching and duplicate detection.
+  All **47 native updater checks** pass, including a ZIP produced by the actual
+  Windows writer and rejection of duplicate slash/backslash aliases. No game
+  resources changed; rebuild the launcher and repackage before publishing.
 
 ## 2026-10-20 — Stable packs and compressed updater v3
 

@@ -196,7 +196,9 @@ namespace TrainGameUpdater {
                     foreach (var group in needed.GroupBy(w => w.file.path)) {
                         var expected = group.First().file;
                         string entryName = manifest.version + "/" + expected.path;
-                        var entries = zip.Entries.Where(e => e.FullName == entryName).ToArray();
+                        // Framework may expose DOS-created ZIP names with backslashes.
+                        // Match only signed managed paths and reject canonical aliases.
+                        var entries = zip.Entries.Where(e => e.FullName.Replace('\\', '/') == entryName).ToArray();
                         if (entries.Length != 1 || entries[0].Length != expected.size) throw new InvalidDataException("Missing, duplicate or wrong-sized archive entry: " + expected.path);
                         var wanted = new HashSet<int>(group.Select(w => w.index));
                         using (var source = entries[0].Open()) {

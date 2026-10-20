@@ -43,12 +43,14 @@ const payloadDirectory = join(temp, 'payloads');
 const archivePath = join(temp, 'TrainGame-Test.zip');
 // A tiny ZIP writer used only for fixtures. The production full ZIP is built
 // by .NET; this independently exercises the native ZIP reader and its hashes.
-async function makeArchive() {
+async function makeArchive(duplicateAlias = false) {
   const local = [], central = []; let offset = 0;
-  for (const f of manifest.files) {
+  const entries = duplicateAlias ? [...manifest.files, manifest.files.find(f => f.path === 'TrainGame.pck')] : manifest.files;
+  for (const [index, f] of entries.entries()) {
     const input = await readFile(join(target, f.path)), gzip = gzipSync(input);
     const data = gzip.subarray(10, -8), crc = gzip.readUInt32LE(gzip.length - 8);
-    const name = Buffer.from('TrainGame-Test/' + f.path);
+    const name = Buffer.from(index === manifest.files.length
+      ? ('TrainGame-Test/' + f.path).replaceAll('/', '\\') : 'TrainGame-Test/' + f.path);
     const h = Buffer.alloc(30); h.writeUInt32LE(0x04034b50); h.writeUInt16LE(20, 4); h.writeUInt16LE(8, 8);
     h.writeUInt32LE(crc, 14); h.writeUInt32LE(data.length, 18); h.writeUInt32LE(input.length, 22); h.writeUInt16LE(name.length, 26);
     local.push(h, name, data);
@@ -57,7 +59,7 @@ async function makeArchive() {
     central.push(c, name); offset += h.length + name.length + data.length;
   }
   const directory = Buffer.concat(central), end = Buffer.alloc(22);
-  end.writeUInt32LE(0x06054b50); end.writeUInt16LE(manifest.files.length, 8); end.writeUInt16LE(manifest.files.length, 10);
+  end.writeUInt32LE(0x06054b50); end.writeUInt16LE(entries.length, 8); end.writeUInt16LE(entries.length, 10);
   end.writeUInt32LE(directory.length, 12); end.writeUInt32LE(offset, 16);
   await writeFile(archivePath, Buffer.concat([...local, directory, end]));
 }
@@ -222,6 +224,28 @@ try {
   assert.equal(JSON.parse(fullResult.out).method, 'full-archive');
   assert.equal(JSON.parse(fullResult.out).downloadedBytes, manifest.archive.size);
   pass('automatically chooses smaller signed full ZIP; stages only missing blocks');
+  // Exercise the production Windows writer as well as the independent fixture.
+  // Framework ZipArchive reports DOS-created names differently from the fixture.
+  const nativeArchive = archivePath + '.native';
+  const quotePS = value => "'" + value.replaceAll("'", "''") + "'";
+  const nativeZip = await run('powershell.exe', ['-NoProfile', '-Command',
+    "$ErrorActionPreference='Stop'; Add-Type -AssemblyName System.IO.Compression.FileSystem; " +
+    "[IO.Compression.ZipFile]::CreateFromDirectory(" + quotePS(target) + ',' +
+    quotePS(nativeArchive) + ',[IO.Compression.CompressionLevel]::Optimal,$true)']);
+  assert.equal(nativeZip.code, 0, nativeZip.err);
+  await cp(nativeArchive, archivePath); await modern(32, true);
+  await verifyArchive(archivePath, manifest, join(temp, 'verify.json'));
+  const nativeInstall = await fixture('v3-native-windows-zip'), nativeResult = await client(nativeInstall);
+  assert.equal(nativeResult.code, 0, nativeResult.err); await same(nativeInstall);
+  assert.equal(JSON.parse(nativeResult.out).method, 'full-archive');
+  pass('production Windows ZIP verifies and installs through native Framework reader');
+  await makeArchive(true); await modern(32, true);
+  await assert.rejects(verifyArchive(archivePath, manifest, join(temp, 'verify.json')), /Duplicate archive entry/);
+  const aliasInstall = await fixture('v3-duplicate-zip-alias');
+  assert.match((await client(aliasInstall)).err, /duplicate/);
+  assert.deepEqual(await readFile(join(aliasInstall, 'TrainGame.pck')), pack);
+  pass('reject duplicate slash/backslash ZIP aliases before mutation');
+  await cp(nativeArchive, archivePath); await modern(32, true);
   const partial = await fixture('v3-partial-zip'); await mkdir(join(partial, '.train-update'));
   const archiveBytes = await readFile(archivePath);
   await writeFile(join(partial, '.train-update', manifest.archive.sha256 + '.zip.partial'), archiveBytes.subarray(0, 128));

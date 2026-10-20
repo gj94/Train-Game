@@ -8,8 +8,11 @@ $zip = [IO.Compression.ZipArchive]::new($stream, [IO.Compression.ZipArchiveMode]
 try {
     $entries = [Collections.Generic.Dictionary[string,object]]::new([StringComparer]::Ordinal)
     foreach ($entry in $zip.Entries) {
-        if ($entries.ContainsKey($entry.FullName)) { throw "Duplicate archive entry: $($entry.FullName)" }
-        $entries.Add($entry.FullName, $entry)
+        # .NET Framework can expose DOS-created ZIP paths with backslashes.
+        # Canonicalize before checking duplicates as well as signed membership.
+        $name = $entry.FullName.Replace('\','/')
+        if ($entries.ContainsKey($name)) { throw "Duplicate archive entry: $name" }
+        $entries.Add($name, $entry)
     }
     foreach ($file in $manifest.files) {
         $name = $manifest.version + '/' + $file.path
