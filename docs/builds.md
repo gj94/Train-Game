@@ -1,14 +1,37 @@
 # Windows portable build
 
-Next-release packaging (implemented after R35): `tools/build-windows.ps1` now
-creates stable asset packs and ships launcher v3. Keep the `packs/` directory in
-every full ZIP. Signed format-2 updates include compressed block payloads plus
-verified full-ZIP fallback when a ZIP is built. Use a fresh R36/sequence 38 or
-later; restart the LAN service once to load its new `/update-payloads/` route.
-This source change has not published a new game release. See
-[incremental-updates.md](incremental-updates.md) for migration and measured reuse.
+Current release: **R36 — full download only, updater v3 included**.
+Published 20 October 2026 from clean source **e34b614**, signed baseline
+sequence **38**, at http://192.168.8.183:8765/.
+Full ZIP: **2,615,996,795 bytes**, SHA-256
+`eb17bf9658438a6e1d57dd3be2f9b66ba3caf70c8e46465fa5d3a108a498472c`.
 
-Current release: **R35 — full download and incremental updates**. Includes
+Extract the complete ZIP into a new folder, including `packs/`, and launch
+`TrainGame.exe` or the updater's offline Play. This is the installation baseline
+for the new stable-pack layout; all exported asset content is preserved.
+From R37 onward, the included updater selects compressed changed blocks or
+the full ZIP, whichever is smaller, and reuses unchanged assets.
+The LAN service has loaded the new payload route. R36 incremental routes stay
+disabled. Future builds need a fresh name, sequence **39 or greater**, a full
+ZIP and incremental publication: omit both `-FullDownloadOnly` and `-SkipZip`.
+
+Reuses the source's **637 passing headless tests** and **60 updater, split-pack
+and server checks**, including 47 native updater cases after fixing Windows ZIP
+separator compatibility. Game resources were unchanged; their hashes were
+verified before repackaging with the corrected launcher. Export gates
+verify 100 prepared service starts, 233 five-minute states and 515 traffic
+encounters. All **472 ZIP CRCs / 470 managed file hashes** pass;
+the folder matches the ZIP, the clean BUILD source is `e34b614`, the 160-pack
+inventory matches the core index, and launcher v3 embeds the expected signing
+public key. Signed archive identity, served checksum and three ZIP byte ranges
+pass. Incremental routes and old full downloads return 404 as intended.
+No extracted-distribution gameplay test was run.
+Evidence: [R36 publication](../art/performance/r36-release-2026-10-20/publication.json).
+
+R35's verified export directory, ZIP and checksum were retired after idle-LAN
+checks, freeing **5,774,342,691 bytes**. Historical signed catalogues remain.
+
+Previous release: **R35 — full download and incremental updates**. Includes
 per-service baseline traffic previews, smoother clock-driven sunlight/shadows,
 consolidated speed boards and driving RB/LB power reduction/brake release.
 Published 20 October 2026 from clean source **8cf6710**, sequence **37**, at
@@ -172,8 +195,8 @@ The signed catalogue is retained locally, but the LAN server blocks incremental
 endpoints and the standalone updater download for this release. The full ZIP
 contains the updater for future use. Launch `TrainGame.exe` after extracting R26.
 
-For releases after R35, publish both the full ZIP and signed incremental
-catalogue: use a fresh `-BuildName` and increasing `-UpdateSequence` (38 or greater), and omit
+For releases after R36, publish both the full ZIP and signed incremental
+catalogue: use a fresh `-BuildName` and increasing `-UpdateSequence` (39 or greater), and omit
 both `-SkipZip` and `-FullDownloadOnly`. `export/download-release.json` switches
 the LAN page only after packaging completes. The server exposes only that current
 release; there are no hard-coded version lists or older fallback download links.

@@ -1,0 +1,48 @@
+PASS changed blocks only; untouched EXE; missing guide; exact output hashes
+PASS already current: zero block downloads and zero game writes
+PASS repair one damaged installed block without downloading the rest
+PASS interruption recovery at download
+PASS interruption recovery at prepared
+PASS interruption recovery at pending (offline)
+PASS interruption recovery at write (offline)
+PASS interruption recovery at verified (offline)
+PASS interruption recovery at installed (offline)
+PASS reject corrupt response before mutation; retry succeeds
+PASS reject drop response before mutation; retry succeeds
+PASS reject no-range response before mutation; retry succeeds
+PASS open game file prevents all updates
+PASS reject untrusted signature
+PASS reject traversal, absolute, ADS, reserved and unmanaged paths
+PASS reject signed downgrade after successful update
+PASS shrink pack and create empty file / directory
+PASS grow pack with partial final block
+PASS upgrade v1 installation: exact benchmark pair added, unrelated scripts excluded, game untouched
+PASS benchmark release repeat check downloads and writes zero game blocks
+PASS new benchmark files recover after an interrupted apply while offline
+PASS future launcher requirement rejected before touching game data
+PASS server only exposes published files; encoded traversal rejected
+PASS legacy install to split packs: compressed and raw blocks, duplicate reuse, exact hashes
+PASS code/guide-only change leaves stable asset pack untouched
+PASS v3 compressed interruption recovery: download
+PASS v3 compressed interruption recovery: pending
+PASS v3 compressed interruption recovery: write
+PASS v3 compressed interruption recovery: installed
+PASS v3 rejects corrupt before mutation and resumes
+PASS v3 rejects no-range before mutation and resumes
+PASS v3 rejects drop before mutation and resumes
+PASS publisher verifies all ZIP entries and rejects stale archive bytes
+PASS automatically chooses smaller signed full ZIP; stages only missing blocks
+PASS production Windows ZIP verifies and installs through native Framework reader
+PASS reject duplicate slash/backslash ZIP aliases before mutation
+PASS partial full ZIP resumes at exact byte offset
+PASS full ZIP interruption recovery: archive-download
+PASS full ZIP interruption recovery: download
+PASS full ZIP interruption recovery: pending
+PASS full ZIP interruption recovery: write
+PASS full ZIP interruption recovery: verified
+PASS bad full ZIP rejected before mutation; retry repairs download
+PASS damaged cached ZIP is automatically discarded and fetched again
+PASS reject invalid compressed indices, payload sizes, archive hashes and pack paths
+PASS v3 repeat update downloads and writes zero game bytes
+PASS server exposes only signed compressed payloads
+{"checks":47,"fixtureDirectory":"D:\\ClaudeWS\\train-game\\.local\\updater-tests-1792465296919"}

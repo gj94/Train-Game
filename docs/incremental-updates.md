@@ -1,11 +1,12 @@
 # Incremental Windows updates
 
-## V3 implementation — ready for the next release
+## V3 implementation — shipped in R36
 
-Implemented on 20 October; **R35 remains the published release**. The next
-publication must ship **Update & Play v3**, use a fresh build name/sequence and
-restart the LAN server once to load the new compressed-payload route. Routine
-later catalogue changes still need no restart.
+R36 ships **Update & Play v3** and the stable asset-pack layout as a full ZIP.
+Install the complete R36 folder once, then use its included updater from R37
+onward. The LAN server has been restarted for the compressed-payload route;
+later catalogue changes need no restart. R36 deliberately disables incremental
+downloads. New releases need both a full ZIP and signed incremental publication.
 
 - The exporter partitions the exact exported resources into a small core PCK
   and stable `packs/` files for trains, audio, scenery, route/interior data and
@@ -50,19 +51,21 @@ verification is `tools/check_split_boot.gd`.
 
 ## Published release and historical measurements
 
-Current publication: **R35**, sequence **37**, from clean source **8cf6710**.
-Full downloads and incremental updates are enabled at http://192.168.8.183:8765/.
-Existing installations can use `Update and Play.exe`; save data/settings remain
-in the Windows user profile.
+Current publication: **R36**, signed baseline **38**, clean source **e34b614**.
+**Full download only** at http://192.168.8.183:8765/. ZIP: **2,615,996,795 bytes**.
+The included launcher is v3. Use `TrainGame.exe` or offline Play for this release.
+Saves/settings remain in the Windows user profile.
 
-Measured R34 → R35: **2,999,784,946 changed bytes**, **164,483,480 reused bytes**, plus
-the signed catalogue. Full ZIP: **2,610,041,904 bytes**. The full ZIP is smaller for this transition.
+R35's verified export directory, ZIP and checksum were retired after idle-LAN
+checks, freeing **5,774,342,691 bytes**. Historical signed catalogues remain.
+See [builds.md](builds.md) for checksums and verification. Future publications
+need a fresh version and sequence **39 or greater**; omit `-FullDownloadOnly`
+and `-SkipZip` so both methods are available. The signed R36 catalogue and
+compressed payloads are retained locally but hidden by download policy.
 
-R34's verified export directory, ZIP and checksum were retired after idle-LAN
-checks, freeing **5,774,186,752 bytes**. Historical signed catalogues remain.
-See [builds.md](builds.md) for checksums and evidence. Future publications need a
-fresh version and sequence **38 or greater**; omit `-FullDownloadOnly` to retain
-both download methods.
+Historical R34 → R35: 2,999,784,946 changed bytes versus a 2,610,041,904-byte ZIP.
+That release used the old monolithic layout; R36 establishes stable asset packs
+and compressed transfer for subsequent updates.
 
 When incremental downloads are enabled, the LAN page offers a small **Update & Play** download. Extract its two files
 beside an existing `TrainGame.exe` and `TrainGame.pck`, then use the launcher for
@@ -165,7 +168,7 @@ named build and publish both a full ZIP and its compressed update catalogue:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1 `
-  -BuildName TrainGame-Kerala-Coast-R36-Windows -UpdateSequence 38 -SkipTests
+  -BuildName TrainGame-Kerala-Coast-R37-Windows -UpdateSequence 39 -SkipTests
 ```
 
 Use `-SkipTests` only after checks have passed for the source being exported.
@@ -178,7 +181,7 @@ The launcher checks again whenever Update & Play is clicked.
 To publish an already-exported folder:
 
 ```powershell
-node.exe tools/updater/publish.mjs --build=TrainGame-Kerala-Coast-R36-Windows --sequence=38
+node.exe tools/updater/publish.mjs --build=TrainGame-Kerala-Coast-R37-Windows --sequence=39
 ```
 
 Published build folders/identifiers are immutable. The build script refuses to

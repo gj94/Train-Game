@@ -1,24 +1,34 @@
 # Progress
 
-## 2026-10-20 — R36 full-download release preparation
+## 2026-10-20 — R36 full ZIP published; v3 updater baseline
 
-- User requested a full ZIP now, with the included updater used from the next
-  release. Preparing **R36**, signed baseline sequence **38**, with launcher v3
-  and the stable asset-pack layout. Public incremental routes stay disabled
-  for R36; R37+ should offer both full downloads and incremental updates.
-- Updated the shipped instructions: extract the entire R36 folder, including
-  `packs/`, and use `TrainGame.exe` or offline Play. Existing profile saves and
-  preferences remain separate.
-- Reusing the immediately preceding 637 passing headless tests and 58 updater,
-  pack and server checks; only release documentation changed. Export gates,
-  archive integrity, launcher identity and LAN publication still require
-  verification. No repeated distribution gameplay test.
-- The first archive publication was correctly blocked: Windows .NET Framework
-  exposes DOS-created ZIP entry names with backslashes. Publisher and launcher
-  now canonicalize separators for signed-path matching and duplicate detection.
-  All **47 native updater checks** pass, including a ZIP produced by the actual
-  Windows writer and rejection of duplicate slash/backslash aliases. No game
-  resources changed; rebuild the launcher and repackage before publishing.
+- Published **R36** from clean source **e34b614**, signed baseline **38**, at
+  http://192.168.8.183:8765/. Full ZIP: **2,615,996,795 bytes**, SHA-256
+  `eb17bf9658438a6e1d57dd3be2f9b66ba3caf70c8e46465fa5d3a108a498472c`.
+- Ships launcher v3 and 160 stable asset packs; models, textures and audio
+  retain their exported content. R36 is full-download-only by user request.
+  From R37+, publish both full/incremental downloads with sequence >=39.
+- Reuses the source's **637 passing headless tests** and **60 updater, split-pack
+  and server checks**, including 47 native updater cases after fixing Windows ZIP
+  separator compatibility. Game resources were unchanged; their hashes were
+  verified before repackaging with the corrected launcher. Export gates
+  verify 100 prepared service starts, 233 five-minute states and 515 traffic
+  encounters. All **472 ZIP CRCs / 470 managed file hashes** pass;
+  the folder matches the ZIP, the clean BUILD source is `e34b614`, the 160-pack
+  inventory matches the core index, and launcher v3 embeds the expected signing
+  public key. Signed archive identity, served checksum and three ZIP byte ranges
+  pass. Incremental routes and old full downloads return 404 as intended.
+  No extracted-distribution gameplay test was run.
+- R35's verified export directory, ZIP and checksum were retired after idle-LAN
+  checks, freeing **5,774,342,691 bytes**. Historical signed catalogues remain.
+  Evidence: `art/performance/r36-release-2026-10-20/`.
+
+Install check: extract the whole R36 ZIP into a new folder, including `packs/`.
+Launch `TrainGame.exe` or choose **Play installed (offline)** in the included
+launcher. Check the R36 version label, start a service and load a compatible saved
+journey. For R37+, close the game and use this folder's **Update & Play**; keep the
+host PC awake. A no-change check should download/write no game data. R36 itself
+is deliberately unavailable through the updater.
 
 ## 2026-10-20 — Stable packs and compressed updater v3
 
@@ -45,9 +55,8 @@
   cases and seven server cases pass. Native mounting reaches service selection,
   verifies 333 prepared states and loads all four fleet families plus audio.
   Evidence: `art/performance/updater-v3-2026-10-20/`.
-- **No new public release. R35 remains available.** The next build uses the new
-  packaging; first migration can still be large. Ship launcher v3 and restart
-  the LAN server once for its new route. Use a fresh release/sequence >= 38.
+- Published in R36 above as a full ZIP baseline with launcher v3. The server
+  now supports the new route; enable incremental downloads from R37 onward.
 
 Next-release player check: replace the tiny launcher once, update the existing
 installation, then repeat Update & Play and expect zero game data downloads or
