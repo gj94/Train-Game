@@ -1,5 +1,31 @@
 # Progress
 
+## 2026-10-21 — Investigated slow verified-block downloads
+
+- User reports the full ZIP reaches about 200 MB/s on the target PC while
+  "Downloading verified blocks" is much slower. Inspected the shipped v3
+  updater and server; no runtime or published release changes were made.
+- Block downloading is serial: one HTTP range per 64 KiB decoded block,
+  followed by decompression, SHA-256, a separate temporary cache file,
+  `Flush(true)` and rename before the next request. The progress stage includes
+  that local work, not just network transfer. The server also repeats release
+  policy reads, file metadata checks and stream open/close per request.
+- Exact R37 → R38 catalogue comparison gives 27,971 distinct missing blocks,
+  1,643,872,349 encoded bytes and about 58,771 bytes per response, assuming an
+  intact R37 installation and empty cache. The 3,584,017,612-byte ZIP streams in
+  one browser response. The updater selects by remaining byte count only,
+  without modelling request or storage overhead.
+- Illustrative arithmetic, not a target-PC measurement: five milliseconds
+  of overhead per block adds about 140 seconds; the ZIP's network transfer at
+  the reported 200 MB/s is about eighteen seconds before extraction.
+  The relative cost of network, disk flush, hashing and antivirus on the
+  target PC has not been profiled.
+- Next optimization: preserve block hashes but combine adjacent ranges into
+  multi-megabyte transfers, pipeline a bounded number of requests, consolidate
+  cache writes with durable recovery checkpoints, and select by estimated
+  completion time as well as size. No gameplay playtest is needed for this
+  investigation.
+
 ## 2026-10-21 — R38 published with full ZIP and compatible incremental updates
 
 - Published clean source `885dc17`, sequence 40, at
