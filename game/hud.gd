@@ -46,7 +46,8 @@ F5 imports/exports service definitions. Changing scenario or restarting asks fir
 Recovery saves rotate automatically. Service definition files start a fresh timetable.
 
 [b]SOUND & DIAGNOSTICS[/b]
-[ / ] track sound quieter / louder (2 dB)
+[ / ] current train's track-group boost (rolling + joints + squeal, 2 dB)
+Pause → Audio settings: independent hiss, clacks, squeal, wind, motors and interior mix
 , / . clang quieter / louder · J rail-joint markers
 Electric engine hum/traction and horn are active alongside the approved track sounds."""
 var scenario_brief := ""

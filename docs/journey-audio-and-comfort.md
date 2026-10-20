@@ -63,6 +63,33 @@ Wide-range gameplay separates layers and uses a final limiter; quiet mode adds
 compression before that limiter. The reference remains a comparison tool, not a
 claim of matching a recorded cabin spectrum.
 
+### Detailed mixer
+
+The sound menu now groups fifteen independent channels, plus Master:
+
+- **Rail & wheels:** continuous rolling rumble/hiss; airborne joint clacks;
+  curve/flange squeal; own-car floor thumps; intermittent metallic rattles.
+- **Wind & passing trains:** own-train exposed/head-out wind; other trains'
+  nose/body/wake air. Taking over a different service updates which train uses
+  each air channel.
+- **Motors & equipment:** traction motors; cooling fans; horns; compressor.
+- **Interior & movement:** ventilation; walking footsteps; doors/latches;
+  brake-release air.
+
+Every channel has an explanation, independent 2 dB adjustment, true Mute/Unmute
+and Restore standard level. Mute remembers the chosen level. Presets explicitly
+reset the mix. Existing saved shared settings are inherited once by their newly
+separated channels, so an update does not unexpectedly restore muted machinery.
+Settings belong to the PC and apply to nearby trains as well as your own.
+
+The approved reference preset retains its existing routing and bypasses these
+gameplay channels; the menu states this. Select Speakers/Headphones before
+tuning the full mix. The original `[ / ]` shortcuts remain a current-train
+track-group boost; Rail & wheels displays it and offers a reset. The second-axle
+balance is also available there. Neither control changes wheel spacing, the
+speed-dependent timing or the recorded waveform. A shared output limiter still
+protects the total mix from clipping.
+
 ## Journey tools
 
 Open **Pause → Journey tools & recovery** (also reachable with controller focus).
@@ -88,7 +115,7 @@ Open **Pause → Journey tools & recovery** (also reachable with controller focu
 
 ## Validation and playtest
 
-The source headless suite passed 614 tests, including station-entry restriction
+The original 18 October source suite passed 614 tests, including station-entry restriction
 regressions in both directions, a short leg, red-signal recovery, departure horn
 spacing, acoustic transmission/Doppler, save compatibility and recovery rotation.
 The full operating-day audit completed all 100 services, including depot clearance,

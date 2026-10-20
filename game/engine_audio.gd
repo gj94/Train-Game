@@ -15,6 +15,7 @@ var _pitch := 1.0
 const Layers := preload("res://game/audio_layers.gd")
 const Space := preload("res://game/listening_space.gd")
 var acoustic_bus := {}
+var channel_buses := {}
 var _horn_seen := 0
 var _horn_blocked_through := 0
 var _horn_end := -1.0
@@ -53,6 +54,9 @@ func setup(owner,train_view,track_sound) -> void:
 	_departure_horn_due(true,game.world.clock_seconds())
 	_is_vb=str(view.formation[0].model).begins_with("vb_")
 	acoustic_bus=Layers.filtered_bus(self,"traction",BUS)
+	channel_buses[BUS]=acoustic_bus
+	for destination in ["TrainFans","TrainHorn","TrainCompressor"]:
+		channel_buses[destination]=Layers.filtered_bus(self,destination,destination)
 	_make_loops()
 	if AudioServer.get_bus_index(BUS)<0:
 		AudioServer.add_bus()
@@ -64,19 +68,19 @@ func setup(owner,train_view,track_sound) -> void:
 		if model!="wap7" and model not in ["vb_mc","vb_mc2"]: continue
 		var players: Array[AudioStreamPlayer3D]=[]
 		for layer in 3:
-			var player:=_player(Layers.wave("fan-vb" if _is_vb else "fan-wap",true) if layer==0 else _loops[layer],view.cars[car])
+			var player:=_player(Layers.wave("fan-vb" if _is_vb else "fan-wap",true) if layer==0 else _loops[layer],view.cars[car],"TrainFans" if layer==0 else BUS)
 			player.position=Vector3(0,1.0,0)
 			player.volume_db=-80;player.play(float(car%5)*.17)
 			players.append(player)
 		sources.append({car=car,players=players})
-	_compressor=_player(Layers.wave("compressor",true),view.cars[0])
+	_compressor=_player(Layers.wave("compressor",true),view.cars[0],"TrainCompressor")
 	_compressor.position=Vector3(0,.7,-4);_compressor.volume_db=-80;_compressor.play()
-	horn_player=_player(load("res://assets/sounds/horn_1.ogg"),view.cars[0])
+	horn_player=_player(load("res://assets/sounds/horn_1.ogg"),view.cars[0],"TrainHorn")
 	horn_player.unit_size=30;horn_player.volume_db=-10
 
-func _player(stream: AudioStream,parent: Node3D) -> AudioStreamPlayer3D:
+func _player(stream: AudioStream,parent: Node3D,destination: String=BUS) -> AudioStreamPlayer3D:
 	var player:=AudioStreamPlayer3D.new()
-	player.stream=stream;player.bus=acoustic_bus.name;player.unit_size=8;player.max_distance=1600
+	player.stream=stream;player.bus=channel_buses[destination].name;player.unit_size=8;player.max_distance=1600
 	player.max_db=0
 	# The camera rides the train; no false Doppler from rebasing or fast forward.
 	player.doppler_tracking=AudioStreamPlayer3D.DOPPLER_TRACKING_DISABLED
@@ -111,7 +115,7 @@ func _process(delta: float) -> void:
 	var response:=Space.response(game.audio_space,own,"traction") if not game.audio_options.reference else Vector2(.6 if own and game.cam.mode in [1,2,4] else 1,18000)
 	var cutoff:=response.y
 	if game.audio_options.headphones:cutoff=minf(cutoff,Space.directional_cutoff(view.cars[0].global_position,game.cam.global_position,-game.cam.global_basis.z))
-	acoustic_bus.filter.cutoff_hz=lerpf(acoustic_bus.filter.cutoff_hz,cutoff,blend)
+	for channel in channel_buses.values():channel.filter.cutoff_hz=lerpf(channel.filter.cutoff_hz,cutoff,blend)
 	var cabin_gain:=response.x
 	var loc: Dictionary=view.motion.locate(0)
 	var velocity: Vector3=game.world.graph.tangent(loc.edge,loc.s,loc.dir)*train.speed
@@ -146,4 +150,4 @@ func _exit_tree() -> void:
 			if is_instance_valid(player):player.stop();player.queue_free()
 	for player in [horn_player,_compressor]:
 		if is_instance_valid(player):player.stop();player.queue_free()
-	Layers.remove_bus(acoustic_bus)
+	for channel in channel_buses.values():Layers.remove_bus(channel)

@@ -1,7 +1,7 @@
 extends Node3D
 ## Bounded, native positional coach-body cues. The sound lab owns the PCM.
 const Event := preload("res://sim/coach_rattle.gd")
-const BUS := "CoachBody"
+const BUS := "CoachRattles"
 const MAX_VOICES := 4
 static var _waves: Array[AudioStreamWAV] = []
 var game

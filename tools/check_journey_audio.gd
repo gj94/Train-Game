@@ -64,6 +64,17 @@ func run() -> void:
 	metrics.vehicles=items.reduce(func(total,item):return total+item.cars.size(),0)
 	metrics.traction_emitters=items.reduce(func(total,item):return total+item.engine.sources.size(),0)
 	metrics.outside=await measure()
+	for item in items:
+		var expected: String="TrainWind" if item.train==game.train else "PassingAir"
+		check(AudioServer.get_bus_send(AudioServer.get_bus_index(item.air.bus.name))==expected,"Own and passing air use independent channels")
+		check(item.engine.sources[0].players[0].bus!=item.engine.sources[0].players[1].bus,"Cooling fans separate from motors")
+		check(item.engine.horn_player.bus!=item.engine.sources[0].players[1].bus,"Horn separate from motors")
+	var previous_train: Train=game.train
+	game.train=items[1].train
+	for item in items:item.air._process(.01)
+	check(AudioServer.get_bus_send(AudioServer.get_bus_index(items[1].air.bus.name))=="TrainWind","Taking another train transfers own wind channel")
+	check(AudioServer.get_bus_send(AudioServer.get_bus_index(items[0].air.bus.name))=="PassingAir","Previous train becomes passing-air channel")
+	game.train=previous_train
 	game.audio_space=Space.compartment("vb_dtc",Vector3(0,2,8),24,0);game.audio_space.velocity=Vector3.ZERO;game.audio_space.car=0
 	camera.mode=1
 	metrics.sealed=await measure()

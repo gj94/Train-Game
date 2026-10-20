@@ -41,7 +41,7 @@ static func build(hud, kind: String) -> void:
 		"sound_controls":
 			hud._heading.text = "SOUND & JOINT DIAGNOSTICS"
 			hud._body.text = "Adjust track sound and second-axle balance, or show the physical contact markers."
-			entries = [["Audio mix & presets…","audio:open"],["Recovery & local diagnostics…","journey:open"],["Track sound quieter","padcmd:track_down"],["Track sound louder","padcmd:track_up"],["Second axle quieter","padcmd:clang_down"],["Second axle louder","padcmd:clang_up"],["Rail-joint markers ON / OFF","padcmd:joints"],["Performance overlay ON / OFF","padcmd:performance"],["Back","controller_actions"]]
+			entries = [["Detailed sound mixer…","audio:open"],["Rail hiss, joints & squeal…","audio:group:rail"],["Wind & passing trains…","audio:group:air"],["Recovery & local diagnostics…","journey:open"],["Rail-joint markers ON / OFF","padcmd:joints"],["Performance overlay ON / OFF","padcmd:performance"],["Back","controller_actions"]]
 	for entry in entries:
 		var action: String="pad_back" if entry[0]=="Back" else entry[1]
 		var button: Button=hud._button(hud._buttons,entry[0],action)

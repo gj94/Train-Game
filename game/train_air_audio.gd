@@ -9,6 +9,7 @@ var voices := []
 var bus := {}
 var _refresh := 0.0
 var nearest := 0
+var _destination := "TrainWind"
 static func air_level(speed: float, distance: float, own: bool, exposure: float) -> float:
 	if distance>150:return 0.0
 	var level:=pow(clampf(speed/30,0,2),1.7)*.65
@@ -40,6 +41,10 @@ func _process(delta: float) -> void:
 	var loc: Dictionary=view.motion.locate(0)
 	var velocity: Vector3=game.world.graph.tangent(loc.edge,loc.s,loc.dir)*view.train.speed
 	var own: bool=game.train==view.train
+	var destination: String="TrainWind" if own else "PassingAir"
+	if destination!=_destination:
+		AudioServer.set_bus_send(AudioServer.get_bus_index(bus.name),destination)
+		_destination=destination
 	var response:=Space.response(game.audio_space,own,"wind")
 	bus.filter.cutoff_hz=lerpf(bus.filter.cutoff_hz,response.y,1-exp(-delta*10))
 	var indices:=[0,nearest,view.cars.size()-1]
