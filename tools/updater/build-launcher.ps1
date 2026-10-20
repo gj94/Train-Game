@@ -9,12 +9,17 @@ New-Item -ItemType Directory -Path $OutputDirectory -Force | Out-Null
 if ($LASTEXITCODE -ne 0) { throw 'Launcher compilation failed.' }
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'README.txt') -Destination (Join-Path $OutputDirectory 'UPDATER-README.txt') -Force
 $archive = if ($ArchivePath) { $ArchivePath } else { Join-Path $projectRoot 'export/TrainGame-Updater.zip' }
-Compress-Archive -LiteralPath (Join-Path $OutputDirectory 'Update and Play.exe'),(Join-Path $OutputDirectory 'UPDATER-README.txt') -DestinationPath $archive -Force
+$temporaryArchive = $archive + '.' + [Guid]::NewGuid().ToString('N') + '.tmp.zip'
+Compress-Archive -LiteralPath (Join-Path $OutputDirectory 'Update and Play.exe'),(Join-Path $OutputDirectory 'UPDATER-README.txt') -DestinationPath $temporaryArchive
 # Match the main portable builder: some stripped PowerShell hosts cannot
 # autoload Get-FileHash. Stream through .NET rather than depending on that module.
-$archiveStream = [IO.File]::OpenRead($archive)
+$archiveStream = [IO.File]::OpenRead($temporaryArchive)
 $archiveHasher = [Security.Cryptography.SHA256]::Create()
 try { $archiveHash = [BitConverter]::ToString($archiveHasher.ComputeHash($archiveStream)).Replace('-','').ToLowerInvariant() }
 finally { $archiveHasher.Dispose(); $archiveStream.Dispose() }
-"$archiveHash  TrainGame-Updater.zip" | Set-Content -LiteralPath ($archive + '.sha256') -Encoding ascii
+# The LAN server must see a complete old or complete new launcher ZIP, never
+# a partially rewritten archive while a release is being prepared.
+Move-Item -LiteralPath $temporaryArchive -Destination $archive -Force
+"$archiveHash  TrainGame-Updater.zip" | Set-Content -LiteralPath ($archive + '.sha256.tmp') -Encoding ascii
+Move-Item -LiteralPath ($archive + '.sha256.tmp') -Destination ($archive + '.sha256') -Force
 Get-Item -LiteralPath $archive | Select-Object Name,Length

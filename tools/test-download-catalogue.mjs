@@ -40,6 +40,9 @@ test('next release can offer full ZIP and signed incremental endpoints together'
   assert.equal(await route('/update-files/TrainGame-Kerala-Coast-R25-Windows/TrainGame.pck',release),null);
   const page=await downloadPage(root,release);
   assert(page.includes('Download full Windows game'));assert(page.includes('Incremental updates'));
+  assert(!page.includes('Faster LAN updates'), 'Do not promise the new launcher for an older publication.');
+  release.updaterVersion=4;
+  assert((await downloadPage(root,release)).includes('replace <b>Update and Play.exe</b>'));
 });
 test('unfinished ZIPs, malformed policies and mismatched manifests fail closed',async t=>{
   const {root,release,route}=await fixture(t);

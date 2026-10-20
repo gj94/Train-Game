@@ -1,7 +1,7 @@
 extends RefCounted
 ## Immutable station footprints shared by terrain/scenery workers.
-static func build(world: RailWorld) -> Dictionary:
-	return preload("res://game/station_precinct_plan.gd").build(world)
+static func build(world: RailWorld,data=null) -> Dictionary:
+	return preload("res://game/station_precinct_plan.gd").build(world,data)
 
 
 static func contains(bins: Dictionary,x: float,z: float,margin: float=0,solid: bool=false) -> bool:

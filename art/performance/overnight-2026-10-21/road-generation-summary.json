@@ -1,0 +1,44 @@
+{
+  "road-generation-profile": {
+    "tiles": 90,
+    "note": "CPU-only interleaved three-pass road mesh generation; same terrain/tiles/materials; no simulation or rendered FPS measurement.",
+    "baseline_source": "65e30b1",
+    "before": {
+      "samples": 270,
+      "median_ms": 29.197,
+      "p95_ms": 185.833,
+      "maximum_ms": 376.684,
+      "median_vertices": 2052.0,
+      "median_surfaces": 3.0
+    },
+    "after": {
+      "samples": 270,
+      "median_ms": 84.91,
+      "p95_ms": 436.194,
+      "maximum_ms": 873.967,
+      "median_vertices": 4471.5,
+      "median_surfaces": 3.0
+    }
+  },
+  "road-generation-optimized-profile": {
+    "tiles": 90,
+    "note": "CPU-only interleaved three-pass road mesh generation; same terrain/tiles/materials; no simulation or rendered FPS measurement.",
+    "baseline_source": "65e30b1",
+    "before": {
+      "samples": 270,
+      "median_ms": 28.718,
+      "p95_ms": 188.953,
+      "maximum_ms": 404.383,
+      "median_vertices": 2052.0,
+      "median_surfaces": 3.0
+    },
+    "after": {
+      "samples": 270,
+      "median_ms": 66.172,
+      "p95_ms": 393.276,
+      "maximum_ms": 877.424,
+      "median_vertices": 4471.5,
+      "median_surfaces": 3.0
+    }
+  }
+}

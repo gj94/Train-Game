@@ -168,26 +168,16 @@ func build_ohe(eid: String,start: float,end: float,ohe_layout) -> Dictionary:
 	origin=Vector3(floorf(origin.x/256)*256,0,floorf(origin.z/256)*256)
 	root=Node3D.new(); root.name="Electrification_"+eid
 	batch=MeshBuilder.new()
-	var e: Dictionary=graph.edges[eid]
-	for k in range(ceili(start/55),ceili(end/55)):
-		var s:=k*55.0
-		var p:=graph.position_relative(eid,s,origin)
-		var f:=graph.tangent(eid,s,1)
-		var right:=f.cross(Vector3.UP)
-
-
-		var next_s:=minf(s+55,e.length)
-		var next:=graph.position_relative(eid,next_s,origin)
-		var next_right:=graph.tangent(eid,next_s,1).cross(Vector3.UP)
-		for j in 8:
-			var t0:=j/8.0; var t1:=(j+1)/8.0
-			var a:=p.lerp(next,t0)+Vector3.UP*6.1
-			var b:=p.lerp(next,t1)+Vector3.UP*6.1
-			a+=right.lerp(next_right,t0)*lerpf(.15 if k%2==0 else -.15,.15 if k%2==1 else -.15,t0)
-			b+=right.lerp(next_right,t1)*lerpf(.15 if k%2==0 else -.15,.15 if k%2==1 else -.15,t1)
-			batch.beam("wire",a,b,.012)
-			batch.beam("wire",a+Vector3.UP*(1.0-.55*sin(PI*t0)),b+Vector3.UP*(1.0-.55*sin(PI*t1)),.012)
-			if j%2==0: batch.beam("wire",a,a+Vector3.UP*(1.0-.55*sin(PI*t0)),.009)
+	for span in ohe_layout.wire_spans(eid,start,end,origin):
+		for j in range(1,span.contacts.size()):
+			batch.beam("wire",span.contacts[j-1],span.contacts[j],.012)
+			batch.beam("wire",span.messengers[j-1],span.messengers[j],.012)
+			# A 12 mm wire repeatedly falls between shadow-map samples. Use a
+			# small conservative caster, invisible to cameras, on the SAME path.
+			# This replaces its shadow draw, without widening the visible wire.
+			batch.beam("wire_shadow",span.contacts[j-1],span.contacts[j],.04)
+			batch.beam("wire_shadow",span.messengers[j-1],span.messengers[j],.04)
+		for dropper in span.droppers:batch.beam("wire",dropper[0],dropper[1],.009)
 
 	for support in ohe_layout.plans(eid,start,end,origin):
 		ohe_layout.draw(batch,support)

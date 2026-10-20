@@ -1,5 +1,40 @@
 # Progress
 
+## 2026-10-21 — Road/station clearances and connected overhead equipment
+
+- Wires and supports now share shifted route-wide rows; registrations and
+  gantry outriggers meet their supports. Long cantilevers use two-legged
+  portals. An invisible 40 mm caster improves shadow continuity while visible
+  wires remain 12 mm; no global shadow-resolution/bias increase.
+- Reconstructed road profiles provide connected bridge approaches, clearance
+  over actual railway/OHE, closed decks, piers and retaining faces. Full ribbons,
+  shoulders and paint avoid stations, platforms, open water and inconsistent
+  mid-height railway crossings. Station entrances use the same ground/profile
+  heights and reject canals, tunnels and raised roads. Mapped sidings also
+  exclude generic buildings. Asphalt coordinates remain stable across rebases.
+- Final game suite: **705 passed, zero failed**. Independent actual-geometry
+  audit covers 4,305 tiles, 2,257,858 triangles, 9,314 rail-height intersection
+  checks and 1,899 piers, with zero conflicts. OHE audit: 5,124 rows, 2,153
+  seamless boundaries, 11,936 connected registrations, zero failures.
+  All 50 retained station road links meet the road height.
+- Road profiles are shared read-only and checked for freshness during export.
+  Skipping off-corridor terrain work preserves byte-identical geometry across
+  the route. Median worker-side road construction fell from 84.9 to 66.2 ms
+  in the 90-tile test; richer roads still cost more than R38's flat ribbons.
+  This is not a rendered-FPS claim. See
+  `art/performance/overnight-2026-10-21/README.md`.
+- One-hour moving-camera soak: 360 coverage samples, 115 rebases, no missing
+  nearby track/OHE or terrain holes; world released on exit. That process
+  predates the last refinements, so a separate final-source station tour is
+  still running. Final-source ERS/KUMM/QLN/TVC and close OHE captures passed.
+- Timetables, railway inputs, physics and generated sound data are unchanged.
+  No full-day timetable rehearsal or extracted-distribution gameplay run.
+  R38 remains live until the new release is packaged after the requested
+  overnight work period; the v4 updater will ship with that release.
+- Playtest: inspect bridges/entrances at ERS, QLN and TVC; inspect canal-side
+  roads near Kumbalam; look at overhead attachments and roof shadows near a
+  station throat; repeat at night and through streaming boundaries.
+
 ## 2026-10-21 — Faster verified downloads prepared for the next release
 
 - V4 batches adjacent missing blocks into at most 4 MiB requests, pipelines

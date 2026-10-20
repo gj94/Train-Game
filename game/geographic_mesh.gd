@@ -7,16 +7,19 @@ func surface(kind: String) -> SurfaceTool:
 		tool.begin(Mesh.PRIMITIVE_TRIANGLES)
 		surfaces[kind]=tool
 	return surfaces[kind]
-func triangle(kind: String,a: Vector3,b: Vector3,c: Vector3,normal: Vector3,color: Color=Color.WHITE,uv: Array=[]) -> void:
+func triangle(kind: String,a: Vector3,b: Vector3,c: Vector3,normal: Vector3,color: Color=Color.WHITE,uv: Array=[],uv2: Array=[]) -> void:
 	var verts := [a,b,c]
 	var coords := uv if uv.size()==3 else [Vector2(a.x,a.z),Vector2(b.x,b.z),Vector2(c.x,c.z)]
+	var secondary:=uv2
 	if (b-a).cross(c-a).dot(normal)>0:
 		verts=[a,c,b]; coords=[coords[0],coords[2],coords[1]]
+		if secondary.size()==3:secondary=[secondary[0],secondary[2],secondary[1]]
 	var st := surface(kind)
 	for i in 3:
 		st.set_normal(normal)
 		st.set_color(color)
 		st.set_uv(coords[i])
+		if secondary.size()==3:st.set_uv2(secondary[i])
 		st.add_vertex(verts[i])
 func quad(kind: String,a: Vector3,b: Vector3,c: Vector3,d: Vector3,normal: Vector3,color: Color=Color.WHITE,uv: Array=[]) -> void:
 	var coords := uv if uv.size()==4 else [Vector2(a.x+a.z,a.y),Vector2(b.x+b.z,b.y),Vector2(c.x+c.z,c.y),Vector2(d.x+d.z,d.y)]
@@ -42,11 +45,16 @@ func finish(parent: Node3D,materials: Dictionary,label: String) -> void:
 		var node := MeshInstance3D.new()
 		node.name=label+"_"+kind
 		node.mesh=st.commit()
-		node.material_override=materials[kind]
+		node.material_override=materials["wire" if kind=="wire_shadow" else kind]
 		if kind=="architecture_detail":
 			node.visibility_range_end=650
 			node.visibility_range_end_margin=100
 			node.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
 		if kind=="water": node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		if kind=="wire_shadow":
+			node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+			node.set_meta("ohe_shadow",true)
+		elif kind=="wire" and surfaces.has("wire_shadow"):
+			node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		parent.add_child(node)
 	surfaces.clear()

@@ -60,8 +60,9 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	coordinate_origin=Vector3(floorf(position.x/1024)*1024,0,floorf(position.z/1024)*1024)
 	geo=GeoData.new(world.scenery.route)
 	geo.install_railway(world)
-	geo.station_sites=preload("res://game/coastal_station_sites.gd").build(world)
+	geo.station_sites=preload("res://game/coastal_station_sites.gd").build(world,geo)
 	geo.vegetation_clearance=preload("res://game/vegetation_clearance.gd").build(world)
+	geo.road_reservations=preload("res://game/geographic_road_reservations.gd").new(world,geo.station_sites)
 	_noise_tex=NoiseTexture2D.new()
 	_noise_tex.width=256; _noise_tex.height=256; _noise_tex.seamless=true
 	var noise:=FastNoiseLite.new(); noise.frequency=.012
@@ -105,6 +106,8 @@ func build(w: RailWorld,parent: Node3D) -> void:
 		data.share_railway(geo)
 		data.station_sites=geo.station_sites
 		data.vegetation_clearance=geo.vegetation_clearance
+		data.road_profiles=geo.road_profiles
+		data.road_reservations=geo.road_reservations
 		var runner:=StreamWorker.new()
 		workers.append({runner=runner,geo=data})
 		runner.start(_worker.bind(i))
@@ -158,6 +161,7 @@ func _make_materials() -> void:
 	road.set_shader_parameter("surface_normal",ph_tex("aerial_asphalt_01","nor_gl"))
 	road.set_shader_parameter("surface_rough",ph_tex("aerial_asphalt_01","rough"))
 	road.set_shader_parameter("metres",5.0)
+	road.set_shader_parameter("route_origin",coordinate_origin)
 	materials.road=road
 	materials.station_asphalt=road.duplicate()
 	materials.station_asphalt.set_shader_parameter("road_surface",false)
@@ -172,6 +176,9 @@ func _make_materials() -> void:
 	materials.road_shoulder=pbr("red_laterite_soil_stones",2.5,Color(.40,.37,.30))
 	materials.ballast=pbr("gravel_floor_02",2.0,Color(.40,.39,.35))
 	materials.metal=steel()
+	materials.siding_steel=mat(Color(.27,.22,.18))
+	materials.siding_steel.metallic=.55
+	materials.siding_steel.roughness=.72
 	materials.roof=_station_finish(2,Color(.43,.46,.44),2.0)
 	materials.paint=mat(Color(.84,.79,.60))
 	materials.sign=mat(Color(.91,.72,.20))
@@ -457,6 +464,8 @@ func _trace_job(finished: Dictionary,role: String) -> void:
 func rebase(origin: Vector3) -> void:
 	coordinate_origin=origin
 	materials.water.set_shader_parameter("route_origin",origin)
+	for name in ["road","station_asphalt"]:
+		if materials.has(name):materials[name].set_shader_parameter("route_origin",origin)
 	for chunk in loaded.values(): chunk.node.position=chunk.origin-origin
 	for pending in _activating.values():pending.holder.position=pending.result.origin-origin
 	if _joints_on: _make_joint_markers()

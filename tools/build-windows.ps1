@@ -46,6 +46,8 @@ New-Item -ItemType Directory -Path (Join-Path $buildRoot 'guides') -Force | Out-
 $exportLog = Join-Path $projectRoot '.local/windows-export.log'
 Push-Location $projectRoot
 try {
+    & node.exe (Join-Path $PSScriptRoot 'verify-road-surfaces.mjs')
+    if ($LASTEXITCODE -ne 0) { throw 'Road elevations are stale or invalid. Regenerate render-only road surfaces before exporting.' }
     & node.exe (Join-Path $PSScriptRoot 'verify-service-starts.mjs')
     if ($LASTEXITCODE -ne 0) { throw 'Prepared service starts are missing, stale or invalid. Regenerate before exporting.' }
     & node.exe (Join-Path $PSScriptRoot 'verify-railway-times.mjs')
@@ -154,7 +156,7 @@ try {
     }
     # Publish the download choice last, after all advertised files are complete.
     $releasePolicy = Join-Path $projectRoot 'export/download-release.json'
-    $policyJson = @{format=1;build=$BuildName;incremental=($UpdateSequence -gt 0 -and !$FullDownloadOnly)} | ConvertTo-Json
+    $policyJson = @{format=1;build=$BuildName;incremental=($UpdateSequence -gt 0 -and !$FullDownloadOnly);updaterVersion=4} | ConvertTo-Json
     [IO.File]::WriteAllText(($releasePolicy + '.tmp'), $policyJson, [Text.UTF8Encoding]::new($false))
     Move-Item -LiteralPath ($releasePolicy + '.tmp') -Destination $releasePolicy -Force
 } finally {

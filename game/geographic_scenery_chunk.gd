@@ -21,12 +21,14 @@ var wet_samples := {}
 var shore_bins := {}
 var near_tiles: Array = []
 var mapped_rails: Array = []
+var mapped_rail_clearance:=preload("res://game/geographic_scenery_occupancy.gd").new()
 var library
 var occupancy:=preload("res://game/geographic_scenery_occupancy.gd").new()
 const BuildingLayout:=preload("res://game/geographic_building_layout.gd")
 const Kerala:=preload("res://game/kerala_scenery.gd")
 const Budget:=preload("res://game/railway_render_budget.gd")
 var tile_features: Array=[]
+var road_water
 
 func _init(data, shared_materials: Dictionary, shared_assets) -> void:
 	geo=data
@@ -231,40 +233,10 @@ func _lines(geometry: Dictionary) -> Array:
 	return geometry.coordinates if geometry.type=="MultiLineString" else ([geometry.coordinates] if geometry.type=="LineString" else [])
 
 func _road(feature: Dictionary) -> void:
-	var tags: Dictionary=feature.tags
-	if tags.get("highway","") in ["proposed","construction"]: return
-	var width: float={"motorway":10.0,"trunk":9.0,"primary":8.0,"secondary":6.5,"tertiary":5.5,"residential":4.5,"service":3.6,"footway":1.5,"path":1.0,"track":2.8}.get(tags.get("highway",""),4.0)
-	var bridge: bool=tags.get("bridge","no")!="no"
-	for line in _lines(feature.geometry):
-		for i in range(1,line.size()):
-			var a:=Vector3(line[i-1][0],0,line[i-1][1])
-			var b:=Vector3(line[i][0],0,line[i][1])
-			var steps:=maxi(1,ceili(a.distance_to(b)/8.0))
-			for j in steps:
-				var p:=a.lerp(b,j/float(steps)); var q:=a.lerp(b,(j+1)/float(steps))
-				if not _corridor((p.x+q.x)*.5,(p.z+q.z)*.5):continue
-				if not bridge and StationSites.road_blocked(geo.station_sites,(p.x+q.x)*.5+origin.x,(p.z+q.z)*.5+origin.z,width*.5):continue
-				p.y=_ground(p.x,p.z)+.07; q.y=_ground(q.x,q.z)+.07
-
-				if bridge: p.y+=5.8; q.y+=5.8
-				var side: Vector3=(q-p).normalized().cross(Vector3.UP)*width*.5
-				var normal: Vector3=(q-p).cross(side).normalized()
-				if normal.y<0: normal=-normal
-				batch.quad("road",p-side,q-side,q+side,p+side,normal,Color.WHITE,[Vector2(0,0),Vector2(0,1),Vector2(1,1),Vector2(1,0)])
-				if not bridge:
-					for signum in [-1,1]:
-						var outer: Vector3=side+side.normalized()*.65
-						batch.quad("road_shoulder",p+side*signum-Vector3.UP*.02,q+side*signum-Vector3.UP*.02,q+outer*signum-Vector3.UP*.03,p+outer*signum-Vector3.UP*.03,Vector3.UP)
-				if bridge:
-					for signum in [-1,1]:
-						batch.beam("concrete",p+side*signum+Vector3.UP*.55,q+side*signum+Vector3.UP*.55,.18)
-				elif width>5:
-					var mid:=p.lerp(q,.5)
-					var along: Vector3=(q-p).normalized()*minf(2.0,p.distance_to(q)*.35)
-					var stripe:=side.normalized()*.06
-					batch.quad("paint",mid-along-stripe+Vector3.UP*.015,mid+along-stripe+Vector3.UP*.015,mid+along+stripe+Vector3.UP*.015,mid-along+stripe+Vector3.UP*.015,Vector3.UP,Color(.70,.67,.54))
+	preload("res://game/geographic_road_surface.gd").draw(self,feature)
 
 func _stream(feature: Dictionary) -> void:
+	if feature.tags.get("tunnel","no")!="no" or feature.tags.get("covered","no")=="yes":return
 	for line in _lines(feature.geometry):
 		for i in range(1,line.size()):
 			var a:=Vector3(line[i-1][0],0,line[i-1][1]); var b:=Vector3(line[i][0],0,line[i][1])
@@ -283,6 +255,7 @@ func _building(feature: Dictionary) -> void:
 		for p in poly[0]: ring.append(Vector2(p[0],p[1]))
 		if ring[0].is_equal_approx(ring[-1]): ring.remove_at(ring.size()-1)
 		if StationSites.intersect(geo.station_sites,ring,origin):continue
+		if not mapped_rail_clearance.clear_polygon(ring,1.2):continue
 		var centre:=Vector2.ZERO
 		for p in ring: centre+=p
 		centre/=ring.size()
@@ -368,7 +341,6 @@ func _mapped_rail(feature: Dictionary) -> void:
 		for i in range(1,line.size()):
 			var a:=Vector3(line[i-1][0],0,line[i-1][1])
 			var b:=Vector3(line[i][0],0,line[i][1])
-			mapped_rails.append([Vector2(a.x,a.z),Vector2(b.x,b.z)])
 			if geo.operating_ways.has(str(feature.id)):continue
 			var count:=maxi(1,ceili(a.distance_to(b)/5.0))
 			for j in count:
@@ -380,7 +352,7 @@ func _mapped_rail(feature: Dictionary) -> void:
 				var side: Vector3=(q-p).normalized().cross(Vector3.UP)
 				batch.quad("ballast",p-side*2.1,q-side*2.1,q+side*2.1,p+side*2.1,Vector3.UP)
 				for signum in [-1,1]:
-					batch.beam("metal",p+side*signum*.838+Vector3.UP*.20,q+side*signum*.838+Vector3.UP*.20,.075,Color.WHITE,.14)
+					batch.beam("siding_steel",p+side*signum*.838+Vector3.UP*.20,q+side*signum*.838+Vector3.UP*.20,.075,Color.WHITE,.14)
 				var sleepers:=maxi(1,ceili(p.distance_to(q)/.75))
 				for k in sleepers:
 					var c:=p.lerp(q,k/float(sleepers))+Vector3.UP*.07
@@ -395,6 +367,11 @@ func _near_mapped_rail(p: Vector2,clearance: float) -> bool:
 
 func _register_occupied(features: Array) -> void:
 	for feature in features:
+		if feature.kind=="rail" and feature.tags.get("railway")=="rail":
+			for line in _lines(feature.geometry):
+				for i in range(1,line.size()):
+					var a:=Vector2(line[i-1][0],line[i-1][1]);var b:=Vector2(line[i][0],line[i][1])
+					mapped_rails.append([a,b]);mapped_rail_clearance.add_road(a,b,3.15)
 		if feature.kind=="building":
 			var geometry: Dictionary=feature.geometry
 			var polygons: Array=geometry.coordinates if geometry.type=="MultiPolygon" else [geometry.coordinates]

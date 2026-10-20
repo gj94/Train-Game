@@ -45,13 +45,18 @@ static func _plan(id: String,station: String,p: Vector3,basis: Basis,size: Vecto
 		solid_centre=p,solid_extent=size,height=p.y-.09,building=p,footprint=size,
 		half=half,front=front,outer=outer,back=back,major=major,halt=halt,access=[]}
 
-static func build(world: RailWorld) -> Dictionary:
+static func build(world: RailWorld,data=null) -> Dictionary:
 	var bins:={}
-	var data=preload("res://game/geographic_data.gd").new(world.scenery.route)
+	if data==null:
+		data=preload("res://game/geographic_data.gd").new(world.scenery.route)
+		data.install_railway(world)
+	if data.road_profiles==null:data.road_profiles=preload("res://game/geographic_road_profiles.gd").new()
 	var tile_cache:={}
+	var rail_clearance=preload("res://game/scenery_clearance.gd").new(world.graph)
+	var zones:=[]
 	for station in world.stations:
 		for zone: Dictionary in plans(world,station):
-			if not zone.halt:zone.access=_access(zone,data,tile_cache)
+			zones.append(zone)
 			var radius: float=zone.extent.length()*.5+24
 			var centre: Vector3=zone.centre
 			for x in range(floori((centre.x-radius)/512),floori((centre.x+radius)/512)+1):
@@ -59,17 +64,22 @@ static func build(world: RailWorld) -> Dictionary:
 					var key:=Vector2i(x,z)
 					if not bins.has(key):bins[key]=[]
 					bins[key].append(zone)
-			# Access spurs reserve their corridor against procedural clutter too.
-			for connection in zone.access:
-				var a: Vector3=connection[0];var b: Vector3=connection[1]
-				var delta: Vector3=b-a;delta.y=0
-				if delta.length()<.1:continue
-				var link:={id=zone.id+"_ACCESS",code=zone.code,centre=(a+b)*.5,basis=Basis.looking_at(delta),extent=Vector2(8,delta.length()+4),solid_centre=(a+b)*.5,solid_extent=Vector2.ZERO,height=zone.height,access_zone=true}
-				for x in range(floori((minf(a.x,b.x)-12)/512),floori((maxf(a.x,b.x)+12)/512)+1):
-					for z in range(floori((minf(a.z,b.z)-12)/512),floori((maxf(a.z,b.z)+12)/512)+1):
-						var key:=Vector2i(x,z)
-						if not bins.has(key):bins[key]=[]
-						bins[key].append(link)
+	# Resolve road connections only after every station's grading is present.
+	# Candidate endpoints must see the exact same terrain as rendered roads.
+	data.station_sites=bins
+	for zone: Dictionary in zones:
+		if not zone.halt:zone.access=_access(zone,data,tile_cache,rail_clearance)
+		# Access spurs reserve their corridor against procedural clutter too.
+		for connection in zone.access:
+			var a: Vector3=connection[0];var b: Vector3=connection[1]
+			var delta: Vector3=b-a;delta.y=0
+			if delta.length()<.1:continue
+			var link:={id=zone.id+"_ACCESS",code=zone.code,centre=(a+b)*.5,basis=Basis.looking_at(delta),extent=Vector2(8,delta.length()+4),solid_centre=(a+b)*.5,solid_extent=Vector2.ZERO,height=zone.height,access_zone=true}
+			for x in range(floori((minf(a.x,b.x)-12)/512),floori((maxf(a.x,b.x)+12)/512)+1):
+				for z in range(floori((minf(a.z,b.z)-12)/512),floori((maxf(a.z,b.z)+12)/512)+1):
+					var key:=Vector2i(x,z)
+					if not bins.has(key):bins[key]=[]
+					bins[key].append(link)
 	return bins
 
 static func entries(bins: Dictionary,station: Dictionary) -> Array:
@@ -97,7 +107,7 @@ static func ground(bins: Dictionary,x: float,z: float,height: float) -> float:
 			best=weight;target=zone.height
 	return lerpf(height,target,best)
 
-static func _access(zone: Dictionary,data,tile_cache: Dictionary) -> Array:
+static func _access(zone: Dictionary,data,tile_cache: Dictionary,rail_clearance=null) -> Array:
 	# Connect front/side gates to nearby mapped roads on the city side.
 	# Only accepted paths entirely outside the building and mapped water/houses.
 	var gate: Vector3=zone.building+zone.basis.z*zone.outer
@@ -108,22 +118,22 @@ static func _access(zone: Dictionary,data,tile_cache: Dictionary) -> Array:
 			var key:=Vector2i(x,z)
 			if not tile_cache.has(key):tile_cache[key]=data.tile(key)
 			for feature in tile_cache[key].get("features",[]):
-				if feature.kind in ["road","building","water"]:
+				if feature.kind in ["road","building","water","stream"]:
 					features.append(feature);tile_origins.append(Vector2(x*512,z*512))
 	var candidates:=[]
 	for i in features.size():
 		var feature: Dictionary=features[i]
-		if feature.kind!="road" or feature.tags.get("bridge","no")!="no":continue
+		if feature.kind!="road" or feature.tags.get("bridge","no")!="no" or feature.tags.get("tunnel","no")!="no" or float(feature.tags.get("layer","0"))<0:continue
 		if feature.tags.get("highway","") not in ["service","residential","unclassified","tertiary","secondary"]:continue
 		var lines: Array=feature.geometry.coordinates if feature.geometry.type=="MultiLineString" else [feature.geometry.coordinates]
 		for line in lines:
 			for j in range(1,line.size()):
 				var a: Vector2=Vector2(line[j-1][0],line[j-1][1])+tile_origins[i]
 				var b: Vector2=Vector2(line[j][0],line[j][1])+tile_origins[i]
-				candidates.append_array(_road_candidates(zone,data,a,b))
+				candidates.append_array(_road_candidates(zone,data,a,b,feature.id))
 
-	return preload("res://game/station_road_access.gd").clear_links(candidates,features,tile_origins)
+	return preload("res://game/station_road_access.gd").clear_links(candidates,features,tile_origins,rail_clearance)
 
 
-static func _road_candidates(zone: Dictionary,data,a: Vector2,b: Vector2) -> Array:
-	return preload("res://game/station_road_access.gd").candidates(zone,data,a,b)
+static func _road_candidates(zone: Dictionary,data,a: Vector2,b: Vector2,way: String="") -> Array:
+	return preload("res://game/station_road_access.gd").candidates(zone,data,a,b,way)

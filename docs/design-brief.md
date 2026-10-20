@@ -9,6 +9,15 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **21 Oct 2026 scenery consistency:** connect OHE registration equipment to
+  its supports/wires, reduce gaps in wire shadows, and keep roads clear of
+  station compounds, platforms and open waterways. Give bridges connected
+  approaches and visible supports. Preserve railway operation; the user
+  explicitly excludes timetable reruns for these graphical changes.
+- **21 Oct 2026 updater throughput:** batch and pipeline verified LAN blocks
+  while retaining signature/hash checks and recoverable installation writes.
+  Existing installations should be able to adopt the faster small launcher
+  without downloading another full game ZIP.
 - **20 Oct 2026 wait comfort:** slow passengers may accumulate substantial delay
   while giving way. Aim for at least 70% of meaningful extra waits under ten
   minutes, 90% under twenty, 98% under thirty and all under forty-five. Ten

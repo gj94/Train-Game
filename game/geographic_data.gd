@@ -11,6 +11,8 @@ var tile_keys := {}
 var station_bins := {}
 var station_sites := {}
 var vegetation_clearance
+var road_profiles
+var road_reservations
 var operating_ways := {}
 var bridge_bins := {}
 var bridges: Array = []

@@ -347,3 +347,15 @@ Indian rolling stock. Canonical source: sibling
 `tools/export-journey-sounds.mjs`; recovery copies in `tools/audio-source/`.
 `provenance.json` records source and WAV hashes. No external samples were added
 and the approved joint, rolling and squeal banks remain unchanged.
+
+## R39 road surface reconstruction
+
+`assets/models/scenery/road-surfaces.json` derives connected road elevations
+from the existing Kerala map database and NASA/USGS SRTM terrain, with clearance
+against the game's reconstructed railway and station geometry. Map attribution
+remains **© OpenStreetMap contributors, ODbL 1.0**; the source inputs retain their
+notices in `data/routes/kerala_coast/README.md`. Reproduce the derived data with
+`tools/export_scenery_context.gd` and `tools/maps/road_surfaces.py`.
+The profile is an artistic reconstruction for rendering, not a civil survey.
+New road decks, piers, retaining faces and overhead fittings are procedural
+geometry; no new third-party texture or model was introduced for this pass.

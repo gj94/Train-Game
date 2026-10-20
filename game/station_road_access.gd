@@ -1,6 +1,6 @@
 extends RefCounted
 ## Gate-to-road links. No invented road may cross a station building or railway.
-static func candidates(zone: Dictionary,data,a: Vector2,b: Vector2) -> Array:
+static func candidates(zone: Dictionary,data,a: Vector2,b: Vector2,way: String="") -> Array:
 	var result:=[]
 	var inverse: Basis=zone.basis.inverse()
 	var base:=Vector3(zone.building.x,0,zone.building.z)
@@ -25,14 +25,27 @@ static func candidates(zone: Dictionary,data,a: Vector2,b: Vector2) -> Array:
 			var distance:=Vector2(start.x,start.z).distance_to(at)
 			if distance<4 or distance>80:continue
 			var end:=Vector3(at.x,data.ground_at(at.x,at.y)+.065,at.y)
+			if not way.is_empty() and data.road_profiles!=null:
+				var profile: Dictionary=data.road_profiles.sample(way,at)
+				# Entrance spurs connect to roads on the ground, not to the
+				# underside of a flyover or a raised approach on the same way.
+				if not profile.is_empty():
+					if profile.bridge or absf(profile.height-end.y)>.2:continue
+					end.y=profile.height
 			if absf(end.y-start.y)/distance>.10:continue
 			result.append({a=start,b=end,distance=distance,gate=index})
 	return result
 
-static func clear_links(options: Array,features: Array,origins: Array) -> Array:
+static func clear_links(options: Array,features: Array,origins: Array,rail_clearance=null) -> Array:
 	var occupancy=preload("res://game/geographic_scenery_occupancy.gd").new()
 	for i in features.size():
 		var feature: Dictionary=features[i]
+		if feature.kind=="stream" and feature.tags.get("tunnel","no")=="no" and feature.tags.get("covered","no")!="yes":
+			var lines: Array=feature.geometry.coordinates if feature.geometry.type=="MultiLineString" else [feature.geometry.coordinates]
+			for line in lines:
+				for j in range(1,line.size()):
+					occupancy.add_road(Vector2(line[j-1][0],line[j-1][1])+origins[i],Vector2(line[j][0],line[j][1])+origins[i],4.0 if feature.tags.get("waterway")=="river" else 1.2)
+			continue
 		if feature.kind not in ["building","water"]:continue
 		var polygons: Array=feature.geometry.coordinates if feature.geometry.type=="MultiPolygon" else [feature.geometry.coordinates]
 		for polygon in polygons:
@@ -49,7 +62,8 @@ static func clear_links(options: Array,features: Array,origins: Array) -> Array:
 		var clear:=true
 		var count:=maxi(2,ceili(option.distance/2))
 		for j in range(1,count+1):
-			if not occupancy.clear(a.lerp(b,float(j)/count),3.2):clear=false;break
+			var p:=a.lerp(b,float(j)/count)
+			if not occupancy.clear(p,3.2) or (rail_clearance!=null and not rail_clearance.clear_point(Vector3(p.x,0,p.y),6.5)):clear=false;break
 		if clear:
 			used.append(option.gate)
 			accepted.append([option.a,option.b])

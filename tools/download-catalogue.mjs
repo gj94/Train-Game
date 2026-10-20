@@ -84,6 +84,7 @@ export async function downloadPage(root, release) {
   let updates = '';
   if (release?.incremental && await matchingManifest(root, release)) {
     updates = '<h2>Incremental updates</h2><p>Already installed? Run <b>Update and Play.exe</b> in your game folder to download changed blocks.</p><p><a href="/TrainGame-Updater.zip">Get the updater separately</a> · <a href="/updater/instructions">Updater instructions</a></p>';
+    if (release.updaterVersion >= 4) updates += '<p><b>Faster LAN updates:</b> if you have an older updater, close it, download the small updater ZIP above and replace <b>Update and Play.exe</b> in your existing game folder once. The v4 updater batches verified blocks and uses concurrent transfers. You do not need to download the full game again. The latest full ZIP already includes v4.</p>';
   } else if (info) {
     updates = '<p>This release is available as a full download only. The included updater is ready for the next release, when full downloads and incremental updates will both be available.</p>';
   }

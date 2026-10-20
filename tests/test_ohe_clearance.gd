@@ -58,3 +58,71 @@ func test_yard_support_row_avoids_the_passenger_footbridge():
 	w.stations=[{s=50.0,through_halt=false,platform_tracks=[]}]
 	var plans: Array=Layout.new(w).plans("R0",0,220,Vector3.ZERO)
 	return plans.size()==4 and plans.all(func(p):return absf(p.chainage-110)>5)
+
+func test_shifted_support_belongs_to_its_actual_chunk():
+	var w:=tracks([0.0,5.3,11.0])
+	w.stations=[{s=50.0,through_halt=false,platform_tracks=[]}]
+	var layout:=Layout.new(w)
+	var before: Array=layout.plans("R0",0,115,Vector3.ZERO)
+	var after: Array=layout.plans("R0",115,220,Vector3.ZERO)
+	return before.map(func(p):return p.chainage)==[0.0,55.0] and after.map(func(p):return p.chainage)==[120.0,165.0]
+
+func test_every_registration_touches_its_contact_and_messenger():
+	var w:=tracks([0.0,5.3,11.0],true)
+	w.stations=[{s=50.0,through_halt=false,platform_tracks=[]}]
+	var layout:=Layout.new(w)
+	for support in layout.plans("R0",0,w.graph.edges.R0.length,Vector3.ZERO):
+		for anchor in support.anchors:
+			var contacts:=[];var messengers:=[]
+			for eid in w.graph.edges:
+				for span in layout.wire_spans(eid,0,w.graph.edges[eid].length,Vector3.ZERO):
+					contacts.append_array(span.contacts);messengers.append_array(span.messengers)
+			if not contacts.any(func(p):return p.distance_to(anchor.contact)<.0001):return "Registration misses contact"
+			if not messengers.any(func(p):return p.distance_to(anchor.contact+Vector3.UP)<.0001):return "Suspension misses messenger"
+	return true
+
+func test_non_grid_edge_join_has_no_contact_or_messenger_gap():
+	var w:=RailWorld.new()
+	w.graph.add_node("a",Vector3.ZERO);w.graph.add_node("b",Vector3(103,0,0));w.graph.add_node("c",Vector3(220,1,7))
+	w.graph.add_edge("first","a","b");w.graph.add_edge("next","b","c")
+	w.graph.edges.first.merge({chainage_start=13.0,chainage_end=116.0})
+	w.graph.edges.next.merge({chainage_start=116.0,chainage_end=233.0})
+	var layout:=Layout.new(w)
+	var a: Array=layout.wire_spans("first",0,w.graph.edges.first.length,Vector3.ZERO)
+	var b: Array=layout.wire_spans("next",0,w.graph.edges.next.length,Vector3.ZERO)
+	return a[-1].contacts[-1].distance_to(b[0].contacts[0])<.0001 and a[-1].messengers[-1].distance_to(b[0].messengers[0])<.0001
+
+func test_partial_chunks_cover_wire_once_with_identical_join():
+	var w:=tracks([0.0],true);var layout:=Layout.new(w)
+	var length: float=w.graph.edges.R0.length
+	var whole: Array=layout.wire_spans("R0",0,length,Vector3.ZERO)
+	var a: Array=layout.wire_spans("R0",0,83.4,Vector3.ZERO)
+	var b: Array=layout.wire_spans("R0",83.4,length,Vector3.ZERO)
+	if a[-1].contacts[-1].distance_to(b[0].contacts[0])>.0001:return "Chunk contact seam"
+	if a[-1].messengers[-1].distance_to(b[0].messengers[0])>.0001:return "Chunk messenger seam"
+	var count:=0;var expected:=0
+	for span in a+b:count+=span.droppers.size()
+	for span in whole:expected+=span.droppers.size()
+	return count==expected and a[0].start==whole[0].start and b[-1].end==whole[-1].end
+
+func test_wire_shadow_proxy_is_invisible_and_does_not_double_cast():
+	var batch=preload("res://game/geographic_mesh.gd").new()
+	batch.beam("wire",Vector3.ZERO,Vector3(55,0,0),.012)
+	batch.beam("wire_shadow",Vector3.ZERO,Vector3(55,0,0),.04)
+	var holder:=Node3D.new()
+	batch.finish(holder,{wire=StandardMaterial3D.new()},"OHE")
+	var visible_wire: MeshInstance3D=holder.get_node("OHE_wire")
+	var caster: MeshInstance3D=holder.get_node("OHE_wire_shadow")
+	var good:=visible_wire.cast_shadow==GeometryInstance3D.SHADOW_CASTING_SETTING_OFF and caster.cast_shadow==GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+	good=good and absf(visible_wire.mesh.get_aabb().size.y-.012)<.0001 and absf(caster.mesh.get_aabb().size.y-.04)<.0001
+	holder.free()
+	return good
+
+func test_wide_platforms_use_supported_portals_instead_of_oversized_arms():
+	for offsets in [[0.0],[0.0,5.3]]:
+		var w:=tracks(offsets)
+		var last: String="R"+str(offsets.size()-1)
+		w.stations=[{s=110.0,platform_tracks=[last],platform_details={last:{platform_width=12.0,platform_side=1}}}]
+		var plan: Dictionary=Layout.new(w).plans("R0",0,220,Vector3.ZERO)[1]
+		if not plan.portal or plan.posts.size()!=2 or not clear_of_segments(w,plan):return "Wide platform has an unsupported cantilever"
+	return true

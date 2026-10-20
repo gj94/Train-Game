@@ -76,3 +76,67 @@ reports every footprint and accepted road connection. Native source screenshots
 come from `tools/capture_station_surroundings.gd`, with `--tag=NAME`,
 `--codes=KUMM,TUVR,ERS,VRLR` and optional `--views=forecourt,ground,platform`.
 No extracted distribution launch is required for this visual iteration.
+
+## R39 — Roads, bridges and electrification
+
+The road renderer now clips whole road ribbons, shoulders and markings against
+the actual station buildings, forecourts, platforms and open water. Ground roads
+may meet the rail head at a level crossing; inconsistent fragments in the space
+occupied by trains and overhead equipment are omitted. Mapped station stairs,
+platform paths and underground roads no longer become generic asphalt ramps.
+The operating railway and CSV platform inventory are unchanged.
+
+Bridge decks have undersides, coping, rails and piers. Connected approach grades
+extend beyond the original OSM bridge tag where the reconstructed yard is wider.
+Clearance uses the actual running/depot tracks and overhead support spans.
+Water-side deck corners are checked as well as the centreline. High approaches
+use open supports instead of retaining walls across tracks; lower approaches
+have retaining faces meeting the ground. Piers avoid running tracks, platforms
+and mapped roads beneath them.
+
+Station entrance planning uses all completed station grading and those same road
+elevations. It rejects a connection to the underside of a raised approach, an
+open canal, a tunnel or a running line. Generic building footprints also reserve
+mapped sidings before placement, regardless of map feature order. Yard rails use
+a rougher, aged steel finish rather than the general polished-metal material.
+Asphalt now has stable absolute texture coordinates and a separate edge-dust
+mask, including when the world rebases.
+
+Overhead supports and wires use a common 55 m chainage grid, including rows
+shifted clear of a footbridge. Edge and streaming boundaries retain the same
+wire endpoints, messenger sag and dropper positions. Registration arms meet the
+contact wire and messenger; gantry outriggers connect to their crossbeam.
+Unusually long cantilevers become two-legged portals. The 6.5 m switch to a portal
+is a rendering design threshold, not a claim about an Indian Railways standard.
+The visible contact/messenger wires remain 12 mm; an invisible 40 mm shadow
+caster follows the same path to reduce gaps from shadow-map undersampling.
+This does not increase global shadow resolution or view distance. Very distant
+thin shadows remain limited by the selected shadow setting.
+
+Road elevations are a rendering reconstruction from OSM, SRTM and the game's
+railway geometry, not a survey of civil engineering structures. Long untagged
+road/water conflicts remain recorded for later map research; their submerged
+fragments are omitted rather than inventing a large bridge. Profiles are
+precomputed and shared read-only with scenery workers. Geometry remains batched
+by material; no per-frame road planning or additional road traffic is introduced.
+
+To regenerate after changing map inputs, use the portable engine to run
+`tools/export_scenery_context.gd`, then run `tools/maps/road_surfaces.py` with the
+existing `.local/kerala-route/python` dependencies. `node tools/verify-road-surfaces.mjs`
+checks the rendered context, source hashes and tile inventory during every export.
+It does not advance railway time. Focused checks are `test_road_surfaces.gd`,
+`test_ohe_clearance.gd`, `tools/check_kerala_ohe.gd` and
+`tools/check_station_road_connections.gd`. The full-corridor triangle audit uses
+`tools/check_road_render_geometry.gd -- --all`, followed by
+`tools/maps/audit_road_surfaces.py`.
+
+Player checks for this release:
+
+1. Visit Ernakulam, Kollam and Trivandrum in free camera. Follow entrance links
+   to the surrounding streets and inspect road bridges over each yard.
+2. At Kumbalam and the coastal stretches, check road edges and canal crossings;
+   asphalt should not run flat across open water.
+3. Look above the train near a station throat and under road bridges. Supports
+   should connect to the wire, with no exceptionally long floating arms.
+4. Stop in an exterior camera and inspect wire shadows on the train roof, then
+   drive through a few streaming boundaries. Check the same area at night.

@@ -26,3 +26,8 @@ func test_nearby_building_outside_both_margins_is_retained():
 	return platform().clear_polygon(rectangle(Vector2(24,0),Vector2(30,10)),1)
 func test_invalid_empty_footprint_cannot_be_approved():
 	return not rail().clear_polygon(PackedVector2Array())
+
+func test_mapped_sidings_reserve_building_envelopes_before_feature_render_order():
+	var chunk=preload("res://game/geographic_scenery_chunk.gd").new(null,{},null)
+	chunk._register_occupied([{kind="rail",tags={railway="rail"},geometry={type="LineString",coordinates=[[-200,0],[200,0]]}}])
+	return not chunk.mapped_rail_clearance.clear_polygon(rectangle(Vector2(-30,-30),Vector2(30,30)),1.2) and chunk.mapped_rail_clearance.clear_polygon(rectangle(Vector2(-30,8),Vector2(30,30)),1.2)
