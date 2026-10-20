@@ -142,7 +142,7 @@ void fragment() {
   }
   ALBEDO*=1.0+pigment*strength;
   bump.xy-=slope*strength;
-  NORMAL=mapped_normal(geometric_normal,VERTEX,uv,normalize(bump));
+  NORMAL=mapped_normal(geometric_normal,VERTEX,local_p/metres,normalize(bump));
   ROUGHNESS=clamp(ROUGHNESS+rough_delta*strength,.18,1.0);
  }
 }

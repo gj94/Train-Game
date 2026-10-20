@@ -16,7 +16,8 @@ work branch, publish a release, or change the railway simulation.
 - Sharper sky reflections (512 instead of the original 256 radiance size),
   96-step screen-space reflections, and 150% of High's tree/building/other-train
   detail ranges. Mesh LOD threshold is 0.5 rather than 1.0.
-- Native resolution and 8× MSAA remain. Extreme disables FXAA for texture clarity.
+- Native resolution, 8× MSAA and FXAA remain. The first render review found that
+  disabling FXAA worsened thin overhead lines for little material benefit.
 
 High remains the default. Existing High, Balanced and Performance values are
 unchanged; the two new switches default off when loading old preference files.
@@ -118,6 +119,15 @@ resources. Two isolated VB import attempts were externally killed before scene
 cache output; the cause of those kills is unknown. Full authored-model coverage
 is therefore not claimed. Original asset/import settings remain unchanged.
 
-The morning review handoff will record the final parent/head commits, capture
-evidence and remaining limitations here. No visual or target-hardware sign-off
-is claimed by this initial checkpoint.
+The first [software Vulkan render run](https://github.com/gj94/Train-Game/actions/runs/39473413938)
+produced all 15 parent High images and 33 patched images before the capture
+watchdog expired. All 11 completed original-High / patched-High / restored-High
+comparisons are pixel-identical. This is partial evidence, not a complete pass:
+the original workflow pipeline masked the timeout exit status. The workflow now
+uses pipefail and a separate fail-closed manifest/image validator.
+
+Pixel review found improved filtered paving and plaster, but insufficient water
+definition and worse thin-line antialiasing with FXAA disabled. Extreme now keeps
+FXAA; water reflection/normal diagnostics and full night/rebase captures follow.
+No target-hardware or full-game visual sign-off is claimed. The morning handoff
+will record final parent/head commits and complete evidence.

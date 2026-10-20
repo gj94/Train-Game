@@ -47,8 +47,8 @@ the menu reports that the change applies only for this run.
 view distance and the existing passenger/vegetation counts. It adds filtered
 surface microdetail, screen-space reflections and 512-pixel sky radiance; it
 keeps trees, supported buildings and other-train detail at 150% of the High
-transition distances and reduces imported mesh simplification. FXAA is disabled
-to retain fine texture detail; 8× MSAA still smooths silhouettes.
+transition distances and reduces imported mesh simplification. Native resolution,
+8× MSAA and FXAA remain, preserving thin-line antialiasing.
 
 This is a deliberately more expensive, optional quality mode, not a new default
 or a promised frame rate. Existing graphics files and High/Balanced/Performance

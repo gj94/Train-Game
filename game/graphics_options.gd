@@ -26,7 +26,7 @@ const OPTIONS := {
 }
 const PRESETS := {
 	"High": {},
-	"Extreme": {fxaa=false,reflections=true,surface_detail=true,vegetation_distance=1.5,building_distance=1.5,mesh_detail=0.5,train_detail=1.5},
+	"Extreme": {reflections=true,surface_detail=true,vegetation_distance=1.5,building_distance=1.5,mesh_detail=0.5,train_detail=1.5},
 	"Balanced": {msaa=2,shadows=4096,shadow_filter=1,mesh_detail=2.0},
 	"Performance": {scale=0.85,msaa=1,shadows=2048,shadow_distance=100.0,shadow_filter=1,ssil=false,view_distance=1800.0,vegetation_density=0.75,vegetation_distance=0.5,building_distance=0.5,mesh_detail=4.0,train_detail=0.5,passengers=0.5}
 }

@@ -41,7 +41,7 @@ void fragment() {
   bump.xy-=(aggregate.yz*.085+fines.yz*.035)*strength;
   // The imported normal is world-projected too, rather than rotating with
   // each road segment's tangent frame. No geometry or road markings change.
-  vec3 detailed_normal=extreme_mapped_normal(NORMAL,VERTEX,p/metres,normalize(bump));
+  vec3 detailed_normal=extreme_mapped_normal(NORMAL,VERTEX,world_pos.xz/metres,normalize(bump));
   NORMAL=mix(NORMAL,detailed_normal,strength);
   NORMAL_MAP=mix(NORMAL_MAP,vec3(.5,.5,1.0),strength);
   float dry_rough=clamp(ROUGHNESS+(aggregate.x-.5)*.12

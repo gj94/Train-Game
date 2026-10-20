@@ -77,6 +77,8 @@ def check_source_contract(root: Path) -> None:
         assert f"extreme_periodic_position(world_pos.xz,extreme_route_origin.xz,vec2({frequency}))" in road
     for frequency in ("9.0", "32.0", "20.0,2.5"):
         assert f"extreme_periodic_position(local_p,origin_p,vec2({frequency}))" in station
+    assert "extreme_mapped_normal(NORMAL,VERTEX,world_pos.xz/metres,normalize(bump))" in road
+    assert "mapped_normal(geometric_normal,VERTEX,local_p/metres,normalize(bump))" in station
     for expression in (
         "paver_cells=extreme_paver_position(local_p,origin_p);",
         "vec2detail_edge=min(fract(paver_cells),1.0-fract(paver_cells))*.30;",
@@ -118,12 +120,20 @@ def check_precision() -> None:
     precise_delta = periodic_position(f32(local + delta), origin, 32.0) - periodic_position(local, origin, 32.0)
     assert legacy_a == legacy_b, "Regression witness no longer reproduces the old quantization"
     assert abs(precise_delta - 0.032) < 0.00001, "A 1 mm local move was lost by the bounded phase"
+    for metres in (5.0, 1.2):
+        scale = f32(metres)
+        absolute_a = f32(f32(origin + local) / scale)
+        absolute_b = f32(f32(origin + f32(local + 0.005)) / scale)
+        local_gradient = f32(f32(f32(local + 0.005) / scale) - f32(local / scale))
+        assert absolute_a == absolute_b, "Derivative regression witness no longer reproduces"
+        assert abs(local_gradient - 0.005 / metres) < 0.000001, "Local normal-frame derivative collapsed"
     for cell in (-8193, -4097, -1, 0, 4095, 4096, 8191):
         assert glmod(f32(cell), 4096.0) == glmod(f32(cell + 4096), 4096.0)
     print(f"PASS: 72,072 microdetail rebase cases; worst displacement {worst_micro * 1000:.6f} mm")
     print(f"PASS: 12,012 paver rebase cases; worst displacement {worst_paver * 1000:.6f} mm")
     print(f"PASS: 1 mm movement at 300 km preserves {precise_delta:.9f} cells; old path preserved zero")
     print("PASS: periodic hash-cell inputs agree across positive and negative 4096-cell boundaries")
+    print("PASS: local normal-frame gradients retain 5 mm spacing where absolute UV derivatives collapse")
 
 
 def remove_extreme_branches(source: str) -> str:

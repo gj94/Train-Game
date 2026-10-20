@@ -7,6 +7,7 @@ extends SceneTree
 ## Baseline fixture: --presets=High. Patched fixture: --compare-high=/path/to/baseline/manifest.json
 ## Optional --check-rebase adds four Extreme daylight road/station frames at a 300 km route origin.
 ## Optional --views=road,station --periods=daylight is a labelled subset smoke, not the full review.
+## Optional --reflection-diagnostic instead captures six isolated water/SSR/normal diagnostic images.
 ## Each run gets a fresh directory. A failed/dummy renderer writes only a blocked manifest.
 const Graphics := preload("res://game/graphics_options.gd")
 const ExtremeVisuals := preload("res://game/extreme_visuals.gd")
@@ -27,6 +28,8 @@ var settle_frames := 48
 var sample_frames := 24
 var presets := PackedStringArray(["High","Extreme","High-restored"])
 var check_rebase := false
+var reflection_diagnostic := false
+var diagnostic_state: Dictionary = {}
 var reference_path := ""
 var reference_captures: Dictionary = {}
 var route_origin := Vector3.ZERO
@@ -65,6 +68,7 @@ func _initialize() -> void:
 		elif arg.begins_with("--presets="):presets=arg.trim_prefix("--presets=").split(",")
 		elif arg.begins_with("--compare-high="):reference_path=ProjectSettings.globalize_path(arg.trim_prefix("--compare-high="))
 		elif arg=="--check-rebase":check_rebase=true
+		elif arg=="--reflection-diagnostic":reflection_diagnostic=true
 		elif arg.begins_with("--views="):selected_views=arg.trim_prefix("--views=").split(",")
 		elif arg.begins_with("--periods="):selected_periods=arg.trim_prefix("--periods=").split(",")
 	call_deferred("_run")
@@ -93,7 +97,9 @@ func _run() -> void:
 		captures=[],comparisons=[],high_baseline_comparisons=[],rebase_comparisons=[],assets=assets,
 		presets=presets,check_rebase=check_rebase,
 		selected_views=selected_views,selected_periods=selected_periods,
-		capture_scope="full_fixture" if selected_views.is_empty() and selected_periods.is_empty() else "subset_smoke",
+		capture_scope="reflection_diagnostic" if reflection_diagnostic else (
+			"full_fixture" if selected_views.is_empty() and selected_periods.is_empty() else "subset_smoke"),
+		capture_order="lighting period, then preset, then camera",
 		shaders=ExtremeVisuals.SURFACE_SHADERS,settle_frames=settle_frames,
 		frame_samples=sample_frames,shader_time_frozen=true,
 		shader_time_method="Engine.time_scale=0.0 before first fixture frame",
@@ -140,6 +146,10 @@ func _run() -> void:
 	if (presets.has("Extreme") or check_rebase) and not Graphics.PRESETS.has("Extreme"):
 		_fail("This is a parent-baseline options file. Use --presets=High without --check-rebase.")
 		return
+	if reflection_diagnostic and (not forward_plus or check_rebase or not reference_path.is_empty()
+		or not selected_views.is_empty() or not selected_periods.is_empty() or not presets.has("Extreme")):
+		_fail("--reflection-diagnostic requires current Forward+ options, without baseline/rebase/subset arguments.")
+		return
 	for view_id in selected_views:
 		if view_id not in ["overview","ground","road","station","water"]:
 			_fail("Unknown --views entry: "+view_id);return
@@ -157,30 +167,35 @@ func _run() -> void:
 		return
 	report.capture_status="capturing"
 	if not _write_report():return
+	if reflection_diagnostic:
+		await _capture_reflection_diagnostic()
+		return
 	for period in [{id="daylight",hour=12.0},{id="dusk",hour=18.25},{id="night",hour=22.0}]:
 		if not selected_periods.is_empty() and not selected_periods.has(period.id):continue
 		_set_lighting(period.hour)
 		lamp.light_energy=0.0 if period.id=="daylight" else 3.0
-		for view in VIEWS:
-			if not selected_views.is_empty() and not selected_views.has(view.id):continue
-			camera.position=view.eye
-			camera.look_at(view.target)
-			var baseline: Image
-			var extreme: Image
-			for preset in presets:
-				_apply_preset("High" if preset=="High-restored" else preset)
+		var baseline_by_view: Dictionary={}
+		var extreme_by_view: Dictionary={}
+		# Keep the same preset while visiting all cameras. This avoids rebuilding
+		# 256/512 sky radiance for every view, without changing capture settings.
+		for preset in presets:
+			_apply_preset("High" if preset=="High-restored" else preset)
+			for view in VIEWS:
+				if not selected_views.is_empty() and not selected_views.has(view.id):continue
+				camera.position=view.eye
+				camera.look_at(view.target)
 				var label: String=period.id+"-"+view.id+"-"+preset.to_lower()
 				var captured: Image=await _capture(label,period,view,preset)
 				if captured==null:return
 				if preset=="High":
-					baseline=captured
+					baseline_by_view[view.id]=captured
 					if not reference_path.is_empty() and not _compare_reference(label,captured):return
-				elif preset=="Extreme":extreme=captured
+				elif preset=="Extreme":extreme_by_view[view.id]=captured
 				else:
 					report.comparisons.append({
 						period=period.id,view=view.id,
-						high_vs_extreme=_difference(baseline,extreme),
-						high_vs_restored=_difference(baseline,captured)
+						high_vs_extreme=_difference(baseline_by_view[view.id],extreme_by_view[view.id]),
+						high_vs_restored=_difference(baseline_by_view[view.id],captured)
 					})
 					if not _write_report():return
 	if check_rebase and not await _capture_rebase():return
@@ -196,6 +211,86 @@ func _run() -> void:
 	print("EXTREME_VISUAL_CAPTURED: ",output,"; High-restored exact equality: ",report.all_high_restored_pixels_equal,
 		"; visual quality is NOT automatically approved.")
 	quit(0)
+
+func _capture_reflection_diagnostic() -> void:
+	# Diagnostic materials never leave this optional fixture process. Keep the
+	# same sky resolution and detail while changing ONLY SSR for each pair.
+	var water:=scene.get_node("Water") as MeshInstance3D
+	var source:=water.material_override as ShaderMaterial
+	var period:={id="daylight",hour=12.0}
+	var view: Dictionary=VIEWS[4]
+	_set_lighting(period.hour);lamp.light_energy=0.0
+	_apply_preset("Extreme")
+	camera.position=view.eye;camera.look_at(view.target)
+	report.diagnostic_comparisons=[]
+	report.limitations.append("DIAGNOSTIC ONLY: six water-camera images, not the 49-frame source review. Full-image SSR differences do not prove a water reflection hit.")
+	report.limitations.append("Normal RGB views are unshaded in-memory copies of the source shader, still display-tonemapped. They are not final game materials.")
+	var mirror:=StandardMaterial3D.new()
+	mirror.albedo_color=Color(.8,.8,.8);mirror.metallic=1.0;mirror.roughness=.02
+	for material_case in [{id="source-water",material=source},{id="standard-metal-mirror",material=mirror}]:
+		water.material_override=material_case.material
+		ExtremeVisuals.apply_surface(water,true)
+		var off: Image
+		for enabled in [false,true]:
+			environment.ssr_enabled=enabled
+			options.values.reflections=enabled
+			diagnostic_state={material=material_case.id,ssr=enabled,surface_detail=true,
+				sky_radiance_fixed_512=true,normal_visualization=false}
+			var label: String="diagnostic-"+material_case.id+("-ssr-on" if enabled else "-ssr-off")
+			var captured: Image=await _capture(label,period,view,"Diagnostic-Extreme-fixed")
+			if captured==null:return
+			if not enabled:off=captured
+			else:report.diagnostic_comparisons.append({material=material_case.id,ssr_off_vs_on=_difference(off,captured)})
+	water.material_override=source
+	for view_space in [false,true]:
+		var normal_material:=_diagnostic_normal_material(source,view_space)
+		if normal_material==null:return
+		water.material_override=normal_material
+		# The generated debug shader still declares the original instance slot,
+		# but intentionally is not a supported runtime source-material path.
+		water.set_instance_shader_parameter("extreme_detail",1.0)
+		environment.ssr_enabled=false;options.values.reflections=false
+		diagnostic_state={material="source-water-normal-debug",ssr=false,surface_detail=true,
+			normal_visualization="view-space reconstructed mapped normal" if view_space else "tangent-space NORMAL_MAP RGB"}
+		var label: String="diagnostic-water-"+("view-normal" if view_space else "normal-map")
+		if await _capture(label,period,view,"Diagnostic-normal") == null:return
+	report.capture_status="diagnostic_captured_requires_review"
+	finished=true
+	if not _write_report():return
+	print("EXTREME_REFLECTION_DIAGNOSTIC_CAPTURED: ",output,"; not a production visual-review pass.")
+	quit(0)
+
+func _diagnostic_normal_material(source: ShaderMaterial,view_space: bool) -> ShaderMaterial:
+	var code:=source.shader.code
+	# This fixture's water shader ends with fragment(); fail if that contract
+	# changes rather than inserting diagnostics into an unrelated function.
+	var fragment_start:=code.find("void fragment()")
+	var end:=code.rfind("}")
+	if fragment_start<0 or end<fragment_start or code.find("void ",fragment_start+5)>=0:
+		_fail("Cannot inject normal diagnostic into changed source-water shader.");return null
+	var render_mode:=RegEx.new()
+	render_mode.compile("render_mode[^;]*;")
+	code=render_mode.sub(code,"render_mode unshaded;",true)
+	code=code.replace('#include "extreme_surface_detail.gdshaderinc"',
+		'#include "res://game/shaders/extreme_surface_detail.gdshaderinc"')
+	# Mirrors Godot 4.7.2 Forward+ normal-map reconstruction (unnormalized TBN):
+	# servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered.glsl
+	var visualization:="ALBEDO = NORMAL_MAP;\n"
+	if view_space:
+		visualization="""vec3 diagnostic_q = vec3(NORMAL_MAP.xy * 2.0 - 1.0, 0.0);
+		diagnostic_q.z = sqrt(max(0.0, 1.0 - dot(diagnostic_q.xy, diagnostic_q.xy)));
+		vec3 diagnostic_n = normalize(mix(NORMAL, TANGENT * diagnostic_q.x +
+			BINORMAL * diagnostic_q.y + NORMAL * diagnostic_q.z, NORMAL_MAP_DEPTH));
+		ALBEDO = diagnostic_n * 0.5 + 0.5;
+		"""
+	end=code.rfind("}")
+	code=code.substr(0,end)+visualization+"\nNORMAL_MAP=vec3(0.5,0.5,1.0); NORMAL_MAP_DEPTH=0.0;\n"+code.substr(end)
+	var material:=source.duplicate() as ShaderMaterial
+	var shader:=Shader.new();shader.code=code
+	material.shader=shader
+	if not shader.get_shader_uniform_list().any(func(uniform):return str(uniform.name)=="route_origin"):
+		_fail("Diagnostic normal shader did not compile.");return null
+	return material
 
 func _load_reference() -> bool:
 	if not FileAccess.file_exists(reference_path):
@@ -417,6 +512,7 @@ func _capture(label: String,period: Dictionary,view: Dictionary,preset: String) 
 		frame_timing="wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
 		png_sha256=FileAccess.get_sha256(path),image_stats=stats
 	})
+	if reflection_diagnostic:report.captures[-1].diagnostic=diagnostic_state.duplicate(true)
 	if not _write_report():return null
 	print("EXTREME_VISUAL_FRAME: ",label)
 	return image

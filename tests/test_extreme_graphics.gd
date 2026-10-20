@@ -129,7 +129,7 @@ func test_extreme_changes_only_the_explicit_render_quality_options():
 	var settings := Options.new()
 	settings.preset("Extreme")
 	var expected := LEGACY_HIGH.duplicate(true)
-	expected.merge({surface_detail=true,reflections=true,fxaa=false,
+	expected.merge({surface_detail=true,reflections=true,
 		vegetation_distance=1.5,building_distance=1.5,train_detail=1.5,mesh_detail=0.5},true)
 	if settings.values!=expected or settings.preset_name()!="Extreme":
 		return "Extreme changed an unapproved setting or omitted a quality improvement"
@@ -445,7 +445,7 @@ func test_extreme_ui_action_is_reachable_applies_and_saves_without_touching_simu
 	restored.restore()
 	ok=ok and restored.values==settings.values and host.hud._body.text.contains("Extreme")
 	ok=ok and s.viewport.mesh_lod_threshold==0.5 and s.viewport.msaa_3d==3
-	ok=ok and s.viewport.screen_space_aa==Viewport.SCREEN_SPACE_AA_DISABLED
+	ok=ok and s.viewport.screen_space_aa==Viewport.SCREEN_SPACE_AA_FXAA
 	ok=ok and s.viewport.scaling_3d_scale==1.0 and host.cam.far==2200
 	ok=ok and host.passenger_crowd.render_budget==1.0
 	for key in ["surface_detail","reflections"]:

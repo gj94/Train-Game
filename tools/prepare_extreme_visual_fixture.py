@@ -129,7 +129,10 @@ def prepare(source: Path, output: Path, baseline_ref: str = "") -> dict:
         for dependency in direct_load.findall(text):
             if dependency not in required:
                 raise ValueError(f"Unlisted source dependency in {name}: {dependency}")
-        for include in re.findall(r'#include\s+"([^"]+)"', text):
+        # GDScript may contain diagnostic shader strings; only actual shader
+        # source files have relative #include dependencies to resolve here.
+        includes = re.findall(r'#include\s+"([^"]+)"', text) if name.endswith((".gdshader", ".gdshaderinc")) else []
+        for include in includes:
             dependency = (Path(name).parent / include).as_posix()
             if dependency not in required:
                 raise ValueError(f"Unlisted shader include in {name}: {dependency}")
