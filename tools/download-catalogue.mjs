@@ -69,6 +69,7 @@ export function downloadRoutes(root) {
     if (!release.incremental) return null;
     if (path === '/updates/latest.json') return await matchingManifest(root, release) ? updates(path) : null;
     if (path.startsWith('/update-files/' + release.build + '/')) return updates(path);
+    if (path.startsWith('/update-payloads/' + release.build + '/')) return updates(path);
     if (path === '/TrainGame-Updater.zip' || path === '/TrainGame-Updater.zip.sha256') return [path.slice(1), path.endsWith('.zip') ? 'application/zip' : 'text/plain; charset=utf-8'];
     if (path === '/updater/instructions') return ['updater/UPDATER-README.txt', 'text/plain; charset=utf-8'];
     return null;

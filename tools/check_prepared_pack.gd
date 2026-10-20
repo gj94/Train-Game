@@ -3,6 +3,12 @@ extends SceneTree
 func _initialize() -> void:
 	var args:=OS.get_cmdline_user_args()
 	if args.is_empty() or not ProjectSettings.load_resource_pack(args[0]):printerr("Pack mount failed");quit(1);return
+	if FileAccess.file_exists("res://pack-index.json"):
+		var index=JSON.parse_string(FileAccess.get_file_as_string("res://pack-index.json"))
+		if not index is Dictionary or index.get("format")!=1:printerr("Invalid split-pack index");quit(1);return
+		for relative in index.packs:
+			if not ProjectSettings.load_resource_pack(args[0].get_base_dir().path_join(relative),false):
+				printerr("Split pack mount failed: "+relative);quit(1);return
 	for path in ["game/launch.tscn","game/launch.gd","game/launch_timeline.tscn","game/launch_timeline.gd","game/day_night.gd","persistence/service_starts.gd","persistence/railway_times.gd"]:
 		if not ResourceLoader.exists("res://"+path):printerr("Missing resource: "+path);quit(1);return
 	var counts:=[]

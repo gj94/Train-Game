@@ -1,5 +1,13 @@
 # Windows portable build
 
+Next-release packaging (implemented after R35): `tools/build-windows.ps1` now
+creates stable asset packs and ships launcher v3. Keep the `packs/` directory in
+every full ZIP. Signed format-2 updates include compressed block payloads plus
+verified full-ZIP fallback when a ZIP is built. Use a fresh R36/sequence 38 or
+later; restart the LAN service once to load its new `/update-payloads/` route.
+This source change has not published a new game release. See
+[incremental-updates.md](incremental-updates.md) for migration and measured reuse.
+
 Current release: **R35 — full download and incremental updates**. Includes
 per-service baseline traffic previews, smoother clock-driven sunlight/shadows,
 consolidated speed boards and driving RB/LB power reduction/brake release.
@@ -8,8 +16,11 @@ http://192.168.8.183:8765/.
 Full ZIP: **2,610,041,904 bytes**, SHA-256
 `e98bfd98e19cbe3a6cdf219424b5e707e4613c3e76ab632241ea3b880bba0d82`.
 
-R34 → R35 downloads **2,999,784,946 changed bytes**, plus its signed catalogue,
+R34 → R35 marks **2,999,784,946 changed bytes**,
 and reuses **164,483,480 bytes**. The full ZIP is smaller for this transition.
+After duplicate-block reuse, estimated payload is **2,962,888,178 bytes**, plus
+the signed catalogue. Historical changed-byte figures below describe target
+blocks, not captured client network traffic.
 Existing compatible saves/settings remain usable. See [service-selection.md](service-selection.md)
 and [controllers.md](controllers.md).
 

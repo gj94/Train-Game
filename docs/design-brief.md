@@ -9,6 +9,10 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **20 Oct 2026 smaller updates:** preserve exported resource fidelity while
+  splitting stable bulk assets from code/UI; compress update transfers and
+  automatically choose the smaller of missing blocks and the full ZIP. Keep
+  signed integrity, interruption recovery, old-installation migration and saves.
 - **20 Oct 2026 service traffic preview:** show every baseline-simulated crossing
   and completed overtake for the selected home-page service, with approximate
   time, location and the other train. Keep selection instant, show reciprocal

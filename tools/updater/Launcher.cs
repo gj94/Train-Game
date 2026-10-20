@@ -48,7 +48,7 @@ namespace TrainGameUpdater {
             FormBorderStyle = FormBorderStyle.FixedDialog; MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen; Font = new Font("Segoe UI", 10);
             Controls.Add(new Label { Text = "Train Game", Font = new Font("Segoe UI", 23, FontStyle.Bold), Bounds = new Rectangle(26, 18, 560, 46) });
-            Controls.Add(new Label { Text = "Keep this installation. Download and write only changed blocks.", Bounds = new Rectangle(28, 70, 586, 28) });
+            Controls.Add(new Label { Text = "Keep this installation. Automatically choose the smaller download.", Bounds = new Rectangle(28, 70, 586, 28) });
             location.Text = "Game folder (click to change): " + directory;
             location.AutoEllipsis = true; location.Bounds = new Rectangle(28, 108, 584, 28); Controls.Add(location);
             location.LinkClicked += delegate {
@@ -64,7 +64,7 @@ namespace TrainGameUpdater {
             play.Text = "Play installed (offline)"; play.Bounds = new Rectangle(320, 310, 292, 42); Controls.Add(play);
             update.Click += async delegate {
                 if ((!File.Exists(Path.Combine(directory, "TrainGame.exe")) || !File.Exists(Path.Combine(directory, "TrainGame.pck"))) &&
-                    MessageBox.Show(this, "This folder does not contain a complete Train Game installation. Installing here needs the full game download (about 2 GB).\n\nChoose No and use Game folder to select your existing installation for a small update. Install here anyway?", "Choose an installation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
+                    MessageBox.Show(this, "This folder does not contain a complete Train Game installation. Installing here needs a full download.\n\nChoose No and use Game folder to select your existing installation and reuse its files. Install here anyway?", "Choose an installation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
                 SetBusy(true);
                 try {
                     string url = address.Text.Trim();

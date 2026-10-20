@@ -62,6 +62,13 @@ try {
         Get-Content $exportLog -Tail 60
         throw "Export failed. See $exportLog"
     }
+    # Preserve exact exported resource bytes, but isolate stable bulk assets
+    # from scripts/UI. The bootstrap mounts only the packs in its own index.
+    $sourcePack = Join-Path $projectRoot ".local/split-source-$BuildName.pck"
+    Move-Item -LiteralPath (Join-Path $buildRoot 'TrainGame.pck') -Destination $sourcePack -Force
+    & node.exe (Join-Path $PSScriptRoot 'updater/split-packs.mjs') $sourcePack $buildRoot
+    if ($LASTEXITCODE -ne 0) { throw 'Stable pack partitioning failed. Original export remains in .local.' }
+    Remove-Item -LiteralPath $sourcePack
     & $engine --headless --path $projectRoot --script res://tools/write_export_notices.gd -- "res://export/$BuildName/ENGINE-LICENSES.txt"
     if ($LASTEXITCODE -ne 0) { throw 'Writing engine notices failed.' }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/portable-readme.txt') -Destination (Join-Path $buildRoot 'README.txt')
@@ -106,7 +113,8 @@ try {
     $dirty = & git -c safe.directory=D:/ClaudeWS/train-game status --porcelain --untracked-files=no
     @("Build: $BuildName", "Built: $(Get-Date -Format o)", "Godot: 4.7.2 stable; Windows x86-64 release", "Source base: $revision", "Uncommitted tracked changes included: $([bool]$dirty)") |
         Set-Content -LiteralPath (Join-Path $buildRoot 'BUILD.txt') -Encoding utf8
-    $hashes = foreach ($name in @('TrainGame.exe', 'TrainGame.pck')) {
+    $hashNames = @('TrainGame.exe', 'TrainGame.pck') + @(Get-ChildItem -LiteralPath (Join-Path $buildRoot 'packs') -File | Sort-Object Name | ForEach-Object { 'packs/' + $_.Name })
+    $hashes = foreach ($name in $hashNames) {
         $file = Join-Path $buildRoot $name
         if (-not (Test-Path $file)) { throw "Missing build file: $file" }
         "$(Get-PortableSha256 $file)  $name"
@@ -131,7 +139,9 @@ try {
         Get-Item $archivePath | Select-Object FullName, Length
     }
     if ($UpdateSequence -gt 0) {
-        & node.exe (Join-Path $PSScriptRoot 'updater/publish.mjs') "--build=$BuildName" "--sequence=$UpdateSequence"
+        $publishArgs = @("--build=$BuildName", "--sequence=$UpdateSequence")
+        if ($SkipZip) { $publishArgs += '--no-archive' }
+        & node.exe (Join-Path $PSScriptRoot 'updater/publish.mjs') @publishArgs
         if ($LASTEXITCODE -ne 0) { throw 'Incremental publication failed; previous release remains available.' }
     }
     # Publish the download choice last, after all advertised files are complete.

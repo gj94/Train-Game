@@ -1,5 +1,40 @@
 # Progress
 
+## 2026-10-20 — Stable packs and compressed updater v3
+
+- Replaced the single exported asset container with a small core PCK plus
+  deterministic packs for trains, audio, scenery, route/interior data and
+  prepared railways. Source-path buckets keep unrelated resources stable.
+  A minimal bootstrap mounts the explicit pack list before the service browser.
+  Every exported resource retains its original content; no fidelity reduction.
+- Launcher v3 reads old catalogues/pending transactions and signed format 2.
+  Downloads gzip-compressed changed blocks (raw when smaller), deduplicates
+  staged content and chooses the smaller transfer between those blocks and the
+  full ZIP. ZIP downloads resume and stage/apply only needed data. The publisher
+  verifies every managed archive entry before advertising fallback.
+- Kept exclusive file/update locks, bounded range/decompression checks,
+  signatures, final hashes, downgrade protection and offline forward recovery.
+  New payload routes expose only current signed files. Existing launchers ask
+  for the small v3 replacement before accepting the new protocol.
+- Full-size comparison of partitioned R35 and a fresh private export:
+  **160/160 asset packs unchanged**, **3,001,856,368 pack bytes reused**,
+  **2,716,768 pack bytes changed**, **1,493,315 compressed payload bytes**.
+  This excludes catalogue/EXE/docs and the one-time monolithic migration.
+  All **7,647 resources / 3,003,757,928 resource bytes** pass integrity checks.
+- Validation: **637 headless game tests**, **45 native updater cases**, six pack
+  cases and seven server cases pass. Native mounting reaches service selection,
+  verifies 333 prepared states and loads all four fleet families plus audio.
+  Evidence: `art/performance/updater-v3-2026-10-20/`.
+- **No new public release. R35 remains available.** The next build uses the new
+  packaging; first migration can still be large. Ship launcher v3 and restart
+  the LAN server once for its new route. Use a fresh release/sequence >= 38.
+
+Next-release player check: replace the tiny launcher once, update the existing
+installation, then repeat Update & Play and expect zero game data downloads or
+writes. Check offline Play and saved journeys. A later code/UI-only update
+should leave asset-pack timestamps unchanged. No driving controls or railway
+simulation behavior changed.
+
 ## 2026-10-20 — R35 publication
 
 - Published **R35** from clean source **8cf6710**, signed sequence **37**, at

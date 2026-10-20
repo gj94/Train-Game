@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
@@ -14,13 +15,18 @@ namespace TrainGameUpdater {
     public sealed class Envelope { public string payload; public string signature; }
     public sealed class Catalogue {
         public int format; public int minimumLauncher; public int blockSize; public int sequence;
-        public string version; public FileEntry[] files;
+        public string version; public FileEntry[] files; public ArchiveEntry archive;
     }
-    public sealed class FileEntry { public string path; public long size; public string sha256; public string[] chunks; }
-    public sealed class UpdateResult { public string version; public long downloadedBytes; public long writtenBytes; public long reusedBytes; }
+    public sealed class ArchiveEntry { public long size; public string sha256; }
+    public sealed class FileEntry {
+        public string path; public long size; public string sha256; public string[] chunks;
+        public int[] encodedSizes; public long payloadSize;
+        [ScriptIgnore] public long[] payloadOffsets;
+    }
+    public sealed class UpdateResult { public string version; public long downloadedBytes; public long writtenBytes; public long reusedBytes; public string method; public long plannedDownloadBytes; }
     public sealed class UpdateCore {
         public const int BlockSize = 65536;
-        public const int LauncherVersion = 2;
+        public const int LauncherVersion = 3;
         readonly string root, state, key;
         readonly Uri server;
         readonly Action<string, int> progress;
@@ -52,7 +58,8 @@ namespace TrainGameUpdater {
                     Regex.IsMatch(part, @"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(\.|$)", RegexOptions.IgnoreCase)) throw new InvalidDataException("Invalid update path: " + name);
             }
             var allowed = new[] { "TrainGame.exe", "TrainGame.pck", "README.txt", "BUILD.txt", "SHA256SUMS.txt", "ENGINE-LICENSES.txt", "ASSET-SOURCES.md", "MAP-DATA-LICENSE.md", "Benchmark.ps1", "Run Performance Benchmark.cmd" };
-            if (!allowed.Contains(name) && !name.StartsWith("guides/") && !name.StartsWith("station-notices/")) throw new InvalidDataException("Unmanaged update path: " + name);
+            if (!allowed.Contains(name) && !name.StartsWith("guides/") && !name.StartsWith("station-notices/") &&
+                !Regex.IsMatch(name, @"^packs/(trains|scenery|audio|railway|route|resources)-[0-1][0-9a-f]\.pck$")) throw new InvalidDataException("Unmanaged update path: " + name);
             string result = Path.GetFullPath(Path.Combine(root, name.Replace('/', Path.DirectorySeparatorChar)));
             if (!result.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase)) throw new InvalidDataException("Path escapes installation.");
             RejectLinks(result); return result;
@@ -66,7 +73,7 @@ namespace TrainGameUpdater {
                 if (!rsa.VerifyData(data, CryptoConfig.MapNameToOID("SHA256"), signature)) throw new InvalidDataException("Update signature is invalid. No game files were changed.");
             }
             var manifest = json.Deserialize<Catalogue>(Encoding.UTF8.GetString(data));
-            if (manifest.format != 1 || manifest.minimumLauncher > LauncherVersion || manifest.blockSize != BlockSize || manifest.sequence < 1 ||
+            if ((manifest.format != 1 && manifest.format != 2) || manifest.minimumLauncher > LauncherVersion || (manifest.format == 2 && manifest.minimumLauncher < 3) || manifest.blockSize != BlockSize || manifest.sequence < 1 ||
                 !Regex.IsMatch(manifest.version ?? "", @"^TrainGame-[A-Za-z0-9_-]+$") || manifest.files == null || manifest.files.Length > 2000)
                 throw new InvalidDataException("Unsupported update catalogue. Download the latest launcher.");
             var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -77,8 +84,24 @@ namespace TrainGameUpdater {
                     file.chunks == null || file.chunks.LongLength != (file.size + BlockSize - 1) / BlockSize || file.chunks.Any(h => !Regex.IsMatch(h ?? "", "^[a-f0-9]{64}$")))
                     throw new InvalidDataException("Invalid file in update catalogue.");
                 total += file.size;
+                if (manifest.format == 1) file.encodedSizes = null;
+                if (manifest.format == 2) {
+                    if (file.encodedSizes == null || file.encodedSizes.Length != file.chunks.Length)
+                        throw new InvalidDataException("Invalid compressed block index.");
+                    file.payloadOffsets = new long[file.chunks.Length];
+                    long payload = 0;
+                    for (int i = 0; i < file.chunks.Length; i++) {
+                        int length = (int)Math.Min(BlockSize, file.size - (long)i * BlockSize), encoded = file.encodedSizes[i];
+                        if (encoded == 0 || encoded > length || encoded < -length || (encoded < 0 && encoded != -length))
+                            throw new InvalidDataException("Invalid compressed block length.");
+                        file.payloadOffsets[i] = payload; payload += Math.Abs(encoded);
+                    }
+                    if (file.payloadSize != payload) throw new InvalidDataException("Invalid compressed payload size.");
+                }
             }
             if (total > 32000000000L || !names.Contains("TrainGame.exe") || !names.Contains("TrainGame.pck")) throw new InvalidDataException("Incomplete or oversized game update.");
+            if (manifest.archive != null && (manifest.format != 2 || manifest.archive.size < 1 || manifest.archive.size > 34000000000L ||
+                !Regex.IsMatch(manifest.archive.sha256 ?? "", "^[a-f0-9]{64}$"))) throw new InvalidDataException("Invalid full archive.");
             return manifest;
         }
         byte[] Fetch(string path, long offset, int count, long total) {
@@ -134,6 +157,64 @@ namespace TrainGameUpdater {
             }
         }
         sealed class Work { public FileEntry file; public int index; public int length; }
+        int TransferSize(Work item) { return item.file.encodedSizes == null ? item.length : Math.Abs(item.file.encodedSizes[item.index]); }
+        string ArchivePath(Catalogue manifest) {
+            string path = Path.Combine(state, manifest.archive.sha256 + ".zip"); RejectLinks(path); return path;
+        }
+        // Download to disk with bounded memory, exact range checks and restart
+        // support. Never extract arbitrary archive paths into the installation.
+        void PrepareArchive(Catalogue manifest, List<Work> needed, UpdateResult result) {
+            string path = ArchivePath(manifest), partial = path + ".partial"; RejectLinks(partial);
+            if (!File.Exists(path)) {
+                using (var output = new FileStream(partial, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None)) {
+                    if (output.Length > manifest.archive.size) output.SetLength(0);
+                    while (output.Length < manifest.archive.size) {
+                        long offset = output.Length;
+                        int count = (int)Math.Min(4 * 1024 * 1024, manifest.archive.size - offset);
+                        var bytes = Fetch(manifest.version + ".zip", offset, count, manifest.archive.size);
+                        output.Position = offset; output.Write(bytes, 0, bytes.Length); output.Flush(true);
+                        result.downloadedBytes += bytes.Length;
+                        progress(String.Format("Downloading smaller full archive: {0:F1} / {1:F1} MiB", output.Length / 1048576.0, manifest.archive.size / 1048576.0),
+                            25 + (int)(output.Length * 30 / manifest.archive.size));
+                        Signal("archive-download");
+                    }
+                }
+                bool valid;
+                using (var input = File.OpenRead(partial))
+                using (var sha = SHA256.Create()) valid = Hex(sha.ComputeHash(input)) == manifest.archive.sha256;
+                if (!valid) {
+                    File.Delete(partial); throw new InvalidDataException("Full archive failed verification. Installed files are unchanged.");
+                }
+                File.Move(partial, path);
+            }
+            using (var input = File.OpenRead(path)) {
+                using (var sha = SHA256.Create()) if (input.Length != manifest.archive.size || Hex(sha.ComputeHash(input)) != manifest.archive.sha256) {
+                    throw new InvalidDataException("Cached archive is damaged. Remove " + path + " and retry.");
+                }
+                input.Position = 0;
+                using (var zip = new ZipArchive(input, ZipArchiveMode.Read)) {
+                    foreach (var group in needed.GroupBy(w => w.file.path)) {
+                        var expected = group.First().file;
+                        string entryName = manifest.version + "/" + expected.path;
+                        var entries = zip.Entries.Where(e => e.FullName == entryName).ToArray();
+                        if (entries.Length != 1 || entries[0].Length != expected.size) throw new InvalidDataException("Missing, duplicate or wrong-sized archive entry: " + expected.path);
+                        var wanted = new HashSet<int>(group.Select(w => w.index));
+                        using (var source = entries[0].Open()) {
+                            for (int i = 0; i < expected.chunks.Length; i++) {
+                                int length = (int)Math.Min(BlockSize, expected.size - (long)i * BlockSize);
+                                byte[] data = new byte[length]; int n = 0;
+                                while (n < length) { int read = source.Read(data, n, length - n); if (read == 0) throw new InvalidDataException("Truncated archive entry."); n += read; }
+                                if (!wanted.Contains(i)) continue;
+                                if (Hash(data) != expected.chunks[i]) throw new InvalidDataException("Archive block failed verification.");
+                                if (!Cached(expected.chunks[i], length)) DurableWrite(CachePath(expected.chunks[i]), data);
+                                Signal("download");
+                            }
+                            if (source.ReadByte() != -1) throw new InvalidDataException("Oversized archive entry.");
+                        }
+                    }
+                }
+            }
+        }
         UpdateResult Apply(byte[] signed, bool recovery) {
             var manifest = Verify(signed);
             string installedPath = Path.Combine(state, "installed.json"); RejectLinks(installedPath);
@@ -169,20 +250,54 @@ namespace TrainGameUpdater {
                     progress("Already up to date. No game data downloaded or rewritten.", 100); return result;
                 }
                 long changed = work.Sum(w => (long)w.length), downloaded = 0;
-                long space = work.Where(w => !Cached(w.file.chunks[w.index], w.length)).Sum(w => (long)w.length) +
+                // Deduplicate once, then choose the smallest encoded representation.
+                var needed = work.GroupBy(w => w.file.chunks[w.index])
+                    .Select(g => g.OrderBy(TransferSize).First()).Where(w => !Cached(w.file.chunks[w.index], w.length)).ToList();
+                long compressedBytes = needed.Sum(w => (long)TransferSize(w));
+                long archiveBytes = manifest.archive == null ? Int64.MaxValue : manifest.archive.size;
+                if (manifest.archive != null) {
+                    string archive = ArchivePath(manifest), partial = archive + ".partial"; RejectLinks(partial);
+                    if (File.Exists(archive)) {
+                        bool valid;
+                        using (var input = File.OpenRead(archive))
+                        using (var sha = SHA256.Create()) valid = input.Length == manifest.archive.size && Hex(sha.ComputeHash(input)) == manifest.archive.sha256;
+                        if (valid) archiveBytes = 0;
+                        else File.Delete(archive); // Cache only; never an installed game file.
+                    }
+                    if (archiveBytes > 0 && File.Exists(partial) && new FileInfo(partial).Length <= archiveBytes) archiveBytes -= new FileInfo(partial).Length;
+                }
+                bool useArchive = needed.Count > 0 && archiveBytes < compressedBytes;
+                result.method = useArchive ? "full-archive" : manifest.format == 2 ? "compressed-blocks" : "legacy-blocks";
+                result.plannedDownloadBytes = useArchive ? archiveBytes : compressedBytes;
+                long space = needed.Sum(w => (long)w.length) + (useArchive ? archiveBytes : 0) +
                     manifest.files.Sum(f => Math.Max(0, f.size - (handles.ContainsKey(f.path) ? handles[f.path].Length : 0))) + signed.Length * 3L + 1048576;
                 if (new DriveInfo(Path.GetPathRoot(root)).AvailableFreeSpace < space) throw new IOException("Not enough free space for changed blocks. Free " + (space / 1048576 + 1) + " MiB and retry.");
-                progress(String.Format("{0:F1} MiB changed; keeping {1:F1} MiB already installed.", changed / 1048576.0, result.reusedBytes / 1048576.0), 25);
-                foreach (var item in work) {
+                progress(String.Format("{0}: {1:F1} MiB to download; keeping {2:F1} MiB installed.", useArchive ? "Full archive is smaller" : "Changed blocks are smaller", result.plannedDownloadBytes / 1048576.0, result.reusedBytes / 1048576.0), 25);
+                if (useArchive) PrepareArchive(manifest, needed, result);
+                else foreach (var item in needed) {
                     string hash = item.file.chunks[item.index];
                     if (!Cached(hash, item.length)) {
-                        string url = "update-files/" + manifest.version + "/" + String.Join("/", item.file.path.Split('/').Select(Uri.EscapeDataString));
-                        var data = Fetch(url, (long)item.index * BlockSize, item.length, item.file.size);
+                        string name = String.Join("/", item.file.path.Split('/').Select(Uri.EscapeDataString));
+                        byte[] data;
+                        if (manifest.format == 2) {
+                            var encoded = Fetch("update-payloads/" + manifest.version + "/" + name + ".blocks",
+                                item.file.payloadOffsets[item.index], TransferSize(item), item.file.payloadSize);
+                            result.downloadedBytes += encoded.Length;
+                            if (item.file.encodedSizes[item.index] < 0) data = encoded;
+                            else using (var source = new GZipStream(new MemoryStream(encoded), CompressionMode.Decompress)) {
+                                data = new byte[item.length]; int n = 0;
+                                while (n < data.Length) { int read = source.Read(data, n, data.Length - n); if (read == 0) throw new InvalidDataException("Truncated compressed block."); n += read; }
+                                if (source.ReadByte() != -1) throw new InvalidDataException("Oversized compressed block.");
+                            }
+                        } else {
+                            data = Fetch("update-files/" + manifest.version + "/" + name, (long)item.index * BlockSize, item.length, item.file.size);
+                            result.downloadedBytes += data.Length;
+                        }
                         if (Hash(data) != hash) throw new InvalidDataException("Downloaded block failed verification. Existing game files are unchanged until all blocks are ready.");
-                        DurableWrite(CachePath(hash), data); result.downloadedBytes += data.Length;
+                        DurableWrite(CachePath(hash), data);
                     }
-                    downloaded += item.length;
-                    progress(String.Format("Preparing verified blocks: {0:F1} / {1:F1} MiB", downloaded / 1048576.0, changed / 1048576.0), 25 + (int)(downloaded * 40 / Math.Max(1, changed)));
+                    downloaded += TransferSize(item);
+                    progress(String.Format("Downloading verified blocks: {0:F1} / {1:F1} MiB", downloaded / 1048576.0, compressedBytes / 1048576.0), 25 + (int)(downloaded * 40 / Math.Max(1, compressedBytes)));
                     Signal("download");
                 }
                 Signal("prepared");
@@ -214,6 +329,11 @@ namespace TrainGameUpdater {
                 File.Delete(Path.Combine(state, "pending.json"));
                 foreach (var path in Directory.GetFiles(state, "*.block")) {
                     if (Regex.IsMatch(Path.GetFileName(path), "^[a-f0-9]{64}\\.block$")) { RejectLinks(path); File.Delete(path); }
+                }
+                if (manifest.archive != null) {
+                    string archive = ArchivePath(manifest), partial = archive + ".partial"; RejectLinks(partial);
+                    if (File.Exists(archive)) File.Delete(archive);
+                    if (File.Exists(partial)) File.Delete(partial);
                 }
                 progress(String.Format("Ready: downloaded {0:F1} MiB; wrote {1:F1} MiB of game data.", result.downloadedBytes / 1048576.0, result.writtenBytes / 1048576.0), 100);
                 return result;

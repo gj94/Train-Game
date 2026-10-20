@@ -50,6 +50,21 @@ test('unfinished ZIPs, malformed policies and mismatched manifests fail closed',
   await writeFile(join(root,'download-release.json'),JSON.stringify({format:1,build:'../secret',incremental:true}));
   assert.equal(await currentRelease(root),null);
 });
+test('compressed payload routes require the current incremental release and signed membership', async t => {
+  const {root,release,route}=await fixture(t);
+  const name='packs/trains-00.pck.blocks';
+  await mkdir(join(root,'update-payloads',release.build,'packs'),{recursive:true});
+  await writeFile(join(root,'update-payloads',release.build,name),'gz');
+  const signed=JSON.stringify({payload:Buffer.from(JSON.stringify({format:2,version:release.build,files:[
+    {path:'packs/trains-00.pck',size:32,payloadSize:2}]})).toString('base64'),signature:'test'});
+  await writeFile(join(root,'updates',release.build+'.json'),signed);
+  const url='/update-payloads/'+release.build+'/'+name;
+  assert.equal(await route(url,release),null);
+  release.incremental=true;
+  assert.deepEqual(await route(url,release),['update-payloads/'+release.build+'/'+name,'application/octet-stream']);
+  for(const suffix of ['packs/unknown.pck.blocks','%2e%2e/secret.blocks']) assert.equal(await route('/update-payloads/'+release.build+'/'+suffix,release),null);
+  assert.equal(await route('/update-payloads/TrainGame-Old/'+name,release),null);
+});
 
 test('timetable download is explicit, has an attachment filename and preserves full/update downloads',async t=>{
   const {root,release,route}=await fixture(t); release.incremental=true;

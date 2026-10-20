@@ -5,9 +5,9 @@ export function updateRoutes(exportRoot) {
   const cache = new Map();
   return async path => {
     if (path === '/updates/latest.json') return ['updates/latest.json', 'application/json'];
-    const match = /^\/update-files\/(TrainGame-[A-Za-z0-9_-]+)\/(.+)$/.exec(path);
+    const match = /^\/(update-files|update-payloads)\/(TrainGame-[A-Za-z0-9_-]+)\/(.+)$/.exec(path);
     if (!match) return null;
-    const [, version, encoded] = match;
+    const [, kind, version, encoded] = match;
     let manifest = cache.get(version);
     if (!manifest) {
       try {
@@ -20,10 +20,12 @@ export function updateRoutes(exportRoot) {
     let name;
     try { name = decodeURIComponent(encoded); } catch { return null; }
     if (name.includes('\\') || name.includes(':') || name.split('/').some(p => !p || p === '.' || p === '..')) return null;
-    const file = manifest.files.find(f => f.path === name);
+    const payload = kind === 'update-payloads';
+    const file = manifest.files.find(f => (payload ? f.path + '.blocks' : f.path) === name);
     if (!file) return null;
-    const relative = version + '/' + name;
-    try { if ((await stat(join(exportRoot, relative))).size !== file.size) return null; } catch { return null; }
+    if (payload && manifest.format !== 2) return null;
+    const relative = (payload ? 'update-payloads/' : '') + version + '/' + name;
+    try { if ((await stat(join(exportRoot, relative))).size !== (payload ? file.payloadSize : file.size)) return null; } catch { return null; }
     return [relative, 'application/octet-stream'];
   };
 }

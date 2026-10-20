@@ -1,5 +1,55 @@
 # Incremental Windows updates
 
+## V3 implementation — ready for the next release
+
+Implemented on 20 October; **R35 remains the published release**. The next
+publication must ship **Update & Play v3**, use a fresh build name/sequence and
+restart the LAN server once to load the new compressed-payload route. Routine
+later catalogue changes still need no restart.
+
+- The exporter partitions the exact exported resources into a small core PCK
+  and stable `packs/` files for trains, audio, scenery, route/interior data and
+  prepared railways. Resource paths hash into 32 fixed buckets per family;
+  insertion/order changes cannot reshuffle the other buckets. Imported blobs
+  follow their source assets. No model simplification, audio processing or
+  resource recompression occurs. Only the PCK container changes.
+- A minimal bootstrap mounts the explicit pack list before loading the service
+  browser and any game asset preloads. Source/editor runs use the same browser
+  without external packs. Missing packs produce a repair message.
+- Format 2 catalogues require launcher 3. Each 64 KiB block has a compressed
+  transfer size; gzip is used only if smaller than raw bytes. The publisher
+  creates range-addressable `.blocks` payloads outside the full game ZIP.
+- After checking the installation and its existing cache, the launcher compares
+  unique missing encoded blocks with the remaining full-ZIP download. It chooses
+  the smaller. A ZIP is signed by its SHA-256/size in the catalogue, downloaded
+  with resumable ranges, and read without extracting arbitrary paths. Only
+  required blocks are staged/applied. The publisher verifies every managed ZIP
+  entry against its manifest before advertising ZIP fallback.
+- Signature, exact ranges, bounded decompression, block/final-file hashes,
+  exclusive locks and durable pending-plan recovery remain mandatory. A pending
+  apply finishes offline from its cache. V3 also reads v1/v2-launcher catalogues
+  and resumes those older pending transactions. Replace the tiny launcher once;
+  its running executable is deliberately not self-replaced.
+- The **one-time monolithic-to-split migration can still be large**. Existing
+  saves/settings remain separate. Subsequent code/UI changes reuse bulk assets.
+  The ZIP route requires temporary space for the ZIP as well as staged blocks;
+  it is a transfer-size fallback, not a promise of lower writes than every option.
+
+Measured with a private native export, comparing partitioned R35 to this source:
+**160/160 asset packs unchanged**, **3,001,856,368 pack bytes reused**, **2,716,768
+pack bytes changed**, and **1,493,315 compressed payload bytes** for those changes.
+All **7,647 exported resources / 3,003,757,928 resource bytes** were verified.
+These are pack-only figures, excluding catalogue, EXE/docs, and the first
+migration; they are not a target-PC network benchmark. Evidence and repeatable
+commands: `art/performance/updater-v3-2026-10-20/`.
+
+Tests: `node tools/updater/test.mjs`, `node tools/updater/test-packs.mjs`,
+`node tools/test-download-catalogue.mjs`, and the normal Godot headless suite.
+The full-size read-only audit is `tools/updater/audit-packs.mjs`; native bootstrap
+verification is `tools/check_split_boot.gd`.
+
+## Published release and historical measurements
+
 Current publication: **R35**, sequence **37**, from clean source **8cf6710**.
 Full downloads and incremental updates are enabled at http://192.168.8.183:8765/.
 Existing installations can use `Update and Play.exe`; save data/settings remain
@@ -26,9 +76,9 @@ initially `http://192.168.8.183:8765/`. **Play installed (offline)** skips the s
 Saved journeys and graphics preferences remain in Godot's user-data directory;
 the updater never touches them or deletes extra files in the installation.
 
-## What is actually saved
+## Historical v1/v2 block format
 
-The client compares SHA-256 hashes of 64 KiB blocks, requests only changed blocks
+The original client compares SHA-256 hashes of 64 KiB blocks, requests only changed blocks
 using HTTP byte ranges, stages them and writes them at their original offsets.
 It does not assemble a second complete PCK or download/extract another ZIP.
 Unchanged bytes are read, not written. Reading the full installation costs time
@@ -111,24 +161,24 @@ launcher ZIP is 15,597 bytes. Other starting versions may need different amounts
 ## Publishing the next release
 
 Run required source checks before committing, as usual. Export a new uniquely
-named build and publish its catalogue without spending time/space compressing
-another ZIP:
+named build and publish both a full ZIP and its compressed update catalogue:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1 `
-  -BuildName TrainGame-Kerala-Coast-R19-Windows -UpdateSequence 19 -SkipZip -SkipTests
+  -BuildName TrainGame-Kerala-Coast-R36-Windows -UpdateSequence 38 -SkipTests
 ```
 
 Use `-SkipTests` only after checks have passed for the source being exported.
-Omit `-SkipZip` when a new full first-install ZIP is wanted. Export still produces
-a full PCK on the development PC; this optimization primarily reduces transfer
-and writes on the playing PC. The server notices the new latest catalogue without
-a restart. The launcher checks again whenever Update & Play is clicked.
+`-SkipZip` is optional when only an incremental publication is wanted; it omits
+archive fallback. Export creates the full source PCK temporarily, partitions
+it, then removes that temporary monolith. Keep the resulting core and `packs/`.
+After the one-time server restart for v3, new catalogues need no restart.
+The launcher checks again whenever Update & Play is clicked.
 
 To publish an already-exported folder:
 
 ```powershell
-node.exe tools/updater/publish.mjs --build=TrainGame-Kerala-Coast-R19-Windows --sequence=19
+node.exe tools/updater/publish.mjs --build=TrainGame-Kerala-Coast-R36-Windows --sequence=38
 ```
 
 Published build folders/identifiers are immutable. The build script refuses to

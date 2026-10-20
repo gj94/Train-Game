@@ -15,7 +15,8 @@ R28 geometry is incompatible, so start a fresh journey if upgrading from R28.
 
 RUN ON ANOTHER PC
 1. Download and extract the entire ZIP to a writable folder on your SSD.
-2. Open TrainGame.exe. Keep TrainGame.pck and the other files beside it.
+2. Open TrainGame.exe. Keep TrainGame.pck, any packs folder and the other files
+   beside it. Always extract the complete folder structure.
 3. No Godot, Blender, Node.js or development checkout is needed.
 4. F11 / Alt+Enter or the menu switches fullscreen/window. New installs start
    fullscreen. Graphics settings and your display choice are remembered.
