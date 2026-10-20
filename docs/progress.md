@@ -1,5 +1,23 @@
 # Progress
 
+## 2026-10-21 — Opt-in Extreme visuals (separate review branch, in progress)
+
+- Added an optional Extreme preset with filtered surface microdetail, detailed
+  reflections and longer mesh-detail ranges. High remains the default; existing
+  presets/preferences and all simulation, save, timetable and sound inputs stay
+  unchanged. Changes are isolated to `codex/extreme-visual-fidelity`, not released.
+- Detail is per geometry, preserving shared authored materials. New road/station
+  finish coordinates remain stable through origin rebases; returning to High
+  restores the original reflection and LOD settings.
+- Added isolation/migration/rebase tests and a small actual-source shader capture
+  fixture. The matching official Godot 4.7.2 binary is SHA-256 verified. Focused
+  checks pass; the full-suite attempt is blocked by unavailable large train-scene
+  imports. An intensive-timetable signature failure also reproduces on the
+  untouched parent. Actual captures and the final incoming-parent merge remain
+  pending; detailed evidence and limits are in the visual review notes.
+- No target-GPU performance or full-game visual sign-off claimed. See
+  `extreme-visuals.md` for scope, reproducible checks and exact playtest steps.
+
 ## 2026-10-21 — Faster verified downloads prepared for the next release
 
 - V4 batches adjacent missing blocks into at most 4 MiB requests, pipelines

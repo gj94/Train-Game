@@ -180,6 +180,7 @@ func _make_materials() -> void:
 	materials.water=ShaderMaterial.new()
 	materials.water.shader=load("res://game/shaders/geographic_water.gdshader")
 	materials.water.set_shader_parameter("route_origin",coordinate_origin)
+	preload("res://game/extreme_visuals.gd").apply_route_origin(materials,coordinate_origin)
 
 func _station_finish(kind: int,color: Color,metres: float) -> ShaderMaterial:
 	var material:=ShaderMaterial.new()
@@ -457,6 +458,7 @@ func _trace_job(finished: Dictionary,role: String) -> void:
 func rebase(origin: Vector3) -> void:
 	coordinate_origin=origin
 	materials.water.set_shader_parameter("route_origin",origin)
+	preload("res://game/extreme_visuals.gd").apply_route_origin(materials,origin)
 	for chunk in loaded.values(): chunk.node.position=chunk.origin-origin
 	for pending in _activating.values():pending.holder.position=pending.result.origin-origin
 	if _joints_on: _make_joint_markers()

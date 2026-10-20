@@ -12,13 +12,13 @@ mesh detail to Balanced. **Performance** additionally uses 85% render scale, 2×
 MSAA, 2048-pixel/100 m shadows, disables SSIL, reduces view distance to 1.8 km and
 reduces vegetation, building, exterior train detail and rendered crowd budgets.
 Changing any individual value makes the preset **Custom**. Applying a preset
-resets all 18 options, including the frame limit and V-sync.
+resets all 20 options, including the frame limit and V-sync.
 
 | Group | Individual controls |
 | --- | --- |
 | Display & image | 3D resolution scale (50–100%), MSAA (Off/2×/4×/8×), FXAA, V-sync, FPS limit |
-| Light & shadow | Shadow resolution (Off/2048/4096/8192), distance (100/200/300 m), filtering, SSAO, SSIL, bloom |
-| Scenery | View distance (1.5/1.8/2.2 km), vegetation density, vegetation detail distance, building detail distance, automatic mesh detail |
+| Light & shadow | Shadow resolution (Off/2048/4096/8192), distance (100/200/300 m), filtering, SSAO, SSIL, bloom, detailed reflections |
+| Scenery | View distance (1.5/1.8/2.2 km), vegetation density, vegetation detail distance, building detail distance, automatic mesh detail, surface microdetail |
 | Trains & passengers | Other train detail distance, visible passenger budget |
 
 Below native resolution, FSR spatial upscaling scales the 3D scene; the UI keeps its
@@ -40,6 +40,23 @@ Preferences live in Godot's `user://graphics.cfg` (normally
 `%APPDATA%/Godot/app_userdata/Train Game/graphics.cfg`). They belong to this PC,
 remain separate from journey saves and survive incremental updates. If saving fails,
 the menu reports that the change applies only for this run.
+
+## Opt-in Extreme preset
+
+**Extreme** retains native resolution, 8× MSAA, 8192-pixel shadows, the 2.2 km
+view distance and the existing passenger/vegetation counts. It adds filtered
+surface microdetail, screen-space reflections and 512-pixel sky radiance; it
+keeps trees, supported buildings and other-train detail at 150% of the High
+transition distances and reduces imported mesh simplification. FXAA is disabled
+to retain fine texture detail; 8× MSAA still smooths silhouettes.
+
+This is a deliberately more expensive, optional quality mode, not a new default
+or a promised frame rate. Existing graphics files and High/Balanced/Performance
+settings keep their prior appearance and values. Surface microdetail and detailed
+reflections can be selected separately. Reflections require Forward+ and cannot
+reflect off-screen objects. Return to High to restore the original ranges and
+environment settings. See [Extreme visual review](extreme-visuals.md) for scope,
+validation and the same-camera comparison procedure.
 
 ## Tuning on the target laptop
 
