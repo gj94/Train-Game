@@ -23,7 +23,7 @@ jobs:
   source-material-review:
     if: github.ref == 'refs/heads/codex/extreme-visual-fidelity'
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 40
     env:
       GODOT_VERSION: 4.7.2
       GODOT_SHA256: cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4
@@ -71,6 +71,16 @@ jobs:
             2>&1 | tee "$RUNNER_TEMP/extreme-review/baseline-import.log"
           "$GODOT" --headless --path "$RUNNER_TEMP/extreme-fixture" --editor --import \
             2>&1 | tee "$RUNNER_TEMP/extreme-review/import.log"
+      - name: Diagnose water reflections and normal mapping
+        timeout-minutes: 6
+        run: |
+          mkdir -p "$RUNNER_TEMP/extreme-review/diagnostic"
+          xvfb-run --auto-servernum --server-args='-screen 0 1280x720x24 -nolisten tcp' \
+            "$GODOT" --audio-driver Dummy --path "$RUNNER_TEMP/extreme-fixture" --rendering-method forward_plus \
+            --rendering-driver vulkan --script res://tools/check_extreme_visuals.gd -- \
+            --output="$RUNNER_TEMP/extreme-review/diagnostic" --size=1280x720 \
+            --reflection-diagnostic --settle-frames=8 --sample-frames=4 \
+            2>&1 | tee "$RUNNER_TEMP/extreme-review/diagnostic-capture.log"
       - name: Capture parent High with software Vulkan
         timeout-minutes: 10
         run: |
@@ -80,7 +90,7 @@ jobs:
             --output="$RUNNER_TEMP/extreme-review/baseline" --size=1280x720 --presets=High --settle-frames=8 --sample-frames=4 \
             2>&1 | tee "$RUNNER_TEMP/extreme-review/baseline-capture.log"
       - name: Capture actual source shaders with software Vulkan
-        timeout-minutes: 16
+        timeout-minutes: 22
         run: |
           BASELINE_MANIFEST=$(find "$RUNNER_TEMP/extreme-review/baseline" -name manifest.json -print -quit)
           test -n "$BASELINE_MANIFEST" && test -f "$BASELINE_MANIFEST"
@@ -95,16 +105,6 @@ jobs:
           BASELINE_MANIFEST=$(find "$RUNNER_TEMP/extreme-review/baseline" -name manifest.json -print -quit)
           PATCHED_MANIFEST=$(find "$RUNNER_TEMP/extreme-review" -maxdepth 2 -name manifest.json -not -path '*/baseline/*' -print -quit)
           python3 tools/check_extreme_capture_manifest.py --baseline "$BASELINE_MANIFEST" --patched "$PATCHED_MANIFEST"
-      - name: Diagnose water reflections and normal mapping
-        timeout-minutes: 6
-        run: |
-          mkdir -p "$RUNNER_TEMP/extreme-review/diagnostic"
-          xvfb-run --auto-servernum --server-args='-screen 0 1280x720x24 -nolisten tcp' \
-            "$GODOT" --audio-driver Dummy --path "$RUNNER_TEMP/extreme-fixture" --rendering-method forward_plus \
-            --rendering-driver vulkan --script res://tools/check_extreme_visuals.gd -- \
-            --output="$RUNNER_TEMP/extreme-review/diagnostic" --size=1280x720 \
-            --reflection-diagnostic --settle-frames=8 --sample-frames=4 \
-            2>&1 | tee "$RUNNER_TEMP/extreme-review/diagnostic-capture.log"
       - name: Retain review evidence, including failures
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

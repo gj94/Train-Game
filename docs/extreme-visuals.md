@@ -131,3 +131,17 @@ definition and worse thin-line antialiasing with FXAA disabled. Extreme now keep
 FXAA; water reflection/normal diagnostics and full night/rebase captures follow.
 No target-hardware or full-game visual sign-off is claimed. The morning handoff
 will record final parent/head commits and complete evidence.
+
+The second run completed all 45 standard patched images. All 15 parent-High and
+15 restored-High comparisons, including night, are exactly equal. Its 14-minute
+watchdog expired before the four far-route images, so it correctly failed. The
+bounded watchdog is now 20 minutes, with water diagnostics moved first. Full
+completion is still required; these partial captures are not relabelled passes.
+
+A separate bounded station fixture uses actual station, permanent-way, OHE and
+lighting builders with a synthetic single-track halt. It never steps simulation
+or loads a full route/train. The preparer and validator are
+`tools/prepare_extreme_station_scene.py` and
+`tools/check_extreme_station_manifest.py`; its expected evidence is four original
+High images and twelve current High/Extreme/restored images. Structural checks
+preserve world and mesh buffers, but are explicitly not rendered visual proof.

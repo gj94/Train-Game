@@ -1,0 +1,106 @@
+name: Extreme station review (software Vulkan)
+
+# Deliberately scoped to this review branch and an explicit workflow edit.
+# Ordinary commits do not spend runner time; never deploys or updates the parent.
+on:
+  push:
+    branches: [codex/extreme-visual-fidelity]
+    paths: [.github/workflows/extreme-station-review.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: extreme-station-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bounded-station-review:
+    if: github.ref == 'refs/heads/codex/extreme-visual-fidelity'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2
+      GODOT_SHA256: cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      BASELINE_REF: 65e30b152ed612074f16d06d95896014229e4c77
+    steps:
+      - name: Check out only the fixture sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /game/
+            /sim/
+            /tools/check_extreme_station_scene.gd
+            /tools/check_extreme_station_scene.gd.uid
+            /tools/prepare_extreme_station_scene.py
+            /tools/check_extreme_station_manifest.py
+            /tools/check_extreme_capture_manifest.py
+            /tools/tests/test_extreme_station_scene.py
+            /assets/polyhaven/
+      - name: Install Ubuntu software rendering packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends xvfb xauth mesa-vulkan-drivers vulkan-tools
+      - name: Verify the official portable Godot build
+        run: |
+          curl --fail --location --retry 2 --output "$RUNNER_TEMP/godot.zip" \
+            "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          echo "$GODOT_SHA256  $RUNNER_TEMP/godot.zip" | sha256sum --check -
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot"
+          chmod u+x "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" >> "$GITHUB_ENV"
+          echo "VK_DRIVER_FILES=$(find /usr/share/vulkan/icd.d -name '*lvp*json' -print -quit)" >> "$GITHUB_ENV"
+      - name: Assemble the bounded genuine-builder station
+        run: |
+          python3 -m unittest discover -s tools/tests -p 'test_extreme_station_scene.py' -v
+          git fetch --no-tags --depth=1 origin "$BASELINE_REF"
+          python3 tools/prepare_extreme_station_scene.py --output "$RUNNER_TEMP/extreme-baseline" --baseline-ref "$BASELINE_REF"
+          python3 tools/prepare_extreme_station_scene.py --output "$RUNNER_TEMP/extreme-fixture"
+          mkdir -p "$RUNNER_TEMP/extreme-review"
+          mkdir -p "$RUNNER_TEMP/extreme-review/baseline"
+          printf '%s\n' "$GITHUB_SHA" > "$RUNNER_TEMP/extreme-review/source-commit.txt"
+          printf '%s\n' "$BASELINE_REF" > "$RUNNER_TEMP/extreme-review/baseline-commit.txt"
+          "$GODOT" --headless --path "$RUNNER_TEMP/extreme-baseline" --editor --import \
+            2>&1 | tee "$RUNNER_TEMP/extreme-review/baseline-import.log"
+          "$GODOT" --headless --path "$RUNNER_TEMP/extreme-fixture" --editor --import \
+            2>&1 | tee "$RUNNER_TEMP/extreme-review/import.log"
+      - name: Capture parent High with software Vulkan
+        timeout-minutes: 10
+        run: |
+          xvfb-run --auto-servernum --server-args='-screen 0 1280x720x24 -nolisten tcp' \
+            "$GODOT" --audio-driver Dummy --path "$RUNNER_TEMP/extreme-baseline" --rendering-method forward_plus \
+            --rendering-driver vulkan --script res://tools/check_extreme_station_scene.gd -- \
+            --output="$RUNNER_TEMP/extreme-review/baseline" --size=1280x720 --presets=High --settle-frames=8 --sample-frames=4 \
+            2>&1 | tee "$RUNNER_TEMP/extreme-review/baseline-capture.log"
+      - name: Capture actual station and track builders with software Vulkan
+        timeout-minutes: 16
+        run: |
+          BASELINE_MANIFEST=$(find "$RUNNER_TEMP/extreme-review/baseline" -name manifest.json -print -quit)
+          test -n "$BASELINE_MANIFEST" && test -f "$BASELINE_MANIFEST"
+          xvfb-run --auto-servernum --server-args='-screen 0 1280x720x24 -nolisten tcp' \
+            "$GODOT" --audio-driver Dummy --path "$RUNNER_TEMP/extreme-fixture" --rendering-method forward_plus \
+            --rendering-driver vulkan --script res://tools/check_extreme_station_scene.gd -- \
+            --output="$RUNNER_TEMP/extreme-review" --size=1280x720 --settle-frames=8 --sample-frames=4 \
+            --compare-high="$BASELINE_MANIFEST" \
+            2>&1 | tee "$RUNNER_TEMP/extreme-review/capture.log"
+      - name: Require complete and pixel-preserving evidence
+        run: |
+          BASELINE_MANIFEST=$(find "$RUNNER_TEMP/extreme-review/baseline" -name manifest.json -print -quit)
+          PATCHED_MANIFEST=$(find "$RUNNER_TEMP/extreme-review" -maxdepth 2 -name manifest.json -not -path '*/baseline/*' -print -quit)
+          python3 tools/check_extreme_station_manifest.py --baseline "$BASELINE_MANIFEST" --patched "$PATCHED_MANIFEST"
+      - name: Retain review evidence, including failures
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: extreme-bounded-station-review-${{ github.sha }}
+          path: ${{ runner.temp }}/extreme-review/
+          if-no-files-found: warn
+          retention-days: 14

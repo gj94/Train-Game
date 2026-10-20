@@ -160,7 +160,7 @@ func _run() -> void:
 	Engine.max_fps=0
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	# Wall-clock watchdog remains active while Engine.time_scale is zero.
-	create_timer(840.0,true,false,true).timeout.connect(func():_fail("Capture timed out before completion."))
+	create_timer(1200.0,true,false,true).timeout.connect(func():_fail("Capture timed out before completion."))
 	_build_fixture()
 	if not asset_error.is_empty():
 		_fail(asset_error)
