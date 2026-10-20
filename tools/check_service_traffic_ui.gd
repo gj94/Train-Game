@@ -10,12 +10,18 @@ func check(ok: bool,label: String) -> void:
 	if not ok:failures+=1;printerr("FAIL: ",label)
 
 func run() -> void:
+	var day:="standard"
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--day="):day=arg.trim_prefix("--day=")
+	var definition:=preload("res://persistence/operating_days.gd").definition(day)
+	if definition.id!=day:printerr("Unknown operating day");quit(1);return
+	set_meta("timetable_id",day)
 	root.size=Vector2i(1600,900)
 	var page:=preload("res://game/launch.gd").new()
 	page.store=preload("res://persistence/save_store.gd").new("res://.local/traffic-ui-isolated-saves")
 	root.add_child(page);current_scene=page
 	await process_frame;await process_frame
-	check(page.services.size()==100 and not page.traffic_data.is_empty(),"Complete current service/traffic catalogues")
+	check(page.services.size()==definition.count and not page.traffic_data.is_empty(),"Complete current service/traffic catalogues")
 	var roles:={}
 	var total:=0
 	for i in page.shown.size():
@@ -41,6 +47,6 @@ func run() -> void:
 	check(page.detail_mode==0 and page.calls_grid.visible,"Controller Y returns to stops")
 	page._input(event);await process_frame
 	check(page.detail_mode==1 and page.traffic_list.visible,"Controller Y opens traffic")
-	print("TRAFFIC_UI ",JSON.stringify({checks=checks,failures=failures,services=page.services.size(),encounter_cards=total,roles=roles}))
+	print("TRAFFIC_UI ",JSON.stringify({checks=checks,failures=failures,operating_day=day,services=page.services.size(),encounter_cards=total,roles=roles}))
 	page.queue_free();await process_frame;await process_frame
 	quit(1 if failures else 0)

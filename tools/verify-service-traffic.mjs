@@ -15,7 +15,7 @@ assert.equal(traffic.version, 1); assert.equal(traffic.complete, true); assert.e
 assert.equal(traffic.engine, starts.engine); assert.equal(traffic.start_sha256, sha(bytes)); assert.equal(traffic.timeline_sha256, sha(timelineBytes));
 assert.deepEqual([...traffic.services].sort(), starts.services.map(s => s.id).sort());
 const observerPaths=traffic.preparation==='serial-operating-day'
-  ? ['tools/prepare_timetable_variant.gd','tools/record_service_traffic.gd','tools/lib/traffic-encounters.mjs','tools/finalize_timetable_variant.mjs']
+  ? ['tools/prepare_timetable_variant.gd','tools/wait_quality.gd','tools/lib/wait-quality.mjs','tools/record_service_traffic.gd','tools/lib/traffic-encounters.mjs','tools/finalize_timetable_variant.mjs']
   : ['tools/record_service_traffic.gd', 'tools/lib/traffic-encounters.mjs', 'tools/prepare-service-traffic.mjs'];
 assert.deepEqual(Object.keys(traffic.observer_sources).sort(),[...observerPaths].sort());
 for (const path of observerPaths) {

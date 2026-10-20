@@ -1,3 +1,4 @@
+import {assertWaitQuality} from './lib/wait-quality.mjs';
 // Validate one complete serial rehearsal and derive reciprocal traffic previews.
 // Publication into data/ happens only after every quality gate succeeds.
 import {readFile, writeFile, mkdir, copyFile, readdir} from 'node:fs/promises';
@@ -15,7 +16,7 @@ const sha=b=>createHash('sha256').update(b).digest('hex');
 const audit=JSON.parse(await readFile(folder+'/audit.json','utf8'));
 assert.ok(audit.audit.ok);assert.equal(audit.audit.finished,expected);
 assert.equal(audit.audit.operating_day,standard?'standard':'intensive');
-assert.equal(audit.audit.events.length,0);assert.ok(audit.audit.maximum_wait<=1800);
+assert.equal(audit.audit.events.length,0);assertWaitQuality(audit);
 assert.equal(Object.keys(audit.services).length,expected);
 for(const [id,service] of Object.entries(audit.services)){
   assert.equal(service.stabled,true,`${id} has not cleared its working`);
@@ -46,6 +47,7 @@ const startBytes=await readFile(folder+'/starts/catalogue.json');
 const timeBytes=await readFile(folder+'/times/catalogue.json');
 const starts=JSON.parse(startBytes),times=JSON.parse(timeBytes);
 assert.ok(starts.complete&&times.complete&&starts.audit.ok&&times.audit.ok);
+assert.deepEqual(starts.audit,audit.audit);
 assert.equal(starts.services.length,expected);
 assert.equal(times.departure_catalogue_sha256,sha(startBytes));
 assert.equal(times.states[0].clock,Math.round(first));
@@ -63,7 +65,7 @@ for(const [sub,rows]of [['starts',starts.services],['times',times.states]]){
   }
 }
 const observer_sources={};
-for(const path of ['tools/prepare_timetable_variant.gd','tools/record_service_traffic.gd','tools/lib/traffic-encounters.mjs','tools/finalize_timetable_variant.mjs']){
+for(const path of ['tools/prepare_timetable_variant.gd','tools/wait_quality.gd','tools/lib/wait-quality.mjs','tools/record_service_traffic.gd','tools/lib/traffic-encounters.mjs','tools/finalize_timetable_variant.mjs']){
   observer_sources[path]=sha((await readFile(path,'utf8')).replaceAll('\r\n','\n'));
 }
 const traffic={version:1,complete:true,preparation:'serial-operating-day',engine:starts.engine,start_sha256:sha(startBytes),timeline_sha256:sha(timeBytes),

@@ -1,3 +1,4 @@
+import {assertWaitQuality} from './lib/wait-quality.mjs';
 import {readFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
@@ -9,7 +10,7 @@ const starts=JSON.parse(bytes),times=JSON.parse(timeBytes);
 const traffic=JSON.parse(await readFile(folder+'/starts/traffic.json'));
 assert.ok(starts.complete&&starts.audit.ok&&times.complete&&times.audit.ok&&traffic.complete&&traffic.audit.ok);
 assert.equal(starts.services.length,140);assert.equal(starts.audit.finished,140);
-assert.deepEqual(starts.audit.events,[]);assert.ok(starts.audit.maximum_wait<=1800);
+assert.deepEqual(starts.audit.events,[]);const fullAudit=JSON.parse(await readFile(folder+'/audit.json','utf8'));assertWaitQuality(fullAudit);assert.deepEqual(starts.audit,fullAudit.audit);
 assert.equal(traffic.start_sha256,sha(bytes));assert.equal(traffic.timeline_sha256,sha(timeBytes));
 assert.equal(times.departure_catalogue_sha256,sha(bytes));
 assert.deepEqual(times.sources,starts.sources);
@@ -31,7 +32,7 @@ for(const [path,digest]of Object.entries(starts.sources)){
   const value=await readFile(path);
   assert.equal(sha(path.endsWith('.bin')?value:value.toString('utf8').replaceAll('\r\n','\n')),digest,'Stale alternate day: '+path);
 }
-const observers=['tools/prepare_timetable_variant.gd','tools/record_service_traffic.gd','tools/lib/traffic-encounters.mjs','tools/finalize_timetable_variant.mjs'];
+const observers=['tools/prepare_timetable_variant.gd','tools/wait_quality.gd','tools/lib/wait-quality.mjs','tools/record_service_traffic.gd','tools/lib/traffic-encounters.mjs','tools/finalize_timetable_variant.mjs'];
 assert.deepEqual(Object.keys(traffic.observer_sources).sort(),observers.sort());
 for(const [path,digest]of Object.entries(traffic.observer_sources)){
   assert.equal(sha((await readFile(path,'utf8')).replaceAll('\r\n','\n')),digest,'Stale alternate preview: '+path);

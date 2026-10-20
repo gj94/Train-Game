@@ -3,6 +3,16 @@ extends RefCounted
 ## They only choose/withhold ordinary interlocked routes, never override protection.
 const LOOKAHEAD_SECONDS := 240.0
 const MAX_HOLD_ETA := 300.0
+const STATION_WAIT_TARGET := 600.0
+const STATION_WAIT_BUDGET := 1800.0
+
+static func ready_wait(w: RailWorld,t: Train,station_code: String) -> float:
+	# One budget for the whole booked call, not one new timer per express.
+	# release_time includes actual arrival, minimum dwell and passenger exchange;
+	# destination lateness and waits at previous stations do not consume it.
+	if t.timetable==null or not t.timetable.at_stop or t.service_complete:return 0.0
+	if station(w,t.path[0].edge).get("code","")!=station_code:return 0.0
+	return maxf(0,w.clock_seconds()-t.timetable.release_time())
 
 static func chainage(w: RailWorld,t: Train) -> float:
 	var e: Dictionary=w.graph.edges[t.path[0].edge]
@@ -26,6 +36,7 @@ static func conflict(w: RailWorld,t: Train,st: Dictionary) -> Dictionary:
 	var at:=chainage(w,t)
 	var best:={}
 	var best_eta:=INF
+	var waited:=ready_wait(w,t,st.code)
 	for other: Train in w.active_trains():
 		if other==t or other.service_complete:continue
 		var other_at:=chainage(w,other)
@@ -46,6 +57,11 @@ static func conflict(w: RailWorld,t: Train,st: Dictionary) -> Dictionary:
 			if index<0 or index>=sections.size() or sections[index].tracks!=1:continue
 			if (other_at-st.s)*direction<500:continue # already in/past this station
 		else:
+			# Ten minutes is a comfort target, not a forced departure. Avoid
+			# new optional passes beyond the shared thirty-minute starvation budget. Physical authority
+			# and an overtake already alongside remain separately protected.
+			if waited>=STATION_WAIT_BUDGET:continue
+			if waited>=STATION_WAIT_TARGET and waited+other_eta>STATION_WAIT_BUDGET:continue
 			if other_eta>own_eta+LOOKAHEAD_SECONDS:continue
 			if other.dispatch_priority<=t.dispatch_priority or (at-other_at)*direction<0:continue
 			if other.max_speed<=t.max_speed and not (t.timetable!=null and t.timetable.at_stop):continue

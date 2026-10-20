@@ -48,13 +48,14 @@ func run_cycle(route_trains: bool = true) -> void:
 	if route_trains: Policy.update(w)
 	for id in w.dispatch_holds.keys():
 		var hold: Dictionary=w.dispatch_holds[id]
-		# Previous signal/crossing waits must not expire a newly chosen overtake.
-		# Once the express arrives alongside, finish that order before applying
-		# waiting-age priority again. An unavailable express may still be replanned.
-		var aged: bool=hold.get("kind","")=="overtake" and w.time-hold.get("created",w.time)>900
+		# A station's ready-to-depart wait is shared across successive expresses.
+		# An arrived express still finishes its committed pass with full tail
+		# clearance. Never use lateness accumulated before this booked call.
+		var waited: float=Policy.ready_wait(w,w.trains[id],hold.get("station",""))
+		var aged: bool=hold.get("kind","")=="overtake" and (waited>=Policy.STATION_WAIT_BUDGET or w.time-hold.get("created",w.time)>900)
 		if route_trains and aged and not Policy.overtake_in_progress(w,hold) and not _advisory_release_until.has(id):
 			_advisory_release_until[id]=w.time+120
-			_record(w,"replan",id,"Long overtake wait: request a departure before accepting another advisory hold")
+			_record(w,"replan",id,"Station wait budget reached: seek a safe departure before accepting another overtake")
 		if w.time<_advisory_release_until.get(id,-1):w.dispatch_holds.erase(id)
 	for id in _advisory_release_until.keys():
 		if w.time>=_advisory_release_until[id]:_advisory_release_until.erase(id)

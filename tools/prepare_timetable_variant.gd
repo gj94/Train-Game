@@ -14,6 +14,8 @@ var delay:=0.0
 var delay_service:="K1"
 var delay_at:=0.0
 var standard:=false
+var call_waits:={}
+var signal_waits:={}
 
 func _initialize() -> void:call_deferred("run")
 
@@ -77,10 +79,11 @@ func run() -> void:
 		w.trains[delay_service].automatic=not held
 		if held:w.trains[delay_service].controller=-1
 		trial.step()
+		observe_station_waits(w,delay_service if held else "")
 		peak=maxi(peak,w.active_trains().size())
 		for t: Train in w.active_trains():
 			var m: Dictionary=metrics[t.id]
-			var waiting: bool=not t.service_complete and t.speed<.1 and w.clock_seconds()>t.timetable.release_time()+2 and not (held and t.id==delay_service)
+			var waiting: bool=not t.service_complete and t.speed<.1 and (not t.timetable.at_stop or w.clock_seconds()>t.timetable.release_time()+2) and not (held and t.id==delay_service)
 			m.current_wait=m.current_wait+2 if waiting else 0.0
 			if waiting:m.wait_seconds+=2
 			m.max_wait_seconds=maxf(m.max_wait_seconds,m.current_wait);maximum_wait=maxf(maximum_wait,m.current_wait)
@@ -104,11 +107,19 @@ func run() -> void:
 		metrics[t.id].actual_departures=tt.actual_departures
 		metrics[t.id].stabled=Depot.finished(w,t)
 		metrics[t.id].arrival_delay=maxf(0,tt.actual_arrivals[-1]-tt.planned_arrival(tt.stops.size()-1)) if t.service_complete else -1
-	var audit:={ok=trial.ok and maximum_wait<=1800 and w.events.is_empty(),report=trial.report,maximum_wait=maximum_wait,
+	var wait_quality:=preload("res://tools/wait_quality.gd").summarize(call_waits.values()+signal_waits.values())
+	var station_quality:=preload("res://tools/wait_quality.gd").summarize(call_waits.values())
+	var longest_station:=0.0;var over_budget:=[]
+	for row in call_waits.values():
+		longest_station=maxf(longest_station,row.seconds)
+		if row.seconds>600:over_budget.append(row)
+	over_budget.sort_custom(func(a,b):return a.seconds>b.seconds)
+	var audit:={ok=trial.ok and maximum_wait<2700 and wait_quality.ok and station_quality.ok and w.events.is_empty(),report=trial.report,maximum_wait=maximum_wait,
 		wall_seconds=(Time.get_ticks_msec()-began)*.001,clock=w.clock_seconds(),events=w.events,finished=finished,total=w.trains.size(),peak_active=peak,
 		pack_sha256="" if standard else FileAccess.get_sha256(pack_path),operating_day="standard" if standard else "intensive",
-		delay=delay,delay_service=delay_service,delay_at=delay_at}
-	json_file(output+"/audit.json",{audit=audit,services=metrics,stations=stations,history=w.dispatch_history,sources=sources})
+		delay=delay,delay_service=delay_service,delay_at=delay_at,
+		wait_quality=wait_quality,station_wait_quality=station_quality,maximum_station_wait=longest_station,over_ten_minute_calls=over_budget}
+	json_file(output+"/audit.json",{audit=audit,services=metrics,stations=stations,history=w.dispatch_history,station_waits=call_waits.values(),signal_waits=signal_waits.values(),sources=sources})
 	if snapshots:
 		catalogue.services.sort_custom(func(a,b):return a.departure<b.departure if a.departure!=b.departure else a.id<b.id)
 		catalogue.audit=audit;catalogue.complete=audit.ok and pending.is_empty()
@@ -135,3 +146,19 @@ func write_time(w: RailWorld, timeline: Dictionary) -> bool:
 	if not restored.ok or var_to_bytes(Snapshot.capture(restored.world))!=var_to_bytes(state):printerr("Timeline restore mismatch "+id+": "+restored.get("reason","state differs"));return false
 	timeline.states.append(row)
 	return true
+
+func observe_station_waits(w: RailWorld, held_id: String) -> void:
+	# Accumulate by booked call or signal, including multiple blockers/brief
+	# creeps. Exclude scheduled dwell, passenger exchange and injected pauses.
+	for t: Train in w.active_trains():
+		if t.service_complete or t.id==held_id or t.speed>=.1 or t.timetable==null:continue
+		var booked: bool=t.timetable.at_stop
+		if booked and w.clock_seconds()<=t.timetable.release_time()+2:continue
+		var signal_id: String=w.next_signal(t).get("id",t.path[0].edge)
+		var key:="%s:call:%d" % [t.id,t.timetable.index] if booked else t.id+":signal:"+signal_id
+		var rows: Dictionary=call_waits if booked else signal_waits
+		if not rows.has(key):rows[key]={id=t.id,call=t.timetable.index,station=t.path[0].edge.get_slice("_P",0),signal_id="" if booked else signal_id,seconds=0.0,reasons={}}
+		var row: Dictionary=rows[key]
+		var reason: String=w.dispatcher().states.get(t.id,{}).get("reason",t.status)
+		row.seconds+=2
+		row.reasons[reason]=row.reasons.get(reason,0.0)+2

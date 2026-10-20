@@ -1,3 +1,4 @@
+import {assertWaitQuality} from './lib/wait-quality.mjs';
 // Release gate: stale or incomplete prepared railways must never be exported.
 import {readFile, readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -9,7 +10,7 @@ const folder=join(root,'data/service_starts');
 const data=JSON.parse(await readFile(join(folder,'catalogue.json'),'utf8'));
 assert.equal(data.version,1);assert.equal(data.complete,true);assert.equal(data.audit.ok,true);
 assert.equal(data.services.length,100);assert.equal(data.audit.finished,100);
-assert.equal(data.audit.events.length,0);assert.ok(data.audit.maximum_wait<=1800);
+assert.equal(data.audit.events.length,0);const fullAudit=JSON.parse(await readFile(join(folder,'audit.json'),'utf8'));assertWaitQuality(fullAudit);assert.deepEqual(data.audit,fullAudit.audit);
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const found=[];
 async function walk(relative){

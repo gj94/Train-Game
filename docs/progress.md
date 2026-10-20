@@ -2,6 +2,21 @@
 
 ## 2026-10-20 — Detailed mixer and alternate timetable (validation in progress)
 
+- Latest user acceptance: allow substantial accumulated passenger lateness;
+  require at least 70% of meaningful extra waits under 10 minutes, 90% under
+  20, 98% under 30 and all under 45. Ten minutes is not a hard cutoff.
+  Successive expresses share a booked call's ready-to-depart age; optional
+  holds cannot restart the shared thirty-minute starvation budget. Existing
+  arrived express authority, tail clearance and crossing locks remain protected.
+  Fourteen overtake commitment tests pass, including explicit >10-minute
+  permission, save/load and non-resetting waits. Four wait-distribution unit
+  tests plus four independent publication-gate tests pass.
+  Audits record per-call and per-signal standstill totals and reason breakdowns.
+  Scheduled dwell, passenger exchange and injected manual pauses are excluded;
+  episodes below 30 seconds are reported separately, not used to dilute long
+  holds. Fresh v10 standard/intensive baselines and delayed K1 are running.
+  Earlier v9 runs were stopped after the acceptance target changed. V7 standard
+  is only a prior-behaviour comparison, not current release data.
 - B042/B002 investigated against R37's measured replay: B002 arrives at SRTL
   10:27:27 but is booked out at 10:35:30; B042 arrives 10:32:37 and leaves
   10:33:41, leading to the repeat pass at MAKM. The standard day is preserved.
@@ -10,7 +25,7 @@
   Own/passing air, floor/metal rattles, motors/fans/horn/compressor and
   ventilation/footsteps/doors/brake air now have separate controls. Source PCM,
   axle/contact timing and approved reference routing are unchanged.
-- **674 headless tests pass**, plus 30 native output-isolation checks, 63 menu
+- **684 headless tests pass**, plus 30 native output-isolation checks, 63 menu
   navigation checks and the five-train/93-vehicle native audio rehearsal.
   R37's standard preview passed all 3,366 checks / 1,020 reciprocal cards.
 - Added an operating-day selector and independent departure/time-browser paths,
@@ -30,6 +45,11 @@
   opposing train in its exit section. Both regressions were observed failing
   before correction. The unchanged 14:25 railway fixture now clears all four
   services with no safety events (maximum extra wait 27m22s).
+  A larger-day candidate achieved ten distinct baseline overtakers (twelve in
+  the delayed run) but failed the wait gate at KZK: four additional QLN–TVC
+  expresses prolonged an existing queue beyond 45 minutes. Those six capital
+  relief services now run hourly from 16:10 to 21:10. A focused retimed replay
+  clears KZK with a 26m22s maximum wait; fresh full-day validation is still required.
   Fresh full-day baseline and midday-delayed K1 audits are running. **No alternate
   timetable or new release has been published yet.**
 

@@ -12,6 +12,10 @@ ventilation, footsteps, doors and brake air. Existing mixer settings migrate.
 Through VBs prefer the clear main at Trivandrum North. Receiving-road checks
 preserve platforms needed by approaching trains, and future crossing plans
 cannot depend on a train continuing beyond its final station.
+Wait quality is audited across the day: at least 70% of meaningful extra waits
+under 10 minutes, 90% under 20, 98% under 30 and all under 45. Ten minutes is
+not a hard signal timeout. Slow passengers may accumulate substantial lateness
+while yielding; existing route and crossing protections always apply.
 
 Includes forward planning for station crossings and earlier home clearance.
 The dispatcher can reserve a future platform after an overdue AI train leaves,
@@ -47,7 +51,7 @@ RUN ON ANOTHER PC
 
 START PLAYING
 Choose any service on the landing page. K1 is the slow stopping passenger.
-The timetable has 100 services, including full-route Vande Bharats in both
+The selected day has 100 or 140 services, including full-route Vande Bharats in both
 directions. Review each service's stops and scheduled timings before starting.
 Choose Traffic or press Y for the baseline crossings/overtakes, with times,
 locations and other service names. RS scrolls; Y returns to stops. These are

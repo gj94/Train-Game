@@ -5,12 +5,24 @@ const Policy:=preload("res://sim/priority_dispatch.gd")
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
 	var directory:=Times.DIRECTORY
+	var audit_path:=""
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--times="):directory=arg.trim_prefix("--times=")
+		if arg.begins_with("--audit="):audit_path=arg.trim_prefix("--audit=")
+	var audit: Dictionary={}
+	if not audit_path.is_empty():audit=JSON.parse_string(FileAccess.get_file_as_string(audit_path))
 	var catalogue: Dictionary=Times.catalogue(directory)
 	if not catalogue.ok:printerr(catalogue.reason);quit(1);return
 	var reports:=[]
 	for config in [{id="B012",clock=36900,main="TVCN_P2",home="TVCN_TVP_U0-H"},{id="B001",clock=40200,main="TVCN_P1",home="VELI_TVCN_D0-H"}]:
+		# Changed clearances can bring a train through earlier than the fixed R37
+		# fixture times. Use its measured TVC call to start BEFORE the approach.
+		if not audit.is_empty():
+			var service: Dictionary=audit.services[config.id]
+			var index: int=service.booked_stops.find_custom(func(s):return str(s.block).begins_with("TVC_P"))
+			if index<0:printerr("Missing measured TVC call");quit(1);return
+			var before: float=service.actual_departures[index]-60 if config.id=="B012" else service.actual_arrivals[index]-900
+			config.clock=floori(before/300)*300
 		var rows: Array=catalogue.data.states.filter(func(r):return int(r.clock)==config.clock)
 		if rows.is_empty():printerr("Missing pre-approach state");quit(1);return
 		var loaded:=Times.load_state(rows[0],directory)

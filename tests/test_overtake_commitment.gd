@@ -16,6 +16,7 @@ func test_northbound_overtake_preserves_order_on_the_other_loop():
 func test_fresh_overtake_does_not_inherit_earlier_signal_wait_age():
 	var w:=Fixture.build();var e=w.dispatcher();Fixture.on_approach(w,"K3")
 	w.dispatch_holds.K1.created=w.time;e._wait_since.K1=w.time-3600
+	w.trains.K1.timetable.departure=w.clock_seconds() # This station has only just become ready.
 	e.run_cycle(true)
 	return w.dispatch_holds.has("K1") and not e._advisory_release_until.has("K1")
 
@@ -55,3 +56,50 @@ func test_replanning_never_revokes_existing_express_authority():
 	if not w.set_route("TUVR-S1",option.destination).ok:return "Could not establish express authority"
 	w.trains.K3.emergency=true;e._wait_since.K1=w.time-1801;e.run_cycle(true)
 	return not w.signals["TUVR-S1"].route.is_empty() and w.signals["TUVR-S2"].route.is_empty()
+
+func test_successive_express_cannot_restart_the_same_station_wait():
+	var w:=Fixture.build();var e=w.dispatcher();Fixture.on_approach(w,"K3")
+	w.dispatch_holds.K1.created=w.time # A newly chosen express, after thirty minutes here.
+	w.trains.K1.timetable.departure=w.clock_seconds()-1801
+	e.run_cycle(true)
+	return not w.dispatch_holds.has("K1") and Policy.conflict(w,w.trains.K1,Policy.station(w,"TUVR_P2")).is_empty()
+
+func test_public_dwell_and_passenger_exchange_do_not_consume_wait_budget():
+	var w:=Fixture.build();Fixture.on_approach(w,"K3")
+	w.trains.K1.timetable.passenger_release=w.clock_seconds()+30
+	w.dispatch_holds.erase("K1")
+	w.dispatcher().run_cycle(true)
+	return w.dispatch_holds.has("K1")
+
+func test_wait_budget_does_not_reopen_after_two_minute_backoff():
+	var w:=Fixture.build();var e=w.dispatcher();Fixture.on_approach(w,"K3")
+	w.trains.K1.timetable.departure=w.clock_seconds()-1801
+	e.inhibited_signals["TUVR-S2"]=true
+	e.run_cycle(true);w.time+=121
+	e.run_cycle(true)
+	return not w.dispatch_holds.has("K1") and Policy.conflict(w,w.trains.K1,Policy.station(w,"TUVR_P2")).is_empty()
+
+func test_previous_station_lateness_does_not_use_new_station_budget():
+	var w:=Fixture.build();var t: Train=w.trains.K1;Fixture.on_approach(w,"K3")
+	t.timetable.departure=w.clock_seconds()-3600
+	t.timetable.passenger_release=w.clock_seconds()-30
+	w.dispatch_holds.K1.created=w.time
+	w.dispatcher().run_cycle(true)
+	return w.dispatch_holds.has("K1")
+
+func test_wait_budget_survives_save_load_and_next_express_selection():
+	var w:=Fixture.build();Fixture.on_approach(w,"K3")
+	w.trains.K1.timetable.departure=w.clock_seconds()-1801
+	w.dispatch_holds.K1.created=w.time
+	var restored:=preload("res://sim/world_snapshot.gd").restore(preload("res://sim/world_snapshot.gd").capture(w))
+	if not restored.ok:return restored.reason
+	var other: RailWorld=restored.world
+	other.dispatcher().run_cycle(true)
+	return not other.dispatch_holds.has("K1")
+
+func test_ten_minutes_is_not_a_hard_overtake_cutoff():
+	var w:=Fixture.build();Fixture.on_approach(w,"K3")
+	w.trains.K1.timetable.departure=w.clock_seconds()-660
+	w.dispatch_holds.K1.created=w.time
+	w.dispatcher().run_cycle(true)
+	return w.dispatch_holds.has("K1")

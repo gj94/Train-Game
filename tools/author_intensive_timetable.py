@@ -69,7 +69,9 @@ extras("B002", "KYJ", "TVC",
        ["11:20", "11:35", "11:50", "12:05", "12:20", "12:35", "17:00", "18:00"],
        "Southern Relief Express", 1)
 extras("B002", "QLN", "TVC",
-       ["13:00", "13:15", "13:30", "13:45", "19:00", "20:00"],
+       # An hourly later group avoids stacking four more expresses behind the
+       # six KYJ reliefs: that sequence held delayed K1 at KZK for 45 minutes.
+       ["16:10", "17:10", "18:10", "21:10", "19:10", "20:10"],
        "Capital Fast", 1)
 extras("B002", "KYJ", "QLN",
        ["11:15", "11:30", "11:45", "15:10", "18:10", "20:10"],

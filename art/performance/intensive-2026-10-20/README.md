@@ -4,7 +4,7 @@ Source changes are tested independently of rendering. This development machine
 has a Radeon 780M; these results are not FPS measurements on the target
 i9-13980HX / RTX 4090 Laptop.
 
-- `tests.log` / `test-timings.json`: 674 headless tests, zero failures.
+- `tests.log` / `test-timings.json`: 684 headless tests, zero failures.
 - `sound-menu.log`: 63 native mixer-menu reachability and navigation checks.
 - `five-train-audio.log`: five rakes / 93 vehicles, independent native buses,
   output headroom, interior attenuation and pause. Uses the Dummy audio driver;
@@ -29,7 +29,16 @@ i9-13980HX / RTX 4090 Laptop.
 
 Failed timetable candidates are not release data. Full-day acceptance requires
 every train to complete its calls and clear to depot, no safety events, no
-continuous extra wait over thirty minutes, and at least ten **distinct**
+waits meeting the user-approved cumulative distribution (70% under ten minutes,
+90% under twenty, 98% under thirty, all under forty-five), and at least ten **distinct**
 overtakers of the slowest service in the intensive baseline. Prepared snapshots
 are restored and compared before publication. The two operating days retain
 separate catalogues and traffic histories.
+
+`wait-quality-tests.log` records four Node gate tests. Four matching Godot tests
+are included in the full suite. The publication check recomputes the distribution
+from recorded per-call/per-signal waits; the recorded passing flag alone is not
+trusted. Booked dwell and explicit manual pauses are excluded; episodes below
+30 seconds are reported separately and cannot dilute the percentile population.
+The Godot JSON report was also read by the independent Node check, including
+non-terminating fractional percentages.

@@ -16,9 +16,33 @@ The acceptance target is ten **distinct** trains overtaking K1 in a complete
 AI-run baseline. Repeated passes by one train do not satisfy that target.
 Interlocking, receiving capacity, full-rake clearance, passenger exchange and
 normal dynamic priorities remain active. Manual driving can change encounters.
-Release preparation rejects incomplete traffic, safety events, continuous
-extra waits above thirty minutes, a B042 reverse pass of B002, and a missed
-ten-overtaker target.
+The player's comfort target is a distribution of extra waits, not a ten-minute
+hard cutoff: at least **70% under 10 minutes, 90% under 20, 98% under 30 and all
+under 45**. These are cumulative minima; better outcomes pass without inventing
+long waits. A slow passenger may accumulate an hour of lateness through many
+short holds. Destination lateness is reported, not used as a rejection gate or
+hidden by padding the schedule.
+
+A booked call shares its ready-to-depart age across successive overtakers,
+starting after booked departure, minimum dwell and passenger exchange. Ten
+minutes remains a soft target. The dispatcher avoids extending optional passes
+beyond a shared thirty-minute starvation budget. An express already alongside
+retains its committed pass until its full tail clears. Crossing locks and occupied
+routes always retain protection; neither ten nor forty-five minutes forces an
+unsafe signal clearance.
+
+The audit groups standstill samples by booked call or signal, including changes
+of blocker and short creeps. It excludes normal booked dwell, passenger exchange,
+and explicitly injected manual pauses. Episodes below 30 seconds are separately
+reported and excluded from percentile calculations, so tiny startup pauses cannot
+hide a long hold. Both the combined population and booked-station population
+must meet the cumulative percentages. The continuous-standstill guard also stays
+below 45 minutes. Every longer-than-ten-minute station call has its reason totals
+listed in the audit.
+
+Release preparation rejects incomplete traffic, safety events, a B042 reverse
+pass of B002, missed wait-distribution targets, and fewer than ten distinct K1
+overtakers. Fresh full-day and delayed-driver results are still pending.
 
 ## Why B042 passed B002 back in the standard day
 
