@@ -1,0 +1,13 @@
+{
+  "before": {
+    "median_ms": 83.598,
+    "p95_ms": 474.993,
+    "median_vertices": 4471.5
+  },
+  "after": {
+    "median_ms": 82.4425,
+    "p95_ms": 468.312,
+    "median_vertices": 4279.5
+  },
+  "note": "90 tiles, three interleaved passes, same profiles. Barrier junction detection only; other CPU/native checks overlapped. Not an FPS measurement."
+}

@@ -85,6 +85,10 @@ may meet the rail head at a level crossing; inconsistent fragments in the space
 occupied by trains and overhead equipment are omitted. Mapped station stairs,
 platform paths and underground roads no longer become generic asphalt ramps.
 The operating railway and CSV platform inventory are unchanged.
+Mapped pedestrian bridge ways inside station compounds are excluded from the
+generic road pass, preventing duplicate elevated asphalt paths over the
+modelled station footbridges. Public road bridges retain their decks and
+connected approaches.
 
 Bridge decks have undersides, coping, rails and piers. Connected approach grades
 extend beyond the original OSM bridge tag where the reconstructed yard is wider.
@@ -94,10 +98,18 @@ use open supports instead of retaining walls across tracks; lower approaches
 have retaining faces meeting the ground. Piers avoid running tracks, platforms
 and mapped roads beneath them.
 
+Raised junctions leave openings in the coping and guardrails where another
+road meets at the same height. Crossing roads on separate levels retain their
+barriers. This uses the shared road-profile grid during mesh construction.
+
 Station entrance planning uses all completed station grading and those same road
 elevations. It rejects a connection to the underside of a raised approach, an
 open canal, a tunnel or a running line. Generic building footprints also reserve
-mapped sidings before placement, regardless of map feature order. Yard rails use
+mapped sidings before placement, regardless of map feature order. Public road
+corridors also exclude reconstructed buildings, preventing guessed building
+heights from intersecting flyovers, ramps or piers. This conservatively omits
+buildings beneath roads; tunnels and narrow access paths do not exclude houses.
+Yard rails use
 a rougher, aged steel finish rather than the general polished-metal material.
 Asphalt now has stable absolute texture coordinates and a separate edge-dust
 mask, including when the world rebases.
@@ -112,6 +124,10 @@ The visible contact/messenger wires remain 12 mm; an invisible 40 mm shadow
 caster follows the same path to reduce gaps from shadow-map undersampling.
 This does not increase global shadow resolution or view distance. Very distant
 thin shadows remain limited by the selected shadow setting.
+
+The sky panorama also uses wrapped longitude derivatives for texture filtering.
+This removes the bright dashed seam found above Kollam without disabling mipmaps
+or changing the time-of-day cycle.
 
 Road elevations are a rendering reconstruction from OSM, SRTM and the game's
 railway geometry, not a survey of civil engineering structures. Long untagged

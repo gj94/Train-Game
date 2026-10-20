@@ -6,6 +6,17 @@ class AccessGround:
 	extends RefCounted
 	var road_profiles
 	func ground_at(_x: float,_z: float) -> float:return 0.0
+class FlatRoadChunk:
+	extends RefCounted
+	var geo: Dictionary
+	var road_water
+	var road_barrier_widths: Dictionary={}
+	var tile_features: Array=[]
+	var origin:=Vector3.ZERO
+	var batch=preload("res://game/geographic_mesh.gd").new()
+	func _corridor(_x: float,_z: float) -> bool:return true
+	func _ground(_x: float,_z: float) -> float:return 0.0
+	func _lines(geometry: Dictionary) -> Array:return [geometry.coordinates]
 func rect(a: Vector2,b: Vector2) -> PackedVector2Array:
 	return PackedVector2Array([a,Vector2(b.x,a.y),b,Vector2(a.x,b.y)])
 func area(pieces: Array) -> float:
@@ -118,3 +129,34 @@ func test_rail_envelope_keeps_level_crossing_and_flyover_but_rejects_mid_height_
 	if not is_equal_approx(area(reserve.clip(ring,Vector3.ZERO,-.05,.42)),400):return "Ground crossing removed"
 	if not reserve.clip(ring,Vector3.ZERO,4,4.5).is_empty():return "Road passes through train/OHE space"
 	return is_equal_approx(area(reserve.clip(ring,Vector3.ZERO,9.6,10.05)),400)
+
+func test_station_footbridge_copy_is_removed_while_public_road_bridge_remains():
+	var profiles:=Profiles.new({station_pedestrian_ways=["station-walkway"],
+		segments=[["public-road",0,0,10,12,0,10,1]]})
+	var chunk:=FlatRoadChunk.new()
+	chunk.geo={road_profiles=profiles,road_reservations=null,vegetation_clearance=null}
+	var feature:={id="station-walkway",kind="road",tags={highway="footway",bridge="yes"},
+		geometry={type="LineString",coordinates=[[0,0],[12,0]]}}
+	Road.draw(chunk,feature)
+	if not chunk.batch.surfaces.is_empty():return "Duplicate station deck retained"
+	feature.id="public-road";feature.tags.highway="service"
+	Road.draw(chunk,feature)
+	return chunk.batch.surfaces.has("road") and chunk.batch.surfaces.has("concrete")
+
+func test_flyover_join_opens_its_barrier_but_separate_levels_keep_it():
+	var counts:=[]
+	var decks:=[]
+	for ramp_height in [0.0,12.0]:
+		var chunk:=FlatRoadChunk.new()
+		chunk.geo={road_profiles=Profiles.new({segments=[
+			["main",0,0,12,40,0,12,1],["ramp",18,0,ramp_height,18,20,ramp_height,1]
+		]}),road_reservations=null,vegetation_clearance=null}
+		var main:={id="main",kind="road",tags={highway="primary",bridge="yes"},
+			geometry={type="LineString",coordinates=[[0,0],[40,0]]}}
+		chunk.tile_features=[main,{id="ramp",kind="road",tags={highway="service",bridge="yes"},
+			geometry={type="LineString",coordinates=[[18,0],[18,20]]}}]
+		Road.draw(chunk,main)
+		counts.append(chunk.batch.surfaces.metal.commit().surface_get_array_len(0))
+		decks.append(chunk.batch.surfaces.road.commit().surface_get_array_len(0))
+	if counts[1]<=0 or counts[1]>=counts[0]:return "Joining ramp still fenced off, or all barriers removed"
+	return decks[0]==decks[1] and decks[1]>0

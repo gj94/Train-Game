@@ -39,6 +39,12 @@ def smoothstep(a, b, value):
     t = max(0, min(1, (value-a)/(b-a)))
     return t*t*(3-2*t)
 
+def station_walkway(tags, geometry, station_tree):
+    """Station civil models supply footbridges/stairs; don't add asphalt copies."""
+    return (tags.get("highway") in ("footway", "path", "pedestrian")
+            and tags.get("bridge", "no") != "no"
+            and len(station_tree.query(geometry, predicate="intersects")) > 0)
+
 
 class Ground:
     def __init__(self, context, source):
@@ -179,6 +185,10 @@ def prepare(context, source, output, report_path, context_path):
     overhead_heights = [o["height"] for o in context.get("overhead",[])]
     overhead_tree = STRtree(overhead_lines)
     features, waters, water_heights = [], [], []
+    station_shapes = [Polygon(p["ring"]) for p in context["platforms"]] + ground.zone_shapes
+    station_labels = [p["station"] for p in context["platforms"]] + [z["id"] for z in context["zones"]]
+    station_tree = STRtree(station_shapes)
+    station_walkways = defaultdict(set)
     digest = hashlib.sha256()
     inputs = {}
     paths = sorted((source/"tiles").glob("*.json"))
@@ -210,6 +220,9 @@ def prepare(context, source, output, report_path, context_path):
                 water_heights.append(None)
             else:
                 tags = feature["tags"]
+                if station_walkway(tags, geometry, station_tree):
+                    for i in station_tree.query(geometry, predicate="intersects"):
+                        station_walkways[feature["id"]].add(station_labels[int(i)])
                 if (tags.get("highway") in ("proposed", "construction", "steps") or tags.get("tunnel", "no") != "no"
                         or tags.get("railway") == "platform" or float(tags.get("layer",0)) < 0):
                     continue
@@ -225,6 +238,8 @@ def prepare(context, source, output, report_path, context_path):
             node_ids[key] = len(nodes);nodes.append(key)
         return node_ids[key]
     for way, tags, line in features:
+        if way in station_walkways:
+            continue
         coords = list(line.coords)
         for a, b in zip(coords, coords[1:]):
             length = math.dist(a, b)
@@ -349,6 +364,7 @@ def prepare(context, source, output, report_path, context_path):
                   context_sha256=file_digest(context_path), inputs=inputs,
                   tile_names_sha256=hashlib.sha256("\n".join(p.name for p in paths).encode()).hexdigest(),
                   note="OSM/SRTM rendering reconstruction; no railway/simulation inputs changed",
+                  station_pedestrian_ways=sorted(station_walkways),
                   segments=rows)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result,separators=(",",":"))+"\n", encoding="utf8")
@@ -356,6 +372,8 @@ def prepare(context, source, output, report_path, context_path):
                   water_edge_nodes=len(water_edge_nodes),railway_edge_nodes=len(railway_edge_nodes),
                   clearance_rounds=iteration,maximum_uplift=round(biggest,3),
                   file_bytes=output.stat().st_size,source_sha256=digest.hexdigest())
+    report["omitted_station_walkways"] = [
+        dict(way=way, stations=sorted(station_walkways[way])) for way in sorted(station_walkways)]
     report_path.write_text(json.dumps(report,indent=2)+"\n",encoding="utf8")
     print(json.dumps({k:v for k,v in report.items() if k!="structures"}),flush=True)
 

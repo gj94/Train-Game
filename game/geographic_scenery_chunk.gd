@@ -22,6 +22,7 @@ var shore_bins := {}
 var near_tiles: Array = []
 var mapped_rails: Array = []
 var mapped_rail_clearance:=preload("res://game/geographic_scenery_occupancy.gd").new()
+var mapped_road_clearance:=preload("res://game/geographic_scenery_occupancy.gd").new()
 var library
 var occupancy:=preload("res://game/geographic_scenery_occupancy.gd").new()
 const BuildingLayout:=preload("res://game/geographic_building_layout.gd")
@@ -29,6 +30,7 @@ const Kerala:=preload("res://game/kerala_scenery.gd")
 const Budget:=preload("res://game/railway_render_budget.gd")
 var tile_features: Array=[]
 var road_water
+var road_barrier_widths: Dictionary={}
 
 func _init(data, shared_materials: Dictionary, shared_assets) -> void:
 	geo=data
@@ -256,6 +258,10 @@ func _building(feature: Dictionary) -> void:
 		if ring[0].is_equal_approx(ring[-1]): ring.remove_at(ring.size()-1)
 		if StationSites.intersect(geo.station_sites,ring,origin):continue
 		if not mapped_rail_clearance.clear_polygon(ring,1.2):continue
+		# Mapped building heights and reconstructed flyovers are not a surveyed
+		# shared volume. Keep their full road corridor clear rather than putting
+		# a facade/roof through the carriageway or its piers.
+		if not mapped_road_clearance.clear_polygon(ring,1.0):continue
 		var centre:=Vector2.ZERO
 		for p in ring: centre+=p
 		centre/=ring.size()
@@ -382,9 +388,13 @@ func _register_occupied(features: Array) -> void:
 				occupancy.add_polygon(ring,.6)
 		elif feature.kind in ["road","stream"]:
 			var half_width: float={"motorway":5.0,"trunk":4.5,"primary":4.0,"secondary":3.25,"tertiary":2.75,"residential":2.25,"service":1.8,"footway":.75,"path":.5,"track":1.4}.get(feature.tags.get("highway",""),2.0)
+			var tags: Dictionary=feature.tags
+			var reserve_buildings: bool=feature.kind=="road" and half_width>=1.5 and tags.get("highway","") not in ["proposed","construction","steps","pedestrian"] and tags.get("tunnel","no")=="no" and float(tags.get("layer","0"))>=0
 			for line in _lines(feature.geometry):
 				for i in range(1,line.size()):
-					occupancy.add_road(Vector2(line[i-1][0],line[i-1][1]),Vector2(line[i][0],line[i][1]),half_width+1)
+					var a:=Vector2(line[i-1][0],line[i-1][1]);var b:=Vector2(line[i][0],line[i][1])
+					occupancy.add_road(a,b,half_width+1)
+					if reserve_buildings:mapped_road_clearance.add_road(a,b,half_width+.65)
 func _corridor(x: float,z: float) -> bool:
 	return geo.nearest_rail(origin.x+x,origin.z+z).distance<=Budget.CORRIDOR_WIDTH
 

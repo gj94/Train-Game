@@ -9,7 +9,11 @@ func run() -> void:
 	game._set_cab_visuals(false);game.dispatcher.set_open(false);game.hud.hide()
 	Engine.max_fps=30
 	var results:=[];var index:=0
+	var codes:=PackedStringArray()
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--codes="):codes=arg.trim_prefix("--codes=").split(",")
 	for station in game.world.stations:
+		if not codes.is_empty() and station.code not in codes:continue
 		var sites: Array=preload("res://game/station_precinct_plan.gd").entries(game.wv.geo.station_sites,station)
 		if sites.is_empty():continue
 		var site: Dictionary=sites[0]

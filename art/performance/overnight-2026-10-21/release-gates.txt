@@ -1,14 +1,14 @@
-✔ full-only release exposes only current ZIP, checksum and guides (17.4043ms)
-✔ next release can offer full ZIP and signed incremental endpoints together (10.7326ms)
-✔ unfinished ZIPs, malformed policies and mismatched manifests fail closed (11.2966ms)
-✔ compressed payload routes require the current incremental release and signed membership (13.1354ms)
-✔ timetable download is explicit, has an attachment filename and preserves full/update downloads (21.3451ms)
-✔ missing or malformed timetable publications are never offered (28.0294ms)
-✔ crash capture is opt-in, complete and strictly allowlisted, without changing release routes (10.931ms)
-✔ road gate accepts current inputs across Windows line endings (21.9243ms)
-✔ road gate rejects changed rendering geometry and stale source data (13.8531ms)
-✔ road gate detects newly added tiles and missing elevations becoming available (11.7626ms)
-✔ road gate rejects malformed generated profiles (8.525ms)
+✔ full-only release exposes only current ZIP, checksum and guides (21.0466ms)
+✔ next release can offer full ZIP and signed incremental endpoints together (11.6662ms)
+✔ unfinished ZIPs, malformed policies and mismatched manifests fail closed (11.3632ms)
+✔ compressed payload routes require the current incremental release and signed membership (13.1606ms)
+✔ timetable download is explicit, has an attachment filename and preserves full/update downloads (24.3436ms)
+✔ missing or malformed timetable publications are never offered (25.2703ms)
+✔ crash capture is opt-in, complete and strictly allowlisted, without changing release routes (19.5079ms)
+✔ road gate accepts current inputs across Windows line endings (22.2551ms)
+✔ road gate rejects changed rendering geometry and stale source data (22.1396ms)
+✔ road gate detects newly added tiles and missing elevations becoming available (13.0906ms)
+✔ road gate rejects malformed generated profiles (12.4775ms)
 ℹ tests 11
 ℹ suites 0
 ℹ pass 11
@@ -16,4 +16,4 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 204.844
+ℹ duration_ms 212.5967

@@ -15,7 +15,14 @@ float hash31(vec3 p) {
 void sky() {
  vec3 direction=normalize(EYEDIR);
  float horizon=pow(1.0-abs(direction.y),4.0);
- vec3 photograph=min(texture(daylight_panorama,SKY_COORDS).rgb,vec3(2.0));
+ // Longitude wraps at 0/1. Implicit derivatives across that seam selected
+ // a very coarse, sun-bright mip and drew a dashed vertical line in the sky.
+ // Preserve ordinary mip filtering using the shortest longitude derivatives.
+ vec2 pano_dx=dFdx(SKY_COORDS);
+ vec2 pano_dy=dFdy(SKY_COORDS);
+ pano_dx.x-=round(pano_dx.x);
+ pano_dy.x-=round(pano_dy.x);
+ vec3 photograph=min(textureGrad(daylight_panorama,SKY_COORDS,pano_dx,pano_dy).rgb,vec3(2.0));
  vec3 night_sky=mix(vec3(.002,.004,.012),vec3(.009,.015,.028),horizon);
  vec3 colour=mix(night_sky,photograph,daylight);
  // A pure-sky photograph contains bright sky even below the horizon. Feeding

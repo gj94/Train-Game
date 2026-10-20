@@ -4,9 +4,11 @@ extends RefCounted
 const PATH:="res://assets/models/scenery/road-surfaces.json"
 const CELL:=64.0
 var cells:={}
+var station_walkways:={}
 func _init(data: Dictionary={}) -> void:
 	if data.is_empty() and FileAccess.file_exists(PATH):
 		data=JSON.parse_string(FileAccess.get_file_as_string(PATH))
+	for way in data.get("station_pedestrian_ways",[]):station_walkways[way]=true
 	for row in data.get("segments",[]):
 		var a:=Vector2(row[1],row[2]);var b:=Vector2(row[4],row[5])
 		var item:={way=row[0],a=a,b=b,ya=row[3],yb=row[6],bridge=bool(row[7])}

@@ -48,4 +48,7 @@ test('road gate rejects malformed generated profiles', async t => {
   const f = await fixture(t);
   f.data.segments[0][3]=null;
   await assert.rejects(verifyRoadSurfaces(f.root,f.data,f.context), /Invalid road-profile/);
+  f.data.segments[0][3]=3;
+  f.data.station_pedestrian_ways=[42];
+  await assert.rejects(verifyRoadSurfaces(f.root,f.data,f.context), /Invalid station walkway/);
 });

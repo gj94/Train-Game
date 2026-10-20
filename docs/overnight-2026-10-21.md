@@ -153,8 +153,135 @@ twenty minutes as a continuation safeguard. Pause it after successful publicatio
   build preparation and publish R39/sequence 41 **after 20:07:24 UTC**.
   Publication audit scripts are prepared in `.local/r39-release/`.
 
+### 19:25 UTC checkpoint
+
+- Commit **55ebfec** (OHE/roads, initial evidence) is pushed. R38 is still live.
+- Close inspection found OSM station footbridges also rendered as asphalt
+  bridge decks after the modelled station civil works. New refinement excludes
+  **20 pedestrian bridge ways at 14 stations**, retaining public road bridges.
+  This is not a simulation or station-track-count change.
+- Regenerated profiles: **28,994 segments, 2,311,087 bytes**; freshness passes.
+  Six Python geometry checks and eleven Node release/download checks pass.
+  Current static audit: 4,305 tiles, **2,257,481 triangles, 9,177 rail-height
+  checks, 1,883 piers**, zero conflicts. Station links: **51**, zero height
+  failures. Logs `.local/road-final-{export,audit}.log`, `.local/road-final-audit.json`.
+- Final headless suite with the new walkway regression is session **91238**,
+  log `.local/r39-final-headless.log`, still running (no reported failures).
+  Previous optimized source passed 705; expected new total 706.
+- Full 56-station native tour is still PID **17816**, queue **56528**, around
+  KPY with no coverage errors. It loaded **55ebfec**, before walkway cleanup.
+  Queue **15661** waits for it, then launches the final-source 14-station
+  tour to `.local/station-walkways-final-2026-10-21/`. Affected codes are in
+  `.local/r39-affected-stations.txt`. Do not duplicate these processes.
+- Morning/afternoon/evening OHE captures at 2048/4096/8192 completed without
+  runtime/shader errors. Low-resolution/far thin shadows can still alias.
+- `tools/capture_road_structures.gd` parses, but its four explicit public-road
+  bridge cases still need a native run **after** the tours (avoid competing
+  full-world GPU runs). Cases `.local/r39-road-views.json` were prepared by
+  `.local/prepare-road-views.py`; use output `.local/road-structures-final`.
+- Before release: update final evidence/counts/docs, import the new capture
+  tool UID, commit/push the walkway refinement and evidence, update the
+  read-only mount audit's profile count from 29,266 to 28,994, announce build
+  preparation, then publish **R39 sequence 41 after 20:07:24 UTC**.
+- Legacy v3 catalogue verifier is compiled in `.local/r39-release/VerifyOnly.exe`;
+  it must verify the actual R39 signed catalogue after publication. The
+  archive/publication/mount/retirement audit scripts are in the same folder.
+  Old R38 ZIP SHA-256 in retirement script was checked against its live checksum.
+- Heartbeat was read, remains ACTIVE; pause only after successful publication.
+
 ## Evidence and handoff
+
+### 19:44 UTC checkpoint
+
+- Final road refinement passed **706/706** tests. Shader refinement now has
+  a fresh suite running in exec **71760**, `.local/r39-final-headless-sky.log`.
+- The full station tour continues as PID **17816**, now around Kazhakuttam.
+  The affected 14-station tour still waits in exec **15661**; it will load the
+  final walkway and sky changes automatically when the first tour exits.
+- Visual review found a dashed line in the Kollam sky. A pure-sky reproduction
+  proved it was panorama filtering across the longitude wrap, not geometry.
+  Corrected wrapped derivatives before `textureGrad`; native before/after
+  confirms removal. Nine morning/afternoon/night and FOV captures are running
+  in exec **57680**, output `.local/sky-seam-final/`.
+- `tools/capture_sky_seam.gd` is the reusable reproduction. Temporary
+  `.local/capture-qln-sky.gd` and texture inspection files remain diagnostics.
+- `tools/soak_station_scenery.gd` retains only the useful optional station filter;
+  the temporary sky/ray diagnostic was removed before the queued tour starts.
+- Headless editor import previously completed successfully; import again for
+  the new sky capture tool UID before the source commit. Road profiles remain
+  final at 28,994 segments / 20 omitted duplicate pedestrian bridge ways.
+- R38 still live; R39 publication remains after **20:07:24 UTC** and final QA.
 
 Record changed files, running process/session IDs, visual locations and measured
 results here as work proceeds. Reuse completed work and do not rerun full-day
 simulations on heartbeat continuation.
+
+### 20:03 UTC checkpoint
+
+- Full native tour completed successfully: **56 stations, 280 samples,
+  3,704.621 seconds**, zero coverage/near-track errors; released world,
+  432,670,316 bytes Godot heap after returning to menu. PID17816/exec56528 ended.
+- Final-source 14-station follow-up now runs as **PID10880**, queue **15661**,
+  output `.local/station-walkways-final-2026-10-21/`. Wait for this before
+  launching the full-world public-road bridge capture.
+- Final headless suite after the sky fix: **706 passed, zero failed**.
+  Log `.local/r39-final-headless-sky.log`, copied to evidence. Exec71760 ended.
+- Nine native sky/FOV cases passed without errors. The before/after image
+  difference is confined to the seam: 1,245 pixels change by more than 8/255,
+  zero outside its strip. Images/JSON copied to the overnight evidence folder.
+- Final headless editor import completed (exec85016); both new capture tool
+  UIDs exist, and no tracked `.import` files changed.
+- Next: finish affected tour, run `capture_road_structures.gd`, inspect its
+  eight views, then run `.local/collect-r39-visual-evidence.py`. It asserts
+  56/14 station results and four bridge cases before collecting evidence.
+- `.local/finalize-r39-docs.py` is prepared for **after** actual successful
+  publication/retirement; reads real sizes, hashes and delta statistics.
+- Minimum publication time still **20:07:24 UTC**; final QA comes first.
+- Public-road captures are now queued in exec **67784** using
+  `.local/road-structures-final-queue.ps1`. It waits for PID10880, checks the
+  affected-station result, then runs `capture_road_structures.gd` automatically.
+  Do not launch a duplicate. The 20:07:24 minimum has now elapsed; QA remains
+  the release gate.
+
+### 20:25 UTC checkpoint
+
+- The 14-station follow-up completed: 28 coverage samples, 643.985 seconds,
+  zero errors/missing terrain and successful world release. This includes the
+  walkway/sky corrections, before the junction refinement below.
+- Close public bridge views exposed a guardrail across a same-level joining
+  road at Kundannoor. Barrier openings now use the existing road-profile grid
+  and actual relative heights; separate-level roads retain their barriers.
+  Sixteen focused road checks pass, including the actual generated deck/rail.
+- Profile regeneration completed in exec45635: unchanged 28,994 segments and
+  twenty omitted walkway ways. The export freshness gate passes.
+- Final unit suite runs in exec25328; revised bridge views in exec43062,
+  PID18556, output `.local/road-structures-junctions-final/`.
+  Minimum three-hour period has elapsed; publication follows successful QA.
+
+### 20:32 UTC checkpoint
+
+- All eight public bridge views completed; TVC exposed a generic building
+  intersecting its flyover. Public-road corridors now exclude entire
+  reconstructed building footprints before placement; tunnels and narrow paths
+  do not. All eleven focused footprint checks pass.
+- Final full unit suite restarted against this final source in exec28082.
+  The preceding run loaded an older cached scenery script before the new
+  footprint test appeared, so that mixed-source run is not release evidence.
+- Final native bridge views run in exec26505, PID20532, output
+  `.local/road-structures-release-final/`. TVC underside camera moves to the
+  track side to avoid an unrelated wall obscuring the view.
+- Barrier-junction generation has no measured paired CPU regression
+  (83.60 to 82.44 ms median); road/shoulder/paint/pier geometry is byte-identical
+  to the independent final clearance audit. Evidence collected in art.
+- Expected final suite count: 708. Collect with
+  `.local/collect-r39-visual-evidence.py` after the native bridge views finish.
+
+### Final source gate
+
+- Final full headless suite: 708 passed, zero failed. Final native public bridge
+  captures: eight views, zero coverage errors, successful world release.
+- TVC road/building collision confirmed removed in the final deck view.
+- Source evidence collected. User notified before preparation of R39 sequence41.
+- Next: commit/push source, export, verify archive/packs/LAN signatures/ranges,
+  retire unchanged R38, update publication evidence, pause heartbeat.
+

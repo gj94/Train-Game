@@ -23,6 +23,9 @@ export async function verifyRoadSurfaces(root, data, contextPath) {
     assert.equal(bytes ? sha(normalized(bytes, path)) : null, hash, `Road-profile input changed: ${path}. Regenerate road surfaces.`);
   }
   assert(data.segments.length > 0, 'Road profiles are empty.');
+  assert(Array.isArray(data.station_pedestrian_ways ?? []) &&
+    (data.station_pedestrian_ways ?? []).every(way => typeof way === 'string'),
+    'Invalid station walkway exclusions.');
   for (const row of data.segments) {
     assert(row.length === 8 && typeof row[0] === 'string' && row.slice(1).every(Number.isFinite), 'Invalid road-profile segment.');
     assert(row[7] === 0 || row[7] === 1, 'Invalid bridge flag.');

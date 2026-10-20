@@ -4,12 +4,21 @@ from pathlib import Path
 import struct
 import tempfile
 import unittest
-from road_surfaces import Ground, propagate, water_edge_seeds, railway_edge_seeds
+from road_surfaces import Ground, propagate, water_edge_seeds, railway_edge_seeds, station_walkway
 from shapely.geometry import LineString, box
 from shapely.strtree import STRtree
 
 
 class RoadProfilesTest(unittest.TestCase):
+    def test_only_duplicate_station_pedestrian_bridges_are_omitted(self):
+        station = STRtree([box(0,0,100,30)])
+        crossing = LineString([(50,-20),(50,50)])
+        self.assertTrue(station_walkway(dict(highway="footway",bridge="yes"),crossing,station))
+        self.assertTrue(station_walkway(dict(highway="path",bridge="yes"),crossing,station))
+        self.assertFalse(station_walkway(dict(highway="trunk",bridge="yes"),crossing,station))
+        self.assertFalse(station_walkway(dict(highway="footway"),crossing,station))
+        self.assertFalse(station_walkway(dict(highway="footway",bridge="yes"),LineString([(500,0),(600,0)]),station))
+
     def test_connected_approach_tapers_but_unconnected_road_stays_unchanged(self):
         nodes = [(0,0),(20,0),(40,0),(60,0),(20,1)]
         links = {0:[(1,20)],1:[(0,20),(2,20)],2:[(1,20),(3,20)],3:[(2,20)],4:[]}

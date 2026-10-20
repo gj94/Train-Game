@@ -4,7 +4,10 @@ R39: connected overhead fittings and steadier wire shadows; rebuilt road
 bridges/approaches, protected station surroundings and clearer yard spaces.
 Bridge approaches clear the actual widened railway and its overhead structures.
 Station entrances meet ground-level roads, with open canals and platforms kept
-clear. Asphalt textures stay fixed when the world origin moves.
+clear. Duplicate mapped station footbridge decks are removed. Raised junctions
+have barrier openings and generated buildings leave road corridors clear. Asphalt textures
+stay fixed when the world origin moves.
+The sky panorama no longer shows a dashed vertical line at its wrap seam.
 The v4 updater batches and pipelines verified blocks for faster LAN transfers.
 Timetables, prepared starts, railway physics and the approved sound banks are
 unchanged. See guides/station-surroundings.md for the visual changes and checks.

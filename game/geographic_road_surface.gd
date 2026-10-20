@@ -8,6 +8,9 @@ static func draw(c,feature: Dictionary) -> void:
 	if tags.get("highway","") in ["proposed","construction","steps"] or tags.get("tunnel","no")!="no" or tags.get("railway","")=="platform" or float(tags.get("layer","0"))<0:return
 	var width: float=WIDTHS.get(tags.get("highway",""),4.0)
 	var profiles=c.geo.road_profiles
+	# Existing station civil geometry supplies connected footbridges/stairs.
+	# Rendering the same OSM walkway as a raised road leaves duplicate decks.
+	if profiles!=null and profiles.station_walkways.has(feature.id):return
 	if c.road_water==null:c.road_water=preload("res://game/geographic_road_water.gd").new(c.tile_features)
 	for line in c._lines(feature.geometry):
 		var points: Array[Vector3]=[]
@@ -133,9 +136,10 @@ static func _bridge(c,feature: Dictionary,p: Vector3,q: Vector3,left: Vector3,ri
 	for side in [-1,1]:
 		var a: Vector3=p+left*side;var b: Vector3=q+right*side
 		c.batch.quad("concrete",a+down,b+down,b,a,left.normalized()*side)
-		c.batch.beam("concrete",a+Vector3.UP*.12,b+Vector3.UP*.12,.20,Color.WHITE,.24)
-		for y in [.55,1.05]:c.batch.beam("metal",a+Vector3.UP*y,b+Vector3.UP*y,.055)
-		if floori(phase/2)!=floori((phase+length)/2):c.batch.beam("metal",a+Vector3.UP*.2,a+Vector3.UP*1.05,.055)
+		if not _bridge_edge_joins_road(c,feature.id,a,b):
+			c.batch.beam("concrete",a+Vector3.UP*.12,b+Vector3.UP*.12,.20,Color.WHITE,.24)
+			for y in [.55,1.05]:c.batch.beam("metal",a+Vector3.UP*y,b+Vector3.UP*y,.055)
+			if floori(phase/2)!=floori((phase+length)/2):c.batch.beam("metal",a+Vector3.UP*.2,a+Vector3.UP*1.05,.055)
 	if floori(phase/24)==floori((phase+length)/24):return
 	var mid:=p.lerp(q,.5)
 	var absolute: Vector3=mid+c.origin
@@ -150,3 +154,29 @@ static func _bridge(c,feature: Dictionary,p: Vector3,q: Vector3,left: Vector3,ri
 	var bottom: float=minf(c._ground(mid.x,mid.z)-.4,mid.y-.6)
 	var height:=mid.y-.4-bottom
 	if height>.4:c.batch.box("concrete",Vector3(mid.x,bottom+height*.5,mid.z),Vector3(1.1,height,1.1))
+
+static func _bridge_edge_joins_road(c,way: String,a: Vector3,b: Vector3) -> bool:
+	# Open raised junctions/slip roads instead of putting a coping/guardrail
+	# through their carriageway. Use the existing profile grid, not a scan of
+	# every road segment per beam. Different levels remain grade-separated.
+	var profiles=c.geo.road_profiles
+	if profiles==null:return false
+	if c.road_barrier_widths.is_empty():
+		for feature in c.tile_features:
+			if feature.kind!="road" or profiles.station_walkways.has(feature.id):continue
+			var width: float=WIDTHS.get(feature.tags.get("highway",""),4.0)
+			if width>=3:c.road_barrier_widths[feature.id]=width*.5
+	var offset:=Vector2(c.origin.x,c.origin.z)
+	var pa:=Vector2(a.x,a.z)+offset;var pb:=Vector2(b.x,b.z)+offset
+	var bounds:=Rect2(pa,Vector2.ZERO).expand(pb).grow(5.3)
+	for x in range(floori(bounds.position.x/profiles.CELL),floori(bounds.end.x/profiles.CELL)+1):
+		for z in range(floori(bounds.position.y/profiles.CELL),floori(bounds.end.y/profiles.CELL)+1):
+			for item in profiles.cells.get(Vector2i(x,z),[]):
+				if item.way==way or not c.road_barrier_widths.has(item.way):continue
+				var radius: float=c.road_barrier_widths[item.way]+.2
+				for fraction in [0.0,.5,1.0]:
+					var point:=pa.lerp(pb,fraction)
+					var t:=clampf((point-item.a).dot(item.b-item.a)/maxf(.000001,item.a.distance_squared_to(item.b)),0,1)
+					if point.distance_squared_to(item.a.lerp(item.b,t))>radius*radius:continue
+					if absf(lerpf(a.y,b.y,fraction)-lerpf(item.ya,item.yb,t))<.6:return true
+	return false

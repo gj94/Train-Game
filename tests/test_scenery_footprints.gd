@@ -31,3 +31,21 @@ func test_mapped_sidings_reserve_building_envelopes_before_feature_render_order(
 	var chunk=preload("res://game/geographic_scenery_chunk.gd").new(null,{},null)
 	chunk._register_occupied([{kind="rail",tags={railway="rail"},geometry={type="LineString",coordinates=[[-200,0],[200,0]]}}])
 	return not chunk.mapped_rail_clearance.clear_polygon(rectangle(Vector2(-30,-30),Vector2(30,30)),1.2) and chunk.mapped_rail_clearance.clear_polygon(rectangle(Vector2(-30,8),Vector2(30,30)),1.2)
+
+func test_roads_reserve_complete_building_footprints_but_tunnels_and_paths_do_not():
+	var script=preload("res://game/geographic_scenery_chunk.gd")
+	for tags in [{highway="primary",bridge="yes",layer="1"},{highway="residential"},{highway="primary",tunnel="yes",layer="-1"},{highway="footway"}]:
+		var chunk=script.new({station_sites={}}, {}, null)
+		chunk._register_occupied([{kind="road",tags=tags,
+			geometry={type="LineString",coordinates=[[-200,0],[200,0]]}}])
+		var ring:=rectangle(Vector2(-30,-30),Vector2(30,30))
+		var blocked: bool=tags.get("tunnel","no")=="no" and tags.highway!="footway"
+		if chunk.mapped_road_clearance.clear_polygon(ring,1.0)==blocked:return "Wrong road/footprint reservation: "+str(tags)
+		if not chunk.mapped_road_clearance.clear_polygon(rectangle(Vector2(-30,8),Vector2(30,30)),1.0):return "Clear neighbouring building removed"
+		if blocked:
+			# Actual builder must exit before allocating a foundation or facade.
+			chunk.batch=preload("res://game/geographic_mesh.gd").new()
+			chunk._building({id="crossing-building",tags={building="yes"},
+				geometry={type="Polygon",coordinates=[[[-30,-30],[30,-30],[30,30],[-30,30],[-30,-30]]]}})
+			if not chunk.batch.surfaces.is_empty():return "Building still rendered across the road"
+	return true

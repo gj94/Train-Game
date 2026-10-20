@@ -1,0 +1,63 @@
+{
+  "station-tour": {
+    "wall_seconds": 3704.621,
+    "coverage_samples": 280,
+    "errors": 0,
+    "missing_near_samples": 0,
+    "journeys": [
+      {
+        "heap_after_menu": 432670316,
+        "released_world": true
+      }
+    ],
+    "source_qualification": "Runtime source 55ebfec, before final duplicate-walkway and sky-seam refinements.",
+    "stations": 56
+  },
+  "station-refined": {
+    "wall_seconds": 643.985,
+    "coverage_samples": 28,
+    "errors": 0,
+    "missing_near_samples": 0,
+    "journeys": [
+      {
+        "heap_after_menu": 404414045,
+        "released_world": true
+      }
+    ],
+    "source_qualification": "Includes duplicate-walkway removal and sky-seam correction; precedes the final flyover junction barrier correction.",
+    "stations": 14
+  },
+  "road-structures": {
+    "cases": 4,
+    "captures": 8,
+    "errors": 0,
+    "journeys": [
+      {
+        "heap_after_menu": 378587526,
+        "released_world": true
+      }
+    ]
+  },
+  "final_runtime_sha256": {
+    "assets/models/scenery/road-surfaces.json": "9b63d6aca59ab439ef89c27ce68327df3d4fa72582f43aee93df95ce4ee82aa0",
+    "game/coastal_station_sites.gd": "68e58721c0e32d2cb451f84df0d8f427dfe569a057f92c566fb396d3e73692e2",
+    "game/geographic_data.gd": "e0dd5370cb9de42fe0cb2e108f24aa66f9599f5d8350e3ae2be51e07fcb1a278",
+    "game/geographic_mesh.gd": "7eda309efb4ae1033602685521d9d9390743edcc45c486e4251a3ad5fb180dc3",
+    "game/geographic_ohe_layout.gd": "3e36a7dbcac25f7ca56dd891a35aa7233bbf9248f98cb81e572ed8bc508f6f61",
+    "game/geographic_railway_chunk.gd": "c4117b8ba0544a2a2e446dc09dd4b272aad1f6643513d884d1c18cb223bac358",
+    "game/geographic_road_profiles.gd": "a7c8943389ed2d873aee9b52926af47578f6c0b71efbb0c445aaba32cc496186",
+    "game/geographic_road_profiles.gd.uid": "28305f857c53ee61656006c8d3a8a863654c1a49f5538c0bbabf1c6d6917409d",
+    "game/geographic_road_reservations.gd": "2bfaf457e9b8efaaa85f503b50cfb5444fbbbb6f5ddb56ee8297b9d3565753c0",
+    "game/geographic_road_reservations.gd.uid": "da1fa19ecaa871b9d3007982d3269c2a278f0ce5747639c7d5ea8dd4d0d2357e",
+    "game/geographic_road_surface.gd": "690dbc0042bf8bbdd19facc2c931e713c69cb12acbda0cb15dc162097dbabc6c",
+    "game/geographic_road_surface.gd.uid": "a765265ae7915b19ac0299d07de8f4307bbed5d5ec2553d0b133d92585d04ecb",
+    "game/geographic_road_water.gd": "8d2d5f4627ea77c31b0944553834c3516202fa42bebdc6b8ccee25d1799a27ab",
+    "game/geographic_road_water.gd.uid": "f724c1d677e1568372550ba5b94fe152ee61ed81aa6f7c8cda8f2b02cb691481",
+    "game/geographic_scenery_chunk.gd": "11530f7858728165358a4d3e5a06932beb0833994a749975e31714cdfaf0e6b6",
+    "game/geographic_world.gd": "4665c1d8309dcddd31c05b3ba225ba3282adcf2f70cbc85d80715b3cf69f76bf",
+    "game/shaders/day_night_sky.gdshader": "5d635ca310d7d93301c044126149cd7cf114ec7090e1b73403b73c4814c41538",
+    "game/shaders/scenery_road.gdshader": "c48f90532d8d88ec43ee29dfb1c108d939e3a5e41f58ae4d7198e9c50bd5fc5c",
+    "game/station_precinct_plan.gd": "30211eb11ad440556515fc18c0c608b506b9036886bf14032ef66d23a1b03d6f",
+    "game/station_road_access.gd": "e918586b8e94fb35b2698566637d4580feb9dcb596a69292cc29b184b6a99587"
+  }
+}

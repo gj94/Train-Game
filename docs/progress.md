@@ -12,11 +12,19 @@
   mid-height railway crossings. Station entrances use the same ground/profile
   heights and reject canals, tunnels and raised roads. Mapped sidings also
   exclude generic buildings. Asphalt coordinates remain stable across rebases.
-- Final game suite: **705 passed, zero failed**. Independent actual-geometry
-  audit covers 4,305 tiles, 2,257,858 triangles, 9,314 rail-height intersection
-  checks and 1,899 piers, with zero conflicts. OHE audit: 5,124 rows, 2,153
+- Final game suite: **708 passed, zero failed**. Independent actual-geometry
+  audit covers 4,305 tiles, 2,257,481 triangles, 9,177 rail-height intersection
+  checks and 1,883 piers, with zero conflicts. OHE audit: 5,124 rows, 2,153
   seamless boundaries, 11,936 connected registrations, zero failures.
-  All 50 retained station road links meet the road height.
+  All 51 retained station road links meet the road height. Twenty mapped
+  pedestrian bridge ways at fourteen stations are excluded from the generic
+  road pass, preventing duplicate asphalt decks above the modelled footbridges.
+  Public road bridges are retained. Same-height junctions open their
+  guardrails; separate-level roads keep barriers. Reconstructed buildings
+  now reserve public-road corridors, fixing a flyover/roof collision at TVC.
+- A pure-sky fixture isolated the dashed vertical line seen above Kollam to
+  panorama mip filtering at its longitude wrap. Corrected derivatives remove
+  the seam while retaining mipmaps and the existing day/night cycle.
 - Road profiles are shared read-only and checked for freshness during export.
   Skipping off-corridor terrain work preserves byte-identical geometry across
   the route. Median worker-side road construction fell from 84.9 to 66.2 ms
@@ -25,8 +33,12 @@
   `art/performance/overnight-2026-10-21/README.md`.
 - One-hour moving-camera soak: 360 coverage samples, 115 rebases, no missing
   nearby track/OHE or terrain holes; world released on exit. That process
-  predates the last refinements, so a separate final-source station tour is
-  still running. Final-source ERS/KUMM/QLN/TVC and close OHE captures passed.
+  predates the last refinements. A separate 3,705-second tour of all 56 stations
+  passed 280 coverage samples and released its world. It used 55ebfec, before
+  the final walkway/sky cleanup. Its 14 affected stations passed a separate
+  644-second follow-up with 28 samples. Final close bridge views at ERS,
+  Kundannoor, QLN and TVC include the junction and building corrections.
+  All released their worlds; close OHE captures passed at three shadow resolutions.
 - Timetables, railway inputs, physics and generated sound data are unchanged.
   No full-day timetable rehearsal or extracted-distribution gameplay run.
   R38 remains live until the new release is packaged after the requested
