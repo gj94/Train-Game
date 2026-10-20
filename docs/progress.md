@@ -1,5 +1,45 @@
 # Progress
 
+## 2026-10-20 — KZT approach signal timing investigated (no game changes)
+
+- User clarified that the green signals face the approaching NCJ–ERS VB.
+  Replayed the same prepared B012 start, with all trains under AI control,
+  through 09:42. Recorded aspects, route ownership, train positions and
+  read-only platform-route candidates every 0.5 simulated seconds from 09:33.
+  Private evidence: `.local/erl-dispatch-2026-10-20/signals.jsonl`,
+  `signals.log` and `signal-trace.gd`. No safety events.
+- At **09:33:00**, B012 is **7.75 km** from KZT's northbound home
+  (`KZT_PYD_M0-NH`). The P1 arrival route is already available, but the home
+  remains red. The final automatic (`KZT_PYD_M1-NA`) is yellow; earlier
+  automatic signals are green. B088 occupies P2 and cannot depart south
+  against B012's single-line direction.
+- At **09:37:12**, approximately **1.55 km** before the home, the dispatcher
+  prepares the P1 route: **home red → yellow; final automatic yellow → green**.
+  This is the approach trigger in `dispatch_engine.gd:96–117`, not a new
+  platform vacancy. It only considers a controlled home directly beyond
+  the train's immediate next automatic, and uses braking distance + 500 m,
+  clamped to 1.5–3.5 km. At this train's 88.56 km/h, the floor applies.
+  The calculated distance omits the final automatic's remaining 60 m to
+  its edge exit, explaining the slightly greater measured trigger distance.
+- B012 passes that final automatic around **09:37:41**, and the home around
+  **09:38:19**; each returns to red on passage. The platform starter
+  (`KZT-N1`) stays red for the booked stop, then goes green at **09:41:47**.
+  In this game's aspect calculation, a green automatic only requires its
+  destination signal to be non-red. Green → yellow → red is therefore
+  consistent with a platform arrival followed by a stop.
+- The dispatch status text also describes the immediate signal's route
+  destination, not the furthest continuous clearance. It can still say
+  “Authority to [home]” after the home-to-platform route has been prepared.
+- Earlier admission from ERL is feasible as a planning extension, but needs
+  a protected future P1 berth after B014, B088's separate arrival/hold, and
+  B014's escape path. Simply removing the receiving-capacity check would
+  lose the deadlock protection. The existing future-clearance planner
+  excludes overdue vacaters such as B014; a broader forecast must also
+  account for manual driving delays. No counterfactual delay saving claimed.
+- Investigation only: no simulation, signalling, timetable or release changes.
+  All timings above are replay measurements, not the user's manual session.
+  Fresh headless verification: **637 passed, 0 failed**.
+
 ## 2026-10-20 — B012 Eraniel hold investigated (no game changes)
 
 - Replayed R36's exact prepared B012 departure (09:10 NCJ–ERS Vande Bharat)
