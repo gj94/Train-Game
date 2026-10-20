@@ -1,36 +1,65 @@
 # Windows portable build
 
-Current release: **R37 — full ZIP and incremental updates**.
-Published 20 October 2026 from clean source **525da55**, signed sequence **39**,
-at http://192.168.8.183:8765/.
-Full ZIP: **2,615,707,467 bytes**, SHA-256
+Current release: **R38 — Standard / Intensive timetables and detailed audio**.
+Published 21 October 2026 from clean source **885dc17**, signed
+sequence **40**, at http://192.168.8.183:8765/.
+Full ZIP: **3,584,017,612 bytes**, SHA-256
+`c10c77d83ca9ee707e53b1382c7b98c63a43cd26bcb33f9eacd68b812e8b14ba`.
+
+Includes the selectable 140-service Intensive day alongside Standard's 100,
+fifteen independent audio channels plus Master, TVCN through-main selection,
+receiving-road protection and shared station-hold ageing. Intensive K1 is
+overtaken by thirteen distinct trains; B042 does not repass B002 in this day.
+The existing Standard booked timings remain available.
+
+All three full-day rehearsals finish every call and depot movement without
+safety events. Meaningful extra station waits meet the whole-day cumulative
+70/90/98/100% targets under 10/20/30/45 minutes. Intensive baseline measures
+72.73/98.70/100/100%; delayed Intensive measures 71.52/98.01/99.34/100%.
+Ten minutes is not a hard maximum or a per-service guarantee: baseline K1 has
+69.2% of its meaningful waits under ten minutes, a longest extra station wait
+of 15m52s and 22m17s destination lateness. See
+[intensive-timetable.md](intensive-timetable.md) for all measurements.
+
+Source validation includes 684 headless tests, 23 prepared-data/operating-day
+checks, native service/traffic and audio-menu checks, eight pack/publication
+checks and 48 native updater checks. Both timetables ship 233 five-minute
+states and every service departure, with measured crossings and both sides
+of completed overtakes. No extracted-distribution gameplay test was run.
+
+R36/R37 users can close the game and use the included **Update & Play**.
+New installations need the complete ZIP including all **192** asset packs.
+The unchanged R37 v3 native core accepts this release's signed catalogue,
+including its 32 alternate-timetable packs in the existing `resources` family.
+R37 → R38 reuses **2,416,976,783 bytes**; changed target blocks
+total **1,830,378,060 bytes**. Estimated unique compressed
+payload is **1,643,872,349 bytes**,
+plus the **6,474,481-byte** signed catalogue. These are estimates, not
+captured client traffic.
+
+All **506 ZIP CRCs / 504 managed
+hashes**, clean source identity, guide contents, explicit pack inventory,
+signatures, checksum and served ZIP/PCK/compressed ranges pass. The native
+read-only pack audit verifies both days' starts, snapshots and encounters.
+Evidence: [R38 publication](../art/performance/r38-release-2026-10-21/publication.json).
+
+Only R38 is offered. R37's unchanged export directory, ZIP and checksum were
+verified and retired after idle-LAN checks, freeing **5,779,718,696
+bytes**. Historical signed catalogues remain. The next release needs a fresh
+name and sequence **41 or greater**, with both full and incremental publication.
+The exporter rejects nonempty staging directories to prevent stale files or
+nested guides on a retry; inspect failed unpublished staging before removal.
+
+Playtest: select **Intensive (140)** on the home screen, choose **K1** and open
+its **Traffic** preview. Start it, then open **Audio settings** under Pause,
+choose Speakers or Headphones, and compare joint clacks, rolling, squeal and
+wind independently. Standard remains separately selectable.
+
+Previous release: **R37**, clean source **525da55**, signed sequence **39**,
+published 20 October 2026. Its full ZIP was **2,615,707,467 bytes**, SHA-256
 `02b1596b39ed71fd42a922c1fd154b82c3c9eda5ea6372be037003dc75999575`.
-
-Includes protected future platform succession, earlier home preparation,
-clearer continuous-authority advice and AI-only automatic departure horns.
-The fresh preview covers 470 crossings and 40 completed overtakes, with both
-service perspectives. R36 users can close the game and use **Update & Play**;
-a fresh installation needs the whole ZIP including `packs/`.
-
-R36 → R37 reuses **2,418,084,286 bytes**, with **745,887,678 changed target bytes**.
-Estimated unique compressed payload is **668,133,498 bytes**, plus the signed
-catalogue (4,855,521 bytes); this is an estimate, not captured client traffic.
-All 472 ZIP CRCs, 470 managed hashes, clean source identity, explicit 160-pack
-inventory, signatures, checksum and served ZIP/PCK/compressed ranges pass.
-The native read-only pack audit verifies 100 departures, 233 time states and
-all 510 encounters. No extracted-distribution gameplay test was run.
-
-Source validation: 654 headless tests; 3,366 native service-menu checks;
-three full-day runs completing all 100 services and 1,530 calls without safety
-events. The longest continuous extra wait is 28m10s. Baseline total waiting is
-2.7% higher than before, so earlier KZT clearance is not a universal delay saving.
-See [dispatcher-capacity.md](dispatcher-capacity.md) and [busy-timetable.md](busy-timetable.md).
-Evidence: [R37 publication](../art/performance/r37-release-2026-10-20/publication.json).
-
-Only R37 is offered. R36's unchanged export directory, ZIP and checksum were
-verified and retired after idle-LAN checks, freeing **5,780,431,608 bytes**.
-Historical signed catalogues remain. The next release must use a fresh name
-and sequence **40 or greater**, with both full and incremental publication.
+R36 → R37 reused 2,418,084,286 bytes, with 668,133,498 bytes of estimated
+compressed payload. See [R37 evidence](../art/performance/r37-release-2026-10-20/publication.json).
 
 Previous release: **R36 — full download only, updater v3 included**.
 Published 20 October 2026 from clean source **e34b614**, signed baseline

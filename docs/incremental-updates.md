@@ -55,22 +55,31 @@ verification is `tools/check_split_boot.gd`.
 
 ## Published release and historical measurements
 
-Current publication: **R37**, signed sequence **39**, clean source **525da55**.
+Current publication: **R38**, signed sequence **40**, clean source **885dc17**.
 **Full and incremental downloads** at http://192.168.8.183:8765/. ZIP:
-**2,615,707,467 bytes**. R36's included v3 launcher updates the existing folder;
-new installations can extract the complete R37 ZIP. Saves/settings remain in
-the Windows user profile.
+**3,584,017,612 bytes**. The included R36/R37 v3 launcher updates
+the existing folder; its unchanged core verifies the actual R38 catalogue.
+New installations can extract the complete R38 ZIP including all 192 packs.
+Saves/settings remain in the Windows user profile.
 
-R36 → R37 reuses **2,418,084,286 bytes**. Changed target blocks total
-**745,887,678 bytes**, with **668,133,498 bytes** of estimated unique compressed
-payload plus the **4,855,521-byte** signed catalogue. Native package mounting,
-archive/file hashes, signature and served compressed block checks pass. See
-[builds.md](builds.md) for the checksum and complete release evidence.
+R37 → R38 reuses **2,416,976,783 bytes**. Changed target blocks
+total **1,830,378,060 bytes**, with
+**1,643,872,349 bytes** of estimated
+unique compressed payload plus the **6,474,481-byte** signed catalogue.
+These figures are calculated from block hashes, not captured client traffic.
+Native mounting, archive/file hashes, signature and served compressed block
+checks pass. See [builds.md](builds.md) for checksum and release evidence.
 
-R36's verified export directory, ZIP and checksum were retired after idle-LAN
-checks, freeing **5,780,431,608 bytes**. Historical signed catalogues remain.
-Future publications need a fresh version and sequence **40 or greater**; omit
-`-FullDownloadOnly` and `-SkipZip` so both methods are available.
+R37's verified export directory, ZIP and checksum were retired after idle-LAN
+checks, freeing **5,779,718,696 bytes**. Historical signed
+catalogues remain. Future publications need a fresh version and sequence
+**41 or greater**; omit `-FullDownloadOnly` and `-SkipZip`. Nonempty staging
+directories are rejected before export; inspect and clean an unpublished
+failed attempt before reusing its name. Published names remain immutable.
+
+Historical R36 → R37: 2,418,084,286 bytes reused; 745,887,678 changed target
+bytes and 668,133,498 bytes of estimated unique compressed payload, plus its
+4,855,521-byte signed catalogue.
 
 Historical R34 → R35: 2,999,784,946 changed bytes versus a 2,610,041,904-byte ZIP.
 That release used the old monolithic layout; R36 establishes stable asset packs

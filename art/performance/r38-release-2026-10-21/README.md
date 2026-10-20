@@ -18,6 +18,18 @@ untouched, interrupted/offline recovery, and both block/ZIP download paths.
 The obsolete 32 packs removed during the retry belonged only to the unpublished
 attempt; its signed manifest did not exist and R37 remained live.
 
-Publication, full ZIP integrity, read-only native pack loading and retirement
-records will be added after the corrected build completes. No distribution
-gameplay test is requested or performed.
+Published clean source `885dc17`, sequence 40, on 21 October 2026.
+`publication.json` verifies signature, explicit 192-pack inventory, live LAN
+links, compressed block ranges and estimated R37 update reuse.
+`archive-integrity.json` verifies all 506 ZIP CRCs and
+504 managed hashes, BUILD identity and packaged guides.
+`prepared-pack.log` verifies both prepared timetables via native read-only
+mounting. `legacy-catalogue-check.json` uses the unchanged R37 v3 native core
+to verify the actual signed R38 catalogue, including all 32 `resources` packs.
+`retirement.json` records the verified old R37 export/ZIP cleanup.
+
+A retry was stopped before publication after detecting nested copied guides.
+`staging-guard.log` verifies the exporter now rejects nonempty output folders.
+The published ZIP came from a fresh staging directory and its archive audit
+rejects those duplicate-directory prefixes. No distribution gameplay test
+was performed.

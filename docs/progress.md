@@ -1,5 +1,28 @@
 # Progress
 
+## 2026-10-21 — R38 published with full ZIP and compatible incremental updates
+
+- Published clean source `885dc17`, sequence 40, at
+  `http://192.168.8.183:8765/`. Full archive: 3,584,017,612 bytes;
+  SHA-256 `c10c77d83ca9ee707e53b1382c7b98c63a43cd26bcb33f9eacd68b812e8b14ba`.
+- Both days, their prepared states/encounters, the detailed mixer and the
+  validated dispatcher fixes are included. Gameplay and railway inputs are
+  unchanged from the completed full-day evidence below.
+- All 506 ZIP CRCs / 504 managed
+  hashes, clean source identity, guide contents, native pack loading, signatures
+  and LAN byte ranges pass. All 192 packs match the mounted index and catalogue;
+  no duplicate guide directories remain. The unchanged R37 v3 updater accepts
+  the actual signed R38 catalogue. No distribution gameplay test was run.
+- R37's verified export, ZIP and checksum were retired, freeing
+  5,779,718,696 bytes; historical signed catalogues remain.
+  The live page offers only R38 plus the compatible updater. Next sequence: 41.
+  Release evidence: `art/performance/r38-release-2026-10-21/`.
+- Playtest: select Intensive → K1 → Traffic, inspect its thirteen distinct
+  baseline overtakers, then start and try the individual joint/rolling/squeal/
+  wind controls in Pause → Audio settings using Speakers or Headphones.
+  Standard remains selectable. Wait percentages are whole-day measurements,
+  not a maximum or guarantee for each service.
+
 ## 2026-10-21 — Clean release staging on retries
 
 - A packaging retry copied guide directories inside their existing destinations.
