@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Prepare a bounded real-game station/track renderer without authored model imports.
+"""Prepare a bounded real-game station/track renderer with one small palm model.
 
 Copies exact game/sim source dependencies, all small source shaders, and an explicit
-PBR texture allowlist into a NEW directory outside the checkout. No production
-source, import settings, route data, model, save or user preference is modified.
+PBR texture allowlist, one original coconut-palm GLB and its two existing baked
+impostor textures into a NEW directory outside the checkout. No production source,
+import settings, route data, model, save or user preference is modified.
 
   python3 tools/prepare_extreme_station_scene.py --output /tmp/extreme-station
   godot --headless --path /tmp/extreme-station --editor --import
@@ -44,6 +45,16 @@ TEXTURE_MAPS = {
 TEXTURES = [f"assets/polyhaven/{asset}/{asset}_{kind}_2k.jpg"
             for asset, kinds in TEXTURE_MAPS.items() for kind in kinds]
 TEXTURES += ["assets/polyhaven/hdri/kloofendal_43d_clear_puresky_2k.hdr"]
+VEGETATION_RESOURCES = [
+    "assets/models/scenery/coconut_palm.glb",
+    "assets/models/scenery/impostors/coconut_palm_albedo.png",
+    "assets/models/scenery/impostors/coconut_palm_normal.png",
+]
+PROVENANCE_FILES = [
+    "docs/assets.md", "tools/blender/scenery_vegetation.py",
+    "tools/blender/bake_scenery_impostors.py",
+]
+MAX_VEGETATION_SOURCE_BYTES = 3 * 1024 * 1024
 PROJECT = '''; Generated source-faithful validation project, never the game project.
 config_version=5
 
@@ -95,7 +106,8 @@ def prepare(source: Path, output: Path, baseline_ref: str = "") -> dict:
         path = source / name
         if not path.is_file():
             raise FileNotFoundError(f"Required source missing: {name}")
-        if baseline_ref and (name.startswith("game/") or name.startswith("sim/")):
+        if baseline_ref and (name.startswith("game/") or name.startswith("sim/") or
+                             name in VEGETATION_RESOURCES or name in PROVENANCE_FILES):
             result = subprocess.run(["git", "-C", str(source), "show", f"{baseline_ref}:{name}"],
                                     capture_output=True)
             if result.returncode == 0:
@@ -109,7 +121,8 @@ def prepare(source: Path, output: Path, baseline_ref: str = "") -> dict:
         return cache[name]
 
     # Static script closure includes load() so a newly introduced script cannot
-    # silently escape provenance. No dynamic model paths are followed or loaded.
+    # silently escape provenance. Dynamic model paths are never followed; only
+    # the three explicitly listed existing vegetation resources are copied.
     queue = ROOTS.copy()
     scripts: set[str] = set()
     literal_resources: set[str] = set()
@@ -133,9 +146,12 @@ def prepare(source: Path, output: Path, baseline_ref: str = "") -> dict:
     shaders = {p.relative_to(source).as_posix() for p in (source / "game/shaders").iterdir()
                if p.suffix in (".gdshader", ".gdshaderinc")}
     shaders.update(literal_resources)
-    required = sorted(scripts | shaders | set(TEXTURES))
+    required = sorted(scripts | shaders | set(TEXTURES + VEGETATION_RESOURCES + PROVENANCE_FILES))
     for name in required:
         read(name)
+    vegetation_bytes = sum(len(read(name)) for name in VEGETATION_RESOURCES)
+    if vegetation_bytes > MAX_VEGETATION_SOURCE_BYTES:
+        raise ValueError(f"Bounded vegetation allowlist exceeds 3 MiB: {vegetation_bytes} bytes")
     for name in shaders:
         for include in re.findall(r'#include\s+"([^"]+)"', read(name).decode("utf-8")):
             dep = (Path(name).parent / include).as_posix()
@@ -162,12 +178,27 @@ def prepare(source: Path, output: Path, baseline_ref: str = "") -> dict:
         "status": "bounded_station_source_prepared_not_rendered",
         "baseline_ref": baseline_ref,
         "script_count": len(scripts), "texture_count": len(TEXTURES),
+        "vegetation_model_count": 1, "vegetation_impostor_texture_count": 2,
+        "vegetation_source_bytes": vegetation_bytes,
+        "vegetation_provenance": {
+            "resources": VEGETATION_RESOURCES,
+            "register": "docs/assets.md",
+            "source_kind": "Original project coconut-palm geometry and eight-view albedo/normal bakes.",
+            "source_generators": PROVENANCE_FILES[1:],
+            "license_note": "Existing project-authored model/bakes from the 2026-10-07 scenery rebuild; "
+                            "no new third-party model, photographic foliage, download or licence asserted. "
+                            "Existing Poly Haven ground/building maps retain registered CC0 provenance.",
+            "groundcover": "Unchanged game/coastal_groundcover.gd, 384/96/24 blades; no model import.",
+            "catalogue_preparation": "None; empty SceneryLibrary catalogue prevents TF3 aliases.",
+        },
         "source_bytes": sum(item["bytes"] for item in records), "files": records,
         "simulation_sources_copied_unchanged": True,
         "simulation_step_calls": 0,
         "limitations": [
             "Synthetic single 600 m track and nonmajor station rendered by genuine game builders.",
-            "No trains, authored station models, route tiles, vegetation, streaming or save data.",
+            "No trains, authored station models, route tiles, full vegetation catalogue, streaming or save data.",
+            "16 existing original coconut palms plus 197 genuine procedural coastal-grass patches at fixed review positions.",
+            "One explicit LOD camera supplements two station cameras; this is not full-route LOD validation.",
             "Static source copy and headless structural checks are not rendering evidence.",
             "Captures require Forward+ with a real or software Vulkan renderer.",
         ],

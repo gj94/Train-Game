@@ -5,7 +5,7 @@ extends SceneTree
 ## User args: -- --output=user://extreme-visual-review --size=1280x720 --allow-compatibility
 ## Software-rendered CI may add --settle-frames=12 --sample-frames=8; this is NOT target-GPU performance.
 ## Baseline fixture: --presets=High. Patched fixture: --compare-high=/path/to/baseline/manifest.json
-## Optional --check-rebase adds four Extreme daylight road/station frames at a 300 km route origin.
+## Optional --check-rebase adds six Extreme daylight road/station/water frames at a 300 km route origin.
 ## Optional --views=road,station --periods=daylight is a labelled subset smoke, not the full review.
 ## Optional --reflection-diagnostic instead captures six isolated water/SSR/normal diagnostic images.
 ## Each run gets a fresh directory. A failed/dummy renderer writes only a blocked manifest.
@@ -100,7 +100,11 @@ func _run() -> void:
 		capture_scope="reflection_diagnostic" if reflection_diagnostic else (
 			"full_fixture" if selected_views.is_empty() and selected_periods.is_empty() else "subset_smoke"),
 		capture_order="lighting period, then preset, then camera",
-		shaders=ExtremeVisuals.SURFACE_SHADERS,settle_frames=settle_frames,
+		shaders=["res://game/shaders/geographic_ground.gdshader",
+			"res://game/shaders/scenery_road.gdshader",
+			"res://game/shaders/station_surface.gdshader",
+			"res://game/shaders/geographic_water.gdshader"],
+		runtime_surface_whitelist=ExtremeVisuals.SURFACE_SHADERS,settle_frames=settle_frames,
 		frame_samples=sample_frames,shader_time_frozen=true,
 		shader_time_method="Engine.time_scale=0.0 before first fixture frame",
 		fixture_overrides={vsync=false,fps_cap=0,taa=false,sky_process="QUALITY"},
@@ -223,25 +227,54 @@ func _capture_reflection_diagnostic() -> void:
 	_apply_preset("Extreme")
 	camera.position=view.eye;camera.look_at(view.target)
 	report.diagnostic_comparisons=[]
-	report.limitations.append("DIAGNOSTIC ONLY: six water-camera images, not the 49-frame source review. Full-image SSR differences do not prove a water reflection hit.")
+	report.limitations.append("DIAGNOSTIC ONLY: ten water-camera images, not the 51-frame source review. Full-image SSR differences do not prove a water reflection hit.")
 	report.limitations.append("Normal RGB views are unshaded in-memory copies of the source shader, still display-tonemapped. They are not final game materials.")
+	report.limitations.append("Extreme water writes final NORMAL directly, so neutral NORMAL_MAP RGB is expected. The reconstructed view-normal image carries the actual wave normals.")
 	var mirror:=StandardMaterial3D.new()
 	mirror.albedo_color=Color(.8,.8,.8);mirror.metallic=1.0;mirror.roughness=.02
-	for material_case in [{id="source-water",material=source},{id="standard-metal-mirror",material=mirror}]:
+	var original_msaa:=viewport.msaa_3d
+	var original_ssr:={steps=environment.ssr_max_steps,fade_in=environment.ssr_fade_in,
+		fade_out=environment.ssr_fade_out,tolerance=environment.ssr_depth_tolerance}
+	var defaults:=Environment.new()
+	# A strictly diagnostic change, never applied to the production fixture.
+	viewport.transparent_bg=false
+	var cases:=[
+		{id="source-water",material=source,msaa=original_msaa,ssr=original_ssr},
+		{id="standard-metal-mirror",material=mirror,msaa=original_msaa,ssr=original_ssr},
+		{id="standard-metal-mirror-msaa-off-defaults",material=mirror,msaa=Viewport.MSAA_DISABLED,
+			ssr={steps=defaults.ssr_max_steps,fade_in=defaults.ssr_fade_in,
+				fade_out=defaults.ssr_fade_out,tolerance=defaults.ssr_depth_tolerance}},
+		{id="standard-metal-mirror-msaa-off-256-steps",material=mirror,msaa=Viewport.MSAA_DISABLED,
+			ssr={steps=256,fade_in=defaults.ssr_fade_in,fade_out=defaults.ssr_fade_out,tolerance=.5}}
+	]
+	for material_case in cases:
 		water.material_override=material_case.material
 		ExtremeVisuals.apply_surface(water,true)
+		viewport.msaa_3d=material_case.msaa
+		environment.ssr_max_steps=material_case.ssr.steps
+		environment.ssr_fade_in=material_case.ssr.fade_in
+		environment.ssr_fade_out=material_case.ssr.fade_out
+		environment.ssr_depth_tolerance=material_case.ssr.tolerance
 		var off: Image
 		for enabled in [false,true]:
 			environment.ssr_enabled=enabled
 			options.values.reflections=enabled
 			diagnostic_state={material=material_case.id,ssr=enabled,surface_detail=true,
-				sky_radiance_fixed_512=true,normal_visualization=false}
+				sky_radiance_fixed_512=true,normal_visualization=false,
+				transparent_bg=viewport.transparent_bg,msaa_3d=viewport.msaa_3d,
+				ssr_max_steps=environment.ssr_max_steps,ssr_fade_in=environment.ssr_fade_in,
+				ssr_fade_out=environment.ssr_fade_out,ssr_depth_tolerance=environment.ssr_depth_tolerance}
 			var label: String="diagnostic-"+material_case.id+("-ssr-on" if enabled else "-ssr-off")
 			var captured: Image=await _capture(label,period,view,"Diagnostic-Extreme-fixed")
 			if captured==null:return
 			if not enabled:off=captured
 			else:report.diagnostic_comparisons.append({material=material_case.id,ssr_off_vs_on=_difference(off,captured)})
 	water.material_override=source
+	viewport.msaa_3d=original_msaa
+	environment.ssr_max_steps=original_ssr.steps
+	environment.ssr_fade_in=original_ssr.fade_in
+	environment.ssr_fade_out=original_ssr.fade_out
+	environment.ssr_depth_tolerance=original_ssr.tolerance
 	for view_space in [false,true]:
 		var normal_material:=_diagnostic_normal_material(source,view_space)
 		if normal_material==null:return
@@ -251,7 +284,10 @@ func _capture_reflection_diagnostic() -> void:
 		water.set_instance_shader_parameter("extreme_detail",1.0)
 		environment.ssr_enabled=false;options.values.reflections=false
 		diagnostic_state={material="source-water-normal-debug",ssr=false,surface_detail=true,
-			normal_visualization="view-space reconstructed mapped normal" if view_space else "tangent-space NORMAL_MAP RGB"}
+			transparent_bg=viewport.transparent_bg,msaa_3d=viewport.msaa_3d,
+			ssr_max_steps=environment.ssr_max_steps,ssr_fade_in=environment.ssr_fade_in,
+			ssr_fade_out=environment.ssr_fade_out,ssr_depth_tolerance=environment.ssr_depth_tolerance,
+			normal_visualization="view-space final wave NORMAL" if view_space else "neutral NORMAL_MAP expected with direct NORMAL water"}
 		var label: String="diagnostic-water-"+("view-normal" if view_space else "normal-map")
 		if await _capture(label,period,view,"Diagnostic-normal") == null:return
 	report.capture_status="diagnostic_captured_requires_review"
@@ -341,7 +377,7 @@ func _capture_rebase() -> bool:
 	_set_lighting(12.0);lamp.light_energy=0.0
 	_apply_preset("Extreme")
 	for view in VIEWS:
-		if view.id not in ["road","station"]:continue
+		if view.id not in ["road","station","water"]:continue
 		scene.position=Vector3.ZERO;_set_route_origin(far_origin)
 		camera.position=view.eye;camera.look_at(view.target)
 		var before: Image=await _capture("far-route-"+view.id+"-before",period,view,"Extreme")

@@ -32,7 +32,7 @@ PATCHED_IDS = {
     f"{period}-{view}-{preset.lower()}"
     for period, view in PAIRS
     for preset in PRESETS
-} | {f"far-route-{view}-{phase}" for view in ("road", "station") for phase in ("before", "after")}
+} | {f"far-route-{view}-{phase}" for view in ("road", "station", "water") for phase in ("before", "after")}
 
 
 class InvalidCapture(ValueError):
@@ -190,7 +190,7 @@ def validate(baseline_path: Path, patched_path: Path) -> None:
         require(original["png_sha256"] == current["png_sha256"] == returned["png_sha256"],
                 f"{identity}: exact equality reported but PNG bytes differ")
     rebase = indexed(patched.get("rebase_comparisons"), lambda entry: entry.get("view"),
-                     {"road", "station"}, "rebase comparisons")
+                     {"road", "station", "water"}, "rebase comparisons")
     for view, comparison in rebase.items():
         require(comparison.get("same_absolute_point") is True and
                 comparison.get("origin_before") == [300000, 0, -300000] and
@@ -216,7 +216,7 @@ def main() -> int:
     except (InvalidCapture, OSError, ValueError, TypeError, KeyError, StopIteration) as error:
         print(f"EXTREME_CAPTURE_INVALID: {error}", file=sys.stderr)
         return 1
-    print("EXTREME_CAPTURE_VALID: 15 baseline + 49 patched PNGs verified; "
+    print("EXTREME_CAPTURE_VALID: 15 baseline + 51 patched PNGs verified; "
           "15 parent-High and 15 restored-High comparisons exact. "
           "Rebase differences recorded, not automatically approved. "
           "Artistic quality and target-GPU performance still require review.")

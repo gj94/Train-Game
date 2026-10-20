@@ -1,5 +1,5 @@
 extends RefCounted
-## Two instanced fixture draws and a bounded pool of nearby, shadow-free lights.
+## Two instanced fixture draws and a bounded pool of nearby, default shadow-free lights.
 ## Absolute site datums follow platform/canopy geometry; no worker/scene searches.
 const MAX_LIGHTS := 24
 const MAX_FIXTURES := 96
@@ -48,6 +48,10 @@ func _init(w: RailWorld,parent: Node3D) -> void:
 	lenses=_instances("StationLightLenses",Vector3(.21,.025,1.03),lens_material)
 	for i in MAX_LIGHTS:
 		var light:=OmniLight3D.new();light.name="StationLight%d" % i
+		# Presentation-only rank in the existing nearest-first light pool.
+		# Graphics options may shadow the first four; selection, energy and
+		# station availability remain owned by the unchanged update below.
+		light.set_meta("station_shadow_rank",i)
 		light.light_color=Color(1.0,.88,.68);light.omni_range=25;light.omni_attenuation=.75
 		light.shadow_enabled=false;light.visible=false
 		light.distance_fade_enabled=true;light.distance_fade_begin=90;light.distance_fade_length=40

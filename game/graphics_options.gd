@@ -13,10 +13,11 @@ const OPTIONS := {
 	"shadow_filter": {group="lighting",label="Shadow filtering",values=[0,1,3],labels=["Hard / fastest","Soft / Low","Soft / High"],default=3,help="Smoother soft shadow edges cost additional samples. Has no effect when shadows are off."},
 	"ssao": {group="lighting",label="Contact shading (SSAO)",values=[false,true],labels=["Off","On"],default=true,help="Adds contact shading around sleepers, cab fittings and nearby surfaces."},
 	"ssil": {group="lighting",label="Indirect lighting (SSIL)",values=[false,true],labels=["Off","On"],default=true,help="Adds screen-space bounced light. Switching it off is a useful GPU saving."},
+	"station_shadows": {group="lighting",label="Nearby station lamp shadows",values=[false,true],labels=["Standard","Extreme / nearest four"],default=false,help="Adds real shadows from the four nearest active station lamps, grounding benches and columns at night. Does not add lamps or change their brightness. Expensive near detailed stations."},
 	"reflections": {group="lighting",label="Detailed reflections",values=[false,true],labels=["Standard","Extreme / screen-space + sharper sky"],default=false,help="Adds screen-space reflections to water and polished surfaces and sharper sky reflections. Forward+ only; expensive at high resolution. Screen-space reflections cannot show objects outside the camera view."},
 	"glow": {group="lighting",label="Light bloom",values=[false,true],labels=["Off","On"],default=true,help="Adds a subtle halo around bright lights."},
 	"view_distance": {group="scenery",label="Maximum view distance",values=[1500.0,1800.0,2200.0],labels=["1.5 km","1.8 km","2.2 km"],default=2200.0,help="Moves the far clip and matching haze together. Terrain remains continuous and the 60 m free-camera ceiling stays in place."},
-	"surface_detail": {group="scenery",label="Surface microdetail",values=[false,true],labels=["Standard","Extreme"],default=false,help="Adds filtered close-range surface detail to ground, roads, station finishes and water. Changes shading only: no geometry, collision, railway or weather changes. Uses additional GPU work."},
+	"surface_detail": {group="scenery",label="Surface microdetail",values=[false,true],labels=["Standard","Extreme"],default=false,help="Adds filtered close-range detail to ground, roads, station finishes, permanent way and water. Changes shading only: no geometry, collision, railway or weather changes. Uses additional GPU work."},
 	"vegetation_density": {group="scenery",label="Vegetation density",values=[0.5,0.75,1.0],labels=["50%","75%","100%"],default=1.0,help="Reduces visible tree, shrub, crop and grass instances. Matching detail levels retain the same plants. Does not change collision or the railway."},
 	"vegetation_distance": {group="scenery",label="Vegetation detail distance",values=[0.5,0.75,1.0,1.5],labels=["Short","Medium","Full","Extreme / 150%"],default=1.0,help="Controls tree, grass and distant silhouette detail reach. Extreme keeps full meshes visible 50% farther than High and costs more GPU time."},
 	"building_distance": {group="scenery",label="Building detail distance",values=[0.5,0.75,1.0,1.5],labels=["Short","Medium","Full","Extreme / 150%"],default=1.0,help="Controls supported house silhouettes and scenery detail reach. Extreme keeps full meshes visible 50% farther than High. Station platforms stay present."},
@@ -26,7 +27,7 @@ const OPTIONS := {
 }
 const PRESETS := {
 	"High": {},
-	"Extreme": {reflections=true,surface_detail=true,vegetation_distance=1.5,building_distance=1.5,mesh_detail=0.5,train_detail=1.5},
+	"Extreme": {reflections=true,surface_detail=true,station_shadows=true,vegetation_distance=1.5,building_distance=1.5,mesh_detail=0.5,train_detail=1.5},
 	"Balanced": {msaa=2,shadows=4096,shadow_filter=1,mesh_detail=2.0},
 	"Performance": {scale=0.85,msaa=1,shadows=2048,shadow_distance=100.0,shadow_filter=1,ssil=false,view_distance=1800.0,vegetation_density=0.75,vegetation_distance=0.5,building_distance=0.5,mesh_detail=4.0,train_detail=0.5,passengers=0.5}
 }
@@ -99,6 +100,8 @@ func apply_tree(node: Node) -> void:
 	elif node is DirectionalLight3D:
 		node.shadow_enabled=values.shadows>0 and not node.get_meta("no_night_shadow",false)
 		node.directional_shadow_max_distance=values.shadow_distance
+	elif node is OmniLight3D and node.has_meta("station_shadow_rank"):
+		ExtremeVisuals.apply_station_shadow(node,values.station_shadows and values.shadows>0)
 	elif node is GeometryInstance3D:
 		apply_geometry(node)
 	for child in node.get_children():apply_tree(child)

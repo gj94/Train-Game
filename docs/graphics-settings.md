@@ -86,3 +86,8 @@ full interior/building/grass detail; use `*_culled` cases for the normal quality
 4. Set High again and visit another station. Trees, houses and shadows should restore;
    check that no gap opens where vegetation changes from meshes to distant images.
 5. Choose a custom frame cap and SSIL setting, quit and reopen: both should persist.
+
+Extreme also offers nearby station lamp shadows (nearest four existing lamps),
+filtered water ripples and permanent-way/boundary material finishing. Each is
+opt-in; lamp allocation/brightness, track geometry and simulation remain unchanged.
+See `extreme-visuals.md` for actual capture evidence and pending visual review.

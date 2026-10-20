@@ -24,9 +24,17 @@ from pathlib import Path
 
 
 BASELINE_REF = "65e30b152ed612074f16d06d95896014229e4c77"
-SHADERS = ("geographic_ground", "scenery_road", "station_surface", "geographic_water")
+SHADERS = ("geographic_ground", "scenery_road", "station_surface", "geographic_water", "station_boundary")
 ORIGINS = (-307200, -300032, 0, 299008, 300032, 512000)
 FREQUENCIES = (9.0, 12.0, 20.0, 31.0, 32.0, 2.5)
+WATER_WAVES = (
+    ((.125, .0625), .5, .17, .045),
+    ((.375, .25), .875, .61, .060),
+    ((.875, .375), 1.25, .43, .065),
+    ((2.0, 1.25), 1.875, .83, .042),
+    ((4.75, 2.75), 2.875, .29, .028),
+    ((-.375, .75), 1.125, .73, .018),
+)
 
 
 def f32(value: float) -> float:
@@ -56,6 +64,26 @@ def periodic_error(a: float, b: float) -> float:
 
 def compact(source: str) -> str:
     return re.sub(r"\s+", "", re.sub(r"//[^\n]*", "", source))
+
+
+def fract32(value: float) -> float:
+    return f32(value - math.floor(value))
+
+
+def dot32(a: tuple[float, float], b: tuple[float, float]) -> float:
+    return f32(f32(a[0] * b[0]) + f32(a[1] * b[1]))
+
+
+def water_phase(local: tuple[float, float], origin: tuple[float, float],
+                cycles: tuple[float, float], speed: float, offset: float, time: float) -> float:
+    phase = f32(fract32(dot32(local, cycles)) + fract32(dot32(origin, cycles)))
+    phase = f32(phase + fract32(f32(time * speed)))
+    return fract32(f32(phase + f32(offset)))
+
+
+def water_filter(footprint: float) -> float:
+    value = min(1.0, max(0.0, (footprint - .18) / (.45 - .18)))
+    return 1.0 - value * value * (3.0 - 2.0 * value)
 
 
 def check_source_contract(root: Path) -> None:
@@ -89,6 +117,27 @@ def check_source_contract(root: Path) -> None:
     ):
         assert expression in station, f"Paver colour/bevel/footprint contract changed: {expression}"
     assert "extreme_detail_filter(paver_cells" not in station, "Wrapped cells cannot supply derivatives"
+    water = compact((root / "game/shaders/geographic_water.gdshader").read_text())
+    for expression in (
+        "extreme_local_position_m=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz;",
+        "floatspatial_cycles=dot(local_p,cycles);",
+        "floatorigin_cycles=fract(dot(route_origin.xz,cycles));",
+        "floatphase=6.28318530718*fract(fract(spatial_cycles)+origin_cycles+fract(TIME*speed)+offset);",
+        "floatfootprint=abs(dFdx(spatial_cycles))+abs(dFdy(spatial_cycles));",
+        "floatresolved=1.0-smoothstep(.18,.45,footprint);",
+        "vec2slope=normalize(cycles)*cos(phase)*amplitude*resolved;",
+        "floatvariance=.5*amplitude*amplitude*(1.0-resolved*resolved);",
+        "normalize((VIEW_MATRIX*vec4(-spectrum.x,1.0,-spectrum.y,0.0)).xyz)",
+        "floatwater_rough=pow(pow(base_roughness,4.0)+spectrum.z,.25);",
+        "NORMAL_MAP=vec3(.5,.5,1.0);NORMAL_MAP_DEPTH=0.0;",
+    ):
+        assert expression in water, f"Water precision/filter contract changed: {expression}"
+    calls = re.findall(
+        r"extreme_water_wave\(local_p,vec2\(([^,]+),([^)]+)\),([^,]+),([^,]+),([^)]+)\)", water
+    )
+    parsed_waves = tuple(((float(x), float(z)), float(speed), float(offset), float(amplitude))
+                         for x, z, speed, offset, amplitude in calls)
+    assert parsed_waves == WATER_WAVES, "Water numerical spectrum no longer matches source"
     print("PASS: shader expressions match the float32 model and shared paver grid")
 
 
@@ -136,6 +185,55 @@ def check_precision() -> None:
     print("PASS: local normal-frame gradients retain 5 mm spacing where absolute UV derivatives collapse")
 
 
+def check_water_precision() -> None:
+    worst_phase = 0.0
+    cases = 0
+    for value in ORIGINS:
+        origin = (f32(value), f32(-value))
+        for index in range(1001):
+            local = (f32(-2048.0 + index * 4096.0 / 1000.0),
+                     f32(2048.0 - index * 3072.0 / 1000.0))
+            for shift in ((1024.0, 0.0), (-1024.0, 0.0), (0.0, 1024.0), (1024.0, -1024.0)):
+                rebased_local = tuple(f32(local[i] - shift[i]) for i in range(2))
+                rebased_origin = tuple(f32(origin[i] + shift[i]) for i in range(2))
+                for cycles, speed, offset, amplitude in WATER_WAVES:
+                    before = water_phase(local, origin, cycles, speed, offset, 0.0)
+                    after = water_phase(rebased_local, rebased_origin, cycles, speed, offset, 0.0)
+                    delta = after - before
+                    worst_phase = max(worst_phase, abs(delta - round(delta)))
+                    assert 0.0 <= before < 1.0 and 0.0 <= after < 1.0
+                    cases += 1
+    assert worst_phase <= .004, f"Water phase rebase error exceeds 0.004 cycles: {worst_phase}"
+    local, origin = (f32(3.14159), f32(-2.71828)), (300032.0, -300032.0)
+    for cycles, speed, offset, amplitude in WATER_WAVES:
+        assert speed * 3600.0 == round(speed * 3600.0), "TIME rollover introduces a phase seam"
+        assert water_phase(local, origin, cycles, speed, offset, 0.0) == water_phase(
+            local, origin, cycles, speed, offset, 3600.0)
+        # The origin's bounded phase must retain a 1 mm motion near 300 km.
+        a = water_phase(local, origin, cycles, speed, offset, 0.0)
+        b = water_phase((f32(local[0] + .001), local[1]), origin, cycles, speed, offset, 0.0)
+        delta = b - a
+        delta -= round(delta)
+        assert abs(delta - .001 * cycles[0]) < .000002, "Water lost millimetre motion"
+    values = [water_filter(index / 1000.0) for index in range(1001)]
+    assert values[0] == 1.0 and water_filter(.18) == 1.0 and water_filter(.45) == 0.0
+    assert all(a >= b for a, b in zip(values, values[1:])), "Wave fade is not monotonic"
+    assert water_filter(.5) == 0.0, "Sub-Nyquist fade must complete before half a cycle/pixel"
+    max_slope = sum(wave[3] for wave in WATER_WAVES)
+    max_variance = .5 * sum(wave[3] ** 2 for wave in WATER_WAVES)
+    assert math.degrees(math.atan(max_slope)) < 15.0, "Water spectrum is too steep"
+    for footprint in (0.0, .18, .25, .35, .45, .5, 1.0):
+        resolved = water_filter(footprint)
+        resolved_variance = max_variance * resolved ** 2
+        missing_variance = max_variance * (1.0 - resolved ** 2)
+        assert abs(resolved_variance + missing_variance - max_variance) < 1e-12
+        roughness = (.17 ** 4 + missing_variance) ** .25
+        assert .17 - 1e-9 <= roughness <= .31, "Water roughness energy recovery is out of range"
+    print(f"PASS: {cases:,} water rebase cases; worst phase error {worst_phase:.9f} cycles")
+    print("PASS: water retains 1 mm motion at 300 km and has continuous default TIME rollover")
+    print("PASS: water fades before Nyquist, conserves slope variance, and bounds normal tilt below 15 degrees")
+
+
 def remove_extreme_branches(source: str) -> str:
     # A deliberately narrow source assertion, not a general shader interpreter.
     while "if(extreme_detail>0.0" in source:
@@ -168,6 +266,7 @@ def check_legacy_source(root: Path, baseline_ref: str) -> None:
         "floatpaver_variation=hash(cell);",
         "if(n.y>n.x&&n.y>n.z){local_p=world_position.xz;origin_p=extreme_route_origin.xz;}"
         "elseif(n.x>n.z){local_p=world_position.zy;origin_p=extreme_route_origin.zy;}",
+        "varyingvec3extreme_local_position_m;",
     )
     for name in SHADERS:
         relative = f"game/shaders/{name}.gdshader"
@@ -176,6 +275,12 @@ def check_legacy_source(root: Path, baseline_ref: str) -> None:
             check=True, capture_output=True, text=True,
         ).stdout
         current = remove_extreme_branches(compact((root / relative).read_text()))
+        if name == "geographic_water":
+            # The helper is reachable only from the removed Extreme branch.
+            start = current.index("vec3extreme_water_wave(")
+            end = current.index("}", start) + 1
+            current = current[:start] + current[end:]
+            assert "extreme_water_wave(" not in current, "Water helper leaked into legacy execution"
         for addition in additions:
             current = current.replace(addition, "")
         current = current.replace("surface_position", "world_position").replace("paver_variation", "hash(cell)")
@@ -192,6 +297,7 @@ def main() -> None:
         root = args.source.resolve()
         check_source_contract(root)
         check_precision()
+        check_water_precision()
         check_legacy_source(root, args.baseline_ref)
     except (AssertionError, OSError, subprocess.CalledProcessError) as exc:
         parser.exit(1, f"EXTREME_SURFACE_PRECISION_FAILED: {exc}\n")

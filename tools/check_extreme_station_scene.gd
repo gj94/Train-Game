@@ -12,11 +12,19 @@ const TrackView := preload("res://game/track_view.gd")
 const Library := preload("res://game/scenery_library.gd")
 const OHELayout := preload("res://game/geographic_ohe_layout.gd")
 const MeshBuilder := preload("res://game/geographic_mesh.gd")
+const Groundcover := preload("res://game/coastal_groundcover.gd")
 const VIEWS := [
 	{id="platform-track",eye=Vector3(-5.5,2.1,322),target=Vector3(4.0,2.6,296)},
-	{id="platform-canopy",eye=Vector3(4.0,2.95,330),target=Vector3(4.0,2.3,282)}
+	{id="platform-canopy",eye=Vector3(4.0,2.95,330),target=Vector3(4.0,2.3,282)},
+	{id="vegetation-lod",eye=Vector3(-46,3,370),target=Vector3(-46,6,170)}
 ]
 const PERIODS := [{id="daylight",hour=12.0},{id="dusk",hour=18.65}]
+const PALM_POSITIONS := [
+	Vector3(-24,0,326),Vector3(-21,0,284),Vector3(-29,0,242),Vector3(-23,0,211),
+	Vector3(22,0,330),Vector3(28,0,286),Vector3(21,0,245),Vector3(30,0,213),
+	Vector3(-84,0,322),Vector3(-79,0,265),Vector3(-73,0,154),Vector3(-27,0,154),
+	Vector3(-88,0,88),Vector3(-36,0,87),Vector3(43,0,146),Vector3(40,0,94)
+]
 
 class FlatGeo extends RefCounted:
 	var station_sites: Dictionary = {}
@@ -84,12 +92,16 @@ func _run() -> void:
 		fixture_overrides={vsync=false,fps_cap=0,taa=false,sky_process="QUALITY",flat_ground=true},
 		builders=["GeographicWorld._make_materials","WorldView._build_environment",
 			"GeographicRailwayChunk.build_station","TrackView.build","GeographicRailwayChunk.build_ohe",
-			"DayNight.update","StationLighting.update","Graphics.apply"],
+			"DayNight.update","StationLighting.update","Graphics.apply",
+			"SceneryLibrary.place/flush","CoastalGroundcover.mesh/flush"],
 		captures=[],comparisons=[],high_baseline_comparisons=[],source_sha256={},invariant_checks=[],
 		simulation_step_calls=0,synthetic_station={code="EXTREME_REVIEW",through_halt=true,major=false,edge_metres=600.0},
 		limitations=[
 			"Synthetic single-track halt using actual source builders, not an authored station or complete game scene.",
-			"No train interiors, traffic, vegetation, streaming, route traversal or LOD-distance validation.",
+			"No train interiors, traffic, full vegetation catalogue, streaming or route traversal.",
+			"Vegetation uses 16 existing original coconut palms and 197 genuine coastal-grass patches, not route planting.",
+			"The empty scenery catalogue deliberately avoids TF3 aliasing or unbounded asset preparation.",
+			"LOD distances use shared AABB centres; nominal thresholds do not prove perceptual continuity through fades.",
 			"Flat ground is a review-only mesh with the actual geographic ground material; it is not a route tile.",
 			"Simulation source is copied unchanged and world state is fingerprinted; no simulation step is called.",
 			"Frame intervals are wall-clock render-loop samples, not GPU timings or target-PC performance.",
@@ -212,8 +224,34 @@ func _build_scene() -> void:
 	ground.quad("ground",Vector3(-120,-.03,0),Vector3(120,-.03,0),Vector3(120,-.03,600),Vector3(-120,-.03,600),
 		Vector3.UP,Color(.72,.80,.60,.12),[Vector2(-120,0)/3.5,Vector2(120,0)/3.5,Vector2(120,600)/3.5,Vector2(-120,600)/3.5])
 	ground.finish(scene,view.materials,"ReviewFlat")
+	_build_vegetation()
 	camera=Camera3D.new();camera.fov=58.0;camera.near=.05;scene.add_child(camera);camera.make_current()
 	scene.cam=camera;options.game=scene
+
+func _build_vegetation() -> void:
+	# The same library and authored source mesh as the game, but a strictly
+	# bounded placement set. Do not prepare the full catalogue or TF3 aliases.
+	assert(view.assets.catalog.is_empty())
+	for index in PALM_POSITIONS.size():
+		view.assets.place("coconut_palm",PALM_POSITIONS[index],float(index)*.71)
+	var grass_material: Material=view.assets.material("grass")
+	for level in [["coastal_grass",384,1.0],["coastal_grass_medium",96,2.0],["coastal_grass_far",24,4.0]]:
+		view.assets.meshes[level[0]]=[{mesh=Groundcover.mesh(grass_material,level[1],level[2]),transform=Transform3D.IDENTITY}]
+	# Five small islands span near/detail/mid/far/culled ranges in the LOD view.
+	# Two trackside verges also put genuine groundcover into the station views.
+	for z in [345.0,308.0,260.0,215.0,160.0]:
+		for row in 5:
+			for column in 5:
+				view.assets.place("coastal_grass",Vector3(-52.0+column*3.0,0,z+(row-2)*3.0),float(row*5+column)*.37)
+	for x in [-12.0,18.0]:
+		for row in 36:view.assets.place("coastal_grass",Vector3(x,0,210.0+row*3.6),float(row)*.51)
+	view.assets.flush()
+	report.vegetation_fixture={palm_instances=16,grass_patches=197,grass_blades_per_lod=[384,96,24],
+		catalog_empty=view.assets.catalog.is_empty(),full_catalog_prepared=false,
+		palm_asset="assets/models/scenery/coconut_palm.glb",license_register="docs/assets.md",
+		placement_source="fixed review-only positions; actual SceneryLibrary and CoastalGroundcover builders",
+		distance_basis="world-space shared custom AABB centre, not placement or batch origin",
+		groups=[],camera_distances=[]}
 
 func _check_scene() -> bool:
 	var required:=["Station_EXTREME_REVIEW","PermanentWay","Electrification_REVIEW_ROAD",
@@ -232,10 +270,62 @@ func _check_scene() -> bool:
 	if report.station_nameboards!=4 or report.station_light_sites!=4:
 		_fail("Expected four actual nameboard faces and four bounded canopy light sites.");return false
 	for path in source_before:
-		if str(path).ends_with(".jpg") or str(path).ends_with(".hdr"):
+		if str(path).ends_with(".jpg") or str(path).ends_with(".hdr") or str(path).ends_with(".png"):
 			if not load(path) is Texture2D:
 				_fail("Missing imported source texture: "+str(path));return false
+	return _check_vegetation()
+
+func _check_vegetation() -> bool:
+	if view.assets.counts.get("coconut_palm")!=16 or view.assets.counts.get("coastal_grass")!=197:
+		_fail("Bounded vegetation placement count differs.");return false
+	var groups: Dictionary={}
+	for node in scene.find_children("*","MultiMeshInstance3D",true,false):
+		var kind: String=node.get_meta("scenery_kind","")
+		if kind not in ["coconut_palm","coastal_grass"]:continue
+		var key:=kind+str(node.position)
+		if groups.has(key):
+			if groups[key].bounds!=node.custom_aabb or groups[key].count!=node.multimesh.instance_count:
+				_fail("Vegetation representations do not share bounds/placements.");return false
+		else:groups[key]={kind=kind,origin=node.position,bounds=node.custom_aabb,count=node.multimesh.instance_count,roles=[]}
+		var role: String=("impostor" if node.get_meta("impostor",false) else "detail") if kind=="coconut_palm" else str(node.get_meta("grass_lod"))
+		if role not in groups[key].roles:groups[key].roles.append(role)
+	for key in groups:
+		var group: Dictionary=groups[key]
+		var expected: Array=["detail","impostor"] if group.kind=="coconut_palm" else ["0","1","2"]
+		if group.roles!=expected:_fail("Vegetation LOD representation missing: "+key);return false
+		var centre: Vector3=group.origin+group.bounds.get_center()
+		report.vegetation_fixture.groups.append({id=key,kind=group.kind,origin=_xyz(group.origin),
+			shared_aabb_center=_xyz(centre),instances=group.count,roles=group.roles})
+		for camera_view in VIEWS:
+			report.vegetation_fixture.camera_distances.append({group=key,view=camera_view.id,
+				kind=group.kind,distance_metres=camera_view.eye.distance_to(centre)})
+	var palm_witness:=false;var grass_witnesses:=[false,false,false]
+	for distance in report.vegetation_fixture.camera_distances:
+		if distance.view!="vegetation-lod":continue
+		var metres: float=distance.distance_metres
+		# Clear of both palm fade bands: High is fully impostor, Extreme detail.
+		if distance.kind=="coconut_palm" and metres>203.0 and metres<220.5:palm_witness=true
+		if distance.kind=="coastal_grass":
+			if metres>50.0 and metres<75.0:grass_witnesses[0]=true
+			if metres>90.0 and metres<135.0:grass_witnesses[1]=true
+			if metres>125.0 and metres<187.5:grass_witnesses[2]=true
+	if not palm_witness or false in grass_witnesses:
+		_fail("Fixed camera misses intended palm/grass LOD-distance witnesses.");return false
+	report.vegetation_fixture.shared_lod_bounds_checked=true
+	report.vegetation_fixture.palm_transition_witness=true
+	report.vegetation_fixture.grass_transition_witnesses=grass_witnesses
 	return true
+
+func _vegetation_ranges() -> Dictionary:
+	var result:={}
+	for node in scene.find_children("*","MultiMeshInstance3D",true,false):
+		var kind: String=node.get_meta("scenery_kind","")
+		if kind not in ["coconut_palm","coastal_grass"]:continue
+		var role: String=("palm_impostor" if node.get_meta("impostor",false) else "palm_detail") if kind=="coconut_palm" else "grass_"+str(node.get_meta("grass_lod"))
+		var ranges:=[node.visibility_range_begin,node.visibility_range_end,node.visibility_range_begin_margin,node.visibility_range_end_margin]
+		if result.has(role) and result[role]!=ranges:return {}
+		result[role]=ranges
+	return result
 
 func _set_lighting(hour: float) -> void:
 	# Feed the presentation-only controller explicitly. Never change world time.
@@ -291,10 +381,19 @@ func _digest(value: Variant) -> String:
 func _check_invariants(label: String) -> bool:
 	var state:=_world_digest();var geometry:=_geometry_digest()
 	var equal:=state==state_before and geometry==geometry_before
+	var factor: float=options.values.vegetation_distance
+	var ranges:=_vegetation_ranges()
+	var expected:={palm_detail=[0.0,175.0*factor,28.0*factor,28.0*factor],
+		palm_impostor=[175.0*factor,2700.0,28.0*factor,180.0],
+		grass_0=[0.0,50.0*factor,12.0*factor,12.0*factor],
+		grass_1=[50.0*factor,90.0*factor,12.0*factor,12.0*factor],
+		grass_2=[90.0*factor,125.0*factor,12.0*factor,35.0*factor]}
 	report.invariant_checks.append({id=label,world_unchanged=state==state_before,
-		geometry_unchanged=geometry==geometry_before,world_sha256=state,geometry_sha256=geometry})
+		geometry_unchanged=geometry==geometry_before,world_sha256=state,geometry_sha256=geometry,
+		vegetation_range_factor=factor,vegetation_ranges=ranges,vegetation_ranges_match=ranges==expected})
 	report.world_unchanged=state==state_before;report.static_geometry_unchanged=geometry==geometry_before
 	if not equal:_fail("World or static geometry mutated during presentation review: "+label);return false
+	if ranges!=expected:_fail("Actual vegetation LOD ranges differ from the requested preset: "+label);return false
 	return true
 
 func _load_sources() -> bool:

@@ -12,7 +12,7 @@ const LEGACY_HIGH := {
 	shadow_distance=300.0,shadow_filter=3,ssao=true,ssil=true,glow=true,
 	view_distance=2200.0,vegetation_density=1.0,vegetation_distance=1.0,
 	building_distance=1.0,mesh_detail=1.0,train_detail=1.0,passengers=1.0,
-	surface_detail=false,reflections=false
+	surface_detail=false,reflections=false,station_shadows=false
 }
 const LEGACY_OVERRIDES := {
 	High={},
@@ -26,7 +26,12 @@ const SURFACES := [
 	"res://game/shaders/geographic_ground.gdshader",
 	"res://game/shaders/scenery_road.gdshader",
 	"res://game/shaders/station_surface.gdshader",
-	"res://game/shaders/geographic_water.gdshader"
+	"res://game/shaders/geographic_water.gdshader",
+	"res://game/shaders/station_boundary.gdshader",
+	"res://game/shaders/track_ballast.gdshader",
+	"res://game/shaders/track_concrete.gdshader",
+	"res://game/shaders/track_rail.gdshader",
+	"res://game/shaders/track_shoulder.gdshader"
 ]
 const REFLECTION_FIELDS := [
 	"ssr_enabled","ssr_max_steps","ssr_fade_in","ssr_fade_out","ssr_depth_tolerance"
@@ -129,7 +134,7 @@ func test_extreme_changes_only_the_explicit_render_quality_options():
 	var settings := Options.new()
 	settings.preset("Extreme")
 	var expected := LEGACY_HIGH.duplicate(true)
-	expected.merge({surface_detail=true,reflections=true,
+	expected.merge({surface_detail=true,reflections=true,station_shadows=true,
 		vegetation_distance=1.5,building_distance=1.5,train_detail=1.5,mesh_detail=0.5},true)
 	if settings.values!=expected or settings.preset_name()!="Extreme":
 		return "Extreme changed an unapproved setting or omitted a quality improvement"
@@ -148,7 +153,7 @@ func test_old_preferences_migrate_without_enabling_extreme():
 		var expected := legacy_values(label)
 		var config := ConfigFile.new()
 		for key in expected:
-			if key not in ["surface_detail","reflections"]:config.set_value("graphics",key,expected[key])
+			if key not in ["surface_detail","reflections","station_shadows"]:config.set_value("graphics",key,expected[key])
 		if config.save(settings.settings_path)!=OK:
 			failure="Could not write isolated old-format preference fixture"
 			break
@@ -317,7 +322,7 @@ func test_surface_detection_ignores_unrelated_and_overridden_materials():
 	var unrelated := MeshInstance3D.new()
 	unrelated.mesh=BoxMesh.new()
 	var unrelated_material := ShaderMaterial.new()
-	unrelated_material.shader=load("res://game/shaders/track_rail.gdshader")
+	unrelated_material.shader=load("res://game/shaders/night_window.gdshader")
 	unrelated.material_override=unrelated_material
 	var empty := MeshInstance3D.new()
 	var settings := Options.new()
@@ -448,7 +453,7 @@ func test_extreme_ui_action_is_reachable_applies_and_saves_without_touching_simu
 	ok=ok and s.viewport.screen_space_aa==Viewport.SCREEN_SPACE_AA_FXAA
 	ok=ok and s.viewport.scaling_3d_scale==1.0 and host.cam.far==2200
 	ok=ok and host.passenger_crowd.render_budget==1.0
-	for key in ["surface_detail","reflections"]:
+	for key in ["surface_detail","reflections","station_shadows"]:
 		host.hud.show_modal("graphics:"+Options.OPTIONS[key].group)
 		actions.clear()
 		for button in host.hud._buttons.get_children():actions.append(button.get_meta("action"))
@@ -720,3 +725,36 @@ func test_bounded_float32_detail_retains_millimetres_and_rebase_phase():
 	var old_before := (local_p+origin)*frequency
 	var old_after := (local_p+millimetre+origin)*frequency
 	return movement>0.03 and movement<0.034 and old_before==old_after
+
+func test_station_lamp_shadows_are_bounded_and_restore_without_changing_lighting():
+	var s:=fixture()
+	var lamps: Array[OmniLight3D]=[]
+	for i in 7:
+		var light:=OmniLight3D.new()
+		light.set_meta("station_shadow_rank",i)
+		light.position=Vector3(i,4,8)
+		light.light_energy=2.3
+		light.omni_range=25.0
+		light.visible=i<5
+		light.shadow_enabled=false
+		s.root.add_child(light);lamps.append(light)
+	var unrelated:=OmniLight3D.new()
+	unrelated.shadow_enabled=true;s.root.add_child(unrelated)
+	var ok:=true
+	for preset in ["High","Extreme","High","Extreme","Performance"]:
+		s.settings.preset(preset);s.settings.apply()
+		for i in lamps.size():
+			var light:=lamps[i]
+			ok=ok and light.shadow_enabled==(preset=="Extreme" and i<4)
+			ok=ok and light.position==Vector3(i,4,8) and is_equal_approx(light.light_energy,2.3)
+			ok=ok and light.omni_range==25.0 and light.visible==(i<5)
+		ok=ok and unrelated.shadow_enabled
+	# A newly streamed lamp receives the same setting through apply_tree.
+	s.settings.preset("Extreme")
+	var late:=OmniLight3D.new();late.set_meta("station_shadow_rank",0)
+	s.root.add_child(late);s.settings.apply_tree(late)
+	ok=ok and late.shadow_enabled
+	s.settings.values.shadows=0;s.settings.apply_tree(late)
+	ok=ok and not late.shadow_enabled
+	s.viewport.free()
+	return true if ok else "Station shadow quality changed lamp allocation/lighting or failed restoration"

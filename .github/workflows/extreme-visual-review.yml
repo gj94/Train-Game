@@ -2,6 +2,7 @@ name: Extreme visual review (software Vulkan)
 
 # Deliberately scoped to this review branch and an explicit workflow edit.
 # Ordinary commits do not spend runner time; never deploys or updates the parent.
+# Evidence contract: 15 original + 51 current frames, plus 10 diagnostic frames.
 on:
   push:
     branches: [codex/extreme-visual-fidelity]

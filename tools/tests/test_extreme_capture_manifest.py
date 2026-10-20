@@ -73,7 +73,7 @@ class CaptureManifestTests(unittest.TestCase):
             self.patched["high_baseline_comparisons"].append(dict(
                 id=identity, baseline_file=old["file"], baseline_png_sha256=old["png_sha256"],
                 high_vs_baseline=measurement()))
-        for view in ("road", "station"):
+        for view in ("road", "station", "water"):
             for phase, origin, shift in (
                 ("before", [300000, 0, -300000], [0, 0, 0]),
                 ("after", [301024, 0, -298976], [-1024, 0, -1024]),

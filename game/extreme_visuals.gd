@@ -6,10 +6,25 @@ const SURFACE_SHADERS := [
 	"res://game/shaders/geographic_ground.gdshader",
 	"res://game/shaders/scenery_road.gdshader",
 	"res://game/shaders/station_surface.gdshader",
-	"res://game/shaders/geographic_water.gdshader"
+	"res://game/shaders/geographic_water.gdshader",
+	"res://game/shaders/station_boundary.gdshader",
+	"res://game/shaders/track_ballast.gdshader",
+	"res://game/shaders/track_concrete.gdshader",
+	"res://game/shaders/track_rail.gdshader",
+	"res://game/shaders/track_shoulder.gdshader"
 ]
 const REFLECTION_STATE := "extreme_reflection_original"
 const SURFACE_STATE := "extreme_surface_applied"
+const STATION_SHADOW_STATE := "extreme_station_shadow_original"
+
+static func apply_station_shadow(light: OmniLight3D, enabled: bool) -> void:
+	if not light.has_meta("station_shadow_rank"):
+		return
+	if not light.has_meta(STATION_SHADOW_STATE):
+		light.set_meta(STATION_SHADOW_STATE,light.shadow_enabled)
+	# The existing station light update fills this pool nearest-first.
+	# Never touch visibility, position, colour, energy, range or allocation.
+	light.shadow_enabled=true if enabled and int(light.get_meta("station_shadow_rank"))<4 else bool(light.get_meta(STATION_SHADOW_STATE))
 
 static func apply_surface(node: GeometryInstance3D, enabled: bool) -> void:
 	if not supports_surface(node):

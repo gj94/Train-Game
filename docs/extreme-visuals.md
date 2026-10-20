@@ -11,8 +11,15 @@ work branch, publish a release, or change the railway simulation.
   weather, road geometry or changing markings.
 - Shallow paver bevel shading and differentiated masonry, painted metal and
   roof microdetail. Optical glass and readable signs/instruments are not replaced.
-- Filtered water detail with the existing wave phases/speeds, plus optional
-  screen-space reflections. Water remains dielectric rather than metallic.
+- Filtered analytic water ripples from roughly 7 m to 18 cm, with unresolved
+  slope variance returned to roughness. This is shading only, not displacement;
+  water remains opaque and dielectric. Existing High waves remain unchanged.
+- Concrete boundary finish with projection-aligned normals; photographed ballast,
+  stable sleeper finish, filtered running-surface rail wear and matched shoulder
+  mineral tint. Railway geometry, coverage and contacts remain unchanged.
+- Shadows from the nearest four existing station lamps, without changing lamp
+  placement, allocation, brightness or visibility. Other presets retain original
+  shadow-free lamps. This is a potentially expensive night-time quality option.
 - Sharper sky reflections (512 instead of the original 256 radiance size),
   96-step screen-space reflections, and 150% of High's tree/building/other-train
   detail ranges. Mesh LOD threshold is 0.5 rather than 1.0.
@@ -20,9 +27,10 @@ work branch, publish a release, or change the railway simulation.
   disabling FXAA worsened thin overhead lines for little material benefit.
 
 High remains the default. Existing High, Balanced and Performance values are
-unchanged; the two new switches default off when loading old preference files.
+unchanged; the three new switches default off when loading old preference files.
 Extreme does not add passengers or plants, extend the world streaming radius,
-change shadows beyond the existing High budget, or alter camera limits.
+alter sun-shadow resolution beyond High, or alter camera limits. The optional
+four-lamp positional-shadow budget is the only additional shadow allocation.
 
 ## Boundaries
 
@@ -145,3 +153,13 @@ or loads a full route/train. The preparer and validator are
 `tools/check_extreme_station_manifest.py`; its expected evidence is four original
 High images and twelve current High/Extreme/restored images. Structural checks
 preserve world and mesh buffers, but are explicitly not rendered visual proof.
+
+The third material run completed 15 original + 49 current frames, with all 15
+original/restored High pairs exact. The original bounded station run completed
+4 original + 12 current frames with all four pairs exact and state unchanged.
+The next material contract adds water-rebase frames (51 current); the richer
+station fixture adds existing palms/grass and a measured LOD camera (6/18 frames).
+New water, fence, track and lamp-shadow refinements are pending those captures.
+SSR off/on remained pixel-identical even on a smooth diagnostic metal mirror;
+reflection visibility is not yet claimed. A final controlled MSAA/raymarch
+diagnostic is separate from production settings.

@@ -1,5 +1,7 @@
 shader_type spatial;
 render_mode diffuse_burley;
+instance uniform float extreme_detail : instance_index(15) = 0.0;
+#include "extreme_surface_detail.gdshaderinc"
 uniform sampler2D concrete_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D concrete_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 varying vec3 local_position;
@@ -27,4 +29,24 @@ void fragment() {
  NORMAL_MAP_DEPTH=.30;
  ROUGHNESS=.94;
  SPECULAR=.18;
+ if(extreme_detail>0.0) {
+  float strength=clamp(extreme_detail,0.0,1.0);
+  // The batched fence's local metre coordinates survive floating-origin
+  // rebases. Its mesh UV tangents do not match this dominant-axis projection,
+  // so align the photographed concrete normal to the projection explicitly.
+  vec2 photographed_xy=texture(concrete_normal,uv*.85).rg*2.0-1.0;
+  float photographed_z=sqrt(max(1.0-dot(photographed_xy,photographed_xy),.0));
+  vec3 pores=extreme_noise_gradient(uv*32.0);
+  vec3 finish=normalize(vec3(photographed_xy*.38+pores.yz*.035,
+   max(photographed_z,.25)));
+  vec3 mapped=extreme_mapped_normal(normalize(NORMAL),VERTEX,uv*.85,finish);
+  NORMAL=normalize(mix(NORMAL,mapped,strength));
+  NORMAL_MAP=vec3(.5,.5,1.0);
+  NORMAL_MAP_DEPTH=0.0;
+  // Dry painted concrete, not glossy plastic: fine pigment variation and
+  // slightly less chalk-flat highlights, without changing the painted scheme.
+  ALBEDO*=mix(1.0,.96+pores.x*.08,strength);
+  ROUGHNESS=mix(ROUGHNESS,clamp(.84+age*.10+low*.05,.84,.97),strength);
+  SPECULAR=mix(SPECULAR,.32,strength);
+ }
 }

@@ -45,6 +45,15 @@ jobs:
             /tools/check_extreme_capture_manifest.py
             /tools/tests/test_extreme_station_scene.py
             /assets/polyhaven/
+            /assets/models/scenery/coconut_palm.glb
+            /assets/models/scenery/coconut_palm.glb.import
+            /assets/models/scenery/impostors/coconut_palm_albedo.png
+            /assets/models/scenery/impostors/coconut_palm_albedo.png.import
+            /assets/models/scenery/impostors/coconut_palm_normal.png
+            /assets/models/scenery/impostors/coconut_palm_normal.png.import
+            /docs/assets.md
+            /tools/blender/scenery_vegetation.py
+            /tools/blender/bake_scenery_impostors.py
       - name: Install Ubuntu software rendering packages
         run: |
           sudo apt-get update -qq
