@@ -1,5 +1,30 @@
 # Progress
 
+## 2026-10-20 — B012 Eraniel hold investigated (no game changes)
+
+- Replayed R36's exact prepared B012 departure (09:10 NCJ–ERS Vande Bharat)
+  with AI driving, through 09:55. No signalling/timetable/physics changes and
+  no safety events. Diagnostic script and trace are in the ignored
+  `.local/erl-dispatch-2026-10-20/` directory.
+- Reproduced the stand at **ERL-N2**, approximately **09:24:14–09:28:28**.
+  KZT has two usable platform roads: B014 (Malabar Express 01, NCJ–ERS)
+  occupies P1 and approaching B088 (Cape Passenger 01, TVC–NCJ) claims P2.
+  The admission planner will not send a third train into the KZT–PYD–ERL
+  single-line group without a receiving berth. PYD is a through halt.
+- B088 enters KZT P2 around 09:26:34; B014 starts north around 09:27:04.
+  B012 receives authority once B014 clears the receiving road around 09:28:28.
+  B088 subsequently waits for B012 and starts south around 09:39:00.
+  Times are sampled at two-second intervals, from an AI baseline rather than
+  the user's manual driving session.
+- This is conservative current-capacity admission, not a booked ERL stop.
+  No future-clearance transaction is active. The relevant forecast path excludes
+  a platform vacater already overdue (`future_clearance.gd:61`); B014's KZT
+  release time was 09:15:36, so its eventual clearance is not credited here.
+  Primary admission checks are in `dispatch_planner.gd:119–146`.
+- User asked for diagnosis only: no fix, timetable regeneration or release.
+  Existing 637 passing source tests remain applicable; the targeted replay
+  verifies this observation. Manual arrival times may shift the duration.
+
 ## 2026-10-20 — R36 full ZIP published; v3 updater baseline
 
 - Published **R36** from clean source **e34b614**, signed baseline **38**, at
