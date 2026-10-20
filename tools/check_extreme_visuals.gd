@@ -7,7 +7,8 @@ extends SceneTree
 ## Baseline fixture: --presets=High. Patched fixture: --compare-high=/path/to/baseline/manifest.json
 ## Optional --check-rebase adds six Extreme daylight road/station/water frames at a 300 km route origin.
 ## Optional --views=road,station --periods=daylight is a labelled subset smoke, not the full review.
-## Optional --reflection-diagnostic instead captures six isolated water/SSR/normal diagnostic images.
+## Optional --reflection-diagnostic instead captures ten isolated water/SSR/normal diagnostic images.
+## Optional --water-temporal-diagnostic instead captures six fixed-time dusk water-camera images.
 ## Each run gets a fresh directory. A failed/dummy renderer writes only a blocked manifest.
 const Graphics := preload("res://game/graphics_options.gd")
 const ExtremeVisuals := preload("res://game/extreme_visuals.gd")
@@ -29,6 +30,7 @@ var sample_frames := 24
 var presets := PackedStringArray(["High","Extreme","High-restored"])
 var check_rebase := false
 var reflection_diagnostic := false
+var water_temporal_diagnostic := false
 var diagnostic_state: Dictionary = {}
 var reference_path := ""
 var reference_captures: Dictionary = {}
@@ -69,6 +71,7 @@ func _initialize() -> void:
 		elif arg.begins_with("--compare-high="):reference_path=ProjectSettings.globalize_path(arg.trim_prefix("--compare-high="))
 		elif arg=="--check-rebase":check_rebase=true
 		elif arg=="--reflection-diagnostic":reflection_diagnostic=true
+		elif arg=="--water-temporal-diagnostic":water_temporal_diagnostic=true
 		elif arg.begins_with("--views="):selected_views=arg.trim_prefix("--views=").split(",")
 		elif arg.begins_with("--periods="):selected_periods=arg.trim_prefix("--periods=").split(",")
 	call_deferred("_run")
@@ -97,8 +100,9 @@ func _run() -> void:
 		captures=[],comparisons=[],high_baseline_comparisons=[],rebase_comparisons=[],assets=assets,
 		presets=presets,check_rebase=check_rebase,
 		selected_views=selected_views,selected_periods=selected_periods,
-		capture_scope="reflection_diagnostic" if reflection_diagnostic else (
-			"full_fixture" if selected_views.is_empty() and selected_periods.is_empty() else "subset_smoke"),
+		capture_scope="water_temporal_diagnostic" if water_temporal_diagnostic else (
+			"reflection_diagnostic" if reflection_diagnostic else (
+			"full_fixture" if selected_views.is_empty() and selected_periods.is_empty() else "subset_smoke")),
 		capture_order="lighting period, then preset, then camera",
 		shaders=["res://game/shaders/geographic_ground.gdshader",
 			"res://game/shaders/scenery_road.gdshader",
@@ -154,6 +158,11 @@ func _run() -> void:
 		or not selected_views.is_empty() or not selected_periods.is_empty() or not presets.has("Extreme")):
 		_fail("--reflection-diagnostic requires current Forward+ options, without baseline/rebase/subset arguments.")
 		return
+	if water_temporal_diagnostic and (not forward_plus or reflection_diagnostic or check_rebase
+		or not reference_path.is_empty() or not selected_views.is_empty()
+		or not selected_periods.is_empty() or not presets.has("Extreme")):
+		_fail("--water-temporal-diagnostic requires current Forward+ options, without other diagnostics/baseline/rebase/subset arguments.")
+		return
 	for view_id in selected_views:
 		if view_id not in ["overview","ground","road","station","water"]:
 			_fail("Unknown --views entry: "+view_id);return
@@ -173,6 +182,9 @@ func _run() -> void:
 	if not _write_report():return
 	if reflection_diagnostic:
 		await _capture_reflection_diagnostic()
+		return
+	if water_temporal_diagnostic:
+		await _capture_water_temporal_diagnostic()
 		return
 	for period in [{id="daylight",hour=12.0},{id="dusk",hour=18.25},{id="night",hour=22.0}]:
 		if not selected_periods.is_empty() and not selected_periods.has(period.id):continue
@@ -215,6 +227,82 @@ func _run() -> void:
 	print("EXTREME_VISUAL_CAPTURED: ",output,"; High-restored exact equality: ",report.all_high_restored_pixels_equal,
 		"; visual quality is NOT automatically approved.")
 	quit(0)
+
+func _capture_water_temporal_diagnostic() -> void:
+	var rollover: float=ProjectSettings.get_setting("rendering/limits/time/time_rollover_secs",3600.0)
+	if rollover!=3600.0:
+		_fail("Temporal diagnostic samples require the production default 3600-second shader TIME rollover.");return
+	var water:=scene.get_node("Water") as MeshInstance3D
+	var source:=water.material_override as ShaderMaterial
+	var source_code:=source.shader.code
+	var fixed:=_fixed_time_water_material(source)
+	if fixed==null:return
+	# Save the exact source and transformed code so artifact validation can verify
+	# the only shader change is TIME substitution plus the fixture-only uniform.
+	var shader_files:={source="temporal_source_water.gdshader",fixed_time="temporal_fixed_time_water.gdshader"}
+	var shader_hashes:={}
+	for kind in shader_files:
+		var path:=output.path_join(shader_files[kind])
+		var file:=FileAccess.open(path,FileAccess.WRITE)
+		if file==null:
+			_fail("Cannot save temporal diagnostic shader: "+path);return
+		file.store_string(source_code if kind=="source" else fixed.shader.code);file.close()
+		shader_hashes[kind]=FileAccess.get_sha256(path)
+	var period:={id="dusk",hour=18.25}
+	var view: Dictionary=VIEWS[4]
+	_set_lighting(period.hour);lamp.light_energy=3.0
+	_apply_preset("Extreme")
+	water.material_override=fixed
+	# Runtime helpers deliberately reject this path-less diagnostic copy.
+	water.set_instance_shader_parameter("extreme_detail",1.0)
+	camera.position=view.eye;camera.look_at(view.target)
+	report.capture_order="fixed dusk water camera, six explicit shader-time samples"
+	report.temporal_shader={source_path=source.shader.resource_path,files=shader_files,sha256=shader_hashes,
+		uniform="fixture_water_time",rollover_seconds=rollover,endpoint_is_unwrapped=true,
+		transformation="standalone TIME token substitution; fixture-only float uniform; absolute existing include path"}
+	report.temporal_comparisons=[]
+	report.limitations.append("TEMPORAL DIAGNOSTIC ONLY: fixed water camera and dusk light, not production animation, moving-camera, streaming or target-GPU evidence. Other fixture geometry stays static.")
+	report.limitations.append("Game/global shader time remains frozen. Only an in-memory copy of water receives explicit float32 times. Production TIME wraps to zero at 3600; the unwrapped endpoint tests wave phase closure.")
+	var samples:=[{id="t0",seconds=0.0},{id="t1-60",seconds=1.0/60.0},
+		{id="t2-60",seconds=2.0/60.0},{id="t0-5",seconds=.5},
+		{id="t3600-minus-1-60",seconds=3600.0-1.0/60.0},{id="t3600",seconds=3600.0}]
+	var images: Dictionary={}
+	for sample in samples:
+		var uploaded: float=PackedFloat32Array([sample.seconds])[0]
+		fixed.set_shader_parameter("fixture_water_time",uploaded)
+		diagnostic_state={kind="water_temporal",requested_time_seconds=sample.seconds,
+			shader_uniform_time_seconds=uploaded,production_time_seconds=fmod(sample.seconds,rollover),
+			global_time_frozen=true,surface_detail=1.0,source_shader_sha256=shader_hashes.source,
+			fixed_time_shader_sha256=shader_hashes.fixed_time}
+		var captured: Image=await _capture("temporal-water-"+sample.id,period,view,"Diagnostic-Extreme-temporal")
+		if captured==null:return
+		images[sample.id]=captured
+	for pair in [{id="adjacent-first",from="t0",to="t1-60"},
+		{id="adjacent-second",from="t1-60",to="t2-60"},
+		{id="half-second",from="t0",to="t0-5"},
+		{id="rollover-adjacent",from="t3600-minus-1-60",to="t3600"},
+		{id="rollover-closure",from="t0",to="t3600"}]:
+		report.temporal_comparisons.append({id=pair.id,from="temporal-water-"+pair.from,
+			to="temporal-water-"+pair.to,pixel_difference=_difference(images[pair.from],images[pair.to])})
+	report.capture_status="temporal_diagnostic_captured_requires_review"
+	finished=true
+	if not _write_report():return
+	print("EXTREME_WATER_TEMPORAL_CAPTURED: ",output,"; fixed-time diagnostic, not production motion proof.")
+	quit(0)
+
+func _fixed_time_water_material(source: ShaderMaterial) -> ShaderMaterial:
+	var token:=RegEx.new();token.compile("\\bTIME\\b")
+	if token.search(source.shader.code)==null:
+		_fail("Temporal diagnostic requires TIME in the source water shader.");return null
+	var code:=token.sub(source.shader.code,"fixture_water_time",true)
+	code=code.replace("shader_type spatial;","shader_type spatial;\nuniform float fixture_water_time = 0.0;")
+	code=code.replace('#include "extreme_surface_detail.gdshaderinc"',
+		'#include "res://game/shaders/extreme_surface_detail.gdshaderinc"')
+	var material:=source.duplicate() as ShaderMaterial
+	var shader:=Shader.new();shader.code=code;material.shader=shader
+	if not shader.get_shader_uniform_list().any(func(uniform):return str(uniform.name)=="fixture_water_time"):
+		_fail("Fixed-time diagnostic water shader did not compile.");return null
+	return material
 
 func _capture_reflection_diagnostic() -> void:
 	# Diagnostic materials never leave this optional fixture process. Keep the
@@ -548,7 +636,7 @@ func _capture(label: String,period: Dictionary,view: Dictionary,preset: String) 
 		frame_timing="wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
 		png_sha256=FileAccess.get_sha256(path),image_stats=stats
 	})
-	if reflection_diagnostic:report.captures[-1].diagnostic=diagnostic_state.duplicate(true)
+	if reflection_diagnostic or water_temporal_diagnostic:report.captures[-1].diagnostic=diagnostic_state.duplicate(true)
 	if not _write_report():return null
 	print("EXTREME_VISUAL_FRAME: ",label)
 	return image

@@ -5,6 +5,8 @@ extends SceneTree
 ## Forward+ capture: -- --output=/tmp/station-review --size=1280x720
 ## Headless structural-only check: -- --validate-only (never emits PNGs).
 ## Original source: --presets=High. Patched comparison: --compare-high=.../manifest.json.
+## Optional --motion-review: 8 stepped positions x High/Extreme, distinct manifest.
+## Stepped traversal is NOT continuous-motion or GPU visibility proof.
 const Graphics := preload("res://game/graphics_options.gd")
 const GeographicWorld := preload("res://game/geographic_world.gd")
 const RailwayChunk := preload("res://game/geographic_railway_chunk.gd")
@@ -26,6 +28,20 @@ const PALM_POSITIONS := [
 	Vector3(-88,0,88),Vector3(-36,0,87),Vector3(43,0,146),Vector3(40,0,94)
 ]
 
+
+# Two separate bounded paths, replayed identically for both presets. The first
+# crosses genuine shared-AABB LOD distances; the second reassigns actual lamps.
+const MOTION_STEPS := [
+	{id="lod-140",segment="lod",hour=12.0,eye=Vector3(-73,3,294),target=Vector3(-73,6.201989,154)},
+	{id="lod-170",segment="lod",hour=12.0,eye=Vector3(-73,3,324),target=Vector3(-73,6.201989,154)},
+	{id="lod-210",segment="lod",hour=12.0,eye=Vector3(-73,3,364),target=Vector3(-73,6.201989,154)},
+	{id="lod-260",segment="lod",hour=12.0,eye=Vector3(-73,3,414),target=Vector3(-73,6.201989,154)},
+	{id="lod-350",segment="lod",hour=12.0,eye=Vector3(-73,3,504),target=Vector3(-73,6.201989,154)},
+	{id="lights-rank-before",segment="light-pool",hour=18.65,eye=Vector3(4,2.95,276.79),target=Vector3(0,1.6,300)},
+	{id="lights-rank-after",segment="light-pool",hour=18.65,eye=Vector3(4,2.95,276.83),target=Vector3(0,1.6,300)},
+	{id="lights-two",segment="light-pool",hour=18.65,eye=Vector3(4,2.95,450),target=Vector3(0,3,300)}
+]
+
 class FlatGeo extends RefCounted:
 	var station_sites: Dictionary = {}
 	var bridges: Array = []
@@ -43,6 +59,7 @@ var resolution := Vector2i(1280,720)
 var settle_frames := 12
 var sample_frames := 4
 var validate_only := false
+var motion_review := false
 var presets := PackedStringArray(["High","Extreme","High-restored"])
 var reference_path := ""
 var reference_captures: Dictionary = {}
@@ -73,6 +90,7 @@ func _initialize() -> void:
 		elif arg.begins_with("--presets="):presets=arg.trim_prefix("--presets=").split(",")
 		elif arg.begins_with("--compare-high="):reference_path=ProjectSettings.globalize_path(arg.trim_prefix("--compare-high="))
 		elif arg=="--validate-only":validate_only=true
+		elif arg=="--motion-review":motion_review=true
 	call_deferred("_run")
 
 func _run() -> void:
@@ -109,16 +127,31 @@ func _run() -> void:
 			"Sky radiance is QUALITY for deterministic captures; runtime normally uses incremental sky updates."
 		]
 	}
+	if motion_review:
+		presets=PackedStringArray(["High","Extreme"])
+		report.presets=presets;report.capture_scope="bounded_station_stepped_motion"
+		report.motion_mode="stepped_traversal_not_continuous_motion"
+		report.synthetic_station.platform_faces=2
+		report.motion_witnesses=[];report.motion_comparisons=[];report.motion_steps=[]
+		report.limitations.append("Eight stepped positions, not a video or perceptual smoothness proof. No interpolated frames are captured.")
+		report.limitations.append("Host visibility and distance bands are not GPU culling/occlusion or rendered-opacity measurements.")
+		if not report.rendering_device_available:
+			report.limitations.append("Dummy rendering retains no MultiMesh transform buffer; structural geometry hashes cover available host data only. Real captures repeat geometry/fixture readback.")
+		report.limitations.append("Eight genuine sites on two motion-only side-platform faces exercise rank3/4 reassignment and the 130 m activation boundary, not 24-light saturation.")
+		for step in MOTION_STEPS:
+			report.motion_steps.append({id=step.id,segment=step.segment,hour=step.hour,eye=_xyz(step.eye),target=_xyz(step.target)})
 	if not _load_sources():return
 	if not validate_only and (DisplayServer.get_name()=="headless" or report.device.is_empty() or
 			report.renderer!="forward_plus" or not report.rendering_device_available):
 		_fail("A real Forward+ renderer is required. Headless/dummy rendering cannot produce screenshots.");return
 	if resolution.x<320 or resolution.y<180 or resolution.x>7680 or resolution.y>4320:
 		_fail("Invalid --size; use 320x180 through 7680x4320.");return
-	if presets!=PackedStringArray(["High"]) and presets!=PackedStringArray(["High","Extreme","High-restored"]):
+	if not motion_review and presets!=PackedStringArray(["High"]) and presets!=PackedStringArray(["High","Extreme","High-restored"]):
 		_fail("Use --presets=High or --presets=High,Extreme,High-restored.");return
 	if presets.has("Extreme") and not Graphics.PRESETS.has("Extreme"):
 		_fail("Original options have no Extreme preset. Use --presets=High.");return
+	if motion_review and not reference_path.is_empty():
+		_fail("--motion-review compares High/Extreme in one run; --compare-high belongs to static review.");return
 	if validate_only and not reference_path.is_empty():
 		_fail("--compare-high requires rendered captures, not --validate-only.");return
 	# The timer uses wall clock while the engine and all shader TIME are frozen.
@@ -128,6 +161,8 @@ func _run() -> void:
 	geometry_before=_geometry_digest()
 	report.geometry_sha256_before=geometry_before
 	if not _check_invariants("after_build"):return
+	if motion_review:
+		await _run_motion_review();return
 	if not reference_path.is_empty() and not _load_reference():return
 	if validate_only:
 		for period in PERIODS:
@@ -178,6 +213,94 @@ func _run() -> void:
 	print("EXTREME_STATION_CAPTURED: ",output,"; visual quality is NOT automatically approved.")
 	quit(0)
 
+
+func _run_motion_review() -> void:
+	var high_images: Dictionary={}
+	report.capture_status="checking_stepped_structure" if validate_only else "capturing"
+	if not _write_report():return
+	for preset in presets:
+		_apply_preset(preset)
+		for index in MOTION_STEPS.size():
+			var step: Dictionary=MOTION_STEPS[index]
+			_set_lighting(step.hour);_set_camera(step)
+			var label: String="motion-"+step.id+"-"+preset.to_lower()
+			var witness:=_motion_witness(label,preset,index,step)
+			if witness.is_empty():return
+			report.motion_witnesses.append(witness)
+			if not validate_only:
+				var period:={id="daylight" if step.segment=="lod" else "dusk",hour=step.hour}
+				var captured: Image=await _capture(label,period,step,preset)
+				if captured==null:return
+				if preset=="High":high_images[step.id]=captured
+				else:report.motion_comparisons.append({step=step.id,high_vs_extreme=_difference(high_images[step.id],captured)})
+			if not _check_invariants(label):return
+	if not _check_sources():return
+	report.capture_status="structural_motion_validation_only_not_rendered" if validate_only else "captured_stepped_motion_requires_visual_review"
+	report.screenshots_captured=report.captures.size()
+	finished=true
+	if not _write_report():return
+	print("EXTREME_STATION_MOTION_", "STRUCTURE_OK" if validate_only else "CAPTURED", ": ",output,
+		"; stepped positions only, no continuous-motion/GPU-culling/target-FPS approval.")
+	quit(0)
+
+func _motion_witness(label: String,preset: String,index: int,step: Dictionary) -> Dictionary:
+	var vegetation: Array=[]
+	for node in scene.find_children("*","MultiMeshInstance3D",true,false):
+		var kind: String=node.get_meta("scenery_kind","")
+		if kind not in ["coconut_palm","coastal_grass"]:continue
+		var centre: Vector3=node.global_transform*node.custom_aabb.get_center()
+		var distance: float=camera.global_position.distance_to(centre)
+		var role: String=("palm_impostor" if node.get_meta("impostor",false) else "palm_detail") if kind=="coconut_palm" else "grass_"+str(node.get_meta("grass_lod"))
+		var begin: float=node.visibility_range_begin;var end: float=node.visibility_range_end
+		vegetation.append({node=str(scene.get_path_to(node)),group=kind+str(node.position),kind=kind,role=role,
+			shared_aabb_center=_xyz(centre),distance_metres=distance,
+			ranges=[begin,end,node.visibility_range_begin_margin,node.visibility_range_end_margin],
+			within_nominal_range=(begin==0.0 or distance>=begin) and (end==0.0 or distance<end),
+			within_begin_margin=begin>0.0 and absf(distance-begin)<=node.visibility_range_begin_margin,
+			within_end_margin=end>0.0 and absf(distance-end)<=node.visibility_range_end_margin,
+			visible_property=node.visible,visible_in_tree=node.is_visible_in_tree(),
+			centre_in_frustum=camera.is_position_in_frustum(centre),
+			instances=node.multimesh.instance_count,visible_instance_count=node.multimesh.visible_instance_count})
+	var sites: Array=[]
+	for group_index in view.night_lights.groups.size():
+		var group: Dictionary=view.night_lights.groups[group_index]
+		for site_index in group.sites.size():
+			var site: Dictionary=group.sites[site_index]
+			sites.append({id="group"+str(group_index)+"-site"+str(site_index),position=_xyz(site.position),
+				distance_metres=camera.global_position.distance_to(site.position)})
+	sites.sort_custom(func(a,b):return a.distance_metres<b.distance_metres)
+	var fixture_order: Array=[];var pool: Array=[]
+	# Dummy RenderingServer does not retain MultiMesh transforms. Structural
+	# mode leaves this witness absent; real captures must read actual slots.
+	for slot in (view.night_lights.visible_fixtures if report.rendering_device_available else 0):
+		var at: Vector3=view.night_lights.housings.multimesh.get_instance_transform(slot).origin
+		var id:=_motion_site_at(at,sites)
+		if id.is_empty():_fail("Cannot identify actual fixture slot "+str(slot)+" at "+str(at)+" in motion review.");return {}
+		fixture_order.append(id)
+	for slot in view.night_lights.lights.size():
+		var light: OmniLight3D=view.night_lights.lights[slot]
+		if not light.visible:continue
+		# Existing controller places each pool light 0.25 m under its site.
+		var site_id:=_motion_site_at(light.position+Vector3.UP*.25,sites)
+		if site_id.is_empty():_fail("Cannot identify actual station light-pool slot.");return {}
+		pool.append({slot=slot,site=site_id,position=_xyz(light.position),energy=light.light_energy,visible=light.visible,
+			shadow_policy={shadow_enabled=light.shadow_enabled,light_size=light.light_size,shadow_blur=light.shadow_blur,
+				distance_fade_enabled=light.distance_fade_enabled,distance_fade_begin=light.distance_fade_begin,
+				distance_fade_shadow=light.distance_fade_shadow,distance_fade_length=light.distance_fade_length}})
+	return {id=label,preset=preset,step=step.id,step_index=index,segment=step.segment,hour=step.hour,
+		camera_eye=_xyz(camera.position),camera_target=_xyz(step.target),vegetation=vegetation,
+		visibility_evidence="host flags and nominal distance tests only; not GPU culling or opacity",
+		lights={sites_by_distance=sites,fixture_site_order=fixture_order,active_pool=pool,
+			fixture_transform_readback_available=report.rendering_device_available,
+			allocated_pool_nodes=view.night_lights.lights.size(),active_lights=view.night_lights.active_lights,
+			visible_fixtures=view.night_lights.visible_fixtures,night_amount=view.day_night.state.night}}
+
+func _motion_site_at(position: Vector3,sites: Array) -> String:
+	for site in sites:
+		var at:=Vector3(site.position[0],site.position[1],site.position[2])
+		if position.distance_to(at)<.001:return site.id
+	return ""
+
 func _build_scene() -> void:
 	world=RailWorld.new()
 	world.graph.add_node("START",Vector3.ZERO)
@@ -185,6 +308,9 @@ func _build_scene() -> void:
 	world.graph.add_edge("REVIEW_ROAD","START","END")
 	world.graph.edges.REVIEW_ROAD.merge({chainage_start=0.0,chainage_end=600.0,lateral=0.0})
 	var detail:={offset=0.0,platform_width=4.4,platform_side=-1.0}
+	# Only this optional fixture has two actual side platforms, x +/-[2.02,6.42].
+	# Both use production PlatformFaces and StationLighting; static review stays unchanged.
+	if motion_review:detail.platform_sides=[-1.0,1.0]
 	world.stations.append({code="EXTREME_REVIEW",name="VISUAL REVIEW",board_name="VISUAL REVIEW",
 		origin=Vector3(0,0,300),s=300.0,major=false,through_halt=true,passenger_open=true,
 		platform_tracks=["REVIEW_ROAD"],platform_details={REVIEW_ROAD=detail},operating_roads=[detail]})
@@ -267,8 +393,8 @@ func _check_scene() -> bool:
 	report.station_nameboards=scene.find_children("*","Label3D",true,false).size()
 	report.station_light_sites=view.night_lights.groups[0].sites.size()
 	report.station_platform_metres=200.0
-	if report.station_nameboards!=4 or report.station_light_sites!=4:
-		_fail("Expected four actual nameboard faces and four bounded canopy light sites.");return false
+	if report.station_nameboards!=(8 if motion_review else 4) or report.station_light_sites!=(8 if motion_review else 4):
+		_fail("Actual nameboard faces / bounded canopy light sites differ from fixture mode.");return false
 	for path in source_before:
 		if str(path).ends_with(".jpg") or str(path).ends_with(".hdr") or str(path).ends_with(".png"):
 			if not load(path) is Texture2D:

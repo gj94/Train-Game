@@ -29,10 +29,10 @@ ORIGINS = (-307200, -300032, 0, 299008, 300032, 512000)
 FREQUENCIES = (9.0, 12.0, 20.0, 31.0, 32.0, 2.5)
 WATER_WAVES = (
     ((.125, .0625), .5, .17, .045),
-    ((.375, .25), .875, .61, .060),
+    ((.375, -.25), .875, .61, .060),
     ((.875, .375), 1.25, .43, .065),
-    ((2.0, 1.25), 1.875, .83, .042),
-    ((4.75, 2.75), 2.875, .29, .028),
+    ((1.25, 2.0), 1.875, .83, .042),
+    ((4.75, -2.75), 2.875, .29, .028),
     ((-.375, .75), 1.125, .73, .018),
 )
 
@@ -222,6 +222,27 @@ def check_water_precision() -> None:
     max_slope = sum(wave[3] for wave in WATER_WAVES)
     max_variance = .5 * sum(wave[3] ** 2 for wave in WATER_WAVES)
     assert math.degrees(math.atan(max_slope)) < 15.0, "Water spectrum is too steep"
+    # Directional slope covariance must not collapse to nearly parallel crests.
+    # The first rendered spectrum had a ~31:1 ratio and looked corrugated.
+    xx = zz = xz = 0.0
+    for (x, z), speed, offset, amplitude in WATER_WAVES:
+        weight = .5 * amplitude ** 2 / (x * x + z * z)
+        xx += weight * x * x
+        zz += weight * z * z
+        xz += weight * x * z
+    discriminant = math.sqrt((xx - zz) ** 2 + 4.0 * xz ** 2)
+    anisotropy = (xx + zz + discriminant) / (xx + zz - discriminant)
+    assert anisotropy < 3.0, f"Water directions are too tightly aligned: {anisotropy:.3f}:1"
+    # Deterministic near-frame samples, including the default TIME rollover.
+    # A bounded slope derivative limits high-rate normal changes without
+    # claiming that this numerical check can prove rendered temporal stability.
+    for time in (0.0, 1.0 / 60.0, .5, 3599.0 + 59.0 / 60.0):
+        for cycles, speed, offset, amplitude in WATER_WAVES:
+            a = water_phase(local, origin, cycles, speed, offset, f32(time))
+            b = water_phase(local, origin, cycles, speed, offset, f32((time + 1.0 / 60.0) % 3600.0))
+            delta = b - a
+            delta -= round(delta)
+            assert abs(delta - speed / 60.0) < .002, "Water has a phase reset between adjacent frames"
     for footprint in (0.0, .18, .25, .35, .45, .5, 1.0):
         resolved = water_filter(footprint)
         resolved_variance = max_variance * resolved ** 2
@@ -232,6 +253,7 @@ def check_water_precision() -> None:
     print(f"PASS: {cases:,} water rebase cases; worst phase error {worst_phase:.9f} cycles")
     print("PASS: water retains 1 mm motion at 300 km and has continuous default TIME rollover")
     print("PASS: water fades before Nyquist, conserves slope variance, and bounds normal tilt below 15 degrees")
+    print(f"PASS: crossed wave slope anisotropy {anisotropy:.6f}:1 and adjacent-frame phases remain continuous")
 
 
 def remove_extreme_branches(source: str) -> str:

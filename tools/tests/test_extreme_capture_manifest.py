@@ -189,5 +189,125 @@ class CaptureManifestTests(unittest.TestCase):
         self.reject("incomplete PNG")
 
 
+class WaterTemporalManifestTests(unittest.TestCase):
+    """Only synthetic fixed-time fixtures, never rendered animation evidence."""
+
+    add_capture = CaptureManifestTests.add_capture
+
+    def setUp(self):
+        CaptureManifestTests.setUp(self)
+        self.path = self.root / "temporal/manifest.json"
+        self.path.parent.mkdir()
+        self.data = copy.deepcopy(self.baseline)
+        self.data.update(capture_status="temporal_diagnostic_captured_requires_review",
+                         capture_scope="water_temporal_diagnostic", captures=[], temporal_comparisons=[])
+        source = 'shader_type spatial;\n#include "extreme_surface_detail.gdshaderinc"\nvoid fragment(){ ALBEDO=vec3(TIME); }\n'
+        files = {"source": "temporal_source_water.gdshader", "fixed_time": "temporal_fixed_time_water.gdshader"}
+        hashes = {}
+        for kind, code in (("source", source), ("fixed_time", VALIDATOR.fixed_time_shader_code(source))):
+            (self.path.parent / files[kind]).write_bytes(code.encode())
+            hashes[kind] = hashlib.sha256(code.encode()).hexdigest()
+        source_path = "res://game/shaders/geographic_water.gdshader"
+        self.data["source_sha256"] = {source_path: hashes["source"]}
+        self.data["temporal_shader"] = dict(source_path=source_path, files=files, sha256=hashes,
+                                           uniform="fixture_water_time", rollover_seconds=3600,
+                                           endpoint_is_unwrapped=True)
+        self.by_sample = {}
+        for sample, seconds in VALIDATOR.TEMPORAL_TIMES.items():
+            alternate = sample in ("t1-60", "t0-5", "t3600-minus-1-60")
+            entry = self.add_capture(self.data, self.path, "temporal-water-" + sample, "dusk",
+                                     "Diagnostic-Extreme-temporal", alternate)
+            entry.update(preset_values={"surface_detail": True}, ssr_enabled=False, radiance_size_enum=4)
+            entry["diagnostic"] = dict(
+                kind="water_temporal", requested_time_seconds=seconds,
+                shader_uniform_time_seconds=struct.unpack("f", struct.pack("f", seconds))[0],
+                production_time_seconds=seconds % 3600, global_time_frozen=True, surface_detail=1.0,
+                source_shader_sha256=hashes["source"], fixed_time_shader_sha256=hashes["fixed_time"])
+            self.by_sample[sample] = entry
+        self.update_comparisons()
+
+    def update_comparisons(self):
+        self.data["temporal_comparisons"] = [dict(
+            id=label, **{"from": "temporal-water-" + left, "to": "temporal-water-" + right},
+            pixel_difference=measurement(self.by_sample[left]["png_sha256"] == self.by_sample[right]["png_sha256"]))
+            for label, (left, right) in VALIDATOR.TEMPORAL_PAIRS.items()]
+
+    def save(self):
+        self.path.write_text(json.dumps(self.data))
+
+    def reject(self, message):
+        self.save()
+        with self.assertRaisesRegex(VALIDATOR.InvalidCapture, message):
+            VALIDATOR.validate_temporal(self.path)
+
+    def test_complete_temporal_cli_is_distinct(self):
+        self.save()
+        result = subprocess.run([sys.executable, str(SCRIPT), "--temporal", str(self.path)],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("EXTREME_TEMPORAL_VALID:", result.stdout)
+        self.assertNotIn("EXTREME_CAPTURE_VALID:", result.stdout)
+
+    def test_blocked_temporal_rejected(self):
+        self.data["capture_status"] = "blocked"
+        self.reject("incomplete or wrong diagnostic mode")
+
+    def test_temporal_missing_frame(self):
+        self.data["captures"].pop()
+        self.reject("missing IDs")
+
+    def test_temporal_duplicate_frame(self):
+        self.data["captures"][-1] = copy.deepcopy(self.data["captures"][0])
+        self.reject("duplicate ID")
+
+    def test_temporal_png_hash_mismatch(self):
+        self.by_sample["t0"]["png_sha256"] = "0" * 64
+        self.reject("PNG hash mismatch")
+
+    def test_temporal_source_hash_mismatch(self):
+        (self.path.parent / "temporal_source_water.gdshader").write_text("changed")
+        self.reject("source shader hash mismatch")
+
+    def test_temporal_unexpected_shader_change(self):
+        file = self.path.parent / "temporal_fixed_time_water.gdshader"
+        file.write_text(file.read_text() + "// Unexpected extra modification\n")
+        self.data["temporal_shader"]["sha256"]["fixed_time"] = hashlib.sha256(file.read_bytes()).hexdigest()
+        self.reject("unexpected change")
+
+    def test_temporal_requires_actual_float32_upload_value(self):
+        self.by_sample["t3600-minus-1-60"]["diagnostic"]["shader_uniform_time_seconds"] = 3600 - 1 / 60
+        self.reject("incorrect shader_uniform_time_seconds")
+
+    def test_temporal_requires_unwrapped_endpoint(self):
+        self.by_sample["t3600"]["diagnostic"]["shader_uniform_time_seconds"] = 0
+        self.reject("incorrect shader_uniform_time_seconds")
+
+    def test_temporal_requires_frozen_global_clock(self):
+        self.by_sample["t0"]["diagnostic"]["global_time_frozen"] = False
+        self.reject("invalid shader or detail metadata")
+
+    def test_temporal_requires_fixed_camera(self):
+        self.by_sample["t1-60"]["camera_eye"] = [9, 9, 9]
+        self.reject("camera_eye changed")
+
+    def test_temporal_missing_measurement(self):
+        self.data["temporal_comparisons"].pop()
+        self.reject("missing IDs")
+
+    def test_temporal_false_equality_claim(self):
+        self.data["temporal_comparisons"][0]["pixel_difference"] = measurement()
+        self.reject("equality metric disagrees")
+
+    def test_temporal_nonexact_rollover_is_reported_not_artistic_failure(self):
+        entry = self.by_sample["t3600"]
+        image = synthetic_png(True)
+        (self.path.parent / entry["file"]).write_bytes(image)
+        entry["png_sha256"] = hashlib.sha256(image).hexdigest()
+        self.update_comparisons()
+        self.save()
+        result = VALIDATOR.validate_temporal(self.path)
+        self.assertFalse(result["rollover-closure"]["exact_equal"])
+
+
 if __name__ == "__main__":
     unittest.main()

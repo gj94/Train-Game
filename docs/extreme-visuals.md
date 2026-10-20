@@ -17,20 +17,23 @@ work branch, publish a release, or change the railway simulation.
 - Concrete boundary finish with projection-aligned normals; photographed ballast,
   stable sleeper finish, filtered running-surface rail wear and matched shoulder
   mineral tint. Railway geometry, coverage and contacts remain unchanged.
-- Shadows from the nearest four existing station lamps, without changing lamp
+- Distance-faded shadows from the existing station-lamp pool, without changing lamp
   placement, allocation, brightness or visibility. Other presets retain original
-  shadow-free lamps. This is a potentially expensive night-time quality option.
+  shadow-free lamps. Shadows fade smoothly from 20 to 60 m; light fade remains
+  90–130 m. Uniform settings avoid shadow pops when nearest-first slots reorder.
 - Sharper sky reflections (512 instead of the original 256 radiance size),
-  96-step screen-space reflections, and 150% of High's tree/building/other-train
+  and 150% of High's tree/building/other-train
   detail ranges. Mesh LOD threshold is 0.5 rather than 1.0.
 - Native resolution, 8× MSAA and FXAA remain. The first render review found that
   disabling FXAA worsened thin overhead lines for little material benefit.
 
 High remains the default. Existing High, Balanced and Performance values are
-unchanged; the three new switches default off when loading old preference files.
+unchanged; the four new switches default off when loading old preference files.
 Extreme does not add passengers or plants, extend the world streaming radius,
 alter sun-shadow resolution beyond High, or alter camera limits. The optional
-four-lamp positional-shadow budget is the only additional shadow allocation.
+positional shadows use the existing pool of at most 24 lamps, with shadow rendering
+skipped beyond 60 m. Dense multi-platform stations can still require many shadow
+maps; this is an explicit GPU/atlas cost, not a guaranteed four-light budget.
 
 ## Boundaries
 
@@ -53,7 +56,7 @@ inputs, prepared states, sound data, physics, dispatch, boarding or controls.
 ## Cost and limitations
 
 This mode intentionally spends more GPU time and memory. Larger sky radiance,
-SSR and longer mesh-detail ranges can be costly, particularly at 4K. Screen-space
+optional SSR and longer mesh-detail ranges can be costly, particularly at 4K. Screen-space
 reflections have the usual camera-edge/off-screen limitations and do not replace
 ray tracing. Hardware and full-game visual validation must not be inferred from
 headless unit tests or a source-material fixture.
@@ -101,9 +104,10 @@ Ordinary code commits do not trigger repeated capture jobs.
    Switch Extreme → Performance → High, then visit a newly streamed station.
 4. Cross an origin-rebase boundary near a road, platform or water surface. New
    grain, bevels and waves should remain attached to the same physical surface.
-5. Look across water at grazing angles and move the camera slowly. Check SSR
-   edge behavior and fine-detail shimmer. Disable Detailed reflections alone
-   if its cost or screen-edge artifacts are objectionable.
+5. Look across water at grazing angles and move the camera slowly. Check fine-
+   detail shimmer and wave continuity. Optional screen-space reflections are off
+   in Extreme: the tested Godot 4.7.2 software renderer only produced silhouettes
+   in the MSAA-disabled diagnostic configurations. Do not sacrifice thin-wire AA just to enable this effect.
 6. Measure uncapped frame times with F10 at the same resolution/view; report the
    actual GPU and image dimensions. Existing saved-graphics benchmark mode can
    compare the chosen settings. Do not compare different traffic/camera states.
@@ -163,3 +167,41 @@ New water, fence, track and lamp-shadow refinements are pending those captures.
 SSR off/on remained pixel-identical even on a smooth diagnostic metal mirror;
 reflection visibility is not yet claimed. A final controlled MSAA/raymarch
 diagnostic is separate from production settings.
+
+The [fourth material run](https://github.com/gj94/Train-Game/actions/runs/39487392500)
+completed 15 baseline + 51 current images. All 15 original-High and 15 restored-
+High comparisons are pixel-exact. Directional water ripples and a broken-up sun
+path are now visible. Ten isolated diagnostic frames establish actual reflected
+column/block silhouettes in the MSAA-off/default-SSR diagnostic configurations,
+but no SSR response with production
+8× MSAA. Extreme therefore retains MSAA and sharper sky while leaving SSR off;
+the separate advanced SSR option carries this renderer limitation. This is not
+a claim that SSR fails on every GPU, nor a strict single-variable MSAA proof: the
+working diagnostic also changes raymarch settings.
+
+The [rich station run](https://github.com/gj94/Train-Game/actions/runs/39487392781)
+completed 6 baseline + 18 current images. All six original/restored High pairs
+are exact, with world/geometry invariants preserved. Existing palm/grass assets
+and measured LOD ranges are included. Fence material, coherent ballast/shoulder
+tint and lamp-cast bench/column shadows show a visible improvement. The synthetic
+halt is not a full-route or train-interior sign-off. Lamp-shadow softness and
+water regularity are undergoing another pixel review before final handoff.
+
+Review found and corrected a rank-dependent shadow handoff risk before final
+sign-off: sorting the fixed pool could exchange its fourth and fifth physical
+lamps, abruptly changing shadows and source size. Uniform distance-faded shadow
+settings now follow every eligible pool entry. A motion-only two-face station
+fixture exercises the exact crossing without changing production site selection.
+
+Optional diagnostic commands remain separate from the main review contract:
+
+- `--water-temporal-diagnostic` captures six explicit float32 water times, including
+  adjacent frames and the 3600-second phase closure. The fixture-only shader
+  changes only TIME to a fixed uniform; saved source/rewrite hashes are validated
+  with `check_extreme_capture_manifest.py --temporal <manifest>`. This is not a
+  moving-camera or real-time performance recording.
+- `--motion-review` in the station fixture captures sixteen deterministic stepped
+  camera/preset views across vegetation ranges and an eight-lamp sorting boundary.
+  `check_extreme_station_manifest.py --motion <manifest>` verifies completeness,
+  physical-site light properties and source/world/geometry invariants. Host-side
+  range witnesses do not themselves prove GPU culling or smooth transitions.

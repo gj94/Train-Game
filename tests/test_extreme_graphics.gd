@@ -12,7 +12,7 @@ const LEGACY_HIGH := {
 	shadow_distance=300.0,shadow_filter=3,ssao=true,ssil=true,glow=true,
 	view_distance=2200.0,vegetation_density=1.0,vegetation_distance=1.0,
 	building_distance=1.0,mesh_detail=1.0,train_detail=1.0,passengers=1.0,
-	surface_detail=false,reflections=false,station_shadows=false
+	surface_detail=false,sky_detail=false,reflections=false,station_shadows=false
 }
 const LEGACY_OVERRIDES := {
 	High={},
@@ -134,7 +134,7 @@ func test_extreme_changes_only_the_explicit_render_quality_options():
 	var settings := Options.new()
 	settings.preset("Extreme")
 	var expected := LEGACY_HIGH.duplicate(true)
-	expected.merge({surface_detail=true,reflections=true,station_shadows=true,
+	expected.merge({surface_detail=true,sky_detail=true,reflections=false,station_shadows=true,
 		vegetation_distance=1.5,building_distance=1.5,train_detail=1.5,mesh_detail=0.5},true)
 	if settings.values!=expected or settings.preset_name()!="Extreme":
 		return "Extreme changed an unapproved setting or omitted a quality improvement"
@@ -153,7 +153,7 @@ func test_old_preferences_migrate_without_enabling_extreme():
 		var expected := legacy_values(label)
 		var config := ConfigFile.new()
 		for key in expected:
-			if key not in ["surface_detail","reflections","station_shadows"]:config.set_value("graphics",key,expected[key])
+			if key not in ["surface_detail","sky_detail","reflections","station_shadows"]:config.set_value("graphics",key,expected[key])
 		if config.save(settings.settings_path)!=OK:
 			failure="Could not write isolated old-format preference fixture"
 			break
@@ -177,12 +177,13 @@ func test_extreme_preferences_round_trip_and_reject_non_boolean_flags():
 	var config := ConfigFile.new()
 	config.load(settings.settings_path)
 	config.set_value("graphics","surface_detail",1)
+	config.set_value("graphics","sky_detail",1)
 	config.set_value("graphics","reflections","true")
 	config.set_value("graphics","vegetation_distance",INF)
 	config.set_value("graphics","mesh_detail",0)
 	config.save(settings.settings_path)
 	restored.restore()
-	ok=ok and not restored.values.surface_detail and not restored.values.reflections
+	ok=ok and not restored.values.surface_detail and not restored.values.sky_detail and not restored.values.reflections
 	ok=ok and restored.values.vegetation_distance==1.0 and restored.values.mesh_detail==1.0
 	DirAccess.remove_absolute(settings.settings_path)
 	return ok
@@ -370,12 +371,12 @@ func test_replacing_supported_surface_material_clears_stale_instance_detail():
 	root.free()
 	return ok
 
-func test_reflections_restore_exact_original_values_after_repeated_toggles():
+func test_sky_detail_and_ssr_restore_independently_after_repeated_toggles():
 	var settings := Options.new()
 	var node := WorldEnvironment.new()
 	node.environment=Environment.new()
 	var environment := node.environment
-	environment.ssr_enabled=true
+	environment.ssr_enabled=false
 	environment.ssr_max_steps=47
 	environment.ssr_fade_in=0.37
 	environment.ssr_fade_out=3.2
@@ -384,48 +385,139 @@ func test_reflections_restore_exact_original_values_after_repeated_toggles():
 	environment.sky.radiance_size=Sky.RADIANCE_SIZE_128
 	environment.sky.process_mode=Sky.PROCESS_MODE_INCREMENTAL
 	var original := reflection_values(environment)
+	var detailed_ssr := {
+		ssr_enabled=true,ssr_max_steps=96,ssr_fade_in=0.15,
+		ssr_fade_out=2.0,ssr_depth_tolerance=0.25
+	}
 	var ok := true
 	for repeat in 3:
+		# Both enable orders and both disable orders must preserve the other option.
+		for flags in [[false,false],[true,false],[true,true],[false,true],
+			[false,false],[false,true],[true,true],[true,false],[false,false]]:
+			settings.values.reflections=flags[0]
+			settings.values.sky_detail=flags[1]
+			settings.apply_tree(node)
+			settings.apply_tree(node)
+			for key in REFLECTION_FIELDS:
+				var expected: Variant=detailed_ssr[key] if flags[0] else original[key]
+				if typeof(expected)==TYPE_FLOAT:
+					ok=ok and is_equal_approx(environment.get(key),expected)
+				else:ok=ok and environment.get(key)==expected
+			ok=ok and environment.sky==original.sky
+			ok=ok and environment.sky.radiance_size==(Sky.RADIANCE_SIZE_512 if flags[1] else original.radiance_size)
+			ok=ok and environment.sky.process_mode==original.process_mode
+		ok=ok and reflection_values(environment)==original
+		# The actual preset sharpens the sky without silently requesting SSR.
 		settings.preset("Extreme")
 		settings.apply_tree(node)
-		settings.apply_tree(node)
-		ok=ok and environment.ssr_enabled and environment.ssr_max_steps==96
-		ok=ok and is_equal_approx(environment.ssr_fade_in,0.15)
-		ok=ok and is_equal_approx(environment.ssr_fade_out,2.0)
-		ok=ok and is_equal_approx(environment.ssr_depth_tolerance,0.25)
 		ok=ok and environment.sky.radiance_size==Sky.RADIANCE_SIZE_512
-		ok=ok and environment.sky.process_mode==Sky.PROCESS_MODE_INCREMENTAL
+		for key in REFLECTION_FIELDS:ok=ok and environment.get(key)==original[key]
 		settings.preset("High")
 		settings.apply_tree(node)
 		ok=ok and reflection_values(environment)==original
 	node.free()
-	return ok
+	return true if ok else "Sky detail and SSR failed independent exact restoration"
 
-func test_reflections_are_safe_without_sky_and_do_not_cross_environment_instances():
+func test_environment_options_are_safe_without_sky_and_do_not_cross_instances():
 	var settings := Options.new()
 	var a := WorldEnvironment.new()
 	var b := WorldEnvironment.new()
 	a.environment=Environment.new()
 	b.environment=Environment.new()
+	b.environment.ssr_enabled=true
 	b.environment.ssr_max_steps=23
 	b.environment.sky=Sky.new()
 	b.environment.sky.radiance_size=Sky.RADIANCE_SIZE_256
 	var original_a := reflection_values(a.environment)
 	var original_b := reflection_values(b.environment)
+	Extreme.apply_environment(null,true,true)
 	settings.preset("Extreme")
 	settings.apply_tree(a)
-	var ok := a.environment.ssr_enabled and a.environment.sky==null
+	var ok := reflection_values(a.environment)==original_a
 	ok=ok and reflection_values(b.environment)==original_b
+	settings.set_option("reflections",true)
+	settings.apply_tree(a)
+	ok=ok and a.environment.ssr_enabled and a.environment.sky==null
 	settings.apply_tree(b)
+	ok=ok and b.environment.ssr_max_steps==96
 	ok=ok and b.environment.sky.radiance_size==Sky.RADIANCE_SIZE_512
 	settings.preset("High")
 	settings.apply_tree(a)
-	ok=ok and reflection_values(a.environment)==original_a and b.environment.ssr_enabled
+	ok=ok and reflection_values(a.environment)==original_a and b.environment.ssr_max_steps==96
 	settings.apply_tree(b)
 	ok=ok and reflection_values(b.environment)==original_b
 	a.free()
 	b.free()
 	return ok
+
+func test_environment_options_capture_fresh_baselines_and_restore_replaced_skies():
+	var environment := Environment.new()
+	Extreme.apply_environment(environment,false,false)
+	# Disabled options must not latch a stale baseline before they are used.
+	environment.ssr_enabled=true
+	environment.ssr_max_steps=53
+	var original_sky := Sky.new()
+	original_sky.radiance_size=Sky.RADIANCE_SIZE_64
+	original_sky.process_mode=Sky.PROCESS_MODE_REALTIME
+	environment.sky=original_sky
+	var original := reflection_values(environment)
+	Extreme.apply_environment(environment,true,true)
+	Extreme.apply_environment(environment,false,true)
+	var ok := environment.ssr_enabled and environment.ssr_max_steps==53
+	ok=ok and original_sky.radiance_size==Sky.RADIANCE_SIZE_512
+	var replacement := Sky.new()
+	replacement.radiance_size=Sky.RADIANCE_SIZE_1024
+	replacement.process_mode=Sky.PROCESS_MODE_QUALITY
+	environment.sky=replacement
+	Extreme.apply_environment(environment,false,true)
+	ok=ok and original_sky.radiance_size==original.radiance_size
+	ok=ok and original_sky.process_mode==original.process_mode
+	ok=ok and environment.sky==replacement and replacement.radiance_size==Sky.RADIANCE_SIZE_512
+	Extreme.apply_environment(environment,false,false)
+	ok=ok and replacement.radiance_size==Sky.RADIANCE_SIZE_1024
+	ok=ok and replacement.process_mode==Sky.PROCESS_MODE_QUALITY
+	# A later enable/disable cycle must restore the new baseline, not the old one.
+	environment.ssr_max_steps=67
+	replacement.radiance_size=Sky.RADIANCE_SIZE_32
+	Extreme.apply_environment(environment,true,true)
+	environment.sky=null
+	Extreme.apply_environment(environment,false,true)
+	ok=ok and environment.ssr_enabled and environment.ssr_max_steps==67
+	ok=ok and environment.sky==null and replacement.radiance_size==Sky.RADIANCE_SIZE_32
+	Extreme.apply_environment(environment,false,false)
+	return true if ok else "Independent option baselines or replaced sky restoration leaked"
+
+func test_sky_and_advanced_ssr_preferences_round_trip_independently_without_changing_aa():
+	var s := fixture()
+	var settings=s.settings
+	var fps := Engine.max_fps
+	settings.settings_path="user://extreme-independent-reflections-test.cfg"
+	var restored := Options.new()
+	restored.settings_path=settings.settings_path
+	var ok := true
+	for flags in [[false,false],[true,false],[false,true],[true,true]]:
+		settings.preset("High")
+		ok=ok and settings.set_option("reflections",flags[0])
+		ok=ok and settings.set_option("sky_detail",flags[1])
+		settings.apply()
+		ok=ok and s.viewport.msaa_3d==3 and s.viewport.screen_space_aa==Viewport.SCREEN_SPACE_AA_FXAA
+		ok=ok and settings.values.msaa==3 and settings.values.fxaa
+		ok=ok and settings.save()==OK
+		restored.restore()
+		ok=ok and restored.values==settings.values
+	# Older files with only an explicit SSR preference retain it, but never infer sky detail.
+	var config := ConfigFile.new()
+	config.set_value("graphics","reflections",true)
+	ok=ok and config.save(settings.settings_path)==OK
+	restored.restore()
+	ok=ok and restored.values.reflections and not restored.values.sky_detail
+	ok=ok and restored.values.msaa==3 and restored.values.fxaa
+	var help: String=Options.OPTIONS.reflections.help
+	ok=ok and help.contains("Godot 4.7.2") and help.contains("MSAA") and help.contains("may prevent a visible response")
+	Engine.max_fps=fps
+	DirAccess.remove_absolute(settings.settings_path)
+	s.viewport.free()
+	return true if ok else "Independent preferences, AA preservation, or SSR limitation disclosure regressed"
 
 func test_extreme_ui_action_is_reachable_applies_and_saves_without_touching_simulation():
 	var s := fixture()
@@ -453,7 +545,7 @@ func test_extreme_ui_action_is_reachable_applies_and_saves_without_touching_simu
 	ok=ok and s.viewport.screen_space_aa==Viewport.SCREEN_SPACE_AA_FXAA
 	ok=ok and s.viewport.scaling_3d_scale==1.0 and host.cam.far==2200
 	ok=ok and host.passenger_crowd.render_budget==1.0
-	for key in ["surface_detail","reflections","station_shadows"]:
+	for key in ["surface_detail","sky_detail","reflections","station_shadows"]:
 		host.hud.show_modal("graphics:"+Options.OPTIONS[key].group)
 		actions.clear()
 		for button in host.hud._buttons.get_children():actions.append(button.get_meta("action"))
@@ -726,35 +818,130 @@ func test_bounded_float32_detail_retains_millimetres_and_rebase_phase():
 	var old_after := (local_p+millimetre+origin)*frequency
 	return movement>0.03 and movement<0.034 and old_before==old_after
 
+func station_shadow_values(light: OmniLight3D) -> Dictionary:
+	return {
+		shadow_enabled=light.shadow_enabled,light_size=light.light_size,
+		shadow_blur=light.shadow_blur,distance_fade_shadow=light.distance_fade_shadow
+	}
+
+func station_lighting_values(light: OmniLight3D) -> Dictionary:
+	return {
+		position=light.position,visible=light.visible,light_color=light.light_color,
+		light_energy=light.light_energy,omni_range=light.omni_range,
+		omni_attenuation=light.omni_attenuation,distance_fade_enabled=light.distance_fade_enabled,
+		distance_fade_begin=light.distance_fade_begin,distance_fade_length=light.distance_fade_length
+	}
+
 func test_station_lamp_shadows_are_bounded_and_restore_without_changing_lighting():
 	var s:=fixture()
+	var fps:=Engine.max_fps
 	var lamps: Array[OmniLight3D]=[]
-	for i in 7:
+	var originals:=[]
+	var lighting:=[]
+	for i in 24:
 		var light:=OmniLight3D.new()
 		light.set_meta("station_shadow_rank",i)
 		light.position=Vector3(i,4,8)
+		light.light_color=Color(.9,.7,.5)
 		light.light_energy=2.3
 		light.omni_range=25.0
+		light.omni_attenuation=.75
+		light.light_size=.025+i*.001
+		light.shadow_blur=.9+i*.01
+		light.distance_fade_shadow=75.0+i
+		light.distance_fade_enabled=true
+		light.distance_fade_begin=90.0
+		light.distance_fade_length=40.0
 		light.visible=i<5
-		light.shadow_enabled=false
+		light.shadow_enabled=i%5==0
 		s.root.add_child(light);lamps.append(light)
+		originals.append(station_shadow_values(light))
+		lighting.append(station_lighting_values(light))
 	var unrelated:=OmniLight3D.new()
-	unrelated.shadow_enabled=true;s.root.add_child(unrelated)
+	unrelated.shadow_enabled=true
+	unrelated.light_size=.07;unrelated.shadow_blur=.8;unrelated.distance_fade_shadow=45
+	s.root.add_child(unrelated)
+	var unrelated_original:=station_shadow_values(unrelated)
 	var ok:=true
 	for preset in ["High","Extreme","High","Extreme","Performance"]:
 		s.settings.preset(preset);s.settings.apply()
 		for i in lamps.size():
 			var light:=lamps[i]
-			ok=ok and light.shadow_enabled==(preset=="Extreme" and i<4)
-			ok=ok and light.position==Vector3(i,4,8) and is_equal_approx(light.light_energy,2.3)
-			ok=ok and light.omni_range==25.0 and light.visible==(i<5)
-		ok=ok and unrelated.shadow_enabled
-	# A newly streamed lamp receives the same setting through apply_tree.
+			if preset=="Extreme":
+				ok=ok and light.shadow_enabled and is_equal_approx(light.light_size,.12)
+				ok=ok and is_equal_approx(light.shadow_blur,1.5) and light.distance_fade_shadow==20.0
+			else:ok=ok and station_shadow_values(light)==originals[i]
+			ok=ok and station_lighting_values(light)==lighting[i]
+		ok=ok and station_shadow_values(unrelated)==unrelated_original
+		ok=ok and s.root.get_child_count()==25
+	# A newly streamed light receives the same settings, regardless of pool rank.
 	s.settings.preset("Extreme")
-	var late:=OmniLight3D.new();late.set_meta("station_shadow_rank",0)
+	var late:=OmniLight3D.new();late.set_meta("station_shadow_rank",23)
+	late.distance_fade_enabled=true;late.distance_fade_begin=90;late.distance_fade_length=40
+	var late_original:=station_shadow_values(late)
 	s.root.add_child(late);s.settings.apply_tree(late)
-	ok=ok and late.shadow_enabled
-	s.settings.values.shadows=0;s.settings.apply_tree(late)
-	ok=ok and not late.shadow_enabled
+	ok=ok and late.shadow_enabled and is_equal_approx(late.light_size,.12)
+	ok=ok and is_equal_approx(late.shadow_blur,1.5) and late.distance_fade_shadow==20
+	# Disabling the global shadow budget restores every original field, not just the flag.
+	s.settings.values.shadows=0;s.settings.apply_tree(s.root)
+	for i in lamps.size():
+		ok=ok and station_shadow_values(lamps[i])==originals[i]
+		ok=ok and station_lighting_values(lamps[i])==lighting[i]
+	ok=ok and station_shadow_values(late)==late_original
+	ok=ok and station_shadow_values(unrelated)==unrelated_original
+	ok=ok and s.settings.label_for("station_shadows")=="Extreme / distance-faded"
+	ok=ok and Options.OPTIONS.station_shadows.help.contains("20 to 60 metres")
+	Engine.max_fps=fps
 	s.viewport.free()
-	return true if ok else "Station shadow quality changed lamp allocation/lighting or failed restoration"
+	return true if ok else "Station shadow quality changed lighting/allocation or failed exact four-field restoration"
+
+func test_station_shadow_properties_follow_physical_sites_across_rank_three_four_reassignment():
+	var s:=fixture()
+	var world:=Traffic.build()
+	var before:=var_to_bytes(Snapshot.capture(world))
+	var pool:=preload("res://game/station_lighting.gd").new(world,s.root)
+	# Keep the actual bounded pool and update code; only supply a deterministic site layout.
+	pool.groups=[{code="Test",origin=Vector3.ZERO,sites=[
+		{position=Vector3(0,6,0),basis=Basis.IDENTITY},
+		{position=Vector3(0,6,1),basis=Basis.IDENTITY},
+		{position=Vector3(0,6,-1),basis=Basis.IDENTITY},
+		{position=Vector3(-10,6,0),basis=Basis.IDENTITY},
+		{position=Vector3(10,6,0),basis=Basis.IDENTITY}
+	]}]
+	var original_pool:=pool.lights.duplicate()
+	var originals:=[]
+	for light in pool.lights:originals.append(station_shadow_values(light))
+	var count: int=s.root.get_child_count()
+	s.settings.preset("Extreme");s.settings.apply_tree(s.root)
+	var per_site:={}
+	var initial_rank_three:=Vector3.ZERO
+	var initial_rank_four:=Vector3.ZERO
+	var ok:=pool.lights.size()==24
+	for pass_index in 4:
+		var observer:=Vector3(-.1 if pass_index%2==0 else .1,0,0)
+		pool.update(observer,Vector3.ZERO,1.0,Callable(),true)
+		s.settings.apply_tree(s.root)
+		ok=ok and pool.active_lights==5 and pool.visible_fixtures==5
+		ok=ok and pool.lights==original_pool and s.root.get_child_count()==count
+		if pass_index==0:
+			initial_rank_three=pool.lights[3].position
+			initial_rank_four=pool.lights[4].position
+		elif pass_index%2==1:
+			ok=ok and pool.lights[3].position==initial_rank_four
+			ok=ok and pool.lights[4].position==initial_rank_three
+		for light in pool.lights:
+			ok=ok and light.shadow_enabled and is_equal_approx(light.light_size,.12)
+			ok=ok and is_equal_approx(light.shadow_blur,1.5) and light.distance_fade_shadow==20
+			ok=ok and light.distance_fade_enabled and light.distance_fade_begin==90
+			ok=ok and light.distance_fade_length==40 and light.omni_range==25
+			if not light.visible:continue
+			var properties:=station_shadow_values(light)
+			properties.merge(station_lighting_values(light))
+			if pass_index==0:per_site[light.position]=properties
+			else:ok=ok and per_site.has(light.position) and per_site[light.position]==properties
+	ok=ok and per_site.size()==5
+	s.settings.preset("High");s.settings.apply_tree(s.root)
+	for i in pool.lights.size():ok=ok and station_shadow_values(pool.lights[i])==originals[i]
+	ok=ok and var_to_bytes(Snapshot.capture(world))==before
+	s.viewport.free()
+	return true if ok else "Nearest-first rank reassignment changed physical lamp quality, pool allocation, or railway state"

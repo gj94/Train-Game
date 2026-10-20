@@ -49,7 +49,7 @@ func _init(w: RailWorld,parent: Node3D) -> void:
 	for i in MAX_LIGHTS:
 		var light:=OmniLight3D.new();light.name="StationLight%d" % i
 		# Presentation-only rank in the existing nearest-first light pool.
-		# Graphics options may shadow the first four; selection, energy and
+		# Graphics options may add distance-faded shadows; selection, energy and
 		# station availability remain owned by the unchanged update below.
 		light.set_meta("station_shadow_rank",i)
 		light.light_color=Color(1.0,.88,.68);light.omni_range=25;light.omni_attenuation=.75

@@ -45,16 +45,19 @@ the menu reports that the change applies only for this run.
 
 **Extreme** retains native resolution, 8× MSAA, 8192-pixel shadows, the 2.2 km
 view distance and the existing passenger/vegetation counts. It adds filtered
-surface microdetail, screen-space reflections and 512-pixel sky radiance; it
+surface microdetail, nearby lamp shadows and 512-pixel sky radiance; it
 keeps trees, supported buildings and other-train detail at 150% of the High
 transition distances and reduces imported mesh simplification. Native resolution,
 8× MSAA and FXAA remain, preserving thin-line antialiasing.
 
 This is a deliberately more expensive, optional quality mode, not a new default
 or a promised frame rate. Existing graphics files and High/Balanced/Performance
-settings keep their prior appearance and values. Surface microdetail and detailed
-reflections can be selected separately. Reflections require Forward+ and cannot
-reflect off-screen objects. Return to High to restore the original ranges and
+settings keep their prior appearance and values. Surface microdetail, sharper sky,
+lamp shadows and advanced screen-space reflections can be selected separately.
+SSR is off in Extreme: production 8× MSAA showed no reflection response in the
+software-renderer review. SSR requires Forward+ and cannot reflect off-screen
+objects; verify its benefit on your GPU before using it. Return to High to restore
+the original ranges and
 environment settings. See [Extreme visual review](extreme-visuals.md) for scope,
 validation and the same-camera comparison procedure.
 
@@ -87,7 +90,7 @@ full interior/building/grass detail; use `*_culled` cases for the normal quality
    check that no gap opens where vegetation changes from meshes to distant images.
 5. Choose a custom frame cap and SSIL setting, quit and reopen: both should persist.
 
-Extreme also offers nearby station lamp shadows (nearest four existing lamps),
+Extreme also offers nearby station lamp shadows (20–60 m shadow fade on the existing pool),
 filtered water ripples and permanent-way/boundary material finishing. Each is
 opt-in; lamp allocation/brightness, track geometry and simulation remain unchanged.
 See `extreme-visuals.md` for actual capture evidence and pending visual review.

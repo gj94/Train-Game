@@ -44,6 +44,7 @@ jobs:
             /tools/check_extreme_station_manifest.py
             /tools/check_extreme_capture_manifest.py
             /tools/tests/test_extreme_station_scene.py
+            /tools/tests/test_extreme_station_motion.py
             /assets/polyhaven/
             /assets/models/scenery/coconut_palm.glb
             /assets/models/scenery/coconut_palm.glb.import
@@ -69,7 +70,7 @@ jobs:
           echo "VK_DRIVER_FILES=$(find /usr/share/vulkan/icd.d -name '*lvp*json' -print -quit)" >> "$GITHUB_ENV"
       - name: Assemble the bounded genuine-builder station
         run: |
-          python3 -m unittest discover -s tools/tests -p 'test_extreme_station_scene.py' -v
+          python3 -m unittest discover -s tools/tests -p 'test_extreme_station*.py' -v
           git fetch --no-tags --depth=1 origin "$BASELINE_REF"
           python3 tools/prepare_extreme_station_scene.py --output "$RUNNER_TEMP/extreme-baseline" --baseline-ref "$BASELINE_REF"
           python3 tools/prepare_extreme_station_scene.py --output "$RUNNER_TEMP/extreme-fixture"
@@ -100,11 +101,24 @@ jobs:
             --output="$RUNNER_TEMP/extreme-review" --size=1280x720 --settle-frames=8 --sample-frames=4 \
             --compare-high="$BASELINE_MANIFEST" \
             2>&1 | tee "$RUNNER_TEMP/extreme-review/capture.log"
+      - name: Capture stepped vegetation and lamp-pool handoffs
+        timeout-minutes: 10
+        run: |
+          mkdir -p "$RUNNER_TEMP/extreme-review/motion"
+          xvfb-run --auto-servernum --server-args='-screen 0 1280x720x24 -nolisten tcp' \
+            "$GODOT" --audio-driver Dummy --path "$RUNNER_TEMP/extreme-fixture" --rendering-method forward_plus \
+            --rendering-driver vulkan --script res://tools/check_extreme_station_scene.gd -- \
+            --output="$RUNNER_TEMP/extreme-review/motion" --size=1280x720 --settle-frames=8 --sample-frames=4 \
+            --motion-review \
+            2>&1 | tee "$RUNNER_TEMP/extreme-review/motion-capture.log"
       - name: Require complete and pixel-preserving evidence
         run: |
           BASELINE_MANIFEST=$(find "$RUNNER_TEMP/extreme-review/baseline" -name manifest.json -print -quit)
           PATCHED_MANIFEST=$(find "$RUNNER_TEMP/extreme-review" -maxdepth 2 -name manifest.json -not -path '*/baseline/*' -print -quit)
           python3 tools/check_extreme_station_manifest.py --baseline "$BASELINE_MANIFEST" --patched "$PATCHED_MANIFEST"
+          MOTION_MANIFEST=$(find "$RUNNER_TEMP/extreme-review/motion" -name manifest.json -print -quit)
+          test -n "$MOTION_MANIFEST" && test -f "$MOTION_MANIFEST"
+          python3 tools/check_extreme_station_manifest.py --motion "$MOTION_MANIFEST"
       - name: Retain review evidence, including failures
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

@@ -48,12 +48,14 @@ void fragment(){
 		vec2 local_p=extreme_local_position_m.xz;
 		// A gentle wind spectrum, from 7 m swell to 18 cm ripples. The amplitudes
 		// are slopes, so smaller waves do not get unrealistically steep.
+		// Cross the medium/short families instead of stacking parallel crests:
+		// the same slope energy now breaks into wavelets, not long corrugations.
 		// Speeds are integral cycles over the default 3600 s TIME rollover.
 		vec3 spectrum=extreme_water_wave(local_p,vec2(.125,.0625),.5,.17,.045);
-		spectrum+=extreme_water_wave(local_p,vec2(.375,.25),.875,.61,.060);
+		spectrum+=extreme_water_wave(local_p,vec2(.375,-.25),.875,.61,.060);
 		spectrum+=extreme_water_wave(local_p,vec2(.875,.375),1.25,.43,.065);
-		spectrum+=extreme_water_wave(local_p,vec2(2.0,1.25),1.875,.83,.042);
-		spectrum+=extreme_water_wave(local_p,vec2(4.75,2.75),2.875,.29,.028);
+		spectrum+=extreme_water_wave(local_p,vec2(1.25,2.0),1.875,.83,.042);
+		spectrum+=extreme_water_wave(local_p,vec2(4.75,-2.75),2.875,.29,.028);
 		spectrum+=extreme_water_wave(local_p,vec2(-.375,.75),1.125,.73,.018);
 		vec3 detailed_normal=normalize((VIEW_MATRIX*vec4(-spectrum.x,1.0,-spectrum.y,0.0)).xyz);
 		// Reconstruct the original map only for fractional detail blending.

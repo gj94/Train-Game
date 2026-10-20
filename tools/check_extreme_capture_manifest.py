@@ -3,6 +3,7 @@
 
 Usage: python3 tools/check_extreme_capture_manifest.py \
     --baseline /path/to/baseline/manifest.json --patched /path/to/manifest.json
+Or: python3 tools/check_extreme_capture_manifest.py --temporal /path/to/manifest.json
 
 This validates evidence completeness and legacy pixel preservation, not artistic
 quality or target-GPU performance. Exact comparisons also require identical PNG
@@ -33,6 +34,15 @@ PATCHED_IDS = {
     for period, view in PAIRS
     for preset in PRESETS
 } | {f"far-route-{view}-{phase}" for view in ("road", "station", "water") for phase in ("before", "after")}
+TEMPORAL_TIMES = {
+    "t0": 0.0, "t1-60": 1 / 60, "t2-60": 2 / 60, "t0-5": .5,
+    "t3600-minus-1-60": 3600 - 1 / 60, "t3600": 3600.0,
+}
+TEMPORAL_PAIRS = {
+    "adjacent-first": ("t0", "t1-60"), "adjacent-second": ("t1-60", "t2-60"),
+    "half-second": ("t0", "t0-5"), "rollover-adjacent": ("t3600-minus-1-60", "t3600"),
+    "rollover-closure": ("t0", "t3600"),
+}
 
 
 class InvalidCapture(ValueError):
@@ -206,12 +216,102 @@ def validate(baseline_path: Path, patched_path: Path) -> None:
         pixel_measurement(comparison.get("before_vs_after"), pixels, f"rebase {view}")
 
 
+def fixed_time_shader_code(source: str) -> str:
+    """Same narrowly bounded transformation as the fixture's in-memory shader."""
+    return (re.sub(r"\bTIME\b", "fixture_water_time", source)
+            .replace("shader_type spatial;", "shader_type spatial;\nuniform float fixture_water_time = 0.0;")
+            .replace('#include "extreme_surface_detail.gdshaderinc"',
+                     '#include "res://game/shaders/extreme_surface_detail.gdshaderinc"'))
+
+
+def validate_temporal(path: Path) -> dict:
+    data = json.loads(path.read_text())
+    require(isinstance(data, dict) and data.get("capture_status") == "temporal_diagnostic_captured_requires_review" and
+            data.get("capture_scope") == "water_temporal_diagnostic", "temporal: incomplete or wrong diagnostic mode")
+    require(data.get("renderer") == "forward_plus" and data.get("rendering_device_available") is True and
+            data.get("display_server") not in (None, "", "headless") and bool(data.get("device")),
+            "temporal: real Forward+ renderer required")
+    require(data.get("shader_time_frozen") is True and data.get("check_rebase") is False and
+            data.get("selected_views") == [] and data.get("selected_periods") == [],
+            "temporal: global time must stay frozen without other capture modes")
+    size = data.get("resolution")
+    require(isinstance(size, list) and len(size) == 2 and all(type(v) is int and v > 0 for v in size),
+            "temporal: invalid resolution")
+    shader = data.get("temporal_shader", {})
+    require(isinstance(shader, dict) and isinstance(shader.get("sha256"), dict),
+            "temporal: missing shader provenance")
+    require(shader.get("rollover_seconds") == 3600 and shader.get("endpoint_is_unwrapped") is True and
+            shader.get("uniform") == "fixture_water_time", "temporal: wrong TIME substitution or rollover semantics")
+    expected_files = {"source": "temporal_source_water.gdshader", "fixed_time": "temporal_fixed_time_water.gdshader"}
+    require(shader.get("files") == expected_files, "temporal: missing or unsafe shader artifact filenames")
+    shader_code = {}
+    for kind, filename in expected_files.items():
+        file = path.parent / filename
+        require(file.is_file() and file.resolve().parent == path.parent.resolve(), "temporal: missing shader artifact")
+        code = file.read_bytes()
+        require(hashlib.sha256(code).hexdigest() == shader.get("sha256", {}).get(kind),
+                f"temporal: {kind} shader hash mismatch")
+        shader_code[kind] = code.decode("utf-8")
+    source_path = "res://game/shaders/geographic_water.gdshader"
+    require(isinstance(data.get("source_sha256"), dict) and shader.get("source_path") == source_path and
+            data.get("source_sha256", {}).get(source_path) == shader["sha256"]["source"],
+            "temporal: saved shader does not match source provenance")
+    require(re.search(r"\bTIME\b", shader_code["source"]) is not None and
+            fixed_time_shader_code(shader_code["source"]) == shader_code["fixed_time"],
+            "temporal: shader transformation contains an unexpected change")
+    captures = indexed(data.get("captures"), lambda entry: entry.get("id"),
+                       {"temporal-water-" + key for key in TEMPORAL_TIMES}, "temporal captures")
+    first = captures["temporal-water-t0"]
+    for sample, seconds in TEMPORAL_TIMES.items():
+        identity = "temporal-water-" + sample
+        entry = captures[identity]
+        require(entry.get("capture_status") == "captured" and entry.get("resolution") == size and
+                entry.get("shader_time_frozen") is True and entry.get("preset") == "Diagnostic-Extreme-temporal" and
+                entry.get("period") == "dusk" and entry.get("hour") == 18.25 and entry.get("draw_calls", 0) > 0,
+                f"{identity}: invalid temporal capture metadata")
+        for key in ("camera_eye", "camera_target", "camera_fov", "route_origin", "scene_local_translation",
+                    "preset_values", "ssr_enabled", "radiance_size_enum"):
+            require(key in first and first[key] == entry.get(key), f"{identity}: {key} changed between samples")
+        state = entry.get("diagnostic", {})
+        require(isinstance(state, dict) and state.get("kind") == "water_temporal" and state.get("global_time_frozen") is True and
+                state.get("surface_detail") == 1.0 and state.get("source_shader_sha256") == shader["sha256"]["source"] and
+                state.get("fixed_time_shader_sha256") == shader["sha256"]["fixed_time"],
+                f"{identity}: invalid shader or detail metadata")
+        for key, expected in (("requested_time_seconds", seconds), ("production_time_seconds", seconds % 3600),
+                              ("shader_uniform_time_seconds", struct.unpack("f", struct.pack("f", seconds))[0])):
+            actual = state.get(key)
+            require(type(actual) in (int, float) and math.isclose(actual, expected, rel_tol=1e-13, abs_tol=1e-12),
+                    f"{identity}: incorrect {key}")
+        verify_png(path, entry, size)
+    comparisons = indexed(data.get("temporal_comparisons"), lambda entry: entry.get("id"),
+                          set(TEMPORAL_PAIRS), "temporal comparisons")
+    summary = {}
+    for label, (left, right) in TEMPORAL_PAIRS.items():
+        left, right = "temporal-water-" + left, "temporal-water-" + right
+        comparison = comparisons[label]
+        require(comparison.get("from") == left and comparison.get("to") == right, f"{label}: incorrect sample pair")
+        difference = comparison.get("pixel_difference")
+        pixel_measurement(difference, size[0] * size[1], label)
+        same_bytes = captures[left]["png_sha256"] == captures[right]["png_sha256"]
+        require(difference["exact_equal"] == same_bytes, f"{label}: equality metric disagrees with PNGs")
+        summary[label] = difference
+    return summary
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--baseline", required=True, type=Path)
-    parser.add_argument("--patched", required=True, type=Path)
+    parser.add_argument("--baseline", type=Path)
+    parser.add_argument("--patched", type=Path)
+    parser.add_argument("--temporal", type=Path, help="Validate only the distinct six-image fixed-time water diagnostic.")
     args = parser.parse_args()
     try:
+        if args.temporal:
+            require(not args.baseline and not args.patched, "--temporal cannot be combined with production manifests")
+            measurements = validate_temporal(args.temporal)
+            print("EXTREME_TEMPORAL_VALID: six PNGs, source/transformed shader hashes and five measurements verified; "
+                  "not production motion proof or an artistic quality pass. " + json.dumps(measurements, sort_keys=True))
+            return 0
+        require(args.baseline is not None and args.patched is not None, "provide --baseline and --patched, or --temporal")
         validate(args.baseline, args.patched)
     except (InvalidCapture, OSError, ValueError, TypeError, KeyError, StopIteration) as error:
         print(f"EXTREME_CAPTURE_INVALID: {error}", file=sys.stderr)

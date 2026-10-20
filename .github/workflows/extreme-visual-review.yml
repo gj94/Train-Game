@@ -72,16 +72,16 @@ jobs:
             2>&1 | tee "$RUNNER_TEMP/extreme-review/baseline-import.log"
           "$GODOT" --headless --path "$RUNNER_TEMP/extreme-fixture" --editor --import \
             2>&1 | tee "$RUNNER_TEMP/extreme-review/import.log"
-      - name: Diagnose water reflections and normal mapping
+      - name: Check water time continuity and rollover
         timeout-minutes: 6
         run: |
-          mkdir -p "$RUNNER_TEMP/extreme-review/diagnostic"
+          mkdir -p "$RUNNER_TEMP/extreme-review/temporal"
           xvfb-run --auto-servernum --server-args='-screen 0 1280x720x24 -nolisten tcp' \
             "$GODOT" --audio-driver Dummy --path "$RUNNER_TEMP/extreme-fixture" --rendering-method forward_plus \
             --rendering-driver vulkan --script res://tools/check_extreme_visuals.gd -- \
-            --output="$RUNNER_TEMP/extreme-review/diagnostic" --size=1280x720 \
-            --reflection-diagnostic --settle-frames=8 --sample-frames=4 \
-            2>&1 | tee "$RUNNER_TEMP/extreme-review/diagnostic-capture.log"
+            --output="$RUNNER_TEMP/extreme-review/temporal" --size=1280x720 \
+            --water-temporal-diagnostic --settle-frames=8 --sample-frames=4 \
+            2>&1 | tee "$RUNNER_TEMP/extreme-review/temporal-capture.log"
       - name: Capture parent High with software Vulkan
         timeout-minutes: 10
         run: |
@@ -106,6 +106,9 @@ jobs:
           BASELINE_MANIFEST=$(find "$RUNNER_TEMP/extreme-review/baseline" -name manifest.json -print -quit)
           PATCHED_MANIFEST=$(find "$RUNNER_TEMP/extreme-review" -maxdepth 2 -name manifest.json -not -path '*/baseline/*' -print -quit)
           python3 tools/check_extreme_capture_manifest.py --baseline "$BASELINE_MANIFEST" --patched "$PATCHED_MANIFEST"
+          TEMPORAL_MANIFEST=$(find "$RUNNER_TEMP/extreme-review/temporal" -name manifest.json -print -quit)
+          test -n "$TEMPORAL_MANIFEST" && test -f "$TEMPORAL_MANIFEST"
+          python3 tools/check_extreme_capture_manifest.py --temporal "$TEMPORAL_MANIFEST"
       - name: Retain review evidence, including failures
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
