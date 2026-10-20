@@ -27,6 +27,12 @@ $archivePath = Join-Path $projectRoot "export/$BuildName.zip"
 if (Test-Path -LiteralPath (Join-Path $projectRoot "export/updates/$BuildName.json")) {
     throw 'This build is published for incremental updates. Use a new BuildName and increasing UpdateSequence.'
 }
+# Reusing a failed export can nest recursively copied guides and retain stale
+# packs. Preserve it for inspection, rather than silently producing a mixed ZIP.
+if ((Test-Path -LiteralPath $buildRoot) -and
+    @((Get-ChildItem -LiteralPath $buildRoot -Force)).Count -gt 0) {
+    throw 'The build directory is not empty. Inspect and remove the unpublished staging directory, or use a new BuildName, before exporting.'
+}
 if ($UpdateSequence -gt 0 -and !(Test-Path -LiteralPath (Join-Path $projectRoot '.local/update-signing-private.pem'))) {
     throw 'Restore the update signing key before publishing. See docs/incremental-updates.md.'
 }

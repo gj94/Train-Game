@@ -1,5 +1,14 @@
 # Progress
 
+## 2026-10-21 — Clean release staging on retries
+
+- A packaging retry copied guide directories inside their existing destinations.
+  It was stopped before signing or publishing R38; R37 remained available.
+  The exporter now rejects nonempty staging directories before any mutation,
+  preventing nested guides and stale packs on retries. The unpublished staging
+  directory, archive and incomplete update payload are regenerated from clean
+  source; no simulation inputs or prepared states changed.
+
 ## 2026-10-21 — R38 updater compatibility checked before publication
 
 - The first export completed, but publication correctly rejected the new
