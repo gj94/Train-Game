@@ -2,8 +2,28 @@
 
 User-authorized work began at **01:07:24 Asia/Singapore**. Work for at least
 three hours; the earliest publication/completion is **04:07:24 Singapore
-(20 October 2026 20:07:24 UTC)**. The existing thread heartbeat is active every
-twenty minutes as a continuation safeguard. Pause it after successful publication.
+(20 October 2026 20:07:24 UTC)**. R39 was published after 04:41; final archive,
+LAN and retirement checks completed after 04:42. The continuation heartbeat
+is now **paused**.
+
+## Completed release
+
+- R39, source **3ed0761**, signed sequence **41**, full ZIP and incremental
+  support at http://192.168.8.183:8765/. Source changes pushed.
+- Final suite: **708 passed**; 57 updater checks; whole-route OHE and road
+  geometry audits; source streaming/station/bridge/sky views. No full-day
+  timetable rerun and no extracted-distribution gameplay test.
+- ZIP **3,584,596,626 bytes**, SHA-256
+  `e28b070a84faecceeb16b069aef08bb030aefef819387bd57160c86c808ad0cc`.
+  All 506 CRCs, 504 managed hashes, pack inventory, prepared-state hashes,
+  signatures, legacy v3 verification and served LAN ranges passed.
+- Verified R38 export/ZIP/checksum retired, freeing **7,831,411,720 bytes**.
+  Historical signed catalogues retained. New server PID9568.
+- Evidence: `art/performance/overnight-2026-10-21/`,
+  `art/performance/updater-v4-2026-10-21/`,
+  `art/performance/r39-release-2026-10-21/`.
+- Next release requires a fresh name and sequence **42+**. Existing users
+  replace the small launcher once to get v4's faster transfer code.
 
 ## Scope and constraints
 
@@ -24,7 +44,7 @@ twenty minutes as a continuation safeguard. Pause it after successful publicatio
   support after the minimum time and successful validation. No repeated
   distribution gameplay test. Commit/push changes and record playtest steps.
 
-## Current state
+## Initial state and chronological checkpoints
 
 - Live release remains R38, sequence 40, source `885dc17`; next sequence is 41.
 - Updater source is complete in `tools/updater/UpdateCore.cs` and
@@ -282,6 +302,5 @@ simulations on heartbeat continuation.
   captures: eight views, zero coverage errors, successful world release.
 - TVC road/building collision confirmed removed in the final deck view.
 - Source evidence collected. User notified before preparation of R39 sequence41.
-- Next: commit/push source, export, verify archive/packs/LAN signatures/ranges,
-  retire unchanged R38, update publication evidence, pause heartbeat.
-
+- This gate was followed by successful export/publication, all archive and LAN
+  checks, R38 retirement and heartbeat pause, recorded at the top of this file.

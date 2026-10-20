@@ -1,6 +1,6 @@
 # Incremental Windows updates
 
-## V4 transfer optimization — prepared for the next release
+## V4 transfer optimization — shipped in R39
 
 V4 keeps the existing signed catalogue and 64 KiB block hashes. It combines
 adjacent missing blocks into requests bounded by 4 MiB of both encoded and
@@ -92,27 +92,30 @@ verification is `tools/check_split_boot.gd`.
 
 ## Published release and historical measurements
 
-Current publication: **R38**, signed sequence **40**, clean source **885dc17**.
+Current publication: **R39**, signed sequence **41**, clean source **3ed0761**.
 **Full and incremental downloads** at http://192.168.8.183:8765/. ZIP:
-**3,584,017,612 bytes**. The included R36/R37 v3 launcher updates
-the existing folder; its unchanged core verifies the actual R38 catalogue.
-New installations can extract the complete R38 ZIP including all 192 packs.
-Saves/settings remain in the Windows user profile.
+**3,584,596,626 bytes**. It includes the v4 launcher. Existing users replace the
+small launcher once to gain the new transfer implementation; v3 remains
+catalogue-compatible. The actual R39 catalogue passes the unchanged R38 v3
+signature/inventory checks. Saves/settings remain in the Windows user profile.
 
-R37 → R38 reuses **2,416,976,783 bytes**. Changed target blocks
-total **1,830,378,060 bytes**, with
-**1,643,872,349 bytes** of estimated
-unique compressed payload plus the **6,474,481-byte** signed catalogue.
-These figures are calculated from block hashes, not captured client traffic.
-Native mounting, archive/file hashes, signature and served compressed block
-checks pass. See [builds.md](builds.md) for checksum and release evidence.
+R38 → R39 reuses **4,234,235,117 bytes**. Changed target blocks total
+**15,458,284 bytes**, with **7,099,319
+bytes** of estimated unique compressed payload plus the **6,477,989-byte**
+signed catalogue. These are calculated from block hashes, not captured client
+traffic. Native mounting, archive/file hashes, signature and served compressed
+block checks pass. See [builds.md](builds.md) for checksum and release evidence.
 
-R37's verified export directory, ZIP and checksum were retired after idle-LAN
-checks, freeing **5,779,718,696 bytes**. Historical signed
-catalogues remain. Future publications need a fresh version and sequence
-**41 or greater**; omit `-FullDownloadOnly` and `-SkipZip`. Nonempty staging
-directories are rejected before export; inspect and clean an unpublished
-failed attempt before reusing its name. Published names remain immutable.
+R38's verified export directory, ZIP and checksum were retired after idle-LAN
+checks, freeing **7,831,411,720 bytes**. Historical signed catalogues
+remain. Future publications need a fresh version and sequence **42 or greater**;
+omit `-FullDownloadOnly` and `-SkipZip`. Nonempty staging directories are rejected
+before export; inspect and clean an unpublished failed attempt before reusing
+its name. Published names remain immutable.
+
+Historical R37 → R38: 2,416,976,783 bytes reused; 1,830,378,060 changed target
+bytes and 1,643,872,349 bytes of estimated unique compressed payload, plus its
+6,474,481-byte signed catalogue.
 
 Historical R36 → R37: 2,418,084,286 bytes reused; 745,887,678 changed target
 bytes and 668,133,498 bytes of estimated unique compressed payload, plus its
@@ -223,7 +226,7 @@ named build and publish both a full ZIP and its compressed update catalogue:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1 `
-  -BuildName TrainGame-Kerala-Coast-R38-Windows -UpdateSequence 40 -SkipTests
+  -BuildName TrainGame-Kerala-Coast-R40-Windows -UpdateSequence 42 -SkipTests
 ```
 
 Use `-SkipTests` only after checks have passed for the source being exported.
@@ -236,7 +239,7 @@ The launcher checks again whenever Update & Play is clicked.
 To publish an already-exported folder:
 
 ```powershell
-node.exe tools/updater/publish.mjs --build=TrainGame-Kerala-Coast-R38-Windows --sequence=40
+node.exe tools/updater/publish.mjs --build=TrainGame-Kerala-Coast-R40-Windows --sequence=42
 ```
 
 Published build folders/identifiers are immutable. The build script refuses to

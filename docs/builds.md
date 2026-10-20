@@ -1,59 +1,66 @@
 # Windows portable build
 
-Current release: **R38 — Standard / Intensive timetables and detailed audio**.
-Published 21 October 2026 from clean source **885dc17**, signed
-sequence **40**, at http://192.168.8.183:8765/.
-Full ZIP: **3,584,017,612 bytes**, SHA-256
-`c10c77d83ca9ee707e53b1382c7b98c63a43cd26bcb33f9eacd68b812e8b14ba`.
+Current release: **R39 — connected overhead equipment, roads and faster updates**.
+Published 21 October 2026 from clean source **3ed0761**, signed
+sequence **41**, at http://192.168.8.183:8765/.
+Full ZIP: **3,584,596,626 bytes**, SHA-256
+`e28b070a84faecceeb16b069aef08bb030aefef819387bd57160c86c808ad0cc`.
 
-Includes the selectable 140-service Intensive day alongside Standard's 100,
-fifteen independent audio channels plus Master, TVCN through-main selection,
-receiving-road protection and shared station-hold ageing. Intensive K1 is
-overtaken by thirteen distinct trains; B042 does not repass B002 in this day.
-The existing Standard booked timings remain available.
+Overhead fittings meet their supports and wires across chunk boundaries, with
+supported portals for long spans and improved near-wire shadows. Roads now use
+connected bridge approaches, closed decks and piers, and avoid station precincts,
+open water and the railway envelope. Station entrance links meet ground roads;
+duplicate pedestrian bridge decks and the dashed sky-panorama seam are removed.
+Very distant/low-resolution thin shadows can still alias. Road elevations are
+a rendering reconstruction, not a surveyed civil-engineering model.
 
-All three full-day rehearsals finish every call and depot movement without
-safety events. Meaningful extra station waits meet the whole-day cumulative
-70/90/98/100% targets under 10/20/30/45 minutes. Intensive baseline measures
-72.73/98.70/100/100%; delayed Intensive measures 71.52/98.01/99.34/100%.
-Ten minutes is not a hard maximum or a per-service guarantee: baseline K1 has
-69.2% of its meaningful waits under ten minutes, a longest extra station wait
-of 15m52s and 22m17s destination lateness. See
-[intensive-timetable.md](intensive-timetable.md) for all measurements.
+The included **Update & Play v4** batches verified blocks and pipelines downloads.
+Existing users should close the updater and replace it once from the small
+updater ZIP on the host page. Existing v3 launchers remain compatible with the
+catalogue, but need replacement to gain the faster transfer implementation.
+New installations need the full ZIP, including all **192** asset packs.
 
-Source validation includes 684 headless tests, 23 prepared-data/operating-day
-checks, native service/traffic and audio-menu checks, eight pack/publication
-checks and 48 native updater checks. Both timetables ship 233 five-minute
-states and every service departure, with measured crossings and both sides
-of completed overtakes. No extracted-distribution gameplay test was run.
+The Standard 100-service and Intensive 140-service operating days are unchanged.
+Both retain all prepared departures, 233 five-minute states and the measured
+crossing/overtake previews. Physics, dispatch and approved sound banks are unchanged.
+No full-day timetable rehearsal or extracted-distribution gameplay test was run.
 
-R36/R37 users can close the game and use the included **Update & Play**.
-New installations need the complete ZIP including all **192** asset packs.
-The unchanged R37 v3 native core accepts this release's signed catalogue,
-including its 32 alternate-timetable packs in the existing `resources` family.
-R37 → R38 reuses **2,416,976,783 bytes**; changed target blocks
-total **1,830,378,060 bytes**. Estimated unique compressed
-payload is **1,643,872,349 bytes**,
-plus the **6,474,481-byte** signed catalogue. These are estimates, not
-captured client traffic.
+Validation: **708 headless game checks**, **57 native updater checks**, the
+whole-route road/OHE clearance audits, native station/bridge views and streaming
+soaks. See [scenery evidence](../art/performance/overnight-2026-10-21/README.md)
+for exact source qualifications and development-PC performance limitations.
 
 All **506 ZIP CRCs / 504 managed
-hashes**, clean source identity, guide contents, explicit pack inventory,
-signatures, checksum and served ZIP/PCK/compressed ranges pass. The native
-read-only pack audit verifies both days' starts, snapshots and encounters.
-Evidence: [R38 publication](../art/performance/r38-release-2026-10-21/publication.json).
+hashes**, clean source identity, packaged guides, signatures, explicit pack
+inventory and served ZIP/PCK/compressed ranges pass. Native read-only mounting
+checks every prepared snapshot and both days' encounter data. The shipped R38
+v3 core also accepts the actual signed R39 catalogue.
+Evidence: [R39 publication](../art/performance/r39-release-2026-10-21/publication.json).
 
-Only R38 is offered. R37's unchanged export directory, ZIP and checksum were
-verified and retired after idle-LAN checks, freeing **5,779,718,696
+R38 → R39 reuses **4,234,235,117 bytes**; changed target blocks total
+**15,458,284 bytes**. Estimated unique compressed payload is
+**7,099,319 bytes**, plus the
+**6,477,989-byte** signed catalogue. These are block-hash estimates,
+not captured client traffic.
+
+Only R39 is offered. R38's unchanged export directory, ZIP and checksum were
+verified and retired after idle-LAN checks, freeing **7,831,411,720
 bytes**. Historical signed catalogues remain. The next release needs a fresh
-name and sequence **41 or greater**, with both full and incremental publication.
-The exporter rejects nonempty staging directories to prevent stale files or
-nested guides on a retry; inspect failed unpublished staging before removal.
+name and sequence **42 or greater**, with both full and incremental publication.
+The exporter rejects nonempty staging directories; inspect failed unpublished
+staging before removal.
 
-Playtest: select **Intensive (140)** on the home screen, choose **K1** and open
-its **Traffic** preview. Start it, then open **Audio settings** under Pause,
-choose Speakers or Headphones, and compare joint clacks, rolling, squeal and
-wind independently. Standard remains separately selectable.
+Playtest: inspect road bridges and station entrances at ERS, QLN and TVC, canal
+crossings near Kumbalam, and overhead attachments/roof shadows at a station
+throat. Check the same places at night and through scenery-streaming boundaries.
+
+Previous release: **R38**, clean source **885dc17**, signed sequence **40**,
+published 21 October 2026. Its full ZIP was **3,584,017,612 bytes**, SHA-256
+`c10c77d83ca9ee707e53b1382c7b98c63a43cd26bcb33f9eacd68b812e8b14ba`.
+It introduced the Intensive day and detailed audio mixer. Its three full-day
+rehearsals and wait-quality results remain recorded in
+[intensive-timetable.md](intensive-timetable.md).
+See [R38 evidence](../art/performance/r38-release-2026-10-21/publication.json).
 
 Previous release: **R37**, clean source **525da55**, signed sequence **39**,
 published 20 October 2026. Its full ZIP was **2,615,707,467 bytes**, SHA-256

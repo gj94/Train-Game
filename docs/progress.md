@@ -1,5 +1,28 @@
 # Progress
 
+## 2026-10-21 — R39 published after the overnight scenery pass
+
+- Full ZIP and signed incremental updates are live at
+  http://192.168.8.183:8765/, sequence **41**, clean source **3ed0761**.
+  ZIP: **3,584,596,626 bytes**. All 506 archive entries, 504 managed hashes,
+  packaged guides, 192 packs, signatures and served ranges pass.
+- The included v4 launcher has the faster batched transfer implementation.
+  Existing users should replace the small launcher once while it is closed.
+  Estimated R38 update transfer: 7,099,319 compressed block bytes plus the
+  6,477,989-byte catalogue; actual client traffic was not measured.
+- Standard/Intensive prepared railway states and traffic previews passed
+  read-only packaged hash checks. No full-day timetable or distribution
+  gameplay run. Final source suite: **708 passed, zero failed**.
+- Removed the verified R38 export, ZIP and checksum, freeing **7,831,411,720
+  bytes**. Only R39 has a full download; historical catalogues remain.
+  The LAN server runs as PID9568. Next publication needs sequence **42+**.
+- Worked beyond the requested three-hour minimum and paused the continuation
+  heartbeat after successful publication. Source and evidence are on GitHub.
+- Playtest bridges/entrances at ERS, QLN and TVC, canal roads near Kumbalam,
+  and overhead attachments/roof shadows through streaming boundaries.
+  Distant thin shadows can still alias. These are reconstructed scenery
+  clearances, not a surveyed civil model or a target-PC FPS claim.
+
 ## 2026-10-21 — Road/station clearances and connected overhead equipment
 
 - Wires and supports now share shifted route-wide rows; registrations and
@@ -41,8 +64,8 @@
   All released their worlds; close OHE captures passed at three shadow resolutions.
 - Timetables, railway inputs, physics and generated sound data are unchanged.
   No full-day timetable rehearsal or extracted-distribution gameplay run.
-  R38 remains live until the new release is packaged after the requested
-  overnight work period; the v4 updater will ship with that release.
+  These changes and the v4 updater shipped in R39 after the requested
+  overnight work period.
 - Playtest: inspect bridges/entrances at ERS, QLN and TVC; inspect canal-side
   roads near Kumbalam; look at overhead attachments and roof shadows near a
   station throat; repeat at night and through streaming boundaries.
