@@ -1,5 +1,19 @@
 # Progress
 
+## 2026-10-20 — R36 full-download release preparation
+
+- User requested a full ZIP now, with the included updater used from the next
+  release. Preparing **R36**, signed baseline sequence **38**, with launcher v3
+  and the stable asset-pack layout. Public incremental routes stay disabled
+  for R36; R37+ should offer both full downloads and incremental updates.
+- Updated the shipped instructions: extract the entire R36 folder, including
+  `packs/`, and use `TrainGame.exe` or offline Play. Existing profile saves and
+  preferences remain separate.
+- Reusing the immediately preceding 637 passing headless tests and 58 updater,
+  pack and server checks; only release documentation changed. Export gates,
+  archive integrity, launcher identity and LAN publication still require
+  verification. No repeated distribution gameplay test.
+
 ## 2026-10-20 — Stable packs and compressed updater v3
 
 - Replaced the single exported asset container with a small core PCK plus
