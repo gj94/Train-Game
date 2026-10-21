@@ -1,9 +1,9 @@
 # Xbox controller
 
-Current source controls (after R34). Xbox 360, One, Series and Elite use Godot's
+Current source controls (R43). Xbox 360, One, Series and Elite use Godot's
 standard layout. Elite paddles follow the controller's own assigned buttons.
 
-Open **Menu → Controller layout** for separate **Driving**, **Walking**,
+Open **Pause → Reference → Controller layout** for separate **Driving**, **Walking**,
 **Cameras** and **Menus** pages. LB/RB switches tabs, RS scrolls, A selects and
 B returns to the caller. Controller preferences retain deadzone, look sensitivity,
 vertical inversion and vibration. Old layout preferences migrate to this scheme.
@@ -31,7 +31,7 @@ Released triggers hold the selected handle. LT wins simultaneous trigger input.
 Crossing zero pauses at coast for 0.24 seconds with a light vibration. Continue
 holding to cross, or release/re-pull to cross immediately. Triggers never silently
 take driving from AI. There is no emergency-brake face/bumper binding; it remains
-in Menu → Train & view actions and on keyboard Space.
+in Pause → Train & camera → Driving actions and on keyboard Space.
 
 ## Walking and passenger seats
 
@@ -68,17 +68,30 @@ LS changes distance and angle in a following exterior view without detaching.
 RS looks/orbits; R3 recenters. Up/Down enters carriage walking as described above.
 L3 does not move you to pilot, and R3 does not select free camera.
 
-Free observer view is under Camera & passengers in Train & view actions. It starts
+Free observer view is under Pause → Train & camera → Cameras & walking. It starts
 at the nearest station platform; LS moves, RS looks and RT/LT zooms. AI drives.
 Hold horizontal D-pad to return to pilot. Holds execute without first firing taps;
 focus loss, pauses and reconnects cancel incomplete gestures.
 
 ## Menus and dispatch
 
-D-pad/LS navigates, A confirms, B goes back, RS scrolls, LB/RB changes focus areas.
-In Dispatch, LS pans, triggers zoom, D-pad selects a target, A inspects, X locates,
-Y fits the route and View opens the timetable. Inspecting another train does not
-hand over your service. Save/load and fullscreen remain under Pause.
+Pause has five sections: Journey, Train & camera, Settings, Reference and Session.
+LB/RB changes section and remembers your last action in each. D-pad/LS moves,
+A selects, B returns one level or resumes from the hub. Keyboard Q/E changes
+sections, arrows/Enter navigate, and Esc follows the same submenu parent.
+
+Dispatch has four focus areas: map/timetable, services, inspector and activity.
+LB/RB moves between them; each remembers its last visible control. X (also L3)
+returns to **your assigned train**, clears filters that might hide it and centres
+the map at a useful local zoom. Y toggles following the **inspected** train and
+returns to the map. Moving the map stops following. View switches the timetable.
+
+On the map, LS pans, LT/RT zooms and D-pad chooses a visible target; A inspects.
+In the other areas, D-pad/LS navigates controls and RS scrolls that area's content.
+Your train is blue and marked YOU; other trains are amber, with their full occupied
+length shown. Service filters offer Active, Waiting and All. Dispatch tools expand
+inside the inspector. Viewing another train preserves assignment; taking control
+and deleting a train retain separate confirmation screens.
 
 The HUD indicates AI/manual ownership. A hold-progress panel explains pending
 X, View and D-pad gestures. Disconnect/focus loss pauses; release controls before
@@ -86,7 +99,7 @@ resuming. Keyboard and mouse remain available.
 
 ## Signal HUD
 
-Pause → **HUD, journey tools & recovery → Next-signal HUD** chooses
+Pause → **Settings → HUD, recovery & tools → Next-signal HUD** chooses
 **Aspect + distance** (existing default) or **Distance only**. Distance-only mode
 has a neutral distance readout with no aspect word/colour. It also suppresses
 proceed notifications/chimes and automatic return to ×1 on clearance, which would

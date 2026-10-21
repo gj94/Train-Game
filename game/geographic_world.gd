@@ -38,7 +38,8 @@ var loading := true
 var closing := false
 var _loading_label: Label
 var _loading_layer: CanvasLayer
-var _loading_panel: ColorRect
+var _loading_panel: Control
+var _loading_screen
 var _labels_on := false
 var _joints_on := false
 var _joint_focus := Vector3(INF,0,INF)
@@ -115,24 +116,10 @@ func build(w: RailWorld,parent: Node3D) -> void:
 	_asset_worker.start(_prepare_station)
 	_loading_layer=CanvasLayer.new(); _loading_layer.layer=8
 	parent.add_child(_loading_layer)
-	_loading_panel=ColorRect.new(); _loading_panel.color=Color(.035,.055,.06,.97)
-	_loading_panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_loading_layer.add_child(_loading_panel)
-	_loading_label=Label.new()
-	_loading_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_loading_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	_loading_label.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
-	_loading_label.add_theme_font_size_override("font_size",24)
-	_loading_panel.add_child(_loading_label)
-	var version:=Label.new()
-	version.name="BuildVersion"
-	version.text=preload("res://game/build_version.gd").current()
-	version.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	version.offset_top=-48;version.offset_bottom=-16
-	version.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	version.add_theme_font_size_override("font_size",16)
-	version.modulate=Color(.70,.79,.77)
-	_loading_panel.add_child(version)
+	_loading_screen=preload("res://game/loading_screen.gd").new()
+	_loading_panel=_loading_screen
+	_loading_layer.add_child(_loading_screen)
+	_loading_label=_loading_screen.detail
 	_request(position)
 
 func _make_materials() -> void:
@@ -342,7 +329,12 @@ func _stage(id: String,result: Dictionary) -> void:
 func _activate() -> void:
 	var began:=Time.get_ticks_usec()
 	var children:=0
-	for id in _activating.keys():
+	# Use idle loading frames for assembly; retain the driving-time hitch budget.
+	var usec_budget: int=8000 if loading else performance.activation_usec
+	var child_budget: int=96 if loading else performance.activation_children
+	var pending_ids:=_activating.keys()
+	pending_ids.sort_custom(func(a,b):return wanted.get(a,{}).get("priority",INF)<wanted.get(b,{}).get("priority",INF))
+	for id in pending_ids:
 		var pending: Dictionary=_activating[id]
 		var result: Dictionary=pending.result
 		if not wanted.has(id):
@@ -354,7 +346,7 @@ func _activate() -> void:
 			pending.holder.add_child(child)
 			if graphics_options!=null:graphics_options.apply_tree(child)
 			children+=1
-			if children>=performance.activation_children or Time.get_ticks_usec()-began>=performance.activation_usec:return
+			if children>=child_budget or Time.get_ticks_usec()-began>=usec_budget:return
 		result.node.free()
 		result.node=pending.holder
 		if result.has("adapter"):result.adapter.root=result.node
@@ -398,8 +390,19 @@ func _refresh_loading() -> void:
 		if not loaded.has(id): missing+=1
 	loading=missing>0
 	_loading_panel.visible=loading
-	if loading:
-		_loading_label.text="KERALA COAST\nErnakulam · Alappuzha · Thiruvananthapuram · Nagercoil\n\nPreparing nearby scenery  %d / %d\n\nMap data © OpenStreetMap contributors · ODbL 1.0\nTerrain: NASA / USGS SRTM" % [required-missing,required]
+	if loading and _loading_screen!=null:
+		var generating:=0
+		for worker in workers:
+			var job: Dictionary=worker.runner.job
+			if not job.is_empty() and wanted.has(job.id) and job.priority<=850000 and job.kind!="far":generating+=1
+		var attaching:=0
+		for id in _activating:
+			if wanted.has(id) and wanted[id].priority<=850000 and wanted[id].kind!="far":attaching+=1
+		var station:=""
+		if _asset_worker!=null and not _asset_worker.job.is_empty():
+			var job: Dictionary=_asset_worker.job
+			if wanted.has(job.id) and job.priority<=850000:station=str(world.stations[job.index].name)
+		_loading_screen.report(required-missing,required,station,generating,maxi(0,missing-generating-attaching),attaching)
 
 func update() -> void:
 	if closing: return
@@ -415,6 +418,9 @@ func update() -> void:
 	if not prepared.is_empty():
 		_prepared_stations[prepared.job.id]=true
 		_trace_job(prepared,"assets")
+		# Asset preparation parks station jobs at the back. Restore proximity order
+		# once ready so a large nearby station does not wait behind far scenery.
+		queue.sort_custom(func(a,b):return a.priority<b.priority)
 	for worker in workers:
 		var finished: Dictionary=worker.runner.take()
 		if not finished.is_empty():

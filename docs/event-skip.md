@@ -1,6 +1,6 @@
 # Skip to the next event
 
-Open **Pause > Skip to next event / time / stop > Skip to next event**.
+Open **Pause > Journey > Skip ahead > Skip to next event**.
 The actual railway advances with all trains on AI, including your service.
 The earliest enabled interruption wins:
 
@@ -14,7 +14,7 @@ The earliest enabled interruption wins:
   A signal already clear when you start, a distant red, and a red during booked
   dwell do not interrupt immediately.
 
-**Pause > Time-skip event settings** enables each category independently. The
+**Pause > Settings > Time-skip events** enables each category independently. The
 three encounter roles have separate switches. Preferences persist on this PC.
 Safety interventions, your service ending, and the 24-hour search boundary
 always end an event search. Clock and future-stop skips retain their explicit

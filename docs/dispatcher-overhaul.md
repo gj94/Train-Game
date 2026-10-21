@@ -2,6 +2,14 @@
 
 8 October 2026. This replaces the fixed dispatch overlay.
 
+## R43 presentation
+
+The pause/dispatch refresh is presentation only. X finds the assigned train, Y
+follows the inspected train, LB/RB switches four focus areas, and the inspector
+keeps View separate from Take control. Dispatch tools now expands the management
+actions. See [menus and controller navigation](menu-qol.md). Railway decisions
+and all prepared timetables are unchanged from R42.
+
 ## R13: preserve an overtake through a crossing delay
 
 An overtake hold measures the age of that particular plan, not earlier signal
@@ -58,7 +66,7 @@ ERS at 08:27:13 instead of 08:21:51. K1 gains 9m40s while K2 costs 5m22s; VB is
 unchanged. Four disruption rehearsals (K1 +10/+20 min, K2 +15 min, VB +12 min
 beyond its booked departure) also completed with no safety event or circular wait.
 
-To remove a blocking service, inspect it and choose **Delete service…**.
+To remove a blocking service, inspect it, expand **Dispatch tools**, and choose **Delete service…**.
 The confirmation names the train and defaults to **Keep service**; keyboard and
 controller use the same focusable modal. Confirming removes it for this run,
 releases only its authority, cancels its crossing commitments, and reassesses

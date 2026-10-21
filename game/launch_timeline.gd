@@ -50,7 +50,8 @@ func _ready() -> void:
 	choose(clampi(remembered,0,states.size()-1));slider.grab_focus()
 
 func _build() -> void:
-	var bg:=ColorRect.new();bg.color=Color("07151d");add_child(bg);bg.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
+	theme=preload("res://game/menu_theme.gd").theme()
+	var bg:=ColorRect.new();bg.color=Color("0b1119");add_child(bg);bg.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	var margin:=MarginContainer.new();add_child(margin);margin.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	for side in ["left","right","top","bottom"]:margin.add_theme_constant_override("margin_"+side,24)
 	var body:=VBoxContainer.new();body.add_theme_constant_override("separation",16);margin.add_child(body)

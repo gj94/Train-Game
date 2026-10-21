@@ -58,6 +58,7 @@ func test_activation_budget_preserves_transforms_and_rebase_then_cancels():
 	var view:=View.new()
 	view.root=Node3D.new()
 	view.performance={activation_usec=100000,activation_children=2}
+	view.loading=false
 	view.materials.water=ShaderMaterial.new()
 	view.materials.water.shader=load("res://game/shaders/geographic_water.gdshader")
 	var source:=Node3D.new()
@@ -140,3 +141,24 @@ func test_benchmark_statistics_preserve_long_stalls_and_original_samples():
 	for i in 99:values.append(8.0)
 	var result:=preload("res://game/performance_benchmark.gd").stats(values)
 	return values[0]==500 and result.median==8 and result.maximum==500 and result.over_16_7==1 and result.over_50==1
+
+func test_loading_activation_is_bounded_prioritises_nearby_and_keeps_partial_chunks_hidden():
+	var view:=View.new();view.root=Node3D.new()
+	view.performance={activation_usec=2000,activation_children=24}
+	view.loading=true;view.wanted={far={priority=1000000},near={priority=1}}
+	for id in ["far","near"]:
+		var source:=Node3D.new()
+		for i in 120:source.add_child(Node3D.new())
+		view._stage(id,{node=source,origin=Vector3.ZERO})
+	view._activate()
+	var count: int=view._activating.near.holder.get_child_count()
+	var ok: bool=count>0 and count<=96 and view._activating.far.holder.get_child_count()==0
+	ok=ok and not view._activating.near.holder.visible and view.loaded.is_empty()
+	# Completion publishes the complete hierarchy, never the partly attached tree.
+	for i in 250:
+		if view._activating.is_empty():break
+		view._activate()
+	ok=ok and view._activating.is_empty() and view.loaded.size()==2
+	for value in view.loaded.values():ok=ok and value.node.visible and value.node.get_child_count()==120
+	for value in view._activating.values():value.result.node.free()
+	view.root.free();return ok

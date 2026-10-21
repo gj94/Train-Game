@@ -1,5 +1,38 @@
 # Progress
 
+## 2026-10-22 — R43 menu QoL validated; publication pending
+
+- New five-section pause hub: Journey, Train & camera, Settings, Reference and
+  Session. LB/RB (keyboard Q/E) cycles sections, each remembers its action,
+  submenus preserve their caller, and confirmations still default to Cancel.
+  Shared charcoal/mint theme across browser, settings, guide and service editor;
+  contextual graphics explanations and selected time-speed feedback.
+- Dispatch gets Active/Waiting/All filters, collapsible tools, explicit live/
+  paused status and four controller focus areas. X/L3 locates the assigned train
+  after inspecting another; Y follows the inspected train. Own occupied length
+  is blue/YOU, other trains amber; label collision handling and train-footprint
+  hit priority improve close-up selection. Viewing remains separate from control.
+- Scenery loading reports real station preparation and queued/building/attaching
+  counts, elapsed time and version. A loading-only 8 ms / 96-child target replaces
+  the driving 2 ms / 24 target while the overlay is up. Nearby attachments and
+  newly prepared stations take priority. Initial model setup and live scene
+  attachment still have serial work; this is not fully threaded loading.
+- Full headless suite: 773 passed. Source controller event integration: 97 checks;
+  native menu fixture: 84 checks plus 720p/900p screenshot review. Sound mixer:
+  63 checks. Standard/Intensive service browser: 3,396 / 5,556 checks. Stationary
+  native ERS startup completed with four scenery workers and unchanged clock;
+  its development-PC timing is not a target-PC benchmark or an A/B claim.
+  The old whole-corridor native controller fixture exceeded shader-instance
+  capacity, so it was stopped; controller routing ran headlessly and menu
+  rendering/real geographic startup ran as separate native checks.
+- No simulation, authored service, prepared departure, five-minute state or
+  traffic-preview edits. No full-day timetable reruns or distribution gameplay.
+  R42 remains live until R43 packaging and publication checks complete.
+- Playtest Menu with LB/RB, open/back/revisit settings, then inspect another train
+  in Dispatch and press X. Check Y follow, LS pan, trigger zoom, all four areas,
+  View timetable, and cancel Take control/Delete. See docs/menu-qol.md.
+
+
 ## 2026-10-22 — R42 published
 
 - Full ZIP and signed incremental updates live at http://192.168.8.183:8765/,

@@ -1,6 +1,19 @@
-TRAIN GAME - KERALA COAST R42
+TRAIN GAME - KERALA COAST R43
 
-R42: Correct main-line speeds beside depot junctions and stationary departure horns.
+R43: A new pause hub, clearer dispatcher and more informative loading.
+Pause has Journey / Train & camera / Settings / Reference / Session sections.
+LB/RB changes sections, D-pad/LS navigates, A selects and B returns/resumes.
+Keyboard Q/E changes sections. Each section remembers the selected action.
+Dispatch: X finds YOUR train, Y follows the inspected train, LB/RB moves between
+map, service list, inspector and activity. Triggers zoom while the map is focused.
+Your train is blue and labelled YOU. View train does not hand over your service.
+Loading now shows station preparation, queued/building/attaching scenery and
+elapsed time. Final scene attachment gets more time while the loading screen is up.
+Simulation and all prepared timetable data are unchanged from R42.
+See guides/menu-qol.md and guides/controllers.md.
+R43 supports full downloads and incremental updates through Update & Play v4.
+
+Includes R42: Correct main-line speeds beside depot junctions and stationary departure horns.
 Shared depot-access track follows the adjoining running-line speed; the 25 km/h
 restriction applies to the diverging depot lead, with 15 km/h inside the yard.
 A whole train must clear the restricted track before accelerating.
@@ -12,10 +25,10 @@ advisory overtake hold from trapping trains behind the same reserved route.
 Arriving trains are distinguished from trains waiting to depart, so temporary
 approach occupancy does not cancel a promised overtake (K1/B024 at Alappuzha).
 R41 saves and imported service plans remain compatible with this speed correction.
-R42 supports full downloads and incremental updates through Update & Play v4.
+R43 supports full downloads and incremental updates through Update & Play v4.
 
 Includes R41: Skip to the next event with a live dispatcher following your train.
-Pause > Skip to next event / time / stop. Time-skip event settings select stop
+Pause > Journey > Skip ahead. Settings > Time-skip events selects stop
 approaches, crossings, overtaking, being overtaken and signal clearance separately.
 Stops return at 1 km or earlier for braking; encounters return about a minute
 before the first coaches pass. A holding red changing to yellow or green counts.
@@ -24,7 +37,7 @@ with AI still driving, then take control when ready. B / Esc cancels safely.
 Clock and future-stop targets remain available. See guides/event-skip.md.
 
 Includes the optional Epic graphics preset, integrated with R39 scenery fixes.
-Open pause menu > Graphics > Use Epic preset. High remains the default.
+Open Pause > Settings > Graphics & performance > Use Epic preset. High remains the default.
 Epic adds filtered surface detail on terrain, roads, platforms, track and water,
 sharper sky reflections, nearby station-lamp shadows and longer detail ranges.
 All effects can be adjusted individually. Dense nighttime stations cost more GPU
@@ -65,13 +78,13 @@ Includes the controller layout pages, distance-only signal HUD, station
 approaches, positional audio and all earlier improvements.
 
 DOWNLOAD OR UPDATE
-R42 supports full downloads and incremental updates. For an older installation,
+R43 supports full downloads and incremental updates. For an older installation,
 download the small updater ZIP from the host page and replace Update and Play.exe
 once while the updater is closed. The title identifies the v4 launcher.
 Then close the game and open Update and Play.exe to update the existing folder.
 It batches verified compressed blocks, uses four bounded transfer workers and
 reuses unchanged data. It can choose the full ZIP if that should finish sooner.
-The full R42 ZIP includes v4. For a fresh installation, extract the complete ZIP,
+The full R43 ZIP includes v4. For a fresh installation, extract the complete ZIP,
 including packs/, and start TrainGame.exe or the included updater's Play.
 Keep the whole installation together.
 Saves and preferences live separately

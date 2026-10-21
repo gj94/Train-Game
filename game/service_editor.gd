@@ -48,15 +48,16 @@ var _stock_choices := Stock.CHOICES
 func _ready() -> void:
 	layer = 12
 	panel = PanelContainer.new()
+	panel.theme=preload("res://game/menu_theme.gd").theme()
 	add_child(panel)
 	panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	panel.offset_left = 18; panel.offset_right = -18
 	panel.offset_top = 18; panel.offset_bottom = -42
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color("#0c202b")
+	style.bg_color = Color("#141e2a")
 	style.set_content_margin_all(16)
 	style.set_border_width_all(1)
-	style.border_color = Color("#476776")
+	style.border_color = Color("#304153")
 	style.set_corner_radius_all(8)
 	panel.add_theme_stylebox_override("panel",style)
 	var outer := VBoxContainer.new()

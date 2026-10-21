@@ -5,7 +5,7 @@ const Camera := preload("res://game/controller_camera.gd")
 const TSW := preload("res://game/controller_tsw.gd")
 const CameraMotion := preload("res://game/controller_camera_motion.gd")
 const Assist := preload("res://game/controller_assist.gd")
-const MENU_PAGES := ["controller_actions","train_controls","view_controls","sound_controls","points","controllers","passengers","coaches","controller_guide"]
+const MENU_PAGES := ["game_speed","controller_actions","train_controls","view_controls","sound_controls","points","controllers","passengers","coaches","controller_guide"]
 const HELP := TSW.HELP
 const LEGACY_HELP := HELP # Old callers/settings migrate to the same scheme.
 const KEYS := {
@@ -187,6 +187,8 @@ func _input(event: InputEvent) -> void:
 		return
 	if _ui_open():
 		_ensure_focus()
+		if game.hud.modal=="pause" and event.button_index in [JOY_BUTTON_LEFT_SHOULDER,JOY_BUTTON_RIGHT_SHOULDER]:
+			game.hud.pause_menu.set_page(game.hud.pause_menu.page+(-1 if event.button_index==JOY_BUTTON_LEFT_SHOULDER else 1));return
 		if game.hud.modal=="controller_guide" and event.button_index in [JOY_BUTTON_LEFT_SHOULDER,JOY_BUTTON_RIGHT_SHOULDER]:
 			game.hud.control_guide.open(game.hud.control_guide.page+(-1 if event.button_index==JOY_BUTTON_LEFT_SHOULDER else 1));return
 		if game.hud.modal.is_empty() and _popup()==null:
@@ -194,8 +196,8 @@ func _input(event: InputEvent) -> void:
 				if event.button_index==JOY_BUTTON_B: game.dispatcher.cancel_handover();return
 			elif event.button_index in [JOY_BUTTON_LEFT_SHOULDER,JOY_BUTTON_RIGHT_SHOULDER]:
 				game.dispatcher.focus_zone(-1 if event.button_index==JOY_BUTTON_LEFT_SHOULDER else 1);return
-			elif event.button_index==JOY_BUTTON_X: game.dispatcher._map.focus_train(game.dispatcher.inspected_train);return
-			elif event.button_index==JOY_BUTTON_Y: game.dispatcher._map.focus_station(-1);return
+			elif event.button_index in [JOY_BUTTON_X,JOY_BUTTON_LEFT_STICK]: game.dispatcher.locate_player();return
+			elif event.button_index==JOY_BUTTON_Y: game.dispatcher.toggle_follow();return
 		match event.button_index:
 			JOY_BUTTON_A: _ui_pulse("ui_accept")
 			JOY_BUTTON_B: _back()
@@ -291,7 +293,7 @@ func _ensure_focus() -> void:
 			game.service_editor.roster.grab_focus()
 		return
 	var focus := get_viewport().gui_get_focus_owner()
-	var container: Control = game.hud.control_guide if game.hud.modal=="controller_guide" else (game.hud._buttons if not game.hud.modal.is_empty() else game.dispatcher._root)
+	var container: Control = game.hud.pause_menu if game.hud.modal=="pause" else (game.hud.control_guide if game.hud.modal=="controller_guide" else (game.hud._buttons if not game.hud.modal.is_empty() else game.dispatcher._root))
 	if focus == null or not focus.is_visible_in_tree() or not container.is_ancestor_of(focus):
 		if not game.hud.modal.is_empty(): game.hud.focus_first()
 		else: game.dispatcher.focus_first()
@@ -400,7 +402,7 @@ func _process(delta: float) -> void:
 		var nav:=_nav_vector()
 		if desk_active:
 			game.dispatcher.pad_navigation(left,right,_axes[5]-_axes[4],delta)
-			nav=Vector2(int(_buttons.has(JOY_BUTTON_DPAD_RIGHT))-int(_buttons.has(JOY_BUTTON_DPAD_LEFT)),int(_buttons.has(JOY_BUTTON_DPAD_DOWN))-int(_buttons.has(JOY_BUTTON_DPAD_UP)))
+			if game.dispatcher._map.has_focus():nav=Vector2(int(_buttons.has(JOY_BUTTON_DPAD_RIGHT))-int(_buttons.has(JOY_BUTTON_DPAD_LEFT)),int(_buttons.has(JOY_BUTTON_DPAD_DOWN))-int(_buttons.has(JOY_BUTTON_DPAD_UP)))
 		_repeat(Shape.cardinal(nav),delta,func(d):
 			if desk_active and game.dispatcher._map.has_focus():game.dispatcher._map.navigate_target(Vector2(d))
 			else:_ui_pulse("ui_right" if d.x > 0 else ("ui_left" if d.x < 0 else ("ui_down" if d.y > 0 else "ui_up"))))
@@ -417,7 +419,7 @@ func _process(delta: float) -> void:
 	if _assist!=null:_assist.update_pad(self)
 	# Menu navigation must not read train state while the skip worker owns it.
 	if _ui_open():
-		var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect/select · LB/RB areas · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
+		var menu_hint: String="LS pan · LT/RT zoom · D-pad targets · A inspect · LB/RB areas · X your train · Y follow · B back" if context=="desk" else "D-pad / LS move · A select · B back · LB/RB next control · RS scroll"
 		game.hud.set_controller_hint(menu_hint)
 		return
 	var driving_hint: String=TSW.hint(self)

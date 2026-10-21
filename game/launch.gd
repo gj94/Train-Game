@@ -133,24 +133,15 @@ func _box(colour: Color,border: Color=Color("29424c")) -> StyleBoxFlat:
 	return box
 
 func _build() -> void:
-	var skin:=Theme.new();skin.default_font_size=18
-	skin.set_stylebox("normal","Button",_box(Color("112d38")))
-	skin.set_stylebox("hover","Button",_box(Color("24424c")))
-	skin.set_stylebox("pressed","Button",_box(Color("275b50")))
-	var focus:=_box(Color(0,0,0,0),Color("86e4be"));focus.set_border_width_all(3)
-	skin.set_stylebox("focus","Button",focus);skin.set_stylebox("focus","ItemList",focus)
-	skin.set_stylebox("panel","ItemList",_box(Color("0c202a")))
-	skin.set_stylebox("selected","ItemList",_box(Color("245446")))
-	skin.set_stylebox("selected_focus","ItemList",_box(Color("245446"),Color("86e4be")))
-	theme=skin
-	var bg:=ColorRect.new();bg.color=Color("07151d");add_child(bg);bg.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
+	theme=preload("res://game/menu_theme.gd").theme()
+	var bg:=ColorRect.new();bg.color=Color("0b1119");add_child(bg);bg.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	var margin:=MarginContainer.new();add_child(margin);margin.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	content=margin
 	for side in ["left","right","top","bottom"]:margin.add_theme_constant_override("margin_"+side,24)
 	var outer:=VBoxContainer.new();outer.add_theme_constant_override("separation",12);margin.add_child(outer)
 	var top:=HBoxContainer.new();top.add_theme_constant_override("separation",12);outer.add_child(top)
 	var brand:=VBoxContainer.new();brand.size_flags_horizontal=SIZE_EXPAND_FILL;top.add_child(brand)
-	_label(brand,"TRAIN GAME",13,Color("86e4be"));_label(brand,"KERALA COAST",28)
+	_label(brand,"TRAIN GAME  /  CHOOSE YOUR JOURNEY",13,Color("86e4be"));_label(brand,"KERALA COAST",28)
 	_button(top,"Explore by time",func():get_tree().change_scene_to_file("res://game/launch_timeline.tscn"))
 	continue_button=_button(top,"Continue latest save",_continue)
 	saved_button=_button(top,"Saved journeys",_toggle_saves)
@@ -181,7 +172,7 @@ func _build() -> void:
 	roster.add_theme_font_size_override("font_size",18);roster.add_theme_constant_override("v_separation",16)
 	columns.add_child(roster);roster.item_selected.connect(_select);roster.item_activated.connect(func(_i):start_button.grab_focus())
 	var panel:=PanelContainer.new();panel.custom_minimum_size.x=390;panel.size_flags_horizontal=SIZE_EXPAND_FILL;panel.size_flags_stretch_ratio=.75
-	panel.add_theme_stylebox_override("panel",_box(Color("102631")));columns.add_child(panel)
+	panel.add_theme_stylebox_override("panel",_box(Color("141e2a")));columns.add_child(panel)
 	var details:=VBoxContainer.new();details.add_theme_constant_override("separation",8);panel.add_child(details)
 	departure=_label(details,"",30)
 	detail_title=_label(details,"Choose a service",21);detail_title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
@@ -197,7 +188,7 @@ func _build() -> void:
 	briefing=_label(body,"",16,Color("a8bdc6"));briefing.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	traffic_list=VBoxContainer.new();traffic_list.add_theme_constant_override("separation",12);body.add_child(traffic_list)
 	start_button=_button(details,"Drive this service",start_selected);start_button.custom_minimum_size.y=52
-	start_button.add_theme_stylebox_override("normal",_box(Color("265e4a"),Color("86e4be")))
+	start_button.add_theme_stylebox_override("normal",_box(Color("253d48"),Color("82d8cd")))
 	status=_label(outer,"",16,Color("efc382"));status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	_label(outer,"D-pad / LS navigate · A select · B back · LB / RB filter · X sort · Y stops / traffic · RS scroll · F11 fullscreen",15,Color("a8bdc6"))
 	_label(outer,preload("res://game/build_version.gd").current(),13,Color("7895a2"))
@@ -207,6 +198,9 @@ func _build() -> void:
 	var loading:=VBoxContainer.new();loading.add_theme_constant_override("separation",24);center.add_child(loading)
 	_label(loading,"PREPARING YOUR JOURNEY",28,Color("86e4be"))
 	busy_label=_label(loading,"",21)
+	busy_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;busy_label.custom_minimum_size.x=720
+	_label(loading,"Railway state → Train resources → Nearby scenery → Ready to drive",15,Color("9caebe"))
+	_label(loading,preload("res://game/build_version.gd").current(),13,Color("9caebe"))
 	cancel_button=_button(loading,"Cancel / B",_cancel);busy_panel.hide()
 
 static func in_period(clock: float,filter: int) -> bool:
@@ -301,7 +295,7 @@ func _build_traffic() -> void:
 	var names:={}
 	for row in services:names[row.id]=row.name
 	for event in traffic_rows:
-		var card:=PanelContainer.new();var style:=_box(Color("0c202a"));style.set_content_margin_all(10);card.add_theme_stylebox_override("panel",style);traffic_list.add_child(card)
+		var card:=PanelContainer.new();var style:=_box(Color("101b28"));style.set_content_margin_all(10);card.add_theme_stylebox_override("panel",style);traffic_list.add_child(card)
 		var lines:=VBoxContainer.new();lines.add_theme_constant_override("separation",4);card.add_child(lines)
 		var heading:=HBoxContainer.new();lines.add_child(heading)
 		_label(heading,Traffic.time_text(event.time),17,Color("86e4be"))

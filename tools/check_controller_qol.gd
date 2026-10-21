@@ -10,6 +10,7 @@ func hold_button(id: int) -> void:
 	button(id,true);pad._process(.30);await frames()
 	pad._process(.40);button(id,false);await frames()
 func choose(action: String) -> void:
+	game.hud.focus_action(action);await frames()
 	for child in game.hud._buttons.get_children():
 		if child.get_meta("action","")==action:
 			check(not child.disabled,"enabled "+action);child.grab_focus();await tap(JOY_BUTTON_A);return
@@ -134,7 +135,18 @@ func run() -> void:
 	pad._process(.4);button(JOY_BUTTON_BACK,false);await frames()
 	check(game.hud.modal=="progress" and not game.dispatcher._root.visible,"held View opens only progress")
 	await tap(JOY_BUTTON_B)
-	await tap(JOY_BUTTON_START);await choose("controller_guide")
+	await tap(JOY_BUTTON_START)
+	for i in 5:
+		check(game.hud.pause_menu.page==i,"pause section via RB "+str(i))
+		check(game.hud.pause_menu.actions.is_ancestor_of(root.gui_get_focus_owner()),"section owns focus")
+		await tap(JOY_BUTTON_RIGHT_SHOULDER)
+	check(game.hud.pause_menu.page==0,"RB wraps pause sections")
+	await tap(JOY_BUTTON_LEFT_SHOULDER);check(game.hud.pause_menu.page==4,"LB wraps pause sections")
+	await choose("game_speed");await choose("time:4")
+	check(game.time_scale==4 and root.gui_get_focus_owner().text.begins_with("✓"),"Time speed selection marks current rate")
+	await choose("time:1");await tap(JOY_BUTTON_B)
+	check(game.hud.modal=="pause" and game.hud.pause_menu.page==0,"Time speed back returns to Journey")
+	await choose("controller_guide")
 	check(game.hud.modal=="controller_guide" and game.paused,"Pause opens dedicated control guide")
 	for i in 4:
 		check(game.hud.control_guide.page==i,"guide tab "+str(i))
@@ -152,6 +164,15 @@ func run() -> void:
 	await choose("journey:toggle:show_signal_aspect")
 	await capture("signal-settings")
 	await tap(JOY_BUTTON_B);await tap(JOY_BUTTON_B)
+	game.dispatcher.set_open(true);await frames()
+	await tap(JOY_BUTTON_X)
+	check(game.dispatcher.inspected_train==game.train.id and game.dispatcher._map.has_focus(),"X locates own service on map")
+	await tap(JOY_BUTTON_Y);check(game.dispatcher._map.follow_train,"Y follows inspected service")
+	await tap(JOY_BUTTON_Y);check(not game.dispatcher._map.follow_train,"Y unpins follow")
+	for i in 4:
+		await tap(JOY_BUTTON_RIGHT_SHOULDER)
+		check(game.dispatcher._zone(root.gui_get_focus_owner())==posmod(i+1,4),"RB dispatcher area "+str(i))
+	await tap(JOY_BUTTON_B)
 	button(JOY_BUTTON_DPAD_DOWN,true);pad._process(.25);pad.window_focus(false);button(JOY_BUTTON_DPAD_DOWN,false)
 	check(not walk.active and not pad._armed and not pad._assist.visible,"focus loss cancels pending D-pad tap")
 	print("Controller context (%s): %d checks, %d failures" % [family,checks,failures])

@@ -452,6 +452,7 @@ func _process(delta: float) -> void:
 		route_ahead=journey_tools.route_text if journey_tools!=null else "",
 		dispatch_expectation=_journey_snapshot.get("dispatch_expectation",""),
 		train_id = train.id,
+		service_name = train.service_name,
 		stock_kind = train.stock_kind,
 		cab_end = train.cab_end,
 		cars = tv.cars.size(),
@@ -509,6 +510,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				elif hud.modal == "saved_games": save_load.back()
 				elif hud.modal == "time_skip": time_skip.back()
 				elif hud.modal.begins_with("graphics"): graphics_options.back()
+				elif hud.modal in ControllerInput.MENU_PAGES: controller.menu_back()
 				elif hud.modal != "" and hud.modal != "pause": hud.show_modal("pause", labels_enabled)
 				else: _toggle_pause()
 				return
@@ -773,6 +775,7 @@ func _toggle_pause() -> void:
 
 func _set_paused(value: bool) -> void:
 	paused = value
+	if dispatcher!=null:dispatcher.presentation_paused=value
 	if controller != null: controller.neutralize()
 	if walker!=null: walker.neutralize()
 	cam.set_process_unhandled_input(not value)
@@ -784,6 +787,8 @@ func _set_paused(value: bool) -> void:
 func _set_time_scale(value: int) -> void:
 	if value not in [1,2,4,8,16,32]:return
 	time_scale=value
+	if hud.modal=="game_speed":
+		hud._menu_context.time_scale=value;hud.show_modal("game_speed");hud.focus_action("time:"+str(value))
 	AudioServer.playback_speed_scale=float(value)
 	for sound in train_audio.values():
 		sound.simulation_rate=float(value)
@@ -859,7 +864,7 @@ func _ui_action(action: String) -> void:
 		"services": _open_services()
 		"controllers": controller.open_settings()
 		"points": controller.open_points()
-		"controller_actions", "train_controls", "view_controls", "sound_controls", "controller_guide":
+		"game_speed", "controller_actions", "train_controls", "view_controls", "sound_controls", "controller_guide":
 			_set_paused(true)
 			hud.show_modal(action)
 		"coaches":

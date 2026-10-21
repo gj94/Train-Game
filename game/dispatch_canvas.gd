@@ -6,7 +6,8 @@ signal train_selected(id: String)
 signal station_selected(index: int)
 signal view_changed
 const Footprint := preload("res://sim/train_footprint.gd")
-const PAPER := Color("#09131d")
+const PAPER := Color("#0b141e")
+const YOUR := Color("a5d2ff")
 const RAIL := Color("#577084")
 const MINT := Color("#4be3bc")
 const AMBER := Color("#ffbe69")
@@ -16,6 +17,7 @@ var world: RailWorld
 var selected := ""
 var destination := ""
 var inspected_train := ""
+var player_train := ""
 var focus_index := -1
 var center_s := 0.0
 var span := 8000.0
@@ -236,14 +238,17 @@ func _draw() -> void:
 		draw_line(p-Vector2(0,8),p+Vector2(0,8),TEXT,3)
 		var target: String="BUFFER:"+id
 		_hits.append({key=target,kind="destination",id=target,rect=Rect2(p-Vector2(12,12),Vector2(24,24)),p=p})
+	var label_boxes: Array[Rect2]=[]
 	for t: Train in world.active_trains():
 		var intervals:=Footprint.intervals(world.graph,t)
 		last_footprints[t.id]=intervals
 		var highlighted: bool=t.id==inspected_train
+		var own: bool=t.id==player_train
+		var train_color: Color=YOUR if own else AMBER
 		for interval in intervals:
 			if not _visible_edge(interval.edge):continue
-			_line_segment(interval.edge,interval.from_s,interval.to_s,15 if highlighted else 11,TEXT if highlighted else AMBER.darkened(.3))
-			var points:=_line_segment(interval.edge,interval.from_s,interval.to_s,9,AMBER)
+			_line_segment(interval.edge,interval.from_s,interval.to_s,15 if highlighted else 11,TEXT if highlighted else train_color.darkened(.3))
+			var points:=_line_segment(interval.edge,interval.from_s,interval.to_s,9,train_color)
 			var box:=Rect2(points[0],Vector2.ZERO)
 			for p in points:box=box.expand(p)
 			_hits.append({key="train:"+t.id,kind="train",id=t.id,rect=box.grow(8),p=box.get_center()})
@@ -255,17 +260,24 @@ func _draw() -> void:
 		var head:=_edge_p(t.path[0].edge,t.head_s/world.graph.edges[t.path[0].edge].length)
 		if head.x<0 or head.x>size.x:continue
 		var label_pos:=head+Vector2(-33,-48 if t.path[0].dir>0 else 46)
-		var rect:=Rect2(label_pos,Vector2(74,25))
-		draw_style_box(_tag_style(highlighted),rect)
-		_text(label_pos+Vector2(9,17),t.id+("  ›" if t.path[0].dir>0 else "  ‹"),TEXT,14)
+		var rect:=Rect2(label_pos,Vector2(108 if own else 74,27))
+		rect.position.x=clampf(rect.position.x,8,maxf(8,size.x-rect.size.x-8))
+		for attempt in 7:
+			if not label_boxes.any(func(other):return other.grow(3).intersects(rect)):break
+			rect.position.y+=-30 if t.path[0].dir>0 else 30
+		rect.position.y=clampf(rect.position.y,62,maxf(62,size.y-100))
+		label_boxes.append(rect);label_pos=rect.position
+		var tag:=_tag_style(highlighted);tag.border_color=train_color
+		draw_style_box(tag,rect)
+		_text(label_pos+Vector2(9,18),("YOU · " if own else "")+t.id+("  ›" if t.path[0].dir>0 else "  ‹"),train_color,14)
 		_hits.append({key="train:"+t.id,kind="train",id=t.id,rect=rect,p=rect.get_center()})
-		if span<3000:_text(label_pos+Vector2(0,41),"%d m · %d km/h" % [roundi(t.length),roundi(t.speed*3.6)],AMBER,11)
+		if span<3000:_text(label_pos+Vector2(0,41),"%d m · %d km/h" % [roundi(t.length),roundi(t.speed*3.6)],train_color,11)
 	_draw_minimap()
 	if has_focus():
 		draw_rect(Rect2(Vector2(1,1),size-Vector2(2,2)),MINT,false,2)
 		for hit in _hits:
 			if hit.key==_focus_key:draw_rect(hit.rect.grow(3),MINT,false,2)
-	_text(Vector2(12,size.y-7),"%.2f km visible  ·  occupied train = amber  /  locked route = mint" % (span/1000),RAIL,11)
+	_text(Vector2(12,size.y-7),"%.2f km  ·  You: blue   Trains: amber   Routes: mint" % (span/1000),RAIL,11)
 
 func _tag_style(active: bool) -> StyleBoxFlat:
 	var style:=StyleBoxFlat.new()
@@ -288,9 +300,13 @@ func _draw_minimap() -> void:
 	draw_rect(view.intersection(_mini),MINT,false,1)
 	for t: Train in world.active_trains():
 		var x:=_mini.position.x+(_s(t.path[0].edge,t.head_s)-full_start)/total*_mini.size.x
-		draw_line(Vector2(x,_mini.position.y+5),Vector2(x,_mini.end.y-5),AMBER,2)
+		draw_line(Vector2(x,_mini.position.y+5),Vector2(x,_mini.end.y-5),YOUR if t.id==player_train else AMBER,4 if t.id==player_train else 2)
 
 func select_at(pos: Vector2) -> void:
+	# A train body is visually above its track and signals, so inspect it first.
+	for hit in _hits:
+		if hit.kind=="train" and hit.rect.has_point(pos):
+			_focus_key=hit.key;_activate(hit);return
 	for hit in _hits:
 		if hit.rect.has_point(pos):
 			_focus_key=hit.key;_activate(hit);return
@@ -332,6 +348,7 @@ func _gui_input(event: InputEvent) -> void:
 			if event.pressed:
 				_dragging=true;_moved=false;_press=event.position
 				if _mini.has_point(event.position):
+					follow_train=false
 					center_s=lerpf(full_start,full_end,(event.position.x-_mini.position.x)/_mini.size.x);queue_redraw();_moved=true
 			else:
 				if _dragging and not _moved and event.button_index==MOUSE_BUTTON_LEFT:select_at(event.position)

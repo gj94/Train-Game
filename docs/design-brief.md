@@ -9,6 +9,12 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **22 Oct 2026 menu QoL:** a consistent pause hub with Journey, Train & camera,
+  Settings, Reference and Session sections navigable by LB/RB; remember focus
+  and submenu parents. Dispatcher needs explicit own-train locate, follow,
+  logical controller focus areas and clear train occupancy. Explain loading
+  stages and preserve main-thread scene ownership. No simulation/timetable
+  changes or full-day regeneration for this presentation release.
 - **21 Oct 2026 departure/branch correction:** complete both AI departure horn
   calls before moving, including the player's service after handover. Manual
   takeover cancels the ceremony even while paused. Depot restrictions apply

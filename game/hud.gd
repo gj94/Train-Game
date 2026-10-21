@@ -3,6 +3,7 @@ extends CanvasLayer
 signal action_requested(action: String)
 const Clock := preload("res://sim/world_clock.gd")
 const PortedStock := preload("res://sim/stock/ported_stock.gd")
+const MenuSkin := preload("res://game/menu_theme.gd")
 const ControllerMenus := preload("res://game/controller_menus.gd")
 const HELP := """[b]DRIVING[/b]
 W / ↑ more power · S / ↓ less power / more brake · X coast
@@ -28,7 +29,7 @@ Home aisle / seat. Original LHB rake: B fold / lower middle berths.
 F5 service designer: edit stock, stops and times; import/export JSON; play any service.
 D (9 on foot) open / close dispatch · M timetable / map
 Select an entrance and exit, then SET ROUTE. PUT TO RED cancels safely.
-Select any service in the roster to follow it. Tab takes manual control.
+Select a service to inspect it. View train changes only your viewpoint; Take control asks first.
 AUTO DISPATCH requests booked routes. HOLD MRT queues trains at Maruthur.
 AI needs routes and waits for its departure time and station dwell.
 
@@ -79,6 +80,10 @@ var _buttons: VBoxContainer
 var time_skip_map
 var control_guide
 var _menu_focus := {}
+var pause_menu
+var _modal_content: BoxContainer
+var _modal_buttons: VBoxContainer
+var _menu_context := {}
 var _dialog: PanelContainer
 var _toast_time := 0.0
 var _critical_toast := false
@@ -177,22 +182,11 @@ func _rich(pos: Vector2, dimensions: Vector2, font: int) -> RichTextLabel:
 
 func _button(parent: Node, text: String, action: String) -> Button:
 	var button := Button.new()
-	button.text = text
-	button.focus_mode = Control.FOCUS_ALL
-	button.set_meta("action", action)
-	button.custom_minimum_size.y = 40
-	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.add_theme_font_size_override("font_size", 16)
-	for state in ["normal", "hover", "pressed", "focus"]:
-		var style := _panel_style()
-		style.bg_color = Color("213d49") if state != "normal" else Color("122b37")
-		if state == "focus":
-			style.border_color = Color("ffca72")
-			style.set_border_width_all(3)
-		style.content_margin_top = 8
-		style.content_margin_bottom = 8
-		button.add_theme_stylebox_override(state, style)
-	button.pressed.connect(func(): action_requested.emit(action))
+	button.text=text;button.focus_mode=Control.FOCUS_ALL
+	button.set_meta("action",action);button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	MenuSkin.button(button)
+	button.theme=MenuSkin.theme()
+	button.pressed.connect(func():action_requested.emit(action))
 	parent.add_child(button)
 	return button
 
@@ -200,7 +194,8 @@ func _build_modal() -> void:
 	_shade = ColorRect.new()
 	add_child(_shade)
 	_shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_shade.color = Color(0.005, 0.015, 0.025, 0.72)
+	_shade.color = Color(0.015, 0.025, 0.04, 0.96)
+	_shade.theme=MenuSkin.theme()
 	_shade.mouse_filter = Control.MOUSE_FILTER_STOP
 	var dialog := PanelContainer.new()
 	_dialog=dialog
@@ -210,45 +205,65 @@ func _build_modal() -> void:
 	dialog.offset_right = 400
 	dialog.offset_top = -365
 	dialog.offset_bottom = 365
-	dialog.add_theme_stylebox_override("panel", _panel_style())
+	dialog.add_theme_stylebox_override("panel", MenuSkin.box(MenuSkin.INK,28))
 	var column := VBoxContainer.new()
-	column.add_theme_constant_override("separation", 10)
+	column.add_theme_constant_override("separation", 20)
 	dialog.add_child(column)
 	_heading = Label.new()
-	_heading.add_theme_font_size_override("font_size", 27)
-	_heading.add_theme_color_override("font_color", Color("ffca72"))
+	_heading.add_theme_font_size_override("font_size", 30)
+	_heading.add_theme_color_override("font_color", MenuSkin.TEXT)
 	column.add_child(_heading)
+	MenuSkin.divider(column)
+	var content:=BoxContainer.new();_modal_content=content;content.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	content.add_theme_constant_override("separation",28);column.add_child(content)
+	var reading:=VBoxContainer.new();reading.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	reading.size_flags_stretch_ratio=1.15;reading.size_flags_vertical=Control.SIZE_EXPAND_FILL;content.add_child(reading)
 	_body = RichTextLabel.new()
 	_body.bbcode_enabled = true
 	_body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_body.add_theme_font_size_override("normal_font_size", 18)
 	_body.add_theme_font_size_override("bold_font_size", 18)
-	column.add_child(_body)
+	reading.add_child(_body)
 	time_skip_map=preload("res://game/skip_map.gd").new()
-	column.add_child(time_skip_map);time_skip_map.hide()
+	reading.add_child(time_skip_map);time_skip_map.hide()
 	_button_scroll = ScrollContainer.new()
 	_button_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	_button_scroll.follow_focus = true
-	column.add_child(_button_scroll)
+	_button_scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	content.add_child(_button_scroll)
 	_buttons = VBoxContainer.new()
 	_buttons.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_buttons.add_theme_constant_override("separation", 8)
 	_button_scroll.add_child(_buttons)
+	_modal_buttons=_buttons
+	MenuSkin.divider(column)
+	MenuSkin.label(column,"A / Enter  Select     B / Esc  Back     RS / Mouse wheel  Scroll",14,MenuSkin.MUTED)
+	pause_menu=preload("res://game/pause_menu.gd").new();pause_menu.hud=self
+	_shade.add_child(pause_menu);pause_menu.hide()
 	_shade.visible = false
 	control_guide=preload("res://game/controller_guide.gd").new()
 	control_guide.go_back=func():action_requested.emit("pad_back")
 	_shade.add_child(control_guide);control_guide.hide()
 
 func show_modal(kind: String, labels_on: bool = false, description: String = "") -> void:
+	if modal=="pause":pause_menu.remember()
 	var old_focus:=get_viewport().gui_get_focus_owner()
 	if old_focus!=null and _buttons.is_ancestor_of(old_focus):
 		_menu_focus[modal]=old_focus.get_meta("action","")
 	modal = kind
+	_buttons=_modal_buttons
 	time_skip_map.visible=kind=="time_skip" and save_menu.get("map_mode",false)
+	_modal_content.vertical=kind in ["help","progress","confirm"] or time_skip_map.visible
+	_modal_content.move_child(_button_scroll,1 if _modal_content.vertical or time_skip_map.visible else 0)
 	_resize_modal()
 	_shade.visible = kind != ""
-	_dialog.visible=kind!="controller_guide"
+	_dialog.visible=kind not in ["controller_guide","pause"]
+	pause_menu.visible=kind=="pause"
 	control_guide.visible=kind=="controller_guide"
+	if kind=="pause":
+		pause_menu.open(labels_on,_menu_context);_refresh_visibility()
+		if controller_active:call_deferred("focus_first")
+		return
 	if kind=="controller_guide":
 		control_guide.open(control_guide.page);_refresh_visibility();return
 	for button in _buttons.get_children():
@@ -260,38 +275,13 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 	_button_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL if kind in ["saved_games","time_skip","controller_actions"] else Control.SIZE_FILL
 	if kind.begins_with("graphics"):preload("res://game/graphics_menu.gd").build(self,kind)
 	match kind:
-		"pause":
-			_heading.text = "PAUSED"
-			_body.text = "Resume to continue the current service.\n[b]F4[/b] clears the screen; [b]D[/b] opens dispatch."
-			_button(_buttons, "Resume  ·  Esc", "resume")
-			_button(_buttons, "Save journey…", "save:menu:save")
-			_button(_buttons, "Audio settings…", "audio:open")
-			_button(_buttons, "HUD, journey tools & recovery…", "journey:open")
-			_button(_buttons, "Load journey…  ·  Ctrl+L", "save:menu:load")
-			_button(_buttons, "Quick save  ·  Ctrl+S", "save:quick")
-			_button(_buttons, ("Return to window" if DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN,DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN] else "Enter fullscreen")+"  ·  F11 / Alt+Enter", "fullscreen")
-			_button(_buttons, "Graphics settings…", "graphics")
-			_button(_buttons, "Journey progress  ·  F12", "progress")
-			_button(_buttons, "Skip to next event / time / stop…", "skip:open")
-			_button(_buttons, "Time-skip event settings…", "skip:settings")
-			_button(_buttons, "Scenario & controls  ·  F1", "help")
-			_button(_buttons, "Train & view actions…", "controller_actions")
-			_button(_buttons, "Controller layout: driving / walking / cameras…", "controller_guide")
-			_button(_buttons, "Controller preferences…", "controllers")
-			_button(_buttons, "Service designer / import / export  ·  F5", "services")
-			_button(_buttons, "Go to passenger coach…", "passengers")
+		"game_speed":
+			_heading.text="TIME SPEED"
+			_body.text="Fast-forward the entire railway, including all services. Your train still follows its normal physics and speed limits in simulation time.\n\nReturn to Journey to resume."
 			for rate in [1,2,4,8,16,32]:
-				_button(_buttons,"Time ×%d%s" % [rate," · normal" if rate==1 else " · fast forward"],"time:"+str(rate))
-			_button(_buttons, "Clean view  ·  F4", "clean")
-			_button(_buttons, "Track labels: " + ("ON" if labels_on else "OFF") + "  ·  F6", "labels")
-
-			_button(_buttons, "WAP-7 + ICF passenger rake  ·  F2", "wap7")
-			_button(_buttons, "WAP-7 + LHB passenger rake  ·  F3", "lhb")
-			_button(_buttons, "Kerala Coast / Southern corridor…  ·  F7", "routes")
-			_button(_buttons, "Traffic / solo fleet…  ·  F9", "fleet")
-			_button(_buttons, "Restart current services…", "restart")
-			_button(_buttons, "Choose another service / main menu…", "landing")
-			_button(_buttons, "Quit to desktop…", "quit")
+				var active: bool=rate==int(_menu_context.get("time_scale",1))
+				_button(_buttons,("✓  " if active else "")+"×%d  ·  %s" % [rate,"Normal speed" if rate==1 else "Fast forward"],"time:"+str(rate))
+			_button(_buttons,"Back","pad_back")
 		"saved_games", "time_skip":
 			_heading.text=save_menu.get("title","SAVED JOURNEYS")
 			_body.text=save_menu.get("body","")
@@ -303,12 +293,12 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			ControllerMenus.build(self, kind)
 		"coaches":
 			_heading.text = "GO TO PASSENGER COACH"
-			_body.text = "Works while moving, including WAP-7 trains.\nYou keep your service, power/brake and AI setting. Y / E stands to walk inside; LS click returns to the pilot.\nThis is a viewpoint transfer; WAP-7 has no passenger gangway."
+			_body.text = "Works while moving, including WAP-7 trains.\nYou keep your service. Standing or sitting as a passenger gives driving to AI. Hold D-pad left/right returns to pilot.\nThis is a viewpoint transfer; WAP-7 has no passenger gangway."
 			for coach in controller_options.get("coaches",[]):_button(_buttons,coach.label,"coach:"+str(coach.index))
 			_button(_buttons,"Back","pad_back")
 		"passengers":
 			_heading.text = "PASSENGER COACHES"
-			_body.text = "Go to a coach while moving, including WAP-7 trains. Your driving controls stay set.\nY / E stands to walk inside; LS click returns to the pilot.\n[b]1 / 2 / 3[/b] selects first/middle/last; [b]PgUp/PgDn[/b] visits any coach."
+			_body.text = "Go to a coach while moving, including WAP-7 trains. AI drives while you walk or sit as a passenger.\nY / E stands; hold D-pad left/right returns to pilot.\n[b]1 / 2 / 3[/b] selects first/middle/last; [b]PgUp/PgDn[/b] visits any coach."
 			_button(_buttons,"Go to any passenger coach…","coaches")
 			_button(_buttons, "First passenger coach  ·  Alt+1", "pax:0")
 			_button(_buttons, "Middle passenger coach  ·  Alt+2", "pax:1")
@@ -321,7 +311,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons,"Back  ·  Esc / F12","close_progress")
 		"help":
 			_heading.text = "SCENARIO & CONTROLS  /  PAUSED"
-			_body.text = scenario_brief + "\n" + controller_help + "\n\n[b]KEYBOARD REFERENCE[/b]\n" + HELP
+			_body.text = (scenario_brief + "\n" + controller_help + "\n\n[b]KEYBOARD REFERENCE[/b]\n" + HELP).strip_edges()
 			_button(_buttons, "Back  ·  Esc / F1", "close_help")
 		"fleet":
 			_heading.text = "TRAFFIC & INDIAN RAIL FLEET"
@@ -332,7 +322,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Back  ·  Esc", "fleet_back")
 		"confirm":
 			_heading.text = "LEAVE THIS RUN?"
-			_body.text = description + "\n\nCurrent progress will be lost. Save/load is not available yet."
+			_body.text = description + "\n\nUnsaved progress will be lost. Cancel to save your journey first."
 			_button(_buttons, "Cancel  ·  Esc", "cancel")
 			_button(_buttons, "Continue", "confirm")
 	var choices := _buttons.get_children()
@@ -341,7 +331,7 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 		choices[i].focus_previous = choices[posmod(i-1,choices.size())].get_path()
 		choices[i].focus_neighbor_bottom = choices[i].focus_next
 		choices[i].focus_neighbor_top = choices[i].focus_previous
-	_button_scroll.custom_minimum_size.y = clampf(_buttons.get_child_count()*48-8,0,420)
+	_button_scroll.custom_minimum_size.y = clampf(_buttons.get_child_count()*56,0,420)
 	if time_skip_map.visible:
 		_body.custom_minimum_size.y=130
 		_button_scroll.size_flags_vertical=Control.SIZE_FILL
@@ -356,17 +346,20 @@ func _resize_modal() -> void:
 	if _dialog==null:return
 	var available:=get_viewport().get_visible_rect().size-Vector2(32,32)
 	var map_open: bool=time_skip_map!=null and time_skip_map.visible
-	var half:=Vector2(minf(1600 if map_open else 800,available.x),minf(900 if map_open else 730,available.y))*.5
+	var half:=Vector2(minf(1600 if map_open else 1120,available.x),minf(900 if map_open else 730,available.y))*.5
 	_dialog.offset_left=-half.x;_dialog.offset_right=half.x
 	_dialog.offset_top=-half.y;_dialog.offset_bottom=half.y
 
 func focus_action(action: String) -> void:
+	if modal=="pause" and pause_menu.focus_action(action):return
 	for button in _buttons.get_children():
 		if button.get_meta("action","")==action:
 			button.grab_focus();return
 
 func focus_first() -> void:
 	if modal.is_empty(): return
+	if modal=="pause":pause_menu.focus_first();return
+	if modal=="game_speed":focus_action("time:"+str(int(_menu_context.get("time_scale",1))));return
 	if modal=="controller_guide":control_guide.tabs[control_guide.page].grab_focus();return
 	# Confirmations always start on Cancel, never a remembered destructive action.
 	if modal in ["pause","controller_actions","train_controls","view_controls","sound_controls","points","controllers","passengers","coaches"]:
@@ -379,8 +372,9 @@ func focus_first() -> void:
 			return
 
 func set_controller_hint(text: String) -> void:
+	if modal=="pause":pause_menu.update_input_hint()
 	_pad_hint.text = text
-	_pad_hint.visible = controller_active and (not desk_open or modal != "") and (not clean_view or modal != "")
+	_pad_hint.visible = controller_active and modal!="pause" and (not desk_open or modal != "") and (not clean_view or modal != "")
 
 func set_clean(value: bool) -> void:
 	clean_view = value
@@ -392,7 +386,7 @@ func toggle_history() -> void:
 
 func _refresh_visibility() -> void:
 	if _dispatch_notice != null: _dispatch_notice.visible=not clean_view and not desk_open and modal.is_empty() and not _dispatch_notice.text.is_empty()
-	if _pad_hint != null: _pad_hint.visible = controller_active and (not desk_open or modal != "") and (not clean_view or modal != "")
+	if _pad_hint != null: _pad_hint.visible = controller_active and modal!="pause" and (not desk_open or modal != "") and (not clean_view or modal != "")
 	_info.visible = not clean_view and not desk_open and modal == ""
 	_mode.visible = not clean_view and not desk_open and modal == ""
 	_toolbar.visible = not clean_view and not desk_open and modal == ""
@@ -422,6 +416,7 @@ func _process(delta: float) -> void:
 			_toast.visible = false
 
 func refresh(s: Dictionary) -> void:
+	_menu_context=s.duplicate()
 	_toolbar.get_child(1).text="DISPATCH  9" if s.get("on_foot",false) else "DISPATCH  D"
 	var kmh := roundi(s.speed * 3.6)
 	var lim := roundi(s.limit * 3.6)

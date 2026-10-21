@@ -21,13 +21,13 @@ const PAGES := [
 		["LS / RS","Compose / look","In following views, LS changes distance and angle without detaching. RS looks or orbits."],
 		["R3","Recenter","Click the right stick to reset look/orbit. It never switches to free camera."],
 		["SEATED ← / →","Passenger row head-out","After sitting with A, cycle left / interior / right from that same row. Y stands; AI continues driving."],
-		["FREE VIEW","Platform observer","Menu → Train & view actions → Camera & passengers → Free camera. LS moves, RS looks, RT/LT zoom; AI drives."]]],
+		["FREE VIEW","Platform observer","Pause → Train & camera → Cameras & walking → Free camera. LS moves, RS looks, RT/LT zoom; AI drives."]]],
 	["MENUS","The same buttons confirm and cancel throughout the interface.",[
-		["MENU","Pause / settings","Save, load, graphics, controller preferences and emergency brake are available from Pause."],
+		["MENU","Pause / settings","LB/RB switches Journey, Train & camera, Settings, Reference and Session. Each section remembers its selection."],
 		["VIEW","Dispatch / progress","Tap for Dispatch. Hold 0.65 seconds for journey progress without opening the desk first."],
 		["A / B","Confirm / back","A selects or interacts. B returns to the previous page; it never sounds the horn in a menu."],
 		["LS / D-PAD","Navigate","Move focus. Use right stick to scroll; LB/RB switch areas, or guide tabs here."],
-		["DISPATCH","Navigate the railway","LS pans; triggers zoom; D-pad selects targets. A inspects, X locates, Y fits the route, View opens the timetable."],
+		["DISPATCH","Navigate the railway","X finds YOUR train; Y follows the inspected train. LB/RB switches map, services, inspector and activity. On map: LS pan, triggers zoom, D-pad targets; View timetable."],
 		["RECONNECT","Release to resume","Disconnect pauses the railway. After reconnecting or closing a menu, release all controls before driving."]]]
 ]
 var page := 0
@@ -45,7 +45,8 @@ func panel(color: Color) -> StyleBoxFlat:
 	var style:=StyleBoxFlat.new();style.bg_color=color;style.set_corner_radius_all(10)
 	style.set_content_margin_all(18);return style
 func _ready() -> void:
-	add_theme_stylebox_override("panel",panel(Color("10212bf5")))
+	theme=preload("res://game/menu_theme.gd").theme()
+	add_theme_stylebox_override("panel",panel(Color("101b28")))
 	var col:=VBoxContainer.new();col.add_theme_constant_override("separation",14);add_child(col)
 	col.add_child(label("YOUR CONTROLLER",27,Color("ffca72")))
 	var nav:=HBoxContainer.new();nav.add_theme_constant_override("separation",10);col.add_child(nav)
@@ -77,7 +78,7 @@ func open(index: int) -> void:
 	for child in cards.get_children():cards.remove_child(child);child.queue_free()
 	for row in PAGES[page][2]:
 		var card:=PanelContainer.new();card.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-		card.add_theme_stylebox_override("panel",panel(Color("20343e")))
+		card.add_theme_stylebox_override("panel",panel(Color("1d2b3a")))
 		cards.add_child(card)
 		var col:=VBoxContainer.new();col.add_theme_constant_override("separation",7);card.add_child(col)
 		col.add_child(label(row[0],19,Color("8bdac3")))
