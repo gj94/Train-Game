@@ -1,16 +1,17 @@
 # Windows portable build
 
-Current release: **R40 — optional Epic graphics**.
-Published 21 October 2026 from clean source **1e33537**, signed sequence
-**42**, at http://192.168.8.183:8765/.
-Full ZIP: **3,584,613,582 bytes**, SHA-256
-`494c0580c8c8953406e3a91407f430bfaba7e1756f75ef7ba2299fabd2d09b6e`.
+Current release: **R41 — next-event skip and follow dispatcher**.
+Published 21 October 2026 from clean source **ee75fa8**, signed sequence
+**43**, at http://192.168.8.183:8765/.
+Full ZIP: **3,584,643,310 bytes**, SHA-256
+`573e8c0fee82f78b5b63213516901abc407aa694234c62712a0ef770b571e708`.
 
-Select **Pause > Graphics > Use Epic preset**. High remains the default.
-Epic adds surface/water/permanent-way finishing, sharper sky reflections,
-nearby station-lamp shadows and 150% detail ranges. All are individually tunable;
-SSR stays off. R39 roads, bridges, overhead fittings and station clearances remain.
-See [Epic details](extreme-visuals.md).
+Select **Pause > Skip to next event / time / stop**. Event settings independently
+enable stop approaches, crossings, overtaking, being overtaken and held-signal
+clearance. The optional read-only dispatcher follows your train while 3D/audio
+are suspended. Return paused with AI driving; B/Esc cancels safely.
+See [event skip](event-skip.md). R40's optional [Epic preset](extreme-visuals.md)
+and prior scenery corrections remain; High is still the graphics default.
 
 The included **Update & Play v4** supports batched verified incremental transfers.
 Existing v4 users can update directly. Older v3 launchers remain compatible;
@@ -21,32 +22,39 @@ The Standard 100-service and Intensive 140-service operating days, prepared
 states, physics, dispatch and sound banks are unchanged. No full timetable
 rehearsal or extracted-distribution gameplay run was performed.
 
-Validation: **731 headless game tests**, **76 Python review-tool tests**, native
-material comparisons and **30 full-game day/night cases** with five trains,
-98 vehicles and 6,007 simulated passengers. The canopy case exercised 24 lights,
-23 with nearby shadows. Native comparisons contain tiny pixel differences;
-see [exact evidence and development-PC limits](../art/performance/epic-2026-10-21/README.md).
-No RTX 4090 Laptop FPS claim is made.
+Validation: **751 headless tests**, **37 native source-game checks**, exact
+checkpoint/replay comparisons on both operating days, and live corridor
+encounters including a delayed overtaker. Local native benchmark: map drawing
+reduces simulation throughput about 3.2%; map plus prediction/history about
+12.3%, with 78.6 MiB additional tracked heap. See
+[evidence and development-PC limits](../art/performance/event-skip-2026-10-21/README.md).
+These are not RTX 4090 Laptop measurements.
 
-All **507 archive CRCs / 505 managed hashes**,
+All **508 archive CRCs / 506 managed hashes**,
 clean source identity, packaged guides, explicit packs, signatures and served
 ZIP/PCK/compressed ranges pass. Read-only native mounting verifies all prepared
 snapshots and encounter data. The legacy v3 verifier accepts this signed catalogue.
-See [R40 publication](../art/performance/r40-release-2026-10-21/publication.json).
+See [R41 publication](../art/performance/r41-release-2026-10-21/publication.json).
 
-R39 → R40 reuses **4,242,710,526 bytes**. Changed target blocks total
-**7,022,909 bytes**; estimated unique compressed payload is
-**2,570,368 bytes**, plus the
-**6,478,313-byte** catalogue. This is an estimate, not a measured client transfer.
+R40 → R41 reuses **4,242,730,641 bytes**. Changed target blocks total
+**7,040,487 bytes**; estimated unique compressed payload is
+**2,590,048 bytes**, plus the
+**6,478,633-byte** catalogue. This is an estimate, not a measured client transfer.
 
-Only R40 is offered as a full download. R39's verified export/ZIP/checksum were
-retired after the new publication passed, freeing **7,834,337,658.0 bytes**.
+Only R41 is offered as a full download. R40's verified export/ZIP/checksum were
+retired after the new publication passed, freeing **7,834,394,648 bytes**.
 Historical signed catalogues remain. The next build needs a fresh name and
-sequence **43+**, with full ZIP and incremental support.
+sequence **44+**, with full ZIP and incremental support.
 
-Playtest: compare Epic/High at the same daylight platform and water view, repeat
-under a lit station canopy at night, then switch back and visit a streamed station.
-Use F10 and Benchmark.ps1 with saved graphics settings on the target laptop.
+Playtest each event switch, cancel with B, and verify return is paused with AI
+driving. Try a red wait, station approach and passing traffic; restart to check
+settings persistence. Depot-access limits and stationary paired departure horns
+are deferred in Git stash for the next build and timetable validation.
+
+Previous release: **R40**, source **1e33537**, sequence **42**, introduced
+optional Epic graphics. Its ZIP was 3,584,613,582 bytes, SHA-256
+`494c0580c8c8953406e3a91407f430bfaba7e1756f75ef7ba2299fabd2d09b6e`.
+See [R40 publication](../art/performance/r40-release-2026-10-21/publication.json).
 
 Previous release: **R39**, source **3ed0761**, sequence **41**. It introduced
 connected OHE, road/station clearance fixes and the v4 updater. Full ZIP was

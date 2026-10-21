@@ -1,5 +1,24 @@
 # Progress
 
+## 2026-10-21 — R41 published; later simulation work stashed
+
+- Full ZIP and signed incremental updates are live at http://192.168.8.183:8765/,
+  sequence43, clean source `ee75fa8`. ZIP: 3,584,643,310 bytes, SHA-256
+  `573e8c0fee82f78b5b63213516901abc407aa694234c62712a0ef770b571e708`.
+- All 508 archive CRCs / 506 managed hashes, packaged guides, 192 mounted packs,
+  signatures and served ZIP/PCK/compressed ranges pass. Both operating days'
+  snapshots/traffic pass read-only packaged checks; legacy v3 accepts the signed
+  catalogue. No distribution gameplay or full-day timetable rerun.
+- R40 export/ZIP/checksum retired after validation and idle-LAN checks, freeing
+  7,834,394,648 bytes. Historical update catalogues retained. Next sequence44+.
+  Source and release evidence pushed to GitHub.
+- The depot-speed and pre-movement AI horn drafts remain stashed, as requested
+  to avoid delaying this publication for timetable simulation. Neither ships in
+  R41. See the next section for the exact stash and outstanding validation.
+- Playtest Pause > Skip to next event / time / stop and Time-skip event settings.
+  Try signal-only at red, a station approach, each passing category and B cancel.
+  Verify settings persist and AI remains in control until explicitly taken back.
+
 ## 2026-10-21 — R41 event skip ready for publication
 
 - Next-event skipping stops at the earliest enabled scheduled-stop approach
