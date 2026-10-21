@@ -322,9 +322,9 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, "Back  ·  Esc", "fleet_back")
 		"confirm":
 			_heading.text = "LEAVE THIS RUN?"
-			_body.text = description + "\n\nUnsaved progress will be lost. Cancel to save your journey first."
+			_body.text = description
 			_button(_buttons, "Cancel  ·  Esc", "cancel")
-			_button(_buttons, "Continue", "confirm")
+			_button(_buttons, "Save recovery & continue", "confirm")
 	var choices := _buttons.get_children()
 	for i in choices.size():
 		choices[i].focus_next = choices[(i+1)%choices.size()].get_path()

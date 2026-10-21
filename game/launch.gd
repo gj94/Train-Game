@@ -69,6 +69,9 @@ var favourites_button: Button
 var through_button: Button
 var favourite_button: Button
 var ride_button: Button
+var page_title: Label
+var browser_footer: Label
+var filter_row: HBoxContainer
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)
@@ -160,7 +163,7 @@ func _build() -> void:
 	var outer:=VBoxContainer.new();outer.add_theme_constant_override("separation",8);margin.add_child(outer)
 	var top:=HBoxContainer.new();top.add_theme_constant_override("separation",12);outer.add_child(top)
 	var brand:=VBoxContainer.new();brand.size_flags_horizontal=SIZE_EXPAND_FILL;top.add_child(brand)
-	_label(brand,"KERALA COAST  /  JOURNEYS",13,Color("86e4be"));_label(brand,"Find your next departure",28)
+	_label(brand,"KERALA COAST  /  JOURNEYS",13,Color("86e4be"));page_title=_label(brand,"Find your next departure",28)
 	_button(top,"Home",_show_home)
 	_button(top,"Explore by time",func():get_tree().change_scene_to_file("res://game/launch_timeline.tscn"))
 	continue_button=_button(top,"Continue latest save",_continue)
@@ -178,7 +181,7 @@ func _build() -> void:
 	search.clear_button_enabled=true
 	day_row.add_child(search);search.text_changed.connect(func(_s):refresh())
 	_button(day_row,"Reset",reset_filters)
-	var filter_row:=HBoxContainer.new();filter_row.add_theme_constant_override("separation",8);outer.add_child(filter_row)
+	filter_row=HBoxContainer.new();filter_row.add_theme_constant_override("separation",8);outer.add_child(filter_row)
 	for i in FILTERS.size():
 		var index:=i
 		var button:=_button(filter_row,FILTERS[i],func():set_period(index));button.toggle_mode=true;filters.append(button)
@@ -194,7 +197,7 @@ func _build() -> void:
 	var columns:=HBoxContainer.new();columns.add_theme_constant_override("separation",24);columns.size_flags_vertical=SIZE_EXPAND_FILL;outer.add_child(columns)
 	roster=ItemList.new();roster.size_flags_horizontal=SIZE_EXPAND_FILL;roster.size_flags_vertical=SIZE_EXPAND_FILL
 	roster.add_theme_font_size_override("font_size",18);roster.add_theme_constant_override("v_separation",16)
-	columns.add_child(roster);roster.item_selected.connect(_select);roster.item_activated.connect(func(_i):start_button.grab_focus())
+	columns.add_child(roster);roster.item_selected.connect(_select);roster.item_activated.connect(func(_i):if not start_button.disabled:start_button.grab_focus())
 	var panel:=PanelContainer.new();panel.custom_minimum_size.x=390;panel.size_flags_horizontal=SIZE_EXPAND_FILL;panel.size_flags_stretch_ratio=.75
 	panel.add_theme_stylebox_override("panel",_box(Color("141e2a")));columns.add_child(panel)
 	var details:=VBoxContainer.new();details.add_theme_constant_override("separation",8);panel.add_child(details)
@@ -218,7 +221,7 @@ func _build() -> void:
 	ride_button=_button(boarding,"Ride as passenger",func():start_selected(true));ride_button.custom_minimum_size.y=52;ride_button.size_flags_horizontal=SIZE_EXPAND_FILL
 	start_button.add_theme_stylebox_override("normal",_box(Color("253d48"),Color("82d8cd")))
 	status=_label(outer,"",16,Color("efc382"));status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	_label(outer,"D-pad / LS navigate · A select · B back · LB/RB filter · X sort · Y stops/traffic · L3 favourite · RS scroll",15,Color("a8bdc6"))
+	browser_footer=_label(outer,"",15,Color("a8bdc6"));browser_footer.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	_label(outer,preload("res://game/build_version.gd").current(),13,Color("7895a2"))
 	busy_panel=PanelContainer.new();add_child(busy_panel);busy_panel.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	busy_panel.add_theme_stylebox_override("panel",_box(Color(.02,.06,.08,.98)))
@@ -241,10 +244,11 @@ static func in_period(clock: float,filter: int) -> bool:
 	return true
 
 func set_period(value: int) -> void:
-	if worker!=null or starting:return
+	if worker!=null or starting or page!="services":return
 	page="services";period=posmod(value,FILTERS.size());refresh();roster.grab_focus()
 
 func reset_filters() -> void:
+	if page=="saves":search.text="";refresh();roster.grab_focus();return
 	period=0;search.text="";library.stock="";library.favourites_only=false;library.through_only=false
 	refresh();roster.grab_focus()
 
@@ -254,6 +258,10 @@ func toggle_favourite() -> void:
 
 func refresh() -> void:
 	if worker!=null or starting:return
+	page_title.text="Find your next departure" if page=="services" else "Saved journeys"
+	filter_row.visible=page=="services";timetable_picker.visible=page=="services";stock_picker.visible=page=="services"
+	search.placeholder_text="Search train, station or service ID" if page=="services" else "Search saved service or slot"
+	browser_footer.text="D-pad / LS navigate · A select · B back · LB/RB filter · X sort · Y stops/traffic · L3 favourite · RS scroll" if page=="services" else "D-pad / LS navigate · A inspect/select · B back to journeys · RS scroll · Loads resume paused"
 	var previous: String=selected.get("id","")
 	shown.clear();roster.clear()
 	for i in filters.size():filters[i].set_pressed_no_signal(page=="services" and period==i)
@@ -286,7 +294,7 @@ func refresh() -> void:
 	ride_button.visible=page=="services";ride_button.disabled=shown.is_empty()
 	favourite_button.visible=page=="services";favourite_button.disabled=shown.is_empty()
 	if shown.is_empty():
-		selected={};detail_title.text="No matching journeys";departure.text="";description.text="Try another departure filter or clear the search."
+		selected={};detail_title.text="No matching journeys";departure.text="";description.text="Try another departure filter or clear the search." if page=="services" else "Clear the search, or save a journey from the pause menu. Recovery checkpoints also appear here."
 		description.show();calls_grid.hide();briefing.text="";detail_tabs.hide();traffic_summary.hide();traffic_list.hide();return
 	var index:=0
 	for i in shown.size():
@@ -305,7 +313,11 @@ func _select(index: int) -> void:
 	if page=="saves":
 		description.show();briefing.show();traffic_list.hide()
 		departure.text=selected.get("clock","")
-		description.text="Service "+selected.get("service","")+"\n\nSaved "+selected.get("saved_at","")+"\n\nThe complete railway and your viewpoint will be restored, paused."
+		start_button.disabled=not selected.get("readable",true)
+		start_button.text=("Load previous backup" if selected.get("backup",false) else "Load saved journey") if not start_button.disabled else "Save unavailable"
+		if start_button.disabled:
+			description.text=selected.get("reason","This save could not be read.")+"\n\n"+("Select this slot's previous backup from the list to recover the earlier version." if selected.get("has_backup",false) else "No readable previous backup was found for this slot. Other saves remain available.")
+		else:description.text=preload("res://game/save_summary.gd").describe(selected.get("summary",{}),selected.get("backup",false))+"\n\nThe complete railway and your viewpoint will be restored, paused. Resume when ready."
 		return
 	departure.text=Briefing.time_text(selected.departure)+" departure"
 	var duration:=roundi(float(selected.duration)/60)
@@ -355,11 +367,13 @@ func _build_traffic() -> void:
 func _saved_entries() -> Array:
 	var entries:=[]
 	for slot in store.slots():
+		if slot.exists and not slot.ok:
+			entries.append({id=slot.id,slot=slot.id,backup=false,name=Store.label(slot.id)+" · Unreadable save",readable=false,reason=slot.reason,has_backup=slot.backup,service="",clock="",saved_at="",summary={}})
 		for backup in [false,true]:
 			if not (slot.backup if backup else slot.ok):continue
 			var info: Dictionary=slot.backup_summary if backup else slot.summary
 			entries.append({id=slot.id+("-backup" if backup else ""),slot=slot.id,backup=backup,name=(preload("res://persistence/save_store.gd").label(slot.id))+(" · backup" if backup else "")+" · "+str(info.get("title","Journey")),
-				service=info.get("service",""),clock="Day %d · %s" % [info.get("day",1),info.get("clock","")],saved_at=info.get("saved_at","")})
+				service=info.get("service",""),clock="Day %d · %s" % [info.get("day",1),info.get("clock","")],saved_at=info.get("saved_at",""),summary=info.duplicate(true),readable=true})
 	entries.sort_custom(func(a,b):return a.saved_at>b.saved_at)
 	return entries
 
@@ -368,10 +382,11 @@ func _toggle_saves() -> void:
 	show_browser(page!="saves")
 
 func _continue() -> void:
-	if not saves.is_empty():_begin("save",saves[0])
+	for row in saves:
+		if row.get("readable",true):_begin("save",row);return
 
 func start_selected(passenger: bool=false) -> void:
-	if selected.is_empty():return
+	if selected.is_empty() or (page=="saves" and not selected.get("readable",true)):return
 	var choice:=selected.duplicate(true)
 	if page=="services":choice.passenger_start=passenger
 	_begin("service" if page=="services" else "save",choice)
@@ -401,7 +416,7 @@ func _read_request(kind: String,row: Dictionary) -> Dictionary:
 func _process(delta: float) -> void:
 	if save_worker!=null and not save_worker.is_alive():
 		saves=save_worker.wait_to_finish();save_worker=null
-		continue_button.text="Continue latest save";continue_button.disabled=saves.is_empty();saved_button.disabled=false
+		continue_button.text="Continue latest save";continue_button.disabled=not saves.any(func(row):return row.get("readable",true));saved_button.disabled=false
 		if home!=null:home.update_saves(saves)
 	if worker!=null:
 		if worker.is_alive():return
@@ -436,7 +451,10 @@ func _navigate(direction: Vector2i) -> void:
 		if index<0:filters[period].grab_focus();return
 		if index>=shown.size():start_button.grab_focus();return
 		roster.select(index);_select(index);roster.ensure_current_is_visible();return
-	if focus==roster and direction.x<0:filters[period].grab_focus();return
+	if focus==roster and direction.x<0:
+		if page=="services":filters[period].grab_focus()
+		else:search.grab_focus()
+		return
 	if focus==roster and direction.x>0:start_button.grab_focus();return
 	if focus==start_button and direction.x<0:roster.grab_focus();return
 	if focus in filters and direction.y<0:timetable_picker.grab_focus();return
@@ -486,7 +504,8 @@ func _input(event: InputEvent) -> void:
 		JOY_BUTTON_LEFT_STICK:toggle_favourite()
 		JOY_BUTTON_A:
 			var focus:=get_viewport().gui_get_focus_owner()
-			if focus==roster:start_button.grab_focus()
+			if focus==roster:
+				if not start_button.disabled:start_button.grab_focus()
 			elif focus==sort_button:sort_button.show_popup()
 			elif focus==timetable_picker:timetable_picker.show_popup()
 			elif focus==stock_picker:stock_picker.show_popup()

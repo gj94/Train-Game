@@ -7,6 +7,7 @@ var checks:=0
 const DEVICE:=16
 
 func _initialize() -> void:
+	set_meta("route","southern_corridor")
 	set_meta("imported_fleet","icf");set_meta("traffic_drive",false)
 	if "--traffic" in OS.get_cmdline_user_args():
 		set_meta("imported_fleet","");set_meta("traffic_drive",true);set_meta("traffic_seed",0);set_meta("route","southern_corridor")
@@ -23,6 +24,8 @@ func freeze() -> void:
 	game.controller.set_process(false);game.dispatcher.set_process(false)
 	for sound in game.train_audio.values():sound.set_process(false)
 	game.save_load.store.directory="res://.local/save-playable/"+("kerala" if game.geographic_drive else "solo")
+	game.journey_tools.save_directory=game.save_load.store.directory+"/recovery"
+	game.journey_tools.autosaves=false;game.journey_tools.set_process(false)
 	game.controller.settings_path="res://.local/save-controller.cfg"
 	game.controller.window_focus(true);game.controller._adopt(DEVICE);game.controller._set_mode(true)
 

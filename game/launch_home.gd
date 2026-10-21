@@ -100,10 +100,11 @@ func open() -> void:
 	show();options.hide();guide.hide();buttons.get(_last_action,buttons.services).grab_focus()
 
 func update_saves(entries: Array, checking: bool=false) -> void:
-	buttons.continue.disabled=checking or entries.is_empty()
+	var readable:=entries.filter(func(row):return row.get("readable",true))
+	buttons.continue.disabled=checking or readable.is_empty()
 	buttons.continue.text="Checking saved journeys…" if checking else "Continue journey"
-	buttons.continue.tooltip_text="No saved journeys yet" if entries.is_empty() else entries[0].name+" · "+entries[0].clock
-	if checking or entries.is_empty():buttons.continue.focus_mode=FOCUS_NONE
+	buttons.continue.tooltip_text="No readable saved journeys yet" if readable.is_empty() else readable[0].name+" · "+readable[0].clock
+	if checking or readable.is_empty():buttons.continue.focus_mode=FOCUS_NONE
 	else:buttons.continue.focus_mode=FOCUS_ALL
 
 func show_settings(group: String="") -> void:

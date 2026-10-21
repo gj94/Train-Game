@@ -1,5 +1,35 @@
 # Progress
 
+## 2026-10-22 — Save/recovery UX and protected session transitions validated
+
+- Required recovery saves now verify before Home/restart/scenario/quit/load
+  transitions. Failed writes keep the current railway; Cancel/Back, Retry and
+  explicit discard are available. Optional periodic-save preferences do not
+  bypass this protection. No railway simulation or prepared timetable changes.
+- Saved journeys have their own layout/search, role/viewpoint, stop counts and
+  checkpoint purpose. Damaged primaries remain visible with loading disabled;
+  their readable previous backups remain available. Continue ignores unreadable
+  entries. Old saves need no migration for the optional summary fields.
+- Full source suite: 789 pass. Controller: 97. Journey library: 23. Moving-coach
+  save/load regression: 21. Native recovery: 25 checks for normal cancellation /
+  successful retry, and 25 for explicit discard/load/leave. Complete railway
+  equality is checked across saves, failures, cancellation and restored boarding.
+  Only expected errors from deliberately blocked fixture save folders occur in
+  final native logs. 720p saved-browser and failure-modal images inspected.
+- Fixture corrections: load the real PackedScene for reload checks; use a
+  prepared K1 service for scheduled progress (solo trains have no stop count);
+  hide the loading overlay while its source-render update is intentionally
+  frozen. The older save regression now names its Southern route and isolates
+  recovery files. An initial all-at-once Southern native fixture exposed the
+  existing shader-instance buffer limit; it is outside this presentation change.
+- Evidence: art/performance/recovery-qol-2026-10-22. Playtest steps are in
+  docs/journey-library.md. All completed source milestones committed/pushed.
+  R44 stays live. Continue the extra QoL pass until at least 05:20:21 +08, then
+  validate/publish R45 with full and incremental downloads (sequence 47).
+- Next opportunities: clearer station/boarding discovery, map train-label
+  readability at close zoom, controller focus consistency and empty/error-state
+  polish. Keep changes in presentation; do not regenerate/rehearse timetables.
+
 ## 2026-10-22 — Home preferences and time-browser boarding validated
 
 - Additional QoL window remains active until at least 05:20:21 +08. R44 stays

@@ -9,7 +9,7 @@ const ENTRIES:=[
 		["skip:open","Skip ahead","Advance to your next event, a chosen time or a future stop."],
 		["game_speed","Time speed","Choose normal speed or fast-forward the whole railway."],
 		["save:quick","Quick save","Keep this railway and your current viewpoint in a quick-save slot."],
-		["save:menu:save","Save journey","Choose a named save slot for the complete railway."],
+		["save:menu:save","Save journey","Choose one of five manual save slots for the complete railway."],
 		["save:menu:load","Load journey","Continue a saved run or recover its previous backup."]
 	],
 	[
@@ -37,12 +37,12 @@ const ENTRIES:=[
 		["sound_controls","Sound & diagnostics","Audio tools, rail-contact markers and the performance overlay."]
 	],
 	[
-		["landing","Choose another service","Return to the service browser. Save before leaving this run."],
+		["landing","Choose another service","Save a recovery checkpoint, then return Home to choose another journey."],
 		["services","Service designer","Create, import and export a timetable for your layout."],
 		["fleet","Traffic & solo drives","Choose another scenario or explore a train on its own."],
 		["routes","Route selection","Choose the Kerala coast or the Southern corridor."],
 		["restart","Restart this run","Start the current services again. Confirmation is required."],
-		["quit","Quit to desktop","Leave the game. You will be asked before discarding this run."]
+		["quit","Quit to desktop","Save a verified recovery checkpoint before leaving the game."]
 	]
 ]
 var hud

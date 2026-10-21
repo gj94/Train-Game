@@ -58,3 +58,23 @@ continues the other trigger's zoom direction.
 At 20:00, select a moving service with A, move right to Passenger seat, then
 confirm. Resume to ride; Hold R3 can recall the seat after exploring. Check that
 the last time block offers station visits with both boarding buttons disabled.
+
+## Saved journeys and recovery
+
+Saved journeys have a dedicated view with search, viewpoint, AI/manual driving
+mode, completed scheduled stops and the checkpoint's purpose. Older saves still
+load; missing new metadata is simply omitted. Unreadable primary saves stay in
+the list with loading disabled and directions to their previous backup.
+Continue uses the most recent readable entry.
+
+Returning Home, restarting, switching scenarios, quitting and loading another
+save now wait for the required recovery write to verify. If it fails, you stay
+in the current railway. Cancel is first; retry or explicitly leave/load without
+saving. The optional five-minute autosave setting does not disable these
+transition safeguards. Existing manual saves are retained.
+
+Playtest: save from a passenger seat, return Home and inspect its role/progress.
+Load paused and check seat/AI state. The save-failure and damaged-primary cases
+are tested with isolated fixture files; do not damage your actual saves to try
+them. Cancel/Back must retain the current journey; explicit discard is the only
+path past a failed recovery write.

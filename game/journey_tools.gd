@@ -26,19 +26,26 @@ func _write(job: Dictionary) -> Dictionary:
 	if job.kind=="diagnostics":return preload("res://game/diagnostic_bundle.gd").write(job)
 	var store:=Store.new(job.directory)
 	return store.write_slot(store.next_auto(),job.checkpoint,job.summary)
-func autosave(reason: String, required: bool=false) -> void:
-	if game.get_tree().get_meta("benchmark",false) or game.world==null or (game.time_skip!=null and game.time_skip.running()):return
-	if not autosaves and not required:return
+func autosave(reason: String, required: bool=false) -> bool:
+	if game.get_tree().get_meta("benchmark",false) or game.world==null or (game.time_skip!=null and game.time_skip.running()):return false
+	if not autosaves and not required:return false
 	if required:flush()
-	elif not writer.job.is_empty():return
-	var progress:=preload("res://sim/service_progress.gd").snapshot(game.world,game.train)
-	var summary:={service=game.train.id,title=game.train.service_name,clock=game.world.clock_text(),day=game.world.clock_day(),saved_at=Time.get_datetime_string_from_system(false,true),stops=progress.get("completed",0),total=progress.get("total",0),reason=reason}
+	elif not writer.job.is_empty():return false
+	var summary:=preload("res://game/save_summary.gd").capture(game,reason)
 	writer.submit({kind="save",directory=save_directory,checkpoint=Snapshot.capture(game.world,game.save_load.capture_session()),summary=summary})
 	_elapsed=0
-func flush() -> void:
-	if writer==null:return
+	return true
+func flush() -> Dictionary:
+	if writer==null:return {}
 	while writer.busy():OS.delay_msec(1)
-	_complete(writer.take())
+	var completed: Dictionary=writer.take();_complete(completed)
+	return completed.get("result",{})
+func safeguard(reason: String) -> Dictionary:
+	# Required transitions keep this journey alive until its verified write succeeds.
+	if game.get_tree().get_meta("benchmark",false):return {ok=true,reason="",skipped=true}
+	if not autosave(reason,true):return {ok=false,reason="The railway is busy; finish the current time skip before leaving."}
+	var result:=flush()
+	return result if not result.is_empty() else {ok=false,reason="Recovery save did not complete. Your current journey is still open."}
 func _complete(completed: Dictionary) -> void:
 	if completed.is_empty():return
 	var result: Dictionary=completed.result

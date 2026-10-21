@@ -927,6 +927,7 @@ func _ui_action(action: String) -> void:
 		"restart", "landing", "wap7", "lhb", "traffic", "quit": _request_action(action)
 		"cancel": _cancel_action()
 		"confirm": _confirm_action()
+		"confirm_discard": _confirm_action(true)
 
 
 func _open_services() -> void:
@@ -1030,7 +1031,7 @@ func _request_action(action: String) -> void:
 		description="Start the 277 km Kerala Coast via Alappuzha and TVC with 32 scheduled passenger services and dynamic priority dispatch." if action.ends_with("kerala_coast") else "Return to the fictional Southern corridor."
 	if action.begins_with("fleet:"):
 		description = "Start " + PortedStock.LABELS[action.trim_prefix("fleet:")] + "."
-	description+="\nUnsaved progress will be lost. Use Save journey in the pause menu to keep this run."
+	description+="\nA verified recovery checkpoint will be saved first. You can resume it from Home → Continue journey or Saved journeys. Manual save slots stay available."
 	hud.show_modal("confirm", labels_enabled, description)
 
 
@@ -1039,10 +1040,16 @@ func _cancel_action() -> void:
 	hud.show_modal("pause", labels_enabled)
 
 
-func _confirm_action() -> void:
+func _confirm_action(discard: bool=false) -> void:
 	var action := _pending_action
+	if action.is_empty():return
+	if not discard:
+		var recovery: Dictionary=journey_tools.safeguard("Before "+action)
+		if not recovery.ok:
+			save_load.show("JOURNEY NOT SAVED",recovery.reason+"\n\nYou are still in this journey. Retry the recovery save, or explicitly leave without saving.",[["Stay in this journey","cancel"],["Retry recovery save","confirm"],["Leave without saving","confirm_discard"]])
+			hud.save_menu.back_action="cancel"
+			return
 	_pending_action = ""
-	journey_tools.autosave("Before "+action,true)
 	if action=="landing" or (action=="restart" and (not _prepared_id.is_empty() or _prepared_time>=0)):
 		var timeline: bool=action=="restart" and _prepared_time>=0
 		if timeline:get_tree().set_meta("timeline_clock",_prepared_time)

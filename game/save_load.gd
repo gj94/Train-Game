@@ -48,9 +48,7 @@ func save(slot: String) -> Dictionary:
 	var was_paused: bool=game.paused
 	game._set_paused(true)
 	var checkpoint:=Snapshot.capture(game.world,capture_session())
-	var progress:=preload("res://sim/service_progress.gd").snapshot(game.world,game.train)
-	var summary:={service=game.train.id,title=game.train.service_name,clock=game.world.clock_text(),day=game.world.clock_day(),
-		saved_at=Time.get_datetime_string_from_system(false,true),stops=progress.get("completed",0),total=progress.get("total",0)}
+	var summary:=preload("res://game/save_summary.gd").capture(game)
 	var result:=store.write_slot(slot,checkpoint,summary)
 	if not was_paused:game._set_paused(false)
 	game.hud.toast(("Quick save" if slot=="quick" else "Slot "+slot)+" saved · "+summary.clock if result.ok else result.reason,not result.ok)
@@ -66,7 +64,7 @@ func open(kind: String) -> void:
 		var detail: String="Empty"
 		if slot.ok:
 			var s: Dictionary=slot.summary
-			detail="%s · day %d %s · %d/%d stops\n%s\nSaved %s" % [s.get("service",""),s.get("day",1),s.get("clock",""),s.get("stops",0),s.get("total",0),s.get("title",""),s.get("saved_at","")]
+			detail=str(s.get("title","Journey"))+"\n"+preload("res://game/save_summary.gd").describe(s)
 		elif slot.exists:detail="Unreadable · "+slot.reason
 		if kind=="save" or slot.exists:options.append([label+" — "+detail,"save:"+kind+":"+slot.id])
 		if kind=="load" and slot.backup:options.append([label+" — previous backup","save:backup:"+slot.id])
@@ -105,12 +103,16 @@ func action(command: String) -> void:
 			if not issue.is_empty():game.hud.toast(issue,true);return
 			pending={kind="load",result=result}
 			show("LOAD SAVED JOURNEY?","Return to "+str(read.data.summary.get("title","saved journey"))+" at "+str(read.data.summary.get("clock",""))+"?\nUnsaved progress in this run will be replaced. The restored game will be paused.",[["Cancel","save:back"],["Load journey","save:confirm"]])
-		"confirm":
+		"confirm","confirm_discard":
 			if pending.get("kind")=="save":
 				var result:=save(pending.slot)
 				if result.ok:open("save")
 			elif pending.get("kind")=="load":
-				game.journey_tools.autosave("Before loading another journey",true)
+				if parts[1]!="confirm_discard":
+					var recovery: Dictionary=game.journey_tools.safeguard("Before loading another journey")
+					if not recovery.ok:
+						show("CURRENT JOURNEY NOT SAVED",recovery.reason+"\n\nYou are still in your current journey. Retry the recovery save, or explicitly load without saving this run.",[["Stay in current journey","save:back"],["Retry save, then load","save:confirm"],["Load without saving current journey","save:confirm_discard"]])
+						return
 				game.get_tree().set_meta("resume_session",pending.result)
 				game.get_tree().call_deferred("reload_current_scene")
 				pending.clear()
