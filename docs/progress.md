@@ -4,16 +4,16 @@
 
 - Native Intensive time-browser audit: 24 varied snapshot loads / 51 checks;
   six repeated same-time loads / 17 checks. Old and closed railway objects free,
-  rapid requests display only the latest selected clock; node count stays58.
-- Engine-tracked allocations follow snapshot contents, with at most4,800
+  rapid requests display only the latest selected clock; node count stays 58.
+- Engine-tracked allocations follow snapshot contents, with at most 4,800
   bytes of same-time drift. No claim about total RAM/VRAM or gameplay memory.
   Evidence extends art/performance/journey-guide-2026-10-22. No runtime fix needed.
 - Packaged README names the new Journeys guide and corrects an old R42 label.
-  No simulation/prepared-data changes. Full suite797 and final headless controller99
+  No simulation/prepared-data changes. Full suite 797 and final headless controller 99
   remain the source validation; this audit adds native lifetime/input coverage.
-- R45 sequence47 release helpers, final documentation generator and source
+- R45 sequence 47 release helpers, final documentation generator and source
   validation manifest are ready under .local/r45-release. R44 remains live;
-  no export/publication started. Minimum QoL end is still05:20:21 +08. Continue
+  no export/publication started. Minimum QoL end is still 05:20:21 +08. Continue
   final review until then, publish/validate, retire verified old full files,
   commit publication evidence, then complete the window and disable heartbeat.
 
@@ -31,7 +31,7 @@
 - Full source suite remains 797 passing from the preceding runtime changes;
   this final help-text/test-fixture addition uses targeted headless/native checks.
   No sim, persistence or prepared-data edits. No full-day/distribution reruns.
-- R44 stays available. R45 sequence47 is prepared but not yet exported/published;
+- R44 stays available. R45 sequence 47 is prepared but not yet exported/published;
   minimum extra QoL window ends 05:20:21 +08. Finish final review within that
   window, then follow .local/r45-release/README.txt and the guarded publish.ps1.
   Refresh source-validation.json if committing any further changes.
@@ -53,7 +53,7 @@
   prepared under .local/r45-release; publish.ps1 guards the minimum QoL deadline,
   clean source and validation revision. No build/export/publication started.
 - R44 remains live. Minimum finish still 05:20:21 +08. Continue final presentation
-  readiness work until then, publish R45 sequence47 with full+incremental and
+  readiness work until then, publish R45 sequence 47 with full+incremental and
   complete archive/hash/signature/LAN/read-only-pack checks. Only then retire
   verified R44 full files, mark window complete and disable the heartbeat.
 - Playtest: highlight Continue after a passenger save; inspect coach/time/stops.
@@ -80,7 +80,7 @@
   docs/journey-library.md. No sim/persistence/prepared-data changes, no timetable
   regeneration/full-day simulations or extracted-distribution gameplay.
 - R44 remains live. Extra QoL minimum remains 05:20:21 +08, then publish R45
-  sequence47 after source/export/signature/range/read-only-pack validation.
+  sequence 47 after source/export/signature/range/read-only-pack validation.
 
 ## 2026-10-22 — Carriage discovery and dispatcher readability validated
 

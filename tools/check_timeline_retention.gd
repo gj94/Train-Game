@@ -46,4 +46,3 @@ func run() -> void:
 	check(latest.get_ref()==null,"Closing the preview frees its last railway")
 	FileAccess.open("res://.local/r45/timeline-retention.json",FileAccess.WRITE).store_string(JSON.stringify(samples,"\t"))
 	print("TIMELINE_RETENTION ",checks," checks, ",failures," failures");quit(1 if failures else 0)
-

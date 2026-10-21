@@ -28,8 +28,8 @@ Journeys, scroll with RS, then B to return to the originating menu.
 24 varied Intensive snapshots: 51 native checks pass. Six repeat loads of the
 same two times: 17 native checks pass. Replaced worlds and the final closed
 world are released (WeakRef checks), rapid changes commit only the final
-requested time, and the scene stays at58 nodes. Engine-tracked static allocations
-vary with snapshot contents; the same-time spread is at most4,800 bytes.
+requested time, and the scene stays at 58 nodes. Engine-tracked static allocations
+vary with snapshot contents; the same-time spread is at most 4,800 bytes.
 This is not process RAM, VRAM or a long-running gameplay memory benchmark.
 
 ```powershell
