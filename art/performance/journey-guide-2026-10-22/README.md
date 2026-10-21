@@ -21,3 +21,21 @@ full timetable rehearsal or target-PC performance measurements.
 
 Playtest: open Controller layout from Home or Pause, use LB/RB to reach
 Journeys, scroll with RS, then B to return to the originating menu.
+
+
+## Preview lifetime and rapid input
+
+24 varied Intensive snapshots: 51 native checks pass. Six repeat loads of the
+same two times: 17 native checks pass. Replaced worlds and the final closed
+world are released (WeakRef checks), rapid changes commit only the final
+requested time, and the scene stays at58 nodes. Engine-tracked static allocations
+vary with snapshot contents; the same-time spread is at most4,800 bytes.
+This is not process RAM, VRAM or a long-running gameplay memory benchmark.
+
+```powershell
+& $g --path . --audio-driver Dummy --script tools/check_timeline_retention.gd
+& $g --path . --audio-driver Dummy --script tools/check_timeline_retention.gd -- --same-times
+```
+
+An initial fixture inference error was corrected by explicitly typing WeakRef;
+the retained native logs are the passing runs. No runtime changes were needed.

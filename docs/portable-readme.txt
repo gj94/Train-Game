@@ -4,6 +4,7 @@ R45: Easier journey discovery, passenger boarding and controller navigation.
 Favourites, stock/full-route filters and remembered departure choices. Explore
 by time offers passenger boarding and nearby services within 15 km of a station.
 Native dropdowns: A confirm, B cancel, LS/D-pad move, LB/RB page choices.
+Controller layout has a Journeys tab explaining the new browsing controls.
 Home includes the full sound mixer and controller preferences. Continue previews
 your saved service, time, seat and progress, including backup recovery.
 Cancelled/failed loads return to the initiating menu with visible feedback.
@@ -53,7 +54,7 @@ advisory overtake hold from trapping trains behind the same reserved route.
 Arriving trains are distinguished from trains waiting to depart, so temporary
 approach occupancy does not cancel a promised overtake (K1/B024 at Alappuzha).
 R41 saves and imported service plans remain compatible with this speed correction.
-R43 supports full downloads and incremental updates through Update & Play v4.
+R42 supports full downloads and incremental updates through Update & Play v4.
 
 Includes R41: Skip to the next event with a live dispatcher following your train.
 Pause > Journey > Skip ahead. Settings > Time-skip events selects stop

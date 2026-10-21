@@ -1,5 +1,22 @@
 # Progress
 
+## 2026-10-22 — Preview lifetime and rapid selection review complete
+
+- Native Intensive time-browser audit: 24 varied snapshot loads / 51 checks;
+  six repeated same-time loads / 17 checks. Old and closed railway objects free,
+  rapid requests display only the latest selected clock; node count stays58.
+- Engine-tracked allocations follow snapshot contents, with at most4,800
+  bytes of same-time drift. No claim about total RAM/VRAM or gameplay memory.
+  Evidence extends art/performance/journey-guide-2026-10-22. No runtime fix needed.
+- Packaged README names the new Journeys guide and corrects an old R42 label.
+  No simulation/prepared-data changes. Full suite797 and final headless controller99
+  remain the source validation; this audit adds native lifetime/input coverage.
+- R45 sequence47 release helpers, final documentation generator and source
+  validation manifest are ready under .local/r45-release. R44 remains live;
+  no export/publication started. Minimum QoL end is still05:20:21 +08. Continue
+  final review until then, publish/validate, retire verified old full files,
+  commit publication evidence, then complete the window and disable heartbeat.
+
 ## 2026-10-22 — Journey controls guide and broader layout review complete
 
 - Added a Journeys guide tab covering departure Drive/Ride, favourites, sorting,
