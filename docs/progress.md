@@ -1,5 +1,26 @@
 # Progress
 
+## 2026-10-22 — Journey controls guide and broader layout review complete
+
+- Added a Journeys guide tab covering departure Drive/Ride, favourites, sorting,
+  stops/traffic, native dropdown controls, nearby services, passenger recall and
+  Continue. Available from both Home and Pause; documented in controllers.md.
+- Headless controller contexts now cover all five guide tabs: 99 pass. Native
+  Home preferences/guide: 32 pass with real pad events; 720p image inspected.
+- Broader native 720p timeline review: 182 service inspections across six time
+  blocks in each Standard/Intensive day; 24 checks pass. Long waiting messages
+  fit, and full railway bytes remain identical. Existing prepared states only.
+  Evidence: art/performance/journey-guide-2026-10-22.
+- Full source suite remains 797 passing from the preceding runtime changes;
+  this final help-text/test-fixture addition uses targeted headless/native checks.
+  No sim, persistence or prepared-data edits. No full-day/distribution reruns.
+- R44 stays available. R45 sequence47 is prepared but not yet exported/published;
+  minimum extra QoL window ends 05:20:21 +08. Finish final review within that
+  window, then follow .local/r45-release/README.txt and the guarded publish.ps1.
+  Refresh source-validation.json if committing any further changes.
+- Playtest: Home/Pause → Controller layout → Journeys with LB/RB, RS scroll,
+  then B back to caller. Existing boarding/save playtests are in journey-library.md.
+
 ## 2026-10-22 — Continue preview and load-return context validated
 
 - Home Continue previews its actual readable save: service, railway time,

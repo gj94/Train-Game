@@ -4,7 +4,7 @@ Current source controls (R45). Xbox 360, One, Series and Elite use Godot's
 standard layout. Elite paddles follow the controller's own assigned buttons.
 
 Open **Pause → Reference → Controller layout** for separate **Driving**, **Walking**,
-**Cameras** and **Menus** pages. LB/RB switches tabs, RS scrolls, A selects and
+**Cameras**, **Menus** and **Journeys** pages. LB/RB switches tabs, RS scrolls, A selects and
 B returns to the caller. Controller preferences retain deadzone, look sensitivity,
 vertical inversion and vibration. Old layout preferences migrate to this scheme.
 

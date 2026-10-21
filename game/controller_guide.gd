@@ -28,7 +28,14 @@ const PAGES := [
 		["A / B","Confirm / back","A selects or interacts. B returns to the previous page; it never sounds the horn in a menu."],
 		["LS / D-PAD","Navigate","Move focus. Use right stick to scroll; LB/RB switch areas, or guide tabs here."],
 		["DISPATCH","Navigate the railway","X finds YOUR train; Y follows the inspected train. LB/RB switches map, services, inspector and activity. On map: LS pan, triggers zoom, D-pad targets; View timetable."],
-		["RECONNECT","Release to resume","Disconnect pauses the railway. After reconnecting or closing a menu, release all controls before driving."]]]
+		["RECONNECT","Release to resume","Disconnect pauses the railway. After reconnecting or closing a menu, release all controls before driving."]]],
+	["JOURNEYS","Find a departure, board as a passenger, or resume your saved railway.",[
+		["A / B","Choose before boarding","In the departure roster, A moves to the explicit Drive action. Move right for Ride as passenger. B returns to the roster before Home."],
+		["L3 / X / Y","Favourites / sort / details","In departures, L3 stars the selected service, X changes sort and Y switches stops/traffic. Favourites are separate for each timetable; RS scrolls details."],
+		["DROPDOWNS","Pickers without surprises","A opens or confirms, B cancels. LS/D-pad moves; LB/RB pages choices. Shoulder buttons stay inside an open stock, timetable, sort or station picker."],
+		["EXPLORE TIME","Find nearby services","Outside a picker, LB/RB steps five minutes. Near station lists services within 15 km along the line. X locates the selected train; Y fits the route."],
+		["PASSENGER SEAT","Let the railway drive","Ride or Passenger seat boards with AI driving. Carriage menus find an empty seat; Hold R3 recalls your remembered seat. Skip settings can return you there after advancing time."],
+		["CONTINUE","Know where you return","Highlight Continue to preview service, time, seat and progress. Backups are labelled. Loads resume paused; B cancels back to the menu you started from."]]]
 ]
 var page := 0
 var tabs: Array[Button] = []

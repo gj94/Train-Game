@@ -148,7 +148,7 @@ func run() -> void:
 	check(game.hud.modal=="pause" and game.hud.pause_menu.page==0,"Time speed back returns to Journey")
 	await choose("controller_guide")
 	check(game.hud.modal=="controller_guide" and game.paused,"Pause opens dedicated control guide")
-	for i in 4:
+	for i in game.hud.control_guide.PAGES.size():
 		check(game.hud.control_guide.page==i,"guide tab "+str(i))
 		check(root.get_visible_rect().encloses(game.hud.control_guide.get_global_rect()),"guide fits viewport")
 		await capture("guide-"+str(i))
