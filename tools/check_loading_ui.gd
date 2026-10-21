@@ -23,5 +23,13 @@ func run() -> void:
 	if ready and DisplayServer.get_name()!="headless":
 		game.hud.show_modal("pause");await process_frame;await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png("res://.local/r43-pause-live.png")
-	game.queue_free();current_scene=null;await process_frame;await process_frame
+	# Use production's asynchronous return path: GPU-backed streaming work must
+	# drain with the render loop alive before freeing the geographic scene.
+	await game._return_to_landing()
+	await process_frame;await process_frame
+	var returned: bool=not is_instance_valid(game)
+	report.returned_to_menu=returned
+	FileAccess.open("res://.local/r43-loading-report.json",FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
+	print("LOADING_RETURN ","PASS" if returned else "FAIL")
+	ready=ready and returned
 	quit(0 if ready and report.clock_unchanged else 1)

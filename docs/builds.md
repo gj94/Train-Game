@@ -1,57 +1,51 @@
 # Windows portable build
 
-Current release: **R42 — arrival dispatch, depot limits and departure horns**.
-Published 22 October 2026 from clean source **caf4349**, signed sequence
-**44**, at http://192.168.8.183:8765/.
-Full ZIP: **3,588,130,468 bytes**, SHA-256
+Current release: **R43 — menus, controller navigation and loading feedback**.
+Published 22 October 2026 from clean runtime source **3d4fb5c**, signed sequence
+**45**, at http://192.168.8.183:8765/.
+Full ZIP: **3,588,153,437 bytes**, SHA-256
+`bc6bc71787cd5ab0c5bfd97172a6ab4d2ab5a788e5f192b0ed6d3c9b39190b9c`.
+
+The five-section pause hub supports LB/RB, remembered selections and consistent
+submenu back behaviour. Dispatcher X locates the assigned train, Y follows the
+inspected train and LB/RB changes four focus areas. Own occupied length is blue
+and marked YOU. Inspecting/viewing stays separate from taking control. Settings,
+service browser and reference share the new theme; graphics rows explain their
+cost. Loading shows real phases and gives scene attachment more time while idle.
+See [menu guide and playtest](menu-qol.md).
+
+Simulation, authored schedules and all prepared railway states/traffic are
+unchanged from R42. **773 headless tests**, **97 controller checks**, **84 native
+menu checks**, sound/dispatch checks and both service browser checks pass.
+Native ERS loading and returning to the menu are verified on the development PC.
+No full-day reruns or extracted-distribution gameplay. See
+[source verification](../art/performance/menu-qol-2026-10-22/verification.json).
+
+All **509 archive CRCs / 507 managed
+hashes**, clean build identity, packaged guides, **192** explicit asset packs,
+signed catalogue, served ZIP/PCK/compressed ranges and legacy v3 verification
+pass. Prepared snapshots and traffic are checked by read-only pack mounting.
+See [R43 publication](../art/performance/r43-release-2026-10-22/publication.json).
+
+Use the included **Update & Play v4** for incremental transfers. Existing v4
+installations update directly. Older v3 remains compatible; replace the small
+launcher once for faster transfer. New installations need the complete ZIP
+including packs/. R42 → R43 reuses **4,246,699,504 bytes**;
+changed target blocks total **7,805,324 bytes** and estimated
+unique compressed payload is **2,678,048
+bytes**, plus the signed catalogue. This is an estimate, not a client benchmark.
+
+Only R43 is offered as a full download. Verified R42 export/ZIP/checksum retired
+after validation, freeing **7,842,656,159 bytes**. Historical signed
+catalogues remain. Next publication needs a fresh build name and sequence **46+**,
+with full ZIP and incremental support.
+
+Previous release: **R42**, source **caf4349**, sequence **44**. Arrival/overtake
+classification, committed starter order, depot-branch limits and stationary AI
+horns. Full Standard/Intensive/delayed days passed; their unchanged prepared data
+is reused here. ZIP 3,588,130,468 bytes, SHA-256
 `78f1c2614091a8d877802cbf0f621b90c59f9ca8028317bdf187ffcb529caef5`.
-
-K1's Alappuzha arrival is no longer misclassified as a departure deadlock,
-which wrongly cancelled the B024 overtake hold. Already allocated starters
-retain their departure order. The existing waiting policy is unchanged.
-AI passenger departures finish both horn calls before motion, including the
-player service under AI; manual takeover cancels them. Shared depot access
-retains adjoining line speed; only actual branch/yard movements use 25/15 km/h.
-Legacy R41 saves and service plans remain compatible.
-
-Includes R41 [event skipping](event-skip.md), the optional [Epic preset](extreme-visuals.md)
-and prior scenery fixes. High remains the graphics default. Use the included
-**Update & Play v4** for verified incremental transfers; existing v4 installations
-can update directly. Older v3 launchers remain compatible; replace their small
-launcher ZIP once for faster transfers. New installations need the entire ZIP,
-including all **192** asset packs.
-
-Validation: **772 headless tests**; complete Standard **100/100**, Intensive
-**140/140**, and delayed Intensive **140/140** operating days. Every call is
-completed, all trains clear to depot, and no safety event occurs. Both wait
-populations meet the requested percentiles; Intensive K1 has **14 distinct
-overtakers**. Prepared departures, five-minute states and reciprocal traffic
-previews are refreshed. Source UI, manual-delay recovery, native horn state,
-legacy snapshots and event-skip replay checks pass. See
-[simulation evidence](../art/performance/departure-depots-2026-10-21/README.md).
-
-All **508 archive CRCs / 506 managed hashes**, clean source identity,
-packaged guides, explicit packs, signatures and served ZIP/PCK/compressed ranges
-pass. Read-only native mounting verifies prepared snapshots and encounter data;
-the legacy v3 verifier accepts the catalogue. No extracted-distribution gameplay
-run. See [R42 publication](../art/performance/r42-release-2026-10-22/publication.json).
-
-R41 to R42 reuses **2,420,125,809 bytes**. Changed target blocks total
-**1,834,352,251 bytes**; estimated unique compressed payload is
-**1,647,308,679 bytes**, plus the **6,485,429-byte**
-catalogue. This is an estimate, not a measured client transfer. Refreshed railway
-states account for a much larger update than the previous presentation-only release.
-
-Only R42 is offered as a full download. R41's verified export/ZIP/checksum were
-retired after the new publication passed, freeing **7,834,462,069 bytes**.
-Historical signed catalogues remain. The next release needs a fresh name and
-sequence **45+**, with full ZIP and incremental support.
-
-Playtest Intensive K1 at Alappuzha around 10:00: B024 should depart first;
-K1 waits for express clearance and onward capacity. At a platform, hand driving
-to AI and confirm both horns finish before motion; take back manual control to
-cancel the sequence. Compare a through depot junction with the actual branch:
-the running line retains its limit while the branch is restricted.
+See [R42 publication](../art/performance/r42-release-2026-10-22/publication.json).
 
 Previous release: **R41**, source **ee75fa8**, sequence **43**, introduced
 next-event skip and its follow dispatcher. Full ZIP was 3,584,643,310 bytes,

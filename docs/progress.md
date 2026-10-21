@@ -1,5 +1,25 @@
 # Progress
 
+## 2026-10-22 — R43 published
+
+- Full ZIP and signed incremental updates live at http://192.168.8.183:8765/,
+  sequence 45, runtime source `3d4fb5c`. ZIP 3,588,153,437 bytes,
+  SHA-256 `bc6bc71787cd5ab0c5bfd97172a6ab4d2ab5a788e5f192b0ed6d3c9b39190b9c`.
+- Five pause sections, LB/RB navigation, remembered focus, consistent submenus,
+  contextual graphics help, own-train locate/follow and four dispatcher areas.
+  Shared presentation theme and real loading phases with larger idle attachment
+  budget. Simulation and all prepared timetable bytes remain unchanged from R42.
+- 773 units, 97 controller checks, 84 native UI checks, sound/dispatch and both
+  timetable-browser checks pass. Native geographic loading/menu return passes.
+  No full-day timetable rerun or distribution gameplay test.
+- 509 archive CRCs / 507 managed hashes,
+  192 packs, signatures, served ranges and legacy v3 checks pass. Only R43 is
+  offered; verified R42 full files retired, freeing 7,842,656,159 bytes.
+  Historical catalogues retained. Next sequence 46+. Source/evidence pushed.
+- Playtest Menu LB/RB/back/focus memory, Settings, and Dispatch X after inspecting
+  another train; Y follow, LS pan, triggers zoom and LB/RB panels. Verify View
+  train keeps assignment and Take control/Delete still ask. See docs/menu-qol.md.
+
 ## 2026-10-22 — R43 menu QoL validated; publication pending
 
 - New five-section pause hub: Journey, Train & camera, Settings, Reference and
@@ -20,7 +40,7 @@
 - Full headless suite: 773 passed. Source controller event integration: 97 checks;
   native menu fixture: 84 checks plus 720p/900p screenshot review. Sound mixer:
   63 checks. Standard/Intensive service browser: 3,396 / 5,556 checks. Stationary
-  native ERS startup completed with four scenery workers and unchanged clock;
+  native ERS startup and menu return completed with four workers and unchanged clock;
   its development-PC timing is not a target-PC benchmark or an A/B claim.
   The old whole-corridor native controller fixture exceeded shader-instance
   capacity, so it was stopped; controller routing ran headlessly and menu
