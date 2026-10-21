@@ -1,5 +1,26 @@
 # Progress
 
+## 2026-10-22 — R45 published after the additional QoL window
+
+- Full ZIP and signed incremental downloads live at http://192.168.8.183:8765/;
+  sequence 47, clean runtime 47e0ab6, 3,589,098,514 bytes.
+  SHA-256 ef4c4f37ddeb1d39912e488442fdc0502c0f1644ea28b2f06711149aed0e4f97.
+- Journey discovery, Home settings, passenger/carriage navigation, save/recovery
+  feedback, native controller menus and dispatcher label improvements shipped.
+  Full source suite 797 and final controller 99 pass; native UI evidence retained.
+- 511 archive CRCs / 509 managed
+  hashes, pack inventory, signatures, served ranges/compressed blocks and
+  read-only prepared snapshots verified. No distribution gameplay rerun.
+- Verified R44 full files retired, freeing 7,844,521,907 bytes; historical catalogues/payloads remain.
+- Extra QoL window began 2026-10-22T03:20:21.282081+08:00; minimum 2026-10-22T05:20:21.282081+08:00
+  was reached before publication. No simulation/prepared timetable edits or
+  full-day regeneration/rehearsal. The requested QoL pass and publication are
+  complete; final completion and continuation status are recorded in
+  .local/r44-release/qol-window.json.
+- Playtest favourites/stock filters, nearby station services, Ride/Passenger seat,
+  coach directory and Hold R3 recall; preview Continue and cancel its loading;
+  use LB/RB for guide sections and native dropdown choices. See journey-library.md.
+
 ## 2026-10-22 — R45 packaged instructions final review
 
 - Updated the portable start/playtest instructions for Drive versus Ride,

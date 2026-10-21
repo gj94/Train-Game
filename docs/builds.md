@@ -1,35 +1,40 @@
 # Windows portable build
 
-Current release: **R44 — home, passenger seat memory and scenery lookahead**.
-Published 22 October 2026 from clean runtime **14fda47**, signed sequence **46**,
+Current release: **R45 — journey discovery, passenger boarding and recovery QoL**.
+Published 22 October 2026 from clean runtime **47e0ab6**, signed sequence **47**,
 at http://192.168.8.183:8765/.
-Full ZIP: **3,589,059,883 bytes**; SHA-256
-5e849e034d11e6be98091458b44f621923aa5b40e1dd4fb37251fb798761c404.
+Full ZIP: **3,589,098,514 bytes**; SHA-256
+ef4c4f37ddeb1d39912e488442fdc0502c0f1644ea28b2f06711149aed0e4f97.
 
-New home screen with pre-journey graphics/controller options, remembered browser
-choices, service-specific passenger bookmarks and optional return after skips.
-Hold R3 to remember/return; End / Shift+End keyboard equivalents. Hidden route
-prefetch uses bounded memory without extending visible range. On the development
-780M, single native 60-second replays covered 3.5% / 6.2% more route at ×16 / ×32;
-loading is still possible and target-PC frame rate is unmeasured.
-See [guide and playtest](streaming-and-passenger-qol.md).
+Favourites, stock/full-route filters and remembered departure choices; nearby
+service discovery and passenger boarding in Explore by time. Home sound/controller
+settings, saved-journey previews, verified recovery writes and load-error feedback.
+Coach class/free-seat directory, empty-seat search and remembered-seat return.
+Clearer dispatcher tags/route overview, native dropdown navigation and a Journeys
+controller guide. Includes R44 seat recall and bounded scenery lookahead.
+See [guide and playtest](journey-library.md).
 
-779 headless units; 97 controller checks; 20 passenger checks each on LHB/VB8;
-27 native menu checks at 720p/900p; both timetable browser checks pass. Simulation
-and prepared railway bytes are unchanged. No full-day regeneration or distribution
-gameplay tests. [Source evidence](../art/performance/streaming-qol-2026-10-22/README.md).
+797 source headless tests; 99 final controller checks. Native browser 36, Home
+settings/guide 32, resume 15, library 23, timeline boarding 23, and cross-day layout 24
+covering 182 service inspections. Source/native evidence is linked in the
+[release report](../art/performance/r45-release-2026-10-22/README.md).
+Simulation and prepared timetables are unchanged. No full timetable rerun,
+extracted-distribution gameplay test or new target-PC performance measurement.
 
-510 archive CRCs / 508 managed hashes,
-192 explicit packs, signatures, served ZIP/PCK/compressed ranges
-and read-only snapshot mounting pass. [Publication evidence](../art/performance/r44-release-2026-10-22/publication.json).
+511 archive CRCs / 509 managed
+hashes, 192 explicit packs, signatures, served ZIP/PCK/compressed
+ranges and read-only snapshot mounting pass. [Publication evidence](../art/performance/r45-release-2026-10-22/publication.json).
 
-Use **Update & Play v4** for incremental transfers. R43 → R44 reuses
-4,166,111,452 bytes; changed target blocks total 89,302,941
-bytes, with estimated unique compressed payload 65,776,803
-bytes plus the catalogue. This is an estimate, not a client throughput benchmark.
-Only R44 is offered as a full download. Verified R43 full export/ZIP/checksum
-retired, freeing 7,842,705,896 bytes; historical catalogues remain.
-Next release requires a fresh name and sequence **47+**.
+Use **Update & Play v4** for incremental transfers. R44 → R45 reuses
+4,247,610,621 bytes; changed target blocks total 7,850,005
+bytes, estimated unique compressed payload 2,726,352
+bytes plus the catalogue. These are calculated sizes, not a LAN throughput test.
+Only R45 is offered as a full download. Verified R44 full files retired, freeing 7,844,521,907 bytes; historical catalogues/payloads remain.
+Next release requires a new name and sequence **48+**.
+
+Previous release: **R44**, runtime **14fda47**, sequence **46**, introduced Home,
+passenger seat memory and bounded hidden scenery lookahead.
+[Publication](../art/performance/r44-release-2026-10-22/publication.json).
 
 Previous release: **R43**, source **3d4fb5c**, sequence **45**. Pause/dispatcher
 menus, controller navigation and loading feedback. [Publication](../art/performance/r43-release-2026-10-22/publication.json).

@@ -1,13 +1,15 @@
 # Incremental Windows updates
 
-## Current publication — R40
+## Current publication — R45
 
-Sequence42 includes optional Epic graphics, the full ZIP and v4 updater.
-All 192 stable asset packs are retained. Estimated compressed blocks from R39:
-2,570,368 bytes plus 6,478,313 catalogue bytes.
-Signatures, served ranges and legacy v3 catalogue compatibility passed.
-Only the latest full ZIP is offered; old signed catalogues remain for updates.
-Next publication needs sequence43+.
+Sequence 47 ships the full ZIP and v4 updater, retaining 192 stable packs.
+R44 → R45 estimated unique compressed changed payload is
+2,726,352 bytes plus the signed catalogue;
+4,247,610,621 managed bytes are reused. These are calculated transfer
+sizes, not measured client throughput. Signed catalogue, compressed ranges,
+archive hashes and read-only mounted resources pass. Only the latest full ZIP
+is advertised. Next publication needs a fresh name and sequence 48+.
+See [builds.md](builds.md) for checksum, source revision and evidence.
 
 ## V4 transfer optimization — shipped in R39
 
@@ -99,9 +101,9 @@ Tests: `node tools/updater/test.mjs`, `node tools/updater/test-packs.mjs`,
 The full-size read-only audit is `tools/updater/audit-packs.mjs`; native bootstrap
 verification is `tools/check_split_boot.gd`.
 
-## Published release and historical measurements
+## Historical publications and measurements
 
-Current publication: **R39**, signed sequence **41**, clean source **3ed0761**.
+Historical publication: **R39**, signed sequence **41**, clean source **3ed0761**.
 **Full and incremental downloads** at http://192.168.8.183:8765/. ZIP:
 **3,584,596,626 bytes**. It includes the v4 launcher. Existing users replace the
 small launcher once to gain the new transfer implementation; v3 remains

@@ -1,0 +1,51 @@
+{
+  "source": "47e0ab6a5d7f06566f69f3b09238a7b29c89df87",
+  "logs": [
+    {
+      "path": ".local/r45/resume-units.log",
+      "success": "Tests: 797 passed, 0 failed"
+    },
+    {
+      "path": ".local/r45/home-resume-native.log",
+      "success": "HOME_RESUME 15 checks, 0 failures"
+    },
+    {
+      "path": ".local/r45/resume-journey-library-native.log",
+      "success": "JOURNEY_LIBRARY_UI 23 checks, 0 failures"
+    },
+    {
+      "path": ".local/r45/browser-navigation-final-native.log",
+      "success": "BROWSER_NAVIGATION 36 checks, 0 failures"
+    },
+    {
+      "path": ".local/r45/guide-home-native.log",
+      "success": "HOME_PREFERENCES 32 checks, 0 failures"
+    },
+    {
+      "path": ".local/r45/guide-controller.log",
+      "success": "Controller context (lhb): 99 checks, 0 failures"
+    },
+    {
+      "path": ".local/r45/browser-timeline-boarding-native.log",
+      "success": "TIMELINE_PASSENGER 23 checks, 0 failures"
+    },
+    {
+      "path": ".local/r45/timeline-layout-native.log",
+      "success": "TIMELINE_LAYOUT 24 checks, 0 failures"
+    },
+    {
+      "path": ".local/r45/timeline-retention-varied-native.log",
+      "success": "TIMELINE_RETENTION 51 checks, 0 failures"
+    },
+    {
+      "path": ".local/r45/timeline-retention-same-native.log",
+      "success": "TIMELINE_RETENTION 17 checks, 0 failures"
+    }
+  ],
+  "simulation_changed": false,
+  "prepared_data_changed": false,
+  "timetable_rerun": false,
+  "distribution_gameplay_test": false,
+  "full_suite_source": "4ad24cf0bbdb5dd71aae84c8bc2adcf727a2768f",
+  "notes": "After the last full suite, runtime changes are the Journeys help tab only; targeted headless controller99 and native Home32 cover it. Remaining commits are read-only UI audit fixtures, evidence and documentation. Final packaged-guide review is documentation only."
+}
