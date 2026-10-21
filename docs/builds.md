@@ -1,55 +1,62 @@
 # Windows portable build
 
-Current release: **R41 — next-event skip and follow dispatcher**.
-Published 21 October 2026 from clean source **ee75fa8**, signed sequence
-**43**, at http://192.168.8.183:8765/.
-Full ZIP: **3,584,643,310 bytes**, SHA-256
-`573e8c0fee82f78b5b63213516901abc407aa694234c62712a0ef770b571e708`.
+Current release: **R42 — arrival dispatch, depot limits and departure horns**.
+Published 22 October 2026 from clean source **caf4349**, signed sequence
+**44**, at http://192.168.8.183:8765/.
+Full ZIP: **3,588,130,468 bytes**, SHA-256
+`78f1c2614091a8d877802cbf0f621b90c59f9ca8028317bdf187ffcb529caef5`.
 
-Select **Pause > Skip to next event / time / stop**. Event settings independently
-enable stop approaches, crossings, overtaking, being overtaken and held-signal
-clearance. The optional read-only dispatcher follows your train while 3D/audio
-are suspended. Return paused with AI driving; B/Esc cancels safely.
-See [event skip](event-skip.md). R40's optional [Epic preset](extreme-visuals.md)
-and prior scenery corrections remain; High is still the graphics default.
+K1's Alappuzha arrival is no longer misclassified as a departure deadlock,
+which wrongly cancelled the B024 overtake hold. Already allocated starters
+retain their departure order. The existing waiting policy is unchanged.
+AI passenger departures finish both horn calls before motion, including the
+player service under AI; manual takeover cancels them. Shared depot access
+retains adjoining line speed; only actual branch/yard movements use 25/15 km/h.
+Legacy R41 saves and service plans remain compatible.
 
-The included **Update & Play v4** supports batched verified incremental transfers.
-Existing v4 users can update directly. Older v3 launchers remain compatible;
-replace the small launcher ZIP once for the faster transfer implementation.
-New installations require the full ZIP including all **192** asset packs.
+Includes R41 [event skipping](event-skip.md), the optional [Epic preset](extreme-visuals.md)
+and prior scenery fixes. High remains the graphics default. Use the included
+**Update & Play v4** for verified incremental transfers; existing v4 installations
+can update directly. Older v3 launchers remain compatible; replace their small
+launcher ZIP once for faster transfers. New installations need the entire ZIP,
+including all **192** asset packs.
 
-The Standard 100-service and Intensive 140-service operating days, prepared
-states, physics, dispatch and sound banks are unchanged. No full timetable
-rehearsal or extracted-distribution gameplay run was performed.
+Validation: **772 headless tests**; complete Standard **100/100**, Intensive
+**140/140**, and delayed Intensive **140/140** operating days. Every call is
+completed, all trains clear to depot, and no safety event occurs. Both wait
+populations meet the requested percentiles; Intensive K1 has **14 distinct
+overtakers**. Prepared departures, five-minute states and reciprocal traffic
+previews are refreshed. Source UI, manual-delay recovery, native horn state,
+legacy snapshots and event-skip replay checks pass. See
+[simulation evidence](../art/performance/departure-depots-2026-10-21/README.md).
 
-Validation: **751 headless tests**, **37 native source-game checks**, exact
-checkpoint/replay comparisons on both operating days, and live corridor
-encounters including a delayed overtaker. Local native benchmark: map drawing
-reduces simulation throughput about 3.2%; map plus prediction/history about
-12.3%, with 78.6 MiB additional tracked heap. See
-[evidence and development-PC limits](../art/performance/event-skip-2026-10-21/README.md).
-These are not RTX 4090 Laptop measurements.
+All **508 archive CRCs / 506 managed hashes**, clean source identity,
+packaged guides, explicit packs, signatures and served ZIP/PCK/compressed ranges
+pass. Read-only native mounting verifies prepared snapshots and encounter data;
+the legacy v3 verifier accepts the catalogue. No extracted-distribution gameplay
+run. See [R42 publication](../art/performance/r42-release-2026-10-22/publication.json).
 
-All **508 archive CRCs / 506 managed hashes**,
-clean source identity, packaged guides, explicit packs, signatures and served
-ZIP/PCK/compressed ranges pass. Read-only native mounting verifies all prepared
-snapshots and encounter data. The legacy v3 verifier accepts this signed catalogue.
+R41 to R42 reuses **2,420,125,809 bytes**. Changed target blocks total
+**1,834,352,251 bytes**; estimated unique compressed payload is
+**1,647,308,679 bytes**, plus the **6,485,429-byte**
+catalogue. This is an estimate, not a measured client transfer. Refreshed railway
+states account for a much larger update than the previous presentation-only release.
+
+Only R42 is offered as a full download. R41's verified export/ZIP/checksum were
+retired after the new publication passed, freeing **7,834,462,069 bytes**.
+Historical signed catalogues remain. The next release needs a fresh name and
+sequence **45+**, with full ZIP and incremental support.
+
+Playtest Intensive K1 at Alappuzha around 10:00: B024 should depart first;
+K1 waits for express clearance and onward capacity. At a platform, hand driving
+to AI and confirm both horns finish before motion; take back manual control to
+cancel the sequence. Compare a through depot junction with the actual branch:
+the running line retains its limit while the branch is restricted.
+
+Previous release: **R41**, source **ee75fa8**, sequence **43**, introduced
+next-event skip and its follow dispatcher. Full ZIP was 3,584,643,310 bytes,
+SHA-256 `573e8c0fee82f78b5b63213516901abc407aa694234c62712a0ef770b571e708`.
 See [R41 publication](../art/performance/r41-release-2026-10-21/publication.json).
-
-R40 → R41 reuses **4,242,730,641 bytes**. Changed target blocks total
-**7,040,487 bytes**; estimated unique compressed payload is
-**2,590,048 bytes**, plus the
-**6,478,633-byte** catalogue. This is an estimate, not a measured client transfer.
-
-Only R41 is offered as a full download. R40's verified export/ZIP/checksum were
-retired after the new publication passed, freeing **7,834,394,648 bytes**.
-Historical signed catalogues remain. The next build needs a fresh name and
-sequence **44+**, with full ZIP and incremental support.
-
-Playtest each event switch, cancel with B, and verify return is paused with AI
-driving. Try a red wait, station approach and passing traffic; restart to check
-settings persistence. Depot-access limits and stationary paired departure horns
-are deferred in Git stash for the next build and timetable validation.
 
 Previous release: **R40**, source **1e33537**, sequence **42**, introduced
 optional Epic graphics. Its ZIP was 3,584,613,582 bytes, SHA-256
@@ -67,7 +74,7 @@ published 21 October 2026. Its full ZIP was **3,584,017,612 bytes**, SHA-256
 `c10c77d83ca9ee707e53b1382c7b98c63a43cd26bcb33f9eacd68b812e8b14ba`.
 It introduced the Intensive day and detailed audio mixer. Its three full-day
 rehearsals and wait-quality results remain recorded in
-[intensive-timetable.md](intensive-timetable.md).
+[R38 rehearsal summary](../art/performance/intensive-2026-10-20/summary.json).
 See [R38 evidence](../art/performance/r38-release-2026-10-21/publication.json).
 
 Previous release: **R37**, clean source **525da55**, signed sequence **39**,

@@ -1,5 +1,24 @@
 # Progress
 
+## 2026-10-22 — R42 published
+
+- Full ZIP and signed incremental updates live at http://192.168.8.183:8765/,
+  sequence 44, clean runtime source `caf4349`. ZIP 3,588,130,468 bytes,
+  SHA-256 `78f1c2614091a8d877802cbf0f621b90c59f9ca8028317bdf187ffcb529caef5`.
+- Includes arrival/overtake correction, committed starter order, main-line depot
+  access limits and both AI departure calls before movement. The user's current
+  wait policy is unchanged. Authored service times and audio banks are retained.
+- All 772 unit tests and full Standard, Intensive and delayed Intensive runs
+  pass; every service/call finishes and clears to depot, zero safety events.
+  Snapshots, traffic, legacy saves, manual recovery and source UI are verified.
+- All 508 ZIP CRCs / 506 managed hashes, packaged guides, clean identity,
+  192 mounted packs, signatures, served ranges and old v3 catalogue checks pass.
+  No extracted-distribution gameplay test. R41 export/ZIP/checksum retired after
+  verification and idle-LAN checks, freeing 7,834,462,069 bytes; historical
+  catalogues retained. Next sequence 45+. Source and publication evidence pushed.
+- Playtest Intensive K1/B024 at Alappuzha around 10:00, AI's stationary paired
+  horns and manual cancellation, and main-line versus depot-branch speed limits.
+
 ## 2026-10-22 — R42 simulation corrections validated; packaging pending
 
 - Resumed the deferred stash without dropping its backup. Shared depot access

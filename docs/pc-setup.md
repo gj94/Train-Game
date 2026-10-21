@@ -54,11 +54,11 @@ The default is the 100-service Kerala timetable; see `docs/busy-timetable.md`.
 To make a standalone Windows copy for another PC, run
 `powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1`.
 Matching SHA-512-verified 4.7.2 templates are in `.local/export-templates/`.
-The current ZIP is `export/TrainGame-Kerala-Coast-R41-Windows.zip`; see `docs/builds.md`.
-R41 supports full downloads and incremental updates. Replace older launchers once
+The current ZIP is `export/TrainGame-Kerala-Coast-R42-Windows.zip`; see `docs/builds.md`.
+R42 supports full downloads and incremental updates. Replace older launchers once
 with the small v4 updater ZIP for faster LAN transfers; v3 remains compatible.
 The complete `packs/` folder is required. Publish subsequent releases with
-a new `-BuildName` and increasing `-UpdateSequence` (44+); include the full ZIP
+a new `-BuildName` and increasing `-UpdateSequence` (45+); include the full ZIP
 and omit both `-SkipZip` and `-FullDownloadOnly` so the launcher can select the
 smaller transfer. See `docs/incremental-updates.md`. Preserve the
 private `.local/update-signing-private.pem` when migrating this build PC.
