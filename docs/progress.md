@@ -1,5 +1,24 @@
 # Progress
 
+## 2026-10-22 — R44 published; additional QoL pass active
+
+- Full ZIP + signed incremental updates live at http://192.168.8.183:8765/;
+  sequence 46, clean runtime 14fda47, 3,589,059,883 bytes.
+  SHA-256 5e849e034d11e6be98091458b44f621923aa5b40e1dd4fb37251fb798761c404.
+- Home/menu, passenger seat recall and optional post-skip seat return shipped.
+  Source/native/controller checks pass; bounded streaming observations and
+  limitations recorded. Railway simulation/prepared data remain unchanged.
+- 510 archive CRCs / 508 managed
+  hashes, LAN ranges, signatures and read-only mounted snapshots pass. Verified
+  R43 full files retired; only R44 offered. No distribution gameplay rerun.
+- Playtest Home and controller settings, hold R3 from a seat then pilot/platform,
+  skip-to-time/stop/event with passenger return on/off, save/load and ×16/×32.
+  See docs/streaming-and-passenger-qol.md.
+- Requested extra QoL period starts **2026-10-22T03:20:21.282081+08:00**; continue useful work
+  until at least **2026-10-22T05:20:21.282081+08:00**. Focus on service discovery,
+  passenger boarding, clearer recovery/save actions and controller focus. Keep
+  simulation, timetable and current downloadable R44 stable during development.
+
 ## 2026-10-22 — R44 streaming and passenger QoL in validation
 
 - Direction/time-scale-aware hidden scenery prefetch, bounded by profile and GPU

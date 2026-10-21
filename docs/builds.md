@@ -1,44 +1,38 @@
 # Windows portable build
 
-Current release: **R43 — menus, controller navigation and loading feedback**.
-Published 22 October 2026 from clean runtime source **3d4fb5c**, signed sequence
-**45**, at http://192.168.8.183:8765/.
-Full ZIP: **3,588,153,437 bytes**, SHA-256
-`bc6bc71787cd5ab0c5bfd97172a6ab4d2ab5a788e5f192b0ed6d3c9b39190b9c`.
+Current release: **R44 — home, passenger seat memory and scenery lookahead**.
+Published 22 October 2026 from clean runtime **14fda47**, signed sequence **46**,
+at http://192.168.8.183:8765/.
+Full ZIP: **3,589,059,883 bytes**; SHA-256
+5e849e034d11e6be98091458b44f621923aa5b40e1dd4fb37251fb798761c404.
 
-The five-section pause hub supports LB/RB, remembered selections and consistent
-submenu back behaviour. Dispatcher X locates the assigned train, Y follows the
-inspected train and LB/RB changes four focus areas. Own occupied length is blue
-and marked YOU. Inspecting/viewing stays separate from taking control. Settings,
-service browser and reference share the new theme; graphics rows explain their
-cost. Loading shows real phases and gives scene attachment more time while idle.
-See [menu guide and playtest](menu-qol.md).
+New home screen with pre-journey graphics/controller options, remembered browser
+choices, service-specific passenger bookmarks and optional return after skips.
+Hold R3 to remember/return; End / Shift+End keyboard equivalents. Hidden route
+prefetch uses bounded memory without extending visible range. On the development
+780M, single native 60-second replays covered 3.5% / 6.2% more route at ×16 / ×32;
+loading is still possible and target-PC frame rate is unmeasured.
+See [guide and playtest](streaming-and-passenger-qol.md).
 
-Simulation, authored schedules and all prepared railway states/traffic are
-unchanged from R42. **773 headless tests**, **97 controller checks**, **84 native
-menu checks**, sound/dispatch checks and both service browser checks pass.
-Native ERS loading and returning to the menu are verified on the development PC.
-No full-day reruns or extracted-distribution gameplay. See
-[source verification](../art/performance/menu-qol-2026-10-22/verification.json).
+779 headless units; 97 controller checks; 20 passenger checks each on LHB/VB8;
+27 native menu checks at 720p/900p; both timetable browser checks pass. Simulation
+and prepared railway bytes are unchanged. No full-day regeneration or distribution
+gameplay tests. [Source evidence](../art/performance/streaming-qol-2026-10-22/README.md).
 
-All **509 archive CRCs / 507 managed
-hashes**, clean build identity, packaged guides, **192** explicit asset packs,
-signed catalogue, served ZIP/PCK/compressed ranges and legacy v3 verification
-pass. Prepared snapshots and traffic are checked by read-only pack mounting.
-See [R43 publication](../art/performance/r43-release-2026-10-22/publication.json).
+510 archive CRCs / 508 managed hashes,
+192 explicit packs, signatures, served ZIP/PCK/compressed ranges
+and read-only snapshot mounting pass. [Publication evidence](../art/performance/r44-release-2026-10-22/publication.json).
 
-Use the included **Update & Play v4** for incremental transfers. Existing v4
-installations update directly. Older v3 remains compatible; replace the small
-launcher once for faster transfer. New installations need the complete ZIP
-including packs/. R42 → R43 reuses **4,246,699,504 bytes**;
-changed target blocks total **7,805,324 bytes** and estimated
-unique compressed payload is **2,678,048
-bytes**, plus the signed catalogue. This is an estimate, not a client benchmark.
+Use **Update & Play v4** for incremental transfers. R43 → R44 reuses
+4,166,111,452 bytes; changed target blocks total 89,302,941
+bytes, with estimated unique compressed payload 65,776,803
+bytes plus the catalogue. This is an estimate, not a client throughput benchmark.
+Only R44 is offered as a full download. Verified R43 full export/ZIP/checksum
+retired, freeing 7,842,705,896 bytes; historical catalogues remain.
+Next release requires a fresh name and sequence **47+**.
 
-Only R43 is offered as a full download. Verified R42 export/ZIP/checksum retired
-after validation, freeing **7,842,656,159 bytes**. Historical signed
-catalogues remain. Next publication needs a fresh build name and sequence **46+**,
-with full ZIP and incremental support.
+Previous release: **R43**, source **3d4fb5c**, sequence **45**. Pause/dispatcher
+menus, controller navigation and loading feedback. [Publication](../art/performance/r43-release-2026-10-22/publication.json).
 
 Previous release: **R42**, source **caf4349**, sequence **44**. Arrival/overtake
 classification, committed starter order, depot-branch limits and stationary AI
