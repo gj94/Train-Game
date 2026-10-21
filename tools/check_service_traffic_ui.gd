@@ -21,6 +21,7 @@ func run() -> void:
 	page.store=preload("res://persistence/save_store.gd").new("res://.local/traffic-ui-isolated-saves")
 	root.add_child(page);current_scene=page
 	await process_frame;await process_frame
+	page.show_browser();page.period=0;page.search.text="";page.selected={id="K1"};page.refresh()
 	check(page.services.size()==definition.count and not page.traffic_data.is_empty(),"Complete current service/traffic catalogues")
 	var roles:={}
 	var total:=0

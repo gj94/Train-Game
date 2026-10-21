@@ -1,0 +1,62 @@
+{
+	"adapter": "AMD Radeon 780M Graphics",
+	"frames": 1302,
+	"gpu_bytes_max": 3874709888.0,
+	"gpu_ms": {
+		"maximum": 98.1559982299805,
+		"mean": 44.7459961602582,
+		"median": 46.6629981994629,
+		"minimum": 0.0,
+		"over_16_7": 1143,
+		"over_33_3": 1028,
+		"over_50": 507,
+		"over_8_3": 1301,
+		"p95": 67.7789993286133,
+		"p99": 91.9309997558594
+	},
+	"loading_interruptions": 35,
+	"loading_seconds": 40.75134,
+	"note": "1280x720 scenery-only fixed camera replay; frozen railway, not a target-PC or full-game FPS benchmark",
+	"prefetch": false,
+	"prefetch_completed": 0,
+	"prefetch_hits": 0,
+	"prefetch_jobs_max": 0,
+	"profile": {
+		"activation_children": 24,
+		"activation_usec": 2000,
+		"gpu_cache_ceiling": 8589934592.0,
+		"prefetch_jobs": 600,
+		"prefetch_metres": 6000.0,
+		"warm_chunks": 96,
+		"warm_seconds": 120.0,
+		"workers": 4
+	},
+	"render_cpu_ms": {
+		"maximum": 39.3199996948242,
+		"mean": 8.3389999929661,
+		"median": 7.47300004959106,
+		"minimum": 0.0,
+		"over_16_7": 46,
+		"over_33_3": 4,
+		"over_50": 0,
+		"over_8_3": 543,
+		"p95": 15.4650001525879,
+		"p99": 25.3460006713867
+	},
+	"route_metres": 17055.8826666667,
+	"scale": 32,
+	"stream_ms": {
+		"maximum": 63.806,
+		"mean": 3.49169354838709,
+		"median": 2.81,
+		"minimum": 0.302,
+		"over_16_7": 9,
+		"over_33_3": 3,
+		"over_50": 2,
+		"over_8_3": 58,
+		"p95": 7.93,
+		"p99": 12.318
+	},
+	"visible_chunks_max": 226,
+	"wall_seconds": 60.033
+}

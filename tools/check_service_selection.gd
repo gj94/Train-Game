@@ -52,6 +52,8 @@ func settle(g) -> void:
 func run() -> void:
 	root.size=Vector2i(1600,900)
 	var page:=menu();await frames()
+	check(page.home.visible,"controller begins on home")
+	page.show_browser();page.period=0;page.search.text="";page.selected={id="K1"};page.refresh()
 	check(page.services.size()==100 if not preview else page.services.size()>0,"catalogue displayed")
 	check(page.get_node_or_null("WorldEnvironment")==null,"menu has no 3D railway")
 	check(root.gui_get_focus_owner()==page.roster,"controller begins on service list")

@@ -36,6 +36,9 @@ var _coast_direction := 0.0
 var _coast_time := 0.0
 var _camera_down := false
 var _camera_hold_time := 0.0
+var _seat_hold_down := false
+var _seat_hold_used := false
+var _seat_hold_time := 0.0
 var _free_train_controls := false
 
 var _operation_down := false
@@ -123,7 +126,7 @@ func _neutral() -> bool:
 func drive_input() -> float:
 	if active_device < 0 or not _armed or not _focused or game.paused or _ui_open() or _context not in ["drive","free"]: return 0
 	if CameraMotion.is_free(game.cam)!=(_context=="free"):return 0
-	if game.train.automatic or game.walker.active or game._passenger_seated() or game.cam.mode==2 or _dpad_button!=-1 or _operation_down or _view_down: return 0
+	if game.train.automatic or game.walker.active or game._passenger_seated() or game.cam.mode==2 or _dpad_button!=-1 or _operation_down or _view_down or _seat_hold_down: return 0
 	if CameraMotion.is_free(game.cam):return 0
 	return TSW.direction(self,game.train.controller)
 
@@ -133,7 +136,7 @@ func drive_handle(current: float, travel: float) -> float:
 	return TSW.handle(self,current,travel)
 
 func walk_input() -> Vector2:
-	if active_device<0 or not _armed or not _focused or game.paused or _ui_open() or _dpad_button!=-1 or _operation_down or _view_down: return Vector2.ZERO
+	if active_device<0 or not _armed or not _focused or game.paused or _ui_open() or _dpad_button!=-1 or _operation_down or _view_down or _seat_hold_down: return Vector2.ZERO
 	return Shape.stick(Vector2(_axes[0],_axes[1]),deadzone)
 
 func walk_running() -> bool:

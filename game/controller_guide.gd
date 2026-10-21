@@ -19,7 +19,7 @@ const PAGES := [
 		["LEFT / RIGHT","Head-out first","From pilot, the first D-pad tap looks out on that side. Further taps cycle close, far, rear and head-out follow views."],
 		["HOLD ← / →","Return to pilot","Hold either horizontal D-pad direction. The current driver stays in control; returning does not take over from AI."],
 		["LS / RS","Compose / look","In following views, LS changes distance and angle without detaching. RS looks or orbits."],
-		["R3","Recenter","Click the right stick to reset look/orbit. It never switches to free camera."],
+		["R3 / HOLD R3","Recenter / passenger seat","Tap to reset look. Hold to return to your remembered passenger seat with AI driving; hold while seated to remember that seat and view direction."],
 		["SEATED ← / →","Passenger row head-out","After sitting with A, cycle left / interior / right from that same row. Y stands; AI continues driving."],
 		["FREE VIEW","Platform observer","Pause → Train & camera → Cameras & walking → Free camera. LS moves, RS looks, RT/LT zoom; AI drives."]]],
 	["MENUS","The same buttons confirm and cancel throughout the interface.",[

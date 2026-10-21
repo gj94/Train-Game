@@ -26,6 +26,7 @@ func run() -> void:
 	var page:=preload("res://game/launch.gd").new()
 	page.store=preload("res://persistence/save_store.gd").new(folder+"/isolated-saves")
 	root.add_child(page);current_scene=page;await frames()
+	page.show_browser();page.period=0;page.search.text="";page.selected={id="K1"};page.refresh()
 	var fixture: bool="--fixture" in OS.get_cmdline_user_args()
 	if fixture:
 		page.traffic_data={events=[]}

@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **22 Oct 2026 travel QoL:** a lightweight game home with pre-journey settings;
+  bounded hidden scenery lookahead for fast-forward; service-specific passenger
+  seat bookmarks with controller recall and optional return after all time skips.
+  Preserve simulation/timetable data. Publish first, then continue a separate
+  two-hour minimum QoL pass.
 - **22 Oct 2026 menu QoL:** a consistent pause hub with Journey, Train & camera,
   Settings, Reference and Session sections navigable by LB/RB; remember focus
   and submenu parents. Dispatcher needs explicit own-train locate, follow,

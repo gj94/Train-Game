@@ -1,5 +1,27 @@
 # Progress
 
+## 2026-10-22 — R44 streaming and passenger QoL in validation
+
+- Direction/time-scale-aware hidden scenery prefetch, bounded by profile and GPU
+  pressure. Normal visible requests retain priority and the same draw footprint.
+- New home page, pre-journey graphics/settings/controller guide, compact service
+  browser with remembered search/filter/sort/selection; actual-game backdrop.
+- Passenger seat bookmarks, hold R3 recall/remember, End / Shift+End keyboard
+  equivalents, save persistence, and optional passenger return after all skips.
+- Full headless suite: 779 pass; final stream-focused suite: 16 pass. Existing
+  controller integration: 97 pass. Passenger/clock-skip, cancellation, opt-out,
+  save compatibility and unavailable-service checks: 20 each on LHB and VB8.
+  Native home checks: 27 pass at 720p/900p. Operating-day UI: 16 pass; Standard /
+  Intensive traffic browsers: 3,396 / 5,556 pass. MCP reports no errors.
+- Native 60-second ×16/×32 scenery A/B runs complete on the development 780M:
+  travel increased 3.5% / 6.2%; loading time fell 1.16 / 1.14 seconds. Interruptions
+  were 34→28 / 35→39, so this does not eliminate high-speed loading. Hidden
+  cache hits: 86 / 56. Actual visible radius stays unchanged; target-PC FPS is
+  unmeasured. Evidence: art/performance/streaming-qol-2026-10-22/.
+- No railway simulation or timetable changes. Publish R44, then spend at least two further
+  hours on presentation/QoL improvements as requested; record that start/deadline
+  when publication completes.
+
 ## 2026-10-22 — R43 published
 
 - Full ZIP and signed incremental updates live at http://192.168.8.183:8765/,

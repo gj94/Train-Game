@@ -15,4 +15,5 @@ static func for_adapter(adapter: String,cpus: int) -> Dictionary:
 	var budget:=8.0 if "laptop" in name and "4090" in name else (6.0 if "laptop" in name else 10.0)
 	return {workers=worker_count(cpus),warm_chunks=96 if large else 32,
 		warm_seconds=120.0,gpu_cache_ceiling=(budget if large else 2.0)*GIB,
+		prefetch_metres=6000.0 if large else 3000.0,prefetch_jobs=600 if large else 260,
 		activation_usec=2000,activation_children=24}

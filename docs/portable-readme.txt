@@ -1,6 +1,19 @@
-TRAIN GAME - KERALA COAST R43
+TRAIN GAME - KERALA COAST R44
 
-R43: A new pause hub, clearer dispatcher and more informative loading.
+R44: New home screen, passenger seat memory and forward scenery preparation.
+Choose a journey, continue, explore by time or configure graphics/controller
+options before loading the railway. The service browser remembers your choices.
+Sitting remembers a passenger seat. Hold R3 while seated to update it (including
+look direction); hold R3 elsewhere to return with AI driving. Tap R3 recentres.
+Keyboard End returns; Shift+End remembers. Skip ahead can return you to the same
+seat after an event, time or stop skip. Toggle this in Skip ahead / Settings.
+Scenery prepares hidden sections along your train's route with bounded memory.
+The visible draw distance is unchanged. Very fast travel can still need loading.
+Simulation and prepared timetable data are unchanged from R43.
+See guides/streaming-and-passenger-qol.md and guides/controllers.md.
+R44 supports full downloads and incremental updates through Update & Play v4.
+
+Includes R43: A new pause hub, clearer dispatcher and more informative loading.
 Pause has Journey / Train & camera / Settings / Reference / Session sections.
 LB/RB changes sections, D-pad/LS navigates, A selects and B returns/resumes.
 Keyboard Q/E changes sections. Each section remembers the selected action.

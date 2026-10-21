@@ -81,7 +81,7 @@ func run() -> void:
 	loading.queue_free();await frames()
 	var launch=preload("res://game/launch.gd").new()
 	launch.store=preload("res://persistence/save_store.gd").new("res://.local/menu-ui-isolated-saves")
-	root.add_child(launch);await frames();await capture("departures-900")
+	root.add_child(launch);await frames();launch.show_browser();await capture("departures-900")
 	launch.set_detail_mode(1);await capture("departures-traffic-900")
 	launch.queue_free();await frames()
 	print("MENU_SHELL ","PASS" if failures.is_empty() else "FAIL"," checks=",checks)

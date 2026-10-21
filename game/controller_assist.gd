@@ -25,7 +25,11 @@ func _ready() -> void:
 func update_pad(pad) -> void:
 	if not pad.controller_mode or not pad._armed or pad.game.paused or pad._ui_open():hide();return
 	var elapsed:=0.0
-	if pad._operation_down:
+	if pad._seat_hold_down:
+		heading.text="HOLD R3 · "+("REMEMBER SEAT" if pad.game._passenger_seated() else "RETURN TO PASSENGER SEAT")
+		detail.text="Release early to recenter. AI drives when you return to your seat."
+		elapsed=pad._seat_hold_time
+	elif pad._operation_down:
 		heading.text="HOLD X · TAKE CONTROL"
 		detail.text="Release early to let AI drive." if not pad._operation_used else "Return to the pilot seat before taking control."
 		elapsed=pad._operation_time

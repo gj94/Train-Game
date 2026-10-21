@@ -72,6 +72,7 @@ var audio_previous_eye := Vector3(INF,INF,INF)
 var journey_tools
 var interior_sound
 var time_skip
+var passenger_bookmark
 var _resume: Dictionary = {}
 var _prepared: Dictionary = {}
 var _prepared_id := ""
@@ -297,6 +298,7 @@ func _ready() -> void:
 	save_load=preload("res://game/save_load.gd").new(self)
 	journey_tools=preload("res://game/journey_tools.gd").new();journey_tools.game=self;add_child(journey_tools)
 	interior_sound=preload("res://game/interior_audio.gd").new();interior_sound.game=self;add_child(interior_sound)
+	passenger_bookmark=preload("res://game/passenger_bookmark.gd").new(self)
 	time_skip=preload("res://game/time_skip.gd").new()
 	time_skip.game=self
 	add_child(time_skip)
@@ -433,6 +435,11 @@ func _process(delta: float) -> void:
 		audio.interior_listener = tv.passenger_audio_position()
 	elif train.stock_kind.begins_with("ported:") and cam.mode == CameraRig.Mode.CAB:
 		audio.interior_listener = tv.interior_audio_position()
+	if geographic_drive:
+		var stream_train: Train=train
+		if not traffic_presentation.followed_service.is_empty():stream_train=world.trains.get(traffic_presentation.followed_service,train)
+		if (cam.mode==CameraRig.Mode.OVERVIEW and not cam.follow) or (walker.active and walker.platform.outside):stream_train=null
+		wv.set_travel_context(stream_train,time_scale)
 	wv.update()
 	wv.update_joints(delta)
 	if profiling:
@@ -547,6 +554,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			hud.toast("AI drives while you are seated · E / Y to stand up")
 			return
 		match event.physical_keycode:
+			KEY_END:
+				if event.shift_pressed:passenger_bookmark.remember(true)
+				else:passenger_bookmark.restore()
 			KEY_F5: _open_services()
 			KEY_4: _pilot_camera()
 			KEY_Q: _head_out_camera(-1)
@@ -812,6 +822,11 @@ func _ui_action(action: String) -> void:
 		journey_tools.action(action);return
 	if action.begins_with("skip:"):
 		time_skip.action(action);return
+	if action in ["seat:return","seat:remember"]:
+		if action=="seat:remember":passenger_bookmark.remember(true)
+		else:
+			hud.show_modal("");_set_paused(false);passenger_bookmark.restore()
+		return
 	if action=="graphics" or action.begins_with("graphics:"):
 		if action=="graphics":
 			_set_paused(true);hud.show_modal("graphics")
@@ -1240,7 +1255,9 @@ func _passenger_seated() -> bool:
 	return _has_passengers() and tv.passenger_seat and (cam.mode==CameraRig.Mode.PASSENGER or _passenger_head_out())
 
 func _passenger_seating_changed() -> void:
-	if _passenger_seated():train.automatic=true
+	if _passenger_seated():
+		train.automatic=true
+		if passenger_bookmark!=null:passenger_bookmark.remember()
 	_drive_keys_armed=false
 	if controller!=null:controller.neutralize()
 

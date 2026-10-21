@@ -85,6 +85,7 @@ try {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'benchmark-windows.ps1') -Destination (Join-Path $buildRoot 'Benchmark.ps1')
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'run-performance-benchmark.cmd') -Destination (Join-Path $buildRoot 'Run Performance Benchmark.cmd')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/assets.md') -Destination (Join-Path $buildRoot 'ASSET-SOURCES.md')
+    Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/streaming-and-passenger-qol.md') -Destination (Join-Path $buildRoot 'guides/streaming-and-passenger-qol.md')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/ported/station-notices') -Destination $buildRoot -Recurse -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/trackside/notices') -Destination (Join-Path $buildRoot 'guides/trackside-notices') -Recurse -Force
     foreach ($guide in @('menu-qol.md', 'event-skip.md', 'journey-audio-and-comfort.md', 'service-selection.md', 'intensive-timetable.md', 'day-night.md', 'busy-timetable.md', 'map-corrections.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'extreme-visuals.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {

@@ -19,6 +19,7 @@ func run() -> void:
 	var page:=preload("res://game/launch.gd").new()
 	page.store=preload("res://persistence/save_store.gd").new("res://.local/operating-days-ui/saves")
 	root.add_child(page);await frames()
+	page.show_browser();page.period=0;page.search.text="";page.selected={id="K1"};page.refresh()
 	check(page.services.size()==100,"Standard day is intact")
 	page.roster.grab_focus();page._navigate(Vector2i.LEFT)
 	for _i in 6:

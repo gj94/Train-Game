@@ -31,6 +31,7 @@ func capture_session() -> Dictionary:
 	data.camera=Snapshot.fields(game.cam,CAMERA)
 	data.camera.pivot=game.cam.pivot+(game.wv.coordinate_origin if game.geographic_drive else Vector3.ZERO)
 	data.view=Snapshot.fields(game.tv,VIEW)
+	data.passenger_bookmarks=game.passenger_bookmark.seats.duplicate(true) if game.passenger_bookmark!=null else {}
 	data.walk=Snapshot.fields(game.walker,WALK)
 	data.walk.outside=game.walker.platform.outside
 	if data.walk.outside:
@@ -130,6 +131,7 @@ static func prepare_metadata(tree: SceneTree, session: Dictionary) -> void:
 
 func restore_view(session: Dictionary) -> void:
 	game._set_paused(true)
+	if game.passenger_bookmark!=null:game.passenger_bookmark.load_saved(session.get("passenger_bookmarks",{}))
 	game.labels_enabled=session.labels_enabled
 	game._set_time_scale(session.time_scale)
 	var view_state: Dictionary={passenger_head_out=false,headlight_mode=2}

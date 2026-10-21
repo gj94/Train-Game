@@ -16,6 +16,8 @@ const ENTRIES:=[
 		["controller_actions","Driving actions","Hand driving to AI, take control, coast or sound the horn."],
 		["view_controls","Cameras & walking","Choose a viewpoint, stand up or move around the train."],
 		["passengers","Passenger coaches","Visit another carriage while keeping your assigned service."],
+		["seat:return","Return to passenger seat","Return to your remembered seat with AI driving. Hold R3 during play for the same action."],
+		["seat:remember","Remember passenger seat","Save the seat you are sitting in, including its view direction. Seats are also remembered automatically when you sit."],
 		["padcmd:dispatch","Open dispatcher","Inspect traffic, find your train and manage routes."],
 		["clean","Clean view","Hide the driving HUD for an unobstructed view. F4 restores it."],
 		["labels","Track labels","Toggle technical track labels in the world."]

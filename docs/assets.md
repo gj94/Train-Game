@@ -359,3 +359,10 @@ notices in `data/routes/kerala_coast/README.md`. Reproduce the derived data with
 The profile is an artistic reconstruction for rendering, not a civil survey.
 New road decks, piers, retaining faces and overhead fittings are procedural
 geometry; no new third-party texture or model was introduced for this pass.
+
+## R44 menu backdrop
+
+`assets/ui/kerala_home.png` is a direct in-game screenshot captured with
+`tools/benchmark_stream_lookahead.gd -- --hero`. It shows the existing licensed
+WAP-7/ICF assets and the Kerala route. Those models, scenery, map data and
+textures retain their source notices above; no external photograph was added.

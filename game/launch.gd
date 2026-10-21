@@ -61,6 +61,8 @@ var _direction:=Vector2i.ZERO
 var _repeat:=0.0
 var _focused:=true
 var display:=preload("res://game/display_options.gd").new()
+var home
+var browser_preferences:="user://journey_browser.cfg"
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)
@@ -78,9 +80,11 @@ func _ready() -> void:
 	save_worker=Thread.new()
 	if save_worker.start(_saved_entries)!=OK:
 		save_worker=null;continue_button.text="Continue latest save";saved_button.disabled=false
-	selected={id="K1"}
+	_restore_browser()
 	refresh()
-	roster.grab_focus()
+	home=preload("res://game/launch_home.gd").new();add_child(home)
+	home.chosen.connect(_home_action);home.update_saves([],true)
+	content.hide();home.open()
 	var restart: String=get_tree().get_meta("launch_service","")
 	if not restart.is_empty():
 		get_tree().remove_meta("launch_service")
@@ -107,7 +111,7 @@ func select_timetable(index: int) -> void:
 	get_tree().set_meta("timetable_id",timetable_id)
 	for key in ["timeline_index","timeline_clock"]:
 		if get_tree().has_meta(key):get_tree().remove_meta(key)
-	timetable_picker.select(index);timetable_description.text=Days.DAYS[index].description
+	timetable_picker.select(index);timetable_description.text=Days.DAYS[index].description;timetable_picker.tooltip_text=Days.DAYS[index].description
 	_load_catalogue()
 	selected={id="K1"};page="services";period=0;search.text="";refresh();roster.grab_focus()
 
@@ -123,7 +127,9 @@ func _label(parent: Node,text: String,size: int=18,colour: Color=Color("dce6e9")
 	return label
 
 func _button(parent: Node,text: String,action: Callable) -> Button:
-	var button:=Button.new();button.text=text;button.custom_minimum_size.y=46
+	var button:=Button.new();button.text=text;button.custom_minimum_size.y=40
+	for state in ["normal","hover","pressed","disabled"]:
+		var style:=theme.get_stylebox(state,"Button").duplicate();style.set_content_margin_all(9);button.add_theme_stylebox_override(state,style)
 	button.add_theme_font_size_override("font_size",17);parent.add_child(button);button.pressed.connect(action)
 	return button
 
@@ -137,36 +143,34 @@ func _build() -> void:
 	var bg:=ColorRect.new();bg.color=Color("0b1119");add_child(bg);bg.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	var margin:=MarginContainer.new();add_child(margin);margin.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	content=margin
-	for side in ["left","right","top","bottom"]:margin.add_theme_constant_override("margin_"+side,24)
-	var outer:=VBoxContainer.new();outer.add_theme_constant_override("separation",12);margin.add_child(outer)
+	for side in ["left","right"]:margin.add_theme_constant_override("margin_"+side,24)
+	for side in ["top","bottom"]:margin.add_theme_constant_override("margin_"+side,16)
+	var outer:=VBoxContainer.new();outer.add_theme_constant_override("separation",8);margin.add_child(outer)
 	var top:=HBoxContainer.new();top.add_theme_constant_override("separation",12);outer.add_child(top)
 	var brand:=VBoxContainer.new();brand.size_flags_horizontal=SIZE_EXPAND_FILL;top.add_child(brand)
-	_label(brand,"TRAIN GAME  /  CHOOSE YOUR JOURNEY",13,Color("86e4be"));_label(brand,"KERALA COAST",28)
+	_label(brand,"KERALA COAST  /  JOURNEYS",13,Color("86e4be"));_label(brand,"Find your next departure",28)
+	_button(top,"Home",_show_home)
 	_button(top,"Explore by time",func():get_tree().change_scene_to_file("res://game/launch_timeline.tscn"))
 	continue_button=_button(top,"Continue latest save",_continue)
 	saved_button=_button(top,"Saved journeys",_toggle_saves)
-	_button(top,"Fullscreen",func():display.toggle())
-	_button(top,"Quit",_quit)
-	_label(outer,"Ernakulam Junction — Alappuzha — Thiruvananthapuram — Nagercoil",17,Color("a8bdc6"))
 	var day_row:=HBoxContainer.new();day_row.add_theme_constant_override("separation",16);outer.add_child(day_row)
-	_label(day_row,"Operating day",17,Color("a8bdc6"))
 	timetable_picker=OptionButton.new();timetable_picker.custom_minimum_size=Vector2(300,42);day_row.add_child(timetable_picker)
 	for day in Days.DAYS:timetable_picker.add_item(day.name)
 	timetable_picker.select(Days.index_of(timetable_id));timetable_picker.item_selected.connect(select_timetable)
 	timetable_description=_label(day_row,Days.definition(timetable_id).description,15,Color("a8bdc6"))
-	timetable_description.size_flags_horizontal=SIZE_EXPAND_FILL;timetable_description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	timetable_description.hide();timetable_picker.tooltip_text=Days.definition(timetable_id).description
+	search=LineEdit.new();search.placeholder_text="Search train, station or service ID";search.size_flags_horizontal=SIZE_EXPAND_FILL
+	day_row.add_child(search);search.text_changed.connect(func(_s):refresh())
 	var filter_row:=HBoxContainer.new();filter_row.add_theme_constant_override("separation",8);outer.add_child(filter_row)
 	for i in FILTERS.size():
 		var index:=i
 		var button:=_button(filter_row,FILTERS[i],func():set_period(index));button.toggle_mode=true;filters.append(button)
-	search=LineEdit.new();search.placeholder_text="Search train, station or service ID";search.size_flags_horizontal=SIZE_EXPAND_FILL
-	filter_row.add_child(search);search.text_changed.connect(func(_s):refresh())
-	var results_row:=HBoxContainer.new();outer.add_child(results_row)
-	count_label=_label(results_row,"",16,Color("a8bdc6"));count_label.size_flags_horizontal=SIZE_EXPAND_FILL
-	_label(results_row,"Sort by",16,Color("a8bdc6"))
-	sort_button=OptionButton.new();sort_button.custom_minimum_size=Vector2(320,42);results_row.add_child(sort_button)
+	var spacer:=Control.new();spacer.size_flags_horizontal=SIZE_EXPAND_FILL;filter_row.add_child(spacer)
+	sort_button=OptionButton.new();sort_button.custom_minimum_size=Vector2(320,42);filter_row.add_child(sort_button)
 	for text in SORTS:sort_button.add_item(text)
 	sort_button.item_selected.connect(func(index):sort_mode=index;refresh())
+	var results_row:=HBoxContainer.new();outer.add_child(results_row)
+	count_label=_label(results_row,"",16,Color("a8bdc6"));count_label.size_flags_horizontal=SIZE_EXPAND_FILL
 	var columns:=HBoxContainer.new();columns.add_theme_constant_override("separation",24);columns.size_flags_vertical=SIZE_EXPAND_FILL;outer.add_child(columns)
 	roster=ItemList.new();roster.size_flags_horizontal=SIZE_EXPAND_FILL;roster.size_flags_vertical=SIZE_EXPAND_FILL
 	roster.add_theme_font_size_override("font_size",18);roster.add_theme_constant_override("v_separation",16)
@@ -233,8 +237,12 @@ func refresh() -> void:
 	sort_button.disabled=page!="services";sort_button.select(sort_mode)
 	for row in shown:
 		var text: String=(Briefing.time_text(row.departure)+"  ·  "+row.id+"  ·  "+row.name) if page=="services" else row.name
+		var tooltip:=text
+		if page=="services":
+			text=Briefing.time_text(row.departure)+"   "+row.id+"   "+row.origin.replace(" Junction","").replace(" Central","")+" → "+row.destination.replace(" Junction","").replace(" Central","")
+			tooltip+="\n"+STOCK.get(row.stock,row.stock)+" · %d calls" % int(row.stops)
 		if page=="services" and sort_mode in [1,2]:text="%.1f km/h  ·  " % row.average_kmh+text
-		var index:=roster.add_item(text);roster.set_item_tooltip(index,text)
+		var index:=roster.add_item(text);roster.set_item_tooltip(index,tooltip)
 	count_label.text=("%d / %d services · Start at the origin · Dynamic AI traffic" % [shown.size(),services.size()]) if page=="services" else "Saved journeys · Load paused · Previous backups are available"
 	start_button.text="Drive this service" if page=="services" else "Load saved journey"
 	start_button.disabled=shown.is_empty()
@@ -327,6 +335,7 @@ func start_selected() -> void:
 
 func _begin(kind: String,row: Dictionary) -> void:
 	if worker!=null or starting:return
+	if home!=null:home.hide()
 	cancelled=false;_set_status("");busy_panel.show();busy_label.text="Loading "+row.name+"…\nRestoring the railway; no day-long simulation needed."
 	content.hide();cancel_button.grab_focus()
 	worker=Thread.new()
@@ -350,6 +359,7 @@ func _process(delta: float) -> void:
 	if save_worker!=null and not save_worker.is_alive():
 		saves=save_worker.wait_to_finish();save_worker=null
 		continue_button.text="Continue latest save";continue_button.disabled=saves.is_empty();saved_button.disabled=false
+		if home!=null:home.update_saves(saves)
 	if worker!=null:
 		if worker.is_alive():return
 		var result: Dictionary=worker.wait_to_finish();worker=null
@@ -365,7 +375,9 @@ func _process(delta: float) -> void:
 		return
 	if not _focused or starting or roster==null:return
 	if sort_button.get_popup().visible or timetable_picker.get_popup().visible:_axes=Vector2.ZERO;_scroll_axis=0;return
-	if absf(_scroll_axis)>.25:detail_scroll.scroll_vertical+=roundi(_scroll_axis*delta*650)
+	if absf(_scroll_axis)>.25:
+		if home!=null and home.visible:home.scroll(_scroll_axis*delta*650)
+		else:detail_scroll.scroll_vertical+=roundi(_scroll_axis*delta*650)
 	var direction:=Vector2i(signi(roundi(_axes.x)),signi(roundi(_axes.y)))
 	if direction==Vector2i.ZERO:_direction=direction;_repeat=0;return
 	_repeat-=delta
@@ -373,6 +385,7 @@ func _process(delta: float) -> void:
 		_navigate(direction);_repeat=.35 if direction!=_direction else .13;_direction=direction
 
 func _navigate(direction: Vector2i) -> void:
+	if home!=null and home.visible:home.navigate(direction);return
 	var focus:=get_viewport().gui_get_focus_owner()
 	if focus==null:roster.grab_focus();return
 	if focus==roster and direction.y!=0 and not shown.is_empty():
@@ -383,6 +396,8 @@ func _navigate(direction: Vector2i) -> void:
 	if focus==roster and direction.x<0:filters[period].grab_focus();return
 	if focus==roster and direction.x>0:start_button.grab_focus();return
 	if focus==start_button and direction.x<0:roster.grab_focus();return
+	if focus in filters and direction.y<0:timetable_picker.grab_focus();return
+	if focus==timetable_picker and direction.y>0:filters[period].grab_focus();return
 	var side:=SIDE_RIGHT if direction.x>0 else SIDE_LEFT if direction.x<0 else SIDE_BOTTOM if direction.y>0 else SIDE_TOP
 	var next:=focus.find_valid_focus_neighbor(side)
 	if next!=null:next.grab_focus()
@@ -402,6 +417,18 @@ func _input(event: InputEvent) -> void:
 	accept_event()
 	if event.button_index==JOY_BUTTON_B:_back();return
 	if worker!=null or starting:return
+	if home!=null and home.visible:
+		match event.button_index:
+			JOY_BUTTON_DPAD_UP:home.navigate(Vector2i.UP)
+			JOY_BUTTON_DPAD_DOWN:home.navigate(Vector2i.DOWN)
+			JOY_BUTTON_DPAD_LEFT:home.navigate(Vector2i.LEFT)
+			JOY_BUTTON_DPAD_RIGHT:home.navigate(Vector2i.RIGHT)
+			JOY_BUTTON_LEFT_SHOULDER:
+				if home.guide.visible:home.guide.open(home.guide.page-1)
+			JOY_BUTTON_RIGHT_SHOULDER:
+				if home.guide.visible:home.guide.open(home.guide.page+1)
+			JOY_BUTTON_A:home.confirm()
+		return
 	match event.button_index:
 		JOY_BUTTON_DPAD_UP:_navigate(Vector2i.UP)
 		JOY_BUTTON_DPAD_DOWN:_navigate(Vector2i.DOWN)
@@ -421,8 +448,42 @@ func _input(event: InputEvent) -> void:
 
 func _back() -> void:
 	if worker!=null:_cancel()
+	elif home!=null and home.visible:home.back()
 	elif page=="saves":_toggle_saves()
-	else:roster.grab_focus()
+	else:_show_home()
+
+func _show_home() -> void:
+	if home==null or worker!=null or starting:return
+	content.hide();home.open()
+
+func show_browser(saved: bool=false) -> void:
+	if home!=null:home.hide()
+	content.show();page="saves" if saved else "services";refresh();roster.grab_focus()
+
+func _home_action(action: String) -> void:
+	match action:
+		"services":show_browser()
+		"saves":search.text="";show_browser(true)
+		"continue":_continue()
+		"explore":get_tree().change_scene_to_file("res://game/launch_timeline.tscn")
+		"quit":_quit()
+
+func _restore_browser() -> void:
+	selected={id="K1"}
+	if browser_preferences.begins_with("user://") and "--script" in OS.get_cmdline_args():return
+	var config:=ConfigFile.new()
+	if config.load(browser_preferences)!=OK:return
+	sort_mode=clampi(int(config.get_value("browser","sort",0)),0,SORTS.size()-1)
+	period=clampi(int(config.get_value("browser","period",0)),0,FILTERS.size()-1)
+	selected={id=str(config.get_value("browser","service","K1"))}
+	search.text=str(config.get_value("browser","search","")).left(100)
+
+func _save_browser() -> void:
+	if roster==null or page!="services":return
+	if browser_preferences.begins_with("user://") and "--script" in OS.get_cmdline_args():return
+	var config:=ConfigFile.new();config.set_value("browser","sort",sort_mode);config.set_value("browser","period",period)
+	config.set_value("browser","service",selected.get("id","K1"));config.set_value("browser","search",search.text)
+	config.save(browser_preferences)
 
 func _cancel() -> void:
 	if worker!=null:cancelled=true;busy_label.text="Finishing the current load before returning…"
@@ -437,5 +498,6 @@ func _notification(what: int) -> void:
 	elif what==NOTIFICATION_APPLICATION_FOCUS_IN:_focused=true;_axes=Vector2.ZERO;_scroll_axis=0.0
 
 func _exit_tree() -> void:
+	_save_browser()
 	if worker!=null:worker.wait_to_finish();worker=null
 	if save_worker!=null:save_worker.wait_to_finish();save_worker=null

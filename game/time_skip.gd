@@ -19,6 +19,8 @@ var _quit_requested := false
 var _target := ""
 var event_options := Options.DEFAULTS.duplicate()
 var show_map := true
+var return_passenger := true
+var _passenger_return := {}
 var settings_path := "user://time_skip.cfg"
 var _dismissed: Array = []
 var _world_id := 0
@@ -34,6 +36,7 @@ func load_settings() -> void:
 	for key in Options.DEFAULTS:raw[key]=config.get_value("events",key,Options.DEFAULTS[key])
 	event_options=Options.normalized(raw)
 	show_map=config.get_value("view","dispatcher",true)==true
+	return_passenger=config.get_value("view","return_passenger",true)==true
 
 func settings_page() -> void:
 	game._set_paused(true);game.dispatcher.set_open(false)
@@ -41,12 +44,14 @@ func settings_page() -> void:
 	for key in Options.DEFAULTS:
 		choices.append([Options.LABELS[key]+": "+("ON" if event_options[key] else "OFF"),"skip:toggle:"+key])
 	choices.append(["Show dispatcher while skipping: "+("ON" if show_map else "OFF"),"skip:toggle:map"])
+	choices.append(["Return to passenger seat: "+("ON" if return_passenger else "OFF"),"skip:toggle:passenger"])
 	show_page("TIME-SKIP SETTINGS","These events interrupt Next event only. Clock and future-stop targets stay explicit.\nStops: 1 km before the marker, or earlier for comfortable braking. Passes: about 60 seconds before the first side-by-side contact. Signal: red changes to yellow or green while holding your train.\nSafety interventions, service completion and the 24-hour search limit always stop Next event.",choices)
 
 func save_settings() -> void:
 	var config:=ConfigFile.new()
 	for key in event_options:config.set_value("events",key,event_options[key])
 	config.set_value("view","dispatcher",show_map)
+	config.set_value("view","return_passenger",return_passenger)
 	var error:=config.save(settings_path)
 	if error!=OK:game.hud.toast("Could not save time-skip preferences",true)
 
@@ -61,6 +66,7 @@ func show_page(title: String, body: String, options: Array, map_mode: bool=false
 func open() -> void:
 	game._set_paused(true);game.dispatcher.set_open(false);game._restore_ui()
 	var options: Array=[["Back","skip:back"],["Skip to next event","skip:event"],["Choose which events interrupt…","skip:settings"],["Choose clock time…","skip:clock"]]
+	options.append(["After skip: "+("return to passenger seat if seated" if return_passenger else "pilot view with AI driving"),"skip:return_mode"])
 	var t: Train=game.train
 	if t.timetable!=null and not t.service_complete:
 		var next: int=t.timetable.index+1 if t.timetable.at_stop else t.timetable.index
@@ -95,8 +101,12 @@ func action(command: String) -> void:
 		"settings":settings_page()
 		"toggle":
 			if parts[2]=="map":show_map=not show_map
+			elif parts[2]=="passenger":return_passenger=not return_passenger
 			elif event_options.has(parts[2]):event_options[parts[2]]=not event_options[parts[2]]
 			save_settings();settings_page();game.hud.focus_action(command)
+		"return_mode":return_passenger=not return_passenger;save_settings();open();game.hud.focus_action(command)
+		"passenger":
+			if game.passenger_bookmark.restore(_passenger_return):game.hud.show_modal("");game._set_paused(false)
 		"back":back()
 		"clock":clock_page()
 		"adjust":
@@ -127,6 +137,7 @@ func start(clock: float, stop: int=-1, next_event: bool=false) -> void:
 	if not result.ok:
 		trial=null;game.hud.toast(result.reason,true);return
 	game.journey_tools.autosave("Before time skip",true)
+	_passenger_return=game.passenger_bookmark.capture()
 	game._set_paused(true)
 	game.dispatcher.set_open(false)
 	game.dispatcher.auto_dispatch=true
@@ -219,9 +230,11 @@ func finish() -> void:
 	game._set_time_scale(1)
 	game._render_trains(1.0)
 	var available: bool=game.train.lifecycle=="active" and not preload("res://sim/depot_workings.gd").finished(game.world,game.train)
+	var passenger_restored:=false
 	if available:
 		game.world.dispatcher().manual_service=game.train.id
-		game._pilot_camera()
+		if return_passenger and not _passenger_return.is_empty():passenger_restored=game.passenger_bookmark.restore(_passenger_return,false)
+		if not passenger_restored:game._pilot_camera()
 		game.cam._blend=1;game.cam._follow_anchor_valid=false
 		game.cam.global_transform=game.cam._target()
 	else:
@@ -238,7 +251,8 @@ func finish() -> void:
 	game._set_paused(true)
 	var options: Array=[["Resume with AI driving","skip:resume"],["Open Dispatch","skip:dispatch"],["Skip further…","skip:open"]]
 	if available:options.insert(1,["Take control of this train","skip:drive"])
-	show_page("ADVANCE COMPLETE" if trial.ok else "ADVANCE STOPPED",trial.report+"\n"+("You are back in "+game.train.id+" with AI driving." if available else "Your service has finished or is unavailable. You are outside on a station platform; choose another active service in Dispatch.")+"\nPaused while you choose what to do next.",options)
+	if available and not passenger_restored and game.passenger_bookmark.valid(_passenger_return):options.insert(1,["Return to passenger seat","skip:passenger"])
+	show_page("ADVANCE COMPLETE" if trial.ok else "ADVANCE STOPPED",trial.report+"\n"+(("Back in "+preload("res://game/passenger_bookmark.gd").label(_passenger_return)+" · AI driving." if passenger_restored else "You are back in "+game.train.id+" with AI driving.") if available else "Your service has finished or is unavailable. You are outside on a station platform; choose another active service in Dispatch.")+"\nPaused while you choose what to do next.",options)
 	if _quit_requested:game._request_action("quit")
 
 func back() -> void:

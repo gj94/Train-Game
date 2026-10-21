@@ -65,8 +65,15 @@ Right head-out → close exterior → far exterior → rear of train → left he
 The cycle wraps; holding either horizontal direction returns to pilot. It does
 not visit passenger or free cameras. These camera changes preserve driver/handle.
 LS changes distance and angle in a following exterior view without detaching.
-RS looks/orbits; R3 recenters. Up/Down enters carriage walking as described above.
+RS looks/orbits; tap R3 recenters. Up/Down enters carriage walking as described above.
 L3 does not move you to pilot, and R3 does not select free camera.
+
+Hold R3 to return to your remembered passenger seat with AI driving. Sitting
+remembers the seat automatically; holding R3 while seated updates it and saves
+the current look direction. Each service has its own seat, included in saved
+journeys. End returns and Shift+End remembers on keyboard. Skip forward can
+return you to the same passenger seat; change this on the skip menu or in its
+settings. If the service finishes, you return to the platform instead.
 
 Free observer view is under Pause → Train & camera → Cameras & walking. It starts
 at the nearest station platform; LS moves, RS looks and RT/LT zooms. AI drives.

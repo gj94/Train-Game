@@ -32,6 +32,8 @@ var queue: Array = []
 var workers: Array = []
 var track_index := {}
 var track_jobs: Array = []
+var _static_jobs := {}
+var _static_indexed := false
 var _last_cell := Vector2i(999999,999999)
 var _last_focus := Vector3(INF,0,INF)
 var loading := true
@@ -47,7 +49,18 @@ var selected_train := ""
 var initial_station := ""
 var _view_tick := 0
 var camera_absolute := Vector3.ZERO
+var prefetch_enabled := true
+var _travel_train: Train
+var _travel_scale := 1
+var _travel_key := ""
+var _travel_dirty := false
+var _collecting_prefetch := false
+var _prefetch_priority := 0.0
+var prefetch_count := 0
+var prefetch_completed := 0
+var prefetch_hits := 0
 const Budget := preload("res://game/railway_render_budget.gd")
+const Lookahead := preload("res://game/stream_lookahead.gd")
 var corridor_tiles: Dictionary={}
 
 func build(w: RailWorld,parent: Node3D) -> void:
@@ -205,11 +218,77 @@ func _index_track() -> void:
 			track_index[cell].append(index)
 
 func _request(focus: Vector3) -> void:
+	if not _static_indexed:_index_static()
 	_last_focus=focus
 	var cell:=Vector2i(floori(focus.x/512),floori(focus.z/512))
 	_last_cell=cell
 	var previous: Dictionary=wanted
 	wanted={}
+	_collecting_prefetch=false;_travel_dirty=false;prefetch_count=0
+	_collect(focus,previous)
+	# Hidden work never contributes to the visible footprint or loading gate.
+	# Retire old warm chunks before spending memory on speculative new sections.
+	if prefetch_enabled and _travel_train!=null and not _travel_train.path.is_empty() and Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED)<float(performance.get("gpu_cache_ceiling",INF)):
+		var head: Dictionary=_travel_train.path[0]
+		var ahead:=Lookahead.distance(_travel_train.speed,_travel_scale,performance.get("prefetch_metres",3000.0))
+		var points:=Lookahead.points(geo.route,world.graph.edges[head.edge],_travel_train.head_s,head.dir,ahead)
+		_collecting_prefetch=true
+		for i in points.size():
+			_prefetch_priority=5000000.0+i*1000000.0
+			_collect(points[i],{})
+	_collecting_prefetch=false
+	prefetch_count=0
+	for job in wanted.values():
+		if job.get("prefetch",false):prefetch_count+=1
+	queue.clear()
+	for id in wanted:
+		if loaded.has(id):
+			var visible_now: bool=not wanted[id].get("prefetch",false)
+			if visible_now and not loaded[id].node.visible:
+				cache_hits+=1
+				if loaded[id].get("prefetched",false):prefetch_hits+=1;loaded[id].prefetched=false
+			loaded[id].node.visible=visible_now
+			_warm.erase(id)
+			continue
+		if _activating.has(id) or workers.any(func(worker): return not worker.runner.job.is_empty() and worker.runner.job.id==id):continue
+		queue.append(wanted[id])
+	queue.sort_custom(func(a,b): return a.priority<b.priority)
+	for id in loaded.keys():
+		if wanted.has(id):continue
+		if not _warm.has(id):
+			loaded[id].node.visible=false
+			_warm[id]=Time.get_ticks_msec()
+	_sync_terrain_patches()
+	_refresh_loading()
+
+func set_travel_context(t: Train, scale: int) -> void:
+	_travel_train=t;_travel_scale=scale
+	var key:=""
+	if t!=null and not t.path.is_empty():
+		var direction: int=t.path[0].dir
+		var edge: Dictionary=world.graph.edges.get(t.path[0].edge,{})
+		if edge.has("chainage_start"):direction*=int(signf(float(edge.chainage_end)-float(edge.chainage_start)))
+		key="%s:%d:%d:%d" % [t.id,direction,scale,int(t.speed/8)]
+	if key!=_travel_key:_travel_key=key;_travel_dirty=true
+
+func _index_static() -> void:
+	_static_jobs.clear();_static_indexed=true
+	for index in world.stations.size():
+		var station: Dictionary=world.stations[index]
+		_index_job({id="station:"+station.code,kind="station",index=index,point=station.origin,bias=3000.0,radius=Budget.STATION_RADIUS})
+	for sid in world.signals:
+		var sig: Dictionary=world.signals[sid]
+		_index_job({id="signal:"+sid,kind="signal",sid=sid,point=world.graph.position(sig.edge,sig.s),bias=0.0,radius=Budget.RAIL_RADIUS})
+	for board in speed_boards.jobs:
+		var job: Dictionary=board.duplicate();job.bias=0.0;job.radius=Budget.RAIL_RADIUS;_index_job(job)
+
+func _index_job(job: Dictionary) -> void:
+	var cell:=Vector2i(floori(job.point.x/512),floori(job.point.z/512))
+	if not _static_jobs.has(cell):_static_jobs[cell]=[]
+	_static_jobs[cell].append(job)
+
+func _collect(focus: Vector3, previous: Dictionary) -> void:
+	var cell:=Vector2i(floori(focus.x/512),floori(focus.z/512))
 	for x in range(cell.x-4,cell.x+5):
 		for z in range(cell.y-4,cell.y+5):
 			var key:=Vector2i(x,z)
@@ -217,9 +296,14 @@ func _request(focus: Vector3) -> void:
 			var d:=Vector2(p.x-focus.x,p.z-focus.z).length_squared()
 			var kind: String="tile" if corridor_tiles.has(key) else "landscape"
 			# Retain tiles across a full request interval to avoid boundary chatter.
-			var detail_radius: float=Budget.DETAIL_RADIUS+(240.0 if previous.has(kind+":"+str(key)) else 0.0)
+			var old: Dictionary=previous.get(kind+":"+str(key),{})
+			var detail_radius: float=Budget.DETAIL_RADIUS+(240.0 if not old.is_empty() and not old.get("prefetch",false) else 0.0)
 			if Budget.tile_distance_squared(key,512,focus)<=detail_radius*detail_radius:
 				_add_job({id=kind+":"+str(key),kind=kind,key=key,point=p,priority=d+10000})
+			for entry in _static_jobs.get(key,[]):
+				var distance:=Vector2(entry.point.x-focus.x,entry.point.z-focus.z).length_squared()
+				if distance>=entry.radius*entry.radius:continue
+				var job: Dictionary=entry.duplicate();job.priority=distance+entry.bias;_add_job(job)
 			for index in track_index.get(key,[]):
 				var job: Dictionary=track_jobs[index].duplicate()
 				var distance:=Vector2(job.point.x-focus.x,job.point.z-focus.z).length_squared()
@@ -235,35 +319,6 @@ func _request(focus: Vector3) -> void:
 			var d:=Vector2(p.x-focus.x,p.z-focus.z).length_squared()
 			if Budget.tile_distance_squared(Vector2i(x,z),2048,focus)>Budget.BACKGROUND_RADIUS*Budget.BACKGROUND_RADIUS: continue
 			_add_job({id="far:%d:%d" % [x,z],kind="far",key=Vector2i(x,z),point=p,priority=d+1200000})
-	for index in world.stations.size():
-		var station: Dictionary=world.stations[index]
-		var d:=Vector2(station.origin.x-focus.x,station.origin.z-focus.z).length_squared()
-		if d<Budget.STATION_RADIUS*Budget.STATION_RADIUS: _add_job({id="station:"+station.code,kind="station",index=index,point=station.origin,priority=d+3000})
-	for sid in world.signals:
-		var sig: Dictionary=world.signals[sid]
-		var p:=world.graph.position(sig.edge,sig.s)
-		var d:=Vector2(p.x-focus.x,p.z-focus.z).length_squared()
-		if d<Budget.RAIL_RADIUS*Budget.RAIL_RADIUS: _add_job({id="signal:"+sid,kind="signal",sid=sid,point=p,priority=d})
-	for board in speed_boards.jobs:
-		var d:=Vector2(board.point.x-focus.x,board.point.z-focus.z).length_squared()
-		if d<Budget.RAIL_RADIUS*Budget.RAIL_RADIUS:
-			var job: Dictionary=board.duplicate();job.priority=d;_add_job(job)
-	queue.clear()
-	for id in wanted:
-		if _warm.has(id):
-			loaded[id].node.visible=true
-			_warm.erase(id)
-			cache_hits+=1
-		if loaded.has(id) or _activating.has(id) or workers.any(func(worker): return not worker.runner.job.is_empty() and worker.runner.job.id==id): continue
-		queue.append(wanted[id])
-	queue.sort_custom(func(a,b): return a.priority<b.priority)
-	for id in loaded.keys():
-		if wanted.has(id): continue
-		if not _warm.has(id):
-			loaded[id].node.visible=false
-			_warm[id]=Time.get_ticks_msec()
-	_sync_terrain_patches()
-	_refresh_loading()
 
 func _sync_terrain_patches() -> void:
 	for chunk in loaded.values():
@@ -276,6 +331,11 @@ func _sync_terrain_patches() -> void:
 			chunk.terrain_patches[tile].visible=not covered
 
 func _add_job(job: Dictionary) -> void:
+	if wanted.has(job.id):return
+	job=job.duplicate()
+	if _collecting_prefetch:
+		if prefetch_count>=int(performance.get("prefetch_jobs",260)):return
+		job.prefetch=true;job.priority+=_prefetch_priority;prefetch_count+=1
 	if collect_timing:job.requested_usec=Time.get_ticks_usec()
 	wanted[job.id]=job
 
@@ -351,7 +411,9 @@ func _activate() -> void:
 		result.node=pending.holder
 		if result.has("adapter"):result.adapter.root=result.node
 		loaded[id]=result
-		result.node.visible=true
+		result.node.visible=not wanted[id].get("prefetch",false)
+		result.prefetched=not result.node.visible
+		if result.prefetched:prefetch_completed+=1
 		_sync_terrain_patches()
 		_activating.erase(id)
 		completed_jobs+=1
@@ -412,7 +474,7 @@ func update() -> void:
 	if camera!=null:
 		camera_absolute=camera.global_position+coordinate_origin
 		var cell:=Vector2i(floori(camera_absolute.x/512),floori(camera_absolute.z/512))
-		if cell!=_last_cell or Vector2(camera_absolute.x-_last_focus.x,camera_absolute.z-_last_focus.z).length_squared()>220*220:
+		if _travel_dirty or cell!=_last_cell or Vector2(camera_absolute.x-_last_focus.x,camera_absolute.z-_last_focus.z).length_squared()>220*220:
 			_request(camera_absolute)
 	var prepared: Dictionary=_asset_worker.take()
 	if not prepared.is_empty():
@@ -436,6 +498,9 @@ func update() -> void:
 			if job.kind in ["signal","speed_board"]:
 				var result: Dictionary=_signal(job) if job.kind=="signal" else speed_boards.build(job,geo)
 				result.node.position=result.origin-coordinate_origin
+				result.node.visible=not wanted[job.id].get("prefetch",false)
+				result.prefetched=not result.node.visible
+				if result.prefetched:prefetch_completed+=1
 				root.add_child(result.node); loaded[job.id]=result
 			else:
 				if job.kind=="station" and not _station_prepared(job):
@@ -445,7 +510,7 @@ func update() -> void:
 	_activate()
 	_trim_warm()
 	for id in loaded:
-		if _warm.has(id):continue
+		if not loaded[id].node.visible:continue
 		var chunk: Dictionary=loaded[id]
 		if chunk.has("adapter"):
 			var adapter=chunk.adapter

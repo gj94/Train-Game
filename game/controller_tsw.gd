@@ -13,12 +13,13 @@ Hold left/right D-pad to return to pilot; exterior views keep your current drive
 Up/down D-pad moves one carriage toward loco/tail, standing with AI driving.
 Hold up/down to return to the loco standing. Y takes the nearby driver's seat.
 RB reduces power to coast · LB releases brake to coast; neither crosses into the opposite range.
-RS look · R3 recenter · LS adjusts following camera distance/angle.
+RS look · tap R3 recenter · hold R3 return to remembered passenger seat · LS adjusts following camera distance/angle.
 
 [b]WALKING & PASSENGERS[/b]
 LS walk · L3 toggle run · RS look · A interact or sit · RB torch.
 Y stands from a seat, or sits at nearby driving controls. AI stays in control until hold X.
 In a passenger seat, left/right D-pad cycles the same row's head-outs and interior.
+Sitting remembers the seat. Hold R3 while seated to update it; hold R3 elsewhere to return with AI driving.
 At a stopped platform, A at a doorway boards/alights. Moving between WAP and coaches uses D-pad.
 
 [b]MENUS[/b]
@@ -54,6 +55,7 @@ static func handle(pad, current: float, travel: float) -> float:
 	return target
 
 static func reset(pad) -> void:
+	pad._seat_hold_down=false;pad._seat_hold_used=false;pad._seat_hold_time=0
 	pad._camera_down=false;pad._camera_hold_time=0
 	pad._operation_down=false;pad._operation_time=0
 	pad._view_down=false;pad._dpad_button=-1;pad._dpad_time=0
@@ -90,7 +92,7 @@ static func button(pad, event: InputEventJoypadButton) -> void:
 			pad._view_down=false
 			if not pad._view_used:pad.shortcut("dispatch")
 		return
-	if not event.pressed or pad._operation_down or pad._dpad_button!=-1:return
+	if not event.pressed or pad._operation_down or pad._dpad_button!=-1 or pad._seat_hold_down:return
 	match id:
 		JOY_BUTTON_A:
 			if g.walker.active:g.walker.interact()
@@ -109,6 +111,11 @@ static func button(pad, event: InputEventJoypadButton) -> void:
 
 static func process(pad, left: Vector2, right: Vector2, delta: float) -> void:
 	var g=pad.game
+	if pad._seat_hold_down:
+		pad._seat_hold_time+=delta
+		if pad._seat_hold_time>=HOLD and not pad._seat_hold_used:
+			pad._seat_hold_used=true;g.passenger_bookmark.hold_shortcut();pad.neutralize()
+		return
 	if Shape.handle(pad._axes[5],pad._axes[4])==0:pad._coast_direction=0
 	else:pad._coast_time+=delta
 	if pad._operation_down:
@@ -135,6 +142,6 @@ static func process(pad, left: Vector2, right: Vector2, delta: float) -> void:
 	else:Camera.apply(g.cam,look,Vector2.ZERO,0,delta)
 
 static func hint(pad) -> String:
-	if pad.game._passenger_seated():return "AI driving · D-pad left/right row head-outs · Y stand · A interact · hold Up/Down loco"
-	if pad.game.walker.active:return "AI driving · LS walk · L3 run · RS look · A interact/sit · Y driver seat · RB torch · hold Up/Down loco"
+	if pad.game._passenger_seated():return "AI driving · D-pad left/right row head-outs · Y stand · hold R3 remember seat · hold Up/Down loco"
+	if pad.game.walker.active:return "AI driving · LS walk · L3 run · RS look · A interact/sit · Y driver seat · hold R3 saved seat · RB torch"
 	return "RT/LT handle · B horn · Y stand · X AI / hold X manual · D-pad cameras / hold Left/Right pilot · RB power down / LB brake release · Menu controls"

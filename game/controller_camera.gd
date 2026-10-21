@@ -76,14 +76,19 @@ static func button(pad, event: InputEventJoypadButton) -> bool:
 	var id:=event.button_index
 	if id not in [JOY_BUTTON_LEFT_STICK,JOY_BUTTON_RIGHT_STICK,JOY_BUTTON_DPAD_LEFT,JOY_BUTTON_DPAD_RIGHT,JOY_BUTTON_DPAD_UP,JOY_BUTTON_DPAD_DOWN]:return false
 	if pad._operation_down:return true
+	if pad._seat_hold_down and id!=JOY_BUTTON_RIGHT_STICK:return true
 	var g=pad.game
 	if id==JOY_BUTTON_LEFT_STICK:
 		if event.pressed and g.walker.active:pad._running=not pad._running
 		return true
 	if id==JOY_BUTTON_RIGHT_STICK:
 		if event.pressed:
-			g.cam._look=Vector2.ZERO
-			if g.cam.mode==0:g.cam.yaw=.65;g.cam.pitch=-.23
+			pad._seat_hold_down=true;pad._seat_hold_used=false;pad._seat_hold_time=0
+		elif pad._seat_hold_down:
+			pad._seat_hold_down=false
+			if not pad._seat_hold_used:
+				g.cam._look=Vector2.ZERO
+				if g.cam.mode==0:g.cam.yaw=.65;g.cam.pitch=-.23
 		return true
 	if event.pressed:
 		if pad._dpad_button==-1:
