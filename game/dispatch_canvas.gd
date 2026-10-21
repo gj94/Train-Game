@@ -35,6 +35,8 @@ var _edges := {}
 var _mini := Rect2()
 var last_footprints := {}
 var show_blocks := true
+var last_labels: Array = []
+var hidden_labels := 0
 
 func _ready() -> void:
 	focus_mode=Control.FOCUS_ALL
@@ -71,7 +73,10 @@ func _lateral_scale() -> float:
 	return clampf(6.8*pow(6000.0/span,.13),1.5,10)
 
 func _p(s: float,lateral: float=0) -> Vector2:
-	return Vector2(size.x*.5+(s-center_s)*size.x/span,size.y*.48+lateral*_lateral_scale()+vertical_pan)
+	# At corridor scale, metres between station roads are not legible. Use a
+	# chainage overview; zooming into a station restores its full track layout.
+	if span>18000:lateral=0
+	return Vector2(size.x*.5+(s-center_s)*size.x/span,size.y*.48+lateral*_lateral_scale()+(0.0 if span>18000 else vertical_pan))
 
 func _edge_p(edge: String,f: float) -> Vector2:
 	var e: Dictionary=_edges[edge]
@@ -191,7 +196,7 @@ func _draw() -> void:
 		var p:=_p(st.get("s",st.origin.x))
 		if p.x<0 or p.x>size.x:continue
 		if span>18000 and not st.get("major",true):continue
-		if span>100000 and index%4!=0 and not st.code in ["ERS","ALLP","QLN","TVC","NCJ"]:continue
+		if span>100000 and not st.code in ["ERS","ALLP","QLN","TVC","NCJ"]:continue
 		var caption: String=st.get("display_code",st.code) if span>18000 else st.name
 		var width: float=ThemeDB.fallback_font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x
 		var x:=clampf(p.x-width*.5,8,maxf(8,size.x-width-8))
@@ -231,6 +236,7 @@ func _draw() -> void:
 			_text(lamp+Vector2(17 if sig.dir>0 else -62,4),caption,color,11)
 		_hits.append({key="signal:"+sid,kind="signal",id=sid,rect=Rect2(lamp-Vector2(12,12),Vector2(24,24)),p=lamp})
 	for id in world.graph.nodes:
+		if span>18000:break
 		var node: Dictionary=world.graph.nodes[id]
 		if node.edges.size()!=1:continue
 		var p:=_p(node.get("chainage",node.pos.x),node.get("lateral",node.pos.z))
@@ -238,7 +244,7 @@ func _draw() -> void:
 		draw_line(p-Vector2(0,8),p+Vector2(0,8),TEXT,3)
 		var target: String="BUFFER:"+id
 		_hits.append({key=target,kind="destination",id=target,rect=Rect2(p-Vector2(12,12),Vector2(24,24)),p=p})
-	var label_boxes: Array[Rect2]=[]
+	var label_requests: Array=[]
 	for t: Train in world.active_trains():
 		var intervals:=Footprint.intervals(world.graph,t)
 		last_footprints[t.id]=intervals
@@ -259,25 +265,32 @@ func _draw() -> void:
 					draw_line(p+Vector2(0,-4),p+Vector2(0,4),PAPER,1.5)
 		var head:=_edge_p(t.path[0].edge,t.head_s/world.graph.edges[t.path[0].edge].length)
 		if head.x<0 or head.x>size.x:continue
-		var label_pos:=head+Vector2(-33,-48 if t.path[0].dir>0 else 46)
-		var rect:=Rect2(label_pos,Vector2(108 if own else 74,27))
-		rect.position.x=clampf(rect.position.x,8,maxf(8,size.x-rect.size.x-8))
-		for attempt in 7:
-			if not label_boxes.any(func(other):return other.grow(3).intersects(rect)):break
-			rect.position.y+=-30 if t.path[0].dir>0 else 30
-		rect.position.y=clampf(rect.position.y,62,maxf(62,size.y-100))
-		label_boxes.append(rect);label_pos=rect.position
-		var tag:=_tag_style(highlighted);tag.border_color=train_color
+		var caption: String=("YOU · " if own else "")+t.id+("  ›" if t.path[0].dir>0 else "  ‹")
+		var detail: String="%d m · %d km/h" % [roundi(t.length),roundi(t.speed*3.6)] if span<3000 else ""
+		var width:=maxf(ThemeDB.fallback_font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,14).x,ThemeDB.fallback_font.get_string_size(detail,HORIZONTAL_ALIGNMENT_LEFT,-1,11).x)+18
+		label_requests.append({id=t.id,head=head,dir=t.path[0].dir,priority=2 if own else (1 if highlighted else 0),size=Vector2(width,49 if not detail.is_empty() else 27),caption=caption,detail=detail,color=train_color,highlighted=highlighted})
+	last_labels=preload("res://game/dispatch_labels.gd").arrange(label_requests,Rect2(Vector2(8,62),size-Vector2(16,142)))
+	hidden_labels=label_requests.size()-last_labels.size()
+	for entry in last_labels:
+		var rect: Rect2=entry.rect
+		var connection: Vector2=entry.head.clamp(rect.position,rect.end)
+		draw_line(entry.head,connection,entry.color.darkened(.40),1,true)
+		draw_circle(entry.head,3,entry.color)
+	# Put every label above every leader line, including lines for later trains.
+	for entry in last_labels:
+		var rect: Rect2=entry.rect
+		var tag:=_tag_style(entry.highlighted);tag.border_color=entry.color
 		draw_style_box(tag,rect)
-		_text(label_pos+Vector2(9,18),("YOU · " if own else "")+t.id+("  ›" if t.path[0].dir>0 else "  ‹"),train_color,14)
-		_hits.append({key="train:"+t.id,kind="train",id=t.id,rect=rect,p=rect.get_center()})
-		if span<3000:_text(label_pos+Vector2(0,41),"%d m · %d km/h" % [roundi(t.length),roundi(t.speed*3.6)],train_color,11)
+		_text(rect.position+Vector2(9,18),entry.caption,entry.color,14)
+		if not entry.detail.is_empty():_text(rect.position+Vector2(9,38),entry.detail,entry.color,11)
+		_hits.append({key="train:"+entry.id,kind="train",role="label",id=entry.id,rect=rect,p=rect.get_center()})
 	_draw_minimap()
 	if has_focus():
 		draw_rect(Rect2(Vector2(1,1),size-Vector2(2,2)),MINT,false,2)
 		for hit in _hits:
 			if hit.key==_focus_key:draw_rect(hit.rect.grow(3),MINT,false,2)
-	_text(Vector2(12,size.y-7),"%.2f km  ·  You: blue   Trains: amber   Routes: mint" % (span/1000),RAIL,11)
+	var legend:="Route overview · zoom in for station tracks" if span>18000 else "You: blue   Trains: amber   Routes: mint"
+	_text(Vector2(12,size.y-7),"%.2f km  ·  " % (span/1000)+legend+("  ·  +%d tags: zoom in" % hidden_labels if hidden_labels>0 else ""),RAIL,11)
 
 func _tag_style(active: bool) -> StyleBoxFlat:
 	var style:=StyleBoxFlat.new()
@@ -302,14 +315,28 @@ func _draw_minimap() -> void:
 		var x:=_mini.position.x+(_s(t.path[0].edge,t.head_s)-full_start)/total*_mini.size.x
 		draw_line(Vector2(x,_mini.position.y+5),Vector2(x,_mini.end.y-5),YOUR if t.id==player_train else AMBER,4 if t.id==player_train else 2)
 
+func _hit_at(pos: Vector2) -> Dictionary:
+	# Tags are drawn last. Their clickable area must win over another body's
+	# footprint or signal underneath; inspection still never takes control.
+	for hit in _hits:
+		if hit.get("role","")=="label" and hit.rect.has_point(pos):return hit
+	for hit in _hits:
+		if hit.kind=="train" and hit.rect.has_point(pos):return hit
+	for hit in _hits:
+		if hit.rect.has_point(pos):return hit
+	return {}
+
 func select_at(pos: Vector2) -> void:
-	# A train body is visually above its track and signals, so inspect it first.
+	var hit:=_hit_at(pos)
+	if not hit.is_empty():_focus_key=hit.key;_activate(hit)
+
+func _navigation_targets() -> Array:
+	var targets:={}
+	var bounds:=Rect2(Vector2.ZERO,size-Vector2(0,56))
 	for hit in _hits:
-		if hit.kind=="train" and hit.rect.has_point(pos):
-			_focus_key=hit.key;_activate(hit);return
-	for hit in _hits:
-		if hit.rect.has_point(pos):
-			_focus_key=hit.key;_activate(hit);return
+		if not bounds.has_point(hit.p):continue
+		if not targets.has(hit.key) or hit.get("role","")=="label":targets[hit.key]=hit
+	return targets.values()
 
 func _activate(hit: Dictionary) -> void:
 	match hit.kind:
@@ -325,11 +352,12 @@ func activate_focus() -> void:
 	if not _hits.is_empty():_focus_key=_hits[0].key;_activate(_hits[0])
 
 func navigate_target(direction: Vector2) -> void:
+	var targets:=_navigation_targets()
 	var origin:=size*.5
-	for hit in _hits:
+	for hit in targets:
 		if hit.key==_focus_key:origin=hit.p;break
 	var best:={};var score:=INF
-	for hit in _hits:
+	for hit in targets:
 		if hit.key==_focus_key:continue
 		var delta: Vector2=hit.p-origin
 		var forward:=delta.dot(direction)
@@ -360,11 +388,8 @@ func _gui_input(event: InputEvent) -> void:
 			if _moved:pan_pixels(event.relative)
 			accept_event()
 		else:
-			tooltip_text=""
-			for hit in _hits:
-				if hit.rect.has_point(event.position):
-					tooltip_text=hit.id+" · inspect / actions" if hit.kind=="train" else hit.id
-					break
+			var hit:=_hit_at(event.position)
+			tooltip_text=(hit.id+" · inspect / actions" if hit.kind=="train" else hit.id) if not hit.is_empty() else ""
 	elif event is InputEventKey and event.pressed:
 		match event.physical_keycode:
 			KEY_LEFT:pan_pixels(Vector2(100,0));accept_event()

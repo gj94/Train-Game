@@ -51,8 +51,7 @@ static func standing_loco(g) -> void:
 static func step_coach(g, direction: int) -> void:
 	if not g._has_passengers():standing_loco(g);return
 	var coaches: Array=g.tv.passenger_coaches()
-	# Follow the physical formation from the driving end, also when running reverse.
-	if g.train.cab_end==2:coaches.reverse()
+	# The view already supplies coaches ordered from the driving end.
 	var index: int=coaches.find(g.tv.passenger_coach) if g.cam.mode==2 or g._passenger_head_out() else -1
 	if g.walker.active:index=coaches.find(g.walker.car)
 	var next:=clampi(index+direction,-1,coaches.size()-1)

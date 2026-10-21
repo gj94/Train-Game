@@ -4,9 +4,9 @@ static func capture(game,reason: String="") -> Dictionary:
 	var progress:=preload("res://sim/service_progress.gd").snapshot(game.world,game.train)
 	var viewpoint:="Exterior view"
 	if game.walker.active:
-		viewpoint="On platform" if game.walker.platform.outside else ("Walking in locomotive" if game.walker.car==0 else "Walking · carriage %d" % game.walker.car)
+		viewpoint="On platform" if game.walker.platform.outside else ("Walking · "+_car_name(game,game.walker.car))
 	elif game.cam.mode==2:
-		viewpoint="Passenger seat · carriage %d" % game.tv.passenger_coach
+		viewpoint=("Passenger seat · " if game.tv.passenger_seat else "Passenger aisle · ")+_car_name(game,game.tv.passenger_coach)
 	elif game.cam.mode==1:viewpoint="Pilot seat"
 	elif game.cam.mode==3:viewpoint="Head-out view"
 	return {service=game.train.id,title=game.train.service_name,clock=game.world.clock_text(),day=game.world.clock_day(),
@@ -22,3 +22,7 @@ static func describe(summary: Dictionary,backup: bool=false) -> String:
 	text+="\nSaved "+str(summary.get("saved_at","Unknown time"))
 	if backup:text+="\nPrevious version of this slot; loading it keeps the current save intact."
 	return text
+
+static func _car_name(game,index: int) -> String:
+	if game.tv.get("formation")!=null and index>=0 and index<game.tv.formation.size():return preload("res://game/coach_directory.gd").name(game.tv.formation[index].model,index)
+	return "Car %d" % (index+1)

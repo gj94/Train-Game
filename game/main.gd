@@ -337,7 +337,8 @@ func _start_as_passenger() -> void:
 	if not _has_passengers():_pilot_camera();return
 	var coaches: Array=tv.passenger_coaches()
 	if coaches.is_empty():_pilot_camera();return
-	tv.passenger_coach=coaches[0];tv.passenger_seat_index=0;tv.passenger_seat=true
+	var seat:=preload("res://game/coach_directory.gd").empty_seat(tv,train,coaches[0])
+	tv.passenger_coach=seat.get("car",coaches[0]);tv.passenger_seat_index=seat.get("seat",-1);tv.passenger_seat=not seat.is_empty()
 	cam._look=Vector2.ZERO;_enter_passenger();passenger_bookmark.remember()
 	cam._blend=1;cam._follow_anchor_valid=false;cam.global_transform=cam._target()
 
@@ -837,6 +838,15 @@ func _ui_action(action: String) -> void:
 		journey_tools.action(action);return
 	if action.begins_with("skip:"):
 		time_skip.action(action);return
+	if action=="seat:available":
+		if not _has_passengers():return
+		var preferred: int=walker.car if walker.active and not walker.platform.outside else tv.passenger_coach
+		var seat:=preload("res://game/coach_directory.gd").empty_seat(tv,train,preferred)
+		if seat.is_empty():hud.toast("No unoccupied passenger seats on this service. You can still walk in a coach.");return
+		hud.show_modal("");_set_paused(false)
+		tv.passenger_coach=seat.car;tv.passenger_seat_index=seat.seat;tv.passenger_seat=true
+		cam._look=Vector2.ZERO;_enter_passenger();audio.reset_positions()
+		return
 	if action in ["seat:return","seat:remember"]:
 		if action=="seat:remember":passenger_bookmark.remember(true)
 		else:
@@ -882,7 +892,7 @@ func _ui_action(action: String) -> void:
 		if not _has_passengers() or index not in tv.passenger_coaches():return
 		_set_paused(false);hud.show_modal("")
 		tv.passenger_coach=index;tv.passenger_bay=0;tv.passenger_seat=false;tv.passenger_seat_index=-1
-		cam._look=Vector2.ZERO;_enter_passenger();audio.reset_positions()
+		cam._look=Vector2.ZERO;train.automatic=true;_enter_passenger();walker.stand();audio.reset_positions()
 		return
 	if action.begins_with("pax:"):
 		_set_paused(false)
@@ -897,16 +907,15 @@ func _ui_action(action: String) -> void:
 		"game_speed", "controller_actions", "train_controls", "view_controls", "sound_controls", "controller_guide":
 			_set_paused(true)
 			hud.show_modal(action)
-		"coaches":
+		"coaches", "passengers":
 			_set_paused(true)
 			hud.controller_options.coaches=[]
+			hud.controller_options.saved_seat=passenger_bookmark.current()
 			if _has_passengers():
-				for index in tv.passenger_coaches():
-					hud.controller_options.coaches.append({index=index,label="Coach "+str(hud.controller_options.coaches.size()+1)})
-			hud.show_modal("coaches")
-		"passengers":
-			_set_paused(true)
-			hud.show_modal("passengers")
+				var here: int=walker.car if walker.active and not walker.platform.outside else (tv.passenger_coach if cam.mode==2 or _passenger_head_out() else -1)
+				hud.controller_options.coaches=preload("res://game/coach_directory.gd").entries(tv,train,here,hud.controller_options.saved_seat)
+				if here>=0:hud._menu_focus.coaches="coach:"+str(here)
+			hud.show_modal(action)
 		"fleet":
 			_set_paused(true)
 			hud.show_modal("fleet")

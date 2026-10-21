@@ -256,7 +256,9 @@ func menu_back(page: String="") -> void:
 	_returning_menu=false
 
 func action_context() -> Dictionary:
-	return {automatic=game.train.automatic, passenger_seated=game._passenger_seated(), walking=game.walker.active, emergency=game.train.emergency, stopped=absf(game.train.speed)<.1, quick_from_game=_menu_parents.get("controller_actions","pause")=="", chords=tsw_layout or game.walker.active}
+	var stations:=[]
+	for i in mini(3,game.world.stations.size()):stations.append(game.world.stations[i].name)
+	return {automatic=game.train.automatic, passenger_seated=game._passenger_seated(), walking=game.walker.active, emergency=game.train.emergency, stopped=absf(game.train.speed)<.1, quick_from_game=_menu_parents.get("controller_actions","pause")=="", chords=tsw_layout or game.walker.active, station_views=stations}
 
 func _service_ui() -> bool:
 	return game.get("service_editor") != null and game.service_editor.visible

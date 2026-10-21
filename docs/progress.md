@@ -1,5 +1,33 @@
 # Progress
 
+## 2026-10-22 — Carriage discovery and dispatcher readability validated
+
+- Passenger menus show coach class, actual unoccupied seat count, current
+  carriage and remembered seat. Selection enters an accessible aisle with AI;
+  Find an empty seat prefers that carriage and safely handles full trains.
+  Passenger departure starts also avoid occupied seats. Bookmark/save/door
+  descriptions use consistent WAP-coach and VB-car numbering.
+- Fixed double reversal in D-pad carriage order when using the opposite VB cab.
+  Camera menus name stations from the active route; the platform return hint
+  now reflects the hold-left/right mapping. Train-control mappings are intact.
+- Dispatcher tags include their detail lines in collision bounds, clamp before
+  placement, draw above leader lines and win clicks over underlying train bodies.
+  Unique controller targets, player/inspected priority and zoom-in overflow hints.
+  Beyond 18 km, a labelled route overview replaces unreadable overlapping local
+  track laterals; close zoom retains exact occupied intervals and station roads.
+- 795 source headless tests pass; existing controller contexts 97. Native K1
+  boarding 19, B012 boarding/reverse cab 21; dispatcher 83 at 720p/900p; prepared
+  time browser 20. Complete railway equality covered across inspection and
+  passenger view transfers. Final targeted tag tests pass after optimisation.
+- Bounded spatial lookup/pruning cuts the headless 100-tag layout sample from
+  11.56 to 3.55 ms mean on the development PC; not target-PC/render FPS data.
+  Native screenshots reviewed. Evidence: art/performance/boarding-map-qol-2026-10-22.
+  Playtest: docs/journey-library.md. No simulation/prepared timetable edits,
+  timetable regeneration/full-day rehearsal or distribution gameplay runs.
+- R44 remains live; R45 sequence 47 is still pending the minimum additional QoL
+  window, ending 05:20:21 +08. Continue existing presentation/boarding/menu work;
+  then validate publication and disable the continuation automation at completion.
+
 ## 2026-10-22 — Save/recovery UX and protected session transitions validated
 
 - Required recovery saves now verify before Home/restart/scenario/quit/load

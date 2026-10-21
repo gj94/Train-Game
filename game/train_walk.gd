@@ -216,7 +216,7 @@ func _seat_target(require_facing: bool=true) -> Dictionary:
 		var delta:=Vector2(s[0],s[2])-position
 		if require_facing and delta.length()>.3 and Vector2(forward.x,forward.z).dot(delta.normalized())<.25: continue
 		if delta.length()<best:
-			best=delta.length();found={kind="seat",seat=i,label="Sit in passenger seat"}
+			best=delta.length();found={kind="seat",seat=i,label="Sit in passenger seat %d" % (i+1)}
 	var leading: int=game.tv.cars.size()-1 if game.train.cab_end==2 else 0
 	if car==leading:
 		var cab: Vector3=game.tv.cars[car].to_local(game.tv.cab_transform().origin)
@@ -244,7 +244,7 @@ func _interaction() -> Dictionary:
 			return {kind="notice",label="No physical gangway · use Go to passenger coach, or the platform at a stop"}
 		# Do not label a short furniture alcove as the end of the carriage.
 		if absf(entry.point.y)<float(game.tv.specs[car].pitch)*.5-3.0: continue
-		return {kind="gangway",car=next,label="Through gangway to coach "+str(next if game.tv.choice in ["icf","lhb"] else next+1)}
+		return {kind="gangway",car=next,label="Through gangway to "+preload("res://game/coach_directory.gd").name(game.tv.formation[next].model,next)}
 	return door if not door.is_empty() else _seat_target()
 
 func interact() -> void:

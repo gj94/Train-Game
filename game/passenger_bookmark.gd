@@ -59,7 +59,7 @@ func hold_shortcut() -> void:
 	else:restore()
 
 static func label(point: Dictionary) -> String:
-	return "car %d · seat %d" % [int(point.get("car",0))+1,int(point.get("seat",0))+1]
+	return preload("res://game/coach_directory.gd").name(str(point.get("model","")),int(point.get("car",0)))+" · seat %d" % (int(point.get("seat",0))+1)
 
 func load_saved(data: Variant) -> void:
 	seats.clear()

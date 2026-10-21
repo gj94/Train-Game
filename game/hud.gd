@@ -293,13 +293,17 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			ControllerMenus.build(self, kind)
 		"coaches":
 			_heading.text = "GO TO PASSENGER COACH"
-			_body.text = "Works while moving, including WAP-7 trains.\nYou keep your service. Standing or sitting as a passenger gives driving to AI. Hold D-pad left/right returns to pilot.\nThis is a viewpoint transfer; WAP-7 has no passenger gangway."
-			for coach in controller_options.get("coaches",[]):_button(_buttons,coach.label,"coach:"+str(coach.index))
+			_body.text = "Works while moving, including WAP-7 trains.\nSelect a coach to stand in its aisle with AI driving. Hold D-pad left/right returns to pilot.\nHold R3 returns to your saved passenger seat.\nThis is a viewpoint transfer; WAP-7 has no passenger gangway."
+			_passenger_shortcuts()
+			for coach in controller_options.get("coaches",[]):
+				var button:=_button(_buttons,coach.label,"coach:"+str(coach.index))
+				button.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;button.custom_minimum_size.y=62
 			_button(_buttons,"Back","pad_back")
 		"passengers":
 			_heading.text = "PASSENGER COACHES"
 			_body.text = "Go to a coach while moving, including WAP-7 trains. AI drives while you walk or sit as a passenger.\nY / E stands; hold D-pad left/right returns to pilot.\n[b]1 / 2 / 3[/b] selects first/middle/last; [b]PgUp/PgDn[/b] visits any coach."
-			_button(_buttons,"Go to any passenger coach…","coaches")
+			_passenger_shortcuts()
+			_button(_buttons,"Choose coach · class & seat availability…","coaches")
 			_button(_buttons, "First passenger coach  ·  Alt+1", "pax:0")
 			_button(_buttons, "Middle passenger coach  ·  Alt+2", "pax:1")
 			_button(_buttons, "Last passenger coach  ·  Alt+3", "pax:2")
@@ -349,6 +353,11 @@ func _resize_modal() -> void:
 	var half:=Vector2(minf(1600 if map_open else 1120,available.x),minf(900 if map_open else 730,available.y))*.5
 	_dialog.offset_left=-half.x;_dialog.offset_right=half.x
 	_dialog.offset_top=-half.y;_dialog.offset_bottom=half.y
+
+func _passenger_shortcuts() -> void:
+	var point: Dictionary=controller_options.get("saved_seat",{})
+	if not point.is_empty():_button(_buttons,"Return to "+preload("res://game/passenger_bookmark.gd").label(point),"seat:return")
+	_button(_buttons,"Find an empty passenger seat","seat:available")
 
 func focus_action(action: String) -> void:
 	if modal=="pause" and pause_menu.focus_action(action):return

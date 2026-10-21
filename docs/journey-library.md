@@ -13,7 +13,7 @@ different workings. The browser remembers the chosen timetable and each day's
 selected service. B returns from service details to the roster before Home.
 
 Drive starts at the controls as before. Ride as passenger starts paused in the
-first passenger carriage with AI driving and a remembered seat. Boarding does
+first passenger carriage with space, with AI driving and a remembered seat. A full train opens in the aisle instead. Boarding does
 not advance time or change surrounding traffic, routes or the selected train's
 AI control state. The prepared departure is still the same baseline. Saves keep
 the departure role so restarting a passenger journey remains a passenger start.
@@ -78,3 +78,41 @@ Load paused and check seat/AI state. The save-failure and damaged-primary cases
 are tested with isolated fixture files; do not damage your actual saves to try
 them. Cancel/Back must retain the current journey; explicit discard is the only
 path past a failed recovery write.
+
+
+## Finding a carriage or seat
+
+Pause → Camera & passengers → Go to passenger coach → Choose coach shows
+class, free passenger seats, your current carriage and your remembered seat.
+Coach numbers stay fixed along the formation: WAP locomotives are separate from
+Coach 1; Vande Bharat uses Car 1–8/16. The list follows the driving end.
+
+Select a carriage to stand in its aisle; AI takes over. Find an empty passenger
+seat checks the current carriage first and then the rest of the train. A full
+train keeps you where you are and reports that no seats are free. These view
+transfers do not reserve seats or change the simulated passenger manifest.
+Return to saved seat is available directly in both passenger menus. Hold R3
+still recalls it from gameplay; while seated, holding R3 saves your view angle.
+
+Playtest with K1 and a Vande Bharat: open the coach list, select a different
+class/car, walk with LS, then find an empty seat. Return to the remembered seat
+from the menu and with R3. From a reverse-ended VB driving cab, D-pad down must
+visit the nearest carriage and continue away from that cab. On a platform,
+the return-to-pilot prompt now correctly says to hold D-pad left/right.
+
+## Reading busy dispatcher maps
+
+Train tags keep their speed/length text inside the tag and avoid each other,
+including at screen edges. Leader lines connect a moved tag to its train.
+Clicking a tag inspects that train even if another body is underneath it; no
+control handover occurs. Controller navigation selects each service once.
+
+Above an 18 km span the map shows a labelled chainage overview. Zooming in
+restores each station's roads and the full occupied train lengths. At very
+crowded zoom levels, secondary tags may be hidden with a zoom-in hint; train
+bodies stay selectable and your/inspected service tags receive priority.
+
+Playtest at 720p: Explore by time → 20:00, inspect nearby trains, zoom out to the
+whole route and back into a station. Check tag clicks, X locate, Y fit/follow
+(as labelled on each screen), controller focus, and that viewing another
+service keeps your existing service assigned.

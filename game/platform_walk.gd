@@ -78,7 +78,7 @@ func boarding_target() -> Dictionary:
 			if delta.length()>2.1 or forward.dot(delta.normalized())<.3: continue
 			var entry:=entry_point(car,door)
 			if entry.is_empty(): continue
-			var name: String="WAP-7 cab" if game.tv.formation[car].model=="wap7" else "coach %d · %s" % [car if game.tv.choice in ["icf","lhb"] else car+1,str(game.tv.formation[car].model).to_upper().replace("_"," ")]
+			var name: String=preload("res://game/coach_directory.gd").name(game.tv.formation[car].model,car)
 			return {kind="board",car=car,door=door,entry=entry.point,label="Board "+name}
 	return {}
 
@@ -146,5 +146,5 @@ func update(delta: float) -> void:
 	if _refresh<=0:_target=boarding_target();_refresh=.1
 	walk.target=_target
 	var control: String="A" if game.hud.controller_active else "Left click"
-	var pilot: String="Left stick click" if game.hud.controller_active else "4"
+	var pilot: String="hold D-pad left/right" if game.hud.controller_active else "4"
 	walk._prompt.text=control+" · "+_target.label if not _target.is_empty() else "Walk along the platform to another doorway · "+pilot+" returns to the pilot"
