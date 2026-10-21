@@ -116,3 +116,27 @@ Playtest at 720p: Explore by time → 20:00, inspect nearby trains, zoom out to 
 whole route and back into a station. Check tag clicks, X locate, Y fit/follow
 (as labelled on each screen), controller focus, and that viewing another
 service keeps your existing service assigned.
+
+
+## Finding services near a station
+
+Explore by time → Near station lists active passenger services within 15 km
+along the route, nearest first. The list shows distance from the selected
+station. All active restores the full list; clicking a train outside the filter
+also restores it before inspecting that train. The map still shows all traffic.
+
+Use LS or D-pad to move through the roster; right enters the map and left returns
+to the roster. In a station/stock/timetable dropdown, A confirms, B cancels,
+up/down or LS move and LB/RB page through choices. These shoulder presses do not
+change the preview time while a dropdown is open. Outside it, LB/RB step five
+minutes as labelled.
+
+An unavailable preview clears old boarding choices and offers Retry with its
+failure reason. It never boards a stale railway. A closed station with no
+accessible passenger platform disables its visit action. At the end of the day,
+station visits remain available even when there are no active passenger trains.
+
+Playtest at 20:00: choose Kazhakuttam, turn on Near station and inspect B007/B064.
+Page through the station dropdown with RB and cancel with B; the clock and
+station selection must stay unchanged. Select a new station with A. Check LS
+roster navigation and map focus, then use Passenger seat to join a service.

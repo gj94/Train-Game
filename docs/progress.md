@@ -1,5 +1,26 @@
 # Progress
 
+## 2026-10-22 — Nearby service discovery and native controller navigation validated
+
+- Explore by time filters active passenger services within 15 km along the
+  railway of the selected station, sorted by distance. Clear counts and empty
+  states, inaccessible-platform feedback, stale-preview removal and Retry for
+  failed snapshots/catalogues. Loading/retry do not mutate railway state.
+- Station/stock/day/sort dropdowns now own native popup joypad events, page with
+  LB/RB, skip disabled items and cancel without changing the selected choice.
+  Removed duplicate native ui_* joypad mappings, retaining keyboard/mouse.
+  LS navigation, roster-to-map focus and explicit map confirmation are wired.
+- Real input-event injection exposed issues that direct _input calls missed;
+  final native browser 36 and Home preferences 30 checks pass. Full source
+  suite 797 pass; in-journey controller 97; native timeline boarding 23 earlier
+  in this batch. Full railway equality and error/retry cases covered.
+- 720p/900p images inspected; compact spacing fits waiting advice and version.
+  Evidence: art/performance/browser-navigation-2026-10-22. Specific playtest:
+  docs/journey-library.md. No sim/persistence/prepared-data changes, no timetable
+  regeneration/full-day simulations or extracted-distribution gameplay.
+- R44 remains live. Extra QoL minimum remains 05:20:21 +08, then publish R45
+  sequence47 after source/export/signature/range/read-only-pack validation.
+
 ## 2026-10-22 — Carriage discovery and dispatcher readability validated
 
 - Passenger menus show coach class, actual unoccupied seat count, current

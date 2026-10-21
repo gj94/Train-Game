@@ -60,6 +60,7 @@ var _scroll_axis:=0.0
 var _direction:=Vector2i.ZERO
 var _repeat:=0.0
 var _focused:=true
+var picker_input:=preload("res://game/menu_picker_input.gd").new()
 var display:=preload("res://game/display_options.gd").new()
 var home
 var browser_preferences:="user://journey_browser.cfg"
@@ -74,17 +75,19 @@ var browser_footer: Label
 var filter_row: HBoxContainer
 
 func _ready() -> void:
+	picker_input.use_explicit_controller_navigation()
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	if _bypass():
 		get_tree().change_scene_to_file.call_deferred("res://game/main.tscn");return
 	if "--script" not in OS.get_cmdline_args():display.restore()
 	Engine.max_fps=60;Input.mouse_mode=Input.MOUSE_MODE_VISIBLE
 	get_tree().auto_accept_quit=false
-	Input.joy_connection_changed.connect(func(_device,_connected):_axes=Vector2.ZERO;_scroll_axis=0.0)
+	Input.joy_connection_changed.connect(func(_device,_connected):_axes=Vector2.ZERO;_scroll_axis=0.0;picker_input.reset())
 	if not _isolated_browser():library.restore(browser_preferences)
 	timetable_id=Days.definition(str(get_tree().get_meta("timetable_id",library.timetable))).id
 	if directory==Starts.DIRECTORY:directory=Days.definition(timetable_id).starts
 	_build()
+	picker_input.connect_pickers([sort_button,timetable_picker,stock_picker])
 	_load_catalogue()
 	continue_button.disabled=true;continue_button.text="Checking saves…";saved_button.disabled=true
 	save_worker=Thread.new()
@@ -432,11 +435,11 @@ func _process(delta: float) -> void:
 		get_tree().change_scene_to_file.call_deferred("res://game/main.tscn")
 		return
 	if not _focused or starting or roster==null:return
-	if sort_button.get_popup().visible or timetable_picker.get_popup().visible or stock_picker.get_popup().visible:_axes=Vector2.ZERO;_scroll_axis=0;return
+	if picker_input.update(delta,[sort_button,timetable_picker,stock_picker]):_axes=Vector2.ZERO;_scroll_axis=0;return
 	if absf(_scroll_axis)>.25:
 		if home!=null and home.visible:home.scroll(_scroll_axis*delta*650)
 		else:detail_scroll.scroll_vertical+=roundi(_scroll_axis*delta*650)
-	var direction:=Vector2i(signi(roundi(_axes.x)),signi(roundi(_axes.y)))
+	var direction:=Vector2i(0,signi(roundi(_axes.y))) if absf(_axes.y)>=absf(_axes.x) else Vector2i(signi(roundi(_axes.x)),0)
 	if direction==Vector2i.ZERO:_direction=direction;_repeat=0;return
 	_repeat-=delta
 	if direction!=_direction or _repeat<=0:
@@ -465,7 +468,8 @@ func _navigate(direction: Vector2i) -> void:
 
 func _input(event: InputEvent) -> void:
 	if not _focused or roster==null:return
-	if sort_button.get_popup().visible or timetable_picker.get_popup().visible or stock_picker.get_popup().visible:return
+	if picker_input.handle(event,[sort_button,timetable_picker,stock_picker]):accept_event();return
+	if picker_input.active([sort_button,timetable_picker,stock_picker])!=null:return
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode==KEY_F11 or (event.keycode==KEY_ENTER and event.alt_pressed):display.toggle();accept_event()
 		elif event.keycode==KEY_ESCAPE:_back();accept_event()
@@ -572,7 +576,7 @@ func _quit() -> void:
 
 func _notification(what: int) -> void:
 	if what==NOTIFICATION_WM_CLOSE_REQUEST:_quit()
-	elif what==NOTIFICATION_APPLICATION_FOCUS_OUT:_focused=false;_axes=Vector2.ZERO;_scroll_axis=0.0
+	elif what==NOTIFICATION_APPLICATION_FOCUS_OUT:_focused=false;_axes=Vector2.ZERO;_scroll_axis=0.0;picker_input.reset()
 	elif what==NOTIFICATION_APPLICATION_FOCUS_IN:_focused=true;_axes=Vector2.ZERO;_scroll_axis=0.0
 
 func _exit_tree() -> void:
