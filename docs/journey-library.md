@@ -1,6 +1,6 @@
 # Journey library and passenger departures
 
-Follow-up QoL work after R44; not yet in the downloadable R44 build.
+R45 journey discovery, passenger boarding and recovery controls.
 
 The departure browser combines train type, time of day, full-route and favourite
 filters. Full route means Ernakulam Junction to Nagercoil Junction, in either
@@ -82,7 +82,7 @@ path past a failed recovery write.
 
 ## Finding a carriage or seat
 
-Pause → Camera & passengers → Go to passenger coach → Choose coach shows
+Pause → Train & camera → Cameras & walking → Go to passenger coach → Choose coach shows
 class, free passenger seats, your current carriage and your remembered seat.
 Coach numbers stay fixed along the formation: WAP locomotives are separate from
 Coach 1; Vande Bharat uses Car 1–8/16. The list follows the driving end.

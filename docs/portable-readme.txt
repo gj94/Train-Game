@@ -137,14 +137,17 @@ directions. Review each service's stops and scheduled timings before starting.
 Choose Traffic or press Y for the baseline crossings/overtakes, with times,
 locations and other service names. RS scrolls; Y returns to stops. These are
 the simulated AI baseline, not fixed promises: your driving can change them.
-You begin paused in the pilot seat. Other trains and dispatch run under AI.
+Drive begins paused in the pilot seat. Ride as passenger begins seated with AI
+driving, or in the aisle if every seat is occupied. Other trains and dispatch
+run under AI. L3 favourites the selected departure; the browser remembers it.
 Explore by time starts at a prepared five-minute point; join an active service
 under AI or visit a station. These states reflect baseline AI traffic history.
 Save/Load preserves your own journey; Skip forward advances that journey with
 all trains under AI and rendering disabled. See guides/service-selection.md.
 
 XBOX CONTROLLERS (360 / ONE / SERIES / ELITE)
-Menu > Controller layout has Driving, Walking, Cameras and Menus pages.
+Pause > Reference > Controller layout has Driving, Walking, Cameras, Menus and
+Journeys pages. It is also available from Home > Settings & controls.
 LB/RB changes guide tabs; RS scrolls. Old layouts migrate to the new scheme.
 
 Driving:
@@ -186,11 +189,13 @@ dispatch rules are unchanged. Default remains Aspect + distance. Improved lens,
 visors and backplates make the lineside signals clearer at distance by day/night.
 
 TRY THIS RELEASE
-Select K1 > Traffic (Y), scroll to B001 overtaking at Mararikulam around 09:16,
-then select B001 and compare its reciprocal entry. Try a night service's day-2
-times. Check stationary shadows with the clock running and paused, and the
-shared speed-board posts at station approaches. RB reduces power to coast;
-LB releases brake to coast. Neither changes headlights or takes over from AI.
+Filter departures by Vande Bharat and Full route, favourite one with L3, then
+choose Ride as passenger. Use Pause > Train & camera > Cameras & walking >
+Go to passenger coach to inspect carriage classes and free seats. Hold R3 to
+recall your saved passenger seat after walking elsewhere. Save, return Home
+and highlight Continue to preview the service, seat, time and stop progress.
+Explore by time > Near station finds active services within 15 km; Passenger
+seat joins one under AI. Dropdowns support LS/D-pad, LB/RB, A and B.
 
 TRY THE CONTROLS
 Use RT/LT through coast. Tap X and confirm triggers leave AI in charge. Hold X,

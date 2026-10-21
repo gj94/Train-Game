@@ -1,5 +1,15 @@
 # Progress
 
+## 2026-10-22 — R45 packaged instructions final review
+
+- Updated the portable start/playtest instructions for Drive versus Ride,
+  favourites, nearby services and passenger seat recall. Corrected the coach
+  directory's full pause-menu path and listed all five controller guide tabs.
+- Documentation only; source checks remain 797 unit tests, 99 controller checks
+  and the recorded native UI audits. No simulation or prepared-data changes.
+- The original QoL minimum remains 05:20:21 +08. Publish R45 sequence 47 after
+  that time, validate full/incremental downloads, then finish the work window.
+
 ## 2026-10-22 — Preview lifetime and rapid selection review complete
 
 - Native Intensive time-browser audit: 24 varied snapshot loads / 51 checks;
