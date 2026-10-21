@@ -1,5 +1,28 @@
 # Progress
 
+## 2026-10-22 — Additional QoL pass, journey library milestone validated
+
+- Working toward the recorded 05:20:21 +08 minimum finish. R44 remains the live
+  download. Continuation heartbeat: continue-train-game-qol-pass; disable after
+  the requested work period, follow-up publication and final documentation.
+- Added per-timetable favourites (star/L3/F2), train-type/full-route filters,
+  multiword station/stock search, Reset and remembered timetable/day selection.
+  Stops get more space; Drive and Ride are separate explicit actions. B from
+  details returns to the list before Home.
+- Passenger departure starts in a seat with AI, preserves the complete prepared
+  railway and remembers that seat; saves/restart retain the departure role.
+  Standard K1 passenger/driver and B012 VB16 complete-state comparisons pass.
+  A fixture initially used an obsolete K3 ID, then exact JSON clock equality
+  instead of the loader's tolerance; those fixture issues were corrected.
+- Full suite: 784 pass. Controller: 97 pass. Operating-day UI: 16 pass. Native
+  library: 23 pass at 720p, including favourites, filters, Drive/Ride focus and
+  saved-journey round trips. Passenger starts: 7 each K1/B012; driver start: 5.
+  Evidence in art/performance/journey-library-2026-10-22; playtest in
+  docs/journey-library.md. No railway or prepared-data changes.
+- Next priorities: pre-journey sound/controller preferences, clearer saved-journey
+  information and save/exit feedback, and more consistent Explore-by-time entry.
+  Keep simulation and prepared timetable data untouched; no full-day reruns.
+
 ## 2026-10-22 — R44 published; additional QoL pass active
 
 - Full ZIP + signed incremental updates live at http://192.168.8.183:8765/;

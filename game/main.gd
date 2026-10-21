@@ -77,6 +77,7 @@ var _resume: Dictionary = {}
 var _prepared: Dictionary = {}
 var _prepared_id := ""
 var _prepared_time := -1.0
+var _prepared_passenger := false
 var _returning_menu := false
 var profiling := false
 var frame_costs := {}
@@ -104,6 +105,7 @@ func _ready() -> void:
 	if not _prepared.is_empty():
 		get_tree().remove_meta("prepared_start")
 		_prepared_id=_prepared.service if _prepared.get("mode","departure")=="departure" else ""
+		_prepared_passenger=_prepared.get("passenger_start",false)==true
 		if _prepared.has("timeline"):_prepared_time=_prepared.world.clock_seconds()
 		get_tree().set_meta("route","kerala_coast")
 		get_tree().set_meta("timetable_id",_prepared.get("timetable_id","standard"))
@@ -111,6 +113,7 @@ func _ready() -> void:
 		get_tree().remove_meta("resume_session")
 		_prepared_id=_resume.session.get("prepared_service","")
 		_prepared_time=_resume.session.get("prepared_time",-1.0)
+		_prepared_passenger=_resume.session.get("prepared_passenger",false)==true
 		preload("res://game/save_load.gd").prepare_metadata(get_tree(),_resume.session)
 	var default_route:="kerala_coast"
 	if get_tree().get_meta("small_test_layout",false) or not str(get_tree().get_meta("imported_fleet","")).is_empty() or Array(OS.get_cmdline_user_args()).any(func(a):return a.begins_with("--fleet=") or a in ["--wap7","--lhb","--memu"]):default_route="southern_corridor"
@@ -244,7 +247,7 @@ func _ready() -> void:
 	dispatcher.view_train_requested.connect(_view_train_only)
 	dispatcher.service_deleted.connect(_on_service_deleted)
 	dispatcher.open_changed.connect(func(value): hud.set_desk_open(value))
-	if _resume.is_empty() and (_prepared.is_empty() or _prepared.get("mode","departure")=="departure"):
+	if _resume.is_empty() and (_prepared.is_empty() or (_prepared.get("mode","departure")=="departure" and not _prepared.get("passenger_start",false))):
 		world.dispatcher().manual_service=train.id if traffic_drive else ""
 	dispatcher.station_view_requested.connect(_visit_station)
 	dispatcher.driver_locked=_passenger_seated
@@ -261,8 +264,8 @@ func _ready() -> void:
 	if not _resume.is_empty():
 		pass # Restored controls, authority and timetable must not be initialized again.
 	elif not _prepared.is_empty():
-		if _prepared.get("mode","departure")=="departure":_enter_cab();train.controller=-1.0
-		elif _prepared.mode=="ride":_pilot_camera()
+		if _prepared.get("mode","departure")=="departure" and not _prepared.get("passenger_start",false):_enter_cab();train.controller=-1.0
+		elif _prepared.get("mode","departure")=="ride":_pilot_camera()
 	elif traffic_drive:
 		_enter_cab()
 		train.controller = -1.0
@@ -307,7 +310,9 @@ func _ready() -> void:
 		_resume.clear()
 	if not _prepared.is_empty():
 		if _prepared.get("mode","")=="station":_prepared_platform(_prepared.spot)
+		if _prepared.get("passenger_start",false):_start_as_passenger()
 		var message: String="YOUR SERVICE: "+train.id if _prepared.get("mode","departure")=="departure" else ("AI driving · "+train.id if _prepared.mode=="ride" else "ON PLATFORM: "+_prepared.spot.station)
+		if _prepared.get("passenger_start",false):message="PASSENGER · "+train.id+" · AI driving"
 		_prepared.clear();_set_paused(true);_drive_keys_armed=false;controller.neutralize()
 		hud.show_modal("pause",labels_enabled)
 		hud.toast(message+" · "+world.clock_text()+" · Resume when ready")
@@ -325,6 +330,16 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	if journey_tools!=null:journey_tools.close()
 	journey_diagnostics.close()
+
+func _start_as_passenger() -> void:
+	# View selection after all controllers/bookmarks exist. Preserve baseline AI.
+	train.automatic=true
+	if not _has_passengers():_pilot_camera();return
+	var coaches: Array=tv.passenger_coaches()
+	if coaches.is_empty():_pilot_camera();return
+	tv.passenger_coach=coaches[0];tv.passenger_seat_index=0;tv.passenger_seat=true
+	cam._look=Vector2.ZERO;_enter_passenger();passenger_bookmark.remember()
+	cam._blend=1;cam._follow_anchor_valid=false;cam.global_transform=cam._target()
 
 
 func _prepared_platform(spot: Dictionary) -> void:
@@ -1031,7 +1046,8 @@ func _confirm_action() -> void:
 	if action=="landing" or (action=="restart" and (not _prepared_id.is_empty() or _prepared_time>=0)):
 		var timeline: bool=action=="restart" and _prepared_time>=0
 		if timeline:get_tree().set_meta("timeline_clock",_prepared_time)
-		elif action=="restart":get_tree().set_meta("launch_service",_prepared_id)
+		elif action=="restart":
+			get_tree().set_meta("launch_service",_prepared_id);get_tree().set_meta("launch_passenger",_prepared_passenger)
 		_return_to_landing(timeline)
 		return
 	if action != "restart" and get_tree().has_meta("service_pack"): get_tree().remove_meta("service_pack")

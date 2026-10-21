@@ -20,7 +20,8 @@ Full design: `docs/design-brief.md`. Current state: `docs/progress.md`.
 - Blender MCP connector (`mcp__Blender__*`) needs Blender open with the MCP add-on server started.
 - PowerShell execution policy blocks `npm.ps1`/`npx.ps1`; call `npm.cmd` / `npx.cmd` instead.
 
-Fresh launches open the service browser, defaulting to K1, the slow Kerala Coast
+Fresh launches open Home, with journeys, saved games, time exploration and settings.
+The service browser initially defaults to K1, the slow Kerala Coast
 passenger in a 100-service operating day. Prepared service departures and the
 five-minute baseline browser are described in `docs/service-selection.md`.
 Future trains enter from depot supply near departure; see `docs/busy-timetable.md`.

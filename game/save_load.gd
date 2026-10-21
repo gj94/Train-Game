@@ -28,6 +28,7 @@ func capture_session() -> Dictionary:
 	data.player=game.train.id;data.meta=meta
 	data.prepared_service=game._prepared_id
 	data.prepared_time=game._prepared_time
+	data.prepared_passenger=game._prepared_passenger
 	data.camera=Snapshot.fields(game.cam,CAMERA)
 	data.camera.pivot=game.cam.pivot+(game.wv.coordinate_origin if game.geographic_drive else Vector3.ZERO)
 	data.view=Snapshot.fields(game.tv,VIEW)
