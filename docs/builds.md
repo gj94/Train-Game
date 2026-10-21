@@ -1,58 +1,58 @@
 # Windows portable build
 
-Current release: **R39 — connected overhead equipment, roads and faster updates**.
-Published 21 October 2026 from clean source **3ed0761**, signed
-sequence **41**, at http://192.168.8.183:8765/.
-Full ZIP: **3,584,596,626 bytes**, SHA-256
+Current release: **R40 — optional Epic graphics**.
+Published 21 October 2026 from clean source **1e33537**, signed sequence
+**42**, at http://192.168.8.183:8765/.
+Full ZIP: **3,584,613,582 bytes**, SHA-256
+`494c0580c8c8953406e3a91407f430bfaba7e1756f75ef7ba2299fabd2d09b6e`.
+
+Select **Pause > Graphics > Use Epic preset**. High remains the default.
+Epic adds surface/water/permanent-way finishing, sharper sky reflections,
+nearby station-lamp shadows and 150% detail ranges. All are individually tunable;
+SSR stays off. R39 roads, bridges, overhead fittings and station clearances remain.
+See [Epic details](extreme-visuals.md).
+
+The included **Update & Play v4** supports batched verified incremental transfers.
+Existing v4 users can update directly. Older v3 launchers remain compatible;
+replace the small launcher ZIP once for the faster transfer implementation.
+New installations require the full ZIP including all **192** asset packs.
+
+The Standard 100-service and Intensive 140-service operating days, prepared
+states, physics, dispatch and sound banks are unchanged. No full timetable
+rehearsal or extracted-distribution gameplay run was performed.
+
+Validation: **731 headless game tests**, **76 Python review-tool tests**, native
+material comparisons and **30 full-game day/night cases** with five trains,
+98 vehicles and 6,007 simulated passengers. The canopy case exercised 24 lights,
+23 with nearby shadows. Native comparisons contain tiny pixel differences;
+see [exact evidence and development-PC limits](../art/performance/epic-2026-10-21/README.md).
+No RTX 4090 Laptop FPS claim is made.
+
+All **507 archive CRCs / 505 managed hashes**,
+clean source identity, packaged guides, explicit packs, signatures and served
+ZIP/PCK/compressed ranges pass. Read-only native mounting verifies all prepared
+snapshots and encounter data. The legacy v3 verifier accepts this signed catalogue.
+See [R40 publication](../art/performance/r40-release-2026-10-21/publication.json).
+
+R39 → R40 reuses **4,242,710,526 bytes**. Changed target blocks total
+**7,022,909 bytes**; estimated unique compressed payload is
+**2,570,368 bytes**, plus the
+**6,478,313-byte** catalogue. This is an estimate, not a measured client transfer.
+
+Only R40 is offered as a full download. R39's verified export/ZIP/checksum were
+retired after the new publication passed, freeing **7,834,337,658.0 bytes**.
+Historical signed catalogues remain. The next build needs a fresh name and
+sequence **43+**, with full ZIP and incremental support.
+
+Playtest: compare Epic/High at the same daylight platform and water view, repeat
+under a lit station canopy at night, then switch back and visit a streamed station.
+Use F10 and Benchmark.ps1 with saved graphics settings on the target laptop.
+
+Previous release: **R39**, source **3ed0761**, sequence **41**. It introduced
+connected OHE, road/station clearance fixes and the v4 updater. Full ZIP was
+3,584,596,626 bytes, SHA-256
 `e28b070a84faecceeb16b069aef08bb030aefef819387bd57160c86c808ad0cc`.
-
-Overhead fittings meet their supports and wires across chunk boundaries, with
-supported portals for long spans and improved near-wire shadows. Roads now use
-connected bridge approaches, closed decks and piers, and avoid station precincts,
-open water and the railway envelope. Station entrance links meet ground roads;
-duplicate pedestrian bridge decks and the dashed sky-panorama seam are removed.
-Very distant/low-resolution thin shadows can still alias. Road elevations are
-a rendering reconstruction, not a surveyed civil-engineering model.
-
-The included **Update & Play v4** batches verified blocks and pipelines downloads.
-Existing users should close the updater and replace it once from the small
-updater ZIP on the host page. Existing v3 launchers remain compatible with the
-catalogue, but need replacement to gain the faster transfer implementation.
-New installations need the full ZIP, including all **192** asset packs.
-
-The Standard 100-service and Intensive 140-service operating days are unchanged.
-Both retain all prepared departures, 233 five-minute states and the measured
-crossing/overtake previews. Physics, dispatch and approved sound banks are unchanged.
-No full-day timetable rehearsal or extracted-distribution gameplay test was run.
-
-Validation: **708 headless game checks**, **57 native updater checks**, the
-whole-route road/OHE clearance audits, native station/bridge views and streaming
-soaks. See [scenery evidence](../art/performance/overnight-2026-10-21/README.md)
-for exact source qualifications and development-PC performance limitations.
-
-All **506 ZIP CRCs / 504 managed
-hashes**, clean source identity, packaged guides, signatures, explicit pack
-inventory and served ZIP/PCK/compressed ranges pass. Native read-only mounting
-checks every prepared snapshot and both days' encounter data. The shipped R38
-v3 core also accepts the actual signed R39 catalogue.
-Evidence: [R39 publication](../art/performance/r39-release-2026-10-21/publication.json).
-
-R38 → R39 reuses **4,234,235,117 bytes**; changed target blocks total
-**15,458,284 bytes**. Estimated unique compressed payload is
-**7,099,319 bytes**, plus the
-**6,477,989-byte** signed catalogue. These are block-hash estimates,
-not captured client traffic.
-
-Only R39 is offered. R38's unchanged export directory, ZIP and checksum were
-verified and retired after idle-LAN checks, freeing **7,831,411,720
-bytes**. Historical signed catalogues remain. The next release needs a fresh
-name and sequence **42 or greater**, with both full and incremental publication.
-The exporter rejects nonempty staging directories; inspect failed unpublished
-staging before removal.
-
-Playtest: inspect road bridges and station entrances at ERS, QLN and TVC, canal
-crossings near Kumbalam, and overhead attachments/roof shadows at a station
-throat. Check the same places at night and through scenery-streaming boundaries.
+See [R39 publication](../art/performance/r39-release-2026-10-21/publication.json).
 
 Previous release: **R38**, clean source **885dc17**, signed sequence **40**,
 published 21 October 2026. Its full ZIP was **3,584,017,612 bytes**, SHA-256

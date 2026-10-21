@@ -1,5 +1,14 @@
 # Incremental Windows updates
 
+## Current publication — R40
+
+Sequence42 includes optional Epic graphics, the full ZIP and v4 updater.
+All 192 stable asset packs are retained. Estimated compressed blocks from R39:
+2,570,368 bytes plus 6,478,313 catalogue bytes.
+Signatures, served ranges and legacy v3 catalogue compatibility passed.
+Only the latest full ZIP is offered; old signed catalogues remain for updates.
+Next publication needs sequence43+.
+
 ## V4 transfer optimization — shipped in R39
 
 V4 keeps the existing signed catalogue and 64 KiB block hashes. It combines

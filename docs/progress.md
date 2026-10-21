@@ -1,5 +1,21 @@
 # Progress
 
+## 2026-10-21 — R40 published
+
+- Full ZIP and signed incremental updates are live at http://192.168.8.183:8765/,
+  sequence42, clean source `1e33537`. ZIP: 3,584,613,582 bytes.
+  All 507 archive CRCs / 505 managed hashes,
+  packaged guides, signatures and served ranges pass. All 192 packs mount;
+  both operating days' snapshots/traffic pass read-only hashes. Legacy v3 accepts
+  the signed catalogue. No distribution gameplay or timetable rerun.
+- Epic is optional in Graphics; High remains default. Source and native evidence
+  are pushed. The v4 updater is included; existing v4 installations can update.
+- R39 export/ZIP/checksum retired only after verification and idle-LAN checks,
+  freeing 7,834,337,658.0 bytes. Historical update catalogues retained.
+  Next publication requires sequence43+.
+- Playtest Epic against High from a daylight platform/water view and a lit night
+  canopy. Return to High, visit another station, and compare F10 on the 4090 Laptop.
+
 ## 2026-10-21 — Epic integrated; R40 publication preparation
 
 - Merged `origin/codex/extreme-visual-fidelity` at `5c406aa` into the working
