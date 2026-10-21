@@ -8,6 +8,9 @@ var info: Label
 var footer: Label
 var options: PanelContainer
 var option_list: VBoxContainer
+var settings_title: Label
+var settings_status: Label
+var preferences:=preload("res://game/home_preferences.gd").new()
 var guide
 var graphics:=preload("res://game/graphics_options.gd").new()
 var display:=preload("res://game/display_options.gd").new()
@@ -58,12 +61,13 @@ func _ready() -> void:
 	options=PanelContainer.new();add_child(options);options.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	options.add_theme_stylebox_override("panel",Style.box(Style.INK,36));options.hide()
 	var opt:=VBoxContainer.new();opt.add_theme_constant_override("separation",16);options.add_child(opt)
-	Style.label(opt,"MAKE YOURSELF AT HOME",13,Style.ACCENT);Style.label(opt,"Settings & controls",36)
+	Style.label(opt,"MAKE YOURSELF AT HOME",13,Style.ACCENT);settings_title=Style.label(opt,"Settings & controls",36)
 	var scroll:=ScrollContainer.new();scroll.follow_focus=true;scroll.size_flags_vertical=SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;opt.add_child(scroll)
 	option_list=VBoxContainer.new();option_list.size_flags_horizontal=SIZE_EXPAND_FILL;option_list.add_theme_constant_override("separation",8);scroll.add_child(option_list)
-	Style.label(opt,"Changes are saved for your next journey.  B / Esc back",15,Style.MUTED)
+	settings_status=Style.label(opt,"Changes are saved for your next journey.  B / Esc back",15,Style.MUTED)
+	settings_status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	guide=preload("res://game/controller_guide.gd").new()
-	guide.go_back=func():guide.hide();show_settings()
+	guide.go_back=func():guide.hide();show_settings();focus_setting("Controller layout")
 	# The guide must be a sibling of the settings panel, above it.
 	if guide.get_parent()==null:add_child(guide)
 	guide.hide();resized.connect(queue_redraw)
@@ -104,29 +108,41 @@ func update_saves(entries: Array, checking: bool=false) -> void:
 
 func show_settings(group: String="") -> void:
 	_settings_group=group;graphics.restore();options.show()
+	settings_title.text="Settings & controls"
+	settings_status.text="Changes are saved for your next journey.  B / Esc back";settings_status.modulate=Color.WHITE
 	for c in option_list.get_children():option_list.remove_child(c);c.queue_free()
 	_setting("Back",func():back())
 	if group.is_empty():
 		_setting("Controller layout",func():guide.show();guide.open(0);guide.tabs[0].grab_focus())
-		_setting("Display mode · "+("Fullscreen" if display.is_fullscreen() else "Windowed"),func():display.toggle();show_settings())
+		_setting("Controller preferences",func():show_settings("controller"))
+		_setting("Sound mixer",func():show_settings("sound"))
+		_setting("Display mode · "+("Fullscreen" if display.is_fullscreen() else "Windowed"),func():display.toggle();show_settings();focus_setting("Display mode"))
 		_setting("Graphics preset · "+graphics.preset_name(),func():show_settings("presets"))
 		for key in graphics.GROUPS:_setting(graphics.GROUPS[key].capitalize(),func():show_settings(key))
+	elif group=="controller" or group.begins_with("sound"):
+		preferences.build(self,group)
 	elif group=="presets":
-		for preset in graphics.PRESETS:_setting(preset+(" · selected" if graphics.preset_name()==preset else ""),func():graphics.preset(preset);_save_graphics();show_settings(group))
+		settings_title.text="Graphics presets"
+		for preset in graphics.PRESETS:_setting(preset+(" · selected" if graphics.preset_name()==preset else ""),func():graphics.preset(preset);var result: int=graphics.save();show_settings(group);focus_setting(preset);preference_result(result))
 	else:
+		settings_title.text=graphics.GROUPS.get(group,group).capitalize()
 		for key in graphics.OPTIONS:
 			var spec: Dictionary=graphics.OPTIONS[key]
 			if spec.group!=group:continue
 			var b:=_setting(spec.label+" · "+graphics.label_for(key),func():
-				var index: int=spec.values.find(graphics.values[key]);graphics.set_option(key,spec.values[(index+1)%spec.values.size()]);_save_graphics();show_settings(group)
-				for child in option_list.get_children():
-					if child is Button and child.text.begins_with(spec.label):child.grab_focus())
+				var index: int=spec.values.find(graphics.values[key]);graphics.set_option(key,spec.values[(index+1)%spec.values.size()]);var result: int=graphics.save();show_settings(group)
+				focus_setting(spec.label);preference_result(result))
 			b.tooltip_text=spec.help
 			var help:=Style.label(option_list,spec.help,15,Style.MUTED);help.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	option_list.get_child(0).grab_focus()
 
-func _save_graphics() -> void:
-	if graphics.save()!=OK:footer.text="Could not save graphics preferences. Check access to the user-data folder."
+func preference_result(result: int) -> void:
+	settings_status.text="Saved for your next journey.  B / Esc back" if result==OK else "Could not save preferences. Check access to the user-data folder, then try again."
+	settings_status.modulate=Color.WHITE if result==OK else Color("ffb677")
+
+func focus_setting(prefix: String) -> void:
+	for child in option_list.get_children():
+		if child is Button and child.text.begins_with(prefix):child.grab_focus();return
 
 func _setting(text: String, callback: Callable) -> Button:
 	var b:=Button.new();b.text=text;b.alignment=HORIZONTAL_ALIGNMENT_LEFT;Style.button(b,46);option_list.add_child(b);b.pressed.connect(callback);return b
@@ -134,7 +150,11 @@ func _setting(text: String, callback: Callable) -> Button:
 func back() -> void:
 	if guide.visible:guide.hide();option_list.get_child(1).grab_focus()
 	elif options.visible:
-		if not _settings_group.is_empty():show_settings()
+		if _settings_group=="controller" or _settings_group.begins_with("sound"):
+			var parent: Dictionary=preferences.parent(_settings_group);show_settings(parent.page);focus_setting(parent.focus)
+		elif not _settings_group.is_empty():
+			var prefix: String="Graphics preset" if _settings_group=="presets" else graphics.GROUPS.get(_settings_group,_settings_group).capitalize()
+			show_settings();focus_setting(prefix)
 		else:options.hide();buttons.settings.grab_focus()
 	else:buttons.services.grab_focus()
 

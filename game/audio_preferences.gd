@@ -10,8 +10,10 @@ var muted: Dictionary = {}
 var headphones := false
 var quiet := false
 var reference := false
+var settings_path:=FILE
 
 func _init(path: String=FILE) -> void:
+	settings_path=path
 	var config:=ConfigFile.new();config.load(path)
 	for key in LAYERS:
 		var value=config.get_value("levels",key,config.get_value("levels",LEGACY.get(key,key),0.0))
@@ -48,15 +50,15 @@ func apply() -> void:
 	for key in LAYERS:
 		if key!="master":AudioServer.set_bus_send(bus(LAYERS[key]),"TrainOutput")
 
-func save(path: String=FILE) -> void:
+func save(path: String="") -> Error:
 	var config:=ConfigFile.new()
 	for key in levels:config.set_value("levels",key,levels[key])
 	for key in muted:config.set_value("muted",key,muted[key])
 	for key in ["headphones","quiet","reference"]:config.set_value("mix",key,get(key))
-	config.save(path)
+	return config.save(settings_path if path.is_empty() else path)
 
-func preset(name: String) -> void:
+func preset(name: String) -> Error:
 	for key in levels:levels[key]=0.0;muted[key]=false
 	quiet=name=="quiet";headphones=name=="headphones";reference=name=="reference"
 	if quiet:levels.impacts=-3.0;levels.wind=-4.0;levels.passing_air=-4.0
-	apply();save()
+	apply();return save()

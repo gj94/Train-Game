@@ -22,20 +22,24 @@ var roster: ItemList
 var map
 var map_host: VBoxContainer
 var detail: Label
+var footer: Label
+var version_label: Label
 var board_button: Button
+var passenger_button: Button
 var visit_button: Button
 var services: Array=[]
 var selected_id:="K1"
 var station_index:=0
 var _pan:=Vector2.ZERO
 var _zoom:=0.0
+var _triggers:=Vector2.ZERO
 var _focused:=true
 var display:=preload("res://game/display_options.gd").new()
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	Engine.max_fps=60;Input.mouse_mode=Input.MOUSE_MODE_VISIBLE;get_tree().auto_accept_quit=false
-	Input.joy_connection_changed.connect(func(_device,_connected):_pan=Vector2.ZERO;_zoom=0)
+	Input.joy_connection_changed.connect(func(_device,_connected):_pan=Vector2.ZERO;_zoom=0;_triggers=Vector2.ZERO)
 	if directory==Times.DIRECTORY:
 		directory=preload("res://persistence/operating_days.gd").definition(str(get_tree().get_meta("timetable_id","standard"))).times
 	_build()
@@ -85,20 +89,29 @@ func _build() -> void:
 	UI.label(map_host,"DISPATCH PREVIEW · paused baseline · occupied sections, signals and routes",15,UI.MINT)
 	detail=UI.label(body,"",17);detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	var actions:=HBoxContainer.new();actions.add_theme_constant_override("separation",18);body.add_child(actions)
-	board_button=UI.button(actions,"Join selected service · AI driving",_board);board_button.size_flags_horizontal=SIZE_EXPAND_FILL;board_button.custom_minimum_size.y=54
+	board_button=UI.button(actions,"Pilot seat · AI driving",_board);board_button.size_flags_horizontal=SIZE_EXPAND_FILL;board_button.custom_minimum_size.y=54
 	var primary:=UI.panel("#265e4a");primary.border_color=UI.MINT;board_button.add_theme_stylebox_override("normal",primary)
+	passenger_button=UI.button(actions,"Passenger seat",func():_board(true));passenger_button.size_flags_horizontal=SIZE_EXPAND_FILL
 	visit_button=UI.button(actions,"Visit station platform",_visit);visit_button.size_flags_horizontal=SIZE_EXPAND_FILL
 	status=UI.label(body,"",15,UI.AMBER);status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	UI.label(body,"LB/RB ±5 min · D-pad navigate · A inspect/select · B back · Map: LS pan, LT/RT zoom, Y fit · F11 fullscreen",14,UI.MUTED)
-	UI.label(body,preload("res://game/build_version.gd").current(),12,UI.MUTED)
-	board_button.disabled=true;visit_button.disabled=true
+	footer=UI.label(body,"LB/RB ±5 min · A select · B back · Map: LS pan, LT/RT zoom · X locate train · Y fit · F11 fullscreen",14,UI.MUTED)
+	footer.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	version_label=UI.label(body,preload("res://game/build_version.gd").current(),12,UI.MUTED)
+	board_button.disabled=true;passenger_button.disabled=true;visit_button.disabled=true
+	resized.connect(_fit.bind(margin,body));_fit(margin,body)
+
+func _fit(margin: MarginContainer,body: VBoxContainer) -> void:
+	var compact:=size.y<800
+	body.add_theme_constant_override("separation",8 if compact else 16)
+	for side in ["left","right","top","bottom"]:margin.add_theme_constant_override("margin_"+side,18 if compact else 24)
+	board_button.custom_minimum_size.y=46 if compact else 54
 
 func choose(index: int) -> void:
 	if states.is_empty() or entering or closing:return
 	requested=clampi(index,0,states.size()-1);slider.set_value_no_signal(requested)
 	get_tree().set_meta("timeline_index",requested)
 	clock_label.text=Briefing.time_text(states[requested].clock)
-	board_button.disabled=true;visit_button.disabled=true;roster.mouse_filter=MOUSE_FILTER_IGNORE
+	board_button.disabled=true;passenger_button.disabled=true;visit_button.disabled=true;roster.mouse_filter=MOUSE_FILTER_IGNORE
 	if map!=null:map.hide()
 	status.text="Loading the railway at "+clock_label.text+"…";debounce=.16
 	if worker==null and loaded_index==requested:
@@ -109,7 +122,7 @@ func _read(row: Dictionary) -> Dictionary:return Times.load_state(row,directory)
 
 func _process(delta: float) -> void:
 	if entering:return
-	if station_picker.get_popup().visible:_pan=Vector2.ZERO;_zoom=0
+	if station_picker.get_popup().visible:_pan=Vector2.ZERO;_zoom=0;_triggers=Vector2.ZERO
 	if worker!=null and not worker.is_alive():
 		var result: Dictionary=worker.wait_to_finish();worker=null
 		if closing:_leave();return
@@ -148,7 +161,10 @@ func _show_world(value: RailWorld) -> void:
 	var matches:=services.filter(func(t):return t.id==selected_id)
 	if not matches.is_empty():_select_train(selected_id,false)
 	elif not services.is_empty():_select_train(services[0].id,false)
-	else:selected_id="";board_button.text="No passenger service active";detail.text="No passenger services are active at this time. Visit a station to watch the railway."
+	else:
+		selected_id="";board_button.disabled=true;passenger_button.disabled=true
+		board_button.text="No active service";passenger_button.text="Passenger seat"
+		detail.text="No passenger services are active at this time. Visit a station to watch the railway."
 	_update_visit()
 	status.text="%d active passenger services · %d total services · Preview only; selecting a train does not start the journey." % [services.size(),world.trains.size()]
 
@@ -173,14 +189,16 @@ func _select_train(id: String,focus: bool=true) -> void:
 	# inside its cleared destination road, where no further entry route is needed.
 	var advice: String=info.get("waiting","") if train.speed<.15 else ""
 	detail.text="%s · %s · %.0f km/h\nNext: %s · booked %s%s" % [id,train.service_name,train.speed*3.6,info.get("next_name",train.timetable.stops[-1].name),Briefing.time_text(info.get("scheduled_arrival",world.clock_seconds())),("\n"+advice) if not advice.is_empty() else ""]
-	board_button.text="Join "+id+" · pilot seat, AI driving";board_button.disabled=worker!=null or loaded_index!=requested
+	board_button.text=id+" · Pilot seat (AI)";board_button.disabled=worker!=null or loaded_index!=requested
+	passenger_button.text=id+" · Passenger seat";passenger_button.disabled=board_button.disabled
+	passenger_button.tooltip_text="Board a passenger carriage with AI driving. Starts paused; your seat is remembered for Hold R3."
 	map.inspected_train=id
 	if focus:map.focus_train(id)
 	else:map.queue_redraw()
 
-func _board() -> void:
-	if board_button.disabled or world==null:return
-	_enter({service=selected_id,mode="ride"})
+func _board(passenger: bool=false) -> void:
+	if board_button.disabled or (passenger and passenger_button.disabled) or world==null:return
+	_enter({service=selected_id,mode="ride",passenger_start=passenger})
 
 func _visit() -> void:
 	if visit_button.disabled or world==null:return
@@ -194,7 +212,7 @@ func _visit() -> void:
 
 func _enter(choice: Dictionary) -> void:
 	if worker!=null or loaded_index!=requested or closing:return
-	entering=true;board_button.disabled=true;visit_button.disabled=true
+	entering=true;board_button.disabled=true;passenger_button.disabled=true;visit_button.disabled=true
 	# Keep the exact AI controls, speeds and reservations in both entry modes.
 	choice.world=world;choice.timeline=states[requested].id
 	preload("res://persistence/operating_days.gd").stage_start(get_tree(),choice)
@@ -217,8 +235,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadMotion:
 		if event.axis==JOY_AXIS_LEFT_X:_pan.x=event.axis_value
 		if event.axis==JOY_AXIS_LEFT_Y:_pan.y=event.axis_value
-		if event.axis==JOY_AXIS_TRIGGER_LEFT:_zoom=-event.axis_value
-		if event.axis==JOY_AXIS_TRIGGER_RIGHT:_zoom=event.axis_value
+		if event.axis==JOY_AXIS_TRIGGER_LEFT:_triggers.x=maxf(0,event.axis_value)
+		if event.axis==JOY_AXIS_TRIGGER_RIGHT:_triggers.y=maxf(0,event.axis_value)
+		_zoom=_triggers.y-_triggers.x
 		accept_event()
 	if not event is InputEventJoypadButton or not event.pressed:return
 	match event.button_index:
@@ -227,6 +246,9 @@ func _input(event: InputEvent) -> void:
 		JOY_BUTTON_RIGHT_SHOULDER:choose(requested+1);accept_event()
 		JOY_BUTTON_Y:
 			if map!=null:map.focus_station(-1)
+			accept_event()
+		JOY_BUTTON_X:
+			if map!=null and not selected_id.is_empty():map.focus_train(selected_id)
 			accept_event()
 		JOY_BUTTON_A:
 			var focus:=get_viewport().gui_get_focus_owner()
@@ -240,10 +262,14 @@ func _input(event: InputEvent) -> void:
 				elif event.button_index==JOY_BUTTON_DPAD_LEFT:roster.grab_focus()
 				else:map.navigate_target(Vector2.RIGHT)
 				accept_event()
+			elif get_viewport().gui_get_focus_owner()==board_button and event.button_index==JOY_BUTTON_DPAD_RIGHT:
+				passenger_button.grab_focus();accept_event()
+			elif get_viewport().gui_get_focus_owner()==passenger_button and event.button_index==JOY_BUTTON_DPAD_LEFT:
+				board_button.grab_focus();accept_event()
 
 func _notification(what: int) -> void:
 	if what==NOTIFICATION_WM_CLOSE_REQUEST:quitting=true;_back()
-	elif what==NOTIFICATION_APPLICATION_FOCUS_OUT:_focused=false;_pan=Vector2.ZERO;_zoom=0
+	elif what==NOTIFICATION_APPLICATION_FOCUS_OUT:_focused=false;_pan=Vector2.ZERO;_zoom=0;_triggers=Vector2.ZERO
 	elif what==NOTIFICATION_APPLICATION_FOCUS_IN:_focused=true
 
 func _exit_tree() -> void:

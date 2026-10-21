@@ -28,3 +28,33 @@ Playtest:
    Confirming the Ride button should start paused in a passenger seat with AI.
 4. Stand, visit the pilot seat, then hold R3 to return. Save/load and restart the
    ride; repeat with a WAP rake and a Vande Bharat.
+
+## Preferences before travelling
+
+Home → Settings & controls now includes controller deadzone, look sensitivity,
+vertical inversion and vibration, plus the full independent sound mixer. These
+use the same settings as the in-journey menus. Changing the clacks does not
+change wind; mute retains your level, and choosing a listening preset explicitly
+resets the mix. Reference mode warns that it bypasses gameplay layer controls.
+
+A changes the focused row. B returns to its parent and keeps the relevant row
+focused. LB/RB change sections in the controller guide. Settings report write
+failures in the visible panel; they never claim a failed write was saved.
+
+Playtest Home at 720p and 900p: change controller sensitivity and sound levels,
+enter a service and check that they carry over. In the mixer, raise clacks,
+mute/unmute, then use B twice to return through the category. Restore a preset
+and verify its reset warning and the selected listening mode.
+
+## Boarding from Explore by time
+
+The time browser offers separate Pilot seat (AI), Passenger seat and station
+platform actions. Passenger boarding starts paused in a remembered seat, even
+when the selected service is moving in the baseline. It does not advance time
+or recalculate traffic. X locates the selected service after panning away; Y
+fits the entire route. Opposite triggers cancel map zoom, and releasing one
+continues the other trigger's zoom direction.
+
+At 20:00, select a moving service with A, move right to Passenger seat, then
+confirm. Resume to ride; Hold R3 can recall the seat after exploring. Check that
+the last time block offers station visits with both boarding buttons disabled.

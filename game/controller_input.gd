@@ -467,13 +467,11 @@ func open_settings() -> void:
 	game.hud.show_modal("controllers")
 
 func change_setting(name: String) -> void:
-	match name:
-		"deadzone": deadzone = .12 if deadzone >= .30 else snappedf(deadzone+.06,.01)
-		"sensitivity": sensitivity = .5 if sensitivity >= 2.0 else sensitivity+.25
-		"invert": invert_y = not invert_y
-		"vibration": vibration = 0 if vibration >= .7 else (.35 if vibration == 0 else .7)
-		"defaults":
-			deadzone = .18; sensitivity = 1; invert_y = false; vibration = .35; tsw_layout=true
+	var prefs:=preload("res://game/controller_preferences.gd")
+	var values: Dictionary={}
+	for key in prefs.DEFAULTS:values[key]=get(key)
+	prefs.cycle(values,name)
+	for key in values:set(key,values[key])
 	_save_settings()
 	open_settings()
 	call_deferred("_focus_setting","pad_setting:"+name)
@@ -483,22 +481,12 @@ func _focus_setting(action: String) -> void:
 	for button in game.hud._buttons.get_children():
 		if button.get_meta("action","") == action: button.grab_focus()
 
-func _number(config: ConfigFile, key: String, fallback: float, minimum: float, maximum: float) -> float:
-	var value = config.get_value("controller",key,fallback)
-	if (value is float or value is int) and is_finite(float(value)): return clampf(float(value),minimum,maximum)
-	return fallback
-
 func _load_settings() -> void:
-	var config := ConfigFile.new()
-	if config.load(settings_path) != OK: return
-	deadzone = _number(config,"deadzone",.18,.05,.45)
-	sensitivity = _number(config,"sensitivity",1,.25,3)
-	vibration = _number(config,"vibration",.35,0,1)
-	invert_y = config.get_value("controller","invert_y",false) == true
-	# Retain hardware preferences, migrate both old layouts to the context scheme.
-	tsw_layout = true
+	var values:=preload("res://game/controller_preferences.gd").read_settings(settings_path)
+	for key in values:set(key,values[key])
 
 func _save_settings() -> void:
-	var config := ConfigFile.new()
-	for key in ["deadzone","sensitivity","vibration","invert_y","tsw_layout"]: config.set_value("controller",key,get(key))
-	if config.save(settings_path) != OK: game.hud.toast("Controller settings could not be saved",true)
+	var prefs:=preload("res://game/controller_preferences.gd")
+	var values: Dictionary={}
+	for key in prefs.DEFAULTS:values[key]=get(key)
+	if prefs.write_settings(values,settings_path)!=OK:game.hud.toast("Controller settings could not be saved",true)

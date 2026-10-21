@@ -1,5 +1,29 @@
 # Progress
 
+## 2026-10-22 — Home preferences and time-browser boarding validated
+
+- Additional QoL window remains active until at least 05:20:21 +08. R44 stays
+  published; these changes are for the tested R45 follow-up, sequence 47.
+- Home now includes the independent sound mixer and shared controller hardware
+  preferences. Back restores parent focus, preset resets are explicit, reference
+  bypass is explained, and save failures appear inside the settings panel.
+  Audio presets now respect each preference instance's configured file.
+- Explore by time offers passenger boarding as well as AI pilot/platform entry.
+  X locates the selected train; opposing zoom triggers combine correctly. The
+  720p layout now keeps controller hints and version visible.
+- 787 headless tests pass; current controller scheme 97; native Home preferences
+  30 and existing Home regression 27. Timeline boarding: 23 checks each native
+  and headless, including complete serialized railway equality, clock, role,
+  remembered seat and 720p/900p layout. No simulation/prepared-data changes.
+- A legacy controller fixture still expects old menus (35 failures); the
+  maintained context-controller fixture passes. An initial headless timeline
+  fixture streamed meshes on Dummy and produced RID errors; freezing the
+  source scene before its first update fixes the fixture, with clean native
+  and headless runs. No renderer behavior was changed to mask that error.
+- Playtest: docs/journey-library.md. Evidence:
+  art/performance/home-preferences-2026-10-22. Next: clearer save/recovery
+  information, reliable feedback before leaving a session, continued menu QoL.
+
 ## 2026-10-22 — Additional QoL pass, journey library milestone validated
 
 - Working toward the recorded 05:20:21 +08 minimum finish. R44 remains the live
