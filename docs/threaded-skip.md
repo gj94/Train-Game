@@ -1,5 +1,10 @@
 # Threaded skip forward
 
+R41 extends this with [event skipping and a detached live map](event-skip.md).
+The historical scalar-only progress path below describes the original rollout;
+current workers also publish a copied local diagram. Event search retains a
+short in-memory history and restores train identities in place before returning.
+
 Skip to time / stop now runs the existing railway simulation on a dedicated CPU
 thread. The main thread displays progress and handles keyboard, mouse and
 controller cancellation. Normal driving is unchanged.

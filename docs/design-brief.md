@@ -9,6 +9,12 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **21 Oct 2026 event skip:** advance the actual railway until the earliest
+  enabled stop approach (1 km or earlier comfort braking), one-minute warning
+  before crossing/overtaking/being overtaken, or a holding signal permitting
+  movement. Persist separate event switches. Show a read-only dispatcher locked
+  to the player's train, with bounded snapshot overhead and 3D/audio disabled.
+  Preserve safe cancellation, AI ownership and the existing clock/stop choices.
 - **21 Oct 2026 Epic graphics:** integrate `codex/extreme-visual-fidelity` as an
   optional Epic preset. Preserve High as default and R39 road/OHE corrections;
   verify native visuals and the five-loaded-train case, then publish full and

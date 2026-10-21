@@ -2,11 +2,13 @@ extends SceneTree
 ## Native source-game integration: responsive skip UI, no 3D/sound, safe return.
 var checks:=0
 var failures:=0
+const EventAdvance := preload("res://sim/skip_to_event.gd")
 func check(value: bool,message: String) -> void:
 	checks+=1
 	if not value:failures+=1;printerr("FAIL "+message)
 func _initialize() -> void:
 	set_meta("route","kerala_coast");set_meta("traffic_seed",0)
+	set_meta("benchmark",true)
 	call_deferred("run")
 func shot(name: String) -> void:
 	if DisplayServer.get_name()=="headless":return
@@ -17,6 +19,9 @@ func run() -> void:
 	change_scene_to_file("res://game/main.tscn")
 	await process_frame;await process_frame
 	var g=current_scene
+	g.time_skip.settings_path="res://.local/check-time-skip.cfg"
+	g.time_skip.event_options=preload("res://sim/skip_options.gd").DEFAULTS.duplicate()
+	g.time_skip.show_map=true
 	g.set_physics_process(false)
 	var began:=Time.get_ticks_msec()
 	while g.wv.loading and Time.get_ticks_msec()-began<120000:await process_frame
@@ -30,6 +35,13 @@ func run() -> void:
 	g.dispatcher.auto_dispatch=false
 	g.time_skip.open()
 	check(g.hud.modal=="time_skip" and g.paused,"skip menu pauses driving")
+	g.time_skip.settings_page()
+	g.time_skip.action("skip:toggle:overtaken")
+	g.time_skip.load_settings()
+	check(not g.time_skip.event_options.overtaken and g.time_skip.event_options.crossing,"event choices persist independently")
+	check(g.hud._buttons.get_child(4).has_focus(),"event toggle preserves controller focus")
+	g.time_skip.action("skip:toggle:overtaken")
+	await shot("settings")
 	g.time_skip.clock_page()
 	var selected: float=g.time_skip.selected_clock
 	g.time_skip.action("skip:adjust:1")
@@ -41,6 +53,7 @@ func run() -> void:
 	check(AudioServer.is_bus_mute(0),"audio disabled during skip")
 	check(g.world.trains.values().all(func(t):return t.automatic) and g.dispatcher.auto_dispatch and g.world.dispatcher().enabled,"all 100 services and dispatcher under AI, including the UI toggle")
 	check(g.hud.can_process() and g.controller.can_process(),"progress menu and controller remain responsive")
+	check(g.hud.time_skip_map.visible and not g.hud.time_skip_map.layout.is_empty(),"detached dispatcher map is visible")
 	await shot("progress")
 	while g.time_skip.running():await process_frame
 	if requested_workers>1:
@@ -52,7 +65,16 @@ func run() -> void:
 	check(not g.get_viewport().disable_3d and not AudioServer.is_bus_mute(0),"rendering and sound state restored")
 	check(g.train.id=="K1" and g.cam.mode==1 and g.train.automatic,"same train pilot seat with AI still driving")
 	check(g.paused and g.hud.modal=="time_skip","completion pauses for player choice")
+	check(not g.hud.time_skip_map.visible,"completion releases the map")
 	await shot("complete")
+	g.time_skip.start(-1,-1,true)
+	began=Time.get_ticks_msec()
+	while g.time_skip.running() and Time.get_ticks_msec()-began<120000:await process_frame
+	if g.time_skip.running():g.time_skip.cancel()
+	while g.time_skip.running():await process_frame
+	check(g.time_skip.trial is EventAdvance and g.time_skip.trial.ok,"real source-game next-event skip completes")
+	check(not g.time_skip.trial.last_event.is_empty() and g.paused and g.train.automatic,"event result returns paused with AI and an explanation")
+	await shot("event-complete")
 	g.time_skip.start(g.world.clock_seconds()+3600)
 	while g.time_skip._preparing:await process_frame
 	check(g.time_skip._worker!=null,"dedicated simulation worker owns the live railway")

@@ -1,0 +1,110 @@
+{
+	"cases": [
+		{
+			"clock": 31500,
+			"delayed": false,
+			"event": {
+				"clock": 31732.7320754738,
+				"kind": "crossing",
+				"name": "Alappuzha Passenger 01 · ALLP–ERS",
+				"other": "B045",
+				"text": "Oncoming pass Alappuzha Passenger 01 · ALLP–ERS (B045) in about 60 seconds. This is the simulated start of the pass; manual driving can change it.",
+				"time": 31792.7320754738
+			},
+			"kind": "crossing",
+			"observed": [
+				{
+					"kind": "crossing",
+					"name": "Alappuzha Passenger 01 · ALLP–ERS",
+					"other": "B045",
+					"time": 31792.732075474
+				}
+			],
+			"ok": true,
+			"other": "B045",
+			"returned_clock": 31732.7320754738,
+			"safety_events": [],
+			"service": "K1"
+		},
+		{
+			"clock": 33000,
+			"delayed": false,
+			"event": {
+				"clock": 33321.4881987657,
+				"kind": "overtaken",
+				"name": "Coastal Vande Bharat · Ernakulam to Nagercoil",
+				"other": "B001",
+				"text": "You begin being overtaken by Coastal Vande Bharat · Ernakulam to Nagercoil (B001) in about 60 seconds. This is the simulated start of the pass; manual driving can change it.",
+				"time": 33381.4881987657
+			},
+			"kind": "overtaken",
+			"observed": [
+				{
+					"kind": "overtaken",
+					"name": "Coastal Vande Bharat · Ernakulam to Nagercoil",
+					"other": "B001",
+					"time": 33381.4867434644
+				}
+			],
+			"ok": true,
+			"other": "B001",
+			"returned_clock": 33321.4881987657,
+			"safety_events": [],
+			"service": "K1"
+		},
+		{
+			"clock": 33000,
+			"delayed": false,
+			"event": {
+				"clock": 33321.4881987657,
+				"kind": "overtaking",
+				"name": "Coastal Stopping Passenger · Ernakulam to Nagercoil",
+				"other": "K1",
+				"text": "You begin overtaking Coastal Stopping Passenger · Ernakulam to Nagercoil (K1) in about 60 seconds. This is the simulated start of the pass; manual driving can change it.",
+				"time": 33381.4881987657
+			},
+			"kind": "overtaking",
+			"observed": [
+				{
+					"kind": "overtaking",
+					"name": "Coastal Stopping Passenger · Ernakulam to Nagercoil",
+					"other": "K1",
+					"time": 33381.4867434644
+				}
+			],
+			"ok": true,
+			"other": "K1",
+			"returned_clock": 33321.4881987657,
+			"safety_events": [],
+			"service": "B001"
+		},
+		{
+			"clock": 33000,
+			"delayed": true,
+			"event": {
+				"clock": 33342.1383817507,
+				"kind": "overtaken",
+				"name": "Coastal Vande Bharat · Ernakulam to Nagercoil",
+				"other": "B001",
+				"text": "You begin being overtaken by Coastal Vande Bharat · Ernakulam to Nagercoil (B001) in about 60 seconds. This is the simulated start of the pass; manual driving can change it.",
+				"time": 33402.1383817507
+			},
+			"kind": "overtaken",
+			"observed": [
+				{
+					"kind": "overtaken",
+					"name": "Coastal Vande Bharat · Ernakulam to Nagercoil",
+					"other": "B001",
+					"time": 33402.1369264495
+				}
+			],
+			"ok": true,
+			"other": "B001",
+			"returned_clock": 33342.1383817507,
+			"safety_events": [],
+			"service": "K1"
+		}
+	],
+	"complete": true,
+	"delayed_pass_is_later": true
+}

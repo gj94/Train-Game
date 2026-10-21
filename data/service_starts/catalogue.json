@@ -16941,11 +16941,16 @@
 		"sim/service_pack.gd": "1c62e3efd06aaa39af7a17ece739671d5e20abd451d0502aa60d1338870cd79e",
 		"sim/service_progress.gd": "80563a74599159dd2644d0f6a9b47e58f1c52e894ccc018796aa98c7c7b50eb0",
 		"sim/service_trial.gd": "d72fc6f9ef9e73ddbe6e3a47f7374f5ba1e903ddec6090af4317c1d48f8627e3",
+		"sim/skip_encounters.gd": "b0adb08bbe74f5a0ad01ab8f446e7294f3ed7db15541f0f3165dbde121543794",
+		"sim/skip_history.gd": "a0f3f1a0f0a3c6301a3c03c5555f7da4bfbb99f4497ed8574e3e4ef8d655e8c2",
+		"sim/skip_map_state.gd": "8af4365fba3303a0cd52fa7d0057ddd1976d71f675b5ba4e6a3adf54d8d5608d",
+		"sim/skip_options.gd": "a146979ebb9dbefdd84ac5e383c9be29b8aacfb4ebfab071a1c2e4ada1f325a6",
+		"sim/skip_to_event.gd": "d0c5dacac2452918d1f0df405e930bcf03562cfe4889f476e1d9d78155cf0253",
 		"sim/stock/lhb_consist.gd": "239b5b5eee34a9e338e27dc62f5ba94828edc092a2dd532ef99d8bec10b62b31",
 		"sim/stock/memu_consist.gd": "4df28eebf35c1f8751d7a16203eb051f5cb01533298eef07328f148e59925487",
 		"sim/stock/ported_stock.gd": "a82a5252c0e55752c45a2a5f406512218372219237bd1a90c01435bf00d8727c",
-		"sim/time_skip.gd": "ae813c18f211a3667abe9313a038f4fa49a3d50ea0bd88b3762b0be6451013bd",
-		"sim/time_skip_worker.gd": "f05380501cfd6ac9583bf7a9b4e756b538e474636615d47bff27f7e75fe31bca",
+		"sim/time_skip.gd": "5bbb0f0bfc2daf734cd718771417113f854f562b3b6ddcdccb693b52bea1afba",
+		"sim/time_skip_worker.gd": "8d5c5244dda5d36534c257abde23529130e4c551d4b45b95bcadc23eed1f2905",
 		"sim/timetable.gd": "3784d95e57434c9410eff3c75d9898865ed2e3f2c0eab4ef3f5e0a3c75c95c84",
 		"sim/timetables/first_line.json": "46501e3e0e7ab3110f508df1edebb825cdfc948327caf0cc51ec8baa8dbcf72a",
 		"sim/timetables/kerala_busy.gd": "9d80c12bc152587861b5f63c81bb9d4c1432e5b4d0ca18999dd9493087d280ab",
@@ -16958,5 +16963,46 @@
 		"sim/world_clock.gd": "e583d633701c534d5e1c78cb42fcd143c8c023a524c36df0ee77231e58f9828e",
 		"sim/world_snapshot.gd": "b6001098ff4d3c599b15572dccfb832a829a2f3dfb91f761f874c2c42b49cd5b"
 	},
-	"version": 1
+	"version": 1,
+	"skip_observer_refresh": {
+		"base": "ce0a7d9",
+		"reason": "Skip observers/UI only; original Advance.step and worker simulation loop identical. All other railway inputs and all prepared checkpoint bytes unchanged.",
+		"differences": [
+			{
+				"path": "sim/time_skip.gd",
+				"before": "ae813c18f211a3667abe9313a038f4fa49a3d50ea0bd88b3762b0be6451013bd",
+				"after": "5bbb0f0bfc2daf734cd718771417113f854f562b3b6ddcdccb693b52bea1afba"
+			},
+			{
+				"path": "sim/time_skip_worker.gd",
+				"before": "f05380501cfd6ac9583bf7a9b4e756b538e474636615d47bff27f7e75fe31bca",
+				"after": "8d5c5244dda5d36534c257abde23529130e4c551d4b45b95bcadc23eed1f2905"
+			},
+			{
+				"path": "sim/skip_options.gd",
+				"before": null,
+				"after": "a146979ebb9dbefdd84ac5e383c9be29b8aacfb4ebfab071a1c2e4ada1f325a6"
+			},
+			{
+				"path": "sim/skip_history.gd",
+				"before": null,
+				"after": "a0f3f1a0f0a3c6301a3c03c5555f7da4bfbb99f4497ed8574e3e4ef8d655e8c2"
+			},
+			{
+				"path": "sim/skip_map_state.gd",
+				"before": null,
+				"after": "8af4365fba3303a0cd52fa7d0057ddd1976d71f675b5ba4e6a3adf54d8d5608d"
+			},
+			{
+				"path": "sim/skip_encounters.gd",
+				"before": null,
+				"after": "b0adb08bbe74f5a0ad01ab8f446e7294f3ed7db15541f0f3165dbde121543794"
+			},
+			{
+				"path": "sim/skip_to_event.gd",
+				"before": null,
+				"after": "d0c5dacac2452918d1f0df405e930bcf03562cfe4889f476e1d9d78155cf0253"
+			}
+		]
+	}
 }

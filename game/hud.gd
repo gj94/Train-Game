@@ -76,6 +76,7 @@ var _shade: ColorRect
 var _heading: Label
 var _body: RichTextLabel
 var _buttons: VBoxContainer
+var time_skip_map
 var control_guide
 var _menu_focus := {}
 var _dialog: PanelContainer
@@ -223,6 +224,8 @@ func _build_modal() -> void:
 	_body.add_theme_font_size_override("normal_font_size", 18)
 	_body.add_theme_font_size_override("bold_font_size", 18)
 	column.add_child(_body)
+	time_skip_map=preload("res://game/skip_map.gd").new()
+	column.add_child(time_skip_map);time_skip_map.hide()
 	_button_scroll = ScrollContainer.new()
 	_button_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	_button_scroll.follow_focus = true
@@ -241,6 +244,8 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 	if old_focus!=null and _buttons.is_ancestor_of(old_focus):
 		_menu_focus[modal]=old_focus.get_meta("action","")
 	modal = kind
+	time_skip_map.visible=kind=="time_skip" and save_menu.get("map_mode",false)
+	_resize_modal()
 	_shade.visible = kind != ""
 	_dialog.visible=kind!="controller_guide"
 	control_guide.visible=kind=="controller_guide"
@@ -267,7 +272,8 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 			_button(_buttons, ("Return to window" if DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN,DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN] else "Enter fullscreen")+"  ·  F11 / Alt+Enter", "fullscreen")
 			_button(_buttons, "Graphics settings…", "graphics")
 			_button(_buttons, "Journey progress  ·  F12", "progress")
-			_button(_buttons, "Skip to time / future stop…", "skip:open")
+			_button(_buttons, "Skip to next event / time / stop…", "skip:open")
+			_button(_buttons, "Time-skip event settings…", "skip:settings")
 			_button(_buttons, "Scenario & controls  ·  F1", "help")
 			_button(_buttons, "Train & view actions…", "controller_actions")
 			_button(_buttons, "Controller layout: driving / walking / cameras…", "controller_guide")
@@ -336,6 +342,10 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 		choices[i].focus_neighbor_bottom = choices[i].focus_next
 		choices[i].focus_neighbor_top = choices[i].focus_previous
 	_button_scroll.custom_minimum_size.y = clampf(_buttons.get_child_count()*48-8,0,420)
+	if time_skip_map.visible:
+		_body.custom_minimum_size.y=130
+		_button_scroll.size_flags_vertical=Control.SIZE_FILL
+		_button_scroll.custom_minimum_size.y=52
 	if controller_active and kind != "": call_deferred("focus_first")
 	elif kind == "":
 		var focus := get_viewport().gui_get_focus_owner()
@@ -345,7 +355,8 @@ func show_modal(kind: String, labels_on: bool = false, description: String = "")
 func _resize_modal() -> void:
 	if _dialog==null:return
 	var available:=get_viewport().get_visible_rect().size-Vector2(32,32)
-	var half:=Vector2(minf(800,available.x),minf(730,available.y))*.5
+	var map_open: bool=time_skip_map!=null and time_skip_map.visible
+	var half:=Vector2(minf(1600 if map_open else 800,available.x),minf(900 if map_open else 730,available.y))*.5
 	_dialog.offset_left=-half.x;_dialog.offset_right=half.x
 	_dialog.offset_top=-half.y;_dialog.offset_bottom=half.y
 

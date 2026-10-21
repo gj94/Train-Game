@@ -1,7 +1,7 @@
 extends RefCounted
 ## Exclusive ownership of a running Advance and its entire railway transfers to
 ## this worker until take()/close() joins it. The caller must suspend every live
-## world reader/writer first (including scenery jobs). Only copied scalar progress
+## world reader/writer first (including scenery jobs). Only detached progress/map data
 ## crosses the mutex. Physics, dispatch and reservations retain their serial order.
 var _thread: Thread
 var _mutex := Mutex.new()
@@ -22,7 +22,7 @@ func start(advance) -> Error:
 
 func progress() -> Dictionary:
 	_mutex.lock()
-	var value:=_progress.duplicate()
+	var value:=_progress.duplicate(true)
 	_mutex.unlock()
 	return value
 
@@ -48,7 +48,8 @@ func _join() -> Dictionary:
 	return result
 
 func _publish(finished: bool) -> void:
-	var state:={clock=_trial.world.clock_seconds(),start_clock=_trial.start_clock,
+	var display: Dictionary=_trial.presentation()
+	var state:={clock=display.clock,map=display.get("map",{}),forecasting=display.get("forecasting",false),start_clock=_trial.start_clock,
 		done=_trial.done,ok=_trial.ok,report=_trial.report,steps=_steps}
 	_mutex.lock()
 	_progress=state;_finished=finished

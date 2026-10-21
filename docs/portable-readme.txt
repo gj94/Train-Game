@@ -1,6 +1,16 @@
-TRAIN GAME - KERALA COAST R40
+TRAIN GAME - KERALA COAST R41
 
-R40: optional Epic graphics preset, integrated with the R39 scenery fixes.
+R41: Skip to the next event with a live dispatcher following your train.
+Pause > Skip to next event / time / stop. Time-skip event settings select stop
+approaches, crossings, overtaking, being overtaken and signal clearance separately.
+Stops return at 1 km or earlier for braking; encounters return about a minute
+before the first coaches pass. A holding red changing to yellow or green counts.
+Safety and service completion always interrupt event searches. Return paused
+with AI still driving, then take control when ready. B / Esc cancels safely.
+Clock and future-stop targets remain available. See guides/event-skip.md.
+R41 supports full downloads and incremental updates through Update & Play v4.
+
+Includes the optional Epic graphics preset, integrated with R39 scenery fixes.
 Open pause menu > Graphics > Use Epic preset. High remains the default.
 Epic adds filtered surface detail on terrain, roads, platforms, track and water,
 sharper sky reflections, nearby station-lamp shadows and longer detail ranges.
@@ -41,7 +51,7 @@ Includes the controller layout pages, distance-only signal HUD, station
 approaches, positional audio and all earlier improvements.
 
 DOWNLOAD OR UPDATE
-R40 supports full downloads and incremental updates. For an older installation,
+R41 supports full downloads and incremental updates. For an older installation,
 download the small updater ZIP from the host page and replace Update and Play.exe
 once while the updater is closed. The title identifies the v4 launcher.
 Then close the game and open Update and Play.exe to update the existing folder.

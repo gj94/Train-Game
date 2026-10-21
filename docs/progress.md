@@ -1,5 +1,40 @@
 # Progress
 
+## 2026-10-21 — R41 event skip ready for publication
+
+- Next-event skipping stops at the earliest enabled scheduled-stop approach
+  (1 km or earlier braking), crossing/overtaking/being-overtaken warning
+  (60 seconds before first physical overlap), or held-red clearance. Independent
+  persisted settings and an optional read-only 10 km dispatcher follow view.
+  Clock/future-stop skips retain their existing explicit targets. Return paused
+  with AI controlling; B/Esc cancels to the displayed railway state.
+- A worker owns the simulation. UI receives detached local map data at 10 Hz,
+  capped at 30 FPS; 3D/audio remain suspended. Encounter forecasting keeps a
+  bounded rolling history, restoring existing train objects and all railway
+  state before replaying at most five seconds to the selected event.
+- 751 headless tests and 37 native source-game integration checks pass.
+  Actual 100/140-service checkpoint restores/replays match exactly, and four
+  corridor encounter checks cover both overtake roles and a delayed train.
+  Native map overhead averaged 3.2% lower simulation throughput; prediction/
+  history plus map 12.3% lower, with 78.6 MiB additional tracked heap. These are
+  Ryzen 7840HS/Radeon 780M results, not target i9/4090 Laptop measurements.
+  Evidence: `art/performance/event-skip-2026-10-21/README.md`.
+- Existing prepared state bytes/full-day audits are retained. Strict provenance
+  verification confirms every ordinary railway input and the old skip movement
+  loop unchanged; only skip observers/presentation are added. No full-day replay
+  or extracted-distribution gameplay test for this release.
+- User requested publication before depot-speed work. Deferred in Git stash
+  `R42 deferred: depot branch limits and stationary AI departure horns; validation pending`:
+  shared depot access incorrectly caps through trains at 40 km/h; only the
+  diverging 25/15 km/h depot roads should be slow. The draft also holds AI trains
+  stationary until both departure calls finish, including the player's AI train.
+  These drafts are NOT shipped or validated. Apply the stash, add behavioural
+  branch/horn/save tests, regenerate both operating days and validate before R42.
+- Playtest Pause > Skip to next event / time / stop, then each independent
+  event setting. Try a red wait, a station approach, both overtake roles and
+  cancel with B. Confirm return remains paused/AI until takeover, and that
+  settings survive restart. R41 full ZIP + signed updates are being prepared.
+
 ## 2026-10-21 — R40 published
 
 - Full ZIP and signed incremental updates are live at http://192.168.8.183:8765/,

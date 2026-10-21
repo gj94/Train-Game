@@ -3,8 +3,8 @@
   "complete": true,
   "preparation": "serial-operating-day",
   "engine": "4.7.2-stable (official)",
-  "start_sha256": "08096918389bcf29b11ee67f4e4876f7b620f2825a0a6694c3dd3775dca22cd6",
-  "timeline_sha256": "e1b7368b9f6032d015c39cddca3c9f8b9150652d1487d98922b055ab89bf967f",
+  "start_sha256": "f10eeafd4c609ed3d7e2bc3f86dd2c5188ea8f01a701e93243ae538d47f24b44",
+  "timeline_sha256": "a0c6375434901dfa09a2cd824fe4b218634271c0f0857a80eb744add7b48789d",
   "observer_sources": {
     "tools/prepare_timetable_variant.gd": "d59b74e41f1aa57f120023ebccced041cbe7ca1a765865cc4e09973358258ae3",
     "tools/wait_quality.gd": "cb1a8f82cb1cea9d16255ff825ac633489ce08a6bcb47d758cdfea27e68389af",
@@ -4831,5 +4831,46 @@
     ],
     "crossing_count": 469,
     "overtake_count": 43
-  }
+  },
+	"skip_observer_refresh": {
+		"base": "ce0a7d9",
+		"reason": "Skip observers/UI only; original Advance.step and worker simulation loop identical. All other railway inputs and all prepared checkpoint bytes unchanged.",
+		"differences": [
+			{
+				"path": "sim/time_skip.gd",
+				"before": "ae813c18f211a3667abe9313a038f4fa49a3d50ea0bd88b3762b0be6451013bd",
+				"after": "5bbb0f0bfc2daf734cd718771417113f854f562b3b6ddcdccb693b52bea1afba"
+			},
+			{
+				"path": "sim/time_skip_worker.gd",
+				"before": "f05380501cfd6ac9583bf7a9b4e756b538e474636615d47bff27f7e75fe31bca",
+				"after": "8d5c5244dda5d36534c257abde23529130e4c551d4b45b95bcadc23eed1f2905"
+			},
+			{
+				"path": "sim/skip_options.gd",
+				"before": null,
+				"after": "a146979ebb9dbefdd84ac5e383c9be29b8aacfb4ebfab071a1c2e4ada1f325a6"
+			},
+			{
+				"path": "sim/skip_history.gd",
+				"before": null,
+				"after": "a0f3f1a0f0a3c6301a3c03c5555f7da4bfbb99f4497ed8574e3e4ef8d655e8c2"
+			},
+			{
+				"path": "sim/skip_map_state.gd",
+				"before": null,
+				"after": "8af4365fba3303a0cd52fa7d0057ddd1976d71f675b5ba4e6a3adf54d8d5608d"
+			},
+			{
+				"path": "sim/skip_encounters.gd",
+				"before": null,
+				"after": "b0adb08bbe74f5a0ad01ab8f446e7294f3ed7db15541f0f3165dbde121543794"
+			},
+			{
+				"path": "sim/skip_to_event.gd",
+				"before": null,
+				"after": "d0c5dacac2452918d1f0df405e930bcf03562cfe4889f476e1d9d78155cf0253"
+			}
+		]
+	}
 }

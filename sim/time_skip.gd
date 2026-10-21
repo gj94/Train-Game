@@ -9,6 +9,15 @@ var done := false
 var ok := false
 var report := ""
 var _event_seq := 0
+var preview_service := ""
+var preview_layout := {}
+var preview_enabled := false
+
+func configure_preview(id: String, layout: Dictionary) -> void:
+	preview_service=id;preview_layout=layout;preview_enabled=true
+
+func presentation() -> Dictionary:
+	return {clock=world.clock_seconds(),map=preload("res://sim/skip_map_state.gd").capture(world,preview_service,preview_layout) if preview_enabled else {}}
 
 func _init(w: RailWorld) -> void:
 	world=w

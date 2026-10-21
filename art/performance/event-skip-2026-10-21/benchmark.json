@@ -1,0 +1,75 @@
+{
+	"complete": true,
+	"cpu": "AMD Ryzen 7 7840HS w/ Radeon 780M Graphics",
+	"engine": "4.7.2-stable (official)",
+	"method": "Identical 09:00 all-AI railway, fixed duration, 30 FPS, native 2D map; ABBA, followed by bounded event-history measurement. Development PC.",
+	"renderer": "AMD Radeon 780M Graphics",
+	"runs": [
+		{
+			"advanced_seconds": 600.0,
+			"frames": 472,
+			"map_updates": 0,
+			"mode": "hidden",
+			"ok": true,
+			"peak_extra_heap_bytes": 4662055,
+			"report": "Reached 09:10:00",
+			"safety_events": 0,
+			"same_state": true,
+			"speedup": 38.2914312328654,
+			"wall_seconds": 15.669302
+		},
+		{
+			"advanced_seconds": 600.0,
+			"frames": 486,
+			"map_updates": 155,
+			"mode": "map",
+			"ok": true,
+			"peak_extra_heap_bytes": 6426985,
+			"report": "Reached 09:10:00",
+			"safety_events": 0,
+			"same_state": true,
+			"speedup": 37.1352414121814,
+			"wall_seconds": 16.157159
+		},
+		{
+			"advanced_seconds": 600.0,
+			"frames": 495,
+			"map_updates": 157,
+			"mode": "map",
+			"ok": true,
+			"peak_extra_heap_bytes": 4234216,
+			"report": "Reached 09:10:00",
+			"safety_events": 0,
+			"same_state": true,
+			"speedup": 36.5040952727683,
+			"wall_seconds": 16.436512
+		},
+		{
+			"advanced_seconds": 600.0,
+			"frames": 478,
+			"map_updates": 0,
+			"mode": "hidden",
+			"ok": true,
+			"peak_extra_heap_bytes": 4196132,
+			"report": "Reached 09:10:00",
+			"safety_events": 0,
+			"same_state": true,
+			"speedup": 37.8149679584323,
+			"wall_seconds": 15.866733
+		},
+		{
+			"advanced_seconds": 600.0,
+			"frames": 541,
+			"map_updates": 110,
+			"mode": "event_history",
+			"ok": false,
+			"peak_extra_heap_bytes": 82403212,
+			"report": "No selected event within 24 simulated hours. Inspect Dispatch.",
+			"safety_events": 0,
+			"same_state": true,
+			"speedup": 33.3909921565673,
+			"wall_seconds": 17.968918
+		}
+	],
+	"simulated_seconds": 600.0
+}

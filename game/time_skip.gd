@@ -1,6 +1,9 @@
 extends Node
 ## Rendering-free forward simulation, with a responsive 2D progress menu.
 const Advance := preload("res://sim/time_skip.gd")
+const EventAdvance := preload("res://sim/skip_to_event.gd")
+const Options := preload("res://sim/skip_options.gd")
+const MapState := preload("res://sim/skip_map_state.gd")
 const Worker := preload("res://sim/time_skip_worker.gd")
 const Clock := preload("res://sim/world_clock.gd")
 var game
@@ -14,27 +17,56 @@ var _preparing := false
 var _cancel_requested := false
 var _quit_requested := false
 var _target := ""
+var event_options := Options.DEFAULTS.duplicate()
+var show_map := true
+var settings_path := "user://time_skip.cfg"
+var _dismissed: Array = []
+var _world_id := 0
+var _dismissed_service := ""
 
 func _ready() -> void:
 	process_mode=Node.PROCESS_MODE_ALWAYS
+	load_settings()
+
+func load_settings() -> void:
+	var config:=ConfigFile.new();config.load(settings_path)
+	var raw:={}
+	for key in Options.DEFAULTS:raw[key]=config.get_value("events",key,Options.DEFAULTS[key])
+	event_options=Options.normalized(raw)
+	show_map=config.get_value("view","dispatcher",true)==true
+
+func settings_page() -> void:
+	game._set_paused(true);game.dispatcher.set_open(false)
+	var choices: Array=[["Back","skip:open"]]
+	for key in Options.DEFAULTS:
+		choices.append([Options.LABELS[key]+": "+("ON" if event_options[key] else "OFF"),"skip:toggle:"+key])
+	choices.append(["Show dispatcher while skipping: "+("ON" if show_map else "OFF"),"skip:toggle:map"])
+	show_page("TIME-SKIP SETTINGS","These events interrupt Next event only. Clock and future-stop targets stay explicit.\nStops: 1 km before the marker, or earlier for comfortable braking. Passes: about 60 seconds before the first side-by-side contact. Signal: red changes to yellow or green while holding your train.\nSafety interventions, service completion and the 24-hour search limit always stop Next event.",choices)
+
+func save_settings() -> void:
+	var config:=ConfigFile.new()
+	for key in event_options:config.set_value("events",key,event_options[key])
+	config.set_value("view","dispatcher",show_map)
+	var error:=config.save(settings_path)
+	if error!=OK:game.hud.toast("Could not save time-skip preferences",true)
 
 func running() -> bool:
 	# Main-thread ownership flag, never inspect worker-owned trial/world here.
 	return not _saved.is_empty()
 
-func show_page(title: String, body: String, options: Array) -> void:
-	game.hud.save_menu={title=title,body=body,options=options}
+func show_page(title: String, body: String, options: Array, map_mode: bool=false) -> void:
+	game.hud.save_menu={title=title,body=body,options=options,map_mode=map_mode}
 	game.hud.show_modal("time_skip")
 
 func open() -> void:
 	game._set_paused(true);game.dispatcher.set_open(false);game._restore_ui()
-	var options: Array=[["Back","skip:back"],["Choose clock time…","skip:clock"]]
+	var options: Array=[["Back","skip:back"],["Skip to next event","skip:event"],["Choose which events interrupt…","skip:settings"],["Choose clock time…","skip:clock"]]
 	var t: Train=game.train
 	if t.timetable!=null and not t.service_complete:
 		var next: int=t.timetable.index+1 if t.timetable.at_stop else t.timetable.index
 		if next<t.timetable.stops.size():options.append(["Next stop · "+t.timetable.stops[next].name,"skip:stop:"+str(next)])
 		options.append(["Choose a later stop…","skip:stops"])
-	show_page("SKIP FORWARD","All trains will run under AI and the dispatcher. 3D scenery, train rendering and sound stop during the advance.\nReturn to your train if it is available, otherwise to a station platform. You can stop the advance at any time; elapsed simulation is retained.",options)
+	show_page("SKIP FORWARD","All trains run under AI while the live dispatcher follows your service. 3D and sound stop.\nNext event finds the earliest enabled interruption from the actual railway, including delays. An encounter search looks a minute ahead; its map shows the committed position you can return to.\nYou return paused with AI driving, ready to take over. Stop advancing here returns to the displayed position.",options)
 
 func clock_page() -> void:
 	if selected_clock<=game.world.clock_seconds():selected_clock=ceil(game.world.clock_seconds()/60.0)*60+900
@@ -59,6 +91,12 @@ func action(command: String) -> void:
 	var parts:=command.split(":")
 	match parts[1]:
 		"open":open()
+		"event":start(-1,-1,true)
+		"settings":settings_page()
+		"toggle":
+			if parts[2]=="map":show_map=not show_map
+			elif event_options.has(parts[2]):event_options[parts[2]]=not event_options[parts[2]]
+			save_settings();settings_page();game.hud.focus_action(command)
 		"back":back()
 		"clock":clock_page()
 		"adjust":
@@ -78,10 +116,14 @@ func action(command: String) -> void:
 		"dispatch":
 			game.hud.show_modal("");game.dispatcher.set_open(true)
 
-func start(clock: float, stop: int=-1) -> void:
+func start(clock: float, stop: int=-1, next_event: bool=false) -> void:
 	if running():return
-	trial=Advance.new(game.world)
-	var result: Dictionary=trial.to_stop(game.train.id,stop) if stop>=0 else trial.to_time(clock)
+	if _world_id!=game.world.get_instance_id() or _dismissed_service!=game.train.id:
+		_dismissed.clear();_world_id=game.world.get_instance_id();_dismissed_service=game.train.id
+	trial=EventAdvance.new(game.world) if next_event else Advance.new(game.world)
+	var layout: Dictionary=MapState.geometry(game.world) if show_map else {}
+	if show_map:trial.configure_preview(game.train.id,layout)
+	var result: Dictionary=trial.to_event(game.train.id,event_options,_dismissed) if next_event else (trial.to_stop(game.train.id,stop) if stop>=0 else trial.to_time(clock))
 	if not result.ok:
 		trial=null;game.hud.toast(result.reason,true);return
 	game.journey_tools.autosave("Before time skip",true)
@@ -90,7 +132,8 @@ func start(clock: float, stop: int=-1) -> void:
 	game.dispatcher.auto_dispatch=true
 	game.walker.stop()
 	game.controller.neutralize()
-	_saved={process=game.process_mode,hud_process=game.hud.process_mode,controller_process=game.controller.process_mode,disable_3d=game.get_viewport().disable_3d,mute=AudioServer.is_bus_mute(0)}
+	_saved={process=game.process_mode,hud_process=game.hud.process_mode,controller_process=game.controller.process_mode,disable_3d=game.get_viewport().disable_3d,mute=AudioServer.is_bus_mute(0),fps=Engine.max_fps}
+	Engine.max_fps=mini(30,Engine.max_fps) if Engine.max_fps>0 else 30
 	game.process_mode=Node.PROCESS_MODE_DISABLED
 	game.hud.process_mode=Node.PROCESS_MODE_ALWAYS
 	game.controller.process_mode=Node.PROCESS_MODE_ALWAYS
@@ -98,9 +141,12 @@ func start(clock: float, stop: int=-1) -> void:
 	AudioServer.set_bus_mute(0,true)
 	_started=Time.get_ticks_msec();_refresh=0
 	_target=Clock.format_time(trial.target_clock)
+	if next_event:_target="Next selected event"
 	if stop>=0:_target=game.train.timetable.stops[stop].name
 	_cancel_requested=false;_quit_requested=false;_preparing=true
-	show_page("ADVANCING THE RAILWAY","Finishing current scenery jobs before advancing…",[["Stop advancing here","skip:cancel"]])
+	game.hud.time_skip_map.layout=layout;game.hud.time_skip_map.state={}
+	if show_map:game.hud.time_skip_map.update_state(trial.presentation().map)
+	show_page("ADVANCING THE RAILWAY","Finishing current scenery jobs before advancing…",[["Stop advancing here · B / Esc","skip:cancel"]],show_map)
 
 func _scenery_busy() -> bool:
 	if not game.geographic_drive:return false
@@ -133,13 +179,14 @@ func _process(delta: float) -> void:
 		var until:=Time.get_ticks_usec()+12000
 		while Time.get_ticks_usec()<until and not trial.done:trial.step()
 		if trial.done:finish();return
-		progress={clock=game.world.clock_seconds(),start_clock=trial.start_clock}
+		progress=trial.presentation();progress.start_clock=trial.start_clock
 	_refresh-=delta
 	if _refresh<=0:
-		_refresh=.2
+		_refresh=.1
 		var simulated: float=progress.clock-progress.start_clock
 		var elapsed:=maxf(.001,(Time.get_ticks_msec()-_started)/1000.0)
-		game.hud._body.text="Now: day %d · %s\nTarget: %s\n%.1f world minutes advanced · %.1f× real time\n\nAll services use AI. 3D rendering and sound are disabled.\n%s" % [Clock.day(progress.clock),Clock.format_time(progress.clock),_target,simulated/60,simulated/elapsed,"Stopping after the current simulation step…" if _cancel_requested else "Stopping keeps the simulation at its current time."]
+		game.hud.time_skip_map.update_state(progress.get("map",{}))
+		game.hud._body.text="Day %d · %s    |    %s\n%.1f world minutes advanced · %.1f× real time · All services on AI\n%s\n%s" % [Clock.day(progress.clock),Clock.format_time(progress.clock),_target,simulated/60,simulated/elapsed,progress.get("map",{}).get("status",""),"Stopping safely…" if _cancel_requested else ("Checking the next minute for encounters · map shows your committed position" if progress.get("forecasting",false) else "Live railway · 3D and sound disabled")]
 
 func cancel() -> void:
 	if not running():return
@@ -158,7 +205,12 @@ func finish() -> void:
 	game.controller.process_mode=_saved.controller_process
 	game.get_viewport().disable_3d=_saved.disable_3d
 	AudioServer.set_bus_mute(0,_saved.mute)
+	Engine.max_fps=_saved.fps
 	_saved.clear()
+	if trial is EventAdvance and not trial.last_event.is_empty() and trial.ok:
+		_dismissed.append(trial.last_event.duplicate(true))
+		if _dismissed.size()>32:_dismissed.pop_front()
+	game.hud.time_skip_map.state={};game.hud.time_skip_map.layout={}
 	for motion in game.train_motions.values():motion.reset()
 	for sound in game.train_audio.values():sound.reset_positions();sound.set_paused(true)
 	game.traffic_presentation.followed_service=""
@@ -200,6 +252,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _exit_tree() -> void:
 	if _worker!=null:_worker.close();_worker=null
 	if not _saved.is_empty():
+		Engine.max_fps=_saved.fps
 		AudioServer.set_bus_mute(0,_saved.mute)
 		get_viewport().disable_3d=_saved.disable_3d
 		_saved.clear()
