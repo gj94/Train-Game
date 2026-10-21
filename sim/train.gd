@@ -17,7 +17,12 @@ var odometer := 0.0         # metres travelled in total (for sound: rail joints,
 ## +1 full power, 0 coast, -1 full service brake.
 var controller := 0.0
 var emergency := false
-var automatic := false
+var automatic := false:
+	set(value):
+		# Input can change ownership while paused, before the next sim tick.
+		# Cancel here so a quick hand-back cannot revive half a departure pair.
+		if automatic and not value:cancel_departure_horns()
+		automatic=value
 var service_name := "MEMU local"
 var stock_kind := "memu"       # simulation identity; rendering resolves its own assets
 var rake_profile := ""         # shared formation identity for geometry, mass, views and audio
@@ -36,6 +41,14 @@ var station_approach: Dictionary = {} # persistent arrival speed ceiling
 var horn_sequence := 0
 var horn_pending_at := -1.0
 var horn_emitted_at := -1.0
+var horn_ready_at := -1.0 # both stationary departure calls have finished
+
+func cancel_departure_horns() -> void:
+	if horn_pending_at >= 0:
+		horn_sequence += 1 # consume the cancelled second cue's reserved sequence
+		horn_emitted_at = -1.0
+	horn_pending_at = -1.0
+	horn_ready_at = -1.0
 
 # Performance — defaults roughly an 8-car Indian Railways MEMU.
 var mass := 400000.0            # kg

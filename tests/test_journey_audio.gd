@@ -10,7 +10,7 @@ func test_manual_departure_consumes_both_horns_without_playback():
 	var audio:=EngineSound.new();var t:=Train.new("H",200);audio.train=t;t.automatic=false
 	Cues.update(t,100,true)
 	var silent:=not audio._departure_horn_due(false,100)
-	Cues.update(t,103.5,false)
+	Cues.update(t,103.5,true)
 	silent=silent and not audio._departure_horn_due(false,103.5)
 	t.automatic=true
 	silent=silent and not audio._departure_horn_due(false,103.6)
@@ -21,16 +21,17 @@ func test_ai_departure_keeps_two_calls_once_each():
 	Cues.update(t,100,true)
 	var first:=audio._departure_horn_due(false,100)
 	var repeated:=audio._departure_horn_due(false,100.1)
-	Cues.update(t,103.5,false)
+	Cues.update(t,103.5,true)
 	var second:=audio._departure_horn_due(false,103.5)
 	audio.free();return first and second and not repeated
 
 func test_takeover_cancels_queued_second_horn_even_after_handing_back():
 	var audio:=EngineSound.new();var t:=Train.new("H",200);audio.train=t;t.automatic=true
 	Cues.update(t,100,true);audio._departure_horn_due(false,100)
-	t.automatic=false;audio._departure_horn_due(false,101)
+	t.automatic=false;audio._departure_horn_due(false,101);Cues.cancel(t)
 	t.automatic=true
-	Cues.update(t,103.5,false)
+	# The cancelled slot is consumed silently. Handing back while stationary
+	# starts a fresh complete pair, rather than resurrecting the second call.
 	var cancelled:=not audio._departure_horn_due(false,103.5)
 	Cues.update(t,200,true)
 	var next_departure:=audio._departure_horn_due(false,200)
@@ -41,9 +42,22 @@ func test_paused_and_stale_horns_are_consumed_without_late_replay():
 	Cues.update(t,100,true)
 	var silent:=not audio._departure_horn_due(true,100)
 	silent=silent and not audio._departure_horn_due(false,100.1)
-	Cues.update(t,103.5,false)
+	Cues.update(t,103.5,true)
 	silent=silent and not audio._departure_horn_due(false,105)
 	audio.free();return silent
+
+func test_takeover_while_paused_resets_pair_before_next_simulation_tick():
+	var audio:=EngineSound.new();var t:=Train.new("H",200);audio.train=t;t.automatic=true
+	Cues.update(t,100,true);audio._departure_horn_due(false,100)
+	t.automatic=false
+	if t.horn_pending_at>=0 or t.horn_ready_at>=0:
+		audio.free();return "Paused takeover left a pending half-pair"
+	t.automatic=true
+	Cues.update(t,101,true)
+	var first:=audio._departure_horn_due(false,101)
+	Cues.update(t,104.5,true)
+	var second:=audio._departure_horn_due(false,104.5)
+	audio.free();return first and second and t.horn_ready_at>104.5
 
 func test_passing_train_doppler_accounts_for_listener_motion():
 	var ear:=Vector3.ZERO;var incoming:=Vector3(0,0,-100)
@@ -75,11 +89,11 @@ func test_headphone_front_back_coloration_has_bounded_cutoffs():
 func test_arrival_and_departure_state_survives_save():
 	var world:=preload("res://sim/layouts/traffic_service.gd").build()
 	var t: Train=world.trains.values()[0]
-	t.station_approach={key="approach",ceiling=7.5};t.horn_sequence=3;t.horn_emitted_at=28800.0;t.horn_pending_at=28803.5
+	t.station_approach={key="approach",ceiling=7.5};t.horn_sequence=3;t.horn_emitted_at=28800.0;t.horn_pending_at=28803.5;t.horn_ready_at=28804.65
 	var saved:=Snapshot.capture(world);var loaded:=Snapshot.restore(saved)
 	if not loaded.ok:return loaded.reason
 	var other: Train=loaded.world.trains[t.id]
-	return other.station_approach==t.station_approach and other.horn_pending_at==28803.5 and other.horn_sequence==3
+	return other.station_approach==t.station_approach and other.horn_pending_at==28803.5 and other.horn_sequence==3 and other.horn_ready_at==28804.65
 func test_old_save_without_arrival_extension_still_restores():
 	var world:=preload("res://sim/layouts/traffic_service.gd").build();var saved:=Snapshot.capture(world)
 	for train in saved.trains:

@@ -9,6 +9,12 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **21 Oct 2026 departure/branch correction:** complete both AI departure horn
+  calls before moving, including the player's service after handover. Manual
+  takeover cancels the ceremony even while paused. Depot restrictions apply
+  only to the selected branch and remain until the full rake clears it; shared
+  station-to-junction running track retains the adjoining line's limit.
+  Validate both full operating days and a delayed run before release.
 - **21 Oct 2026 event skip:** advance the actual railway until the earliest
   enabled stop approach (1 km or earlier comfort braking), one-minute warning
   before crossing/overtaking/being overtaken, or a holding signal permitting
@@ -394,3 +400,11 @@ Plus, for either:
 - MindStudio — Vibe coding a 3D game in a day: https://www.mindstudio.ai/blog/librarian-2-vibe-coded-3d-game
 - GameDev AI Hub — How to vibe code a game: https://gamedevaihub.com/how-to-vibe-code-a-game-the-step-by-step-guide-2026/
 - Chier Hu — AI coding tools for game dev: https://chierhu.medium.com/ai-coding-tools-for-video-game-development-a-first-principles-analysis-of-what-actually-works-90dfa10edd13
+
+### R42 arrival and departure decisions
+
+A train still approaching its booked berth is arriving, even if its next signal
+is already the platform starter. Temporary occupancy of the incoming approach
+must not be mistaken for a departure deadlock and cancel a planned overtake.
+After arrival/dwell, ordinary departure priority and capacity checks apply.
+The K1/B024 Alappuzha sequence must retain the express-first departure order.

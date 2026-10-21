@@ -594,9 +594,10 @@ func step(dt: float) -> void:
 			if profile_enabled: stamp = _profile_phase("passengers_and_depots", stamp)
 			if t.automatic:
 				_drive_automatic(t, slice,prepared[train_index] if not prepared.is_empty() and prepared[train_index].has("envelope") and point_revision==_point_revision else {})
+			else:
+				preload("res://sim/departure_cues.gd").cancel(t)
 			if profile_enabled: stamp = _profile_phase("driving", stamp)
 			var previous_distance: float = t.odometer
-			var leaving_platform: bool = t.timetable != null and t.timetable.at_stop and not t.timetable.complete() and t.completed_timetable == null
 			var previous_path: Array = t.path.duplicate() if t.speed > 0 or t.controller > 0 else []
 			_step_train(t, slice)
 			if not previous_path.is_empty():
@@ -606,7 +607,6 @@ func step(dt: float) -> void:
 			if profile_enabled: stamp = _profile_phase("movement", stamp)
 			if t.timetable != null:
 				t.timetable.observe(t, clock_seconds(), t.odometer > previous_distance + 0.000001, _arrival_tolerance(t))
-			preload("res://sim/departure_cues.gd").update(t,clock_seconds(),leaving_platform and t.timetable != null and not t.timetable.at_stop)
 			if t.timetable != null:
 				t.service_complete = t.completed_timetable!=null or t.timetable.complete()
 				if t.service_complete and t.depot.is_empty():
@@ -682,7 +682,10 @@ func single_line_directions() -> Dictionary:
 ## Braking curves include signals, buffers, occupied blocks and lower speed
 ## limits ahead. AI never requests or changes a route by itself.
 func _drive_automatic(t: Train, dt: float = .05, prepared: Dictionary = {}) -> void:
+	const Cues := preload("res://sim/departure_cues.gd")
+	if t.timetable==null or not t.timetable.at_stop or t.completed_timetable!=null:Cues.cancel(t)
 	if t.emergency:
+		Cues.cancel(t)
 		t.status = "Emergency — release at stand"
 		t.controller = -1.0
 		return
@@ -690,16 +693,19 @@ func _drive_automatic(t: Train, dt: float = .05, prepared: Dictionary = {}) -> v
 	if t.timetable != null:
 		var tt = t.timetable
 		if tt.complete():
+			Cues.cancel(t)
 			if t.depot.is_empty():t.status = "Timetable complete"
 			t.controller = -1.0
 			return
 		if tt.at_stop:
 			if clock_seconds() + 0.000001 < tt.release_time():
+				Cues.cancel(t)
 				t.status = ("Departs " if tt.index == 0 else "Dwell until ") + Clock.format_time(tt.release_time())
 				t.controller = -1.0
 				return
 			var scenario_hold: String=preload("res://sim/priority_dispatch.gd").hold_reason(self,t)
 			if not scenario_hold.is_empty():
+				Cues.cancel(t)
 				t.status=scenario_hold
 				t.controller=-1.0
 				return
@@ -710,8 +716,18 @@ func _drive_automatic(t: Train, dt: float = .05, prepared: Dictionary = {}) -> v
 					if signal_data.owner==t.id and signal_data.route.any(func(r): return r.edge==t.path[0].edge and r.dir==t.path[0].dir):
 						inside_reserved_section=true
 			if not inside_reserved_section and (starter.is_empty() or aspect(starter.id) == Aspect.RED):
+				Cues.cancel(t)
 				t.status = "Awaiting route" if starter.is_empty() else "Waiting for " + starter.id
 				t.controller = -1.0
+				return
+			if Passengers.departure_blocked(t):
+				Cues.cancel(t)
+				t.status="Waiting for passenger doors"
+				t.controller=-1.0
+				return
+			if t.completed_timetable==null and not Cues.update(t,clock_seconds(),true):
+				t.status="Departure horns · brakes held"
+				t.controller=-1.0
 				return
 		scheduled_stop = tt.stop_ahead()
 		if tt.missed_stop:

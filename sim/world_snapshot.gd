@@ -8,9 +8,9 @@ const TRAIN := ["lifecycle","id","length","path","head_s","speed","odometer","co
 const TIMETABLE := ["departure","stops","index","at_stop","actual_arrivals","actual_departures","missed_stop","passenger_release"]
 const DISPATCH := ["enabled","manual_service","hold_maruthur","operator_holds","inhibited_signals","platform_preferences","states","journal","alerts","revision","cycles","_next_tick","_wait_since","_last_state","_advisory_release_until","_seq"]
 const FUTURE := ["enabled","plans","_next_search"]
-const ARRIVAL := ["station_approach","horn_sequence","horn_pending_at","horn_emitted_at"]
+const ARRIVAL := ["station_approach","horn_sequence","horn_pending_at","horn_emitted_at","horn_ready_at"]
 
-static func signature(w: RailWorld) -> String:
+static func signature(w: RailWorld, legacy_depot_limits: bool=false) -> String:
 	# Platform faces/clearance and depot inventory affect valid saved movements too.
 	var platforms:=[]
 	for station in w.stations:
@@ -18,7 +18,7 @@ static func signature(w: RailWorld) -> String:
 		for key in ["code","passenger_open","through_halt","platform_tracks","platform_details"]:row[key]=station.get(key)
 		platforms.append(row)
 	var hash:=HashingContext.new();hash.start(HashingContext.HASH_SHA256)
-	hash.update(var_to_bytes([Pack.signature(w),platforms,w.depots,w.single_line_sections,w.automatic_signals]))
+	hash.update(var_to_bytes([Pack.signature(w,legacy_depot_limits),platforms,w.depots,w.single_line_sections,w.automatic_signals]))
 	return hash.finish().hex_encode()
 
 static func fields(object, names: Array) -> Dictionary:
@@ -51,7 +51,7 @@ static func restore(data) -> Dictionary:
 	if not data.get("trains") is Array or data.trains.is_empty() or data.trains.size()>256:return error("Invalid saved service list")
 	data=data.duplicate(true) # Restoring/stepping must never mutate the checkpoint.
 	var w:=Pack.blank(data.layout)
-	if data.get("layout_signature")!=signature(w):return error("The track, platforms or signalling layout has changed; this save cannot be resumed in this build")
+	if data.get("layout_signature")!=signature(w) and data.get("layout_signature")!=signature(w,true):return error("The track, platforms or signalling layout has changed; this save cannot be resumed in this build")
 	if not matches(w,data.world,WORLD) or not matches(w.dispatcher(),data.dispatcher,DISPATCH) or not matches(w.dispatcher().future_clearances,data.future,FUTURE):return error("Invalid railway state")
 	if not is_finite(data.world.time) or data.world.time<0 or not is_finite(data.world.clock_start):return error("Invalid saved clock")
 	if data.switches.size()!=w.graph.switches.size() or data.world.signals.size()!=w.signals.size():return error("Incomplete points or signals")
@@ -80,7 +80,7 @@ static func restore(data) -> Dictionary:
 				t.set(key,entry[key])
 		if not t.station_approach.is_empty():
 			if not t.station_approach.get("key") is String or not (t.station_approach.get("ceiling") is float) or not is_finite(t.station_approach.ceiling) or t.station_approach.ceiling<0:return error("Invalid approach speed")
-		if t.horn_sequence<0 or not is_finite(t.horn_pending_at) or not is_finite(t.horn_emitted_at):return error("Invalid departure cue")
+		if t.horn_sequence<0 or not is_finite(t.horn_pending_at) or not is_finite(t.horn_emitted_at) or not is_finite(t.horn_ready_at):return error("Invalid departure cue")
 		# R20 and earlier built-in K1 saves retain the retired scenario cap.
 		# Authored packs (including deliberately slower services) remain untouched.
 		if _legacy_passenger_cap(data,t):t.max_speed=110.0/3.6

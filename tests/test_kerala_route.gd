@@ -37,6 +37,9 @@ func test_halt_departure_uses_existing_section_authority_with_next_signal_red():
 	world.time=181
 	train.automatic=true
 	world._drive_automatic(train)
+	if train.horn_sequence!=1 or train.controller>=0:return "Halt departure did not begin stationary horns"
+	world.time+=5
+	world._drive_automatic(train)
 	return train.controller>0 and world.aspect("EXIT")==RailWorld.Aspect.RED
 
 func test_coastal_route_is_full_scale_and_follows_the_requested_junctions():

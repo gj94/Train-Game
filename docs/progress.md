@@ -1,5 +1,46 @@
 # Progress
 
+## 2026-10-22 — R42 simulation corrections validated; packaging pending
+
+- Resumed the deferred stash without dropping its backup. Shared depot access
+  now inherits adjoining running-line speed (90/100 km/h; 30 at route buffers);
+  only the selected depot lead/yard retains 25/15. Full-tail clearance and
+  branch-qualified speed boards remain enforced. Exact legacy layout signatures
+  migrate older saves/service packs without accepting unrelated geometry changes.
+- AI passenger departures wait for booked release, doors and starter clearance,
+  then sound two 1.15-second calls 3.5 seconds apart before traction. The player
+  service follows this when AI-controlled. Manual takeover, even while paused,
+  cancels the sequence. Saved state and event-skip rollback preserve it.
+- A rehearsal exposed a TVCN circular hold: an advisory overtake could be added
+  after a starter route had already been allocated. A committed starter now
+  retains its departure order; cancelled routes do not get that exemption.
+  Existing route/occupancy interlocking is unchanged.
+- Player report at Alappuzha reproduced against clean R41 simulation `ee75fa8`:
+  at 09:59:37 a transient arrival dependency was mistaken for a cycle and K1's
+  B024 overtake hold was removed. B024 arrived 10:02:39; K1 departed 10:02:43.
+  A booked stop before the next signal is now classified as arriving, not a
+  departure wait. The same checkpoint now keeps B024 first (10:06:53), with K1
+  waiting for onward receiving capacity; no safety event or false replan.
+  Four new direction/manual/real-stop/home-signal unit checks pass. Restarted
+  complete baselines/disturbed run from the beginning; discarded v2 preparation.
+- Native production horn playback-state checks pass for own/other AI, manual
+  handover and 4x speed. Dummy output: not a subjective listening test. Full
+  772-test headless suite passes. Full-day Standard 100/100 and Intensive
+  140/140 baselines, plus the disturbed 140/140 run, finish every call and
+  clear to depot with zero safety events. Both wait populations pass every
+  requested percentile; Intensive has 14 distinct K1 overtakers in the baseline
+  and 14 after delay, without B042 reversing its pass of B002.
+  Fresh snapshots, reciprocal traffic and skip replay are verified. A separate
+  player-assigned delay run also passes. R41 remains live until R42 publication.
+- Source service-browser checks pass 3,396 assertions for Standard and 5,556
+  for Intensive, including both overtake roles and controller Stops/Traffic.
+  The user requested that the existing wait policy remain unchanged; no further
+  waiting-policy adjustment is included.
+- Playtest Intensive K1 at Alappuzha around 10:00: B024 must depart first, then
+  K1 after express clearance and onward capacity. Hand a platform departure to
+  AI: both horns finish before motion; manual takeover cancels remaining calls.
+  Check a through depot junction retains line speed while its branch is slow.
+
 ## 2026-10-21 — R41 published; later simulation work stashed
 
 - Full ZIP and signed incremental updates are live at http://192.168.8.183:8765/,

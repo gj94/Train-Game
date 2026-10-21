@@ -2,6 +2,35 @@ extends RefCounted
 const Fixture:=preload("res://tests/overtake_fixture.gd")
 const Policy:=preload("res://sim/priority_dispatch.gd")
 
+func test_new_overtake_cannot_hold_an_already_cleared_departure():
+	for reverse in [false,true]:
+		var w:=Fixture.build(reverse);var t: Train=w.trains.K1
+		w.dispatch_holds.erase("K1")
+		var starter: String=w.next_signal(t).id
+		var option: Dictionary=w.route_options(starter)[0]
+		if not w.set_route(starter,option.destination).ok:return "Could not reserve departure"
+		Policy.update(w)
+		if w.dispatch_holds.has("K1") or not Policy.hold_reason(w,t).is_empty():return "Clear starter contradicted by a new overtake"
+		w._drive_automatic(t)
+		if t.horn_sequence!=1 or t.controller>=0:return "Committed departure did not begin stationary horns"
+		w.time+=5;w._drive_automatic(t)
+		if t.horn_sequence!=2 or t.controller<=0:return "Committed departure remained trapped"
+	return true
+
+func test_stale_overtake_hold_is_reconciled_with_existing_authority():
+	var w:=Fixture.build();var t: Train=w.trains.K1
+	var starter: String=w.next_signal(t).id
+	if not w.set_route(starter,w.route_options(starter)[0].destination).ok:return "Could not reserve departure"
+	Policy.update(w)
+	return not w.dispatch_holds.has("K1") and Policy.departure_committed(w,t)
+
+func test_cancelled_starter_does_not_suppress_new_overtake_planning():
+	var w:=Fixture.build();var t: Train=w.trains.K1
+	var starter: String=w.next_signal(t).id
+	if not w.set_route(starter,w.route_options(starter)[0].destination).ok:return "Could not reserve departure"
+	w.set_signal(starter,false)
+	return not Policy.departure_committed(w,t)
+
 func test_arrived_vb_keeps_overtake_order_after_long_crossing_wait():
 	var w:=Fixture.build();var e=w.dispatcher()
 	e._wait_since.K1=w.time-1801

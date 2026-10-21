@@ -14,7 +14,23 @@ train can use that speed on a track supporting it, but not through a 35 km/h loo
 Manual traction cuts out at equipment maximum; the AI also brakes for the line,
 signals, trains and scheduled stops. The HUD speed limit covers the entire rake.
 
-## 20 October 2026 — shared verge signs
+## R42 — depot branches do not restrict the running line
+
+The 220 m shared stretch from station throat to depot junction now inherits
+the adjoining running section's limit: 90 km/h on single line, 100 km/h on double
+line, and 30 km/h on the route-end buffer approaches. It previously imposed
+40 km/h on every movement. The diverging depot lead remains 25 km/h and the
+yard/fan roads 15 km/h. Station loops, point ladders and other line limits remain.
+
+AI braking follows the selected points: the depot limit is anticipated when
+taking that branch, not when continuing on the main. A departing depot train
+retains the lower occupied-track limit until its last vehicle clears it.
+Branch entry plates identify the depot road. Existing saves and service packs
+accept the exact old layout signature with only these shared-access limits
+changed; unrelated layout changes are still rejected. Prepared operating-day
+states and traffic previews must be regenerated for the new running times.
+
+## 20 October 2026 — shared verge signs (R35–R41)
 
 The presentation now consolidates nearby same-facing posts after track/platform
 clearance placement. Equivalent plates share one mast with retained road labels

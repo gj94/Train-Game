@@ -22,14 +22,17 @@ static func blank(layout: String) -> RailWorld:
 		return world
 	return null
 
-static func signature(world: RailWorld) -> String:
+static func signature(world: RailWorld, legacy_depot_limits: bool=false) -> String:
 	# Bind the file to track geometry, points, signalling and running directions.
 	var parts: Array[String] = []
 	var keys := world.graph.edges.keys()
 	keys.sort()
 	for id in keys:
 		var edge: Dictionary = world.graph.edges[id]
-		parts.append("%s|%s|%s|%d|%.4f" % [id,edge.a,edge.b,edge.allowed_dir,edge.speed_limit])
+		# R40 compatibility changes ONLY the old shared depot-access limit.
+		# Geometry, points, directions and all other limits still match exactly.
+		var limit: float=40.0/3.6 if legacy_depot_limits and layout_id(world)=="kerala_coast" and "_DEPOT_" in id and id.ends_with("_ACCESS") else edge.speed_limit
+		parts.append("%s|%s|%s|%d|%.4f" % [id,edge.a,edge.b,edge.allowed_dir,limit])
 		for point in edge.points: parts.append("%.3f,%.3f,%.3f" % [point.x,point.y,point.z])
 	keys = world.graph.switches.keys()
 	keys.sort()
@@ -83,7 +86,7 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 		return _error("Unknown track layout")
 	if expected_layout != "" and layout != expected_layout: return _error("This file belongs to a different track layout")
 	var world := blank(layout)
-	if data.get("layout_signature","") != signature(world):
+	if data.get("layout_signature","") != signature(world) and data.get("layout_signature","") != signature(world,true):
 		return _error("Track layout has changed; this file's track/signals do not match this layout")
 	if not _text(data.get("name",""),100): return _error("Give the timetable a name (1–100 characters)")
 	var start = data.get("world_start","")

@@ -134,6 +134,15 @@ func _evaluate(w, t: Train, route_trains: bool, approach: Dictionary = {}) -> Di
 		state.status="manual"; state.reason="Unscheduled movement: select a signal and set a route"; return state
 	if t.timetable.at_stop and w.clock_seconds() < t.timetable.release_time():
 		state.status="dwell"; state.reason="Booked departure / dwell until " + preload("res://sim/world_clock.gd").format_time(t.timetable.release_time()); return state
+	if not t.timetable.at_stop and not ns.is_empty():
+		# The next signal may already be the starter beyond this booked stop.
+		# Its departure hold is not yet a dependency: the arriving train can
+		# clear the approach for its overtaker by moving into its own berth.
+		# Treating that as a departure wait creates a false circular wait and
+		# cancels the promised overtake just before the express arrives.
+		var distance: float=state.call.get("distance",INF)
+		if distance>=0 and distance<ns.distance:
+			state.status="arriving"; state.reason="Arriving at " + state.call.name + "; departure decision after the scheduled stop"; return state
 	var future_hold: String=future_clearances.hold(w,t)
 	if not future_hold.is_empty():
 		state.status="held"; state.reason=future_hold; return state

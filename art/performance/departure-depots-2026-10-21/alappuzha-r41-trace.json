@@ -1,0 +1,2442 @@
+{
+	"events": [],
+	"journal": [
+		{
+			"kind": "decision",
+			"seq": 2334,
+			"text": "Authority to TMPY_ALLP_M2-SH",
+			"time": 35713.5500000164,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2336,
+			"text": "Authority to KAVR_TMPY_M4-SA",
+			"time": 35718.5500000164,
+			"train": "B024"
+		},
+		{
+			"kind": "approach_route",
+			"seq": 2347,
+			"text": "Prepared TMPY_ALLP_M2-SH ahead of TMPY_ALLP_M0-SA",
+			"time": 35753.0500000165,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2348,
+			"text": "Authority to ALLP-S2",
+			"time": 35753.0500000165,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2349,
+			"text": "Signal at red; route locked until safe release · Coastal All-Stations Passenger · Ernakulam to Nagercoil (K1)",
+			"time": 35754.5500000165,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2353,
+			"text": "Waiting for automatic block clearance",
+			"time": 35756.5500000165,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2372,
+			"text": "Authority to ALLP-S2",
+			"time": 35799.5500000167,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2378,
+			"text": "Authority to TMPY_ALLP_M0-SA",
+			"time": 35821.5500000168,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2383,
+			"text": "Waiting for automatic block clearance",
+			"time": 35829.0500000168,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2385,
+			"text": "Authority to ALLP-S2",
+			"time": 35834.0500000168,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2395,
+			"text": "Authority to TMPY_ALLP_M1-SA",
+			"time": 35857.0500000169,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2409,
+			"text": "No reachable route to next call: Alappuzha",
+			"time": 35877.550000017,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2428,
+			"text": "Expect a wait at ALLP until Capital Intercity 01 · ERS–TVC (B024) overtakes",
+			"time": 35922.5500000171,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2431,
+			"text": "Authority to TMPY_ALLP_M2-SH",
+			"time": 35926.5500000172,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2441,
+			"text": "Authority to TMPY_ALLP_M2-SH",
+			"time": 35943.5500000172,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2457,
+			"text": "Signal at red; route locked until safe release · Coastal All-Stations Passenger · Ernakulam to Nagercoil (K1)",
+			"time": 35977.5500000173,
+			"train": "B024"
+		},
+		{
+			"kind": "replan",
+			"seq": 2458,
+			"text": "Circular advisory wait removed; interlocking will check the next route",
+			"time": 35977.5500000173,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2459,
+			"text": "No reachable route to next call: Alappuzha",
+			"time": 35978.0500000173,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2461,
+			"text": "Route set to ALLP-S1",
+			"time": 35985.0500000174,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2462,
+			"text": "Authority to ALLP-S1",
+			"time": 35985.5500000174,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2478,
+			"text": "Booked departure / dwell until 10:02:43",
+			"time": 36013.0500000175,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2481,
+			"text": "No reachable route to next call: Alappuzha",
+			"time": 36022.5500000175,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2620,
+			"text": "Booked departure / dwell until 10:06:48",
+			"time": 36159.550000018,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2621,
+			"text": "Route set to ALLP_PUPR_M0-SA",
+			"time": 36163.050000018,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2622,
+			"text": "Authority to ALLP_PUPR_M0-SA",
+			"time": 36163.550000018,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2634,
+			"text": "Authority to PUPR_AMPA_M3-SH",
+			"time": 36187.0500000181,
+			"train": "K1"
+		}
+	],
+	"rows": [
+		{
+			"b024": {
+				"aspect": 2,
+				"chainage": 50917.4189613317,
+				"dispatch": "Authority to KAVR_TMPY_M4-SA",
+				"edge": "KAVR_TMPY_M2",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "KAVR_TMPY_M3",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 373.590694659532,
+				"signal_id": "KAVR_TMPY_M2-SA",
+				"speed": 24.5999999999999,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35700.0000000163,
+			"k1": {
+				"aspect": 2,
+				"chainage": 53937.0260033246,
+				"dispatch": "Booked departure / dwell until 09:55:13",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 10,
+				"release": 35713.2000000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 732.771668909494,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 0.0,
+				"status": "Dwell until 09:55:13",
+				"stop": true
+			}
+		},
+		{
+			"b024": {
+				"aspect": 2,
+				"chainage": 51249.5833799111,
+				"dispatch": "Authority to KAVR_TMPY_M4-SA",
+				"edge": "KAVR_TMPY_M2",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "KAVR_TMPY_M3",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 705.690694659536,
+				"signal_id": "KAVR_TMPY_M2-SA",
+				"speed": 24.5999999999999,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35713.5000000164,
+			"k1": {
+				"aspect": 2,
+				"chainage": 53937.0267508776,
+				"dispatch": "Booked departure / dwell until 09:55:13",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 732.772416234759,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 0.00565007326094539,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 2,
+				"chainage": 51261.8857657844,
+				"dispatch": "Authority to KAVR_TMPY_M4-SA",
+				"edge": "KAVR_TMPY_M2",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "KAVR_TMPY_M3",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 717.990694659537,
+				"signal_id": "KAVR_TMPY_M2-SA",
+				"speed": 24.5999999999999,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35714.0000000164,
+			"k1": {
+				"aspect": 2,
+				"chainage": 53937.037100908,
+				"dispatch": "Authority to TMPY_ALLP_M2-SH",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 732.782763111593,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 0.0371411457449035,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 51372.6072386442,
+				"dispatch": "Authority to KAVR_TMPY_M4-SA",
+				"edge": "KAVR_TMPY_M2",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "KAVR_TMPY_M4",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 828.690694659538,
+				"signal_id": "KAVR_TMPY_M3-SA",
+				"speed": 24.5999999999999,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35718.5000000164,
+			"k1": {
+				"aspect": 2,
+				"chainage": 53939.5341004839,
+				"dispatch": "Authority to TMPY_ALLP_M2-SH",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 735.279001882943,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 1.21232561679945,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 51434.1184476987,
+				"dispatch": "Authority to KAVR_TMPY_M4-SA",
+				"edge": "KAVR_TMPY_M3",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "KAVR_TMPY_M4",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 3.60426887828913,
+				"signal_id": "KAVR_TMPY_M3-SA",
+				"speed": 24.5999999999999,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35721.0000000164,
+			"k1": {
+				"aspect": 2,
+				"chainage": 53943.5519044027,
+				"dispatch": "Authority to TMPY_ALLP_M2-SH",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 739.29558162709,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 1.98543500224427,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 52233.6137496412,
+				"dispatch": "Authority to KAVR_TMPY_M4-SA",
+				"edge": "KAVR_TMPY_M3",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "KAVR_TMPY_M4",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 803.104268878295,
+				"signal_id": "KAVR_TMPY_M3-SA",
+				"speed": 24.5999999999999,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35753.5000000165,
+			"k1": {
+				"aspect": 2,
+				"chainage": 54171.0562477423,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 966.730607237164,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 11.9650298076286,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 52245.9136773634,
+				"dispatch": "Authority to KAVR_TMPY_M4-SA",
+				"edge": "KAVR_TMPY_M3",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "KAVR_TMPY_M4",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 815.404268878296,
+				"signal_id": "KAVR_TMPY_M3-SA",
+				"speed": 24.5999999999999,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35754.0000000165,
+			"k1": {
+				"aspect": 2,
+				"chainage": 54177.0823405331,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 972.75486395277,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 12.1168072555483,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 52258.2130463838,
+				"dispatch": "Authority to KAVR_TMPY_M4-SA",
+				"edge": "KAVR_TMPY_M3",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_P1",
+						"reversed": false,
+						"seen": true,
+						"switch": ""
+					},
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M0",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 827.703710173182,
+				"signal_id": "KAVR_TMPY_M4-SA",
+				"speed": 24.5962755162325,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35754.5000000165,
+			"k1": {
+				"aspect": 2,
+				"chainage": 54183.184324995,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 978.854989216317,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 12.268511203303,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 52307.1273676159,
+				"dispatch": "Signal at red; route locked until safe release · Coastal All-Stations Passenger · Ernakulam to Nagercoil (K1)",
+				"edge": "KAVR_TMPY_M3",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 876.618318839508,
+				"signal_id": "KAVR_TMPY_M4-SA",
+				"speed": 24.2404597350997,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35756.5000000165,
+			"k1": {
+				"aspect": 2,
+				"chainage": 54208.3539806828,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_ALLP_M0",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 4.31811675990665,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 12.8745743278297,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 52319.2091010889,
+				"dispatch": "Waiting for automatic block clearance",
+				"edge": "KAVR_TMPY_M4",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 1.93643449455907,
+				"signal_id": "KAVR_TMPY_M4-SA",
+				"speed": 24.0987434604439,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35757.0000000165,
+			"k1": {
+				"aspect": 2,
+				"chainage": 54214.8401827943,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_ALLP_M0",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 10.7970210393629,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 13.0258975419675,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 53038.4680114692,
+				"dispatch": "Waiting for automatic block clearance",
+				"edge": "KAVR_TMPY_M4",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 721.170610286778,
+				"signal_id": "KAVR_TMPY_M4-SA",
+				"speed": 7.90499089983768,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35802.0000000167,
+			"k1": {
+				"aspect": 2,
+				"chainage": 55051.6295884273,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_ALLP_M1",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M2",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 7.80106486888355,
+				"signal_id": "TMPY_ALLP_M1-SA",
+				"speed": 23.0241749293876,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 53129.3125496191,
+				"dispatch": "Waiting for automatic block clearance",
+				"edge": "KAVR_TMPY_M4",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_P1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					},
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M0",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 812.012024384601,
+				"signal_id": "KAVR_TMPY_M4-SA",
+				"speed": 1.70596625621619,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35821.5000000168,
+			"k1": {
+				"aspect": 2,
+				"chainage": 55523.4637945023,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_ALLP_M1",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M2",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 479.42225069309,
+				"signal_id": "TMPY_ALLP_M1-SA",
+				"speed": 24.5990697944084,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 53145.2431656757,
+				"dispatch": "Authority to TMPY_ALLP_M0-SA",
+				"edge": "KAVR_TMPY_M4",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 827.94209260344,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 3.00194914591345,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35829.0000000168,
+			"k1": {
+				"aspect": 2,
+				"chainage": 55708.045354805,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_ALLP_M1",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M2",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 663.920477465159,
+				"signal_id": "TMPY_ALLP_M1-SA",
+				"speed": 24.5999791420654,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 53163.5573452638,
+				"dispatch": "Waiting for automatic block clearance",
+				"edge": "KAVR_TMPY_M4",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 846.255642385342,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 4.31007130023776,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35834.0000000168,
+			"k1": {
+				"aspect": 1,
+				"chainage": 55831.1008735704,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_ALLP_M1",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_DEPOT_LM_ACCESS",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_DEPOT_LM_J"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_LLEAD_U",
+						"reversed": true,
+						"seen": false,
+						"switch": "ALLP_LM"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_P2",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_LU"
+					}
+				],
+				"s": 786.920440026391,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 24.5999983414336,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 53175.1659550347,
+				"dispatch": "Waiting for automatic block clearance",
+				"edge": "KAVR_TMPY_M4",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 857.863852947934,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 4.96333116756317,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35836.5000000168,
+			"k1": {
+				"aspect": 1,
+				"chainage": 55892.6323220659,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_ALLP_M2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_DEPOT_LM_ACCESS",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_DEPOT_LM_J"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_LLEAD_U",
+						"reversed": true,
+						"seen": false,
+						"switch": "ALLP_LM"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_P2",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_LU"
+					}
+				],
+				"s": 9.00558174716245,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 24.599999532304,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 53206.4491465303,
+				"dispatch": "Waiting for automatic block clearance",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 2.41740975129314,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 6.39810554458794,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35842.0000000169,
+			"k1": {
+				"aspect": 1,
+				"chainage": 56027.7775808258,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_ALLP_M2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_DEPOT_LM_ACCESS",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_DEPOT_LM_J"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_LLEAD_U",
+						"reversed": true,
+						"seen": false,
+						"switch": "ALLP_LM"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_P2",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_LU"
+					}
+				],
+				"s": 144.034782591316,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 24.2577424237373,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 53331.7794892996,
+				"dispatch": "Waiting for automatic block clearance",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 127.709565931714,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 10.2880609162116,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35857.0000000169,
+			"k1": {
+				"aspect": 1,
+				"chainage": 56352.8731430559,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_ALLP_M2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_DEPOT_LM_ACCESS",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_DEPOT_LM_J"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_LLEAD_U",
+						"reversed": true,
+						"seen": false,
+						"switch": "ALLP_LM"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_P2",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_LU"
+					}
+				],
+				"s": 468.851164377053,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 18.9242803391306,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 53596.5731389544,
+				"dispatch": "Authority to TMPY_ALLP_M1-SA",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 392.422536271417,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 15.4400477247039,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35877.500000017,
+			"k1": {
+				"aspect": 0,
+				"chainage": 56664.2045921426,
+				"dispatch": "Authority to ALLP-S2",
+				"edge": "TMPY_ALLP_M2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 779.915253147509,
+				"signal_id": "ALLP-S2",
+				"speed": 11.4725418918565,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 53604.3266222884,
+				"dispatch": "Authority to TMPY_ALLP_M1-SA",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 400.173657216031,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 15.5529854300417,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35878.000000017,
+			"k1": {
+				"aspect": 0,
+				"chainage": 56669.8980111525,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "TMPY_ALLP_M2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 785.603782852743,
+				"signal_id": "ALLP-S2",
+				"speed": 11.3038882588214,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 53684.8802043877,
+				"dispatch": "Authority to TMPY_ALLP_M1-SA",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 480.70269564569,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 16.6336462046764,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35883.000000017,
+			"k1": {
+				"aspect": 0,
+				"chainage": 56724.5650912555,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_DEPOT_LM_ACCESS",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 1.15052364198583,
+				"signal_id": "ALLP-S2",
+				"speed": 10.7582471433891,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 54065.9878148168,
+				"dispatch": "Authority to TMPY_ALLP_M1-SA",
+				"edge": "TMPY_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 861.694187349794,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 20.3688855824213,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35903.5000000171,
+			"k1": {
+				"aspect": 0,
+				"chainage": 56944.5306460243,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_LLEAD_U",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 1.1195607536762,
+				"signal_id": "ALLP-S2",
+				"speed": 10.7111125741149,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 54212.5011755269,
+				"dispatch": "Authority to TMPY_ALLP_M1-SA",
+				"edge": "TMPY_ALLP_M0",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 8.46064546337563,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 21.456583793549,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35910.5000000171,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57019.3801957803,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_LLEAD_U",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 76.0973413019116,
+				"signal_id": "ALLP-S2",
+				"speed": 10.7111111533674,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 54480.7198232244,
+				"dispatch": "Authority to TMPY_ALLP_M1-SA",
+				"edge": "TMPY_ALLP_M0",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 276.377511840156,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 23.1574926985523,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35922.5000000171,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57147.6999965077,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 4.28803860905695,
+				"signal_id": "ALLP-S2",
+				"speed": 10.7111111112082,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 54492.3300442384,
+				"dispatch": "Authority to TMPY_ALLP_M1-SA",
+				"edge": "TMPY_ALLP_M0",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 287.974669825615,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 23.2243998730742,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35923.0000000171,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57153.0542505285,
+				"dispatch": "Expect a wait at ALLP until Capital Intercity 01 · ERS–TVC (B024) overtakes",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 9.64359416465484,
+				"signal_id": "ALLP-S2",
+				"speed": 10.7111111111865,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 2,
+				"chainage": 54574.5289701257,
+				"dispatch": "Authority to TMPY_ALLP_M1-SA",
+				"edge": "TMPY_ALLP_M0",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 370.081111090308,
+				"signal_id": "TMPY_ALLP_M0-SA",
+				"speed": 23.6846615645504,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35926.5000000172,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57190.5340286739,
+				"dispatch": "Expect a wait at ALLP until Capital Intercity 01 · ERS–TVC (B024) overtakes",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 47.1324830536657,
+				"signal_id": "ALLP-S2",
+				"speed": 10.7111111111239,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 54989.6798278883,
+				"dispatch": "Authority to TMPY_ALLP_M2-SH",
+				"edge": "TMPY_ALLP_M0",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M2",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 784.764869435188,
+				"signal_id": "TMPY_ALLP_M1-SA",
+				"speed": 24.5993486089317,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35943.5000000172,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57372.5786653793,
+				"dispatch": "Expect a wait at ALLP until Capital Intercity 01 · ERS–TVC (B024) overtakes",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 229.22137194258,
+				"signal_id": "ALLP-S2",
+				"speed": 10.7111111111111,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 55051.2431854217,
+				"dispatch": "Authority to TMPY_ALLP_M2-SH",
+				"edge": "TMPY_ALLP_M1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "TMPY_ALLP_M2",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 7.41483631369059,
+				"signal_id": "TMPY_ALLP_M1-SA",
+				"speed": 24.5998163154688,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35946.0000000172,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57399.349935483,
+				"dispatch": "Expect a wait at ALLP until Capital Intercity 01 · ERS–TVC (B024) overtakes",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 255.999149720358,
+				"signal_id": "ALLP-S2",
+				"speed": 10.7111111111111,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 55826.1963388326,
+				"dispatch": "Authority to TMPY_ALLP_M2-SH",
+				"edge": "TMPY_ALLP_M1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_P2",
+						"reversed": false,
+						"seen": true,
+						"switch": "ALLP_LU"
+					}
+				],
+				"s": 782.018119551992,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 24.2343636696951,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35977.5000000173,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57736.5671052479,
+				"dispatch": "Expect a wait at ALLP until Capital Intercity 01 · ERS–TVC (B024) overtakes",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {
+					"arrived": false,
+					"chainage": 57663.413,
+					"created": 6953.05000001653,
+					"direction": 1,
+					"kind": "overtake",
+					"other": "B024",
+					"station": "ALLP"
+				},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 593.29829166707,
+				"signal_id": "ALLP-S2",
+				"speed": 10.5324263697192,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 55838.2804712492,
+				"dispatch": "Signal at red; route locked until safe release · Coastal All-Stations Passenger · Ernakulam to Nagercoil (K1)",
+				"edge": "TMPY_ALLP_M1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_P2",
+						"reversed": false,
+						"seen": true,
+						"switch": "ALLP_LU"
+					}
+				],
+				"s": 794.096796313039,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 24.0926414861945,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35978.0000000173,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57741.8014708585,
+				"dispatch": "Expect a wait at ALLP until Capital Intercity 01 · ERS–TVC (B024) overtakes",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 598.533929669508,
+				"signal_id": "ALLP-S2",
+				"speed": 10.4182554258746,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 55850.2908508575,
+				"dispatch": "Signal at red; route locked until safe release · Coastal All-Stations Passenger · Ernakulam to Nagercoil (K1)",
+				"edge": "TMPY_ALLP_M1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_P2",
+						"reversed": false,
+						"seen": true,
+						"switch": "ALLP_LU"
+					}
+				],
+				"s": 806.101753563161,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 23.9409186745279,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35978.5000000173,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57746.9737303177,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 603.707446423539,
+				"signal_id": "ALLP-S2",
+				"speed": 10.2864317512574,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 55885.841755078,
+				"dispatch": "Signal at red; route locked until safe release · Coastal All-Stations Passenger · Ernakulam to Nagercoil (K1)",
+				"edge": "TMPY_ALLP_M2",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_P2",
+						"reversed": false,
+						"seen": true,
+						"switch": "ALLP_LU"
+					}
+				],
+				"s": 2.22084625539233,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 23.4463321294558,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35980.0000000174,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57762.0488520433,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 618.786232673743,
+				"signal_id": "ALLP-S2",
+				"speed": 9.81984329146499,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 56009.4552602236,
+				"dispatch": "Route set to ALLP-S1",
+				"edge": "TMPY_ALLP_M2",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_DEPOT_LM_ACCESS",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_DEPOT_LM_J"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_LLEAD_D",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_LM"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_P1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 125.728196542836,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 21.5021125372429,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 35985.5000000174,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57810.493223362,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 35632.4500000158,
+				"route": [],
+				"s": 667.242380055953,
+				"signal_id": "ALLP-S2",
+				"speed": 7.77809789577178,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 56543.1929413477,
+				"dispatch": "Authority to ALLP-S1",
+				"edge": "TMPY_ALLP_M2",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_DEPOT_LM_ACCESS",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_DEPOT_LM_J"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_LLEAD_D",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_LM"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_P1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 659.007522831302,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 14.7985666111439,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 36013.0000000175,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57896.2822117211,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 36163.0000000175,
+				"route": [],
+				"s": 753.052222366771,
+				"signal_id": "ALLP-S2",
+				"speed": 0.0,
+				"status": "Waiting for ALLP-S2",
+				"stop": true
+			}
+		},
+		{
+			"b024": {
+				"aspect": 1,
+				"chainage": 56550.5485825424,
+				"dispatch": "Authority to ALLP-S1",
+				"edge": "TMPY_ALLP_M2",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_DEPOT_LM_ACCESS",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_DEPOT_LM_J"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_LLEAD_D",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_LM"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_P1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 666.356847264371,
+				"signal_id": "TMPY_ALLP_M2-SH",
+				"speed": 14.61691541407,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 36013.5000000175,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57896.2822117211,
+				"dispatch": "Booked departure / dwell until 10:02:43",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 36163.0000000175,
+				"route": [],
+				"s": 753.052222366771,
+				"signal_id": "ALLP-S2",
+				"speed": 0.0,
+				"status": "Passenger exchange · 68 s · 1077 aboard",
+				"stop": true
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 56667.4741384578,
+				"dispatch": "Authority to ALLP-S1",
+				"edge": "TMPY_ALLP_M2",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 783.181991693311,
+				"signal_id": "ALLP-S1",
+				"speed": 11.371632426218,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 36022.5000000175,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57896.2822117211,
+				"dispatch": "Booked departure / dwell until 10:02:43",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 36163.0000000175,
+				"route": [],
+				"s": 753.052222366771,
+				"signal_id": "ALLP-S2",
+				"speed": 0.0,
+				"status": "Passenger exchange · 59 s · 1077 aboard",
+				"stop": true
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 56727.6475548914,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_DEPOT_LM_ACCESS",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 4.22879306871683,
+				"signal_id": "ALLP-S1",
+				"speed": 10.7518861668845,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 36028.0000000175,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57896.2822117211,
+				"dispatch": "Booked departure / dwell until 10:02:43",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 36163.0000000175,
+				"route": [],
+				"s": 753.052222366771,
+				"signal_id": "ALLP-S2",
+				"speed": 0.0,
+				"status": "Passenger exchange · 53 s · 1077 aboard",
+				"stop": true
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 56947.5995244613,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_LLEAD_D",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 4.18542666121468,
+				"signal_id": "ALLP-S1",
+				"speed": 10.7111123766835,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 36048.5000000176,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57896.2822117211,
+				"dispatch": "Booked departure / dwell until 10:02:43",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 36163.0000000175,
+				"route": [],
+				"s": 753.052222366771,
+				"signal_id": "ALLP-S2",
+				"speed": 0.0,
+				"status": "Passenger exchange · 33 s · 944 aboard",
+				"stop": true
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 57145.8065162337,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 2.39342914243327,
+				"signal_id": "ALLP-S1",
+				"speed": 10.7111111112193,
+				"status": "Running to Thiruvananthapuram Central",
+				"stop": false
+			},
+			"clock": 36067.0000000177,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57896.2822117211,
+				"dispatch": "Booked departure / dwell until 10:02:43",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 36163.0000000175,
+				"route": [],
+				"s": 753.052222366771,
+				"signal_id": "ALLP-S2",
+				"speed": 0.0,
+				"status": "Passenger exchange · 14 s · 1035 aboard",
+				"stop": true
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 57913.3776319195,
+				"dispatch": "No reachable route to next call: Alappuzha",
+				"edge": "ALLP_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 769.936615722172,
+				"signal_id": "ALLP-S1",
+				"speed": 0.0,
+				"status": "Passenger exchange · 74 s · 970 aboard",
+				"stop": true
+			},
+			"clock": 36159.500000018,
+			"k1": {
+				"aspect": 0,
+				"chainage": 57896.2822117211,
+				"dispatch": "Booked departure / dwell until 10:02:43",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 11,
+				"release": 36163.0000000175,
+				"route": [],
+				"s": 753.052222366771,
+				"signal_id": "ALLP-S2",
+				"speed": 0.0,
+				"status": "Dwell until 10:02:43",
+				"stop": true
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 57913.3776319195,
+				"dispatch": "Booked departure / dwell until 10:06:48",
+				"edge": "ALLP_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 769.936615722172,
+				"signal_id": "ALLP-S1",
+				"speed": 0.0,
+				"status": "Passenger exchange · 70 s · 970 aboard",
+				"stop": true
+			},
+			"clock": 36163.500000018,
+			"k1": {
+				"aspect": 2,
+				"chainage": 57896.2844334318,
+				"dispatch": "Route set to ALLP_PUPR_M0-SA",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 12,
+				"release": 36258.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_RLEAD_U",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_RU"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_DEPOT_RM_ACCESS",
+						"reversed": true,
+						"seen": false,
+						"switch": "ALLP_RM"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_PUPR_M0",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_DEPOT_RM_J"
+					}
+				],
+				"s": 753.054444617462,
+				"signal_id": "ALLP-S2",
+				"speed": 0.0122001462068813,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 57913.3776319195,
+				"dispatch": "Booked departure / dwell until 10:06:48",
+				"edge": "ALLP_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 769.936615722172,
+				"signal_id": "ALLP-S1",
+				"speed": 0.0,
+				"status": "Passenger exchange · 69 s · 970 aboard",
+				"stop": true
+			},
+			"clock": 36164.000000018,
+			"k1": {
+				"aspect": 2,
+				"chainage": 57896.3003278907,
+				"dispatch": "Authority to ALLP_PUPR_M0-SA",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 12,
+				"release": 36258.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_RLEAD_U",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_RU"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_DEPOT_RM_ACCESS",
+						"reversed": true,
+						"seen": false,
+						"switch": "ALLP_RM"
+					},
+					{
+						"dir": 1,
+						"edge": "ALLP_PUPR_M0",
+						"reversed": false,
+						"seen": false,
+						"switch": "ALLP_DEPOT_RM_J"
+					}
+				],
+				"s": 753.07034294014,
+				"signal_id": "ALLP-S2",
+				"speed": 0.0519690676702814,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		},
+		{
+			"b024": {
+				"aspect": 0,
+				"chainage": 57913.3776319195,
+				"dispatch": "Booked departure / dwell until 10:06:48",
+				"edge": "ALLP_P1",
+				"future": false,
+				"hold": {},
+				"id": "B024",
+				"index": 2,
+				"release": 36408.0,
+				"route": [],
+				"s": 769.936615722172,
+				"signal_id": "ALLP-S1",
+				"speed": 0.0,
+				"status": "Passenger exchange · 46 s · 852 aboard",
+				"stop": true
+			},
+			"clock": 36187.5000000181,
+			"k1": {
+				"aspect": 2,
+				"chainage": 57978.7672166922,
+				"dispatch": "Authority to PUPR_AMPA_M3-SH",
+				"edge": "ALLP_P2",
+				"future": false,
+				"hold": {},
+				"id": "K1",
+				"index": 12,
+				"release": 36258.0,
+				"route": [
+					{
+						"dir": 1,
+						"edge": "ALLP_PUPR_M1",
+						"reversed": false,
+						"seen": false,
+						"switch": ""
+					}
+				],
+				"s": 835.557278143194,
+				"signal_id": "ALLP_PUPR_M0-SA",
+				"speed": 7.12082304785051,
+				"status": "Running to Nagercoil Junction",
+				"stop": false
+			}
+		}
+	]
+}

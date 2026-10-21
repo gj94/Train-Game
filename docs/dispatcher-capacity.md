@@ -155,3 +155,26 @@ The final fresh baseline and ten-minute-late-start audits each complete all
 100 services and 1,530 subsequent calls with zero safety events, then clear every
 train to depot. The longest continuous delay beyond release is 28.17 minutes.
 See `busy-timetable.md` and the R28 evidence for the tested scenario and limits.
+
+## R42: distinguish arrival from departure waits
+
+A train can have a red platform starter as its next signal while it is still
+moving towards its booked stopping marker. It is not yet waiting to depart.
+The dispatcher now uses the already calculated stop distance to identify this
+case, reports it as arriving and retains any planned overtake. Signals before
+the booked stop still receive normal route and interlocking checks.
+
+This fixes the reported K1/B024 sequence at Alappuzha. In the published R41
+Intensive baseline, K1 was still entering its platform at 09:59:37 while B024
+briefly waited for K1's approach route to release. The departure wait graph
+incorrectly saw a cycle and cancelled K1's overtake hold. B024 arrived at
+10:02:39; K1's dwell ended and it departed at 10:02:43, ahead of the express.
+
+Replaying that prepared checkpoint under R42 keeps B024 first, then releases K1
+only after full-tail clearance and downstream receiving capacity permit it.
+True circular waits between stopped trains retain the existing recovery logic.
+A previously allocated starter also keeps its committed departure order: a new
+optional overtake hold cannot contradict it and trap the intended overtaker.
+
+Evidence and reproducible checkpoint:
+[departure and depot checks](../art/performance/departure-depots-2026-10-21/README.md).

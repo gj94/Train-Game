@@ -4,18 +4,25 @@ const Snapshot := preload("res://sim/world_snapshot.gd")
 const EventSkip := preload("res://sim/skip_to_event.gd")
 const Detector := preload("res://sim/skip_encounters.gd")
 var report := {cases=[],complete=false}
+var output := "res://.local/r41-corridor-events.json"
+var timeline := "res://data/railway_times"
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
-	for item in [
+	var cases := [
 		{clock=31500,service="K1",kind="crossing",other="B045",delayed=false},
 		{clock=33000,service="K1",kind="overtaken",other="B001",delayed=false},
 		{clock=33000,service="B001",kind="overtaking",other="K1",delayed=false},
-		{clock=33000,service="K1",kind="overtaken",other="B001",delayed=true}]:
-		var path:="res://data/railway_times/T%06d.bin" % item.clock
+		{clock=33000,service="K1",kind="overtaken",other="B001",delayed=true}]
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--output="):output=arg.trim_prefix("--output=")
+		elif arg.begins_with("--timeline="):timeline=arg.trim_prefix("--timeline=")
+		elif arg.begins_with("--cases="):cases=JSON.parse_string(FileAccess.get_file_as_string(arg.trim_prefix("--cases=")))
+	for item in cases:
+		var path:=timeline.path_join("T%06d.bin" % item.clock)
 		var file:=FileAccess.open_compressed(path,FileAccess.READ,FileAccess.COMPRESSION_ZSTD)
 		var restored:=Snapshot.restore(file.get_var(false));file.close();assert(restored.ok)
 		var w: RailWorld=restored.world
-		if item.delayed:w.trains.B001.speed=0;w.trains.B001.controller=-1
+		if item.delayed:w.trains[item.other].speed=0;w.trains[item.other].controller=-1
 		var options:={"stops":false,"signal":false,"crossing":false,"overtaking":false,"overtaken":false}
 		options[item.kind]=true
 		var skip:=EventSkip.new(w);skip.to_event(item.service,options)
@@ -32,10 +39,10 @@ func run() -> void:
 		var valid: bool=skip.ok and event.get("kind","")==item.kind and event.get("other","")==item.other and absf(event.get("time",0)-end-60)<.001 and not detected.is_empty() and absf(detected[0].time-event.time)<.1 and w.events.is_empty()
 		var row: Dictionary=item.duplicate();row.merge({ok=valid,returned_clock=end,event=event,observed=detected,safety_events=w.events})
 		report.cases.append(row);print("CORRIDOR_EVENT ",JSON.stringify(row))
-		FileAccess.open("res://.local/r41-corridor-events.json",FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
+		FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 		if not valid:quit(1);return
 	# The slowed express must actually produce a later forecast than baseline.
 	report.delayed_pass_is_later=report.cases[3].event.time>report.cases[1].event.time+1
 	report.complete=report.delayed_pass_is_later
-	FileAccess.open("res://.local/r41-corridor-events.json",FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
+	FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 	quit(0 if report.complete else 1)

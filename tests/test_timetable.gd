@@ -87,7 +87,7 @@ func test_late_arrival_gets_full_dwell_and_offsets_stay_fixed():
 	w.step(59)
 	if tt.index != 1 or not tt.at_stop:
 		return "Late arrival lost its minimum dwell"
-	w.step(3)
+	w.step(7) # minimum dwell, then both stationary horn calls
 	if tt.actual_departures[1] < arrival + 60 - 0.0001:
 		return "Arrival %.3f, departure %.3f, now %.3f; %s" % [arrival, tt.actual_departures[1], w.clock_seconds(), t.status]
 	return tt.planned_arrival(2) == 8 * 3600 + 60 + 9 * 60
@@ -177,7 +177,7 @@ func test_early_arrival_waits_for_booked_departure_then_for_route():
 	if not t.timetable.row_status(1, w.clock_seconds()).begins_with("Held +"):
 		return "Timetable did not report the held departure"
 	w.set_route("MRT-SE2", "KDP-H")
-	w.step(2)
+	w.step(6) # horns complete after clearance, before movement
 	return t.timetable.actual_departures[1] >= 8 * 3600 + 365 and t.speed > 0
 
 func test_terminal_arrival_remains_complete_after_midnight():

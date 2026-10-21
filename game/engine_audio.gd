@@ -123,7 +123,7 @@ func _process(delta: float) -> void:
 	var shift:=Space.doppler(view.cars[0].global_position,game.cam.global_position,velocity,receiver)
 	_clock=game.world.clock_seconds()
 	if _departure_horn_due(paused,_clock):
-		horn();_horn_end=_clock+1.15
+		horn();_horn_end=train.horn_emitted_at+preload("res://sim/departure_cues.gd").CALL_SECONDS
 	# A manual button horn uses _horn_end=-1 and is never stopped here.
 	if _horn_end>=0 and (not train.automatic or _clock>=_horn_end):
 		horn_player.stop();_horn_end=-1.0

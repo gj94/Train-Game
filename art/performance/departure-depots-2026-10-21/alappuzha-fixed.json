@@ -1,0 +1,340 @@
+{
+	"b024_arrival": 36122.5500000179,
+	"b024_departure": 36412.7500000189,
+	"express_tail_clear": true,
+	"journal": [
+		{
+			"kind": "decision",
+			"seq": 2338,
+			"text": "Authority to TMPY_ALLP_M2-SH",
+			"time": 35713.5500000164,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2339,
+			"text": "Authority to KAVR_TMPY_M4-SA",
+			"time": 35718.5500000164,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2350,
+			"text": "Signal at red; route locked until safe release · Coastal All-Stations Passenger · Ernakulam to Nagercoil (K1)",
+			"time": 35754.5500000165,
+			"train": "B024"
+		},
+		{
+			"kind": "approach_route",
+			"seq": 2354,
+			"text": "Prepared TMPY_ALLP_M2-SH ahead of TMPY_ALLP_M0-SA",
+			"time": 35757.5500000165,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2355,
+			"text": "Authority to ALLP-S2",
+			"time": 35757.5500000165,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2361,
+			"text": "Waiting for automatic block clearance",
+			"time": 35761.0500000166,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2376,
+			"text": "Authority to ALLP-S2",
+			"time": 35804.0500000167,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2386,
+			"text": "Authority to TMPY_ALLP_M0-SA",
+			"time": 35826.0500000168,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2388,
+			"text": "Waiting for automatic block clearance",
+			"time": 35833.5500000168,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2391,
+			"text": "Authority to ALLP-S2",
+			"time": 35838.5500000168,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2401,
+			"text": "Authority to TMPY_ALLP_M1-SA",
+			"time": 35860.0500000169,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2409,
+			"text": "Arriving at Alappuzha; departure decision after the scheduled stop",
+			"time": 35873.550000017,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2427,
+			"text": "Authority to TMPY_ALLP_M2-SH",
+			"time": 35904.0500000171,
+			"train": "B024"
+		},
+		{
+			"kind": "approach_route",
+			"seq": 2442,
+			"text": "Prepared TMPY_ALLP_M2-SH ahead of TMPY_ALLP_M0-SA",
+			"time": 35947.0500000172,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2443,
+			"text": "Authority to ALLP-S1",
+			"time": 35947.0500000172,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2447,
+			"text": "Authority to ALLP-S1",
+			"time": 35951.0500000172,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2459,
+			"text": "Booked departure / dwell until 10:02:05",
+			"time": 35975.5500000173,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2463,
+			"text": "Authority to ALLP-S1",
+			"time": 35985.0500000174,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2482,
+			"text": "Arriving at Alappuzha; departure decision after the scheduled stop",
+			"time": 36020.0500000175,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2596,
+			"text": "Booked departure / dwell until 10:06:48",
+			"time": 36123.0500000179,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2597,
+			"text": "Expect a wait at ALLP until Capital Intercity 01 · ERS–TVC (B024) overtakes",
+			"time": 36125.5500000179,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2731,
+			"text": "Route set to ALLP_PUPR_M0-SA",
+			"time": 36408.0500000189,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2732,
+			"text": "Authority to ALLP_PUPR_M0-SA",
+			"time": 36408.5500000189,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2761,
+			"text": "Authority to PUPR_AMPA_M3-SH",
+			"time": 36435.550000019,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2844,
+			"text": "Block ALLP_DEPOT_RM_ACCESS occupied by B024 · Capital Intercity 01 · ERS–TVC (B024)",
+			"time": 36491.5500000192,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2860,
+			"text": "Block ALLP_PUPR_M0 occupied by B024 · Capital Intercity 01 · ERS–TVC (B024)",
+			"time": 36518.0500000193,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2866,
+			"text": "Authority to PUPR_AMPA_M3-SH",
+			"time": 36537.0500000194,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2876,
+			"text": "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Capital Intercity 01 · ERS–TVC (B024)",
+			"time": 36561.0500000195,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2882,
+			"text": "Authority to PUPR_AMPA_M3-SH",
+			"time": 36577.0500000195,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2891,
+			"text": "Authority to PUPR_AMPA_M3-SH",
+			"time": 36615.5500000197,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2901,
+			"text": "Authority to PUPR_AMPA_M3-SH",
+			"time": 36654.0500000198,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2919,
+			"text": "Authority to PUPR_AMPA_M3-SH",
+			"time": 36692.5500000199,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2929,
+			"text": "Authority to PUPR_AMPA_M3-SH",
+			"time": 36730.5500000201,
+			"train": "B024"
+		},
+		{
+			"kind": "approach_route",
+			"seq": 2940,
+			"text": "Prepared PUPR_AMPA_M3-SH ahead of PUPR_AMPA_M0-SA",
+			"time": 36748.0500000202,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2941,
+			"text": "Authority to AMPA-S1",
+			"time": 36748.0500000202,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2942,
+			"text": "Expect a wait before Ambalappuzha: no free platform suitable for this service",
+			"time": 36748.0500000202,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 2974,
+			"text": "Authority to AMPA-S1",
+			"time": 36810.5500000204,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 2990,
+			"text": "Authority to AMPA-S1",
+			"time": 36849.5500000205,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 3008,
+			"text": "Authority to AMPA-S1",
+			"time": 36889.0500000207,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 3025,
+			"text": "Arriving at Ambalappuzha; departure decision after the scheduled stop",
+			"time": 36931.5500000208,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 3033,
+			"text": "Expect a wait before Ambalappuzha: no free platform suitable for this service · Capital Intercity 01 · ERS–TVC (B024)",
+			"time": 36947.5500000209,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 3055,
+			"text": "Booked departure / dwell until 10:21:42",
+			"time": 37022.5500000206,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 3353,
+			"text": "Route set to AMPA_TZH_D0-A",
+			"time": 37302.0500000165,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 3354,
+			"text": "Authority to AMPA_TZH_D0-A",
+			"time": 37302.5500000165,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 3362,
+			"text": "Authority to KVTA_HAD_D4-H",
+			"time": 37329.5500000161,
+			"train": "B024"
+		},
+		{
+			"kind": "decision",
+			"seq": 3461,
+			"text": "Route set to ALLP_PUPR_M0-SA",
+			"time": 37385.5500000153,
+			"train": "K1"
+		},
+		{
+			"kind": "decision",
+			"seq": 3464,
+			"text": "Authority to ALLP_PUPR_M0-SA",
+			"time": 37386.0500000153,
+			"train": "K1"
+		}
+	],
+	"k1_departure": 37390.3000000152,
+	"ok": true,
+	"premature_replans": [],
+	"safety_events": []
+}

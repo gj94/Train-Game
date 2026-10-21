@@ -6,8 +6,10 @@ const Policy:=preload("res://sim/priority_dispatch.gd")
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
 	var folder:="res://.local/intensive-v10"
+	var output:="res://.local/intensive-manual-delay.json"
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--baseline="):folder=arg.trim_prefix("--baseline=")
+		elif arg.begins_with("--output="):output=arg.trim_prefix("--output=")
 	var catalogue: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(folder+"/starts/catalogue.json"))
 	var sources:=preload("res://persistence/prepared_sources.gd").collect()
 	var pack:="art/timetables/kerala-coast-intensive.json"
@@ -24,20 +26,39 @@ func run() -> void:
 	w.dispatcher().manual_service="K1"
 	var began:=Time.get_ticks_msec();var start_distance:=driver.odometer
 	var waits:={};var peaks:={};var maximum:=0.0;var manual_samples:=0;var route_samples:=0;var ticks:=0
+	var probe_started:=false;var probe_complete:=false;var probe_samples:=0;var arriving_samples:=0
 	while w.clock_seconds()<61200 and w.events.is_empty() and maximum<2700:
 		var held: bool=w.clock_seconds()>=46800 and w.clock_seconds()<47400
-		driver.automatic=not held
+		# Faster access can put the forced pause just SHORT of the stopping
+		# marker. No starter route is appropriate until the train finishes its
+		# arrival. Let AI reach the berth, then explicitly keep manual ownership
+		# while the dispatcher prepares a valid departure after dwell/traffic.
+		if w.clock_seconds()>=47400 and driver.timetable.at_stop:probe_started=true
+		var probing: bool=probe_started and not probe_complete
+		driver.automatic=not held and not probing
 		if held:driver.controller=-1;manual_samples+=1
+		if probing:driver.controller=-1;probe_samples+=1
 		w.step(2);ticks+=1
 		if held and w.signals.values().any(func(s):return s.owner=="K1" and not s.route.is_empty()):route_samples+=1
+		if held and w.dispatcher().states.get("K1",{}).get("status")=="arriving":arriving_samples+=1
+		if probing:
+			var next:=w.next_signal(driver)
+			if not next.is_empty():
+				var starter: Dictionary=w.signals[next.id]
+				# set_route() reserves a route with owner=""; the train claims
+				# ownership when it actually passes the signal. At a stand, use
+				# the same eligibility as departure_committed plus the live aspect.
+				probe_complete=starter.cleared and starter.owner in ["",driver.id] and not starter.route.is_empty() and w.aspect(next.id)!=RailWorld.Aspect.RED and driver.timetable.at_stop and not driver.automatic
+				if probe_complete:print("MANUAL_STARTER ",w.clock_text()," ",next.id," route ready before movement")
 		for t: Train in w.active_trains():
 			var waiting: bool=not t.service_complete and t.speed<.1 and (not t.timetable.at_stop or w.clock_seconds()>t.timetable.release_time()+2) and not (held and t.id=="K1")
 			waits[t.id]=waits.get(t.id,0.0)+2 if waiting else 0.0
 			peaks[t.id]=maxf(peaks.get(t.id,0),waits[t.id]);maximum=maxf(maximum,waits[t.id])
 		if ticks%300==0:print("%s K1=%s max_wait=%.1fm" % [w.clock_text(),driver.path[0].edge,maximum/60])
-	var ok: bool=w.events.is_empty() and maximum<2700 and manual_samples==300 and route_samples>0 and driver.odometer-start_distance>10000 and w.clock_seconds()>=61200
-	var report:={ok=ok,method="Player-assigned K1 from fresh 12:55 baseline; manually braked 13:00–13:10 while dispatcher retains player route preparation; resume AI through 17:00. Focused diagnostic, not a baseline or full-day wait-distribution audit.",
+	var ok: bool=w.events.is_empty() and maximum<2700 and manual_samples==300 and probe_complete and driver.odometer-start_distance>10000 and w.clock_seconds()>=61200
+	var report:={ok=ok,method="Player-assigned K1 from fresh 12:55 baseline; manually braked 13:00–13:10. AI completes any short arrival, then manual brakes remain applied until the dispatcher grants a protected departure route after dwell/traffic. Resume AI through 17:00. Focused diagnostic, not a baseline or full-day wait-distribution audit.",
 		clock=w.clock_seconds(),source_sha256=FileAccess.get_sha256(path),sources=sources,events=w.events,manual_seconds=manual_samples*2,manual_route_seconds=route_samples*2,
+		manual_arriving_seconds=arriving_samples*2,manual_departure_route_verified=probe_complete,manual_departure_probe_seconds=probe_samples*2,
 		maximum_wait=maximum,wait_peaks=peaks,k1_road=driver.path[0].edge,k1_distance_advanced=driver.odometer-start_distance,wall_seconds=(Time.get_ticks_msec()-began)*.001}
-	FileAccess.open("res://.local/intensive-manual-delay.json",FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
-	print(JSON.stringify(report));quit(0 if ok else 1)
+	FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
+	print(JSON.stringify({ok=ok,manual_departure_route_verified=probe_complete,manual_departure_probe_seconds=probe_samples*2,k1_distance_advanced=report.k1_distance_advanced,events=w.events,maximum_wait=maximum}));quit(0 if ok else 1)

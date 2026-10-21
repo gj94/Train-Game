@@ -11,14 +11,19 @@ it does not retain a crawl-speed ceiling from that stand. Short station-to-stati
 The policy applies to the AI driver, including when you hand over your service.
 Manual driving remains yours.
 
-An AI-driven departure from a booked platform produces two automatic horn calls. The first
-starts when the train moves away; the second follows 3.5 **simulation seconds** later.
-Each call lasts about 1.15 simulation seconds. Manual driving suppresses automatic
-calls. Taking over stops an automatic call already playing and cancels the second
-call in that pair, even if you hand back to AI before it is due. Your manual horn
-remains available. Saving preserves simulation cue timing, and loading a distant
-train does not replay old horn events. Fast-forwarding
-compresses the interval along with the railway clock.
+An AI-driven departure from a booked platform produces two horn calls **while
+stationary**, including the player's own service after handing driving to AI.
+Booked departure, passenger doors and the starter must permit departure first.
+The calls begin 3.5 **simulation seconds** apart and last about 1.15 seconds each;
+the holding brake stays applied until the second finishes (about 4.65 seconds).
+An already-cleared departure cannot receive a new advisory overtake hold that
+would trap another train behind its reserved route. Signal protection still applies.
+
+Manual driving suppresses automatic calls. Taking over cancels the pending pair,
+even while paused; a later stationary AI handover starts a fresh complete pair.
+Losing the departure route also cancels the ceremony. Your manual horn remains
+available. Saving preserves cue/brake-release timing, and loading a distant train
+does not replay old events. Fast-forwarding compresses the interval with the clock.
 
 The braking design is informed by RDSO's trainset specification: service braking is
 controllable and normal changes in acceleration are limited, while emergency braking

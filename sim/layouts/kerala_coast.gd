@@ -120,7 +120,7 @@ func _build() -> RailWorld:
 		var st: Dictionary = w.stations[i]
 		for lane in ["D","U"]:
 			var station_node: String = st.code+"_"+("L" if i==0 else "R")+lane
-			station_node=_depot_exit(w,st,station_node,-1 if i==0 else 1,lane)
+			station_node=_depot_exit(w,st,station_node,-1 if i==0 else 1,lane,30)
 			var buffer: String = st.code+"_BUFFER_"+lane
 			_node(w,buffer,w.graph.nodes[station_node].chainage+(-300 if i==0 else 300),st.operating_roads[0 if lane=="D" else 1].offset)
 			_edge(w,st.code+"_END_"+lane,buffer if i==0 else station_node,station_node if i==0 else buffer,30)
@@ -219,8 +219,8 @@ func _section(w: RailWorld, section: Dictionary, index: int) -> void:
 	if section.tracks==1:
 		var start: String=a.code+"_RM"
 		var end: String=b.code+"_LM"
-		start=_depot_exit(w,a,start,1,"M")
-		end=_depot_exit(w,b,end,-1,"M")
+		start=_depot_exit(w,a,start,1,"M",90)
+		end=_depot_exit(w,b,end,-1,"M",90)
 		var sa: float=w.graph.nodes[start].chainage
 		var sb: float=w.graph.nodes[end].chainage
 		var blocks:=maxi(1,ceili((sb-sa)/1000))
@@ -241,8 +241,8 @@ func _section(w: RailWorld, section: Dictionary, index: int) -> void:
 	for lane in ["D","U"]:
 		var start: String = a.code+"_R"+lane
 		var end: String = b.code+"_L"+lane
-		start=_depot_exit(w,a,start,1,lane)
-		end=_depot_exit(w,b,end,-1,lane)
+		start=_depot_exit(w,a,start,1,lane,100)
+		end=_depot_exit(w,b,end,-1,lane,100)
 		var sa: float = w.graph.nodes[start].chainage
 		var sb: float = w.graph.nodes[end].chainage
 		var blocks := maxi(1,ceili((sb-sa)/1000))
@@ -281,7 +281,7 @@ func _single_line_groups(w: RailWorld) -> void:
 			if w.graph.edges.has(lead):w.single_line_sections[lead]=group
 		if st.through_halt:w.single_line_sections[st.platform_tracks[0]]=group
 
-func _depot_exit(w: RailWorld, st: Dictionary, start: String, dir: int, lane: String) -> String:
+func _depot_exit(w: RailWorld, st: Dictionary, start: String, dir: int, lane: String, through_speed: float) -> String:
 	if st.code not in DEPOT_STATIONS:return start
 	# Explicitly reconstructed depot approaches, separate from CSV passenger
 	# roads. Each reception has four finite, full-rake stabling roads.
@@ -294,7 +294,10 @@ func _depot_exit(w: RailWorld, st: Dictionary, start: String, dir: int, lane: St
 		side=signf(offset-other)
 	var junction: String=key+"_J"
 	_node(w,junction,s+dir*220,offset)
-	_depot_edge(w,key+"_ACCESS",start,junction,dir,40)
+	# This is the shared RUNNING line. Only the diverging lead/yard is slow.
+	# Speed look-ahead follows the selected points, so it anticipates 25 km/h
+	# only when taking the depot branch; the full rake clears it on return.
+	_depot_edge(w,key+"_ACCESS",start,junction,dir,through_speed)
 	var gate: String=key+"_G0"
 	_node(w,gate,s+dir*600,offset+side*80)
 	_depot_edge(w,key+"_LEAD",junction,gate,dir,25)

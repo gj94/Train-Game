@@ -50,15 +50,20 @@ func test_short_leg_can_accelerate_before_its_braking_phase():
 
 func test_two_departure_cues_use_simulation_time_and_do_not_repeat():
 	var t:=Train.new("A",200)
+	t.automatic=true
 	Cues.update(t,100,true)
 	if t.horn_sequence!=1:return false
-	for now in [100.0,101.0,103.49]:Cues.update(t,now,false)
+	for now in [100.0,101.0,103.49]:
+		if Cues.update(t,now,true):return "Brakes released before the second call"
 	if t.horn_sequence!=1:return false
-	Cues.update(t,103.5,false)
+	if Cues.update(t,103.5,true):return "Brakes released during second call"
 	if t.horn_sequence!=2 or t.horn_pending_at!=-1:return false
-	Cues.update(t,200,false)
+	if Cues.update(t,104.64,true):return "Second call was cut short"
+	if not Cues.update(t,104.65,true):return "Brakes did not release"
+	Cues.update(t,200,true)
 	if t.horn_sequence!=2:return false
-	Cues.update(t,300,true);Cues.update(t,600,false)
+	Cues.cancel(t)
+	Cues.update(t,300,true);Cues.update(t,600,true)
 	return t.horn_sequence==4 and t.horn_emitted_at==303.5
 
 func test_held_approach_can_restart_after_clearance():

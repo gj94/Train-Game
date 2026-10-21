@@ -28,8 +28,19 @@ static func station(w: RailWorld,edge: String) -> Dictionary:
 static func eta(w: RailWorld,t: Train,s: float) -> float:
 	return preload("res://sim/dispatch_prediction.gd").arrival_seconds(w,t,s)
 
+static func departure_committed(w: RailWorld,t: Train) -> bool:
+	# A valid starter route has already won the departure decision. Creating
+	# an advisory overtake hold now can trap its intended overtaker behind that
+	# same locked route, especially while the departing train sounds its horns.
+	if t.timetable==null or not t.timetable.at_stop:return false
+	var next:=w.next_signal(t)
+	if next.is_empty():return false
+	var sig: Dictionary=w.signals[next.id]
+	return sig.edge==t.path[0].edge and sig.cleared and not sig.route.is_empty() and sig.owner in ["",t.id]
+
 static func conflict(w: RailWorld,t: Train,st: Dictionary) -> Dictionary:
 	if st.is_empty() or st.through_halt:return {}
+	if departure_committed(w,t):return {}
 	if w.dispatcher().future_clearances.controls_order(t.id):return {}
 	var direction: int=t.path[0].dir
 	var own_eta:=eta(w,t,st.s)
@@ -90,6 +101,9 @@ static func update(w: RailWorld) -> void:
 		var hold: Dictionary=w.dispatch_holds[id]
 		var t: Train=w.trains[id]
 		var other: Train=w.trains[hold.other]
+		if hold.kind=="overtake" and departure_committed(w,t):
+			w.dispatch_holds.erase(id)
+			continue
 		if hold.kind=="overtake":
 			# An arrival commits the departure order, including the short interval
 			# after its head leaves the station but before its whole train clears.

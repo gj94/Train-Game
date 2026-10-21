@@ -1,6 +1,20 @@
-TRAIN GAME - KERALA COAST R41
+TRAIN GAME - KERALA COAST R42
 
-R41: Skip to the next event with a live dispatcher following your train.
+R42: Correct main-line speeds beside depot junctions and stationary departure horns.
+Shared depot-access track follows the adjoining running-line speed; the 25 km/h
+restriction applies to the diverging depot lead, with 15 km/h inside the yard.
+A whole train must clear the restricted track before accelerating.
+AI passenger trains sound both departure calls before moving, including your
+service after handing driving to AI. Booked departure, doors and route clearance
+must permit departure first. Manual takeover cancels the automatic sequence.
+Previously cleared starters retain their departure order, preventing a later
+advisory overtake hold from trapping trains behind the same reserved route.
+Arriving trains are distinguished from trains waiting to depart, so temporary
+approach occupancy does not cancel a promised overtake (K1/B024 at Alappuzha).
+R41 saves and imported service plans remain compatible with this speed correction.
+R42 supports full downloads and incremental updates through Update & Play v4.
+
+Includes R41: Skip to the next event with a live dispatcher following your train.
 Pause > Skip to next event / time / stop. Time-skip event settings select stop
 approaches, crossings, overtaking, being overtaken and signal clearance separately.
 Stops return at 1 km or earlier for braking; encounters return about a minute
@@ -8,7 +22,6 @@ before the first coaches pass. A holding red changing to yellow or green counts.
 Safety and service completion always interrupt event searches. Return paused
 with AI still driving, then take control when ready. B / Esc cancels safely.
 Clock and future-stop targets remain available. See guides/event-skip.md.
-R41 supports full downloads and incremental updates through Update & Play v4.
 
 Includes the optional Epic graphics preset, integrated with R39 scenery fixes.
 Open pause menu > Graphics > Use Epic preset. High remains the default.
@@ -18,14 +31,15 @@ All effects can be adjusted individually. Dense nighttime stations cost more GPU
 time; disable Nearby station lamp shadows first if needed. Screen-space
 reflections remain off by default. See guides/extreme-visuals.md.
 Connected overhead equipment, road bridges and station clearances are retained.
-Timetables, prepared starts, railway physics and sound banks are unchanged.
+Authored service times and sound banks are retained; prepared railway states
+and traffic previews are regenerated for R42 departure and line-speed changes.
 The included v4 updater supports signed, verified incremental LAN updates.
 
 Includes the detailed sound mixer, alternate operating day and safer route allocation.
 Use Operating day on the home page to choose Standard (100 services) or
 Intensive (140 services). Each has its own departures, five-minute railway
 states and simulated crossings/overtakes preview. K1 is the slowest scheduled
-service in Intensive, with thirteen distinct overtaking trains in its
+service in Intensive, with 14 distinct overtaking trains in its
 validated AI baseline. Manual driving changes the actual encounters.
 Sound settings separately control rail hiss, joint clacks, squeal, own wind,
 passing air, floor thumps, metallic rattles, motors, fans, horns, compressor,
@@ -43,7 +57,7 @@ Includes forward planning for station crossings and earlier home clearance.
 The dispatcher can reserve a future platform after an overdue AI train leaves,
 while protecting the opposing arrival and the departing train's escape.
 Manual driving disables automatic departure horns; your horn button still works.
-AI-driven services keep their two departure calls.
+AI-driven passenger services finish both departure calls before moving.
 Includes R35's simulated crossings and overtakes on the home page,
 smoother moving-clock sunlight/shadows, consolidated lineside speed boards,
 and driving RB/LB for power reduction/brake release, both stopping at coast.
@@ -51,13 +65,13 @@ Includes the controller layout pages, distance-only signal HUD, station
 approaches, positional audio and all earlier improvements.
 
 DOWNLOAD OR UPDATE
-R41 supports full downloads and incremental updates. For an older installation,
+R42 supports full downloads and incremental updates. For an older installation,
 download the small updater ZIP from the host page and replace Update and Play.exe
 once while the updater is closed. The title identifies the v4 launcher.
 Then close the game and open Update and Play.exe to update the existing folder.
 It batches verified compressed blocks, uses four bounded transfer workers and
 reuses unchanged data. It can choose the full ZIP if that should finish sooner.
-The full R40 ZIP already includes v4. For a fresh installation, extract the complete ZIP,
+The full R42 ZIP includes v4. For a fresh installation, extract the complete ZIP,
 including packs/, and start TrainGame.exe or the included updater's Play.
 Keep the whole installation together.
 Saves and preferences live separately

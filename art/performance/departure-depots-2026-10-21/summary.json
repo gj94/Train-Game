@@ -1,0 +1,676 @@
+{
+  "source_simulation": "R42 depot access / stationary departure horns / committed starters / arrival-wait classification",
+  "runs": {
+    "standard": {
+      "services": 100,
+      "total": 100,
+      "clock": 98400.0000000001,
+      "calls": 1530,
+      "safety_events": 0,
+      "maximum_wait_minutes": 28.266666666666666,
+      "maximum_station_wait_minutes": 28.233333333333334,
+      "total_wait_train_minutes": 1175.3000000000004,
+      "maximum_destination_delay_minutes": 32.89083332924183,
+      "forced_delay_seconds": 0,
+      "delayed_service": "K1",
+      "delay_at": 0,
+      "wall_seconds": 4669.022,
+      "wait_quality": {
+        "bins": [
+          137,
+          31,
+          7,
+          0,
+          0
+        ],
+        "brief_count": 2708,
+        "count": 175,
+        "cumulative": [
+          {
+            "count": 137,
+            "fraction": 0.782857142857143,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 168,
+            "fraction": 0.96,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 175,
+            "fraction": 1,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 175,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 1694,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "station_wait_quality": {
+        "bins": [
+          87,
+          24,
+          5,
+          0,
+          0
+        ],
+        "brief_count": 1414,
+        "count": 116,
+        "cumulative": [
+          {
+            "count": 87,
+            "fraction": 0.75,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 111,
+            "fraction": 0.956896551724138,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 116,
+            "fraction": 1,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 116,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 1694,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "crossings": 470,
+      "overtakes": 45,
+      "k1": {
+        "distinct_overtakers": [
+          "B001",
+          "B024",
+          "B002"
+        ],
+        "passes": [
+          {
+            "time": 33410.10514524166,
+            "chainage_m": 44921.1156526541,
+            "a": "B001",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B001",
+            "cleared": 33428.0000000081
+          },
+          {
+            "time": 39859.99873230404,
+            "chainage_m": 114639.561778442,
+            "a": "B024",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B024",
+            "cleared": 40113.9999999756
+          },
+          {
+            "time": 50404.14575861568,
+            "chainage_m": 223384.397202415,
+            "a": "B002",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B002",
+            "cleared": 50471.9999998249
+          }
+        ],
+        "arrival_delay_minutes": 5.769999995834717,
+        "maximum_station_wait_minutes": 28.233333333333334,
+        "meaningful_waits": 4,
+        "under_ten": 2,
+        "over_ten_calls": 2
+      },
+      "reverse_b042_passes": [
+        {
+          "time": 38018.444129446354,
+          "chainage_m": 34018.3383081487,
+          "a": "B002",
+          "b": "B042",
+          "kind": "overtake",
+          "overtaker": "B042",
+          "cleared": 38092.000000005
+        }
+      ]
+    },
+    "intensive": {
+      "services": 140,
+      "total": 140,
+      "clock": 98400.0000000001,
+      "calls": 1726,
+      "safety_events": 0,
+      "maximum_wait_minutes": 32.93333333333333,
+      "maximum_station_wait_minutes": 32.9,
+      "total_wait_train_minutes": 1599.1333333333332,
+      "maximum_destination_delay_minutes": 54.82250001301583,
+      "forced_delay_seconds": 0,
+      "delayed_service": "K1",
+      "delay_at": 0,
+      "wall_seconds": 5637.539,
+      "wait_quality": {
+        "bins": [
+          197,
+          42,
+          6,
+          2,
+          0
+        ],
+        "brief_count": 3001,
+        "count": 247,
+        "cumulative": [
+          {
+            "count": 197,
+            "fraction": 0.797570850202429,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 239,
+            "fraction": 0.967611336032389,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 245,
+            "fraction": 0.991902834008097,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 247,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 1974,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "station_wait_quality": {
+        "bins": [
+          117,
+          38,
+          5,
+          2,
+          0
+        ],
+        "brief_count": 1564,
+        "count": 162,
+        "cumulative": [
+          {
+            "count": 117,
+            "fraction": 0.722222222222222,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 155,
+            "fraction": 0.95679012345679,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 160,
+            "fraction": 0.987654320987654,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 162,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 1974,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "crossings": 759,
+      "overtakes": 96,
+      "k1": {
+        "distinct_overtakers": [
+          "B001",
+          "B024",
+          "B002",
+          "D115",
+          "D101",
+          "D116",
+          "D102",
+          "D103",
+          "D104",
+          "D105",
+          "B055",
+          "B025",
+          "B003",
+          "B056"
+        ],
+        "passes": [
+          {
+            "time": 31981.887936327937,
+            "chainage_m": 24023.2316187225,
+            "a": "B001",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B001",
+            "cleared": 32124.0000000033
+          },
+          {
+            "time": 36137.98194867924,
+            "chainage_m": 57663.0869320378,
+            "a": "B024",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B024",
+            "cleared": 36476.0000000192
+          },
+          {
+            "time": 42267.95307109386,
+            "chainage_m": 114639.561771346,
+            "a": "B002",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B002",
+            "cleared": 42437.9999999418
+          },
+          {
+            "time": 42597.97266101614,
+            "chainage_m": 114639.561771346,
+            "a": "D115",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D115",
+            "cleared": 42769.999999937
+          },
+          {
+            "time": 42979.402479067314,
+            "chainage_m": 114639.561771346,
+            "a": "D101",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D101",
+            "cleared": 43149.9999999314
+          },
+          {
+            "time": 43359.93271503037,
+            "chainage_m": 114639.561771346,
+            "a": "D116",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D116",
+            "cleared": 43529.9999999259
+          },
+          {
+            "time": 43739.96861424019,
+            "chainage_m": 114639.561771346,
+            "a": "D102",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D102",
+            "cleared": 43909.9999999204
+          },
+          {
+            "time": 44719.49016693406,
+            "chainage_m": 122291.632029377,
+            "a": "D103",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D103",
+            "cleared": 44741.9999999083
+          },
+          {
+            "time": 45968.52066787458,
+            "chainage_m": 132598.695151102,
+            "a": "D104",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D104",
+            "cleared": 45989.9999998901
+          },
+          {
+            "time": 48169.988442135626,
+            "chainage_m": 154133.203259298,
+            "a": "D105",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D105",
+            "cleared": 48331.999999856
+          },
+          {
+            "time": 48575.13468714223,
+            "chainage_m": 154133.203259298,
+            "a": "B055",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B055",
+            "cleared": 48633.9999998516
+          },
+          {
+            "time": 51127.09954767515,
+            "chainage_m": 174474.025530731,
+            "a": "B025",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B025",
+            "cleared": 51179.9999998146
+          },
+          {
+            "time": 54066.3423177751,
+            "chainage_m": 199076.395354471,
+            "a": "B003",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B003",
+            "cleared": 54133.9999997716
+          },
+          {
+            "time": 54347.951530539736,
+            "chainage_m": 199076.395354471,
+            "a": "B056",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B056",
+            "cleared": 54549.9999997655
+          }
+        ],
+        "arrival_delay_minutes": 46.86083332864467,
+        "maximum_station_wait_minutes": 32.9,
+        "meaningful_waits": 11,
+        "under_ten": 6,
+        "over_ten_calls": 5
+      },
+      "reverse_b042_passes": []
+    },
+    "delayed": {
+      "services": 140,
+      "total": 140,
+      "clock": 98400.0000000001,
+      "calls": 1726,
+      "safety_events": 0,
+      "maximum_wait_minutes": 32.93333333333333,
+      "maximum_station_wait_minutes": 32.9,
+      "total_wait_train_minutes": 1602.0666666666664,
+      "maximum_destination_delay_minutes": 52.444166662303005,
+      "forced_delay_seconds": 600,
+      "delayed_service": "K1",
+      "delay_at": 18000,
+      "wall_seconds": 3778.462,
+      "wait_quality": {
+        "bins": [
+          200,
+          41,
+          7,
+          2,
+          0
+        ],
+        "brief_count": 3011,
+        "count": 250,
+        "cumulative": [
+          {
+            "count": 200,
+            "fraction": 0.8,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 241,
+            "fraction": 0.964,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 248,
+            "fraction": 0.992,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 250,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 1974,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "station_wait_quality": {
+        "bins": [
+          116,
+          35,
+          6,
+          2,
+          0
+        ],
+        "brief_count": 1567,
+        "count": 159,
+        "cumulative": [
+          {
+            "count": 116,
+            "fraction": 0.729559748427673,
+            "met": true,
+            "required": 0.7,
+            "under_seconds": 600
+          },
+          {
+            "count": 151,
+            "fraction": 0.949685534591195,
+            "met": true,
+            "required": 0.9,
+            "under_seconds": 1200
+          },
+          {
+            "count": 157,
+            "fraction": 0.987421383647799,
+            "met": true,
+            "required": 0.98,
+            "under_seconds": 1800
+          },
+          {
+            "count": 159,
+            "fraction": 1,
+            "met": true,
+            "required": 1,
+            "under_seconds": 2700
+          }
+        ],
+        "maximum": 1974,
+        "minimum_seconds": 30,
+        "ok": true
+      },
+      "crossings": 762,
+      "overtakes": 95,
+      "k1": {
+        "distinct_overtakers": [
+          "B001",
+          "B024",
+          "B002",
+          "D115",
+          "D101",
+          "D116",
+          "D102",
+          "D103",
+          "D104",
+          "D105",
+          "B055",
+          "B025",
+          "B003",
+          "B056"
+        ],
+        "passes": [
+          {
+            "time": 31981.887936327937,
+            "chainage_m": 24023.2316187225,
+            "a": "B001",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B001",
+            "cleared": 32124.0000000033
+          },
+          {
+            "time": 36137.98194867924,
+            "chainage_m": 57663.0869320378,
+            "a": "B024",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B024",
+            "cleared": 36476.0000000192
+          },
+          {
+            "time": 42267.95307109386,
+            "chainage_m": 114639.561771346,
+            "a": "B002",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B002",
+            "cleared": 42437.9999999418
+          },
+          {
+            "time": 42597.97266101614,
+            "chainage_m": 114639.561771346,
+            "a": "D115",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D115",
+            "cleared": 42769.999999937
+          },
+          {
+            "time": 42979.402479067314,
+            "chainage_m": 114639.561771346,
+            "a": "D101",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D101",
+            "cleared": 43149.9999999314
+          },
+          {
+            "time": 43359.93271503037,
+            "chainage_m": 114639.561771346,
+            "a": "D116",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D116",
+            "cleared": 43529.9999999259
+          },
+          {
+            "time": 43739.96861424019,
+            "chainage_m": 114639.561771346,
+            "a": "D102",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D102",
+            "cleared": 43909.9999999204
+          },
+          {
+            "time": 44719.49016693406,
+            "chainage_m": 122291.632029377,
+            "a": "D103",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D103",
+            "cleared": 44741.9999999083
+          },
+          {
+            "time": 45968.52066787458,
+            "chainage_m": 132598.695151102,
+            "a": "D104",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D104",
+            "cleared": 45989.9999998901
+          },
+          {
+            "time": 48607.97277917233,
+            "chainage_m": 154133.203259315,
+            "a": "D105",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "D105",
+            "cleared": 48769.9999998497
+          },
+          {
+            "time": 48997.13476017643,
+            "chainage_m": 154133.203259315,
+            "a": "B055",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B055",
+            "cleared": 49055.9999998455
+          },
+          {
+            "time": 51302.190047821015,
+            "chainage_m": 174474.025162972,
+            "a": "B025",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B025",
+            "cleared": 51321.9999998125
+          },
+          {
+            "time": 54526.01890182092,
+            "chainage_m": 199076.395355441,
+            "a": "B003",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B003",
+            "cleared": 54593.9999997649
+          },
+          {
+            "time": 54791.91706146528,
+            "chainage_m": 199076.395355441,
+            "a": "B056",
+            "b": "K1",
+            "kind": "overtake",
+            "overtaker": "B056",
+            "cleared": 54993.9999997591
+          }
+        ],
+        "arrival_delay_minutes": 52.444166662303005,
+        "maximum_station_wait_minutes": 32.9,
+        "meaningful_waits": 10,
+        "under_ten": 5,
+        "over_ten_calls": 5
+      },
+      "reverse_b042_passes": []
+    }
+  }
+}
