@@ -140,3 +140,21 @@ Playtest at 20:00: choose Kazhakuttam, turn on Near station and inspect B007/B06
 Page through the station dropdown with RB and cancel with B; the clock and
 station selection must stay unchanged. Select a new station with A. Check LS
 roster navigation and map focus, then use Passenger seat to join a service.
+
+
+## Knowing what Continue will resume
+
+Highlight Continue on Home to preview the service, railway time, passenger/cab
+viewpoint, AI/manual mode and scheduled-stop progress. A previous backup is
+labelled explicitly. Continue uses the same most-recent readable entry as this
+card; unreadable newer saves are skipped. Loading starts paused.
+
+Canceling a load returns to its initiating menu and controller focus. Failed
+Continue stays on Home with the reason visible; failed loads from Saved journeys
+stay in that browser. Neither changes save files. Moving to another Home action
+clears transient load feedback.
+
+Playtest: save from a passenger seat, return Home and highlight Continue. Confirm
+the displayed coach, time and progress before resuming. Cancel a load with B and
+check that Home/Continue is still focused. Try the same from Saved journeys and
+check that the saved list stays open.

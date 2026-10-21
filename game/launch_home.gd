@@ -5,6 +5,10 @@ const Style:=preload("res://game/menu_theme.gd")
 var buttons: Dictionary={}
 var subtitle: Label
 var info: Label
+var info_heading: Label
+var info_title: Label
+var _resume_entry: Dictionary={}
+var _hints: Dictionary={}
 var footer: Label
 var options: PanelContainer
 var option_list: VBoxContainer
@@ -44,15 +48,16 @@ func _ready() -> void:
 		b.add_theme_stylebox_override("normal",Style.box(Color(.035,.07,.10,.82),12,Color(.23,.35,.40,.35)))
 		menu.add_child(b);buttons[entry[0]]=b
 		b.pressed.connect(func():_activate(entry[0]))
-		b.focus_entered.connect(func():_last_action=entry[0];info.text=entry[2])
-		b.mouse_entered.connect(func():info.text=entry[2])
+		_hints[entry[0]]=entry[2]
+		b.focus_entered.connect(func():_last_action=entry[0];_show_hint(entry[0]))
+		b.mouse_entered.connect(func():_show_hint(entry[0]))
 	var right:=VBoxContainer.new();right.size_flags_horizontal=SIZE_EXPAND_FILL;main.add_child(right)
 	var fill:=Control.new();fill.size_flags_vertical=SIZE_EXPAND_FILL;right.add_child(fill)
 	var card:=PanelContainer.new();card.add_theme_stylebox_override("panel",Style.box(Color(.025,.06,.09,.86),20));right.add_child(card)
 	var notes:=VBoxContainer.new();notes.add_theme_constant_override("separation",10);card.add_child(notes)
-	Style.label(notes,"ONE RAILWAY. YOUR WAY TO TRAVEL.",12,Style.ACCENT)
-	var text:=Style.label(notes,"Take the controls, find a window seat, or watch the traffic from a platform.",22)
-	text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	info_heading=Style.label(notes,"ONE RAILWAY. YOUR WAY TO TRAVEL.",12,Style.ACCENT)
+	info_title=Style.label(notes,"Take the controls, find a window seat, or watch the traffic from a platform.",22)
+	info_title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	info=Style.label(notes,"Departures, stops and encounters for every service.",16,Style.MUTED);info.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	Style.divider(col)
 	var bottom:=HBoxContainer.new();col.add_child(bottom)
@@ -101,11 +106,32 @@ func open() -> void:
 
 func update_saves(entries: Array, checking: bool=false) -> void:
 	var readable:=entries.filter(func(row):return row.get("readable",true))
+	_resume_entry=readable[0].duplicate(true) if not checking and not readable.is_empty() else {}
 	buttons.continue.disabled=checking or readable.is_empty()
 	buttons.continue.text="Checking saved journeys…" if checking else "Continue journey"
 	buttons.continue.tooltip_text="No readable saved journeys yet" if readable.is_empty() else readable[0].name+" · "+readable[0].clock
 	if checking or readable.is_empty():buttons.continue.focus_mode=FOCUS_NONE
 	else:buttons.continue.focus_mode=FOCUS_ALL
+	if _last_action=="continue":_show_hint("continue")
+
+func _show_hint(action: String) -> void:
+	if info==null:return
+	info_heading.text="ONE RAILWAY. YOUR WAY TO TRAVEL."
+	info_title.text="Take the controls, find a window seat, or watch the traffic from a platform."
+	info.text=_hints.get(action,"")
+	if action!="continue" or _resume_entry.is_empty():return
+	var summary: Dictionary=_resume_entry.get("summary",{})
+	info_heading.text="RESUME PREVIOUS BACKUP" if _resume_entry.get("backup",false) else "RESUME YOUR RAILWAY"
+	info_title.text=str(summary.get("title",_resume_entry.get("name","Saved journey")))
+	info.text="%s · %s" % [_resume_entry.get("service",""),_resume_entry.get("clock","")]
+	if not str(summary.get("viewpoint","")).is_empty():info.text+="\n"+str(summary.viewpoint)+" · "+str(summary.get("control",""))
+	if summary.get("total",0)>0:info.text+="\n%d / %d stops completed" % [summary.get("stops",0),summary.total]
+	info.text+="\nSaved "+str(summary.get("saved_at",_resume_entry.get("saved_at","Unknown time")))+" · resumes paused"
+
+func load_feedback(message: String,failed: bool=false) -> void:
+	info_heading.text="COULD NOT OPEN JOURNEY" if failed else "BACK AT HOME"
+	info_title.text="Your saved journeys are unchanged."
+	info.text=message
 
 func show_settings(group: String="") -> void:
 	_settings_group=group;graphics.restore();options.show()

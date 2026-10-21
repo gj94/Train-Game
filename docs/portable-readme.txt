@@ -1,6 +1,21 @@
-TRAIN GAME - KERALA COAST R44
+TRAIN GAME - KERALA COAST R45
 
-R44: New home screen, passenger seat memory and forward scenery preparation.
+R45: Easier journey discovery, passenger boarding and controller navigation.
+Favourites, stock/full-route filters and remembered departure choices. Explore
+by time offers passenger boarding and nearby services within 15 km of a station.
+Native dropdowns: A confirm, B cancel, LS/D-pad move, LB/RB page choices.
+Home includes the full sound mixer and controller preferences. Continue previews
+your saved service, time, seat and progress, including backup recovery.
+Cancelled/failed loads return to the initiating menu with visible feedback.
+Required recovery saves verify before leaving or loading another journey;
+failed writes retain your railway and offer cancel, retry or explicit discard.
+Coach directories show class and free seats; find an empty seat or recall your
+remembered seat. Dispatcher tags are clearer, with an overview at wide zoom.
+Simulation and prepared timetable data are unchanged from R44.
+See guides/journey-library.md for detailed controls and playtest steps.
+R45 supports full downloads and incremental updates through Update & Play v4.
+
+Includes R44: New home screen, passenger seat memory and forward scenery preparation.
 Choose a journey, continue, explore by time or configure graphics/controller
 options before loading the railway. The service browser remembers your choices.
 Sitting remembers a passenger seat. Hold R3 while seated to update it (including
@@ -91,13 +106,13 @@ Includes the controller layout pages, distance-only signal HUD, station
 approaches, positional audio and all earlier improvements.
 
 DOWNLOAD OR UPDATE
-R43 supports full downloads and incremental updates. For an older installation,
+R45 supports full downloads and incremental updates. For an older installation,
 download the small updater ZIP from the host page and replace Update and Play.exe
 once while the updater is closed. The title identifies the v4 launcher.
 Then close the game and open Update and Play.exe to update the existing folder.
 It batches verified compressed blocks, uses four bounded transfer workers and
 reuses unchanged data. It can choose the full ZIP if that should finish sooner.
-The full R43 ZIP includes v4. For a fresh installation, extract the complete ZIP,
+The full R45 ZIP includes v4. For a fresh installation, extract the complete ZIP,
 including packs/, and start TrainGame.exe or the included updater's Play.
 Keep the whole installation together.
 Saves and preferences live separately

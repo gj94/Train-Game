@@ -47,6 +47,8 @@ var start_button: Button
 var continue_button: Button
 var saved_button: Button
 var busy_panel: PanelContainer
+var _load_return_home:=false
+var _load_return_focus: Control
 var busy_label: Label
 var cancel_button: Button
 var content: MarginContainer
@@ -396,12 +398,24 @@ func start_selected(passenger: bool=false) -> void:
 
 func _begin(kind: String,row: Dictionary) -> void:
 	if worker!=null or starting:return
+	_load_return_home=home!=null and home.visible
+	_load_return_focus=get_viewport().gui_get_focus_owner()
 	if home!=null:home.hide()
 	cancelled=false;_set_status("");busy_panel.show();busy_label.text="Loading "+row.name+"…\nRestoring the railway; no day-long simulation needed."
 	content.hide();cancel_button.grab_focus()
 	worker=Thread.new()
 	var error:=worker.start(_read_request.bind(kind,row.duplicate(true)))
-	if error!=OK:worker=null;busy_panel.hide();content.show();_set_status("Could not start loading: "+error_string(error));roster.grab_focus()
+	if error!=OK:worker=null;_load_finished_without_entry("Could not start loading: "+error_string(error),true)
+
+func _load_finished_without_entry(message: String,failed: bool=false) -> void:
+	busy_panel.hide()
+	if _load_return_home and home!=null:
+		content.hide();home.open()
+		if is_instance_valid(_load_return_focus) and _load_return_focus.is_visible_in_tree():_load_return_focus.grab_focus()
+		home.load_feedback(message,failed)
+	else:
+		content.show();roster.grab_focus();_set_status(message)
+		if is_instance_valid(_load_return_focus) and _load_return_focus.is_visible_in_tree():_load_return_focus.grab_focus()
 
 func _read_request(kind: String,row: Dictionary) -> Dictionary:
 	if kind=="service":
@@ -425,8 +439,8 @@ func _process(delta: float) -> void:
 		if worker.is_alive():return
 		var result: Dictionary=worker.wait_to_finish();worker=null
 		if quitting:get_tree().quit();return
-		if cancelled:busy_panel.hide();content.show();roster.grab_focus();return
-		if not result.ok:busy_panel.hide();content.show();_set_status(result.reason);roster.grab_focus();return
+		if cancelled:_load_finished_without_entry("Loading cancelled.");return
+		if not result.ok:_load_finished_without_entry(result.reason,true);return
 		starting=true;busy_label.text="Loading the train and nearby scenery…"
 		if result.has("service"):
 			if not result.get("passenger_start",false):Starts.select(result.world,result.service)

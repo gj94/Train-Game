@@ -1,6 +1,6 @@
 # Xbox controller
 
-Current source controls (R43). Xbox 360, One, Series and Elite use Godot's
+Current source controls (R45). Xbox 360, One, Series and Elite use Godot's
 standard layout. Elite paddles follow the controller's own assigned buttons.
 
 Open **Pause → Reference → Controller layout** for separate **Driving**, **Walking**,
@@ -103,6 +103,19 @@ and deleting a train retain separate confirmation screens.
 The HUD indicates AI/manual ownership. A hold-progress panel explains pending
 X, View and D-pad gestures. Disconnect/focus loss pauses; release controls before
 resuming. Keyboard and mouse remain available.
+
+Home and departure browsers use the same A/B and LS/D-pad navigation. In a
+stock, timetable, sort or station dropdown, A commits, B cancels and LB/RB page
+through the available choices. Shoulder presses stay inside that dropdown.
+Explore by time: LB/RB steps five minutes when no picker is open; X finds the
+selected service, Y fits the route. D-pad right from the roster enters the map;
+left from the map returns to the roster. Near station filters services within
+15 km along the railway. A on a roster inspects before an explicit boarding action.
+
+Passenger menus include Choose coach (class/free seats), Find an empty seat and
+Return to saved seat. Choosing a carriage stands you in its aisle with AI driving.
+See [journey library](journey-library.md) for Home settings, favourites, passenger
+boarding, recovery feedback and playtest steps.
 
 ## Signal HUD
 

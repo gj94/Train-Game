@@ -9,8 +9,11 @@ func check(ok: bool,label: String) -> void:
 func frames() -> void:
 	for i in 4:await process_frame
 func tap(page,button: int) -> void:
-	var event:=InputEventJoypadButton.new();event.button_index=button;event.pressed=true
-	page._input(event);await frames()
+	for pressed in [true,false]:
+		var event:=InputEventJoypadButton.new();event.device=16;event.button_index=button;event.pressed=pressed
+		if "--event-pipeline" in OS.get_cmdline_user_args():Input.parse_input_event(event);Input.flush_buffered_events()
+		else:page._input(event)
+		await frames()
 func shot(name: String) -> void:
 	if DisplayServer.get_name()=="headless":return
 	await RenderingServer.frame_post_draw

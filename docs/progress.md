@@ -1,5 +1,28 @@
 # Progress
 
+## 2026-10-22 — Continue preview and load-return context validated
+
+- Home Continue previews its actual readable save: service, railway time,
+  viewpoint/carriage, AI/manual role and stop progress. Previous backups are
+  labelled. Empty/rechecking libraries clear stale resume metadata.
+- Cancelling or failing a load returns to its initiating Home/browser and
+  controller focus. Home displays the failure reason without altering saves;
+  navigating away clears transient feedback. Successful load behaviour unchanged.
+- Full source suite 797 pass. Native resume/error/cancel 15 checks at 720p/900p;
+  journey library 23 checks with real joypad input. Screenshots reviewed, MCP
+  errors zero. Evidence: art/performance/home-resume-2026-10-22.
+- Packaged R45 README and controller/journey guides updated. Release helpers
+  prepared under .local/r45-release; publish.ps1 guards the minimum QoL deadline,
+  clean source and validation revision. No build/export/publication started.
+- R44 remains live. Minimum finish still 05:20:21 +08. Continue final presentation
+  readiness work until then, publish R45 sequence47 with full+incremental and
+  complete archive/hash/signature/LAN/read-only-pack checks. Only then retire
+  verified R44 full files, mark window complete and disable the heartbeat.
+- Playtest: highlight Continue after a passenger save; inspect coach/time/stops.
+  Cancel loading from Home and Saved journeys; each returns to its own menu and
+  restores focus. Detailed steps in docs/journey-library.md. No simulation,
+  persistence or prepared-data edits; no full timetable/distribution reruns.
+
 ## 2026-10-22 — Nearby service discovery and native controller navigation validated
 
 - Explore by time filters active passenger services within 15 km along the
