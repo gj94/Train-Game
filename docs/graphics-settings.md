@@ -12,13 +12,13 @@ mesh detail to Balanced. **Performance** additionally uses 85% render scale, 2×
 MSAA, 2048-pixel/100 m shadows, disables SSIL, reduces view distance to 1.8 km and
 reduces vegetation, building, exterior train detail and rendered crowd budgets.
 Changing any individual value makes the preset **Custom**. Applying a preset
-resets all 18 options, including the frame limit and V-sync.
+resets all 20 options, including the frame limit and V-sync.
 
 | Group | Individual controls |
 | --- | --- |
 | Display & image | 3D resolution scale (50–100%), MSAA (Off/2×/4×/8×), FXAA, V-sync, FPS limit |
-| Light & shadow | Shadow resolution (Off/2048/4096/8192), distance (100/200/300 m), filtering, SSAO, SSIL, bloom |
-| Scenery | View distance (1.5/1.8/2.2 km), vegetation density, vegetation detail distance, building detail distance, automatic mesh detail |
+| Light & shadow | Shadow resolution (Off/2048/4096/8192), distance (100/200/300 m), filtering, SSAO, SSIL, bloom, detailed reflections |
+| Scenery | View distance (1.5/1.8/2.2 km), vegetation density, vegetation detail distance, building detail distance, automatic mesh detail, surface microdetail |
 | Trains & passengers | Other train detail distance, visible passenger budget |
 
 Below native resolution, FSR spatial upscaling scales the 3D scene; the UI keeps its
@@ -40,6 +40,26 @@ Preferences live in Godot's `user://graphics.cfg` (normally
 `%APPDATA%/Godot/app_userdata/Train Game/graphics.cfg`). They belong to this PC,
 remain separate from journey saves and survive incremental updates. If saving fails,
 the menu reports that the change applies only for this run.
+
+## Opt-in Epic preset
+
+**Epic** retains native resolution, 8× MSAA, 8192-pixel shadows, the 2.2 km
+view distance and the existing passenger/vegetation counts. It adds filtered
+surface microdetail, nearby lamp shadows and 512-pixel sky radiance; it
+keeps trees, supported buildings and other-train detail at 150% of the High
+transition distances and reduces imported mesh simplification. Native resolution,
+8× MSAA and FXAA remain, preserving thin-line antialiasing.
+
+This is a deliberately more expensive, optional quality mode, not a new default
+or a promised frame rate. Existing graphics files and High/Balanced/Performance
+settings keep their prior appearance and values. Surface microdetail, sharper sky,
+lamp shadows and advanced screen-space reflections can be selected separately.
+SSR is off in Epic: production 8× MSAA showed no reflection response in the
+software-renderer review. SSR requires Forward+ and cannot reflect off-screen
+objects; verify its benefit on your GPU before using it. Return to High to restore
+the original ranges and
+environment settings. See [Epic visual review](extreme-visuals.md) for scope,
+validation and the same-camera comparison procedure.
 
 ## Tuning on the target laptop
 
@@ -69,3 +89,8 @@ full interior/building/grass detail; use `*_culled` cases for the normal quality
 4. Set High again and visit another station. Trees, houses and shadows should restore;
    check that no gap opens where vegetation changes from meshes to distant images.
 5. Choose a custom frame cap and SSIL setting, quit and reopen: both should persist.
+
+Epic also offers nearby station lamp shadows (20–60 m shadow fade on the existing pool),
+filtered water ripples and permanent-way/boundary material finishing. Each is
+opt-in; lamp allocation/brightness, track geometry and simulation remain unchanged.
+See `extreme-visuals.md` for the integrated feature details and comparison steps.

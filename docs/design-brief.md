@@ -9,6 +9,10 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **21 Oct 2026 Epic graphics:** integrate `codex/extreme-visual-fidelity` as an
+  optional Epic preset. Preserve High as default and R39 road/OHE corrections;
+  verify native visuals and the five-loaded-train case, then publish full and
+  incremental downloads without repeating timetable rehearsals.
 - **21 Oct 2026 scenery consistency:** connect OHE registration equipment to
   its supports/wires, reduce gaps in wire shadows, and keep roads clear of
   station compounds, platforms and open waterways. Give bridges connected

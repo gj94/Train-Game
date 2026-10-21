@@ -1,5 +1,54 @@
 # Progress
 
+## 2026-10-21 — Epic integrated; R40 publication preparation
+
+- Merged `origin/codex/extreme-visual-fidelity` at `5c406aa` into the working
+  branch and exposed it as Epic. High remains default; lower presets retain
+  their prior values. Surface/water/track detail, sharper sky and bounded
+  station-lamp shadows remain separately adjustable. SSR stays off in Epic.
+- Preserved R39 road metre UVs, UV2 shoulder masks, both origin paths, connected
+  OHE, bridges, station clearances and sky wrap. Simulation, prepared railway
+  data, authored models, audio, physics and timetables are unchanged.
+- 731 headless game tests and 76 Python review-tool tests passed. The focused
+  23 graphics tests passed again with stronger merge-specific road assertions.
+  Nine zero-detail shader sources match R39. Native material captures include
+  15 baseline + 51 integrated frames; tiny native pixel differences are retained
+  in the evidence rather than presented as the older CI's pixel-exact result.
+- Native 1280×720 Radeon 780M source-game checks: 24 pilot/passenger/platform/
+  overview day/night cases plus six centred-canopy cases. All preserve five
+  full trains, 98 vehicles and 6,007 simulated passengers; pilot seated rendering
+  stays zero. Night canopy exercised 24 lamps / 23 nearby shadowed lights.
+  Epic costs more GPU time; these are not RTX 4090 Laptop FPS measurements.
+  Evidence: `art/performance/epic-2026-10-21/README.md`.
+- Preparing R40 sequence42 with full ZIP and signed incremental support after
+  notifying the user. No timetable rehearsal or extracted-distribution gameplay
+  run. Publication, packaged hash checks and old-build retirement remain pending.
+- Playtest: select Graphics > Epic, compare a daylight platform/water view, then
+  a lit station canopy at night. Return to High and revisit a streamed station.
+  Compare F10 and the included saved-settings benchmark on the target laptop.
+
+## 2026-10-21 — Reviewed optional Epic graphics integration
+
+- Fetched and inspected `origin/codex/extreme-visual-fidelity` at `5c406aa`
+  against current `50e9024`. Assessment only; no branch merge, game changes
+  or release. The incoming branch already implements an optional Extreme
+  preset, which can become the requested Epic preset while High stays default.
+- Five incoming commits change presentation and review tooling, with no
+  simulation, persistence, timetable, prepared-state, sound or asset changes.
+  A merge-tree preview identifies two runtime conflicts: `geographic_world.gd`
+  and `scenery_road.gdshader`, plus this progress log. Integration must preserve
+  R39's road UV/UV2 and origin handling while adding bounded microdetail.
+- Features: surface/water/track finishing, sharper sky reflections, nearby
+  station-lamp shadows and 150% detail ranges. The larger shadow workload and
+  longer train-detail range need busy-station day/night comparisons, remembering
+  the target is the RTX 4090 Laptop. SSR remains separately optional and off
+  in the preset; software-renderer evidence does not establish target-PC FPS.
+- Latest material/station CI reviews both succeeded on the inspected head
+  (runs 39493771142 / 39493771240). Full authored-train/local coverage remains
+  necessary after integration; High-restoration comparisons must use R39 as
+  their baseline. No local tests or timetable rehearsals were run for this
+  source-only assessment. No gameplay playtest is needed until integrated.
+
 ## 2026-10-21 — R39 published after the overnight scenery pass
 
 - Full ZIP and signed incremental updates are live at
@@ -69,6 +118,24 @@
 - Playtest: inspect bridges/entrances at ERS, QLN and TVC; inspect canal-side
   roads near Kumbalam; look at overhead attachments and roof shadows near a
   station throat; repeat at night and through streaming boundaries.
+
+## 2026-10-21 — Opt-in Extreme visuals (separate review branch, in progress)
+
+- Added an optional Extreme preset with filtered surface microdetail, detailed
+  reflections and longer mesh-detail ranges. High remains the default; existing
+  presets/preferences and all simulation, save, timetable and sound inputs stay
+  unchanged. Changes are isolated to `codex/extreme-visual-fidelity`, not released.
+- Detail is per geometry, preserving shared authored materials. New road/station
+  finish coordinates remain stable through origin rebases; returning to High
+  restores the original reflection and LOD settings.
+- Added isolation/migration/rebase tests and a small actual-source shader capture
+  fixture. The matching official Godot 4.7.2 binary is SHA-256 verified. Focused
+  checks pass; the full-suite attempt is blocked by unavailable large train-scene
+  imports. An intensive-timetable signature failure also reproduces on the
+  untouched parent. Actual captures and the final incoming-parent merge remain
+  pending; detailed evidence and limits are in the visual review notes.
+- No target-GPU performance or full-game visual sign-off claimed. See
+  `extreme-visuals.md` for scope, reproducible checks and exact playtest steps.
 
 ## 2026-10-21 — Faster verified downloads prepared for the next release
 

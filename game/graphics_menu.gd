@@ -19,7 +19,7 @@ static func build(hud,kind: String) -> void:
 			if settings.OPTIONS[key].group==parts[1]:
 				entries.append([settings.OPTIONS[key].label+"  ·  "+settings.label_for(key),"graphics:option:"+key])
 	else:
-		for label in ["Performance","Balanced","High"]:
+		for label in ["Performance","Balanced","High","Epic"]:
 			entries.append(["Use "+label+" preset"+("  ·  current" if label==settings.preset_name() else ""),"graphics:preset:"+label])
 		for group in settings.GROUPS:entries.append([settings.GROUPS[group].capitalize()+"…","graphics:"+group])
 		entries.append(["Resume and compare  ·  F10 shows performance","graphics:resume"])

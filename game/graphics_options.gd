@@ -1,5 +1,6 @@
 extends RefCounted
 ## Local presentation preferences. Never alter timetables, passengers or physics.
+const EpicVisuals := preload("res://game/extreme_visuals.gd")
 const GROUPS := {"display":"DISPLAY & IMAGE", "lighting":"LIGHT & SHADOW", "scenery":"SCENERY", "trains":"TRAINS & PASSENGERS"}
 const OPTIONS := {
 	"scale": {group="display",label="3D render scale",values=[0.5,0.67,0.75,0.85,1.0],labels=["50%","67%","75%","85%","100% / native"],default=1.0,help="Lower resolution reduces GPU pixel work. FSR spatial upscaling is used below native; menus stay sharp at full resolution."},
@@ -12,17 +13,22 @@ const OPTIONS := {
 	"shadow_filter": {group="lighting",label="Shadow filtering",values=[0,1,3],labels=["Hard / fastest","Soft / Low","Soft / High"],default=3,help="Smoother soft shadow edges cost additional samples. Has no effect when shadows are off."},
 	"ssao": {group="lighting",label="Contact shading (SSAO)",values=[false,true],labels=["Off","On"],default=true,help="Adds contact shading around sleepers, cab fittings and nearby surfaces."},
 	"ssil": {group="lighting",label="Indirect lighting (SSIL)",values=[false,true],labels=["Off","On"],default=true,help="Adds screen-space bounced light. Switching it off is a useful GPU saving."},
+	"station_shadows": {group="lighting",label="Nearby station lamp shadows",values=[false,true],labels=["Standard","Epic / distance-faded"],default=false,help="Adds real nearby station-lamp shadows, fading from 20 to 60 metres. Uses the existing bounded light pool without adding lamps or changing brightness. Can be expensive at dense stations."},
+	"sky_detail": {group="lighting",label="Sky reflection detail",values=[false,true],labels=["Standard","Epic / sharper sky"],default=false,help="Uses a sharper 512-pixel sky reflection map on reflective surfaces. Uses more GPU memory. Independent of screen-space reflections and anti-aliasing."},
+	"reflections": {group="lighting",label="Screen-space reflections (advanced)",values=[false,true],labels=["Off","On / experimental"],default=false,help="Optional Forward+ reflections for water and polished surfaces. Godot 4.7.2 MSAA may prevent a visible response; this option does not change anti-aliasing. Expensive at high resolution and cannot reflect off-screen objects. Not enabled by Epic."},
 	"glow": {group="lighting",label="Light bloom",values=[false,true],labels=["Off","On"],default=true,help="Adds a subtle halo around bright lights."},
 	"view_distance": {group="scenery",label="Maximum view distance",values=[1500.0,1800.0,2200.0],labels=["1.5 km","1.8 km","2.2 km"],default=2200.0,help="Moves the far clip and matching haze together. Terrain remains continuous and the 60 m free-camera ceiling stays in place."},
+	"surface_detail": {group="scenery",label="Surface microdetail",values=[false,true],labels=["Standard","Epic"],default=false,help="Adds filtered close-range detail to ground, roads, station finishes, permanent way and water. Changes shading only: no geometry, collision, railway or weather changes. Uses additional GPU work."},
 	"vegetation_density": {group="scenery",label="Vegetation density",values=[0.5,0.75,1.0],labels=["50%","75%","100%"],default=1.0,help="Reduces visible tree, shrub, crop and grass instances. Matching detail levels retain the same plants. Does not change collision or the railway."},
-	"vegetation_distance": {group="scenery",label="Vegetation detail distance",values=[0.5,0.75,1.0],labels=["Short","Medium","Full"],default=1.0,help="Uses simpler trees and distant image silhouettes sooner; reduces grass reach. Vegetation was the largest measured GPU category."},
-	"building_distance": {group="scenery",label="Building detail distance",values=[0.5,0.75,1.0],labels=["Short","Medium","Full"],default=1.0,help="Switches supported houses to baked silhouettes sooner and shortens detail range for other scenery buildings. Station platforms stay present."},
-	"mesh_detail": {group="scenery",label="Automatic mesh detail",values=[4.0,2.0,1.0],labels=["Performance","Balanced","High"],default=1.0,help="Allows progressively more screen-space simplification on meshes with imported LODs, including trains. Full source assets remain available nearby."},
-	"train_detail": {group="trains",label="Other train detail distance",values=[0.5,0.75,1.0],labels=["Short","Medium","Full"],default=1.0,help="Shortens detailed train shadow and external interior range. The cab or coach you occupy always retains its interior; seated passengers remain hidden in pilot view."},
+	"vegetation_distance": {group="scenery",label="Vegetation detail distance",values=[0.5,0.75,1.0,1.5],labels=["Short","Medium","Full","Epic / 150%"],default=1.0,help="Controls tree, grass and distant silhouette detail reach. Epic keeps full meshes visible 50% farther than High and costs more GPU time."},
+	"building_distance": {group="scenery",label="Building detail distance",values=[0.5,0.75,1.0,1.5],labels=["Short","Medium","Full","Epic / 150%"],default=1.0,help="Controls supported house silhouettes and scenery detail reach. Epic keeps full meshes visible 50% farther than High. Station platforms stay present."},
+	"mesh_detail": {group="scenery",label="Automatic mesh detail",values=[4.0,2.0,1.0,0.5],labels=["Performance","Balanced","High","Epic"],default=1.0,help="Allows progressively more screen-space simplification on meshes with imported LODs, including trains. Full source assets remain available nearby."},
+	"train_detail": {group="trains",label="Other train detail distance",values=[0.5,0.75,1.0,1.5],labels=["Short","Medium","Full","Epic / 150%"],default=1.0,help="Controls other-train shadow and external interior detail reach. Epic extends it 50% beyond High. Your occupied cab or coach keeps its interior; seated passengers remain hidden in pilot view."},
 	"passengers": {group="trains",label="Visible passenger budget",values=[0.25,0.5,1.0],labels=["Low / 35 seated + 20 moving","Medium / 70 seated + 40 moving","High / 140 seated + 80 moving"],default=1.0,help="Limits nearby rendered people across all trains and platforms. Every passenger journey, load, boarding event and dwell still runs normally."}
 }
 const PRESETS := {
 	"High": {},
+	"Epic": {sky_detail=true,reflections=false,surface_detail=true,station_shadows=true,vegetation_distance=1.5,building_distance=1.5,mesh_detail=0.5,train_detail=1.5},
 	"Balanced": {msaa=2,shadows=4096,shadow_filter=1,mesh_detail=2.0},
 	"Performance": {scale=0.85,msaa=1,shadows=2048,shadow_distance=100.0,shadow_filter=1,ssil=false,view_distance=1800.0,vegetation_density=0.75,vegetation_distance=0.5,building_distance=0.5,mesh_detail=4.0,train_detail=0.5,passengers=0.5}
 }
@@ -91,14 +97,18 @@ func apply_tree(node: Node) -> void:
 		env.ssao_enabled=values.ssao;env.ssil_enabled=values.ssil;env.glow_enabled=values.glow
 		env.fog_depth_begin=values.view_distance*(1000.0/2200.0)
 		env.fog_depth_end=values.view_distance*(2050.0/2200.0)
+		EpicVisuals.apply_environment(env,values.reflections,values.sky_detail)
 	elif node is DirectionalLight3D:
 		node.shadow_enabled=values.shadows>0 and not node.get_meta("no_night_shadow",false)
 		node.directional_shadow_max_distance=values.shadow_distance
+	elif node is OmniLight3D and node.has_meta("station_shadow_rank"):
+		EpicVisuals.apply_station_shadow(node,values.station_shadows and values.shadows>0)
 	elif node is GeometryInstance3D:
 		apply_geometry(node)
 	for child in node.get_children():apply_tree(child)
 
 func apply_geometry(node: GeometryInstance3D) -> void:
+	EpicVisuals.apply_surface(node,values.surface_detail)
 	var kind:=str(node.get_meta("scenery_kind","")).to_lower()
 	# Legacy tree silhouettes predate scenery_kind; they must match their mesh LOD.
 	if kind.is_empty() and str(node.name).begins_with("Canopy_"):kind=str(node.name).trim_prefix("Canopy_").to_lower()

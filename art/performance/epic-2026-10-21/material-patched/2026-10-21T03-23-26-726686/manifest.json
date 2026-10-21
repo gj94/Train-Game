@@ -1,0 +1,4499 @@
+{
+	"all_baseline_high_pixels_equal": false,
+	"all_high_restored_pixels_equal": false,
+	"assets": {
+		"res://assets/polyhaven/aerial_asphalt_01/aerial_asphalt_01_diff_2k.jpg": "a85ce28b8e6ed90acb0234832969b27f5b73fe055a0d5b94f34fc2943d319fb5",
+		"res://assets/polyhaven/aerial_asphalt_01/aerial_asphalt_01_nor_gl_2k.jpg": "cb7e5b75ff47ad672ab820f71b77566419b612e52e7791c5ed90a7fa27b71807",
+		"res://assets/polyhaven/aerial_asphalt_01/aerial_asphalt_01_rough_2k.jpg": "20fdcdc9fc2a3efef83fd8a3453d2bc0a8543ee3ebb2badf148e4c142704eeff",
+		"res://assets/polyhaven/brushed_concrete/brushed_concrete_diff_2k.jpg": "5af96604b20e29862b449d86981b196b18ba5cbcb8659c451dd8976411a36130",
+		"res://assets/polyhaven/brushed_concrete/brushed_concrete_nor_gl_2k.jpg": "3d1f1c7a5f20a5f7a15f3bc5c5f58c0fdcaf49e71e65a5f17e086b551895c00c",
+		"res://assets/polyhaven/brushed_concrete/brushed_concrete_rough_2k.jpg": "1100fc9e5c363144aff1b0872d7ed426ca143b63b90a4cbf15e2ab89a14ca905",
+		"res://assets/polyhaven/hdri/kloofendal_43d_clear_puresky_2k.hdr": "462a3cc63bfcd9fe0299137a0f33f4ade84e237f4cb6115fe46f5ab400693fe6",
+		"res://assets/polyhaven/leafy_grass/leafy_grass_diff_2k.jpg": "8e1c6d21365d4b89bc5a35ab664da98a78dbc3ab9ba6100474881c8619a5b113",
+		"res://assets/polyhaven/leafy_grass/leafy_grass_nor_gl_2k.jpg": "df0cf0ce96e653f033e5b934d5b12995464bda027aa53bd12e329be889aa9f45",
+		"res://assets/polyhaven/plastered_wall/plastered_wall_diff_2k.jpg": "c9f3235d6b28b249dd3c7e6346483f1f6ae11e62b4a81d0397936ff756dfcb1f",
+		"res://assets/polyhaven/plastered_wall/plastered_wall_nor_gl_2k.jpg": "de20f536b1ec428c6de32267b317bbf538ecfa5c42398743f1b702a0f8434071",
+		"res://assets/polyhaven/plastered_wall/plastered_wall_rough_2k.jpg": "be5c23b7d473bf1dea6d3a39b3e0537d5cf9eb990b4148566d20a35dc0902e54",
+		"res://assets/polyhaven/red_laterite_soil_stones/red_laterite_soil_stones_diff_2k.jpg": "db3568338ecdf4467ca74f88178a60ebdb5a98f9b644db73b411913e7044fef6",
+		"res://assets/polyhaven/red_laterite_soil_stones/red_laterite_soil_stones_nor_gl_2k.jpg": "1b2e238e375c31719169428b318916a8c9ba72b5202d2f36eac46b3d861319b6"
+	},
+	"baseline_fixture_provenance": {
+		"baseline_files": [
+			"game/graphics_options.gd",
+			"game/shaders/geographic_ground.gdshader",
+			"game/shaders/scenery_road.gdshader",
+			"game/shaders/station_surface.gdshader",
+			"game/shaders/geographic_water.gdshader",
+			"game/shaders/day_night_sky.gdshader"
+		],
+		"baseline_ref": "50e90244b0a5b34486148a29e62c860b2975b994"
+	},
+	"baseline_manifest": "D:/ClaudeWS/train-game/art/performance/epic-2026-10-21/material-baseline/2026-10-21T03-22-36-4062521/manifest.json",
+	"baseline_source_sha256": {
+		"res://game/extreme_visuals.gd": "53804d28a34f9921958ab83a815af6a9c2674a6c6ef3a7131801472b44f649ac",
+		"res://game/graphics_options.gd": "225dedea4e4b1bb614640f44adc2ff5708829f280bf7bd413e8e91375d642d01",
+		"res://game/shaders/day_night_sky.gdshader": "5d635ca310d7d93301c044126149cd7cf114ec7090e1b73403b73c4814c41538",
+		"res://game/shaders/extreme_surface_detail.gdshaderinc": "ae140c6b46d7b072837721cb227b79349130cb1680faf17703a13508ed8f1280",
+		"res://game/shaders/geographic_ground.gdshader": "04de43985effab710382f185a3e294556f69d5cc92ff0016c3a209382a08e2cd",
+		"res://game/shaders/geographic_water.gdshader": "a32f9c33656f17db9d7d3a56c7c14fb60df554384b08682b4b139232a07c8d4c",
+		"res://game/shaders/scenery_road.gdshader": "c48f90532d8d88ec43ee29dfb1c108d939e3a5e41f58ae4d7198e9c50bd5fc5c",
+		"res://game/shaders/station_boundary.gdshader": "",
+		"res://game/shaders/station_surface.gdshader": "41ecac6a3264542b408787aa7ab294219d23397c45f329ad52f2cc1f87caf0d8",
+		"res://game/shaders/track_ballast.gdshader": "",
+		"res://game/shaders/track_concrete.gdshader": "",
+		"res://game/shaders/track_rail.gdshader": "",
+		"res://game/shaders/track_shoulder.gdshader": "",
+		"res://tools/check_extreme_visuals.gd": "a04681c1957217eba66324bb6b39601c2851df7bef34ecd1cfac2b749aad9f43"
+	},
+	"capture_order": "lighting period, then preset, then camera",
+	"capture_scope": "full_fixture",
+	"capture_status": "captured_requires_visual_review",
+	"captures": [
+		{
+			"camera_eye": [
+				18.0,
+				11.0,
+				19.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				2.0,
+				0.0,
+				0.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 12,
+			"file": "daylight-overview-high.png",
+			"frame_ms_median": 4.929,
+			"frame_ms_p95": 5.18,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-overview-high",
+			"image_stats": {
+				"maximum_rgb": 226,
+				"mean_rgb_255": 117.933851824847,
+				"minimum_rgb": 19,
+				"rgb_range": 196,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "7eefe14e670463b4799a47dabcd362eb35d5c6eda99f90dfc6a9b7087affc839",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 104,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				-5.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				-5.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 4,
+			"file": "daylight-ground-high.png",
+			"frame_ms_median": 7.023,
+			"frame_ms_p95": 7.17,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-ground-high",
+			"image_stats": {
+				"maximum_rgb": 212,
+				"mean_rgb_255": 123.914934986025,
+				"minimum_rgb": 15,
+				"rgb_range": 174,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "baf37a8d16f5aefe0e98721363633c5c54a05eb52e8cdbd8c01f1d536b6b1a76",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 18,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "daylight-road-high.png",
+			"frame_ms_median": 7.117,
+			"frame_ms_p95": 7.579,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-road-high",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 105.285777939806,
+				"minimum_rgb": 4,
+				"rgb_range": 180,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "dce5bee2716cbb8e945330417d73408e517531100f482aea7611d7f1563aa9cf",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "daylight-station-high.png",
+			"frame_ms_median": 5.996,
+			"frame_ms_p95": 6.423,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-station-high",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 129.003524122008,
+				"minimum_rgb": 11,
+				"rgb_range": 170,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "4bdb6e297abccae9692290d0ef6b0687f5946f5d0dc0fd55fd07c1bb598373f8",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "daylight-water-high.png",
+			"frame_ms_median": 5.779,
+			"frame_ms_p95": 6.209,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-water-high",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 120.163851419776,
+				"minimum_rgb": 1,
+				"rgb_range": 180,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "e4ffa87892e3cce36347729aa0bf0ee17086229bda945a1d1c4703a15d4228ac",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				18.0,
+				11.0,
+				19.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				2.0,
+				0.0,
+				0.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 12,
+			"file": "daylight-overview-epic.png",
+			"frame_ms_median": 4.584,
+			"frame_ms_p95": 5.148,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-overview-epic",
+			"image_stats": {
+				"maximum_rgb": 226,
+				"mean_rgb_255": 117.786527322072,
+				"minimum_rgb": 19,
+				"rgb_range": 196,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "b259b658defd371a5fbfab94ae8100d0ef14d6dadc422f05d2a90eadf9dcdf4b",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 104,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				-5.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				-5.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 4,
+			"file": "daylight-ground-epic.png",
+			"frame_ms_median": 8.441,
+			"frame_ms_p95": 8.952,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-ground-epic",
+			"image_stats": {
+				"maximum_rgb": 212,
+				"mean_rgb_255": 122.407056345445,
+				"minimum_rgb": 15,
+				"rgb_range": 176,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "6f994039febd682e9ce23f64088883b29a134370e9b3a122c31a5bbe49ba08de",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 18,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "daylight-road-epic.png",
+			"frame_ms_median": 6.929,
+			"frame_ms_p95": 7.06,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-road-epic",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 105.276947381213,
+				"minimum_rgb": 4,
+				"rgb_range": 180,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "317d7be3ce4e508f0c3788cfdb5e495dac69d21066bed49c6e3f17d0ab0d8040",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "daylight-station-epic.png",
+			"frame_ms_median": 6.127,
+			"frame_ms_p95": 7.109,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-station-epic",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 129.023737189614,
+				"minimum_rgb": 10,
+				"rgb_range": 168,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "e010f2d9065798e19ef366b2a820ada0698489ae02f9ca1ad20a08123f0f19d5",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "daylight-water-epic.png",
+			"frame_ms_median": 6.063,
+			"frame_ms_p95": 6.503,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-water-epic",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 120.335196662211,
+				"minimum_rgb": 1,
+				"rgb_range": 180,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "34cefd552d35f48f538f4df24c837c25b076b4eeb9357ff8556a1e3852e7da55",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				18.0,
+				11.0,
+				19.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				2.0,
+				0.0,
+				0.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 12,
+			"file": "daylight-overview-high-restored.png",
+			"frame_ms_median": 4.677,
+			"frame_ms_p95": 5.348,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-overview-high-restored",
+			"image_stats": {
+				"maximum_rgb": 226,
+				"mean_rgb_255": 117.937051889659,
+				"minimum_rgb": 19,
+				"rgb_range": 196,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "2111e633f17cd30c8ef0feb35cd621cd1e55e47516ad5d53519d4466d1119fdc",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 104,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				-5.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				-5.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 4,
+			"file": "daylight-ground-high-restored.png",
+			"frame_ms_median": 6.939,
+			"frame_ms_p95": 7.282,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-ground-high-restored",
+			"image_stats": {
+				"maximum_rgb": 212,
+				"mean_rgb_255": 123.915623607567,
+				"minimum_rgb": 15,
+				"rgb_range": 174,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "61db106b665d0cf38f6791c2394f1268d5297686440230123893f33715801a09",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 18,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "daylight-road-high-restored.png",
+			"frame_ms_median": 7.454,
+			"frame_ms_p95": 7.951,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-road-high-restored",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 105.285777939806,
+				"minimum_rgb": 4,
+				"rgb_range": 180,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "dce5bee2716cbb8e945330417d73408e517531100f482aea7611d7f1563aa9cf",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "daylight-station-high-restored.png",
+			"frame_ms_median": 5.969,
+			"frame_ms_p95": 6.577,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-station-high-restored",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 129.003524122008,
+				"minimum_rgb": 11,
+				"rgb_range": 170,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "4bdb6e297abccae9692290d0ef6b0687f5946f5d0dc0fd55fd07c1bb598373f8",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "daylight-water-high-restored.png",
+			"frame_ms_median": 5.602,
+			"frame_ms_p95": 6.172,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "daylight-water-high-restored",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 120.163851419776,
+				"minimum_rgb": 1,
+				"rgb_range": 180,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "e4ffa87892e3cce36347729aa0bf0ee17086229bda945a1d1c4703a15d4228ac",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				18.0,
+				11.0,
+				19.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				2.0,
+				0.0,
+				0.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 12,
+			"file": "dusk-overview-high.png",
+			"frame_ms_median": 4.56,
+			"frame_ms_p95": 5.14,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-overview-high",
+			"image_stats": {
+				"maximum_rgb": 223,
+				"mean_rgb_255": 92.638757240653,
+				"minimum_rgb": 0,
+				"rgb_range": 211,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "ed6b90fcf710dabceb60fa923a643c9ddb216dbd343d4728bee3fa62c8311e16",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 104,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				-5.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				-5.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 4,
+			"file": "dusk-ground-high.png",
+			"frame_ms_median": 7.181,
+			"frame_ms_p95": 7.475,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-ground-high",
+			"image_stats": {
+				"maximum_rgb": 154,
+				"mean_rgb_255": 70.58423461741,
+				"minimum_rgb": 0,
+				"rgb_range": 154,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "557e357b983d0a7a4d3cb6382cc23be255525de91bfe05c4b483211b61f61efc",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 18,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "dusk-road-high.png",
+			"frame_ms_median": 7.154,
+			"frame_ms_p95": 7.826,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-road-high",
+			"image_stats": {
+				"maximum_rgb": 170,
+				"mean_rgb_255": 66.4162919755337,
+				"minimum_rgb": 0,
+				"rgb_range": 167,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "5a725f96cb3c94f765ca025781940ba3d328e5d1e0b7d230e2837fa6573f1e3f",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "dusk-station-high.png",
+			"frame_ms_median": 5.823,
+			"frame_ms_p95": 6.026,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-station-high",
+			"image_stats": {
+				"maximum_rgb": 174,
+				"mean_rgb_255": 93.8631668489488,
+				"minimum_rgb": 2,
+				"rgb_range": 172,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "dbab47897faf7e5f2c5dd0e7b56d2bb8a0c06e4edc1431763697dfd0ed8b7e0b",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "dusk-water-high.png",
+			"frame_ms_median": 5.734,
+			"frame_ms_p95": 6.36,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-water-high",
+			"image_stats": {
+				"maximum_rgb": 236,
+				"mean_rgb_255": 85.0470288005833,
+				"minimum_rgb": 0,
+				"rgb_range": 236,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "c06661aa0a03b5bbf6301cae1d62e7e5238fea9d7ab94a9b04747c58b97a7530",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				18.0,
+				11.0,
+				19.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				2.0,
+				0.0,
+				0.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 12,
+			"file": "dusk-overview-epic.png",
+			"frame_ms_median": 4.708,
+			"frame_ms_p95": 4.822,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-overview-epic",
+			"image_stats": {
+				"maximum_rgb": 193,
+				"mean_rgb_255": 92.313444322923,
+				"minimum_rgb": 0,
+				"rgb_range": 179,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "90a7f0285736d9c40d58ef92a4fd476f237083d55bbe771d744ce052ad754afe",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 104,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				-5.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				-5.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 4,
+			"file": "dusk-ground-epic.png",
+			"frame_ms_median": 8.452,
+			"frame_ms_p95": 8.934,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-ground-epic",
+			"image_stats": {
+				"maximum_rgb": 154,
+				"mean_rgb_255": 69.8205533276623,
+				"minimum_rgb": 0,
+				"rgb_range": 154,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "04f5255a2ebe5929e05c57562fe8ce25c28d95eed11a66bac22c7a88c749f8dc",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 18,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "dusk-road-epic.png",
+			"frame_ms_median": 7.062,
+			"frame_ms_p95": 7.761,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-road-epic",
+			"image_stats": {
+				"maximum_rgb": 170,
+				"mean_rgb_255": 66.2539798274395,
+				"minimum_rgb": 0,
+				"rgb_range": 167,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "b8a9c921c9314a48fde407e50fed3cba2f52c4d9b953b15215dcedc7208a601e",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "dusk-station-epic.png",
+			"frame_ms_median": 6.103,
+			"frame_ms_p95": 6.61,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-station-epic",
+			"image_stats": {
+				"maximum_rgb": 174,
+				"mean_rgb_255": 94.1440839308138,
+				"minimum_rgb": 2,
+				"rgb_range": 172,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "062c943d7fe9216507708cbc846b1362378be9f6abcbd1aa04b05a36dbd25370",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "dusk-water-epic.png",
+			"frame_ms_median": 6.154,
+			"frame_ms_p95": 6.622,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-water-epic",
+			"image_stats": {
+				"maximum_rgb": 255,
+				"mean_rgb_255": 83.7620610037672,
+				"minimum_rgb": 0,
+				"rgb_range": 255,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "52227ac0f5d9aeffb3c232590984131464aa16945582debb88c3e037151a0813",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				18.0,
+				11.0,
+				19.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				2.0,
+				0.0,
+				0.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 12,
+			"file": "dusk-overview-high-restored.png",
+			"frame_ms_median": 4.704,
+			"frame_ms_p95": 5.399,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-overview-high-restored",
+			"image_stats": {
+				"maximum_rgb": 223,
+				"mean_rgb_255": 92.638757240653,
+				"minimum_rgb": 0,
+				"rgb_range": 211,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "ed6b90fcf710dabceb60fa923a643c9ddb216dbd343d4728bee3fa62c8311e16",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 104,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				-5.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				-5.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 4,
+			"file": "dusk-ground-high-restored.png",
+			"frame_ms_median": 6.839,
+			"frame_ms_p95": 7.298,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-ground-high-restored",
+			"image_stats": {
+				"maximum_rgb": 154,
+				"mean_rgb_255": 70.58423461741,
+				"minimum_rgb": 0,
+				"rgb_range": 154,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "557e357b983d0a7a4d3cb6382cc23be255525de91bfe05c4b483211b61f61efc",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 18,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "dusk-road-high-restored.png",
+			"frame_ms_median": 7.128,
+			"frame_ms_p95": 7.671,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-road-high-restored",
+			"image_stats": {
+				"maximum_rgb": 170,
+				"mean_rgb_255": 66.4162919755337,
+				"minimum_rgb": 0,
+				"rgb_range": 167,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "5a725f96cb3c94f765ca025781940ba3d328e5d1e0b7d230e2837fa6573f1e3f",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "dusk-station-high-restored.png",
+			"frame_ms_median": 6.254,
+			"frame_ms_p95": 6.821,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-station-high-restored",
+			"image_stats": {
+				"maximum_rgb": 174,
+				"mean_rgb_255": 93.8631668489488,
+				"minimum_rgb": 2,
+				"rgb_range": 172,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "dbab47897faf7e5f2c5dd0e7b56d2bb8a0c06e4edc1431763697dfd0ed8b7e0b",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "dusk-water-high-restored.png",
+			"frame_ms_median": 5.9,
+			"frame_ms_p95": 6.351,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 18.25,
+			"id": "dusk-water-high-restored",
+			"image_stats": {
+				"maximum_rgb": 236,
+				"mean_rgb_255": 85.0470288005833,
+				"minimum_rgb": 0,
+				"rgb_range": 236,
+				"validation_sample_pixels": 8229
+			},
+			"period": "dusk",
+			"png_sha256": "c06661aa0a03b5bbf6301cae1d62e7e5238fea9d7ab94a9b04747c58b97a7530",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				18.0,
+				11.0,
+				19.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				2.0,
+				0.0,
+				0.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 12,
+			"file": "night-overview-high.png",
+			"frame_ms_median": 4.491,
+			"frame_ms_p95": 4.701,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-overview-high",
+			"image_stats": {
+				"maximum_rgb": 223,
+				"mean_rgb_255": 16.9342568963422,
+				"minimum_rgb": 0,
+				"rgb_range": 223,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "491e34f3ec10abbc386c90b27e53a14812751b4796f64d481e1ad2d932bb6b5a",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 104,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				-5.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				-5.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 4,
+			"file": "night-ground-high.png",
+			"frame_ms_median": 6.693,
+			"frame_ms_p95": 7.316,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-ground-high",
+			"image_stats": {
+				"maximum_rgb": 66,
+				"mean_rgb_255": 17.0235346538664,
+				"minimum_rgb": 0,
+				"rgb_range": 65,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "47d567fc6c710cd1b35ad760e2169f37cda9a12f9adf301bf1f7f88bfb722d8d",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 18,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "night-road-high.png",
+			"frame_ms_median": 6.965,
+			"frame_ms_p95": 7.594,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-road-high",
+			"image_stats": {
+				"maximum_rgb": 154,
+				"mean_rgb_255": 27.1521448535667,
+				"minimum_rgb": 0,
+				"rgb_range": 154,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "c1caf4704ee3b2548eb6c15390e8c02806a2f9a768ee2fd12006058274732d1c",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "night-station-high.png",
+			"frame_ms_median": 6.027,
+			"frame_ms_p95": 6.382,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-station-high",
+			"image_stats": {
+				"maximum_rgb": 153,
+				"mean_rgb_255": 34.9281808239154,
+				"minimum_rgb": 0,
+				"rgb_range": 153,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "caa79818f2139d1b2a7df472c8dbdf7391a0056ce0dd39952cee68154df49d24",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "night-water-high.png",
+			"frame_ms_median": 5.629,
+			"frame_ms_p95": 6.156,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-water-high",
+			"image_stats": {
+				"maximum_rgb": 236,
+				"mean_rgb_255": 26.1525904322113,
+				"minimum_rgb": 0,
+				"rgb_range": 236,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "08c8d25b766a1eafafa689d1578dd3db3787b1ffd4b38eed44dd38b703cffb7c",
+			"preset": "High",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				18.0,
+				11.0,
+				19.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				2.0,
+				0.0,
+				0.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 12,
+			"file": "night-overview-epic.png",
+			"frame_ms_median": 5.044,
+			"frame_ms_p95": 5.745,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-overview-epic",
+			"image_stats": {
+				"maximum_rgb": 152,
+				"mean_rgb_255": 16.5720824725564,
+				"minimum_rgb": 0,
+				"rgb_range": 152,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "f049d65ea17705babf214e6fac9126aa6ac1ccc8a3817624c322819e4dafa70f",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 104,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				-5.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				-5.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 4,
+			"file": "night-ground-epic.png",
+			"frame_ms_median": 8.279,
+			"frame_ms_p95": 8.533,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-ground-epic",
+			"image_stats": {
+				"maximum_rgb": 66,
+				"mean_rgb_255": 16.5395147243488,
+				"minimum_rgb": 0,
+				"rgb_range": 65,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "834841f8ee2b75f4e1f5c9594a891e5e8b366806ef47780872a235667478bca2",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 18,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "night-road-epic.png",
+			"frame_ms_median": 6.998,
+			"frame_ms_p95": 7.574,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-road-epic",
+			"image_stats": {
+				"maximum_rgb": 155,
+				"mean_rgb_255": 26.7346376635476,
+				"minimum_rgb": 0,
+				"rgb_range": 155,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "1f598197e174ad09275dbaf78e5d9d5da779a509726419e709e359ae1f5e929c",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "night-station-epic.png",
+			"frame_ms_median": 6.236,
+			"frame_ms_p95": 6.823,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-station-epic",
+			"image_stats": {
+				"maximum_rgb": 154,
+				"mean_rgb_255": 34.7055535301981,
+				"minimum_rgb": 0,
+				"rgb_range": 154,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "954acdd6c0020a7b0d6df6a2e240d6f37a9586a06a6110d3c452a7d1be0e81f9",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "night-water-epic.png",
+			"frame_ms_median": 5.943,
+			"frame_ms_p95": 6.439,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-water-epic",
+			"image_stats": {
+				"maximum_rgb": 255,
+				"mean_rgb_255": 23.1732490784623,
+				"minimum_rgb": 0,
+				"rgb_range": 255,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "4907c6b7b155d3d0b2a56da188aac4f085823068c7c226be379a7ac95e3e0370",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				18.0,
+				11.0,
+				19.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				2.0,
+				0.0,
+				0.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 12,
+			"file": "night-overview-high-restored.png",
+			"frame_ms_median": 4.537,
+			"frame_ms_p95": 5.257,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-overview-high-restored",
+			"image_stats": {
+				"maximum_rgb": 223,
+				"mean_rgb_255": 16.9342568963422,
+				"minimum_rgb": 0,
+				"rgb_range": 223,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "491e34f3ec10abbc386c90b27e53a14812751b4796f64d481e1ad2d932bb6b5a",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 104,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				-5.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				-5.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 4,
+			"file": "night-ground-high-restored.png",
+			"frame_ms_median": 6.708,
+			"frame_ms_p95": 7.537,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-ground-high-restored",
+			"image_stats": {
+				"maximum_rgb": 66,
+				"mean_rgb_255": 17.0235346538664,
+				"minimum_rgb": 0,
+				"rgb_range": 65,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "47d567fc6c710cd1b35ad760e2169f37cda9a12f9adf301bf1f7f88bfb722d8d",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 18,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "night-road-high-restored.png",
+			"frame_ms_median": 6.84,
+			"frame_ms_p95": 7.301,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-road-high-restored",
+			"image_stats": {
+				"maximum_rgb": 154,
+				"mean_rgb_255": 27.1521448535667,
+				"minimum_rgb": 0,
+				"rgb_range": 154,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "c1caf4704ee3b2548eb6c15390e8c02806a2f9a768ee2fd12006058274732d1c",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "night-station-high-restored.png",
+			"frame_ms_median": 5.815,
+			"frame_ms_p95": 6.139,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-station-high-restored",
+			"image_stats": {
+				"maximum_rgb": 153,
+				"mean_rgb_255": 34.9281808239154,
+				"minimum_rgb": 0,
+				"rgb_range": 153,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "caa79818f2139d1b2a7df472c8dbdf7391a0056ce0dd39952cee68154df49d24",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "night-water-high-restored.png",
+			"frame_ms_median": 5.575,
+			"frame_ms_p95": 6.196,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 22.0,
+			"id": "night-water-high-restored",
+			"image_stats": {
+				"maximum_rgb": 236,
+				"mean_rgb_255": 26.1525904322113,
+				"minimum_rgb": 0,
+				"rgb_range": 236,
+				"validation_sample_pixels": 8229
+			},
+			"period": "night",
+			"png_sha256": "08c8d25b766a1eafafa689d1578dd3db3787b1ffd4b38eed44dd38b703cffb7c",
+			"preset": "High-restored",
+			"preset_values": {
+				"building_distance": 1.0,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 1.0,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": false,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": false,
+				"surface_detail": false,
+				"train_detail": 1.0,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.0,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 3,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "far-route-road-before.png",
+			"frame_ms_median": 8.345,
+			"frame_ms_p95": 9.006,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "far-route-road-before",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 105.225462794183,
+				"minimum_rgb": 4,
+				"rgb_range": 180,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "b8c68cd946595ee1345fa6c5953bb2b919762c01583198f12d22c43614a33790",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				300000.0,
+				0.0,
+				-300000.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				0.0,
+				1.35000002384186,
+				3.0
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 8,
+			"file": "far-route-road-after.png",
+			"frame_ms_median": 8.608,
+			"frame_ms_p95": 9.018,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "far-route-road-after",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 105.229999594929,
+				"minimum_rgb": 4,
+				"rgb_range": 180,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "62db8a14b70621b3db951abd94acf4406de558f9c0e7d32ad793ac9b7d3a52a2",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 56,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				301024.0,
+				0.0,
+				-298976.0
+			],
+			"scene_local_translation": [
+				-1024.0,
+				0.0,
+				-1024.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "far-route-station-before.png",
+			"frame_ms_median": 8.709,
+			"frame_ms_p95": 9.083,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "far-route-station-before",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 129.114959290315,
+				"minimum_rgb": 10,
+				"rgb_range": 171,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "34288019048c3fcc0f9e1b51314de369213cb5c32cb87db2b797928acc81ebca",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				300000.0,
+				0.0,
+				-300000.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				7.0,
+				2.20000004768372,
+				3.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				5.0,
+				1.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 10,
+			"file": "far-route-station-after.png",
+			"frame_ms_median": 8.603,
+			"frame_ms_p95": 8.922,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "far-route-station-after",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 129.114270668773,
+				"minimum_rgb": 10,
+				"rgb_range": 171,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "9fc6312a7207b708d0416203fa959353e3e7eae33bf145a774b39a268cfffd56",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 80,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				301024.0,
+				0.0,
+				-298976.0
+			],
+			"scene_local_translation": [
+				-1024.0,
+				0.0,
+				-1024.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "far-route-water-before.png",
+			"frame_ms_median": 6.705,
+			"frame_ms_p95": 7.445,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "far-route-water-before",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 121.762547089561,
+				"minimum_rgb": 1,
+				"rgb_range": 180,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "0fd5bfdc2d20f5d42e36ee048c402942d69155c4bb8e9bdf7b11fcb88e485276",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				300000.0,
+				0.0,
+				-300000.0
+			],
+			"scene_local_translation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		},
+		{
+			"camera_eye": [
+				12.0,
+				1.79999995231628,
+				5.5
+			],
+			"camera_fov": 55.0,
+			"camera_target": [
+				10.0,
+				0.0,
+				-2.0
+			],
+			"capture_status": "captured",
+			"draw_calls": 11,
+			"file": "far-route-water-after.png",
+			"frame_ms_median": 6.816,
+			"frame_ms_p95": 7.231,
+			"frame_timing": "wall-clock frame_post_draw intervals; uncapped/vsync disabled; not GPU duration",
+			"hour": 12.0,
+			"id": "far-route-water-after",
+			"image_stats": {
+				"maximum_rgb": 184,
+				"mean_rgb_255": 121.762952161056,
+				"minimum_rgb": 1,
+				"rgb_range": 180,
+				"validation_sample_pixels": 8229
+			},
+			"period": "daylight",
+			"png_sha256": "ba73f0d7fd7862f75cffc4aa1a3d4af0c44918ed3b221ea56e7c3f1cf1aab9fd",
+			"preset": "Epic",
+			"preset_values": {
+				"building_distance": 1.5,
+				"fps": 0,
+				"fxaa": true,
+				"glow": true,
+				"mesh_detail": 0.5,
+				"msaa": 3,
+				"passengers": 1.0,
+				"reflections": false,
+				"scale": 1.0,
+				"shadow_distance": 300.0,
+				"shadow_filter": 3,
+				"shadows": 8192,
+				"sky_detail": true,
+				"ssao": true,
+				"ssil": true,
+				"station_shadows": true,
+				"surface_detail": true,
+				"train_detail": 1.5,
+				"vegetation_density": 1.0,
+				"vegetation_distance": 1.5,
+				"view_distance": 2200.0,
+				"vsync": true
+			},
+			"primitives": 92,
+			"radiance_size_enum": 4,
+			"resolution": [
+				1280,
+				720
+			],
+			"route_origin": [
+				301024.0,
+				0.0,
+				-298976.0
+			],
+			"scene_local_translation": [
+				-1024.0,
+				0.0,
+				-1024.0
+			],
+			"shader_time_frozen": true,
+			"ssr_enabled": false,
+			"ssr_requested": false
+		}
+	],
+	"check_rebase": true,
+	"comparisons": [
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.087353515625,
+				"changed_rgb_pixels": 80505,
+				"exact_equal": false,
+				"max_rgb_error_255": 45,
+				"mean_absolute_rgb_error_255": 0.219396339699074,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.00748155381944444,
+				"changed_rgb_pixels": 6895,
+				"exact_equal": false,
+				"max_rgb_error_255": 17,
+				"mean_absolute_rgb_error_255": 0.00300202546296296,
+				"total_pixels": 921600
+			},
+			"period": "daylight",
+			"view": "overview"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.594028862847222,
+				"changed_rgb_pixels": 547457,
+				"exact_equal": false,
+				"max_rgb_error_255": 50,
+				"mean_absolute_rgb_error_255": 1.60475694444444,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.00253472222222222,
+				"changed_rgb_pixels": 2336,
+				"exact_equal": false,
+				"max_rgb_error_255": 13,
+				"mean_absolute_rgb_error_255": 0.000932074652777778,
+				"total_pixels": 921600
+			},
+			"period": "daylight",
+			"view": "ground"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.659111328125,
+				"changed_rgb_pixels": 607437,
+				"exact_equal": false,
+				"max_rgb_error_255": 41,
+				"mean_absolute_rgb_error_255": 0.992429832175926,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "daylight",
+			"view": "road"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.509710286458333,
+				"changed_rgb_pixels": 469749,
+				"exact_equal": false,
+				"max_rgb_error_255": 53,
+				"mean_absolute_rgb_error_255": 1.72300491898148,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "daylight",
+			"view": "station"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.564594184027778,
+				"changed_rgb_pixels": 520330,
+				"exact_equal": false,
+				"max_rgb_error_255": 54,
+				"mean_absolute_rgb_error_255": 2.09004521122685,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "daylight",
+			"view": "water"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.0889008246527778,
+				"changed_rgb_pixels": 81931,
+				"exact_equal": false,
+				"max_rgb_error_255": 192,
+				"mean_absolute_rgb_error_255": 0.438551432291667,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "dusk",
+			"view": "overview"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.588843315972222,
+				"changed_rgb_pixels": 542678,
+				"exact_equal": false,
+				"max_rgb_error_255": 18,
+				"mean_absolute_rgb_error_255": 0.801876446759259,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "dusk",
+			"view": "ground"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.636990017361111,
+				"changed_rgb_pixels": 587050,
+				"exact_equal": false,
+				"max_rgb_error_255": 34,
+				"mean_absolute_rgb_error_255": 0.630992476851852,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "dusk",
+			"view": "road"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.503037109375,
+				"changed_rgb_pixels": 463599,
+				"exact_equal": false,
+				"max_rgb_error_255": 41,
+				"mean_absolute_rgb_error_255": 1.62200231481481,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "dusk",
+			"view": "station"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.561502821180556,
+				"changed_rgb_pixels": 517481,
+				"exact_equal": false,
+				"max_rgb_error_255": 167,
+				"mean_absolute_rgb_error_255": 5.43864185474537,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "dusk",
+			"view": "water"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.0858626302083333,
+				"changed_rgb_pixels": 79131,
+				"exact_equal": false,
+				"max_rgb_error_255": 204,
+				"mean_absolute_rgb_error_255": 0.372784288194444,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "night",
+			"view": "overview"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.523655598958333,
+				"changed_rgb_pixels": 482601,
+				"exact_equal": false,
+				"max_rgb_error_255": 23,
+				"mean_absolute_rgb_error_255": 0.631528139467593,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "night",
+			"view": "ground"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.636190321180556,
+				"changed_rgb_pixels": 586313,
+				"exact_equal": false,
+				"max_rgb_error_255": 28,
+				"mean_absolute_rgb_error_255": 0.656051432291667,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "night",
+			"view": "road"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.484594184027778,
+				"changed_rgb_pixels": 446602,
+				"exact_equal": false,
+				"max_rgb_error_255": 48,
+				"mean_absolute_rgb_error_255": 1.0346802662037,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "night",
+			"view": "station"
+		},
+		{
+			"high_vs_extreme": {
+				"changed_rgb_fraction": 0.516178385416667,
+				"changed_rgb_pixels": 475710,
+				"exact_equal": false,
+				"max_rgb_error_255": 191,
+				"mean_absolute_rgb_error_255": 4.21593858506944,
+				"total_pixels": 921600
+			},
+			"high_vs_restored": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"period": "night",
+			"view": "water"
+		}
+	],
+	"device": "AMD Radeon 780M Graphics",
+	"device_type": 1,
+	"device_vendor": "AMD",
+	"display_server": "Windows",
+	"fixture_overrides": {
+		"fps_cap": 0,
+		"sky_process": "QUALITY",
+		"taa": false,
+		"vsync": false
+	},
+	"fixture_provenance": {
+		"baseline_files": [],
+		"baseline_ref": ""
+	},
+	"frame_samples": 24,
+	"godot": {
+		"build": "official",
+		"hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+		"hex": 263938,
+		"major": 4,
+		"minor": 7,
+		"patch": 2,
+		"status": "stable",
+		"string": "4.7.2-stable (official)",
+		"timestamp": 0
+	},
+	"high_baseline_comparisons": [
+		{
+			"baseline_file": "daylight-overview-high.png",
+			"baseline_png_sha256": "af144d2b58084bb76d5be1b177bbbb9c91d7fbfb321c7ac04668b4c514117a1f",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.00101345486111111,
+				"changed_rgb_pixels": 934,
+				"exact_equal": false,
+				"max_rgb_error_255": 17,
+				"mean_absolute_rgb_error_255": 0.000462239583333333,
+				"total_pixels": 921600
+			},
+			"id": "daylight-overview-high"
+		},
+		{
+			"baseline_file": "daylight-ground-high.png",
+			"baseline_png_sha256": "61db106b665d0cf38f6791c2394f1268d5297686440230123893f33715801a09",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.00253472222222222,
+				"changed_rgb_pixels": 2336,
+				"exact_equal": false,
+				"max_rgb_error_255": 13,
+				"mean_absolute_rgb_error_255": 0.000932074652777778,
+				"total_pixels": 921600
+			},
+			"id": "daylight-ground-high"
+		},
+		{
+			"baseline_file": "daylight-road-high.png",
+			"baseline_png_sha256": "dce5bee2716cbb8e945330417d73408e517531100f482aea7611d7f1563aa9cf",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"id": "daylight-road-high"
+		},
+		{
+			"baseline_file": "daylight-station-high.png",
+			"baseline_png_sha256": "4bdb6e297abccae9692290d0ef6b0687f5946f5d0dc0fd55fd07c1bb598373f8",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"id": "daylight-station-high"
+		},
+		{
+			"baseline_file": "daylight-water-high.png",
+			"baseline_png_sha256": "de5a0adcee2e5a9e561cb70b9daa8ae954ac2713bf18d41ea460243bddd87d1c",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.00000217013888888889,
+				"changed_rgb_pixels": 2,
+				"exact_equal": false,
+				"max_rgb_error_255": 1,
+				"mean_absolute_rgb_error_255": 0.00000072337962962963,
+				"total_pixels": 921600
+			},
+			"id": "daylight-water-high"
+		},
+		{
+			"baseline_file": "dusk-overview-high.png",
+			"baseline_png_sha256": "ed6b90fcf710dabceb60fa923a643c9ddb216dbd343d4728bee3fa62c8311e16",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"id": "dusk-overview-high"
+		},
+		{
+			"baseline_file": "dusk-ground-high.png",
+			"baseline_png_sha256": "557e357b983d0a7a4d3cb6382cc23be255525de91bfe05c4b483211b61f61efc",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"id": "dusk-ground-high"
+		},
+		{
+			"baseline_file": "dusk-road-high.png",
+			"baseline_png_sha256": "5a725f96cb3c94f765ca025781940ba3d328e5d1e0b7d230e2837fa6573f1e3f",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"id": "dusk-road-high"
+		},
+		{
+			"baseline_file": "dusk-station-high.png",
+			"baseline_png_sha256": "dbab47897faf7e5f2c5dd0e7b56d2bb8a0c06e4edc1431763697dfd0ed8b7e0b",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"id": "dusk-station-high"
+		},
+		{
+			"baseline_file": "dusk-water-high.png",
+			"baseline_png_sha256": "435c3257b5e9dab4635ccd2c89e46828e6a3a7b96686a9fb49fd38fdafdde32d",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0000217013888888889,
+				"changed_rgb_pixels": 20,
+				"exact_equal": false,
+				"max_rgb_error_255": 1,
+				"mean_absolute_rgb_error_255": 0.0000072337962962963,
+				"total_pixels": 921600
+			},
+			"id": "dusk-water-high"
+		},
+		{
+			"baseline_file": "night-overview-high.png",
+			"baseline_png_sha256": "0695bd2497c8ae7e439259e34ba596937fb527529d12acadd6e86933531f02b5",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.00000108506944444444,
+				"changed_rgb_pixels": 1,
+				"exact_equal": false,
+				"max_rgb_error_255": 1,
+				"mean_absolute_rgb_error_255": 0.000000361689814814815,
+				"total_pixels": 921600
+			},
+			"id": "night-overview-high"
+		},
+		{
+			"baseline_file": "night-ground-high.png",
+			"baseline_png_sha256": "47d567fc6c710cd1b35ad760e2169f37cda9a12f9adf301bf1f7f88bfb722d8d",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"id": "night-ground-high"
+		},
+		{
+			"baseline_file": "night-road-high.png",
+			"baseline_png_sha256": "c1caf4704ee3b2548eb6c15390e8c02806a2f9a768ee2fd12006058274732d1c",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"id": "night-road-high"
+		},
+		{
+			"baseline_file": "night-station-high.png",
+			"baseline_png_sha256": "caa79818f2139d1b2a7df472c8dbdf7391a0056ce0dd39952cee68154df49d24",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0,
+				"changed_rgb_pixels": 0,
+				"exact_equal": true,
+				"max_rgb_error_255": 0,
+				"mean_absolute_rgb_error_255": 0.0,
+				"total_pixels": 921600
+			},
+			"id": "night-station-high"
+		},
+		{
+			"baseline_file": "night-water-high.png",
+			"baseline_png_sha256": "8708481fdfad786c9f0d384ee18090c0916341a61bbc3f03546ccd935c4d1eaf",
+			"high_vs_baseline": {
+				"changed_rgb_fraction": 0.0000325520833333333,
+				"changed_rgb_pixels": 30,
+				"exact_equal": false,
+				"max_rgb_error_255": 1,
+				"mean_absolute_rgb_error_255": 0.0000108506944444444,
+				"total_pixels": 921600
+			},
+			"id": "night-water-high"
+		}
+	],
+	"limitations": [
+		"Source-material fixture only: no railway, trains, streaming, vegetation or LOD-distance coverage.",
+		"Frame intervals are wall-clock render-loop samples, not GPU timings or target-PC performance.",
+		"PNG differences quantify pixels, not artistic quality. Human review is still required.",
+		"Screen-space effects/radiance history can prevent exact restoration despite identical settings.",
+		"Frozen time, fixed cameras and noise seed are repeatable within this run, not cross-device pixel guarantees."
+	],
+	"os": "Windows",
+	"output_directory": "D:/ClaudeWS/train-game/art/performance/epic-2026-10-21/material-patched/2026-10-21T03-23-26-726686",
+	"presets": [
+		"High",
+		"Epic",
+		"High-restored"
+	],
+	"rebase_comparisons": [
+		{
+			"before_vs_after": {
+				"changed_rgb_fraction": 0.115625,
+				"changed_rgb_pixels": 106560,
+				"exact_equal": false,
+				"max_rgb_error_255": 33,
+				"mean_absolute_rgb_error_255": 0.0608329716435185,
+				"total_pixels": 921600
+			},
+			"limitation": "Includes photographic projection, shadow and screen-space history. Differences are measured, not automatically attributed to microdetail.",
+			"local_translation": [
+				-1024.0,
+				0.0,
+				-1024.0
+			],
+			"origin_after": [
+				301024.0,
+				0.0,
+				-298976.0
+			],
+			"origin_before": [
+				300000.0,
+				0.0,
+				-300000.0
+			],
+			"same_absolute_point": true,
+			"view": "road"
+		},
+		{
+			"before_vs_after": {
+				"changed_rgb_fraction": 0.0208376736111111,
+				"changed_rgb_pixels": 19204,
+				"exact_equal": false,
+				"max_rgb_error_255": 52,
+				"mean_absolute_rgb_error_255": 0.0172290943287037,
+				"total_pixels": 921600
+			},
+			"limitation": "Includes photographic projection, shadow and screen-space history. Differences are measured, not automatically attributed to microdetail.",
+			"local_translation": [
+				-1024.0,
+				0.0,
+				-1024.0
+			],
+			"origin_after": [
+				301024.0,
+				0.0,
+				-298976.0
+			],
+			"origin_before": [
+				300000.0,
+				0.0,
+				-300000.0
+			],
+			"same_absolute_point": true,
+			"view": "station"
+		},
+		{
+			"before_vs_after": {
+				"changed_rgb_fraction": 0.00759548611111111,
+				"changed_rgb_pixels": 7000,
+				"exact_equal": false,
+				"max_rgb_error_255": 53,
+				"mean_absolute_rgb_error_255": 0.00715603298611111,
+				"total_pixels": 921600
+			},
+			"limitation": "Includes photographic projection, shadow and screen-space history. Differences are measured, not automatically attributed to microdetail.",
+			"local_translation": [
+				-1024.0,
+				0.0,
+				-1024.0
+			],
+			"origin_after": [
+				301024.0,
+				0.0,
+				-298976.0
+			],
+			"origin_before": [
+				300000.0,
+				0.0,
+				-300000.0
+			],
+			"same_absolute_point": true,
+			"view": "water"
+		}
+	],
+	"renderer": "forward_plus",
+	"rendering_device_available": true,
+	"rendering_driver": "vulkan",
+	"resolution": [
+		1280,
+		720
+	],
+	"runtime_surface_whitelist": [
+		"res://game/shaders/geographic_ground.gdshader",
+		"res://game/shaders/scenery_road.gdshader",
+		"res://game/shaders/station_surface.gdshader",
+		"res://game/shaders/geographic_water.gdshader",
+		"res://game/shaders/station_boundary.gdshader",
+		"res://game/shaders/track_ballast.gdshader",
+		"res://game/shaders/track_concrete.gdshader",
+		"res://game/shaders/track_rail.gdshader",
+		"res://game/shaders/track_shoulder.gdshader"
+	],
+	"selected_periods": [],
+	"selected_views": [],
+	"settle_frames": 48,
+	"shader_time_frozen": true,
+	"shader_time_method": "Engine.time_scale=0.0 before first fixture frame",
+	"shaders": [
+		"res://game/shaders/geographic_ground.gdshader",
+		"res://game/shaders/scenery_road.gdshader",
+		"res://game/shaders/station_surface.gdshader",
+		"res://game/shaders/geographic_water.gdshader"
+	],
+	"source_sha256": {
+		"res://game/extreme_visuals.gd": "53804d28a34f9921958ab83a815af6a9c2674a6c6ef3a7131801472b44f649ac",
+		"res://game/graphics_options.gd": "d40f741fc494ad00c4165f95cc67c08659e55ee56a046a7b50ec62d7ef90f48f",
+		"res://game/shaders/day_night_sky.gdshader": "5d635ca310d7d93301c044126149cd7cf114ec7090e1b73403b73c4814c41538",
+		"res://game/shaders/extreme_surface_detail.gdshaderinc": "ae140c6b46d7b072837721cb227b79349130cb1680faf17703a13508ed8f1280",
+		"res://game/shaders/geographic_ground.gdshader": "1104fcd35a961cb82f6e9611c90d8a44a84c928a8efa579812f33b64317d1c4f",
+		"res://game/shaders/geographic_water.gdshader": "f2439d16f99d679c778b4b3ffa2c4ec7b60bd69c12057fc745c0bed405913d05",
+		"res://game/shaders/scenery_road.gdshader": "e5f9f26118672e3c123322f0dedebb1d39ead4c5a8613a93e5af0c5bb4892425",
+		"res://game/shaders/station_boundary.gdshader": "",
+		"res://game/shaders/station_surface.gdshader": "3fc79b01f839c67266c3b98dda030040961cf8067f6337b9de13d1689eda4095",
+		"res://game/shaders/track_ballast.gdshader": "",
+		"res://game/shaders/track_concrete.gdshader": "",
+		"res://game/shaders/track_rail.gdshader": "",
+		"res://game/shaders/track_shoulder.gdshader": "",
+		"res://tools/check_extreme_visuals.gd": "a04681c1957217eba66324bb6b39601c2851df7bef34ecd1cfac2b749aad9f43"
+	},
+	"ssr_supported": true
+}

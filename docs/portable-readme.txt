@@ -1,16 +1,15 @@
-TRAIN GAME - KERALA COAST R39
+TRAIN GAME - KERALA COAST R40
 
-R39: connected overhead fittings and steadier wire shadows; rebuilt road
-bridges/approaches, protected station surroundings and clearer yard spaces.
-Bridge approaches clear the actual widened railway and its overhead structures.
-Station entrances meet ground-level roads, with open canals and platforms kept
-clear. Duplicate mapped station footbridge decks are removed. Raised junctions
-have barrier openings and generated buildings leave road corridors clear. Asphalt textures
-stay fixed when the world origin moves.
-The sky panorama no longer shows a dashed vertical line at its wrap seam.
-The v4 updater batches and pipelines verified blocks for faster LAN transfers.
-Timetables, prepared starts, railway physics and the approved sound banks are
-unchanged. See guides/station-surroundings.md for the visual changes and checks.
+R40: optional Epic graphics preset, integrated with the R39 scenery fixes.
+Open pause menu > Graphics > Use Epic preset. High remains the default.
+Epic adds filtered surface detail on terrain, roads, platforms, track and water,
+sharper sky reflections, nearby station-lamp shadows and longer detail ranges.
+All effects can be adjusted individually. Dense nighttime stations cost more GPU
+time; disable Nearby station lamp shadows first if needed. Screen-space
+reflections remain off by default. See guides/extreme-visuals.md.
+Connected overhead equipment, road bridges and station clearances are retained.
+Timetables, prepared starts, railway physics and sound banks are unchanged.
+The included v4 updater supports signed, verified incremental LAN updates.
 
 Includes the detailed sound mixer, alternate operating day and safer route allocation.
 Use Operating day on the home page to choose Standard (100 services) or
@@ -42,13 +41,13 @@ Includes the controller layout pages, distance-only signal HUD, station
 approaches, positional audio and all earlier improvements.
 
 DOWNLOAD OR UPDATE
-R39 supports full downloads and incremental updates. For an older installation,
+R40 supports full downloads and incremental updates. For an older installation,
 download the small updater ZIP from the host page and replace Update and Play.exe
 once while the updater is closed. The title identifies the v4 launcher.
 Then close the game and open Update and Play.exe to update the existing folder.
 It batches verified compressed blocks, uses four bounded transfer workers and
 reuses unchanged data. It can choose the full ZIP if that should finish sooner.
-The full R39 ZIP already includes v4. For a fresh installation, extract the complete ZIP,
+The full R40 ZIP already includes v4. For a fresh installation, extract the complete ZIP,
 including packs/, and start TrainGame.exe or the included updater's Play.
 Keep the whole installation together.
 Saves and preferences live separately
