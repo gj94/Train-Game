@@ -1,5 +1,27 @@
 # Progress
 
+## 2026-10-22 — K1 Alappuzha post-overtake hold investigated (no runtime changes)
+
+- Intensive baseline reproduced from the prepared 10:05 checkpoint to 10:25.
+  B024 leaves ALLP at 10:06:53; its overtake hold clears 10:08:12 and K1's
+  immediate route becomes physically available about 10:09:21. Admission still
+  refuses K1 until 10:23:06; AI begins moving 10:23:10 after its departure horns.
+- The cause is downstream receiving capacity at AMPA, not a lingering overtake
+  hold. B024 reserves then occupies AMPA_P1 (arrival 10:17:02, departure 10:21:47).
+  Its tail clears that road about 10:23:06. AMPA_P2/P3 are free and reachable
+  from ALLP, but neither can reach K1's following Takazhi call in this topology;
+  only P1 is compatible. The immediate ALLP route has no physical refusal at 10:20.
+- General admission needs a distinct receiving berth for each following train.
+  Existing future_clearance is a specific three-train crossing transaction,
+  requiring a vacater's separate single-line escape and an opposing arrival.
+  B024's onward double-line departure produces no such plan. It therefore does
+  not yet support a general same-direction queue using a future platform vacancy.
+- Read-only state inspection plus a bounded 20-minute headless trace: zero safety
+  events. Evidence: art/performance/allp-following-2026-10-22. No simulation,
+  timetable, prepared-data, settings or published-build changes; no full-day run.
+  Investigation only. Future improvement needs safe following admission and
+  regression/timetable validation, rather than removing receiving protection.
+
 ## 2026-10-22 — R45 published after the additional QoL window
 
 - Full ZIP and signed incremental downloads live at http://192.168.8.183:8765/;

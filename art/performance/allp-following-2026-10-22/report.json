@@ -1,0 +1,228 @@
+{
+  "source": "817ced0; same simulation as R45 runtime 47e0ab6",
+  "day": "intensive",
+  "replay_start": "10:05:00",
+  "replay_end": "10:25:00",
+  "requested_step_seconds": 0.5,
+  "safety_events": [],
+  "events": [
+    {
+      "at_stop": true,
+      "b_at_stop": true,
+      "b_chainage": 57913.378197816,
+      "b_edge": "ALLP_P1",
+      "b_release": 36408.0,
+      "b_speed": 0.0,
+      "clock": "10:05:00",
+      "holds": {
+        "arrived": true,
+        "chainage": 57663.413,
+        "created": 6972.0500000166,
+        "direction": 1,
+        "kind": "overtake",
+        "other": "B024",
+        "station": "ALLP"
+      },
+      "k_speed": 0.0,
+      "reason": "Expect a wait at ALLP until Capital Intercity 01 \u00c2\u00b7 ERS\u00e2\u20ac\u201cTVC (B024) overtakes",
+      "time": 36300.0000000185
+    },
+    {
+      "at_stop": true,
+      "b_at_stop": false,
+      "b_chainage": 58672.1526926307,
+      "b_edge": "ALLP_PUPR_M0",
+      "b_release": 37302.0,
+      "b_speed": 58.5595800995872,
+      "clock": "10:08:12",
+      "holds": {},
+      "k_speed": 0.0,
+      "reason": "Block ALLP_DEPOT_RM_ACCESS occupied by B024 \u00c2\u00b7 Capital Intercity 01 \u00c2\u00b7 ERS\u00e2\u20ac\u201cTVC (B024)",
+      "time": 36492.0000000192
+    },
+    {
+      "at_stop": true,
+      "b_at_stop": false,
+      "b_chainage": 59118.2239712502,
+      "b_edge": "ALLP_PUPR_M0",
+      "b_release": 37302.0,
+      "b_speed": 67.1326612795334,
+      "clock": "10:08:38",
+      "holds": {},
+      "k_speed": 0.0,
+      "reason": "Block ALLP_PUPR_M0 occupied by B024 \u00c2\u00b7 Capital Intercity 01 \u00c2\u00b7 ERS\u00e2\u20ac\u201cTVC (B024)",
+      "time": 36518.5000000193
+    },
+    {
+      "at_stop": true,
+      "b_at_stop": false,
+      "b_chainage": 60063.6924324773,
+      "b_edge": "ALLP_PUPR_M1",
+      "b_release": 37302.0,
+      "b_speed": 88.4748626049525,
+      "clock": "10:09:21",
+      "holds": {},
+      "k_speed": 0.0,
+      "reason": "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00c2\u00b7 Capital Intercity 01 \u00c2\u00b7 ERS\u00e2\u20ac\u201cTVC (B024)",
+      "time": 36561.5000000195
+    },
+    {
+      "at_stop": true,
+      "b_at_stop": false,
+      "b_chainage": 64663.8919229058,
+      "b_edge": "PUPR_P1",
+      "b_release": 37302.0,
+      "b_speed": 88.5599999999997,
+      "clock": "10:12:28",
+      "holds": {},
+      "k_speed": 0.0,
+      "reason": "Expect a wait before Ambalappuzha: no free platform suitable for this service",
+      "time": 36748.5000000202
+    },
+    {
+      "at_stop": true,
+      "b_at_stop": false,
+      "b_chainage": 69344.5101086578,
+      "b_edge": "AMPA_P1",
+      "b_release": 37302.0,
+      "b_speed": 58.5602988788133,
+      "clock": "10:15:48",
+      "holds": {},
+      "k_speed": 0.0,
+      "reason": "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00c2\u00b7 Capital Intercity 01 \u00c2\u00b7 ERS\u00e2\u20ac\u201cTVC (B024)",
+      "time": 36948.0000000209
+    },
+    {
+      "at_stop": true,
+      "b_at_stop": false,
+      "b_chainage": 70883.6732468009,
+      "b_edge": "AMPA_TZH_D0",
+      "b_release": 38358.0,
+      "b_speed": 68.4196701427769,
+      "clock": "10:23:06",
+      "holds": {},
+      "k_speed": 0.0,
+      "reason": "Route set to ALLP_PUPR_M0-SA",
+      "time": 37386.0000000153
+    },
+    {
+      "at_stop": true,
+      "b_at_stop": false,
+      "b_chainage": 70893.2259645476,
+      "b_edge": "AMPA_TZH_D0",
+      "b_release": 38358.0,
+      "b_speed": 68.7362935300595,
+      "clock": "10:23:06",
+      "holds": {},
+      "k_speed": 0.0,
+      "reason": "Authority to ALLP_PUPR_M0-SA",
+      "time": 37386.5000000153
+    },
+    {
+      "at_stop": false,
+      "b_at_stop": false,
+      "b_chainage": 70971.2087527936,
+      "b_edge": "AMPA_TZH_D0",
+      "b_release": 38358.0,
+      "b_speed": 71.2042351140026,
+      "clock": "10:23:10",
+      "holds": {},
+      "k_speed": 0.0144668620961449,
+      "reason": "Authority to ALLP_PUPR_M0-SA",
+      "time": 37390.5000000152
+    },
+    {
+      "at_stop": false,
+      "b_at_stop": false,
+      "b_chainage": 71491.4014263351,
+      "b_edge": "AMPA_TZH_D1",
+      "b_release": 38358.0,
+      "b_speed": 84.0428308053683,
+      "clock": "10:23:34",
+      "holds": {},
+      "k_speed": 25.4136777490712,
+      "reason": "Authority to PUPR_AMPA_M3-SH",
+      "time": 37414.5000000149
+    }
+  ],
+  "at_1020": {
+    "physical_route_reason": "",
+    "admission": {
+      "blockers": [
+        {
+          "kind": "receiving_road",
+          "resource": "AMPA_P1",
+          "train": "B024"
+        }
+      ],
+      "reason": "Expect a wait before Ambalappuzha: no free platform suitable for this service"
+    },
+    "compatible_roads": [
+      "AMPA_P1"
+    ],
+    "future_plan": {},
+    "own_length_m": 466.5,
+    "roads": [
+      {
+        "id": "AMPA_P1",
+        "occupied": "B024",
+        "capacity_m": 604.03955078125,
+        "platform_width_m": 3.43,
+        "reachable_from_ALLP": true,
+        "can_reach_next_call_Takazhi": true
+      },
+      {
+        "id": "AMPA_P2",
+        "occupied": "",
+        "capacity_m": 607.850830078125,
+        "platform_width_m": 3.43,
+        "reachable_from_ALLP": true,
+        "can_reach_next_call_Takazhi": false
+      },
+      {
+        "id": "AMPA_P3",
+        "occupied": "",
+        "capacity_m": 609.172729492188,
+        "platform_width_m": 3.43,
+        "reachable_from_ALLP": true,
+        "can_reach_next_call_Takazhi": false
+      }
+    ]
+  },
+  "actual_calls": {
+    "K1": [
+      {
+        "station": "Alappuzha",
+        "block": "ALLP_P2",
+        "arrival_seconds": 35989.5000000174,
+        "departure_seconds": 37390.3000000152
+      },
+      {
+        "station": "Punnapra",
+        "block": "PUPR_P1",
+        "arrival_seconds": -1.0,
+        "departure_seconds": -1.0
+      },
+      {
+        "station": "Ambalappuzha",
+        "block": "AMPA_P1",
+        "arrival_seconds": -1.0,
+        "departure_seconds": -1.0
+      }
+    ],
+    "B024": [
+      {
+        "station": "Alappuzha",
+        "block": "ALLP_P1",
+        "arrival_seconds": 36137.9500000179,
+        "departure_seconds": 36412.7500000189
+      },
+      {
+        "station": "Ambalappuzha",
+        "block": "AMPA_P1",
+        "arrival_seconds": 37022.4000000206,
+        "departure_seconds": 37306.8000000165
+      }
+    ]
+  }
+}
