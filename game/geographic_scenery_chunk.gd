@@ -29,11 +29,13 @@ var occupancy:=preload("res://game/geographic_scenery_occupancy.gd").new()
 const BuildingLayout:=preload("res://game/geographic_building_layout.gd")
 const Kerala:=preload("res://game/kerala_scenery.gd")
 const Budget:=preload("res://game/railway_render_budget.gd")
+const ShoreCells:=preload("res://game/geographic_shore_cells.gd")
 var tile_features: Array=[]
 var rendered_buildings: Array=[]
 var road_water
 var road_barrier_widths: Dictionary={}
 var road_supports
+var shore_refinement_cache:={}
 
 func _init(data, shared_materials: Dictionary, shared_assets) -> void:
 	geo=data
@@ -190,10 +192,7 @@ func _terrain(size: float,steps: int,far_tile: bool) -> void:
 			var i:=z*(steps+1)+x
 			var a:=vertices[i]; var b:=vertices[i+1]; var c:=vertices[i+steps+2]; var d:=vertices[i+steps+1]
 			if not far_tile:
-				var wet:=0
-				for corner in [a,b,c,d]:
-					if wet_samples.get(Vector2(corner.x,corner.z),false):wet+=1
-				if wet>0 and wet<4:
+				if ShoreCells.refined(self,Vector2(a.x,a.z)):
 					_shore_cell(Vector2(a.x,a.z),size/steps,[a,b,c,d])
 					continue
 			var normal: Vector3=(d-a).cross(b-a).normalized()
@@ -211,23 +210,12 @@ func _terrain(size: float,steps: int,far_tile: bool) -> void:
 				surface.add_vertex(p)
 
 func _shore_cell(start: Vector2,width: float,corners: Array) -> void:
-	# Refine only mixed wet/dry terrain cells to 2 m. The rest stays at 8 m;
-	# this avoids angular 8 m bites through canal banks without a global mesh hike.
-	for z in 4:
-		for x in 4:
-			var points:=[];var uvs:=[]
-			for offset in [Vector2(x,z),Vector2(x+1,z),Vector2(x+1,z+1),Vector2(x,z+1)]:
-				var p: Vector2=start+offset*width*.25
-				var height:=_ground(p.x,p.y)
-				# Keep subdivided perimeter vertices on the neighbouring 8 m edge.
-				# Otherwise the curved bank creates T-junction cracks against dry cells.
-				if offset.y==0:height=lerpf(corners[0].y,corners[1].y,offset.x*.25)
-				elif offset.y==4:height=lerpf(corners[3].y,corners[2].y,offset.x*.25)
-				elif offset.x==0:height=lerpf(corners[0].y,corners[3].y,offset.y*.25)
-				elif offset.x==4:height=lerpf(corners[1].y,corners[2].y,offset.y*.25)
-				points.append(Vector3(p.x,height,p.y));uvs.append((p+Vector2(origin.x,origin.z))/3.5)
-			var normal: Vector3=(points[3]-points[0]).cross(points[1]-points[0]).normalized()
-			batch.quad("ground",points[0],points[1],points[2],points[3],normal,Color(.32,.44,.23,.18),uvs)
+	assert(is_equal_approx(width,8))
+	for points: PackedVector3Array in ShoreCells.quads(self,start,PackedVector3Array(corners),true):
+		var uvs:=[]
+		for p in points:uvs.append(Vector2(p.x+origin.x,p.z+origin.z)/3.5)
+		var normal: Vector3=(points[3]-points[0]).cross(points[1]-points[0]).normalized()
+		batch.quad("ground",points[0],points[1],points[2],points[3],normal,Color(.32,.44,.23,.18),uvs)
 
 func _water(feature: Dictionary) -> void:
 	var y: float=feature.get("water_height",0.0)+.06
@@ -241,13 +229,7 @@ func _road(feature: Dictionary) -> void:
 	preload("res://game/geographic_road_surface.gd").draw(self,feature)
 
 func _stream(feature: Dictionary) -> void:
-	if feature.tags.get("tunnel","no")!="no" or feature.tags.get("covered","no")=="yes":return
-	for line in _lines(feature.geometry):
-		for i in range(1,line.size()):
-			var a:=Vector3(line[i-1][0],0,line[i-1][1]); var b:=Vector3(line[i][0],0,line[i][1])
-			a.y=_ground(a.x,a.z)+.09; b.y=_ground(b.x,b.z)+.09
-			var side: Vector3=(b-a).normalized().cross(Vector3.UP)*(4.0 if feature.tags.get("waterway")=="river" else 1.2)
-			batch.quad("water",a-side,b-side,b+side,a+side,Vector3.UP)
+	preload("res://game/geographic_stream_surface.gd").draw(self,feature)
 
 func _building(feature: Dictionary) -> void:
 	if feature.tags.get("building","") in ["train_station","station"]: return

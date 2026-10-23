@@ -35,4 +35,23 @@ GroundRibbon must use the same rule. Duplicate centreline water should also
 be suppressed where the mapped water polygon already supplies the surface.
 
 Working repros and four native canal views remain in
-.local/map-2026-10-24/stream-{cases.json,baseline-native}; no fix applied yet.
+.local/map-2026-10-24/stream-{cases.json,baseline-native}. The subsequent
+shore-banks evidence directory covers the bank stitching/duplicate water fix.
+
+## More precise ground diagnosis (read-only)
+
+`ground-diagnosis.json` compares the actual edge chainage, nearest rendered
+ground index, raw height and height of the emitted terrain triangle. At KZTW
+s=910, the railway is 17.900 m, raw terrain 17.750 m, but its rendered triangle
+is 15.809 m. Both actual and nearest chainages are outside the bridge. NYY,
+AMY, TVC P4/P5, TZH and OCR show similar coarse-grid interpolation losses.
+This narrows the cause: an 8 m terrain cell straddles the abrupt bridge or
+precinct boundary. Do not treat this as evidence to move the railway or fill
+an entire bridge opening.
+
+ERS_END_U's nearest indexed segment is 46–67 m away, and NCJ_END_D/U's is
+about 52 m away. Terminal extensions are omitted by the lateral >24 m filter;
+their chainage also extends beyond the indexed reference alignment. NCJ U
+overlaps mapped water. These need actual render-only formation coverage plus
+careful protection against water carving beneath a non-bridge extension.
+ALLP depot access is a real deck/water/road crossing: preserve its opening.

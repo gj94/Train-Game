@@ -345,3 +345,44 @@ Next priorities (supersede previous lists):
 R45 remains available. Original 03:30:53 start, 10:30 minimum finish and six
 actual active hours still apply. Notify before preparing the eventual full
 and incremental release, then validate it and pause automation at completion.
+
+## Seventh implementation checkpoint (validated)
+
+The 2.5 km canal bank now uses shared 2 m samples across fine cells, with
+stitching only at real fine/coarse transitions. The existing coarse outer-tile
+contract is preserved. A 10 m shore buffer limits detail; terrain and road
+projection share the exact mesh. Centreline stream ribbons are clipped where
+mapped water polygons already supply a surface, retaining uncovered lengths
+and polygon holes. No mapped water elevations or railway inputs change.
+
+849 source tests, 17 Python tests; 60 tiles / 801,774 actual edge comparisons
+pass. Full 4,305-tile road export: 5,503,160 triangles, all finishes, 13,270
+rail checks, 695 piers and 19,885 supports pass independent audits. Junctions:
+14,976 probes, max 6.148 mm, same three one-sided cases. 32,857 profile rows,
+exclusions and OHE coordinates unchanged; 1,801-input gate current. All 4,893
+protected hashes unchanged. Three final native views at time zero; five
+scripts validate, no editor/native errors. Evidence: shore-banks directory.
+
+Isolated three-repeat comparisons: 60 water-heavy/dry tiles terrain/water CPU
++22.62% (25.4 ms/tile extra), vertices +15.38%; 90 road tiles generation +2.68%,
+total mesh creation +2.57%, vertices +0.61%, material surfaces unchanged. A
+wider 14 m prototype was rejected for higher cost. Not target-PC FPS results.
+
+Updated next work (supersedes the sixth checkpoint list):
+1. Ground-support repair. Read support-investigation/ground-diagnosis.json:
+   KZTW raw height is correct, but coarse rendered triangles cross the bridge
+   end and dip by about 1.94 m. Similar interpolation at NYY/AMY/TVC/TZH/OCR.
+   Terminal extensions are missing from the render formation index (nearest
+   rail 46–67 m away); NCJ also overlaps mapped water. Refine presentation and
+   grounding without moving tracks or filling real bridge openings. ALLP
+   depot access is a legitimate bridge. Existing twelve native baselines are
+   reviewed; do not repeat them. Diagnostic helper remains in .local.
+2. Angle-aware audit/repair of low parallel road overlap around 143.7 km.
+3. Clip junction shoulders/paint from same-level road mouths (146.2 km and
+   184.3 km), preserving grade separation and every road material kind.
+4. Vegetation/cut-bank transitions and final scenery/performance validation.
+
+R45 remains live; no build prepared. Keep fixed start 03:30:53, minimum 10:30
+and six actual active hours. No full timetable runs or extracted gameplay;
+no runtime/test edits during the full suite. All seventh validation jobs have
+completed. Continue useful implementation toward the original deadline.

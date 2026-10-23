@@ -1,5 +1,31 @@
 # Progress
 
+## 2026-10-24 — Continuous canal banks and one mapped water surface
+
+- Seventh overnight increment: adjacent fine shore cells now share actual
+  heights, removing repeated triangular bank teeth. Fine/coarse boundaries
+  remain stitched; terrain and road projection use the same topology. Clip
+  duplicate canal centrelines out of mapped water polygons, preserving holes.
+- Validation: 849 full source tests, 17 Python tests; 801,774 actual terrain
+  edge comparisons across 60 tiles pass. Full 4,305-tile export: 5,503,160
+  road triangles/all finishes, 13,270 rail checks, 695 piers and 19,885 road
+  supports pass independent clearance checks. 14,976 junction probes pass,
+  max 6.148 mm. All 32,857 profile coordinates and 4,893 protected files
+  unchanged; 1,801-input gate current. Three frozen native views and zero
+  editor errors. Evidence: art/performance/map-2026-10-24/shore-banks.
+- Measured cost: terrain/water generation +22.62% in a water-heavy 60-tile
+  sample (25.4 ms/tile extra); road generation +2.68%, same material surfaces.
+  Detail is limited to a narrow bank strip. These isolated development-PC
+  worker measurements do not predict target RTX 4090 Laptop frame rate.
+- More precise support diagnosis distinguishes coarse terrain interpolation
+  at bridge ends from missing terminal formation indexing. Next repair those
+  render-only defects, then parallel road overlaps, junction shoulders and
+  vegetation transitions. All twelve baseline support views are already read.
+- Playtest after release: canal at 2.5 km, Kumbalam junction 9.5 km and ground
+  road/deck transition 184.3 km. Existing junction shoulder overlaps remain
+  follow-up work. No timetable or extracted-build gameplay runs. R45 stays
+  live; the original overnight window and six actual active hours continue.
+
 ## 2026-10-24 — Road worker optimisation and support investigation
 
 - Sixth overnight increment: cache terrain plane equations, hoist triangle UV
