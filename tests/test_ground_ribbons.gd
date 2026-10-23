@@ -15,6 +15,14 @@ class Shore:
 	var wet_samples:={Vector2.ZERO:true}
 	func _ground(x: float,z: float) -> float:return -2.0 if x<3 and z<3 else 2.0
 
+func test_cached_plane_keeps_millimetre_clearance_near_far_tile_corner():
+	var landscape:=Landscape.new()
+	var polygon:=PackedVector2Array([Vector2(497,489),Vector2(513,490),Vector2(512,507),Vector2(496,505)])
+	for triangle: PackedVector3Array in Ribbon.project(landscape,polygon,.07):
+		for p in triangle:
+			if absf(p.y-Foundations.surface_height(landscape._ground,p.x,p.z)-.07)>.00005:return "Cached plane loses height at a tile corner"
+	return true
+
 func test_ground_road_matches_the_rendered_landscape_between_vertices():
 	var landscape:=Landscape.new()
 	var polygon:=PackedVector2Array([Vector2(-10,-3),Vector2(25,-3),Vector2(25,3),Vector2(-10,3)])

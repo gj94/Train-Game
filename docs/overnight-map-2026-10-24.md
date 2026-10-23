@@ -294,3 +294,54 @@ Next work:
 R45 remains live. Continue the original fixed window and six actual work hours;
 this checkpoint is not release completion. All fifth-pass jobs are finished at
 checkpoint; no runtime/test script was edited while the full suite ran.
+
+## Sixth implementation checkpoint (validated)
+
+Road-worker optimisation: cached float64 terrain-plane equations, hoisted UV
+setup, per-way height indices and unique endpoint indices. Do not remove flat
+profile knots: bridge piers/retaining grouping depends on those subdivisions.
+Against d500cfe, isolated 90 tiles x three interleaved passes: generation
+49,422.664 -> 47,384.621 ms (-4.12%), including mesh finish 52,320.611 ->
+50,280.776 ms (-3.90%). Both 6,881,697 vertices / 885 road material surfaces.
+This is development-PC CPU mesh creation, not a target-PC frame-rate result.
+
+841 full source tests, 17 Python tests; exact query parity on all source roads
+with profiles (27,984 segments, 139,920 height probes, 27,337 split knots).
+All 4,305 tiles exported: 5,428,221 actual road triangles across all finishes,
+shoulders/paint; independent clearance audit passes, including 13,256 rail
+crossing checks and 695 piers. 14,976 rendered junction probes pass, max
+6.148 mm. All 32,857 profile elevations/exclusions/support positions unchanged;
+1,800-input gate current. All 4,893 protected inputs unchanged. Three native
+junction views frozen at time 0. Six scripts validate; editor zero errors.
+Evidence: art/performance/map-2026-10-24/optimisation. No timetable or extracted
+gameplay run; no runtime/test edits while the full suite ran.
+
+The twelve baseline support cases are now captured and reviewed, not pending
+capture. Read art/performance/map-2026-10-24/support-investigation/README.md:
+KZTW bridge exit and ERS/NCJ extensions show gaps; TVC platform walls obscure
+the underlying ground, so do not automatically treat them as floating rails.
+
+Next priorities (supersede previous lists):
+1. Fix canal-bank teeth at 2.5 km: source native view in
+   .local/map-2026-10-24/stream-baseline-native. Current 2 m shore cells force
+   every perimeter onto coarse 8 m edges, even between refined neighbours.
+   Refine a shore buffer, stitch only to coarse neighbours, and share identical
+   rules between terrain and GroundRibbon. Watch tile-edge continuity and
+   protect track/road heights. Duplicate centreline water also overlaps mapped
+   water polygons; stream-intrusions.json quantifies it. stream-cases.json and
+   inspect-streams.gd are ready; do not repeat their baseline capture.
+2. Repair ground beneath the confirmed bridge-end/terminal formation cases,
+   without changing rail geometry. Inspect install_railway's lateral>24 filter
+   and reference-alignment endpoint coverage; bridge ground/deck interpolation
+   may also differ. NCJ extension includes a water overlap. Keep true bridge
+   openings. Reuse all twelve prepared cases; they are already reviewed.
+3. Low parallel road/rail overlap at 143.7 km needs an angle-aware audit;
+   the current audit deliberately permits low-level crossings.
+4. Junction shoulders visibly cross mouths at the 146.2 km native fixture.
+   Clip same-level shoulders/paint against crossing road footprints while
+   preserving higher/lower roads and every material kind.
+5. Vegetation/cut-bank transitions and final scenery/performance checks.
+
+R45 remains available. Original 03:30:53 start, 10:30 minimum finish and six
+actual active hours still apply. Notify before preparing the eventual full
+and incremental release, then validate it and pause automation at completion.

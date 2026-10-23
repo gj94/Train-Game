@@ -1,0 +1,7029 @@
+{
+  "baseline": "res://.local/map-2026-10-24/optimise-baseline-chunk.gd",
+  "baseline_profiles": "res://.local/map-2026-10-24/optimise-baseline-profiles.gd",
+  "note": "CPU-only interleaved three-pass road mesh generation including engineered road profiles; same terrain/tiles/materials; no simulation or rendered FPS measurement.",
+  "profiled_ways": 3254,
+  "rows": [
+    {
+      "finish_ms": 8.531,
+      "generate_ms": 183.62,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        -2
+      ],
+      "total_ms": 192.151,
+      "variant": "before",
+      "vertices": 23645
+    },
+    {
+      "finish_ms": 7.724,
+      "generate_ms": 168.55,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        -2
+      ],
+      "total_ms": 176.274,
+      "variant": "after",
+      "vertices": 23645
+    },
+    {
+      "finish_ms": 8.104,
+      "generate_ms": 167.794,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        -2
+      ],
+      "total_ms": 175.898,
+      "variant": "after",
+      "vertices": 23645
+    },
+    {
+      "finish_ms": 7.92,
+      "generate_ms": 180.003,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        -2
+      ],
+      "total_ms": 187.923,
+      "variant": "before",
+      "vertices": 23645
+    },
+    {
+      "finish_ms": 8.008,
+      "generate_ms": 178.051,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        -2
+      ],
+      "total_ms": 186.059,
+      "variant": "before",
+      "vertices": 23645
+    },
+    {
+      "finish_ms": 7.84,
+      "generate_ms": 167.725,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        -2
+      ],
+      "total_ms": 175.565,
+      "variant": "after",
+      "vertices": 23645
+    },
+    {
+      "finish_ms": 7.771,
+      "generate_ms": 185.214,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        -2,
+        -1
+      ],
+      "total_ms": 192.985,
+      "variant": "after",
+      "vertices": 23639
+    },
+    {
+      "finish_ms": 7.809,
+      "generate_ms": 193.917,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        -2,
+        -1
+      ],
+      "total_ms": 201.726,
+      "variant": "before",
+      "vertices": 23639
+    },
+    {
+      "finish_ms": 7.937,
+      "generate_ms": 195.148,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        -2,
+        -1
+      ],
+      "total_ms": 203.085,
+      "variant": "before",
+      "vertices": 23639
+    },
+    {
+      "finish_ms": 7.635,
+      "generate_ms": 183.122,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        -2,
+        -1
+      ],
+      "total_ms": 190.757,
+      "variant": "after",
+      "vertices": 23639
+    },
+    {
+      "finish_ms": 8.046,
+      "generate_ms": 183.911,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        -2,
+        -1
+      ],
+      "total_ms": 191.957,
+      "variant": "after",
+      "vertices": 23639
+    },
+    {
+      "finish_ms": 7.894,
+      "generate_ms": 193.952,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        -2,
+        -1
+      ],
+      "total_ms": 201.846,
+      "variant": "before",
+      "vertices": 23639
+    },
+    {
+      "finish_ms": 7.699,
+      "generate_ms": 109.721,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        0
+      ],
+      "total_ms": 117.42,
+      "variant": "before",
+      "vertices": 17337
+    },
+    {
+      "finish_ms": 7.907,
+      "generate_ms": 107.259,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        0
+      ],
+      "total_ms": 115.166,
+      "variant": "after",
+      "vertices": 17337
+    },
+    {
+      "finish_ms": 8.111,
+      "generate_ms": 108.112,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        0
+      ],
+      "total_ms": 116.223,
+      "variant": "after",
+      "vertices": 17337
+    },
+    {
+      "finish_ms": 7.585,
+      "generate_ms": 110.257,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        0
+      ],
+      "total_ms": 117.842,
+      "variant": "before",
+      "vertices": 17337
+    },
+    {
+      "finish_ms": 7.729,
+      "generate_ms": 110.093,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        0
+      ],
+      "total_ms": 117.822,
+      "variant": "before",
+      "vertices": 17337
+    },
+    {
+      "finish_ms": 7.587,
+      "generate_ms": 107.394,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        -2,
+        0
+      ],
+      "total_ms": 114.981,
+      "variant": "after",
+      "vertices": 17337
+    },
+    {
+      "finish_ms": 8.486,
+      "generate_ms": 176.631,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        -1,
+        -2
+      ],
+      "total_ms": 185.117,
+      "variant": "after",
+      "vertices": 21376
+    },
+    {
+      "finish_ms": 8.369,
+      "generate_ms": 178.406,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        -1,
+        -2
+      ],
+      "total_ms": 186.775,
+      "variant": "before",
+      "vertices": 21376
+    },
+    {
+      "finish_ms": 8.51,
+      "generate_ms": 181.96,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        -1,
+        -2
+      ],
+      "total_ms": 190.47,
+      "variant": "before",
+      "vertices": 21376
+    },
+    {
+      "finish_ms": 8.558,
+      "generate_ms": 176.091,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        -1,
+        -2
+      ],
+      "total_ms": 184.649,
+      "variant": "after",
+      "vertices": 21376
+    },
+    {
+      "finish_ms": 8.747,
+      "generate_ms": 177.966,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        -1,
+        -2
+      ],
+      "total_ms": 186.713,
+      "variant": "after",
+      "vertices": 21376
+    },
+    {
+      "finish_ms": 8.649,
+      "generate_ms": 181.67,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        -1,
+        -2
+      ],
+      "total_ms": 190.319,
+      "variant": "before",
+      "vertices": 21376
+    },
+    {
+      "finish_ms": 8.523,
+      "generate_ms": 281.072,
+      "repeat": 0,
+      "surfaces": 8,
+      "tile": [
+        -1,
+        -1
+      ],
+      "total_ms": 289.595,
+      "variant": "before",
+      "vertices": 24579
+    },
+    {
+      "finish_ms": 10.893,
+      "generate_ms": 289.616,
+      "repeat": 0,
+      "surfaces": 8,
+      "tile": [
+        -1,
+        -1
+      ],
+      "total_ms": 300.509,
+      "variant": "after",
+      "vertices": 24579
+    },
+    {
+      "finish_ms": 8.752,
+      "generate_ms": 282.791,
+      "repeat": 1,
+      "surfaces": 8,
+      "tile": [
+        -1,
+        -1
+      ],
+      "total_ms": 291.543,
+      "variant": "after",
+      "vertices": 24579
+    },
+    {
+      "finish_ms": 8.218,
+      "generate_ms": 283.672,
+      "repeat": 1,
+      "surfaces": 8,
+      "tile": [
+        -1,
+        -1
+      ],
+      "total_ms": 291.89,
+      "variant": "before",
+      "vertices": 24579
+    },
+    {
+      "finish_ms": 8.965,
+      "generate_ms": 284.96,
+      "repeat": 2,
+      "surfaces": 8,
+      "tile": [
+        -1,
+        -1
+      ],
+      "total_ms": 293.925,
+      "variant": "before",
+      "vertices": 24579
+    },
+    {
+      "finish_ms": 8.183,
+      "generate_ms": 275.521,
+      "repeat": 2,
+      "surfaces": 8,
+      "tile": [
+        -1,
+        -1
+      ],
+      "total_ms": 283.704,
+      "variant": "after",
+      "vertices": 24579
+    },
+    {
+      "finish_ms": 32.769,
+      "generate_ms": 440.814,
+      "repeat": 0,
+      "surfaces": 9,
+      "tile": [
+        -1,
+        0
+      ],
+      "total_ms": 473.583,
+      "variant": "after",
+      "vertices": 84198
+    },
+    {
+      "finish_ms": 32.257,
+      "generate_ms": 500.718,
+      "repeat": 0,
+      "surfaces": 9,
+      "tile": [
+        -1,
+        0
+      ],
+      "total_ms": 532.975,
+      "variant": "before",
+      "vertices": 84198
+    },
+    {
+      "finish_ms": 31.79,
+      "generate_ms": 460.556,
+      "repeat": 1,
+      "surfaces": 9,
+      "tile": [
+        -1,
+        0
+      ],
+      "total_ms": 492.346,
+      "variant": "before",
+      "vertices": 84198
+    },
+    {
+      "finish_ms": 32.062,
+      "generate_ms": 439.703,
+      "repeat": 1,
+      "surfaces": 9,
+      "tile": [
+        -1,
+        0
+      ],
+      "total_ms": 471.765,
+      "variant": "after",
+      "vertices": 84198
+    },
+    {
+      "finish_ms": 32.219,
+      "generate_ms": 444.68,
+      "repeat": 2,
+      "surfaces": 9,
+      "tile": [
+        -1,
+        0
+      ],
+      "total_ms": 476.899,
+      "variant": "after",
+      "vertices": 84198
+    },
+    {
+      "finish_ms": 32.712,
+      "generate_ms": 457.446,
+      "repeat": 2,
+      "surfaces": 9,
+      "tile": [
+        -1,
+        0
+      ],
+      "total_ms": 490.158,
+      "variant": "before",
+      "vertices": 84198
+    },
+    {
+      "finish_ms": 0.005,
+      "generate_ms": 3.515,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -2
+      ],
+      "total_ms": 3.52,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.46,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -2
+      ],
+      "total_ms": 3.462,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.363,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -2
+      ],
+      "total_ms": 3.365,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 3.374,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -2
+      ],
+      "total_ms": 3.377,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 3.302,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -2
+      ],
+      "total_ms": 3.303,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.456,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -2
+      ],
+      "total_ms": 3.458,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.461,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -1
+      ],
+      "total_ms": 3.463,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.33,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -1
+      ],
+      "total_ms": 3.332,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.351,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -1
+      ],
+      "total_ms": 3.353,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.323,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -1
+      ],
+      "total_ms": 3.325,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.175,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -1
+      ],
+      "total_ms": 3.177,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.222,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        0,
+        -1
+      ],
+      "total_ms": 3.224,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 6.749,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        0,
+        0
+      ],
+      "total_ms": 6.752,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 6.443,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        0,
+        0
+      ],
+      "total_ms": 6.445,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 6.416,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        0,
+        0
+      ],
+      "total_ms": 6.418,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 6.53,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        0,
+        0
+      ],
+      "total_ms": 6.532,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 6.496,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        0,
+        0
+      ],
+      "total_ms": 6.498,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 6.501,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        0,
+        0
+      ],
+      "total_ms": 6.503,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 1.444,
+      "generate_ms": 33.041,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        2,
+        12
+      ],
+      "total_ms": 34.485,
+      "variant": "after",
+      "vertices": 3136
+    },
+    {
+      "finish_ms": 1.355,
+      "generate_ms": 34.146,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        2,
+        12
+      ],
+      "total_ms": 35.501,
+      "variant": "before",
+      "vertices": 3136
+    },
+    {
+      "finish_ms": 1.316,
+      "generate_ms": 33.415,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        2,
+        12
+      ],
+      "total_ms": 34.731,
+      "variant": "before",
+      "vertices": 3136
+    },
+    {
+      "finish_ms": 1.385,
+      "generate_ms": 32.928,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        2,
+        12
+      ],
+      "total_ms": 34.313,
+      "variant": "after",
+      "vertices": 3136
+    },
+    {
+      "finish_ms": 1.329,
+      "generate_ms": 32.601,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        2,
+        12
+      ],
+      "total_ms": 33.93,
+      "variant": "after",
+      "vertices": 3136
+    },
+    {
+      "finish_ms": 1.419,
+      "generate_ms": 33.489,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        2,
+        12
+      ],
+      "total_ms": 34.908,
+      "variant": "before",
+      "vertices": 3136
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 5.916,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        2,
+        13
+      ],
+      "total_ms": 5.919,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 5.734,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        2,
+        13
+      ],
+      "total_ms": 5.736,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 5.925,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        2,
+        13
+      ],
+      "total_ms": 5.928,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 5.652,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        2,
+        13
+      ],
+      "total_ms": 5.654,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 5.695,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        2,
+        13
+      ],
+      "total_ms": 5.697,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 5.801,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        2,
+        13
+      ],
+      "total_ms": 5.804,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 1.338,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        2,
+        14
+      ],
+      "total_ms": 1.34,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.188,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        2,
+        14
+      ],
+      "total_ms": 1.189,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.215,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        2,
+        14
+      ],
+      "total_ms": 1.216,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.221,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        2,
+        14
+      ],
+      "total_ms": 1.222,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 1.221,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        2,
+        14
+      ],
+      "total_ms": 1.223,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 1.273,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        2,
+        14
+      ],
+      "total_ms": 1.275,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 6.095,
+      "generate_ms": 125.355,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        3,
+        12
+      ],
+      "total_ms": 131.45,
+      "variant": "before",
+      "vertices": 14798
+    },
+    {
+      "finish_ms": 5.87,
+      "generate_ms": 116.087,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        3,
+        12
+      ],
+      "total_ms": 121.957,
+      "variant": "after",
+      "vertices": 14798
+    },
+    {
+      "finish_ms": 5.585,
+      "generate_ms": 124.049,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        3,
+        12
+      ],
+      "total_ms": 129.634,
+      "variant": "after",
+      "vertices": 14798
+    },
+    {
+      "finish_ms": 5.486,
+      "generate_ms": 123.956,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        3,
+        12
+      ],
+      "total_ms": 129.442,
+      "variant": "before",
+      "vertices": 14798
+    },
+    {
+      "finish_ms": 5.527,
+      "generate_ms": 114.88,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        3,
+        12
+      ],
+      "total_ms": 120.407,
+      "variant": "before",
+      "vertices": 14798
+    },
+    {
+      "finish_ms": 5.599,
+      "generate_ms": 111.48,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        3,
+        12
+      ],
+      "total_ms": 117.079,
+      "variant": "after",
+      "vertices": 14798
+    },
+    {
+      "finish_ms": 10.538,
+      "generate_ms": 241.773,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        3,
+        13
+      ],
+      "total_ms": 252.311,
+      "variant": "after",
+      "vertices": 30465
+    },
+    {
+      "finish_ms": 10.306,
+      "generate_ms": 242.782,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        3,
+        13
+      ],
+      "total_ms": 253.088,
+      "variant": "before",
+      "vertices": 30465
+    },
+    {
+      "finish_ms": 10.148,
+      "generate_ms": 244.005,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        3,
+        13
+      ],
+      "total_ms": 254.153,
+      "variant": "before",
+      "vertices": 30465
+    },
+    {
+      "finish_ms": 10.385,
+      "generate_ms": 229.008,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        3,
+        13
+      ],
+      "total_ms": 239.393,
+      "variant": "after",
+      "vertices": 30465
+    },
+    {
+      "finish_ms": 10.079,
+      "generate_ms": 232.523,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        3,
+        13
+      ],
+      "total_ms": 242.602,
+      "variant": "after",
+      "vertices": 30465
+    },
+    {
+      "finish_ms": 10.53,
+      "generate_ms": 237.493,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        3,
+        13
+      ],
+      "total_ms": 248.023,
+      "variant": "before",
+      "vertices": 30465
+    },
+    {
+      "finish_ms": 7.324,
+      "generate_ms": 178.963,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        3,
+        14
+      ],
+      "total_ms": 186.287,
+      "variant": "before",
+      "vertices": 21519
+    },
+    {
+      "finish_ms": 6.928,
+      "generate_ms": 166.736,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        3,
+        14
+      ],
+      "total_ms": 173.664,
+      "variant": "after",
+      "vertices": 21519
+    },
+    {
+      "finish_ms": 7.23,
+      "generate_ms": 169.787,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        3,
+        14
+      ],
+      "total_ms": 177.017,
+      "variant": "after",
+      "vertices": 21519
+    },
+    {
+      "finish_ms": 7.519,
+      "generate_ms": 193.414,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        3,
+        14
+      ],
+      "total_ms": 200.933,
+      "variant": "before",
+      "vertices": 21519
+    },
+    {
+      "finish_ms": 7.245,
+      "generate_ms": 188.797,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        3,
+        14
+      ],
+      "total_ms": 196.042,
+      "variant": "before",
+      "vertices": 21519
+    },
+    {
+      "finish_ms": 9.84,
+      "generate_ms": 196.541,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        3,
+        14
+      ],
+      "total_ms": 206.381,
+      "variant": "after",
+      "vertices": 21519
+    },
+    {
+      "finish_ms": 0.006,
+      "generate_ms": 3.671,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        4,
+        12
+      ],
+      "total_ms": 3.677,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.006,
+      "generate_ms": 3.541,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        4,
+        12
+      ],
+      "total_ms": 3.547,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 3.527,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        4,
+        12
+      ],
+      "total_ms": 3.53,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.005,
+      "generate_ms": 3.645,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        4,
+        12
+      ],
+      "total_ms": 3.65,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.006,
+      "generate_ms": 3.564,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        4,
+        12
+      ],
+      "total_ms": 3.57,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.007,
+      "generate_ms": 3.651,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        4,
+        12
+      ],
+      "total_ms": 3.658,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 4.392,
+      "generate_ms": 89.59,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        4,
+        13
+      ],
+      "total_ms": 93.982,
+      "variant": "before",
+      "vertices": 9670
+    },
+    {
+      "finish_ms": 4.225,
+      "generate_ms": 72.21,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        4,
+        13
+      ],
+      "total_ms": 76.435,
+      "variant": "after",
+      "vertices": 9670
+    },
+    {
+      "finish_ms": 3.936,
+      "generate_ms": 68.741,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        4,
+        13
+      ],
+      "total_ms": 72.677,
+      "variant": "after",
+      "vertices": 9670
+    },
+    {
+      "finish_ms": 4.11,
+      "generate_ms": 75.01,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        4,
+        13
+      ],
+      "total_ms": 79.12,
+      "variant": "before",
+      "vertices": 9670
+    },
+    {
+      "finish_ms": 3.99,
+      "generate_ms": 72.334,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        4,
+        13
+      ],
+      "total_ms": 76.324,
+      "variant": "before",
+      "vertices": 9670
+    },
+    {
+      "finish_ms": 4.134,
+      "generate_ms": 68.386,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        4,
+        13
+      ],
+      "total_ms": 72.52,
+      "variant": "after",
+      "vertices": 9670
+    },
+    {
+      "finish_ms": 11.569,
+      "generate_ms": 175.147,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        4,
+        14
+      ],
+      "total_ms": 186.716,
+      "variant": "after",
+      "vertices": 34483
+    },
+    {
+      "finish_ms": 11.49,
+      "generate_ms": 186.059,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        4,
+        14
+      ],
+      "total_ms": 197.549,
+      "variant": "before",
+      "vertices": 34483
+    },
+    {
+      "finish_ms": 11.407,
+      "generate_ms": 186.993,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        4,
+        14
+      ],
+      "total_ms": 198.4,
+      "variant": "before",
+      "vertices": 34483
+    },
+    {
+      "finish_ms": 10.862,
+      "generate_ms": 172.243,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        4,
+        14
+      ],
+      "total_ms": 183.105,
+      "variant": "after",
+      "vertices": 34483
+    },
+    {
+      "finish_ms": 11.138,
+      "generate_ms": 170.215,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        4,
+        14
+      ],
+      "total_ms": 181.353,
+      "variant": "after",
+      "vertices": 34483
+    },
+    {
+      "finish_ms": 10.959,
+      "generate_ms": 186.088,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        4,
+        14
+      ],
+      "total_ms": 197.047,
+      "variant": "before",
+      "vertices": 34483
+    },
+    {
+      "finish_ms": 2.439,
+      "generate_ms": 61.82,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        2,
+        40
+      ],
+      "total_ms": 64.259,
+      "variant": "before",
+      "vertices": 7495
+    },
+    {
+      "finish_ms": 2.444,
+      "generate_ms": 58.123,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        2,
+        40
+      ],
+      "total_ms": 60.567,
+      "variant": "after",
+      "vertices": 7495
+    },
+    {
+      "finish_ms": 2.405,
+      "generate_ms": 57.924,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        2,
+        40
+      ],
+      "total_ms": 60.329,
+      "variant": "after",
+      "vertices": 7495
+    },
+    {
+      "finish_ms": 2.39,
+      "generate_ms": 60.499,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        2,
+        40
+      ],
+      "total_ms": 62.889,
+      "variant": "before",
+      "vertices": 7495
+    },
+    {
+      "finish_ms": 2.308,
+      "generate_ms": 60.337,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        2,
+        40
+      ],
+      "total_ms": 62.645,
+      "variant": "before",
+      "vertices": 7495
+    },
+    {
+      "finish_ms": 2.508,
+      "generate_ms": 57.543,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        2,
+        40
+      ],
+      "total_ms": 60.051,
+      "variant": "after",
+      "vertices": 7495
+    },
+    {
+      "finish_ms": 1.454,
+      "generate_ms": 27.031,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        2,
+        41
+      ],
+      "total_ms": 28.485,
+      "variant": "after",
+      "vertices": 3725
+    },
+    {
+      "finish_ms": 1.451,
+      "generate_ms": 27.511,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        2,
+        41
+      ],
+      "total_ms": 28.962,
+      "variant": "before",
+      "vertices": 3725
+    },
+    {
+      "finish_ms": 1.5,
+      "generate_ms": 28.725,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        2,
+        41
+      ],
+      "total_ms": 30.225,
+      "variant": "before",
+      "vertices": 3725
+    },
+    {
+      "finish_ms": 1.499,
+      "generate_ms": 34.228,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        2,
+        41
+      ],
+      "total_ms": 35.727,
+      "variant": "after",
+      "vertices": 3725
+    },
+    {
+      "finish_ms": 1.421,
+      "generate_ms": 26.595,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        2,
+        41
+      ],
+      "total_ms": 28.016,
+      "variant": "after",
+      "vertices": 3725
+    },
+    {
+      "finish_ms": 1.897,
+      "generate_ms": 28.667,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        2,
+        41
+      ],
+      "total_ms": 30.564,
+      "variant": "before",
+      "vertices": 3725
+    },
+    {
+      "finish_ms": 0.008,
+      "generate_ms": 4.507,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        2,
+        42
+      ],
+      "total_ms": 4.515,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 4.357,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        2,
+        42
+      ],
+      "total_ms": 4.36,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.005,
+      "generate_ms": 4.298,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        2,
+        42
+      ],
+      "total_ms": 4.303,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 4.24,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        2,
+        42
+      ],
+      "total_ms": 4.242,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 4.289,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        2,
+        42
+      ],
+      "total_ms": 4.292,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.004,
+      "generate_ms": 4.231,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        2,
+        42
+      ],
+      "total_ms": 4.235,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 9.591,
+      "generate_ms": 202.646,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        3,
+        40
+      ],
+      "total_ms": 212.237,
+      "variant": "after",
+      "vertices": 28253
+    },
+    {
+      "finish_ms": 9.245,
+      "generate_ms": 204.052,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        3,
+        40
+      ],
+      "total_ms": 213.297,
+      "variant": "before",
+      "vertices": 28253
+    },
+    {
+      "finish_ms": 9.204,
+      "generate_ms": 200.695,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        3,
+        40
+      ],
+      "total_ms": 209.899,
+      "variant": "before",
+      "vertices": 28253
+    },
+    {
+      "finish_ms": 9.228,
+      "generate_ms": 186.676,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        3,
+        40
+      ],
+      "total_ms": 195.904,
+      "variant": "after",
+      "vertices": 28253
+    },
+    {
+      "finish_ms": 9.3,
+      "generate_ms": 192.915,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        3,
+        40
+      ],
+      "total_ms": 202.215,
+      "variant": "after",
+      "vertices": 28253
+    },
+    {
+      "finish_ms": 9.253,
+      "generate_ms": 205.0,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        3,
+        40
+      ],
+      "total_ms": 214.253,
+      "variant": "before",
+      "vertices": 28253
+    },
+    {
+      "finish_ms": 6.327,
+      "generate_ms": 115.466,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        3,
+        41
+      ],
+      "total_ms": 121.793,
+      "variant": "before",
+      "vertices": 15487
+    },
+    {
+      "finish_ms": 6.749,
+      "generate_ms": 108.829,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        3,
+        41
+      ],
+      "total_ms": 115.578,
+      "variant": "after",
+      "vertices": 15487
+    },
+    {
+      "finish_ms": 6.541,
+      "generate_ms": 108.636,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        3,
+        41
+      ],
+      "total_ms": 115.177,
+      "variant": "after",
+      "vertices": 15487
+    },
+    {
+      "finish_ms": 6.462,
+      "generate_ms": 114.946,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        3,
+        41
+      ],
+      "total_ms": 121.408,
+      "variant": "before",
+      "vertices": 15487
+    },
+    {
+      "finish_ms": 6.435,
+      "generate_ms": 114.426,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        3,
+        41
+      ],
+      "total_ms": 120.861,
+      "variant": "before",
+      "vertices": 15487
+    },
+    {
+      "finish_ms": 6.708,
+      "generate_ms": 123.016,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        3,
+        41
+      ],
+      "total_ms": 129.724,
+      "variant": "after",
+      "vertices": 15487
+    },
+    {
+      "finish_ms": 6.951,
+      "generate_ms": 107.607,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        3,
+        42
+      ],
+      "total_ms": 114.558,
+      "variant": "after",
+      "vertices": 20612
+    },
+    {
+      "finish_ms": 6.814,
+      "generate_ms": 114.232,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        3,
+        42
+      ],
+      "total_ms": 121.046,
+      "variant": "before",
+      "vertices": 20612
+    },
+    {
+      "finish_ms": 6.604,
+      "generate_ms": 114.679,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        3,
+        42
+      ],
+      "total_ms": 121.283,
+      "variant": "before",
+      "vertices": 20612
+    },
+    {
+      "finish_ms": 6.66,
+      "generate_ms": 106.187,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        3,
+        42
+      ],
+      "total_ms": 112.847,
+      "variant": "after",
+      "vertices": 20612
+    },
+    {
+      "finish_ms": 6.804,
+      "generate_ms": 107.472,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        3,
+        42
+      ],
+      "total_ms": 114.276,
+      "variant": "after",
+      "vertices": 20612
+    },
+    {
+      "finish_ms": 6.621,
+      "generate_ms": 114.599,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        3,
+        42
+      ],
+      "total_ms": 121.22,
+      "variant": "before",
+      "vertices": 20612
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 1.413,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        4,
+        40
+      ],
+      "total_ms": 1.415,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.339,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        4,
+        40
+      ],
+      "total_ms": 1.34,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 1.455,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        4,
+        40
+      ],
+      "total_ms": 1.457,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 1.361,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        4,
+        40
+      ],
+      "total_ms": 1.363,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.338,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        4,
+        40
+      ],
+      "total_ms": 1.339,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.357,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        4,
+        40
+      ],
+      "total_ms": 1.358,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.127,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        4,
+        41
+      ],
+      "total_ms": 2.129,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.994,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        4,
+        41
+      ],
+      "total_ms": 1.995,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.99,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        4,
+        41
+      ],
+      "total_ms": 1.991,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.009,
+      "generate_ms": 2.394,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        4,
+        41
+      ],
+      "total_ms": 2.403,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.079,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        4,
+        41
+      ],
+      "total_ms": 2.081,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.039,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        4,
+        41
+      ],
+      "total_ms": 2.041,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.365,
+      "generate_ms": 11.184,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        4,
+        42
+      ],
+      "total_ms": 11.549,
+      "variant": "before",
+      "vertices": 706
+    },
+    {
+      "finish_ms": 0.382,
+      "generate_ms": 10.763,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        4,
+        42
+      ],
+      "total_ms": 11.145,
+      "variant": "after",
+      "vertices": 706
+    },
+    {
+      "finish_ms": 0.334,
+      "generate_ms": 10.807,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        4,
+        42
+      ],
+      "total_ms": 11.141,
+      "variant": "after",
+      "vertices": 706
+    },
+    {
+      "finish_ms": 0.337,
+      "generate_ms": 11.158,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        4,
+        42
+      ],
+      "total_ms": 11.495,
+      "variant": "before",
+      "vertices": 706
+    },
+    {
+      "finish_ms": 0.326,
+      "generate_ms": 11.025,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        4,
+        42
+      ],
+      "total_ms": 11.351,
+      "variant": "before",
+      "vertices": 706
+    },
+    {
+      "finish_ms": 0.414,
+      "generate_ms": 11.25,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        4,
+        42
+      ],
+      "total_ms": 11.664,
+      "variant": "after",
+      "vertices": 706
+    },
+    {
+      "finish_ms": 32.761,
+      "generate_ms": 233.62,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        5,
+        103
+      ],
+      "total_ms": 266.381,
+      "variant": "after",
+      "vertices": 67643
+    },
+    {
+      "finish_ms": 31.556,
+      "generate_ms": 238.261,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        5,
+        103
+      ],
+      "total_ms": 269.817,
+      "variant": "before",
+      "vertices": 67643
+    },
+    {
+      "finish_ms": 32.873,
+      "generate_ms": 240.996,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        5,
+        103
+      ],
+      "total_ms": 273.869,
+      "variant": "before",
+      "vertices": 67643
+    },
+    {
+      "finish_ms": 32.248,
+      "generate_ms": 230.705,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        5,
+        103
+      ],
+      "total_ms": 262.953,
+      "variant": "after",
+      "vertices": 67643
+    },
+    {
+      "finish_ms": 32.925,
+      "generate_ms": 237.456,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        5,
+        103
+      ],
+      "total_ms": 270.381,
+      "variant": "after",
+      "vertices": 67643
+    },
+    {
+      "finish_ms": 33.525,
+      "generate_ms": 250.326,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        5,
+        103
+      ],
+      "total_ms": 283.851,
+      "variant": "before",
+      "vertices": 67643
+    },
+    {
+      "finish_ms": 28.935,
+      "generate_ms": 197.67,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        5,
+        104
+      ],
+      "total_ms": 226.605,
+      "variant": "before",
+      "vertices": 55302
+    },
+    {
+      "finish_ms": 23.666,
+      "generate_ms": 184.333,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        5,
+        104
+      ],
+      "total_ms": 207.999,
+      "variant": "after",
+      "vertices": 55302
+    },
+    {
+      "finish_ms": 23.036,
+      "generate_ms": 182.245,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        5,
+        104
+      ],
+      "total_ms": 205.281,
+      "variant": "after",
+      "vertices": 55302
+    },
+    {
+      "finish_ms": 23.573,
+      "generate_ms": 192.749,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        5,
+        104
+      ],
+      "total_ms": 216.322,
+      "variant": "before",
+      "vertices": 55302
+    },
+    {
+      "finish_ms": 24.2,
+      "generate_ms": 202.691,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        5,
+        104
+      ],
+      "total_ms": 226.891,
+      "variant": "before",
+      "vertices": 55302
+    },
+    {
+      "finish_ms": 23.186,
+      "generate_ms": 182.13,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        5,
+        104
+      ],
+      "total_ms": 205.316,
+      "variant": "after",
+      "vertices": 55302
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 0.367,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        5,
+        105
+      ],
+      "total_ms": 0.37,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.245,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        5,
+        105
+      ],
+      "total_ms": 0.246,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.237,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        5,
+        105
+      ],
+      "total_ms": 0.238,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.239,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        5,
+        105
+      ],
+      "total_ms": 0.24,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.233,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        5,
+        105
+      ],
+      "total_ms": 0.234,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.234,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        5,
+        105
+      ],
+      "total_ms": 0.235,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 8.12,
+      "generate_ms": 158.385,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        6,
+        103
+      ],
+      "total_ms": 166.505,
+      "variant": "before",
+      "vertices": 24787
+    },
+    {
+      "finish_ms": 8.006,
+      "generate_ms": 144.919,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        6,
+        103
+      ],
+      "total_ms": 152.925,
+      "variant": "after",
+      "vertices": 24787
+    },
+    {
+      "finish_ms": 7.921,
+      "generate_ms": 152.149,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        6,
+        103
+      ],
+      "total_ms": 160.07,
+      "variant": "after",
+      "vertices": 24787
+    },
+    {
+      "finish_ms": 8.011,
+      "generate_ms": 156.981,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        6,
+        103
+      ],
+      "total_ms": 164.992,
+      "variant": "before",
+      "vertices": 24787
+    },
+    {
+      "finish_ms": 7.772,
+      "generate_ms": 157.121,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        6,
+        103
+      ],
+      "total_ms": 164.893,
+      "variant": "before",
+      "vertices": 24787
+    },
+    {
+      "finish_ms": 7.865,
+      "generate_ms": 147.149,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        6,
+        103
+      ],
+      "total_ms": 155.014,
+      "variant": "after",
+      "vertices": 24787
+    },
+    {
+      "finish_ms": 12.668,
+      "generate_ms": 187.469,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        6,
+        104
+      ],
+      "total_ms": 200.137,
+      "variant": "after",
+      "vertices": 36751
+    },
+    {
+      "finish_ms": 12.763,
+      "generate_ms": 201.483,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        6,
+        104
+      ],
+      "total_ms": 214.246,
+      "variant": "before",
+      "vertices": 36751
+    },
+    {
+      "finish_ms": 12.857,
+      "generate_ms": 202.011,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        6,
+        104
+      ],
+      "total_ms": 214.868,
+      "variant": "before",
+      "vertices": 36751
+    },
+    {
+      "finish_ms": 12.934,
+      "generate_ms": 188.094,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        6,
+        104
+      ],
+      "total_ms": 201.028,
+      "variant": "after",
+      "vertices": 36751
+    },
+    {
+      "finish_ms": 13.1,
+      "generate_ms": 188.217,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        6,
+        104
+      ],
+      "total_ms": 201.317,
+      "variant": "after",
+      "vertices": 36751
+    },
+    {
+      "finish_ms": 13.004,
+      "generate_ms": 204.369,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        6,
+        104
+      ],
+      "total_ms": 217.373,
+      "variant": "before",
+      "vertices": 36751
+    },
+    {
+      "finish_ms": 38.698,
+      "generate_ms": 315.005,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        6,
+        105
+      ],
+      "total_ms": 353.703,
+      "variant": "before",
+      "vertices": 91087
+    },
+    {
+      "finish_ms": 39.308,
+      "generate_ms": 299.094,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        6,
+        105
+      ],
+      "total_ms": 338.402,
+      "variant": "after",
+      "vertices": 91087
+    },
+    {
+      "finish_ms": 37.601,
+      "generate_ms": 300.6,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        6,
+        105
+      ],
+      "total_ms": 338.201,
+      "variant": "after",
+      "vertices": 91087
+    },
+    {
+      "finish_ms": 38.334,
+      "generate_ms": 318.072,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        6,
+        105
+      ],
+      "total_ms": 356.406,
+      "variant": "before",
+      "vertices": 91087
+    },
+    {
+      "finish_ms": 37.925,
+      "generate_ms": 316.426,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        6,
+        105
+      ],
+      "total_ms": 354.351,
+      "variant": "before",
+      "vertices": 91087
+    },
+    {
+      "finish_ms": 39.999,
+      "generate_ms": 317.478,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        6,
+        105
+      ],
+      "total_ms": 357.477,
+      "variant": "after",
+      "vertices": 91087
+    },
+    {
+      "finish_ms": 0.004,
+      "generate_ms": 3.132,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        7,
+        103
+      ],
+      "total_ms": 3.136,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.885,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        7,
+        103
+      ],
+      "total_ms": 2.887,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.919,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        7,
+        103
+      ],
+      "total_ms": 2.921,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.928,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        7,
+        103
+      ],
+      "total_ms": 2.93,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 3.038,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        7,
+        103
+      ],
+      "total_ms": 3.041,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.954,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        7,
+        103
+      ],
+      "total_ms": 2.956,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.804,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        7,
+        104
+      ],
+      "total_ms": 2.806,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.708,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        7,
+        104
+      ],
+      "total_ms": 2.71,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 2.942,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        7,
+        104
+      ],
+      "total_ms": 2.945,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.004,
+      "generate_ms": 3.85,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        7,
+        104
+      ],
+      "total_ms": 3.854,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.004,
+      "generate_ms": 3.736,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        7,
+        104
+      ],
+      "total_ms": 3.74,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 3.88,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        7,
+        104
+      ],
+      "total_ms": 3.883,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 1.626,
+      "generate_ms": 25.665,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        7,
+        105
+      ],
+      "total_ms": 27.291,
+      "variant": "after",
+      "vertices": 3418
+    },
+    {
+      "finish_ms": 1.642,
+      "generate_ms": 22.126,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        7,
+        105
+      ],
+      "total_ms": 23.768,
+      "variant": "before",
+      "vertices": 3418
+    },
+    {
+      "finish_ms": 1.636,
+      "generate_ms": 22.549,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        7,
+        105
+      ],
+      "total_ms": 24.185,
+      "variant": "before",
+      "vertices": 3418
+    },
+    {
+      "finish_ms": 1.734,
+      "generate_ms": 22.793,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        7,
+        105
+      ],
+      "total_ms": 24.527,
+      "variant": "after",
+      "vertices": 3418
+    },
+    {
+      "finish_ms": 1.569,
+      "generate_ms": 21.595,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        7,
+        105
+      ],
+      "total_ms": 23.164,
+      "variant": "after",
+      "vertices": 3418
+    },
+    {
+      "finish_ms": 1.558,
+      "generate_ms": 21.584,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        7,
+        105
+      ],
+      "total_ms": 23.142,
+      "variant": "before",
+      "vertices": 3418
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 5.765,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        46,
+        168
+      ],
+      "total_ms": 5.767,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 5.768,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        46,
+        168
+      ],
+      "total_ms": 5.77,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 5.744,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        46,
+        168
+      ],
+      "total_ms": 5.745,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 5.739,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        46,
+        168
+      ],
+      "total_ms": 5.741,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 5.723,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        46,
+        168
+      ],
+      "total_ms": 5.725,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 5.748,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        46,
+        168
+      ],
+      "total_ms": 5.75,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 4.586,
+      "generate_ms": 73.155,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        46,
+        169
+      ],
+      "total_ms": 77.741,
+      "variant": "after",
+      "vertices": 12431
+    },
+    {
+      "finish_ms": 4.512,
+      "generate_ms": 78.035,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        46,
+        169
+      ],
+      "total_ms": 82.547,
+      "variant": "before",
+      "vertices": 12431
+    },
+    {
+      "finish_ms": 4.517,
+      "generate_ms": 77.892,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        46,
+        169
+      ],
+      "total_ms": 82.409,
+      "variant": "before",
+      "vertices": 12431
+    },
+    {
+      "finish_ms": 4.596,
+      "generate_ms": 72.164,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        46,
+        169
+      ],
+      "total_ms": 76.76,
+      "variant": "after",
+      "vertices": 12431
+    },
+    {
+      "finish_ms": 4.458,
+      "generate_ms": 73.283,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        46,
+        169
+      ],
+      "total_ms": 77.741,
+      "variant": "after",
+      "vertices": 12431
+    },
+    {
+      "finish_ms": 4.421,
+      "generate_ms": 78.079,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        46,
+        169
+      ],
+      "total_ms": 82.5,
+      "variant": "before",
+      "vertices": 12431
+    },
+    {
+      "finish_ms": 9.429,
+      "generate_ms": 201.218,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        46,
+        170
+      ],
+      "total_ms": 210.647,
+      "variant": "before",
+      "vertices": 28089
+    },
+    {
+      "finish_ms": 9.49,
+      "generate_ms": 186.541,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        46,
+        170
+      ],
+      "total_ms": 196.031,
+      "variant": "after",
+      "vertices": 28089
+    },
+    {
+      "finish_ms": 9.928,
+      "generate_ms": 188.094,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        46,
+        170
+      ],
+      "total_ms": 198.022,
+      "variant": "after",
+      "vertices": 28089
+    },
+    {
+      "finish_ms": 9.73,
+      "generate_ms": 196.809,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        46,
+        170
+      ],
+      "total_ms": 206.539,
+      "variant": "before",
+      "vertices": 28089
+    },
+    {
+      "finish_ms": 9.752,
+      "generate_ms": 198.302,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        46,
+        170
+      ],
+      "total_ms": 208.054,
+      "variant": "before",
+      "vertices": 28089
+    },
+    {
+      "finish_ms": 9.442,
+      "generate_ms": 212.864,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        46,
+        170
+      ],
+      "total_ms": 222.306,
+      "variant": "after",
+      "vertices": 28089
+    },
+    {
+      "finish_ms": 9.931,
+      "generate_ms": 257.187,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        47,
+        168
+      ],
+      "total_ms": 267.118,
+      "variant": "after",
+      "vertices": 31141
+    },
+    {
+      "finish_ms": 9.951,
+      "generate_ms": 269.883,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        47,
+        168
+      ],
+      "total_ms": 279.834,
+      "variant": "before",
+      "vertices": 31141
+    },
+    {
+      "finish_ms": 9.936,
+      "generate_ms": 271.24,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        47,
+        168
+      ],
+      "total_ms": 281.176,
+      "variant": "before",
+      "vertices": 31141
+    },
+    {
+      "finish_ms": 10.123,
+      "generate_ms": 258.821,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        47,
+        168
+      ],
+      "total_ms": 268.944,
+      "variant": "after",
+      "vertices": 31141
+    },
+    {
+      "finish_ms": 10.078,
+      "generate_ms": 255.234,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        47,
+        168
+      ],
+      "total_ms": 265.312,
+      "variant": "after",
+      "vertices": 31141
+    },
+    {
+      "finish_ms": 9.923,
+      "generate_ms": 268.583,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        47,
+        168
+      ],
+      "total_ms": 278.506,
+      "variant": "before",
+      "vertices": 31141
+    },
+    {
+      "finish_ms": 8.007,
+      "generate_ms": 145.98,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        47,
+        169
+      ],
+      "total_ms": 153.987,
+      "variant": "before",
+      "vertices": 24968
+    },
+    {
+      "finish_ms": 8.345,
+      "generate_ms": 138.673,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        47,
+        169
+      ],
+      "total_ms": 147.018,
+      "variant": "after",
+      "vertices": 24968
+    },
+    {
+      "finish_ms": 8.244,
+      "generate_ms": 140.693,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        47,
+        169
+      ],
+      "total_ms": 148.937,
+      "variant": "after",
+      "vertices": 24968
+    },
+    {
+      "finish_ms": 8.405,
+      "generate_ms": 152.405,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        47,
+        169
+      ],
+      "total_ms": 160.81,
+      "variant": "before",
+      "vertices": 24968
+    },
+    {
+      "finish_ms": 8.193,
+      "generate_ms": 154.018,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        47,
+        169
+      ],
+      "total_ms": 162.211,
+      "variant": "before",
+      "vertices": 24968
+    },
+    {
+      "finish_ms": 7.957,
+      "generate_ms": 137.657,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        47,
+        169
+      ],
+      "total_ms": 145.614,
+      "variant": "after",
+      "vertices": 24968
+    },
+    {
+      "finish_ms": 2.66,
+      "generate_ms": 59.727,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        47,
+        170
+      ],
+      "total_ms": 62.387,
+      "variant": "after",
+      "vertices": 7124
+    },
+    {
+      "finish_ms": 2.723,
+      "generate_ms": 62.148,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        47,
+        170
+      ],
+      "total_ms": 64.871,
+      "variant": "before",
+      "vertices": 7124
+    },
+    {
+      "finish_ms": 2.692,
+      "generate_ms": 62.874,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        47,
+        170
+      ],
+      "total_ms": 65.566,
+      "variant": "before",
+      "vertices": 7124
+    },
+    {
+      "finish_ms": 2.619,
+      "generate_ms": 60.179,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        47,
+        170
+      ],
+      "total_ms": 62.798,
+      "variant": "after",
+      "vertices": 7124
+    },
+    {
+      "finish_ms": 2.684,
+      "generate_ms": 60.375,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        47,
+        170
+      ],
+      "total_ms": 63.059,
+      "variant": "after",
+      "vertices": 7124
+    },
+    {
+      "finish_ms": 2.691,
+      "generate_ms": 64.06,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        47,
+        170
+      ],
+      "total_ms": 66.751,
+      "variant": "before",
+      "vertices": 7124
+    },
+    {
+      "finish_ms": 0.47,
+      "generate_ms": 23.071,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        48,
+        168
+      ],
+      "total_ms": 23.541,
+      "variant": "before",
+      "vertices": 874
+    },
+    {
+      "finish_ms": 0.43,
+      "generate_ms": 21.168,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        48,
+        168
+      ],
+      "total_ms": 21.598,
+      "variant": "after",
+      "vertices": 874
+    },
+    {
+      "finish_ms": 0.432,
+      "generate_ms": 21.345,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        48,
+        168
+      ],
+      "total_ms": 21.777,
+      "variant": "after",
+      "vertices": 874
+    },
+    {
+      "finish_ms": 0.414,
+      "generate_ms": 21.341,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        48,
+        168
+      ],
+      "total_ms": 21.755,
+      "variant": "before",
+      "vertices": 874
+    },
+    {
+      "finish_ms": 0.504,
+      "generate_ms": 23.246,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        48,
+        168
+      ],
+      "total_ms": 23.75,
+      "variant": "before",
+      "vertices": 874
+    },
+    {
+      "finish_ms": 0.421,
+      "generate_ms": 20.932,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        48,
+        168
+      ],
+      "total_ms": 21.353,
+      "variant": "after",
+      "vertices": 874
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.032,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        48,
+        169
+      ],
+      "total_ms": 3.034,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.958,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        48,
+        169
+      ],
+      "total_ms": 2.96,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.288,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        48,
+        169
+      ],
+      "total_ms": 3.29,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.976,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        48,
+        169
+      ],
+      "total_ms": 2.978,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.991,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        48,
+        169
+      ],
+      "total_ms": 2.993,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 2.936,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        48,
+        169
+      ],
+      "total_ms": 2.937,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 1.267,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        48,
+        170
+      ],
+      "total_ms": 1.269,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.206,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        48,
+        170
+      ],
+      "total_ms": 1.207,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.18,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        48,
+        170
+      ],
+      "total_ms": 1.181,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.184,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        48,
+        170
+      ],
+      "total_ms": 1.185,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.147,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        48,
+        170
+      ],
+      "total_ms": 1.148,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.184,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        48,
+        170
+      ],
+      "total_ms": 1.185,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 11.347,
+      "generate_ms": 302.678,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        64,
+        232
+      ],
+      "total_ms": 314.025,
+      "variant": "after",
+      "vertices": 30703
+    },
+    {
+      "finish_ms": 11.623,
+      "generate_ms": 311.595,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        64,
+        232
+      ],
+      "total_ms": 323.218,
+      "variant": "before",
+      "vertices": 30703
+    },
+    {
+      "finish_ms": 11.336,
+      "generate_ms": 317.576,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        64,
+        232
+      ],
+      "total_ms": 328.912,
+      "variant": "before",
+      "vertices": 30703
+    },
+    {
+      "finish_ms": 11.166,
+      "generate_ms": 311.379,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        64,
+        232
+      ],
+      "total_ms": 322.545,
+      "variant": "after",
+      "vertices": 30703
+    },
+    {
+      "finish_ms": 11.268,
+      "generate_ms": 302.328,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        64,
+        232
+      ],
+      "total_ms": 313.596,
+      "variant": "after",
+      "vertices": 30703
+    },
+    {
+      "finish_ms": 12.202,
+      "generate_ms": 320.315,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        64,
+        232
+      ],
+      "total_ms": 332.517,
+      "variant": "before",
+      "vertices": 30703
+    },
+    {
+      "finish_ms": 53.797,
+      "generate_ms": 1257.82,
+      "repeat": 0,
+      "surfaces": 8,
+      "tile": [
+        64,
+        233
+      ],
+      "total_ms": 1311.617,
+      "variant": "before",
+      "vertices": 123637
+    },
+    {
+      "finish_ms": 53.714,
+      "generate_ms": 1210.162,
+      "repeat": 0,
+      "surfaces": 8,
+      "tile": [
+        64,
+        233
+      ],
+      "total_ms": 1263.876,
+      "variant": "after",
+      "vertices": 123637
+    },
+    {
+      "finish_ms": 57.562,
+      "generate_ms": 1238.242,
+      "repeat": 1,
+      "surfaces": 8,
+      "tile": [
+        64,
+        233
+      ],
+      "total_ms": 1295.804,
+      "variant": "after",
+      "vertices": 123637
+    },
+    {
+      "finish_ms": 56.774,
+      "generate_ms": 1326.345,
+      "repeat": 1,
+      "surfaces": 8,
+      "tile": [
+        64,
+        233
+      ],
+      "total_ms": 1383.119,
+      "variant": "before",
+      "vertices": 123637
+    },
+    {
+      "finish_ms": 54.729,
+      "generate_ms": 1279.47,
+      "repeat": 2,
+      "surfaces": 8,
+      "tile": [
+        64,
+        233
+      ],
+      "total_ms": 1334.199,
+      "variant": "before",
+      "vertices": 123637
+    },
+    {
+      "finish_ms": 53.237,
+      "generate_ms": 1222.87,
+      "repeat": 2,
+      "surfaces": 8,
+      "tile": [
+        64,
+        233
+      ],
+      "total_ms": 1276.107,
+      "variant": "after",
+      "vertices": 123637
+    },
+    {
+      "finish_ms": 11.078,
+      "generate_ms": 456.116,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        64,
+        234
+      ],
+      "total_ms": 467.194,
+      "variant": "after",
+      "vertices": 33844
+    },
+    {
+      "finish_ms": 11.503,
+      "generate_ms": 482.218,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        64,
+        234
+      ],
+      "total_ms": 493.721,
+      "variant": "before",
+      "vertices": 33844
+    },
+    {
+      "finish_ms": 14.508,
+      "generate_ms": 486.134,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        64,
+        234
+      ],
+      "total_ms": 500.642,
+      "variant": "before",
+      "vertices": 33844
+    },
+    {
+      "finish_ms": 13.026,
+      "generate_ms": 511.585,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        64,
+        234
+      ],
+      "total_ms": 524.611,
+      "variant": "after",
+      "vertices": 33844
+    },
+    {
+      "finish_ms": 11.649,
+      "generate_ms": 506.214,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        64,
+        234
+      ],
+      "total_ms": 517.863,
+      "variant": "after",
+      "vertices": 33844
+    },
+    {
+      "finish_ms": 11.293,
+      "generate_ms": 478.668,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        64,
+        234
+      ],
+      "total_ms": 489.961,
+      "variant": "before",
+      "vertices": 33844
+    },
+    {
+      "finish_ms": 14.814,
+      "generate_ms": 552.332,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        65,
+        232
+      ],
+      "total_ms": 567.146,
+      "variant": "before",
+      "vertices": 30155
+    },
+    {
+      "finish_ms": 10.737,
+      "generate_ms": 569.08,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        65,
+        232
+      ],
+      "total_ms": 579.817,
+      "variant": "after",
+      "vertices": 30155
+    },
+    {
+      "finish_ms": 10.99,
+      "generate_ms": 450.075,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        65,
+        232
+      ],
+      "total_ms": 461.065,
+      "variant": "after",
+      "vertices": 30155
+    },
+    {
+      "finish_ms": 10.572,
+      "generate_ms": 473.07,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        65,
+        232
+      ],
+      "total_ms": 483.642,
+      "variant": "before",
+      "vertices": 30155
+    },
+    {
+      "finish_ms": 10.476,
+      "generate_ms": 463.381,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        65,
+        232
+      ],
+      "total_ms": 473.857,
+      "variant": "before",
+      "vertices": 30155
+    },
+    {
+      "finish_ms": 10.194,
+      "generate_ms": 444.611,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        65,
+        232
+      ],
+      "total_ms": 454.805,
+      "variant": "after",
+      "vertices": 30155
+    },
+    {
+      "finish_ms": 16.583,
+      "generate_ms": 846.521,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        65,
+        233
+      ],
+      "total_ms": 863.104,
+      "variant": "after",
+      "vertices": 46327
+    },
+    {
+      "finish_ms": 15.98,
+      "generate_ms": 903.562,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        65,
+        233
+      ],
+      "total_ms": 919.542,
+      "variant": "before",
+      "vertices": 46327
+    },
+    {
+      "finish_ms": 15.864,
+      "generate_ms": 850.067,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        65,
+        233
+      ],
+      "total_ms": 865.931,
+      "variant": "before",
+      "vertices": 46327
+    },
+    {
+      "finish_ms": 16.894,
+      "generate_ms": 855.361,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        65,
+        233
+      ],
+      "total_ms": 872.255,
+      "variant": "after",
+      "vertices": 46327
+    },
+    {
+      "finish_ms": 16.082,
+      "generate_ms": 856.141,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        65,
+        233
+      ],
+      "total_ms": 872.223,
+      "variant": "after",
+      "vertices": 46327
+    },
+    {
+      "finish_ms": 16.25,
+      "generate_ms": 858.471,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        65,
+        233
+      ],
+      "total_ms": 874.721,
+      "variant": "before",
+      "vertices": 46327
+    },
+    {
+      "finish_ms": 26.793,
+      "generate_ms": 342.34,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        65,
+        234
+      ],
+      "total_ms": 369.133,
+      "variant": "before",
+      "vertices": 68456
+    },
+    {
+      "finish_ms": 26.355,
+      "generate_ms": 331.632,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        65,
+        234
+      ],
+      "total_ms": 357.987,
+      "variant": "after",
+      "vertices": 68456
+    },
+    {
+      "finish_ms": 27.119,
+      "generate_ms": 333.268,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        65,
+        234
+      ],
+      "total_ms": 360.387,
+      "variant": "after",
+      "vertices": 68456
+    },
+    {
+      "finish_ms": 26.557,
+      "generate_ms": 344.285,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        65,
+        234
+      ],
+      "total_ms": 370.842,
+      "variant": "before",
+      "vertices": 68456
+    },
+    {
+      "finish_ms": 27.723,
+      "generate_ms": 344.614,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        65,
+        234
+      ],
+      "total_ms": 372.337,
+      "variant": "before",
+      "vertices": 68456
+    },
+    {
+      "finish_ms": 27.387,
+      "generate_ms": 329.51,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        65,
+        234
+      ],
+      "total_ms": 356.897,
+      "variant": "after",
+      "vertices": 68456
+    },
+    {
+      "finish_ms": 29.535,
+      "generate_ms": 899.016,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        66,
+        232
+      ],
+      "total_ms": 928.551,
+      "variant": "after",
+      "vertices": 68911
+    },
+    {
+      "finish_ms": 29.144,
+      "generate_ms": 927.412,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        66,
+        232
+      ],
+      "total_ms": 956.556,
+      "variant": "before",
+      "vertices": 68911
+    },
+    {
+      "finish_ms": 29.762,
+      "generate_ms": 909.43,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        66,
+        232
+      ],
+      "total_ms": 939.192,
+      "variant": "before",
+      "vertices": 68911
+    },
+    {
+      "finish_ms": 29.416,
+      "generate_ms": 896.431,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        66,
+        232
+      ],
+      "total_ms": 925.847,
+      "variant": "after",
+      "vertices": 68911
+    },
+    {
+      "finish_ms": 30.609,
+      "generate_ms": 875.196,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        66,
+        232
+      ],
+      "total_ms": 905.805,
+      "variant": "after",
+      "vertices": 68911
+    },
+    {
+      "finish_ms": 29.247,
+      "generate_ms": 930.65,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        66,
+        232
+      ],
+      "total_ms": 959.897,
+      "variant": "before",
+      "vertices": 68911
+    },
+    {
+      "finish_ms": 7.53,
+      "generate_ms": 325.415,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        66,
+        233
+      ],
+      "total_ms": 332.945,
+      "variant": "before",
+      "vertices": 20980
+    },
+    {
+      "finish_ms": 7.38,
+      "generate_ms": 306.32,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        66,
+        233
+      ],
+      "total_ms": 313.7,
+      "variant": "after",
+      "vertices": 20980
+    },
+    {
+      "finish_ms": 7.672,
+      "generate_ms": 307.164,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        66,
+        233
+      ],
+      "total_ms": 314.836,
+      "variant": "after",
+      "vertices": 20980
+    },
+    {
+      "finish_ms": 7.709,
+      "generate_ms": 314.079,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        66,
+        233
+      ],
+      "total_ms": 321.788,
+      "variant": "before",
+      "vertices": 20980
+    },
+    {
+      "finish_ms": 7.362,
+      "generate_ms": 308.063,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        66,
+        233
+      ],
+      "total_ms": 315.425,
+      "variant": "before",
+      "vertices": 20980
+    },
+    {
+      "finish_ms": 7.314,
+      "generate_ms": 300.952,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        66,
+        233
+      ],
+      "total_ms": 308.266,
+      "variant": "after",
+      "vertices": 20980
+    },
+    {
+      "finish_ms": 46.773,
+      "generate_ms": 715.256,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        66,
+        234
+      ],
+      "total_ms": 762.029,
+      "variant": "after",
+      "vertices": 106479
+    },
+    {
+      "finish_ms": 46.224,
+      "generate_ms": 731.691,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        66,
+        234
+      ],
+      "total_ms": 777.915,
+      "variant": "before",
+      "vertices": 106479
+    },
+    {
+      "finish_ms": 46.212,
+      "generate_ms": 736.585,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        66,
+        234
+      ],
+      "total_ms": 782.797,
+      "variant": "before",
+      "vertices": 106479
+    },
+    {
+      "finish_ms": 47.635,
+      "generate_ms": 710.422,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        66,
+        234
+      ],
+      "total_ms": 758.057,
+      "variant": "after",
+      "vertices": 106479
+    },
+    {
+      "finish_ms": 50.89,
+      "generate_ms": 714.617,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        66,
+        234
+      ],
+      "total_ms": 765.507,
+      "variant": "after",
+      "vertices": 106479
+    },
+    {
+      "finish_ms": 46.303,
+      "generate_ms": 748.511,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        66,
+        234
+      ],
+      "total_ms": 794.814,
+      "variant": "before",
+      "vertices": 106479
+    },
+    {
+      "finish_ms": 7.389,
+      "generate_ms": 140.435,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        91,
+        263
+      ],
+      "total_ms": 147.824,
+      "variant": "before",
+      "vertices": 22393
+    },
+    {
+      "finish_ms": 7.284,
+      "generate_ms": 132.443,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        91,
+        263
+      ],
+      "total_ms": 139.727,
+      "variant": "after",
+      "vertices": 22393
+    },
+    {
+      "finish_ms": 7.362,
+      "generate_ms": 133.122,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        91,
+        263
+      ],
+      "total_ms": 140.484,
+      "variant": "after",
+      "vertices": 22393
+    },
+    {
+      "finish_ms": 7.04,
+      "generate_ms": 146.141,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        91,
+        263
+      ],
+      "total_ms": 153.181,
+      "variant": "before",
+      "vertices": 22393
+    },
+    {
+      "finish_ms": 7.06,
+      "generate_ms": 143.943,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        91,
+        263
+      ],
+      "total_ms": 151.003,
+      "variant": "before",
+      "vertices": 22393
+    },
+    {
+      "finish_ms": 7.07,
+      "generate_ms": 131.835,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        91,
+        263
+      ],
+      "total_ms": 138.905,
+      "variant": "after",
+      "vertices": 22393
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 6.186,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        91,
+        264
+      ],
+      "total_ms": 6.189,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 6.115,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        91,
+        264
+      ],
+      "total_ms": 6.117,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 6.23,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        91,
+        264
+      ],
+      "total_ms": 6.232,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 6.188,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        91,
+        264
+      ],
+      "total_ms": 6.19,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 6.123,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        91,
+        264
+      ],
+      "total_ms": 6.124,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 6.02,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        91,
+        264
+      ],
+      "total_ms": 6.021,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.073,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        91,
+        265
+      ],
+      "total_ms": 2.075,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.991,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        91,
+        265
+      ],
+      "total_ms": 1.992,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.09,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        91,
+        265
+      ],
+      "total_ms": 2.092,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 2.069,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        91,
+        265
+      ],
+      "total_ms": 2.07,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 1.997,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        91,
+        265
+      ],
+      "total_ms": 1.999,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 2.004,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        91,
+        265
+      ],
+      "total_ms": 2.005,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 13.47,
+      "generate_ms": 234.213,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        92,
+        263
+      ],
+      "total_ms": 247.683,
+      "variant": "after",
+      "vertices": 38992
+    },
+    {
+      "finish_ms": 13.596,
+      "generate_ms": 260.886,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        92,
+        263
+      ],
+      "total_ms": 274.482,
+      "variant": "before",
+      "vertices": 38992
+    },
+    {
+      "finish_ms": 13.59,
+      "generate_ms": 246.44,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        92,
+        263
+      ],
+      "total_ms": 260.03,
+      "variant": "before",
+      "vertices": 38992
+    },
+    {
+      "finish_ms": 13.564,
+      "generate_ms": 230.048,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        92,
+        263
+      ],
+      "total_ms": 243.612,
+      "variant": "after",
+      "vertices": 38992
+    },
+    {
+      "finish_ms": 13.708,
+      "generate_ms": 231.869,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        92,
+        263
+      ],
+      "total_ms": 245.577,
+      "variant": "after",
+      "vertices": 38992
+    },
+    {
+      "finish_ms": 13.947,
+      "generate_ms": 246.896,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        92,
+        263
+      ],
+      "total_ms": 260.843,
+      "variant": "before",
+      "vertices": 38992
+    },
+    {
+      "finish_ms": 12.972,
+      "generate_ms": 268.841,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        92,
+        264
+      ],
+      "total_ms": 281.813,
+      "variant": "before",
+      "vertices": 37073
+    },
+    {
+      "finish_ms": 13.481,
+      "generate_ms": 248.646,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        92,
+        264
+      ],
+      "total_ms": 262.127,
+      "variant": "after",
+      "vertices": 37073
+    },
+    {
+      "finish_ms": 13.132,
+      "generate_ms": 252.52,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        92,
+        264
+      ],
+      "total_ms": 265.652,
+      "variant": "after",
+      "vertices": 37073
+    },
+    {
+      "finish_ms": 13.397,
+      "generate_ms": 276.496,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        92,
+        264
+      ],
+      "total_ms": 289.893,
+      "variant": "before",
+      "vertices": 37073
+    },
+    {
+      "finish_ms": 13.202,
+      "generate_ms": 273.773,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        92,
+        264
+      ],
+      "total_ms": 286.975,
+      "variant": "before",
+      "vertices": 37073
+    },
+    {
+      "finish_ms": 13.206,
+      "generate_ms": 256.011,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        92,
+        264
+      ],
+      "total_ms": 269.217,
+      "variant": "after",
+      "vertices": 37073
+    },
+    {
+      "finish_ms": 0.514,
+      "generate_ms": 21.172,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        92,
+        265
+      ],
+      "total_ms": 21.686,
+      "variant": "after",
+      "vertices": 1191
+    },
+    {
+      "finish_ms": 0.463,
+      "generate_ms": 21.454,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        92,
+        265
+      ],
+      "total_ms": 21.917,
+      "variant": "before",
+      "vertices": 1191
+    },
+    {
+      "finish_ms": 0.464,
+      "generate_ms": 21.467,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        92,
+        265
+      ],
+      "total_ms": 21.931,
+      "variant": "before",
+      "vertices": 1191
+    },
+    {
+      "finish_ms": 0.512,
+      "generate_ms": 21.239,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        92,
+        265
+      ],
+      "total_ms": 21.751,
+      "variant": "after",
+      "vertices": 1191
+    },
+    {
+      "finish_ms": 0.466,
+      "generate_ms": 20.839,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        92,
+        265
+      ],
+      "total_ms": 21.305,
+      "variant": "after",
+      "vertices": 1191
+    },
+    {
+      "finish_ms": 0.485,
+      "generate_ms": 22.935,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        92,
+        265
+      ],
+      "total_ms": 23.42,
+      "variant": "before",
+      "vertices": 1191
+    },
+    {
+      "finish_ms": 0.282,
+      "generate_ms": 13.964,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        93,
+        263
+      ],
+      "total_ms": 14.246,
+      "variant": "before",
+      "vertices": 522
+    },
+    {
+      "finish_ms": 0.257,
+      "generate_ms": 13.742,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        93,
+        263
+      ],
+      "total_ms": 13.999,
+      "variant": "after",
+      "vertices": 522
+    },
+    {
+      "finish_ms": 0.252,
+      "generate_ms": 13.749,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        93,
+        263
+      ],
+      "total_ms": 14.001,
+      "variant": "after",
+      "vertices": 522
+    },
+    {
+      "finish_ms": 0.249,
+      "generate_ms": 13.735,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        93,
+        263
+      ],
+      "total_ms": 13.984,
+      "variant": "before",
+      "vertices": 522
+    },
+    {
+      "finish_ms": 0.252,
+      "generate_ms": 13.586,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        93,
+        263
+      ],
+      "total_ms": 13.838,
+      "variant": "before",
+      "vertices": 522
+    },
+    {
+      "finish_ms": 0.266,
+      "generate_ms": 13.703,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        93,
+        263
+      ],
+      "total_ms": 13.969,
+      "variant": "after",
+      "vertices": 522
+    },
+    {
+      "finish_ms": 7.14,
+      "generate_ms": 161.359,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        93,
+        264
+      ],
+      "total_ms": 168.499,
+      "variant": "after",
+      "vertices": 23154
+    },
+    {
+      "finish_ms": 7.557,
+      "generate_ms": 172.388,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        93,
+        264
+      ],
+      "total_ms": 179.945,
+      "variant": "before",
+      "vertices": 23154
+    },
+    {
+      "finish_ms": 7.216,
+      "generate_ms": 167.652,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        93,
+        264
+      ],
+      "total_ms": 174.868,
+      "variant": "before",
+      "vertices": 23154
+    },
+    {
+      "finish_ms": 7.541,
+      "generate_ms": 157.485,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        93,
+        264
+      ],
+      "total_ms": 165.026,
+      "variant": "after",
+      "vertices": 23154
+    },
+    {
+      "finish_ms": 7.174,
+      "generate_ms": 157.639,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        93,
+        264
+      ],
+      "total_ms": 164.813,
+      "variant": "after",
+      "vertices": 23154
+    },
+    {
+      "finish_ms": 7.529,
+      "generate_ms": 169.801,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        93,
+        264
+      ],
+      "total_ms": 177.33,
+      "variant": "before",
+      "vertices": 23154
+    },
+    {
+      "finish_ms": 20.003,
+      "generate_ms": 352.368,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        93,
+        265
+      ],
+      "total_ms": 372.371,
+      "variant": "before",
+      "vertices": 59161
+    },
+    {
+      "finish_ms": 19.67,
+      "generate_ms": 323.097,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        93,
+        265
+      ],
+      "total_ms": 342.767,
+      "variant": "after",
+      "vertices": 59161
+    },
+    {
+      "finish_ms": 20.39,
+      "generate_ms": 323.66,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        93,
+        265
+      ],
+      "total_ms": 344.05,
+      "variant": "after",
+      "vertices": 59161
+    },
+    {
+      "finish_ms": 20.327,
+      "generate_ms": 349.575,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        93,
+        265
+      ],
+      "total_ms": 369.902,
+      "variant": "before",
+      "vertices": 59161
+    },
+    {
+      "finish_ms": 20.167,
+      "generate_ms": 349.527,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        93,
+        265
+      ],
+      "total_ms": 369.694,
+      "variant": "before",
+      "vertices": 59161
+    },
+    {
+      "finish_ms": 20.338,
+      "generate_ms": 320.916,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        93,
+        265
+      ],
+      "total_ms": 341.254,
+      "variant": "after",
+      "vertices": 59161
+    },
+    {
+      "finish_ms": 79.744,
+      "generate_ms": 609.274,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        141,
+        318
+      ],
+      "total_ms": 689.018,
+      "variant": "after",
+      "vertices": 152258
+    },
+    {
+      "finish_ms": 79.157,
+      "generate_ms": 635.343,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        141,
+        318
+      ],
+      "total_ms": 714.5,
+      "variant": "before",
+      "vertices": 152258
+    },
+    {
+      "finish_ms": 78.846,
+      "generate_ms": 659.567,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        141,
+        318
+      ],
+      "total_ms": 738.413,
+      "variant": "before",
+      "vertices": 152258
+    },
+    {
+      "finish_ms": 78.573,
+      "generate_ms": 610.872,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        141,
+        318
+      ],
+      "total_ms": 689.445,
+      "variant": "after",
+      "vertices": 152258
+    },
+    {
+      "finish_ms": 78.849,
+      "generate_ms": 611.202,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        141,
+        318
+      ],
+      "total_ms": 690.051,
+      "variant": "after",
+      "vertices": 152258
+    },
+    {
+      "finish_ms": 80.665,
+      "generate_ms": 648.044,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        141,
+        318
+      ],
+      "total_ms": 728.709,
+      "variant": "before",
+      "vertices": 152258
+    },
+    {
+      "finish_ms": 58.184,
+      "generate_ms": 615.428,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        141,
+        319
+      ],
+      "total_ms": 673.612,
+      "variant": "before",
+      "vertices": 111291
+    },
+    {
+      "finish_ms": 60.033,
+      "generate_ms": 586.51,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        141,
+        319
+      ],
+      "total_ms": 646.543,
+      "variant": "after",
+      "vertices": 111291
+    },
+    {
+      "finish_ms": 61.626,
+      "generate_ms": 606.002,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        141,
+        319
+      ],
+      "total_ms": 667.628,
+      "variant": "after",
+      "vertices": 111291
+    },
+    {
+      "finish_ms": 58.654,
+      "generate_ms": 641.123,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        141,
+        319
+      ],
+      "total_ms": 699.777,
+      "variant": "before",
+      "vertices": 111291
+    },
+    {
+      "finish_ms": 59.382,
+      "generate_ms": 617.008,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        141,
+        319
+      ],
+      "total_ms": 676.39,
+      "variant": "before",
+      "vertices": 111291
+    },
+    {
+      "finish_ms": 58.758,
+      "generate_ms": 597.287,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        141,
+        319
+      ],
+      "total_ms": 656.045,
+      "variant": "after",
+      "vertices": 111291
+    },
+    {
+      "finish_ms": 0.004,
+      "generate_ms": 3.546,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        141,
+        320
+      ],
+      "total_ms": 3.55,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.006,
+      "generate_ms": 3.477,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        141,
+        320
+      ],
+      "total_ms": 3.483,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 3.427,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        141,
+        320
+      ],
+      "total_ms": 3.428,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.546,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        141,
+        320
+      ],
+      "total_ms": 3.548,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 3.513,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        141,
+        320
+      ],
+      "total_ms": 3.516,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.546,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        141,
+        320
+      ],
+      "total_ms": 3.548,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 39.105,
+      "generate_ms": 420.515,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        142,
+        318
+      ],
+      "total_ms": 459.62,
+      "variant": "before",
+      "vertices": 88177
+    },
+    {
+      "finish_ms": 38.064,
+      "generate_ms": 400.551,
+      "repeat": 0,
+      "surfaces": 7,
+      "tile": [
+        142,
+        318
+      ],
+      "total_ms": 438.615,
+      "variant": "after",
+      "vertices": 88177
+    },
+    {
+      "finish_ms": 40.178,
+      "generate_ms": 404.082,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        142,
+        318
+      ],
+      "total_ms": 444.26,
+      "variant": "after",
+      "vertices": 88177
+    },
+    {
+      "finish_ms": 39.881,
+      "generate_ms": 422.938,
+      "repeat": 1,
+      "surfaces": 7,
+      "tile": [
+        142,
+        318
+      ],
+      "total_ms": 462.819,
+      "variant": "before",
+      "vertices": 88177
+    },
+    {
+      "finish_ms": 39.799,
+      "generate_ms": 420.752,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        142,
+        318
+      ],
+      "total_ms": 460.551,
+      "variant": "before",
+      "vertices": 88177
+    },
+    {
+      "finish_ms": 39.07,
+      "generate_ms": 403.078,
+      "repeat": 2,
+      "surfaces": 7,
+      "tile": [
+        142,
+        318
+      ],
+      "total_ms": 442.148,
+      "variant": "after",
+      "vertices": 88177
+    },
+    {
+      "finish_ms": 17.483,
+      "generate_ms": 331.608,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        142,
+        319
+      ],
+      "total_ms": 349.091,
+      "variant": "after",
+      "vertices": 43682
+    },
+    {
+      "finish_ms": 18.839,
+      "generate_ms": 365.42,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        142,
+        319
+      ],
+      "total_ms": 384.259,
+      "variant": "before",
+      "vertices": 43682
+    },
+    {
+      "finish_ms": 17.616,
+      "generate_ms": 354.817,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        142,
+        319
+      ],
+      "total_ms": 372.433,
+      "variant": "before",
+      "vertices": 43682
+    },
+    {
+      "finish_ms": 17.158,
+      "generate_ms": 332.033,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        142,
+        319
+      ],
+      "total_ms": 349.191,
+      "variant": "after",
+      "vertices": 43682
+    },
+    {
+      "finish_ms": 17.797,
+      "generate_ms": 341.547,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        142,
+        319
+      ],
+      "total_ms": 359.344,
+      "variant": "after",
+      "vertices": 43682
+    },
+    {
+      "finish_ms": 17.315,
+      "generate_ms": 352.986,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        142,
+        319
+      ],
+      "total_ms": 370.301,
+      "variant": "before",
+      "vertices": 43682
+    },
+    {
+      "finish_ms": 0.004,
+      "generate_ms": 3.884,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        142,
+        320
+      ],
+      "total_ms": 3.888,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.783,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        142,
+        320
+      ],
+      "total_ms": 3.785,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.862,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        142,
+        320
+      ],
+      "total_ms": 3.864,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.754,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        142,
+        320
+      ],
+      "total_ms": 3.756,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.605,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        142,
+        320
+      ],
+      "total_ms": 3.607,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 3.871,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        142,
+        320
+      ],
+      "total_ms": 3.874,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 4.724,
+      "generate_ms": 98.739,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        143,
+        318
+      ],
+      "total_ms": 103.463,
+      "variant": "after",
+      "vertices": 14918
+    },
+    {
+      "finish_ms": 6.102,
+      "generate_ms": 104.051,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        143,
+        318
+      ],
+      "total_ms": 110.153,
+      "variant": "before",
+      "vertices": 14918
+    },
+    {
+      "finish_ms": 4.644,
+      "generate_ms": 105.487,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        143,
+        318
+      ],
+      "total_ms": 110.131,
+      "variant": "before",
+      "vertices": 14918
+    },
+    {
+      "finish_ms": 5.066,
+      "generate_ms": 120.181,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        143,
+        318
+      ],
+      "total_ms": 125.247,
+      "variant": "after",
+      "vertices": 14918
+    },
+    {
+      "finish_ms": 4.946,
+      "generate_ms": 103.497,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        143,
+        318
+      ],
+      "total_ms": 108.443,
+      "variant": "after",
+      "vertices": 14918
+    },
+    {
+      "finish_ms": 4.638,
+      "generate_ms": 106.259,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        143,
+        318
+      ],
+      "total_ms": 110.897,
+      "variant": "before",
+      "vertices": 14918
+    },
+    {
+      "finish_ms": 94.047,
+      "generate_ms": 603.342,
+      "repeat": 0,
+      "surfaces": 8,
+      "tile": [
+        143,
+        319
+      ],
+      "total_ms": 697.389,
+      "variant": "before",
+      "vertices": 159251
+    },
+    {
+      "finish_ms": 94.579,
+      "generate_ms": 612.682,
+      "repeat": 0,
+      "surfaces": 8,
+      "tile": [
+        143,
+        319
+      ],
+      "total_ms": 707.261,
+      "variant": "after",
+      "vertices": 159251
+    },
+    {
+      "finish_ms": 99.877,
+      "generate_ms": 599.607,
+      "repeat": 1,
+      "surfaces": 8,
+      "tile": [
+        143,
+        319
+      ],
+      "total_ms": 699.484,
+      "variant": "after",
+      "vertices": 159251
+    },
+    {
+      "finish_ms": 97.19,
+      "generate_ms": 626.557,
+      "repeat": 1,
+      "surfaces": 8,
+      "tile": [
+        143,
+        319
+      ],
+      "total_ms": 723.747,
+      "variant": "before",
+      "vertices": 159251
+    },
+    {
+      "finish_ms": 93.166,
+      "generate_ms": 615.199,
+      "repeat": 2,
+      "surfaces": 8,
+      "tile": [
+        143,
+        319
+      ],
+      "total_ms": 708.365,
+      "variant": "before",
+      "vertices": 159251
+    },
+    {
+      "finish_ms": 91.734,
+      "generate_ms": 589.865,
+      "repeat": 2,
+      "surfaces": 8,
+      "tile": [
+        143,
+        319
+      ],
+      "total_ms": 681.599,
+      "variant": "after",
+      "vertices": 159251
+    },
+    {
+      "finish_ms": 0.004,
+      "generate_ms": 4.771,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        143,
+        320
+      ],
+      "total_ms": 4.775,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 4.443,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        143,
+        320
+      ],
+      "total_ms": 4.445,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 4.441,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        143,
+        320
+      ],
+      "total_ms": 4.443,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 4.474,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        143,
+        320
+      ],
+      "total_ms": 4.477,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 4.436,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        143,
+        320
+      ],
+      "total_ms": 4.438,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 4.425,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        143,
+        320
+      ],
+      "total_ms": 4.427,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.527,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        198,
+        357
+      ],
+      "total_ms": 1.528,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.441,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        198,
+        357
+      ],
+      "total_ms": 1.442,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 1.499,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        198,
+        357
+      ],
+      "total_ms": 1.501,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 1.389,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        198,
+        357
+      ],
+      "total_ms": 1.391,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.382,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        198,
+        357
+      ],
+      "total_ms": 1.383,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 1.394,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        198,
+        357
+      ],
+      "total_ms": 1.395,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.637,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        198,
+        358
+      ],
+      "total_ms": 0.638,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 0.607,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        198,
+        358
+      ],
+      "total_ms": 0.609,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 0.596,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        198,
+        358
+      ],
+      "total_ms": 0.598,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.586,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        198,
+        358
+      ],
+      "total_ms": 0.587,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.59,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        198,
+        358
+      ],
+      "total_ms": 0.591,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.576,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        198,
+        358
+      ],
+      "total_ms": 0.577,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.868,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        198,
+        359
+      ],
+      "total_ms": 0.869,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.874,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        198,
+        359
+      ],
+      "total_ms": 0.875,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.861,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        198,
+        359
+      ],
+      "total_ms": 0.862,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.0,
+      "generate_ms": 0.857,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        198,
+        359
+      ],
+      "total_ms": 0.857,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 0.934,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        198,
+        359
+      ],
+      "total_ms": 0.936,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 0.883,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        198,
+        359
+      ],
+      "total_ms": 0.884,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 33.088,
+      "generate_ms": 326.557,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        199,
+        357
+      ],
+      "total_ms": 359.645,
+      "variant": "after",
+      "vertices": 78834
+    },
+    {
+      "finish_ms": 35.567,
+      "generate_ms": 345.102,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        199,
+        357
+      ],
+      "total_ms": 380.669,
+      "variant": "before",
+      "vertices": 78834
+    },
+    {
+      "finish_ms": 33.11,
+      "generate_ms": 346.641,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        199,
+        357
+      ],
+      "total_ms": 379.751,
+      "variant": "before",
+      "vertices": 78834
+    },
+    {
+      "finish_ms": 32.703,
+      "generate_ms": 328.301,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        199,
+        357
+      ],
+      "total_ms": 361.004,
+      "variant": "after",
+      "vertices": 78834
+    },
+    {
+      "finish_ms": 32.484,
+      "generate_ms": 330.037,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        199,
+        357
+      ],
+      "total_ms": 362.521,
+      "variant": "after",
+      "vertices": 78834
+    },
+    {
+      "finish_ms": 32.444,
+      "generate_ms": 346.143,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        199,
+        357
+      ],
+      "total_ms": 378.587,
+      "variant": "before",
+      "vertices": 78834
+    },
+    {
+      "finish_ms": 7.873,
+      "generate_ms": 184.663,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        199,
+        358
+      ],
+      "total_ms": 192.536,
+      "variant": "before",
+      "vertices": 24305
+    },
+    {
+      "finish_ms": 8.138,
+      "generate_ms": 176.543,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        199,
+        358
+      ],
+      "total_ms": 184.681,
+      "variant": "after",
+      "vertices": 24305
+    },
+    {
+      "finish_ms": 7.815,
+      "generate_ms": 178.194,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        199,
+        358
+      ],
+      "total_ms": 186.009,
+      "variant": "after",
+      "vertices": 24305
+    },
+    {
+      "finish_ms": 7.832,
+      "generate_ms": 189.413,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        199,
+        358
+      ],
+      "total_ms": 197.245,
+      "variant": "before",
+      "vertices": 24305
+    },
+    {
+      "finish_ms": 8.438,
+      "generate_ms": 187.224,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        199,
+        358
+      ],
+      "total_ms": 195.662,
+      "variant": "before",
+      "vertices": 24305
+    },
+    {
+      "finish_ms": 8.503,
+      "generate_ms": 187.52,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        199,
+        358
+      ],
+      "total_ms": 196.023,
+      "variant": "after",
+      "vertices": 24305
+    },
+    {
+      "finish_ms": 0.133,
+      "generate_ms": 8.565,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        199,
+        359
+      ],
+      "total_ms": 8.698,
+      "variant": "after",
+      "vertices": 84
+    },
+    {
+      "finish_ms": 0.106,
+      "generate_ms": 7.573,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        199,
+        359
+      ],
+      "total_ms": 7.679,
+      "variant": "before",
+      "vertices": 84
+    },
+    {
+      "finish_ms": 0.095,
+      "generate_ms": 7.427,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        199,
+        359
+      ],
+      "total_ms": 7.522,
+      "variant": "before",
+      "vertices": 84
+    },
+    {
+      "finish_ms": 0.099,
+      "generate_ms": 7.381,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        199,
+        359
+      ],
+      "total_ms": 7.48,
+      "variant": "after",
+      "vertices": 84
+    },
+    {
+      "finish_ms": 0.129,
+      "generate_ms": 7.762,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        199,
+        359
+      ],
+      "total_ms": 7.891,
+      "variant": "after",
+      "vertices": 84
+    },
+    {
+      "finish_ms": 0.121,
+      "generate_ms": 7.786,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        199,
+        359
+      ],
+      "total_ms": 7.907,
+      "variant": "before",
+      "vertices": 84
+    },
+    {
+      "finish_ms": 0.696,
+      "generate_ms": 39.396,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        200,
+        357
+      ],
+      "total_ms": 40.092,
+      "variant": "before",
+      "vertices": 1635
+    },
+    {
+      "finish_ms": 0.704,
+      "generate_ms": 39.013,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        200,
+        357
+      ],
+      "total_ms": 39.717,
+      "variant": "after",
+      "vertices": 1635
+    },
+    {
+      "finish_ms": 0.705,
+      "generate_ms": 37.58,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        200,
+        357
+      ],
+      "total_ms": 38.285,
+      "variant": "after",
+      "vertices": 1635
+    },
+    {
+      "finish_ms": 0.68,
+      "generate_ms": 38.131,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        200,
+        357
+      ],
+      "total_ms": 38.811,
+      "variant": "before",
+      "vertices": 1635
+    },
+    {
+      "finish_ms": 0.872,
+      "generate_ms": 42.668,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        200,
+        357
+      ],
+      "total_ms": 43.54,
+      "variant": "before",
+      "vertices": 1635
+    },
+    {
+      "finish_ms": 0.696,
+      "generate_ms": 40.349,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        200,
+        357
+      ],
+      "total_ms": 41.045,
+      "variant": "after",
+      "vertices": 1635
+    },
+    {
+      "finish_ms": 2.83,
+      "generate_ms": 72.153,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        200,
+        358
+      ],
+      "total_ms": 74.983,
+      "variant": "after",
+      "vertices": 7794
+    },
+    {
+      "finish_ms": 2.718,
+      "generate_ms": 73.293,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        200,
+        358
+      ],
+      "total_ms": 76.011,
+      "variant": "before",
+      "vertices": 7794
+    },
+    {
+      "finish_ms": 2.717,
+      "generate_ms": 72.337,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        200,
+        358
+      ],
+      "total_ms": 75.054,
+      "variant": "before",
+      "vertices": 7794
+    },
+    {
+      "finish_ms": 2.785,
+      "generate_ms": 68.62,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        200,
+        358
+      ],
+      "total_ms": 71.405,
+      "variant": "after",
+      "vertices": 7794
+    },
+    {
+      "finish_ms": 3.092,
+      "generate_ms": 70.652,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        200,
+        358
+      ],
+      "total_ms": 73.744,
+      "variant": "after",
+      "vertices": 7794
+    },
+    {
+      "finish_ms": 2.791,
+      "generate_ms": 72.19,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        200,
+        358
+      ],
+      "total_ms": 74.981,
+      "variant": "before",
+      "vertices": 7794
+    },
+    {
+      "finish_ms": 7.151,
+      "generate_ms": 138.868,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        200,
+        359
+      ],
+      "total_ms": 146.019,
+      "variant": "before",
+      "vertices": 17056
+    },
+    {
+      "finish_ms": 7.182,
+      "generate_ms": 130.742,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        200,
+        359
+      ],
+      "total_ms": 137.924,
+      "variant": "after",
+      "vertices": 17056
+    },
+    {
+      "finish_ms": 6.835,
+      "generate_ms": 132.905,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        200,
+        359
+      ],
+      "total_ms": 139.74,
+      "variant": "after",
+      "vertices": 17056
+    },
+    {
+      "finish_ms": 7.21,
+      "generate_ms": 142.762,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        200,
+        359
+      ],
+      "total_ms": 149.972,
+      "variant": "before",
+      "vertices": 17056
+    },
+    {
+      "finish_ms": 7.389,
+      "generate_ms": 141.897,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        200,
+        359
+      ],
+      "total_ms": 149.286,
+      "variant": "before",
+      "vertices": 17056
+    },
+    {
+      "finish_ms": 7.111,
+      "generate_ms": 135.699,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        200,
+        359
+      ],
+      "total_ms": 142.81,
+      "variant": "after",
+      "vertices": 17056
+    },
+    {
+      "finish_ms": 8.971,
+      "generate_ms": 235.752,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        247,
+        384
+      ],
+      "total_ms": 244.723,
+      "variant": "after",
+      "vertices": 22482
+    },
+    {
+      "finish_ms": 9.348,
+      "generate_ms": 246.212,
+      "repeat": 0,
+      "surfaces": 4,
+      "tile": [
+        247,
+        384
+      ],
+      "total_ms": 255.56,
+      "variant": "before",
+      "vertices": 22482
+    },
+    {
+      "finish_ms": 8.856,
+      "generate_ms": 243.184,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        247,
+        384
+      ],
+      "total_ms": 252.04,
+      "variant": "before",
+      "vertices": 22482
+    },
+    {
+      "finish_ms": 8.864,
+      "generate_ms": 229.129,
+      "repeat": 1,
+      "surfaces": 4,
+      "tile": [
+        247,
+        384
+      ],
+      "total_ms": 237.993,
+      "variant": "after",
+      "vertices": 22482
+    },
+    {
+      "finish_ms": 8.945,
+      "generate_ms": 232.937,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        247,
+        384
+      ],
+      "total_ms": 241.882,
+      "variant": "after",
+      "vertices": 22482
+    },
+    {
+      "finish_ms": 9.097,
+      "generate_ms": 234.136,
+      "repeat": 2,
+      "surfaces": 4,
+      "tile": [
+        247,
+        384
+      ],
+      "total_ms": 243.233,
+      "variant": "before",
+      "vertices": 22482
+    },
+    {
+      "finish_ms": 1.011,
+      "generate_ms": 38.144,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        247,
+        385
+      ],
+      "total_ms": 39.155,
+      "variant": "before",
+      "vertices": 2310
+    },
+    {
+      "finish_ms": 0.969,
+      "generate_ms": 36.764,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        247,
+        385
+      ],
+      "total_ms": 37.733,
+      "variant": "after",
+      "vertices": 2310
+    },
+    {
+      "finish_ms": 1.021,
+      "generate_ms": 37.345,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        247,
+        385
+      ],
+      "total_ms": 38.366,
+      "variant": "after",
+      "vertices": 2310
+    },
+    {
+      "finish_ms": 0.982,
+      "generate_ms": 37.416,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        247,
+        385
+      ],
+      "total_ms": 38.398,
+      "variant": "before",
+      "vertices": 2310
+    },
+    {
+      "finish_ms": 0.986,
+      "generate_ms": 38.137,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        247,
+        385
+      ],
+      "total_ms": 39.123,
+      "variant": "before",
+      "vertices": 2310
+    },
+    {
+      "finish_ms": 1.047,
+      "generate_ms": 36.215,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        247,
+        385
+      ],
+      "total_ms": 37.262,
+      "variant": "after",
+      "vertices": 2310
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.606,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        247,
+        386
+      ],
+      "total_ms": 3.608,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.004,
+      "generate_ms": 3.959,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        247,
+        386
+      ],
+      "total_ms": 3.963,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 3.527,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        247,
+        386
+      ],
+      "total_ms": 3.528,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 3.7,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        247,
+        386
+      ],
+      "total_ms": 3.702,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 3.475,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        247,
+        386
+      ],
+      "total_ms": 3.476,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.003,
+      "generate_ms": 3.603,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        247,
+        386
+      ],
+      "total_ms": 3.606,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 7.989,
+      "generate_ms": 200.711,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        248,
+        384
+      ],
+      "total_ms": 208.7,
+      "variant": "before",
+      "vertices": 20221
+    },
+    {
+      "finish_ms": 7.67,
+      "generate_ms": 192.683,
+      "repeat": 0,
+      "surfaces": 5,
+      "tile": [
+        248,
+        384
+      ],
+      "total_ms": 200.353,
+      "variant": "after",
+      "vertices": 20221
+    },
+    {
+      "finish_ms": 7.704,
+      "generate_ms": 192.509,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        248,
+        384
+      ],
+      "total_ms": 200.213,
+      "variant": "after",
+      "vertices": 20221
+    },
+    {
+      "finish_ms": 8.018,
+      "generate_ms": 204.575,
+      "repeat": 1,
+      "surfaces": 5,
+      "tile": [
+        248,
+        384
+      ],
+      "total_ms": 212.593,
+      "variant": "before",
+      "vertices": 20221
+    },
+    {
+      "finish_ms": 7.91,
+      "generate_ms": 205.275,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        248,
+        384
+      ],
+      "total_ms": 213.185,
+      "variant": "before",
+      "vertices": 20221
+    },
+    {
+      "finish_ms": 7.916,
+      "generate_ms": 200.121,
+      "repeat": 2,
+      "surfaces": 5,
+      "tile": [
+        248,
+        384
+      ],
+      "total_ms": 208.037,
+      "variant": "after",
+      "vertices": 20221
+    },
+    {
+      "finish_ms": 13.724,
+      "generate_ms": 344.135,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        248,
+        385
+      ],
+      "total_ms": 357.859,
+      "variant": "after",
+      "vertices": 39928
+    },
+    {
+      "finish_ms": 14.102,
+      "generate_ms": 352.271,
+      "repeat": 0,
+      "surfaces": 6,
+      "tile": [
+        248,
+        385
+      ],
+      "total_ms": 366.373,
+      "variant": "before",
+      "vertices": 39928
+    },
+    {
+      "finish_ms": 14.399,
+      "generate_ms": 354.618,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        248,
+        385
+      ],
+      "total_ms": 369.017,
+      "variant": "before",
+      "vertices": 39928
+    },
+    {
+      "finish_ms": 14.343,
+      "generate_ms": 334.77,
+      "repeat": 1,
+      "surfaces": 6,
+      "tile": [
+        248,
+        385
+      ],
+      "total_ms": 349.113,
+      "variant": "after",
+      "vertices": 39928
+    },
+    {
+      "finish_ms": 14.666,
+      "generate_ms": 348.255,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        248,
+        385
+      ],
+      "total_ms": 362.921,
+      "variant": "after",
+      "vertices": 39928
+    },
+    {
+      "finish_ms": 14.378,
+      "generate_ms": 352.746,
+      "repeat": 2,
+      "surfaces": 6,
+      "tile": [
+        248,
+        385
+      ],
+      "total_ms": 367.124,
+      "variant": "before",
+      "vertices": 39928
+    },
+    {
+      "finish_ms": 7.095,
+      "generate_ms": 174.049,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        248,
+        386
+      ],
+      "total_ms": 181.144,
+      "variant": "before",
+      "vertices": 16430
+    },
+    {
+      "finish_ms": 7.035,
+      "generate_ms": 168.365,
+      "repeat": 0,
+      "surfaces": 3,
+      "tile": [
+        248,
+        386
+      ],
+      "total_ms": 175.4,
+      "variant": "after",
+      "vertices": 16430
+    },
+    {
+      "finish_ms": 6.753,
+      "generate_ms": 169.719,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        248,
+        386
+      ],
+      "total_ms": 176.472,
+      "variant": "after",
+      "vertices": 16430
+    },
+    {
+      "finish_ms": 6.778,
+      "generate_ms": 174.775,
+      "repeat": 1,
+      "surfaces": 3,
+      "tile": [
+        248,
+        386
+      ],
+      "total_ms": 181.553,
+      "variant": "before",
+      "vertices": 16430
+    },
+    {
+      "finish_ms": 7.099,
+      "generate_ms": 174.239,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        248,
+        386
+      ],
+      "total_ms": 181.338,
+      "variant": "before",
+      "vertices": 16430
+    },
+    {
+      "finish_ms": 6.818,
+      "generate_ms": 166.347,
+      "repeat": 2,
+      "surfaces": 3,
+      "tile": [
+        248,
+        386
+      ],
+      "total_ms": 173.165,
+      "variant": "after",
+      "vertices": 16430
+    },
+    {
+      "finish_ms": 0.004,
+      "generate_ms": 2.337,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        249,
+        384
+      ],
+      "total_ms": 2.341,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.269,
+      "repeat": 0,
+      "surfaces": 0,
+      "tile": [
+        249,
+        384
+      ],
+      "total_ms": 2.271,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 2.154,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        249,
+        384
+      ],
+      "total_ms": 2.155,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.002,
+      "generate_ms": 2.247,
+      "repeat": 1,
+      "surfaces": 0,
+      "tile": [
+        249,
+        384
+      ],
+      "total_ms": 2.249,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 2.182,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        249,
+        384
+      ],
+      "total_ms": 2.183,
+      "variant": "after",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.001,
+      "generate_ms": 2.244,
+      "repeat": 2,
+      "surfaces": 0,
+      "tile": [
+        249,
+        384
+      ],
+      "total_ms": 2.245,
+      "variant": "before",
+      "vertices": 0
+    },
+    {
+      "finish_ms": 0.804,
+      "generate_ms": 13.092,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        249,
+        385
+      ],
+      "total_ms": 13.896,
+      "variant": "before",
+      "vertices": 1752
+    },
+    {
+      "finish_ms": 0.799,
+      "generate_ms": 12.248,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        249,
+        385
+      ],
+      "total_ms": 13.047,
+      "variant": "after",
+      "vertices": 1752
+    },
+    {
+      "finish_ms": 0.745,
+      "generate_ms": 12.27,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        249,
+        385
+      ],
+      "total_ms": 13.015,
+      "variant": "after",
+      "vertices": 1752
+    },
+    {
+      "finish_ms": 0.755,
+      "generate_ms": 12.921,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        249,
+        385
+      ],
+      "total_ms": 13.676,
+      "variant": "before",
+      "vertices": 1752
+    },
+    {
+      "finish_ms": 0.752,
+      "generate_ms": 13.149,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        249,
+        385
+      ],
+      "total_ms": 13.901,
+      "variant": "before",
+      "vertices": 1752
+    },
+    {
+      "finish_ms": 0.775,
+      "generate_ms": 12.817,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        249,
+        385
+      ],
+      "total_ms": 13.592,
+      "variant": "after",
+      "vertices": 1752
+    },
+    {
+      "finish_ms": 3.42,
+      "generate_ms": 77.151,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        249,
+        386
+      ],
+      "total_ms": 80.571,
+      "variant": "after",
+      "vertices": 10775
+    },
+    {
+      "finish_ms": 3.288,
+      "generate_ms": 83.266,
+      "repeat": 0,
+      "surfaces": 2,
+      "tile": [
+        249,
+        386
+      ],
+      "total_ms": 86.554,
+      "variant": "before",
+      "vertices": 10775
+    },
+    {
+      "finish_ms": 3.308,
+      "generate_ms": 83.726,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        249,
+        386
+      ],
+      "total_ms": 87.034,
+      "variant": "before",
+      "vertices": 10775
+    },
+    {
+      "finish_ms": 3.313,
+      "generate_ms": 78.032,
+      "repeat": 1,
+      "surfaces": 2,
+      "tile": [
+        249,
+        386
+      ],
+      "total_ms": 81.345,
+      "variant": "after",
+      "vertices": 10775
+    },
+    {
+      "finish_ms": 3.347,
+      "generate_ms": 77.625,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        249,
+        386
+      ],
+      "total_ms": 80.972,
+      "variant": "after",
+      "vertices": 10775
+    },
+    {
+      "finish_ms": 3.363,
+      "generate_ms": 81.702,
+      "repeat": 2,
+      "surfaces": 2,
+      "tile": [
+        249,
+        386
+      ],
+      "total_ms": 85.065,
+      "variant": "before",
+      "vertices": 10775
+    }
+  ],
+  "tiles": 90
+}

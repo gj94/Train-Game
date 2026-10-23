@@ -5,9 +5,11 @@ func _initialize() -> void:
 	call_deferred("run")
 func run() -> void:
 	var baseline:=""
+	var baseline_profiles:=""
 	var output:="res://.local/road-generation-profile.json"
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--baseline="):baseline=arg.trim_prefix("--baseline=")
+		if arg.begins_with("--baseline-profiles="):baseline_profiles=arg.trim_prefix("--baseline-profiles=")
 		if arg.begins_with("--output="):output=arg.trim_prefix("--output=")
 	if baseline.is_empty() or not FileAccess.file_exists(baseline):
 		printerr("Specify --baseline=res://.local/<previous-scenery-script>.gd");quit(2);return
@@ -16,6 +18,8 @@ func run() -> void:
 	var geo:=preload("res://game/geographic_data.gd").new(world.scenery.route)
 	geo.install_railway(world)
 	geo.road_profiles=preload("res://game/geographic_road_profiles.gd").new()
+	var lookups:={after=geo.road_profiles,before=geo.road_profiles}
+	if not baseline_profiles.is_empty():lookups.before=load(baseline_profiles).new()
 	geo.station_sites=preload("res://game/coastal_station_sites.gd").build(world,geo)
 	geo.vegetation_clearance=preload("res://game/vegetation_clearance.gd").build(world)
 	geo.road_reservations=preload("res://game/geographic_road_reservations.gd").new(world,geo.station_sites)
@@ -37,6 +41,7 @@ func run() -> void:
 		for repeat_index in 3:
 			var order:=["before","after"] if (counter+repeat_index)%2==0 else ["after","before"]
 			for label: String in order:
+				geo.road_profiles=lookups[label]
 				var chunk=scripts[label].new(geo,materials,null)
 				chunk.origin=Vector3(key.x*512,0,key.y*512);chunk.tile_features=tile.features
 				chunk.batch=preload("res://game/geographic_mesh.gd").new()
@@ -58,7 +63,7 @@ func run() -> void:
 				holder.free()
 		counter+=1
 		if counter%10==0:print("ROAD_PROFILE tiles=",counter)
-	var report:={tiles=counter,rows=rows,baseline=baseline,
+	var report:={tiles=counter,rows=rows,baseline=baseline,baseline_profiles=baseline_profiles,
 		profiled_ways=geo.road_profiles.profile_ways.size(),
 		note="CPU-only interleaved three-pass road mesh generation including engineered road profiles; same terrain/tiles/materials; no simulation or rendered FPS measurement."}
 	FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))

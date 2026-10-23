@@ -123,6 +123,8 @@ static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector
 	var across:=Vector2(-axis.y,axis.x).normalized()
 	var width:=maxf(.001,absf(Vector2(corners[3].x-corners[0].x,corners[3].z-corners[0].z).dot(across)))
 	var area:=0.0
+	var offset:=Vector2(c.origin.x,c.origin.z)
+	var is_road:=kind in Finishes.KINDS
 	for part in pieces:
 		var projected:=[]
 		if drape:
@@ -148,9 +150,10 @@ static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector
 					positions.append(Vector3(v.x,lerpf(a.y,b.y,t),v.y))
 				projected.append(positions)
 		for positions: PackedVector3Array in projected:
-			var vertices: Array[Vector2]=[]
-			for p in positions:vertices.append(Vector2(p.x,p.z))
-			var triangle_area:=absf((vertices[1]-vertices[0]).cross(vertices[2]-vertices[0]))*.5
+			var first:=Vector2(positions[0].x,positions[0].z)
+			var second:=Vector2(positions[1].x,positions[1].z)
+			var third:=Vector2(positions[2].x,positions[2].z)
+			var triangle_area:=absf((second-first).cross(third-first))*.5
 			if triangle_area<.000001:continue
 			area+=triangle_area
 			var normal: Vector3=(positions[2]-positions[0]).cross(positions[1]-positions[0]).normalized()
@@ -158,11 +161,10 @@ static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector
 			# UV carries absolute metre coordinates so rebasing cannot jump
 			# the asphalt texture. UV2 carries the independent across-road
 			# coordinate for dust; world X is not a road-edge mask.
-			var offset:=Vector2(c.origin.x,c.origin.z)
 			var uvs:=[];var edge_uvs:=[]
-			for v in vertices:
-				uvs.append((v+offset)/(1.0 if kind in Finishes.KINDS else 3.5))
-				if kind in Finishes.KINDS:edge_uvs.append(Vector2(clampf((v-Vector2(a.x,a.z)).dot(across)/width+.5,0,1),0))
+			for v in [first,second,third]:
+				uvs.append((v+offset)/(1.0 if is_road else 3.5))
+				if is_road:edge_uvs.append(Vector2(clampf((v-Vector2(a.x,a.z)).dot(across)/width+.5,0,1),0))
 			c.batch.triangle(kind,positions[0],positions[1],positions[2],normal,color,uvs,edge_uvs)
 	return area
 

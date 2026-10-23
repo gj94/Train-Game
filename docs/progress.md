@@ -1,5 +1,31 @@
 # Progress
 
+## 2026-10-24 — Road worker optimisation and support investigation
+
+- Sixth overnight increment: cache terrain plane equations, hoist triangle UV
+  setup, and index elevation/unique split-point queries by road. Keep every
+  profile knot so bridge supports and junction shapes stay unchanged.
+- Isolated 90-tile / three-repeat comparison against d500cfe: generation CPU
+  -4.12%, total mesh creation -3.90%, identical vertices and road surfaces.
+  Development-PC worker measurement, not a claim about RTX 4090 Laptop FPS.
+- Validation: 841 full source tests, 17 Python tests, exact full-source parity
+  for 139,920 height queries and 27,337 knots. Full 4,305-tile export and
+  independent audit pass for 5,428,221 road triangles, all material kinds,
+  13,256 rail crossing checks and 695 piers. 14,976 junction probes pass,
+  maximum difference 6.148 mm. Profile build gate current; all 32,857 profile
+  segments and 4,893 protected files unchanged. Three frozen native junction
+  views; six scripts validated and zero editor errors. Evidence:
+  art/performance/map-2026-10-24/optimisation.
+- Also captured/reviewed the twelve baseline rail-support cases. Confirmed
+  visible ground gaps at KZTW bridge approach and ERS/NCJ terminal extensions;
+  other cases are bridge/retaining structures needing case-specific handling.
+  Canal probe found duplicate centreline water within mapped water polygons;
+  native 2.5 km bank shows coarse-edge stitching teeth. Exact next-work notes
+  and existing-defect evidence: map-2026-10-24/support-investigation.
+- Playtest after eventual release: Kumbalam 9.5 km, raised junction 146.2 km,
+  ground/deck transition 184.3 km. No timetable or extracted-build gameplay
+  runs. R45 remains live; the overnight window and six active hours continue.
+
 ## 2026-10-24 — Mapped rural lane finishes
 
 - Fifth overnight increment: restore 6,717 OSM surface/tracktype/smoothness

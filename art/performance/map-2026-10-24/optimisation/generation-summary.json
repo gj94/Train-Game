@@ -1,0 +1,25 @@
+{
+  "tiles": 90,
+  "repetitions": 3,
+  "totals": {
+    "before": {
+      "generate_ms": 49422.664,
+      "total_ms": 52320.611,
+      "vertices": 6881697,
+      "surfaces": 885
+    },
+    "after": {
+      "generate_ms": 47384.621,
+      "total_ms": 50280.776,
+      "vertices": 6881697,
+      "surfaces": 885
+    }
+  },
+  "percent_change": {
+    "generate_ms": -4.123701223390142,
+    "total_ms": -3.8987216720385742,
+    "vertices": 0.0,
+    "surfaces": 0.0
+  },
+  "note": "CPU-only interleaved three-pass road mesh generation including engineered road profiles; same terrain/tiles/materials; no simulation or rendered FPS measurement."
+}

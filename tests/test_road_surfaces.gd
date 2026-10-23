@@ -62,6 +62,22 @@ func test_bridge_profile_interpolates_without_raising_unconnected_parallel_road(
 	if not profile.sample("other",Vector2(64,0)).is_empty():return "Unconnected road raised"
 	if not profile.sample("bridge",Vector2(64,1)).is_empty():return "Nearby road raised"
 	return profile.sample("bridge",Vector2(68,0)).height==profile.sample("approach",Vector2(68,0)).height and not profile.sample("approach",Vector2(75,0)).bridge
+
+func test_indexed_profile_queries_keep_cell_boundaries_and_distinct_levels():
+	var profile:=Profiles.new({segments=[
+		["main",60,0,8,64,0,9,0],["main",64,0,9,68,0,9,1],
+		["other",60,0,40,68,0,40,1],["main",68,0,9,72,0,10,0]]})
+	var fractions:=profile.split_fractions("main",Vector2(60,0),Vector2(72,0))
+	if fractions.size()!=2 or absf(fractions[0]-1.0/3)>.00001 or absf(fractions[1]-2.0/3)>.00001:return "Boundary knot omitted/duplicated"
+	if profile.sample("main",Vector2(64,0))!={height=9.0,bridge=true}:return "Tie order/bridge flag changed"
+	if profile.sample("other",Vector2(64,0)).height!=40:return "Parallel level contaminated"
+	return profile.sample("main",Vector2(70,0)).height==9.5 and profile.sample("missing",Vector2(64,0)).is_empty()
+
+func test_flat_profile_knots_are_kept_to_preserve_existing_bridge_support_positions():
+	var profile:=Profiles.new({segments=[
+		["road",0,0,5,6,0,5,1],["road",6,0,5,12,0,5,1],["road",12,0,5,18,0,5,1]]})
+	var fractions:=profile.split_fractions("road",Vector2.ZERO,Vector2(18,0))
+	return fractions.size()==2 and absf(fractions[0]-1.0/3)<.00001 and absf(fractions[1]-2.0/3)<.00001
 func test_road_miter_meets_both_segment_edges_at_corner():
 	var points: Array[Vector3]=[Vector3.ZERO,Vector3(10,0,0),Vector3(10,0,10)]
 	var m: Vector3=Road._miter(points,1)

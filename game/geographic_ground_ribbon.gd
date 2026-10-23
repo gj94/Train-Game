@@ -14,28 +14,28 @@ static func project(c,ring: PackedVector2Array,lift: float) -> Array:
 				cells.append_array(cache[key])
 			else:cells.append_array(_cell(c,Vector2(x*8,z*8)))
 	if cells.is_empty():return []
-	var common: PackedVector3Array=cells[0].plane
+	var common: PackedFloat64Array=cells[0].equation
 	var coplanar:=true
 	for cell in cells:
 		for point in cell.plane:
-			if absf(plane_height(common,Vector2(point.x,point.z))-point.y)>.0001:
+			if absf(common[0]*point.x+common[1]*point.z+common[2]-point.y)>.0001:
 				coplanar=false;break
 		if not coplanar:break
 	if coplanar:return _triangles(ring,common,lift)
 	var result:=[]
 	for cell in cells:
 		for part in Geometry2D.intersect_polygons(ring,cell.ring):
-			result.append_array(_triangles(part,cell.plane,lift))
+			result.append_array(_triangles(part,cell.equation,lift))
 	return result
 
-static func _triangles(ring: PackedVector2Array,plane: PackedVector3Array,lift: float) -> Array:
+static func _triangles(ring: PackedVector2Array,equation: PackedFloat64Array,lift: float) -> Array:
 	var result:=[]
 	var indices:=Geometry2D.triangulate_polygon(ring)
 	for j in range(0,indices.size(),3):
 		var triangle:=PackedVector3Array()
 		for k in 3:
 			var p: Vector2=ring[indices[j+k]]
-			triangle.append(Vector3(p.x,plane_height(plane,p)+lift,p.y))
+			triangle.append(Vector3(p.x,equation[0]*p.x+equation[1]*p.y+equation[2]+lift,p.y))
 		result.append(triangle)
 	return result
 
@@ -66,8 +66,20 @@ static func _cell(c,start: Vector2) -> Array:
 				var plane:=PackedVector3Array([points[indices[0]],points[indices[1]],points[indices[2]]])
 				var ring:=PackedVector2Array()
 				for p in plane:ring.append(Vector2(p.x,p.z))
-				result.append({plane=plane,ring=ring})
+				result.append({plane=plane,ring=ring,equation=_equation(plane)})
 	return result
+
+static func _equation(plane: PackedVector3Array) -> PackedFloat64Array:
+	# Cache y = ax + bz + c once per worker-local terrain triangle, rather than
+	# redoing barycentric vectors/divisions for every road/shoulder/paint vertex.
+	# Doubles avoid losing height precision in the intercept near a tile corner.
+	var dx1: float=plane[1].x-plane[0].x;var dz1: float=plane[1].z-plane[0].z
+	var dx2: float=plane[2].x-plane[0].x;var dz2: float=plane[2].z-plane[0].z
+	var dy1: float=plane[1].y-plane[0].y;var dy2: float=plane[2].y-plane[0].y
+	var determinant:=dx1*dz2-dx2*dz1
+	var a: float=(dy1*dz2-dy2*dz1)/determinant
+	var b: float=(dx1*dy2-dx2*dy1)/determinant
+	return PackedFloat64Array([a,b,plane[0].y-a*plane[0].x-b*plane[0].z])
 
 static func plane_height(plane: PackedVector3Array,p: Vector2) -> float:
 	var a:=Vector2(plane[0].x,plane[0].z)
