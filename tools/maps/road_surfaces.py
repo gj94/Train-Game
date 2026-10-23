@@ -57,6 +57,10 @@ class Ground:
         self.zone_shapes = [Polygon(z["ring"]) for z in self.zones]
         self.zone_tree = STRtree(self.zone_shapes)
         self.station_bins = context["station_bins"]
+        self.formation_bins = defaultdict(list)
+        for region in context["formation_regions"]:
+            for k in range(math.floor((region["start"]-280)/500), math.floor((region["end"]+280)/500)+1):
+                self.formation_bins[k].append(region)
         self.bridges = context["bridges"]
         self.bridge_bins = defaultdict(list)
         for span in self.bridges:
@@ -87,12 +91,9 @@ class Ground:
         x, z = p.x, p.y
         h = self.dem(x, z)
         s, distance, rail_y, chain = self.nearest(p)
-        width = 12 if s.get("depot") or s.get("yard") else self.station_bins.get(str(math.floor(chain/500)), 32)
-        if distance < width+58:
-            bridge = not s.get("depot") and any(b["start"] <= chain <= b["end"] for b in self.bridge_bins[math.floor(chain/500)])
-            target = rail_y-.8 if bridge else rail_y-.15
-            grade = target+(h-target)*smoothstep(width, width+58, distance)
-            h = min(h, grade) if bridge else grade
+        width = 12 if s.get("depot") or s.get("yard") else self.formation_width(chain)
+        bridge = not s.get("depot") and any(b["start"] <= chain <= b["end"] for b in self.bridge_bins[math.floor(chain/500)])
+        h = formation_grade(h, rail_y, distance, width, bridge, s.get("depot") or s.get("yard"))
         best, target = 0, h
         for i in self.zone_tree.query(p.buffer(14)):
             zone = self.zones[int(i)]
@@ -107,6 +108,22 @@ class Ground:
             if weight > best:
                 best, target = weight, zone["height"]
         return h+(target-h)*best
+
+    def formation_width(self, chain):
+        width = 14.0
+        for region in self.formation_bins[math.floor(chain/500)]:
+            outside = max(region["start"]-chain, chain-region["end"])
+            weight = 1-smoothstep(0, 280, outside)
+            width = max(width, 14+(region["width"]-14)*weight)
+        return width
+
+
+def formation_grade(natural, rail_y, distance, width, bridge=False, yard=False):
+    """Kept in parity with geographic_earthworks.gd; checked against route samples."""
+    target = rail_y-.8 if bridge else rail_y-.15
+    run = 58 if bridge or yard else max(18, min(90, 12+abs(natural-target)*2.5))
+    graded = target+(natural-target)*smoothstep(width, width+run, distance)
+    return min(natural, graded) if bridge else graded
 
 
 def propagate(nodes, links, base, seeds, grade=GRADE):
@@ -358,7 +375,8 @@ def prepare(context, source, output, report_path, context_path):
         path = source / f"elevation/{tx}_{tz}.bin"
         inputs[path.relative_to(ROOT).as_posix()] = file_digest(path) if path.exists() else None
     for name in ["tools/maps/road_surfaces.py", "tools/export_scenery_context.gd", "game/geographic_data.gd",
-                 "game/station_precinct_plan.gd", "game/geographic_road_surface.gd", "game/geographic_road_profiles.gd"]:
+                 "game/station_precinct_plan.gd", "game/geographic_road_surface.gd", "game/geographic_road_profiles.gd",
+                 "game/geographic_earthworks.gd", "game/geographic_ground_ribbon.gd"]:
         inputs[name] = file_digest(ROOT/name)
     result = dict(revision=1, source_sha256=digest.hexdigest(), grade=GRADE,
                   context_sha256=file_digest(context_path), inputs=inputs,

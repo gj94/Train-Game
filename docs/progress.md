@@ -1,5 +1,37 @@
 # Progress
 
+## 2026-10-24 — Overnight map pass: terrain and grounded roads
+
+- Active requested window: 03:30:53–at least 10:30:00 Asia/Singapore today,
+  exceeding the six-hour minimum. This is the first completed increment, not
+  completion of the overnight work. Plan: overnight-map-2026-10-24.md; state and
+  owned processes: .local/map-2026-10-24/window.json. Continuation remains active.
+- Ordinary trackside terrain now reveals existing DEM banks/cuttings beyond a
+  14 m half-width, with smooth station transitions. Preserve wider mapped
+  parallel lines, station/yard footprints, bridge voids and depot grading.
+- Ground roads, shoulders and markings follow the actual terrain triangles,
+  including refined shores, and meet engineered approaches. Native before/after
+  views confirm continuous roads where terrain previously cut them into strips.
+- Rendering-only road profiles regenerated: 28,795 segments. All 51 station
+  access connections pass. Static 8,946-position rail-support comparison finds
+  no worsened samples. Twelve existing discrepancies are retained for review;
+  none were hidden by changing track positions.
+- Validation: 807 headless source tests; seven Python road tests; profile gate;
+  frozen native source captures; 5,433,511 road triangles / 1,836 piers pass the
+  route-wide independent intersection audit. All 4,893 protected simulation,
+  persistence and route-data hashes match the baseline. No timetable replay or
+  regeneration, distribution gameplay test, or publication.
+- Road projection increases worker generation cost; matched 169.7 km native
+  views add about 0.14% rendered primitives and no draw calls. Dev Radeon 780M
+  measurements are not RTX 4090 Laptop frame rates. Evidence and limits in
+  art/performance/map-2026-10-24/terrain-roads. R45 remains live.
+- Next: connected village paths/steps, slope-grounded compound walls, drainage,
+  regional ground/vegetation transitions, further streaming and route audits.
+- Playtest after the eventual release: compare the roadside lane near 11.5 km,
+  the bank/flyover around 169.7 km and the southern cutting near 253.5 km from
+  pilot and low free-camera views; check bridges and station entrances remain
+  connected. These source changes are not yet in the downloadable game.
+
 ## 2026-10-22 — K1 Alappuzha post-overtake hold investigated (no runtime changes)
 
 - Intensive baseline reproduced from the prepared 10:05 checkpoint to 10:25.

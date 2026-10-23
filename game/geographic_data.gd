@@ -2,6 +2,7 @@ extends RefCounted
 ## Read-only geographic data adapter. Each scenery worker owns its DEM cache.
 const ROOT := "res://data/routes/kerala_coast/"
 const CELL := 256.0
+const Earthworks := preload("res://game/geographic_earthworks.gd")
 var route: Dictionary
 var elevation := {}
 var elevation_order: Array = []
@@ -9,6 +10,8 @@ var rail_bins := {}
 var segments := []
 var tile_keys := {}
 var station_bins := {}
+var formation_regions: Array = []
+var formation_bins := {}
 var station_sites := {}
 var vegetation_clearance
 var road_profiles
@@ -21,6 +24,8 @@ func _init(data: Dictionary = {}) -> void:
 	route = data if not data.is_empty() else preload("res://sim/layouts/kerala_coast.gd").source()
 	for key in route.get("scenery_tiles",[]): tile_keys[Vector2i(key[0],key[1])] = true
 	var operations: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"operations.json"))
+	formation_regions=Earthworks.regions(route,operations)
+	formation_bins=Earthworks.index(formation_regions)
 	for i in operations.stations.size():
 		var width:=32.0
 		for road in operations.stations[i].roads:
@@ -56,6 +61,8 @@ func _init(data: Dictionary = {}) -> void:
 ## 32 m formation. Keep the inexpensive main-line/depot index, and share the
 ## additions with workers rather than rebuilding their immutable geometry.
 func install_railway(world: RailWorld) -> void:
+	Earthworks.include_running_roads(formation_regions,world.graph.edges,world.graph.nodes)
+	formation_bins=Earthworks.index(formation_regions)
 	for id: String in world.graph.edges:
 		var edge: Dictionary=world.graph.edges[id]
 		if "_DEPOT_" in id:continue # already installed from route.depot_alignment
@@ -78,6 +85,7 @@ func install_railway(world: RailWorld) -> void:
 
 func share_railway(source) -> void:
 	segments=source.segments;rail_bins=source.rail_bins
+	formation_regions=source.formation_regions;formation_bins=source.formation_bins
 
 func tile(key: Vector2i) -> Dictionary:
 	if not tile_keys.has(key): return {}
@@ -131,11 +139,6 @@ func bridge_at(s: float) -> Dictionary:
 func ground_at(x: float,z: float) -> float:
 	var height := height_at(x,z)
 	var rail := nearest_rail(x,z)
-	var width: float=12.0 if rail.get("depot",false) or rail.get("yard",false) else station_bins.get(floori(rail.s/500),32)
-	if rail.distance<width+58:
-		if rail.bridge:
-			# SRTM can capture bridge/embankment tops. Keep natural lower ground,
-			# but never let those radar returns bury the reconstructed deck.
-			height=minf(height,lerpf(rail.height-.8,height,smoothstep(width,width+58,rail.distance)))
-		else:height=lerpf(rail.height-.15,height,smoothstep(width,width+58,rail.distance))
+	var width: float=12.0 if rail.get("depot",false) or rail.get("yard",false) else Earthworks.half_width(formation_bins,rail.s)
+	height=Earthworks.grade(height,rail,width)
 	return preload("res://game/coastal_station_sites.gd").ground(station_sites,x,z,height)

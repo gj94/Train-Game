@@ -18,6 +18,7 @@ var root: Node3D
 var water_levels := []
 var ground_samples := {}
 var wet_samples := {}
+var ground_ribbon_cells := {}
 var shore_bins := {}
 var near_tiles: Array = []
 var mapped_rails: Array = []

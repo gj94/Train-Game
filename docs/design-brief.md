@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **24 Oct 2026 overnight map refinement:** improve terrain relief, graded
+  paths/roads and coherent Indian countryside around the unchanged railway.
+  Remove floating/abruptly ending scenery; preserve simulation and prepared
+  timetables. Work at least six hours and until at least 10:30 AM Singapore time.
+  See `overnight-map-2026-10-24.md` for the fixed window and validation scope.
 - **22 Oct 2026 travel QoL:** a lightweight game home with pre-journey settings;
   bounded hidden scenery lookahead for fast-forward; service-specific passenger
   seat bookmarks with controller recall and optional return after all time skips.

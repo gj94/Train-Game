@@ -49,7 +49,7 @@ func _initialize() -> void:
 				for i in plan.posts.size():
 					var a: Vector3=plan.posts[i];var b: Vector3=plan.anchors[0 if i==0 else -1].contact
 					overhead.append({a=[a.x,a.z],b=[b.x,b.z],height=maxf(a.y+7.25,b.y+1)})
-	var output:={zones=zones,platforms=platforms,rails=rails,ground_segments=segments,station_bins=geo.station_bins,bridges=geo.bridges,overhead=overhead}
+	var output:={zones=zones,platforms=platforms,rails=rails,ground_segments=segments,station_bins=geo.station_bins,formation_regions=geo.formation_regions,bridges=geo.bridges,overhead=overhead}
 	FileAccess.open("res://.local/scenery-context.json",FileAccess.WRITE).store_string(JSON.stringify(output))
 	print("SCENERY_CONTEXT ",rails.size()," edges, ",platforms.size()," platform patches, ",zones.size()," precincts")
 	quit()

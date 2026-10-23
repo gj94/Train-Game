@@ -4,12 +4,21 @@ from pathlib import Path
 import struct
 import tempfile
 import unittest
-from road_surfaces import Ground, propagate, water_edge_seeds, railway_edge_seeds, station_walkway
+from road_surfaces import Ground, propagate, water_edge_seeds, railway_edge_seeds, station_walkway, formation_grade
 from shapely.geometry import LineString, box
 from shapely.strtree import STRtree
 
 
 class RoadProfilesTest(unittest.TestCase):
+    def test_low_embankment_and_cutting_rejoin_dem_without_changing_formation(self):
+        for natural in (-2,12):
+            for distance in (0,7,14):
+                self.assertAlmostEqual(formation_grade(natural,5.15,distance,14),5)
+            self.assertAlmostEqual(formation_grade(natural,5.15,100,14),natural)
+        self.assertLess(formation_grade(-2,5.15,24,14),4)
+        self.assertGreater(formation_grade(12,5.15,24,14),6)
+        self.assertEqual(formation_grade(-4,8,0,14,True),-4)
+
     def test_only_duplicate_station_pedestrian_bridges_are_omitted(self):
         station = STRtree([box(0,0,100,30)])
         crossing = LineString([(50,-20),(50,50)])

@@ -31,13 +31,15 @@ static func draw(c,feature: Dictionary) -> void:
 			active.append(c._corridor(mid.x,mid.z))
 		if not active.has(true):continue
 		var ground: Array[float]=[]
+		var profiled: Array[bool]=[]
 		for i in points.size():
 			if (i==0 or not active[i-1]) and (i>=active.size() or not active[i]):
-				ground.append(0.0);continue
+				ground.append(0.0);profiled.append(false);continue
 			var p:=points[i];var y: float=c._ground(p.x,p.z)+.07
 			ground.append(y)
 			var sample: Dictionary={} if profiles==null else profiles.sample(feature.id,Vector2(p.x+c.origin.x,p.z+c.origin.z))
 			points[i].y=sample.get("height",y)
+			profiled.append(not sample.is_empty())
 		var along:=0.0
 		for i in range(1,points.size()):
 			var p:=points[i-1];var q:=points[i]
@@ -57,14 +59,18 @@ static func draw(c,feature: Dictionary) -> void:
 			var left:=_miter(points,i-1)*width*.5
 			var right:=_miter(points,i)*width*.5
 			var corners: Array[Vector3]=[p-left,q-right,q+right,p+left]
-			var area:=_surface(c,"road",corners,p,q,Color.WHITE,bridge)
+			var drape: bool=not bridge and not profiled[i-1] and not profiled[i]
+			# Fade the cross-slope into an engineered approach over its last ground
+			# segment, so the terrain-following edge meets the planar deck exactly.
+			var conform:=Vector2(0 if profiled[maxi(0,i-2)] else 1,0 if profiled[mini(profiled.size()-1,i+1)] else 1)
+			var area:=_surface(c,"road",corners,p,q,Color.WHITE,bridge,drape,conform)
 			var full:=area>=length*width*.98
 			if bridge:
 				if full:_bridge(c,feature,p,q,left,right,phase,length)
 			else:
 				for side in [-1,1]:
 					var outer_a:=left+left.normalized()*.65;var outer_b:=right+right.normalized()*.65
-					_surface(c,"road_shoulder",[p+left*side-Vector3.UP*.02,q+right*side-Vector3.UP*.02,q+outer_b*side-Vector3.UP*.03,p+outer_a*side-Vector3.UP*.03],p-Vector3.UP*.025,q-Vector3.UP*.025,Color.WHITE)
+					_surface(c,"road_shoulder",[p+left*side-Vector3.UP*.02,q+right*side-Vector3.UP*.02,q+outer_b*side-Vector3.UP*.03,p+outer_a*side-Vector3.UP*.03],p-Vector3.UP*.025,q-Vector3.UP*.025,Color.WHITE,false,drape,conform)
 					# Retained approaches reach the ground, rather than hanging
 					# over a 5.8 m vertical step at the end of a bridge.
 					if full and maxf(p.y-ground[i-1],q.y-ground[i])>.2:
@@ -82,7 +88,8 @@ static func draw(c,feature: Dictionary) -> void:
 						var a:=p.lerp(q,(cursor-phase)/length)+Vector3.UP*.015
 						var b:=p.lerp(q,(stop-phase)/length)+Vector3.UP*.015
 						var side:=horizontal.normalized().cross(Vector3.UP)*.065
-						_surface(c,"paint",[a-side,b-side,b+side,a+side],a,b,Color(.70,.67,.54),bridge)
+						var marking_conform:=Vector2(lerpf(conform.x,conform.y,(cursor-phase)/length),lerpf(conform.x,conform.y,(stop-phase)/length))
+						_surface(c,"paint",[a-side,b-side,b+side,a+side],a,b,Color(.70,.67,.54),bridge,drape,marking_conform)
 					cursor=stop
 
 static func _miter(points: Array[Vector3],i: int) -> Vector3:
@@ -96,7 +103,7 @@ static func _miter(points: Array[Vector3],i: int) -> Vector3:
 	if bisector.length_squared()<.1:return normal
 	return bisector/maxf(.5,bisector.dot(normal))
 
-static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector3,color: Color,over_water: bool=false) -> float:
+static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector3,color: Color,over_water: bool=false,drape: bool=false,conform: Vector2=Vector2.ONE) -> float:
 	var ring:=PackedVector2Array()
 	for p in corners:ring.append(Vector2(p.x,p.z))
 	if Geometry2D.is_polygon_clockwise(ring):ring.reverse()
@@ -106,23 +113,45 @@ static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector
 	var axis:=Vector2(b.x-a.x,b.z-a.z);var squared:=maxf(.000001,axis.length_squared())
 	var across:=Vector2(-axis.y,axis.x).normalized()
 	var width:=maxf(.001,absf(Vector2(corners[3].x-corners[0].x,corners[3].z-corners[0].z).dot(across)))
-	var normal:=Vector3(-(b.y-a.y)*axis.x/squared,1,-(b.y-a.y)*axis.y/squared).normalized()
 	var area:=0.0
 	for part in pieces:
-		var triangles:=Geometry2D.triangulate_polygon(part)
-		for j in range(0,triangles.size(),3):
-			var p: Vector2=part[triangles[j]];var q: Vector2=part[triangles[j+1]];var r: Vector2=part[triangles[j+2]]
-			area+=absf((q-p).cross(r-p))*.5
-			var positions: Array[Vector3]=[]
-			for v in [p,q,r]:
-				var t: float=(v-Vector2(a.x,a.z)).dot(axis)/squared
-				positions.append(Vector3(v.x,lerpf(a.y,b.y,t),v.y))
+		var projected:=[]
+		if drape:
+			var lift:=.045 if kind=="road_shoulder" else (.085 if kind=="paint" else .07)
+			projected=preload("res://game/geographic_ground_ribbon.gd").project(c,part,lift)
+			if conform!=Vector2.ONE:
+				for index in projected.size():
+					var triangle: PackedVector3Array=projected[index]
+					for k in 3:
+						var v:=Vector2(triangle[k].x,triangle[k].z)
+						var t:=clampf((v-Vector2(a.x,a.z)).dot(axis)/squared,0,1)
+						var point:=triangle[k]
+						point.y=lerpf(lerpf(a.y,b.y,t),point.y,smoothstep(0,1,lerpf(conform.x,conform.y,t)))
+						triangle[k]=point
+					projected[index]=triangle
+		else:
+			var triangles:=Geometry2D.triangulate_polygon(part)
+			for j in range(0,triangles.size(),3):
+				var positions:=PackedVector3Array()
+				for k in 3:
+					var v: Vector2=part[triangles[j+k]]
+					var t: float=(v-Vector2(a.x,a.z)).dot(axis)/squared
+					positions.append(Vector3(v.x,lerpf(a.y,b.y,t),v.y))
+				projected.append(positions)
+		for positions: PackedVector3Array in projected:
+			var vertices: Array[Vector2]=[]
+			for p in positions:vertices.append(Vector2(p.x,p.z))
+			var triangle_area:=absf((vertices[1]-vertices[0]).cross(vertices[2]-vertices[0]))*.5
+			if triangle_area<.000001:continue
+			area+=triangle_area
+			var normal: Vector3=(positions[2]-positions[0]).cross(positions[1]-positions[0]).normalized()
+			if normal.y<0:normal=-normal
 			# UV carries absolute metre coordinates so rebasing cannot jump
 			# the asphalt texture. UV2 carries the independent across-road
 			# coordinate for dust; world X is not a road-edge mask.
 			var offset:=Vector2(c.origin.x,c.origin.z)
 			var uvs:=[];var edge_uvs:=[]
-			for v in [p,q,r]:
+			for v in vertices:
 				uvs.append((v+offset)/(1.0 if kind=="road" else 3.5))
 				if kind=="road":edge_uvs.append(Vector2(clampf((v-Vector2(a.x,a.z)).dot(across)/width+.5,0,1),0))
 			c.batch.triangle(kind,positions[0],positions[1],positions[2],normal,color,uvs,edge_uvs)

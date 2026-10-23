@@ -1,0 +1,117 @@
+# Overnight map refinement — 24 October 2026
+
+The user requested at least six hours of useful map work, continuing until at
+least 10:30 AM Asia/Singapore. The fixed start is 03:30:53 on 24 October; the
+earliest completion is 10:30:00 that morning (02:30 UTC). Do not reset the start
+or finish early. Progress and owned processes are recorded in
+`.local/map-2026-10-24/window.json`.
+
+## Scope and safeguards
+
+- Refine the landscape around the existing railway: regional terrain relief,
+  embankments/cuttings, drainage, connected country paths and roads, coherent
+  village/station surroundings, grounded scenery and vegetation.
+- Preserve track positions and operating geometry, all simulation code,
+  timetable inputs and prepared railway data. Baseline commit: `3d72d61`.
+  A SHA-256 manifest of protected tracked files is in
+  `.local/map-2026-10-24/protected-inputs.json`.
+- Kerala's backwaters and rice-growing coast should remain low and wet; use
+  existing elevation for the more undulating southern landscape. Do not add
+  generic mountains or random bumps to the permanent way.
+- No dispatcher work, full timetable runs/regeneration, unrelated audio edits
+  or repeated extracted-distribution gameplay tests. No sub-agents.
+- R45 remains available while work proceeds. Commit and push coherent tested
+  increments. Notify before preparing a follow-up full/incremental release.
+
+## Work sequence
+
+1. Establish representative source captures and numerical audits of terrain,
+   roads, shorelines, station precincts and the southern route. Identify causes
+   before adding detail. Inspect existing road-profile and placement consumers.
+2. Improve common terrain shaping around protected rail formations and station
+   footprints, including consistent transitions at tile/station boundaries.
+   Keep scenery placements and generated road approach heights in agreement.
+3. Refine road/path continuity, graded shoulders, access ramps and drainage.
+   Resolve abrupt ends and hanging surfaces while preserving clearances.
+4. Improve regional countryside composition and settlement grounding with
+   bounded geometry, instancing and existing streaming budgets.
+5. Audit representative close train-height views plus wider context, wet and
+   dry terrain, road/rail crossings, station approaches and tile boundaries.
+   Compare native performance on the Radeon 780M development PC; do not claim
+   these measurements represent the i9-13980HX / RTX 4090 Laptop target.
+6. Run relevant headless tests and native visual checks, verify protected input
+   hashes, document limitations and exact playtest points. After the minimum
+   window and successful validation, prepare and verify a follow-up release
+   using the documented increasing-sequence full/incremental process. Record
+   completion and pause the continuation automation.
+
+## Initial finding
+
+Ordinary terrain is currently flattened to rail height for 32 m on either side
+of the route, then blended over another 58 m. Station widths are expanded in
+500 m bins. This can erase visible embankments/cuttings and introduce a change
+in terrain grading at bin boundaries. The road-profile generator duplicates
+this calculation, so any change needs matching generation and placement checks.
+This is a hypothesis to validate with route samples and native captures.
+
+## Regional references
+
+- [Kerala Irrigation: Kuttanad](https://www.irrigation.kerala.gov.in/node/77):
+  low-lying paddy polders protected by bunds. Keep broad lowland fields and
+  drainage rather than adding arbitrary hills.
+- [Kerala Tourism: Varkala topography](https://www.keralatourism.org/varkala/varkala-topography.php):
+  laterite relief and winding approaches. Use existing local elevation, without
+  inventing coastal cliffs at the railway itself.
+- [Kanniyakumari district agriculture](https://kanniyakumari.nic.in/agri/): varied
+  terrain and extensive paddy/coconut cultivation. Preserve planted valleys and
+  the more undulating southern route.
+
+## First implementation checkpoint (validated)
+
+- Ordinary formation half-width reduced to 14 m, with height-dependent grading
+  back into existing DEM relief. Preserve the old station/ladder footprints and
+  depot/outer-yard slopes; station changes taper continuously over 280 m.
+- Actual mapped parallel lines widen their own formation envelope. The static
+  route audit covers 8,946 rail positions: no worsened terrain support. Twelve
+  previously imperfect samples remain for later visual examination; maximum
+  old/new sampled deviation is unchanged at 1.941 m. These are presentation
+  measurements, not changes to railway track positions or train physics.
+- Offline road generator uses the same grading. Across 12,243 shared samples,
+  99% agree within 2.7 mm; maximum disagreement is 8.5 cm at large geographic
+  coordinates. Rebuilt bridge/approach profiles preserve station links (51,
+  zero height failures).
+- Ground road, shoulder and paint ribbons now follow the rendered terrain
+  triangles, including the finer shoreline mesh. They blend into planar road
+  approaches. Worker-local cell reuse and coplanar shortcuts bound extra work.
+  Native 11.5 km views show the previously broken road now continuous; 169.7 km
+  views show intact graded road surfaces beside the railway cutting/flyover.
+- Eight native rural views captured with railway clock frozen at zero, plus
+  four original station baselines. Evidence remains under
+  `.local/map-2026-10-24/`; retain representative final evidence after validation.
+- Final full source suite: **807 pass**; Python road tests: seven pass. No errors
+  in native source captures or the editor. The profile release gate passes.
+- All 4,305 scenery tiles examined; 5,433,511 emitted road/shoulder/paint triangles
+  across 1,074 road-containing tiles pass independent station, water, rail and
+  pier intersection checks, including 12,607 railway-crossing checks and 1,836
+  piers. All 4,893 protected source/data hashes are unchanged.
+- Evidence: `art/performance/map-2026-10-24/terrain-roads/`. No extra draw calls
+  in matched 169.7 km native views; approximately 0.14% more rendered primitives.
+  Exact road projection adds worker CPU time: the interleaved 90-tile test is
+  about 1.8 times the old road-only generation cost. Other validation jobs ran
+  concurrently; this is neither isolated frame timing nor target-PC FPS.
+
+## Next work
+
+- Continue until the fixed 10:30 minimum. R45 remains the published build.
+- Connect village building fronts to mapped streets using grounded paths and
+  steps where needed. Use surface tags for unpaved country tracks. Reject paths
+  through buildings, waterways, railway envelopes or steep unsupported terrain.
+- Ground compound walls on slopes; current flat-bottom beams can leave gaps
+  even within the accepted 55–65 cm local variation. Verify that garden props
+  belong to buildings actually rendered, rather than rejected footprints.
+- Add restrained drainage and visible cut-bank texture where appropriate;
+  inspect station outskirts, field edges and the distant vegetation transition.
+- Revisit the twelve baseline rail/terrain discrepancy samples visually: bridge
+  ends can legitimately span lower ground. Do not move tracks to hide a defect.
+- Review road-worker generation overhead and broader native streaming before
+  the final release. Keep the existing terrain mesh and visibility budgets.
