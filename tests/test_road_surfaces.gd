@@ -10,6 +10,7 @@ class FlatRoadChunk:
 	extends RefCounted
 	var geo: Dictionary
 	var road_water
+	var road_supports
 	var road_barrier_widths: Dictionary={}
 	var tile_features: Array=[]
 	var origin:=Vector3.ZERO

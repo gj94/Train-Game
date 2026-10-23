@@ -6,10 +6,14 @@ const CELL:=64.0
 var cells:={}
 var profile_ways:={}
 var station_walkways:={}
+var support_clearance=preload("res://game/geographic_scenery_occupancy.gd").new()
 func _init(data: Dictionary={}) -> void:
 	if data.is_empty() and FileAccess.file_exists(PATH):
 		data=JSON.parse_string(FileAccess.get_file_as_string(PATH))
 	for way in data.get("station_pedestrian_ways",[]):station_walkways[way]=true
+	for row in data.get("support_posts",[]):
+		var p:=Vector2(row[0],row[1])
+		support_clearance.add_road(p,p,.85)
 	for row in data.get("segments",[]):
 		profile_ways[row[0]]=true
 		var a:=Vector2(row[1],row[2]);var b:=Vector2(row[4],row[5])

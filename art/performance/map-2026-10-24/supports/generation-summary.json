@@ -1,0 +1,22 @@
+{
+  "tiles": 90,
+  "passes": 3,
+  "note": "CPU-only interleaved three-pass road mesh generation including engineered road profiles; same terrain/tiles/materials; no simulation or rendered FPS measurement.",
+  "isolated": true,
+  "variants": {
+    "before": {
+      "total_ms": 48710.744,
+      "median_ms": 119.739,
+      "vertices": 6649650,
+      "surfaces": 708
+    },
+    "after": {
+      "total_ms": 51482.586,
+      "median_ms": 120.0495,
+      "vertices": 6882624,
+      "surfaces": 708
+    }
+  },
+  "aggregate_change_percent": 5.690411955111996,
+  "vertex_change_percent": 3.5035528185694
+}

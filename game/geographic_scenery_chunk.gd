@@ -33,6 +33,7 @@ var tile_features: Array=[]
 var rendered_buildings: Array=[]
 var road_water
 var road_barrier_widths: Dictionary={}
+var road_supports
 
 func _init(data, shared_materials: Dictionary, shared_assets) -> void:
 	geo=data

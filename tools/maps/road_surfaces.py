@@ -366,13 +366,15 @@ def prepare(context, source, output, report_path, context_path):
         inputs[path.relative_to(ROOT).as_posix()] = file_digest(path) if path.exists() else None
     for name in ["tools/maps/road_surfaces.py", "tools/maps/road_network.py", "tools/export_scenery_context.gd", "game/geographic_data.gd",
                  "game/station_precinct_plan.gd", "game/geographic_road_surface.gd", "game/geographic_road_profiles.gd",
-                 "game/geographic_earthworks.gd", "game/geographic_ground_ribbon.gd"]:
+                 "game/geographic_earthworks.gd", "game/geographic_ground_ribbon.gd", "game/geographic_road_support.gd"]:
         inputs[name] = file_digest(ROOT/name)
     result = dict(revision=1, source_sha256=digest.hexdigest(), grade=GRADE,
                   context_sha256=file_digest(context_path), inputs=inputs,
                   tile_names_sha256=hashlib.sha256("\n".join(p.name for p in paths).encode()).hexdigest(),
                   note="OSM/SRTM rendering reconstruction; no railway/simulation inputs changed",
                   station_pedestrian_ways=sorted(station_walkways),
+                  support_posts=sorted({(round(o[key][0],3),round(o[key][1],3))
+                                        for o in context.get("overhead",[]) for key in ("a","b")}),
                   segments=rows)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result,separators=(",",":"))+"\n", encoding="utf8")

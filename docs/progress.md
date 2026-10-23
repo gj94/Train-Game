@@ -1,5 +1,38 @@
 # Progress
 
+## 2026-10-24 — Grounded road approaches and clear bridge spans
+
+- Fourth overnight increment: dry raised approaches now have retaining walls
+  or earth banks reaching the actual terrain. True bridges and underpasses
+  remain open. Shared toes, tapered bank/wall transitions and minimum useful
+  bank lengths avoid disconnected soil chunks. Existing material batches used.
+- Full-footprint placement checks include neighbouring map tiles, actual rails,
+  platforms/precincts, buildings, waterways/drains, lower roads and OHE fittings.
+  Independent full-route audit passes 19,885 sections (16,895 retained / 2,990
+  earth), with 695 remaining open piers versus 2,180 previously. Final OHE
+  correction regenerates all 225 support-bearing tiles before the full audit.
+- Validation: 831 full-suite passes, then 32 final road tests including 15
+  support regressions after the OHE guard; 14 Python geometry tests. Seven
+  frozen native source views, editor zero errors, road-profile gate current.
+  Initial full comparison matches all 5,428,586 road surface/shoulder/paint
+  triangles exactly; subsequent changes affect supports only. Profile heights
+  and all 4,893 protected files unchanged. No timetable or distribution runs.
+- Isolated 90-tile / three-pass worker comparison: +5.69% aggregate road
+  generation/mesh time, median almost unchanged, +3.50% road vertices and
+  identical surface counts. This is CPU tile creation, not target-PC FPS.
+  Evidence: art/performance/map-2026-10-24/supports.
+- Native playtest after release: low camera at 13.0, 95.9, 146.2, 184.3, 197.8,
+  269.7 and 270.6 km. Inspect road-to-bank joins and toes, retaining transitions,
+  and the open space under rail/water/road bridges. Short soil mounds should not
+  appear beneath otherwise retained streets.
+- Next: use recovered OSM surface tags for rural lanes, then reduce road-worker
+  cost, drainage/vegetation transitions and remaining terrain-support cases.
+  Cached PBF recovery found all 50,365 road IDs; 6,717 carry useful surface/
+  tracktype/smoothness tags. Ignored recovery data and twelve prepared native
+  rail-support fixtures are recorded in the overnight work document.
+- R45 remains live. No follow-up build prepared; work continues until at least
+  10:30 AM and six actual active hours.
+
 ## 2026-10-24 — Joined road heights and full-width junction surfaces
 
 - Third overnight increment: noded render-only road ends within 2 cm of a

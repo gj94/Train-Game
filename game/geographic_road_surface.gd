@@ -2,6 +2,7 @@ extends RefCounted
 ## Joined ribbons with connected grades, protected station envelopes and
 ## actual bridge decks. Presentation reconstruction, not drivable road physics.
 const WIDTHS:={"motorway":10.0,"trunk":9.0,"primary":8.0,"secondary":6.5,"tertiary":5.5,"residential":4.5,"service":3.6,"footway":1.5,"path":1.0,"track":2.8}
+const Support:=preload("res://game/geographic_road_support.gd")
 
 static func draw(c,feature: Dictionary) -> void:
 	var tags: Dictionary=feature.tags
@@ -56,9 +57,8 @@ static func draw(c,feature: Dictionary) -> void:
 			var phase:=along;along+=length
 			if not active[i-1]:continue
 			var sample: Dictionary={} if profiles==null else profiles.sample(feature.id,Vector2(mid.x+c.origin.x,mid.z+c.origin.z))
-			# OSM bridge tags describe the surveyed span, while our reconstructed
-			# yard may be wider. High approaches use open piers too: a retaining
-			# wall must never close the railway beneath a raised road.
+			# Keep the engineered deck continuous. Ground support is decided
+			# separately against the whole footprint, including roads underneath.
 			var bridge: bool=sample.get("bridge",false) or (not sample.is_empty() and maxf(p.y-ground[i-1],q.y-ground[i])>1.2)
 			if not bridge and c.road_water.wet(Vector2(mid.x,mid.z)):continue
 			if tags.get("bridge","no")!="no" and sample.is_empty():continue
@@ -72,7 +72,7 @@ static func draw(c,feature: Dictionary) -> void:
 			var area:=_surface(c,"road",corners,p,q,Color.WHITE,bridge,drape,conform)
 			var full:=area>=length*width*.98
 			if bridge:
-				if full:_bridge(c,feature,p,q,left,right,phase,length)
+				if full:_bridge(c,feature,p,q,left,right,phase,length,sample.get("bridge",false) or tags.get("bridge","no")!="no")
 			else:
 				for side in [-1,1]:
 					var outer_a:=left+left.normalized()*.65;var outer_b:=right+right.normalized()*.65
@@ -97,6 +97,7 @@ static func draw(c,feature: Dictionary) -> void:
 						var marking_conform:=Vector2(lerpf(conform.x,conform.y,(cursor-phase)/length),lerpf(conform.x,conform.y,(stop-phase)/length))
 						_surface(c,"paint",[a-side,b-side,b+side,a+side],a,b,Color(.70,.67,.54),bridge,drape,marking_conform)
 					cursor=stop
+	if c.get("road_supports")!=null:c.road_supports.flush(c)
 
 static func _miter(points: Array[Vector3],i: int) -> Vector3:
 	var before:=points[i]-points[maxi(0,i-1)]
@@ -163,7 +164,7 @@ static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector
 			c.batch.triangle(kind,positions[0],positions[1],positions[2],normal,color,uvs,edge_uvs)
 	return area
 
-static func _bridge(c,feature: Dictionary,p: Vector3,q: Vector3,left: Vector3,right: Vector3,phase: float,length: float) -> void:
+static func _bridge(c,feature: Dictionary,p: Vector3,q: Vector3,left: Vector3,right: Vector3,phase: float,length: float,open_span: bool=true) -> void:
 	# Closed slab, coping and connected guardrails. There is no lateral soil
 	# ribbon on a span over a canal or the running railway.
 	var down:=Vector3.DOWN*.4
@@ -175,6 +176,11 @@ static func _bridge(c,feature: Dictionary,p: Vector3,q: Vector3,left: Vector3,ri
 			c.batch.beam("concrete",a+Vector3.UP*.12,b+Vector3.UP*.12,.20,Color.WHITE,.24)
 			for y in [.55,1.05]:c.batch.beam("metal",a+Vector3.UP*y,b+Vector3.UP*y,.055)
 			if floori(phase/2)!=floori((phase+length)/2):c.batch.beam("metal",a+Vector3.UP*.2,a+Vector3.UP*1.05,.055)
+	if not open_span:
+		if c.road_supports==null:c.road_supports=Support.new(c.tile_features,WIDTHS)
+		var top: Array[Vector3]=[p-left+down,q-right+down,q+right+down,p+left+down]
+		var plan: Dictionary=c.road_supports.plan(c,feature.id,top,p,q)
+		if not plan.is_empty():c.road_supports.pending.append(plan);return
 	if floori(phase/24)==floori((phase+length)/24):return
 	var mid:=p.lerp(q,.5)
 	var absolute: Vector3=mid+c.origin
