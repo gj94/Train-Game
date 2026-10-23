@@ -65,6 +65,22 @@ func test_road_miter_meets_both_segment_edges_at_corner():
 	var points: Array[Vector3]=[Vector3.ZERO,Vector3(10,0,0),Vector3(10,0,10)]
 	var m: Vector3=Road._miter(points,1)
 	return is_equal_approx(absf(m.x),1) and is_equal_approx(absf(m.z),1) and m.length()<1.42
+
+func test_rendered_profile_keeps_t_junction_crest_between_regular_samples():
+	var chunk:=FlatRoadChunk.new()
+	var profile:=Profiles.new({segments=[["main",0,0,6,5,0,8,1],["main",5,0,8,12,0,6,1],
+		["unrelated",3,0,20,4,0,20,1],["parallel",3,1,9,5,1,9,1]]})
+	chunk.geo={road_profiles=profile,road_reservations=null,vegetation_clearance=null}
+	var fractions:=profile.split_fractions("main",Vector2.ZERO,Vector2(12,0))
+	if fractions.size()!=1 or absf(fractions[0]-5.0/12)>.00001:return "Profile corners not filtered/deduplicated"
+	Road.draw(chunk,{id="main",kind="road",tags={highway="service"},geometry={type="LineString",coordinates=[[0,0],[12,0]]}})
+	var vertices: PackedVector3Array=chunk.batch.surfaces.road.commit().surface_get_arrays(0)[Mesh.ARRAY_VERTEX]
+	var at_crest:=0
+	for p in vertices:
+		if absf(p.x-5)<.001:
+			if absf(p.y-8)>.001:return "Road chord misses the junction deck"
+			at_crest+=1
+	return at_crest>=2
 func test_station_access_does_not_invent_canal_or_rail_crossing():
 	var access=preload("res://game/station_road_access.gd")
 	var options:=[{a=Vector3.ZERO,b=Vector3(20,0,0),distance=20,gate=0}]

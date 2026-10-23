@@ -21,6 +21,7 @@ from shapely.geometry import LineString, Point, Polygon, box, shape
 from shapely.ops import unary_union
 from shapely.strtree import STRtree
 from shapely import affinity
+from road_network import build_road_network, junction_aprons, junction_seeds
 
 GRADE = .075
 STEP = 6.0
@@ -247,44 +248,23 @@ def prepare(context, source, output, report_path, context_path):
                     if line.length > .01:
                         features.append((feature["id"], tags, line))
     water_tree = STRtree(waters)
-    nodes, node_ids, edges, seen_edges = [], {}, [], set()
-    links = defaultdict(list)
-    def node_id(x, z):
-        key = (round(x, 3), round(z, 3))
-        if key not in node_ids:
-            node_ids[key] = len(nodes);nodes.append(key)
-        return node_ids[key]
-    for way, tags, line in features:
-        if way in station_walkways:
-            continue
-        coords = list(line.coords)
-        for a, b in zip(coords, coords[1:]):
-            length = math.dist(a, b)
-            count = max(1, math.ceil(length/STEP))
-            # Keep original shared nodes, including clipped tile boundaries.
-            ids = [node_id(a[0]+(b[0]-a[0])*i/count, a[1]+(b[1]-a[1])*i/count) for i in range(count+1)]
-            for na, nb in zip(ids, ids[1:]):
-                if na == nb:
-                    continue
-                key = (way, min(na, nb), max(na, nb))
-                if key in seen_edges:
-                    continue
-                seen_edges.add(key)
-                p, q = nodes[na], nodes[nb]
-                segment = LineString([p, q])
-                middle = segment.interpolate(.5, normalized=True)
-                explicit = tags.get("bridge", "no") != "no"
-                wet = [int(i) for i in water_tree.query(segment, predicate="intersects")]
-                # A crossing needs the centreline over water, not just its
-                # verge touching a bank or a wide road running parallel to it.
-                wet = [i for i in wet if waters[i].intersection(segment).length > .05]
-                levels = [water_heights[i] for i in wet if water_heights[i] is not None]
-                edge = dict(way=way, a=na, b=nb, length=segment.length, explicit=explicit,
-                            wet=bool(wet), water=max(levels) if levels else None,
-                            width=WIDTHS.get(tags.get("highway"), 4), line=segment)
-                edges.append(edge)
-                links[na].append((nb, segment.length));links[nb].append((na, segment.length))
+    nodes, network_edges, junctions = build_road_network(
+        [row for row in features if row[0] not in station_walkways], STEP)
+    edges, links = [], defaultdict(list)
+    for way, tags, na, nb in network_edges:
+        p, q = nodes[na], nodes[nb]
+        segment = LineString([p, q])
+        explicit = tags.get("bridge", "no") != "no"
+        wet = [int(i) for i in water_tree.query(segment, predicate="intersects")]
+        # A crossing needs the centreline over water, not just its verge.
+        wet = [i for i in wet if waters[i].intersection(segment).length > .05]
+        levels = [water_heights[i] for i in wet if water_heights[i] is not None]
+        edges.append(dict(way=way, a=na, b=nb, length=segment.length, explicit=explicit,
+                          wet=bool(wet), water=max(levels) if levels else None,
+                          width=WIDTHS.get(tags.get("highway"), 4), line=segment))
+        links[na].append((nb, segment.length));links[nb].append((na, segment.length))
     print(f"Road network: {len(nodes)} vertices, {len(edges)} segments", flush=True)
+    aprons = junction_aprons(nodes, network_edges, links, junctions, WIDTHS)
     base = [ground.height(Point(p))+.07 for p in nodes]
     structural = defaultdict(list)
     for i, edge in enumerate(edges):
@@ -345,11 +325,21 @@ def prepare(context, source, output, report_path, context_path):
                            centre=[round(sum(nodes[n][axis] for n in vertices)/len(vertices),3) for axis in (0,1)]))
     heights = propagate(nodes, links, base, seeds)
     rail_lifts = propagate(nodes, links, base, rail_seeds)
+    # A profile ends on a ground-height node too. Its visual cross-slope blend
+    # can otherwise pass through an adjacent, entirely ground-level junction.
+    profile_boundaries = {n for edge in edges
+                          if edge['a'] in heights or edge['b'] in heights or edge.get('structure')
+                          for n in (edge['a'],edge['b'])}
     water_edge_nodes = set()
     railway_edge_nodes = set()
+    junction_nodes = set()
     for iteration in range(16):
         extra = water_edge_seeds(edges, base, heights, waters, water_heights, water_tree)
         water_edge_nodes.update(extra)
+        level_junctions = junction_seeds(aprons, base, heights, profile_boundaries)
+        junction_nodes.update(level_junctions)
+        for node, height in level_junctions.items():
+            extra[node] = max(extra.get(node, -math.inf), height)
         railway = railway_edge_seeds(edges, base, rail_lifts, rail_tree, rail_heights, overhead_tree, overhead_heights)
         railway_edge_nodes.update(railway)
         if not extra and not railway:
@@ -374,7 +364,7 @@ def prepare(context, source, output, report_path, context_path):
     for tx, tz in ground.tiles:
         path = source / f"elevation/{tx}_{tz}.bin"
         inputs[path.relative_to(ROOT).as_posix()] = file_digest(path) if path.exists() else None
-    for name in ["tools/maps/road_surfaces.py", "tools/export_scenery_context.gd", "game/geographic_data.gd",
+    for name in ["tools/maps/road_surfaces.py", "tools/maps/road_network.py", "tools/export_scenery_context.gd", "game/geographic_data.gd",
                  "game/station_precinct_plan.gd", "game/geographic_road_surface.gd", "game/geographic_road_profiles.gd",
                  "game/geographic_earthworks.gd", "game/geographic_ground_ribbon.gd"]:
         inputs[name] = file_digest(ROOT/name)
@@ -387,13 +377,20 @@ def prepare(context, source, output, report_path, context_path):
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result,separators=(",",":"))+"\n", encoding="utf8")
     report = dict(vertices=len(nodes),edges=len(edges),profile_segments=len(rows),structures=groups,
+                  junctions=junctions, connected_junctions=len(junctions),
+                  level_junction_nodes=len(junction_nodes),
+                  junction_aprons=len(aprons),largest_junction_apron_nodes=max(map(len,aprons),default=0),
+                  maximum_junction_apron_span=round(max((math.hypot(
+                      max(nodes[n][0] for n in region)-min(nodes[n][0] for n in region),
+                      max(nodes[n][1] for n in region)-min(nodes[n][1] for n in region))
+                      for region in aprons),default=0),2),
                   water_edge_nodes=len(water_edge_nodes),railway_edge_nodes=len(railway_edge_nodes),
                   clearance_rounds=iteration,maximum_uplift=round(biggest,3),
                   file_bytes=output.stat().st_size,source_sha256=digest.hexdigest())
     report["omitted_station_walkways"] = [
         dict(way=way, stations=sorted(station_walkways[way])) for way in sorted(station_walkways)]
     report_path.write_text(json.dumps(report,indent=2)+"\n",encoding="utf8")
-    print(json.dumps({k:v for k,v in report.items() if k!="structures"}),flush=True)
+    print(json.dumps({k:v for k,v in report.items() if k not in ("structures", "junctions")}),flush=True)
 
 
 if __name__ == "__main__":

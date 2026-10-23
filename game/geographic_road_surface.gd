@@ -17,8 +17,14 @@ static func draw(c,feature: Dictionary) -> void:
 		for i in range(1,line.size()):
 			var a:=Vector3(line[i-1][0],0,line[i-1][1]);var b:=Vector3(line[i][0],0,line[i][1])
 			var steps:=maxi(1,ceili(a.distance_to(b)/4.0))
+			var fractions: Array[float]=[]
 			for j in steps:
-				var p:=a.lerp(b,j/float(steps))
+				fractions.append(j/float(steps))
+			if profiles!=null:
+				fractions.append_array(profiles.split_fractions(feature.id,Vector2(a.x+c.origin.x,a.z+c.origin.z),Vector2(b.x+c.origin.x,b.z+c.origin.z)))
+			fractions.sort()
+			for fraction in fractions:
+				var p:=a.lerp(b,fraction)
 				if points.is_empty() or points[-1].distance_squared_to(p)>.000001:points.append(p)
 		if line.size()>1:points.append(Vector3(line[-1][0],0,line[-1][1]))
 		if points.size()<2:continue

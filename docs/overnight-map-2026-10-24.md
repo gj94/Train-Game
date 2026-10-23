@@ -150,3 +150,52 @@ recheck road-profile, station access, clearance and native join evidence.
 After connectivity: surface-tag-aware rural lanes, drainage and bank texture,
 regional vegetation and streaming, the twelve baseline support discrepancies,
 and road-projection worker overhead remain on the overnight work list.
+
+## Third implementation checkpoint (validated)
+
+Render-only junction noding, layer-safe connectivity and level junction areas
+now fix disconnected heights at simplified T-junctions. Runtime profile corners
+remain in the road mesh. Native inspection caught a cross-width step after the
+centreline fix; the full-width apron fixes that. An independent triangle audit
+then caught a 9 cm profile-to-ground blend seam; including original profile
+boundary nodes in junction grading fixes it. Maximum final sampled difference
+is 6.15 mm across 14,976 probes at 2,169 visible junctions.
+
+Source tests 817; Python road tests 14; 32,857 profile segments; 353 raised joins
+agree exactly. All 51 station access links pass. Full final static road audit:
+5,428,586 triangles, 2,180 piers, 13,256 rail-crossing checks; no conflicts.
+Final boundary correction touched 45 ways on 49 tiles: those were regenerated
+with --tiles and merged into the unchanged verified full-route triangle set.
+The final independent audit still covers every emitted triangle. Village audit
+still passes 7,526 paths / 13,468 treads; 4,893 protected files unchanged.
+Five final native views are retained with source fixtures and reports at
+art/performance/map-2026-10-24/junctions. R45 remains live; no build prepared.
+
+Performance: isolated 90-tile interleaved three-pass ribbon comparison, final
+profiles on both variants, costs +5.7% aggregate worker time; median tile time
+116.87 / 117.08 ms, identical surface counts. Selected station tiles have 12.97%
+more vertices from preserving profile corners. This is not target-PC FPS.
+The profile tool now installs road profiles (the earlier comparison did not).
+Do not repeat these completed checks without relevant changes.
+
+### Next priorities after junctions
+
+1. Native 146.2 / 269.7 / 184.3 km views show too many road approaches on piers.
+   Use grounded earth/retaining support on dry clear land while keeping true
+   water/rail spans open and avoiding buildings. Do not lower railways to fix
+   roads. Full open clearance remains essential below the deck.
+2. Recover mapped surface attributes into a render-only overlay from cached
+   .local/kerala-route/southern-zone-261006.osm.pbf (557,975,955 bytes). The tile
+   importer intentionally dropped surface tags; road-surface-inventory.json
+   confirms all retained tile roads currently say unspecified. Keep protected
+   route files unchanged. Use existing PBR finishes for country paths/lanes.
+3. Consider omitting collinear height-profile corners when they do not change
+   the mesh shape, then recheck road-worker cost. Prior ground-ribbon projection
+   overhead also remains to address. Keep any optimisation evidence honest.
+4. Drainage/cut-bank texture, field edges, vegetation corridor transitions and
+   twelve old rail-support discrepancies remain as previously listed.
+
+The final junction diagnostic has three unpaired entries: one is a same-way
+continuation and two are at 220.05 / 221.19 m from the line, at/beyond the
+220 m scenery cutoff. These are not unconnected height profiles. Include this
+boundary in the later distant-scene transition review.

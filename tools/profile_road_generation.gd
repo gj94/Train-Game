@@ -15,6 +15,7 @@ func run() -> void:
 	var world:=preload("res://sim/layouts/kerala_coast.gd").build()
 	var geo:=preload("res://game/geographic_data.gd").new(world.scenery.route)
 	geo.install_railway(world)
+	geo.road_profiles=preload("res://game/geographic_road_profiles.gd").new()
 	geo.station_sites=preload("res://game/coastal_station_sites.gd").build(world,geo)
 	geo.vegetation_clearance=preload("res://game/vegetation_clearance.gd").build(world)
 	geo.road_reservations=preload("res://game/geographic_road_reservations.gd").new(world,geo.station_sites)
@@ -58,6 +59,7 @@ func run() -> void:
 		counter+=1
 		if counter%10==0:print("ROAD_PROFILE tiles=",counter)
 	var report:={tiles=counter,rows=rows,baseline=baseline,
-		note="CPU-only interleaved three-pass road mesh generation; same terrain/tiles/materials; no simulation or rendered FPS measurement."}
+		profiled_ways=geo.road_profiles.profile_ways.size(),
+		note="CPU-only interleaved three-pass road mesh generation including engineered road profiles; same terrain/tiles/materials; no simulation or rendered FPS measurement."}
 	FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 	print("ROAD_PROFILE_COMPLETE ",output);quit()

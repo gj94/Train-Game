@@ -1,5 +1,37 @@
 # Progress
 
+## 2026-10-24 — Joined road heights and full-width junction surfaces
+
+- Third overnight increment: noded render-only road ends within 2 cm of a
+  simplified through-road, preserving layer separation and bridge ramp ends.
+  Local level junction areas prevent steps across the intersecting road width;
+  include the profile-to-ground blend. Runtime ribbons keep height corners.
+- Validation: 817 source tests, 14 Python geometry/grade tests, five final native
+  views with railway time frozen. Profile continuity passes 353 raised joins.
+  Actual triangles pass 14,976 centre/edge probes at 2,169 visible junctions:
+  maximum height mismatch 6.15 mm. All 51 station access joins still pass.
+- Route-wide clearance passes 5,428,586 triangles / 2,180 piers / 13,256 rail
+  crossings. Final transition correction changes 45 ways on 49 tiles; bounded
+  regeneration was merged with verified unchanged rows before the full audit.
+  Village clearance passes 7,526 paths / 13,468 steps. Protected 4,893 files
+  unchanged. No railway replay/regeneration or extracted-build gameplay runs.
+- The isolated 90-tile, three-pass comparison including engineered profiles
+  measures +5.7% aggregate road-worker generation/mesh time; median tile time
+  is almost unchanged. Surface counts equal; selected station-tile vertices
+  +12.97%. This is not target-PC FPS. The profiling tool previously left road
+  profiles null; it now includes them. See junction evidence README for limits.
+- Evidence: art/performance/map-2026-10-24/junctions. Playtest after eventual
+  release: low camera at the Kumbalam junction around 9.5 km, joins at 146.2 /
+  269.7 km, and the sloped ground transition at 184.3 km. Inspect both edges,
+  guardrail openings and water/rail clearances.
+- Next: dry-land embankment/retaining support instead of excessive approach
+  viaducts; rural road/path finishes; drainage/banks; vegetation transitions;
+  old support discrepancies; profile/terrain-generation cost. The cached OSM
+  PBF retains surface tags that the tiled route importer discarded. Use a
+  rendering-only metadata overlay if recovering them; keep route files intact.
+- R45 remains live. Work continues to at least 10:30 AM and six actual active
+  hours; no follow-up build has been prepared yet.
+
 ## 2026-10-24 — Connected village paths and grounded compounds
 
 - Second overnight map increment: house fronts connect to mapped streets with

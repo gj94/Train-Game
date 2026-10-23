@@ -15,9 +15,11 @@ func _initialize() -> void:
 	call_deferred("run")
 func run() -> void:
 	var all_tiles:="--all" in OS.get_cmdline_user_args()
+	var tile_filter:=PackedStringArray()
 	var output:="res://.local/road-render-triangles.jsonl"
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--output="):output=arg.trim_prefix("--output=")
+		if arg.begins_with("--tiles="):tile_filter=arg.trim_prefix("--tiles=").split(",",false)
 	var world:=preload("res://sim/layouts/kerala_coast.gd").build()
 	var geo:=preload("res://game/geographic_data.gd").new(world.scenery.route)
 	geo.install_railway(world)
@@ -26,7 +28,13 @@ func run() -> void:
 	geo.road_profiles=preload("res://game/geographic_road_profiles.gd").new()
 	geo.road_reservations=preload("res://game/geographic_road_reservations.gd").new(world,geo.station_sites)
 	var keys:={}
-	if all_tiles:
+	if not tile_filter.is_empty():
+		for value in tile_filter:
+			var parts:=value.split("_")
+			if parts.size()!=2 or not parts[0].is_valid_int() or not parts[1].is_valid_int():
+				printerr("Invalid scenery tile: ",value);quit(2);return
+			keys[Vector2i(int(parts[0]),int(parts[1]))]=true
+	elif all_tiles:
 		for key in geo.tile_keys:keys[key]=true
 	else:
 		for station in world.stations:

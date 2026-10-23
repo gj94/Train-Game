@@ -5,11 +5,103 @@ import struct
 import tempfile
 import unittest
 from road_surfaces import Ground, propagate, water_edge_seeds, railway_edge_seeds, station_walkway, formation_grade
+from road_network import build_road_network, junction_aprons, junction_seeds
 from shapely.geometry import LineString, box
 from shapely.strtree import STRtree
 
 
 class RoadProfilesTest(unittest.TestCase):
+    def test_raised_junction_is_level_across_full_width_but_ground_roads_are_not_flattened(self):
+        nodes,edges,contacts=build_road_network([
+            ('main',dict(highway='residential'),LineString([(-12,0),(12,0)])),
+            ('branch',dict(highway='residential'),LineString([(0,0),(0,18)]))])
+        links={i:[] for i in range(len(nodes))}
+        for _,_,a,b in edges:
+            length=math.dist(nodes[a],nodes[b]);links[a].append((b,length));links[b].append((a,length))
+        aprons=junction_aprons(nodes,edges,links,contacts,{'residential':4.5})
+        self.assertEqual(len(aprons),1)
+        base=[0]*len(nodes)
+        self.assertEqual(junction_seeds(aprons,base,{}),{})
+        seed={contacts[0]['node']:8}
+        heights=propagate(nodes,links,base,seed)
+        extra=junction_seeds(aprons,base,heights)
+        heights=propagate(nodes,links,base,seed|extra)
+        self.assertTrue(all(abs(heights[n]-8)<.00001 for n in aprons[0]))
+        self.assertTrue(any(math.dist(nodes[n],(0,0))>=4.5 for n in aprons[0]))
+
+    def test_adjacent_junction_aprons_merge_without_extending_to_other_level(self):
+        nodes,edges,contacts=build_road_network([
+            ('main',{},LineString([(-12,0),(24,0)])),
+            ('one',{},LineString([(0,0),(0,12)])),
+            ('two',{},LineString([(4,0),(4,-12)])),
+            ('flyover',dict(layer='1',bridge='yes'),LineString([(0,-12),(0,0),(0,12)]))])
+        links={i:[] for i in range(len(nodes))}
+        for _,_,a,b in edges:
+            length=math.dist(nodes[a],nodes[b]);links[a].append((b,length));links[b].append((a,length))
+        regions=junction_aprons(nodes,edges,links,contacts,{})
+        self.assertEqual(len(regions),1)
+        flyover={n for way,_,a,b in edges if way=='flyover' for n in (a,b)}
+        self.assertFalse(flyover & regions[0])
+
+    def test_ground_junction_at_profile_boundary_keeps_a_single_cross_slope(self):
+        # The approach reaches natural ground just before this junction. The
+        # boundary itself has no uplift, but its road mesh is still profiled.
+        self.assertEqual(junction_seeds([{0,1,2}],[16.5,15.7,17.0],{}),{})
+        self.assertEqual(junction_seeds([{0,1,2}],[16.5,15.7,17.0],{3:15.6},{1}),{0:17.0,1:17.0})
+
+    def network_heights(self, features, seed_way):
+        nodes, edges, contacts = build_road_network(features)
+        links = {i: [] for i in range(len(nodes))}
+        for _, _, a, b in edges:
+            length = math.dist(nodes[a], nodes[b])
+            links[a].append((b, length)); links[b].append((a, length))
+        seeds = {n: 8.0 for way, _, a, b in edges if way == seed_way for n in (a, b)}
+        return nodes, edges, propagate(nodes, links, [0]*len(nodes), seeds), contacts
+
+    def test_simplified_kumbalam_t_junction_shares_approach_height(self):
+        features = [
+            ('branch', {}, LineString([(2084.405,7729.302),(2089.415,7727.937)])),
+            ('through', {}, LineString([(2066.215,7705.021),(2087.249,7733.095)]))]
+        nodes, edges, heights, contacts = self.network_heights(features, 'branch')
+        self.assertEqual(len(contacts), 1)
+        self.assertAlmostEqual(contacts[0]['gap'], .001724477836, places=8)
+        branch = {n for w, _, a, b in edges if w == 'branch' for n in (a,b)}
+        through = {n for w, _, a, b in edges if w == 'through' for n in (a,b)}
+        shared = branch & through
+        self.assertEqual(len(shared), 1)
+        self.assertEqual(heights[next(iter(shared))], 8)
+        self.assertTrue(all(n in heights for n in through))
+        reverse = self.network_heights(list(reversed(features)), 'branch')
+        self.assertEqual(sorted((nodes[n], h) for n,h in heights.items()),
+                         sorted((reverse[0][n], h) for n,h in reverse[2].items()))
+
+    def test_junction_tolerance_does_not_connect_parallel_or_distant_roads(self):
+        for other in ([(0,.01),(20,.01)], [(5,.021),(5,10)]):
+            nodes, edges, heights, contacts = self.network_heights([
+                ('main', {}, LineString([(-5,0),(25,0)])),
+                ('other', {}, LineString(other))], 'main')
+            self.assertFalse(contacts)
+            self.assertTrue(all(n not in heights for w,_,a,b in edges if w=='other' for n in (a,b)))
+
+    def test_grade_separation_includes_existing_vertices_and_subdivision_crossings(self):
+        for over in ([(-6,0),(0,0),(6,0)], [(-6,0),(6,0)]):
+            _, edges, heights, contacts = self.network_heights([
+                ('over', dict(layer='1', bridge='yes'), LineString(over)),
+                ('under', {}, LineString([(0,-6),(0,0),(0,6)]))], 'over')
+            self.assertFalse(contacts)
+            self.assertTrue(all(n not in heights for w,_,a,b in edges if w=='under' for n in (a,b)))
+        _, edges, heights, _ = self.network_heights([
+            ('horizontal', {}, LineString([(-6,0),(6,0)])),
+            ('vertical', {}, LineString([(0,-6),(0,6)]))], 'horizontal')
+        self.assertTrue(all(n not in heights for w,_,a,b in edges if w=='vertical' for n in (a,b)))
+
+    def test_bridge_layer_transition_and_clipped_tile_seam_connect(self):
+        _, edges, heights, _ = self.network_heights([
+            ('bridge', dict(layer='1',bridge='yes'), LineString([(500,0),(512,0)])),
+            ('ramp', {}, LineString([(512,0),(524,0)])),
+            ('ramp', {}, LineString([(524,0),(536,0)]))], 'bridge')
+        self.assertTrue(all(n in heights for w,_,a,b in edges if w=='ramp' for n in (a,b)))
+
     def test_low_embankment_and_cutting_rejoin_dem_without_changing_formation(self):
         for natural in (-2,12):
             for distance in (0,7,14):
