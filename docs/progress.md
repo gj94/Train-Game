@@ -1,5 +1,30 @@
 # Progress
 
+## 2026-10-24 — Connected village paths and grounded compounds
+
+- Second overnight map increment: house fronts connect to mapped streets with
+  terrain-following paths and supported steps where the plinth is raised.
+  Placement rejects water, other buildings, platforms, running tracks, severe
+  cross-slopes and raised-road joins that cannot be reached from the ground.
+- Compound wall panels now step with the slope and extend below terrain;
+  gardens/wells/boundaries belong only to buildings actually rendered.
+  Shared material batches and a per-tile path cap bound added scene complexity.
+- Validation: 816 source tests pass (nine new placement/grounding regressions),
+  eight final frozen native source views, editor zero errors. Static placement
+  examines 36,899 buildings on 3,156 tiles; independent Shapely checks pass all
+  7,553 paths / 13,547 steps across 598 tiles. Protected 4,893 hashes unchanged.
+  Evidence: art/performance/map-2026-10-24/village. No full timetable rehearsal,
+  prepared-data regeneration or extracted-build gameplay testing.
+- Remaining map finding: T-junctions whose branch endpoint lies on the other
+  road but not one of its vertices are disconnected in the height generator.
+  At Kumbalam, w982280481 joins w760132250 within 1.7 mm, yet their generated
+  heights disagree. This is next; do not change railway geometry to address it.
+- R45 remains live. The fixed 03:30:53–10:30 minimum and six actual work hours
+  still apply; this checkpoint is not overnight completion or publication.
+- Eventual-release playtest: village fronts near chainages 9.5, 77.5, 163.8 and
+  269.0 km, plus compound wall bottoms near 9.8 and 77.5 km. Follow the path from
+  the road to the veranda and inspect the slope under each wall/step.
+
 ## 2026-10-24 — Overnight map pass: terrain and grounded roads
 
 - Active requested window: 03:30:53–at least 10:30:00 Asia/Singapore today,

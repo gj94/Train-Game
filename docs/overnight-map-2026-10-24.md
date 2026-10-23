@@ -115,3 +115,38 @@ This is a hypothesis to validate with route samples and native captures.
   ends can legitimately span lower ground. Do not move tracks to hide a defect.
 - Review road-worker generation overhead and broader native streaming before
   the final release. Keep the existing terrain mesh and visibility budgets.
+
+## Second implementation checkpoint (validated)
+
+Village access now uses the accepted rendered building record and the actual
+front-of-asset bounds, keeping entrance steps in line with verandas. Paths are
+1.3 m wide, at most 45 m long and capped at 24 per tile. Whole footprints are
+checked against neighbours, waterways, station reservations and actual rail
+clearances. Raised road profiles are sampled on their centreline; stairs land
+on terrain with 9–19 cm rises and 34 cm runs. Unworkable slopes are omitted.
+
+Compound walls use short level masonry panels with terrain-following bottoms
+and grounded posts. Garden dressing no longer survives around rejected houses.
+Source suite: 816 pass. Static audit: 36,899 buildings, 7,553 paths, 13,547 steps;
+independent full-footprint clearance/road-join audit passes. Eight final native
+views with railway time frozen; six retained in the village evidence folder.
+The nine new tests cover ownership-aware exclusion, narrow water/rail obstacles,
+reservations, road-profile sampling, stair proportions and cross-slopes, and wall
+footings. All protected hashes remain unchanged. No timetable runs or release.
+
+### Road-continuity finding to address next
+
+Native view at 9.5 km exposes an awkward raised-road T-junction. Mapped branch
+`w982280481` ends at world (2084.405, 7729.302), only 0.001724 m from the line
+`w760132250`. The latter line lacks a vertex there after map simplification.
+The offline height graph links only identical vertices, so a real T-junction
+can acquire two unrelated approach elevations. A read-only candidate audit
+found 7,251 such same-layer endpoint-to-line contacts within 2 cm among 35,355
+road fragments. Results: .local/map-2026-10-24/road-junction-candidates.json.
+Noding/snap-tolerant render-only road connectivity is the next priority. Keep
+road source/railway data unchanged, preserve grade-separated intersections and
+recheck road-profile, station access, clearance and native join evidence.
+
+After connectivity: surface-tag-aware rural lanes, drainage and bank texture,
+regional vegetation and streaming, the twelve baseline support discrepancies,
+and road-projection worker overhead remain on the overnight work list.

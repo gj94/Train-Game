@@ -30,6 +30,7 @@ const BuildingLayout:=preload("res://game/geographic_building_layout.gd")
 const Kerala:=preload("res://game/kerala_scenery.gd")
 const Budget:=preload("res://game/railway_render_budget.gd")
 var tile_features: Array=[]
+var rendered_buildings: Array=[]
 var road_water
 var road_barrier_widths: Dictionary={}
 
@@ -288,6 +289,8 @@ func _building(feature: Dictionary) -> void:
 		if levels==1 and feature.tags.get("building","")=="yes" and front.length()>3 and front.length()<19 and seed_value%7==0:
 			detail_tags=feature.tags.duplicate();detail_tags.shop="reconstructed"
 		var detail:=BuildingLayout.fit(ring,levels,detail_tags,seed_value,assets.catalog,front)
+		var residence:={id=str(feature.id),tags=feature.tags,ring=ring,centre=centre,floor_y=y,detail=detail}
+		rendered_buildings.append(residence)
 		if not detail.is_empty():
 			# Fill the retaining skirt. Detailed verandas/steps expose the base that
 			# a solid extrusion used to hide; grass must not remain inside it.
@@ -386,7 +389,7 @@ func _register_occupied(features: Array) -> void:
 				if poly.is_empty():continue
 				var ring:=PackedVector2Array()
 				for p in poly[0]:ring.append(Vector2(p[0],p[1]))
-				occupancy.add_polygon(ring,.6)
+				occupancy.add_polygon(ring,.6,str(feature.get("id","")))
 		elif feature.kind in ["road","stream"]:
 			var half_width: float={"motorway":5.0,"trunk":4.5,"primary":4.0,"secondary":3.25,"tertiary":2.75,"residential":2.25,"service":1.8,"footway":.75,"path":.5,"track":1.4}.get(feature.tags.get("highway",""),2.0)
 			var tags: Dictionary=feature.tags
@@ -394,7 +397,7 @@ func _register_occupied(features: Array) -> void:
 			for line in _lines(feature.geometry):
 				for i in range(1,line.size()):
 					var a:=Vector2(line[i-1][0],line[i-1][1]);var b:=Vector2(line[i][0],line[i][1])
-					occupancy.add_road(a,b,half_width+1)
+					occupancy.add_road(a,b,half_width+1,str(feature.get("id","")))
 					if reserve_buildings:mapped_road_clearance.add_road(a,b,half_width+.65)
 func _corridor(x: float,z: float) -> bool:
 	return geo.nearest_rail(origin.x+x,origin.z+z).distance<=Budget.CORRIDOR_WIDTH

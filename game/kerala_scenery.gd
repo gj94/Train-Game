@@ -55,7 +55,8 @@ static func frontage(c,p: Vector2,features: Array) -> Vector2:
 	return nearest
 
 static func dress(c,features: Array) -> void:
-	var counts:={boats=0,shore_groups=0,wells=0,boundaries=0}
+	var counts:={boats=0,shore_groups=0,wells=0,boundaries=0,paths=0,steps=0}
+	preload("res://game/village_access.gd").add(c,counts)
 	_shores(c,counts)
 	_yards(c,features,counts)
 	c.root.set_meta("kerala_details",counts)
@@ -124,20 +125,20 @@ static func water_envelope(c,p: Vector2,tangent: Vector2,geometry: Dictionary) -
 	return true
 
 static func _yards(c,features: Array,counts: Dictionary) -> void:
-	for feature in features:
-		if feature.kind!="building" or feature.geometry.type!="Polygon":continue
+	for feature in c.rendered_buildings:
 		if feature.tags.get("building","") in ["train_station","station","industrial","warehouse"]:continue
 		var seed_value:=absi(hash(feature.id))
-		var ring: Array=feature.geometry.coordinates[0]
-		var centre:=Vector2.ZERO
-		for v in ring:centre+=Vector2(v[0],v[1])
-		centre/=ring.size()
+		var ring: PackedVector2Array=feature.ring
+		var centre: Vector2=feature.centre
 		var rail: Dictionary=c.geo.nearest_rail(centre.x+c.origin.x,centre.y+c.origin.z)
 		if rail.distance>300:continue
 		var front:=frontage(c,centre,features)
 		if front.length()<12:continue
 		var forward:=front.normalized();var side:=Vector2(-forward.y,forward.x)
 		var p:=centre+front-forward*6.5
+		if feature.has("path"):
+			forward=(feature.path.b-feature.path.a).normalized();side=Vector2(-forward.y,forward.x)
+			p=feature.path.a.lerp(feature.path.b,.65)
 		# Side/back walls follow the property's building axes with a small garden
 		# setback. Each complete wall is independently validated, so tight urban
 		# plots keep their true gaps instead of acquiring intersecting compounds.
@@ -166,25 +167,22 @@ static func _yards(c,features: Array,counts: Dictionary) -> void:
 						if not dry_clear(c,q,.75):valid=false;break
 						var h: float=c._ground(q.x,q.y);low=minf(low,h);high=maxf(high,h)
 					if valid and high-low<.55:
-						c.batch.beam("architecture_detail",Vector3(a.x,high+.43,a.y),Vector3(b.x,high+.43,b.y),.17,Color(.51,.47,.36,1.0/15),.86)
-						c.batch.beam("architecture_detail",Vector3(a.x,high+.89,a.y),Vector3(b.x,high+.89,b.y),.25,Color(.36,.28,.19,0),.07)
-						for q in [a,b]:c.batch.box("architecture_detail",Vector3(q.x,high+.49,q.y),Vector3(.28,.98,.28),Color(.64,.59,.45,1.0/15))
+						preload("res://game/village_walls.gd").draw(c,a,b,.86,.17,Color(.51,.47,.36,1.0/15))
 						accepted.append(segment);counts.boundaries+=1
 				for segment in accepted:c.occupancy.add_road(segment[0],segment[1],.65)
 		# Low walls and a deliberate opening form a roadside compound, only where
 		# the whole span is clear of mapped houses, roads, water and railway sites.
 		if counts.boundaries<18 and seed_value%2==0:
 			var valid:=true;var low:=INF;var high:=-INF
-			for k in range(-3,4):
-				var q:=p+side*k*2.5
-				if not dry_clear(c,q,.8):valid=false;break
-				var h: float=c._ground(q.x,q.y);low=minf(low,h);high=maxf(high,h)
+			for direction in [-1,1]:
+				for k in 5:
+					var q: Vector2=p+side*direction*lerpf(1.6,7.5,k/4.0)
+					if not dry_clear(c,q,.8):valid=false;break
+					var h: float=c._ground(q.x,q.y);low=minf(low,h);high=maxf(high,h)
 			if valid and high-low<.65:
 				for direction in [-1,1]:
 					var a: Vector2=p+side*direction*1.6;var b: Vector2=p+side*direction*7.5
-					c.batch.beam("architecture_detail",Vector3(a.x,high+.52,a.y),Vector3(b.x,high+.52,b.y),.19,Color(.55,.49,.36,1.0/15),1.05)
-					c.batch.beam("architecture_detail",Vector3(a.x,high+1.07,a.y),Vector3(b.x,high+1.07,b.y),.29,Color(.34,.28,.20,0),.09)
-					for q in [a,b]:c.batch.box("architecture_detail",Vector3(q.x,high+.65,q.y),Vector3(.34,1.3,.34),Color(.66,.61,.47,1.0/15))
+					preload("res://game/village_walls.gd").draw(c,a,b,1.05,.19,Color(.55,.49,.36,1.0/15))
 					c.occupancy.add_road(a,b,.7)
 				counts.boundaries+=1
 		var well:=centre+front*.5+side*4

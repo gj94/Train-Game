@@ -3,14 +3,14 @@ extends RefCounted
 ## houses, roads and water. Immutable after build; each streaming worker owns it.
 var cells:={}
 var _next_item:=0
-func add_polygon(ring: PackedVector2Array,margin: float=0.0) -> void:
+func add_polygon(ring: PackedVector2Array,margin: float=0.0,owner: String="") -> void:
 	if ring.size()<3:return
 	var bounds:=Rect2(ring[0],Vector2.ZERO)
 	for p in ring:bounds=bounds.expand(p)
-	var item:={ring=ring,bounds=bounds,margin=margin}
+	var item:={ring=ring,bounds=bounds,margin=margin,owner=owner}
 	_insert(item,bounds.grow(margin+6))
-func add_road(a: Vector2,b: Vector2,half_width: float) -> void:
-	_insert({a=a,b=b,width=half_width},Rect2(a,Vector2.ZERO).expand(b).grow(half_width+6))
+func add_road(a: Vector2,b: Vector2,half_width: float,owner: String="") -> void:
+	_insert({a=a,b=b,width=half_width,owner=owner},Rect2(a,Vector2.ZERO).expand(b).grow(half_width+6))
 func _insert(item: Dictionary,bounds: Rect2) -> void:
 	item.query_id=_next_item;_next_item+=1
 	item.query_bounds=bounds
@@ -35,7 +35,7 @@ static func distance(p: Vector2,a: Vector2,b: Vector2) -> float:
 
 ## Test the complete footprint, including edges passing over a track with all
 ## vertices far away. The immutable cell index is shared by streaming workers.
-func clear_polygon(ring: PackedVector2Array,margin: float=0.0) -> bool:
+func clear_polygon(ring: PackedVector2Array,margin: float=0.0,ignore: Array=[]) -> bool:
 	if ring.size()<3:return false
 	assert(margin>=0)
 	var bounds:=Rect2(ring[0],Vector2.ZERO)
@@ -47,6 +47,7 @@ func clear_polygon(ring: PackedVector2Array,margin: float=0.0) -> bool:
 			for item in cells.get(Vector2i(x,z),[]):
 				if visited.has(item.query_id):continue
 				visited[item.query_id]=true
+				if not item.get("owner", "").is_empty() and ignore.has(item.owner):continue
 				if not bounds.intersects(item.query_bounds,true):continue
 				if item.has("ring"):
 					if Geometry2D.is_point_in_polygon(ring[0],item.ring) or Geometry2D.is_point_in_polygon(item.ring[0],ring):return false

@@ -1,0 +1,214 @@
+{
+  "source_tests": 816,
+  "new_regressions": 9,
+  "building_tiles": 3156,
+  "rendered_buildings": 36899,
+  "paths": 7553,
+  "wall_panels": 9316,
+  "path_top_triangles": 73732,
+  "path_top_triangles_exclude_stair_and_wall_faces": true,
+  "static_audit_ms": 118377,
+  "native": [
+    {
+      "building": "a1239954104",
+      "details": {
+        "boats": 1,
+        "boundaries": 19,
+        "paths": 113,
+        "shore_groups": 4,
+        "steps": 139,
+        "wells": 10
+      },
+      "draw_calls": 997.0,
+      "eye": [
+        2070.6416015625,
+        8.58406066894531,
+        7690.55712890625
+      ],
+      "railway_time": 0.0,
+      "target": [
+        2084.65844726563,
+        6.08406019210815,
+        7700.93896484375
+      ],
+      "triangles": 10541364.0,
+      "view": "km-0009.5-balcony_villa"
+    },
+    {
+      "building": "a1246300394",
+      "details": {
+        "boats": 0,
+        "boundaries": 27,
+        "paths": 106,
+        "shore_groups": 0,
+        "steps": 130,
+        "wells": 7
+      },
+      "draw_calls": 1696.0,
+      "eye": [
+        13448.9423828125,
+        4.55048513412476,
+        67686.640625
+      ],
+      "railway_time": 0.0,
+      "target": [
+        13439.734375,
+        2.05048513412476,
+        67701.4453125
+      ],
+      "triangles": 17533057.0,
+      "view": "km-0077.5-kerala_veranda"
+    },
+    {
+      "building": "a2872952766",
+      "details": {
+        "boats": 0,
+        "boundaries": 8,
+        "paths": 23,
+        "shore_groups": 0,
+        "steps": 61,
+        "wells": 1
+      },
+      "draw_calls": 3275.0,
+      "eye": [
+        46449.9375,
+        52.0857849121094,
+        134355.65625
+      ],
+      "railway_time": 0.0,
+      "target": [
+        46435.16796875,
+        49.5857849121094,
+        134346.375
+      ],
+      "triangles": 24333587.0,
+      "view": "km-0163.8-balcony_villa"
+    },
+    {
+      "building": "a2439888622",
+      "details": {
+        "boats": 5,
+        "boundaries": 5,
+        "paths": 67,
+        "shore_groups": 13,
+        "steps": 122,
+        "wells": 5
+      },
+      "draw_calls": 2206.0,
+      "eye": [
+        121391.125,
+        27.6893844604492,
+        195792.625
+      ],
+      "railway_time": 0.0,
+      "target": [
+        121406.84375,
+        25.1893844604492,
+        195800.1875
+      ],
+      "triangles": 14618254.0,
+      "view": "km-0269.0-kerala_veranda"
+    },
+    {
+      "building": "wall",
+      "details": {
+        "boats": 1,
+        "boundaries": 19,
+        "paths": 104,
+        "shore_groups": 4,
+        "steps": 123,
+        "wells": 10
+      },
+      "draw_calls": 3335.0,
+      "eye": [
+        1979.40478515625,
+        6.86924648284912,
+        7933.46044921875
+      ],
+      "railway_time": 0.0,
+      "target": [
+        1980.59204101563,
+        5.76924657821655,
+        7929.3564453125
+      ],
+      "triangles": 22549179.0,
+      "view": "km-0009.8-compound-wall"
+    },
+    {
+      "building": "wall",
+      "details": {
+        "boats": 0,
+        "boundaries": 27,
+        "paths": 106,
+        "shore_groups": 0,
+        "steps": 130,
+        "wells": 7
+      },
+      "draw_calls": 3257.0,
+      "eye": [
+        13346.2109375,
+        5.77740049362183,
+        67647.6875
+      ],
+      "railway_time": 0.0,
+      "target": [
+        13350.123046875,
+        4.67740058898926,
+        67649.40625
+      ],
+      "triangles": 25397386.0,
+      "view": "km-0077.5-compound-wall"
+    },
+    {
+      "building": "wall",
+      "details": {
+        "boats": 0,
+        "boundaries": 8,
+        "paths": 21,
+        "shore_groups": 0,
+        "steps": 55,
+        "wells": 1
+      },
+      "draw_calls": 1746.0,
+      "eye": [
+        46509.66796875,
+        48.0691070556641,
+        134426.84375
+      ],
+      "railway_time": 0.0,
+      "target": [
+        46511.24609375,
+        46.969108581543,
+        134422.875
+      ],
+      "triangles": 35638551.0,
+      "view": "km-0163.9-compound-wall"
+    },
+    {
+      "building": "wall",
+      "details": {
+        "boats": 5,
+        "boundaries": 5,
+        "paths": 67,
+        "shore_groups": 12,
+        "steps": 122,
+        "wells": 5
+      },
+      "draw_calls": 2649.0,
+      "eye": [
+        121605.96875,
+        25.7965068817139,
+        195693.984375
+      ],
+      "railway_time": 0.0,
+      "target": [
+        121610.015625,
+        24.6965084075928,
+        195695.359375
+      ],
+      "triangles": 28865665.0,
+      "view": "km-0269.2-compound-wall"
+    }
+  ],
+  "hardware": "Development PC: Radeon 780M; native captures at 1440x900, frozen railway time zero. These are not target-PC frame rate measurements."
+}
