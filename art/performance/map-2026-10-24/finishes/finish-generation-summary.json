@@ -1,0 +1,29 @@
+{
+  "before": {
+    "generate_ms": 48582.894,
+    "finish_ms": 2823.806,
+    "total_ms": 51406.7,
+    "vertices": 6882624,
+    "surfaces": 708,
+    "median_ms": 119.43
+  },
+  "after": {
+    "generate_ms": 49171.825,
+    "finish_ms": 2817.189,
+    "total_ms": 51989.014,
+    "vertices": 6881697,
+    "surfaces": 885,
+    "median_ms": 120.7715
+  },
+  "change_percent": {
+    "generate_ms": 1.2122188521745958,
+    "finish_ms": -0.2343291288424254,
+    "total_ms": 1.1327589594352538,
+    "vertices": -0.013468700309648973,
+    "surfaces": 25.0,
+    "median_ms": 1.1232521142091612
+  },
+  "tiles": 90,
+  "repeats": 3,
+  "note": "CPU-only interleaved three-pass road mesh generation including engineered road profiles; same terrain/tiles/materials; no simulation or rendered FPS measurement."
+}

@@ -67,7 +67,7 @@ def audit(context, path):
                 if overlap>.025:
                     counts["water_conflicts"]+=1
                     if len(failures)<100:failures.append(dict(tile=tile,way=row["way"],kind="water",area=overlap,triangle=triangle))
-            if kind=="road":
+            if kind in ("road","road_concrete","road_pavers","road_gravel","road_earth"):
                 absolute=[(p[0]+ox,p[1],p[2]+oz) for p in triangle]
                 for index in rails.query(polygon,predicate="intersects"):
                     index=int(index);line=rail_lines[index];cut=line.intersection(polygon)

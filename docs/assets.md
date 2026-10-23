@@ -366,3 +366,17 @@ geometry; no new third-party texture or model was introduced for this pass.
 `tools/benchmark_stream_lookahead.gd -- --hero`. It shows the existing licensed
 WAP-7/ICF assets and the Kerala route. Those models, scenery, map data and
 textures retain their source notices above; no external photograph was added.
+
+## October 2026 rural road finishes
+
+`assets/models/scenery/road-finishes.json` restores surface/tracktype/smoothness
+tags for 6,717 ways from the cached `southern-zone-261006.osm.pbf`, SHA-256
+`57766d79b41a85279a9cfe18e628fd7a9a9f039927f8fb2bbb970890d7cbb746`.
+All 50,365 tiled road source IDs were found. Attribution remains
+**© OpenStreetMap contributors, ODbL 1.0**. Reproduce with
+`tools/maps/road_finishes.py --pbf <source>` or its `--recovered` tag-cache input.
+Protected route tiles and road geometry are unchanged. Untagged country paths
+use artistic earth/gravel defaults; the palette is not a survey of individual
+lane conditions. Concrete, paving, gravel and earth reuse the already registered
+Poly Haven textures; brick bonds are procedural shader detail. No new external
+texture, photograph or model is introduced.

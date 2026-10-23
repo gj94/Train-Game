@@ -11,7 +11,7 @@ class Capture:
 	var triangle_count:=0
 	var capture_triangles:=true
 	func triangle(kind,a,b,c,_normal,_color=Color.WHITE,_uv=[],_uv2=[]):
-		if kind in ["road","road_shoulder","paint"]:
+		if kind in preload("res://game/geographic_road_finishes.gd").KINDS+["road_shoulder","paint"]:
 			triangle_count+=1
 			if capture_triangles:triangles.append({kind=kind,points=[[a.x,a.y,a.z],[b.x,b.y,b.z],[c.x,c.y,c.z]]})
 	func quad(_kind,_a,_b,_c,_d,_normal,_color=Color.WHITE,_uv=[]):pass

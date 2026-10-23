@@ -256,3 +256,41 @@ failure. tests-support-final was superseded for this reason. The clean suite
 is tests-support-verified; final focused road tests ran after the OHE metadata
 was generated. No full timetable rehearsals or extracted-build gameplay tests.
 R45 remains published; the fixed deadline and six actual hours still apply.
+
+## Fifth implementation checkpoint (validated)
+
+Rural road finishes are complete: a reproducible 250 KB OSM appearance overlay
+for 6,717 source ways, shared by workers through road profiles. All 50,365 IDs
+were found in the cached source PBF; no protected tile changes. Existing texture
+families supply concrete, filtered staggered paving, gravel and earth. Preserve
+geometry/UVs/clipping; omit paint from unpaved surfaces. Shoulder/bank tint is
+lighter. Recovered tags override defaults; ordinary untagged streets stay paved.
+
+838 source tests pass, 38 focused road tests, 17 Python tests. A final shader-only
+paving contrast correction has native and six focused checks. Six final native
+views and a High/Epic distant-origin rebase fixture are retained. Road-profile
+gate current, all 32,857 elevations/exclusions/support-post coordinates identical,
+4,893 protected files unchanged. Editor zero errors. Isolated 90-tile/three-pass
+road-worker comparison: +1.13% mesh creation time, -0.0135% vertices, 0.66 extra
+road batches per tile (25% road-only surfaces, not whole-world draw calls).
+Evidence: art/performance/map-2026-10-24/finishes. No timetable/distribution run.
+
+Next work:
+1. Reduce collinear profile knots and redundant terrain projections. The fresh
+   baseline files are .local/map-2026-10-24/finishes-baseline-{chunk,road}.gd;
+   they represent 7b136ad before finishes. For the next comparison use the new
+   committed source as baseline. finish-generation-profile.json has current
+   samples. Profile with no other test/native jobs running.
+2. Drainage: tile 0,2, w135107593/w65958901, around 2.5 km. `_stream` uses one flat
+   water quad per source segment, visibly cutting coarse terrain. Repro camera
+   and data are in .local/map-2026-10-24/drainage-repro.json. Add believable banks
+   and continuity without moving railway surfaces or creating floating channels.
+3. Low parallel road/rail overlap deserves a dedicated audit: the 143.7 km path
+   fixture mostly sees the adjacent main asphalt road. Current road audit allows
+   low-level crossings; distinguish those from roads running along ballast.
+4. Vegetation/cut-bank transitions and twelve prepared rail-support cases remain.
+   rail-support-cases.json is prepared but still not captured/reviewed.
+
+R45 remains live. Continue the original fixed window and six actual work hours;
+this checkpoint is not release completion. All fifth-pass jobs are finished at
+checkpoint; no runtime/test script was edited while the full suite ran.

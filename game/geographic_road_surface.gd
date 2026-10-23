@@ -3,12 +3,14 @@ extends RefCounted
 ## actual bridge decks. Presentation reconstruction, not drivable road physics.
 const WIDTHS:={"motorway":10.0,"trunk":9.0,"primary":8.0,"secondary":6.5,"tertiary":5.5,"residential":4.5,"service":3.6,"footway":1.5,"path":1.0,"track":2.8}
 const Support:=preload("res://game/geographic_road_support.gd")
+const Finishes:=preload("res://game/geographic_road_finishes.gd")
 
 static func draw(c,feature: Dictionary) -> void:
 	var tags: Dictionary=feature.tags
 	if tags.get("highway","") in ["proposed","construction","steps"] or tags.get("tunnel","no")!="no" or tags.get("railway","")=="platform" or float(tags.get("layer","0"))<0:return
 	var width: float=WIDTHS.get(tags.get("highway",""),4.0)
 	var profiles=c.geo.road_profiles
+	var finish: String=Finishes.classify(tags) if profiles==null else profiles.finishes.material(feature.id,tags)
 	# Existing station civil geometry supplies connected footbridges/stairs.
 	# Rendering the same OSM walkway as a raised road leaves duplicate decks.
 	if profiles!=null and profiles.station_walkways.has(feature.id):return
@@ -69,7 +71,7 @@ static func draw(c,feature: Dictionary) -> void:
 			# Fade the cross-slope into an engineered approach over its last ground
 			# segment, so the terrain-following edge meets the planar deck exactly.
 			var conform:=Vector2(0 if profiled[maxi(0,i-2)] else 1,0 if profiled[mini(profiled.size()-1,i+1)] else 1)
-			var area:=_surface(c,"road",corners,p,q,Color.WHITE,bridge,drape,conform)
+			var area:=_surface(c,finish,corners,p,q,Color.WHITE,bridge,drape,conform)
 			var full:=area>=length*width*.98
 			if bridge:
 				if full:_bridge(c,feature,p,q,left,right,phase,length,sample.get("bridge",false) or tags.get("bridge","no")!="no")
@@ -84,7 +86,7 @@ static func draw(c,feature: Dictionary) -> void:
 						var ga:=a;var gb:=b
 						ga.y=minf(a.y,c._ground(a.x,a.z));gb.y=minf(b.y,c._ground(b.x,b.z))
 						c.batch.quad("concrete",ga,gb,b,a,outer_a.normalized()*side)
-			if width>5.0:
+			if width>5.0 and Finishes.marked(finish):
 				# Continuous dash phase along the mapped line, not one dash
 				# per arbitrary source segment or streaming subdivision.
 				var cursor:=phase
@@ -159,8 +161,8 @@ static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector
 			var offset:=Vector2(c.origin.x,c.origin.z)
 			var uvs:=[];var edge_uvs:=[]
 			for v in vertices:
-				uvs.append((v+offset)/(1.0 if kind=="road" else 3.5))
-				if kind=="road":edge_uvs.append(Vector2(clampf((v-Vector2(a.x,a.z)).dot(across)/width+.5,0,1),0))
+				uvs.append((v+offset)/(1.0 if kind in Finishes.KINDS else 3.5))
+				if kind in Finishes.KINDS:edge_uvs.append(Vector2(clampf((v-Vector2(a.x,a.z)).dot(across)/width+.5,0,1),0))
 			c.batch.triangle(kind,positions[0],positions[1],positions[2],normal,color,uvs,edge_uvs)
 	return area
 

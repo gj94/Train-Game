@@ -7,6 +7,8 @@ uniform sampler2D surface_rough : hint_roughness_r, filter_linear_mipmap_anisotr
 uniform vec3 tint : source_color = vec3(.65,.66,.63);
 uniform float metres = 12.0;
 uniform bool road_surface = true;
+uniform bool paving = false;
+uniform bool loose_surface = false;
 uniform vec3 route_origin = vec3(0.0);
 #include "extreme_surface_detail.gdshaderinc"
 varying vec3 world_pos;
@@ -21,6 +23,21 @@ void fragment() {
  float edge=min(UV2.x,1.0-UV2.x);
  float dust=road_surface ? (1.0-smoothstep(.02,.15,edge))*.23 : .0;
  ALBEDO=mix(base*tint*variation,vec3(.22,.17,.105),dust);
+ if(paving) {
+  // Brick bond with derivative filtering; bounded phase preserves the pattern
+  // across tile rebases even at the far end of this 300 km route.
+  vec2 cells=extreme_periodic_position(extreme_local_position_m.xz,extreme_route_origin.xz,vec2(2.5,5.0));
+  cells.x+=mod(floor(cells.y),2.0)*.5;
+  vec2 edge_m=min(fract(cells),1.0-fract(cells))/vec2(2.5,5.0);
+  float aa=max(max(fwidth(extreme_local_position_m.x),fwidth(extreme_local_position_m.z)),.0001);
+  float joint=(1.0-smoothstep(.002-aa,.006+aa,min(edge_m.x,edge_m.y)))*extreme_detail_filter(cells);
+  ALBEDO*=mix(1.0,mix(.87,1.08,extreme_hash(floor(cells))),extreme_detail_filter(cells));
+  ALBEDO*=1.0-joint*.60;
+ }
+ if(loose_surface) {
+  // Worn central tread and softer dusty margins, without adding vertices.
+  ALBEDO*=mix(.81,1.04,smoothstep(.0,.25,edge));
+ }
  NORMAL_MAP=texture(surface_normal,p/metres).rgb;
  NORMAL_MAP_DEPTH=.45;
  ROUGHNESS=max(.74,texture(surface_rough,p/metres).r);

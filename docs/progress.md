@@ -1,5 +1,33 @@
 # Progress
 
+## 2026-10-24 — Mapped rural lane finishes
+
+- Fifth overnight increment: restore 6,717 OSM surface/tracktype/smoothness
+  records into a 250 KB render-only overlay with source/road-ID provenance.
+  Reproducible exporter leaves protected route tiles unchanged. Concrete,
+  paving, gravel and earth reuse existing textures and stable metre UVs.
+  Untagged country paths use artistic defaults; ordinary streets stay paved.
+  Unpaved roads lose centre-line paint; lighter laterite shoulders/banks.
+- Validation: 838 full source tests; 38 focused road tests; 17 Python tests.
+  Final paving contrast correction checked in native source and six focused
+  tests. Six final source views with railway time frozen, plus High/Epic rebase
+  fixture. Editor zero errors. All 32,857 profile segments/support positions and
+  all 4,893 protected files unchanged; profile gate current. No timetable or
+  extracted-distribution gameplay runs. Evidence: map-2026-10-24/finishes.
+- Isolated 90-tile / three-repeat worker check: +1.13% total road mesh creation
+  time, essentially unchanged vertices, 0.66 extra road material batches per
+  tile. This is CPU creation on the development PC, not target 4090 Laptop FPS.
+  Native 1,024 m rebase at a distant route origin preserves the paver phase in
+  High/Epic (mean channel difference about 0.01/255).
+- Eventual-release playtest: paving 2.5 km, concrete 130.8 km, gravel 1.1 km,
+  earth path 42.6 km and approach bank 197.8 km. Inspect at walking/train height.
+- Next: road-worker optimisation, then drainage/vegetation transitions and the
+  twelve prepared rail-support views. Native 2.5 km exposes jagged stream strips
+  crossing terrain; precise reproduction saved. Also audit low parallel
+  road/rail overlaps separately from legitimate level crossings near 143.7 km.
+- R45 remains live. No build prepared; the fixed 10:30 AM minimum and six actual
+  work hours remain in force.
+
 ## 2026-10-24 — Grounded road approaches and clear bridge spans
 
 - Fourth overnight increment: dry raised approaches now have retaining walls

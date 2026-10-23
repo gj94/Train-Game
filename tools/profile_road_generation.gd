@@ -20,7 +20,7 @@ func run() -> void:
 	geo.vegetation_clearance=preload("res://game/vegetation_clearance.gd").build(world)
 	geo.road_reservations=preload("res://game/geographic_road_reservations.gd").new(world,geo.station_sites)
 	var materials:={}
-	for kind in ["road","road_shoulder","concrete","metal","paint"]:materials[kind]=StandardMaterial3D.new()
+	for kind in preload("res://game/geographic_road_finishes.gd").KINDS+["road_shoulder","concrete","metal","paint"]:materials[kind]=StandardMaterial3D.new()
 	var selected:={}
 	for station in world.stations:
 		if station.code not in ["ERS","KUMM","TUVR","ALLP","KYJ","QLN","VAK","TVC","KZT","NCJ"]:continue

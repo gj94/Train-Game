@@ -6,8 +6,10 @@ const CELL:=64.0
 var cells:={}
 var profile_ways:={}
 var station_walkways:={}
+var finishes
 var support_clearance=preload("res://game/geographic_scenery_occupancy.gd").new()
 func _init(data: Dictionary={}) -> void:
+	finishes=preload("res://game/geographic_road_finishes.gd").new({ways={}} if not data.is_empty() else {})
 	if data.is_empty() and FileAccess.file_exists(PATH):
 		data=JSON.parse_string(FileAccess.get_file_as_string(PATH))
 	for way in data.get("station_pedestrian_ways",[]):station_walkways[way]=true

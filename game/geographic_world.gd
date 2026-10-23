@@ -163,6 +163,20 @@ func _make_materials() -> void:
 	road.set_shader_parameter("metres",5.0)
 	road.set_shader_parameter("route_origin",coordinate_origin)
 	materials.road=road
+	# Shared photographic textures; a few batches per tile, no extra objects or
+	# terrain tessellation. All finishes keep the road's absolute metre UVs.
+	for row in [["road_concrete","brushed_concrete",2.0,Vector3(.70,.68,.61)],
+		["road_pavers","brushed_concrete",2.0,Vector3(.65,.58,.48)],
+		["road_gravel","gravel_floor_02",2.0,Vector3(.67,.61,.49)],
+		["road_earth","red_laterite_soil_stones",2.5,Vector3(.69,.57,.44)]]:
+		var finish: ShaderMaterial=road.duplicate()
+		for pair in [["surface_albedo","diff"],["surface_normal","nor_gl"],["surface_rough","rough"]]:
+			finish.set_shader_parameter(pair[0],ph_tex(row[1],pair[1]))
+		finish.set_shader_parameter("metres",row[2])
+		finish.set_shader_parameter("tint",row[3])
+		finish.set_shader_parameter("paving",row[0]=="road_pavers")
+		finish.set_shader_parameter("loose_surface",row[0] in ["road_gravel","road_earth"])
+		materials[row[0]]=finish
 	materials.station_asphalt=road.duplicate()
 	materials.station_asphalt.set_shader_parameter("road_surface",false)
 	materials.station_asphalt.set_shader_parameter("tint",Vector3(.40,.42,.41))
@@ -173,7 +187,7 @@ func _make_materials() -> void:
 	materials.station_boundary.set_shader_parameter("concrete_normal",ph_tex("brushed_concrete","nor_gl"))
 	materials.station_white=mat(Color(.78,.77,.69))
 	materials.station_drain=mat(Color(.075,.085,.08))
-	materials.road_shoulder=pbr("red_laterite_soil_stones",2.5,Color(.40,.37,.30))
+	materials.road_shoulder=pbr("red_laterite_soil_stones",2.5,Color(.68,.56,.42))
 	materials.ballast=pbr("gravel_floor_02",2.0,Color(.40,.39,.35))
 	materials.metal=steel()
 	materials.siding_steel=mat(Color(.27,.22,.18))
@@ -536,7 +550,7 @@ func _trace_job(finished: Dictionary,role: String) -> void:
 func rebase(origin: Vector3) -> void:
 	coordinate_origin=origin
 	materials.water.set_shader_parameter("route_origin",origin)
-	for name in ["road","station_asphalt"]:
+	for name in preload("res://game/geographic_road_finishes.gd").KINDS+["station_asphalt"]:
 		if materials.has(name):materials[name].set_shader_parameter("route_origin",origin)
 	preload("res://game/extreme_visuals.gd").apply_route_origin(materials,origin)
 	for chunk in loaded.values(): chunk.node.position=chunk.origin-origin

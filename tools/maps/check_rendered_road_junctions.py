@@ -44,7 +44,7 @@ def audit(triangles, junctions):
                     if not (-8<=p[0]<=520 and -8<=p[1]<=520):
                         continue
                     for tri in row['triangles']:
-                        if tri['kind']!='road':
+                        if tri['kind'] not in ('road','road_concrete','road_pavers','road_gravel','road_earth'):
                             continue
                         points = tri['points']
                         if not (min(v[0] for v in points)-.04<=p[0]<=max(v[0] for v in points)+.04
