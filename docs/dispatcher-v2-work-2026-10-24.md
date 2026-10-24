@@ -225,3 +225,70 @@ unchanged Standard/Classic sources. Then native-check the actual prepared V2
 service/time entry and reciprocal traffic previews. The new operator guide is
 `docs/predictive-dispatcher.md`. Continue the unchanged six-hour window; R46
 remains live and no new executable build is authorized in this task.
+
+## 25 October 01:06 — paused deletion/save regression
+
+Read-only command-path probing found a structural save failure: with automatic
+dispatch disabled, deleting B002 left K1's accepted V2 plan referencing that
+missing service. An immediate save failed restoration with `Missing predictive
+dispatcher participant`. A captured worker result could also be accepted after
+deleting and reintroducing the same ID with identical inputs. Both regressions
+failed before the fix. Rejected deletion must not invalidate good advice.
+
+Validated deletion now clears forecast advice and advances its membership
+generation before removal, independently of whether dispatch is running.
+Pending work is rejected on receipt without a blocking join; existing route
+cleanup remains unchanged. Eighteen owner tests and five deletion tests pass;
+the direct probe now round-trips both enabled and disabled dispatcher saves.
+
+The five `rehearsals-v2` jobs were explicitly stopped at01:02 and recorded as
+diagnostic partials. They must never be finalized or relabelled with new source
+hashes. New complete `rehearsals-v3` jobs start01:06 (see
+`rehearsal-jobs-v3.json`). The full source suite is running as
+`deletion-full-tests.log`; do not edit runtime/tests until it completes, and
+keep sim/routes/pack inputs frozen for the new complete rehearsals.
+
+`tools/check_predictive_prepared_ui.gd` is newly parse-checked but not yet run:
+run it only once certified data is installed. It checks all four actual menu
+rosters, departure mode/identity, noon timeline worker loading and reciprocal
+K1 traffic. Do not commit it as validated until it has run. A read-only10:30
+Standard comparison showed some priority services improving and others later;
+wait for full destination-delay results rather than claiming universal gains.
+
+## 25 October 01:16 — native command validation and comparison tooling
+
+The paused-delete fix passes the actual dispatcher confirmation flow at720p:
+11 native checks, no stderr. Keep service preserves the entire snapshot;
+Delete service retains K1 and returns controller focus to its roster entry;
+an immediate save then restores exactly. Two captures were visually reviewed.
+Reproduction is now `tools/check_predictive_commands.gd`; committed evidence
+will be under `art/performance/dispatcher-v2-2026-10-24/commands`.
+
+A read-only `tools/compare-timetable-runs.mjs` reports matched destination delay
+changes by priority, both improvements and regressions, K1's result and wait
+quality. It explicitly labels comparisons with changed authored departures so
+those gains are not attributed to the dispatcher alone. Eighteen assertions
+cover delta signs, unchanged values, changed-departure labels, unmatched IDs,
+priority mismatches and incomplete/non-stabled results; the existing completed
+140-service report compared with itself produces no spurious deltas. This does
+not replace the separate safety/call/wait/fingerprint finalization gates.
+
+At this checkpoint the full source suite and five frozen v3 railway jobs are
+still running without stderr errors. Do not edit sim/routes/packs or restart
+these jobs. Keep the prepared-menu checker uncommitted until installed certified
+data exists and it has actually run. R46 remains available; no build prepared.
+
+## 25 October 01:17 — deletion fix fully validated
+
+All **956 source tests pass**, zero failures and empty stderr. The verified
+native command tool and18 comparison assertions also pass. The fix and evidence
+are ready for commit/push; no runtime/test edits were made during the full suite.
+The five v3 full-day replays continue with frozen railway inputs and no stderr.
+The first two rehearsal generations remain diagnostic partials only.
+
+Use `tools/compare-timetable-runs.mjs <classic-folder> <v2-folder>` after each
+matching pair finishes, in addition to the encounter summary and finalizer.
+Do not mistake the Intensive authored-departure comparison for a pure dispatcher
+benchmark. The next required evidence is actual complete K1 pass distribution,
+all-service safety/completion/wait quality, then compatible data installation
+and real prepared menu checks. No executable release is requested here.

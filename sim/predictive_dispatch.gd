@@ -151,6 +151,12 @@ func valid(w: RailWorld,engine,p: Dictionary) -> bool:
 
 func routes_changed() -> void:_claims_dirty=true
 
+func services_changed() -> void:
+	# Commands also run while automatic dispatch is off or the game is paused.
+	# Drop saved references immediately and invalidate in-flight work even if an
+	# identical service ID is subsequently reused. No join or route cancellation.
+	_generation+=1;plans.clear();_road_owners.clear();_claims_dirty=true;_next_refresh=-INF
+
 static func overlap(a: Dictionary,b: Dictionary) -> bool:
 	if a.get("action","pass")=="follow" or b.get("action","pass")=="follow":return false
 	if a.station!=b.station:return false

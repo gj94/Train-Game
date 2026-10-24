@@ -373,6 +373,7 @@ func delete_service(id: String, protected_service: String="") -> Dictionary:
 	if w==null or not w.trains.has(id):return {ok=false,reason="Service no longer exists"}
 	if id==manual_service or id==protected_service:return {ok=false,reason="Take control of another service before deleting your assigned train"}
 	if w.trains.size()<=1:return {ok=false,reason="Keep at least one service in the scenario"}
+	if predictive.enabled:predictive.services_changed()
 	var t: Train=w.trains[id]
 	if t.lifecycle!="active":
 		w.trains.erase(id)

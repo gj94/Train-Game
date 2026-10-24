@@ -180,3 +180,31 @@ func test_unrelated_new_service_does_not_discard_existing_advice():
 			"dormant":t.lifecycle="pending"
 		if e.predictive.plan(w,w.trains.K1).is_empty():return "Discarded for unrelated "+kind
 	return true
+
+func test_deleting_a_forecast_participant_keeps_paused_dispatcher_saves_loadable():
+	for automatic_dispatch in [false,true]:
+		var w:=restored();var e=w.dispatcher();e.predictive.accept(w,e,prepare(w))
+		if e.predictive.plans.is_empty():return "No advice to invalidate"
+		e.set_enabled(automatic_dispatch)
+		if not e.delete_service("B002","K1").ok:return "Deletion refused"
+		var saved:=Snapshot.capture(w);var loaded:=Snapshot.restore(saved)
+		if not loaded.ok:return "Deleted participant remains in save: "+loaded.reason
+		if not e.predictive.plans.is_empty():return "Retained deleted participant"
+		if saved!=Snapshot.capture(loaded.world):return "Deletion checkpoint did not round trip"
+	return true
+
+func test_deleted_and_replaced_identity_cannot_accept_an_old_forecast():
+	var w:=restored();var e=w.dispatcher();var result:=prepare(w)
+	var removed: Train=w.trains.B002
+	e.set_enabled(false)
+	if not e.delete_service("B002","K1").ok:return "Deletion refused"
+	# Even identical physical inputs do not make a reintroduced ID the old
+	# service. An in-flight result must carry the current membership generation.
+	w.place_train(removed,removed.path[0].edge,removed.head_s,removed.path[0].dir)
+	e.predictive.accept(w,e,result)
+	return e.predictive.plans.is_empty()
+
+func test_refused_service_deletion_does_not_disturb_valid_forecasts():
+	var w:=restored();var e=w.dispatcher();e.predictive.accept(w,e,prepare(w))
+	var before: Dictionary=e.predictive.checkpoint()
+	return not e.delete_service("K1","K1").ok and e.predictive.checkpoint()==before

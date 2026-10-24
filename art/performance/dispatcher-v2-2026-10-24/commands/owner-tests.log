@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SLOW test_predictive_dispatch.gd::test_stale_generation_and_future_dated_results_are_rejected 2.46s
+SLOW test_predictive_dispatch.gd::test_changed_train_or_operator_action_rejects_worker_result 7.66s
+SLOW test_predictive_dispatch.gd::test_predictive_mode_and_validated_plans_round_trip_without_worker_handles 3.40s
+SLOW test_predictive_dispatch.gd::test_missing_extension_stays_classic_and_malformed_plans_are_rejected 4.78s
+SLOW test_predictive_dispatch.gd::test_worker_time_skip_matches_inline_v2_and_restores_live_async_mode 3.04s
+SLOW test_predictive_dispatch.gd::test_every_accepted_contender_is_revalidated_until_plan_expires 4.28s
+SLOW test_predictive_dispatch.gd::test_newly_eligible_follower_invalidates_existing_and_pending_advice 5.69s
+SLOW test_predictive_dispatch.gd::test_unrelated_new_service_does_not_discard_existing_advice 5.06s
+SLOW test_predictive_dispatch.gd::test_deleting_a_forecast_participant_keeps_paused_dispatcher_saves_loadable 6.72s
+Tests: 18 passed, 0 failed

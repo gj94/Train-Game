@@ -1,5 +1,31 @@
 # Progress
 
+## 25 October 2026 — paused V2 deletion and save safety
+
+Deleting another service with automatic dispatch disabled could leave a V2 plan
+referencing that deleted train, making an immediate save fail to load. Successful
+deletion now clears advice and invalidates pending results by generation; refused
+deletion preserves the plan. Reusing the same service ID cannot accept old advice.
+
+Validation: **956 source tests**, 18 focused owner tests, five existing deletion
+tests and **11 native UI checks** pass. Confirmation cancellation preserves the
+railway; deletion keeps your service and returns controller focus to it. Immediate
+save restoration is exact. [Evidence and playtest](../art/performance/dispatcher-v2-2026-10-24/commands/README.md).
+
+The incompatible partial rehearsals were stopped and preserved. Five fresh full
+days started at 01:06 in `.local/dispatcher-v2-2026-10-24/rehearsals-v3`: Classic
+100/140, V2 Standard 100/Intensive 140 and V2 Intensive with a ten-minute manual K1
+pause. Keep sim/routes/packs frozen. These are still running and not certified.
+A new comparison tool reports both priority-delay gains and regressions and flags
+changed authored departures; 18 assertions pass. Next: completed wait/safety/call/
+depot checks, K1 distinct overtakers and station spread, install compatible data,
+then native-check actual four-day departures/time entries and reciprocal previews.
+R46 remains available; no new ZIP was prepared. The fixed six-hour work continues.
+
+Playtest after preparation: pause V2, disable automatic dispatch, inspect another
+train and cancel then confirm its deletion. Save/reload immediately; your service
+and dispatch mode remain and the removed train stays absent.
+
 ## 25 October 2026 — V2 timing and live-change robustness
 
 Forecasts now stop at the final booked call and avoid assuming a stationary

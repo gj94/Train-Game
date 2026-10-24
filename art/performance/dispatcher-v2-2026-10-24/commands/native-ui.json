@@ -1,0 +1,50 @@
+{
+  "checks": 11,
+  "failures": 0,
+  "results": [
+    {
+      "check": "Paused dispatch retains an initial V2 plan",
+      "ok": true
+    },
+    {
+      "check": "Delete opens confirmation for inspected service",
+      "ok": true
+    },
+    {
+      "check": "Controller defaults to keeping the service",
+      "ok": true
+    },
+    {
+      "check": "Confirmation fits 720p",
+      "ok": true
+    },
+    {
+      "check": "Cancelling leaves the railway and advice unchanged",
+      "ok": true
+    },
+    {
+      "check": "Cancel returns controller focus to Delete",
+      "ok": true
+    },
+    {
+      "check": "Confirmed service removed from railway and roster",
+      "ok": true
+    },
+    {
+      "check": "Own service and controller focus preserved",
+      "ok": true
+    },
+    {
+      "check": "Deletion invalidates advice without enabling dispatch",
+      "ok": true
+    },
+    {
+      "check": "Own service deletion remains disabled",
+      "ok": true
+    },
+    {
+      "check": "Immediate save restores exactly after paused deletion",
+      "ok": true
+    }
+  ]
+}
