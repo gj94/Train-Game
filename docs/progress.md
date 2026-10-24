@@ -1,5 +1,26 @@
 # Progress
 
+## 25 October 2026 — Intensive quality gates caught two candidate failures
+
+Both initial Intensive days completed all 140 services, every call and depot
+clearance with no safety events. Publication remains blocked correctly: Classic
+has four station waits over thirty minutes (97.58% under thirty against98%);
+V2 has only seven distinct K1 overtakers against ten. The complete raw audits,
+exact packs, comparisons and rejection logs are preserved in
+[the candidate evidence](../art/performance/dispatcher-v2-2026-10-24/complete-days/candidate-one/README.md).
+
+Testing a minimal authored correction: Classic relief D105 moves12:35->12:55
+for a Kollam departure window; the original hundred bookings and Classic engine
+are unchanged. V2 reliefs D100/D109/D114 move to11:30/12:45/11:40 respectively.
+K1's complete working, all calls, stock, priorities and speeds stay unchanged.
+Eight headless operating-day tests and four authoring guards pass. These are
+candidates awaiting fresh complete-day and delayed-driving validation, not
+accepted prepared timetables. Both certified Standard variants remain valid.
+
+Playtest follows after the full audits: compare B055's Kollam departure window
+in Classic Intensive, and actual K1 pass locations/counts in V2 Intensive. No
+new executable release is prepared; R46 remains available.
+
 ## 25 October 2026 — both Standard days prepared and checked
 
 Classic and V2 Standard each completed all 100 services and calls with depot

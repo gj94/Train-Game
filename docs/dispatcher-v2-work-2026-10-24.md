@@ -495,3 +495,32 @@ full replay, no sim/routes/pack edit, no new executable release.
 02:52 checkpoint: all 961 full source tests pass, zero failures and empty stderr.
 The two Standard variants, exact-source calibration tool and comparison evidence
 are ready to commit. No source/native/ETA diagnostic remains running.
+
+
+## 25 October 03:04 — complete Intensive audits rejected, minimal next candidates
+
+Both original v3 Intensive jobs finished. All 140 calls/workings/depot clearance
+and safety checks pass; independently verified4,834 input hashes per run. Classic
+fails station-only98% under30min:161/165=97.5758%, with B054QLN2402s,K1KPY1974s,
+B055QLN1922s,B026ALLP1880s. Its all-location wait targets pass;13 K1 overtakers
+span8 stations,max5KPY. V2 passes all waits but has7 K1 overtakers at6 stations,
+max2PVU. Both finalizers correctly reject. No Intensive prepared files installed.
+Raw compressed audits, exact candidate packs and actual comparisons are preserved
+under complete-days/candidate-one before any source timing edit.
+
+The first-candidate V2 ETA observer completed successfully before editing inputs:
+7 saved forecasts for2 actual arrivals,-9.39 to+6.05s,3 excluded. Sparse calibration
+only. No original v3 rehearsal/observer remains running. Both Standard catalogues
+are already certified and remain untouched.
+
+Next candidate changes one Classic relief departure D10512:35->12:55 to break
+B055's chained Kollam hold. Classic engine and the original hundred bookings
+stay unchanged; only a new relief's name/departure change. V2 changes exactly
+D10011:20->11:30,D10913:00->12:45,D11411:15->11:40. D105's V2 override stays14:15.
+Field comparison proves those one/three edits only. No added dwell, changed
+calls/equipment/priority/caps or forced pass station.8 headless operating-day
+checks and4 Python guards pass;unchanged runtime previously961 full tests.
+These timings remain unaccepted until complete replay. Run both revised Intensive
+baselines with snapshots and both600s manual-K1 disturbances at11000, since the
+Classic candidate also changed. Preserve the original failed evidence. No Standard
+replays required. Keep simulation/routes/packs frozen for the new jobs.

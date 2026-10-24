@@ -1,0 +1,76 @@
+{
+  "clock": 98400.0000000001,
+  "services": 140,
+  "overtakers": [
+    "B001",
+    "B024",
+    "B002",
+    "D101",
+    "D108",
+    "D102",
+    "B003"
+  ],
+  "crossings": 755,
+  "overtakes": 75,
+  "dispatcher": "predictive",
+  "k1_overtake_stations": {
+    "TUVR": [
+      {
+        "train": "B001",
+        "time": 31981.887936327937
+      }
+    ],
+    "ALLP": [
+      {
+        "train": "B024",
+        "time": 36137.98194867924
+      }
+    ],
+    "STKT": [
+      {
+        "train": "B002",
+        "time": 42754.99004574582
+      }
+    ],
+    "PVU": [
+      {
+        "train": "D101",
+        "time": 45692.02503988222
+      },
+      {
+        "train": "D108",
+        "time": 45893.96623155207
+      }
+    ],
+    "KZK": [
+      {
+        "train": "D102",
+        "time": 50520.01854277951
+      }
+    ],
+    "ERL": [
+      {
+        "train": "B003",
+        "time": 58019.08473080633
+      }
+    ]
+  },
+  "b042_reverse_overtakes": [],
+  "max_wait": 1652
+}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: K1 requires at least ten DISTINCT overtaking trains
+    at file:///D:/ClaudeWS/train-game/tools/finalize_timetable_variant.mjs:50:10
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.15.0

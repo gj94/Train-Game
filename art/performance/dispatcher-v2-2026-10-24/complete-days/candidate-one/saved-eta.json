@@ -1,0 +1,139 @@
+{
+	"checked_states": 103,
+	"excluded": [
+		{
+			"actual": "KPY_P1",
+			"checkpoint": "T040800",
+			"planned": "KPY_P4",
+			"reason": "Actual road differs"
+		},
+		{
+			"actual": "KPY_P1",
+			"checkpoint": "T041100",
+			"planned": "KPY_P4",
+			"reason": "Actual road differs"
+		},
+		{
+			"actual": "KPY_P1",
+			"checkpoint": "T041400",
+			"planned": "KPY_P4",
+			"reason": "Actual road differs"
+		}
+	],
+	"failures": [],
+	"interpretation": "Actual minus predicted arrival: positive is optimistic. Sparse saved advice may later be replaced; external traffic holds are included. Matching actual road and marker only. Not a safety or full-day certification.",
+	"ok": true,
+	"reference": "T098400",
+	"reference_sha256": "e367ea7bfe5e00c61eeaa134b7302a1cb11cbeb55859136cafaf161a9f7d05fe",
+	"samples": [
+		{
+			"actual_arrival": 42453.7499999416,
+			"age": 4.94999999992797,
+			"checkpoint": "T041700",
+			"created": 41695.0499999526,
+			"error_seconds": -4.50419013386272,
+			"lead_seconds": 763.204190122822,
+			"margin": 34.9500178930422,
+			"other": "B002",
+			"predicted_arrival": 42458.2541900754,
+			"road": "STKT_P3",
+			"sha256": "d30ecad5c04aca1cfbe35510370d3bc2b2dcfc17852692890c75b5256bfdbc02",
+			"station": "STKT"
+		},
+		{
+			"actual_arrival": 42453.7499999416,
+			"age": 4.94999999992797,
+			"checkpoint": "T042000",
+			"created": 41995.0499999482,
+			"error_seconds": -6.82994315853284,
+			"lead_seconds": 465.529943151858,
+			"margin": 158.644307396243,
+			"other": "B002",
+			"predicted_arrival": 42460.5799431001,
+			"road": "STKT_P3",
+			"sha256": "d17e45991bef0b6a72cab638f7f41a6af6a285d1e821d06652eff0915cec3732",
+			"station": "STKT"
+		},
+		{
+			"actual_arrival": 42453.7499999416,
+			"age": 4.94999999992797,
+			"checkpoint": "T042300",
+			"created": 42295.0499999439,
+			"error_seconds": 5.88004597787949,
+			"lead_seconds": 152.819954019811,
+			"margin": 214.734862065589,
+			"other": "B002",
+			"predicted_arrival": 42447.8699539637,
+			"road": "STKT_P3",
+			"sha256": "a6ca6efececaf5dc1247e0ed10c93dcbb30ad8baa67a83d30059e8bf2eddc70e",
+			"station": "STKT"
+		},
+		{
+			"actual_arrival": 48130.099999859,
+			"age": 4.94999999992797,
+			"checkpoint": "T047100",
+			"created": 47095.049999874,
+			"error_seconds": -6.47825750336779,
+			"lead_seconds": 1041.5282574883,
+			"margin": 594.003366948303,
+			"other": "D102",
+			"predicted_arrival": 48136.5782573623,
+			"road": "KVU_P4",
+			"sha256": "9dcb6c433b095a451994653dd00596299caa92c8f3a7e488e49eaf04b52900f5",
+			"station": "KVU"
+		},
+		{
+			"actual_arrival": 48130.099999859,
+			"age": 4.94999999992797,
+			"checkpoint": "T047400",
+			"created": 47395.0499998697,
+			"error_seconds": -9.38514753150957,
+			"lead_seconds": 744.43514752081,
+			"margin": 620.805787916911,
+			"other": "D102",
+			"predicted_arrival": 48139.4851473905,
+			"road": "KVU_P4",
+			"sha256": "97961f031ee05184b93d5936864e51d73a0927f7f212d578cb161840872aa7b7",
+			"station": "KVU"
+		},
+		{
+			"actual_arrival": 48130.099999859,
+			"age": 4.94999999992797,
+			"checkpoint": "T047700",
+			"created": 47695.0499998653,
+			"error_seconds": 0.191547744056152,
+			"lead_seconds": 434.858452249609,
+			"margin": 661.352382213125,
+			"other": "D102",
+			"predicted_arrival": 48129.9084521149,
+			"road": "KVU_P4",
+			"sha256": "ecb9341cab7700b826338c54e09ce0d53e3537a1a59795bfe6b754fbf441c10e",
+			"station": "KVU"
+		},
+		{
+			"actual_arrival": 48130.099999859,
+			"age": 4.94999999992797,
+			"checkpoint": "T048000",
+			"created": 47995.0499998609,
+			"error_seconds": 6.05237344877969,
+			"lead_seconds": 128.997626549251,
+			"margin": 697.92428234675,
+			"other": "D102",
+			"predicted_arrival": 48124.0476264102,
+			"road": "KVU_P4",
+			"sha256": "5e86c3910ebd8545aed471aa72253dab46ad42410e75291edea4e3aead0968cf",
+			"station": "KVU"
+		}
+	],
+	"source_folder": "res://.local/dispatcher-v2-2026-10-24/rehearsals-v3/predictive-intensive",
+	"source_hashes": 4834,
+	"summary": {
+		"count": 7,
+		"distinct_arrivals": 2,
+		"maximum": 6.05237344877969,
+		"median": -4.50419013386272,
+		"minimum": -9.38514753150957,
+		"p90": 6.05237344877969
+	},
+	"train": "K1"
+}

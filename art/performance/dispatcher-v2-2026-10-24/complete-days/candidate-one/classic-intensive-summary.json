@@ -1,0 +1,195 @@
+{
+  "source_commit": "a8e6609",
+  "uncompressed_audit_sha256": "d28e29c7842e09c201be3c553a37bffb272815c52f887d3aaf064355899071cf",
+  "audit": {
+    "clock": 98400.0000000001,
+    "delay": 0.0,
+    "delay_at": 0.0,
+    "delay_service": "K1",
+    "dispatcher": "classic",
+    "events": [],
+    "finished": 140,
+    "maximum_station_wait": 2402.0,
+    "maximum_wait": 2402.0,
+    "ok": false,
+    "operating_day": "intensive",
+    "pack_sha256": "a1b77fc71c2f60b28510cf0fc5b4ef0b8adf4330e83fc36cfa47f50c0fa3960d",
+    "peak_active": 34,
+    "report": "All 140 services arrived safely and cleared to depot where provided. Latest passenger arrival delay: 54.9 min. Manual driving may change the outcome.",
+    "station_wait_quality": {
+      "bins": [
+        120,
+        35,
+        6,
+        4,
+        0
+      ],
+      "brief_count": 1561,
+      "count": 165,
+      "cumulative": [
+        {
+          "count": 120,
+          "fraction": 0.727272727272727,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600.0
+        },
+        {
+          "count": 155,
+          "fraction": 0.939393939393939,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200.0
+        },
+        {
+          "count": 161,
+          "fraction": 0.975757575757576,
+          "met": false,
+          "required": 0.98,
+          "under_seconds": 1800.0
+        },
+        {
+          "count": 165,
+          "fraction": 1.0,
+          "met": true,
+          "required": 1.0,
+          "under_seconds": 2700.0
+        }
+      ],
+      "maximum": 2402.0,
+      "minimum_seconds": 30.0,
+      "ok": false
+    },
+    "total": 140,
+    "wait_quality": {
+      "bins": [
+        201,
+        41,
+        7,
+        4,
+        0
+      ],
+      "brief_count": 2989,
+      "count": 253,
+      "cumulative": [
+        {
+          "count": 201,
+          "fraction": 0.794466403162055,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600.0
+        },
+        {
+          "count": 242,
+          "fraction": 0.956521739130435,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200.0
+        },
+        {
+          "count": 249,
+          "fraction": 0.984189723320158,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800.0
+        },
+        {
+          "count": 253,
+          "fraction": 1.0,
+          "met": true,
+          "required": 1.0,
+          "under_seconds": 2700.0
+        }
+      ],
+      "maximum": 2402.0,
+      "minimum_seconds": 30.0,
+      "ok": true
+    },
+    "wall_seconds": 6694.343
+  },
+  "long_station_waits": [
+    {
+      "call": 20,
+      "id": "K1",
+      "reasons": {
+        "Authority to KPY_STKT_D0-A": 4.0,
+        "Block KPY_STKT_D0 occupied by B002 · Cape Express 01 · ERS–NCJ (B002)": 2.0,
+        "Block KPY_STKT_D0 occupied by D101 · Southern Relief Express 11:35 · KYJ–TVC (D101)": 2.0,
+        "Block KPY_STKT_D0 occupied by D102 · Southern Relief Express 11:50 · KYJ–TVC (D102)": 62.0,
+        "Block KPY_STKT_D0 occupied by D115 · Kayamkulam Fast 11:30 · KYJ–QLN (D115)": 2.0,
+        "Block KPY_STKT_D0 occupied by D116 · Kayamkulam Fast 11:45 · KYJ–QLN (D116)": 2.0,
+        "Expect a wait at KPY until Cape Express 01 · ERS–NCJ (B002) overtakes": 436.0,
+        "Expect a wait at KPY until Kayamkulam Fast 11:30 · KYJ–QLN (D115) overtakes": 328.0,
+        "Expect a wait at KPY until Kayamkulam Fast 11:45 · KYJ–QLN (D116) overtakes": 380.0,
+        "Expect a wait at KPY until Southern Relief Express 11:35 · KYJ–TVC (D101) overtakes": 378.0,
+        "Expect a wait at KPY until Southern Relief Express 11:50 · KYJ–TVC (D102) overtakes": 378.0
+      },
+      "seconds": 1974.0,
+      "signal_id": "",
+      "station": "KPY"
+    },
+    {
+      "call": 0,
+      "id": "B054",
+      "reasons": {
+        "Authority to QLN_IRP_D0-A": 4.0,
+        "Block QLN_DEPOT_RD_ACCESS occupied by D102 · Southern Relief Express 11:50 · KYJ–TVC (D102)": 24.0,
+        "Block QLN_IRP_D0 occupied by D102 · Southern Relief Express 11:50 · KYJ–TVC (D102)": 48.0,
+        "Block QLN_LADDER_RD0 occupied by B002 · Cape Express 01 · ERS–NCJ (B002)": 84.0,
+        "Block QLN_LADDER_RD0 occupied by D101 · Southern Relief Express 11:35 · KYJ–TVC (D101)": 84.0,
+        "Block QLN_LADDER_RD0 occupied by D102 · Southern Relief Express 11:50 · KYJ–TVC (D102)": 106.0,
+        "Conflicts with route from QLN-S5 · Cape Express 01 · ERS–NCJ (B002)": 48.0,
+        "Conflicts with route from QLN-S5 · Southern Relief Express 11:35 · KYJ–TVC (D101)": 48.0,
+        "Conflicts with route from QLN-S5 · Southern Relief Express 11:50 · KYJ–TVC (D102)": 48.0,
+        "Expect a wait at QLN until Cape Express 01 · ERS–NCJ (B002) overtakes": 698.0,
+        "Expect a wait at QLN until Southern Relief Express 11:35 · KYJ–TVC (D101) overtakes": 584.0,
+        "Expect a wait at QLN until Southern Relief Express 11:50 · KYJ–TVC (D102) overtakes": 624.0,
+        "Route set to QLN_IRP_D0-A": 2.0
+      },
+      "seconds": 2402.0,
+      "signal_id": "",
+      "station": "QLN"
+    },
+    {
+      "call": 0,
+      "id": "B055",
+      "reasons": {
+        "Authority to QLN_IRP_D0-A": 4.0,
+        "Block QLN_DEPOT_RD_ACCESS occupied by D104 · Southern Relief Express 12:20 · KYJ–TVC (D104)": 24.0,
+        "Block QLN_DEPOT_RD_ACCESS occupied by D105 · Southern Relief Express 12:35 · KYJ–TVC (D105)": 24.0,
+        "Block QLN_IRP_D0 occupied by D104 · Southern Relief Express 12:20 · KYJ–TVC (D104)": 12.0,
+        "Block QLN_IRP_D0 occupied by D105 · Southern Relief Express 12:35 · KYJ–TVC (D105)": 48.0,
+        "Block QLN_LADDER_RD0 occupied by D104 · Southern Relief Express 12:20 · KYJ–TVC (D104)": 106.0,
+        "Block QLN_LADDER_RD0 occupied by D105 · Southern Relief Express 12:35 · KYJ–TVC (D105)": 106.0,
+        "Conflicts with route from QLN-S1 · Southern Relief Express 12:05 · KYJ–TVC (D103)": 80.0,
+        "Conflicts with route from QLN-S5 · Southern Relief Express 12:20 · KYJ–TVC (D104)": 48.0,
+        "Conflicts with route from QLN-S5 · Southern Relief Express 12:35 · KYJ–TVC (D105)": 48.0,
+        "Expect a wait at QLN until Southern Relief Express 12:20 · KYJ–TVC (D104) overtakes": 710.0,
+        "Expect a wait at QLN until Southern Relief Express 12:35 · KYJ–TVC (D105) overtakes": 710.0,
+        "Route set to QLN_IRP_D0-A": 2.0
+      },
+      "seconds": 1922.0,
+      "signal_id": "",
+      "station": "QLN"
+    },
+    {
+      "call": 2,
+      "id": "B026",
+      "reasons": {
+        "Authority to ALLP_PUPR_M0-SA": 4.0,
+        "Block ALLP_DEPOT_RM_ACCESS occupied by B005 · Cape Express 04 · ERS–NCJ (B005)": 36.0,
+        "Block ALLP_PUPR_M0 occupied by B005 · Cape Express 04 · ERS–NCJ (B005)": 46.0,
+        "Conflicts with route from ALLP_PUPR_M0-NH · Backwater Intercity 03 · TVC–ERS (B032)": 12.0,
+        "Expect a wait at ALLP until Cape Express 04 · ERS–NCJ (B005) overtakes": 714.0,
+        "Expect a wait before Ambalappuzha: no free platform suitable for this service": 16.0,
+        "Expect a wait before Ambalappuzha: no free platform suitable for this service · Backwater Intercity 03 · TVC–ERS (B032)": 182.0,
+        "Expect a wait before Ambalappuzha: no free platform suitable for this service · Cape Express 04 · ERS–NCJ (B005), Backwater Intercity 03 · TVC–ERS (B032)": 104.0,
+        "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Cape Express 04 · ERS–NCJ (B005)": 186.0,
+        "Single line ALLP_single is locked for opposing traffic · Backwater Intercity 03 · TVC–ERS (B032)": 580.0
+      },
+      "seconds": 1880.0,
+      "signal_id": "",
+      "station": "ALLP"
+    }
+  ]
+}

@@ -65,8 +65,10 @@ def extras(template, first, last, departures, label, direction):
 
 # Limited-stop relief trains are grouped on the doubled middle section. The
 # single-line ends retain the existing long-distance roster and crossing places.
+# D105 leaves at12:55 to break the relief chain holding the12:45 Kollam regional
+# after the balanced platform rebuild. Existing hundred-service bookings stay put.
 extras("B002", "KYJ", "TVC",
-       ["11:20", "11:35", "11:50", "12:05", "12:20", "12:35", "17:00", "18:00"],
+       ["11:20", "11:35", "11:50", "12:05", "12:20", "12:55", "17:00", "18:00"],
        "Southern Relief Express", 1)
 extras("B002", "QLN", "TVC",
        # An hourly later group avoids stacking four more expresses behind the

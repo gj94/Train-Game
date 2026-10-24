@@ -13,11 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 # Existing services retain their actual stock, calls, run times and priorities.
 # These are fictional operating-day departures, not a real published timetable.
 DEPARTURES = {
-    'D100':'11:20', 'D101':'11:55', 'D102':'12:30',
+    'D100':'11:30', 'D101':'11:55', 'D102':'12:30',
     'D103':'13:05', 'D104':'13:40', 'D105':'14:15',
-    'D108':'12:20', 'D109':'13:00', 'D110':'13:40',
+    'D108':'12:20', 'D109':'12:45', 'D110':'13:40',
     'D111':'17:10', 'D112':'18:10', 'D113':'20:10',
-    'D114':'11:15', 'D115':'13:20', 'D116':'15:10',
+    'D114':'11:40', 'D115':'13:20', 'D116':'15:10',
     'D117':'16:40', 'D118':'18:10', 'D119':'20:10',
 }
 
