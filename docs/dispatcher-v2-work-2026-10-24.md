@@ -406,3 +406,40 @@ three-departure hypothesis. No timings have changed yet. After all current jobs
 finish, retain their evidence and rerun affected V2 Intensive baseline/disturbed
 variants after any authored adjustment. Classic/Standard certification is
 independent; do not restart unaffected variants. No new build was prepared.
+
+
+## 25 October 02:22 — complete disturbed day passes
+
+The first V2 Intensive candidate with a 600-second manual K1 brake at simulation
+11000 has completed all 140 services and all calls/departures, with depot clearance
+and no safety events. Independent verification checks 4,834 source hashes and
+recomputes every wait distribution/reason total. Of meaningful extra waits, 86.81%
+are under ten minutes and 98.26% under twenty; all are under thirty. Station calls
+alone meet the gates too (82.29% / 97.71% / 100%). Maximum continuous wait is
+27m32s; K1 arrives 26m56s late. Its nine distinct passes span seven stations.
+This validates the disturbance, not the ten-pass baseline; never install it as
+prepared data. Compressed raw audit and summary are in the `complete-days`
+validation artifacts. Wrapper10876/child21092 have finished; the four baseline
+jobs continue unchanged. Finish them before changing any authored timing.
+
+Added four fast Python guards for the permitted authoring boundary: preserve
+Classic/Standard, only declared Intensive departures/names may change, K1 working
+is identical, and generated files match the authoring source. All pass. No sim,
+route or pack input was edited and no new baseline was started.
+
+
+## 25 October 02:25 — inspect intermediate punctuality too
+
+Extended the independent comparison tool to measure each matched arrival and
+departure, grouped by priority. Destination recovery can otherwise hide the
+express delays V2 is meant to avoid. Platform changes retain station identity;
+midnight remains an absolute day time; origin arrivals/terminal departures are
+excluded; missing actual calls fail and changed calling patterns are reported.
+Changed scheduled event times remain explicit. Each call is one observation,
+not a per-service or passenger-weighted result.
+
+21 new assertions and 18 existing comparison assertions pass. A complete real
+audit self-comparison covers all 3,452 booked events with no missing comparisons
+or spurious changes. Four authoring guards pass too. These are tools only, not
+among the six frozen preparation observers or railway input hashes. All four
+baseline jobs retain unchanged inputs; no extra full-day work has been started.

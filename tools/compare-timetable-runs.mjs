@@ -2,6 +2,7 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
+import {compareCalls} from './lib/call-punctuality.mjs';
 
 export function compareRuns(before,after){
   for(const report of [before,after]){
@@ -42,6 +43,7 @@ export function compareRuns(before,after){
     largest_regressions:order.filter(r=>r.change_seconds>15).slice(0,12),
     largest_improvements:order.toReversed().filter(r=>r.change_seconds<-15).slice(0,12),
     k1:changes.find(r=>r.id==='K1')??null,
+    call_punctuality:compareCalls(before,after),
     wait_quality:{before:before.audit.wait_quality,after:after.audit.wait_quality},
     station_wait_quality:{before:before.audit.station_wait_quality,after:after.audit.station_wait_quality}};
 }

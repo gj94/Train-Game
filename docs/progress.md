@@ -1,5 +1,21 @@
 # Progress
 
+## 25 October 2026 — complete V2 disturbed-day audit
+
+All 140 services completed their calls and cleared to depot after a ten-minute
+manual brake of K1, with no safety events. Independent source-hash, call and wait
+checks pass: 86.81% of meaningful extra waits below ten minutes, 98.26% below
+twenty, all below thirty; maximum continuous wait 27m32s. K1's encounters shifted
+to nine overtakers across seven stations. This is disturbance evidence, never a
+publishable baseline. The four baseline jobs continue with frozen inputs.
+[Full evidence and reproduction](../art/performance/dispatcher-v2-2026-10-24/complete-days/README.md).
+
+Four new authoring checks protect Classic/Standard timings, K1 dwell/stock/calls
+and all non-departure Intensive fields. Comparison now includes intermediate
+arrival/departure delays by priority, so later recovery cannot hide earlier holds;
+21 new and 18 existing assertions pass, plus 3,452 actual audit call events. The first baseline still requires tuning
+to reach ten K1 passes after its full audit finishes. No release was prepared.
+
 ## 25 October 2026 — crowded live V2 disturbance validation
 
 A new read-only stress diagnostic restored the actual 12:35 Intensive state and

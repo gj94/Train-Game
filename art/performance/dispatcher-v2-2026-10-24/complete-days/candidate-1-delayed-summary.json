@@ -1,0 +1,174 @@
+{
+  "description": "First V2 Intensive candidate, ten-minute manual K1 brake at simulation time 11000; validation only, never prepared baseline",
+  "audit_sha256": "a6503234056b047f4caf2a9c66487e5a757ddd4fd2857ae972548ccb04cb22b5",
+  "input_sha256_count": 4834,
+  "pack_sha256": "805c644614dea34c6660411554c878aed0350a6ed160032d30cec7012454f616",
+  "finished": 140,
+  "clock": 98400.0000000001,
+  "delay": 600.0,
+  "delay_at": 11000.0,
+  "events": [],
+  "wait_quality": {
+    "all": {
+      "ok": true,
+      "minimum_seconds": 30,
+      "count": 288,
+      "brief_count": 2997,
+      "bins": [
+        250,
+        33,
+        5,
+        0,
+        0
+      ],
+      "cumulative": [
+        {
+          "under_seconds": 600,
+          "required": 0.7,
+          "count": 250,
+          "fraction": 0.8680555555555556,
+          "met": true
+        },
+        {
+          "under_seconds": 1200,
+          "required": 0.9,
+          "count": 283,
+          "fraction": 0.9826388888888888,
+          "met": true
+        },
+        {
+          "under_seconds": 1800,
+          "required": 0.98,
+          "count": 288,
+          "fraction": 1,
+          "met": true
+        },
+        {
+          "under_seconds": 2700,
+          "required": 1,
+          "count": 288,
+          "fraction": 1,
+          "met": true
+        }
+      ],
+      "maximum": 1650
+    },
+    "stations": {
+      "ok": true,
+      "minimum_seconds": 30,
+      "count": 175,
+      "brief_count": 1551,
+      "bins": [
+        144,
+        27,
+        4,
+        0,
+        0
+      ],
+      "cumulative": [
+        {
+          "under_seconds": 600,
+          "required": 0.7,
+          "count": 144,
+          "fraction": 0.8228571428571428,
+          "met": true
+        },
+        {
+          "under_seconds": 1200,
+          "required": 0.9,
+          "count": 171,
+          "fraction": 0.9771428571428571,
+          "met": true
+        },
+        {
+          "under_seconds": 1800,
+          "required": 0.98,
+          "count": 175,
+          "fraction": 1,
+          "met": true
+        },
+        {
+          "under_seconds": 2700,
+          "required": 1,
+          "count": 175,
+          "fraction": 1,
+          "met": true
+        }
+      ],
+      "maximum": 1650
+    }
+  },
+  "maximum_continuous_wait_seconds": 1652.0,
+  "k1_arrival_delay_seconds": 1616.19999966699,
+  "distinct_k1_overtakers": [
+    "B001",
+    "B024",
+    "B002",
+    "D101",
+    "B055",
+    "D102",
+    "D109",
+    "B025",
+    "B003"
+  ],
+  "by_station": {
+    "TUVR": [
+      {
+        "train": "B001",
+        "time": 31981.887936327937
+      }
+    ],
+    "ALLP": [
+      {
+        "train": "B024",
+        "time": 36137.98194867924
+      }
+    ],
+    "KYJ": [
+      {
+        "train": "B002",
+        "time": 41477.95925023633
+      }
+    ],
+    "PVU": [
+      {
+        "train": "D101",
+        "time": 46553.95830998625
+      }
+    ],
+    "KVU": [
+      {
+        "train": "B055",
+        "time": 49300.006884652226
+      },
+      {
+        "train": "D102",
+        "time": 49510.51239125058
+      },
+      {
+        "train": "D109",
+        "time": 49727.99843397264
+      }
+    ],
+    "KZK": [
+      {
+        "train": "B025",
+        "time": 51772.87701791101
+      }
+    ],
+    "PASA": [
+      {
+        "train": "B003",
+        "time": 57225.39119951058
+      }
+    ]
+  },
+  "distribution": {
+    "stations": 7,
+    "passes": 9,
+    "maximum_at_one_station": 3,
+    "concentration": 0.18518518518518517
+  },
+  "all_calls_and_departures_verified": true,
+  "all_services_stabled": true
+}
