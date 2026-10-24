@@ -16,6 +16,7 @@ var mask := PackedByteArray()
 var rng := RandomNumberGenerator.new()
 var root: Node3D
 var water_levels := []
+var border_water_levels: Array=[]
 var ground_samples := {}
 var wet_samples := {}
 var ground_ribbon_cells := {}
@@ -116,39 +117,40 @@ func _ground(x: float,z: float) -> float:
 	# The precise water polygon overrides the coarser land-cover raster. Otherwise
 	# small canals and pond edges can be covered by dry raster cells.
 	wet_samples[key]=false
-	if not water_levels.is_empty() and not StationSites.contains(geo.station_sites,origin.x+x,origin.z+z):
-		for water in water_levels:
-			if _inside(key,water.geometry):
+	var shores: Array=shore_bins.get(Vector2i(floori(x/32),floori(z/32)),[])
+	var waters: Array=border_water_levels if (x<=10 or z<=10 or x>=502 or z>=502) and not border_water_levels.is_empty() else water_levels
+	if (not waters.is_empty() or not shores.is_empty()) and not StationSites.contains(geo.station_sites,origin.x+x,origin.z+z):
+		for water in waters:
+			if _inside(key-water.get("offset",Vector2.ZERO),water.geometry):
 				var wet:=minf(height,water.height-.5)
 				var support=geo.get("formation_support")
 				height=support.water_ground(geo,key+Vector2(origin.x,origin.z),height,wet) if support!=null else wet
 				wet_samples[key]=height<=water.height-.01
-		if not wet_samples[key] and geo.nearest_rail(origin.x+x,origin.z+z).distance>32:
+		if not wet_samples[key] and not shores.is_empty():
 			# SRTM and flat mapped water have different resolutions. Grade the last
 			# 10 m of bank to the water datum instead of exposing staircase cliffs.
 			var distance:=10.0;var level:=height
-			for segment in shore_bins.get(Vector2i(floori(x/32),floori(z/32)),[]):
+			for segment in shores:
 				var d: float=preload("res://game/geographic_scenery_occupancy.gd").distance(key,segment.a,segment.b)
 				if d<distance:distance=d;level=segment.height+.22
-			if distance<10 and height>level:height=lerpf(level,height,smoothstep(0,10,distance))
+			# Most tile samples have no nearby bank; avoid another formation
+			# projection unless grading can actually affect this dry sample.
+			if distance<10 and height>level and geo.nearest_rail(origin.x+x,origin.z+z).distance>32:
+				height=lerpf(level,height,smoothstep(0,10,distance))
 	ground_samples[key]=height
 	return height
 
 func _index_shores() -> void:
-	for water in water_levels:
-		var polygons: Array=water.geometry.coordinates if water.geometry.type=="MultiPolygon" else [water.geometry.coordinates]
-		for poly in polygons:
-			for ring in poly:
-				for i in range(1,ring.size()):
-					var a:=Vector2(ring[i-1][0],ring[i-1][1]);var b:=Vector2(ring[i][0],ring[i][1])
-					# Clipped tile borders are not real shorelines.
-					if (is_equal_approx(a.x,b.x) and (is_zero_approx(a.x) or is_equal_approx(a.x,512))) or (is_equal_approx(a.y,b.y) and (is_zero_approx(a.y) or is_equal_approx(a.y,512))):continue
-					var bounds:=Rect2(a,Vector2.ZERO).expand(b).grow(10)
-					for x in range(floori(bounds.position.x/32),floori(bounds.end.x/32)+1):
-						for z in range(floori(bounds.position.y/32),floori(bounds.end.y/32)+1):
-							var key:=Vector2i(x,z)
-							if not shore_bins.has(key):shore_bins[key]=[]
-							shore_bins[key].append({a=a,b=b,height=water.height})
+	var context=geo.get("shore_context")
+	var segments: Array=preload("res://game/geographic_shore_context.gd").segments(water_levels) if context==null else context.around(geo,Vector2i(floori(origin.x/512),floori(origin.z/512)),water_levels)
+	if context!=null:border_water_levels=context.border_waters(Vector2i(floori(origin.x/512),floori(origin.z/512)))
+	for segment in segments:
+		var bounds:=Rect2(segment.a,Vector2.ZERO).expand(segment.b).grow(10)
+		for x in range(maxi(-1,floori(bounds.position.x/32)),mini(16,floori(bounds.end.x/32))+1):
+			for z in range(maxi(-1,floori(bounds.position.y/32)),mini(16,floori(bounds.end.y/32))+1):
+				var key:=Vector2i(x,z)
+				if not shore_bins.has(key):shore_bins[key]=[]
+				shore_bins[key].append(segment)
 
 func _inside(point: Vector2,geometry: Dictionary) -> bool:
 	# Each worker owns these tile dictionaries. Compile polygon rings once,

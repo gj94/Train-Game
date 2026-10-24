@@ -475,3 +475,53 @@ geometry changed in this ninth increment; completed geometry audits remain
 applicable. R45 stays live, no build prepared. Original fixed time and six actual
 active hours continue. Playtest High/Epic toggles at QLN and streaming/doors after
 release. No full timetable runs, extracted gameplay or source edits during tests.
+
+## Tenth implementation checkpoint (validated)
+
+A worker-owned 64-tile cache shares real shore segments within a 10 m halo.
+Clipped tile perimeter edges remain excluded, polygon holes retained, and
+border water classification uses the same source-local rings. Surface water
+still renders only in its owning tile. Refresh cache hits so later neighbour
+loads cannot evict earlier participants before border classification is built.
+
+All 4,305 tiles / 7,918 borders / 514,670 samples pass at 1 mm tolerance; max
+0.000063 m (old sampled worst 6.988 m). Internal/fine transitions:136 tiles,
+2,528,740 comparisons pass. Actual rail-ground audit still 26,778 samples,
+271 improved against pre-formation baseline, zero worsened/remaining exposures.
+Full road export 5,547,232 triangles/all finishes and696 piers passes;19,922
+supports and14,976 junction probes pass,max6.148mm,same3one-sided cases.868full
+source tests,then16focused shore tests after final cache-retention guard;17Python.
+The full boundary/road audits preceded that cache-only guard; its new regression
+covers the exact cache-history defect. No runtime/tests edited during full suite.
+
+Final isolated71tiles x3:67296.623->54534.765ms (-18.96%) terrain/water generation,
+7993287->8002737vertices (+0.12%). Avoid redundant second rail queries away from
+banks; actual-formation bins64m instead128m retain their27m support envelope.
+Both interleaved runs improve CPU18–19%; not target4090Laptop FPS evidence.
+Road profiles regenerated:32863 rows/exclusions/OHE positions identical, only
+input hashes change; new shore-context source is in the build gate.4893 protected
+inputs unchanged. Two frozen nativebank views4.1/129.1km reviewed, clean stderr.
+Evidence:art/performance/map-2026-10-24/shared-banks. Large ignored raw triangles
+remain in bank-road-triangles.jsonl for reuse in future bounded road corrections.
+
+Next priorities (supersede earlier lists):
+1. QLN bridge deck is now specifically diagnosed. Interval140725.726–140740.141m
+   has ownerQLN_LADDER_LU5. Other platform roads at a common chainage have large
+   longitudinal offsets. A single perpendicular width projected onto the owner's
+   diverging tangent does not cover them. Only14/45 QLN_P4 centre/±3.8m shoulder
+   samples are supported by current two slabs. Read committed next-qln-deck-*
+   evidence and .local/map-2026-10-24/probe-qln-deck-coverage.gd. Correct slabs
+   using actual road positions; keep true bridge openings and every rail fixed.
+   The earlier ground audit samples approaches; it does not validate deck spans.
+2. Low parallel road overlap143.7km. Existing road_reservations permits all
+   near-railhead ribbons as crossings; it currently ignores approach angle.
+   Investigate orientation-aware treatment while preserving real crossings,
+   underpasses/flyovers and all road finishes. Existing exact native case ready.
+3. Clip shoulder/paint strips from same-level junction mouths (146.2/184.3km).
+   Preserve distinct elevations and connected main carriageway surfaces.
+4. Vegetation/cut-bank transitions and final native/performance checks.
+
+R45 remains live; no build prepared. The fixed03:30:53 start,minimum10:30finish
+and six actual active hours continue. Do not duplicate completed captures or
+full road audits without relevant changes; no full timetables/extracted gameplay.
+Playtest canal banks4.1km/backwaters129.1km and adjoining roads after release.

@@ -2,7 +2,7 @@ extends RefCounted
 ## Immutable presentation index of the actual running roads. Water carving must
 ## respect these formations, including terminal/depot extensions, while genuine
 ## bridge openings remain open. No simulation geometry is modified.
-const CELL:=128.0
+const CELL:=64.0
 const SHOULDER:=7.0
 const BATTER_END:=27.0
 var bins:={}

@@ -20,6 +20,7 @@ var operating_ways := {}
 var bridge_bins := {}
 var bridges: Array = []
 var formation_support
+var shore_context:=preload("res://game/geographic_shore_context.gd").new()
 
 func _init(data: Dictionary = {}) -> void:
 	route = data if not data.is_empty() else preload("res://sim/layouts/kerala_coast.gd").source()

@@ -1,5 +1,31 @@
 # Progress
 
+## 2026-10-24 — Waterway tile seams and terrain-worker cost
+
+- Tenth overnight increment: neighbouring tiles now share a bounded 10 m shore
+  context, retaining water polygon holes and consistent border classification.
+  Each worker owns a 64-tile cache; late neighbour loads cannot evict a context
+  still needed by the current tile. Water surfaces are emitted only once.
+- All 4,305 tiles / 7,918 borders / 514,670 samples pass, max difference
+  0.000063 m. Old worst seam was 6.988 m. 136 transition tiles / 2,528,740
+  internal comparisons pass. All 26,778 rail-ground probes remain supported.
+- Final isolated 71-tile x3 comparison: terrain/water generation 67,296.623 ->
+  54,534.765 ms (-18.96%), vertices +0.12%. Avoid unnecessary rail projections
+  and narrow the actual-formation query bins. Not target-PC GPU/FPS evidence.
+- 868 full source tests, then 16 focused tests after the final cache guard;
+  17 Python tests. All 5,547,232 road triangles / 696 piers / 19,922 supports
+  pass independent clearance checks. 14,976 junction probes pass, same max
+  6.148 mm. Protected files unchanged; road-profile coordinates unchanged.
+- Two native bank views reviewed at 4.1/129.1 km, clean renderer stderr.
+  Evidence: art/performance/map-2026-10-24/shared-banks. Playtest these banks
+  across streaming boundaries and adjoining graded roads after release.
+- Next: QLN deck coverage is now diagnosed precisely. The shared slab follows
+  QLN_LADDER_LU5 and misses 31/45 sampled QLN_P4 centre/shoulder positions;
+  a single cross-section width discards longitudinal offsets of other roads.
+  Repair deck geometry, then parallel road overlap143.7km, junction shoulder
+  clipping and vegetation transitions. No railway/simulation/timetable edits.
+  Original fixed window and six actual hours continue; R45 remains live.
+
 ## 2026-10-24 — Kollam shader-instance exhaustion resolved
 
 - Ninth overnight increment: replace nine surface shaders' per-geometry Epic
