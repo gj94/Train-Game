@@ -1,0 +1,23 @@
+extends SceneTree
+func _initialize() -> void:
+    var base: String="res://.local/dispatcher-v2-2026-10-24/rehearsals-v6/predictive-intensive"
+    var catalogue: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(base+"/times/catalogue.json"))
+    var rows: Array=[]
+    for id: String in ["T036000","T036600","T037800","T038100","T041400","T041700","T042000"]:
+        var meta: Dictionary=catalogue.states.filter(func(r):return r.id==id)[0]
+        var path: String=base+"/times/"+meta.file
+        assert(FileAccess.get_sha256(path)==meta.sha256)
+        var f:=FileAccess.open_compressed(path,FileAccess.READ,FileAccess.COMPRESSION_ZSTD)
+        var state: Dictionary=f.get_var(false);f.close()
+        var trains: Array=[];var plans: Dictionary={}
+        for t: Dictionary in state.trains:
+            if t.id not in ["K1","B042","D129"]:continue
+            var selected: Dictionary={}
+            for key: String in t:
+                if key in ["id","edge","edge_id","s","speed","at_stop","service_complete","timetable","control_mode"]:selected[key]=t[key]
+            trains.append(selected)
+            plans[t.id]=state.get("predictive",{}).get("plans",{}).get(t.id,{})
+        rows.append({checkpoint=id,clock=meta.clock,sha256=meta.sha256,trains=trains,plans=plans})
+        assert(FileAccess.get_sha256(path)==meta.sha256)
+    var file:=FileAccess.open("res://.local/dispatcher-v2-2026-10-24/intensive-eta-context-states.json",FileAccess.WRITE)
+    file.store_string(JSON.stringify(rows,"\t"));file.close();print("ETA_CONTEXT 7 hashed saved checkpoints checked without stepping");quit()

@@ -1,0 +1,1853 @@
+{
+  "interpretation": "Dispatcher AND authored-departure comparison; differences cannot be attributed to the planner alone.",
+  "before_mode": "classic",
+  "after_mode": "predictive",
+  "before_audit_ok": true,
+  "after_audit_ok": true,
+  "unmatched": {
+    "before": [],
+    "after": []
+  },
+  "matched": 140,
+  "changed_departures": [
+    {
+      "id": "D100",
+      "seconds": 600
+    },
+    {
+      "id": "D101",
+      "seconds": 1200
+    },
+    {
+      "id": "D102",
+      "seconds": 2400
+    },
+    {
+      "id": "D103",
+      "seconds": 3600
+    },
+    {
+      "id": "D104",
+      "seconds": 4800
+    },
+    {
+      "id": "D105",
+      "seconds": 4800
+    },
+    {
+      "id": "D108",
+      "seconds": -13800
+    },
+    {
+      "id": "D109",
+      "seconds": -15900
+    },
+    {
+      "id": "D110",
+      "seconds": -16200
+    },
+    {
+      "id": "D111",
+      "seconds": -14400
+    },
+    {
+      "id": "D112",
+      "seconds": -3600
+    },
+    {
+      "id": "D114",
+      "seconds": 1500
+    },
+    {
+      "id": "D115",
+      "seconds": 6600
+    },
+    {
+      "id": "D116",
+      "seconds": 12300
+    },
+    {
+      "id": "D117",
+      "seconds": 5400
+    }
+  ],
+  "priority_groups": {
+    "20": {
+      "services": 1,
+      "mean_before_seconds": 2811.64999971868,
+      "mean_after_seconds": 561.699999682329,
+      "total_change_seconds": -2249.9500000363514,
+      "improved_over_15s": 1,
+      "worsened_over_15s": 0,
+      "within_15s": 0
+    },
+    "30": {
+      "services": 25,
+      "mean_before_seconds": 119.23200004273895,
+      "mean_after_seconds": 96.37600001611528,
+      "total_change_seconds": -571.400000665591,
+      "improved_over_15s": 2,
+      "worsened_over_15s": 1,
+      "within_15s": 22
+    },
+    "45": {
+      "services": 40,
+      "mean_before_seconds": 462.96500006792996,
+      "mean_after_seconds": 247.97500004815123,
+      "total_change_seconds": -8599.600000791152,
+      "improved_over_15s": 19,
+      "worsened_over_15s": 5,
+      "within_15s": 16
+    },
+    "70": {
+      "services": 12,
+      "mean_before_seconds": 512.7875000096998,
+      "mean_after_seconds": 168.2874999697281,
+      "total_change_seconds": -4134.00000047966,
+      "improved_over_15s": 4,
+      "worsened_over_15s": 0,
+      "within_15s": 8
+    },
+    "75": {
+      "services": 54,
+      "mean_before_seconds": 405.61759258164943,
+      "mean_after_seconds": 532.6546295952219,
+      "total_change_seconds": 6859.999998732908,
+      "improved_over_15s": 8,
+      "worsened_over_15s": 19,
+      "within_15s": 27
+    },
+    "85": {
+      "services": 6,
+      "mean_before_seconds": 676.6750002180405,
+      "mean_after_seconds": 801.416666879615,
+      "total_change_seconds": 748.4499999694469,
+      "improved_over_15s": 2,
+      "worsened_over_15s": 1,
+      "within_15s": 3
+    },
+    "100": {
+      "services": 2,
+      "mean_before_seconds": 393.0999998848165,
+      "mean_after_seconds": 343.2749998855395,
+      "total_change_seconds": -99.64999999855397,
+      "improved_over_15s": 1,
+      "worsened_over_15s": 0,
+      "within_15s": 1
+    }
+  },
+  "largest_regressions": [
+    {
+      "id": "B020",
+      "priority": 75,
+      "before_seconds": 0,
+      "after_seconds": 1197.60000072731,
+      "change_seconds": 1197.60000072731,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 490,
+      "after_maximum_wait_seconds": 816
+    },
+    {
+      "id": "D110",
+      "priority": 75,
+      "before_seconds": 101.750000096828,
+      "after_seconds": 1206.49999977471,
+      "change_seconds": 1104.749999677882,
+      "departure_change_seconds": -16200,
+      "before_maximum_wait_seconds": 4,
+      "after_maximum_wait_seconds": 296
+    },
+    {
+      "id": "B003",
+      "priority": 85,
+      "before_seconds": 160.149999706686,
+      "after_seconds": 1228.04999969115,
+      "change_seconds": 1067.899999984464,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 878,
+      "after_maximum_wait_seconds": 710
+    },
+    {
+      "id": "D103",
+      "priority": 75,
+      "before_seconds": 771.199999834789,
+      "after_seconds": 1738.19999976833,
+      "change_seconds": 966.999999933541,
+      "departure_change_seconds": 3600,
+      "before_maximum_wait_seconds": 368,
+      "after_maximum_wait_seconds": 360
+    },
+    {
+      "id": "D125",
+      "priority": 75,
+      "before_seconds": 224.599999666672,
+      "after_seconds": 1120.54999970253,
+      "change_seconds": 895.9500000358579,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 6,
+      "after_maximum_wait_seconds": 280
+    },
+    {
+      "id": "B056",
+      "priority": 45,
+      "before_seconds": 611.899999753368,
+      "after_seconds": 1483.39999974069,
+      "change_seconds": 871.499999987322,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 74,
+      "after_maximum_wait_seconds": 852
+    },
+    {
+      "id": "D122",
+      "priority": 75,
+      "before_seconds": 1071.09999991628,
+      "after_seconds": 1926.49999990383,
+      "change_seconds": 855.39999998755,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 6,
+      "after_maximum_wait_seconds": 372
+    },
+    {
+      "id": "D100",
+      "priority": 75,
+      "before_seconds": 355.699999880118,
+      "after_seconds": 1183.19999985935,
+      "change_seconds": 827.4999999792321,
+      "departure_change_seconds": 600,
+      "before_maximum_wait_seconds": 202,
+      "after_maximum_wait_seconds": 92
+    },
+    {
+      "id": "D129",
+      "priority": 75,
+      "before_seconds": 547.799999979303,
+      "after_seconds": 1368.84999996736,
+      "change_seconds": 821.0499999880569,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 134,
+      "after_maximum_wait_seconds": 144
+    },
+    {
+      "id": "D102",
+      "priority": 75,
+      "before_seconds": 886.39999984621,
+      "after_seconds": 1663.19999979998,
+      "change_seconds": 776.7999999537701,
+      "departure_change_seconds": 2400,
+      "before_maximum_wait_seconds": 146,
+      "after_maximum_wait_seconds": 206
+    },
+    {
+      "id": "D108",
+      "priority": 75,
+      "before_seconds": 211.29999968411,
+      "after_seconds": 932.499999848551,
+      "change_seconds": 721.200000164441,
+      "departure_change_seconds": -13800,
+      "before_maximum_wait_seconds": 12,
+      "after_maximum_wait_seconds": 436
+    },
+    {
+      "id": "D130",
+      "priority": 75,
+      "before_seconds": 318.849999851671,
+      "after_seconds": 980.599999842045,
+      "change_seconds": 661.749999990374,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 4,
+      "after_maximum_wait_seconds": 100
+    }
+  ],
+  "largest_improvements": [
+    {
+      "id": "B026",
+      "priority": 70,
+      "before_seconds": 2306.24999982407,
+      "after_seconds": 0,
+      "change_seconds": -2306.24999982407,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 1882,
+      "after_maximum_wait_seconds": 210
+    },
+    {
+      "id": "K1",
+      "priority": 20,
+      "before_seconds": 2811.64999971868,
+      "after_seconds": 561.699999682329,
+      "change_seconds": -2249.9500000363514,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 1976,
+      "after_maximum_wait_seconds": 1250
+    },
+    {
+      "id": "D106",
+      "priority": 75,
+      "before_seconds": 1762.15000006586,
+      "after_seconds": 361.349999984319,
+      "change_seconds": -1400.800000081541,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 874,
+      "after_maximum_wait_seconds": 6
+    },
+    {
+      "id": "B071",
+      "priority": 45,
+      "before_seconds": 1517.34999993464,
+      "after_seconds": 140.199999954675,
+      "change_seconds": -1377.149999979965,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 534,
+      "after_maximum_wait_seconds": 156
+    },
+    {
+      "id": "B034",
+      "priority": 70,
+      "before_seconds": 1258.25000066272,
+      "after_seconds": 0,
+      "change_seconds": -1258.25000066272,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 680,
+      "after_maximum_wait_seconds": 182
+    },
+    {
+      "id": "B066",
+      "priority": 45,
+      "before_seconds": 1342.500000778,
+      "after_seconds": 180.90000071039,
+      "change_seconds": -1161.60000006761,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 746,
+      "after_maximum_wait_seconds": 706
+    },
+    {
+      "id": "D112",
+      "priority": 75,
+      "before_seconds": 1443.9500003845,
+      "after_seconds": 306.450000108744,
+      "change_seconds": -1137.500000275756,
+      "departure_change_seconds": -3600,
+      "before_maximum_wait_seconds": 166,
+      "after_maximum_wait_seconds": 4
+    },
+    {
+      "id": "B065",
+      "priority": 45,
+      "before_seconds": 1135.95000057388,
+      "after_seconds": 0,
+      "change_seconds": -1135.95000057388,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 744,
+      "after_maximum_wait_seconds": 6
+    },
+    {
+      "id": "B054",
+      "priority": 45,
+      "before_seconds": 2235.39999980833,
+      "after_seconds": 1142.39999982424,
+      "change_seconds": -1092.99999998409,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 2402,
+      "after_maximum_wait_seconds": 758
+    },
+    {
+      "id": "B044",
+      "priority": 30,
+      "before_seconds": 866.600000563456,
+      "after_seconds": 0,
+      "change_seconds": -866.600000563456,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 1206,
+      "after_maximum_wait_seconds": 6
+    },
+    {
+      "id": "B078",
+      "priority": 45,
+      "before_seconds": 916.699999677076,
+      "after_seconds": 140.199999688382,
+      "change_seconds": -776.499999988694,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 978,
+      "after_maximum_wait_seconds": 6
+    },
+    {
+      "id": "B064",
+      "priority": 45,
+      "before_seconds": 1344.25000042884,
+      "after_seconds": 579.200000384328,
+      "change_seconds": -765.050000044512,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 560,
+      "after_maximum_wait_seconds": 308
+    }
+  ],
+  "k1": {
+    "id": "K1",
+    "priority": 20,
+    "before_seconds": 2811.64999971868,
+    "after_seconds": 561.699999682329,
+    "change_seconds": -2249.9500000363514,
+    "departure_change_seconds": 0,
+    "before_maximum_wait_seconds": 1976,
+    "after_maximum_wait_seconds": 1250
+  },
+  "call_punctuality": {
+    "available": true,
+    "interpretation": "Each booked arrival/departure is one observation, grouped by service priority; early arrivals count as zero lateness. Absolute operating-day times are retained.",
+    "compared_calls": 3452,
+    "unavailable_services": [],
+    "changed_call_times": [
+      {
+        "id": "D100",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 6,
+        "kind": "arrival",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 7,
+        "kind": "arrival",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 0,
+        "kind": "departure",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 1,
+        "kind": "departure",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 2,
+        "kind": "departure",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 3,
+        "kind": "departure",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 4,
+        "kind": "departure",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 5,
+        "kind": "departure",
+        "seconds": 600
+      },
+      {
+        "id": "D100",
+        "call": 6,
+        "kind": "departure",
+        "seconds": 600
+      },
+      {
+        "id": "D101",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 6,
+        "kind": "arrival",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 7,
+        "kind": "arrival",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 0,
+        "kind": "departure",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 1,
+        "kind": "departure",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 2,
+        "kind": "departure",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 3,
+        "kind": "departure",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 4,
+        "kind": "departure",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 5,
+        "kind": "departure",
+        "seconds": 1200
+      },
+      {
+        "id": "D101",
+        "call": 6,
+        "kind": "departure",
+        "seconds": 1200
+      },
+      {
+        "id": "D102",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 6,
+        "kind": "arrival",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 7,
+        "kind": "arrival",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 0,
+        "kind": "departure",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 1,
+        "kind": "departure",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 2,
+        "kind": "departure",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 3,
+        "kind": "departure",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 4,
+        "kind": "departure",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 5,
+        "kind": "departure",
+        "seconds": 2400
+      },
+      {
+        "id": "D102",
+        "call": 6,
+        "kind": "departure",
+        "seconds": 2400
+      },
+      {
+        "id": "D103",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 6,
+        "kind": "arrival",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 7,
+        "kind": "arrival",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 0,
+        "kind": "departure",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 1,
+        "kind": "departure",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 2,
+        "kind": "departure",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 3,
+        "kind": "departure",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 4,
+        "kind": "departure",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 5,
+        "kind": "departure",
+        "seconds": 3600
+      },
+      {
+        "id": "D103",
+        "call": 6,
+        "kind": "departure",
+        "seconds": 3600
+      },
+      {
+        "id": "D104",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 6,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 7,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 0,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 1,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 2,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 3,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 4,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 5,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D104",
+        "call": 6,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 6,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 7,
+        "kind": "arrival",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 0,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 1,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 2,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 3,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 4,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 5,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D105",
+        "call": 6,
+        "kind": "departure",
+        "seconds": 4800
+      },
+      {
+        "id": "D108",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": -13800
+      },
+      {
+        "id": "D108",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": -13800
+      },
+      {
+        "id": "D108",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": -13800
+      },
+      {
+        "id": "D108",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": -13800
+      },
+      {
+        "id": "D108",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": -13800
+      },
+      {
+        "id": "D108",
+        "call": 0,
+        "kind": "departure",
+        "seconds": -13800
+      },
+      {
+        "id": "D108",
+        "call": 1,
+        "kind": "departure",
+        "seconds": -13800
+      },
+      {
+        "id": "D108",
+        "call": 2,
+        "kind": "departure",
+        "seconds": -13800
+      },
+      {
+        "id": "D108",
+        "call": 3,
+        "kind": "departure",
+        "seconds": -13800
+      },
+      {
+        "id": "D108",
+        "call": 4,
+        "kind": "departure",
+        "seconds": -13800
+      },
+      {
+        "id": "D109",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": -15900
+      },
+      {
+        "id": "D109",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": -15900
+      },
+      {
+        "id": "D109",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": -15900
+      },
+      {
+        "id": "D109",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": -15900
+      },
+      {
+        "id": "D109",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": -15900
+      },
+      {
+        "id": "D109",
+        "call": 0,
+        "kind": "departure",
+        "seconds": -15900
+      },
+      {
+        "id": "D109",
+        "call": 1,
+        "kind": "departure",
+        "seconds": -15900
+      },
+      {
+        "id": "D109",
+        "call": 2,
+        "kind": "departure",
+        "seconds": -15900
+      },
+      {
+        "id": "D109",
+        "call": 3,
+        "kind": "departure",
+        "seconds": -15900
+      },
+      {
+        "id": "D109",
+        "call": 4,
+        "kind": "departure",
+        "seconds": -15900
+      },
+      {
+        "id": "D110",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": -16200
+      },
+      {
+        "id": "D110",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": -16200
+      },
+      {
+        "id": "D110",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": -16200
+      },
+      {
+        "id": "D110",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": -16200
+      },
+      {
+        "id": "D110",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": -16199.999999999993
+      },
+      {
+        "id": "D110",
+        "call": 0,
+        "kind": "departure",
+        "seconds": -16200
+      },
+      {
+        "id": "D110",
+        "call": 1,
+        "kind": "departure",
+        "seconds": -16200
+      },
+      {
+        "id": "D110",
+        "call": 2,
+        "kind": "departure",
+        "seconds": -16200
+      },
+      {
+        "id": "D110",
+        "call": 3,
+        "kind": "departure",
+        "seconds": -16200
+      },
+      {
+        "id": "D110",
+        "call": 4,
+        "kind": "departure",
+        "seconds": -16200
+      },
+      {
+        "id": "D111",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": -14400
+      },
+      {
+        "id": "D111",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": -14400
+      },
+      {
+        "id": "D111",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": -14400
+      },
+      {
+        "id": "D111",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": -14400
+      },
+      {
+        "id": "D111",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": -14399.999999999993
+      },
+      {
+        "id": "D111",
+        "call": 0,
+        "kind": "departure",
+        "seconds": -14400
+      },
+      {
+        "id": "D111",
+        "call": 1,
+        "kind": "departure",
+        "seconds": -14400
+      },
+      {
+        "id": "D111",
+        "call": 2,
+        "kind": "departure",
+        "seconds": -14400
+      },
+      {
+        "id": "D111",
+        "call": 3,
+        "kind": "departure",
+        "seconds": -14400
+      },
+      {
+        "id": "D111",
+        "call": 4,
+        "kind": "departure",
+        "seconds": -14400
+      },
+      {
+        "id": "D112",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": -3600
+      },
+      {
+        "id": "D112",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": -3600
+      },
+      {
+        "id": "D112",
+        "call": 3,
+        "kind": "arrival",
+        "seconds": -3600
+      },
+      {
+        "id": "D112",
+        "call": 4,
+        "kind": "arrival",
+        "seconds": -3600
+      },
+      {
+        "id": "D112",
+        "call": 5,
+        "kind": "arrival",
+        "seconds": -3600
+      },
+      {
+        "id": "D112",
+        "call": 0,
+        "kind": "departure",
+        "seconds": -3600
+      },
+      {
+        "id": "D112",
+        "call": 1,
+        "kind": "departure",
+        "seconds": -3600
+      },
+      {
+        "id": "D112",
+        "call": 2,
+        "kind": "departure",
+        "seconds": -3600
+      },
+      {
+        "id": "D112",
+        "call": 3,
+        "kind": "departure",
+        "seconds": -3600
+      },
+      {
+        "id": "D112",
+        "call": 4,
+        "kind": "departure",
+        "seconds": -3600
+      },
+      {
+        "id": "D114",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": 1500
+      },
+      {
+        "id": "D114",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": 1500
+      },
+      {
+        "id": "D114",
+        "call": 0,
+        "kind": "departure",
+        "seconds": 1500
+      },
+      {
+        "id": "D114",
+        "call": 1,
+        "kind": "departure",
+        "seconds": 1500
+      },
+      {
+        "id": "D115",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": 6600
+      },
+      {
+        "id": "D115",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": 6600
+      },
+      {
+        "id": "D115",
+        "call": 0,
+        "kind": "departure",
+        "seconds": 6600
+      },
+      {
+        "id": "D115",
+        "call": 1,
+        "kind": "departure",
+        "seconds": 6600
+      },
+      {
+        "id": "D116",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": 12300
+      },
+      {
+        "id": "D116",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": 12300
+      },
+      {
+        "id": "D116",
+        "call": 0,
+        "kind": "departure",
+        "seconds": 12300
+      },
+      {
+        "id": "D116",
+        "call": 1,
+        "kind": "departure",
+        "seconds": 12300
+      },
+      {
+        "id": "D117",
+        "call": 1,
+        "kind": "arrival",
+        "seconds": 5400
+      },
+      {
+        "id": "D117",
+        "call": 2,
+        "kind": "arrival",
+        "seconds": 5400
+      },
+      {
+        "id": "D117",
+        "call": 0,
+        "kind": "departure",
+        "seconds": 5400
+      },
+      {
+        "id": "D117",
+        "call": 1,
+        "kind": "departure",
+        "seconds": 5400
+      }
+    ],
+    "priority_groups": {
+      "20": {
+        "arrival": {
+          "calls": 54,
+          "mean_before_seconds": 2090.8527776416286,
+          "mean_after_seconds": 1081.0611109878037,
+          "improved_over_15s": 37,
+          "worsened_over_15s": 0,
+          "within_15s": 17
+        },
+        "departure": {
+          "calls": 54,
+          "mean_before_seconds": 2192.4138887552463,
+          "mean_after_seconds": 1173.1212961765611,
+          "improved_over_15s": 36,
+          "worsened_over_15s": 0,
+          "within_15s": 18
+        }
+      },
+      "30": {
+        "arrival": {
+          "calls": 372,
+          "mean_before_seconds": 260.5112903127272,
+          "mean_after_seconds": 157.6986559119089,
+          "improved_over_15s": 44,
+          "worsened_over_15s": 33,
+          "within_15s": 295
+        },
+        "departure": {
+          "calls": 372,
+          "mean_before_seconds": 311.0967741986821,
+          "mean_after_seconds": 210.01680108190487,
+          "improved_over_15s": 48,
+          "worsened_over_15s": 41,
+          "within_15s": 283
+        }
+      },
+      "45": {
+        "arrival": {
+          "calls": 660,
+          "mean_before_seconds": 338.8421969512336,
+          "mean_after_seconds": 181.18356059534312,
+          "improved_over_15s": 224,
+          "worsened_over_15s": 82,
+          "within_15s": 354
+        },
+        "departure": {
+          "calls": 660,
+          "mean_before_seconds": 354.2141666566876,
+          "mean_after_seconds": 198.89606059686832,
+          "improved_over_15s": 226,
+          "worsened_over_15s": 83,
+          "within_15s": 351
+        }
+      },
+      "70": {
+        "arrival": {
+          "calls": 128,
+          "mean_before_seconds": 392.11406250708296,
+          "mean_after_seconds": 123.91289059800789,
+          "improved_over_15s": 35,
+          "worsened_over_15s": 10,
+          "within_15s": 83
+        },
+        "departure": {
+          "calls": 128,
+          "mean_before_seconds": 411.12929697726474,
+          "mean_after_seconds": 135.7625000985329,
+          "improved_over_15s": 34,
+          "worsened_over_15s": 9,
+          "within_15s": 85
+        }
+      },
+      "75": {
+        "arrival": {
+          "calls": 434,
+          "mean_before_seconds": 209.23283410443472,
+          "mean_after_seconds": 236.80276495589206,
+          "improved_over_15s": 73,
+          "worsened_over_15s": 106,
+          "within_15s": 255
+        },
+        "departure": {
+          "calls": 434,
+          "mean_before_seconds": 194.70460840189457,
+          "mean_after_seconds": 207.92546091875093,
+          "improved_over_15s": 77,
+          "worsened_over_15s": 100,
+          "within_15s": 257
+        }
+      },
+      "85": {
+        "arrival": {
+          "calls": 66,
+          "mean_before_seconds": 675.3272727811475,
+          "mean_after_seconds": 692.7628788224546,
+          "improved_over_15s": 18,
+          "worsened_over_15s": 19,
+          "within_15s": 29
+        },
+        "departure": {
+          "calls": 66,
+          "mean_before_seconds": 697.2742424587509,
+          "mean_after_seconds": 681.7674242739986,
+          "improved_over_15s": 20,
+          "worsened_over_15s": 16,
+          "within_15s": 30
+        }
+      },
+      "100": {
+        "arrival": {
+          "calls": 12,
+          "mean_before_seconds": 138.77083329867492,
+          "mean_after_seconds": 150.64583329189068,
+          "improved_over_15s": 1,
+          "worsened_over_15s": 2,
+          "within_15s": 9
+        },
+        "departure": {
+          "calls": 12,
+          "mean_before_seconds": 172.64583331501612,
+          "mean_after_seconds": 186.22916664815844,
+          "improved_over_15s": 0,
+          "worsened_over_15s": 2,
+          "within_15s": 10
+        }
+      }
+    },
+    "largest_regressions": [
+      {
+        "id": "B020",
+        "priority": 75,
+        "call": 16,
+        "station": "SRTL",
+        "kind": "departure",
+        "before_seconds": 4.7500005391048035,
+        "after_seconds": 1484.250000625194,
+        "change_seconds": 1479.5000000860891
+      },
+      {
+        "id": "B020",
+        "priority": 75,
+        "call": 17,
+        "station": "ERS",
+        "kind": "arrival",
+        "before_seconds": 0,
+        "after_seconds": 1197.600000727296,
+        "change_seconds": 1197.600000727296
+      },
+      {
+        "id": "D110",
+        "priority": 75,
+        "call": 5,
+        "station": "TVC",
+        "kind": "arrival",
+        "before_seconds": 101.75000009679934,
+        "after_seconds": 1206.4999997747,
+        "change_seconds": 1104.7499996779006
+      },
+      {
+        "id": "B003",
+        "priority": 85,
+        "call": 11,
+        "station": "NCJ",
+        "kind": "arrival",
+        "before_seconds": 160.14999970670033,
+        "after_seconds": 1228.0499996911021,
+        "change_seconds": 1067.8999999844018
+      },
+      {
+        "id": "D103",
+        "priority": 75,
+        "call": 4,
+        "station": "VAK",
+        "kind": "arrival",
+        "before_seconds": 720.399999867499,
+        "after_seconds": 1687.6499998009967,
+        "change_seconds": 967.2499999334977
+      },
+      {
+        "id": "D103",
+        "priority": 75,
+        "call": 4,
+        "station": "VAK",
+        "kind": "departure",
+        "before_seconds": 725.4999998661006,
+        "after_seconds": 1692.4999997997002,
+        "change_seconds": 966.9999999335996
+      },
+      {
+        "id": "D103",
+        "priority": 75,
+        "call": 6,
+        "station": "TVCN",
+        "kind": "arrival",
+        "before_seconds": 759.4999998420972,
+        "after_seconds": 1726.4999997756968,
+        "change_seconds": 966.9999999335996
+      },
+      {
+        "id": "D103",
+        "priority": 75,
+        "call": 6,
+        "station": "TVCN",
+        "kind": "departure",
+        "before_seconds": 764.4999998403,
+        "after_seconds": 1731.4999997738996,
+        "change_seconds": 966.9999999335996
+      },
+      {
+        "id": "D103",
+        "priority": 75,
+        "call": 5,
+        "station": "KZK",
+        "kind": "arrival",
+        "before_seconds": 751.1999998484971,
+        "after_seconds": 1718.1999997820021,
+        "change_seconds": 966.999999933505
+      },
+      {
+        "id": "D103",
+        "priority": 75,
+        "call": 7,
+        "station": "TVC",
+        "kind": "arrival",
+        "before_seconds": 771.1999998347965,
+        "after_seconds": 1738.1999997683015,
+        "change_seconds": 966.999999933505
+      },
+      {
+        "id": "D103",
+        "priority": 75,
+        "call": 5,
+        "station": "KZK",
+        "kind": "departure",
+        "before_seconds": 756.3999998470972,
+        "after_seconds": 1723.399999780595,
+        "change_seconds": 966.9999999334977
+      },
+      {
+        "id": "B003",
+        "priority": 85,
+        "call": 10,
+        "station": "KZT",
+        "kind": "departure",
+        "before_seconds": 352.7999997290026,
+        "after_seconds": 1298.299999715302,
+        "change_seconds": 945.4999999862994
+      }
+    ],
+    "largest_improvements": [
+      {
+        "id": "K1",
+        "priority": 20,
+        "call": 51,
+        "station": "ERL",
+        "kind": "arrival",
+        "before_seconds": 3121.149999671601,
+        "after_seconds": 289.6499997127976,
+        "change_seconds": -2831.4999999588035
+      },
+      {
+        "id": "K1",
+        "priority": 20,
+        "call": 50,
+        "station": "PYD",
+        "kind": "departure",
+        "before_seconds": 3371.599999678001,
+        "after_seconds": 540.0999997191975,
+        "change_seconds": -2831.4999999588035
+      },
+      {
+        "id": "K1",
+        "priority": 20,
+        "call": 50,
+        "station": "PYD",
+        "kind": "arrival",
+        "before_seconds": 3366.8499996803002,
+        "after_seconds": 535.3499997214967,
+        "change_seconds": -2831.4999999588035
+      },
+      {
+        "id": "K1",
+        "priority": 20,
+        "call": 49,
+        "station": "KZT",
+        "kind": "departure",
+        "before_seconds": 3550.799999685398,
+        "after_seconds": 719.2999997266015,
+        "change_seconds": -2831.4999999587963
+      },
+      {
+        "id": "B026",
+        "priority": 70,
+        "call": 3,
+        "station": "AMPA",
+        "kind": "arrival",
+        "before_seconds": 2598.6499997399005,
+        "after_seconds": 10.649999777597259,
+        "change_seconds": -2587.9999999623033
+      },
+      {
+        "id": "B026",
+        "priority": 70,
+        "call": 3,
+        "station": "AMPA",
+        "kind": "departure",
+        "before_seconds": 2603.7999997384977,
+        "after_seconds": 15.79999977620173,
+        "change_seconds": -2587.999999962296
+      },
+      {
+        "id": "B026",
+        "priority": 70,
+        "call": 2,
+        "station": "ALLP",
+        "kind": "departure",
+        "before_seconds": 2799.7999997486986,
+        "after_seconds": 211.79999978640262,
+        "change_seconds": -2587.999999962296
+      },
+      {
+        "id": "B054",
+        "priority": 45,
+        "call": 7,
+        "station": "AMY",
+        "kind": "arrival",
+        "before_seconds": 2594.9499998542015,
+        "after_seconds": 131.44999988999916,
+        "change_seconds": -2463.4999999642023
+      },
+      {
+        "id": "B054",
+        "priority": 45,
+        "call": 6,
+        "station": "VAK",
+        "kind": "departure",
+        "before_seconds": 2662.2999998595988,
+        "after_seconds": 198.79999989539647,
+        "change_seconds": -2463.4999999642023
+      },
+      {
+        "id": "B054",
+        "priority": 45,
+        "call": 4,
+        "station": "KFI",
+        "kind": "departure",
+        "before_seconds": 2713.3999998686995,
+        "after_seconds": 249.89999990449724,
+        "change_seconds": -2463.4999999642023
+      },
+      {
+        "id": "B054",
+        "priority": 45,
+        "call": 2,
+        "station": "MYY",
+        "kind": "departure",
+        "before_seconds": 2488.399999882902,
+        "after_seconds": 24.899999918699905,
+        "change_seconds": -2463.4999999642023
+      },
+      {
+        "id": "B054",
+        "priority": 45,
+        "call": 2,
+        "station": "MYY",
+        "kind": "arrival",
+        "before_seconds": 2473.149999884001,
+        "after_seconds": 9.649999919798574,
+        "change_seconds": -2463.4999999642023
+      }
+    ]
+  },
+  "wait_quality": {
+    "before": {
+      "bins": [
+        202,
+        41,
+        7,
+        3,
+        0
+      ],
+      "brief_count": 2996,
+      "count": 253,
+      "cumulative": [
+        {
+          "count": 202,
+          "fraction": 0.798418972332016,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 243,
+          "fraction": 0.960474308300395,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 250,
+          "fraction": 0.988142292490119,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 253,
+          "fraction": 1,
+          "met": true,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 2402,
+      "minimum_seconds": 30,
+      "ok": true
+    },
+    "after": {
+      "bins": [
+        238,
+        31,
+        5,
+        0,
+        0
+      ],
+      "brief_count": 2993,
+      "count": 274,
+      "cumulative": [
+        {
+          "count": 238,
+          "fraction": 0.868613138686131,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 269,
+          "fraction": 0.981751824817518,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 274,
+          "fraction": 1,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 274,
+          "fraction": 1,
+          "met": true,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 1650,
+      "minimum_seconds": 30,
+      "ok": true
+    }
+  },
+  "station_wait_quality": {
+    "before": {
+      "bins": [
+        120,
+        34,
+        6,
+        3,
+        0
+      ],
+      "brief_count": 1563,
+      "count": 163,
+      "cumulative": [
+        {
+          "count": 120,
+          "fraction": 0.736196319018405,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 154,
+          "fraction": 0.94478527607362,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 160,
+          "fraction": 0.98159509202454,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 163,
+          "fraction": 1,
+          "met": true,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 2402,
+      "minimum_seconds": 30,
+      "ok": true
+    },
+    "after": {
+      "bins": [
+        143,
+        24,
+        4,
+        0,
+        0
+      ],
+      "brief_count": 1555,
+      "count": 171,
+      "cumulative": [
+        {
+          "count": 143,
+          "fraction": 0.83625730994152,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 167,
+          "fraction": 0.976608187134503,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 171,
+          "fraction": 1,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 171,
+          "fraction": 1,
+          "met": true,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 1650,
+      "minimum_seconds": 30,
+      "ok": true
+    }
+  }
+}

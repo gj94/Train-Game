@@ -1,3 +1,5 @@
+> Follow-up complete: [fresh Intensive states](../corrected-intensive-days/README.md) reduce the affected K1 forecast error from +149.08s to -13.70s. All four prepared days and both disturbances were regenerated and verified. This folder preserves discovery and regression evidence.
+
 # Saved ETA coverage and the imminent-call dwell correction
 
 The read-only audit visited all 233 five-minute states of the completed,

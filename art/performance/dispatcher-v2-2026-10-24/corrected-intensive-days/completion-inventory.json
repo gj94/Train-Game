@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-10-25T07:32:57.572855+08:00",
+  "runtime_commit": "b28e2c1888e7d564df8620e4977a3ea391796606",
+  "full_source_tests": {
+    "passed": 964,
+    "failed": 0,
+    "evidence": "../eta-dwell-boundary/full-tests.log",
+    "stderr": "../eta-dwell-boundary/full-tests.err"
+  },
+  "prepared_data_commits": {
+    "classic_standard": "6713f65",
+    "predictive_standard": "17d8672",
+    "classic_intensive": "d993880",
+    "predictive_intensive": "8e20eca"
+  },
+  "native_checks": {
+    "standard_pair": 36,
+    "intensive_pair": 55,
+    "total": 91,
+    "reviewed_screens": 8
+  },
+  "disturbed_days": "../complete-days/eta-corrected/README.md",
+  "runtime_or_pack_changed_since_replay": false,
+  "new_executable_release": false,
+  "published_release": "R46",
+  "limitations": [
+    "Fifteen authored Intensive departures differ; no planner-only attribution.",
+    "Priority and individual regressions are retained.",
+    "Saved forecast samples are sparse and repeated; external holds and changed plans remain.",
+    "Native checks used Dummy audio and Compatibility rendering; no audio or FPS certification.",
+    "Prior worker comparison proves sampled proposal equality and immutability, not identical live scheduling."
+  ]
+}

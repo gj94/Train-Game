@@ -1,7 +1,7 @@
-> Preparation status: a later audit found and corrected an imminent-stop dwell
-> omission. All four previously accepted days are being regenerated for the new
-> source hash. Their historical measurements below remain evidence for the prior
-> source; they must not be bundled with the corrected runtime. R46 remains live.
+> Preparation status: all four days have been regenerated, independently
+> certified and checked in the actual menus on the corrected forecast source.
+> Both Intensive manual-delay audits also pass. Historical pre-fix results are
+> retained separately. R46 remains the published executable.
 
 # Predictive dispatcher V2
 
@@ -136,7 +136,7 @@ K1's booked dwell is not padded to manufacture them.
 The checked Standard comparison improves the share of extra waits below ten
 minutes from 77.27% to 85.08%, but does not improve every service. Northbound
 VB B012 finishes 11m31s later after changed crossing interactions. See
-[the complete Standard comparison](../art/performance/dispatcher-v2-2026-10-24/standard-days/README.md)
+[the complete Standard comparison](../art/performance/dispatcher-v2-2026-10-24/corrected-standard-days/README.md)
 for call-level results and limitations. Predictive planning is not a promise of
 globally optimal dispatch or a hard maximum wait for an individual player.
 
@@ -145,5 +145,5 @@ waits below ten minutes and all below thirty in V2. K1 reaches Nagercoil 9m22s
 late versus Classic's 46m52s. These results include fifteen authored departure
 changes and are not a planner-only comparison: priority 75 and 85 mean destination
 lateness increases, while the two Vande Bharats' mean improves. The complete
-[Intensive comparison and regressions](../art/performance/dispatcher-v2-2026-10-24/intensive-days/README.md)
+[Intensive comparison and regressions](../art/performance/dispatcher-v2-2026-10-24/corrected-intensive-days/README.md)
 retains actual intermediate calls and hold reasons, including B003 and B020.

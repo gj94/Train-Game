@@ -1,0 +1,255 @@
+{
+  "classic": {
+    "ok": true,
+    "services": 140,
+    "actual_arrivals": 1726,
+    "actual_departures": 1726,
+    "source_hashes": 4834,
+    "audit_sha256": "0b5f05b4eedb030eeaf5af973f0625cf923479262691f4d01b4f24a8c013812b",
+    "compressed_sha256": "e8837c13740be22ec303967d842674b25b0d5b56a8322400a0acf04600b79b55",
+    "raw_pack_sha256": "b14c8f8730d626f9a093ae8ecc3df096f112e10e5e534e5808891355f3fe7afd",
+    "traffic_sha256": "52c71f2e8ffe033b0eecb9e3a57b1f5b86e8ad8d20ebda6dbef05553ba99865f",
+    "service_records_match_v5": true,
+    "changed_source_paths_since_v5": [
+      "sim/dispatch_forecast.gd"
+    ],
+    "wait_quality": {
+      "bins": [
+        202,
+        41,
+        7,
+        3,
+        0
+      ],
+      "brief_count": 2996,
+      "count": 253,
+      "cumulative": [
+        {
+          "count": 202,
+          "fraction": 0.798418972332016,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600.0
+        },
+        {
+          "count": 243,
+          "fraction": 0.960474308300395,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200.0
+        },
+        {
+          "count": 250,
+          "fraction": 0.988142292490119,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800.0
+        },
+        {
+          "count": 253,
+          "fraction": 1.0,
+          "met": true,
+          "required": 1.0,
+          "under_seconds": 2700.0
+        }
+      ],
+      "maximum": 2402.0,
+      "minimum_seconds": 30.0,
+      "ok": true
+    },
+    "station_wait_quality": {
+      "bins": [
+        120,
+        34,
+        6,
+        3,
+        0
+      ],
+      "brief_count": 1563,
+      "count": 163,
+      "cumulative": [
+        {
+          "count": 120,
+          "fraction": 0.736196319018405,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600.0
+        },
+        {
+          "count": 154,
+          "fraction": 0.94478527607362,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200.0
+        },
+        {
+          "count": 160,
+          "fraction": 0.98159509202454,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800.0
+        },
+        {
+          "count": 163,
+          "fraction": 1.0,
+          "met": true,
+          "required": 1.0,
+          "under_seconds": 2700.0
+        }
+      ],
+      "maximum": 2402.0,
+      "minimum_seconds": 30.0,
+      "ok": true
+    },
+    "maximum_continuous_wait": 2402.0,
+    "k1_delay_seconds": 2811.64999971868,
+    "distinct_k1_overtakers": [
+      "B001",
+      "B024",
+      "B002",
+      "D115",
+      "D101",
+      "D116",
+      "D102",
+      "D103",
+      "D104",
+      "D105",
+      "B025",
+      "B003"
+    ],
+    "distribution": {
+      "stations": 8,
+      "passes": 12,
+      "maximum_at_one_station": 5,
+      "concentration": 0.22222222222222227
+    },
+    "traffic_matches_v5": true,
+    "raw_pack_gzip_sha256": "eec86ce6e85ee6406517526a9c44d18f9adae354969588d66194eea6352780fd"
+  },
+  "predictive": {
+    "ok": true,
+    "services": 140,
+    "actual_arrivals": 1726,
+    "actual_departures": 1726,
+    "source_hashes": 4834,
+    "audit_sha256": "373b0c2396453c670ca04e6fe31f68a1193b0abf0a03ae6c4a2b6c17644f7bb7",
+    "compressed_sha256": "cc49bb0fceb003c7281d14a6b94ecef49785ba2a1ed4eb9c46d2e0c00677da9a",
+    "raw_pack_sha256": "617b66c793141d883f57eddef71747c9feff9b3dba04ca00bc6d1cdfbed44ebd",
+    "traffic_sha256": "6e52b9a68697314cb4fbb9cbcd9ab3ab61f5864e18c5c2d708624ceaf4ec9d7a",
+    "service_records_match_v5": true,
+    "changed_source_paths_since_v5": [
+      "sim/dispatch_forecast.gd"
+    ],
+    "wait_quality": {
+      "bins": [
+        238,
+        31,
+        5,
+        0,
+        0
+      ],
+      "brief_count": 2993,
+      "count": 274,
+      "cumulative": [
+        {
+          "count": 238,
+          "fraction": 0.868613138686131,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600.0
+        },
+        {
+          "count": 269,
+          "fraction": 0.981751824817518,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200.0
+        },
+        {
+          "count": 274,
+          "fraction": 1.0,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800.0
+        },
+        {
+          "count": 274,
+          "fraction": 1.0,
+          "met": true,
+          "required": 1.0,
+          "under_seconds": 2700.0
+        }
+      ],
+      "maximum": 1650.0,
+      "minimum_seconds": 30.0,
+      "ok": true
+    },
+    "station_wait_quality": {
+      "bins": [
+        143,
+        24,
+        4,
+        0,
+        0
+      ],
+      "brief_count": 1555,
+      "count": 171,
+      "cumulative": [
+        {
+          "count": 143,
+          "fraction": 0.83625730994152,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600.0
+        },
+        {
+          "count": 167,
+          "fraction": 0.976608187134503,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200.0
+        },
+        {
+          "count": 171,
+          "fraction": 1.0,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800.0
+        },
+        {
+          "count": 171,
+          "fraction": 1.0,
+          "met": true,
+          "required": 1.0,
+          "under_seconds": 2700.0
+        }
+      ],
+      "maximum": 1650.0,
+      "minimum_seconds": 30.0,
+      "ok": true
+    },
+    "maximum_continuous_wait": 1652.0,
+    "k1_delay_seconds": 561.699999682329,
+    "distinct_k1_overtakers": [
+      "B001",
+      "B024",
+      "B002",
+      "D100",
+      "D114",
+      "D101",
+      "D109",
+      "B055",
+      "D102",
+      "B025",
+      "B003"
+    ],
+    "distribution": {
+      "stations": 7,
+      "passes": 11,
+      "maximum_at_one_station": 3,
+      "concentration": 0.17355371900826444
+    },
+    "traffic_matches_v5": true,
+    "raw_pack_gzip_sha256": "f396cd31788393a2dc89977dd0ad914d6fc688114114c3c340a7588c8520a3b7"
+  }
+}

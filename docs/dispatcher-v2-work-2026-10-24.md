@@ -825,3 +825,30 @@ Both Intensive baselines still run:23696/12848 and18904/19932,stderr empty.
 The original964 passing source suite applies; no runtime/test/observer edits,
 new full-day launch, or executable release. Final Intensive acceptance/native
 checks and the specific corrected KPY boundary audit are next.
+
+## 25 October 07:33 — corrected Intensive accepted; all validation complete
+
+The original v6 Intensive baselines completed and are independently certified
+and installed: 140 services, all calls and depot clearances, zero safety events,
+all exact station-only and all-location wait targets, 4,834 current fingerprints,
+140 departure states and 233 exact five-minute states each. Classic has twelve
+K1 overtakers across eight stations; V2 has eleven across seven. Classic data
+is pushed as `d993880`; V2 as `8e20eca`. The 55 actual Intensive menu/time checks
+pass with four reviewed screens, completing 91 checks across all four corrected
+choices. The unchanged source retains its 964 passing full tests. Both corrected
+manual-delay audits already pass and remain disturbance evidence only.
+
+The corrected Intensive ETA audit checks 233 states and 34 forecasts for sixteen
+arrivals/fourteen trains. The affected K1 forecast changes from 149.08s early to
+13.70s late after retaining the imminent KPY call; all other matched samples are
+unchanged apart from state hashes. Five B042/D129 uncertainty exceedances remain,
+with later holds and replaced passing plans documented. Sparse sampled forecasts
+are not a global accuracy certificate. Priority 75/85 means and B003/B020 still
+regress; fifteen authored departure changes prevent planner-only attribution.
+[Complete corrected Intensive evidence](../art/performance/dispatcher-v2-2026-10-24/corrected-intensive-days/README.md).
+
+Playtest both Intensive choices: select K1, inspect 55 Stops and Traffic, then
+Explore at 12:00. Classic waits at KPY; V2 waits in the STKT loop while D114
+passes on the main. Standard pair checks and ETA evidence are already complete.
+R46 remains available; no new executable release. No replay, suite, native or
+ETA job remains, and no additional runtime or authored changes are planned.

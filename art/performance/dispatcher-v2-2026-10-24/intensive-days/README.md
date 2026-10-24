@@ -1,3 +1,5 @@
+> Superseded for current-source preparation by the [fresh corrected Intensive results](../corrected-intensive-days/README.md). This folder preserves pre-fix evidence.
+
 # Revised Intensive days before the imminent-call ETA correction
 
 **Historical pre-correction evidence:** these days passed under the forecast

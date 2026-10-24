@@ -1,3 +1,8 @@
+> Current-source validation is complete: [Standard](corrected-standard-days/README.md),
+> [Intensive](corrected-intensive-days/README.md), and both [manual-delay days](complete-days/eta-corrected/README.md).
+> All four actual menu choices passed. Earlier folders retain historical evidence;
+> R46 remains published and no executable release was created.
+
 # Optional predictive dispatcher evidence
 
 V2 is integrated and selectable in source. Classic and V2
