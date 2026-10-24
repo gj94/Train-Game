@@ -292,3 +292,47 @@ Do not mistake the Intensive authored-departure comparison for a pure dispatcher
 benchmark. The next required evidence is actual complete K1 pass distribution,
 all-service safety/completion/wait quality, then compatible data installation
 and real prepared menu checks. No executable release is requested here.
+
+## 25 October 01:32 — live forecast explanation (presentation only)
+
+Read-only worker ownership audit found no new sharing issue: detached frames and
+constructor-copied topology, per-solver route caches, preallocated result slots,
+one pending group, and owner-side acceptance remain intact. Existing tests cover
+input mutation, worker close/reuse and parallel versus inline equality; no repeat
+benchmark was needed while five full-day jobs contend for the development CPU.
+
+Added a collapsible Forecast details section to the dispatcher inspector. Either
+participant can see the same valid proposal: station/roads, passenger-clear and
+priority-entry ETAs, margin after allowances, following/passing lateness at the
+comparison point and extra detention. Locate focuses the passing station; Inspect
+changes only the inspector, retaining the player's service. Expired proposals
+remove obsolete actions and restore controller focus; Classic hides the section.
+Midnight ETAs identify the new operating day. Following-order advice does not claim
+that a loop is allocated or that an overtake will occur.
+
+Five focused tests and18 native Forward+ checks pass. Reviewed720p/900p expanded
+views and reciprocal inspection; no stderr. Native actions preserve the complete
+railway snapshot byte-for-byte. Source diagnostic:
+`tools/check_forecast_details_ui.gd`; local captures/result in `forecast-ui`.
+Full source suite started01:31, wrapper26996, `forecast-full-tests.log`.
+Do not edit runtime/tests until complete. This presentation work changes neither
+sim/routes nor packs; all five v3 complete-day jobs remain valid and running.
+
+The prepared-menu checker still awaits installed certified data and remains
+uncommitted. Candidate relief services originate KYJ/QLN; later departures are
+intentionally spread through the corridor. Only actual complete encounter records
+can certify the required distinct K1 passes; do not tune from raw schedule overlap.
+
+## 25 October 01:42 — forecast inspector fully validated
+
+All961 source tests pass, zero failures/empty stderr. Native18 checks and reviewed
+720p/900p views are committed with the read-only forecast inspector. No simulation,
+route or authored-pack inputs changed; do not restart any of the five v3 jobs.
+The partial12:35 encounter comparison confirms B002 passes K1 atSTKT in the full
+V2 run rather thanKPY, but only three distinct passes had completed then; final
+count/distribution and wait gates remain pending. Local partial notes explicitly
+separate changed authored timing from planner effects. Do not certify from them.
+
+Next remains final all-day analysis/certification, compatible data installation
+and `check_predictive_prepared_ui.gd` on the real four day options. Preserve the
+fixed further-work window and active-time accounting. R46 remains the release.

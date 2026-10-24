@@ -54,6 +54,7 @@ var _inspect_title: Label
 var _inspect_stats: Label
 var _inspect_reason: Label
 var _inspect_call: Label
+var _forecast_details
 var _priority: Label
 var _hold_service: Button
 var _release_signal: Button
@@ -211,6 +212,9 @@ func _build_inspector(parent: Node) -> void:
 	_inspect_stats=UI.wrap(_train_card,"",13,UI.MUTED)
 	_inspect_reason=UI.wrap(_train_card,"",14,UI.AMBER)
 	_inspect_call=UI.wrap(_train_card,"",13)
+	_forecast_details=preload("res://game/dispatch_forecast_details.gd").new();_train_card.add_child(_forecast_details)
+	_forecast_details.station_requested.connect(func(index):show_timetable(false);_map.focus_station(index);_map.grab_focus())
+	_forecast_details.service_requested.connect(func(id):inspect_train(id);_forecast_details.toggle.grab_focus())
 	var views:=HBoxContainer.new();_train_card.add_child(views)
 	_view=UI.button(views,"View train",func():view_train_requested.emit(inspected_train);set_open(false))
 	UI.button(views,"Timetable",func():show_timetable(true))
@@ -498,6 +502,10 @@ func _refresh() -> void:
 	var t: Train=world.trains[inspected_train]
 	var state: Dictionary=engine.states.get(inspected_train,{})
 	_inspect_title.text=inspected_train+"  /  "+t.service_name
+	var forecast_focus:=get_viewport().gui_get_focus_owner()
+	var forecast_owned: bool=forecast_focus!=null and _forecast_details.is_ancestor_of(forecast_focus)
+	_forecast_details.update_plan(world,inspected_train)
+	if forecast_owned and not _forecast_details.visible:_view.grab_focus()
 	_inspect_stats.text="%d km/h   ·   %.1f m   ·   %s\n%s" % [roundi(t.speed*3.6),t.length,"AI driver" if t.automatic else "Manual driver",t.path[0].edge]
 	_inspect_reason.text=state.get("reason","Waiting for dispatch assessment")
 	for kind in ["planned_crossing","planned_overtake"]:

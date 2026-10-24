@@ -66,6 +66,16 @@ settings can switch dispatch mode without cancelling committed routes. Saves and
 time skips retain the mode and validated advice; worker task handles are never
 saved. Home traffic lists are observed AI-baseline encounters, not live promises.
 
+Expand **Forecast details** in either participant's inspector to see the same
+current proposal, both arrival/clearance times and the margin remaining after
+allowances. **Locate [station] on map** focuses the proposed passing location.
+**Inspect [service] · keep your train** selects the counterpart in the inspector
+without changing the service you control. Use LB/RB to reach the inspector and
+the right stick to scroll its details; X still locates your assigned train.
+Expired advice removes its old actions and explains that routing has fallen back
+to Classic while V2 reassesses. A following-order proposal does not allocate a
+passing loop. The panel is hidden in Classic mode.
+
 ## Scope and validation
 
 This is a bounded rolling forecast, not a globally optimal timetable solver or a

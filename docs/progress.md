@@ -1,5 +1,27 @@
 # Progress
 
+## 25 October 2026 — V2 forecast inspection
+
+The dispatcher now has a collapsible Forecast details section for either train
+in a proposed pass. It shows the station/roads, both ETAs, remaining clearance
+margin, projected priority-train lateness for each order and added passenger
+detention. Locate focuses the station; Inspect selects the counterpart while
+keeping your assigned train. Expired advice removes its obsolete actions and
+restores controller focus. Classic hides the section. Midnight ETAs include the
+operating day. These are estimates, and signals remain the movement authority.
+
+All **961 source tests** and **18 native UI checks** pass at 720p/900p; all
+inspection actions preserve the complete railway snapshot.
+[Evidence and playtest](../art/performance/dispatcher-v2-2026-10-24/forecast-ui/README.md).
+Simulation, geometry and authored packs remain frozen for all five v3 full-day
+jobs. Final timetable certification and actual prepared-menu checks are pending.
+R46 remains available unchanged; no new executable release was prepared.
+
+Playtest: in V2 Operations use LB/RB to focus the inspector, expand Forecast
+details, scroll with RS, locate the planned station and inspect the other train.
+X must still locate your assigned train. Check focus when advice expires and
+when switching back to Classic. See the operator guide for interpretation.
+
 ## 25 October 2026 — paused V2 deletion and save safety
 
 Deleting another service with automatic dispatch disabled could leave a V2 plan
