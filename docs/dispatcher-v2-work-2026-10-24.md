@@ -852,3 +852,16 @@ Explore at 12:00. Classic waits at KPY; V2 waits in the STKT loop while D114
 passes on the main. Standard pair checks and ETA evidence are already complete.
 R46 remains available; no new executable release. No replay, suite, native or
 ETA job remains, and no additional runtime or authored changes are planned.
+
+## Final handoff — 25 October 07:35 Asia/Singapore
+
+All requested current-source validation is complete and pushed. The fixed
+22:33:56 start was preserved, the 04:33:56 deadline passed, and at least
+21,607 actual active seconds are recorded including this session, excluding
+idle gaps. Full data/evidence commits: d993880, 8e20eca and 1b73641.
+The local ledger retains every work session and will close after final cleanup.
+The continuation automation was deleted through the app; no additional work is required.
+Other completed map/QoL automations remain paused. R46's LAN landing page returns
+HTTP 200 and its existing 3,589,389,055-byte ZIP remains available. No release
+files were changed. Tracked source is unchanged from the 964-test correction;
+all original replay and diagnostic jobs are finished.

@@ -2,6 +2,10 @@
 
 ## 25 October 2026 — all corrected prepared days validated
 
+The fixed deadline and six actual active hours are satisfied; final evidence
+is pushed as `1b73641`. Continuation work is complete and its automation has
+been deleted; the other completed map/QoL automations remain paused.
+
 The original v6 Intensive baselines completed and are independently certified
 and installed: 140 services, all calls and depot clearances, zero safety events,
 all exact station-only and all-location wait targets, 4,834 current fingerprints,
