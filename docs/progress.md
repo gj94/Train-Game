@@ -1,5 +1,21 @@
 # Progress
 
+## 24 October 2026 — Kollam three/three platform balance
+
+Kollam now has three usable passenger roads from each running direction, all
+with 630 m berth capacity. Its two main lines and all track outside the yard
+are unchanged; new protected ladders connect the redistributed loops. All 800
+track centrelines pass the intersection audit. Native source views reviewed.
+Full suite: 937 passing checks, with two outdated bridge-relative test points
+then corrected; all 12 formation checks pass. Seven Python checks pass.
+Both 100/140 authored packs retain their timetable timings and count; only QLN
+roads/markers change. Prepared states still require regeneration and remain
+incompatible until that work finishes. R46 stays available unchanged.
+[Evidence and specific QLN playtests](../art/performance/dispatcher-v2-2026-10-24/kollam/README.md).
+
+Next: finish V2 selector/advice and contender validation, author the spread-out
+V2 Intensive departures, then validate/regenerate Classic and V2 days.
+
 ## 24 October 2026 — predictive owner integration and punctuality comparison
 
 Detached forecasts now inform optional V2 overtake policy through live-state

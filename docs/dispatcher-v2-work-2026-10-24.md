@@ -4,7 +4,8 @@ User authorized implementation of an optional dispatcher that compares future
 overtake stations using projected speeds, ETA, timetable calls and clearance,
 with asynchronous multithreaded forecasting where useful. Preserve the existing
 dispatcher as selectable Classic. Do not weaken the interlocking or change
-track geometry to obtain better results. Trains that can get fully into a safe
+track geometry to obtain better results, except for the later explicitly
+authorized Kollam three/three passenger-road correction. Trains that can get fully into a safe
 receiving loop before the express should be considered for onward departure
 instead of an unnecessary hold at the previous station.
 
@@ -112,3 +113,24 @@ the live asynchronous strategy. These are development CPU timings, not FPS.
 Next: isolate KPY/STKT regression fixtures from mutable prepared states; apply
 the authorized QLN three/three platform split; expose matching Classic/V2 day
 choices and regenerate/audit their service starts, timeline and encounters.
+
+## Kollam balance checkpoint
+
+Six CSV passenger faces split D P1/P3/P5 and U P2/P4/P6. Main roads and every
+edge outside QLN remain identical. All berths 630 m, physical directional routes
+validated; 800-edge independent intersection audit passes. Seven Python tests,
+937 source passes and 12 corrected formation tests; two native source views.
+No runtime ground code changed: old fixed 460 m QLN_P4 samples now lie inside
+the bridge after the ladder change, so tests use actual bridge-end chainage.
+Authored Classic 100/140 times/calling patterns unchanged apart from compatible
+QLN roads/markers. Prepared states remain deliberately rejected until replayed.
+KPY/STKT fixtures are now isolated from mutable prepared days and the measured
+priorities/positions are retained. See evidence/kollam README via progress.
+
+Next priorities: V2 home/journey selector and clear live/baseline labels; validate
+all third-party contender changes after accepting a plan, not just the selected
+pair; full-rake/route-conflict regressions. Author a separate Intensive V2 with
+staggered relief departures (avoid the current 11:20–12:35 KYJ platoon), keeping
+K1's schedule unchanged. Freeze sim inputs, then rehearse Classic100/140 and
+V2 Standard/Intensive plus disturbed V2; prepare matching starts/time/traffic.
+No full-day preparation is running yet. Keep fixed six-hour active-work window.

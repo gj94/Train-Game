@@ -1019,14 +1019,17 @@
           "register_original_offset": -0.0
         },
         {
-          "offset": 11.121,
+          "offset": -19.121,
           "osm_way": 242027823,
           "service": "siding",
           "road": 3,
-          "lane": "U",
-          "platform_side": -1,
+          "lane": "D",
+          "platform_side": 1,
           "platform_width": 3.43,
-          "register_original_offset": 14.288
+          "register_original_offset": 14.288,
+          "balance_original_offset": 11.121,
+          "balance_original_lane": "U",
+          "evidence": "User-requested interim southbound passenger loop, 24 October 2026; crossover geometry not surveyed"
         },
         {
           "offset": 19.121,
@@ -1039,14 +1042,17 @@
           "register_original_offset": 18.231
         },
         {
-          "offset": 29.418,
+          "offset": -29.418,
           "osm_way": 827738556,
           "service": "siding",
           "road": 5,
-          "lane": "U",
-          "platform_side": 1,
+          "lane": "D",
+          "platform_side": -1,
           "platform_width": 3.43,
-          "register_original_offset": 32.585
+          "register_original_offset": 32.585,
+          "balance_original_offset": 29.418,
+          "balance_original_lane": "U",
+          "evidence": "User-requested interim southbound passenger loop, 24 October 2026; crossover geometry not surveyed"
         },
         {
           "offset": 42.453,
@@ -1120,13 +1126,15 @@
         }
       ],
       "source": "OSM 2026-10-06 operating rail/siding cross-section; yard/spur excluded",
-      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers.",
+      "geometry_scope": "CSV platform counts; clear platform positions and throats reconstructed. Stable road IDs are not official platform numbers. User-requested interim three passenger roads per direction; six CSV faces preserved. Actual crossovers and universal access not surveyed or reproduced.",
       "passenger_open": true,
       "register_platforms": 6,
       "register_code": "QLN",
       "register_name": "Kollam Junction",
       "register_km": 141.18,
-      "register_scope": "Reported platform positions; not independently verified current operational inventory"
+      "register_scope": "Reported platform positions; not independently verified current operational inventory",
+      "minimum_yard_half": 1625.1560690061992,
+      "platform_balance_revision": "three-each-v1"
     },
     {
       "code": "IRP",

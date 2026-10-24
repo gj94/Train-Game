@@ -5,9 +5,7 @@ const Policy:=preload("res://sim/priority_dispatch.gd")
 const Snapshot:=preload("res://sim/world_snapshot.gd")
 
 func restored(time: int=41700) -> RailWorld:
-	var file:=FileAccess.open_compressed("res://data/timetables/intensive/times/T%06d.bin"%time,FileAccess.READ,FileAccess.COMPRESSION_ZSTD)
-	var result:=Snapshot.restore(file.get_var(false));file.close();assert(result.ok)
-	return result.world
+	return preload("res://tests/predictive_fixture.gd").build(time)
 
 func prepare(w: RailWorld) -> Dictionary:
 	var e=w.dispatcher();e.predictive.configure(true,false)

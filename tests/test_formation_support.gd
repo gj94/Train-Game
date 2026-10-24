@@ -70,15 +70,20 @@ func test_existing_terminal_extensions_receive_ground_at_their_actual_position()
 			var p: Vector3=world.graph.position(id,world.graph.edges[id].length*fraction)
 			if absf(geo.ground_at(p.x,p.z)-(p.y-.15))>.15:return "Unsupported terminal "+id
 	return true
+func qln_landward_position() -> float:
+	# Keep this regression at the physical bridge end when yard turnouts move.
+	var end: float=geo.bridges.filter(func(b):return b.end>140730 and b.end<140750)[0].end
+	var e: Dictionary=world.graph.edges.QLN_P4
+	return (end+2.0-e.chainage_start)/(e.chainage_end-e.chainage_start)*e.length
 func test_outer_approach_uses_its_actual_chainage_beyond_the_bridge():
 	setup()
-	var p: Vector3=world.graph.position("QLN_P4",460)
-	var q: Vector3=p+world.graph.tangent("QLN_P4",460,1).cross(Vector3.UP)*3.95
+	var p: Vector3=world.graph.position("QLN_P4",qln_landward_position())
+	var q: Vector3=p+world.graph.tangent("QLN_P4",qln_landward_position(),1).cross(Vector3.UP)*3.95
 	var rail: Dictionary=geo.nearest_rail(q.x,q.z)
 	return not rail.bridge and absf(geo.ground_at(q.x,q.z)-(p.y-.15))<.05
 func test_confirmed_bridge_end_and_terminal_gaps_have_terrain_or_abutment_support():
 	setup()
-	for sample in [["QLN_P4",460],["AMY_P2",910],["TVC_P4",310],["TVC_P5",310],["TZH_KVTA_D3",310],["OCR_KPY_U3",685],["NYY_AMVA_M0",535],["KZTW_KZT_M0",910],["ERS_END_U",10],["ERS_END_U",85],["NCJ_END_D",235],["NCJ_END_U",235]]:
+	for sample in [["QLN_P4",qln_landward_position()],["AMY_P2",910],["TVC_P4",310],["TVC_P5",310],["TZH_KVTA_D3",310],["OCR_KPY_U3",685],["NYY_AMVA_M0",535],["KZTW_KZT_M0",910],["ERS_END_U",10],["ERS_END_U",85],["NCJ_END_D",235],["NCJ_END_U",235]]:
 		var edge: Dictionary=world.graph.edges[sample[0]]
 		var p: Vector3=world.graph.position(sample[0],sample[1]);var tile:=Vector2i(floori(p.x/512),floori(p.z/512))
 		var c=Chunk.new(geo,{},null);c.origin=Vector3(tile.x*512,0,tile.y*512)

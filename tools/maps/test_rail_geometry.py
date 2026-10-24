@@ -34,6 +34,26 @@ class RailGeometryTests(unittest.TestCase):
         for section in result['sections']:
             if section['tracks']==2:self.assertLess(section['down_offset'],section['up_offset'])
 
+    def test_kollam_balance_keeps_other_stations_and_sections_unchanged(self):
+        source=json.loads((ROOT/'data/routes/kerala_coast/operations.json').read_text(encoding='utf8'))
+        before=copy.deepcopy(source)
+        qln=next(s for s in source['stations'] if s['code']=='QLN')
+        qln.pop('platform_balance_revision',None)
+        qln.pop('minimum_yard_half',None)
+        for road in qln['roads']:
+            if 'balance_original_offset' in road:
+                road['offset']=road.pop('balance_original_offset')
+                road['lane']=road.pop('balance_original_lane')
+        result=geometry.normalize_operations(source)
+        self.assertEqual(result['sections'],source['sections'])
+        self.assertEqual([s for s in result['stations'] if s['code']!='QLN'],[s for s in source['stations'] if s['code']!='QLN'])
+        after=next(s for s in result['stations'] if s['code']=='QLN')
+        self.assertEqual([r['road'] for r in after['roads'] if r.get('platform_width',0)>0 and r['lane']=='D'],[1,3,5])
+        self.assertEqual([r['road'] for r in after['roads'] if r.get('platform_width',0)>0 and r['lane']=='U'],[2,4,6])
+        self.assertAlmostEqual(after['minimum_yard_half'],1625.1560690061992)
+        self.assertEqual(geometry.normalize_operations(result),result)
+        self.assertEqual(geometry.face_count(after['roads']),6)
+
     def test_single_track_is_not_invented_into_double_track(self):
         source=json.loads((ROOT/'data/routes/kerala_coast/operations.json').read_text(encoding='utf8'))
         result=geometry.normalize_operations(source)

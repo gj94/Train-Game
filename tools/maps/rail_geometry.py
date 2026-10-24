@@ -8,6 +8,7 @@ import argparse
 import copy
 import hashlib
 import json
+import math
 from pathlib import Path
 import sys
 
@@ -45,7 +46,7 @@ def smooth_route(route):
 
 def normalize_operations(operations):
     if operations.get('geometry_revision') == REVISION:
-        return copy.deepcopy(operations)
+        return balance_kollam(copy.deepcopy(operations))
     result = copy.deepcopy(operations)
     paired = set()
     for section in result['sections']:
@@ -86,6 +87,43 @@ def normalize_operations(operations):
     result['geometry_revision'] = REVISION
     result['running_side'] = dict(rule='Left-hand running on paired lines', source=LHT_SOURCE,
                                   scope='General rule 4.06; local exceptions and precise pointwork not independently surveyed')
+    return balance_kollam(result)
+
+
+def balance_kollam(result):
+    """User-authorized interim 3/3 split; stable roads, count and yard boundaries."""
+    for station in result['stations']:
+        if station['code'] != 'QLN' or station.get('platform_balance_revision') == 'three-each-v1':
+            continue
+        roads = station['roads']
+        by_id = {r['road']: r for r in roads}
+        if not all(i in by_id and by_id[i].get('platform_width', 0) > 0 for i in range(1, 7)):
+            raise ValueError('Kollam balance requires the six CSV passenger roads')
+        # Preserve adjacent section endpoints/home signals while rearranging
+        # only the inner yard. This is the runtime ladder-span formula.
+        old_half = 520.0
+        for lane in ['D', 'U']:
+            lane_roads = [r for r in roads if r['lane'] == lane and not r.get('storage', False)]
+            length = 0.0
+            for a, b in zip(lane_roads[:-2], lane_roads[1:-1]):
+                shift = abs(b['offset'] - a['offset'])
+                length += max(100.0, shift * 13.0, math.sqrt(6.0 * shift * 250.0))
+            old_half = max(old_half, 520.0 + length)
+        station['minimum_yard_half'] = max(station.get('minimum_yard_half', 0), old_half)
+        for number, offset in [(3, -19.121), (5, -29.418)]:
+            road = by_id[number]
+            road['balance_original_offset'] = road['offset']
+            road['balance_original_lane'] = road['lane']
+            road['offset'], road['lane'] = offset, 'D'
+            road['evidence'] = 'User-requested interim southbound passenger loop, 24 October 2026; crossover geometry not surveyed'
+        for road in roads:
+            if road.get('platform_width', 0) <= 0:
+                continue
+            left = min((road['offset']-r['offset'] for r in roads if r['offset'] < road['offset']-1), default=100)
+            right = min((r['offset']-road['offset'] for r in roads if r['offset'] > road['offset']+1), default=100)
+            road['platform_side'] = -1 if left > right else 1
+        station['platform_balance_revision'] = 'three-each-v1'
+        station['geometry_scope'] += ' User-requested interim three passenger roads per direction; six CSV faces preserved. Actual crossovers and universal access not surveyed or reproduced.'
     return result
 
 

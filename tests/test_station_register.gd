@@ -60,3 +60,31 @@ func test_storage_track_does_not_become_a_third_karunagappalli_passing_loop():
 func test_register_source_hash_is_pinned():
 	var data: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://data/routes/kerala_coast/operations.json"))
 	return FileAccess.get_sha256("res://data/routes/kerala_coast/station-register.csv")==data.station_register.sha256
+
+func test_kollam_has_three_full_length_passenger_roads_from_each_running_line():
+	var w:=Kerala.build();var st: Dictionary=w.stations.filter(func(s):return s.code=="QLN")[0]
+	var count:={"D":0,"U":0}
+	var t:=Train.new("probe",1);preload("res://sim/stock/ported_stock.gd").configure(t,"lhb","express")
+	for road: Dictionary in st.operating_roads:
+		if road.get("platform_width",0)<=0:continue
+		count[road.lane]+=1
+		var direction:=1 if road.lane=="D" else -1
+		var origin: String="PRND_P1" if direction==1 else "IRP_P2"
+		var destination: String="IRP_P1" if direction==1 else "PRND_P2"
+		var edge: String="QLN_P%d"%road.road;var mark:=Berth.marker(w,t,edge,direction)
+		var stop:={block=edge,s=mark,direction=direction}
+		if is_inf(w._stop_distance(origin,direction,Berth.marker(w,t,origin,direction),stop,[])):return "Cannot enter "+edge
+		if is_inf(w._stop_distance(edge,direction,mark,{block=destination,s=Berth.marker(w,t,destination,direction),direction=direction},[])):return "Cannot leave "+edge
+		if not Berth.fits(w,t,edge,mark,direction):return "Full LHB rake cannot fit "+edge
+	return count=={"D":3,"U":3}
+
+func test_kollam_platform_faces_clear_adjacent_tracks():
+	var w:=Kerala.build();var st: Dictionary=w.stations.filter(func(s):return s.code=="QLN")[0]
+	for road: Dictionary in st.operating_roads:
+		if road.get("platform_width",0)<=0:continue
+		var near: float=road.offset+road.platform_side*1.9
+		var far: float=near+road.platform_side*road.platform_width
+		for other: Dictionary in st.operating_roads:
+			if road.road==other.road:continue
+			if other.offset>minf(near,far)-1.7 and other.offset<maxf(near,far)+1.7:return "Platform intersects road "+str(other.road)
+	return true
