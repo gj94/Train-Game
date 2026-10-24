@@ -37,6 +37,7 @@ var road_water
 var road_barrier_widths: Dictionary={}
 var road_supports
 var shore_refinement_cache:={}
+var water_bank_roads
 
 func _init(data, shared_materials: Dictionary, shared_assets) -> void:
 	geo=data
@@ -135,8 +136,18 @@ func _ground(x: float,z: float) -> float:
 				if d<distance:distance=d;level=segment.height+.22
 			# Most tile samples have no nearby bank; avoid another formation
 			# projection unless grading can actually affect this dry sample.
-			if distance<10 and height>level and geo.nearest_rail(origin.x+x,origin.z+z).distance>32:
-				height=lerpf(level,height,smoothstep(0,10,distance))
+			if distance<10:
+				var rail_distance: float=geo.nearest_rail(origin.x+x,origin.z+z).distance
+				if height>level and rail_distance>32:
+					height=lerpf(level,height,smoothstep(0,10,distance))
+				elif height<level:
+					# Flattened railway ground can be below an adjacent mapped pond.
+					# Build its dry bank up, without moving the formation or station.
+					# Include the actual running roads, not only route/depot centrelines.
+					var support=geo.get("formation_support")
+					if support!=null:rail_distance=minf(rail_distance,support.nearest(key+Vector2(origin.x,origin.z)).distance)
+					var amount: float=(1.0-smoothstep(0,10,distance))*smoothstep(16,28,rail_distance)
+					height=lerpf(height,level,amount)
 	ground_samples[key]=height
 	return height
 
@@ -232,6 +243,7 @@ func _water(feature: Dictionary) -> void:
 	var y: float=feature.get("water_height",0.0)+.06
 	for tri in feature.get("triangles",[]):
 		batch.triangle("water",Vector3(tri[0][0],y,tri[0][1]),Vector3(tri[1][0],y,tri[1][1]),Vector3(tri[2][0],y,tri[2][1]),Vector3.UP)
+	preload("res://game/geographic_water_bank.gd").draw(self,feature)
 
 func _lines(geometry: Dictionary) -> Array:
 	return geometry.coordinates if geometry.type=="MultiLineString" else ([geometry.coordinates] if geometry.type=="LineString" else [])

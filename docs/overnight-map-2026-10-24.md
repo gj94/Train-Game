@@ -629,3 +629,30 @@ lowering safeguards. Validate road support, station envelopes, track-ground
 support and tile seams if terrain heights change. Do not claim this is fixed by
 smoothing normals alone. Fixed10:30 minimum and six-active-hour accounting remain;
 no build has been prepared. Continue beyond10:30 if validation needs it.
+
+## Fourteenth checkpoint — pond banks and drainage
+
+The southern pond-height mismatch is corrected with upward dry-bank grading
+outside a protected 16–28 m formation fade, retaining faces on confined real
+shorelines, and exact terrain projection for stream ribbons. No walls on clipped
+tile boundaries. One road-blocking face was found and fixed; the final road
+guard includes neighbouring tile geometry. Final 10,501 faces have at least
+5.076 m rail clearance and no intersecting roads.
+
+902 full source tests, then seven final pond/stream and 51 road tests, plus23
+Python tests pass. Three final native views have clean stderr. Ground beneath
+27,231 track samples and56 station centres is identical. Full4,305tile borders
+pass (514,670probes,max0.0624mm);137detailed tiles/2,540,255comparisons are continuous.
+Full road export5,475,344triangles: exact comparison reuses12,454unchanged records
+and independently audits179changed records/202,821triangles/539supports. The
+parallel-road check includes surrounding crossroads:2,882,667triangles,zero
+conflicts. All2,169junction pairs retain6.148mm maximum; all4,893protectedfiles
+unchanged. Evidence: art/performance/map-2026-10-24/ponds-streams.
+
+Final isolated71tile x3 profile is complete: generation19,533.251→20,947.069ms
+(+7.24%CPU),indexed vertices479,903→501,970(+4.60%). All source/native/audit jobs
+have completed. finish-pond.py installed verified unchanged profiles with refreshed
+hashes and collected evidence. Gate/protected checks pass. Active ledger26,139s
+at10:55; both timing minimums met. User notified before R46/sequence48 packaging.
+Next commit/push, prepare source-validation metadata and inspect owned editor
+processes, then use .local/r46-release scripts. R45 remains live during export.

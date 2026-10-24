@@ -1,5 +1,21 @@
 # Progress
 
+## 24 October 2026 — grounded ponds and drainage; R46 validation
+
+Dry banks now rise toward mapped pond levels without changing the railway;
+confined edges have retaining faces that avoid tracks, roads and stations.
+Stream ribbons follow actual terrain triangles instead of spanning long source
+segments above uneven ground. The complete track-ground sample and station
+centres are unchanged. Full-route border checks, road/support audits and final
+native views pass. 902 full source tests, seven final pond/stream tests, 51 road
+tests and 23 Python tests pass. All 4,893 protected inputs remain unchanged.
+Evidence and limits: [ponds and streams](../art/performance/map-2026-10-24/ponds-streams/README.md).
+R46's player guide is [map refinement](map-refinement.md), with specific route
+locations to inspect. The final isolated 71-tile x3 profile adds 7.24% generation
+CPU and 4.60% indexed vertices for the pond/stream correction. Road profiles
+retain identical coordinates with refreshed source hashes. R45 stays available
+until R46 publication completes.
+
 ## 24 October 2026 — smooth terrain lighting and rooted vegetation
 
 Shared smooth normals preserve ground geometry while reducing indexed terrain

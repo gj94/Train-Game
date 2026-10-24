@@ -27,9 +27,27 @@ static func draw(c,feature: Dictionary) -> void:
 	if feature.tags.get("tunnel","no")!="no" or feature.tags.get("covered","no")=="yes":return
 	for raw in c._lines(feature.geometry):
 		for line in uncovered(c,raw):
+			var previous:=Vector2.ZERO
+			var width:=4.0 if feature.tags.get("waterway")=="river" else 1.2
 			for i in range(1,line.size()):
-				var a:=Vector3(line[i-1].x,0,line[i-1].y);var b:=Vector3(line[i].x,0,line[i].y)
+				var a: Vector2=line[i-1];var b: Vector2=line[i]
 				if a.distance_squared_to(b)<.000001:continue
-				a.y=c._ground(a.x,a.z)+.09;b.y=c._ground(b.x,b.z)+.09
-				var side: Vector3=(b-a).normalized().cross(Vector3.UP)*(4.0 if feature.tags.get("waterway")=="river" else 1.2)
-				c.batch.quad("water",a-side,b-side,b+side,a+side,Vector3.UP)
+				var side: Vector2=(b-a).normalized().orthogonal()*width
+				if previous!=Vector2.ZERO:
+					for sign_value in [-1,1]:
+						project(c,PackedVector2Array([a,a+previous*sign_value,a+side*sign_value]))
+				# Short footprints bound terrain-cell work even for diagonal OSM ways.
+				# Project every patch on the actual fine/coarse triangles, avoiding
+				# long endpoint chords suspended above the land or buried in hills.
+				var count:=maxi(1,ceili(a.distance_to(b)/8.0))
+				for j in count:
+					var start:=a.lerp(b,j/float(count));var end:=a.lerp(b,(j+1)/float(count))
+					project(c,PackedVector2Array([start-side,end-side,end+side,start+side]))
+				previous=side
+
+static func project(c,ring: PackedVector2Array) -> void:
+	var area:=0.0
+	for i in ring.size():area+=ring[i].cross(ring[(i+1)%ring.size()])
+	if absf(area)<.000001:return
+	for tri: PackedVector3Array in preload("res://game/geographic_ground_ribbon.gd").project(c,ring,.04):
+		c.batch.triangle("water",tri[0],tri[1],tri[2],Vector3.UP)

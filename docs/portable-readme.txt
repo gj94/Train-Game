@@ -1,4 +1,14 @@
-TRAIN GAME - KERALA COAST R45
+TRAIN GAME - KERALA COAST R46
+
+R46: More consistent countryside, roads, banks and vegetation.
+Varied terrain beside unchanged tracks; connected grounded road junctions,
+supported approaches, rural road finishes, village paths, steps and walls.
+Continuous canal banks, actual bridge footprints and supported terminal ends.
+Smooth terrain lighting, properly rooted vegetation and grounded stream ribbons.
+Confined pond banks receive retaining faces; detailed Kollam rendering avoids
+the shader instance-buffer overflow. Railway simulation and prepared timetables
+are unchanged. See guides/map-refinement.md for details and exact playtest points.
+R46 supports full downloads and incremental updates through Update & Play v4.
 
 R45: Easier journey discovery, passenger boarding and controller navigation.
 Favourites, stock/full-route filters and remembered departure choices. Explore
@@ -14,7 +24,6 @@ Coach directories show class and free seats; find an empty seat or recall your
 remembered seat. Dispatcher tags are clearer, with an overview at wide zoom.
 Simulation and prepared timetable data are unchanged from R44.
 See guides/journey-library.md for detailed controls and playtest steps.
-R45 supports full downloads and incremental updates through Update & Play v4.
 
 Includes R44: New home screen, passenger seat memory and forward scenery preparation.
 Choose a journey, continue, explore by time or configure graphics/controller
@@ -107,13 +116,13 @@ Includes the controller layout pages, distance-only signal HUD, station
 approaches, positional audio and all earlier improvements.
 
 DOWNLOAD OR UPDATE
-R45 supports full downloads and incremental updates. For an older installation,
+R46 supports full downloads and incremental updates. For an older installation,
 download the small updater ZIP from the host page and replace Update and Play.exe
 once while the updater is closed. The title identifies the v4 launcher.
 Then close the game and open Update and Play.exe to update the existing folder.
 It batches verified compressed blocks, uses four bounded transfer workers and
 reuses unchanged data. It can choose the full ZIP if that should finish sooner.
-The full R45 ZIP includes v4. For a fresh installation, extract the complete ZIP,
+The full R46 ZIP includes v4. For a fresh installation, extract the complete ZIP,
 including packs/, and start TrainGame.exe or the included updater's Play.
 Keep the whole installation together.
 Saves and preferences live separately
