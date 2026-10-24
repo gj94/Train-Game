@@ -1,5 +1,18 @@
 # Progress
 
+## 24 October 2026 — K1/B002 Karunagappalli investigation only
+
+Reproduced the reported Intensive main/loop allocation from existing prepared
+states and a bounded 11:30–11:41 replay. K1's main route was set before an
+overtake was recognized; B002 was outside the four-minute arrival-separation
+window and D100 occupied the southbound loop. The later hold retained K1's
+existing berth and sent B002 to the now-free loop. Sasthamkotta has the proposed
+stopping pattern and sufficient loop capacity, but the current dispatcher does
+not compare alternative overtake locations. It can execute a pass where only
+the slower train stops. No gameplay changes, full-day reruns or new build.
+Twelve focused priority-dispatch tests pass; bounded replay has no safety events.
+[Evidence, limits and reproduction](dispatch-kpy-2026-10-24.md).
+
 ## 24 October 2026 — R46 published; overnight map window complete
 
 Full and signed incremental downloads are live at http://192.168.8.183:8765/.
