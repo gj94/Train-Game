@@ -1,0 +1,90 @@
+{
+  "clock": 98400.0000000001,
+  "services": 140,
+  "overtakers": [
+    "B001",
+    "B024",
+    "B002",
+    "D115",
+    "D101",
+    "D116",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "B025",
+    "B003"
+  ],
+  "crossings": 763,
+  "overtakes": 92,
+  "dispatcher": "classic",
+  "k1_overtake_stations": {
+    "TUVR": [
+      {
+        "train": "B001",
+        "time": 31981.887936327937
+      }
+    ],
+    "ALLP": [
+      {
+        "train": "B024",
+        "time": 36137.98194867924
+      }
+    ],
+    "KPY": [
+      {
+        "train": "B002",
+        "time": 42267.95307109386
+      },
+      {
+        "train": "D115",
+        "time": 42597.97266101614
+      },
+      {
+        "train": "D101",
+        "time": 42979.402479067314
+      },
+      {
+        "train": "D116",
+        "time": 43359.93271503037
+      },
+      {
+        "train": "D102",
+        "time": 43739.96861424019
+      }
+    ],
+    "STKT": [
+      {
+        "train": "D103",
+        "time": 44719.49016693406
+      }
+    ],
+    "PRND": [
+      {
+        "train": "D104",
+        "time": 45968.52066787458
+      }
+    ],
+    "KVU": [
+      {
+        "train": "D105",
+        "time": 50674.949193807806
+      }
+    ],
+    "KZK": [
+      {
+        "train": "B025",
+        "time": 52688.39549804626
+      }
+    ],
+    "NYY": [
+      {
+        "train": "B003",
+        "time": 55948.02512937072
+      }
+    ]
+  },
+  "b042_reverse_overtakes": [],
+  "max_wait": 2402
+}
+Prepared variant copied to data/timetables/intensive

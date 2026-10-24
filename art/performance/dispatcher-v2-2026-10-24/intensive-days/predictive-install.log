@@ -1,0 +1,83 @@
+{
+  "clock": 98400.0000000001,
+  "services": 140,
+  "overtakers": [
+    "B001",
+    "B024",
+    "B002",
+    "D100",
+    "D114",
+    "D101",
+    "D109",
+    "B055",
+    "D102",
+    "B025",
+    "B003"
+  ],
+  "crossings": 753,
+  "overtakes": 78,
+  "dispatcher": "predictive",
+  "k1_overtake_stations": {
+    "TUVR": [
+      {
+        "train": "B001",
+        "time": 31981.887936327937
+      }
+    ],
+    "ALLP": [
+      {
+        "train": "B024",
+        "time": 36137.98194867924
+      }
+    ],
+    "STKT": [
+      {
+        "train": "B002",
+        "time": 42659.719852327406
+      },
+      {
+        "train": "D100",
+        "time": 43067.49013591696
+      },
+      {
+        "train": "D114",
+        "time": 43194.71990406717
+      }
+    ],
+    "PVU": [
+      {
+        "train": "D101",
+        "time": 46417.84561279731
+      },
+      {
+        "train": "D109",
+        "time": 46711.98374725782
+      }
+    ],
+    "KVU": [
+      {
+        "train": "B055",
+        "time": 49335.99667608031
+      },
+      {
+        "train": "D102",
+        "time": 49568.964794671585
+      }
+    ],
+    "KZK": [
+      {
+        "train": "B025",
+        "time": 51776.40966691788
+      }
+    ],
+    "ERL": [
+      {
+        "train": "B003",
+        "time": 58737.831437202534
+      }
+    ]
+  },
+  "b042_reverse_overtakes": [],
+  "max_wait": 1652
+}
+Prepared variant copied to data/timetables/intensive_v2

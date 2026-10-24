@@ -1,9 +1,14 @@
+> Current development status: the imminent-call ETA correction requires fresh
+> preparation of all four mode/day combinations. Old catalogues correctly fail
+> source compatibility; release R46 remains unchanged while regeneration runs.
+
 # Choosing a service at launch
 
 Use **Operating day** to choose **Standard · 100 services** or the separately
 prepared **Intensive · 140 services**, with explicit Classic and optional
-[Predictive V2](predictive-dispatcher.md) choices. Classic and V2 Standard are
-prepared in source; revised Intensive preparations are still being validated.
+[Predictive V2](predictive-dispatcher.md) choices. All four variants are
+prepared in source with independently verified matching departures, five-minute
+states and reciprocal encounter previews. The published R46 remains unchanged.
 Incompatible or unfinished prepared data is rejected, never silently substituted.
 Departure search/sort, Stops,
 Traffic and Explore by time use the selected day. Saved journeys retain their

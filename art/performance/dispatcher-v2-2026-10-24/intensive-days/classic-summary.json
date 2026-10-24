@@ -1,0 +1,990 @@
+{
+  "finished": true,
+  "first": 28800,
+  "clock": 98400.0000000001,
+  "samples": 34801,
+  "active": 0,
+  "distinct_k1_overtakers": [
+    "B001",
+    "B024",
+    "B002",
+    "D115",
+    "D101",
+    "D116",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "B025",
+    "B003"
+  ],
+  "by_station": {
+    "TUVR": [
+      {
+        "train": "B001",
+        "time": 31981.887936327937
+      }
+    ],
+    "ALLP": [
+      {
+        "train": "B024",
+        "time": 36137.98194867924
+      }
+    ],
+    "KPY": [
+      {
+        "train": "B002",
+        "time": 42267.95307109386
+      },
+      {
+        "train": "D115",
+        "time": 42597.97266101614
+      },
+      {
+        "train": "D101",
+        "time": 42979.402479067314
+      },
+      {
+        "train": "D116",
+        "time": 43359.93271503037
+      },
+      {
+        "train": "D102",
+        "time": 43739.96861424019
+      }
+    ],
+    "STKT": [
+      {
+        "train": "D103",
+        "time": 44719.49016693406
+      }
+    ],
+    "PRND": [
+      {
+        "train": "D104",
+        "time": 45968.52066787458
+      }
+    ],
+    "KVU": [
+      {
+        "train": "D105",
+        "time": 50674.949193807806
+      }
+    ],
+    "KZK": [
+      {
+        "train": "B025",
+        "time": 52688.39549804626
+      }
+    ],
+    "NYY": [
+      {
+        "train": "B003",
+        "time": 55948.02512937072
+      }
+    ]
+  },
+  "distribution": {
+    "stations": 8,
+    "passes": 12,
+    "maximum_at_one_station": 5,
+    "concentration": 0.22222222222222227
+  },
+  "events": [
+    {
+      "time": 31981.887936327937,
+      "chainage_m": 24023.2316187225,
+      "a": "B001",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B001",
+      "cleared": 32124.0000000033,
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 36137.98194867924,
+      "chainage_m": 57663.0869320378,
+      "a": "B024",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B024",
+      "cleared": 36476.0000000192,
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 42267.95307109386,
+      "chainage_m": 114639.561771346,
+      "a": "B002",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B002",
+      "cleared": 42437.9999999418,
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 42597.97266101614,
+      "chainage_m": 114639.561771346,
+      "a": "D115",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D115",
+      "cleared": 42769.999999937,
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 42979.402479067314,
+      "chainage_m": 114639.561771346,
+      "a": "D101",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D101",
+      "cleared": 43149.9999999314,
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 43359.93271503037,
+      "chainage_m": 114639.561771346,
+      "a": "D116",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D116",
+      "cleared": 43529.9999999259,
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 43739.96861424019,
+      "chainage_m": 114639.561771346,
+      "a": "D102",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D102",
+      "cleared": 43909.9999999204,
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 44719.49016693406,
+      "chainage_m": 122291.632029377,
+      "a": "D103",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D103",
+      "cleared": 44741.9999999083,
+      "station": "STKT",
+      "location": "Sasthankotta"
+    },
+    {
+      "time": 45968.52066787458,
+      "chainage_m": 132598.695151102,
+      "a": "D104",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D104",
+      "cleared": 45989.9999998901,
+      "station": "PRND",
+      "location": "Perinad"
+    },
+    {
+      "time": 50674.949193807806,
+      "chainage_m": 174474.025162972,
+      "a": "D105",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D105",
+      "cleared": 50695.9999998216,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 52688.39549804626,
+      "chainage_m": 192907.179391758,
+      "a": "B025",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B025",
+      "cleared": 52709.9999997923,
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 55948.02512937072,
+      "chainage_m": 223384.397202415,
+      "a": "B003",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B003",
+      "cleared": 56015.9999997442,
+      "station": "NYY",
+      "location": "Neyyattinkara"
+    }
+  ],
+  "audit": {
+    "clock": 98400.0000000001,
+    "delay": 0,
+    "delay_at": 0,
+    "delay_service": "K1",
+    "dispatcher": "classic",
+    "events": [],
+    "finished": 140,
+    "maximum_station_wait": 2402,
+    "maximum_wait": 2402,
+    "ok": true,
+    "operating_day": "intensive",
+    "over_ten_minute_calls": [
+      {
+        "call": 0,
+        "id": "B054",
+        "reasons": {
+          "Authority to QLN_IRP_D0-A": 4,
+          "Block QLN_DEPOT_RD_ACCESS occupied by D102 · Southern Relief Express 11:50 · KYJ–TVC (D102)": 24,
+          "Block QLN_IRP_D0 occupied by D102 · Southern Relief Express 11:50 · KYJ–TVC (D102)": 48,
+          "Block QLN_LADDER_RD0 occupied by B002 · Cape Express 01 · ERS–NCJ (B002)": 84,
+          "Block QLN_LADDER_RD0 occupied by D101 · Southern Relief Express 11:35 · KYJ–TVC (D101)": 84,
+          "Block QLN_LADDER_RD0 occupied by D102 · Southern Relief Express 11:50 · KYJ–TVC (D102)": 106,
+          "Conflicts with route from QLN-S5 · Cape Express 01 · ERS–NCJ (B002)": 48,
+          "Conflicts with route from QLN-S5 · Southern Relief Express 11:35 · KYJ–TVC (D101)": 48,
+          "Conflicts with route from QLN-S5 · Southern Relief Express 11:50 · KYJ–TVC (D102)": 48,
+          "Expect a wait at QLN until Cape Express 01 · ERS–NCJ (B002) overtakes": 698,
+          "Expect a wait at QLN until Southern Relief Express 11:35 · KYJ–TVC (D101) overtakes": 584,
+          "Expect a wait at QLN until Southern Relief Express 11:50 · KYJ–TVC (D102) overtakes": 624,
+          "Route set to QLN_IRP_D0-A": 2
+        },
+        "seconds": 2402,
+        "signal_id": "",
+        "station": "QLN"
+      },
+      {
+        "call": 20,
+        "id": "K1",
+        "reasons": {
+          "Authority to KPY_STKT_D0-A": 4,
+          "Block KPY_STKT_D0 occupied by B002 · Cape Express 01 · ERS–NCJ (B002)": 2,
+          "Block KPY_STKT_D0 occupied by D101 · Southern Relief Express 11:35 · KYJ–TVC (D101)": 2,
+          "Block KPY_STKT_D0 occupied by D102 · Southern Relief Express 11:50 · KYJ–TVC (D102)": 62,
+          "Block KPY_STKT_D0 occupied by D115 · Kayamkulam Fast 11:30 · KYJ–QLN (D115)": 2,
+          "Block KPY_STKT_D0 occupied by D116 · Kayamkulam Fast 11:45 · KYJ–QLN (D116)": 2,
+          "Expect a wait at KPY until Cape Express 01 · ERS–NCJ (B002) overtakes": 436,
+          "Expect a wait at KPY until Kayamkulam Fast 11:30 · KYJ–QLN (D115) overtakes": 328,
+          "Expect a wait at KPY until Kayamkulam Fast 11:45 · KYJ–QLN (D116) overtakes": 380,
+          "Expect a wait at KPY until Southern Relief Express 11:35 · KYJ–TVC (D101) overtakes": 378,
+          "Expect a wait at KPY until Southern Relief Express 11:50 · KYJ–TVC (D102) overtakes": 378
+        },
+        "seconds": 1974,
+        "signal_id": "",
+        "station": "KPY"
+      },
+      {
+        "call": 2,
+        "id": "B026",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Block ALLP_DEPOT_RM_ACCESS occupied by B005 · Cape Express 04 · ERS–NCJ (B005)": 36,
+          "Block ALLP_PUPR_M0 occupied by B005 · Cape Express 04 · ERS–NCJ (B005)": 46,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Backwater Intercity 03 · TVC–ERS (B032)": 12,
+          "Expect a wait at ALLP until Cape Express 04 · ERS–NCJ (B005) overtakes": 714,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service": 16,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Backwater Intercity 03 · TVC–ERS (B032)": 182,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Cape Express 04 · ERS–NCJ (B005), Backwater Intercity 03 · TVC–ERS (B032)": 104,
+          "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Cape Express 04 · ERS–NCJ (B005)": 186,
+          "Single line ALLP_single is locked for opposing traffic · Backwater Intercity 03 · TVC–ERS (B032)": 580
+        },
+        "seconds": 1880,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 44,
+        "id": "K1",
+        "reasons": {
+          "Authority to NYY_AMVA_M0-SA": 4,
+          "Block NYY_AMVA_M0 occupied by B003 · Cape Express 02 · ERS–NCJ (B003)": 50,
+          "Conflicts with route from NYY_AMVA_M0-NH · Malabar Express 05 · NCJ–ERS (B018)": 12,
+          "Expect a wait at NYY until Cape Express 02 · ERS–NCJ (B003) overtakes": 232,
+          "Expect a wait before Parassala: no free platform suitable for this service · Malabar Express 05 · NCJ–ERS (B018)": 200,
+          "Expect a wait before Parassala: no free platform suitable for this service · Malabar Express 05 · NCJ–ERS (B018), Cape Express 02 · ERS–NCJ (B003)": 34,
+          "Expect a wait before Parassala: the remaining platforms are reserved for approaching services · Malabar Express 05 · NCJ–ERS (B018), Cape Express 02 · ERS–NCJ (B003)": 216,
+          "Route set to NYY_AMVA_M0-SA": 2,
+          "Single line NYY_single is locked for opposing traffic · Malabar Express 05 · NCJ–ERS (B018)": 568
+        },
+        "seconds": 1318,
+        "signal_id": "",
+        "station": "NYY"
+      },
+      {
+        "call": 3,
+        "id": "B091",
+        "reasons": {
+          "Authority to NYY_AMVA_M0-SA": 4,
+          "Conflicts with route from NYY_AMVA_M0-NH · Cape Passenger 04 · NCJ–TVC (B097)": 12,
+          "Expect a wait before Parassala: no free platform suitable for this service · Cape Passenger 04 · NCJ–TVC (B097), Cape Express 03 · ERS–NCJ (B004)": 130,
+          "Route set to NYY_AMVA_M0-SA": 2,
+          "Single line NYY_single is locked for opposing traffic · Cape Passenger 04 · NCJ–TVC (B097)": 1156
+        },
+        "seconds": 1304,
+        "signal_id": "",
+        "station": "NYY"
+      },
+      {
+        "call": 1,
+        "id": "B026",
+        "reasons": {
+          "Authority to SRTL_TRVZ_M0-SA": 4,
+          "Block SRTL_RLEAD_D occupied by B015 · Malabar Express 02 · NCJ–ERS (B015)": 10,
+          "Expect a wait at SRTL until Northbound Coastal Passenger · Nagercoil to Ernakulam (B013) clears the escape approach": 770,
+          "Single line SRTL_single is locked for opposing traffic · Malabar Express 02 · NCJ–ERS (B015)": 484
+        },
+        "seconds": 1268,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 11,
+        "id": "K1",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Block ALLP_DEPOT_RM_ACCESS occupied by B024 · Capital Intercity 01 · ERS–TVC (B024)": 28,
+          "Block ALLP_PUPR_M0 occupied by B024 · Capital Intercity 01 · ERS–TVC (B024)": 42,
+          "Expect a wait at ALLP until Capital Intercity 01 · ERS–TVC (B024) overtakes": 350,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service": 198,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Capital Intercity 01 · ERS–TVC (B024)": 438,
+          "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Capital Intercity 01 · ERS–TVC (B024)": 188,
+          "Route set to ALLP_PUPR_M0-SA": 2
+        },
+        "seconds": 1250,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 16,
+        "id": "B019",
+        "reasons": {
+          "Authority to VAY_SRTL_M5-NA": 4,
+          "Block VAY_SRTL_M5 occupied by B047 · Alappuzha Passenger 03 · ALLP–ERS (B047)": 70,
+          "Conflicts with route from SRTL-N2 · Alappuzha Passenger 03 · ALLP–ERS (B047)": 2,
+          "Conflicts with route from VAY_SRTL_M5-SH · Cape Express 08 · ERS–NCJ (B009)": 12,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Cape Express 08 · ERS–NCJ (B009), Alappuzha Passenger 03 · ALLP–ERS (B047), Alappuzha Passenger 03 · ERS–ALLP (B044)": 28,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Cape Express 08 · ERS–NCJ (B009), Alappuzha Passenger 03 · ERS–ALLP (B044)": 124,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Cape Express 08 · ERS–NCJ (B009), Alappuzha Passenger 03 · ERS–ALLP (B044), Alappuzha Passenger 03 · ALLP–ERS (B047)": 202,
+          "Preserve the onward crossing route for B047 at Turavur · Alappuzha Passenger 03 · ALLP–ERS (B047), Alappuzha Passenger 03 · ERS–ALLP (B044)": 318,
+          "Route set to VAY_SRTL_M5-NA": 2,
+          "Single line TUVR_single is locked for opposing traffic · Cape Express 08 · ERS–NCJ (B009)": 468
+        },
+        "seconds": 1230,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 8,
+        "id": "B044",
+        "reasons": {
+          "Authority to MAKM_KAVR_M0-SA": 4,
+          "Conflicts with route from MAKM_KAVR_M0-NH · Backwater Intercity 05 · TVC–ERS (B034)": 12,
+          "Expect a wait before Alappuzha: no free platform suitable for this service · Malabar Express 07 · NCJ–ERS (B020), Cape Express 08 · ERS–NCJ (B009)": 112,
+          "Expect a wait before Alappuzha: no free platform suitable for this service · Malabar Express 07 · NCJ–ERS (B020), Cape Express 08 · ERS–NCJ (B009), Backwater Intercity 05 · TVC–ERS (B034)": 52,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Cape Express 08 · ERS–NCJ (B009), Backwater Intercity 05 · TVC–ERS (B034)": 182,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Cape Express 08 · ERS–NCJ (B009), Malabar Express 07 · NCJ–ERS (B020), Backwater Intercity 05 · TVC–ERS (B034)": 30,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Malabar Express 07 · NCJ–ERS (B020), Cape Express 08 · ERS–NCJ (B009), Backwater Intercity 05 · TVC–ERS (B034)": 30,
+          "Single line MAKM_single is locked for opposing traffic · Backwater Intercity 05 · TVC–ERS (B034)": 180,
+          "Single line MAKM_single is locked for opposing traffic · Malabar Express 07 · NCJ–ERS (B020)": 170,
+          "Single line MAKM_single is locked for opposing traffic · Malabar Express 07 · NCJ–ERS (B020), Backwater Intercity 05 · TVC–ERS (B034)": 432
+        },
+        "seconds": 1204,
+        "signal_id": "",
+        "station": "MAKM"
+      },
+      {
+        "call": 10,
+        "id": "B015",
+        "reasons": {
+          "Approach reserved for B005 to enter SRTL_P1": 1132,
+          "Authority to VAY_SRTL_M5-NA": 4
+        },
+        "seconds": 1136,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 2,
+        "id": "B009",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Block ALLP_RLEAD_U occupied by B034 · Backwater Intercity 05 · TVC–ERS (B034)": 22,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Backwater Intercity 05 · TVC–ERS (B034)": 22,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Backwater Intercity 05 · TVC–ERS (B034), Malabar Express 07 · NCJ–ERS (B020)": 160,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Coastal Passenger 03 · ERS–KYJ (B038), Backwater Intercity 05 · TVC–ERS (B034), Malabar Express 07 · NCJ–ERS (B020)": 30,
+          "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Backwater Intercity 05 · TVC–ERS (B034), Malabar Express 07 · NCJ–ERS (B020), Coastal Passenger 03 · ERS–KYJ (B038)": 80,
+          "Single line ALLP_single is locked for opposing traffic · Backwater Intercity 05 · TVC–ERS (B034)": 144,
+          "Single line ALLP_single is locked for opposing traffic · Malabar Express 07 · NCJ–ERS (B020)": 174,
+          "Single line ALLP_single is locked for opposing traffic · Malabar Express 07 · NCJ–ERS (B020), Backwater Intercity 05 · TVC–ERS (B034)": 424
+        },
+        "seconds": 1060,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 0,
+        "id": "B055",
+        "reasons": {
+          "Authority to QLN_IRP_D0-A": 4,
+          "Block QLN_DEPOT_RD_ACCESS occupied by D104 · Southern Relief Express 12:20 · KYJ–TVC (D104)": 24,
+          "Block QLN_IRP_D0 occupied by D104 · Southern Relief Express 12:20 · KYJ–TVC (D104)": 48,
+          "Block QLN_LADDER_RD0 occupied by D104 · Southern Relief Express 12:20 · KYJ–TVC (D104)": 106,
+          "Conflicts with route from QLN-S1 · Southern Relief Express 12:05 · KYJ–TVC (D103)": 80,
+          "Conflicts with route from QLN-S5 · Southern Relief Express 12:20 · KYJ–TVC (D104)": 48,
+          "Expect a wait at QLN until Southern Relief Express 12:20 · KYJ–TVC (D104) overtakes": 710,
+          "Route set to QLN_IRP_D0-A": 2
+        },
+        "seconds": 1022,
+        "signal_id": "",
+        "station": "QLN"
+      },
+      {
+        "call": 10,
+        "id": "B078",
+        "reasons": {
+          "Authority to EVA_VAK_U2-A": 4,
+          "Block EVA_VAK_U2 occupied by B033 · Backwater Intercity 04 · TVC–ERS (B033)": 60,
+          "Block EVA_VAK_U2 occupied by D125 · Backwater Relief Express 15:25 · TVC–KYJ (D125)": 2,
+          "Expect a wait at VAK until Backwater Intercity 04 · TVC–ERS (B033) overtakes": 412,
+          "Expect a wait at VAK until Backwater Relief Express 15:25 · TVC–KYJ (D125) overtakes": 498,
+          "Route set to EVA_VAK_U2-A": 2
+        },
+        "seconds": 978,
+        "signal_id": "",
+        "station": "VAK"
+      },
+      {
+        "call": 2,
+        "id": "B080",
+        "reasons": {
+          "Authority to VELI_TVCN_U0-A": 4,
+          "Block TVCN_DEPOT_LU_ACCESS occupied by D132 · Capital Fast 16:25 · TVC–QLN (D132)": 24,
+          "Block TVCN_LADDER_LU0 occupied by D132 · Capital Fast 16:25 · TVC–QLN (D132)": 28,
+          "Block VELI_TVCN_U0 occupied by D132 · Capital Fast 16:25 · TVC–QLN (D132)": 48,
+          "Expect a wait at TVCN until Capital Fast 16:25 · TVC–QLN (D132) overtakes": 680,
+          "Expect a wait at TVCN until Malabar Express 05 · NCJ–ERS (B018) overtakes": 192
+        },
+        "seconds": 976,
+        "signal_id": "",
+        "station": "TVCN"
+      },
+      {
+        "call": 7,
+        "id": "B047",
+        "reasons": {
+          "Authority to EZP_TUVR_M3-NA": 4,
+          "Block EZP_TUVR_M3 occupied by B019 · Malabar Express 06 · NCJ–ERS (B019)": 62,
+          "Expect a wait at TUVR until Malabar Express 06 · NCJ–ERS (B019) overtakes": 324,
+          "Route set to EZP_TUVR_M3-NA": 2,
+          "Single line KUMM_single is locked for opposing traffic · Alappuzha Passenger 03 · ERS–ALLP (B044)": 526
+        },
+        "seconds": 918,
+        "signal_id": "",
+        "station": "TUVR"
+      },
+      {
+        "call": 2,
+        "id": "B003",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Block ALLP_RLEAD_U occupied by B031 · Backwater Intercity 02 · TVC–ERS (B031)": 20,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Backwater Intercity 02 · TVC–ERS (B031)": 22,
+          "Route set to ALLP_PUPR_M0-SA": 2,
+          "Single line ALLP_single is locked for opposing traffic · Backwater Intercity 02 · TVC–ERS (B031)": 412,
+          "Single line ALLP_single is locked for opposing traffic · Malabar Express 01 · NCJ–ERS (B014)": 156,
+          "Single line ALLP_single is locked for opposing traffic · Malabar Express 01 · NCJ–ERS (B014), Backwater Intercity 02 · TVC–ERS (B031)": 262
+        },
+        "seconds": 878,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 17,
+        "id": "B013",
+        "reasons": {
+          "Authority to PGZ_MQU_U2-A": 4,
+          "Block PGZ_MQU_U2 occupied by B014 · Malabar Express 01 · NCJ–ERS (B014)": 4,
+          "Block PGZ_MQU_U2 occupied by B031 · Backwater Intercity 02 · TVC–ERS (B031)": 54,
+          "Block PGZ_MQU_U2 occupied by D122 · Backwater Relief Express 10:25 · TVC–KYJ (D122)": 2,
+          "Expect a wait at MQU until Backwater Intercity 02 · TVC–ERS (B031) overtakes": 354,
+          "Expect a wait at MQU until Backwater Relief Express 10:25 · TVC–KYJ (D122) overtakes": 314,
+          "Expect a wait at MQU until Malabar Express 01 · NCJ–ERS (B014) overtakes": 142
+        },
+        "seconds": 874,
+        "signal_id": "",
+        "station": "MQU"
+      },
+      {
+        "call": 14,
+        "id": "B014",
+        "reasons": {
+          "Authority to PUPR_AMPA_M3-NA": 4,
+          "Conflicts with route from PUPR_AMPA_M3-SH · Coastal Passenger 01 · ERS–KYJ (B036)": 14,
+          "Single line ALLP_single is locked for opposing traffic · Coastal Passenger 01 · ERS–KYJ (B036)": 854
+        },
+        "seconds": 872,
+        "signal_id": "",
+        "station": "AMPA"
+      },
+      {
+        "call": 2,
+        "id": "D106",
+        "reasons": {
+          "Authority to QLN_IRP_D0-A": 4,
+          "Block QLN_DEPOT_RD_ACCESS occupied by B006 · Cape Express 05 · ERS–NCJ (B006)": 108,
+          "Block QLN_IRP_D0 occupied by B006 · Cape Express 05 · ERS–NCJ (B006)": 48,
+          "Conflicts with route from QLN-S3 · Cape Express 05 · ERS–NCJ (B006)": 70,
+          "Expect a wait at QLN until Cape Express 05 · ERS–NCJ (B006) overtakes": 642
+        },
+        "seconds": 872,
+        "signal_id": "",
+        "station": "QLN"
+      },
+      {
+        "call": 2,
+        "id": "B004",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Malabar Express 02 · NCJ–ERS (B015)": 22,
+          "Single line ALLP_single is locked for opposing traffic · Malabar Express 02 · NCJ–ERS (B015)": 266,
+          "Single line ALLP_single is locked for opposing traffic · Northbound Coastal Passenger · Nagercoil to Ernakulam (B013)": 160,
+          "Single line ALLP_single is locked for opposing traffic · Northbound Coastal Passenger · Nagercoil to Ernakulam (B013), Malabar Express 02 · NCJ–ERS (B015)": 418
+        },
+        "seconds": 870,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 49,
+        "id": "K1",
+        "reasons": {
+          "Authority to KZT_PYD_M0-SA": 4,
+          "Conflicts with route from KZT_PYD_M0-NH · Cape Passenger 04 · NCJ–TVC (B097)": 12,
+          "Single line KZT_single is locked for opposing traffic · Cape Passenger 04 · NCJ–TVC (B097)": 848
+        },
+        "seconds": 864,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 0,
+        "id": "B076",
+        "reasons": {
+          "Authority to TVP_TVC_U0-A": 4,
+          "Block TVC_DEPOT_LU_ACCESS occupied by B017 · Malabar Express 04 · NCJ–ERS (B017)": 24,
+          "Block TVC_LADDER_LU0 occupied by B017 · Malabar Express 04 · NCJ–ERS (B017)": 46,
+          "Block TVP_TVC_U0 occupied by B017 · Malabar Express 04 · NCJ–ERS (B017)": 56,
+          "Expect a wait at TVC until Malabar Express 04 · NCJ–ERS (B017) overtakes": 714
+        },
+        "seconds": 844,
+        "signal_id": "",
+        "station": "TVC"
+      },
+      {
+        "call": 10,
+        "id": "B030",
+        "reasons": {
+          "Authority to TMPY_ALLP_M2-NA": 4,
+          "Conflicts with route from TMPY_ALLP_M2-SH · Alappuzha Passenger 01 · ERS–ALLP (B042)": 12,
+          "Single line MAKM_single is locked for opposing traffic · Alappuzha Passenger 01 · ERS–ALLP (B042)": 814
+        },
+        "seconds": 830,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 5,
+        "id": "B012",
+        "reasons": {
+          "Authority to TMPY_ALLP_M2-NA": 4,
+          "Conflicts with route from TMPY_ALLP_M2-SH · Coastal Passenger 01 · ERS–KYJ (B036)": 12,
+          "Single line MAKM_single is locked for opposing traffic · Coastal Passenger 01 · ERS–KYJ (B036)": 812
+        },
+        "seconds": 828,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 47,
+        "id": "B013",
+        "reasons": {
+          "Authority to EZP_TUVR_M3-NA": 4,
+          "Block EZP_TUVR_M3 occupied by B015 · Malabar Express 02 · NCJ–ERS (B015)": 62,
+          "Expect a wait at TUVR until Malabar Express 02 · NCJ–ERS (B015) overtakes": 738
+        },
+        "seconds": 804,
+        "signal_id": "",
+        "station": "TUVR"
+      },
+      {
+        "call": 4,
+        "id": "B042",
+        "reasons": {
+          "Authority to TUVR_VAY_M0-SA": 4,
+          "Block TUVR_VAY_M0 occupied by B002 · Cape Express 01 · ERS–NCJ (B002)": 56,
+          "Expect a wait at TUVR until Cape Express 01 · ERS–NCJ (B002) overtakes": 326,
+          "Single line TUVR_single is locked for opposing traffic · Coastal Passenger 01 · KYJ–ERS (B039)": 402
+        },
+        "seconds": 788,
+        "signal_id": "",
+        "station": "TUVR"
+      },
+      {
+        "call": 8,
+        "id": "K1",
+        "reasons": {
+          "Authority to MAKM_KAVR_M0-SA": 4,
+          "Conflicts with route from MAKM_KAVR_M0-NH · Coastal Passenger 01 · KYJ–ERS (B039)": 14,
+          "Single line MAKM_single is locked for opposing traffic · Coastal Passenger 01 · KYJ–ERS (B039)": 770
+        },
+        "seconds": 788,
+        "signal_id": "",
+        "station": "MAKM"
+      },
+      {
+        "call": 4,
+        "id": "K1",
+        "reasons": {
+          "Authority to TUVR_VAY_M0-SA": 4,
+          "Block TUVR_VAY_M0 occupied by B001 · Coastal Vande Bharat · Ernakulam to Nagercoil (B001)": 48,
+          "Conflicts with route from TUVR-S1 · Coastal Vande Bharat · Ernakulam to Nagercoil (B001)": 2,
+          "Expect a wait at TUVR until Coastal Vande Bharat · Ernakulam to Nagercoil (B001) overtakes": 426,
+          "Single line TUVR_single is locked for opposing traffic · Alappuzha Passenger 01 · ALLP–ERS (B045)": 290
+        },
+        "seconds": 770,
+        "signal_id": "",
+        "station": "TUVR"
+      },
+      {
+        "call": 2,
+        "id": "B073",
+        "reasons": {
+          "Authority to VELI_TVCN_U0-A": 4,
+          "Block TVCN_DEPOT_LU_ACCESS occupied by D123 · Backwater Relief Express 11:25 · TVC–KYJ (D123)": 52,
+          "Block VELI_TVCN_U0 occupied by D123 · Backwater Relief Express 11:25 · TVC–KYJ (D123)": 48,
+          "Expect a wait at TVCN until Backwater Relief Express 11:25 · TVC–KYJ (D123) overtakes": 660
+        },
+        "seconds": 764,
+        "signal_id": "",
+        "station": "TVCN"
+      },
+      {
+        "call": 15,
+        "id": "B066",
+        "reasons": {
+          "Authority to TVCN_TVP_D0-A": 4,
+          "Block TVCN_DEPOT_RD_ACCESS occupied by D111 · Capital Fast 21:10 · QLN–TVC (D111)": 52,
+          "Block TVCN_TVP_D0 occupied by D111 · Capital Fast 21:10 · QLN–TVC (D111)": 48,
+          "Expect a wait at TVCN until Capital Fast 21:10 · QLN–TVC (D111) overtakes": 640,
+          "Route set to TVCN_TVP_D0-A": 2
+        },
+        "seconds": 746,
+        "signal_id": "",
+        "station": "TVCN"
+      },
+      {
+        "call": 15,
+        "id": "B065",
+        "reasons": {
+          "Authority to TVCN_TVP_D0-A": 4,
+          "Block TVCN_DEPOT_RD_ACCESS occupied by D113 · Capital Fast 20:10 · QLN–TVC (D113)": 52,
+          "Block TVCN_TVP_D0 occupied by D113 · Capital Fast 20:10 · QLN–TVC (D113)": 48,
+          "Expect a wait at TVCN until Capital Fast 20:10 · QLN–TVC (D113) overtakes": 638,
+          "Route set to TVCN_TVP_D0-A": 2
+        },
+        "seconds": 744,
+        "signal_id": "",
+        "station": "TVCN"
+      },
+      {
+        "call": 1,
+        "id": "B009",
+        "reasons": {
+          "Authority to SRTL_TRVZ_M0-SA": 4,
+          "Conflicts with route from SRTL_TRVZ_M0-NH · Coastal Passenger 03 · KYJ–ERS (B041)": 20,
+          "Route set to SRTL_TRVZ_M0-SA": 2,
+          "Single line SRTL_single is locked for opposing traffic · Coastal Passenger 03 · KYJ–ERS (B041)": 684
+        },
+        "seconds": 710,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 10,
+        "id": "B083",
+        "reasons": {
+          "Authority to EVA_VAK_U2-A": 4,
+          "Block EVA_VAK_U2 occupied by B034 · Backwater Intercity 05 · TVC–ERS (B034)": 44,
+          "Expect a wait at VAK until Backwater Intercity 05 · TVC–ERS (B034) overtakes": 310,
+          "Expect a wait at VAK until Capital Fast 18:25 · TVC–QLN (D133) overtakes": 348
+        },
+        "seconds": 706,
+        "signal_id": "",
+        "station": "VAK"
+      },
+      {
+        "call": 0,
+        "id": "B066",
+        "reasons": {
+          "Authority to QLN_IRP_D0-A": 4,
+          "Block QLN_DEPOT_RD_ACCESS occupied by B008 · Cape Express 07 · ERS–NCJ (B008)": 30,
+          "Block QLN_IRP_D0 occupied by B008 · Cape Express 07 · ERS–NCJ (B008)": 30,
+          "Conflicts with route from QLN-S1 · Cape Express 07 · ERS–NCJ (B008)": 28,
+          "Expect a wait at QLN until Cape Express 07 · ERS–NCJ (B008) overtakes": 612,
+          "Route set to QLN_IRP_D0-A": 2
+        },
+        "seconds": 706,
+        "signal_id": "",
+        "station": "QLN"
+      },
+      {
+        "call": 2,
+        "id": "B014",
+        "reasons": {
+          "Authority to KZTW_KZT_M1-NA": 4,
+          "Expect a wait at KZT until Cape Passenger 01 · TVC–NCJ (B088) clears the escape approach": 248,
+          "Single line PASA_single is locked for opposing traffic · Cape Passenger 01 · TVC–NCJ (B088)": 442
+        },
+        "seconds": 694,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 0,
+        "id": "B034",
+        "reasons": {
+          "Authority to TVP_TVC_U0-A": 4,
+          "Block TVC_DEPOT_LU_ACCESS occupied by B020 · Malabar Express 07 · NCJ–ERS (B020)": 24,
+          "Block TVP_TVC_U0 occupied by B020 · Malabar Express 07 · NCJ–ERS (B020)": 40,
+          "Expect a wait at TVC until Malabar Express 07 · NCJ–ERS (B020) overtakes": 610,
+          "Route set to TVP_TVC_U0-A": 2
+        },
+        "seconds": 680,
+        "signal_id": "",
+        "station": "TVC"
+      },
+      {
+        "call": 15,
+        "id": "B008",
+        "reasons": {
+          "Authority to KZT_PYD_M0-SA": 4,
+          "Expect a wait before Eraniel: no free platform suitable for this service": 200,
+          "Expect a wait before Eraniel: no free platform suitable for this service · Cape Passenger 06 · TVC–NCJ (B093)": 450,
+          "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Cape Passenger 06 · TVC–NCJ (B093)": 22
+        },
+        "seconds": 676,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 3,
+        "id": "B058",
+        "reasons": {
+          "Authority to PVU_KFI_D0-A": 4,
+          "Block PVU_KFI_D0 occupied by B004 · Cape Express 03 · ERS–NCJ (B004)": 56,
+          "Expect a wait at PVU until Cape Express 03 · ERS–NCJ (B004) overtakes": 588,
+          "Route set to PVU_KFI_D0-A": 2
+        },
+        "seconds": 650,
+        "signal_id": "",
+        "station": "PVU"
+      },
+      {
+        "call": 8,
+        "id": "B089",
+        "reasons": {
+          "Authority to KZT_PYD_M0-SA": 4,
+          "Conflicts with route from KZT_PYD_M0-NH · Cape Passenger 02 · NCJ–TVC (B095)": 12,
+          "Expect a wait at KZT until Cape Passenger 02 · NCJ–TVC (B095) crosses": 14,
+          "Single line KZT_single is locked for opposing traffic · Cape Passenger 02 · NCJ–TVC (B095)": 608
+        },
+        "seconds": 638,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 1,
+        "id": "B043",
+        "reasons": {
+          "Authority to KUMM_AROR_M0-SA": 4,
+          "Block KUMM_RLEAD_D occupied by B016 · Malabar Express 03 · NCJ–ERS (B016)": 12,
+          "Conflicts with route from KUMM_AROR_M0-NH · Malabar Express 03 · NCJ–ERS (B016)": 16,
+          "Route set to KUMM_AROR_M0-SA": 2,
+          "Single line KUMM_single is locked for opposing traffic · Malabar Express 03 · NCJ–ERS (B016)": 594
+        },
+        "seconds": 628,
+        "signal_id": "",
+        "station": "KUMM"
+      },
+      {
+        "call": 0,
+        "id": "B074",
+        "reasons": {
+          "Authority to TVP_TVC_U0-A": 4,
+          "Block TVC_DEPOT_LU_ACCESS occupied by B015 · Malabar Express 02 · NCJ–ERS (B015)": 24,
+          "Block TVP_TVC_U0 occupied by B015 · Malabar Express 02 · NCJ–ERS (B015)": 42,
+          "Expect a wait at TVC until Malabar Express 02 · NCJ–ERS (B015) overtakes": 556
+        },
+        "seconds": 626,
+        "signal_id": "",
+        "station": "TVC"
+      },
+      {
+        "call": 5,
+        "id": "B014",
+        "reasons": {
+          "Authority to TVP_TVC_U0-A": 4,
+          "Block TVC_DEPOT_LU_ACCESS occupied by B012 · Coastal Vande Bharat · Nagercoil to Ernakulam (B012)": 20,
+          "Block TVP_TVC_U0 occupied by B012 · Coastal Vande Bharat · Nagercoil to Ernakulam (B012)": 38,
+          "Expect a wait at TVC until Coastal Vande Bharat · Nagercoil to Ernakulam (B012) overtakes": 540
+        },
+        "seconds": 602,
+        "signal_id": "",
+        "station": "TVC"
+      }
+    ],
+    "pack_sha256": "b14c8f8730d626f9a093ae8ecc3df096f112e10e5e534e5808891355f3fe7afd",
+    "peak_active": 34,
+    "report": "All 140 services arrived safely and cleared to depot where provided. Latest passenger arrival delay: 46.9 min. Manual driving may change the outcome.",
+    "station_wait_quality": {
+      "bins": [
+        120,
+        34,
+        6,
+        3,
+        0
+      ],
+      "brief_count": 1563,
+      "count": 163,
+      "cumulative": [
+        {
+          "count": 120,
+          "fraction": 0.736196319018405,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 154,
+          "fraction": 0.94478527607362,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 160,
+          "fraction": 0.98159509202454,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 163,
+          "fraction": 1,
+          "met": true,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 2402,
+      "minimum_seconds": 30,
+      "ok": true
+    },
+    "total": 140,
+    "wait_quality": {
+      "bins": [
+        202,
+        41,
+        7,
+        3,
+        0
+      ],
+      "brief_count": 2996,
+      "count": 253,
+      "cumulative": [
+        {
+          "count": 202,
+          "fraction": 0.798418972332016,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 243,
+          "fraction": 0.960474308300395,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 250,
+          "fraction": 0.988142292490119,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 253,
+          "fraction": 1,
+          "met": true,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 2402,
+      "minimum_seconds": 30,
+      "ok": true
+    },
+    "wall_seconds": 6215.902
+  },
+  "punctuality": {
+    "20": {
+      "services": 1,
+      "mean_delay_seconds": 2811.64999971868,
+      "p90_delay_seconds": 2811.64999971868,
+      "maximum_delay_seconds": 2811.64999971868
+    },
+    "30": {
+      "services": 25,
+      "mean_delay_seconds": 119.23200004273895,
+      "p90_delay_seconds": 417.00000041505,
+      "maximum_delay_seconds": 1190.54999974486
+    },
+    "45": {
+      "services": 40,
+      "mean_delay_seconds": 462.96500006793,
+      "p90_delay_seconds": 1195.69999988691,
+      "maximum_delay_seconds": 2235.39999980833
+    },
+    "70": {
+      "services": 12,
+      "mean_delay_seconds": 512.7875000096998,
+      "p90_delay_seconds": 1398.29999992458,
+      "maximum_delay_seconds": 2306.24999982407
+    },
+    "75": {
+      "services": 54,
+      "mean_delay_seconds": 405.6175925816494,
+      "p90_delay_seconds": 1001.449999738,
+      "maximum_delay_seconds": 1762.15000006586
+    },
+    "85": {
+      "services": 6,
+      "mean_delay_seconds": 676.6750002180405,
+      "p90_delay_seconds": 2022.4499997538,
+      "maximum_delay_seconds": 2022.4499997538
+    },
+    "100": {
+      "services": 2,
+      "mean_delay_seconds": 393.0999998848165,
+      "p90_delay_seconds": 477.549999868308,
+      "maximum_delay_seconds": 477.549999868308
+    }
+  }
+}

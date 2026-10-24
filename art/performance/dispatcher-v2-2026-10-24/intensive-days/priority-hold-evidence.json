@@ -1,0 +1,793 @@
+{
+  "interpretation": "Actual call differences and recorded hold reasons; interactions are not isolated causal experiments. Different authored relief departures confound planner-only attribution.",
+  "services": {
+    "B003": {
+      "calls": [
+        {
+          "station": "Ernakulam Junction",
+          "classic_arrival": -1.0,
+          "predictive_arrival": -1.0,
+          "classic_departure": 42604.7999999394,
+          "predictive_departure": 42604.7999999394
+        },
+        {
+          "station": "Cherthala",
+          "classic_arrival": 44325.1499999143,
+          "predictive_arrival": 44325.1499999143,
+          "classic_departure": 44602.7999999103,
+          "predictive_departure": 44602.7999999103
+        },
+        {
+          "station": "Alappuzha",
+          "classic_arrival": 46069.8499998889,
+          "predictive_arrival": 46069.8499998889,
+          "classic_departure": 47068.2999998744,
+          "predictive_departure": 46799.7999998783
+        },
+        {
+          "station": "Haripad",
+          "classic_arrival": 48438.8499998545,
+          "predictive_arrival": 48170.3499998584,
+          "classic_departure": 48533.7999998531,
+          "predictive_departure": 48265.299999857
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "classic_arrival": 49170.7499998438,
+          "predictive_arrival": 48902.2499998477,
+          "classic_departure": 49295.799999842,
+          "predictive_departure": 49063.2999998454
+        },
+        {
+          "station": "Kollam Junction",
+          "classic_arrival": 50934.8499998181,
+          "predictive_arrival": 50702.3499998215,
+          "classic_departure": 51059.7999998163,
+          "predictive_departure": 50827.2999998197
+        },
+        {
+          "station": "Varkala Sivagiri",
+          "classic_arrival": 52125.9499998008,
+          "predictive_arrival": 52444.4499997962,
+          "classic_departure": 52220.7999997994,
+          "predictive_departure": 52539.2999997948
+        },
+        {
+          "station": "Thiruvananthapuram North",
+          "classic_arrival": 54229.4999997702,
+          "predictive_arrival": 54253.2999997699,
+          "classic_departure": 54354.2999997684,
+          "predictive_departure": 54378.299999768
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "classic_arrival": 54734.1999997629,
+          "predictive_arrival": 54856.8999997611,
+          "classic_departure": 54979.2999997593,
+          "predictive_departure": 55101.7999997575
+        },
+        {
+          "station": "Neyyattinkara",
+          "classic_arrival": 55852.5999997466,
+          "predictive_arrival": 55975.0999997448,
+          "classic_departure": 55947.7999997452,
+          "predictive_departure": 56776.2999997331
+        },
+        {
+          "station": "Kulitturai",
+          "classic_arrival": 56963.7999997304,
+          "predictive_arrival": 57909.1999997167,
+          "classic_departure": 57058.799999729,
+          "predictive_departure": 58004.2999997153
+        },
+        {
+          "station": "Nagercoil Junction",
+          "classic_arrival": 58594.1499997067,
+          "predictive_arrival": 59662.0499996911,
+          "classic_departure": -1.0,
+          "predictive_departure": -1.0
+        }
+      ],
+      "destination_delay": {
+        "classic": 160.149999706686,
+        "predictive": 1228.04999969115
+      },
+      "waits": {
+        "classic": [
+          {
+            "call": 2,
+            "id": "B003",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_RLEAD_U occupied by B031 · Backwater Intercity 02 · TVC–ERS (B031)": 20.0,
+              "Conflicts with route from ALLP_PUPR_M0-NH · Backwater Intercity 02 · TVC–ERS (B031)": 22.0,
+              "Route set to ALLP_PUPR_M0-SA": 2.0,
+              "Single line ALLP_single is locked for opposing traffic · Backwater Intercity 02 · TVC–ERS (B031)": 412.0,
+              "Single line ALLP_single is locked for opposing traffic · Malabar Express 01 · NCJ–ERS (B014)": 156.0,
+              "Single line ALLP_single is locked for opposing traffic · Malabar Express 01 · NCJ–ERS (B014), Backwater Intercity 02 · TVC–ERS (B031)": 262.0
+            },
+            "seconds": 878.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 2,
+            "id": "B003",
+            "reasons": {
+              "Block MAKM_RLEAD_D occupied by B012 · Coastal Vande Bharat · Nagercoil to Ernakulam (B012)": 12.0,
+              "Conflicts with route from MAKM_KAVR_M0-NH · Coastal Vande Bharat · Nagercoil to Ernakulam (B012)": 10.0,
+              "Expect a wait at MAKM until Coastal Vande Bharat · Nagercoil to Ernakulam (B012) crosses": 164.0,
+              "Route set to MAKM_KAVR_M0-SA": 2.0,
+              "Single line MAKM_single is locked for opposing traffic · Coastal Vande Bharat · Nagercoil to Ernakulam (B012)": 12.0
+            },
+            "seconds": 200.0,
+            "signal_id": "MAKM-S3",
+            "station": "MAKM"
+          },
+          {
+            "call": 7,
+            "id": "B003",
+            "reasons": {
+              "Block MQU_P1 occupied by B056 · Capital Regional 09 · QLN–TVC (B056)": 32.0,
+              "Route set to MQU-S1": 2.0
+            },
+            "seconds": 34.0,
+            "signal_id": "PGZ_MQU_D2-H",
+            "station": "PGZ_MQU_D2"
+          },
+          {
+            "call": 7,
+            "id": "B003",
+            "reasons": {
+              "Signal at red; route locked until safe release · Capital Regional 09 · QLN–TVC (B056)": 22.0,
+              "Waiting for automatic block clearance": 62.0
+            },
+            "seconds": 84.0,
+            "signal_id": "MQU_KXP_D2-A",
+            "station": "MQU_KXP_D2"
+          }
+        ],
+        "predictive": [
+          {
+            "call": 2,
+            "id": "B003",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_RLEAD_U occupied by B031 · Backwater Intercity 02 · TVC–ERS (B031)": 20.0,
+              "Conflicts with route from ALLP_PUPR_M0-NH · Backwater Intercity 02 · TVC–ERS (B031)": 22.0,
+              "Single line ALLP_single is locked for opposing traffic · Backwater Intercity 02 · TVC–ERS (B031)": 144.0,
+              "Single line ALLP_single is locked for opposing traffic · Malabar Express 01 · NCJ–ERS (B014), Backwater Intercity 02 · TVC–ERS (B031)": 418.0
+            },
+            "seconds": 608.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 4,
+            "id": "B003",
+            "reasons": {
+              "Authority to KYJ_OCR_D0-A": 4.0,
+              "Conflicts with route from KYJ-S3 · Coastal Passenger 01 · ERS–KYJ (B036)": 34.0
+            },
+            "seconds": 38.0,
+            "signal_id": "",
+            "station": "KYJ"
+          },
+          {
+            "call": 9,
+            "id": "B003",
+            "reasons": {
+              "Authority to NYY_AMVA_M0-SA": 4.0,
+              "Conflicts with route from NYY_AMVA_M0-NH · Malabar Express 05 · NCJ–ERS (B018)": 12.0,
+              "Expect a wait before Parassala: no free platform suitable for this service · Malabar Express 05 · NCJ–ERS (B018)": 94.0,
+              "Expect a wait before Parassala: no free platform suitable for this service · Malabar Express 05 · NCJ–ERS (B018), Coastal All-Stations Passenger · Ernakulam to Nagercoil (K1)": 30.0,
+              "Route set to NYY_AMVA_M0-SA": 2.0,
+              "Single line NYY_single is locked for opposing traffic · Malabar Express 05 · NCJ–ERS (B018)": 568.0
+            },
+            "seconds": 710.0,
+            "signal_id": "",
+            "station": "NYY"
+          },
+          {
+            "call": 2,
+            "id": "B003",
+            "reasons": {
+              "Block MAKM_RLEAD_D occupied by B012 · Coastal Vande Bharat · Nagercoil to Ernakulam (B012)": 12.0,
+              "Conflicts with route from MAKM_KAVR_M0-NH · Coastal Vande Bharat · Nagercoil to Ernakulam (B012)": 10.0,
+              "Expect a wait at MAKM until Coastal Vande Bharat · Nagercoil to Ernakulam (B012) crosses": 164.0,
+              "Route set to MAKM_KAVR_M0-SA": 2.0,
+              "Single line MAKM_single is locked for opposing traffic · Coastal Vande Bharat · Nagercoil to Ernakulam (B012)": 12.0
+            },
+            "seconds": 200.0,
+            "signal_id": "MAKM-S3",
+            "station": "MAKM"
+          },
+          {
+            "call": 6,
+            "id": "B003",
+            "reasons": {
+              "Authority to EVA_VAK_D2-H": 2.0,
+              "Waiting for automatic block clearance": 88.0
+            },
+            "seconds": 90.0,
+            "signal_id": "EVA_VAK_D1-A",
+            "station": "EVA_VAK_D1"
+          },
+          {
+            "call": 6,
+            "id": "B003",
+            "reasons": {
+              "Formation is too long for this road's clear platform length · Southern Relief Express 13:05 · KYJ–TVC (D103)": 124.0
+            },
+            "seconds": 124.0,
+            "signal_id": "EVA_VAK_D2-H",
+            "station": "EVA_VAK_D2"
+          },
+          {
+            "call": 10,
+            "id": "B003",
+            "reasons": {
+              "Authority to PASA_KZTW_M0-SA": 2.0,
+              "Conflicts with route from PASA_KZTW_M0-NH · Malabar Express 06 · NCJ–ERS (B019)": 12.0,
+              "Expect a wait at PASA until Malabar Express 06 · NCJ–ERS (B019) crosses": 14.0,
+              "Single line PASA_single is locked for opposing traffic · Malabar Express 06 · NCJ–ERS (B019)": 22.0
+            },
+            "seconds": 50.0,
+            "signal_id": "PASA-S2",
+            "station": "PASA"
+          }
+        ]
+      }
+    },
+    "B020": {
+      "calls": [
+        {
+          "station": "Nagercoil Junction",
+          "classic_arrival": -1.0,
+          "predictive_arrival": -1.0,
+          "classic_departure": 60604.7999996774,
+          "predictive_departure": 60604.7999996774
+        },
+        {
+          "station": "Eraniel",
+          "classic_arrival": 61481.8499996647,
+          "predictive_arrival": 61481.8499996647,
+          "classic_departure": 61684.7499996702,
+          "predictive_departure": 61684.7499996702
+        },
+        {
+          "station": "Kulitturai",
+          "classic_arrival": 62395.5499997116,
+          "predictive_arrival": 62395.5499997116,
+          "classic_departure": 62740.7499997317,
+          "predictive_departure": 62740.7499997317
+        },
+        {
+          "station": "Parassala",
+          "classic_arrival": 63189.4999997578,
+          "predictive_arrival": 63189.4999997578,
+          "classic_departure": 63424.7499997715,
+          "predictive_departure": 63424.7499997715
+        },
+        {
+          "station": "Neyyattinkara",
+          "classic_arrival": 64042.5499998074,
+          "predictive_arrival": 64042.5499998074,
+          "classic_departure": 64830.2499998533,
+          "predictive_departure": 64830.2499998533
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "classic_arrival": 65693.1499999035,
+          "predictive_arrival": 65693.1499999035,
+          "classic_departure": 65938.2499999178,
+          "predictive_departure": 65938.2499999178
+        },
+        {
+          "station": "Thiruvananthapuram North",
+          "classic_arrival": 66306.5499999392,
+          "predictive_arrival": 66411.7999999454,
+          "classic_departure": 66431.2499999465,
+          "predictive_departure": 66536.7499999526
+        },
+        {
+          "station": "Kazhakuttam",
+          "classic_arrival": 66760.3499999656,
+          "predictive_arrival": 66956.199999977,
+          "classic_departure": 66855.2499999712,
+          "predictive_departure": 67051.2499999826
+        },
+        {
+          "station": "Varkala Sivagiri",
+          "classic_arrival": 68008.8500000383,
+          "predictive_arrival": 68204.8500000497,
+          "classic_departure": 68272.7500000537,
+          "predictive_departure": 68299.7500000552
+        },
+        {
+          "station": "Paravur",
+          "classic_arrival": 68844.4500000869,
+          "predictive_arrival": 68871.4500000885,
+          "classic_departure": 69010.7500000966,
+          "predictive_departure": 69010.7500000966
+        },
+        {
+          "station": "Kollam Junction",
+          "classic_arrival": 69629.4500001326,
+          "predictive_arrival": 69629.4500001326,
+          "classic_departure": 69838.7500001448,
+          "predictive_departure": 69838.7500001448
+        },
+        {
+          "station": "Karunagapalli",
+          "classic_arrival": 70998.6500002123,
+          "predictive_arrival": 70998.6500002123,
+          "classic_departure": 71332.7500002318,
+          "predictive_departure": 71332.7500002318
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "classic_arrival": 71981.6500002696,
+          "predictive_arrival": 71981.6500002696,
+          "classic_departure": 72214.7500002831,
+          "predictive_departure": 72214.7500002831
+        },
+        {
+          "station": "Haripad",
+          "classic_arrival": 72845.5500003198,
+          "predictive_arrival": 72845.5500003198,
+          "classic_departure": 73036.750000331,
+          "predictive_departure": 73036.750000331
+        },
+        {
+          "station": "Ambalappuzha",
+          "classic_arrival": 73908.8000003817,
+          "predictive_arrival": 73908.8000003817,
+          "classic_departure": 74504.7500004164,
+          "predictive_departure": 74915.7500004403
+        },
+        {
+          "station": "Alappuzha",
+          "classic_arrival": 75143.3500004536,
+          "predictive_arrival": 75554.3500004775,
+          "classic_departure": 75268.2500004609,
+          "predictive_departure": 76007.2500005039
+        },
+        {
+          "station": "Cherthala",
+          "classic_arrival": 76423.6000005281,
+          "predictive_arrival": 77251.3500005763,
+          "classic_departure": 76612.7500005391,
+          "predictive_departure": 78092.2500006252
+        },
+        {
+          "station": "Ernakulam Junction",
+          "classic_arrival": 78526.1500006505,
+          "predictive_arrival": 79845.6000007273,
+          "classic_departure": -1.0,
+          "predictive_departure": -1.0
+        }
+      ],
+      "destination_delay": {
+        "classic": 0.0,
+        "predictive": 1197.60000072731
+      },
+      "waits": {
+        "classic": [
+          {
+            "call": 4,
+            "id": "B020",
+            "reasons": {
+              "Authority to BRAM_NYY_M2-NA": 4.0,
+              "Conflicts with route from BRAM_NYY_M2-SH · Cape Express 04 · ERS–NCJ (B005)": 12.0,
+              "Route set to BRAM_NYY_M2-NA": 2.0,
+              "Single line NEM_single is locked for opposing traffic · Cape Express 04 · ERS–NCJ (B005)": 472.0
+            },
+            "seconds": 490.0,
+            "signal_id": "",
+            "station": "NYY"
+          },
+          {
+            "call": 14,
+            "id": "B020",
+            "reasons": {
+              "Authority to PUPR_AMPA_M3-NA": 4.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH · Coastal Passenger 03 · ERS–KYJ (B038)": 14.0,
+              "Single line ALLP_single is locked for opposing traffic · Coastal Passenger 03 · ERS–KYJ (B038)": 386.0
+            },
+            "seconds": 404.0,
+            "signal_id": "",
+            "station": "AMPA"
+          },
+          {
+            "call": 17,
+            "id": "B020",
+            "reasons": {
+              "Conflicts with route from EZP_TUVR_M3-SH · Capital Intercity 06 · ERS–TVC (B029)": 12.0,
+              "Expect a wait at TUVR until Capital Intercity 06 · ERS–TVC (B029) crosses": 122.0,
+              "Single line KUMM_single is locked for opposing traffic · Capital Intercity 06 · ERS–TVC (B029)": 18.0
+            },
+            "seconds": 152.0,
+            "signal_id": "TUVR-N2",
+            "station": "TUVR"
+          }
+        ],
+        "predictive": [
+          {
+            "call": 4,
+            "id": "B020",
+            "reasons": {
+              "Authority to BRAM_NYY_M2-NA": 4.0,
+              "Conflicts with route from BRAM_NYY_M2-SH · Cape Express 04 · ERS–NCJ (B005)": 12.0,
+              "Route set to BRAM_NYY_M2-NA": 2.0,
+              "Single line NEM_single is locked for opposing traffic · Cape Express 04 · ERS–NCJ (B005)": 472.0
+            },
+            "seconds": 490.0,
+            "signal_id": "",
+            "station": "NYY"
+          },
+          {
+            "call": 14,
+            "id": "B020",
+            "reasons": {
+              "Authority to PUPR_AMPA_M3-NA": 4.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH · Cape Express 08 · ERS–NCJ (B009)": 12.0,
+              "Single line ALLP_single is locked for opposing traffic · Cape Express 08 · ERS–NCJ (B009)": 398.0,
+              "Single line ALLP_single is locked for opposing traffic · Cape Express 08 · ERS–NCJ (B009), Coastal Passenger 03 · ERS–KYJ (B038)": 132.0,
+              "Single line ALLP_single is locked for opposing traffic · Coastal Passenger 03 · ERS–KYJ (B038)": 130.0,
+              "Single line ALLP_single is locked for opposing traffic · Coastal Passenger 03 · ERS–KYJ (B038), Cape Express 08 · ERS–NCJ (B009)": 138.0
+            },
+            "seconds": 814.0,
+            "signal_id": "",
+            "station": "AMPA"
+          },
+          {
+            "call": 15,
+            "id": "B020",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH · Alappuzha Passenger 03 · ERS–ALLP (B044)": 12.0,
+              "Single line MAKM_single is locked for opposing traffic · Alappuzha Passenger 03 · ERS–ALLP (B044)": 314.0
+            },
+            "seconds": 330.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 16,
+            "id": "B020",
+            "reasons": {
+              "Authority to VAY_SRTL_M5-NA": 4.0,
+              "Block VAY_SRTL_M5 occupied by B021 · Malabar Express 08 · NCJ–ERS (B021)": 56.0,
+              "Expect a wait at SRTL until Malabar Express 08 · NCJ–ERS (B021) overtakes": 688.0,
+              "Route set to VAY_SRTL_M5-NA": 2.0
+            },
+            "seconds": 750.0,
+            "signal_id": "",
+            "station": "SRTL"
+          }
+        ]
+      }
+    },
+    "B001": {
+      "calls": [
+        {
+          "station": "Ernakulam Junction",
+          "classic_arrival": -1.0,
+          "predictive_arrival": -1.0,
+          "classic_departure": 30904.6999999989,
+          "predictive_departure": 30904.6999999989
+        },
+        {
+          "station": "Alappuzha",
+          "classic_arrival": 33602.2500000087,
+          "predictive_arrival": 33602.2500000087,
+          "classic_departure": 34030.7000000103,
+          "predictive_departure": 34030.7000000103
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "classic_arrival": 35783.9000000166,
+          "predictive_arrival": 35783.9000000166,
+          "classic_departure": 36172.7000000181,
+          "predictive_departure": 36172.7000000181
+        },
+        {
+          "station": "Kollam Junction",
+          "classic_arrival": 37757.1000000099,
+          "predictive_arrival": 37757.1000000099,
+          "classic_departure": 38092.750000005,
+          "predictive_departure": 38092.750000005
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "classic_arrival": 41019.9999999624,
+          "predictive_arrival": 41019.9999999624,
+          "classic_departure": 41494.7499999555,
+          "predictive_departure": 41494.7499999555
+        },
+        {
+          "station": "Kulitturai",
+          "classic_arrival": 43441.1499999272,
+          "predictive_arrival": 43441.1499999272,
+          "classic_departure": 43566.2499999254,
+          "predictive_departure": 43566.2499999254
+        },
+        {
+          "station": "Nagercoil Junction",
+          "classic_arrival": 45218.6499999013,
+          "predictive_arrival": 45118.9999999028,
+          "classic_departure": -1.0,
+          "predictive_departure": -1.0
+        }
+      ],
+      "destination_delay": {
+        "classic": 308.649999901325,
+        "predictive": 208.999999902771
+      },
+      "waits": {
+        "classic": [
+          {
+            "call": 4,
+            "id": "B001",
+            "reasons": {
+              "Authority to TVC_NEM_M0-SA": 4.0,
+              "Conflicts with route from TVC_NEM_M0-NH · Cape Passenger 01 · NCJ–TVC (B094)": 30.0,
+              "Single line TVC_single is locked for opposing traffic · Cape Passenger 01 · NCJ–TVC (B094)": 198.0
+            },
+            "seconds": 232.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 1,
+            "id": "B001",
+            "reasons": {
+              "Block TUVR_RLEAD_D occupied by B045 · Alappuzha Passenger 01 · ALLP–ERS (B045)": 22.0,
+              "Conflicts with route from TUVR_VAY_M0-NH · Alappuzha Passenger 01 · ALLP–ERS (B045)": 20.0,
+              "Route set to TUVR_VAY_M0-SA": 2.0,
+              "Single line TUVR_single is locked for opposing traffic · Alappuzha Passenger 01 · ALLP–ERS (B045)": 34.0
+            },
+            "seconds": 78.0,
+            "signal_id": "TUVR-S1",
+            "station": "TUVR"
+          },
+          {
+            "call": 4,
+            "id": "B001",
+            "reasons": {
+              "Block MQU_P1 occupied by B051 · Capital Regional 04 · QLN–TVC (B051)": 66.0
+            },
+            "seconds": 66.0,
+            "signal_id": "PGZ_MQU_D2-H",
+            "station": "PGZ_MQU_D2"
+          },
+          {
+            "call": 4,
+            "id": "B001",
+            "reasons": {
+              "Authority to KXP_KZK_D0-A": 2.0,
+              "Signal at red; route locked until safe release · Capital Regional 04 · QLN–TVC (B051)": 118.0,
+              "Waiting for automatic block clearance": 60.0
+            },
+            "seconds": 180.0,
+            "signal_id": "MQU_KXP_D2-A",
+            "station": "MQU_KXP_D2"
+          },
+          {
+            "call": 5,
+            "id": "B001",
+            "reasons": {
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Cape Passenger 02 · NCJ–TVC (B095), Cape Passenger 02 · TVC–NCJ (B089)": 108.0,
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Cape Passenger 02 · TVC–NCJ (B089)": 66.0
+            },
+            "seconds": 174.0,
+            "signal_id": "PASA-S1",
+            "station": "PASA"
+          },
+          {
+            "call": 6,
+            "id": "B001",
+            "reasons": {
+              "Block NJT_P1 occupied by B089 · Cape Passenger 02 · TVC–NCJ (B089)": 108.0
+            },
+            "seconds": 108.0,
+            "signal_id": "VRLR_NJT_D4-H",
+            "station": "VRLR_NJT_D4"
+          }
+        ],
+        "predictive": [
+          {
+            "call": 4,
+            "id": "B001",
+            "reasons": {
+              "Authority to TVC_NEM_M0-SA": 4.0,
+              "Conflicts with route from TVC_NEM_M0-NH · Cape Passenger 01 · NCJ–TVC (B094)": 30.0,
+              "Single line TVC_single is locked for opposing traffic · Cape Passenger 01 · NCJ–TVC (B094)": 198.0
+            },
+            "seconds": 232.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 1,
+            "id": "B001",
+            "reasons": {
+              "Block TUVR_RLEAD_D occupied by B045 · Alappuzha Passenger 01 · ALLP–ERS (B045)": 22.0,
+              "Conflicts with route from TUVR_VAY_M0-NH · Alappuzha Passenger 01 · ALLP–ERS (B045)": 20.0,
+              "Route set to TUVR_VAY_M0-SA": 2.0,
+              "Single line TUVR_single is locked for opposing traffic · Alappuzha Passenger 01 · ALLP–ERS (B045)": 34.0
+            },
+            "seconds": 78.0,
+            "signal_id": "TUVR-S1",
+            "station": "TUVR"
+          },
+          {
+            "call": 4,
+            "id": "B001",
+            "reasons": {
+              "Block MQU_P1 occupied by B051 · Capital Regional 04 · QLN–TVC (B051)": 66.0
+            },
+            "seconds": 66.0,
+            "signal_id": "PGZ_MQU_D2-H",
+            "station": "PGZ_MQU_D2"
+          },
+          {
+            "call": 4,
+            "id": "B001",
+            "reasons": {
+              "Authority to KXP_KZK_D0-A": 2.0,
+              "Signal at red; route locked until safe release · Capital Regional 04 · QLN–TVC (B051)": 118.0,
+              "Waiting for automatic block clearance": 60.0
+            },
+            "seconds": 180.0,
+            "signal_id": "MQU_KXP_D2-A",
+            "station": "MQU_KXP_D2"
+          },
+          {
+            "call": 5,
+            "id": "B001",
+            "reasons": {
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Cape Passenger 02 · NCJ–TVC (B095), Cape Passenger 02 · TVC–NCJ (B089)": 108.0,
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Cape Passenger 02 · TVC–NCJ (B089)": 66.0
+            },
+            "seconds": 174.0,
+            "signal_id": "PASA-S1",
+            "station": "PASA"
+          }
+        ]
+      }
+    },
+    "B012": {
+      "calls": [
+        {
+          "station": "Nagercoil Junction",
+          "classic_arrival": -1.0,
+          "predictive_arrival": -1.0,
+          "classic_departure": 33004.7000000065,
+          "predictive_departure": 33004.7000000065
+        },
+        {
+          "station": "Kulitturai",
+          "classic_arrival": 34471.7500000119,
+          "predictive_arrival": 34471.7500000119,
+          "classic_departure": 34738.7000000128,
+          "predictive_departure": 34738.7000000128
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "classic_arrival": 36488.3500000192,
+          "predictive_arrival": 36488.3500000192,
+          "classic_departure": 37006.7500000208,
+          "predictive_departure": 37006.7500000208
+        },
+        {
+          "station": "Kollam Junction",
+          "classic_arrival": 40124.4999999755,
+          "predictive_arrival": 40284.1999999731,
+          "classic_departure": 40327.7499999725,
+          "predictive_departure": 40409.2499999713
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "classic_arrival": 41917.3999999494,
+          "predictive_arrival": 41998.8999999482,
+          "classic_departure": 42042.2499999475,
+          "predictive_departure": 42123.7499999464
+        },
+        {
+          "station": "Alappuzha",
+          "classic_arrival": 43803.4499999219,
+          "predictive_arrival": 43884.9499999207,
+          "classic_departure": 44835.7499999069,
+          "predictive_departure": 44835.7499999069
+        },
+        {
+          "station": "Ernakulam Junction",
+          "classic_arrival": 47487.5499998683,
+          "predictive_arrival": 47487.5499998683,
+          "classic_departure": -1.0,
+          "predictive_departure": -1.0
+        }
+      ],
+      "destination_delay": {
+        "classic": 477.549999868308,
+        "predictive": 477.549999868308
+      },
+      "waits": {
+        "classic": [
+          {
+            "call": 3,
+            "id": "B012",
+            "reasons": {
+              "Authority to PRND_QLN_U6-A": 4.0,
+              "Block QLN_DEPOT_LU_ACCESS occupied by D129 · Capital Fast 09:55 · TVC–QLN (D129)": 24.0,
+              "Conflicts with route from QLN-N4 · Capital Fast 09:55 · TVC–QLN (D129)": 52.0
+            },
+            "seconds": 80.0,
+            "signal_id": "",
+            "station": "QLN"
+          },
+          {
+            "call": 5,
+            "id": "B012",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH · Coastal Passenger 01 · ERS–KYJ (B036)": 12.0,
+              "Single line MAKM_single is locked for opposing traffic · Coastal Passenger 01 · ERS–KYJ (B036)": 812.0
+            },
+            "seconds": 828.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "B012",
+            "reasons": {
+              "Waiting for automatic block clearance": 194.0
+            },
+            "seconds": 194.0,
+            "signal_id": "KZK_VELI_U1-A",
+            "station": "KZK_VELI_U1"
+          }
+        ],
+        "predictive": [
+          {
+            "call": 5,
+            "id": "B012",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH · Coastal Passenger 01 · ERS–KYJ (B036)": 12.0,
+              "Single line MAKM_single is locked for opposing traffic · Coastal Passenger 01 · ERS–KYJ (B036)": 812.0
+            },
+            "seconds": 828.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "B012",
+            "reasons": {
+              "Block TVCN_DEPOT_LU_ACCESS occupied by B014 · Malabar Express 01 · NCJ–ERS (B014)": 56.0,
+              "Block VELI_TVCN_U0 occupied by B014 · Malabar Express 01 · NCJ–ERS (B014)": 48.0
+            },
+            "seconds": 104.0,
+            "signal_id": "TVCN-N2",
+            "station": "TVCN"
+          },
+          {
+            "call": 3,
+            "id": "B012",
+            "reasons": {
+              "Signal at red; route locked until safe release · Capital Regional 04 · TVC–QLN (B071)": 36.0,
+              "Waiting for automatic block clearance": 68.0
+            },
+            "seconds": 104.0,
+            "signal_id": "AMY_KVU_U0-A",
+            "station": "AMY_KVU_U0"
+          }
+        ]
+      }
+    }
+  }
+}

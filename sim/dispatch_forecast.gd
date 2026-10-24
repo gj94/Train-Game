@@ -122,7 +122,13 @@ func arrival(train: Dictionary, road: String, at_s: float, stop: bool, cautious:
 	var checkpoints:=[]
 	for call: Dictionary in train.calls:
 		if not target.get("station","").is_empty() and call.get("code","")==target.station:break
-		if (call.chainage-train.chainage)*direction<=1:continue
+		# A call within one metre is still pending until the arrival controller
+		# marks it berthed. Keep its dwell/booked departure, including a train
+		# exactly at the marker; InputData already omits an acknowledged stop.
+		# Calls in this input are unserved. A manual overshoot cannot certify
+		# onward running by silently discarding that still-unacknowledged call.
+		if (call.chainage-train.chainage)*direction<-.01:
+			return {ok=false,reason="An unacknowledged call is behind the train"}
 		if (target_chainage-call.chainage)*direction<=1:break
 		checkpoints.append(call)
 	checkpoints.append({road=road,s=at_s,final=true})

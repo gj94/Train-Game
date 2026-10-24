@@ -61,3 +61,39 @@ func test_forecast_cannot_run_beyond_the_final_booked_call():
 	var f:=Forecast.new(network());var t:=train()
 	t.calls=[{road="B",s=500.0,chainage=1500.0,dwell=90.0,departure=500.0,final=true}]
 	return not f.arrival(t,"C",900,false).ok and f.arrival(t,"B",500,true).ok
+
+func test_imminent_intermediate_call_keeps_dwell_in_both_directions():
+	# The arrival controller can still be approaching within one metre. A fresh
+	# forecast must not treat that call as passed and lose its entire booked dwell.
+	for direction in [1,-1]:
+		for distance in [.25,0.0]:
+			var t:=train();t.edge="B";t.direction=direction
+			t.head_s=500.0-direction*distance;t.chainage=1000.0+t.head_s
+			t.clock=1000.0;t.speed=.2 if distance>0 else 0.0
+			t.calls=[{road="B",s=500.0,chainage=1500.0,dwell=0.0,departure=0.0}]
+			var f:=Forecast.new(network());var target:="C" if direction==1 else "A"
+			var marker:=900.0 if direction==1 else 100.0
+			var zero:=f.arrival(t,target,marker,true)
+			t.calls[0].dwell=150.0
+			var dwell:=f.arrival(t,target,marker,true)
+			if not zero.ok or not dwell.ok or absf(dwell.arrival-zero.arrival-150.0)>.001:
+				return "Imminent call lost dwell: direction=%s distance=%s delta=%s" % [direction,distance,dwell.get("arrival",0)-zero.get("arrival",0)]
+	return true
+
+func test_imminent_intermediate_call_keeps_booked_departure():
+	var t:=train();t.edge="B";t.head_s=499.75;t.chainage=1499.75;t.clock=1000.0;t.speed=.2
+	t.calls=[{road="B",s=500.0,chainage=1500.0,dwell=0.0,departure=1400.0}]
+	var result:=Forecast.new(network()).arrival(t,"C",900,true)
+	return result.ok and result.arrival>1405.0
+
+func test_unacknowledged_call_behind_train_is_not_silently_skipped():
+	# A manual driver may roll slightly past the marker before stopping. The
+	# input still lists that call: decline onward advice until it is acknowledged.
+	for direction in [1,-1]:
+		var t:=train();t.edge="B";t.direction=direction
+		t.head_s=500.0+direction*.25;t.chainage=1000.0+t.head_s;t.speed=.2
+		t.calls=[{road="B",s=500.0,chainage=1500.0,dwell=150.0,departure=0.0}]
+		var target:="C" if direction==1 else "A"
+		var result:=Forecast.new(network()).arrival(t,target,900.0 if direction==1 else 100.0,true)
+		if result.ok:return "Unacknowledged past call was skipped in direction "+str(direction)
+	return true

@@ -1,5 +1,68 @@
 # Progress
 
+## 25 October 2026 — broader ETA audit finds an imminent-stop dwell omission
+
+The all-service saved-ETA audit covers 233 states, 34 predictions, sixteen actual
+arrivals and fourteen trains in both directions. It exposed a boundary defect:
+a forecast just before K1 berthed at Karunagapalli omitted its 150-second dwell,
+producing an approximately 149-second optimistic arrival at Sasthankotta.
+Intermediate calls within one metre had been treated as already passed.
+
+The forecast now retains pending calls up to the existing 1cm route tolerance.
+Two regression tests fail before the fix and pass afterwards, covering both
+directions, exactly-at-marker calls and booked departure waits. Acknowledged
+stops keep the existing release-time handling. Other large sampled errors mix
+opposing/following traffic and later-changed pass plans; those limitations are
+[recorded explicitly](../art/performance/dispatcher-v2-2026-10-24/eta-dwell-boundary/README.md).
+
+The first correction passes 963 full source tests. A final manual-overshoot
+guard also declines advice when a still-unacknowledged call is behind the train;
+its regression fails before and passes after the guard, with 17 focused tests
+passing. The final full suite passes **964 tests, zero failures**, with empty
+stderr. Because this changes a prepared source hash,
+the previously accepted four catalogues need fresh preparation, including both
+Intensive manual-delay audits. Earlier complete-day evidence remains intact;
+no signatures will be relabelled. Timetable authoring and Classic dispatch are
+unchanged. R46 remains published; no executable release requested.
+
+Playtest once regenerated: inspect V2 Forecast details as K1 finishes braking
+at Karunagapalli. Its next-station ETA should include the booked platform dwell
+before and after berth acknowledgement. Do not use old prepared data to assess
+the corrected runtime.
+
+## 25 October 2026 — both revised Intensive baselines accepted and installed
+
+All four Classic/V2 Standard/Intensive choices now have verified prepared starts,
+five-minute states and reciprocal encounter previews. Both revised 140-service
+baselines completed every call and depot movement without safety events; all
+waiting targets pass independently for station calls and all locations.
+Each Intensive variant has 140 starts, 233 time states and 4,834 verified input
+fingerprints. Disturbed runs remain separate evidence. R46 stays published;
+no executable release was requested or prepared.
+
+V2 K1 has eleven distinct overtakers across seven stations, maximum three at
+Sasthankotta. Its destination delay falls from Classic's 46m52s to 9m22s, and
+station waits under ten minutes rise from 73.62% to 83.63%. This is the combined
+planner/timetable result: fifteen relief departures differ. Priority groups 75
+and 85 have worse mean destination punctuality; B003 and B020 finish 17m48s
+and 19m58s later. Their actual intermediate calls and hold reasons are retained,
+not hidden behind aggregate gains. No claim of globally optimal dispatch.
+[Full results and limitations](../art/performance/dispatcher-v2-2026-10-24/intensive-days/README.md).
+
+Validation: finalizer plus independent installed-data verification, 55 native
+Intensive checks and four reviewed screens, followed by **961 source tests,
+zero failures**. The previous 36 Standard native checks already covered those
+unchanged choices. Actual noon restoration places K1 on Sasthankotta loop P3
+while D114 passes on main P1 at approximately 89 km/h.
+
+Playtest from source: choose Predictive V2 / Intensive 140, select K1 and inspect
+55 stops and 37 traffic events (26 crossings, eleven overtaken-by); check a
+counterpart service for the reciprocal role. Explore 12:00 and join K1 at
+Sasthankotta. Classic 12:00 instead places K1 at Kayamkulam. Drive late, return
+to AI and compare fresh Forecast details with the original baseline preview.
+The six-active-hour work requirement remains open; broader saved-ETA validation
+is next, with accepted railway inputs preserved.
+
 ## 25 October 2026 — both revised manual-delay days pass
 
 Classic and V2 each completed all 140 services after a ten-minute manual K1

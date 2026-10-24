@@ -656,3 +656,90 @@ manual-delay run as baseline states. Classic20980/12884 and V226924/21812 baseli
 jobs remain running with frozen inputs. Continue final safety/wait/call/hash/
 distribution gates, then compatible installs and actual Intensive menu checks.
 No further timing edit follows from provisional success; no executable release.
+
+## 25 October 05:09 — both baseline variants and all four menu choices accepted
+
+All v5 jobs have completed. Both undisturbed 140-service days pass every call,
+depot clearance, zero-safety gate, source fingerprint and both wait-distribution
+checks. Installed Classic and V2 each have 140 departure snapshots and 233 exact
+five-minute states, checked independently after finalization. No source or
+observer hash was relabelled. Earlier failed candidates and manual-delay audits
+remain separate evidence. No further authoring changes are needed.
+
+Classic station-only waits under thirty minutes now pass 160/163 (98.1595%).
+Classic K1 has twelve distinct overtakers across eight stations, maximum five
+at KPY. V2 has eleven across seven stations, maximum three at STKT; K1 delay
+561.70s versus Classic 2811.65s. V2 station waits under ten minutes are 83.63%
+versus 73.62%; all V2 waits are under thirty minutes. Keep the tradeoffs explicit:
+fifteen authored departures differ, priority 75/85 destination means regress,
+and B003/B020 finish 1067.90/1197.60s later. Actual call/hold evidence is retained
+in intensive-days/priority-hold-evidence.json.
+
+55 native checks pass for real Intensive service and noon-time restoration;
+four screenshots reviewed. Combined with previous 36 Standard checks, all four
+menu choices are exercised. Actual V2 noon K1 is STKT_P3 loop and D114 main P1
+at about 89 km/h. Full source suite after install: 961 passed, zero failed,
+empty stderr. Wrapper16584 and native27580 finished. The prepared UI checker
+can now be committed. Raw audits, summaries, comparisons, verification logs,
+source tests and native evidence live in intensive-days.
+
+Playtest: Predictive V2 / Intensive 140 / K1, inspect 55 stops and 37 encounters;
+check reciprocal service roles, then Explore12:00 and join K1 at STKT. Manual
+lateness can change future events; fresh Forecast details are advisory. No
+executable release. Continue useful read-only ETA validation to finish the
+remaining actual six-hour requirement; do not repeat accepted full-day replays.
+
+## 25 October 05:18 — all-service ETA audit caught a real dwell boundary defect
+
+Read-only audit:233 states,4834 fingerprints,34 samples/16 actual arrivals/14
+trains, both directions and ICF/LHB. Six optimistic observations beyond own
+uncertainty represent three arrivals. B042/D129 have intervening holds and
+changed pass stations. K1's 149.08s error is explained by losing its150s KPY
+dwell when a forecast is captured0.5s before berth acknowledgement, inside the
+old one-metre skipped-call threshold. Source and trace evidence retained in
+eta-dwell-boundary; no exact missing forecast frame is fabricated.
+
+Two new regressions fail on old source (14 focused passes,2 failures), then
+pass after retaining pending calls down to the existing1cm route tolerance
+(16 passes). Both directions,exact marker and later booked departures covered.
+Full source suite wrapper5996 is running; freeze runtime/tests until complete.
+No other simulation/track/authoring changes. Classic data commit36298eb pushed;
+V2 pre-fix data remains local/uncommitted and is preserved in originalv5 output.
+Do not push obsolete prepared data as final. All four variants need matching
+fresh preparation because the source manifest changed. Also rerun both140-day
+manual-delay audits. Keep all acceptance gates unchanged. R46 remains live.
+
+Next: finish source tests,commit/push coherent fix+diagnostic+evidence,then start
+one isolated v6 job per required variant. Keep six preparation observers and
+runtime/routes/packs frozen during those jobs. Old source evidence remains
+historical; do not relabel hashes. Repeat native menu checks only after newly
+compatible data is installed. Useful broader validation,not idle waiting,counts
+toward the remaining active-work requirement.
+
+05:25 final boundary review: first correction passes all963 source tests, empty
+stderr. An additional manual-overshoot case within the1.1m berth tolerance
+showed that an unacknowledged past call could still be skipped. The pending-call
+input contract requires declining onward advice instead. Regression fails
+before (16pass/1fail) and passes after (17pass), both directions. Final complete
+suite wrapper18140 now runs in dwell-final-full-tests.log/.err. Do not edit
+runtime/tests during it. This is the final intended runtime change before v6.
+
+The guarded six-job launcher is prepared at .local/dispatcher-v2-2026-10-24/
+launch-v6.ps1 but NOT EXECUTED. After final tests, commit/push the source fix,
+three regression tests, exercised ETA audit/UI checker and historical evidence.
+Keep obsolete untracked data/timetables/intensive_v2 separate until regenerated.
+Then launch v6 once: four baseline mode/day combinations with snapshots and both
+Intensive600s manualK1 disturbances at11000. All authored packs remain unchanged.
+The launcher refuses existing v6 outputs or active preparation jobs and records
+full isolated options/PIDs/source commit in rehearsal-jobs-v6.json. Verify actual
+child command lines, modes and stderr. No earlier full-day job remains active.
+
+## 25 October 05:32 — final ETA correction passes the complete source suite
+
+Final source:964 tests passed,zero failed,empty stderr. Wrapper18140/child13936
+have finished. Logs are archived in eta-dwell-boundary. All three new regression
+tests have failed before their corresponding correction and passed afterward.
+The source fix, exercised all-service ETA diagnostic and native prepared-menu
+checker can now be committed with historical evidence. No pending test process
+remains. Six fresh compatible preparations will use this exact committed source;
+all previous prepared measurements remain clearly labelled pre-correction.

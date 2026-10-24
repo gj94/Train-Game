@@ -1,0 +1,33 @@
+{
+  "verified_at": "2026-10-25T05:10:12.332664+08:00",
+  "full_source_tests": {
+    "passed": 961,
+    "failed": 0,
+    "stderr_bytes": 0
+  },
+  "native_intensive_checks": 55,
+  "previous_standard_native_checks": 36,
+  "baseline_variants": [
+    {
+      "id": "intensive",
+      "source_hashes": 4834,
+      "departures": 140,
+      "states": 233,
+      "audit_sha256": "57c04592d7a60a83f469de2df00f05c1df13837433b050617eb304fb2d4f017b",
+      "starts_catalogue_sha256": "c518cff38226f4fa0c3b249c375313c57196f399bc9f77d2cad5287b54e0d52e",
+      "time_catalogue_sha256": "2dfceed21b4898e474d75f28264f4bb1d4c3a6c836e1014b527ce5948aec5c1a",
+      "independent_verifier_log": "classic-installed-verify.log"
+    },
+    {
+      "id": "intensive_v2",
+      "source_hashes": 4834,
+      "departures": 140,
+      "states": 233,
+      "audit_sha256": "237d93aa0b771ad1d14a8213a50297a5d30e29089cb5a8eb35afa83bc7b55167",
+      "starts_catalogue_sha256": "ade7b42f53879f04feb7602a4c640b6b6258437d4e4b166fe0dfd0b1e1eaa9be",
+      "time_catalogue_sha256": "5806b1a46f93e22e4af88133e063c699f4a00a258d3838a4ec843c8f665d33cc",
+      "independent_verifier_log": "predictive-installed-verify.log"
+    }
+  ],
+  "no_executable_release": true
+}

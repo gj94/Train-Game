@@ -1,12 +1,18 @@
+> Preparation status: a later audit found and corrected an imminent-stop dwell
+> omission. All four previously accepted days are being regenerated for the new
+> source hash. Their historical measurements below remain evidence for the prior
+> source; they must not be bundled with the corrected runtime. R46 remains live.
+
 # Predictive dispatcher V2
 
 V2 is an optional overtake planner for the Kerala Coast railway. Classic remains
 available. The home operating-day selector provides Standard 100 and Intensive
 140 choices for each dispatcher. The corresponding prepared departures, time
 states and traffic previews must pass their own full-day replay before use.
-Both Standard 100 variants are now prepared and checked in source. Revised
-Intensive 140 variants are still undergoing validation; the published R46
-download remains Classic.
+All four variants are now prepared and checked in source. The revised V2
+Intensive baseline gives K1 eleven distinct overtakers across seven stations.
+The published R46 download remains Classic; no new executable release has been
+prepared for this work.
 
 ## Choosing a dispatcher
 
@@ -20,7 +26,7 @@ Classic and Predictive V2. This changes the planner for your current railway;
 it does not replace departure times, reset delays, move trains or cancel already
 committed routes. A Classic Intensive journey switched to V2 keeps its Classic
 service timings. To use the separately staggered V2 Intensive departures, begin
-a new journey from that operating day once it is validated. Save/Continue retains
+a new journey from that operating day. Save/Continue retains
 your chosen mode and actual railway progress.
 
 Use **Dispatch → inspect your train → Forecast details** to see a current plan.
@@ -118,7 +124,7 @@ Game road IDs are not official platform numbers. Universal access from both
 running lines has not been modelled. Its layout change requires new compatible
 Classic and V2 prepared states; old signatures are never relabelled as valid.
 
-Evidence and pending whole-day gates are in
+Evidence and completed whole-day gates are in
 [the work record](dispatcher-v2-work-2026-10-24.md) and
 [the validation artifacts](../art/performance/dispatcher-v2-2026-10-24/README.md).
 Rehearsals check every service's completion, all calls, depot clearance, safety
@@ -133,3 +139,11 @@ VB B012 finishes 11m31s later after changed crossing interactions. See
 [the complete Standard comparison](../art/performance/dispatcher-v2-2026-10-24/standard-days/README.md)
 for call-level results and limitations. Predictive planning is not a promise of
 globally optimal dispatch or a hard maximum wait for an individual player.
+
+The revised Intensive comparison meets every wait target, with 86.86% of extra
+waits below ten minutes and all below thirty in V2. K1 reaches Nagercoil 9m22s
+late versus Classic's 46m52s. These results include fifteen authored departure
+changes and are not a planner-only comparison: priority 75 and 85 mean destination
+lateness increases, while the two Vande Bharats' mean improves. The complete
+[Intensive comparison and regressions](../art/performance/dispatcher-v2-2026-10-24/intensive-days/README.md)
+retains actual intermediate calls and hold reasons, including B003 and B020.
