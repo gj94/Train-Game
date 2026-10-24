@@ -1,5 +1,21 @@
 # Progress
 
+## 24 October 2026 — predictive dispatcher foundation (not enabled in gameplay)
+
+Added detached speed-envelope forecasting, comparison of compatible passing
+stations and a bounded asynchronous WorkerThreadPool runner. The initial real
+11:40 K1/B002 case selects Sasthamkotta's platform loop with the express on the
+through main; this is a forecast, not yet a proven live dispatch outcome.
+All 919 source tests pass, including worker lifecycle, copied inputs, directional
+paths, full-rake restriction retention and occupied/short-loop rejection.
+For 25 active trains on the development PC, forecasting averages 24.60 ms inline
+versus 10.14 ms on four workers; periodic input capture adds 3.13 ms. These are
+CPU task timings, not target-PC frame rates. Classic dispatch and prepared data
+are unchanged. Next: simulation-owner validation, live policy integration,
+compatible V2 operating days and spatially distributed Intensive overtakes.
+[Work record](dispatcher-v2-work-2026-10-24.md),
+[evidence](../art/performance/dispatcher-v2-2026-10-24/README.md).
+
 ## 24 October 2026 — K1/B002 Karunagappalli investigation only
 
 Reproduced the reported Intensive main/loop allocation from existing prepared

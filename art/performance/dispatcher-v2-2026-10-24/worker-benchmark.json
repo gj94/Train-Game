@@ -1,0 +1,538 @@
+{
+	"caller": 1,
+	"capture_us": 3133,
+	"clock": 41999.9999999482,
+	"edges": 706,
+	"ok": true,
+	"plans": [
+		{
+			"alternatives": [
+				{
+					"cost": 612.259780175658,
+					"fast_entry": 42058.7799623497,
+					"margin": -1.22003759846848,
+					"passing_road": "PVU_P4",
+					"road": "PVU_P1",
+					"slow_clear": 41999.9999999482,
+					"station": "PVU",
+					"wait": 537.492996520996
+				}
+			],
+			"at_station": true,
+			"call_index": 3,
+			"chainage": 154133.529,
+			"cost": 612.259780175658,
+			"created": 41999.9999999482,
+			"direction": 1,
+			"express_stop": true,
+			"fast_clear": 42468.492996521,
+			"fast_entry": 42058.7799623497,
+			"margin": -1.22003759846848,
+			"origin_edge": "PVU_P1",
+			"other": "B024",
+			"participants": [
+				"B024",
+				"D114"
+			],
+			"passing_road": "PVU_P4",
+			"road": "PVU_P1",
+			"slow_clear": 41999.9999999482,
+			"station": "PVU",
+			"stop": true,
+			"train": "B053",
+			"wait": 537.492996520996
+		},
+		{
+			"alternatives": [
+				{
+					"cost": 172.287417894494,
+					"fast_entry": 42710.7272448114,
+					"margin": 159.08930739616,
+					"passing_road": "STKT_P1",
+					"road": "STKT_P3",
+					"slow_clear": 42460.5799431001,
+					"station": "STKT",
+					"wait": 179.706546106041
+				},
+				{
+					"cost": 545.311603388874,
+					"fast_entry": 42144.4747554249,
+					"margin": 84.4747554767164,
+					"passing_road": "KPY_P4",
+					"road": "KPY_P1",
+					"slow_clear": 41999.9999999482,
+					"station": "KPY",
+					"wait": 470.544544177326
+				}
+			],
+			"at_station": false,
+			"call_index": 20,
+			"chainage": 122291.956,
+			"cost": 172.287417894494,
+			"created": 41999.9999999482,
+			"direction": 1,
+			"express_stop": false,
+			"fast_clear": 42775.2864892061,
+			"fast_entry": 42710.7272448114,
+			"margin": 159.08930739616,
+			"origin_edge": "KPY_P1",
+			"other": "B002",
+			"participants": [
+				"B002",
+				"D115",
+				"D101"
+			],
+			"passing_road": "STKT_P1",
+			"road": "STKT_P3",
+			"slow_clear": 42460.5799431001,
+			"station": "STKT",
+			"stop": true,
+			"train": "K1",
+			"wait": 179.706546106041
+		}
+	],
+	"samples": [
+		{
+			"compute_cpu_us": 24154,
+			"elapsed_us": 24522,
+			"iteration": 0,
+			"submit_us": 0,
+			"threads": 0,
+			"worker_threads": [
+				1
+			]
+		},
+		{
+			"compute_cpu_us": 23985,
+			"elapsed_us": 24355,
+			"iteration": 1,
+			"submit_us": 0,
+			"threads": 0,
+			"worker_threads": [
+				1
+			]
+		},
+		{
+			"compute_cpu_us": 24287,
+			"elapsed_us": 24604,
+			"iteration": 2,
+			"submit_us": 0,
+			"threads": 0,
+			"worker_threads": [
+				1
+			]
+		},
+		{
+			"compute_cpu_us": 24403,
+			"elapsed_us": 24781,
+			"iteration": 3,
+			"submit_us": 0,
+			"threads": 0,
+			"worker_threads": [
+				1
+			]
+		},
+		{
+			"compute_cpu_us": 24200,
+			"elapsed_us": 24536,
+			"iteration": 4,
+			"submit_us": 0,
+			"threads": 0,
+			"worker_threads": [
+				1
+			]
+		},
+		{
+			"compute_cpu_us": 24180,
+			"elapsed_us": 24490,
+			"iteration": 5,
+			"submit_us": 0,
+			"threads": 0,
+			"worker_threads": [
+				1
+			]
+		},
+		{
+			"compute_cpu_us": 24361,
+			"elapsed_us": 24684,
+			"iteration": 6,
+			"submit_us": 0,
+			"threads": 0,
+			"worker_threads": [
+				1
+			]
+		},
+		{
+			"compute_cpu_us": 24410,
+			"elapsed_us": 24826,
+			"iteration": 7,
+			"submit_us": 0,
+			"threads": 0,
+			"worker_threads": [
+				1
+			]
+		},
+		{
+			"compute_cpu_us": 24232,
+			"elapsed_us": 24579,
+			"iteration": 8,
+			"submit_us": 0,
+			"threads": 0,
+			"worker_threads": [
+				1
+			]
+		},
+		{
+			"compute_cpu_us": 24247,
+			"elapsed_us": 24588,
+			"iteration": 9,
+			"submit_us": 0,
+			"threads": 0,
+			"worker_threads": [
+				1
+			]
+		},
+		{
+			"compute_cpu_us": 24547,
+			"elapsed_us": 25385,
+			"iteration": 0,
+			"submit_us": 274,
+			"threads": 1,
+			"worker_threads": [
+				5
+			]
+		},
+		{
+			"compute_cpu_us": 24402,
+			"elapsed_us": 25569,
+			"iteration": 1,
+			"submit_us": 314,
+			"threads": 1,
+			"worker_threads": [
+				6
+			]
+		},
+		{
+			"compute_cpu_us": 24681,
+			"elapsed_us": 26089,
+			"iteration": 2,
+			"submit_us": 299,
+			"threads": 1,
+			"worker_threads": [
+				7
+			]
+		},
+		{
+			"compute_cpu_us": 24420,
+			"elapsed_us": 25958,
+			"iteration": 3,
+			"submit_us": 291,
+			"threads": 1,
+			"worker_threads": [
+				8
+			]
+		},
+		{
+			"compute_cpu_us": 24441,
+			"elapsed_us": 25072,
+			"iteration": 4,
+			"submit_us": 307,
+			"threads": 1,
+			"worker_threads": [
+				9
+			]
+		},
+		{
+			"compute_cpu_us": 23790,
+			"elapsed_us": 24943,
+			"iteration": 5,
+			"submit_us": 430,
+			"threads": 1,
+			"worker_threads": [
+				10
+			]
+		},
+		{
+			"compute_cpu_us": 23933,
+			"elapsed_us": 25988,
+			"iteration": 6,
+			"submit_us": 459,
+			"threads": 1,
+			"worker_threads": [
+				12
+			]
+		},
+		{
+			"compute_cpu_us": 24223,
+			"elapsed_us": 25014,
+			"iteration": 7,
+			"submit_us": 403,
+			"threads": 1,
+			"worker_threads": [
+				13
+			]
+		},
+		{
+			"compute_cpu_us": 24283,
+			"elapsed_us": 26121,
+			"iteration": 8,
+			"submit_us": 501,
+			"threads": 1,
+			"worker_threads": [
+				15
+			]
+		},
+		{
+			"compute_cpu_us": 24348,
+			"elapsed_us": 25051,
+			"iteration": 9,
+			"submit_us": 435,
+			"threads": 1,
+			"worker_threads": [
+				16
+			]
+		},
+		{
+			"compute_cpu_us": 26181,
+			"elapsed_us": 15934,
+			"iteration": 0,
+			"submit_us": 418,
+			"threads": 2,
+			"worker_threads": [
+				17,
+				19
+			]
+		},
+		{
+			"compute_cpu_us": 26547,
+			"elapsed_us": 16047,
+			"iteration": 1,
+			"submit_us": 454,
+			"threads": 2,
+			"worker_threads": [
+				20,
+				21
+			]
+		},
+		{
+			"compute_cpu_us": 26254,
+			"elapsed_us": 15943,
+			"iteration": 2,
+			"submit_us": 635,
+			"threads": 2,
+			"worker_threads": [
+				23,
+				24
+			]
+		},
+		{
+			"compute_cpu_us": 27530,
+			"elapsed_us": 15990,
+			"iteration": 3,
+			"submit_us": 519,
+			"threads": 2,
+			"worker_threads": [
+				5,
+				6
+			]
+		},
+		{
+			"compute_cpu_us": 27387,
+			"elapsed_us": 16059,
+			"iteration": 4,
+			"submit_us": 390,
+			"threads": 2,
+			"worker_threads": [
+				7,
+				8
+			]
+		},
+		{
+			"compute_cpu_us": 27377,
+			"elapsed_us": 15942,
+			"iteration": 5,
+			"submit_us": 361,
+			"threads": 2,
+			"worker_threads": [
+				9,
+				10
+			]
+		},
+		{
+			"compute_cpu_us": 26923,
+			"elapsed_us": 15998,
+			"iteration": 6,
+			"submit_us": 403,
+			"threads": 2,
+			"worker_threads": [
+				12,
+				13
+			]
+		},
+		{
+			"compute_cpu_us": 27341,
+			"elapsed_us": 16163,
+			"iteration": 7,
+			"submit_us": 365,
+			"threads": 2,
+			"worker_threads": [
+				15,
+				16
+			]
+		},
+		{
+			"compute_cpu_us": 26924,
+			"elapsed_us": 15917,
+			"iteration": 8,
+			"submit_us": 354,
+			"threads": 2,
+			"worker_threads": [
+				17,
+				19
+			]
+		},
+		{
+			"compute_cpu_us": 27065,
+			"elapsed_us": 15924,
+			"iteration": 9,
+			"submit_us": 374,
+			"threads": 2,
+			"worker_threads": [
+				20,
+				21
+			]
+		},
+		{
+			"compute_cpu_us": 30417,
+			"elapsed_us": 9879,
+			"iteration": 0,
+			"submit_us": 433,
+			"threads": 4,
+			"worker_threads": [
+				23,
+				24,
+				5,
+				6
+			]
+		},
+		{
+			"compute_cpu_us": 29544,
+			"elapsed_us": 9989,
+			"iteration": 1,
+			"submit_us": 638,
+			"threads": 4,
+			"worker_threads": [
+				7,
+				9,
+				8,
+				10
+			]
+		},
+		{
+			"compute_cpu_us": 30231,
+			"elapsed_us": 11519,
+			"iteration": 2,
+			"submit_us": 463,
+			"threads": 4,
+			"worker_threads": [
+				12,
+				13,
+				15,
+				16
+			]
+		},
+		{
+			"compute_cpu_us": 29867,
+			"elapsed_us": 9551,
+			"iteration": 3,
+			"submit_us": 400,
+			"threads": 4,
+			"worker_threads": [
+				17,
+				19,
+				20,
+				21
+			]
+		},
+		{
+			"compute_cpu_us": 31487,
+			"elapsed_us": 10050,
+			"iteration": 4,
+			"submit_us": 324,
+			"threads": 4,
+			"worker_threads": [
+				23,
+				5,
+				24,
+				6
+			]
+		},
+		{
+			"compute_cpu_us": 29925,
+			"elapsed_us": 10397,
+			"iteration": 5,
+			"submit_us": 306,
+			"threads": 4,
+			"worker_threads": [
+				7,
+				9,
+				8,
+				10
+			]
+		},
+		{
+			"compute_cpu_us": 30020,
+			"elapsed_us": 10021,
+			"iteration": 6,
+			"submit_us": 295,
+			"threads": 4,
+			"worker_threads": [
+				12,
+				15,
+				13,
+				16
+			]
+		},
+		{
+			"compute_cpu_us": 29450,
+			"elapsed_us": 10007,
+			"iteration": 7,
+			"submit_us": 411,
+			"threads": 4,
+			"worker_threads": [
+				17,
+				21,
+				19,
+				20
+			]
+		},
+		{
+			"compute_cpu_us": 30033,
+			"elapsed_us": 9970,
+			"iteration": 8,
+			"submit_us": 428,
+			"threads": 4,
+			"worker_threads": [
+				23,
+				24,
+				5,
+				6
+			]
+		},
+		{
+			"compute_cpu_us": 29935,
+			"elapsed_us": 9975,
+			"iteration": 9,
+			"submit_us": 494,
+			"threads": 4,
+			"worker_threads": [
+				7,
+				8,
+				9,
+				10
+			]
+		}
+	],
+	"topology_us": 7795,
+	"trains": 25
+}

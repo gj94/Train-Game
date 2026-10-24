@@ -9,6 +9,16 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **24 Oct 2026 predictive dispatcher V2:** retain selectable Classic dispatch;
+  add asynchronous multithreaded forecasts comparing future overtakes using
+  train/line speeds, traction, braking, booked dwell, platform compatibility and
+  full-rake clearance. Consider onward running when the slower train can reach
+  a suitable next loop before delaying its follower. Validate detached proposals
+  against live state through existing interlocking. Prepare tested V2 timetable
+  starts/time states/encounters, with a revised Intensive day spreading K1 passes
+  along the corridor. Preserve Classic variants. Work at least six further active
+  hours from 24 Oct 22:33:56 Singapore and past 04:00 the next morning.
+  See `dispatcher-v2-work-2026-10-24.md` for the fixed window and evidence.
 - **24 Oct 2026 overnight map refinement:** improve terrain relief, graded
   paths/roads and coherent Indian countryside around the unchanged railway.
   Remove floating/abruptly ending scenery; preserve simulation and prepared

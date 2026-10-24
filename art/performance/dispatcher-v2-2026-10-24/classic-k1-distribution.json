@@ -1,0 +1,194 @@
+{
+  "source": "data/timetables/intensive/starts/traffic.json",
+  "events": [
+    {
+      "time": 31981.887936327937,
+      "chainage_m": 24023.2316187225,
+      "a": "B001",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B001",
+      "cleared": 32124.0000000033,
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 36137.98194867924,
+      "chainage_m": 57663.0869320378,
+      "a": "B024",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B024",
+      "cleared": 36476.0000000192,
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 42267.95307109386,
+      "chainage_m": 114639.561771346,
+      "a": "B002",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B002",
+      "cleared": 42437.9999999418,
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 42597.97266101614,
+      "chainage_m": 114639.561771346,
+      "a": "D115",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D115",
+      "cleared": 42769.999999937,
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 42979.402479067314,
+      "chainage_m": 114639.561771346,
+      "a": "D101",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D101",
+      "cleared": 43149.9999999314,
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 43359.93271503037,
+      "chainage_m": 114639.561771346,
+      "a": "D116",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D116",
+      "cleared": 43529.9999999259,
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 43739.96861424019,
+      "chainage_m": 114639.561771346,
+      "a": "D102",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D102",
+      "cleared": 43909.9999999204,
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 44719.49016693406,
+      "chainage_m": 122291.632029377,
+      "a": "D103",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D103",
+      "cleared": 44741.9999999083,
+      "station": "STKT",
+      "location": "Sasthankotta"
+    },
+    {
+      "time": 45968.52066787458,
+      "chainage_m": 132598.695151102,
+      "a": "D104",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D104",
+      "cleared": 45989.9999998901,
+      "station": "PRND",
+      "location": "Perinad"
+    },
+    {
+      "time": 48169.988442135626,
+      "chainage_m": 154133.203259298,
+      "a": "D105",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D105",
+      "cleared": 48331.999999856,
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 48575.13468714223,
+      "chainage_m": 154133.203259298,
+      "a": "B055",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B055",
+      "cleared": 48633.9999998516,
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 51127.09954767515,
+      "chainage_m": 174474.025530731,
+      "a": "B025",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B025",
+      "cleared": 51179.9999998146,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 54066.3423177751,
+      "chainage_m": 199076.395354471,
+      "a": "B003",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B003",
+      "cleared": 54133.9999997716,
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 54347.951530539736,
+      "chainage_m": 199076.395354471,
+      "a": "B056",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B056",
+      "cleared": 54549.9999997655,
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    }
+  ],
+  "distinct_overtakers": 14,
+  "by_station": [
+    {
+      "station": "ALLP",
+      "count": 1
+    },
+    {
+      "station": "KPY",
+      "count": 5
+    },
+    {
+      "station": "KVU",
+      "count": 1
+    },
+    {
+      "station": "PRND",
+      "count": 1
+    },
+    {
+      "station": "PVU",
+      "count": 2
+    },
+    {
+      "station": "STKT",
+      "count": 1
+    },
+    {
+      "station": "TUVR",
+      "count": 1
+    },
+    {
+      "station": "TVCN",
+      "count": 2
+    }
+  ]
+}
