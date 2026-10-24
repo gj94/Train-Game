@@ -1,10 +1,14 @@
 extends RefCounted
 ## Separate immutable baselines. Selecting one never edits another timetable or save.
 const DAYS := [
-	{id="standard",name="Standard · 100 services",description="The original hundred-service schedule, with the existing booked departure times.",
-		starts="res://data/service_starts",times="res://data/railway_times",count=100},
-	{id="intensive",name="Intensive · 140 services",description="More limited-stop relief trains and a slower all-stations K1. Extra traffic concentrates on the double-line middle section.",
-		starts="res://data/timetables/intensive/starts",times="res://data/timetables/intensive/times",count=140}]
+	{id="standard",name="Classic · Standard 100",description="The original hundred-service schedule, with the existing booked departure times.",
+		starts="res://data/service_starts",times="res://data/railway_times",count=100,dispatcher="classic"},
+	{id="intensive",name="Classic · Intensive 140",description="More limited-stop relief trains and a slower all-stations K1. Extra traffic concentrates on the double-line middle section.",
+		starts="res://data/timetables/intensive/starts",times="res://data/timetables/intensive/times",count=140,dispatcher="classic"},
+	{id="standard_v2",name="Predictive V2 · Standard 100",description="The standard departures with predictive passing plans based on speed, stop patterns and expected delay.",
+		starts="res://data/timetables/standard_v2/starts",times="res://data/timetables/standard_v2/times",count=100,dispatcher="predictive"},
+	{id="intensive_v2",name="Predictive V2 · Intensive 140",description="Staggered relief workings and predictive dispatch spread passing opportunities along the route. The actual outcome changes with your driving.",
+		starts="res://data/timetables/intensive_v2/starts",times="res://data/timetables/intensive_v2/times",count=140,dispatcher="predictive"}]
 
 static func index_of(id: String) -> int:
 	for i in DAYS.size():
@@ -18,7 +22,7 @@ static func available(id: String) -> bool:
 	var day:=definition(id)
 	var starts:=preload("res://persistence/service_starts.gd").catalogue(day.starts)
 	var times:=preload("res://persistence/railway_times.gd").catalogue(day.times)
-	return starts.ok and times.ok and starts.data.services.size()==day.count
+	return starts.ok and times.ok and starts.data.services.size()==day.count and starts.data.get("dispatcher","classic")==day.dispatcher and times.data.get("dispatcher","classic")==day.dispatcher
 
 static func stage_start(tree: SceneTree,choice: Dictionary) -> void:
 	# Capture the selected day before clearing the previous journey's metadata.

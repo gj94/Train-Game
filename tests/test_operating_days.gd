@@ -59,3 +59,32 @@ func test_timeline_and_departure_entries_keep_day_when_old_journey_is_cleared():
 		if tree.has_meta(key):tree.remove_meta(key)
 	for key in previous:tree.set_meta(key,previous[key])
 	return ok
+
+func test_all_four_days_have_distinct_prepared_data_and_explicit_dispatcher():
+	var paths:=[];var modes:={}
+	for day in Days.DAYS:
+		if day.starts in paths or day.times in paths:return "Shared prepared data"
+		paths.append(day.starts);paths.append(day.times);modes[day.id]=day.dispatcher
+	return modes=={standard="classic",intensive="classic",standard_v2="predictive",intensive_v2="predictive"}
+
+func test_predictive_pack_opt_in_is_validated_and_keeps_classic_default():
+	var original:=Pack.defaults("kerala_coast",false)
+	var a:=Pack.build(original)
+	if not a.ok or a.world.dispatcher().predictive.enabled:return "Classic default lost"
+	var opted: Dictionary=original.duplicate(true);opted.dispatcher="predictive"
+	var b:=Pack.build(opted)
+	if not b.ok or not b.world.dispatcher().predictive.enabled:return "V2 import ignored"
+	opted.dispatcher="unknown"
+	return not Pack.build(opted).ok
+
+func test_predictive_intensive_changes_departures_without_padding_k1_or_forcing_passes():
+	var classic: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://art/timetables/kerala-coast-intensive.json"))
+	var v2: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://art/timetables/kerala-coast-intensive-v2.json"))
+	if v2.services.size()!=140 or v2.dispatcher!="predictive":return "Wrong V2 roster"
+	for index in classic.services.size():
+		var a: Dictionary=classic.services[index].duplicate(true);var b: Dictionary=v2.services[index].duplicate(true)
+		if a.id.begins_with("D"):
+			a.erase("departure");a.erase("name");b.erase("departure");b.erase("name")
+		if a!=b:return "Changed formation, calls or slow schedule: "+str(a.id)
+	var decoded:=Pack.decode(JSON.stringify(v2))
+	return decoded.ok and decoded.world.dispatcher().predictive.enabled

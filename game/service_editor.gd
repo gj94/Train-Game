@@ -234,6 +234,7 @@ func open(world: RailWorld, active_pack: Dictionary = {}) -> void:
 		if active_pack.is_empty() and FileAccess.file_exists(save_path):
 			var saved := _read_file(save_path)
 			if saved.ok: draft=saved.data
+		if world.dispatcher().predictive.enabled:draft.dispatcher="predictive"
 	block_field.clear()
 	# Station roads first, then other graph blocks for special workings.
 	var blocks: Array = []

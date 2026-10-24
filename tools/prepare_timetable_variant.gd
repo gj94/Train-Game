@@ -36,6 +36,7 @@ func run() -> void:
 	var decoded: Dictionary={ok=true,world=preload("res://sim/layouts/kerala_coast.gd").build_traffic(true)} if standard else Pack.decode(FileAccess.get_file_as_string(pack_path))
 	if not decoded.ok:printerr(decoded.reason);quit(1);return
 	var w: RailWorld=decoded.world
+	predictive=predictive or w.dispatcher().predictive.enabled
 	if predictive:
 		w.dispatcher().predictive.configure(true,false)
 		w.dispatcher().predictive.offline_workers=4

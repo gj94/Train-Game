@@ -4,14 +4,25 @@ import {readFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 const sha=b=>createHash('sha256').update(b).digest('hex');
-const folder='data/timetables/intensive';
+const variants=[
+  {id:'intensive',folder:'data/timetables/intensive',count:140,mode:'classic',pack:'art/timetables/kerala-coast-intensive.json'},
+  {id:'standard_v2',folder:'data/timetables/standard_v2',count:100,mode:'predictive',pack:null},
+  {id:'intensive_v2',folder:'data/timetables/intensive_v2',count:140,mode:'predictive',pack:'art/timetables/kerala-coast-intensive-v2.json'},
+];
+const requested=process.argv.find(a=>a.startsWith('--day='))?.slice(6);
+if(requested)assert.ok(variants.some(v=>v.id===requested),'Unknown alternate operating day');
+for(const variant of variants.filter(v=>!requested||v.id===requested)){
+const {folder,count,mode,pack}=variant;
 const bytes=await readFile(folder+'/starts/catalogue.json');
 const timeBytes=await readFile(folder+'/times/catalogue.json');
 const starts=JSON.parse(bytes),times=JSON.parse(timeBytes);
 const traffic=JSON.parse(await readFile(folder+'/starts/traffic.json'));
 assert.ok(starts.complete&&starts.audit.ok&&times.complete&&times.audit.ok&&traffic.complete&&traffic.audit.ok);
-assert.equal(starts.services.length,140);assert.equal(starts.audit.finished,140);
+assert.equal(starts.services.length,count);assert.equal(starts.audit.finished,count);
 assert.deepEqual(starts.audit.events,[]);const fullAudit=JSON.parse(await readFile(folder+'/audit.json','utf8'));assertWaitQuality(fullAudit);assert.deepEqual(starts.audit,fullAudit.audit);
+assert.equal(starts.dispatcher??'classic',mode);assert.equal(times.dispatcher??'classic',mode);
+assert.equal(starts.audit.dispatcher??'classic',mode);assert.equal(traffic.dispatcher??'classic',mode);
+assert.equal(starts.audit.operating_day,count===100?'standard':'intensive');assert.equal(starts.audit.delay,0);
 assert.equal(traffic.start_sha256,sha(bytes));assert.equal(traffic.timeline_sha256,sha(timeBytes));
 assert.equal(times.departure_catalogue_sha256,sha(bytes));
 assert.deepEqual(times.sources,starts.sources);
@@ -27,7 +38,7 @@ async function walk(folder){
   }
 }
 await walk('sim');await walk('data/routes/kerala_coast');
-found.push('art/timetables/kerala-coast-intensive.json');
+if(pack)found.push(pack);
 assert.deepEqual(found.sort(),Object.keys(starts.sources).sort());
 for(const [path,digest]of Object.entries(starts.sources)){
   const value=await readFile(path);
@@ -47,7 +58,7 @@ for(const row of times.states){
   assert.equal(row.clock%300,0);if(previous>=0)assert.equal(row.clock-previous,300);previous=row.clock;
 }
 const ids=starts.services.map(s=>s.id);
-assert.equal(new Set(ids).size,140);
+assert.equal(new Set(ids).size,count);
 for(const row of starts.services){
   assert.equal(row.calls.length,row.stops);
   // JSON decimals can differ by a few ulps after subtracting clock times.
@@ -63,10 +74,10 @@ for(const e of traffic.events){
   if(e.kind==='overtake'){
     assert.ok([e.a,e.b].includes(e.overtaker)&&e.cleared>=e.time);
     if([e.a,e.b].includes('K1')&&e.overtaker!=='K1')overtakers.add(e.overtaker);
-    assert.ok(!([e.a,e.b].includes('B042')&&[e.a,e.b].includes('B002')&&e.overtaker==='B042'));
+    if(count===140)assert.ok(!([e.a,e.b].includes('B042')&&[e.a,e.b].includes('B002')&&e.overtaker==='B042'));
   }else assert.equal(e.kind,'crossing');
 }
-assert.ok(overtakers.size>=10);
+if(count===140)assert.ok(overtakers.size>=10);
 assert.deepEqual([...overtakers].sort(),[...traffic.audit.distinct_k1_overtakers].sort());
 assert.equal(traffic.audit.crossing_count,traffic.events.filter(e=>e.kind==='crossing').length);
 assert.equal(traffic.audit.overtake_count,traffic.events.filter(e=>e.kind==='overtake').length);
@@ -76,4 +87,6 @@ for(const [sub,rows]of [['starts',starts.services],['times',times.states]]){
     assert.equal(sha(await readFile(`${folder}/${sub}/${row.file}`)),row.sha256);
   }
 }
-console.log(`Intensive day verified: ${ids.length} services, ${times.states.length} time states, ${overtakers.size} distinct K1 overtakers.`);
+console.log(`${variant.id} (${mode}) verified: ${ids.length} services, ${times.states.length} time states, ${overtakers.size} distinct K1 overtakers.`);
+
+}

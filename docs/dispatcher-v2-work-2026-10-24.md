@@ -134,3 +134,24 @@ staggered relief departures (avoid the current 11:20–12:35 KYJ platoon), keepi
 K1's schedule unchanged. Freeze sim inputs, then rehearse Classic100/140 and
 V2 Standard/Intensive plus disturbed V2; prepare matching starts/time/traffic.
 No full-day preparation is running yet. Keep fixed six-hour active-work window.
+
+## 25 October 2026 — V2 selection and live contender validation
+
+Classic/Predictive V2 Standard 100 and Intensive 140 now have independent home
+choices and prepared-data paths. Journey mode switching preserves route locks;
+V2 pack import/export, save and timeline loading retain and verify mode. The
+dispatcher shows following/passing lateness and extra slow-train detention.
+All higher-priority contenders are rechecked when their control, priority,
+speed cap or calls change. Corrected UTF-8 labels from the QLN edit.
+
+Validation: **943 source tests**, **18 Node finalizer/wait/encounter tests** and
+**11 native UI checks** pass. Native 720p/900p views reviewed; evidence at
+`art/performance/dispatcher-v2-2026-10-24/selection`. Authored V2 Intensive candidate
+staggers relief departures without changing K1 calls/dwell/equipment; final
+spatial overtake results are not yet known. Finalizer/verification now distinguish
+Classic and V2 and report each K1 passing station. Four compatible full-day
+rehearsals are next. Existing prepared states remain incompatible with QLN until
+regenerated; never bypass signatures. R46 remains the published release.
+
+Playtest after preparation: all four day choices, service and five-minute
+entries, traffic roles, Journey dispatch toggle, and save/reload mode retention.

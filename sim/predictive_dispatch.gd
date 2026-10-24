@@ -69,7 +69,7 @@ func accept(w: RailWorld,engine,result: Dictionary) -> void:
 		p.inputs={}
 		for id: String in [p.train]+participants:
 			var item: Dictionary=inputs[id]
-			p.inputs[id]={priority=item.priority,manual=item.manual,length=item.length,speed=item.speed,call_index=item.call_index}
+			p.inputs[id]={priority=item.priority,manual=item.manual,length=item.length,speed=item.speed,max_speed=item.max_speed,call_index=item.call_index}
 		p.owners={}
 		for road: String in [p.road,p.passing_road]:
 			p.owners[road]=[result.get("occupied",{}).get(road,""),result.get("claims",{}).get(road,"")]
@@ -106,13 +106,15 @@ func valid(w: RailWorld,engine,p: Dictionary) -> bool:
 	if not enabled or p.get("generation",-1)!=_generation or w.time-p.get("time",-INF)>MAX_AGE:return false
 	var slow: Train=w.trains.get(p.train);var fast: Train=w.trains.get(p.other)
 	if slow==null or fast==null:return false
-	for t: Train in [slow,fast]:
+	for id: String in [p.train]+p.get("participants",[p.other]):
+		var t: Train=w.trains.get(id)
+		if t==null:return false
 		if t.lifecycle!="active" or t.service_complete or t.emergency or t.timetable==null or t.timetable.missed_stop:return false
 		if t.path[0].dir!=p.direction or engine.operator_holds.has(t.id) or engine.platform_preferences.has(t.id):return false
 		if engine.future_clearances.controls_order(t.id) or w.time<engine._advisory_release_until.get(t.id,-1):return false
 		if engine.inhibited_signals.has(w.next_signal(t).get("id","")):return false
 		var input: Dictionary=p.get("inputs",{}).get(t.id,{})
-		if not input.is_empty() and (t.dispatch_priority!=input.priority or t.automatic==input.manual or not is_equal_approx(t.length,input.length)):return false
+		if not input.is_empty() and (t.dispatch_priority!=input.priority or t.automatic==input.manual or not is_equal_approx(t.length,input.length) or t.timetable.index!=input.call_index or not is_equal_approx(t.max_speed,input.max_speed)):return false
 		if not input.is_empty() and input.manual and t.speed<input.speed-3:return false
 	if fast.dispatch_priority<=slow.dispatch_priority:return false
 	if (InputData.chainage(w,slow)-p.chainage)*p.direction>600:return false
@@ -208,9 +210,14 @@ func restore(w: RailWorld,data) -> String:
 		for actor in p.inputs:
 			var input=p.inputs[actor]
 			if not w.trains.has(actor) or not input is Dictionary:return "Invalid predictive train input"
-			if not input.get("priority") is int or not input.get("manual") is bool or not input.get("length") is float or not input.get("speed") is float:return "Invalid predictive train input"
+			if not input.get("priority") is int or not input.get("manual") is bool or not input.get("call_index") is int:return "Invalid predictive train input"
+			for key in ["length","speed","max_speed"]:
+				if not input.get(key) is float or not is_finite(input[key]) or input[key]<0:return "Invalid predictive train input"
 		for actor in p.participants:
 			if not actor is String or not w.trains.has(actor):return "Invalid predictive contender"
+		if p.other not in p.participants or p.train not in p.inputs:return "Missing predictive contender validation"
+		for actor in p.participants:
+			if actor not in p.inputs:return "Missing predictive contender validation"
 		for road_id in p.owners:
 			if not w.graph.edges.has(road_id) or not p.owners[road_id] is Array:return "Invalid predictive road owner"
 			for owner in p.owners[road_id]:

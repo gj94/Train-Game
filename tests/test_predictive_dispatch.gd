@@ -115,3 +115,23 @@ func test_worker_time_skip_matches_inline_v2_and_restores_live_async_mode():
 		if completed.is_empty():OS.delay_msec(1)
 	if completed.is_empty():worker.close();return "Predictive skip timed out"
 	return b.dispatcher().predictive.asynchronous and Snapshot.capture(a)==Snapshot.capture(b)
+
+func test_every_accepted_contender_is_revalidated_until_plan_expires():
+	for change in ["manual","hold","priority","delete","call","speed_cap"]:
+		var w:=restored();var e=w.dispatcher()
+		var other:=Train.new("RELIEF",1);preload("res://sim/stock/ported_stock.gd").configure(other,"lhb","express")
+		other.automatic=true;other.dispatch_priority=70
+		w.place_train(other,"KYJ_P1",preload("res://sim/berth_clearance.gd").marker(w,other,"KYJ_P1",1),1)
+		other.timetable=preload("res://sim/timetable.gd").new()
+		Snapshot.apply(other.timetable,Snapshot.fields(w.trains.B002.timetable,Snapshot.TIMETABLE),Snapshot.TIMETABLE)
+		e.predictive.accept(w,e,prepare(w))
+		if not e.predictive.plans.has("K1") or "RELIEF" not in e.predictive.plans.K1.participants:return "No multi-contender certificate"
+		match change:
+			"manual":other.automatic=false
+			"hold":e.operator_holds.RELIEF=true
+			"priority":other.dispatch_priority=90
+			"delete":w.trains.erase(other.id)
+			"call":other.timetable.index+=1
+			"speed_cap":other.max_speed=20
+		if not e.predictive.plan(w,w.trains.K1).is_empty():return "Ignored changed third contender: "+change
+	return true

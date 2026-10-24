@@ -85,6 +85,9 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 	if not layout is String or layout not in ["southern_corridor","first_line","kerala_coast"]:
 		return _error("Unknown track layout")
 	if expected_layout != "" and layout != expected_layout: return _error("This file belongs to a different track layout")
+	var mode=data.get("dispatcher","classic")
+	if not mode is String or mode not in ["classic","predictive"]:return _error("Dispatcher must be classic or predictive")
+	if mode=="predictive" and layout!="kerala_coast":return _error("Predictive V2 currently requires the Kerala Coast layout")
 	var world := blank(layout)
 	if data.get("layout_signature","") != signature(world) and data.get("layout_signature","") != signature(world,true):
 		return _error("Track layout has changed; this file's track/signals do not match this layout")
@@ -160,6 +163,7 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 		train.status = "Awaiting booked departure and route"
 		if not definition.get("scheduled_entry",false) is bool: return _error(id+": scheduled_entry must be true or false")
 		if definition.get("scheduled_entry",false): train.lifecycle="scheduled"
+	if mode=="predictive":world.dispatcher().predictive.configure(true)
 	preload("res://sim/service_lifecycle.gd").update(world)
 	var normalized: Dictionary = data.duplicate(true)
 	normalized.day = int(data.get("day",1))

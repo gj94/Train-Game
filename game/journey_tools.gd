@@ -82,6 +82,8 @@ func show() -> void:
 	var options:=[["Back","pad_return:journey"],["Next-signal HUD: "+("Aspect + distance" if show_signal_aspect else "Distance only"),"journey:toggle:show_signal_aspect"]]
 	for item in [["autosaves","Five-minute recovery saves"],["clearance_alert","Proceed-signal notification"],["normal_on_clear","Return to ×1 when cleared"],["route_strip","Route-ahead information"]]:
 		options.append([item[1]+": "+("ON" if get(item[0]) else "OFF"),"journey:toggle:"+item[0]])
+	if game.world.scenery.get("geographic",false):
+		options.append(["Dispatcher: "+("Predictive V2" if game.world.dispatcher().predictive.enabled else "Classic"),"journey:dispatcher"])
 	options.append(["Save a recovery point now","journey:save"])
 	options.append(["Return to previous viewpoint","journey:previous"])
 	for id in ["1","2","3"]:
@@ -89,7 +91,7 @@ func show() -> void:
 		if views.slots.has(id):options.append(["Restore viewpoint "+id+" · "+str(views.slots[id].get("service","")),"journey:restore:"+id])
 	options.append(["Create local diagnostic ZIP","journey:diagnostics"])
 	options.append(["Open diagnostics folder","journey:folder"])
-	game.save_load.show("JOURNEY TOOLS","Distance-only signal HUD hides the aspect and suppresses proceed alerts / automatic speed reset. Read the actual lineside signals.\nRecovery saves rotate through three slots every five minutes of active play, and always before a time skip or scenario change. Load them from Load journey.\nViewpoints belong to their service; restoring a passenger seat still hands driving to AI.\nDiagnostics stay on this PC until you choose to share them.",options)
+	game.save_load.show("JOURNEY TOOLS","Distance-only signal HUD hides the aspect and suppresses proceed alerts / automatic speed reset. Read the actual lineside signals.\nRecovery saves rotate through three slots every five minutes of active play, and always before a time skip or scenario change. Load them from Load journey.\nViewpoints belong to their service; restoring a passenger seat still hands driving to AI.\nPredictive V2 compares future passing places and expected delay. Switching preserves current routes; traffic previews still describe the selected operating day's prepared baseline.\nDiagnostics stay on this PC until you choose to share them.",options)
 	game.hud.save_menu.back_action="pad_return:journey"
 func action(command: String) -> void:
 	var parts:=command.split(":")
@@ -98,6 +100,9 @@ func action(command: String) -> void:
 			set(parts[2],not get(parts[2]));var config:=ConfigFile.new()
 			for key in ["autosaves","clearance_alert","normal_on_clear","route_strip","show_signal_aspect"]:config.set_value("options",key,get(key))
 			config.save("user://journey.cfg");show()
+		"dispatcher":
+			var engine=game.world.dispatcher()
+			engine.set_mode("classic" if engine.predictive.enabled else "predictive");show()
 		"save":autosave("Player recovery point",true)
 		"remember":views.remember(parts[2]);show()
 		"restore":views.restore(views.slots.get(parts[2],{}))

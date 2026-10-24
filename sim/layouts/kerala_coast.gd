@@ -307,7 +307,7 @@ func _depot_exit(w: RailWorld, st: Dictionary, start: String, dir: int, lane: St
 		_node(w,end,s+dir*(1800+road*30),lateral)
 		var id: String=key+"_ROAD"+str(road)
 		_depot_edge(w,id,gate,end,dir,15,lateral)
-		w.depots[id]={name=st.name+" depot Â· "+("south" if dir==1 else "north")+" "+lane+str(road),direction=dir,station=st.code,reconstructed=true}
+		w.depots[id]={name=st.name+" depot · "+("south" if dir==1 else "north")+" "+lane+str(road),direction=dir,station=st.code,reconstructed=true}
 		w.graph.edges[id].depot=true
 		if road>=3:continue
 		var next: String=key+"_G"+str(road)
@@ -323,11 +323,11 @@ static func build_traffic(busy: bool = false) -> RailWorld:
 	var w := build()
 	var calls: Array=w.stations.filter(func(s):return s.passenger_open).map(func(s):return s.code)
 	var definitions := [
-		["K1","Coastal Stopping Passenger Â· Ernakulam to Nagercoil","icf",1,calls,1,1],
+		["K1","Coastal Stopping Passenger · Ernakulam to Nagercoil","icf",1,calls,1,1],
 		["K2","Northbound Morning LHB","lhb",-1,["TUVR","ERS"],3,4],
-		["K3","Coastal Vande Bharat Â· 8 cars","vb8",1,["KUMM","TUVR","ALLP","KYJ","QLN","TVC","NCJ"],3,5],
+		["K3","Coastal Vande Bharat · 8 cars","vb8",1,["KUMM","TUVR","ALLP","KYJ","QLN","TVC","NCJ"],3,5],
 		["K4","Northbound Backwater ICF","icf",-1,["AMPA","ALLP","MAKM","SRTL","TUVR","KUMM","ERS"],2,5],
-		["K5","Cape Vande Bharat Â· 16 cars","vb16",1,["SRTL","ALLP","KYJ","QLN","TVC","NCJ"],3,4],
+		["K5","Cape Vande Bharat · 16 cars","vb16",1,["SRTL","ALLP","KYJ","QLN","TVC","NCJ"],3,4],
 		["K6","Priority Kollam LHB Express","lhb",1,["KYJ","KPY","QLN"],4,5],
 		["K7","Northbound Cape LHB","lhb",-1,["ERL","KZT","PASA","NYY","TVC"],2,4]]
 	var stations := {}
@@ -400,6 +400,6 @@ static func build_traffic(busy: bool = false) -> RailWorld:
 		t.controller = -1.0
 		if t.id!="K1" and (busy or w.trains.values().any(func(existing):return existing.id!=t.id and existing.timetable.stops[0].block==stops[0].block)):
 			t.lifecycle = "scheduled"
-			t.status = "Scheduled Â· prepares two minutes before departure"
+			t.status = "Scheduled · prepares two minutes before departure"
 	if busy: preload("res://sim/service_lifecycle.gd").update(w)
 	return w

@@ -4,6 +4,7 @@ const Times:=preload("res://persistence/railway_times.gd")
 const Briefing:=preload("res://persistence/service_briefing.gd")
 const UI:=preload("res://game/dispatch_theme.gd")
 var directory:=Times.DIRECTORY
+var dispatcher_mode:="classic"
 var states: Array=[]
 var world: RailWorld
 var requested:=0
@@ -51,6 +52,7 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	Engine.max_fps=60;Input.mouse_mode=Input.MOUSE_MODE_VISIBLE;get_tree().auto_accept_quit=false
 	Input.joy_connection_changed.connect(func(_device,_connected):_pan=Vector2.ZERO;_zoom=0;_triggers=Vector2.ZERO;picker_input.reset())
+	dispatcher_mode=preload("res://persistence/operating_days.gd").definition(str(get_tree().get_meta("timetable_id","standard"))).dispatcher
 	if directory==Times.DIRECTORY:
 		directory=preload("res://persistence/operating_days.gd").definition(str(get_tree().get_meta("timetable_id","standard"))).times
 	_build()
@@ -60,6 +62,7 @@ func _ready() -> void:
 func _load_catalogue() -> void:
 	var catalogue:=Times.catalogue(directory)
 	if not catalogue.ok:_load_error(catalogue.reason);slider.editable=false;return
+	if catalogue.data.get("dispatcher","classic")!=dispatcher_mode:_load_error("This operating day needs matching dispatcher data. Update the game.");slider.editable=false;return
 	slider.editable=true
 	states=catalogue.data.states;slider.max_value=states.size()-1
 	var remembered: int=get_tree().get_meta("timeline_index",0)
@@ -142,7 +145,11 @@ func choose(index: int) -> void:
 		if world!=null:_show_world(world)
 		else:loaded_index=-1
 
-func _read(row: Dictionary) -> Dictionary:return Times.load_state(row,directory)
+func _read(row: Dictionary) -> Dictionary:
+	var result:=Times.load_state(row,directory)
+	if result.ok:
+		if result.world.dispatcher().predictive.enabled!=(dispatcher_mode=="predictive"):return {ok=false,reason="Prepared time uses a different dispatcher. Update the game."}
+	return result
 
 func _process(delta: float) -> void:
 	if entering:return

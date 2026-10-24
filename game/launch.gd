@@ -118,6 +118,8 @@ func _load_catalogue() -> void:
 	traffic_reason="Traffic preview is unavailable for this timetable."
 	var catalogue:=Starts.catalogue(directory)
 	if catalogue.ok:
+		if catalogue.data.get("dispatcher","classic")!=Days.definition(timetable_id).dispatcher:
+			_set_status("This operating day needs matching dispatcher data. Update the game.");return
 		services=catalogue.data.services
 		var traffic:=Traffic.catalogue(services,directory)
 		if traffic.ok:traffic_data=traffic.data
@@ -174,7 +176,7 @@ func _build() -> void:
 	continue_button=_button(top,"Continue latest save",_continue)
 	saved_button=_button(top,"Saved journeys",_toggle_saves)
 	var day_row:=HBoxContainer.new();day_row.add_theme_constant_override("separation",16);outer.add_child(day_row)
-	timetable_picker=OptionButton.new();timetable_picker.custom_minimum_size=Vector2(300,42);day_row.add_child(timetable_picker)
+	timetable_picker=OptionButton.new();timetable_picker.custom_minimum_size=Vector2(330,42);day_row.add_child(timetable_picker)
 	for day in Days.DAYS:timetable_picker.add_item(day.name)
 	timetable_picker.select(Days.index_of(timetable_id));timetable_picker.item_selected.connect(select_timetable)
 	timetable_description=_label(day_row,Days.definition(timetable_id).description,15,Color("a8bdc6"))
@@ -341,7 +343,7 @@ func _select(index: int) -> void:
 	briefing.text+="\n\nCrossings and overtakes are decided dynamically; the signals and dispatcher give current instructions as you drive."
 	traffic_rows=Traffic.for_service(traffic_data,selected.id)
 	stops_tab.text="Stops · %d" % selected.calls.size();traffic_tab.text="Traffic · %d" % traffic_rows.size() if not traffic_data.is_empty() else "Traffic"
-	traffic_summary.text="AI baseline · "+Traffic.summary(traffic_rows) if not traffic_data.is_empty() else "Traffic preview unavailable"
+	traffic_summary.text=("Predictive V2 AI baseline · " if Days.definition(timetable_id).dispatcher=="predictive" else "Classic AI baseline · ")+Traffic.summary(traffic_rows) if not traffic_data.is_empty() else "Traffic preview unavailable"
 	_build_traffic()
 	set_detail_mode(detail_mode)
 
@@ -420,7 +422,9 @@ func _load_finished_without_entry(message: String,failed: bool=false) -> void:
 func _read_request(kind: String,row: Dictionary) -> Dictionary:
 	if kind=="service":
 		var result:=Starts.load_start(row,directory)
-		if result.ok:result.service=row.id;result.timetable_id=timetable_id;result.passenger_start=row.get("passenger_start",false)==true
+		if result.ok:
+			if result.world.dispatcher().predictive.enabled!=(Days.definition(timetable_id).dispatcher=="predictive"):return Snapshot.error("Prepared journey uses a different dispatcher. Update the game.")
+			result.service=row.id;result.timetable_id=timetable_id;result.passenger_start=row.get("passenger_start",false)==true
 		return result
 	var saved:=store.read_slot(row.slot,row.backup)
 	if not saved.ok:return saved

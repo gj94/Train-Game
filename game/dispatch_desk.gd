@@ -479,7 +479,7 @@ func _refresh() -> void:
 	_live_badge.modulate=UI.AMBER if presentation_paused else UI.MINT
 	_follow_button.set_pressed_no_signal(_map.follow_train)
 	_map.player_train=selected_train
-	_auto_button.text="AUTO DISPATCH  "+("ON" if auto_dispatch else "OFF")
+	_auto_button.text=("V2 DISPATCH  " if engine.predictive.enabled else "CLASSIC DISPATCH  ")+("ON" if auto_dispatch else "OFF")
 	_your_train.text="YOUR SERVICE  "+selected_train+"  ·  "+("AI driving" if world.trains[selected_train].automatic else "Manual driving")
 	var complete: int=world.trains.values().filter(func(t):return t.service_complete).size()
 	var held: int=engine.states.values().filter(func(s):return s.status in ["waiting","held","blocked"]).size()
@@ -500,8 +500,12 @@ func _refresh() -> void:
 	_inspect_title.text=inspected_train+"  /  "+t.service_name
 	_inspect_stats.text="%d km/h   ·   %.1f m   ·   %s\n%s" % [roundi(t.speed*3.6),t.length,"AI driver" if t.automatic else "Manual driver",t.path[0].edge]
 	_inspect_reason.text=state.get("reason","Waiting for dispatch assessment")
-	var planned: String=state.get("planned_crossing","")
-	if not planned.is_empty() and not _inspect_reason.text.contains(planned):_inspect_reason.text+="\n"+planned
+	for kind in ["planned_crossing","planned_overtake"]:
+		var planned: String=state.get(kind,"")
+		if not planned.is_empty() and not _inspect_reason.text.contains(planned):_inspect_reason.text+="\n"+planned
+	var plan: Dictionary=engine.predictive.plan(world,t) if engine.predictive.enabled else {}
+	if plan.has("order"):
+		_inspect_reason.text+="\nPriority service at %s: follow +%.1f min / pass +%.1f min · extra wait %.1f min" % [plan.order.checkpoint,plan.order.follow_delay/60,plan.order.pass_delay/60,plan.order.slow_extra/60]
 	var call: Dictionary=state.get("call",{})
 	_inspect_call.text="No remaining scheduled calls"
 	if not call.is_empty():
