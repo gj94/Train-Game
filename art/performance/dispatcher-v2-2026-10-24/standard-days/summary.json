@@ -1,0 +1,194 @@
+{
+  "classic-standard": {
+    "audit_sha256": "94b217f7f030708c74c38c2a7544cfb8a448274c3d728a390764f6d758636e94",
+    "sources": 4833,
+    "services": 100,
+    "safety_events": 0,
+    "maximum_wait": 1696.0,
+    "wait_quality": {
+      "bins": [
+        136,
+        33,
+        7,
+        0,
+        0
+      ],
+      "brief_count": 2694,
+      "count": 176,
+      "cumulative": [
+        {
+          "count": 136,
+          "fraction": 0.772727272727273,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600.0
+        },
+        {
+          "count": 169,
+          "fraction": 0.960227272727273,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200.0
+        },
+        {
+          "count": 176,
+          "fraction": 1.0,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800.0
+        },
+        {
+          "count": 176,
+          "fraction": 1.0,
+          "met": true,
+          "required": 1.0,
+          "under_seconds": 2700.0
+        }
+      ],
+      "maximum": 1694.0,
+      "minimum_seconds": 30.0,
+      "ok": true
+    },
+    "station_wait_quality": {
+      "bins": [
+        86,
+        26,
+        5,
+        0,
+        0
+      ],
+      "brief_count": 1413,
+      "count": 117,
+      "cumulative": [
+        {
+          "count": 86,
+          "fraction": 0.735042735042735,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600.0
+        },
+        {
+          "count": 112,
+          "fraction": 0.957264957264957,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200.0
+        },
+        {
+          "count": 117,
+          "fraction": 1.0,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800.0
+        },
+        {
+          "count": 117,
+          "fraction": 1.0,
+          "met": true,
+          "required": 1.0,
+          "under_seconds": 2700.0
+        }
+      ],
+      "maximum": 1694.0,
+      "minimum_seconds": 30.0,
+      "ok": true
+    },
+    "time_states": 233
+  },
+  "predictive-standard": {
+    "audit_sha256": "db99e518457c831f7ef038a0e7ab8056bbf7a36cc4279ff5fc52e0e350c8c147",
+    "sources": 4833,
+    "services": 100,
+    "safety_events": 0,
+    "maximum_wait": 1774.0,
+    "wait_quality": {
+      "bins": [
+        154,
+        22,
+        5,
+        0,
+        0
+      ],
+      "brief_count": 2708,
+      "count": 181,
+      "cumulative": [
+        {
+          "count": 154,
+          "fraction": 0.850828729281768,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600.0
+        },
+        {
+          "count": 176,
+          "fraction": 0.972375690607735,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200.0
+        },
+        {
+          "count": 181,
+          "fraction": 1.0,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800.0
+        },
+        {
+          "count": 181,
+          "fraction": 1.0,
+          "met": true,
+          "required": 1.0,
+          "under_seconds": 2700.0
+        }
+      ],
+      "maximum": 1772.0,
+      "minimum_seconds": 30.0,
+      "ok": true
+    },
+    "station_wait_quality": {
+      "bins": [
+        96,
+        18,
+        3,
+        0,
+        0
+      ],
+      "brief_count": 1413,
+      "count": 117,
+      "cumulative": [
+        {
+          "count": 96,
+          "fraction": 0.82051282051282,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600.0
+        },
+        {
+          "count": 114,
+          "fraction": 0.974358974358974,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200.0
+        },
+        {
+          "count": 117,
+          "fraction": 1.0,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800.0
+        },
+        {
+          "count": 117,
+          "fraction": 1.0,
+          "met": true,
+          "required": 1.0,
+          "under_seconds": 2700.0
+        }
+      ],
+      "maximum": 1772.0,
+      "minimum_seconds": 30.0,
+      "ok": true
+    },
+    "time_states": 233
+  }
+}

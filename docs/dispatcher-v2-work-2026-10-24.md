@@ -443,3 +443,55 @@ audit self-comparison covers all 3,452 booked events with no missing comparisons
 or spurious changes. Four authoring guards pass too. These are tools only, not
 among the six frozen preparation observers or railway input hashes. All four
 baseline jobs retain unchanged inputs; no extra full-day work has been started.
+
+
+## 25 October 02:34 — saved ETA audit prepared, waiting on final catalogues
+
+Reviewed the exact predicted timing points: the slow train's receiving-road
+stopping marker, versus the express's road entry. A new read-only tool,
+`tools/audit_saved_forecast_arrivals.gd`, is parse-checked but intentionally
+uncommitted until it has run successfully. It will compare fresh saved K1 advice
+with completed actual booked arrivals, requiring the same road and stopping
+marker and verifying recorded checkpoint/input hashes. It does not step a railway.
+The sample is sparse (five-minute checkpoints), includes external traffic holds
+and may contain advice subsequently replaced; it is calibration, not certification.
+
+The first attempt correctly could not inspect a still-running replay because
+its final timeline catalogue does not exist yet. The tool now rejects that state
+explicitly and defaults to the final reference checkpoint once available. No ETA
+result has been obtained or claimed. Run it after V2 Standard/Intensive finishes;
+do not restart or duplicate preparation to make it available. No observer remains
+running. Four original baseline jobs still run with frozen inputs; latest clocks
+approximately Classic Standard00:50, V2 Standard00:20, Classic Intensive20:30 and
+V2 Intensive20:00. The completed disturbed audit remains valid and separate.
+
+
+## 25 October 02:45 — Standard baselines complete and installed
+
+Both 100-service days pass all calls, depot, safety and individual wait gates.
+Installed separately and independently checked all 4,833 inputs, 100 departure
+files and 233 exact restored timeline states per mode. Actual native home/time
+loaders pass 36 checks, reciprocal roles and dispatch mode preserved. Four screens
+reviewed. WASAPI unavailable on the development session, so this menu test used
+the fallback dummy audio driver; no audio claim. Full source suite running as
+wrapper27304; do not edit runtime/tests until it finishes.
+
+Source Standard timings are identical. V2 reduces sub-ten-minute wait failures,
+but B012 reaches ERS 691.15 seconds later after different northern crossing
+interactions. B031 and B020 also regress; explicit full comparison and actual
+hold reasons are retained in standard-days evidence. Do not call V2 universally
+better. Local overtake optimization does not globally plan opposing traffic.
+The pending saved-ETA tool now runs successfully: seven forecasts for two distinct
+SRTL/STKT K1 arrivals, error -7.27 to +0.95 seconds, all source/state hashes checked.
+No railway stepping; sparse calibration only. Its UID now exists.
+
+The prepared UI checker gained optional repeated --day= filters for independent
+certification. Only Standard/Standard V2 were exercised; keep it uncommitted until
+Classic/V2 Intensive checks pass. Original Intensive wrappers3708/22880 continue;
+Standard wrappers24548/17876 and native16588/ETA23716 have completed. No duplicate
+full replay, no sim/routes/pack edit, no new executable release.
+
+
+02:52 checkpoint: all 961 full source tests pass, zero failures and empty stderr.
+The two Standard variants, exact-source calibration tool and comparison evidence
+are ready to commit. No source/native/ETA diagnostic remains running.

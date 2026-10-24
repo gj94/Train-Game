@@ -1,0 +1,301 @@
+{
+  "classic-standard": {
+    "B012": {
+      "destination_delay": 477.549999868308,
+      "signal_waits": [
+        {
+          "call": 3,
+          "id": "B012",
+          "reasons": {
+            "Signal at red; route locked until safe release · Northbound Coastal Passenger · Nagercoil to Ernakulam (B013)": 104.0,
+            "Waiting for automatic block clearance": 58.0
+          },
+          "seconds": 162.0,
+          "signal_id": "CRY_PGZ_U0-A",
+          "station": "CRY"
+        },
+        {
+          "call": 3,
+          "id": "B012",
+          "reasons": {
+            "Waiting for automatic block clearance": 44.0
+          },
+          "seconds": 44.0,
+          "signal_id": "AMY_KVU_U0-A",
+          "station": "AMY_KVU_U0"
+        },
+        {
+          "call": 3,
+          "id": "B012",
+          "reasons": {
+            "Waiting for automatic block clearance": 24.0
+          },
+          "seconds": 24.0,
+          "signal_id": "KVU_CRY_U1-A",
+          "station": "KVU_CRY_U1"
+        },
+        {
+          "call": 4,
+          "id": "B012",
+          "reasons": {
+            "Authority to PRND_QLN_U6-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "QLN-N2",
+          "station": "QLN"
+        }
+      ]
+    },
+    "B031": {
+      "destination_delay": 197.299999826282,
+      "signal_waits": [
+        {
+          "call": 6,
+          "id": "B031",
+          "reasons": {
+            "Block AMPA_LLEAD_U occupied by B014 · Malabar Express 01 · NCJ–ERS (B014)": 76.0,
+            "Block PUPR_AMPA_M3 occupied by B014 · Malabar Express 01 · NCJ–ERS (B014)": 54.0,
+            "Conflicts with route from AMPA-N3 · Malabar Express 01 · NCJ–ERS (B014)": 52.0,
+            "Conflicts with route from PUPR_AMPA_M3-SH · Coastal Passenger 01 · ERS–KYJ (B036)": 14.0,
+            "Single line ALLP_single is locked for opposing traffic · Coastal Passenger 01 · ERS–KYJ (B036)": 8.0
+          },
+          "seconds": 204.0,
+          "signal_id": "AMPA-N2",
+          "station": "AMPA"
+        },
+        {
+          "call": 8,
+          "id": "B031",
+          "reasons": {
+            "Block KUMM_LLEAD_D occupied by B026 · Capital Intercity 03 · ERS–TVC (B026)": 12.0,
+            "Block KUMM_LLEAD_D occupied by B026 · Capital Intercity 03 · ERS–TVC (B026), Malabar Express 01 · NCJ–ERS (B014)": 2.0,
+            "Block TNU_KUMM_M1 occupied by B014 · Malabar Express 01 · NCJ–ERS (B014)": 84.0,
+            "Conflicts with route from KUMM-N2 · Malabar Express 01 · NCJ–ERS (B014)": 50.0,
+            "Conflicts with route from TNU_KUMM_M1-SH · Capital Intercity 03 · ERS–TVC (B026), Malabar Express 01 · NCJ–ERS (B014)": 10.0,
+            "Expect a wait at KUMM until Capital Intercity 03 · ERS–TVC (B026) crosses": 24.0,
+            "Single line ERS_single is locked for opposing traffic · Capital Intercity 03 · ERS–TVC (B026)": 16.0
+          },
+          "seconds": 198.0,
+          "signal_id": "KUMM-N3",
+          "station": "KUMM"
+        },
+        {
+          "call": 3,
+          "id": "B031",
+          "reasons": {
+            "Waiting for automatic block clearance": 14.0
+          },
+          "seconds": 14.0,
+          "signal_id": "PVU_KFI_U1-A",
+          "station": "PVU_KFI_U1"
+        },
+        {
+          "call": 2,
+          "id": "B031",
+          "reasons": {
+            "Arriving at Varkala Sivagiri; departure decision after the scheduled stop": 2.0,
+            "Authority to EVA_VAK_U2-A": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "VAK-N2",
+          "station": "VAK"
+        }
+      ]
+    },
+    "B020": {
+      "destination_delay": 0.0,
+      "signal_waits": [
+        {
+          "call": 17,
+          "id": "B020",
+          "reasons": {
+            "Conflicts with route from EZP_TUVR_M3-SH · Capital Intercity 06 · ERS–TVC (B029)": 12.0,
+            "Expect a wait at TUVR until Capital Intercity 06 · ERS–TVC (B029) crosses": 122.0,
+            "Single line KUMM_single is locked for opposing traffic · Capital Intercity 06 · ERS–TVC (B029)": 18.0
+          },
+          "seconds": 152.0,
+          "signal_id": "TUVR-N2",
+          "station": "TUVR"
+        },
+        {
+          "call": 6,
+          "id": "B020",
+          "reasons": {
+            "Arriving at Thiruvananthapuram North; departure decision after the scheduled stop": 2.0,
+            "Authority to VELI_TVCN_U0-A": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "TVCN-N2",
+          "station": "TVCN"
+        },
+        {
+          "call": 7,
+          "id": "B020",
+          "reasons": {
+            "Arriving at Kazhakuttam; departure decision after the scheduled stop": 2.0,
+            "Authority to KXP_KZK_U3-A": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "KZK-N2",
+          "station": "KZK"
+        },
+        {
+          "call": 9,
+          "id": "B020",
+          "reasons": {
+            "Arriving at Paravur; departure decision after the scheduled stop": 2.0,
+            "Authority to MYY_PVU_U2-A": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "PVU-N3",
+          "station": "PVU"
+        }
+      ]
+    }
+  },
+  "predictive-standard": {
+    "B012": {
+      "destination_delay": 1168.69999985825,
+      "signal_waits": [
+        {
+          "call": 6,
+          "id": "B012",
+          "reasons": {
+            "Conflicts with route from EZP_TUVR_M3-SH · Cape Express 03 · ERS–NCJ (B004)": 12.0,
+            "Expect a wait at TUVR until Cape Express 03 · ERS–NCJ (B004) crosses": 560.0,
+            "Single line KUMM_single is locked for opposing traffic · Cape Express 03 · ERS–NCJ (B004)": 20.0
+          },
+          "seconds": 592.0,
+          "signal_id": "TUVR-N2",
+          "station": "TUVR"
+        },
+        {
+          "call": 3,
+          "id": "B012",
+          "reasons": {
+            "Block MQU_P2 occupied by B013 · Northbound Coastal Passenger · Nagercoil to Ernakulam (B013), Malabar Express 01 · NCJ–ERS (B014)": 12.0
+          },
+          "seconds": 12.0,
+          "signal_id": "MQU_KXP_U0-H",
+          "station": "MQU_KXP_U0"
+        },
+        {
+          "call": 4,
+          "id": "B012",
+          "reasons": {
+            "Arriving at Kayamkulam Junction; departure decision after the scheduled stop": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "KYJ-N2",
+          "station": "KYJ"
+        }
+      ]
+    },
+    "B031": {
+      "destination_delay": 1489.34999980748,
+      "signal_waits": [
+        {
+          "call": 6,
+          "id": "B031",
+          "reasons": {
+            "Conflicts with route from PUPR_AMPA_M3-SH · Cape Express 02 · ERS–NCJ (B003)": 12.0,
+            "Route set to PUPR_AMPA_M3-NA": 2.0,
+            "Single line ALLP_single is locked for opposing traffic · Cape Express 02 · ERS–NCJ (B003)": 446.0,
+            "Single line ALLP_single is locked for opposing traffic · Cape Express 02 · ERS–NCJ (B003), Coastal Passenger 01 · ERS–KYJ (B036)": 12.0,
+            "Single line ALLP_single is locked for opposing traffic · Coastal Passenger 01 · ERS–KYJ (B036)": 588.0,
+            "Single line ALLP_single is locked for opposing traffic · Coastal Passenger 01 · ERS–KYJ (B036), Cape Express 02 · ERS–NCJ (B003)": 138.0
+          },
+          "seconds": 1198.0,
+          "signal_id": "AMPA-N3",
+          "station": "AMPA"
+        },
+        {
+          "call": 8,
+          "id": "B031",
+          "reasons": {
+            "Conflicts with route from EZP_TUVR_M3-SH · Capital Intercity 03 · ERS–TVC (B026)": 12.0,
+            "Expect a wait at TUVR until Capital Intercity 03 · ERS–TVC (B026) crosses": 518.0,
+            "Route set to EZP_TUVR_M3-NA": 2.0,
+            "Single line KUMM_single is locked for opposing traffic · Capital Intercity 03 · ERS–TVC (B026)": 16.0
+          },
+          "seconds": 548.0,
+          "signal_id": "TUVR-N2",
+          "station": "TUVR"
+        },
+        {
+          "call": 7,
+          "id": "B031",
+          "reasons": {
+            "Block MAKM_LLEAD_D occupied by B004 · Cape Express 03 · ERS–NCJ (B004)": 12.0,
+            "Conflicts with route from TRVZ_MAKM_M3-SH · Cape Express 03 · ERS–NCJ (B004)": 12.0,
+            "Expect a wait at MAKM until Cape Express 03 · ERS–NCJ (B004) crosses": 200.0,
+            "Single line SRTL_single is locked for opposing traffic · Cape Express 03 · ERS–NCJ (B004)": 18.0
+          },
+          "seconds": 242.0,
+          "signal_id": "MAKM-N3",
+          "station": "MAKM"
+        },
+        {
+          "call": 8,
+          "id": "B031",
+          "reasons": {
+            "Conflicts with route from TNU_KUMM_M1-SH · Cape Express 04 · ERS–NCJ (B005)": 12.0,
+            "Expect a wait at KUMM until Cape Express 04 · ERS–NCJ (B005) crosses": 50.0,
+            "Route set to TNU_KUMM_M1-NA": 2.0,
+            "Single line ERS_single is locked for opposing traffic · Cape Express 04 · ERS–NCJ (B005)": 20.0
+          },
+          "seconds": 84.0,
+          "signal_id": "KUMM-N2",
+          "station": "KUMM"
+        }
+      ]
+    },
+    "B020": {
+      "destination_delay": 1197.60000072731,
+      "signal_waits": [
+        {
+          "call": 7,
+          "id": "B020",
+          "reasons": {
+            "Arriving at Kazhakuttam; departure decision after the scheduled stop": 2.0,
+            "Authority to KXP_KZK_U3-A": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "KZK-N2",
+          "station": "KZK"
+        },
+        {
+          "call": 15,
+          "id": "B020",
+          "reasons": {
+            "Arriving at Alappuzha; departure decision after the scheduled stop": 2.0,
+            "Authority to TMPY_ALLP_M2-NA": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "ALLP-N2",
+          "station": "ALLP"
+        },
+        {
+          "call": 1,
+          "id": "B020",
+          "reasons": {
+            "Authority to NJT_NCJ_U3-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "NCJ-N4",
+          "station": "NCJ"
+        },
+        {
+          "call": 2,
+          "id": "B020",
+          "reasons": {
+            "Authority to PYD_ERL_M7-NA": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "ERL-N2",
+          "station": "ERL"
+        }
+      ]
+    }
+  }
+}

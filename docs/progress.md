@@ -1,5 +1,27 @@
 # Progress
 
+## 25 October 2026 — both Standard days prepared and checked
+
+Classic and V2 Standard each completed all 100 services and calls with depot
+clearance, no safety events and passing wait distributions. Both now have their
+own verified 100 departures, 233 five-minute states and reciprocal traffic data.
+36 native checks pass on real service/noon entries; four screens reviewed. All
+961 full source tests pass with empty stderr. R46 remains the published release.
+
+V2 improves the share of extra waits below ten minutes (77.27% to 85.08%), but
+is not uniformly better: northbound VB B012 finishes 11m31s later, after changed
+crossing interactions in the northern single-line section. The measured priority
+and intermediate-call comparisons preserve those regressions explicitly. Seven
+saved forecasts for two actual K1 arrivals match within -7.27 to +0.95 seconds;
+this sparse calibration is not a general safety guarantee.
+[Evidence, limitations and playtest](../art/performance/dispatcher-v2-2026-10-24/standard-days/README.md).
+
+The two original Intensive baseline runs continue with frozen inputs. Only the
+Standard prepared data changed; no simulation, geometry or authored timings.
+The first V2 Intensive candidate still needs departure tuning to reach ten K1
+passes after its complete audit. The prepared-menu checker remains uncommitted
+until its other two operating-day choices have also been exercised.
+
 ## 25 October 2026 — complete V2 disturbed-day audit
 
 All 140 services completed their calls and cleared to depot after a ten-minute
@@ -15,6 +37,10 @@ and all non-departure Intensive fields. Comparison now includes intermediate
 arrival/departure delays by priority, so later recovery cannot hide earlier holds;
 21 new and 18 existing assertions pass, plus 3,452 actual audit call events. The first baseline still requires tuning
 to reach ten K1 passes after its full audit finishes. No release was prepared.
+
+A saved-forecast arrival audit is prepared and parse-checked, pending final
+catalogues. It will compare the actual same-road stopping point with fresh saved
+advice; no ETA result is claimed yet. Four original baselines remain running.
 
 ## 25 October 2026 — crowded live V2 disturbance validation
 
