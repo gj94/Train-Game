@@ -369,3 +369,23 @@ Read-only relief timing analysis is in local `relief-coexistence-notes.md` and
 later reliefs miss K1 before their terminal. Do not tune the frozen inputs yet;
 inspect the final K1 count, then use those observed windows if the candidate
 fails ten distinct overtakers. A final-day test is still required for any change.
+
+
+## 25 October 02:13 — full-traffic live worker stress
+
+`tools/check_predictive_busy_async.gd` validates every frozen rehearsal input and
+restores T045300 from the actual V2 Intensive run. Its detached live railway
+advances 30 minutes with 30 active services and five new arrivals. Nine owner
+commands exercise manual K1 braking/AI handover, D101 operator hold/release,
+D108 reprioritization/restoration, both mode switches, then exact save/reload
+while a forecast job is pending. No safety events or missed calls; K1/D101/D108
+advance 10.42/27.75/22.74 km. Forecast work occurs off-owner, restored state has
+no worker handles, and shutdown joins cleanly. This is a functional test under
+five competing replay processes, not a performance or full-day certification.
+Evidence is in `art/performance/dispatcher-v2-2026-10-24/busy-async`.
+
+No sim/routes/packs changed. All five v3 full-day jobs continue and must finish
+before baseline tuning. The full source suite passed 961 at the previous
+unchanged-runtime checkpoint; all 18 focused predictive owner tests also pass
+with empty stderr. No suite or stress observer remains running. Do not repeat native UI checks for this tool-only
+increment. The actual prepared-menu checker still awaits certified data.

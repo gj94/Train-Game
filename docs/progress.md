@@ -1,5 +1,21 @@
 # Progress
 
+## 25 October 2026 — crowded live V2 disturbance validation
+
+A new read-only stress diagnostic restored the actual 12:35 Intensive state and
+ran thirty minutes with asynchronous forecasts, 30 active trains at peak and five
+new service entries. Manual/AI handover, operator hold/release, reprioritization,
+Classic/V2 switching and save/reload with a pending worker all passed. No safety
+events or missed calls; all three directly disturbed trains advanced. Save state
+round-trips exactly and no worker handles survive restoration. This validates
+live ownership under traffic, not complete-day quality or target-PC performance.
+All 18 focused owner regressions pass; the unchanged runtime last passed the
+961-test source suite.
+[Evidence and specific playtest](../art/performance/dispatcher-v2-2026-10-24/busy-async/README.md).
+
+No railway, route or pack input changed. The five original v3 full-day runs still
+own certification; the prepared-menu checker remains pending. R46 stays live.
+
 ## 25 October 2026 — observed V2 passing roads
 
 The current full-day rehearsal now has direct movement evidence for the

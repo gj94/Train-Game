@@ -1,0 +1,84 @@
+{
+	"accepted_jobs": 346,
+	"checkpoint": "T045300",
+	"checkpoint_sha256": "b9590004b0268fc77bf356b8db921299b37214120038e45fc6b00e97951afbb2",
+	"clock": 47100.4999998739,
+	"commands": [
+		{
+			"action": "Manual K1 brake",
+			"clock": 45390.4999998988
+		},
+		{
+			"action": "Return K1 to AI",
+			"clock": 45510.4999998971
+		},
+		{
+			"action": "Hold D101 at next uncommitted signal",
+			"clock": 45600.4999998958
+		},
+		{
+			"action": "Release D101",
+			"clock": 45720.499999894
+		},
+		{
+			"action": "Promote D108 to priority 100",
+			"clock": 45900.4999998914
+		},
+		{
+			"action": "Restore D108 priority",
+			"clock": 46020.4999998897
+		},
+		{
+			"action": "Switch to Classic without changing routes",
+			"clock": 46200.499999887
+		},
+		{
+			"action": "Restore asynchronous V2",
+			"clock": 46230.4999998866
+		},
+		{
+			"action": "Save/reload while forecast group is pending",
+			"clock": 46320.9999998853
+		}
+	],
+	"events": [],
+	"failures": [],
+	"limitation": "Functional stress under concurrent development jobs, not target-PC performance or full-day certification",
+	"new_entries": [
+		"B075",
+		"B004",
+		"B055",
+		"B032",
+		"B096"
+	],
+	"ok": true,
+	"peak_active": 30,
+	"pending_save_restored": true,
+	"plan_samples": 7606,
+	"progress_m": {
+		"D101": 27749.7017663784,
+		"D108": 22744.9339343823,
+		"K1": 10424.121808164
+	},
+	"services": 140,
+	"source_folder": "res://.local/dispatcher-v2-2026-10-24/rehearsals-v3/predictive-intensive",
+	"wall_seconds": 181.645,
+	"worker_threads": [
+		5,
+		6,
+		8,
+		7,
+		9,
+		10,
+		13,
+		11,
+		15,
+		16,
+		20,
+		18,
+		23,
+		25,
+		22,
+		26
+	]
+}
