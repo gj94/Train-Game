@@ -27,7 +27,8 @@ class Job extends RefCounted:
 			if not result.plan.is_empty():plans.append(result.plan)
 			if result.thread not in threads:threads.append(result.thread)
 			cpu+=result.usec
-		return {clock=frame.clock,time=frame.time,plans=plans,inputs=frame.trains,worker_threads=threads,cpu_usec=cpu,wall_usec=Time.get_ticks_usec()-began}
+		return {clock=frame.clock,time=frame.time,generation=frame.get("generation",0),plans=plans,inputs=frame.trains,
+			occupied=frame.occupied,claims=frame.claims,worker_threads=threads,cpu_usec=cpu,wall_usec=Time.get_ticks_usec()-began}
 
 func _init(topology: Dictionary) -> void:_topology=topology.duplicate(true)
 
@@ -59,3 +60,13 @@ func synchronous(frame: Dictionary) -> Dictionary:
 	var job:=Job.new(_topology,frame)
 	for i in job.results.size():job.calculate(i)
 	return job.finish()
+
+func parallel_complete(frame: Dictionary,threads: int=4) -> Dictionary:
+	# Offline preparation / the dedicated time-skip owner only. Parallel compute
+	# with an ordered join gives repeatable railway states without renderer waits.
+	if frame.trains.is_empty():return synchronous(frame)
+	assert(not busy())
+	submit(frame,threads)
+	WorkerThreadPool.wait_for_group_task_completion(_group)
+	var result: Dictionary=_job.finish();_group=-1;_job=null
+	return result

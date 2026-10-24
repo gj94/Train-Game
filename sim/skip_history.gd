@@ -24,7 +24,8 @@ func capture(w: RailWorld) -> Dictionary:
 		trains[t.id]=data
 	for id in w.graph.switches:switches[id]=w.graph.switches[id].reversed
 	return {clock=w.clock_seconds(),world=Snapshot.fields(w,Snapshot.WORLD+EXTRA),trains=trains,switches=switches,
-		dispatch=Snapshot.fields(w.dispatcher(),Snapshot.DISPATCH),future=Snapshot.fields(w.dispatcher().future_clearances,Snapshot.FUTURE)}
+		dispatch=Snapshot.fields(w.dispatcher(),Snapshot.DISPATCH),future=Snapshot.fields(w.dispatcher().future_clearances,Snapshot.FUTURE),
+		predictive=w.dispatcher().predictive.checkpoint()}
 
 func restore(w: RailWorld, state: Dictionary) -> void:
 	assert(not w._within_step and w.trains.size()==state.trains.size())
@@ -40,6 +41,8 @@ func restore(w: RailWorld, state: Dictionary) -> void:
 	for id in state.switches:w.graph.switches[id].reversed=state.switches[id]
 	Snapshot.apply(w.dispatcher(),state.dispatch.duplicate(true),Snapshot.DISPATCH)
 	Snapshot.apply(w.dispatcher().future_clearances,state.future.duplicate(true),Snapshot.FUTURE)
+	var predictive_issue: String=w.dispatcher().predictive.restore(w,state.predictive)
+	assert(predictive_issue.is_empty(),predictive_issue)
 	# Retain topology-only caches, discard everything containing future occupancy,
 	# claims or mutable signal references. These are rebuilt by ordinary queries.
 	w._cache_occupancy=false;w._cached_occupancy.clear();w._active_trains.clear()

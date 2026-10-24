@@ -1,0 +1,1538 @@
+{
+	"earlier_hold": false,
+	"events": [],
+	"history": [
+		{
+			"kind": "overtake",
+			"other": "B030",
+			"station": "MQU",
+			"time": 31135.0499999997,
+			"train": "B068"
+		},
+		{
+			"kind": "overtake",
+			"other": "B001",
+			"station": "TUVR",
+			"time": 32139.5500000034,
+			"train": "K1"
+		},
+		{
+			"kind": "overtake",
+			"other": "D120",
+			"station": "KVU",
+			"time": 32238.5500000037,
+			"train": "B068"
+		},
+		{
+			"kind": "overtake",
+			"other": "D128",
+			"station": "KVU",
+			"time": 34038.5500000103,
+			"train": "B069"
+		},
+		{
+			"kind": "overtake",
+			"other": "D121",
+			"station": "KVU",
+			"time": 36063.0500000177,
+			"train": "B070"
+		},
+		{
+			"kind": "overtake",
+			"other": "B024",
+			"station": "ALLP",
+			"time": 36491.5500000192,
+			"train": "K1"
+		},
+		{
+			"kind": "overtake",
+			"other": "D129",
+			"station": "TVCN",
+			"time": 36724.0500000201,
+			"train": "B013"
+		},
+		{
+			"kind": "overtake",
+			"other": "D129",
+			"station": "TVCN",
+			"time": 36724.0500000201,
+			"train": "B071"
+		},
+		{
+			"kind": "overtake",
+			"other": "B012",
+			"station": "TVC",
+			"time": 37056.0500000201,
+			"train": "B014"
+		},
+		{
+			"kind": "overtake",
+			"other": "B002",
+			"station": "TUVR",
+			"time": 37191.0500000181,
+			"train": "B042"
+		},
+		{
+			"kind": "overtake",
+			"other": "B012",
+			"station": "KZK",
+			"time": 38016.0500000061,
+			"train": "B013"
+		},
+		{
+			"kind": "overtake",
+			"other": "B012",
+			"station": "MQU",
+			"time": 38441.5499999999,
+			"train": "B071"
+		},
+		{
+			"kind": "overtake",
+			"other": "B031",
+			"station": "TVCN",
+			"time": 38780.549999995,
+			"train": "B072"
+		},
+		{
+			"kind": "overtake",
+			"other": "B014",
+			"station": "MQU",
+			"time": 38927.5499999929,
+			"train": "B013"
+		},
+		{
+			"kind": "overtake",
+			"other": "D122",
+			"station": "MQU",
+			"time": 39244.5499999883,
+			"train": "B013"
+		},
+		{
+			"kind": "overtake",
+			"other": "B014",
+			"station": "KVU",
+			"time": 39483.0499999848,
+			"train": "B071"
+		},
+		{
+			"kind": "overtake",
+			"other": "B031",
+			"station": "MQU",
+			"time": 39601.5499999831,
+			"train": "B013"
+		},
+		{
+			"kind": "overtake",
+			"other": "D122",
+			"station": "KVU",
+			"time": 39685.0499999818,
+			"train": "B071"
+		},
+		{
+			"kind": "overtake",
+			"other": "B001",
+			"station": "KZK",
+			"time": 40491.5499999701,
+			"train": "B051"
+		},
+		{
+			"kind": "overtake",
+			"other": "B031",
+			"station": "VAK",
+			"time": 40752.0499999663,
+			"train": "B071"
+		},
+		{
+			"kind": "overtake",
+			"other": "B072",
+			"station": "VAK",
+			"time": 41738.049999952,
+			"train": "B013"
+		},
+		{
+			"kind": "overtake",
+			"other": "D123",
+			"station": "TVCN",
+			"time": 41925.5499999492,
+			"train": "B073"
+		},
+		{
+			"kind": "overtake",
+			"other": "B002",
+			"station": "STKT",
+			"time": 42786.5499999367,
+			"train": "K1"
+		}
+	],
+	"loop_used": true,
+	"main_pass": true,
+	"ok": true,
+	"samples": [
+		{
+			"clock": 41700.4999999525,
+			"fast_speed": 20.7593512831543,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 704.635114665209,
+				"follow_eta": 44122.4351146652,
+				"gain": 1493.31032175928,
+				"pass_delay": 147.285421944434,
+				"pass_eta": 43565.0854219444,
+				"priority_weight": 2.83333333333333,
+				"saved": 557.349692720774,
+				"slow_extra": 85.8471409495833,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "pass",
+				"fast": "KYJ_OCR_D0",
+				"hold": "",
+				"other": "B002",
+				"slow": "OCR_KPY_D3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41704.4999999525,
+			"fast_speed": 21.3172512877031,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 704.635114665209,
+				"follow_eta": 44122.4351146652,
+				"gain": 1493.31032175928,
+				"pass_delay": 147.285421944434,
+				"pass_eta": 43565.0854219444,
+				"priority_weight": 2.83333333333333,
+				"saved": 557.349692720774,
+				"slow_extra": 85.8471409495833,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "pass",
+				"fast": "KYJ_OCR_D0",
+				"hold": "",
+				"other": "B002",
+				"slow": "OCR_KPY_D4",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41718.9999999522,
+			"fast_speed": 23.1793058652356,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 704.63511466499,
+				"follow_eta": 44122.435114665,
+				"gain": 1493.17074003399,
+				"pass_delay": 147.321834568203,
+				"pass_eta": 43565.1218345682,
+				"priority_weight": 2.83333333333333,
+				"saved": 557.313280096787,
+				"slow_extra": 85.8835535735707,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "pass",
+				"fast": "KYJ_OCR_D1",
+				"hold": "",
+				"other": "B002",
+				"slow": "OCR_KPY_D4",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41738.999999952,
+			"fast_speed": 25.4104206397635,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 704.635114664699,
+				"follow_eta": 44122.4351146647,
+				"gain": 1493.08772123066,
+				"pass_delay": 147.343491647043,
+				"pass_eta": 43565.143491647,
+				"priority_weight": 2.83333333333333,
+				"saved": 557.291623017656,
+				"slow_extra": 85.9052106527015,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "pass",
+				"fast": "KYJ_OCR_D1",
+				"hold": "",
+				"other": "B002",
+				"slow": "OCR_KPY_D5",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41755.4999999517,
+			"fast_speed": 27.0174125597032,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 704.635114664408,
+				"follow_eta": 44122.4351146644,
+				"gain": 1493.06578765969,
+				"pass_delay": 147.349213447873,
+				"pass_eta": 43565.1492134479,
+				"priority_weight": 2.83333333333333,
+				"saved": 557.285901216535,
+				"slow_extra": 85.9109324538222,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "pass",
+				"fast": "KYJ_OCR_D2",
+				"hold": "",
+				"other": "B002",
+				"slow": "OCR_KPY_D5",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41760.4999999516,
+			"fast_speed": 27.3388355871228,
+			"order": {},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "",
+				"fast": "KYJ_OCR_D2",
+				"hold": "",
+				"other": "",
+				"slow": "OCR_KPY_D5",
+				"station": ""
+			}
+		},
+		{
+			"clock": 41765.4999999516,
+			"fast_speed": 27.3746812003156,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 704.635114664263,
+				"follow_eta": 44122.4351146643,
+				"gain": 1493.04266331145,
+				"pass_delay": 147.3552458864,
+				"pass_eta": 43565.1552458864,
+				"priority_weight": 2.83333333333333,
+				"saved": 557.279868777863,
+				"slow_extra": 85.9169648924944,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "pass",
+				"fast": "KYJ_OCR_D2",
+				"hold": "",
+				"other": "B002",
+				"slow": "OCR_KPY_D5",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41773.4999999515,
+			"fast_speed": 27.377723873844,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 704.63511466419,
+				"follow_eta": 44122.4351146642,
+				"gain": 1493.04222421882,
+				"pass_delay": 147.35536043223,
+				"pass_eta": 43565.1553604322,
+				"priority_weight": 2.83333333333333,
+				"saved": 557.27975423196,
+				"slow_extra": 85.9170794383972,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "pass",
+				"fast": "KYJ_OCR_D2",
+				"hold": "",
+				"other": "B002",
+				"slow": "OCR_KPY_D6",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41788.9999999512,
+			"fast_speed": 27.3777777567375,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 704.641272079316,
+				"follow_eta": 44122.4412720793,
+				"gain": 1493.06578972816,
+				"pass_delay": 147.355370323181,
+				"pass_eta": 43565.1553703232,
+				"priority_weight": 2.83333333333333,
+				"saved": 557.285901756135,
+				"slow_extra": 85.9109319142226,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "pass",
+				"fast": "KYJ_OCR_D3",
+				"hold": "",
+				"other": "B002",
+				"slow": "OCR_KPY_D6",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41808.9999999509,
+			"fast_speed": 27.3777777777769,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 704.23973927409,
+				"follow_eta": 44122.0397392741,
+				"gain": 1491.5265806235,
+				"pass_delay": 147.355370327867,
+				"pass_eta": 43565.1553703279,
+				"priority_weight": 2.83333333333333,
+				"saved": 556.884368946223,
+				"slow_extra": 86.3124647241348,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 23.7970954633502,
+			"state": {
+				"action": "pass",
+				"fast": "KYJ_OCR_D3",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41822.4999999507,
+			"fast_speed": 27.3777777777777,
+			"order": {},
+			"slow_speed": 18.6438459385592,
+			"state": {
+				"action": "",
+				"fast": "KYJ_OCR_D4",
+				"hold": "",
+				"other": "",
+				"slow": "KPY_P1",
+				"station": ""
+			}
+		},
+		{
+			"clock": 41825.4999999507,
+			"fast_speed": 27.3777777777777,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 703.045628331281,
+				"follow_eta": 44120.8456283313,
+				"gain": 1486.96946743147,
+				"pass_delay": 147.350071522109,
+				"pass_eta": 43565.1500715221,
+				"priority_weight": 2.83333333333333,
+				"saved": 555.695556809173,
+				"slow_extra": 87.501276861185,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 17.4871864603508,
+			"state": {
+				"action": "pass",
+				"fast": "KYJ_OCR_D4",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41856.4999999502,
+			"fast_speed": 24.6541394386388,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 702.288514508167,
+				"follow_eta": 44120.0885145082,
+				"gain": 1482.89298134243,
+				"pass_delay": 147.656388852658,
+				"pass_eta": 43565.4563888527,
+				"priority_weight": 2.83333333333333,
+				"saved": 554.632125655509,
+				"slow_extra": 88.5647080148483,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 5.46185926445427,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_P1",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41898.4999999496,
+			"fast_speed": 24.6000000000314,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 706.960867689959,
+				"follow_eta": 44124.76086769,
+				"gain": 1500.82782761154,
+				"pass_delay": 147.650086485985,
+				"pass_eta": 43565.450086486,
+				"priority_weight": 2.83333333333333,
+				"saved": 559.310781203974,
+				"slow_extra": 83.8860524663833,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D0",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41915.4999999494,
+			"fast_speed": 24.6000000000001,
+			"order": {},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "",
+				"fast": "OCR_KPY_D0",
+				"hold": "",
+				"other": "",
+				"slow": "KPY_P1",
+				"station": ""
+			}
+		},
+		{
+			"clock": 41920.4999999493,
+			"fast_speed": 24.6000000000001,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 706.960867689959,
+				"follow_eta": 44124.76086769,
+				"gain": 1501.00296075274,
+				"pass_delay": 147.604399579584,
+				"pass_eta": 43565.4043995796,
+				"priority_weight": 2.83333333333333,
+				"saved": 559.356468110374,
+				"slow_extra": 83.8403655599832,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D0",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41936.9999999491,
+			"fast_speed": 26.1621112941436,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 706.960867689959,
+				"follow_eta": 44124.76086769,
+				"gain": 1501.19119732376,
+				"pass_delay": 147.555294387144,
+				"pass_eta": 43565.3552943871,
+				"priority_weight": 2.83333333333333,
+				"saved": 559.405573302814,
+				"slow_extra": 83.7912603675431,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D1",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 41971.4999999486,
+			"fast_speed": 27.3777765556888,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 706.960867689959,
+				"follow_eta": 44124.76086769,
+				"gain": 1133.3242691051,
+				"pass_delay": 243.520580009405,
+				"pass_eta": 43661.3205800094,
+				"priority_weight": 2.83333333333333,
+				"saved": 463.440287680554,
+				"slow_extra": 179.756545989803,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D2",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42006.4999999481,
+			"fast_speed": 27.3777777777777,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 706.960867689959,
+				"follow_eta": 44124.76086769,
+				"gain": 1133.32426865979,
+				"pass_delay": 243.520580125572,
+				"pass_eta": 43661.3205801256,
+				"priority_weight": 2.83333333333333,
+				"saved": 463.440287564386,
+				"slow_extra": 179.756546105971,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D3",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42030.4999999477,
+			"fast_speed": 27.3777777777777,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 115901.560867688,
+				"follow_eta": 159319.360867688,
+				"gain": 327156.352937251,
+				"pass_delay": 268.520580125209,
+				"pass_eta": 43686.3205801252,
+				"priority_weight": 2.83333333333333,
+				"saved": 115633.040287563,
+				"slow_extra": 470.594544176893,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D3",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "KPY"
+			}
+		},
+		{
+			"clock": 42035.4999999476,
+			"fast_speed": 27.3777777777777,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 708.238498941297,
+				"follow_eta": 44126.0384989413,
+				"gain": 1138.22185512493,
+				"pass_delay": 243.520580125136,
+				"pass_eta": 43661.3205801251,
+				"priority_weight": 2.83333333333333,
+				"saved": 464.717918816161,
+				"slow_extra": 178.478914854197,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.28450154215659,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D3",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42040.9999999476,
+			"fast_speed": 27.3777777777777,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 707.085157242429,
+				"follow_eta": 44124.8851572424,
+				"gain": 1133.80071194621,
+				"pass_delay": 243.520580125063,
+				"pass_eta": 43661.3205801251,
+				"priority_weight": 2.83333333333333,
+				"saved": 463.564577117366,
+				"slow_extra": 179.632256552992,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 1.96997541292188,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D4",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42075.4999999471,
+			"fast_speed": 27.3777777777777,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 699.571021841708,
+				"follow_eta": 44117.3710218417,
+				"gain": 1104.9965262454,
+				"pass_delay": 243.520580124554,
+				"pass_eta": 43661.3205801246,
+				"priority_weight": 2.83333333333333,
+				"saved": 456.050441717154,
+				"slow_extra": 187.146391953203,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 12.55654304437,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D5",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_P1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42077.999999947,
+			"fast_speed": 27.3777777777777,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 699.571021841708,
+				"follow_eta": 44117.3710218417,
+				"gain": 1104.9965262454,
+				"pass_delay": 243.520580124554,
+				"pass_eta": 43661.3205801246,
+				"priority_weight": 2.83333333333333,
+				"saved": 456.050441717154,
+				"slow_extra": 187.146391953203,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 13.3131938865056,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D5",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_STKT_D0",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42109.9999999466,
+			"fast_speed": 27.2498803372458,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 696.205121373227,
+				"follow_eta": 44114.0051213732,
+				"gain": 1092.09390778456,
+				"pass_delay": 243.520580124117,
+				"pass_eta": 43661.3205801241,
+				"priority_weight": 2.83333333333333,
+				"saved": 452.684541249109,
+				"slow_extra": 190.512292421248,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 20.9173482206804,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D6",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_STKT_D0",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42127.4999999463,
+			"fast_speed": 21.0172717672746,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 694.904463416788,
+				"follow_eta": 44112.7044634168,
+				"gain": 1082.64653486551,
+				"pass_delay": 244.684454233517,
+				"pass_eta": 43662.4844542335,
+				"priority_weight": 2.83333333333333,
+				"saved": 450.220009183271,
+				"slow_extra": 192.976824487087,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 23.8935559594126,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D6",
+				"hold": "",
+				"other": "B002",
+				"slow": "KPY_STKT_D1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42154.4999999459,
+			"fast_speed": 11.1807823688658,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 694.249714196507,
+				"follow_eta": 44112.0497141965,
+				"gain": 1070.68540353131,
+				"pass_delay": 247.150000143898,
+				"pass_eta": 43664.9500001439,
+				"priority_weight": 2.83333333333333,
+				"saved": 447.099714052609,
+				"slow_extra": 196.097119617749,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3435040390371,
+			"state": {
+				"action": "pass",
+				"fast": "OCR_KPY_D6",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "KPY_STKT_D1",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42163.4999999458,
+			"fast_speed": 9.36033902605728,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 694.250624293076,
+				"follow_eta": 44112.0506242931,
+				"gain": 1066.63406641551,
+				"pass_delay": 248.207780792414,
+				"pass_eta": 43666.0077807924,
+				"priority_weight": 2.83333333333333,
+				"saved": 446.042843500662,
+				"slow_extra": 197.153990169696,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3774182004442,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_P4",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "KPY_STKT_D2",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42197.9999999453,
+			"fast_speed": 9.32222222320919,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 694.25069030407,
+				"follow_eta": 44112.0506903041,
+				"gain": 1066.71850018781,
+				"pass_delay": 248.185820601939,
+				"pass_eta": 43665.9858206019,
+				"priority_weight": 2.83333333333333,
+				"saved": 446.064869702132,
+				"slow_extra": 197.131963968226,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777685,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_P4",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "KPY_STKT_D3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42232.4999999448,
+			"fast_speed": 9.32222222222225,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 694.250690303561,
+				"follow_eta": 44112.0506903036,
+				"gain": 1067.05860020434,
+				"pass_delay": 248.097098857987,
+				"pass_eta": 43665.897098858,
+				"priority_weight": 2.83333333333333,
+				"saved": 446.153591445574,
+				"slow_extra": 197.043242224783,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_P4",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "KPY_STKT_D4",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42266.9999999443,
+			"fast_speed": 0.0780366330013765,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 694.250690303052,
+				"follow_eta": 44112.0506903031,
+				"gain": 1413.4901055565,
+				"pass_delay": 157.723662678654,
+				"pass_eta": 43575.5236626787,
+				"priority_weight": 2.83333333333333,
+				"saved": 536.527027624397,
+				"slow_extra": 106.66980604596,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.3777777777777,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_P4",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "KPY_STKT_D5",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42301.4999999438,
+			"fast_speed": 0.0,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 694.246848575895,
+				"follow_eta": 44112.0468485759,
+				"gain": 1038.16719001303,
+				"pass_delay": 255.630146745447,
+				"pass_eta": 43673.4301467455,
+				"priority_weight": 2.83333333333333,
+				"saved": 438.616701830448,
+				"slow_extra": 204.58013183991,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 27.1151856738541,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_P4",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "KPY_STKT_D6",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42354.499999943,
+			"fast_speed": 0.0,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 695.425533787165,
+				"follow_eta": 44113.2255337872,
+				"gain": 1042.6854833229,
+				"pass_delay": 255.630146745447,
+				"pass_eta": 43673.4301467455,
+				"priority_weight": 2.83333333333333,
+				"saved": 439.795387041719,
+				"slow_extra": 203.401446628639,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 9.3617041932773,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_P4",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42360.4999999429,
+			"fast_speed": 0.0,
+			"order": {
+				"booked_arrival": 43387.2,
+				"checkpoint": "QLN",
+				"follow_delay": 726.028768303659,
+				"follow_eta": 44113.2287683037,
+				"gain": 253.947300731304,
+				"pass_delay": 491.991168024964,
+				"pass_eta": 43879.191168025,
+				"priority_weight": 2.83333333333333,
+				"saved": 234.037600278694,
+				"slow_extra": 409.159233391663,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 9.32411435979451,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_P4",
+				"hold": "",
+				"other": "D115",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42365.4999999428,
+			"fast_speed": 0.446923733346114,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 695.364380259474,
+				"follow_eta": 44113.1643802595,
+				"gain": 1036.40444378837,
+				"pass_delay": 257.207525270242,
+				"pass_eta": 43675.0075252702,
+				"priority_weight": 2.83333333333333,
+				"saved": 438.156854989233,
+				"slow_extra": 205.039978681125,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 9.32237267987402,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_P4",
+				"hold": "",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42409.9999999422,
+			"fast_speed": 9.31820635794107,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 695.428061889623,
+				"follow_eta": 44113.2280618896,
+				"gain": 1036.50614473428,
+				"pass_delay": 257.244676218848,
+				"pass_eta": 43675.0446762189,
+				"priority_weight": 2.83333333333333,
+				"saved": 438.183385670774,
+				"slow_extra": 205.013447999583,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 9.32222222222225,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_STKT_D0",
+				"hold": "",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42454.4999999415,
+			"fast_speed": 9.32222222222156,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 701.023457198004,
+				"follow_eta": 44118.823457198,
+				"gain": 1069.60024403775,
+				"pass_delay": 254.206828230672,
+				"pass_eta": 43672.0068282307,
+				"priority_weight": 2.83333333333333,
+				"saved": 446.816628967332,
+				"slow_extra": 196.380204703026,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_STKT_D0",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42499.9999999409,
+			"fast_speed": 16.1880161792294,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 700.165700622842,
+				"follow_eta": 44117.9657006228,
+				"gain": 1064.79867882677,
+				"pass_delay": 254.592581860612,
+				"pass_eta": 43672.3925818606,
+				"priority_weight": 2.83333333333333,
+				"saved": 445.57311876223,
+				"slow_extra": 197.658490999544,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_STKT_D1",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42546.9999999402,
+			"fast_speed": 23.2885658872746,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 700.165700622842,
+				"follow_eta": 44117.9657006228,
+				"gain": 1063.80540067088,
+				"pass_delay": 254.851697901278,
+				"pass_eta": 43672.6516979013,
+				"priority_weight": 2.83333333333333,
+				"saved": 445.314002721563,
+				"slow_extra": 197.917607040217,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_STKT_D2",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42584.4999999397,
+			"fast_speed": 27.1916629962066,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 700.165700622842,
+				"follow_eta": 44117.9657006228,
+				"gain": 1063.7140497512,
+				"pass_delay": 254.875528575976,
+				"pass_eta": 43672.675528576,
+				"priority_weight": 2.83333333333333,
+				"saved": 445.290172046865,
+				"slow_extra": 197.941437714915,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_STKT_D3",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42618.9999999392,
+			"fast_speed": 27.3777777729553,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 711.465700620494,
+				"follow_eta": 44129.2657006205,
+				"gain": 1095.70864910407,
+				"pass_delay": 254.881285264797,
+				"pass_eta": 43672.6812852648,
+				"priority_weight": 2.83333333333333,
+				"saved": 456.584415355697,
+				"slow_extra": 197.947194403736,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_STKT_D4",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42653.4999999386,
+			"fast_speed": 27.3777777777777,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 746.465700619985,
+				"follow_eta": 44164.26570062,
+				"gain": 1194.8753157669,
+				"pass_delay": 254.881285265423,
+				"pass_eta": 43672.6812852654,
+				"priority_weight": 2.83333333333333,
+				"saved": 491.584415354562,
+				"slow_extra": 197.947194404362,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_STKT_D5",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42687.9999999381,
+			"fast_speed": 27.3777777777777,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 781.465700619476,
+				"follow_eta": 44199.2657006195,
+				"gain": 1294.04198243407,
+				"pass_delay": 254.881285264913,
+				"pass_eta": 43672.6812852649,
+				"priority_weight": 2.83333333333333,
+				"saved": 526.584415354562,
+				"slow_extra": 197.947194403852,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "KPY_STKT_D6",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42722.9999999376,
+			"fast_speed": 24.6541698518224,
+			"order": {
+				"booked_arrival": 43417.8,
+				"checkpoint": "QLN",
+				"follow_delay": 816.465700618966,
+				"follow_eta": 44234.265700619,
+				"gain": 1391.75032776585,
+				"pass_delay": 255.181265846004,
+				"pass_eta": 43672.981265846,
+				"priority_weight": 2.83333333333333,
+				"saved": 561.284434772962,
+				"slow_extra": 198.55557075754,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "STKT_P1",
+				"hold": "STKTB002",
+				"other": "B002",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42725.4999999376,
+			"fast_speed": 24.6152752537195,
+			"order": {
+				"booked_arrival": 43387.2,
+				"checkpoint": "QLN",
+				"follow_delay": 852.065700618899,
+				"follow_eta": 44239.2657006189,
+				"gain": 569.171609938905,
+				"pass_delay": 504.143121567577,
+				"pass_eta": 43891.3431215676,
+				"priority_weight": 2.83333333333333,
+				"saved": 347.922579051323,
+				"slow_extra": 416.60903070651,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "STKT_P1",
+				"hold": "STKTB002",
+				"other": "D115",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42764.999999937,
+			"fast_speed": 24.6000000000315,
+			"order": {
+				"booked_arrival": 43387.2,
+				"checkpoint": "QLN",
+				"follow_delay": 887.06570061839,
+				"follow_eta": 44274.2657006184,
+				"gain": 668.132045858309,
+				"pass_delay": 504.196920892573,
+				"pass_eta": 43891.3969208926,
+				"priority_weight": 2.83333333333333,
+				"saved": 382.868779725817,
+				"slow_extra": 416.662830031506,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "STKT_MQO_D0",
+				"hold": "STKTB002",
+				"other": "D115",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42786.9999999367,
+			"fast_speed": 24.6000000000001,
+			"order": {
+				"booked_arrival": 43387.2,
+				"checkpoint": "QLN",
+				"follow_delay": 912.065700618026,
+				"follow_eta": 44299.265700618,
+				"gain": 738.931962772117,
+				"pass_delay": 504.205638219137,
+				"pass_eta": 43891.4056382191,
+				"priority_weight": 2.83333333333333,
+				"saved": 407.86006239889,
+				"slow_extra": 416.67154735807,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "STKT_MQO_D0",
+				"hold": "",
+				"other": "D115",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42787.9999999367,
+			"fast_speed": 24.6128076279258,
+			"order": {
+				"booked_arrival": 43387.2,
+				"checkpoint": "QLN",
+				"follow_delay": 912.065700618026,
+				"follow_eta": 44299.265700618,
+				"gain": 738.931962772117,
+				"pass_delay": 504.205638219137,
+				"pass_eta": 43891.4056382191,
+				"priority_weight": 2.83333333333333,
+				"saved": 407.86006239889,
+				"slow_extra": 416.67154735807,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "STKT_MQO_D0",
+				"hold": "STKTD115",
+				"other": "D115",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42800.4999999365,
+			"fast_speed": 25.8654247284344,
+			"order": {
+				"booked_arrival": 43387.2,
+				"checkpoint": "QLN",
+				"follow_delay": 927.065700617808,
+				"follow_eta": 44314.2657006178,
+				"gain": 781.429785546985,
+				"pass_delay": 504.206206190749,
+				"pass_eta": 43891.4062061907,
+				"priority_weight": 2.83333333333333,
+				"saved": 422.859494427059,
+				"slow_extra": 416.672115329682,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "STKT_MQO_D1",
+				"hold": "STKTD115",
+				"other": "D115",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42832.999999936,
+			"fast_speed": 27.3777624089313,
+			"order": {
+				"booked_arrival": 43387.2,
+				"checkpoint": "QLN",
+				"follow_delay": 957.065700617371,
+				"follow_eta": 44344.2657006174,
+				"gain": 866.429784451717,
+				"pass_delay": 504.206206476149,
+				"pass_eta": 43891.4062064761,
+				"priority_weight": 2.83333333333333,
+				"saved": 452.859494141223,
+				"slow_extra": 416.672115615082,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "STKT_MQO_D2",
+				"hold": "STKTD115",
+				"other": "D115",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42864.4999999356,
+			"fast_speed": 27.377777777776,
+			"order": {
+				"booked_arrival": 43387.2,
+				"checkpoint": "QLN",
+				"follow_delay": 987.065700616935,
+				"follow_eta": 44374.2657006169,
+				"gain": 951.429784452153,
+				"pass_delay": 504.206206475712,
+				"pass_eta": 43891.4062064757,
+				"priority_weight": 2.83333333333333,
+				"saved": 482.859494141223,
+				"slow_extra": 416.672115614645,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "STKT_MQO_D3",
+				"hold": "STKTD115",
+				"other": "D115",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		},
+		{
+			"clock": 42896.9999999351,
+			"fast_speed": 24.6676751232338,
+			"order": {
+				"booked_arrival": 43387.2,
+				"checkpoint": "QLN",
+				"follow_delay": 1022.06570061643,
+				"follow_eta": 44409.2657006164,
+				"gain": 1050.59645111933,
+				"pass_delay": 504.206206475203,
+				"pass_eta": 43891.4062064752,
+				"priority_weight": 2.83333333333333,
+				"saved": 517.859494141223,
+				"slow_extra": 416.672115614136,
+				"timing_basis": "booked arrival",
+				"worthwhile": true
+			},
+			"slow_speed": 0.0,
+			"state": {
+				"action": "pass",
+				"fast": "MQO_P1",
+				"hold": "STKTD115",
+				"other": "D115",
+				"slow": "STKT_P3",
+				"station": "STKT"
+			}
+		}
+	],
+	"wall_seconds": 65.915
+}

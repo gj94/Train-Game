@@ -47,6 +47,17 @@ gaps. Do not reset the start or count waiting between turns as active work.
 
 ## Initial evidence
 
+Latest user steering: compare both ETA/order alternatives and predicted
+punctuality benefit for the higher-priority train, rather than creating passes
+from priority alone. Added explicit weighted-delay comparison work. User also
+authorized an interim even split of Kollam's six passenger roads (three per
+direction). The current importer assigns each siding to the nearest main; QLN
+has one southbound and five northbound passenger roads, not verified junction
+connectivity. Full dual-line access needs actual crossover topology. Stage the
+balanced reconstructed layout after owner-policy tests, then regenerate/test
+all compatible Classic and V2 timetables; old geometry signatures must never be
+silently accepted. Preserve the published R46 files throughout.
+
 See `dispatch-kpy-2026-10-24.md`: K1 is assigned KPY_P1 before B002 enters the
 classic four-minute conflict window; D100 occupies P4 at that earlier moment.
 Later policy holds the already berthed K1 and admits B002 to P4. STKT is 7.65 km
@@ -75,3 +86,29 @@ The baseline records 14 K1 overtakers at eight stations, including five at KPY.
 Next: owner-side acceptance and plan stability; connect only same-direction
 overtake policy, preserve crossing/interlocking authority, then persistence/UI
 and full V2-compatible operating-day preparation.
+
+## Owner integration checkpoint, 24 October 23:35
+
+Full source suite: **937 passed, 0 failed** (`owner-full-tests.log`). Live
+proposals now pass owner-side freshness, participant, route-claim and competing
+plan checks. Explicit following/overtaking comparisons measure predicted
+priority-train lateness saved against lower-priority detention. Classic remains
+the default; no home selector or new prepared day is delivered yet.
+
+`order-live.json` records a 20-minute 11:35–11:55 replay of the original
+Intensive state. K1 is not held for B002 at KPY; it takes STKT_P3 while B002
+passes STKT_P1 above 20 m/s. No safety events. The original closely grouped
+relief services still catch K1 there: this is not full-day distribution proof.
+Reproduce with `tools/check_predictive_overtake.gd` on this geometry/state.
+
+`order-worker-benchmark.json` repeats the equivalent-result benchmark after the
+order comparison was added: inline 32.80 ms, one worker 33.69 ms, two 23.28 ms,
+four 17.62 ms; capture 3.319 ms. Asynchronous live submission remains nonblocking.
+Offline preparation/time skip joins four workers on its simulation owner.
+Save/load and event rewind preserve validated plans; worker handles never enter
+snapshots. A real 20-second skip matches the inline state exactly and restores
+the live asynchronous strategy. These are development CPU timings, not FPS.
+
+Next: isolate KPY/STKT regression fixtures from mutable prepared states; apply
+the authorized QLN three/three platform split; expose matching Classic/V2 day
+choices and regenerate/audit their service starts, timeline and encounters.

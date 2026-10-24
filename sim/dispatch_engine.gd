@@ -21,6 +21,7 @@ var cycles := 0
 var _world: WeakRef
 var _planner := Planner.new()
 var future_clearances := preload("res://sim/future_clearance.gd").new()
+var predictive := preload("res://sim/predictive_dispatch.gd").new()
 var _next_tick := 0.0
 var _wait_since := {}
 var _last_state := {}
@@ -30,6 +31,13 @@ var _running := false
 
 func _init(w) -> void:
 	_world = weakref(w)
+
+func set_mode(mode: String) -> Dictionary:
+	if mode not in ["classic","predictive"]:return {ok=false,reason="Choose Classic or Predictive V2"}
+	predictive.configure(mode=="predictive")
+	var w=_world.get_ref()
+	if w!=null:_record(w,"operator","","Dispatcher: "+("Predictive V2" if predictive.enabled else "Classic")+"; existing authorities retained")
+	return {ok=true,reason=""}
 
 func advance() -> void:
 	var w = _world.get_ref()
@@ -45,6 +53,7 @@ func run_cycle(route_trains: bool = true) -> void:
 	future_clearances.update(w,self,route_trains)
 	for id in w.dispatch_holds.keys():
 		if not w.trains.has(id) or not w.trains.has(w.dispatch_holds[id].get("other", "")): w.dispatch_holds.erase(id)
+	if route_trains:predictive.update(w,self)
 	if route_trains: Policy.update(w)
 	for id in w.dispatch_holds.keys():
 		var hold: Dictionary=w.dispatch_holds[id]
@@ -68,6 +77,7 @@ func run_cycle(route_trains: bool = true) -> void:
 		if route_trains: _prepare_approach(w,t)
 		var state := _evaluate(w, t, route_trains)
 		state.planned_crossing=future_clearances.advice(w,t)
+		state.planned_overtake=predictive.advice(w,t) if predictive.enabled else ""
 		if not state.planned_crossing.is_empty() and state.status in ["blocked","waiting"]:
 			state.reason=state.planned_crossing+" · "+state.reason
 		states[t.id] = state
@@ -201,6 +211,7 @@ func _evaluate(w, t: Train, route_trains: bool, approach: Dictionary = {}) -> Di
 		if not route_trains or (not t.automatic and t.id != manual_service): return state
 		var result: Dictionary = w.set_route(ns.id,best.destination)
 		if result.ok:
+			if predictive.enabled:predictive.routes_changed()
 			if not best.stop.is_empty():
 				var stop: Dictionary = t.timetable.stop_ahead()
 				stop.block=best.stop.block; stop.s=best.stop.s

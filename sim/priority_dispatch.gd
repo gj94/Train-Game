@@ -68,14 +68,16 @@ static func conflict(w: RailWorld,t: Train,st: Dictionary) -> Dictionary:
 			if index<0 or index>=sections.size() or sections[index].tracks!=1:continue
 			if (other_at-st.s)*direction<500:continue # already in/past this station
 		else:
+			var forecast: int=w.dispatcher().predictive.choice(w,t,other,st) if w.dispatcher().predictive.enabled else -1
+			if forecast==0:continue
 			# Ten minutes is a comfort target, not a forced departure. Avoid
 			# new optional passes beyond the shared thirty-minute starvation budget. Physical authority
 			# and an overtake already alongside remain separately protected.
 			if waited>=STATION_WAIT_BUDGET:continue
 			if waited>=STATION_WAIT_TARGET and waited+other_eta>STATION_WAIT_BUDGET:continue
-			if other_eta>own_eta+LOOKAHEAD_SECONDS:continue
+			if forecast<0 and other_eta>own_eta+LOOKAHEAD_SECONDS:continue
 			if other.dispatch_priority<=t.dispatch_priority or (at-other_at)*direction<0:continue
-			if other.max_speed<=t.max_speed and not (t.timetable!=null and t.timetable.at_stop):continue
+			if forecast<0 and other.max_speed<=t.max_speed and not (t.timetable!=null and t.timetable.at_stop):continue
 		best={other=other.id,station=st.code,chainage=st.s,kind="crossing" if opposing else "overtake",direction=direction,created=w.time}
 		best_eta=other_eta
 	return best
@@ -101,6 +103,9 @@ static func update(w: RailWorld) -> void:
 		var hold: Dictionary=w.dispatch_holds[id]
 		var t: Train=w.trains[id]
 		var other: Train=w.trains[hold.other]
+		if w.dispatcher().predictive.enabled and w.dispatcher().predictive.can_defer(w,t,hold):
+			w.dispatch_holds.erase(id)
+			continue
 		if hold.kind=="overtake" and departure_committed(w,t):
 			w.dispatch_holds.erase(id)
 			continue
@@ -111,6 +116,7 @@ static func update(w: RailWorld) -> void:
 			hold.arrived=hold.get("arrived",false) or station(w,other.path[0].edge).get("code","")==hold.station
 		var passed: bool=(chainage(w,other)-hold.chainage)*other.path[0].dir>other.length+500
 		var withdrawn: bool=eta(w,other,hold.chainage)>MAX_HOLD_ETA
+		if hold.kind=="overtake" and w.dispatcher().predictive.enabled and w.dispatcher().predictive.maintains(w,t,hold):withdrawn=false
 		if withdrawn and hold.kind=="crossing":
 			var st: Dictionary=w.stations.filter(func(s):return s.code==hold.station)[0]
 			withdrawn=conflict(w,t,st).get("other","")!=other.id
@@ -206,6 +212,7 @@ static func choose_platform(w: RailWorld,t: Train,options: Array,stop: Dictionar
 	# Finished services keep their allocated terminal road clear of the main.
 	if stopping and t.timetable.index>=t.timetable.stops.size()-1:return {}
 	var decision:=conflict(w,t,st)
+	var forecast_road: String=w.dispatcher().predictive.road(w,t,st.code) if w.dispatcher().predictive.enabled else ""
 	var primary:=1 if _single_both(w,st) or t.path[0].dir==1 else 2
 	var best:={}
 	var cost:=INF
@@ -224,6 +231,7 @@ static func choose_platform(w: RailWorld,t: Train,options: Array,stop: Dictionar
 		if is_inf(onward):continue
 		var score: float=option.cost*.001+(0 if road==primary else 20)
 		if not decision.is_empty():score+=-100 if is_loop else 100
+		if last.edge==forecast_road:score-=400
 		if score<cost:
 			cost=score
 			var hold: Dictionary=decision if is_loop else {}

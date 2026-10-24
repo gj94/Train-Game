@@ -1,6 +1,7 @@
 extends RefCounted
 ## Worker-owned rolling-horizon proposals. These never grant movement authority.
 const Forecast:=preload("res://sim/dispatch_forecast.gd")
+const Order:=preload("res://sim/dispatch_order_comparison.gd")
 const CLEARANCE_MARGIN:=45.0
 const MAX_AHEAD:=30000.0
 const MAX_STATIONS:=4
@@ -29,11 +30,13 @@ func for_train(frame: Dictionary,slow: Dictionary) -> Dictionary:
 		if not choice.is_empty():alternatives.append(choice)
 		else:unresolved.append(fast.id)
 	if alternatives.is_empty():return {}
+	var passes: Array=alternatives.filter(func(p):return p.get("action","pass")=="pass")
+	if not passes.is_empty():alternatives=passes
 	alternatives.sort_custom(func(a,b):return a.chainage*slow.direction<b.chainage*slow.direction if a.chainage!=b.chainage else a.fast_entry<b.fast_entry)
 	var best: Dictionary=alternatives[0];best.participants=contenders.map(func(t):return t.id)
 	# Do not certify onward progress around an unmodelled higher-priority
 	# follower. The owner keeps its conservative current policy in that case.
-	if not unresolved.is_empty() and not best.at_station:return {}
+	if not unresolved.is_empty() and (not best.at_station or best.get("action","pass")=="follow"):return {}
 	return best
 
 func pair(frame: Dictionary,slow: Dictionary,fast: Dictionary) -> Dictionary:
@@ -61,6 +64,8 @@ func pair(frame: Dictionary,slow: Dictionary,fast: Dictionary) -> Dictionary:
 				if not free_by(frame,fast_road.id,fast.id,candidate.fast_entry-CLEARANCE_MARGIN):continue
 				choices.append(candidate)
 	if choices.is_empty():return {}
+	var worthwhile: Array=choices.filter(func(p):return p.get("action","pass")=="pass")
+	if not worthwhile.is_empty():choices=worthwhile
 	choices.sort_custom(func(a,b):return a.cost<b.cost if not is_equal_approx(a.cost,b.cost) else a.chainage*slow.direction>b.chainage*slow.direction)
 	var best: Dictionary=choices[0]
 	best.alternatives=choices.map(func(c):return {station=c.station,road=c.road,passing_road=c.passing_road,cost=c.cost,margin=c.margin,wait=c.wait,slow_clear=c.slow_clear,fast_entry=c.fast_entry})
@@ -91,10 +96,42 @@ func evaluate(slow: Dictionary,fast: Dictionary,station: Dictionary,loop: Dictio
 	# speed penalty for the priority service. Small distance tie-break prefers
 	# making useful progress when costs are otherwise indistinguishable.
 	var penalty:=0.0 if main.main else (25.0 if not express_stop.is_empty() else 90.0)
-	var cost:=wait+penalty*3+(45.0 if stop.is_empty() else 0.0)-absf(station.s-slow.chainage)*.001
+	var order:=compare_orders(slow,fast,station,loop,main,ready,passed,wait,penalty,stop)
+	if order.is_empty():return {}
+	var cost: float=-order.gain-absf(station.s-slow.chainage)*.001
 	return {train=slow.id,other=fast.id,station=station.code,chainage=station.s,direction=slow.direction,road=loop.id,passing_road=main.id,
 		slow_clear=own.arrival,fast_entry=incoming.arrival,fast_clear=passed,margin=margin,wait=wait,cost=cost,at_station=here,
-		stop=not stop.is_empty(),express_stop=not express_stop.is_empty(),created=slow.clock,origin_edge=slow.edge,call_index=slow.call_index}
+		stop=not stop.is_empty(),express_stop=not express_stop.is_empty(),created=slow.clock,origin_edge=slow.edge,call_index=slow.call_index,
+		action="pass" if order.worthwhile else "follow",order=order}
+
+func compare_orders(slow: Dictionary,fast: Dictionary,station: Dictionary,loop: Dictionary,main: Dictionary,ready: float,passed: float,wait: float,penalty: float,stop: Dictionary) -> Dictionary:
+	# Assess the next booked timing point AFTER this candidate, including the
+	# slow train's intermediate stops. Both alternatives share the timing point.
+	# With no later call in range, compare exit from this station instead.
+	var target: Dictionary={}
+	for call: Dictionary in fast.calls:
+		var ahead: float=(call.chainage-station.s)*fast.direction
+		if ahead>station.half and ahead<=MAX_AHEAD:target=call;break
+	var follow_eta:=0.0;var pass_eta:=passed+penalty;var booked:=passed
+	if not target.is_empty():
+		var own: Dictionary=forecast.arrival(slow,target.road,target.s,not stop_for(slow,target.code).is_empty(),true)
+		var express: Dictionary=forecast.arrival(fast,target.road,target.s,true,false)
+		if not own.ok or not express.ok:return {}
+		var separation: float=30+slow.length/maxf(8,minf(slow.max_speed,forecast.topology.edges[target.road].limit))
+		follow_eta=maxf(express.arrival,own.arrival+separation)
+		pass_eta=express.arrival+penalty
+		booked=target.arrival
+	else:
+		var e: Dictionary=forecast.topology.edges[loop.id]
+		var exit_distance: float=e.length*.5-slow.length*.5+slow.length
+		follow_eta=maxf(passed,ready+5+exit_distance/maxf(6,minf(e.limit,slow.max_speed)*.5)+45)
+	# A route that would make the priority train late is worse than one that
+	# preserves its booked arrival, even if the slow train waits a little less.
+	var extra: float=wait+(45.0 if stop.is_empty() else 0.0)
+	var order:=Order.compare(follow_eta,pass_eta,booked,extra,slow.priority,fast.priority)
+	order.checkpoint=target.get("code",station.code)
+	order.timing_basis="booked arrival" if not target.is_empty() else "station clearance"
+	return order
 
 static func marker(road: Dictionary,t: Dictionary,passenger: bool) -> float:
 	var bounds: Array=road.platform if passenger else road.bounds

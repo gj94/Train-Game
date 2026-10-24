@@ -56,6 +56,9 @@ func _publish(finished: bool) -> void:
 	_mutex.unlock()
 
 func _run():
+	var predictive=_trial.world.dispatcher().predictive
+	var strategy:=[predictive.asynchronous,predictive.offline_workers]
+	if predictive.enabled:predictive.execution(false,4)
 	var next_progress:=Time.get_ticks_usec()+100000
 	while not _trial.done:
 		_mutex.lock()
@@ -68,5 +71,6 @@ func _run():
 		if Time.get_ticks_usec()>=next_progress:
 			_publish(false)
 			next_progress=Time.get_ticks_usec()+100000
+	if predictive.enabled:predictive.execution(strategy[0],strategy[1])
 	_publish(true)
 	return _trial

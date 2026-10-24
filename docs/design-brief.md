@@ -10,6 +10,11 @@ A **3D train game** where I can be either a **dispatcher** or a **driver**, and 
 
 ### Core requirements
 - **24 Oct 2026 predictive dispatcher V2:** retain selectable Classic dispatch;
+  Compare both train ETAs and following versus overtaking order explicitly by
+  projected priority-train punctuality gain versus lower-priority delay. Balance
+  Kollam's six passenger roads three per direction for now; this is a reconstructed
+  interim layout, not a claim that its real crossover network is reproduced.
+  Rebuild compatible Classic and V2 prepared states after the layout change.
   add asynchronous multithreaded forecasts comparing future overtakes using
   train/line speeds, traction, braking, booked dwell, platform compatibility and
   full-rake clearance. Consider onward running when the slower train can reach

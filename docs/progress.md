@@ -1,5 +1,23 @@
 # Progress
 
+## 24 October 2026 — predictive owner integration and punctuality comparison
+
+Detached forecasts now inform optional V2 overtake policy through live-state
+validation; all route authority remains with existing interlocking. Compare
+following versus passing by predicted priority-train lateness saved and the
+slow train's detention. Preserve plans/mode across saves, event rewind and
+threaded time skip. Full source suite: 937 passed, zero failures. The bounded
+11:35–11:55 Intensive replay sends K1 to STKT_P3 and B002 through STKT_P1,
+without a KPY overtake hold or safety event. Four forecast workers average
+17.62 ms versus 32.80 ms inline on the development PC. No full-day claim yet.
+
+Next: user-authorized QLN three/three passenger-road balance, independent
+regression fixtures, selectable V2 operating days and all compatible prepared
+timetables. Existing R46 downloads remain unchanged. Later playtest: choose
+V2, inspect its planned passing station, compare priority-delay estimates, and
+check save/reload and event skip preserve the dispatcher choice. The selector
+and rebuilt days are still pending. [Evidence](../art/performance/dispatcher-v2-2026-10-24/README.md).
+
 ## 24 October 2026 — predictive dispatcher foundation (not enabled in gameplay)
 
 Added detached speed-envelope forecasting, comparison of compatible passing

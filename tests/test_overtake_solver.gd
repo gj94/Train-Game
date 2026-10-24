@@ -80,3 +80,8 @@ func test_worker_shutdown_joins_pending_jobs_and_is_reusable():
 	worker.close()
 	if worker.busy() or not worker.take().is_empty():return false
 	var okay:=worker.submit(f.frame);worker.close();return okay
+
+func test_offline_parallel_completion_preserves_order_and_uses_other_cores():
+	var f:=fixture();var worker:=Worker.new(f.topology)
+	var expected:=worker.synchronous(f.frame);var result:=worker.parallel_complete(f.frame,2)
+	return result.plans==expected.plans and OS.get_thread_caller_id() not in result.worker_threads and not worker.busy()

@@ -53,7 +53,7 @@ static func train(w: RailWorld,t: Train) -> Dictionary:
 		manual=not t.automatic,emergency=t.emergency,call_index=tt.index,missed=tt.missed_stop}
 
 static func frame(w: RailWorld) -> Dictionary:
-	var engine=w.dispatcher();var trains:=[];var occupied:=w.occupancy().duplicate();var claims:={}
+	var engine=w.dispatcher();var trains:=[];var occupied:=w.occupancy().duplicate()
 	for t: Train in w.active_trains():
 		if t.timetable==null or t.service_complete:continue
 		var item:=train(w,t)
@@ -64,6 +64,10 @@ static func frame(w: RailWorld) -> Dictionary:
 		var ahead_signal: Dictionary=w.next_signal(t)
 		item.inhibited=not ahead_signal.is_empty() and engine.inhibited_signals.has(ahead_signal.id)
 		trains.append(item)
+	return {clock=w.clock_seconds(),time=w.time,trains=trains,occupied=occupied,claims=claims(w),holds=w.dispatch_holds.duplicate(true)}
+
+static func claims(w: RailWorld) -> Dictionary:
+	var engine=w.dispatcher();var result:={}
 	var approaching:={}
 	for t: Train in w.active_trains():
 		if t.timetable==null or t.service_complete:continue
@@ -71,9 +75,9 @@ static func frame(w: RailWorld) -> Dictionary:
 			if not approaching.has(ahead.id) or ahead.distance<approaching[ahead.id].distance:approaching[ahead.id]={id=t.id,distance=ahead.distance}
 	for sig: Dictionary in w.routed_signals():
 		for part: Dictionary in sig.route:
-			if part.edge.get_slice("_P",1).is_valid_int():claims[part.edge]=sig.owner if not sig.owner.is_empty() else approaching.get(sig.id,{}).get("id","@committed")
+			if part.edge.get_slice("_P",1).is_valid_int():result[part.edge]=sig.owner if not sig.owner.is_empty() else approaching.get(sig.id,{}).get("id","@committed")
 	for st: Dictionary in w.stations:
 		for road: String in st.platform_tracks:
 			var owner: String=engine.future_clearances.owner(road)
-			if not owner.is_empty():claims[road]=owner
-	return {clock=w.clock_seconds(),time=w.time,trains=trains,occupied=occupied,claims=claims,holds=w.dispatch_holds.duplicate(true)}
+			if not owner.is_empty():result[road]=owner
+	return result

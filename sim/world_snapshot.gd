@@ -39,9 +39,12 @@ static func capture(w: RailWorld, session: Dictionary = {}) -> Dictionary:
 		data.shared_timetable=t.timetable!=null and t.timetable==t.completed_timetable
 		trains.append(data)
 	for id in w.graph.switches:switches[id]=w.graph.switches[id].reversed
-	return {format="train-game-save",version=VERSION,layout=Pack.layout_id(w),layout_signature=signature(w),
+	var result:={format="train-game-save",version=VERSION,layout=Pack.layout_id(w),layout_signature=signature(w),
 		world=fields(w,WORLD),trains=trains,switches=switches,dispatcher=fields(w.dispatcher(),DISPATCH),
 		future=fields(w.dispatcher().future_clearances,FUTURE),session=session.duplicate(true)}
+	# Optional extension: original Classic checkpoints remain byte-identical.
+	if w.dispatcher().predictive.enabled:result.predictive=w.dispatcher().predictive.checkpoint()
+	return result
 
 static func restore(data) -> Dictionary:
 	if not data is Dictionary or data.get("format")!="train-game-save":return error("This is not a Train Game save")
@@ -116,6 +119,9 @@ static func restore(data) -> Dictionary:
 	apply(w,data.world,WORLD)
 	apply(w.dispatcher(),data.dispatcher,DISPATCH)
 	apply(w.dispatcher().future_clearances,data.future,FUTURE)
+	if data.has("predictive"):
+		var issue: String=w.dispatcher().predictive.restore(w,data.predictive)
+		if not issue.is_empty():return error(issue)
 	return {ok=true,reason="",world=w,session=data.session.duplicate(true)}
 
 static func matches(object, data: Dictionary, names: Array) -> bool:

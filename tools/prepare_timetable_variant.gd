@@ -14,6 +14,7 @@ var delay:=0.0
 var delay_service:="K1"
 var delay_at:=0.0
 var standard:=false
+var predictive:=false
 var call_waits:={}
 var signal_waits:={}
 
@@ -28,12 +29,16 @@ func run() -> void:
 		elif arg.begins_with("--output="):output=arg.trim_prefix("--output=")
 		elif arg=="--snapshots":snapshots=true
 		elif arg=="--standard":standard=true
+		elif arg=="--predictive":predictive=true
 		elif arg.begins_with("--delay="):delay=float(arg.trim_prefix("--delay="))
 		elif arg.begins_with("--delay-at="):delay_at=float(arg.trim_prefix("--delay-at="))
 		elif arg.begins_with("--delay-service="):delay_service=arg.trim_prefix("--delay-service=")
 	var decoded: Dictionary={ok=true,world=preload("res://sim/layouts/kerala_coast.gd").build_traffic(true)} if standard else Pack.decode(FileAccess.get_file_as_string(pack_path))
 	if not decoded.ok:printerr(decoded.reason);quit(1);return
 	var w: RailWorld=decoded.world
+	if predictive:
+		w.dispatcher().predictive.configure(true,false)
+		w.dispatcher().predictive.offline_workers=4
 	for t: Train in w.trains.values():t.automatic=true
 	w.dispatcher().manual_service=""
 	if not w.trains.has(delay_service):printerr("Unknown delayed train");quit(1);return
@@ -43,8 +48,8 @@ func run() -> void:
 	var began:=Time.get_ticks_msec()
 	var sources:=preload("res://persistence/prepared_sources.gd").collect()
 	if not standard:sources[pack_path.trim_prefix("res://")]=FileAccess.get_file_as_string(pack_path).replace("\r\n","\n").sha256_text()
-	var catalogue:={version=1,engine=Engine.get_version_info().string,complete=false,services=[],sources=sources,layout_signature=Snapshot.signature(w)}
-	var timeline:={version=1,engine=Engine.get_version_info().string,complete=false,states=[],sources=sources,layout_signature=catalogue.layout_signature}
+	var catalogue:={version=1,engine=Engine.get_version_info().string,complete=false,services=[],sources=sources,layout_signature=Snapshot.signature(w),dispatcher="predictive" if predictive else "classic"}
+	var timeline:={version=1,engine=Engine.get_version_info().string,complete=false,states=[],sources=sources,layout_signature=catalogue.layout_signature,dispatcher=catalogue.dispatcher}
 	var pending:={};var metrics:={};var maximum_wait:=0.0;var peak:=0
 	for t: Train in w.trains.values():
 		var tt=t.timetable
@@ -117,6 +122,7 @@ func run() -> void:
 	var audit:={ok=trial.ok and maximum_wait<2700 and wait_quality.ok and station_quality.ok and w.events.is_empty(),report=trial.report,maximum_wait=maximum_wait,
 		wall_seconds=(Time.get_ticks_msec()-began)*.001,clock=w.clock_seconds(),events=w.events,finished=finished,total=w.trains.size(),peak_active=peak,
 		pack_sha256="" if standard else FileAccess.get_sha256(pack_path),operating_day="standard" if standard else "intensive",
+		dispatcher="predictive" if predictive else "classic",
 		delay=delay,delay_service=delay_service,delay_at=delay_at,
 		wait_quality=wait_quality,station_wait_quality=station_quality,maximum_station_wait=longest_station,over_ten_minute_calls=over_budget}
 	json_file(output+"/audit.json",{audit=audit,services=metrics,stations=stations,history=w.dispatch_history,station_waits=call_waits.values(),signal_waits=signal_waits.values(),sources=sources})

@@ -102,13 +102,14 @@ func running(train: Dictionary, sections: Array, start_speed: float, stop: bool,
 			seconds+=peak/accel+peak/brake+maxf(0,lengths[i]-peak*peak*.5*(1/accel+1/brake))/maxf(.1,peak)
 		else:seconds+=2*lengths[i]/maxf(.01,speed+next)
 		speed=next
-	return {ok=true,seconds=seconds,speed=speed,distance=total}
+	return {ok=true,seconds=seconds,speed=speed,distance=total,tail_limits=prior.map(func(p):return {behind=total-p.end,limit=p.limit})}
 
 ## Calls contain absolute planned departures. Include intervening booked waits,
 ## passenger dwell and stationary departure horns, not just distance / top speed.
 func arrival(train: Dictionary, road: String, at_s: float, stop: bool, cautious: bool=true) -> Dictionary:
 	var edge: String=train.edge;var direction: int=train.direction;var from_s: float=train.head_s
 	var speed: float=train.speed;var clock: float=train.clock;var distance:=0.0
+	var leg_train:=train.duplicate(false)
 	if train.get("at_stop",false):clock=maxf(clock,train.release)+train.get("departure_allowance",5.0)
 	var target: Dictionary=topology.edges[road]
 	var target_chainage: float=lerpf(target.start,target.end,at_s/target.length)
@@ -122,10 +123,11 @@ func arrival(train: Dictionary, road: String, at_s: float, stop: bool, cautious:
 	for checkpoint: Dictionary in checkpoints:
 		var sections:=pieces(edge,direction,from_s,checkpoint.road,checkpoint.s)
 		var final: bool=checkpoint.get("final",false)
-		var leg:=running(train,sections,speed,stop if final else true,cautious)
+		var leg:=running(leg_train,sections,speed,stop if final else true,cautious)
 		if not leg.ok:return {ok=false,reason="No compatible forward route"}
 		clock+=leg.seconds;distance+=leg.distance;speed=leg.speed
 		if not final:clock=maxf(clock+checkpoint.dwell,checkpoint.departure)+train.get("departure_allowance",5.0)
 		if not sections.is_empty():direction=sections[-1].dir
+		leg_train.tail_limits=leg.get("tail_limits",[])
 		edge=checkpoint.road;from_s=checkpoint.s
 	return {ok=true,arrival=clock,seconds=clock-train.clock,speed=speed,distance=distance}
