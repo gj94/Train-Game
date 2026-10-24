@@ -74,6 +74,7 @@ func label_for(key: String) -> String:
 	return OPTIONS[key].labels[OPTIONS[key].values.find(values[key])]
 
 func apply() -> void:
+	EpicVisuals.set_surface_detail(values.surface_detail)
 	if game==null:return
 	var vp: Viewport=game.get_viewport()
 	vp.scaling_3d_mode=Viewport.SCALING_3D_MODE_FSR if values.scale<1.0 else Viewport.SCALING_3D_MODE_BILINEAR
@@ -92,6 +93,10 @@ func apply() -> void:
 	if game.passenger_crowd!=null:game.passenger_crowd.render_budget=values.passengers
 
 func apply_tree(node: Node) -> void:
+	EpicVisuals.set_surface_detail(values.surface_detail)
+	_apply_tree(node)
+
+func _apply_tree(node: Node) -> void:
 	if node is WorldEnvironment:
 		var env: Environment=node.environment
 		env.ssao_enabled=values.ssao;env.ssil_enabled=values.ssil;env.glow_enabled=values.glow
@@ -105,10 +110,9 @@ func apply_tree(node: Node) -> void:
 		EpicVisuals.apply_station_shadow(node,values.station_shadows and values.shadows>0)
 	elif node is GeometryInstance3D:
 		apply_geometry(node)
-	for child in node.get_children():apply_tree(child)
+	for child in node.get_children():_apply_tree(child)
 
 func apply_geometry(node: GeometryInstance3D) -> void:
-	EpicVisuals.apply_surface(node,values.surface_detail)
 	var kind:=str(node.get_meta("scenery_kind","")).to_lower()
 	# Legacy tree silhouettes predate scenery_kind; they must match their mesh LOD.
 	if kind.is_empty() and str(node.name).begins_with("Canopy_"):kind=str(node.name).trim_prefix("Canopy_").to_lower()

@@ -253,8 +253,8 @@ func _capture_water_temporal_diagnostic() -> void:
 	_set_lighting(period.hour);lamp.light_energy=3.0
 	_apply_preset("Epic")
 	water.material_override=fixed
-	# Runtime helpers deliberately reject this path-less diagnostic copy.
-	water.set_instance_shader_parameter("extreme_detail",1.0)
+	# Diagnostic copies share the production global detail flag.
+	EpicVisuals.set_surface_detail(true)
 	camera.position=view.eye;camera.look_at(view.target)
 	report.capture_order="fixed dusk water camera, six explicit shader-time samples"
 	report.temporal_shader={source_path=source.shader.resource_path,files=shader_files,sha256=shader_hashes,
@@ -337,7 +337,7 @@ func _capture_reflection_diagnostic() -> void:
 	]
 	for material_case in cases:
 		water.material_override=material_case.material
-		EpicVisuals.apply_surface(water,true)
+		EpicVisuals.set_surface_detail(true)
 		viewport.msaa_3d=material_case.msaa
 		environment.ssr_max_steps=material_case.ssr.steps
 		environment.ssr_fade_in=material_case.ssr.fade_in
@@ -367,9 +367,8 @@ func _capture_reflection_diagnostic() -> void:
 		var normal_material:=_diagnostic_normal_material(source,view_space)
 		if normal_material==null:return
 		water.material_override=normal_material
-		# The generated debug shader still declares the original instance slot,
-		# but intentionally is not a supported runtime source-material path.
-		water.set_instance_shader_parameter("extreme_detail",1.0)
+		# The generated debug shader shares the production global detail flag.
+		EpicVisuals.set_surface_detail(true)
 		environment.ssr_enabled=false;options.values.reflections=false
 		diagnostic_state={material="source-water-normal-debug",ssr=false,surface_detail=true,
 			transparent_bg=viewport.transparent_bg,msaa_3d=viewport.msaa_3d,
@@ -587,7 +586,7 @@ func _set_lighting(hour: float) -> void:
 
 func _apply_preset(label: String) -> void:
 	options.preset(label)
-	options.apply_tree(scene) # Calls EpicVisuals per-instance/environment helpers.
+	options.apply_tree(scene) # Calls shared surface and environment helpers.
 	viewport.scaling_3d_scale=options.values.scale
 	viewport.msaa_3d=options.values.msaa
 	viewport.screen_space_aa=Viewport.SCREEN_SPACE_AA_FXAA if options.values.fxaa else Viewport.SCREEN_SPACE_AA_DISABLED

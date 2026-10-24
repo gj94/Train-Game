@@ -1,5 +1,23 @@
 # Progress
 
+## 2026-10-24 — Kollam shader-instance exhaustion resolved
+
+- Ninth overnight increment: replace nine surface shaders' per-geometry Epic
+  flag with one shader global. Keep immutable authored materials and independent
+  passenger-door animation; no buffer-size increase or geometry changes.
+- Fresh QLN native rerun: 23,524 geometry nodes, surface parameters 4,090 -> 0,
+  door parameters still 420. High/Epic/High GPU probe reads 0/1/0; clean stderr.
+  51-frame day/dusk/night and rebase fixture captured; 14/15 restored High
+  images pixel-identical, remaining overview mean RGB error 0.003/255.
+- 861 full source tests pass. Three scripts validate, editor zero errors;
+  all 4,893 protected hashes unchanged. No full timetable or extracted build
+  tests. Evidence: art/performance/map-2026-10-24/surface-globals.
+- Playtest after release: toggle High/Epic/High at Kollam, stream onward, and
+  confirm passenger doors still open independently on the platform side.
+- Next: shared shoreline context and worker query cost, then remaining bridge
+  slit, parallel road overlap, junction shoulders and vegetation transitions.
+  Original fixed window/six active hours continue; R45 remains live.
+
 ## 2026-10-24 — Grounded terminal formations and bridge approaches
 
 - Eighth overnight increment: index actual terminal tracks and bridge-end

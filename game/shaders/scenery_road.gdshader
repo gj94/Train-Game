@@ -1,5 +1,5 @@
 shader_type spatial;
-instance uniform float extreme_detail : instance_index(15) = 0.0;
+global uniform float extreme_detail;
 uniform vec3 extreme_route_origin = vec3(0.0);
 uniform sampler2D surface_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D surface_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;

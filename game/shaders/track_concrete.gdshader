@@ -1,5 +1,5 @@
 shader_type spatial;
-instance uniform float extreme_detail : instance_index(15) = 0.0;
+global uniform float extreme_detail;
 #include "extreme_surface_detail.gdshaderinc"
 uniform sampler2D albedo_tex : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D normal_tex : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;

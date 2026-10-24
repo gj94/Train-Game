@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode diffuse_burley;
-instance uniform float extreme_detail : instance_index(15) = 0.0;
+global uniform float extreme_detail;
 uniform sampler2D grass_albedo : source_color,filter_linear_mipmap_anisotropic,repeat_enable;
 uniform sampler2D grass_normal : hint_normal,filter_linear_mipmap_anisotropic,repeat_enable;
 uniform sampler2D soil_albedo : source_color,filter_linear_mipmap_anisotropic,repeat_enable;

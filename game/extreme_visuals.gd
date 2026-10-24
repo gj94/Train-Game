@@ -1,5 +1,5 @@
 extends RefCounted
-## Opt-in render-only finishing. Per-instance detail never mutates shared materials.
+## Opt-in render-only finishing. One global detail flag leaves materials immutable.
 ## Only GeographicWorld-owned origin uniforms are updated on its main-thread
 ## rebase path; immutable authored asset cache resources are never changed.
 const SURFACE_SHADERS := [
@@ -15,8 +15,8 @@ const SURFACE_SHADERS := [
 ]
 const REFLECTION_STATE := "extreme_reflection_original"
 const SKY_STATE := "extreme_sky_original"
-const SURFACE_STATE := "extreme_surface_applied"
 const STATION_SHADOW_STATE := "extreme_station_shadow_original"
+static var surface_detail_enabled := false
 
 static func apply_station_shadow(light: OmniLight3D, enabled: bool) -> void:
 	if not light.has_meta("station_shadow_rank"):
@@ -39,17 +39,13 @@ static func apply_station_shadow(light: OmniLight3D, enabled: bool) -> void:
 	# 40 m fade length, then skips their rendering. Light fade stays 90–130 m.
 	light.distance_fade_shadow=20.0 if detailed else original.distance_fade_shadow
 
-static func apply_surface(node: GeometryInstance3D, enabled: bool) -> void:
-	if not supports_surface(node):
-		if node.has_meta(SURFACE_STATE):
-			# A runtime material replacement must not inherit our instance flag.
-			node.set_instance_shader_parameter("extreme_detail",null)
-			node.remove_meta(SURFACE_STATE)
-		return
-	# A per-instance uniform is safe for both ordinary meshes and MultiMeshes.
-	# The zero default also keeps newly built, not-yet-activated geometry legacy.
-	node.set_instance_shader_parameter("extreme_detail",1.0 if enabled else 0.0)
-	node.set_meta(SURFACE_STATE,true)
+static func set_surface_detail(enabled: bool) -> void:
+	# This preference is shared by the whole scene, including future streamed
+	# geometry. Per-instance copies exhausted the renderer buffer at busy QLN.
+	# Keep a CPU copy: reading the server value would synchronize render threads.
+	if surface_detail_enabled==enabled:return
+	surface_detail_enabled=enabled
+	RenderingServer.global_shader_parameter_set("extreme_detail",1.0 if enabled else 0.0)
 
 static func supports_surface(node: GeometryInstance3D) -> bool:
 	if _supported_material(node.material_override):

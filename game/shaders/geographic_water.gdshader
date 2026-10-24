@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode diffuse_burley, specular_schlick_ggx;
-instance uniform float extreme_detail : instance_index(15) = 0.0;
+global uniform float extreme_detail;
 uniform vec3 route_origin=vec3(0.0);
 #include "extreme_surface_detail.gdshaderinc"
 varying vec3 position_m;

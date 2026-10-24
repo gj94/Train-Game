@@ -450,3 +450,28 @@ no build prepared. Continue the fixed window and six actual hours, notify
 before the eventual full/incremental release. No full timetable or extracted
 gameplay run. No runtime/test edits while the full suite ran; an earlier
 incomplete suite/export was stopped before fixing the QLN reference case.
+
+## Ninth implementation checkpoint (validated)
+
+QLN shader-instance overflow is fixed. Nine world surface shaders use one
+project-declared global detail value rather than allocating identical parameters
+on 4,090 geometry instances. The main thread changes the global only when the
+preference changes; immutable cache materials and the 420 per-instance door
+parameters remain untouched. The renderer buffer is unchanged. API verified
+through live ClassDB and official Godot docs; project setting applied via MCP.
+
+861 full source tests pass, clean stderr; three scripts validate, editor zero
+errors, all 4,893 protected hashes unchanged. Fresh QLN High/Epic/High GPU probe
+reads 0/1/0, 23,524 geometry nodes, zero extreme-detail instance allocations,
+420 door parameters and clean renderer stderr. The 51-frame source-material
+fixture includes day/dusk/night and six rebase views: 14/15 High restorations
+pixel-identical, remaining daylight overview mean RGB error 0.003/255. Small
+rebase differences are retained, not claimed absent. Evidence: surface-globals.
+
+Next priorities remain shared bounded shoreline context (border-causes.json),
+water-formation query cost, QLN bridge-edge slit, parallel road overlap143.7km,
+same-level junction shoulders and vegetation transitions. No railway or terrain
+geometry changed in this ninth increment; completed geometry audits remain
+applicable. R45 stays live, no build prepared. Original fixed time and six actual
+active hours continue. Playtest High/Epic toggles at QLN and streaming/doors after
+release. No full timetable runs, extracted gameplay or source edits during tests.

@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode diffuse_burley;
-instance uniform float extreme_detail : instance_index(15) = 0.0;
+global uniform float extreme_detail;
 #include "extreme_surface_detail.gdshaderinc"
 uniform sampler2D concrete_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D concrete_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;

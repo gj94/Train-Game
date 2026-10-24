@@ -1,5 +1,5 @@
 shader_type spatial;
-instance uniform float extreme_detail : instance_index(15) = 0.0;
+global uniform float extreme_detail;
 #include "extreme_surface_detail.gdshaderinc"
 // Strip of laterite soil / spilled ballast beside the track. UV.x runs across
 // the strip (0..1), UV.y along it in metres. Edges are broken up with noise.

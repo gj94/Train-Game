@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode diffuse_burley, specular_schlick_ggx;
-instance uniform float extreme_detail : instance_index(15) = 0.0;
+global uniform float extreme_detail;
 uniform vec3 extreme_route_origin = vec3(0.0);
 // Photographic finishes in real metres, shared across the existing station surfaces.
 uniform vec4 base_color : source_color = vec4(.6,.6,.6,1);

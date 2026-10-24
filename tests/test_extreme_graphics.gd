@@ -268,106 +268,70 @@ func test_extreme_building_lods_restore_and_never_extend_rail_geometry():
 	root.free()
 	return ok
 
-func test_surface_shader_contract_is_per_instance_zero_by_default():
-	var declaration := RegEx.new()
-	declaration.compile("instance\\s+uniform\\s+float\\s+extreme_detail\\s*:\\s*instance_index\\(\\s*15\\s*\\)\\s*=\\s*0(\\.0+)?\\s*;")
+func test_surface_shader_contract_uses_shared_zero_default():
+	var setting: Dictionary=ProjectSettings.get_setting("shader_globals/extreme_detail",{})
+	if setting.get("type")!="float" or setting.get("value")!=0.0:return "Global detail must start at High"
 	for path in SURFACES:
 		var source := FileAccess.get_file_as_string(path)
-		if declaration.search(source)==null:
-			return "Missing isolated, legacy-zero Epic uniform in "+path
+		if not source.contains("global uniform float extreme_detail;") or source.contains("instance uniform"):
+			return "Surface unnecessarily reserves per-instance storage: "+path
 	return true
 
-func test_surface_detail_is_per_geometry_and_never_mutates_shared_materials():
+func test_surface_changes_do_not_allocate_instances_or_mutate_cached_resources():
 	var settings := Options.new()
 	var root := Node3D.new()
-	var failure := ""
-	for path in SURFACES:
-		var material := ShaderMaterial.new()
-		material.shader=load(path)
-		var shader_code := material.shader.code
-		var material_value: Variant=material.get_shader_parameter("extreme_detail")
-		var nodes := []
-		for mode in 4:
-			var node := surface_node(material,mode)
-			root.add_child(node)
-			nodes.append(node)
-			if not Epic.supports_surface(node):failure="Unsupported material path %d: %s" % [mode,path]
-		settings.preset("Epic")
-		for node in nodes:settings.apply_tree(node)
-		for node in nodes:
-			if node.get_instance_shader_parameter("extreme_detail")!=1.0:
-				failure="Epic flag was not applied per geometry: "+path
-		settings.preset("High")
-		settings.apply_tree(nodes[0])
-		if nodes[0].get_instance_shader_parameter("extreme_detail")!=0.0:
-			failure="High did not clear its geometry flag: "+path
-		for i in range(1,nodes.size()):
-			if nodes[i].get_instance_shader_parameter("extreme_detail")!=1.0:
-				failure="Changing one geometry changed a shared material peer: "+path
-		if material.get_shader_parameter("extreme_detail")!=material_value or material.shader.code!=shader_code:
-			failure="Shared shader resource was mutated: "+path
-		for node in nodes:settings.apply_tree(node)
-		for node in nodes:
-			if node.get_instance_shader_parameter("extreme_detail")!=0.0:
-				failure="Surface detail did not restore to High: "+path
-		if not failure.is_empty():break
-	root.free()
-	return true if failure.is_empty() else failure
-
-func test_surface_detection_ignores_unrelated_and_overridden_materials():
-	var material := ShaderMaterial.new()
-	material.shader=load(SURFACES[0])
-	var supported := surface_node(material,1)
-	var blocked := surface_node(material,1)
-	blocked.material_override=StandardMaterial3D.new()
-	var unrelated := MeshInstance3D.new()
-	unrelated.mesh=BoxMesh.new()
-	var unrelated_material := ShaderMaterial.new()
-	unrelated_material.shader=load("res://game/shaders/night_window.gdshader")
-	unrelated.material_override=unrelated_material
-	var empty := MeshInstance3D.new()
-	var settings := Options.new()
-	settings.preset("Epic")
-	var ok := Epic.supports_surface(supported)
-	for node in [blocked,unrelated,empty]:
-		ok=ok and not Epic.supports_surface(node)
-		var before: Variant=node.get_instance_shader_parameter("extreme_detail")
-		settings.apply_tree(node)
-		ok=ok and node.get_instance_shader_parameter("extreme_detail")==before
-		ok=ok and not node.has_meta(Epic.SURFACE_STATE)
-	for node in [supported,blocked,unrelated,empty]:node.free()
-	return ok
-
-func test_replacing_supported_surface_material_clears_stale_instance_detail():
-	var settings := Options.new()
-	var root := Node3D.new()
-	var ok := true
+	var originals := []
 	for path in SURFACES:
 		var material := origin_material(path)
-		var peer := surface_node(material,0)
-		root.add_child(peer)
-		settings.preset("Epic")
-		settings.apply_tree(peer)
-		for mode in 4:
-			var node := surface_node(material,mode)
-			root.add_child(node)
-			settings.apply_tree(node)
-			ok=ok and node.get_instance_shader_parameter("extreme_detail")==1.0
-			ok=ok and node.has_meta(Epic.SURFACE_STATE)
-			node.material_override=StandardMaterial3D.new()
-			settings.apply_tree(node)
-			ok=ok and not Epic.supports_surface(node)
+		originals.append({material=material,code=material.shader.code,origin=material.get_shader_parameter("extreme_route_origin")})
+		for mode in 4:root.add_child(surface_node(material,mode))
+	var ok := true
+	for preset in ["Epic","High","Epic","Balanced","Performance","High"]:
+		settings.preset(preset);settings.apply_tree(root)
+		ok=ok and Epic.surface_detail_enabled==bool(settings.values.surface_detail)
+		for node in root.get_children():
 			ok=ok and node.get_instance_shader_parameter("extreme_detail")==null
-			ok=ok and not node.has_meta(Epic.SURFACE_STATE)
-			ok=ok and peer.get_instance_shader_parameter("extreme_detail")==1.0
-			# Reusing the same geometry for a supported finish remains reversible.
-			node.material_override=material
-			settings.apply_tree(node)
-			ok=ok and node.get_instance_shader_parameter("extreme_detail")==1.0
-			settings.preset("High")
-			settings.apply_tree(node)
-			ok=ok and node.get_instance_shader_parameter("extreme_detail")==0.0
-			settings.preset("Epic")
+		for original in originals:
+			ok=ok and original.material.shader.code==original.code
+			ok=ok and original.material.get_shader_parameter("extreme_route_origin")==original.origin
+	root.free()
+	return ok
+
+func test_late_streamed_surfaces_and_replaced_materials_need_no_instance_flag():
+	var settings := Options.new()
+	settings.preset("Epic");settings.apply()
+	var root := Node3D.new()
+	var material := origin_material(SURFACES[0])
+	var mesh := surface_node(material,0)
+	root.add_child(mesh)
+	var ok := Epic.surface_detail_enabled and mesh.get_instance_shader_parameter("extreme_detail")==null
+	mesh.material_override=StandardMaterial3D.new()
+	settings.apply_tree(root)
+	ok=ok and mesh.get_instance_shader_parameter("extreme_detail")==null
+	mesh.material_override=material
+	settings.preset("High");settings.apply()
+	ok=ok and not Epic.surface_detail_enabled and mesh.get_instance_shader_parameter("extreme_detail")==null
+	root.free()
+	return ok
+
+func test_global_surface_toggles_preserve_independent_passenger_doors():
+	var settings := Options.new()
+	var root := Node3D.new()
+	var a := MeshInstance3D.new();var b := MeshInstance3D.new()
+	a.mesh=BoxMesh.new();b.mesh=a.mesh
+	var material := ShaderMaterial.new()
+	material.shader=Shader.new()
+	material.shader.code="shader_type spatial; instance uniform vec4 passenger_openings; void fragment(){ALBEDO=passenger_openings.xyz;}"
+	a.material_override=material;b.material_override=material
+	root.add_child(a);root.add_child(b)
+	a.set_instance_shader_parameter("passenger_openings",Vector4(1,0,0,1))
+	b.set_instance_shader_parameter("passenger_openings",Vector4(0,1,1,0))
+	var ok := true
+	for preset in ["Epic","High","Epic","High"]:
+		settings.preset(preset);settings.apply_tree(root)
+		ok=ok and a.get_instance_shader_parameter("passenger_openings")==Vector4(1,0,0,1)
+		ok=ok and b.get_instance_shader_parameter("passenger_openings")==Vector4(0,1,1,0)
+		ok=ok and a.material_override==b.material_override
 	root.free()
 	return ok
 
