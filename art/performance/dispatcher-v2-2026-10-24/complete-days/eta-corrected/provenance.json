@@ -1,0 +1,55 @@
+{
+  "verified_at": "2026-10-25T06:50:35.135030+08:00",
+  "source_commit": "b28e2c1888e7d564df8620e4977a3ea391796606",
+  "jobs": [
+    {
+      "day": "classic-delayed",
+      "pid": 7700,
+      "started": "2026-10-25T05:33:00.8285895+08:00",
+      "output": ".local/dispatcher-v2-2026-10-24/rehearsals-v6/classic-delayed",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-intensive.json",
+        "--delay=600",
+        "--delay-at=11000"
+      ],
+      "source_commit": "b28e2c1888e7d564df8620e4977a3ea391796606",
+      "status": "complete_verified",
+      "reason": "Compatible preparation after imminent-call forecast dwell correction",
+      "pack_sha256": "b14c8f8730d626f9a093ae8ecc3df096f112e10e5e534e5808891355f3fe7afd",
+      "child_pid": 19636,
+      "startup_verified_at": "2026-10-25T05:33:18.806978+08:00",
+      "observed_complete_at": "2026-10-25T06:50:35.135030+08:00",
+      "verified_at": "2026-10-25T06:50:35.135030+08:00",
+      "evidence": "art/performance/dispatcher-v2-2026-10-24/complete-days/eta-corrected",
+      "verification": "verify_disturbed_timetable.mjs: complete calls/depot, safety, waits, source/raw-pack hashes and traffic grid; exit 0"
+    },
+    {
+      "day": "predictive-delayed",
+      "pid": 16160,
+      "started": "2026-10-25T05:33:00.8671024+08:00",
+      "output": ".local/dispatcher-v2-2026-10-24/rehearsals-v6/predictive-delayed",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-intensive-v2.json",
+        "--delay=600",
+        "--delay-at=11000"
+      ],
+      "source_commit": "b28e2c1888e7d564df8620e4977a3ea391796606",
+      "status": "complete_verified",
+      "reason": "Compatible preparation after imminent-call forecast dwell correction",
+      "pack_sha256": "617b66c793141d883f57eddef71747c9feff9b3dba04ca00bc6d1cdfbed44ebd",
+      "child_pid": 28452,
+      "startup_verified_at": "2026-10-25T05:33:18.806978+08:00",
+      "observed_complete_at": "2026-10-25T06:50:35.135030+08:00",
+      "verified_at": "2026-10-25T06:50:35.135030+08:00",
+      "evidence": "art/performance/dispatcher-v2-2026-10-24/complete-days/eta-corrected",
+      "verification": "verify_disturbed_timetable.mjs: complete calls/depot, safety, waits, source/raw-pack hashes and traffic grid; exit 0"
+    }
+  ],
+  "source_suite": {
+    "passed": 964,
+    "failed": 0,
+    "stderr_bytes": 0,
+    "evidence": "../../eta-dwell-boundary"
+  },
+  "published_executable": "R46; no executable release"
+}

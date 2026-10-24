@@ -1,0 +1,31 @@
+{
+  "scope": "Two full manual-delay runs only. Equal observed records and traffic do not prove equivalence for all states or inputs.",
+  "results": {
+    "classic": {
+      "changed_source_paths": [
+        "sim/dispatch_forecast.gd"
+      ],
+      "service_records_identical": true,
+      "changed_report_fields": [
+        "audit",
+        "sources"
+      ],
+      "traffic_sha256_identical": true,
+      "old_audit_sha256": "29807499474b5d671be84e65024caeb8a8313c77000f30817162ce917653e496",
+      "new_audit_sha256": "e0ae8dfcf7c397f0f657db3cc3785e8d8ff02759a3633d84bd7fe97471885392"
+    },
+    "predictive": {
+      "changed_source_paths": [
+        "sim/dispatch_forecast.gd"
+      ],
+      "service_records_identical": true,
+      "changed_report_fields": [
+        "audit",
+        "sources"
+      ],
+      "traffic_sha256_identical": true,
+      "old_audit_sha256": "cb1227fd0ed59e28aef32c41ea735879ae65f9f5df17de0a7ef4d8280ff64aeb",
+      "new_audit_sha256": "3b0e2b2db940d25f68f5bae0d50943bb7c315d9d36e2feb62ac98c6e64837f7b"
+    }
+  }
+}

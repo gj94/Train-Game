@@ -765,3 +765,29 @@ authoring or runtime changes are planned. The next useful work is full outcome
 analysis, independent finalization and current source-native menu checks, then
 all-service ETA calibration on the new actual states. Avoid repeating old
 unchanged validations. No executable release; R46 remains available.
+
+## 25 October 06:51 — corrected-source disturbed days independently accepted
+
+Both v6 manual-delay processes have finished. Fresh source b28e2c1, unchanged
+candidate-two authored packs, 600s manual K1 brake at simulation11000. Each
+140-service run has every call/departure/depot complete, zero safety events,
+4834 matching current source hashes, 1726 arrivals and1726 departures, and34801
+unbroken two-second traffic samples. Both all-location and station-only
+70/90/98/100% wait gates pass; Classic maximum1882s, V2 maximum1652s.
+K1 lateness1719.2s/1694.2s, eleven distinct overtakers/nine stations each,
+maximum2/3 at one station. Independent verifier, run summarizer and comparison
+all exit0. Evidence is in complete-days/eta-corrected; old candidate-two retained.
+
+New replays reproduce the previous service records and traffic hashes exactly
+for these two interventions; only sim/dispatch_forecast.gd differs among input
+hashes. This is limited observed equality, not global runtime equivalence or
+hash relabelling. Destination and intermediate-call regressions remain visible:
+priority75 mean394.78->555.16s, priority85 mean818.80->822.18s; B056+1391.85s,
+B020+1197.60s. Fifteen authored departures differ between Classic and V2, so no
+planner-only attribution. Never install disturbed runs as baseline data.
+
+The original four v6 baselines remain active: ClassicStandard15212/2408,
+V2Standard28212/27324, ClassicIntensive23696/12848, V2Intensive18904/19932.
+No runtime/route/pack/preparation observer edits or additional replays. The964
+passing source tests remain applicable. Final baselines, native all-four-menu
+checks and corrected all-service saved-ETA inspection are still pending.

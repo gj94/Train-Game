@@ -1,5 +1,24 @@
 # Progress
 
+## 25 October 2026 — both corrected-source manual-delay days verified
+
+Fresh v6 Classic and V2 Intensive disturbance replays each complete all 140
+services, every call and depot clearance with zero safety events. Independent
+checks pass all station-only and all-location wait targets, all 4,834 current
+source fingerprints, raw pack hashes, 1,726 arrivals and 1,726 departures per
+run, and the complete 34,801-sample traffic grid. Each K1 has eleven distinct
+overtakers across nine stations; maximum continuous waits are 31m22s and 27m32s.
+[Current-source evidence and comparisons](../art/performance/dispatcher-v2-2026-10-24/complete-days/eta-corrected/README.md)
+retain priority and individual regressions, with fifteen authored departures
+preventing planner-only attribution.
+
+These are new completed simulations on the corrected source, even though their
+service records and traffic hashes match their respective pre-fix runs. They
+remain disturbance evidence only. All four original v6 baseline jobs continue;
+no preparation was restarted and frozen inputs are unchanged. The existing
+964-test source result applies. Native menu checks and corrected saved-ETA
+inspection follow installation of newly certified baselines. R46 stays live.
+
 ## 25 October 2026 — corrected source committed; compatible days rebuilding
 
 The final ETA correction and evidence are pushed as `b28e2c1`, with 964 full
