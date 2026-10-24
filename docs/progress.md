@@ -1,5 +1,19 @@
 # Progress
 
+## 25 October 2026 — revised Intensive replays started in isolated outputs
+
+The timing corrections and complete failed-candidate evidence are committed and
+pushed as `d01a6e3`. Four fresh baseline/disturbed replays started at 03:14 in
+`rehearsals-v5`; their command lines, isolated files, dispatcher modes and empty
+error logs were checked. Simulation, routes and packs are frozen until completion.
+Both certified Standard variants remain installed; neither Intensive candidate
+has been accepted yet. The published release remains R46.
+
+A 03:10 launch split its output argument and wrote into a shared root folder.
+Those newly launched invalid jobs were stopped after checking ownership; their
+outputs are quarantined under `rehearsals-v4/invalid-shared-output` and must never
+be used as evidence or prepared data. Original completed v3 audits are intact.
+
 ## 25 October 2026 — Intensive quality gates caught two candidate failures
 
 Both initial Intensive days completed all 140 services, every call and depot

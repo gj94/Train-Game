@@ -524,3 +524,37 @@ These timings remain unaccepted until complete replay. Run both revised Intensiv
 baselines with snapshots and both600s manual-K1 disturbances at11000, since the
 Classic candidate also changed. Preserve the original failed evidence. No Standard
 replays required. Keep simulation/routes/packs frozen for the new jobs.
+
+## 25 October 03:15 — revised jobs running, launch isolation verified
+
+`d01a6e3` is pushed. Four v5 replays began at03:14:04, with exact command lines,
+separate output files, baseline dispatcher modes and empty stderr verified:
+
+| Day | Wrapper / child | Output under `.local/dispatcher-v2-2026-10-24` |
+| --- | --- | --- |
+| Classic Intensive baseline |20980 /12884|`rehearsals-v5/classic-intensive`|
+| V2 Intensive baseline |26924 /21812|`rehearsals-v5/predictive-intensive`|
+| Classic 600s delayed K1 |13000 /14668|`rehearsals-v5/classic-delayed`|
+| V2 600s delayed K1 |2808 /17656|`rehearsals-v5/predictive-delayed`|
+
+Both baselines include departure/timeline snapshots. Both disturbances start at
+simulation11000s and do not generate playable baseline states. Job records retain
+the pack hashes and source commit; owned-processes has been refreshed. Do not
+restart these or edit sim/routes/packs while they run. The original v3 jobs are
+all complete and their failed-quality statuses are now explicit in the record.
+
+The initial03:10 v4 launcher split `--output=res://` from its folder because of
+PowerShell array-expression precedence. All four wrote shared root outputs; none
+is valid. The newly started children were stopped after matching command lines,
+creation times and parents (an initial broad stop was rejected by automatic
+review; the evidence-scoped retry succeeded). Only newly created untracked root
+outputs were moved into `rehearsals-v4/invalid-shared-output`, with exact resolved
+paths and timestamps checked. Nothing was deleted. Fixed v5 arguments are each
+one interpolated string. Their recorded command lines and files confirm isolation.
+No completed v3 audit, certified Standard catalogue, editor or R46 server changed.
+
+Next: inspect completed v5 gates and actual K1 distinct/spatial passes before any
+installation. If a variant passes, certify it independently; retain all failures.
+Then run actual `intensive`/`intensive_v2` native prepared-menu checks and commit
+the currently untracked checker only after both pass. Standard choices already
+passed36 native checks and need no repeat. No executable release requested.
