@@ -1,5 +1,21 @@
 # Progress
 
+## 25 October 2026 — observed V2 passing roads
+
+The current full-day rehearsal now has direct movement evidence for the
+K1/B002 case: K1 stops in Sasthankotta loop P3 while B002 passes on main P1 at
+88.56 km/h. Classic Intensive instead has both at their booked Karunagappalli
+stops, K1 on main P1 and B002 on loop P4. A new read-only observer recovers these
+from existing five-minute states and verifies every active train against the
+original traffic recording; 309 samples match within 0.000001 m. All 961 source
+tests pass, zero failures and empty stderr.
+[Evidence, reproduction and playtest](../art/performance/dispatcher-v2-2026-10-24/observed-roads/README.md).
+
+This is actual passing-road evidence, not full-day certification. Final counts,
+wait quality, all-service completion and compatible menu data remain pending;
+authored Intensive departures also differ, so this is not a planner-only delay
+comparison. All five v3 jobs retain frozen inputs. R46 remains available.
+
 ## 25 October 2026 — V2 forecast inspection
 
 The dispatcher now has a collapsible Forecast details section for either train

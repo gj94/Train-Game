@@ -1,0 +1,100 @@
+{
+	"compared_samples": 220,
+	"complete_replay": false,
+	"failures": [],
+	"maximum_position_error_m": 0.00000000050931703299284,
+	"ok": true,
+	"purpose": "Observed roads only; not timetable certification",
+	"source_folder": "res://.local/dispatcher-v2-2026-10-24/rehearsals-v3/classic-intensive",
+	"witnesses": [
+		{
+			"aligned": {
+				"clock": 42267.9999999443,
+				"trains": {
+					"B002": {
+						"at_booked_stop": true,
+						"booked_here": true,
+						"call_index": 6,
+						"centre_road": "KPY_P4",
+						"head_road": "KPY_P4",
+						"hold": {},
+						"reason": "Booked departure / dwell until 11:45:57",
+						"road_role": "siding",
+						"speed_kmh": 0.0,
+						"tail_road": "KPY_P4"
+					},
+					"K1": {
+						"at_booked_stop": true,
+						"booked_here": true,
+						"call_index": 20,
+						"centre_road": "KPY_P1",
+						"head_road": "KPY_P1",
+						"hold": {
+							"arrived": true,
+							"chainage": 114639.887,
+							"created": 13144.549999949,
+							"direction": 1,
+							"kind": "overtake",
+							"other": "B002",
+							"station": "KPY"
+						},
+						"reason": "Expect a wait at KPY until Cape Express 01 · ERS–NCJ (B002) overtakes",
+						"road_role": "main",
+						"speed_kmh": 0.0,
+						"tail_road": "KPY_P1"
+					}
+				}
+			},
+			"checkpoint": "T042000",
+			"checkpoint_sha256": "52066f27fa8d5676558926e033fd8851e9bcd8e75a1ee8b866898aee00e78bbd",
+			"cleared": {
+				"clock": 42437.9999999418,
+				"trains": {
+					"B002": {
+						"at_booked_stop": false,
+						"booked_here": true,
+						"call_index": 7,
+						"centre_road": "KPY_P4",
+						"head_road": "KPY_STKT_D0",
+						"hold": {},
+						"reason": "Authority to KPY_STKT_D6-H",
+						"road_role": "siding",
+						"speed_kmh": 33.5599999899384,
+						"tail_road": "KPY_P4"
+					},
+					"K1": {
+						"at_booked_stop": true,
+						"booked_here": true,
+						"call_index": 20,
+						"centre_road": "KPY_P1",
+						"head_road": "KPY_P1",
+						"hold": {
+							"arrived": true,
+							"chainage": 114639.887,
+							"created": 13144.549999949,
+							"direction": 1,
+							"kind": "overtake",
+							"other": "B002",
+							"station": "KPY"
+						},
+						"reason": "Expect a wait at KPY until Cape Express 01 · ERS–NCJ (B002) overtakes",
+						"road_role": "main",
+						"speed_kmh": 0.0,
+						"tail_road": "KPY_P1"
+					}
+				}
+			},
+			"event": {
+				"a": "B002",
+				"b": "K1",
+				"chainage_m": 114639.561771346,
+				"cleared": 42437.9999999418,
+				"kind": "overtake",
+				"location": "Karunagapalli",
+				"overtaker": "B002",
+				"station": "KPY",
+				"time": 42267.9530710939
+			}
+		}
+	]
+}

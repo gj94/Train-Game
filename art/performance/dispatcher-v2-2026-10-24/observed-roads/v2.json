@@ -1,0 +1,100 @@
+{
+	"compared_samples": 89,
+	"complete_replay": false,
+	"failures": [],
+	"maximum_position_error_m": 0.00000000050931703299284,
+	"ok": true,
+	"purpose": "Observed roads only; not timetable certification",
+	"source_folder": "res://.local/dispatcher-v2-2026-10-24/rehearsals-v3/predictive-intensive",
+	"witnesses": [
+		{
+			"aligned": {
+				"clock": 42755.9999999372,
+				"trains": {
+					"B002": {
+						"at_booked_stop": false,
+						"booked_here": false,
+						"call_index": 7,
+						"centre_road": "STKT_P1",
+						"head_road": "STKT_P1",
+						"hold": {},
+						"reason": "Authority to STKT_MQO_D0-A",
+						"road_role": "main",
+						"speed_kmh": 88.5600000107921,
+						"tail_road": "STKT_P1"
+					},
+					"K1": {
+						"at_booked_stop": true,
+						"booked_here": true,
+						"call_index": 21,
+						"centre_road": "STKT_P3",
+						"head_road": "STKT_P3",
+						"hold": {
+							"arrived": true,
+							"chainage": 122291.956,
+							"created": 13654.0499999416,
+							"direction": 1,
+							"kind": "overtake",
+							"other": "B002",
+							"station": "STKT"
+						},
+						"reason": "Expect a wait at STKT until Cape Express 01 · ERS–NCJ (B002) overtakes",
+						"road_role": "siding",
+						"speed_kmh": 0.0,
+						"tail_road": "STKT_P3"
+					}
+				}
+			},
+			"checkpoint": "T042600",
+			"checkpoint_sha256": "cb63dbe7bed3b1645ab9494fe5630d196b90b24d2004a9dd16ac85dc1aee76a8",
+			"cleared": {
+				"clock": 42775.9999999369,
+				"trains": {
+					"B002": {
+						"at_booked_stop": false,
+						"booked_here": false,
+						"call_index": 7,
+						"centre_road": "STKT_P1",
+						"head_road": "STKT_MQO_D0",
+						"hold": {},
+						"reason": "Authority to MQO_PRND_D4-H",
+						"road_role": "main",
+						"speed_kmh": 88.5600000000005,
+						"tail_road": "STKT_P1"
+					},
+					"K1": {
+						"at_booked_stop": true,
+						"booked_here": true,
+						"call_index": 21,
+						"centre_road": "STKT_P3",
+						"head_road": "STKT_P3",
+						"hold": {
+							"arrived": true,
+							"chainage": 122291.956,
+							"created": 13654.0499999416,
+							"direction": 1,
+							"kind": "overtake",
+							"other": "B002",
+							"station": "STKT"
+						},
+						"reason": "Expect a wait at STKT until Cape Express 01 · ERS–NCJ (B002) overtakes",
+						"road_role": "siding",
+						"speed_kmh": 0.0,
+						"tail_road": "STKT_P3"
+					}
+				}
+			},
+			"event": {
+				"a": "B002",
+				"b": "K1",
+				"chainage_m": 122291.632029377,
+				"cleared": 42775.9999999369,
+				"kind": "overtake",
+				"location": "Sasthankotta",
+				"overtaker": "B002",
+				"station": "STKT",
+				"time": 42754.9900457458
+			}
+		}
+	]
+}

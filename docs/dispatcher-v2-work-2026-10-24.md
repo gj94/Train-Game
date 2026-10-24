@@ -325,7 +325,7 @@ can certify the required distinct K1 passes; do not tune from raw schedule overl
 
 ## 25 October 01:42 — forecast inspector fully validated
 
-All961 source tests pass, zero failures/empty stderr. Native18 checks and reviewed
+All 961 source tests pass, zero failures/empty stderr. Native18 checks and reviewed
 720p/900p views are committed with the read-only forecast inspector. No simulation,
 route or authored-pack inputs changed; do not restart any of the five v3 jobs.
 The partial12:35 encounter comparison confirms B002 passes K1 atSTKT in the full
@@ -336,3 +336,36 @@ separate changed authored timing from planner effects. Do not certify from them.
 Next remains final all-day analysis/certification, compatible data installation
 and `check_predictive_prepared_ui.gd` on the real four day options. Preserve the
 fixed further-work window and active-time accounting. R46 remains the release.
+
+
+## 25 October 01:54 — actual passing-road witnesses
+
+Added a read-only checkpoint observer, `tools/audit_overtake_roads.gd`, to
+recover actual occupied roads during a measured overtake. It checks the
+rehearsal's frozen source hashes, restores the preceding five-minute state,
+uses deterministic offline forecast execution, and compares every active
+train's head/centre/tail with the original two-second traffic samples. It does
+not alter, finalize or install prepared data. Incomplete trailing recording
+writes are skipped; malformed complete samples and stale source hashes fail.
+
+The current Classic Intensive witness has K1 on KPY_P1/main and B002 on
+KPY_P4/loop at 11:44:28, both at booked stops. The V2 candidate has K1 on
+STKT_P3/loop while B002 runs through STKT_P1/main at 88.56 km/h at 11:52:36.
+K1 stops at Sasthankotta and B002 does not: this is the requested kind of pass,
+verified from actual railway movement rather than only a solver proposal.
+The 220/89 samples match within 0.000001 m and both final runs have empty
+stderr. Deliberately wrong source hashes are rejected before replay. Evidence:
+`art/performance/dispatcher-v2-2026-10-24/observed-roads`.
+
+The Intensive departure changes still confound planner-only attribution. Six
+provisional K1 passes were independently recovered locally at TUVR, ALLP, STKT,
+PVU (two) and KZK; the full-day count/waits remain pending. The five original v3
+jobs continue with unchanged inputs; do not restart them. Source suite
+`roads-full-tests.log` completed: all 961 tests pass, zero failures and empty
+stderr. No source suite remains running. Prepared-menu check remains pending.
+
+Read-only relief timing analysis is in local `relief-coexistence-notes.md` and
+`calls-at-1530.json`. D100/D114 were already ahead when inserted, while several
+later reliefs miss K1 before their terminal. Do not tune the frozen inputs yet;
+inspect the final K1 count, then use those observed windows if the candidate
+fails ten distinct overtakers. A final-day test is still required for any change.
