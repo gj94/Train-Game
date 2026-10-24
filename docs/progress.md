@@ -1,5 +1,21 @@
 # Progress
 
+## 25 October 2026 — corrected source committed; compatible days rebuilding
+
+The final ETA correction and evidence are pushed as `b28e2c1`, with 964 full
+source tests passing and no failures or stderr. Six fresh isolated full-day
+runs started at 05:33: Classic/V2 Standard and Intensive baselines, plus both
+Intensive ten-minute manual K1 disturbances. Actual child commands, separate
+outputs, initial planner modes and corrected source signatures are verified.
+No previous replay is running and no duplicate preparation was launched.
+
+Runtime, routes, authored packs and preparation observers are frozen until
+these runs finish. Fresh starts, time states and traffic previews will be
+installed only after all safety, call, depot, wait and overtaking gates pass.
+Old prepared data remains deliberately incompatible with the corrected source;
+R46 is still the published executable. Playtest steps remain in the ETA section
+below, for after the new compatible data is installed.
+
 ## 25 October 2026 — broader ETA audit finds an imminent-stop dwell omission
 
 The all-service saved-ETA audit covers 233 states, 34 predictions, sixteen actual

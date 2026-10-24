@@ -743,3 +743,25 @@ The source fix, exercised all-service ETA diagnostic and native prepared-menu
 checker can now be committed with historical evidence. No pending test process
 remains. Six fresh compatible preparations will use this exact committed source;
 all previous prepared measurements remain clearly labelled pre-correction.
+
+## 25 October 05:33 — six compatible v6 runs launched and verified
+
+`b28e2c1` is committed and pushed: final forecast boundary fix, three regressions,
+all-service saved-ETA audit, actual four-menu checker and historical evidence.
+964 full source tests pass, empty stderr. v6 launcher ran once after confirming
+no old preparation process remained; all child command lines and separate output
+arguments were independently checked. Initial baselines match planner mode and
+corrected forecast fingerprint; stderr is empty for all six.
+
+Original v6 wrappers/children:
+- Classic Standard15212/2408; V2 Standard28212/27324.
+- Classic Intensive23696/12848; V2 Intensive18904/19932.
+- Classic delayed7700/19636; V2 delayed16160/28452.
+
+Read rehearsal-jobs-v6.json and rehearsals-v6 folders. Both delayed cases use
+manual K1 for600s at simulation11000 and never become baseline states. Preserve
+runtime/routes/packs/six preparation observer inputs until completion. No more
+authoring or runtime changes are planned. The next useful work is full outcome
+analysis, independent finalization and current source-native menu checks, then
+all-service ETA calibration on the new actual states. Avoid repeating old
+unchanged validations. No executable release; R46 remains available.
