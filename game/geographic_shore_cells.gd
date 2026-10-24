@@ -20,6 +20,12 @@ static func refined(c,start: Vector2) -> bool:
 	if cache!=null and cache.has(start):return cache[start]
 	var centre:=start+Vector2(4,4)
 	var result:=false
+	var geo=c.get("geo")
+	if geo!=null:
+		var support=geo.get("formation_support")
+		if support!=null:
+			var origin: Vector3=c.origin
+			result=support.fine_cells.has(Vector2i(floori((origin.x+start.x)/8),floori((origin.z+start.y)/8)))
 	for segment in bins.get(Vector2i(floori(centre.x/32),floori(centre.y/32)),[]):
 		if Occupancy.distance(centre,segment.a,segment.b)<=RADIUS:
 			result=true;break

@@ -19,6 +19,7 @@ var road_reservations
 var operating_ways := {}
 var bridge_bins := {}
 var bridges: Array = []
+var formation_support
 
 func _init(data: Dictionary = {}) -> void:
 	route = data if not data.is_empty() else preload("res://sim/layouts/kerala_coast.gd").source()
@@ -61,31 +62,46 @@ func _init(data: Dictionary = {}) -> void:
 ## 32 m formation. Keep the inexpensive main-line/depot index, and share the
 ## additions with workers rather than rebuilding their immutable geometry.
 func install_railway(world: RailWorld) -> void:
+	formation_support=preload("res://game/geographic_formation_support.gd").new()
+	formation_support.build(world,self)
 	Earthworks.include_running_roads(formation_regions,world.graph.edges,world.graph.nodes)
 	formation_bins=Earthworks.index(formation_regions)
 	for id: String in world.graph.edges:
 		var edge: Dictionary=world.graph.edges[id]
 		if "_DEPOT_" in id:continue # already installed from route.depot_alignment
 		var lateral: float=maxf(absf(edge.lateral),maxf(absf(world.graph.nodes[edge.a].lateral),absf(world.graph.nodes[edge.b].lateral)))
-		if lateral<=24:continue
+		var terminal: bool=world.graph.nodes[edge.a].edges.size()==1 or world.graph.nodes[edge.b].edges.size()==1
+		var include_all:=lateral>24 or terminal
 		var count:=maxi(1,ceili(edge.length/25.0))
 		for i in count:
 			var start: float=edge.length*i/float(count)
 			var end: float=edge.length*(i+1)/float(count)
-			var a:=world.graph.position(id,start);var b:=world.graph.position(id,end)
 			var sa: float=lerpf(edge.chainage_start,edge.chainage_end,i/float(count))
 			var sb: float=lerpf(edge.chainage_start,edge.chainage_end,(i+1)/float(count))
+			# Near an abutment the decimated reference alignment can project an
+			# outer road several metres back into the bridge. Index the actual
+			# road there so its dry approach keeps the correct ground height.
+			if not include_all and not _near_bridge_end(sa,sb):continue
+			var a:=world.graph.position(id,start);var b:=world.graph.position(id,end)
 			var index:=segments.size()
-			segments.append({a=a,b=b,s=sa,end_s=sb,bridge=false,depot=false,yard=true})
+			segments.append({a=a,b=b,s=sa,end_s=sb,bridge=false,depot=false,yard=include_all})
 			for x in range(floori(minf(a.x,b.x)/CELL)-1,floori(maxf(a.x,b.x)/CELL)+2):
 				for z in range(floori(minf(a.z,b.z)/CELL)-1,floori(maxf(a.z,b.z)/CELL)+2):
 					var key:=Vector2i(x,z)
 					if not rail_bins.has(key):rail_bins[key]=[]
 					rail_bins[key].append(index)
 
+func _near_bridge_end(a: float,b: float) -> bool:
+	var lo:=minf(a,b)-28;var hi:=maxf(a,b)+28
+	for key in range(floori(lo/500),floori(hi/500)+1):
+		for span in bridge_bins.get(key,[]):
+			if (span.start>=lo and span.start<=hi) or (span.end>=lo and span.end<=hi):return true
+	return false
+
 func share_railway(source) -> void:
 	segments=source.segments;rail_bins=source.rail_bins
 	formation_regions=source.formation_regions;formation_bins=source.formation_bins
+	formation_support=source.formation_support
 
 func tile(key: Vector2i) -> Dictionary:
 	if not tile_keys.has(key): return {}

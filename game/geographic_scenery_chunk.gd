@@ -119,7 +119,10 @@ func _ground(x: float,z: float) -> float:
 	if not water_levels.is_empty() and not StationSites.contains(geo.station_sites,origin.x+x,origin.z+z):
 		for water in water_levels:
 			if _inside(key,water.geometry):
-				height=minf(height,water.height-.5);wet_samples[key]=true
+				var wet:=minf(height,water.height-.5)
+				var support=geo.get("formation_support")
+				height=support.water_ground(geo,key+Vector2(origin.x,origin.z),height,wet) if support!=null else wet
+				wet_samples[key]=height<=water.height-.01
 		if not wet_samples[key] and geo.nearest_rail(origin.x+x,origin.z+z).distance>32:
 			# SRTM and flat mapped water have different resolutions. Grade the last
 			# 10 m of bank to the water datum instead of exposing staircase cliffs.

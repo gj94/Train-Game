@@ -1,5 +1,33 @@
 # Progress
 
+## 2026-10-24 — Grounded terminal formations and bridge approaches
+
+- Eighth overnight increment: index actual terminal tracks and bridge-end
+  running roads for scenery grounding; preserve dry formations against water
+  carving. Add bounded fine terrain patches and landward bridge supports with
+  full-footprint road-gradient clearance. No railway or timetable edits.
+- Static validation: 26,778 rail centre/shoulder probes, 271 improved, none
+  worsened or still exposed beyond tolerance; 216 abutments pass independent
+  road/opening checks. All 4,305 road tiles / 5,545,611 triangles, 696 piers,
+  19,922 supports and 14,976 junction probes pass. 136 terrain tiles have
+  continuous internal fine/coarse edges. All 4,893 protected hashes unchanged.
+  Render profiles: 32,863 segments, 1,802-input gate current.
+- Tests: 860 full source tests, then 12 focused formation tests after the
+  final gradient-clearance refinement; 17 Python tests. Editor validation
+  passes. Evidence: art/performance/map-2026-10-24/formation-support.
+- Measured tradeoff: 71 wet/dry/dense-transition tiles x3, terrain/water worker
+  generation +28.90% and vertices +5.44% against a329f51. Not target-PC FPS;
+  review this cost during the next bank-context pass.
+- New audit findings for the remaining window: old waterway tile-border
+  seams (no new regressions in 17,680 probes), and a reproducible instance-
+  shader buffer overflow at busy QLN. The fresh diagnostic finds 4,090
+  extreme-detail and 420 door parameters. Fix the renderer limit before
+  publication. A bridge-edge slit left of QLN's focal point also remains.
+- Playtest after release: ERS/NCJ ends; KZTW 242.5 km, NYY 224.6 km, AMY
+  172.1 km and QLN 140.742 km. Seven frozen source views captured; native
+  renderer errors are retained, not claimed clean. R45 remains live. Original
+  fixed window and six active hours continue; no full timetable runs.
+
 ## 2026-10-24 — Continuous canal banks and one mapped water surface
 
 - Seventh overnight increment: adjacent fine shore cells now share actual

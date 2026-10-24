@@ -386,3 +386,67 @@ R45 remains live; no build prepared. Keep fixed start 03:30:53, minimum 10:30
 and six actual active hours. No full timetable runs or extracted gameplay;
 no runtime/test edits during the full suite. All seventh validation jobs have
 completed. Continue useful implementation toward the original deadline.
+
+## Eighth implementation checkpoint
+
+Actual terminal running roads and precise segments near bridge ends now enter
+the render ground index. This fixes incorrect reference projections such as
+QLN P4's outer shoulder being classified inside a bridge it had already left.
+Water carving respects the actual non-bridge formation. Small fine terrain
+patches and grounded landward abutments close the sampled bridge-end gaps.
+Road-footprint/gradient guards omit supports that would obstruct lower roads;
+adjacent bridge openings are clipped out. No railway geometry moved.
+
+26,778 centre/shoulder probes: 271 improved, none worsened, no remaining
+exposure beyond tolerance. 216 actual support footprints / 43 road overlaps
+pass the independent audit. Full road audit: 4,305 tiles, 5,545,611 triangles,
+13,563 rail checks, 696 piers, 19,922 supports, 14,976 junction probes pass.
+All 4,893 protected files unchanged. Ground correction regenerates 32,863
+render-only road profile segments (43 ways changed); 1,802-input gate current.
+860 full source tests passed, then 12 final formation tests after tightening
+the last footprint gradient check; 17 Python tests. Eight scripts validate.
+
+Internal terrain edges pass on 136 transition tiles (2,523,448 comparisons
+including the border probes, max internal error 0.000002 m). The stricter
+cross-tile check discovered 63 existing waterway border cases, worst 6.988 m.
+17,680 before/after border probes show no new regressions. The cause probe
+shows missing neighbouring shore context: at (1024,2448), one tile has no
+nearby shore segments and stays at 8.5 m; its neighbour sees the real shore
+2.31 m away and grades to 1.512 m. These are not changes to railway elevation.
+Exact twelve worst cases: .local/map-2026-10-24/border-causes.json.
+
+Isolated interleaved generation: 71 tiles x3, +28.90% terrain/water worker CPU,
++5.44% vertices, roughly 70.8 ms extra per tested tile. Selection includes the
+densest bridge patches. Actual index installs in 197 ms vs 9 ms old and is
+shared by workers. This is not target GPU frame time. Review water-formation
+query indexing while repairing shared bank context to contain generation cost.
+
+Seven final frozen native views were reviewed. Native QLN additionally exposes
+a shader-instance-buffer overflow, reproduced by a fresh single-location run.
+`.local/map-2026-10-24/qln-uniform-probe/uniform-diagnostic.json` counts 4,090
+extreme-detail parameters and 420 door parameters, 23,524 geometry nodes. Read
+game/extreme_visuals.gd and the nine surface shaders: a global graphics option
+currently occupies instance uniforms on thousands of surfaces. Investigate a
+shared shader-global setting that preserves immutable cached materials, rather
+than blindly increasing allocations; verify Godot's supported API first. Door
+animation needs its per-instance data. Fix this before publishing. Captures
+are not error-free; stderr and isolated reproduction are retained. A remaining
+bridge-edge slit left of QLN's focal point is inside the bridge area, separate
+from the corrected dry approach sample; inspect it before claiming all deck
+support is resolved.
+
+Next priorities (supersede earlier lists):
+1. Resolve the reproduced QLN shader-instance allocation failure. All current
+   diagnostic jobs have finished; reuse the fresh native case and counts.
+2. Share shore/bank context across tile edges; preserve detailed-water holes,
+   actual rail formations and shared road projection. Use the prepared worst
+   cases and comparison, not a new baseline. Optimise the bounded queries.
+3. QLN bridge-edge slit, low parallel road overlap 143.7 km, and junction
+   shoulders crossing same-level road mouths. Keep every material audited.
+4. Vegetation/cut-bank transitions and final native/performance checks.
+
+Evidence: art/performance/map-2026-10-24/formation-support. R45 remains live;
+no build prepared. Continue the fixed window and six actual hours, notify
+before the eventual full/incremental release. No full timetable or extracted
+gameplay run. No runtime/test edits while the full suite ran; an earlier
+incomplete suite/export was stopped before fixing the QLN reference case.
