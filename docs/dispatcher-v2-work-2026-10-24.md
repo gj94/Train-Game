@@ -791,3 +791,37 @@ V2Standard28212/27324, ClassicIntensive23696/12848, V2Intensive18904/19932.
 No runtime/route/pack/preparation observer edits or additional replays. The964
 passing source tests remain applicable. Final baselines, native all-four-menu
 checks and corrected all-service saved-ETA inspection are still pending.
+
+## 25 October 07:14 — corrected Standard pair verified and native-tested
+
+Both original v6 Standard jobs completed. Finalizers and independent installed
+starts/times/traffic verifiers pass: every100 service/call/depot,1530 arrivals
+and1530 departures each,zero safety events,4833 current source fingerprints,
+100 starts and233 exact five-minute states. Both all-location and station-only
+wait gates pass. Classic maximum1696s, V2 maximum1774s; three distinct K1 passes
+per mode (the ten-pass gate belongs to Intensive). Classic data6713f65 pushed;
+V2 data17d8672 committed with its separate push. Old v3 source evidence remains
+historical. Current evidence: art/performance/dispatcher-v2-2026-10-24/
+corrected-standard-days, including raw gzip audits, comparisons and finalizers.
+
+Native actual-menu/time check:36 passed,zero failures,four1280x720 screens
+reviewed. Compatibility renderer emits one screen-space-AA availability warning;
+Dummy audio used. No audio/FPS claim. Noon Classic K1 approachesPVU at81km/h,
+V2 stands atPVU. Both show55 booked stops and22 reciprocal traffic events.
+
+Corrected all-service ETA audit:233 states,4833 hashes,19 comparable forecasts
+for8 arrivals/7 trains,both directions,ICF only. Error(actual-predicted)
+-10.85..+403.69s,median-4.48,p90+4.69;one uncertainty exceedance. B042 forecast
+at10:14:55 proposesMAKM/B002, but remains atTUVR until10:20:51 (356.25s later).
+At10:15 saved state its call is acknowledged and passenger_release already past;
+this is not the omitted imminent dwell case. Actual788s TUVR extra wait includes
+482s opposingB039,246s B002 pass,56s block,4s authority; actualB002 pass isTUVR
+and later saved plan absent. Four hashed snapshot selections and full calls/holds
+preserved. Exact origin frame is absent; do not claim isolated causal proof.
+K1 seven forecasts/two arrivals still-7.27..+0.95s. Sparse calibration only.
+
+Standard B012+691.15s,B031+1292.05s,B020+1197.60s and K1+78s remain reported.
+Both Intensive baselines still run:23696/12848 and18904/19932,stderr empty.
+The original964 passing source suite applies; no runtime/test/observer edits,
+new full-day launch, or executable release. Final Intensive acceptance/native
+checks and the specific corrected KPY boundary audit are next.

@@ -1,0 +1,22 @@
+extends SceneTree
+func _initialize() -> void:
+    var base: String="res://.local/dispatcher-v2-2026-10-24/rehearsals-v6/predictive-standard"
+    var catalogue: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(base+"/times/catalogue.json"))
+    var rows: Array=[]
+    for id: String in ["T036600","T036900","T037200","T037500"]:
+        var meta: Dictionary=catalogue.states.filter(func(r):return r.id==id)[0]
+        var path: String=base+"/times/"+meta.file
+        assert(FileAccess.get_sha256(path)==meta.sha256)
+        var f:=FileAccess.open_compressed(path,FileAccess.READ,FileAccess.COMPRESSION_ZSTD)
+        var state: Dictionary=f.get_var(false);f.close()
+        var trains: Array=[]
+        for t: Dictionary in state.trains:
+            if t.id not in ["B042","B002","B039"]:continue
+            var selected: Dictionary={}
+            for key: String in t:
+                if key in ["id","edge","edge_id","s","speed","at_stop","service_complete","timetable","control_mode"]:selected[key]=t[key]
+            trains.append(selected)
+        rows.append({checkpoint=id,clock=meta.clock,sha256=meta.sha256,trains=trains,predictive_plan=state.get("predictive",{}).get("plans",{}).get("B042",{})})
+        assert(FileAccess.get_sha256(path)==meta.sha256)
+    var file:=FileAccess.open("res://.local/dispatcher-v2-2026-10-24/standard-outlier-states.json",FileAccess.WRITE)
+    file.store_string(JSON.stringify(rows,"\t"));file.close();print("OUTLIER_STATES 4 saved checkpoints checked without stepping");quit()

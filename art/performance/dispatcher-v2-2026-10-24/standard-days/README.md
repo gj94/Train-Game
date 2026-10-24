@@ -1,5 +1,9 @@
 # Completed Standard 100 operating days
 
+> Historical pre-correction evidence. The forecast source changed in `b28e2c1`;
+> these old source fingerprints are not current certification. See the
+> [fresh corrected-source results](../corrected-standard-days/README.md).
+
 Both unchanged-departure Standard days finished at 03:20 on the following day.
 Every service completed every call and cleared to depot; zero safety events.
 Independent finalizers and verification tools checked all 4,833 railway inputs,

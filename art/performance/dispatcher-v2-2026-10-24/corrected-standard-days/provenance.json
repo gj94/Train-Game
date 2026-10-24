@@ -1,0 +1,70 @@
+{
+  "recorded_at": "2026-10-25T07:14:02.934210+08:00",
+  "source_commit": "b28e2c1888e7d564df8620e4977a3ea391796606",
+  "classic_data_commit": "6713f65",
+  "predictive_data_commit": "17d8672",
+  "jobs": [
+    {
+      "day": "classic-standard",
+      "pid": 15212,
+      "started": "2026-10-25T05:33:00.6539212+08:00",
+      "output": ".local/dispatcher-v2-2026-10-24/rehearsals-v6/classic-standard",
+      "options": [
+        "--standard",
+        "--snapshots"
+      ],
+      "source_commit": "b28e2c1888e7d564df8620e4977a3ea391796606",
+      "status": "complete_installed_verified",
+      "reason": "Compatible preparation after imminent-call forecast dwell correction",
+      "child_pid": 2408,
+      "startup_verified_at": "2026-10-25T05:33:18.806978+08:00",
+      "startup_departures": 1,
+      "startup_mode": "classic",
+      "verified_at": "2026-10-25T07:09:50.013911+08:00",
+      "evidence": "art/performance/dispatcher-v2-2026-10-24/corrected-standard-days",
+      "native_checks": 36
+    },
+    {
+      "day": "predictive-standard",
+      "pid": 28212,
+      "started": "2026-10-25T05:33:00.7220210+08:00",
+      "output": ".local/dispatcher-v2-2026-10-24/rehearsals-v6/predictive-standard",
+      "options": [
+        "--standard",
+        "--predictive",
+        "--snapshots"
+      ],
+      "source_commit": "b28e2c1888e7d564df8620e4977a3ea391796606",
+      "status": "complete_installed_verified",
+      "reason": "Compatible preparation after imminent-call forecast dwell correction",
+      "child_pid": 27324,
+      "startup_verified_at": "2026-10-25T05:33:18.806978+08:00",
+      "startup_departures": 1,
+      "startup_mode": "predictive",
+      "verified_at": "2026-10-25T07:09:50.013911+08:00",
+      "evidence": "art/performance/dispatcher-v2-2026-10-24/corrected-standard-days",
+      "native_checks": 36
+    }
+  ],
+  "runtime_tests": {
+    "passed": 964,
+    "failed": 0,
+    "changed_since_suite": false
+  },
+  "native_checks": {
+    "checks": 36,
+    "failed": 0,
+    "screens_reviewed": 4,
+    "renderer": "Compatibility",
+    "audio_driver": "Dummy"
+  },
+  "eta_audit": {
+    "states": 233,
+    "source_fingerprints": 4833,
+    "samples": 19,
+    "arrivals": 8,
+    "trains": 7,
+    "outliers_beyond_own_uncertainty": 1
+  },
+  "remaining": "Both original Intensive baselines, matching native checks and corrected K1/KPY saved-ETA inspection. R46 unchanged."
+}

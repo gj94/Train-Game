@@ -1,0 +1,871 @@
+{
+  "interpretation": "Matched services retain their departure times; compare other source/configuration differences separately.",
+  "before_mode": "classic",
+  "after_mode": "predictive",
+  "before_audit_ok": true,
+  "after_audit_ok": true,
+  "unmatched": {
+    "before": [],
+    "after": []
+  },
+  "matched": 100,
+  "changed_departures": [],
+  "priority_groups": {
+    "20": {
+      "services": 1,
+      "mean_before_seconds": 346.199999750083,
+      "mean_after_seconds": 424.199999748947,
+      "total_change_seconds": 77.99999999886398,
+      "improved_over_15s": 0,
+      "worsened_over_15s": 1,
+      "within_15s": 0
+    },
+    "30": {
+      "services": 25,
+      "mean_before_seconds": 136.8780000416523,
+      "mean_after_seconds": 135.41600000578953,
+      "total_change_seconds": -36.55000089656892,
+      "improved_over_15s": 2,
+      "worsened_over_15s": 2,
+      "within_15s": 21
+    },
+    "45": {
+      "services": 40,
+      "mean_before_seconds": 160.47000005935143,
+      "mean_after_seconds": 117.82500003008359,
+      "total_change_seconds": -1705.8000011707134,
+      "improved_over_15s": 8,
+      "worsened_over_15s": 3,
+      "within_15s": 29
+    },
+    "70": {
+      "services": 12,
+      "mean_before_seconds": 304.89166669879734,
+      "mean_after_seconds": 288.47916662744217,
+      "total_change_seconds": -196.95000085626202,
+      "improved_over_15s": 2,
+      "worsened_over_15s": 2,
+      "within_15s": 8
+    },
+    "75": {
+      "services": 14,
+      "mean_before_seconds": 234.01071430996737,
+      "mean_after_seconds": 249.07500008807529,
+      "total_change_seconds": 210.9000008935111,
+      "improved_over_15s": 2,
+      "worsened_over_15s": 1,
+      "within_15s": 11
+    },
+    "85": {
+      "services": 6,
+      "mean_before_seconds": 653.2083336164004,
+      "mean_after_seconds": 372.50000009420734,
+      "total_change_seconds": -1684.2500011331588,
+      "improved_over_15s": 2,
+      "worsened_over_15s": 0,
+      "within_15s": 4
+    },
+    "100": {
+      "services": 2,
+      "mean_before_seconds": 393.0999998848165,
+      "mean_after_seconds": 688.8499998805105,
+      "total_change_seconds": 591.499999991388,
+      "improved_over_15s": 1,
+      "worsened_over_15s": 1,
+      "within_15s": 0
+    }
+  },
+  "largest_regressions": [
+    {
+      "id": "B031",
+      "priority": 70,
+      "before_seconds": 197.299999826282,
+      "after_seconds": 1489.34999980748,
+      "change_seconds": 1292.049999981198,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 204,
+      "after_maximum_wait_seconds": 1198
+    },
+    {
+      "id": "B020",
+      "priority": 75,
+      "before_seconds": 0,
+      "after_seconds": 1197.60000072731,
+      "change_seconds": 1197.60000072731,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 490,
+      "after_maximum_wait_seconds": 750
+    },
+    {
+      "id": "B012",
+      "priority": 100,
+      "before_seconds": 477.549999868308,
+      "after_seconds": 1168.69999985825,
+      "change_seconds": 691.149999989942,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 830,
+      "after_maximum_wait_seconds": 878
+    },
+    {
+      "id": "B096",
+      "priority": 30,
+      "before_seconds": 0,
+      "after_seconds": 591.849999773658,
+      "change_seconds": 591.849999773658,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 556,
+      "after_maximum_wait_seconds": 694
+    },
+    {
+      "id": "B089",
+      "priority": 30,
+      "before_seconds": 0,
+      "after_seconds": 313.199999897595,
+      "change_seconds": 313.199999897595,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 640,
+      "after_maximum_wait_seconds": 640
+    },
+    {
+      "id": "B026",
+      "priority": 70,
+      "before_seconds": 206.249999701839,
+      "after_seconds": 417.24999971412,
+      "change_seconds": 211.00000001228102,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 210,
+      "after_maximum_wait_seconds": 210
+    },
+    {
+      "id": "B054",
+      "priority": 45,
+      "before_seconds": 268.89999983694,
+      "after_seconds": 374.349999835409,
+      "change_seconds": 105.44999999846897,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 250,
+      "after_maximum_wait_seconds": 248
+    },
+    {
+      "id": "K1",
+      "priority": 20,
+      "before_seconds": 346.199999750083,
+      "after_seconds": 424.199999748947,
+      "change_seconds": 77.99999999886398,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 1696,
+      "after_maximum_wait_seconds": 1774
+    },
+    {
+      "id": "B084",
+      "priority": 45,
+      "before_seconds": 140.150000331865,
+      "after_seconds": 209.800000335934,
+      "change_seconds": 69.650000004069,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 60,
+      "after_maximum_wait_seconds": 476
+    },
+    {
+      "id": "B083",
+      "priority": 45,
+      "before_seconds": 242.100000198116,
+      "after_seconds": 267.6000001996,
+      "change_seconds": 25.50000000148401,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 410,
+      "after_maximum_wait_seconds": 254
+    }
+  ],
+  "largest_improvements": [
+    {
+      "id": "B009",
+      "priority": 85,
+      "before_seconds": 1413.60000111742,
+      "after_seconds": 0,
+      "change_seconds": -1413.60000111742,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 1176,
+      "after_maximum_wait_seconds": 98
+    },
+    {
+      "id": "B034",
+      "priority": 70,
+      "before_seconds": 1258.25000066272,
+      "after_seconds": 0,
+      "change_seconds": -1258.25000066272,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 742,
+      "after_maximum_wait_seconds": 448
+    },
+    {
+      "id": "B014",
+      "priority": 75,
+      "before_seconds": 911.749999829422,
+      "after_seconds": 0,
+      "change_seconds": -911.749999829422,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 800,
+      "after_maximum_wait_seconds": 696
+    },
+    {
+      "id": "B044",
+      "priority": 30,
+      "before_seconds": 866.600000563456,
+      "after_seconds": 0,
+      "change_seconds": -866.600000563456,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 1206,
+      "after_maximum_wait_seconds": 6
+    },
+    {
+      "id": "B080",
+      "priority": 45,
+      "before_seconds": 646.199999854922,
+      "after_seconds": 140.149999825466,
+      "change_seconds": -506.050000029456,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 696,
+      "after_maximum_wait_seconds": 4
+    },
+    {
+      "id": "B056",
+      "priority": 45,
+      "before_seconds": 527.899999754591,
+      "after_seconds": 65.3999997613282,
+      "change_seconds": -462.4999999932628,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 852,
+      "after_maximum_wait_seconds": 104
+    },
+    {
+      "id": "B027",
+      "priority": 70,
+      "before_seconds": 441.750000187021,
+      "after_seconds": 0,
+      "change_seconds": -441.750000187021,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 994,
+      "after_maximum_wait_seconds": 994
+    },
+    {
+      "id": "B076",
+      "priority": 45,
+      "before_seconds": 529.049999761301,
+      "after_seconds": 140.199999766963,
+      "change_seconds": -388.849999994338,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 846,
+      "after_maximum_wait_seconds": 242
+    },
+    {
+      "id": "B021",
+      "priority": 85,
+      "before_seconds": 463.850000730337,
+      "after_seconds": 193.40000071461,
+      "change_seconds": -270.450000015727,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 618,
+      "after_maximum_wait_seconds": 422
+    },
+    {
+      "id": "B063",
+      "priority": 45,
+      "before_seconds": 244.400000225141,
+      "after_seconds": 0,
+      "change_seconds": -244.400000225141,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 240,
+      "after_maximum_wait_seconds": 342
+    },
+    {
+      "id": "B074",
+      "priority": 45,
+      "before_seconds": 306.149999843125,
+      "after_seconds": 140.199999845543,
+      "change_seconds": -165.94999999758198,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 628,
+      "after_maximum_wait_seconds": 434
+    },
+    {
+      "id": "B001",
+      "priority": 100,
+      "before_seconds": 308.649999901325,
+      "after_seconds": 208.999999902771,
+      "change_seconds": -99.64999999855397,
+      "departure_change_seconds": 0,
+      "before_maximum_wait_seconds": 468,
+      "after_maximum_wait_seconds": 468
+    }
+  ],
+  "k1": {
+    "id": "K1",
+    "priority": 20,
+    "before_seconds": 346.199999750083,
+    "after_seconds": 424.199999748947,
+    "change_seconds": 77.99999999886398,
+    "departure_change_seconds": 0,
+    "before_maximum_wait_seconds": 1696,
+    "after_maximum_wait_seconds": 1774
+  },
+  "call_punctuality": {
+    "available": true,
+    "interpretation": "Each booked arrival/departure is one observation, grouped by service priority; early arrivals count as zero lateness. Absolute operating-day times are retained.",
+    "compared_calls": 3060,
+    "unavailable_services": [],
+    "changed_call_times": [],
+    "priority_groups": {
+      "20": {
+        "arrival": {
+          "calls": 54,
+          "mean_before_seconds": 256.259259203578,
+          "mean_after_seconds": 254.87129624727945,
+          "improved_over_15s": 12,
+          "worsened_over_15s": 16,
+          "within_15s": 26
+        },
+        "departure": {
+          "calls": 54,
+          "mean_before_seconds": 309.03796288307063,
+          "mean_after_seconds": 309.5249999208018,
+          "improved_over_15s": 13,
+          "worsened_over_15s": 17,
+          "within_15s": 24
+        }
+      },
+      "30": {
+        "arrival": {
+          "calls": 372,
+          "mean_before_seconds": 137.00981182183068,
+          "mean_after_seconds": 140.37177418790776,
+          "improved_over_15s": 29,
+          "worsened_over_15s": 35,
+          "within_15s": 308
+        },
+        "departure": {
+          "calls": 372,
+          "mean_before_seconds": 189.57352151247304,
+          "mean_after_seconds": 194.2744623723204,
+          "improved_over_15s": 34,
+          "worsened_over_15s": 40,
+          "within_15s": 298
+        }
+      },
+      "45": {
+        "arrival": {
+          "calls": 660,
+          "mean_before_seconds": 102.16499999733276,
+          "mean_after_seconds": 50.927954555779486,
+          "improved_over_15s": 99,
+          "worsened_over_15s": 38,
+          "within_15s": 523
+        },
+        "departure": {
+          "calls": 660,
+          "mean_before_seconds": 113.62416665545668,
+          "mean_after_seconds": 60.39674241373681,
+          "improved_over_15s": 102,
+          "worsened_over_15s": 40,
+          "within_15s": 518
+        }
+      },
+      "70": {
+        "arrival": {
+          "calls": 128,
+          "mean_before_seconds": 172.30117187190376,
+          "mean_after_seconds": 108.48945309817805,
+          "improved_over_15s": 18,
+          "worsened_over_15s": 8,
+          "within_15s": 102
+        },
+        "departure": {
+          "calls": 128,
+          "mean_before_seconds": 173.0203126025211,
+          "mean_after_seconds": 98.8093750975705,
+          "improved_over_15s": 17,
+          "worsened_over_15s": 6,
+          "within_15s": 105
+        }
+      },
+      "75": {
+        "arrival": {
+          "calls": 238,
+          "mean_before_seconds": 87.08088236574433,
+          "mean_after_seconds": 65.9285714530992,
+          "improved_over_15s": 19,
+          "worsened_over_15s": 23,
+          "within_15s": 196
+        },
+        "departure": {
+          "calls": 238,
+          "mean_before_seconds": 109.89852964534312,
+          "mean_after_seconds": 91.14180695828696,
+          "improved_over_15s": 20,
+          "worsened_over_15s": 25,
+          "within_15s": 193
+        }
+      },
+      "85": {
+        "arrival": {
+          "calls": 66,
+          "mean_before_seconds": 594.8068182595292,
+          "mean_after_seconds": 297.31742419929543,
+          "improved_over_15s": 17,
+          "worsened_over_15s": 10,
+          "within_15s": 39
+        },
+        "departure": {
+          "calls": 66,
+          "mean_before_seconds": 605.9492424584374,
+          "mean_after_seconds": 300.7750000159404,
+          "improved_over_15s": 17,
+          "worsened_over_15s": 7,
+          "within_15s": 42
+        }
+      },
+      "100": {
+        "arrival": {
+          "calls": 12,
+          "mean_before_seconds": 155.88749996603352,
+          "mean_after_seconds": 182.2916666380667,
+          "improved_over_15s": 3,
+          "worsened_over_15s": 2,
+          "within_15s": 7
+        },
+        "departure": {
+          "calls": 12,
+          "mean_before_seconds": 183.27083331499975,
+          "mean_after_seconds": 164.43749998220906,
+          "improved_over_15s": 2,
+          "worsened_over_15s": 2,
+          "within_15s": 8
+        }
+      }
+    },
+    "largest_regressions": [
+      {
+        "id": "B020",
+        "priority": 75,
+        "call": 16,
+        "station": "SRTL",
+        "kind": "departure",
+        "before_seconds": 4.7500005391048035,
+        "after_seconds": 1484.250000625194,
+        "change_seconds": 1479.5000000860891
+      },
+      {
+        "id": "B031",
+        "priority": 70,
+        "call": 8,
+        "station": "ERS",
+        "kind": "arrival",
+        "before_seconds": 197.2999998262967,
+        "after_seconds": 1489.3499998074985,
+        "change_seconds": 1292.0499999812018
+      },
+      {
+        "id": "B020",
+        "priority": 75,
+        "call": 17,
+        "station": "ERS",
+        "kind": "arrival",
+        "before_seconds": 0,
+        "after_seconds": 1197.600000727296,
+        "change_seconds": 1197.600000727296
+      },
+      {
+        "id": "B031",
+        "priority": 70,
+        "call": 7,
+        "station": "SRTL",
+        "kind": "arrival",
+        "before_seconds": 132.7499998580024,
+        "after_seconds": 1079.6999998442989,
+        "change_seconds": 946.9499999862965
+      },
+      {
+        "id": "B031",
+        "priority": 70,
+        "call": 7,
+        "station": "SRTL",
+        "kind": "departure",
+        "before_seconds": 179.79999985609902,
+        "after_seconds": 1084.7999998429004,
+        "change_seconds": 904.9999999868014
+      },
+      {
+        "id": "B019",
+        "priority": 75,
+        "call": 15,
+        "station": "ALLP",
+        "kind": "departure",
+        "before_seconds": 4.750000115804141,
+        "after_seconds": 846.2500001648004,
+        "change_seconds": 841.5000000489963
+      },
+      {
+        "id": "B096",
+        "priority": 30,
+        "call": 10,
+        "station": "BRAM",
+        "kind": "arrival",
+        "before_seconds": 77.64999979909771,
+        "after_seconds": 844.6499997880019,
+        "change_seconds": 766.9999999889042
+      },
+      {
+        "id": "B096",
+        "priority": 30,
+        "call": 10,
+        "station": "BRAM",
+        "kind": "departure",
+        "before_seconds": 91.69999979800195,
+        "after_seconds": 858.6999997868988,
+        "change_seconds": 766.9999999888969
+      },
+      {
+        "id": "B096",
+        "priority": 30,
+        "call": 9,
+        "station": "NYY",
+        "kind": "departure",
+        "before_seconds": 199.79999980289722,
+        "after_seconds": 966.7999997916995,
+        "change_seconds": 766.9999999888023
+      },
+      {
+        "id": "B020",
+        "priority": 75,
+        "call": 15,
+        "station": "ALLP",
+        "kind": "departure",
+        "before_seconds": 232.2500004609028,
+        "after_seconds": 971.2500005039037,
+        "change_seconds": 739.0000000430009
+      },
+      {
+        "id": "B020",
+        "priority": 75,
+        "call": 16,
+        "station": "SRTL",
+        "kind": "arrival",
+        "before_seconds": 0,
+        "after_seconds": 733.3500005763053,
+        "change_seconds": 733.3500005763053
+      },
+      {
+        "id": "B096",
+        "priority": 30,
+        "call": 11,
+        "station": "NEM",
+        "kind": "departure",
+        "before_seconds": 4.799999791401206,
+        "after_seconds": 705.2999997812003,
+        "change_seconds": 700.4999999897991
+      }
+    ],
+    "largest_improvements": [
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 2,
+        "station": "ALLP",
+        "kind": "departure",
+        "before_seconds": 2487.250000462198,
+        "after_seconds": 4.750000317697413,
+        "change_seconds": -2482.5000001445005
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 4,
+        "station": "KYJ",
+        "kind": "departure",
+        "before_seconds": 2286.750000594402,
+        "after_seconds": 4.750000461601303,
+        "change_seconds": -2282.000000132801
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 3,
+        "station": "HAD",
+        "kind": "departure",
+        "before_seconds": 2278.7500005475013,
+        "after_seconds": 4.750000415093382,
+        "change_seconds": -2274.000000132408
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 3,
+        "station": "HAD",
+        "kind": "arrival",
+        "before_seconds": 2273.8000005420035,
+        "after_seconds": 0,
+        "change_seconds": -2273.8000005420035
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 4,
+        "station": "KYJ",
+        "kind": "arrival",
+        "before_seconds": 2237.7000005846057,
+        "after_seconds": 0,
+        "change_seconds": -2237.7000005846057
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 5,
+        "station": "QLN",
+        "kind": "arrival",
+        "before_seconds": 1999.8500006897957,
+        "after_seconds": 0,
+        "change_seconds": -1999.8500006897957
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 5,
+        "station": "QLN",
+        "kind": "departure",
+        "before_seconds": 2004.750000697095,
+        "after_seconds": 97.75000058609294,
+        "change_seconds": -1907.000000111002
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 8,
+        "station": "TVC",
+        "kind": "arrival",
+        "before_seconds": 1964.1500008927978,
+        "after_seconds": 119.6500007854047,
+        "change_seconds": -1844.5000001073931
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 8,
+        "station": "TVC",
+        "kind": "departure",
+        "before_seconds": 1969.2500009070063,
+        "after_seconds": 124.7500007997005,
+        "change_seconds": -1844.5000001073058
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 7,
+        "station": "TVCN",
+        "kind": "departure",
+        "before_seconds": 2004.2500008705974,
+        "after_seconds": 159.75000076330616,
+        "change_seconds": -1844.5000001072913
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 7,
+        "station": "TVCN",
+        "kind": "arrival",
+        "before_seconds": 1999.1000008634,
+        "after_seconds": 154.7000007559982,
+        "change_seconds": -1844.4000001074019
+      },
+      {
+        "id": "B009",
+        "priority": 85,
+        "call": 9,
+        "station": "NYY",
+        "kind": "arrival",
+        "before_seconds": 1810.5500009578973,
+        "after_seconds": 0,
+        "change_seconds": -1810.5500009578973
+      }
+    ]
+  },
+  "wait_quality": {
+    "before": {
+      "bins": [
+        136,
+        33,
+        7,
+        0,
+        0
+      ],
+      "brief_count": 2694,
+      "count": 176,
+      "cumulative": [
+        {
+          "count": 136,
+          "fraction": 0.772727272727273,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 169,
+          "fraction": 0.960227272727273,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 176,
+          "fraction": 1,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 176,
+          "fraction": 1,
+          "met": true,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 1694,
+      "minimum_seconds": 30,
+      "ok": true
+    },
+    "after": {
+      "bins": [
+        154,
+        22,
+        5,
+        0,
+        0
+      ],
+      "brief_count": 2708,
+      "count": 181,
+      "cumulative": [
+        {
+          "count": 154,
+          "fraction": 0.850828729281768,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 176,
+          "fraction": 0.972375690607735,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 181,
+          "fraction": 1,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 181,
+          "fraction": 1,
+          "met": true,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 1772,
+      "minimum_seconds": 30,
+      "ok": true
+    }
+  },
+  "station_wait_quality": {
+    "before": {
+      "bins": [
+        86,
+        26,
+        5,
+        0,
+        0
+      ],
+      "brief_count": 1413,
+      "count": 117,
+      "cumulative": [
+        {
+          "count": 86,
+          "fraction": 0.735042735042735,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 112,
+          "fraction": 0.957264957264957,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 117,
+          "fraction": 1,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 117,
+          "fraction": 1,
+          "met": true,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 1694,
+      "minimum_seconds": 30,
+      "ok": true
+    },
+    "after": {
+      "bins": [
+        96,
+        18,
+        3,
+        0,
+        0
+      ],
+      "brief_count": 1413,
+      "count": 117,
+      "cumulative": [
+        {
+          "count": 96,
+          "fraction": 0.82051282051282,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 114,
+          "fraction": 0.974358974358974,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 117,
+          "fraction": 1,
+          "met": true,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 117,
+          "fraction": 1,
+          "met": true,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 1772,
+      "minimum_seconds": 30,
+      "ok": true
+    }
+  }
+}

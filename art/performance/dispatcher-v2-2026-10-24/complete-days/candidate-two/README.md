@@ -1,5 +1,9 @@
 # Second Intensive candidate: completed disturbed days
 
+> Historical pre-correction evidence. The forecast source changed in `b28e2c1`;
+> these old source fingerprints are not current certification. See the
+> [fresh corrected-source results](../eta-corrected/README.md).
+
 Both Classic and Predictive V2 ran the entire 140-service day with K1 manually
 braked for 600 seconds at simulation time11000 (11:03:20), then returned to AI.
 All140 services reached every call and cleared to depot. No safety events.

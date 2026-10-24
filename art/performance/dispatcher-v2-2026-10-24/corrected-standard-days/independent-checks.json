@@ -1,0 +1,48 @@
+{
+  "checked_at": "2026-10-25T07:08:53.287592+08:00",
+  "source_commit": "b28e2c1888e7d564df8620e4977a3ea391796606",
+  "runs": [
+    {
+      "mode": "classic",
+      "finished": 100,
+      "safety_events": [],
+      "source_hash_count": 4833,
+      "arrivals_checked": 1530,
+      "departures_checked": 1530,
+      "audit_sha256": "000df30a7d7b4b90b6e034e6d79625e130dda1151aee9fa427e07a62f20ac075",
+      "services_all_stabled": true
+    },
+    {
+      "mode": "predictive",
+      "finished": 100,
+      "safety_events": [],
+      "source_hash_count": 4833,
+      "arrivals_checked": 1530,
+      "departures_checked": 1530,
+      "audit_sha256": "892731cc06e6bbb9e3c327225aa05216b4a9bfb0c4c0728d7dcf5aa922ac9577",
+      "services_all_stabled": true
+    }
+  ],
+  "installed_verification": [
+    {
+      "command": "node tools/verify-service-starts.mjs",
+      "exit_code": 0,
+      "output": "Prepared starts verified: 100 services; 4833 railway inputs; full-day audit passed."
+    },
+    {
+      "command": "node tools/verify-railway-times.mjs",
+      "exit_code": 0,
+      "output": "Five-minute railway verified: 233 exact restored states; full operating day; no safety events."
+    },
+    {
+      "command": "node tools/verify-timetable-variants.mjs --day=standard_v2",
+      "exit_code": 0,
+      "output": "standard_v2 (predictive) verified: 100 services, 233 time states, 3 distinct K1 overtakers."
+    },
+    {
+      "command": "node tools/verify-service-traffic.mjs",
+      "exit_code": 0,
+      "output": "Traffic preview verified: 100 services; 470 crossings, 47 completed overtakes; entire baseline covered."
+    }
+  ]
+}

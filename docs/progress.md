@@ -1,5 +1,28 @@
 # Progress
 
+## 25 October 2026 — corrected-source Standard pair installed and exercised
+
+Fresh Classic and V2 Standard baselines each pass all calls, depot clearances,
+safety and both wait distributions, with 4,833 current input hashes, 100 starts
+and 233 exact five-minute states. The independent starts/time/traffic verifiers
+pass. Classic data is committed as `6713f65`; V2 data as `17d8672`. Both actual
+menu choices pass 36 native checks with four reviewed screens. All 964 source
+tests still apply; runtime and preparation inputs remain unchanged.
+
+The broader saved-ETA audit checks all 233 V2 states: nineteen forecasts for
+eight distinct arrivals/seven trains. One B042 forecast is 403.69s early; saved
+states and actual holds show a remaining Turavur wait and a later replacement
+of the proposed downstream pass. This is sparse calibration, not a universal
+accuracy claim. K1's seven samples remain within -7.27 to +0.95s. The Intensive
+KPY dwell boundary still needs its own corrected-state inspection.
+[Results, exact evidence and limitations](../art/performance/dispatcher-v2-2026-10-24/corrected-standard-days/README.md).
+
+Standard V2 retains observed regressions, including B012 +691.15s and K1 +78s;
+it does not improve every service. Playtest each Standard choice: K1 Stops and
+Traffic, then Explore by time at noon. Classic approaches Paravur at about
+81 km/h; V2 stands at Paravur. Both original Intensive baseline jobs continue.
+R46 remains available; no executable release was prepared.
+
 ## 25 October 2026 — both corrected-source manual-delay days verified
 
 Fresh v6 Classic and V2 Intensive disturbance replays each complete all 140
