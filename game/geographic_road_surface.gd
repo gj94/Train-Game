@@ -71,14 +71,14 @@ static func draw(c,feature: Dictionary) -> void:
 			# Fade the cross-slope into an engineered approach over its last ground
 			# segment, so the terrain-following edge meets the planar deck exactly.
 			var conform:=Vector2(0 if profiled[maxi(0,i-2)] else 1,0 if profiled[mini(profiled.size()-1,i+1)] else 1)
-			var area:=_surface(c,finish,corners,p,q,Color.WHITE,bridge,drape,conform)
+			var area:=_surface(c,finish,corners,p,q,Color.WHITE,bridge,drape,conform,feature.id)
 			var full:=area>=length*width*.98
 			if bridge:
 				if full:_bridge(c,feature,p,q,left,right,phase,length,sample.get("bridge",false) or tags.get("bridge","no")!="no")
 			else:
 				for side in [-1,1]:
 					var outer_a:=left+left.normalized()*.65;var outer_b:=right+right.normalized()*.65
-					_surface(c,"road_shoulder",[p+left*side-Vector3.UP*.02,q+right*side-Vector3.UP*.02,q+outer_b*side-Vector3.UP*.03,p+outer_a*side-Vector3.UP*.03],p-Vector3.UP*.025,q-Vector3.UP*.025,Color.WHITE,false,drape,conform)
+					_surface(c,"road_shoulder",[p+left*side-Vector3.UP*.02,q+right*side-Vector3.UP*.02,q+outer_b*side-Vector3.UP*.03,p+outer_a*side-Vector3.UP*.03],p-Vector3.UP*.025,q-Vector3.UP*.025,Color.WHITE,false,drape,conform,feature.id)
 					# Retained approaches reach the ground, rather than hanging
 					# over a 5.8 m vertical step at the end of a bridge.
 					if full and maxf(p.y-ground[i-1],q.y-ground[i])>.2:
@@ -97,7 +97,7 @@ static func draw(c,feature: Dictionary) -> void:
 						var b:=p.lerp(q,(stop-phase)/length)+Vector3.UP*.015
 						var side:=horizontal.normalized().cross(Vector3.UP)*.065
 						var marking_conform:=Vector2(lerpf(conform.x,conform.y,(cursor-phase)/length),lerpf(conform.x,conform.y,(stop-phase)/length))
-						_surface(c,"paint",[a-side,b-side,b+side,a+side],a,b,Color(.70,.67,.54),bridge,drape,marking_conform)
+						_surface(c,"paint",[a-side,b-side,b+side,a+side],a,b,Color(.70,.67,.54),bridge,drape,marking_conform,feature.id)
 					cursor=stop
 	if c.get("road_supports")!=null:c.road_supports.flush(c)
 
@@ -112,13 +112,23 @@ static func _miter(points: Array[Vector3],i: int) -> Vector3:
 	if bisector.length_squared()<.1:return normal
 	return bisector/maxf(.5,bisector.dot(normal))
 
-static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector3,color: Color,over_water: bool=false,drape: bool=false,conform: Vector2=Vector2.ONE) -> float:
+static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector3,color: Color,over_water: bool=false,drape: bool=false,conform: Vector2=Vector2.ONE,way: String="") -> float:
 	var ring:=PackedVector2Array()
 	for p in corners:ring.append(Vector2(p.x,p.z))
 	if Geometry2D.is_polygon_clockwise(ring):ring.reverse()
 	var pieces: Array=[ring]
-	if c.geo.road_reservations!=null:pieces=c.geo.road_reservations.clip(ring,c.origin,minf(a.y,b.y)-.45,maxf(a.y,b.y)+.02)
+	var junctions=null;var crossings:=[]
+	var parallel_check: bool=c.geo.road_reservations!=null and c.geo.road_reservations.near_parallel(ring,c.origin,Vector2(b.x-a.x,b.z-a.z))
+	if not way.is_empty():
+		junctions=c.get_meta("road_junctions") if c.has_meta("road_junctions") else null
+		if junctions==null:
+			junctions=preload("res://game/geographic_road_junctions.gd").new(c.geo,c.origin,c.tile_features)
+			c.set_meta("road_junctions",junctions)
+		if parallel_check:crossings=junctions.crossing_aprons(c,way,ring,a,b)
+	if c.geo.road_reservations!=null:pieces=c.geo.road_reservations.clip(ring,c.origin,minf(a.y,b.y)-.45,maxf(a.y,b.y)+.02,Vector2(b.x-a.x,b.z-a.z),crossings)
 	if not over_water and c.road_water!=null:pieces=c.road_water.clip(pieces)
+	if not pieces.is_empty() and not way.is_empty() and kind in ["road_shoulder","paint"]:
+		pieces=junctions.clip(c,way,pieces,a,b)
 	var axis:=Vector2(b.x-a.x,b.z-a.z);var squared:=maxf(.000001,axis.length_squared())
 	var across:=Vector2(-axis.y,axis.x).normalized()
 	var width:=maxf(.001,absf(Vector2(corners[3].x-corners[0].x,corners[3].z-corners[0].z).dot(across)))
@@ -149,6 +159,8 @@ static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector
 					var t: float=(v-Vector2(a.x,a.z)).dot(axis)/squared
 					positions.append(Vector3(v.x,lerpf(a.y,b.y,t),v.y))
 				projected.append(positions)
+		if drape and parallel_check:
+			projected=clip_projected(projected,c.geo.road_reservations,c.origin,axis,crossings)
 		for positions: PackedVector3Array in projected:
 			var first:=Vector2(positions[0].x,positions[0].z)
 			var second:=Vector2(positions[1].x,positions[1].z)
@@ -167,6 +179,26 @@ static func _surface(c,kind: String,corners: Array[Vector3],a: Vector3,b: Vector
 				if is_road:edge_uvs.append(Vector2(clampf((v-Vector2(a.x,a.z)).dot(across)/width+.5,0,1),0))
 			c.batch.triangle(kind,positions[0],positions[1],positions[2],normal,color,uvs,edge_uvs)
 	return area
+
+static func clip_projected(triangles: Array,reservations,origin: Vector3,axis: Vector2,crossings: Array=[]) -> Array:
+	# Ground-following road edges can be higher than their centreline. Check
+	# the emitted triangle, and interpolate cuts on its original plane.
+	var result:=[]
+	for triangle: PackedVector3Array in triangles:
+		var ring:=PackedVector2Array();var low:=INF;var high:=-INF
+		for p in triangle:ring.append(Vector2(p.x,p.z));low=minf(low,p.y);high=maxf(high,p.y)
+		var normal: Vector3=(triangle[1]-triangle[0]).cross(triangle[2]-triangle[0])
+		if absf(normal.y)<.000001:continue
+		for part in reservations.clip(ring,origin,low-.02,high+.02,axis,crossings):
+			var indices:=Geometry2D.triangulate_polygon(part)
+			for j in range(0,indices.size(),3):
+				var points:=PackedVector3Array()
+				for k in 3:
+					var p: Vector2=part[indices[j+k]]
+					var y:=triangle[0].y-(normal.x*(p.x-triangle[0].x)+normal.z*(p.y-triangle[0].z))/normal.y
+					points.append(Vector3(p.x,y,p.y))
+				result.append(points)
+	return result
 
 static func _bridge(c,feature: Dictionary,p: Vector3,q: Vector3,left: Vector3,right: Vector3,phase: float,length: float,open_span: bool=true) -> void:
 	# Closed slab, coping and connected guardrails. There is no lateral soil

@@ -366,6 +366,7 @@ def prepare(context, source, output, report_path, context_path):
         inputs[path.relative_to(ROOT).as_posix()] = file_digest(path) if path.exists() else None
     for name in ["tools/maps/road_surfaces.py", "tools/maps/road_network.py", "tools/export_scenery_context.gd", "game/geographic_data.gd",
                  "game/station_precinct_plan.gd", "game/geographic_road_surface.gd", "game/geographic_road_profiles.gd",
+                 "game/geographic_road_reservations.gd", "game/geographic_road_junctions.gd", "game/geographic_polygon_difference.gd",
                  "game/geographic_earthworks.gd", "game/geographic_ground_ribbon.gd", "game/geographic_road_support.gd",
                  "game/geographic_shore_cells.gd",
                  "game/geographic_shore_context.gd",

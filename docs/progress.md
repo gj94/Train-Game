@@ -1,5 +1,24 @@
 # Progress
 
+## 2026-10-24 — Connected road mouths and low parallel-road clearance
+
+- Twelfth overnight increment keeps low parallel roads clear of ballast, including
+  terrain-draped edges. True crossings keep short connecting mouths; shoulders
+  and markings no longer cut across same-level joining carriageways.
+- 887 full source tests, 51 final road tests and 23 Python tests. All 5,474,690
+  emitted road triangles pass the full-route clearance checks; the independent
+  parallel audit has no unresolved overlaps. All 19,922 supports pass. Junction
+  continuity matches the baseline: 2,169 pairs, 14,976 probes, 6.148 mm maximum.
+- Three frozen native source views reviewed. All 4,893 protected inputs and all
+  32,863 road-profile rows/exclusions/OHE positions are unchanged; input hashes
+  refreshed and the export gate passes. No timetable run or distribution test.
+- Cost is explicit: isolated 90-tile x3 road generation +26.07%, indexed vertices
+  -2.02%; this is streaming CPU cost, not target-PC GPU FPS. Evidence and exact
+  playtest points: art/performance/map-2026-10-24/road-junctions.
+- Next work is already in progress: smooth terrain normals and exact vegetation
+  grounding. Southern pond banks also need support where the railway formation
+  lowered surrounding land below water level. R45 remains live; no build yet.
+
 ## 2026-10-24 — Bridge decks follow the actual station roads
 
 - Eleventh overnight increment closes QLN's deck gap without moving railway.

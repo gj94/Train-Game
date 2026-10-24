@@ -579,3 +579,51 @@ crossings (the neighbouring w1558296525 footway is about 86 degrees), true
 underpasses/flyovers and all finishes. Then same-level junction shoulder clipping,
 smooth terrain shading and vegetation transitions. Do not rerun unchanged full
 road audits for bridge-only work; only new pier/road intersections were checked.
+
+## Twelfth checkpoint — road mouths and low parallel roads
+
+The 143.7 km parallel-road intrusion is fixed. Low parallel ribbons and their
+actual draped edges stay clear of the railway; legitimate crossing mouths remain
+connected. Same-level shoulders/paint yield at other carriageways. Five initially
+severed road mouths were repaired and the final junction audit matches the
+baseline 2,169 pairs / 14,976 probes / 6.148 mm worst height difference.
+
+887 full source tests and 51 final road tests pass, plus 23 Python tests.
+Full 4,305-tile mesh audit: 5,474,690 triangles, all five road finishes, 696 piers,
+19,922 supports. Independent parallel audit: 48,229 near-level intersections,
+1,788 verified crossing-mouth fragments, zero unresolved conflicts. Audit false
+positives at bent crossroads and beyond track endpoints were investigated using
+actual meshes; rejection tests still catch long parallel roads and high flyovers
+that must not exempt low roads. Native views at 143.7/146.2/184.3 km are clean.
+
+Isolated 90-tile x3 road-generation cost rises 26.07% (14,568.815 to 18,367.173 ms),
+indexed vertices fall 2.02%. This is streaming CPU cost, not GPU FPS. All 32,863
+road-profile rows/exclusions/OHE positions and 4,893 protected inputs are unchanged.
+Evidence and playtest steps: art/performance/map-2026-10-24/road-junctions.
+
+### Work already underway after the road checkpoint
+
+Smooth terrain normals use a temporary per-build helper (an initial owner/callable
+cycle was caught in native cleanup and fixed; a lifetime regression test passes).
+Vegetation now seats on actual refined terrain triangles and excludes mapped wet
+footprints. The 24-tile baseline found 197 root errors >10 cm, max1.861 m, and8 wet
+plants; the corrected audit has zero >10 cm errors, max0.0000038 m and no wet plants.
+The final full source suite is running in normal2-tests.log; do not edit runtime
+or test GDScript while it runs. Native final views complete without cleanup errors.
+A 71-tile geometry comparison shows identical positions; four previously reversed
+fine-bank triangles at tile6_107 now have consistent upward winding. Complete the
+isolated x3 terrain profile after other jobs finish, regenerate road input hashes,
+check protected files and commit the terrain/planting increment.
+
+The new close southern views reveal another real baseline defect to address
+before release: pond a1522434304 near230.55 km has water51.5 m while nearby dry
+formation ground is46.84 m at31.74 m from a46.99 m track. Current bank grading only
+lowers high land and refuses to operate within32 m of rail, leaving a floating
+water edge. Exact captures and numerical samples: ground-before-native and
+southern-bank-gaps.json in .local/map-2026-10-24. Do not move railway or change the
+prepared map. Investigate a render-only dry-bank rise toward the water outside
+the protected formation, with a gradual rail-clearance fade; retain the existing
+lowering safeguards. Validate road support, station envelopes, track-ground
+support and tile seams if terrain heights change. Do not claim this is fixed by
+smoothing normals alone. Fixed10:30 minimum and six-active-hour accounting remain;
+no build has been prepared. Continue beyond10:30 if validation needs it.

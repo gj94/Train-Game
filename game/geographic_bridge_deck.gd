@@ -58,30 +58,8 @@ static func visible_parts(strip: Dictionary,others: Array) -> Array:
 		if parts.is_empty():break
 	return parts
 
-static func half_plane(poly: PackedVector2Array,a: Vector2,b: Vector2,sign_value: float) -> PackedVector2Array:
-	var result:=PackedVector2Array()
-	if poly.size()<3:return result
-	for i in poly.size():
-		var p:=poly[i];var q:=poly[(i+1)%poly.size()]
-		var dp: float=(b-a).cross(p-a)*sign_value;var dq: float=(b-a).cross(q-a)*sign_value
-		if dp>=0:result.append(p)
-		if (dp<0)!=(dq<0):result.append(p.lerp(q,dp/(dp-dq)))
-	return result
-
 static func subtract_convex(poly: PackedVector2Array,cut: PackedVector2Array) -> Array:
-	# Boolean polygons can return a hole contour when a shorter strip is wholly
-	# inside another. Triangulating that contour alone would refill the hole.
-	# Peel disjoint convex outside pieces instead, retaining no hole contours.
-	var remaining:=poly;var result:=[];var area:=0.0
-	for i in cut.size():area+=cut[i].cross(cut[(i+1)%cut.size()])
-	var sign_value:=1.0 if area>0 else -1.0
-	for i in cut.size():
-		var a:=cut[i];var b:=cut[(i+1)%cut.size()]
-		var outside:=half_plane(remaining,a,b,-sign_value)
-		if outside.size()>=3:result.append(outside)
-		remaining=half_plane(remaining,a,b,sign_value)
-		if remaining.size()<3:break
-	return result
+	return preload("res://game/geographic_polygon_difference.gd").subtract_convex(poly,cut)
 
 static func height(strip: Dictionary,p: Vector2) -> float:
 	var a:=Vector2(strip.a.x,strip.a.z);var b:=Vector2(strip.b.x,strip.b.z)
