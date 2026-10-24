@@ -1,0 +1,17 @@
+{
+  "verified_at": "2026-10-25T04:27:26.538926+08:00",
+  "verifier": "tools/verify_disturbed_timetable.mjs",
+  "verifier_sha256_lf": "6c71bc580b03bbecb580f62bd02b31a255926c1d5f3d96663dcb3fcd778362e4",
+  "completed_checks": [
+    "classic 140-service 600-second manual K1 disturbance",
+    "predictive 140-service 600-second manual K1 disturbance"
+  ],
+  "negative_checks": {
+    "undisturbed_baseline": "rejected: delay0 versus600, exit1, no evidence output",
+    "wrong_mode": "rejected: predictive versusclassic, exit1, no evidence output"
+  },
+  "raw_archive_round_trips": true,
+  "simulation_routes_and_packs_changed": false,
+  "previous_full_source_tests": 961,
+  "runtime_unchanged_since_full_suite": true
+}

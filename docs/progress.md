@@ -1,5 +1,28 @@
 # Progress
 
+## 25 October 2026 — both revised manual-delay days pass
+
+Classic and V2 each completed all 140 services after a ten-minute manual K1
+pause, with every call, departure and depot clearance and no safety events.
+Independent checks verified 4,834 source fingerprints, all 1,726 arrivals and
+1,726 departures per run, wait accounting and complete traffic sampling.
+Both all-location and station-only wait targets pass. Classic's longest continuous
+wait is 31m22s; V2's is 27m32s. Each disturbed K1 working has eleven distinct
+overtakers across nine stations. Disturbed runs remain evidence, never baselines.
+[Raw audits, exact packs and checks](../art/performance/dispatcher-v2-2026-10-24/complete-days/candidate-two/README.md).
+
+The independent evidence verifier also rejects an undisturbed baseline and a
+wrong planner without writing output. Its direct traffic read prevents mixing
+encounters from an unrelated report. The railway runtime is unchanged; previous
+961 source tests still apply, and both new headless acceptance/rejection paths pass.
+Two original undisturbed v5 baselines continue with frozen inputs. Prepared data
+and actual Intensive menu checks follow only after their complete gates pass.
+R46 remains available; no executable release was requested.
+
+Playtest after prepared data is accepted: drive K1 late by ten minutes, return it
+to AI and inspect changed pass locations in Forecast details. This validation
+covers one deliberate disturbance, not every possible driving pattern.
+
 ## 25 October 2026 — planner worker results match across the prepared day
 
 All 233 Standard V2 five-minute states pass 699 inline/one/two/four-worker
@@ -15,6 +38,12 @@ Playtest: inspect Forecast details in V2 Standard, switch the planner in Journey
 tools and confirm the current railway and service timings remain unchanged.
 Four revised Intensive full-day runs still have frozen inputs; no final results
 or new executable release yet. R46 remains available.
+
+03:59 provisional check: the revised V2 day has ten distinct K1 overtakers
+across six stations by14:55, maximum three atSasthankotta. In Classic, B055
+leaves Kollam at13:03:36 instead of13:18:36 after the D105 departure edit.
+Both observations come from actual unchanged replay data; final whole-day
+wait, safety and completion gates remain pending. No input edits or new replays.
 
 ## 25 October 2026 — revised Intensive replays started in isolated outputs
 

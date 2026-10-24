@@ -5,8 +5,8 @@
 The 140-service railway was replayed from the operating-day beginning to 03:20
 on the following day. K1 was manually braked for 600 seconds at simulation time
 11000 (11:03:20), then returned to AI. This is the initial departure candidate,
-not the final requested ten-pass baseline. Its unaffected base run is still being
-validated separately. Never publish this disturbed audit as departure/time data.
+not the final requested ten-pass baseline. Its base run later failed the ten-distinct-overtaker gate; see
+`candidate-one`. Revised disturbed evidence is in `candidate-two`. Never publish this disturbed audit as departure/time data.
 
 All 140 services completed every booked call and departure and cleared to depot.
 No safety events occurred. All 4,834 recorded source hashes matched independently

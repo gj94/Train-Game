@@ -1,0 +1,193 @@
+{
+  "description": "Second Intensive candidate with 600-second manual K1 brake at simulation time 11000; validation only, never a prepared baseline",
+  "dispatcher": "predictive",
+  "audit_sha256": "cb1227fd0ed59e28aef32c41ea735879ae65f9f5df17de0a7ef4d8280ff64aeb",
+  "traffic_sha256": "7006e7031fbf26b61c949675daadd5c9349e64d7bcfd2f2b02d03bf84bfbf79d",
+  "traffic_samples": 34801,
+  "input_sha256_count": 4834,
+  "pack_sha256": "617b66c793141d883f57eddef71747c9feff9b3dba04ca00bc6d1cdfbed44ebd",
+  "finished": 140,
+  "clock": 98400.0000000001,
+  "delay": 600,
+  "delay_at": 11000,
+  "events": [],
+  "wait_quality": {
+    "all": {
+      "ok": true,
+      "minimum_seconds": 30,
+      "count": 293,
+      "brief_count": 2994,
+      "bins": [
+        254,
+        34,
+        5,
+        0,
+        0
+      ],
+      "cumulative": [
+        {
+          "under_seconds": 600,
+          "required": 0.7,
+          "count": 254,
+          "fraction": 0.8668941979522184,
+          "met": true
+        },
+        {
+          "under_seconds": 1200,
+          "required": 0.9,
+          "count": 288,
+          "fraction": 0.9829351535836177,
+          "met": true
+        },
+        {
+          "under_seconds": 1800,
+          "required": 0.98,
+          "count": 293,
+          "fraction": 1,
+          "met": true
+        },
+        {
+          "under_seconds": 2700,
+          "required": 1,
+          "count": 293,
+          "fraction": 1,
+          "met": true
+        }
+      ],
+      "maximum": 1650
+    },
+    "stations": {
+      "ok": true,
+      "minimum_seconds": 30,
+      "count": 179,
+      "brief_count": 1547,
+      "bins": [
+        147,
+        28,
+        4,
+        0,
+        0
+      ],
+      "cumulative": [
+        {
+          "under_seconds": 600,
+          "required": 0.7,
+          "count": 147,
+          "fraction": 0.8212290502793296,
+          "met": true
+        },
+        {
+          "under_seconds": 1200,
+          "required": 0.9,
+          "count": 175,
+          "fraction": 0.9776536312849162,
+          "met": true
+        },
+        {
+          "under_seconds": 1800,
+          "required": 0.98,
+          "count": 179,
+          "fraction": 1,
+          "met": true
+        },
+        {
+          "under_seconds": 2700,
+          "required": 1,
+          "count": 179,
+          "fraction": 1,
+          "met": true
+        }
+      ],
+      "maximum": 1650
+    }
+  },
+  "maximum_continuous_wait_seconds": 1652,
+  "k1_arrival_delay_seconds": 1694.19999966586,
+  "distinct_k1_overtakers": [
+    "B001",
+    "B024",
+    "B002",
+    "D114",
+    "D101",
+    "D109",
+    "D102",
+    "B055",
+    "B025",
+    "D110",
+    "B003"
+  ],
+  "by_station": {
+    "TUVR": [
+      {
+        "train": "B001",
+        "time": 31981.887936327937
+      }
+    ],
+    "ALLP": [
+      {
+        "train": "B024",
+        "time": 36137.98194867924
+      }
+    ],
+    "KYJ": [
+      {
+        "train": "B002",
+        "time": 41577.97387893217
+      }
+    ],
+    "OCR": [
+      {
+        "train": "D114",
+        "time": 42502.96198356952
+      }
+    ],
+    "STKT": [
+      {
+        "train": "D101",
+        "time": 44075.21994536138
+      }
+    ],
+    "KVU": [
+      {
+        "train": "D109",
+        "time": 49320.9370914251
+      }
+    ],
+    "KZK": [
+      {
+        "train": "D102",
+        "time": 51496.00155972678
+      },
+      {
+        "train": "B055",
+        "time": 51685.99879279256
+      },
+      {
+        "train": "B025",
+        "time": 51911.80842793955
+      }
+    ],
+    "TVCN": [
+      {
+        "train": "D110",
+        "time": 53198.013402248835
+      }
+    ],
+    "PASA": [
+      {
+        "train": "B003",
+        "time": 57303.92629849873
+      }
+    ]
+  },
+  "distribution": {
+    "stations": 9,
+    "passes": 11,
+    "maximum_at_one_station": 3,
+    "concentration": 0.14049586776859505
+  },
+  "all_calls_and_departures_verified": true,
+  "arrivals_checked": 1726,
+  "departures_checked": 1726,
+  "all_services_stabled": true
+}

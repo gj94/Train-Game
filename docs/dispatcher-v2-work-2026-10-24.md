@@ -607,3 +607,52 @@ apply, and the new diagnostic itself has completed its full headless acceptance
 and rejection checks. Four original v5 day jobs continue. Do not repeat the
 Standard replay or its native menu checks. Intensive prepared-data/UI gates
 remain pending. No executable release requested.
+
+## 25 October 03:59 — candidate-two afternoon evidence, not final certification
+
+Read-only traffic through14:55 records ten distinct K1 overtakers across six
+stations: B001TUVR, B024ALLP, B002/D100/D114STKT, D101/D109PVU,
+B055/D102KVU and B025KZK. Maximum three at one station; the revised timings
+have now produced the intended added encounters. The source jobs are still
+running; do not install or claim complete safety/wait certification from this.
+Local `candidate2-afternoon-partial.json` retains its partial-data warning.
+
+Independent read-only extraction of both15:00 snapshots, with unchanged file
+hashes, shows Classic B055 departing QLN13:03:36 versus first-candidate13:18:36
+(a fifteen-minute improvement). B054 still leaves12:41:08. V2 K1 reaches
+TVC14:51:38/departs14:54:43; STKT11:44:31–12:01:05, PVU12:51:50–13:02:16,
+KVU13:35:48–13:47:18 and KZK14:22:12–14:24:47. These actual calls are saved
+in `candidate2-calls-at-1500.json`; origin arrival fields marked-1 are not failed
+calls. No railway stepping/mutation or full simulation restart was involved.
+
+Continue the four original v5 days, then verify the complete wait denominators,
+all calls/depot/safety, source hashes and final encounter distribution. Current
+partial success does not justify more timing changes. Standard data/checks are
+unchanged. No executable release requested.
+
+## 25 October 04:27 — revised disturbed days completed and verified
+
+Both original v5 manual-delay jobs have finished: Classic20980 is still its
+baseline wrapper, but Classic disturbed13000/14668 and V2 disturbed2808/17656
+are complete. Rehearsal records now identify them as completed_verified.
+Each audit has140 completed services,1726 valid arrivals/1726 departures,
+all stabled,zero safety events and4834 matching source hashes. Independent
+wait accounting passes both station-only and all-location70/90/98/100 targets.
+Classic all-location79.52/97.59/99.60/100%,station73.94/96.97/99.39/100%;
+V2 all-location86.69/98.29/100/100%,station82.12/97.77/100/100%.
+Max continuous waits31m22s/27m32s; K1 lateness28m39s/28m14s. Both K1s have
+11 distinct overtakers across9 stations; maximum2 Classic/3 V2 at one station.
+
+New independent headless verifier derives encounters directly from each run,
+checks source hashes, complete traffic sample coverage/final clock, all calls,
+wait reason totals and gzip byte round-trips. Baseline and wrong-mode negative
+cases reject exit1 with no evidence output. A local initial import typo and raw
+versus normalised pack-hash assertion were corrected by checking the actual
+observer semantics; final verifier passes both complete runs. No railway input
+or preparation observer changed; prior961 full source tests remain applicable.
+
+Evidence and exact raw packs: complete-days/candidate-two. Do not publish either
+manual-delay run as baseline states. Classic20980/12884 and V226924/21812 baseline
+jobs remain running with frozen inputs. Continue final safety/wait/call/hash/
+distribution gates, then compatible installs and actual Intensive menu checks.
+No further timing edit follows from provisional success; no executable release.

@@ -1,0 +1,20 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'predictive'
+- 'classic'
+
+    at file:///D:/ClaudeWS/train-game/tools/verify_disturbed_timetable.mjs:17:8 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'predictive',
+  expected: 'classic',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.15.0
