@@ -81,7 +81,7 @@ Do not present these forecasts as measured live movements yet.
 
 Ten repeated measurements per configuration give identical proposals. Mean
 compute times: inline 24.60 ms, one worker 25.52 ms, two 15.99 ms, four 10.14 ms;
-capture 3.13 ms, asynchronous submission 0.37â€“0.43 ms. Development Radeon 780M
+capture 3.13 ms, asynchronous submission 0.37–0.43 ms. Development Radeon 780M
 PC; target is i9-13980HX / RTX 4090 Laptop / 64 GB RAM. No rendering benchmark.
 The baseline records 14 K1 overtakers at eight stations, including five at KPY.
 Next: owner-side acceptance and plan stability; connect only same-direction
@@ -96,7 +96,7 @@ plan checks. Explicit following/overtaking comparisons measure predicted
 priority-train lateness saved against lower-priority detention. Classic remains
 the default; no home selector or new prepared day is delivered yet.
 
-`order-live.json` records a 20-minute 11:35â€“11:55 replay of the original
+`order-live.json` records a 20-minute 11:35–11:55 replay of the original
 Intensive state. K1 is not held for B002 at KPY; it takes STKT_P3 while B002
 passes STKT_P1 above 20 m/s. No safety events. The original closely grouped
 relief services still catch K1 there: this is not full-day distribution proof.
@@ -130,12 +130,12 @@ priorities/positions are retained. See evidence/kollam README via progress.
 Next priorities: V2 home/journey selector and clear live/baseline labels; validate
 all third-party contender changes after accepting a plan, not just the selected
 pair; full-rake/route-conflict regressions. Author a separate Intensive V2 with
-staggered relief departures (avoid the current 11:20â€“12:35 KYJ platoon), keeping
+staggered relief departures (avoid the current 11:20–12:35 KYJ platoon), keeping
 K1's schedule unchanged. Freeze sim inputs, then rehearse Classic100/140 and
 V2 Standard/Intensive plus disturbed V2; prepare matching starts/time/traffic.
 No full-day preparation is running yet. Keep fixed six-hour active-work window.
 
-## 25 October 2026 â€” V2 selection and live contender validation
+## 25 October 2026 — V2 selection and live contender validation
 
 Classic/Predictive V2 Standard 100 and Intensive 140 now have independent home
 choices and prepared-data paths. Journey mode switching preserves route locks;
@@ -156,7 +156,7 @@ regenerated; never bypass signatures. R46 remains the published release.
 Playtest after preparation: all four day choices, service and five-minute
 entries, traffic roles, Journey dispatch toggle, and save/reload mode retention.
 
-## 25 October 00:30 â€” timing and disturbance audit in progress
+## 25 October 00:30 — timing and disturbance audit in progress
 
 The first four full-day jobs were deliberately stopped before finalization to
 correct a forecast that could project a passenger working beyond its final
@@ -191,7 +191,7 @@ No prepared files or release artifacts have been replaced. Current changes
 remain uncommitted pending full/focused verification. Keep the fixed six-hour
 window; continue useful work rather than counting idle gaps.
 
-## 25 October 00:51 â€” robustness checkpoint and fresh complete rehearsals
+## 25 October 00:51 — robustness checkpoint and fresh complete rehearsals
 
 The terminal suite finished with 951 passes. After the new-contender owner
 guard, the full rerun finished with **953 passes, zero failures**, stderr empty.
@@ -226,7 +226,7 @@ service/time entry and reciprocal traffic previews. The new operator guide is
 `docs/predictive-dispatcher.md`. Continue the unchanged six-hour window; R46
 remains live and no new executable build is authorized in this task.
 
-## 25 October 01:06 â€” paused deletion/save regression
+## 25 October 01:06 — paused deletion/save regression
 
 Read-only command-path probing found a structural save failure: with automatic
 dispatch disabled, deleting B002 left K1's accepted V2 plan referencing that
@@ -255,7 +255,7 @@ K1 traffic. Do not commit it as validated until it has run. A read-only10:30
 Standard comparison showed some priority services improving and others later;
 wait for full destination-delay results rather than claiming universal gains.
 
-## 25 October 01:16 â€” native command validation and comparison tooling
+## 25 October 01:16 — native command validation and comparison tooling
 
 The paused-delete fix passes the actual dispatcher confirmation flow at720p:
 11 native checks, no stderr. Keep service preserves the entire snapshot;
@@ -278,7 +278,7 @@ still running without stderr errors. Do not edit sim/routes/packs or restart
 these jobs. Keep the prepared-menu checker uncommitted until installed certified
 data exists and it has actually run. R46 remains available; no build prepared.
 
-## 25 October 01:17 â€” deletion fix fully validated
+## 25 October 01:17 — deletion fix fully validated
 
 All **956 source tests pass**, zero failures and empty stderr. The verified
 native command tool and18 comparison assertions also pass. The fix and evidence
@@ -293,7 +293,7 @@ benchmark. The next required evidence is actual complete K1 pass distribution,
 all-service safety/completion/wait quality, then compatible data installation
 and real prepared menu checks. No executable release is requested here.
 
-## 25 October 01:32 â€” live forecast explanation (presentation only)
+## 25 October 01:32 — live forecast explanation (presentation only)
 
 Read-only worker ownership audit found no new sharing issue: detached frames and
 constructor-copied topology, per-solver route caches, preallocated result slots,
@@ -323,7 +323,7 @@ uncommitted. Candidate relief services originate KYJ/QLN; later departures are
 intentionally spread through the corridor. Only actual complete encounter records
 can certify the required distinct K1 passes; do not tune from raw schedule overlap.
 
-## 25 October 01:42 â€” forecast inspector fully validated
+## 25 October 01:42 — forecast inspector fully validated
 
 All 961 source tests pass, zero failures/empty stderr. Native18 checks and reviewed
 720p/900p views are committed with the read-only forecast inspector. No simulation,
@@ -338,7 +338,7 @@ and `check_predictive_prepared_ui.gd` on the real four day options. Preserve the
 fixed further-work window and active-time accounting. R46 remains the release.
 
 
-## 25 October 01:54 â€” actual passing-road witnesses
+## 25 October 01:54 — actual passing-road witnesses
 
 Added a read-only checkpoint observer, `tools/audit_overtake_roads.gd`, to
 recover actual occupied roads during a measured overtake. It checks the
@@ -371,7 +371,7 @@ inspect the final K1 count, then use those observed windows if the candidate
 fails ten distinct overtakers. A final-day test is still required for any change.
 
 
-## 25 October 02:13 â€” full-traffic live worker stress
+## 25 October 02:13 — full-traffic live worker stress
 
 `tools/check_predictive_busy_async.gd` validates every frozen rehearsal input and
 restores T045300 from the actual V2 Intensive run. Its detached live railway

@@ -14,7 +14,10 @@ All 18 focused owner regressions pass; the unchanged runtime last passed the
 [Evidence and specific playtest](../art/performance/dispatcher-v2-2026-10-24/busy-async/README.md).
 
 No railway, route or pack input changed. The five original v3 full-day runs still
-own certification; the prepared-menu checker remains pending. R46 stays live.
+own certification; the prepared-menu checker remains pending. K1 has now finished
+its first V2 Intensive candidate with seven distinct passes across six stations,
+short of the required ten. Its relief departure overlap needs tuning after the
+current jobs finish; no acceptance gate will be lowered. R46 stays live.
 
 ## 25 October 2026 — observed V2 passing roads
 
