@@ -135,3 +135,48 @@ func test_every_accepted_contender_is_revalidated_until_plan_expires():
 			"speed_cap":other.max_speed=20
 		if not e.predictive.plan(w,w.trains.K1).is_empty():return "Ignored changed third contender: "+change
 	return true
+
+func follower(w: RailWorld) -> Train:
+	var t:=Train.new("NEW_SERVICE",1)
+	preload("res://sim/stock/ported_stock.gd").configure(t,"lhb","express")
+	t.automatic=true;t.dispatch_priority=90
+	w.place_train(t,"KYJ_P1",preload("res://sim/berth_clearance.gd").marker(w,t,"KYJ_P1",1),1)
+	t.timetable=preload("res://sim/timetable.gd").new()
+	Snapshot.apply(t.timetable,Snapshot.fields(w.trains.B002.timetable,Snapshot.TIMETABLE),Snapshot.TIMETABLE)
+	return t
+
+func test_newly_eligible_follower_invalidates_existing_and_pending_advice():
+	for pending in [false,true]:
+		for change in ["spawn","priority","released_hold","released_emergency"]:
+			var w:=restored();var e=w.dispatcher();var t: Train
+			if change!="spawn":
+				t=follower(w)
+				if change=="priority":t.dispatch_priority=1
+				elif change=="released_hold":e.operator_holds[t.id]=true
+				else:t.emergency=true
+			var result:=prepare(w)
+			if not pending:
+				e.predictive.accept(w,e,result)
+				if e.predictive.plan(w,w.trains.K1).is_empty():return "No initial plan: "+change
+			if change=="spawn":t=follower(w)
+			elif change=="priority":t.dispatch_priority=90
+			elif change=="released_hold":e.operator_holds.erase(t.id)
+			else:t.emergency=false
+			if pending:e.predictive.accept(w,e,result)
+			if not e.predictive.plan(w,w.trains.K1).is_empty():return "Kept advice after "+change+" pending="+str(pending)
+	return true
+
+func test_unrelated_new_service_does_not_discard_existing_advice():
+	for kind in ["lower_priority","opposing","ahead","held","emergency","finished","dormant"]:
+		var w:=restored();var e=w.dispatcher();e.predictive.accept(w,e,prepare(w))
+		var t:=follower(w)
+		match kind:
+			"lower_priority":t.dispatch_priority=1
+			"opposing":t.path[0].dir=-1
+			"ahead":w.place_train(t,"MQU_P1",preload("res://sim/berth_clearance.gd").marker(w,t,"MQU_P1",1),1)
+			"held":e.operator_holds[t.id]=true
+			"emergency":t.emergency=true
+			"finished":t.service_complete=true
+			"dormant":t.lifecycle="pending"
+		if e.predictive.plan(w,w.trains.K1).is_empty():return "Discarded for unrelated "+kind
+	return true

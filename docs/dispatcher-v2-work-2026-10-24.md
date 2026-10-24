@@ -155,3 +155,73 @@ regenerated; never bypass signatures. R46 remains the published release.
 
 Playtest after preparation: all four day choices, service and five-minute
 entries, traffic roles, Journey dispatch toggle, and save/reload mode retention.
+
+## 25 October 00:30 — timing and disturbance audit in progress
+
+The first four full-day jobs were deliberately stopped before finalization to
+correct a forecast that could project a passenger working beyond its final
+booked call. Their partial data remains under `.local/dispatcher-v2-2026-10-24/
+rehearsals`; it is **not publishable**. A later tool-host process interruption
+ended the first terminal-fix source suite early. Windows had not rebooted.
+The documented LAN server was restarted and R46 again returns HTTP 200.
+
+Current full source rerun: wrapper 5896 / child 20532, logs
+`terminal-full-tests.log/.err`. Do not edit runtime/tests until it finishes.
+Eight single-train timing probes (ICF, LHB, VB8, VB16 in each direction) have
+completed. Comparing 32 forecasts against the road actually assigned gives
+cautious errors -61.23 to +14.55 s; the configured clearance uncertainty covers
+all sampled errors, with at least 26.49 s remaining. This is a bounded sample,
+not a general accuracy guarantee. A larger initial QLN error came from main
+P1 being changed to terminal loop P3 by actual dispatch; both road identities
+are now recorded instead of silently comparing different routes.
+
+Five bounded KPY/STKT disturbance cases now pass: baseline, manual passenger
+pause of 3 or 10 minutes, manual express pause of 3 minutes, and operator-held
+express. Both services progress beyond STKT, no safety events; longest
+continuous unbooked stand across these cases is under six minutes. Replay
+budget is 30 minutes **plus the injected pause**, so the ten-minute intervention
+is not incorrectly treated as a stall at the next booked dwell. This does not
+replace the dense whole-day disturbed rehearsal.
+
+Additional read-only probe found that a newly spawned higher-priority follower
+can leave earlier advice valid until refresh. After the running suite finishes,
+add owner validation and regression for new/reprioritized contenders, then
+freeze inputs and restart the four complete preparations and a disturbed run.
+No prepared files or release artifacts have been replaced. Current changes
+remain uncommitted pending full/focused verification. Keep the fixed six-hour
+window; continue useful work rather than counting idle gaps.
+
+## 25 October 00:51 — robustness checkpoint and fresh complete rehearsals
+
+The terminal suite finished with 951 passes. After the new-contender owner
+guard, the full rerun finished with **953 passes, zero failures**, stderr empty.
+Fifteen focused owner tests pass, including new spawns, promotions and released
+holds/emergencies before acceptance and after acceptance; unrelated traffic is
+not spuriously rejected. Forecast/manual guards and diagnostic tools are ready
+for commit. Calibration and five bounded disturbances are passing as above.
+
+`async-live.json` adds real nonblocking live-worker tests, 33 simulation minutes
+each, including a two-minute manual passenger pause. Normal case passes at
+STKT_P3; the delayed case passes at KPY_P1. Both progress beyond STKT without
+safety events and cleanly close worker tasks. Native views of the QLN approach
+and platforms were reviewed after regenerating the stale render-only road
+cache. Actual 27-tile road geometry, all 353 profile junctions and 122 rendered
+junctions pass independent checks. See committed robustness evidence.
+
+Five fresh jobs started **00:38:55**, records in `rehearsal-jobs-v2.json` and
+outputs in `.local/dispatcher-v2-2026-10-24/rehearsals-v2/`:
+Classic Standard wrapper27132, Classic Intensive4472, V2 Standard25816,
+V2 Intensive9324, V2 Intensive delayed15572. The last injects600s manual K1
+braking at simulation11000s; it has no baseline snapshots. All remain active
+without stderr errors at this checkpoint. Keep simulation, route files and
+authored candidate packs frozen. No source test suite remains running.
+
+Next: inspect full audit results, use `tools/summarize-timetable-run.mjs` for
+distinct K1 overtakers, station concentration and priority-group destination
+delay. Partial counts are diagnostic only. Finalize each compatible baseline
+only after all gates pass; do not publish the disturbed run. If candidate
+Intensive timing needs adjustment, rerun that variant without invalidating
+unchanged Standard/Classic sources. Then native-check the actual prepared V2
+service/time entry and reciprocal traffic previews. The new operator guide is
+`docs/predictive-dispatcher.md`. Continue the unchanged six-hour window; R46
+remains live and no new executable build is authorized in this task.

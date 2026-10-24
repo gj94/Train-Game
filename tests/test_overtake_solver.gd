@@ -85,3 +85,58 @@ func test_offline_parallel_completion_preserves_order_and_uses_other_cores():
 	var f:=fixture();var worker:=Worker.new(f.topology)
 	var expected:=worker.synchronous(f.frame);var result:=worker.parallel_complete(f.frame,2)
 	return result.plans==expected.plans and OS.get_thread_caller_id() not in result.worker_threads and not worker.busy()
+
+func test_northbound_mirrored_railway_chooses_same_stop_with_equal_eta():
+	var south:=fixture();var north:=fixture()
+	for edge: Dictionary in north.topology.edges.values():
+		var old_start: float=edge.start;edge.start=10000-edge.end;edge.end=10000-old_start
+		var old_next: Dictionary=edge.next.duplicate(true)
+		edge.next={"1":old_next["-1"],"-1":old_next["1"]}
+		for entries: Array in edge.next.values():
+			for entry: Dictionary in entries:entry.dir=-entry.dir
+	for station: Dictionary in north.topology.stations:
+		station.s=10000-station.s
+		for road: Dictionary in station.roads:road.lane="U"
+	for train_data: Dictionary in north.frame.trains:
+		train_data.direction=-1;train_data.chainage=10000-train_data.chainage
+		train_data.head_s=north.topology.edges[train_data.edge].length-train_data.head_s
+		for call: Dictionary in train_data.calls:
+			call.s=north.topology.edges[call.road].length-call.s;call.chainage=10000-call.chainage
+	var a: Array=Solver.new(south.topology).solve(south.frame).plans
+	var b: Array=Solver.new(north.topology).solve(north.frame).plans
+	if a.size()!=1 or b.size()!=1:return "Missing directional plan"
+	return b[0].station=="B" and b[0].road=="B_P3" and b[0].passing_road=="B_P1" and b[0].direction==-1 and is_equal_approx(a[0].margin,b[0].margin) and is_equal_approx(a[0].wait,b[0].wait)
+
+func test_future_main_only_station_cannot_supply_an_imaginary_passing_loop():
+	var f:=fixture();f.topology.stations[1].roads.resize(1)
+	var plans: Array=Solver.new(f.topology).solve(f.frame).plans
+	return plans.size()==1 and plans[0].station=="A"
+
+func test_unresolved_third_follower_prevents_certifying_a_later_pass():
+	var f:=fixture();var ghost: Dictionary=f.frame.trains[1].duplicate(true)
+	ghost.id="STRANDED";ghost.edge="ISLAND";ghost.chainage=-1000.0
+	f.topology.edges.ISLAND={length=1000.0,limit=30.0,start=-1500.0,end=-500.0,station="",next={"1":[],"-1":[]}}
+	f.frame.trains.append(ghost)
+	var plans: Array=Solver.new(f.topology).solve(f.frame).plans
+	return plans.filter(func(p):return p.train=="S").is_empty()
+
+func test_operator_held_road_owner_cannot_be_assumed_to_vacate():
+	var f:=fixture();var occupant: Dictionary=f.frame.trains[0].duplicate(true)
+	occupant.id="HELD";occupant.edge="B_P3";occupant.chainage=6700.0;occupant.operator_hold=true
+	f.frame.trains.append(occupant);f.frame.occupied.B_P3="HELD"
+	var own: Array=Solver.new(f.topology).solve(f.frame).plans.filter(func(p):return p.train=="S")
+	return own.size()==1 and own[0].station=="A"
+
+func test_express_ending_before_next_loop_cannot_be_projected_beyond_its_service():
+	var f:=fixture();f.frame.trains[1].calls[0].final=true
+	var plans: Array=Solver.new(f.topology).solve(f.frame).plans
+	return plans.all(func(p):return p.station!="B")
+
+func test_stationary_manual_passenger_has_no_assumed_departure_for_a_future_loop():
+	var f:=fixture();f.frame.trains[0].manual=true
+	var plans: Array=Solver.new(f.topology).solve(f.frame).plans
+	return plans.all(func(p):return p.station=="A")
+
+func test_stationary_manual_express_has_no_assumed_catch_up_time():
+	var f:=fixture();f.frame.trains[1].manual=true;f.frame.trains[1].speed=0.0
+	return Solver.new(f.topology).solve(f.frame).plans.is_empty()

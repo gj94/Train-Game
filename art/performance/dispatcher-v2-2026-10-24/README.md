@@ -1,7 +1,11 @@
 # Optional predictive dispatcher evidence
 
-Foundation only: live dispatch does not yet use these proposals. No release or
-prepared timetable has been changed at this checkpoint.
+V2 is now integrated and selectable in source. Matching full-day preparations
+are in progress after the Kollam layout update; R46 remains published unchanged.
+See the chronological checkpoints below and the current
+[operator/design guide](../../../docs/predictive-dispatcher.md).
+
+## Foundation checkpoint
 
 - Full source suite: **919 passed, 0 failed**. Local log:
   `.local/dispatcher-v2-2026-10-24/foundation-full-tests.log`.

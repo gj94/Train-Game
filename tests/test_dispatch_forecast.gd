@@ -56,3 +56,8 @@ func test_short_stop_has_finite_travel_time_and_target_behind_is_rejected():
 	var short_move:=f.arrival(t,"A",10,true)
 	t.head_s=900.0;t.chainage=900.0
 	return short_move.ok and short_move.seconds>1 and short_move.seconds<30 and not f.arrival(t,"A",100,true).ok
+
+func test_forecast_cannot_run_beyond_the_final_booked_call():
+	var f:=Forecast.new(network());var t:=train()
+	t.calls=[{road="B",s=500.0,chainage=1500.0,dwell=90.0,departure=500.0,final=true}]
+	return not f.arrival(t,"C",900,false).ok and f.arrival(t,"B",500,true).ok

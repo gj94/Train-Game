@@ -1,0 +1,570 @@
+{
+	"cases": [
+		{
+			"events": [],
+			"final_trains": [
+				{
+					"chainage": 131571.456524361,
+					"edge": "MQO_PRND_D4",
+					"id": "K1",
+					"speed": 20.7781940290156
+				},
+				{
+					"chainage": 141823.835962104,
+					"edge": "QLN_P1",
+					"id": "B002",
+					"speed": 8.94151944651886
+				}
+			],
+			"had_forecast": false,
+			"holds": [
+				{
+					"clock": 41700.5,
+					"hold": {}
+				},
+				{
+					"clock": 42154.4999999934,
+					"hold": {
+						"chainage": 122291.956,
+						"created": 13354.0499999934,
+						"direction": 1,
+						"kind": "overtake",
+						"other": "B002",
+						"station": "STKT"
+					}
+				},
+				{
+					"clock": 42360.4999999904,
+					"hold": {}
+				},
+				{
+					"clock": 42454.499999989,
+					"hold": {
+						"chainage": 122291.956,
+						"created": 13654.049999989,
+						"direction": 1,
+						"kind": "overtake",
+						"other": "B002",
+						"station": "STKT"
+					}
+				},
+				{
+					"clock": 42786.9999999842,
+					"hold": {}
+				}
+			],
+			"invalidated": false,
+			"maximum_stopped_seconds": 221.5,
+			"name": "baseline",
+			"ok": true,
+			"plans": [
+				{
+					"action": "pass",
+					"clock": 41700.5,
+					"station": "STKT"
+				},
+				{
+					"action": "pass",
+					"clock": 42030.4999999952,
+					"station": "KPY"
+				},
+				{
+					"action": "",
+					"clock": 42033.4999999951,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 42035.4999999951,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 42360.4999999904,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 42365.4999999903,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 42725.4999999851,
+					"station": ""
+				}
+			],
+			"progressed": true,
+			"wall_seconds": 15.806
+		},
+		{
+			"events": [],
+			"final_trains": [
+				{
+					"chainage": 128793.670771503,
+					"edge": "MQO_PRND_D1",
+					"id": "K1",
+					"speed": 26.7587173028334
+				},
+				{
+					"chainage": 142001.722393158,
+					"edge": "QLN_P1",
+					"id": "B002",
+					"speed": 5.59872394816825
+				}
+			],
+			"had_forecast": true,
+			"holds": [
+				{
+					"clock": 41700.5,
+					"hold": {}
+				},
+				{
+					"clock": 42090.4999999943,
+					"hold": {
+						"chainage": 114639.887,
+						"created": 13290.0499999943,
+						"direction": 1,
+						"kind": "overtake",
+						"other": "B002",
+						"station": "KPY"
+					}
+				},
+				{
+					"clock": 42466.9999999888,
+					"hold": {}
+				}
+			],
+			"invalidated": true,
+			"maximum_stopped_seconds": 295.0,
+			"name": "passenger_manual_three_minutes",
+			"ok": true,
+			"plans": [
+				{
+					"action": "pass",
+					"clock": 41700.5,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41760.9999999991,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41765.499999999,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41768.499999999,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41770.499999999,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41773.4999999989,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 42020.4999999953,
+					"station": "KPY"
+				},
+				{
+					"action": "pass",
+					"clock": 42085.4999999944,
+					"station": "STKT"
+				},
+				{
+					"action": "pass",
+					"clock": 42090.4999999943,
+					"station": "KPY"
+				},
+				{
+					"action": "",
+					"clock": 42165.4999999932,
+					"station": ""
+				}
+			],
+			"progressed": true,
+			"wall_seconds": 16.102
+		},
+		{
+			"events": [],
+			"final_trains": [
+				{
+					"chainage": 129359.71965709,
+					"edge": "MQO_PRND_D2",
+					"id": "K1",
+					"speed": 27.3777444944928
+				},
+				{
+					"chainage": 142168.079967148,
+					"edge": "QLN_P1",
+					"id": "B002",
+					"speed": 10.4656792072114
+				}
+			],
+			"had_forecast": true,
+			"holds": [
+				{
+					"clock": 41700.5,
+					"hold": {}
+				},
+				{
+					"clock": 42510.4999999882,
+					"hold": {
+						"chainage": 114639.887,
+						"created": 13710.0499999882,
+						"direction": 1,
+						"kind": "overtake",
+						"other": "B002",
+						"station": "KPY"
+					}
+				},
+				{
+					"clock": 42866.499999983,
+					"hold": {}
+				}
+			],
+			"invalidated": true,
+			"maximum_stopped_seconds": 274.5,
+			"name": "passenger_manual_ten_minutes",
+			"ok": true,
+			"plans": [
+				{
+					"action": "pass",
+					"clock": 41700.5,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41760.9999999991,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41765.499999999,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41768.499999999,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41770.499999999,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41773.4999999989,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 42440.4999999892,
+					"station": "KPY"
+				},
+				{
+					"action": "pass",
+					"clock": 42505.4999999883,
+					"station": "STKT"
+				},
+				{
+					"action": "pass",
+					"clock": 42510.4999999882,
+					"station": "KPY"
+				},
+				{
+					"action": "",
+					"clock": 42565.4999999874,
+					"station": ""
+				}
+			],
+			"progressed": true,
+			"wall_seconds": 20.169
+		},
+		{
+			"events": [],
+			"final_trains": [
+				{
+					"chainage": 132181.52821428,
+					"edge": "PRND_P4",
+					"id": "K1",
+					"speed": 9.32239579388038
+				},
+				{
+					"chainage": 141935.468154693,
+					"edge": "QLN_P1",
+					"id": "B002",
+					"speed": 0.0
+				}
+			],
+			"had_forecast": true,
+			"holds": [
+				{
+					"clock": 41700.5,
+					"hold": {}
+				},
+				{
+					"clock": 42154.4999999934,
+					"hold": {
+						"chainage": 122291.956,
+						"created": 13354.0499999934,
+						"direction": 1,
+						"kind": "overtake",
+						"other": "B002",
+						"station": "STKT"
+					}
+				},
+				{
+					"clock": 42540.4999999878,
+					"hold": {}
+				},
+				{
+					"clock": 42545.4999999877,
+					"hold": {
+						"chainage": 122291.956,
+						"created": 13745.0499999877,
+						"direction": 1,
+						"kind": "overtake",
+						"other": "B002",
+						"station": "STKT"
+					}
+				},
+				{
+					"clock": 42921.4999999822,
+					"hold": {}
+				}
+			],
+			"invalidated": true,
+			"maximum_stopped_seconds": 355.5,
+			"name": "express_manual_three_minutes",
+			"ok": true,
+			"plans": [
+				{
+					"action": "pass",
+					"clock": 41700.5,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41760.9999999991,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41765.499999999,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41768.499999999,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41770.499999999,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41773.4999999989,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41775.4999999989,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41778.4999999989,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41780.4999999988,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41783.4999999988,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41785.4999999988,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41788.9999999987,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41790.4999999987,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41791.9999999987,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41945.4999999964,
+					"station": "STKT"
+				},
+				{
+					"action": "pass",
+					"clock": 42030.4999999952,
+					"station": "KPY"
+				},
+				{
+					"action": "",
+					"clock": 42033.4999999951,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 42035.4999999951,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 42540.4999999878,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 42545.4999999877,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 42860.4999999831,
+					"station": ""
+				}
+			],
+			"progressed": true,
+			"wall_seconds": 18.686
+		},
+		{
+			"events": [],
+			"final_trains": [
+				{
+					"chainage": 132396.252538016,
+					"edge": "PRND_P4",
+					"id": "K1",
+					"speed": 9.32222222374138
+				},
+				{
+					"chainage": 141935.466040633,
+					"edge": "QLN_P1",
+					"id": "B002",
+					"speed": 0.0
+				}
+			],
+			"had_forecast": true,
+			"holds": [
+				{
+					"clock": 41700.5,
+					"hold": {}
+				},
+				{
+					"clock": 42154.4999999934,
+					"hold": {
+						"chainage": 122291.956,
+						"created": 13354.0499999934,
+						"direction": 1,
+						"kind": "overtake",
+						"other": "B002",
+						"station": "STKT"
+					}
+				},
+				{
+					"clock": 42470.4999999888,
+					"hold": {}
+				},
+				{
+					"clock": 42475.4999999887,
+					"hold": {
+						"chainage": 122291.956,
+						"created": 13675.0499999887,
+						"direction": 1,
+						"kind": "overtake",
+						"other": "B002",
+						"station": "STKT"
+					}
+				},
+				{
+					"clock": 42897.9999999826,
+					"hold": {}
+				}
+			],
+			"invalidated": true,
+			"maximum_stopped_seconds": 332.5,
+			"name": "express_operator_hold_three_minutes",
+			"ok": true,
+			"plans": [
+				{
+					"action": "pass",
+					"clock": 41700.5,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 41760.9999999991,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 41945.4999999964,
+					"station": "STKT"
+				},
+				{
+					"action": "pass",
+					"clock": 42030.4999999952,
+					"station": "KPY"
+				},
+				{
+					"action": "",
+					"clock": 42033.4999999951,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 42035.4999999951,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 42470.4999999888,
+					"station": ""
+				},
+				{
+					"action": "pass",
+					"clock": 42475.4999999887,
+					"station": "STKT"
+				},
+				{
+					"action": "",
+					"clock": 42835.4999999835,
+					"station": ""
+				}
+			],
+			"progressed": true,
+			"wall_seconds": 18.768
+		}
+	],
+	"ok": true
+}

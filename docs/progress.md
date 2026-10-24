@@ -1,5 +1,38 @@
 # Progress
 
+## 25 October 2026 — V2 timing and live-change robustness
+
+Forecasts now stop at the final booked call and avoid assuming a stationary
+manual driver's future departure. A newly spawned/reprioritized/released
+higher-priority follower invalidates older advice, including a pending worker
+result. All **953 source tests** pass. Eight single-train timing probes cover
+ICF/LHB/VB8/VB16 in both directions; all 32 same-road errors fit within the
+configured clearance uncertainty. Five bounded manual/held-train cases pass.
+
+Two actual asynchronous 33-minute replays also pass without safety events:
+the normal K1/B002 pair passes at STKT, while a two-minute manual K1 pause moves
+the pass earlier to KPY. Workers run separately and shut down cleanly. These
+are bounded functional checks, not a claim that every timetable is optimal.
+
+Regenerated render-only road profiles for the QLN platform change. Independent
+checks pass on 228,437 rendered triangles, 27 piers, all 353 profile junctions
+and 122 rendered local junctions. Four frozen native views reviewed; no script
+or rendering errors. [Evidence and reproduction](../art/performance/dispatcher-v2-2026-10-24/robustness/README.md)
+and [V2 operation/limits](predictive-dispatcher.md).
+
+Five full-day jobs started at 00:38:55: Classic100/140, V2 Standard100/Intensive140
+and V2 Intensive with a ten-minute manual K1 delay. These remain running and
+uncertified; the earlier partial runs were stopped for the terminal correction.
+Do not change sim/routes or candidate packs during these runs. Next: assess
+completion, wait targets, K1 distinct overtakers/station spread and priority
+arrival delay; tune only the V2 candidate if required, then install compatible
+starts/times/reciprocal previews and check the actual menu entries. R46 is still
+the published release. No new ZIP was prepared.
+
+Playtest after preparation: compare K1/B002 at KPY/STKT, pause manual K1 and
+hand back to AI, inspect updated advice and red-signal protection, then check
+Kollam's balanced passenger roads and connected road approaches.
+
 ## 25 October 2026 — V2 selection and live contender validation
 
 Classic/Predictive V2 Standard 100 and Intensive 140 now have independent home

@@ -40,6 +40,9 @@ func for_train(frame: Dictionary,slow: Dictionary) -> Dictionary:
 	return best
 
 func pair(frame: Dictionary,slow: Dictionary,fast: Dictionary) -> Dictionary:
+	# A manual driver at a stand has no known departure time. Never manufacture
+	# a moving express or promise a later loop on assumed player acceleration.
+	if fast.manual and fast.speed<.1:return {}
 	var stations: Array=forecast.topology.stations.filter(func(st):return not st.halt and (st.s-slow.chainage)*slow.direction>=-st.half and (st.s-slow.chainage)*slow.direction<MAX_AHEAD)
 	stations.sort_custom(func(a,b):return a.s<b.s if slow.direction==1 else a.s>b.s)
 	var choices:=[];var checked:=0
@@ -55,6 +58,7 @@ func pair(frame: Dictionary,slow: Dictionary,fast: Dictionary) -> Dictionary:
 			# future pass choose a loop, preserving the directional main for speed.
 			var here: bool=slow.edge in station.roads.map(func(r):return r.id)
 			if here and slow_road.id!=slow.edge:continue
+			if slow.manual and slow.speed<.1 and not here:continue
 			if not here and slow_road.main:continue
 			for fast_road: Dictionary in fast_roads:
 				if fast_road.id==slow_road.id:continue

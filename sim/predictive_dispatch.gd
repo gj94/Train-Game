@@ -4,6 +4,7 @@ extends RefCounted
 ## checks every route, receiving berth, opposing movement and full-tail release.
 const InputData:=preload("res://sim/dispatch_forecast_input.gd")
 const Worker:=preload("res://sim/dispatch_forecast_worker.gd")
+const Solver:=preload("res://sim/overtake_solver.gd")
 const REFRESH_SECONDS:=5.0
 const MAX_AGE:=15.0
 var enabled:=false
@@ -116,7 +117,19 @@ func valid(w: RailWorld,engine,p: Dictionary) -> bool:
 		var input: Dictionary=p.get("inputs",{}).get(t.id,{})
 		if not input.is_empty() and (t.dispatch_priority!=input.priority or t.automatic==input.manual or not is_equal_approx(t.length,input.length) or t.timetable.index!=input.call_index or not is_equal_approx(t.max_speed,input.max_speed)):return false
 		if not input.is_empty() and input.manual and t.speed<input.speed-3:return false
+		if not t.automatic and t.speed<.1 and (t.id!=p.train or not p.get("at_station",false)):return false
 	if fast.dispatch_priority<=slow.dispatch_priority:return false
+	# An accepted certificate covers the followers present in its input. New
+	# services, changed priorities and released holds require a fresh forecast;
+	# otherwise advice could bypass a contender that the workers never examined.
+	var slow_chainage:=InputData.chainage(w,slow)
+	for newcomer: Train in w.active_trains():
+		if newcomer.id==slow.id or p.get("inputs",{}).has(newcomer.id):continue
+		if newcomer.service_complete or newcomer.timetable==null or newcomer.emergency or newcomer.timetable.missed_stop:continue
+		if newcomer.path[0].dir!=p.direction or newcomer.dispatch_priority<=slow.dispatch_priority:continue
+		if engine.operator_holds.has(newcomer.id) or engine.future_clearances.controls_order(newcomer.id):continue
+		var behind: float=(slow_chainage-InputData.chainage(w,newcomer))*p.direction
+		if behind>=0 and behind<Solver.MAX_AHEAD:return false
 	if (InputData.chainage(w,slow)-p.chainage)*p.direction>600:return false
 	if (InputData.chainage(w,fast)-p.chainage)*p.direction>fast.length+500:return false
 	var occ: Dictionary=w.occupancy()

@@ -1,0 +1,115 @@
+{
+	"cases": [
+		{
+			"accepted_samples": 2033,
+			"clock": 43680.4999999712,
+			"closed": true,
+			"completed_pass": {
+				"clock": 42775.9999999843,
+				"fast_road": "STKT_MQO_D0",
+				"slow_road": "STKT_P3"
+			},
+			"discarded_stale": 0,
+			"events": [],
+			"holds": [
+				{
+					"clock": 41700.5,
+					"other": "",
+					"station": ""
+				},
+				{
+					"clock": 42154.4999999934,
+					"other": "B002",
+					"station": "STKT"
+				},
+				{
+					"clock": 42360.9999999904,
+					"other": "",
+					"station": ""
+				},
+				{
+					"clock": 42454.499999989,
+					"other": "B002",
+					"station": "STKT"
+				},
+				{
+					"clock": 42786.9999999842,
+					"other": "",
+					"station": ""
+				}
+			],
+			"manual_pause": false,
+			"ok": true,
+			"progressed": true,
+			"stations": [
+				"STKT",
+				"KPY"
+			],
+			"worker_threads": [
+				5,
+				6,
+				9,
+				13,
+				16,
+				19,
+				23,
+				28,
+				7,
+				26,
+				10,
+				17
+			]
+		},
+		{
+			"accepted_samples": 660,
+			"clock": 43680.4999999712,
+			"closed": true,
+			"completed_pass": {
+				"clock": 42437.9999999893,
+				"fast_road": "KPY_STKT_D0",
+				"slow_road": "KPY_P1"
+			},
+			"discarded_stale": 0,
+			"events": [],
+			"holds": [
+				{
+					"clock": 41700.5,
+					"other": "",
+					"station": ""
+				},
+				{
+					"clock": 42086.4999999944,
+					"other": "B002",
+					"station": "KPY"
+				},
+				{
+					"clock": 42466.9999999888,
+					"other": "",
+					"station": ""
+				}
+			],
+			"manual_pause": true,
+			"ok": true,
+			"progressed": true,
+			"stations": [
+				"STKT",
+				"KPY"
+			],
+			"worker_threads": [
+				9,
+				10,
+				16,
+				17,
+				23,
+				26,
+				5,
+				13,
+				6,
+				28,
+				19,
+				7
+			]
+		}
+	],
+	"ok": true
+}

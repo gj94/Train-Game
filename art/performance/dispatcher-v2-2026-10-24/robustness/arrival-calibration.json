@@ -1,0 +1,1685 @@
+{
+	"cases": [
+		{
+			"decisions": [
+				{
+					"actual": 29266.4500000001,
+					"actual_road": "STKT_P3",
+					"call": 1,
+					"cautious": {
+						"arrival": 29273.517406356,
+						"distance": 7648.22197227042,
+						"ok": true,
+						"seconds": 427.517406355979,
+						"speed": 0.0
+					},
+					"cautious_error": 7.0674063559054,
+					"clock": 28846.0,
+					"nominal": {
+						"arrival": 29252.4509937741,
+						"distance": 7648.22197227042,
+						"ok": true,
+						"seconds": 406.450993774124,
+						"speed": 0.0
+					},
+					"nominal_error": -13.9990062259494,
+					"road": "STKT_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29676.8499999998,
+					"actual_road": "MQO_P1",
+					"call": 2,
+					"cautious": {
+						"arrival": 29684.9278068203,
+						"distance": 4512.34834625703,
+						"ok": true,
+						"seconds": 309.927806820273,
+						"speed": 0.0
+					},
+					"cautious_error": 8.07780682054727,
+					"clock": 29375.0,
+					"nominal": {
+						"arrival": 29665.2804077366,
+						"distance": 4512.34834625703,
+						"ok": true,
+						"seconds": 290.280407736587,
+						"speed": 0.0
+					},
+					"nominal_error": -11.5695922631385,
+					"road": "MQO_P1",
+					"same_road": true
+				},
+				{
+					"actual": 30207.0499999993,
+					"actual_road": "PRND_P4",
+					"call": 3,
+					"cautious": {
+						"arrival": 30214.3813269137,
+						"distance": 5785.26052256263,
+						"ok": true,
+						"seconds": 359.381326914074,
+						"speed": 0.0
+					},
+					"cautious_error": 7.33132691439459,
+					"clock": 29854.9999999996,
+					"nominal": {
+						"arrival": 30193.3092639646,
+						"distance": 5785.26052256263,
+						"ok": true,
+						"seconds": 338.309263965053,
+						"speed": 0.0
+					},
+					"nominal_error": -13.740736034626,
+					"road": "PRND_P4",
+					"same_road": true
+				},
+				{
+					"actual": 31012.4499999993,
+					"actual_road": "QLN_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30814.5616120338,
+						"distance": 9051.22845847032,
+						"ok": true,
+						"seconds": 479.561612034653,
+						"speed": 0.0
+					},
+					"cautious_error": -197.888387965479,
+					"clock": 30334.9999999992,
+					"nominal": {
+						"arrival": 30795.5463480977,
+						"distance": 9051.22845847032,
+						"ok": true,
+						"seconds": 460.546348098513,
+						"speed": 0.0
+					},
+					"nominal_error": -216.903651901619,
+					"road": "QLN_P1",
+					"same_road": false
+				},
+				{
+					"actual": 31012.4499999993,
+					"actual_road": "QLN_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30956.6081862519,
+						"distance": 6785.50724922938,
+						"ok": true,
+						"seconds": 445.108186252863,
+						"speed": 0.0
+					},
+					"cautious_error": -55.8418137474291,
+					"clock": 30511.499999999,
+					"nominal": {
+						"arrival": 30948.961045986,
+						"distance": 6785.50724922938,
+						"ok": true,
+						"seconds": 437.461045987046,
+						"speed": 0.0
+					},
+					"nominal_error": -63.4889540132463,
+					"road": "QLN_P3",
+					"same_road": true
+				}
+			],
+			"direction": 1,
+			"events": [],
+			"forecasts": [
+				{
+					"actual": 29266.4500000001,
+					"actual_road": "STKT_P3",
+					"cautious": {
+						"arrival": 29232.5184563296,
+						"distance": 7648.22198486328,
+						"ok": true,
+						"seconds": 432.518456329621,
+						"speed": 0.0
+					},
+					"cautious_error": -33.9315436704528,
+					"code": "STKT",
+					"nominal": {
+						"arrival": 29211.4518083871,
+						"distance": 7648.22198486328,
+						"ok": true,
+						"seconds": 411.451808387086,
+						"speed": 0.0
+					},
+					"nominal_error": -54.9981916129873,
+					"road": "STKT_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29676.8499999998,
+					"actual_road": "MQO_P1",
+					"cautious": {
+						"arrival": 29684.9099288373,
+						"distance": 12160.2475891113,
+						"ok": true,
+						"seconds": 884.909928837333,
+						"speed": 0.0
+					},
+					"cautious_error": 8.05992883758154,
+					"code": "MQO",
+					"nominal": {
+						"arrival": 29665.2587748126,
+						"distance": 12160.2475891113,
+						"ok": true,
+						"seconds": 865.258774812624,
+						"speed": 0.0
+					},
+					"nominal_error": -11.5912251871268,
+					"road": "MQO_P1",
+					"same_road": true
+				},
+				{
+					"actual": 30207.0499999993,
+					"actual_road": "PRND_P4",
+					"cautious": {
+						"arrival": 30214.3931287121,
+						"distance": 17945.1832275391,
+						"ok": true,
+						"seconds": 1414.3931287121,
+						"speed": 0.0
+					},
+					"cautious_error": 7.34312871282964,
+					"code": "PRND",
+					"nominal": {
+						"arrival": 30193.3153061744,
+						"distance": 17945.1832275391,
+						"ok": true,
+						"seconds": 1393.31530617436,
+						"speed": 0.0
+					},
+					"nominal_error": -13.7346938249102,
+					"road": "PRND_P4",
+					"same_road": true
+				},
+				{
+					"actual": 31012.4499999993,
+					"actual_road": "QLN_P3",
+					"cautious": {
+						"arrival": 30814.5435015678,
+						"distance": 26996.0867767334,
+						"ok": true,
+						"seconds": 2014.54350156777,
+						"speed": 0.0
+					},
+					"cautious_error": -197.906498431512,
+					"code": "QLN",
+					"nominal": {
+						"arrival": 30795.5244826906,
+						"distance": 26996.0867767334,
+						"ok": true,
+						"seconds": 1995.52448269061,
+						"speed": 0.0
+					},
+					"nominal_error": -216.925517308679,
+					"road": "QLN_P1",
+					"same_road": false
+				}
+			],
+			"ok": true,
+			"stock": "icf"
+		},
+		{
+			"decisions": [
+				{
+					"actual": 29285.3500000001,
+					"actual_road": "STKT_P3",
+					"call": 1,
+					"cautious": {
+						"arrival": 29297.3770810405,
+						"distance": 7648.22147090924,
+						"ok": true,
+						"seconds": 449.877081040519,
+						"speed": 0.0
+					},
+					"cautious_error": 12.0270810404436,
+					"clock": 28847.5,
+					"nominal": {
+						"arrival": 29271.701803461,
+						"distance": 7648.22147090924,
+						"ok": true,
+						"seconds": 424.20180346095,
+						"speed": 0.0
+					},
+					"nominal_error": -13.6481965391249,
+					"road": "STKT_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29697.2499999997,
+					"actual_road": "MQO_P1",
+					"call": 2,
+					"cautious": {
+						"arrival": 29711.3582275716,
+						"distance": 4512.35023627319,
+						"ok": true,
+						"seconds": 330.858227571629,
+						"speed": 0.0
+					},
+					"cautious_error": 14.1082275719164,
+					"clock": 29380.5,
+					"nominal": {
+						"arrival": 29688.2198707359,
+						"distance": 4512.35023627319,
+						"ok": true,
+						"seconds": 307.719870735837,
+						"speed": 0.0
+					},
+					"nominal_error": -9.03012926387601,
+					"road": "MQO_P1",
+					"same_road": true
+				},
+				{
+					"actual": 30224.6999999993,
+					"actual_road": "PRND_P4",
+					"call": 3,
+					"cautious": {
+						"arrival": 30236.7329630481,
+						"distance": 5785.26121974771,
+						"ok": true,
+						"seconds": 381.732963048464,
+						"speed": 0.0
+					},
+					"cautious_error": 12.0329630488013,
+					"clock": 29854.9999999996,
+					"nominal": {
+						"arrival": 30211.0650301775,
+						"distance": 5785.26121974771,
+						"ok": true,
+						"seconds": 356.065030177906,
+						"speed": 0.0
+					},
+					"nominal_error": -13.6349698217564,
+					"road": "PRND_P4",
+					"same_road": true
+				},
+				{
+					"actual": 31031.9999999994,
+					"actual_road": "QLN_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30836.1453211175,
+						"distance": 9051.22990604404,
+						"ok": true,
+						"seconds": 501.145321118307,
+						"speed": 0.0
+					},
+					"cautious_error": -195.854678881893,
+					"clock": 30334.9999999992,
+					"nominal": {
+						"arrival": 30812.9930661299,
+						"distance": 9051.22990604404,
+						"ok": true,
+						"seconds": 477.993066130777,
+						"speed": 0.0
+					},
+					"nominal_error": -219.006933869423,
+					"road": "QLN_P1",
+					"same_road": false
+				},
+				{
+					"actual": 31031.9999999994,
+					"actual_road": "QLN_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30980.6599245616,
+						"distance": 6586.7838602769,
+						"ok": true,
+						"seconds": 448.159924562631,
+						"speed": 0.0
+					},
+					"cautious_error": -51.3400754377508,
+					"clock": 30532.499999999,
+					"nominal": {
+						"arrival": 30972.3156091429,
+						"distance": 6586.7838602769,
+						"ok": true,
+						"seconds": 439.81560914388,
+						"speed": 0.0
+					},
+					"nominal_error": -59.6843908565024,
+					"road": "QLN_P3",
+					"same_road": true
+				}
+			],
+			"direction": 1,
+			"events": [],
+			"forecasts": [
+				{
+					"actual": 29285.3500000001,
+					"actual_road": "STKT_P3",
+					"cautious": {
+						"arrival": 29254.89868358,
+						"distance": 7648.22198486328,
+						"ok": true,
+						"seconds": 454.898683580021,
+						"speed": 0.0
+					},
+					"cautious_error": -30.4513164200544,
+					"code": "STKT",
+					"nominal": {
+						"arrival": 29229.2185390725,
+						"distance": 7648.22198486328,
+						"ok": true,
+						"seconds": 429.218539072517,
+						"speed": 0.0
+					},
+					"nominal_error": -56.1314609275578,
+					"road": "STKT_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29697.2499999997,
+					"actual_road": "MQO_P1",
+					"cautious": {
+						"arrival": 29705.8384942694,
+						"distance": 12160.2475891113,
+						"ok": true,
+						"seconds": 905.83849426941,
+						"speed": 0.0
+					},
+					"cautious_error": 8.58849426967936,
+					"code": "MQO",
+					"nominal": {
+						"arrival": 29682.696734872,
+						"distance": 12160.2475891113,
+						"ok": true,
+						"seconds": 882.696734872025,
+						"speed": 0.0
+					},
+					"nominal_error": -14.5532651277063,
+					"road": "MQO_P1",
+					"same_road": true
+				},
+				{
+					"actual": 30224.6999999993,
+					"actual_road": "PRND_P4",
+					"cautious": {
+						"arrival": 30236.7429576771,
+						"distance": 17945.1832275391,
+						"ok": true,
+						"seconds": 1436.74295767712,
+						"speed": 0.0
+					},
+					"cautious_error": 12.0429576778661,
+					"code": "PRND",
+					"nominal": {
+						"arrival": 30211.070195542,
+						"distance": 17945.1832275391,
+						"ok": true,
+						"seconds": 1411.07019554196,
+						"speed": 0.0
+					},
+					"nominal_error": -13.6298044572904,
+					"road": "PRND_P4",
+					"same_road": true
+				},
+				{
+					"actual": 31031.9999999994,
+					"actual_road": "QLN_P3",
+					"cautious": {
+						"arrival": 30836.1254027932,
+						"distance": 26996.0867767334,
+						"ok": true,
+						"seconds": 2036.12540279319,
+						"speed": 0.0
+					},
+					"cautious_error": -195.874597206159,
+					"code": "QLN",
+					"nominal": {
+						"arrival": 30812.9697452441,
+						"distance": 26996.0867767334,
+						"ok": true,
+						"seconds": 2012.96974524407,
+						"speed": 0.0
+					},
+					"nominal_error": -219.030254755282,
+					"road": "QLN_P1",
+					"same_road": false
+				}
+			],
+			"ok": true,
+			"stock": "lhb"
+		},
+		{
+			"decisions": [
+				{
+					"actual": 29229.8000000001,
+					"actual_road": "STKT_P3",
+					"call": 1,
+					"cautious": {
+						"arrival": 29228.0755018765,
+						"distance": 7648.22191611328,
+						"ok": true,
+						"seconds": 382.07550187653,
+						"speed": 0.0
+					},
+					"cautious_error": -1.72449812353443,
+					"clock": 28846.0,
+					"nominal": {
+						"arrival": 29216.3829703047,
+						"distance": 7648.22191611328,
+						"ok": true,
+						"seconds": 370.382970304745,
+						"speed": 0.0
+					},
+					"nominal_error": -13.4170296953198,
+					"road": "STKT_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29644.7499999998,
+					"actual_road": "MQO_P1",
+					"call": 2,
+					"cautious": {
+						"arrival": 29648.8349650438,
+						"distance": 4512.35094802774,
+						"ok": true,
+						"seconds": 273.834965043763,
+						"speed": 0.0
+					},
+					"cautious_error": 4.08496504401046,
+					"clock": 29375.0,
+					"nominal": {
+						"arrival": 29635.8287402268,
+						"distance": 4512.35094802774,
+						"ok": true,
+						"seconds": 260.828740226731,
+						"speed": 0.0
+					},
+					"nominal_error": -8.92125977302203,
+					"road": "MQO_P1",
+					"same_road": true
+				},
+				{
+					"actual": 30170.3499999993,
+					"actual_road": "PRND_P4",
+					"call": 3,
+					"cautious": {
+						"arrival": 30168.8429254232,
+						"distance": 5785.25781524573,
+						"ok": true,
+						"seconds": 313.842925423593,
+						"speed": 0.0
+					},
+					"cautious_error": -1.50707457611861,
+					"clock": 29854.9999999996,
+					"nominal": {
+						"arrival": 30157.1691778173,
+						"distance": 5785.25781524573,
+						"ok": true,
+						"seconds": 302.169177817712,
+						"speed": 0.0
+					},
+					"nominal_error": -13.1808221819992,
+					"road": "PRND_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30964.4499999991,
+					"actual_road": "QLN_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30777.9294180276,
+						"distance": 9051.22907747756,
+						"ok": true,
+						"seconds": 442.929418028416,
+						"speed": 0.0
+					},
+					"cautious_error": -186.520581971541,
+					"clock": 30334.9999999992,
+					"nominal": {
+						"arrival": 30765.6529668221,
+						"distance": 9051.22907747756,
+						"ok": true,
+						"seconds": 430.652966822978,
+						"speed": 0.0
+					},
+					"nominal_error": -198.797033176979,
+					"road": "QLN_P1",
+					"same_road": false
+				},
+				{
+					"actual": 30964.4499999991,
+					"actual_road": "QLN_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30903.2217190038,
+						"distance": 6885.26727673144,
+						"ok": true,
+						"seconds": 427.221719004774,
+						"speed": 0.0
+					},
+					"cautious_error": -61.2282809953103,
+					"clock": 30475.999999999,
+					"nominal": {
+						"arrival": 30895.779583524,
+						"distance": 6885.26727673144,
+						"ok": true,
+						"seconds": 419.779583524949,
+						"speed": 0.0
+					},
+					"nominal_error": -68.6704164751354,
+					"road": "QLN_P3",
+					"same_road": true
+				}
+			],
+			"direction": 1,
+			"events": [],
+			"forecasts": [
+				{
+					"actual": 29229.8000000001,
+					"actual_road": "STKT_P3",
+					"cautious": {
+						"arrival": 29187.0777126691,
+						"distance": 7648.22198486328,
+						"ok": true,
+						"seconds": 387.077712669081,
+						"speed": 0.0
+					},
+					"cautious_error": -42.7222873309838,
+					"code": "STKT",
+					"nominal": {
+						"arrival": 29175.3846909106,
+						"distance": 7648.22198486328,
+						"ok": true,
+						"seconds": 375.384690910603,
+						"speed": 0.0
+					},
+					"nominal_error": -54.4153090894615,
+					"road": "STKT_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29644.7499999998,
+					"actual_road": "MQO_P1",
+					"cautious": {
+						"arrival": 29648.8203016501,
+						"distance": 12160.2475891113,
+						"ok": true,
+						"seconds": 848.820301650085,
+						"speed": 0.0
+					},
+					"cautious_error": 4.07030165030665,
+					"code": "MQO",
+					"nominal": {
+						"arrival": 29635.8095845808,
+						"distance": 12160.2475891113,
+						"ok": true,
+						"seconds": 835.809584580784,
+						"speed": 0.0
+					},
+					"nominal_error": -8.94041541899423,
+					"road": "MQO_P1",
+					"same_road": true
+				},
+				{
+					"actual": 30170.3499999993,
+					"actual_road": "PRND_P4",
+					"cautious": {
+						"arrival": 30168.8574044127,
+						"distance": 17945.1832275391,
+						"ok": true,
+						"seconds": 1368.85740441272,
+						"speed": 0.0
+					},
+					"cautious_error": -1.4925955865765,
+					"code": "PRND",
+					"nominal": {
+						"arrival": 30157.177793145,
+						"distance": 17945.1832275391,
+						"ok": true,
+						"seconds": 1357.17779314503,
+						"speed": 0.0
+					},
+					"nominal_error": -13.1722068542658,
+					"road": "PRND_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30964.4499999991,
+					"actual_road": "QLN_P3",
+					"cautious": {
+						"arrival": 30777.9147348429,
+						"distance": 26996.0867767334,
+						"ok": true,
+						"seconds": 1977.91473484294,
+						"speed": 0.0
+					},
+					"cautious_error": -186.535265156166,
+					"code": "QLN",
+					"nominal": {
+						"arrival": 30765.6337913852,
+						"distance": 26996.0867767334,
+						"ok": true,
+						"seconds": 1965.63379138524,
+						"speed": 0.0
+					},
+					"nominal_error": -198.816208613869,
+					"road": "QLN_P1",
+					"same_road": false
+				}
+			],
+			"ok": true,
+			"stock": "vb8"
+		},
+		{
+			"decisions": [
+				{
+					"actual": 29237.0000000001,
+					"actual_road": "STKT_P3",
+					"call": 1,
+					"cautious": {
+						"arrival": 29235.248643514,
+						"distance": 7648.22191611328,
+						"ok": true,
+						"seconds": 389.248643514034,
+						"speed": 0.0
+					},
+					"cautious_error": -1.751356486031,
+					"clock": 28846.0,
+					"nominal": {
+						"arrival": 29223.4464061322,
+						"distance": 7648.22191611328,
+						"ok": true,
+						"seconds": 377.446406132229,
+						"speed": 0.0
+					},
+					"nominal_error": -13.5535938678368,
+					"road": "STKT_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29651.5499999998,
+					"actual_road": "MQO_P1",
+					"call": 2,
+					"cautious": {
+						"arrival": 29654.7788446452,
+						"distance": 4512.3503272276,
+						"ok": true,
+						"seconds": 279.778844645203,
+						"speed": 0.0
+					},
+					"cautious_error": 3.22884464545496,
+					"clock": 29375.0,
+					"nominal": {
+						"arrival": 29641.782427492,
+						"distance": 4512.3503272276,
+						"ok": true,
+						"seconds": 266.782427492017,
+						"speed": 0.0
+					},
+					"nominal_error": -9.76757250773153,
+					"road": "MQO_P1",
+					"same_road": true
+				},
+				{
+					"actual": 30177.5499999993,
+					"actual_road": "PRND_P4",
+					"call": 3,
+					"cautious": {
+						"arrival": 30176.0290714005,
+						"distance": 5785.25721194568,
+						"ok": true,
+						"seconds": 321.029071400877,
+						"speed": 0.0
+					},
+					"cautious_error": -1.5209285988276,
+					"clock": 29854.9999999996,
+					"nominal": {
+						"arrival": 30164.2021362166,
+						"distance": 5785.25721194568,
+						"ok": true,
+						"seconds": 309.202136217045,
+						"speed": 0.0
+					},
+					"nominal_error": -13.3478637826593,
+					"road": "PRND_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30982.3999999992,
+					"actual_road": "QLN_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30784.2655603276,
+						"distance": 9051.22858069363,
+						"ok": true,
+						"seconds": 449.265560328422,
+						"speed": 0.0
+					},
+					"cautious_error": -198.134439671598,
+					"clock": 30334.9999999992,
+					"nominal": {
+						"arrival": 30771.9855231266,
+						"distance": 9051.22858069363,
+						"ok": true,
+						"seconds": 436.985523127467,
+						"speed": 0.0
+					},
+					"nominal_error": -210.414476872553,
+					"road": "QLN_P1",
+					"same_road": false
+				},
+				{
+					"actual": 30982.3999999992,
+					"actual_road": "QLN_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30925.0163787331,
+						"distance": 6975.41677967226,
+						"ok": true,
+						"seconds": 445.516378734083,
+						"speed": 0.0
+					},
+					"cautious_error": -57.3836212660681,
+					"clock": 30479.499999999,
+					"nominal": {
+						"arrival": 30917.6325380271,
+						"distance": 6975.41677967226,
+						"ok": true,
+						"seconds": 438.132538028029,
+						"speed": 0.0
+					},
+					"nominal_error": -64.767461972122,
+					"road": "QLN_P3",
+					"same_road": true
+				}
+			],
+			"direction": 1,
+			"events": [],
+			"forecasts": [
+				{
+					"actual": 29237.0000000001,
+					"actual_road": "STKT_P3",
+					"cautious": {
+						"arrival": 29194.2508543858,
+						"distance": 7648.22198486328,
+						"ok": true,
+						"seconds": 394.250854385777,
+						"speed": 0.0
+					},
+					"cautious_error": -42.7491456142889,
+					"code": "STKT",
+					"nominal": {
+						"arrival": 29182.4481266652,
+						"distance": 7648.22198486328,
+						"ok": true,
+						"seconds": 382.448126665167,
+						"speed": 0.0
+					},
+					"nominal_error": -54.5518733348981,
+					"road": "STKT_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29651.5499999998,
+					"actual_road": "MQO_P1",
+					"cautious": {
+						"arrival": 29654.7642478451,
+						"distance": 12160.2475891113,
+						"ok": true,
+						"seconds": 854.764247845105,
+						"speed": 0.0
+					},
+					"cautious_error": 3.21424784533156,
+					"code": "MQO",
+					"nominal": {
+						"arrival": 29641.7633384397,
+						"distance": 12160.2475891113,
+						"ok": true,
+						"seconds": 841.763338439654,
+						"speed": 0.0
+					},
+					"nominal_error": -9.78666156011968,
+					"road": "MQO_P1",
+					"same_road": true
+				},
+				{
+					"actual": 30177.5499999993,
+					"actual_road": "PRND_P4",
+					"cautious": {
+						"arrival": 30176.043809964,
+						"distance": 17945.1832275391,
+						"ok": true,
+						"seconds": 1376.04380996398,
+						"speed": 0.0
+					},
+					"cautious_error": -1.50619003531028,
+					"code": "PRND",
+					"nominal": {
+						"arrival": 30164.2102708146,
+						"distance": 17945.1832275391,
+						"ok": true,
+						"seconds": 1364.21027081458,
+						"speed": 0.0
+					},
+					"nominal_error": -13.3397291847141,
+					"road": "PRND_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30982.3999999992,
+					"actual_road": "QLN_P3",
+					"cautious": {
+						"arrival": 30784.2509304332,
+						"distance": 26996.0867767334,
+						"ok": true,
+						"seconds": 1984.25093043324,
+						"speed": 0.0
+					},
+					"cautious_error": -198.149069565934,
+					"code": "QLN",
+					"nominal": {
+						"arrival": 30771.96640098,
+						"distance": 26996.0867767334,
+						"ok": true,
+						"seconds": 1971.96640098002,
+						"speed": 0.0
+					},
+					"nominal_error": -210.433599019154,
+					"road": "QLN_P1",
+					"same_road": false
+				}
+			],
+			"ok": true,
+			"stock": "vb16"
+		},
+		{
+			"decisions": [
+				{
+					"actual": 29323.5500000001,
+					"actual_road": "PRND_P3",
+					"call": 1,
+					"cautious": {
+						"arrival": 29329.374640758,
+						"distance": 9053.2062128079,
+						"ok": true,
+						"seconds": 479.374640757993,
+						"speed": 0.0
+					},
+					"cautious_error": 5.82464075792086,
+					"clock": 28850.0,
+					"nominal": {
+						"arrival": 29310.0869468301,
+						"distance": 9053.2062128079,
+						"ok": true,
+						"seconds": 460.08694683007,
+						"speed": 0.0
+					},
+					"nominal_error": -13.4630531700022,
+					"road": "PRND_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29767.5499999997,
+					"actual_road": "MQO_P2",
+					"call": 2,
+					"cautious": {
+						"arrival": 29775.5892506298,
+						"distance": 5790.31847399541,
+						"ok": true,
+						"seconds": 356.589250629793,
+						"speed": 0.0
+					},
+					"cautious_error": 8.03925063011047,
+					"clock": 29419.0,
+					"nominal": {
+						"arrival": 29755.9311718108,
+						"distance": 5790.31847399541,
+						"ok": true,
+						"seconds": 336.931171810811,
+						"speed": 0.0
+					},
+					"nominal_error": -11.6188281888717,
+					"road": "MQO_P2",
+					"same_road": true
+				},
+				{
+					"actual": 30167.8499999993,
+					"actual_road": "STKT_P4",
+					"call": 3,
+					"cautious": {
+						"arrival": 30175.1379778791,
+						"distance": 4506.64351743249,
+						"ok": true,
+						"seconds": 312.637977879505,
+						"speed": 0.0
+					},
+					"cautious_error": 7.28797787978328,
+					"clock": 29862.4999999996,
+					"nominal": {
+						"arrival": 30154.0740368124,
+						"distance": 4506.64351743249,
+						"ok": true,
+						"seconds": 291.574036812806,
+						"speed": 0.0
+					},
+					"nominal_error": -13.7759631869158,
+					"road": "STKT_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30799.5999999987,
+					"actual_road": "KPY_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30804.0157001651,
+						"distance": 7653.13583849131,
+						"ok": true,
+						"seconds": 469.015700165928,
+						"speed": 0.0
+					},
+					"cautious_error": 4.4157001663516,
+					"clock": 30334.9999999992,
+					"nominal": {
+						"arrival": 30785.9748211081,
+						"distance": 7653.13583849131,
+						"ok": true,
+						"seconds": 450.974821108932,
+						"speed": 0.0
+					},
+					"nominal_error": -13.6251788906447,
+					"road": "KPY_P3",
+					"same_road": true
+				}
+			],
+			"direction": -1,
+			"events": [],
+			"forecasts": [
+				{
+					"actual": 29323.5500000001,
+					"actual_road": "PRND_P3",
+					"cautious": {
+						"arrival": 29284.4255581787,
+						"distance": 9053.20843505859,
+						"ok": true,
+						"seconds": 484.425558178671,
+						"speed": 0.0
+					},
+					"cautious_error": -39.124441821401,
+					"code": "PRND",
+					"nominal": {
+						"arrival": 29265.1264657076,
+						"distance": 9053.20843505859,
+						"ok": true,
+						"seconds": 465.126465707559,
+						"speed": 0.0
+					},
+					"nominal_error": -58.4235342925131,
+					"road": "PRND_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29767.5499999997,
+					"actual_road": "MQO_P2",
+					"cautious": {
+						"arrival": 29735.996907433,
+						"distance": 14843.2039489746,
+						"ok": true,
+						"seconds": 935.996907432989,
+						"speed": 0.0
+					},
+					"cautious_error": -31.553092566679,
+					"code": "MQO",
+					"nominal": {
+						"arrival": 29711.9095154943,
+						"distance": 14843.2039489746,
+						"ok": true,
+						"seconds": 911.909515494313,
+						"speed": 0.0
+					},
+					"nominal_error": -55.6404845053548,
+					"road": "MQO_P2",
+					"same_road": true
+				},
+				{
+					"actual": 30167.8499999993,
+					"actual_road": "STKT_P4",
+					"cautious": {
+						"arrival": 30167.6429778921,
+						"distance": 19349.5247192383,
+						"ok": true,
+						"seconds": 1367.64297789208,
+						"speed": 0.0
+					},
+					"cautious_error": -0.207022107220837,
+					"code": "STKT",
+					"nominal": {
+						"arrival": 30146.5747999771,
+						"distance": 19349.5247192383,
+						"ok": true,
+						"seconds": 1346.5747999771,
+						"speed": 0.0
+					},
+					"nominal_error": -21.2752000222063,
+					"road": "STKT_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30799.5999999987,
+					"actual_road": "KPY_P3",
+					"cautious": {
+						"arrival": 30803.9975945161,
+						"distance": 27002.3356933594,
+						"ok": true,
+						"seconds": 2003.99759451611,
+						"speed": 0.0
+					},
+					"cautious_error": 4.39759451738064,
+					"code": "KPY",
+					"nominal": {
+						"arrival": 30785.9529605181,
+						"distance": 27002.3356933594,
+						"ok": true,
+						"seconds": 1985.95296051809,
+						"speed": 0.0
+					},
+					"nominal_error": -13.6470394806383,
+					"road": "KPY_P3",
+					"same_road": true
+				}
+			],
+			"ok": true,
+			"stock": "icf"
+		},
+		{
+			"decisions": [
+				{
+					"actual": 29339.5500000001,
+					"actual_road": "PRND_P3",
+					"call": 1,
+					"cautious": {
+						"arrival": 29351.1583466645,
+						"distance": 9053.20684927486,
+						"ok": true,
+						"seconds": 501.158346664502,
+						"speed": 0.0
+					},
+					"cautious_error": 11.608346664445,
+					"clock": 28850.0,
+					"nominal": {
+						"arrival": 29326.1554443969,
+						"distance": 9053.20684927486,
+						"ok": true,
+						"seconds": 476.155444396947,
+						"speed": 0.0
+					},
+					"nominal_error": -13.3945556031103,
+					"road": "PRND_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29798.4499999996,
+					"actual_road": "MQO_P2",
+					"call": 2,
+					"cautious": {
+						"arrival": 29813.00110721,
+						"distance": 5790.32166803751,
+						"ok": true,
+						"seconds": 378.001107209981,
+						"speed": 0.0
+					},
+					"cautious_error": 14.5511072103109,
+					"clock": 29435.0,
+					"nominal": {
+						"arrival": 29789.3627343461,
+						"distance": 5790.32166803751,
+						"ok": true,
+						"seconds": 354.362734346145,
+						"speed": 0.0
+					},
+					"nominal_error": -9.08726565352481,
+					"road": "MQO_P2",
+					"same_road": true
+				},
+				{
+					"actual": 30216.3999999993,
+					"actual_road": "STKT_P4",
+					"call": 3,
+					"cautious": {
+						"arrival": 30227.8768577165,
+						"distance": 4506.64365669198,
+						"ok": true,
+						"seconds": 334.376857716936,
+						"speed": 0.0
+					},
+					"cautious_error": 11.476857717229,
+					"clock": 29893.4999999996,
+					"nominal": {
+						"arrival": 30202.8215070081,
+						"distance": 4506.64365669198,
+						"ok": true,
+						"seconds": 309.321507008503,
+						"speed": 0.0
+					},
+					"nominal_error": -13.5784929912043,
+					"road": "STKT_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30817.1999999987,
+					"actual_road": "KPY_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30828.2185237069,
+						"distance": 7653.13728399165,
+						"ok": true,
+						"seconds": 493.218523707703,
+						"speed": 0.0
+					},
+					"cautious_error": 11.0185237081423,
+					"clock": 30334.9999999992,
+					"nominal": {
+						"arrival": 30806.3066043577,
+						"distance": 7653.13728399165,
+						"ok": true,
+						"seconds": 471.306604358582,
+						"speed": 0.0
+					},
+					"nominal_error": -10.8933956409783,
+					"road": "KPY_P3",
+					"same_road": true
+				}
+			],
+			"direction": -1,
+			"events": [],
+			"forecasts": [
+				{
+					"actual": 29339.5500000001,
+					"actual_road": "PRND_P3",
+					"cautious": {
+						"arrival": 29306.2064068632,
+						"distance": 9053.2084350586,
+						"ok": true,
+						"seconds": 506.206406863235,
+						"speed": 0.0
+					},
+					"cautious_error": -33.3435931368222,
+					"code": "PRND",
+					"nominal": {
+						"arrival": 29281.1926859102,
+						"distance": 9053.2084350586,
+						"ok": true,
+						"seconds": 481.19268591021,
+						"speed": 0.0
+					},
+					"nominal_error": -58.3573140898479,
+					"road": "PRND_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29798.4499999996,
+					"actual_road": "MQO_P2",
+					"cautious": {
+						"arrival": 29779.1876174949,
+						"distance": 14843.2039489746,
+						"ok": true,
+						"seconds": 979.187617494867,
+						"speed": 0.0
+					},
+					"cautious_error": -19.262382504774,
+					"code": "MQO",
+					"nominal": {
+						"arrival": 29730.5321211164,
+						"distance": 14843.2039489746,
+						"ok": true,
+						"seconds": 930.532121116416,
+						"speed": 0.0
+					},
+					"nominal_error": -67.9178788832251,
+					"road": "MQO_P2",
+					"same_road": true
+				},
+				{
+					"actual": 30216.3999999993,
+					"actual_road": "STKT_P4",
+					"cautious": {
+						"arrival": 30208.5816029286,
+						"distance": 19349.5247192383,
+						"ok": true,
+						"seconds": 1408.58160292862,
+						"speed": 0.0
+					},
+					"cautious_error": -7.81839707063773,
+					"code": "STKT",
+					"nominal": {
+						"arrival": 30164.3327006604,
+						"distance": 19349.5247192383,
+						"ok": true,
+						"seconds": 1364.33270066041,
+						"speed": 0.0
+					},
+					"nominal_error": -52.0672993388544,
+					"road": "STKT_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30817.1999999987,
+					"actual_road": "KPY_P3",
+					"cautious": {
+						"arrival": 30828.1986104221,
+						"distance": 27002.3356933594,
+						"ok": true,
+						"seconds": 2028.19861042207,
+						"speed": 0.0
+					},
+					"cautious_error": 10.998610423354,
+					"code": "KPY",
+					"nominal": {
+						"arrival": 30806.2832885114,
+						"distance": 27002.3356933594,
+						"ok": true,
+						"seconds": 2006.28328851136,
+						"speed": 0.0
+					},
+					"nominal_error": -10.9167114873562,
+					"road": "KPY_P3",
+					"same_road": true
+				}
+			],
+			"ok": true,
+			"stock": "lhb"
+		},
+		{
+			"decisions": [
+				{
+					"actual": 29288.1000000001,
+					"actual_road": "PRND_P3",
+					"call": 1,
+					"cautious": {
+						"arrival": 29286.3416144123,
+						"distance": 9053.20824068359,
+						"ok": true,
+						"seconds": 437.841614412253,
+						"speed": 0.0
+					},
+					"cautious_error": -1.75838558782198,
+					"clock": 28848.5,
+					"nominal": {
+						"arrival": 29274.6380389971,
+						"distance": 9053.20824068359,
+						"ok": true,
+						"seconds": 426.138038997051,
+						"speed": 0.0
+					},
+					"nominal_error": -13.461961003024,
+					"road": "PRND_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29699.8999999997,
+					"actual_road": "MQO_P2",
+					"call": 2,
+					"cautious": {
+						"arrival": 29704.0158260559,
+						"distance": 5790.32105067693,
+						"ok": true,
+						"seconds": 320.515826055915,
+						"speed": 0.0
+					},
+					"cautious_error": 4.11582605620424,
+					"clock": 29383.5,
+					"nominal": {
+						"arrival": 29690.9992427889,
+						"distance": 5790.32105067693,
+						"ok": true,
+						"seconds": 307.499242788839,
+						"speed": 0.0
+					},
+					"nominal_error": -8.90075721087123,
+					"road": "MQO_P2",
+					"same_road": true
+				},
+				{
+					"actual": 30123.5999999993,
+					"actual_road": "STKT_P4",
+					"call": 3,
+					"cautious": {
+						"arrival": 30122.0776826755,
+						"distance": 4506.64523864624,
+						"ok": true,
+						"seconds": 267.077682675874,
+						"speed": 0.0
+					},
+					"cautious_error": -1.522317323881,
+					"clock": 29854.9999999996,
+					"nominal": {
+						"arrival": 30110.4204612719,
+						"distance": 4506.64523864624,
+						"ok": true,
+						"seconds": 255.420461272315,
+						"speed": 0.0
+					},
+					"nominal_error": -13.1795387274396,
+					"road": "STKT_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30757.7999999988,
+					"actual_road": "KPY_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30758.1291236315,
+						"distance": 7653.13593843327,
+						"ok": true,
+						"seconds": 423.129123632341,
+						"speed": 0.0
+					},
+					"cautious_error": 0.329123632727715,
+					"clock": 30334.9999999992,
+					"nominal": {
+						"arrival": 30747.0740514963,
+						"distance": 7653.13593843327,
+						"ok": true,
+						"seconds": 412.074051497104,
+						"speed": 0.0
+					},
+					"nominal_error": -10.7259485025097,
+					"road": "KPY_P3",
+					"same_road": true
+				}
+			],
+			"direction": -1,
+			"events": [],
+			"forecasts": [
+				{
+					"actual": 29288.1000000001,
+					"actual_road": "PRND_P3",
+					"cautious": {
+						"arrival": 29242.8466370252,
+						"distance": 9053.20843505859,
+						"ok": true,
+						"seconds": 442.846637025163,
+						"speed": 0.0
+					},
+					"cautious_error": -45.2533629749123,
+					"code": "PRND",
+					"nominal": {
+						"arrival": 29231.1419480873,
+						"distance": 9053.20843505859,
+						"ok": true,
+						"seconds": 431.141948087308,
+						"speed": 0.0
+					},
+					"nominal_error": -56.9580519127667,
+					"road": "PRND_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29699.8999999997,
+					"actual_road": "MQO_P2",
+					"cautious": {
+						"arrival": 29695.501141961,
+						"distance": 14843.2039489746,
+						"ok": true,
+						"seconds": 895.501141961035,
+						"speed": 0.0
+					},
+					"cautious_error": -4.39885803869402,
+					"code": "MQO",
+					"nominal": {
+						"arrival": 29682.4800664417,
+						"distance": 14843.2039489746,
+						"ok": true,
+						"seconds": 882.480066441691,
+						"speed": 0.0
+					},
+					"nominal_error": -17.4199335580379,
+					"road": "MQO_P2",
+					"same_road": true
+				},
+				{
+					"actual": 30123.5999999993,
+					"actual_road": "STKT_P4",
+					"cautious": {
+						"arrival": 30122.0920484915,
+						"distance": 19349.5247192383,
+						"ok": true,
+						"seconds": 1322.09204849147,
+						"speed": 0.0
+					},
+					"cautious_error": -1.50795150787599,
+					"code": "STKT",
+					"nominal": {
+						"arrival": 30110.4289610384,
+						"distance": 19349.5247192383,
+						"ok": true,
+						"seconds": 1310.4289610384,
+						"speed": 0.0
+					},
+					"nominal_error": -13.1710389609398,
+					"road": "STKT_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30757.7999999988,
+					"actual_road": "KPY_P3",
+					"cautious": {
+						"arrival": 30758.1145009444,
+						"distance": 27002.3356933594,
+						"ok": true,
+						"seconds": 1958.11450094436,
+						"speed": 0.0
+					},
+					"cautious_error": 0.314500945591135,
+					"code": "KPY",
+					"nominal": {
+						"arrival": 30747.0549365569,
+						"distance": 27002.3356933594,
+						"ok": true,
+						"seconds": 1947.05493655685,
+						"speed": 0.0
+					},
+					"nominal_error": -10.7450634419147,
+					"road": "KPY_P3",
+					"same_road": true
+				}
+			],
+			"ok": true,
+			"stock": "vb8"
+		},
+		{
+			"decisions": [
+				{
+					"actual": 29295.3000000001,
+					"actual_road": "PRND_P3",
+					"call": 1,
+					"cautious": {
+						"arrival": 29293.5179345475,
+						"distance": 9053.20824068359,
+						"ok": true,
+						"seconds": 445.017934547494,
+						"speed": 0.0
+					},
+					"cautious_error": -1.78206545258581,
+					"clock": 28848.5,
+					"nominal": {
+						"arrival": 29281.6873001453,
+						"distance": 9053.20824068359,
+						"ok": true,
+						"seconds": 433.187300145259,
+						"speed": 0.0
+					},
+					"nominal_error": -13.6126998548207,
+					"road": "PRND_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29713.6999999997,
+					"actual_road": "MQO_P2",
+					"call": 2,
+					"cautious": {
+						"arrival": 29716.9542599997,
+						"distance": 5790.32033410226,
+						"ok": true,
+						"seconds": 326.454259999718,
+						"speed": 0.0
+					},
+					"cautious_error": 3.25426000001244,
+					"clock": 29390.5,
+					"nominal": {
+						"arrival": 29703.9398883296,
+						"distance": 5790.32033410226,
+						"ok": true,
+						"seconds": 313.439888329591,
+						"speed": 0.0
+					},
+					"nominal_error": -9.76011167011529,
+					"road": "MQO_P2",
+					"same_road": true
+				},
+				{
+					"actual": 30130.7999999993,
+					"actual_road": "STKT_P4",
+					"call": 3,
+					"cautious": {
+						"arrival": 30129.2776273763,
+						"distance": 4506.64482438934,
+						"ok": true,
+						"seconds": 274.277627376709,
+						"speed": 0.0
+					},
+					"cautious_error": -1.5223726230397,
+					"clock": 29854.9999999996,
+					"nominal": {
+						"arrival": 30117.4387674675,
+						"distance": 4506.64482438934,
+						"ok": true,
+						"seconds": 262.438767467924,
+						"speed": 0.0
+					},
+					"nominal_error": -13.3612325318245,
+					"road": "STKT_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30771.3999999988,
+					"actual_road": "KPY_P3",
+					"call": 4,
+					"cautious": {
+						"arrival": 30770.897833063,
+						"distance": 7653.13515218396,
+						"ok": true,
+						"seconds": 435.897833063882,
+						"speed": 0.0
+					},
+					"cautious_error": -0.502166935719288,
+					"clock": 30334.9999999992,
+					"nominal": {
+						"arrival": 30759.7266777059,
+						"distance": 7653.13515218396,
+						"ok": true,
+						"seconds": 424.726677706709,
+						"speed": 0.0
+					},
+					"nominal_error": -11.6733222928924,
+					"road": "KPY_P3",
+					"same_road": true
+				}
+			],
+			"direction": -1,
+			"events": [],
+			"forecasts": [
+				{
+					"actual": 29295.3000000001,
+					"actual_road": "PRND_P3",
+					"cautious": {
+						"arrival": 29250.0229571604,
+						"distance": 9053.20843505859,
+						"ok": true,
+						"seconds": 450.022957160403,
+						"speed": 0.0
+					},
+					"cautious_error": -45.2770428396761,
+					"code": "PRND",
+					"nominal": {
+						"arrival": 29238.1912092355,
+						"distance": 9053.20843505859,
+						"ok": true,
+						"seconds": 438.191209235516,
+						"speed": 0.0
+					},
+					"nominal_error": -57.1087907645633,
+					"road": "PRND_P3",
+					"same_road": true
+				},
+				{
+					"actual": 29713.6999999997,
+					"actual_road": "MQO_P2",
+					"cautious": {
+						"arrival": 29701.4396527722,
+						"distance": 14843.2039489746,
+						"ok": true,
+						"seconds": 901.439652772206,
+						"speed": 0.0
+					},
+					"cautious_error": -12.2603472275114,
+					"code": "MQO",
+					"nominal": {
+						"arrival": 29688.4207888498,
+						"distance": 14843.2039489746,
+						"ok": true,
+						"seconds": 888.420788849813,
+						"speed": 0.0
+					},
+					"nominal_error": -25.2792111499039,
+					"road": "MQO_P2",
+					"same_road": true
+				},
+				{
+					"actual": 30130.7999999993,
+					"actual_road": "STKT_P4",
+					"cautious": {
+						"arrival": 30129.2922476573,
+						"distance": 19349.5247192383,
+						"ok": true,
+						"seconds": 1329.29224765733,
+						"speed": 0.0
+					},
+					"cautious_error": -1.5077523420041,
+					"code": "STKT",
+					"nominal": {
+						"arrival": 30117.4467718767,
+						"distance": 19349.5247192383,
+						"ok": true,
+						"seconds": 1317.44677187667,
+						"speed": 0.0
+					},
+					"nominal_error": -13.353228122669,
+					"road": "STKT_P4",
+					"same_road": true
+				},
+				{
+					"actual": 30771.3999999988,
+					"actual_road": "KPY_P3",
+					"cautious": {
+						"arrival": 30770.8832947173,
+						"distance": 27002.3356933594,
+						"ok": true,
+						"seconds": 1970.8832947173,
+						"speed": 0.0
+					},
+					"cautious_error": -0.516705281454051,
+					"code": "KPY",
+					"nominal": {
+						"arrival": 30759.7076471079,
+						"distance": 27002.3356933594,
+						"ok": true,
+						"seconds": 1959.70764710787,
+						"speed": 0.0
+					},
+					"nominal_error": -11.6923528908883,
+					"road": "KPY_P3",
+					"same_road": true
+				}
+			],
+			"ok": true,
+			"stock": "vb16"
+		}
+	],
+	"ok": true
+}

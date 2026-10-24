@@ -113,6 +113,12 @@ func arrival(train: Dictionary, road: String, at_s: float, stop: bool, cautious:
 	if train.get("at_stop",false):clock=maxf(clock,train.release)+train.get("departure_allowance",5.0)
 	var target: Dictionary=topology.edges[road]
 	var target_chainage: float=lerpf(target.start,target.end,at_s/target.length)
+	# A passenger working terminates at its final call. Its eventual depot
+	# movement is a separate working, not continued progress along the corridor.
+	for call: Dictionary in train.calls:
+		if call.get("final",false) and (target_chainage-call.chainage)*direction>1:
+			if target.get("station","").is_empty() or call.get("code","")!=target.station:
+				return {ok=false,reason="Target is beyond the final booked call"}
 	var checkpoints:=[]
 	for call: Dictionary in train.calls:
 		if not target.get("station","").is_empty() and call.get("code","")==target.station:break
