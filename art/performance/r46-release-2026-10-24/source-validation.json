@@ -1,0 +1,38 @@
+{
+  "source": "bfcd8aaa3265828f1aa90275045981fcd5096e8f",
+  "logs": [
+    {
+      "path": ".local/map-2026-10-24/pond-tests.log",
+      "success": "Tests: 902 passed, 0 failed"
+    },
+    {
+      "path": ".local/map-2026-10-24/pond-focused.log",
+      "success": "Tests: 7 passed, 0 failed"
+    },
+    {
+      "path": ".local/map-2026-10-24/pond-road-tests.log",
+      "success": "Tests: 51 passed, 0 failed"
+    },
+    {
+      "path": ".local/map-2026-10-24/pond-final-native.log",
+      "success": "VILLAGE_CAPTURE_COMPLETE"
+    },
+    {
+      "path": ".local/map-2026-10-24/pond-generation-final.log",
+      "success": "POND_PROFILE_COMPLETE invalid_normals=0"
+    },
+    {
+      "path": ".local/map-2026-10-24/pond-parallel-final.log",
+      "success": "\"failures\": 0"
+    },
+    {
+      "path": ".local/map-2026-10-24/pond-wall-verified.log",
+      "success": "\"failures\": 0"
+    }
+  ],
+  "simulation_changed": false,
+  "prepared_data_changed": false,
+  "timetable_rerun": false,
+  "distribution_gameplay_test": false,
+  "notes": "902 full source passes; final road-clearance guard in pond retaining faces is covered by7pond and51road tests plus final full wall/road/native audits. No other runtime changes after full suite."
+}

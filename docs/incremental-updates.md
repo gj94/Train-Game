@@ -1,14 +1,14 @@
 # Incremental Windows updates
 
-## Current publication — R45
+## Current publication — R46
 
-Sequence 47 ships the full ZIP and v4 updater, retaining 192 stable packs.
-R44 → R45 estimated unique compressed changed payload is
-2,726,352 bytes plus the signed catalogue;
-4,247,610,621 managed bytes are reused. These are calculated transfer
-sizes, not measured client throughput. Signed catalogue, compressed ranges,
-archive hashes and read-only mounted resources pass. Only the latest full ZIP
-is advertised. Next publication needs a fresh name and sequence 48+.
+Sequence 48 ships the full ZIP and v4 updater, retaining 192 stable packs.
+R45→R46 estimated unique compressed changed payload is
+23,234,096 bytes plus the signed catalogue;
+4,224,050,895 managed bytes are reused. These are calculated transfer
+sizes, not measured client throughput. Signatures, compressed ranges, archive
+hashes and read-only mounted states/previews pass. Only the latest full ZIP is
+advertised. Next publication needs a fresh name and sequence 49+.
 See [builds.md](builds.md) for checksum, source revision and evidence.
 
 ## V4 transfer optimization — shipped in R39

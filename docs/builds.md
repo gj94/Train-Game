@@ -1,6 +1,34 @@
 # Windows portable build
 
-Current release: **R45 — journey discovery, passenger boarding and recovery QoL**.
+Current release: **R46 — countryside and map consistency**.
+Published 24 October 2026 from clean runtime **bfcd8aa**, signed sequence **48**,
+at http://192.168.8.183:8765/.
+Full ZIP: **3,589,389,055 bytes**; SHA-256
+a79cab6c9c2c37292cd5339ef9e6ec0465602d22596e33130aed19b470b2458a.
+
+Varied ground beside unchanged tracks, connected roads and supported approaches,
+mapped rural surfaces, village paths/steps/walls, continuous banks, accurate
+bridge footprints, smooth terrain lighting and grounded vegetation/streams.
+Confined pond retaining faces stay clear of tracks/roads. Kollam's shader
+instance-buffer overflow is fixed. [Changes and playtest](map-refinement.md).
+
+902 full source tests, 7 final pond/stream tests, 51 road tests and 23 Python tests pass.
+Native source views and full/changed-geometry route audits pass. All 4,893 protected
+inputs unchanged. No full timetable replay, extracted-distribution gameplay
+rerun or new target-PC FPS claim.
+
+512 archive CRCs / 510 managed
+hashes, 192 explicit packs, signatures, served ZIP/PCK/compressed ranges and read-only
+snapshot/traffic preview mounting pass. [Publication evidence](../art/performance/r46-release-2026-10-24/publication.json).
+
+Use **Update & Play v4** for incremental transfers. R45→R46 reuses
+4,224,050,895 bytes; changed target blocks total 32,346,422
+bytes, estimated unique compressed payload 23,234,096
+bytes plus catalogue. These are calculated sizes, not LAN throughput measurements.
+Only R46 is offered as a full download. Verified R45 full files retired, freeing 7,844,606,771 bytes; historical catalogues/payloads remain.
+Next release requires a fresh name and sequence **49+**.
+
+Previous release: **R45 — journey discovery, passenger boarding and recovery QoL**.
 Published 22 October 2026 from clean runtime **47e0ab6**, signed sequence **47**,
 at http://192.168.8.183:8765/.
 Full ZIP: **3,589,098,514 bytes**; SHA-256
@@ -30,7 +58,7 @@ Use **Update & Play v4** for incremental transfers. R44 → R45 reuses
 bytes, estimated unique compressed payload 2,726,352
 bytes plus the catalogue. These are calculated sizes, not a LAN throughput test.
 Only R45 is offered as a full download. Verified R44 full files retired, freeing 7,844,521,907 bytes; historical catalogues/payloads remain.
-Next release requires a new name and sequence **48+**.
+R45 is superseded by R46.
 
 Previous release: **R44**, runtime **14fda47**, sequence **46**, introduced Home,
 passenger seat memory and bounded hidden scenery lookahead.

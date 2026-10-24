@@ -656,3 +656,11 @@ hashes and collected evidence. Gate/protected checks pass. Active ledger26,139s
 at10:55; both timing minimums met. User notified before R46/sequence48 packaging.
 Next commit/push, prepare source-validation metadata and inspect owned editor
 processes, then use .local/r46-release scripts. R45 remains live during export.
+
+## Completion — R46 published
+
+Completed 2026-10-24T11:04:08.756305+08:00 with 26,672 active seconds, both
+minimums met. R46/sequence48/source bfcd8aa full and incremental downloads pass
+all publication checks. Simulation/protected inputs unchanged. No timetable or
+extracted-distribution gameplay rerun. Evidence: art/performance/r46-release-2026-10-24.
+Verified R45 full files retired, freeing 7,844,606,771 bytes; historical catalogues/payloads remain. Continuation automation is paused; do not invent another pass.

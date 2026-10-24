@@ -1,5 +1,19 @@
 # Progress
 
+## 24 October 2026 — R46 published; overnight map window complete
+
+Full and signed incremental downloads are live at http://192.168.8.183:8765/.
+Sequence 48, clean runtime bfcd8aa; ZIP 3,589,389,055 bytes.
+All source/native/map checks and publication checks pass. Railway geometry,
+simulation and prepared timetables remain unchanged; no full timetable rerun.
+The fixed 03:30:53 start was preserved, work continued past 10:30, and the ledger
+records 26,672 active seconds excluding inter-turn idle gaps.
+Continuation automation is paused now that work and release are complete.
+Verified R45 full files retired, freeing 7,844,606,771 bytes; historical catalogues/payloads remain.
+[Release evidence](../art/performance/r46-release-2026-10-24/README.md);
+[changes, limitations and playtest locations](map-refinement.md).
+
+
 ## 24 October 2026 — grounded ponds and drainage; R46 validation
 
 Dry banks now rise toward mapped pond levels without changing the railway;
