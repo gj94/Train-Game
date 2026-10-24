@@ -1,5 +1,27 @@
 # Progress
 
+## 2026-10-24 — Bridge decks follow the actual station roads
+
+- Eleventh overnight increment closes QLN's deck gap without moving railway.
+  Actual track footprints replace the shared perpendicular-width approximation;
+  stable ownership removes overlapping slab faces and mitered corners join bends.
+- All 115 bridge spans / 17,463 rail-and-shoulder probes pass; the previous deck
+  missed 1,250. Guardrails have at least 3.268 m continuous rail clearance; all
+  416 piers clear actual road surfaces and shoulders. Five native views reviewed.
+- 875 full source tests, then 7 final focused bridge tests. Godot validates four
+  scripts with no editor errors. All 4,893 protected files remain unchanged.
+- Correct geometry costs more to create: whole-route 207-edge mesh generation
+  averages 0.746 -> 2.200 seconds, vertices 288,648 -> 721,734. Removed internal
+  faces/over-detailed guard beams halved the first replacement's vertices. This
+  is streaming creation cost, not target GPU frame time; railway is unchanged.
+- Evidence: art/performance/map-2026-10-24/bridge-footprints. After release,
+  inspect QLN near 140.73 km and the regional backwater bridge cases from both
+  sides. Keep the current R45 available; no follow-up build prepared yet.
+- Next: confirmed low parallel primary-road overlap at 143.7 km, same-level
+  junction shoulders/paint, terrain shading and vegetation transitions. The
+  originally suspected layer -1 footway is already omitted. Actual offending
+  road w1024795790 overlaps QLN_DEPOT_RD_LEAD at roughly railhead height.
+
 ## 2026-10-24 — Waterway tile seams and terrain-worker cost
 
 - Tenth overnight increment: neighbouring tiles now share a bounded 10 m shore
