@@ -1,0 +1,7885 @@
+{
+  "version": 1,
+  "complete": true,
+  "dispatcher": "predictive",
+  "preparation": "serial-operating-day",
+  "engine": "4.7.2-stable (official)",
+  "start_sha256": "c1d8c336d0789de583799bfb43d2c94e691f911272abe47e1a3e1c1841efeb1e",
+  "timeline_sha256": "1989ab4cefe2a8b07f8c1ef2a883e0ba62819a77451b5f48923d040fec359dcd",
+  "observer_sources": {
+    "tools/prepare_timetable_variant.gd": "704faa21ac9f8f3187c258c44d910de7a79075299dd47ce5a33e960311b7348b",
+    "tools/wait_quality.gd": "cb1a8f82cb1cea9d16255ff825ac633489ce08a6bcb47d758cdfea27e68389af",
+    "tools/lib/wait-quality.mjs": "091fe042f0842c092602cfa24d1ec5ec6ddbfec4fec74bbeeaea00a634847136",
+    "tools/record_service_traffic.gd": "30947f698bb1715f1ea6c5026d924a54dd8dcfdea5d8e21c5dbee42f9086e251",
+    "tools/lib/traffic-encounters.mjs": "7b1a74bd27398cd150d080ba87333f47ab3fdac593d4866142392c938661a858",
+    "tools/finalize_timetable_variant.mjs": "696bc4a8352cdf917b40bc0a0e005f81f94996abf9ec9e0d0d60bdd54cc8cee9"
+  },
+  "services": [
+    "B013",
+    "B045",
+    "B068",
+    "K1",
+    "B048",
+    "B030",
+    "B039",
+    "D134",
+    "B088",
+    "D120",
+    "B001",
+    "B069",
+    "B014",
+    "B049",
+    "D128",
+    "B024",
+    "B012",
+    "B070",
+    "B050",
+    "D121",
+    "B042",
+    "B094",
+    "B071",
+    "B051",
+    "D129",
+    "B002",
+    "D135",
+    "B015",
+    "B072",
+    "D122",
+    "B031",
+    "B052",
+    "B089",
+    "B036",
+    "B073",
+    "B095",
+    "B025",
+    "B053",
+    "D123",
+    "D100",
+    "D114",
+    "D136",
+    "B003",
+    "B074",
+    "D101",
+    "B016",
+    "B054",
+    "B017",
+    "D108",
+    "D130",
+    "D102",
+    "B075",
+    "B004",
+    "B055",
+    "D109",
+    "B032",
+    "B096",
+    "D103",
+    "D115",
+    "B076",
+    "D131",
+    "B056",
+    "B026",
+    "D104",
+    "D110",
+    "D137",
+    "B040",
+    "B005",
+    "B077",
+    "B057",
+    "B090",
+    "D105",
+    "D124",
+    "B037",
+    "B018",
+    "B078",
+    "B058",
+    "D116",
+    "B019",
+    "D125",
+    "B006",
+    "B033",
+    "B079",
+    "B059",
+    "D138",
+    "B027",
+    "B097",
+    "B080",
+    "B060",
+    "B043",
+    "B091",
+    "D132",
+    "B046",
+    "D117",
+    "B007",
+    "B081",
+    "B020",
+    "B061",
+    "D106",
+    "D111",
+    "B082",
+    "B062",
+    "D126",
+    "B021",
+    "B083",
+    "B008",
+    "B063",
+    "D107",
+    "D139",
+    "B034",
+    "D112",
+    "D118",
+    "B028",
+    "D133",
+    "B041",
+    "B098",
+    "B084",
+    "B092",
+    "B064",
+    "B038",
+    "B047",
+    "B009",
+    "B022",
+    "B085",
+    "B065",
+    "D127",
+    "B044",
+    "D113",
+    "D119",
+    "B086",
+    "B099",
+    "B066",
+    "B010",
+    "B035",
+    "B023",
+    "B029",
+    "B093",
+    "B087",
+    "B067",
+    "B011"
+  ],
+  "events": [
+    {
+      "time": 31054.44577216605,
+      "chainage_m": 184990.162575095,
+      "a": "B030",
+      "b": "B068",
+      "kind": "overtake",
+      "overtaker": "B030",
+      "cleared": 31107.9999999996,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 31660.39602936761,
+      "chainage_m": 171482.11864407425,
+      "a": "B030",
+      "b": "B048",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 31981.887936327937,
+      "chainage_m": 24023.2316187225,
+      "a": "B001",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B001",
+      "cleared": 32124.0000000033,
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 32088.47788658132,
+      "chainage_m": 24231.0211450909,
+      "a": "B001",
+      "b": "B045",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 32143.88658705716,
+      "chainage_m": 174474.676975804,
+      "a": "B048",
+      "b": "B068",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 32191.3988973849,
+      "chainage_m": 174850.03758153677,
+      "a": "B048",
+      "b": "D120",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 32196.684613914847,
+      "chainage_m": 24023.8818568202,
+      "a": "B045",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 32206.65428385906,
+      "chainage_m": 174474.676975804,
+      "a": "B068",
+      "b": "D120",
+      "kind": "overtake",
+      "overtaker": "D120",
+      "cleared": 32228.0000000037,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 32456.096477420928,
+      "chainage_m": 155636.94387358235,
+      "a": "B030",
+      "b": "B049",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 32915.31612330048,
+      "chainage_m": 161366.7530549136,
+      "a": "B049",
+      "b": "D120",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 32982.55051143184,
+      "chainage_m": 184075.41770795645,
+      "a": "B048",
+      "b": "B069",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perunguzhi and Murukkampuzha"
+    },
+    {
+      "time": 33056.706264995664,
+      "chainage_m": 235800.9389185767,
+      "a": "B013",
+      "b": "B088",
+      "kind": "crossing",
+      "station": "PASA",
+      "location": "Parassala"
+    },
+    {
+      "time": 33190.072785481214,
+      "chainage_m": 163570.21120462936,
+      "a": "B049",
+      "b": "B068",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Edavai and Varkala Sivagiri"
+    },
+    {
+      "time": 33311.48078077088,
+      "chainage_m": 141663.93760422998,
+      "a": "B030",
+      "b": "B050",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 33446.152591956474,
+      "chainage_m": 188885.328810357,
+      "a": "B048",
+      "b": "D128",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 33628.443735214896,
+      "chainage_m": 8486.874963546454,
+      "a": "B024",
+      "b": "B045",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 33691.896779201255,
+      "chainage_m": 57663.0861882721,
+      "a": "B001",
+      "b": "B039",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 33782.26636931262,
+      "chainage_m": 146439.811294699,
+      "a": "B050",
+      "b": "D120",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 34006.65428386562,
+      "chainage_m": 174474.676975805,
+      "a": "B069",
+      "b": "D128",
+      "kind": "overtake",
+      "overtaker": "D128",
+      "cleared": 34028.0000000103,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 34009.76267866635,
+      "chainage_m": 193982.01098709254,
+      "a": "B048",
+      "b": "B070",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 34045.32761209311,
+      "chainage_m": 173521.11482052528,
+      "a": "B049",
+      "b": "D128",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 34051.59708938054,
+      "chainage_m": 244113.57692869825,
+      "a": "B014",
+      "b": "B088",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 34098.50539106592,
+      "chainage_m": 174413.02570632793,
+      "a": "B049",
+      "b": "B069",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 34214.62618112265,
+      "chainage_m": 151718.21932753557,
+      "a": "B050",
+      "b": "B068",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 34329.039720140805,
+      "chainage_m": 994.1531861066883,
+      "a": "B042",
+      "b": "B045",
+      "kind": "crossing",
+      "station": "ERS",
+      "location": "Ernakulam Junction"
+    },
+    {
+      "time": 34448.8613474098,
+      "chainage_m": 244209.34563445515,
+      "a": "B012",
+      "b": "B088",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 34600.55475402112,
+      "chainage_m": 199076.39370895,
+      "a": "B048",
+      "b": "D121",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 34821.9330430662,
+      "chainage_m": 158660.84576734,
+      "a": "B050",
+      "b": "D128",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 34877.6124118881,
+      "chainage_m": 44968.958402527234,
+      "a": "B039",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 35097.20603382695,
+      "chainage_m": 184419.36994316458,
+      "a": "B049",
+      "b": "B070",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perunguzhi and Murukkampuzha"
+    },
+    {
+      "time": 35167.79458754935,
+      "chainage_m": 161516.810293543,
+      "a": "B050",
+      "b": "B069",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 35359.29577131467,
+      "chainage_m": 185920.36301031642,
+      "a": "B049",
+      "b": "D121",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 35447.89148975033,
+      "chainage_m": 44909.56469785101,
+      "a": "B024",
+      "b": "B039",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 35838.18358346412,
+      "chainage_m": 142770.10557534362,
+      "a": "B051",
+      "b": "D128",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 35852.09190295238,
+      "chainage_m": 101022.615794924,
+      "a": "B001",
+      "b": "B030",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 35860.83591246502,
+      "chainage_m": 265567.8840433625,
+      "a": "B088",
+      "b": "B094",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Eraniel and Viranialur"
+    },
+    {
+      "time": 36031.37397981408,
+      "chainage_m": 174474.676975805,
+      "a": "B070",
+      "b": "D121",
+      "kind": "overtake",
+      "overtaker": "D121",
+      "cleared": 36054.0000000176,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 36106.109219530445,
+      "chainage_m": 172566.69040819842,
+      "a": "B050",
+      "b": "D121",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 36137.98194867924,
+      "chainage_m": 57663.0869320378,
+      "a": "B024",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B024",
+      "cleared": 36476.0000000192,
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 36167.25485416469,
+      "chainage_m": 174022.5922946607,
+      "a": "B050",
+      "b": "B070",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 36320.61532887596,
+      "chainage_m": 148219.35746580258,
+      "a": "B051",
+      "b": "B069",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 36452.10813552369,
+      "chainage_m": 197366.77068936013,
+      "a": "B049",
+      "b": "B071",
+      "kind": "crossing",
+      "station": "VELI",
+      "location": "Veli"
+    },
+    {
+      "time": 36549.7618940999,
+      "chainage_m": 199051.81612374567,
+      "a": "B013",
+      "b": "B049",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 36739.888768399454,
+      "chainage_m": 199077.042282717,
+      "a": "B049",
+      "b": "D129",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 36874.04953150558,
+      "chainage_m": 201457.5662238802,
+      "a": "B014",
+      "b": "B049",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 36894.345834315995,
+      "chainage_m": 119793.03570201079,
+      "a": "B001",
+      "b": "D135",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 36954.35607072529,
+      "chainage_m": 155592.57359184948,
+      "a": "B051",
+      "b": "D121",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 37126.35330065344,
+      "chainage_m": 203778.768412501,
+      "a": "B012",
+      "b": "B049",
+      "kind": "crossing",
+      "station": "TVP",
+      "location": "Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 37144.578862625494,
+      "chainage_m": 24023.2316186899,
+      "a": "B002",
+      "b": "B042",
+      "kind": "overtake",
+      "overtaker": "B002",
+      "cleared": 37176.0000000184,
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 37144.61375061982,
+      "chainage_m": 24023.8818568203,
+      "a": "B002",
+      "b": "B039",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 37153.982433097124,
+      "chainage_m": 24023.2316186899,
+      "a": "B039",
+      "b": "B042",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 37335.54053236524,
+      "chainage_m": 159642.8902642773,
+      "a": "B051",
+      "b": "B070",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kappil and Edavai"
+    },
+    {
+      "time": 37381.978481204314,
+      "chainage_m": 184990.162575094,
+      "a": "B050",
+      "b": "B071",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 37401.746950453715,
+      "chainage_m": 70953.5916447397,
+      "a": "B024",
+      "b": "B030",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ambalappuzha and Takazhi"
+    },
+    {
+      "time": 37479.175090115976,
+      "chainage_m": 186381.87896995683,
+      "a": "B013",
+      "b": "B050",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 37546.50030293023,
+      "chainage_m": 188177.26640908257,
+      "a": "B050",
+      "b": "D129",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 37797.98990470835,
+      "chainage_m": 184990.159323649,
+      "a": "B013",
+      "b": "D129",
+      "kind": "overtake",
+      "overtaker": "D129",
+      "cleared": 37854.0000000085,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 37807.441055635114,
+      "chainage_m": 192907.829520794,
+      "a": "B012",
+      "b": "B014",
+      "kind": "overtake",
+      "overtaker": "B012",
+      "cleared": 37858.0000000084,
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 37907.91892763273,
+      "chainage_m": 191807.542862698,
+      "a": "B012",
+      "b": "B050",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kaniyapuram and Kazhakuttam"
+    },
+    {
+      "time": 37952.21478533401,
+      "chainage_m": 141658.747112645,
+      "a": "B001",
+      "b": "D121",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 37959.56115958453,
+      "chainage_m": 192789.14558436262,
+      "a": "B014",
+      "b": "B050",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 38209.80449832251,
+      "chainage_m": 69808.75375594351,
+      "a": "B030",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 38233.24685179838,
+      "chainage_m": 184990.159323649,
+      "a": "B012",
+      "b": "B013",
+      "kind": "overtake",
+      "overtaker": "B012",
+      "cleared": 38280.0000000023,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 38343.92882821748,
+      "chainage_m": 196856.53733583732,
+      "a": "B050",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "VELI",
+      "location": "Veli"
+    },
+    {
+      "time": 38393.23954195556,
+      "chainage_m": 148962.51072018384,
+      "a": "B001",
+      "b": "B070",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 38422.55973953008,
+      "chainage_m": 184990.159323649,
+      "a": "B013",
+      "b": "B014",
+      "kind": "overtake",
+      "overtaker": "B014",
+      "cleared": 38477.9999999994,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 38431.923264875826,
+      "chainage_m": 174474.676975805,
+      "a": "B071",
+      "b": "D129",
+      "kind": "overtake",
+      "overtaker": "D129",
+      "cleared": 38453.9999999998,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 38506.43046787702,
+      "chainage_m": 172572.45062445547,
+      "a": "B051",
+      "b": "D129",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 38567.47105154524,
+      "chainage_m": 174025.70034540785,
+      "a": "B051",
+      "b": "B071",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 38603.59676149143,
+      "chainage_m": 198474.5473584278,
+      "a": "B050",
+      "b": "B072",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 38695.105554771755,
+      "chainage_m": 174474.025530731,
+      "a": "B012",
+      "b": "B051",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 38725.502128235465,
+      "chainage_m": 199076.39370895,
+      "a": "B031",
+      "b": "B050",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 38748.259294332456,
+      "chainage_m": 145400.547736122,
+      "a": "B052",
+      "b": "B070",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 38851.03254875771,
+      "chainage_m": 176113.211659513,
+      "a": "B014",
+      "b": "B051",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kadakavur and Chirayinkeezh"
+    },
+    {
+      "time": 39009.533773885174,
+      "chainage_m": 165122.21467026192,
+      "a": "B001",
+      "b": "D129",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 39058.13191210638,
+      "chainage_m": 166349.7391514116,
+      "a": "B001",
+      "b": "B071",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 39085.89158154488,
+      "chainage_m": 192907.828488976,
+      "a": "B031",
+      "b": "B072",
+      "kind": "overtake",
+      "overtaker": "B031",
+      "cleared": 39137.9999999898,
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 39087.146681858096,
+      "chainage_m": 177639.47080522732,
+      "a": "B013",
+      "b": "B051",
+      "kind": "crossing",
+      "station": "CRY",
+      "location": "Chirayinkeezh"
+    },
+    {
+      "time": 39115.28494653612,
+      "chainage_m": 167915.49903773767,
+      "a": "B001",
+      "b": "B012",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 39141.67720980609,
+      "chainage_m": 57663.738217662,
+      "a": "B002",
+      "b": "B030",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 39198.12068096729,
+      "chainage_m": 179846.9317382942,
+      "a": "B051",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 39216.42903073846,
+      "chainage_m": 170692.40973242527,
+      "a": "B001",
+      "b": "B014",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 39278.91584721766,
+      "chainage_m": 165322.36956591,
+      "a": "B012",
+      "b": "B071",
+      "kind": "overtake",
+      "overtaker": "B012",
+      "cleared": 39325.9999999871,
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 39377.99722884254,
+      "chainage_m": 174831.48321957196,
+      "a": "B001",
+      "b": "B013",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 39425.59757904726,
+      "chainage_m": 176088.86095771778,
+      "a": "B001",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kadakavur and Chirayinkeezh"
+    },
+    {
+      "time": 39488.51358518815,
+      "chainage_m": 174474.676975806,
+      "a": "B013",
+      "b": "D122",
+      "kind": "overtake",
+      "overtaker": "D122",
+      "cleared": 39509.9999999844,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 39545.40518532369,
+      "chainage_m": 183079.4492853803,
+      "a": "B031",
+      "b": "B051",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perunguzhi and Murukkampuzha"
+    },
+    {
+      "time": 39546.42700369105,
+      "chainage_m": 108572.12183106416,
+      "a": "B024",
+      "b": "D121",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 39571.60663548609,
+      "chainage_m": 154192.24935200042,
+      "a": "B052",
+      "b": "D129",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 39619.532891408286,
+      "chainage_m": 181199.54566118232,
+      "a": "B001",
+      "b": "B031",
+      "kind": "crossing",
+      "station": "PGZ",
+      "location": "Perunguzhi"
+    },
+    {
+      "time": 39681.54053070956,
+      "chainage_m": 156321.88152521302,
+      "a": "B012",
+      "b": "B052",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 39764.92180625755,
+      "chainage_m": 154133.855479286,
+      "a": "B012",
+      "b": "D129",
+      "kind": "overtake",
+      "overtaker": "B012",
+      "cleared": 39783.9999999804,
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 39788.772194507714,
+      "chainage_m": 185001.3875180743,
+      "a": "B051",
+      "b": "B072",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 39803.06093144019,
+      "chainage_m": 57618.937649721316,
+      "a": "B030",
+      "b": "B042",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 39898.55944885157,
+      "chainage_m": 184893.74133261244,
+      "a": "B001",
+      "b": "B072",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 39955.884868550245,
+      "chainage_m": 158661.497559578,
+      "a": "B052",
+      "b": "B071",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 40029.01342675661,
+      "chainage_m": 159502.856708221,
+      "a": "B014",
+      "b": "B052",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kappil and Edavai"
+    },
+    {
+      "time": 40075.98149310848,
+      "chainage_m": 223385.047524437,
+      "a": "B089",
+      "b": "B094",
+      "kind": "crossing",
+      "station": "NYY",
+      "location": "Neyyattinkara"
+    },
+    {
+      "time": 40181.293472462,
+      "chainage_m": 161516.161676341,
+      "a": "B052",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 40466.80408516075,
+      "chainage_m": 192907.179391758,
+      "a": "B001",
+      "b": "B051",
+      "kind": "overtake",
+      "overtaker": "B001",
+      "cleared": 40481.9999999702,
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 40474.00683331945,
+      "chainage_m": 165322.372512769,
+      "a": "B013",
+      "b": "B031",
+      "kind": "overtake",
+      "overtaker": "B031",
+      "cleared": 40537.9999999694,
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 40510.20713256994,
+      "chainage_m": 165170.1282668701,
+      "a": "B031",
+      "b": "B052",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 40603.230950921636,
+      "chainage_m": 165321.722511667,
+      "a": "B013",
+      "b": "B052",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 40775.07414407976,
+      "chainage_m": 132523.2170437879,
+      "a": "B012",
+      "b": "B024",
+      "kind": "crossing",
+      "station": "PRND",
+      "location": "Perinad"
+    },
+    {
+      "time": 40881.128145006674,
+      "chainage_m": 203734.61480164723,
+      "a": "B001",
+      "b": "B073",
+      "kind": "crossing",
+      "station": "TVP",
+      "location": "Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 40982.958509438664,
+      "chainage_m": 154133.853936849,
+      "a": "B031",
+      "b": "D122",
+      "kind": "overtake",
+      "overtaker": "B031",
+      "cleared": 41005.9999999626,
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 41107.23828199669,
+      "chainage_m": 206269.519020148,
+      "a": "B001",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 41112.678400447534,
+      "chainage_m": 171706.753167601,
+      "a": "B052",
+      "b": "B072",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 41148.25929429754,
+      "chainage_m": 145400.547736122,
+      "a": "B053",
+      "b": "B071",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 41153.09170527836,
+      "chainage_m": 235777.9956999501,
+      "a": "B015",
+      "b": "B089",
+      "kind": "crossing",
+      "station": "PASA",
+      "location": "Parassala"
+    },
+    {
+      "time": 41239.98409836066,
+      "chainage_m": 199077.043349615,
+      "a": "B051",
+      "b": "B073",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 41255.78636579438,
+      "chainage_m": 146439.811294699,
+      "a": "B014",
+      "b": "B053",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 41363.054600887874,
+      "chainage_m": 201153.49219026152,
+      "a": "B051",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 41365.45085388985,
+      "chainage_m": 146929.2142521502,
+      "a": "B031",
+      "b": "B053",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 41411.06950522251,
+      "chainage_m": 147905.61058784448,
+      "a": "B053",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 41527.65444166223,
+      "chainage_m": 206589.39873984735,
+      "a": "B001",
+      "b": "B094",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 41540.75191229116,
+      "chainage_m": 24023.2316186899,
+      "a": "B030",
+      "b": "B036",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 41552.24255292379,
+      "chainage_m": 111883.44125695093,
+      "a": "B012",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 41584.54621992954,
+      "chainage_m": 141765.7201459449,
+      "a": "B014",
+      "b": "B024",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 41670.657303837106,
+      "chainage_m": 143252.572599542,
+      "a": "B024",
+      "b": "B031",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 41721.218970212074,
+      "chainage_m": 144565.64960667692,
+      "a": "B024",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 41743.119967411214,
+      "chainage_m": 152407.67695086665,
+      "a": "B013",
+      "b": "B053",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 41811.617751267106,
+      "chainage_m": 104970.27379826354,
+      "a": "B002",
+      "b": "B012",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kayamkulam Junction and Ochira"
+    },
+    {
+      "time": 41889.95093102257,
+      "chainage_m": 102825.74601878549,
+      "a": "B012",
+      "b": "D100",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kayamkulam Junction and Ochira"
+    },
+    {
+      "time": 41933.27848978857,
+      "chainage_m": 23969.956216669434,
+      "a": "B025",
+      "b": "B030",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 41949.95781176777,
+      "chainage_m": 150504.47307853363,
+      "a": "B013",
+      "b": "B024",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 42007.23660622734,
+      "chainage_m": 101023.262710416,
+      "a": "B012",
+      "b": "D114",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 42144.70420378808,
+      "chainage_m": 158019.0411868355,
+      "a": "B053",
+      "b": "B072",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 42271.92456597568,
+      "chainage_m": 223363.68673395712,
+      "a": "B001",
+      "b": "B015",
+      "kind": "crossing",
+      "station": "NYY",
+      "location": "Neyyattinkara"
+    },
+    {
+      "time": 42362.107258331926,
+      "chainage_m": 154185.75602547123,
+      "a": "B024",
+      "b": "B072",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 42465.61912079089,
+      "chainage_m": 34018.3362661717,
+      "a": "B025",
+      "b": "B036",
+      "kind": "overtake",
+      "overtaker": "B025",
+      "cleared": 42985.9999999338,
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 42481.97848113322,
+      "chainage_m": 184990.162575095,
+      "a": "B052",
+      "b": "B073",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 42607.68847039792,
+      "chainage_m": 187138.5992355936,
+      "a": "B052",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 42659.719852327406,
+      "chainage_m": 122291.6320294,
+      "a": "B002",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B002",
+      "cleared": 42681.9999999382,
+      "station": "STKT",
+      "location": "Sasthankotta"
+    },
+    {
+      "time": 42734.59890818341,
+      "chainage_m": 124209.99876694893,
+      "a": "B002",
+      "b": "B014",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Sasthankotta and Munroturuttu"
+    },
+    {
+      "time": 42761.07776562036,
+      "chainage_m": 184990.162575095,
+      "a": "B073",
+      "b": "D123",
+      "kind": "overtake",
+      "overtaker": "D123",
+      "cleared": 42815.9999999363,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 42808.39804941145,
+      "chainage_m": 122291.6320294,
+      "a": "B014",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "STKT",
+      "location": "Sasthankotta"
+    },
+    {
+      "time": 42906.93078253559,
+      "chainage_m": 128698.03910070752,
+      "a": "B002",
+      "b": "B031",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Munroturuttu and Perinad"
+    },
+    {
+      "time": 42938.4206030832,
+      "chainage_m": 118864.30822964227,
+      "a": "B014",
+      "b": "D100",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 42977.745526666826,
+      "chainage_m": 244202.68462710612,
+      "a": "B089",
+      "b": "B095",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 43001.950515477394,
+      "chainage_m": 117118.1269848093,
+      "a": "B014",
+      "b": "D114",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 43041.113610153945,
+      "chainage_m": 132305.44253595028,
+      "a": "B002",
+      "b": "D136",
+      "kind": "crossing",
+      "station": "PRND",
+      "location": "Perinad"
+    },
+    {
+      "time": 43067.49013591696,
+      "chainage_m": 122291.6320294,
+      "a": "D100",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D100",
+      "cleared": 43089.9999999323,
+      "station": "STKT",
+      "location": "Sasthankotta"
+    },
+    {
+      "time": 43095.817386494666,
+      "chainage_m": 8378.72753379543,
+      "a": "B003",
+      "b": "B030",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 43110.33123947393,
+      "chainage_m": 123349.90293992896,
+      "a": "B031",
+      "b": "D100",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Sasthankotta and Munroturuttu"
+    },
+    {
+      "time": 43152.66531753106,
+      "chainage_m": 122291.6320294,
+      "a": "B031",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "STKT",
+      "location": "Sasthankotta"
+    },
+    {
+      "time": 43160.173673289944,
+      "chainage_m": 141659.076,
+      "a": "B013",
+      "b": "B054",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 43173.67385356635,
+      "chainage_m": 121773.70107255054,
+      "a": "B031",
+      "b": "D114",
+      "kind": "crossing",
+      "station": "STKT",
+      "location": "Sasthankotta"
+    },
+    {
+      "time": 43181.377182999495,
+      "chainage_m": 135982.45611656393,
+      "a": "B002",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perinad and Kollam Junction"
+    },
+    {
+      "time": 43194.71990406717,
+      "chainage_m": 122291.6320294,
+      "a": "D114",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D114",
+      "cleared": 43215.9999999305,
+      "station": "STKT",
+      "location": "Sasthankotta"
+    },
+    {
+      "time": 43277.262676325816,
+      "chainage_m": 127698.24077410744,
+      "a": "D100",
+      "b": "D136",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Munroturuttu and Perinad"
+    },
+    {
+      "time": 43340.411565728704,
+      "chainage_m": 140259.42770747945,
+      "a": "B002",
+      "b": "B013",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 43343.266204290936,
+      "chainage_m": 126072.19864746342,
+      "a": "D114",
+      "b": "D136",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Sasthankotta and Munroturuttu"
+    },
+    {
+      "time": 43368.36018775717,
+      "chainage_m": 171572.33888941485,
+      "a": "B053",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 43385.110995278104,
+      "chainage_m": 130640.19737339305,
+      "a": "D100",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Munroturuttu and Perinad"
+    },
+    {
+      "time": 43396.516084078656,
+      "chainage_m": 143181.16446807826,
+      "a": "B054",
+      "b": "B072",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 43415.177230758694,
+      "chainage_m": 244079.40835241866,
+      "a": "B001",
+      "b": "B095",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 43420.28301382786,
+      "chainage_m": 124008.46776299561,
+      "a": "D136",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Sasthankotta and Munroturuttu"
+    },
+    {
+      "time": 43427.22379102982,
+      "chainage_m": 113305.14676536055,
+      "a": "B014",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 43451.41521236781,
+      "chainage_m": 128822.38938981944,
+      "a": "D114",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Munroturuttu and Perinad"
+    },
+    {
+      "time": 43476.02023044936,
+      "chainage_m": 114389.86057671669,
+      "a": "B031",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 43526.96789302077,
+      "chainage_m": 167332.10642043705,
+      "a": "B024",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 43534.372648923,
+      "chainage_m": 126670.26443344817,
+      "a": "D122",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "MQO",
+      "location": "Munroturuttu"
+    },
+    {
+      "time": 43585.28388467847,
+      "chainage_m": 135876.53583621077,
+      "a": "B013",
+      "b": "D100",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perinad and Kollam Junction"
+    },
+    {
+      "time": 43603.819696752216,
+      "chainage_m": 141868.93349236826,
+      "a": "B002",
+      "b": "B072",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 43716.4222134931,
+      "chainage_m": 198717.37110503207,
+      "a": "B052",
+      "b": "B074",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 43720.40397553021,
+      "chainage_m": 133126.1949978638,
+      "a": "B013",
+      "b": "D114",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perinad and Kollam Junction"
+    },
+    {
+      "time": 43792.64357440483,
+      "chainage_m": 115136.19820738718,
+      "a": "D101",
+      "b": "D136",
+      "kind": "crossing",
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 43814.51882461135,
+      "chainage_m": 174474.025162972,
+      "a": "B024",
+      "b": "B053",
+      "kind": "overtake",
+      "overtaker": "B024",
+      "cleared": 43835.9999999214,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 43814.545241009626,
+      "chainage_m": 174474.676975806,
+      "a": "B024",
+      "b": "B073",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 43854.33858756462,
+      "chainage_m": 174474.025162972,
+      "a": "B053",
+      "b": "B073",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 43939.98895159053,
+      "chainage_m": 199077.044840343,
+      "a": "B015",
+      "b": "B052",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 43966.31806610303,
+      "chainage_m": 119416.9303743595,
+      "a": "D101",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 43971.82986492428,
+      "chainage_m": 131815.02433293813,
+      "a": "B013",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Munroturuttu and Perinad"
+    },
+    {
+      "time": 44248.63635556618,
+      "chainage_m": 126805.020376213,
+      "a": "B013",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "MQO",
+      "location": "Munroturuttu"
+    },
+    {
+      "time": 44255.25328202163,
+      "chainage_m": 258905.906620414,
+      "a": "B001",
+      "b": "B089",
+      "kind": "overtake",
+      "overtaker": "B001",
+      "cleared": 44291.9999999148,
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 44255.32336928555,
+      "chainage_m": 258906.555355705,
+      "a": "B001",
+      "b": "B016",
+      "kind": "crossing",
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 44288.057208650025,
+      "chainage_m": 258905.906620414,
+      "a": "B016",
+      "b": "B089",
+      "kind": "crossing",
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 44399.99111163637,
+      "chainage_m": 154133.203259312,
+      "a": "B002",
+      "b": "B054",
+      "kind": "overtake",
+      "overtaker": "B002",
+      "cleared": 44561.9999999109,
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 44420.597053394275,
+      "chainage_m": 154133.204325773,
+      "a": "B002",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 44420.59891591413,
+      "chainage_m": 154133.203259312,
+      "a": "B054",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 44448.72305602574,
+      "chainage_m": 192907.828740557,
+      "a": "B015",
+      "b": "B074",
+      "kind": "overtake",
+      "overtaker": "B015",
+      "cleared": 44503.9999999117,
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 44480.93006600189,
+      "chainage_m": 263597.71105841914,
+      "a": "B001",
+      "b": "B017",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Eraniel and Viranialur"
+    },
+    {
+      "time": 44507.730762037245,
+      "chainage_m": 192357.94194004108,
+      "a": "B015",
+      "b": "B024",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kaniyapuram and Kazhakuttam"
+    },
+    {
+      "time": 44516.12524278397,
+      "chainage_m": 57663.7361082562,
+      "a": "B012",
+      "b": "B025",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 44536.56092833694,
+      "chainage_m": 262065.13761610817,
+      "a": "B017",
+      "b": "B089",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Eraniel and Viranialur"
+    },
+    {
+      "time": 44593.2341515035,
+      "chainage_m": 192907.17843695,
+      "a": "B024",
+      "b": "B074",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 44701.45203160681,
+      "chainage_m": 149544.07059035636,
+      "a": "D100",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 44838.83639802601,
+      "chainage_m": 184989.512393557,
+      "a": "B015",
+      "b": "B053",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 44841.94597611047,
+      "chainage_m": 161516.809290019,
+      "a": "B002",
+      "b": "B073",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 44851.54815520748,
+      "chainage_m": 57596.07900160599,
+      "a": "B012",
+      "b": "B036",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 44950.2921960704,
+      "chainage_m": 143055.30063224427,
+      "a": "D108",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 45025.173129181894,
+      "chainage_m": 101066.71534775753,
+      "a": "D102",
+      "b": "D122",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 45026.30001216614,
+      "chainage_m": 187648.05651689623,
+      "a": "B053",
+      "b": "B074",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 45028.16948342732,
+      "chainage_m": 158791.1013137544,
+      "a": "B054",
+      "b": "B073",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 45064.72371016353,
+      "chainage_m": 141659.402864481,
+      "a": "D123",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 45126.499939532274,
+      "chainage_m": 199077.043897153,
+      "a": "B024",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 45174.22399065939,
+      "chainage_m": 141658.7407142,
+      "a": "D101",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 45213.581632232715,
+      "chainage_m": 157765.76600065114,
+      "a": "B073",
+      "b": "D100",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 45347.19193437598,
+      "chainage_m": 76362.19782067012,
+      "a": "B014",
+      "b": "B025",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Takazhi and Karuvatta"
+    },
+    {
+      "time": 45407.72901102667,
+      "chainage_m": 44951.740554159886,
+      "a": "B003",
+      "b": "B012",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 45435.99928328332,
+      "chainage_m": 110807.63392798956,
+      "a": "B013",
+      "b": "D102",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 45440.13523154074,
+      "chainage_m": 169583.24892122947,
+      "a": "B002",
+      "b": "B015",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 45515.55690229646,
+      "chainage_m": 154133.3354038811,
+      "a": "B073",
+      "b": "D108",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 45515.64188985286,
+      "chainage_m": 80944.9903247465,
+      "a": "B025",
+      "b": "B031",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Takazhi and Karuvatta"
+    },
+    {
+      "time": 45631.287286988554,
+      "chainage_m": 165326.07656170367,
+      "a": "B015",
+      "b": "B054",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 45679.36504039722,
+      "chainage_m": 193375.87553029865,
+      "a": "B053",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 45753.78153655728,
+      "chainage_m": 177594.28712348777,
+      "a": "B002",
+      "b": "B074",
+      "kind": "crossing",
+      "station": "CRY",
+      "location": "Chirayinkeezh"
+    },
+    {
+      "time": 45792.88641835216,
+      "chainage_m": 164916.69058645962,
+      "a": "B015",
+      "b": "D100",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 45867.49188198238,
+      "chainage_m": 150535.1920807019,
+      "a": "B073",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 45901.18350207732,
+      "chainage_m": 162510.6218975591,
+      "a": "B015",
+      "b": "D108",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Edavai and Varkala Sivagiri"
+    },
+    {
+      "time": 45938.64247367716,
+      "chainage_m": 149526.7980320928,
+      "a": "B073",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 46022.62249574264,
+      "chainage_m": 69798.7933080475,
+      "a": "B031",
+      "b": "B036",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 46024.75449659493,
+      "chainage_m": 69810.42617758883,
+      "a": "B014",
+      "b": "B036",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 46070.24994466534,
+      "chainage_m": 119524.62138186034,
+      "a": "D102",
+      "b": "D123",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 46119.30207883473,
+      "chainage_m": 187012.25819083728,
+      "a": "B002",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 46148.53104422544,
+      "chainage_m": 146440.459239366,
+      "a": "B073",
+      "b": "D109",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 46236.78816960191,
+      "chainage_m": 173980.84794535485,
+      "a": "B054",
+      "b": "B074",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 46245.218535162196,
+      "chainage_m": 153702.1312868904,
+      "a": "B015",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 46303.070126246086,
+      "chainage_m": 152199.74603494324,
+      "a": "B015",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 46331.19580726714,
+      "chainage_m": 172546.35003207088,
+      "a": "B074",
+      "b": "D100",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 46338.42526178457,
+      "chainage_m": 143622.93916842822,
+      "a": "B055",
+      "b": "B073",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 46339.984100993686,
+      "chainage_m": 199077.043349615,
+      "a": "B053",
+      "b": "B075",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 46370.222115672696,
+      "chainage_m": 150475.6276802008,
+      "a": "B015",
+      "b": "D109",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 46406.38530516752,
+      "chainage_m": 174474.025162972,
+      "a": "B054",
+      "b": "D100",
+      "kind": "overtake",
+      "overtaker": "D100",
+      "cleared": 46427.9999998837,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 46417.84561279731,
+      "chainage_m": 154133.203259315,
+      "a": "D101",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D101",
+      "cleared": 46577.9999998815,
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 46506.71153196786,
+      "chainage_m": 177038.33666038432,
+      "a": "D100",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kadakavur and Chirayinkeezh"
+    },
+    {
+      "time": 46525.79479328849,
+      "chainage_m": 146439.811294699,
+      "a": "B015",
+      "b": "B055",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 46575.625330391704,
+      "chainage_m": 93257.33230860645,
+      "a": "B013",
+      "b": "B025",
+      "kind": "crossing",
+      "station": "CHPD",
+      "location": "Cheppad"
+    },
+    {
+      "time": 46576.754004089984,
+      "chainage_m": 170326.93019732885,
+      "a": "B074",
+      "b": "D108",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 46596.116263129195,
+      "chainage_m": 194357.0365770692,
+      "a": "B002",
+      "b": "B075",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 46606.736659248905,
+      "chainage_m": 174474.025162972,
+      "a": "B054",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 46673.87804939563,
+      "chainage_m": 172765.3000958322,
+      "a": "D108",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 46711.98374725782,
+      "chainage_m": 154133.203259315,
+      "a": "D109",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D109",
+      "cleared": 46873.9999998772,
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 46740.38530566736,
+      "chainage_m": 174474.025162972,
+      "a": "B054",
+      "b": "D108",
+      "kind": "overtake",
+      "overtaker": "D108",
+      "cleared": 46761.9999998789,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 46780.208472900886,
+      "chainage_m": 57663.0891302702,
+      "a": "B003",
+      "b": "B014",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 46810.2041193655,
+      "chainage_m": 57673.1270382846,
+      "a": "B003",
+      "b": "B031",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 46873.88728054118,
+      "chainage_m": 205826.47501633264,
+      "a": "B032",
+      "b": "B053",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 46966.29103493389,
+      "chainage_m": 164203.07414819888,
+      "a": "B074",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Edavai and Varkala Sivagiri"
+    },
+    {
+      "time": 47006.175007896745,
+      "chainage_m": 8499.579238747197,
+      "a": "B004",
+      "b": "B012",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 47013.757173841776,
+      "chainage_m": 190044.70513943545,
+      "a": "B075",
+      "b": "D100",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kaniyapuram and Kazhakuttam"
+    },
+    {
+      "time": 47115.66165718953,
+      "chainage_m": 141659.401211019,
+      "a": "B015",
+      "b": "D102",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 47118.23063026597,
+      "chainage_m": 201962.37956371787,
+      "a": "B002",
+      "b": "B032",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 47145.662357922156,
+      "chainage_m": 165321.72565473,
+      "a": "D101",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 47153.445980222525,
+      "chainage_m": 161516.809290019,
+      "a": "B074",
+      "b": "D109",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 47270.95066685528,
+      "chainage_m": 164262.5098096514,
+      "a": "D109",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Edavai and Varkala Sivagiri"
+    },
+    {
+      "time": 47284.12739797716,
+      "chainage_m": 188469.0712513732,
+      "a": "B075",
+      "b": "D108",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 47360.3837321032,
+      "chainage_m": 82778.91290035016,
+      "a": "B013",
+      "b": "B036",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karuvatta and Haripad"
+    },
+    {
+      "time": 47396.63797938714,
+      "chainage_m": 158661.497551879,
+      "a": "B074",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 47478.4092721643,
+      "chainage_m": 159685.49929284485,
+      "a": "D130",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kappil and Edavai"
+    },
+    {
+      "time": 47497.75748631243,
+      "chainage_m": 197546.80254346642,
+      "a": "B032",
+      "b": "D100",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Veli and Thiruvananthapuram North"
+    },
+    {
+      "time": 47522.01666372812,
+      "chainage_m": 157899.91901615117,
+      "a": "B055",
+      "b": "B074",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 47626.64470067307,
+      "chainage_m": 184911.4291344186,
+      "a": "B054",
+      "b": "B075",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 47644.54910949301,
+      "chainage_m": 158660.848366515,
+      "a": "B055",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 47680.34734684284,
+      "chainage_m": 193077.77291673314,
+      "a": "B032",
+      "b": "D108",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 47700.57315386957,
+      "chainage_m": 77953.41749309558,
+      "a": "B003",
+      "b": "B013",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Takazhi and Karuvatta"
+    },
+    {
+      "time": 47777.87739092618,
+      "chainage_m": 206358.7619401024,
+      "a": "B002",
+      "b": "B016",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 47793.67862309444,
+      "chainage_m": 154133.854703671,
+      "a": "B074",
+      "b": "D102",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 47877.61122449483,
+      "chainage_m": 154995.482036539,
+      "a": "D102",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 47925.84622411687,
+      "chainage_m": 181626.542870465,
+      "a": "B075",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "PGZ",
+      "location": "Perunguzhi"
+    },
+    {
+      "time": 47944.45076689501,
+      "chainage_m": 121575.78257654874,
+      "a": "B015",
+      "b": "B025",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 48047.92075335554,
+      "chainage_m": 188930.73183757224,
+      "a": "B032",
+      "b": "B054",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 48129.066035524906,
+      "chainage_m": 186827.89079770746,
+      "a": "B032",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 48152.71828179955,
+      "chainage_m": 213856.5585678986,
+      "a": "B002",
+      "b": "B017",
+      "kind": "crossing",
+      "station": "NEM",
+      "location": "Thiruvananthapuram South"
+    },
+    {
+      "time": 48171.9130231597,
+      "chainage_m": 33980.87615553471,
+      "a": "B004",
+      "b": "B014",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 48189.66104435837,
+      "chainage_m": 114982.3485493565,
+      "a": "B015",
+      "b": "D103",
+      "kind": "crossing",
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 48290.05757749603,
+      "chainage_m": 34018.9858940392,
+      "a": "B004",
+      "b": "B031",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 48350.66511123345,
+      "chainage_m": 177406.65443559474,
+      "a": "B075",
+      "b": "D109",
+      "kind": "crossing",
+      "station": "CRY",
+      "location": "Chirayinkeezh"
+    },
+    {
+      "time": 48392.175723988556,
+      "chainage_m": 109607.84404659687,
+      "a": "B015",
+      "b": "D115",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 48422.507001249665,
+      "chainage_m": 179230.77640799602,
+      "a": "B032",
+      "b": "D109",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 48515.87517036381,
+      "chainage_m": 201701.08429559023,
+      "a": "B016",
+      "b": "D108",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 48598.58896424043,
+      "chainage_m": 203814.15190960318,
+      "a": "D108",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "TVP",
+      "location": "Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 48610.2613512394,
+      "chainage_m": 174474.676975805,
+      "a": "B032",
+      "b": "B075",
+      "kind": "overtake",
+      "overtaker": "B032",
+      "cleared": 48629.9999998517,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 48718.71786162897,
+      "chainage_m": 171718.65299001202,
+      "a": "B032",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 48754.19524805674,
+      "chainage_m": 205243.39458522454,
+      "a": "B076",
+      "b": "D108",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram Pettah and Thiruvananthapuram Central"
+    },
+    {
+      "time": 48813.34906341197,
+      "chainage_m": 173186.76548287293,
+      "a": "B075",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 48875.37924468584,
+      "chainage_m": 167533.5335752224,
+      "a": "B032",
+      "b": "B055",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 48892.37494857597,
+      "chainage_m": 101014.9162604202,
+      "a": "B003",
+      "b": "B015",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 48919.51455700792,
+      "chainage_m": 198546.5995204244,
+      "a": "B016",
+      "b": "B054",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 48989.52730838413,
+      "chainage_m": 196984.52089687728,
+      "a": "B016",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "VELI",
+      "location": "Veli"
+    },
+    {
+      "time": 49028.603324837044,
+      "chainage_m": 165322.372348991,
+      "a": "B032",
+      "b": "D102",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 49029.872036792294,
+      "chainage_m": 171487.66399994522,
+      "a": "B055",
+      "b": "B075",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 49055.66246206182,
+      "chainage_m": 199076.395355441,
+      "a": "B054",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 49085.18712121603,
+      "chainage_m": 198957.03823937813,
+      "a": "D101",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 49138.59528308068,
+      "chainage_m": 193224.1810480278,
+      "a": "B016",
+      "b": "D109",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 49202.539777129896,
+      "chainage_m": 167280.47635803622,
+      "a": "B075",
+      "b": "D102",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 49242.01890013894,
+      "chainage_m": 199076.395355441,
+      "a": "B054",
+      "b": "D101",
+      "kind": "overtake",
+      "overtaker": "D101",
+      "cleared": 49309.9999998418,
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 49281.54946332714,
+      "chainage_m": 199253.03388025585,
+      "a": "B076",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 49285.120692975164,
+      "chainage_m": 141659.076,
+      "a": "B025",
+      "b": "B056",
+      "kind": "overtake",
+      "overtaker": "B025",
+      "cleared": 49345.9999998413,
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 49285.120692975164,
+      "chainage_m": 141659.076,
+      "a": "B025",
+      "b": "D137",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 49287.91857507397,
+      "chainage_m": 141660.7728430363,
+      "a": "B025",
+      "b": "D130",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 49294.94851703672,
+      "chainage_m": 196760.59258785774,
+      "a": "D109",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "VELI",
+      "location": "Veli"
+    },
+    {
+      "time": 49330.83224374375,
+      "chainage_m": 199975.18971196967,
+      "a": "B017",
+      "b": "D101",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 49335.99667608031,
+      "chainage_m": 174474.025162977,
+      "a": "B055",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B055",
+      "cleared": 49469.9999998395,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 49388.858500330876,
+      "chainage_m": 57620.11240284492,
+      "a": "B004",
+      "b": "B013",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 49451.224111284595,
+      "chainage_m": 199076.395355441,
+      "a": "B054",
+      "b": "B076",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 49486.807667987225,
+      "chainage_m": 198870.60813206158,
+      "a": "B076",
+      "b": "D109",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 49517.27035529226,
+      "chainage_m": 141658.743288709,
+      "a": "D103",
+      "b": "D137",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 49568.964794671585,
+      "chainage_m": 174474.025162977,
+      "a": "D102",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "D102",
+      "cleared": 49593.9999998377,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 49641.06476537558,
+      "chainage_m": 8378.58292741611,
+      "a": "B026",
+      "b": "B031",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 49641.346377061236,
+      "chainage_m": 8383.938175344056,
+      "a": "B014",
+      "b": "B026",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 49658.00122048633,
+      "chainage_m": 199076.395355441,
+      "a": "B054",
+      "b": "D109",
+      "kind": "overtake",
+      "overtaker": "D109",
+      "cleared": 49747.9999998354,
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 49661.68691637408,
+      "chainage_m": 199077.0458259,
+      "a": "B017",
+      "b": "D109",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 49665.673171893926,
+      "chainage_m": 199076.395355441,
+      "a": "B017",
+      "b": "B054",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 49742.31802417457,
+      "chainage_m": 137224.00558928386,
+      "a": "D115",
+      "b": "D137",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perinad and Kollam Junction"
+    },
+    {
+      "time": 49843.02748967508,
+      "chainage_m": 154730.97419269913,
+      "a": "B025",
+      "b": "B032",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 49866.1899867718,
+      "chainage_m": 181028.10572948342,
+      "a": "B016",
+      "b": "B055",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 49874.327859484,
+      "chainage_m": 244114.0756008479,
+      "a": "B002",
+      "b": "B096",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 49941.333316602555,
+      "chainage_m": 179021.504156558,
+      "a": "B016",
+      "b": "D102",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 49995.34352947094,
+      "chainage_m": 158733.21093306283,
+      "a": "B025",
+      "b": "B075",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 50018.11942204525,
+      "chainage_m": 177077.29598070058,
+      "a": "B016",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "CRY",
+      "location": "Chirayinkeezh"
+    },
+    {
+      "time": 50117.52014748718,
+      "chainage_m": 127239.13629619335,
+      "a": "B003",
+      "b": "D137",
+      "kind": "crossing",
+      "station": "MQO",
+      "location": "Munroturuttu"
+    },
+    {
+      "time": 50124.15036462332,
+      "chainage_m": 183702.97551905175,
+      "a": "B055",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perunguzhi and Murukkampuzha"
+    },
+    {
+      "time": 50197.52293068137,
+      "chainage_m": 181785.0580058326,
+      "a": "D102",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "PGZ",
+      "location": "Perunguzhi"
+    },
+    {
+      "time": 50303.93268838264,
+      "chainage_m": 150701.22460523417,
+      "a": "B032",
+      "b": "B056",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 50342.692462268446,
+      "chainage_m": 178010.62260481424,
+      "a": "D131",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "CRY",
+      "location": "Chirayinkeezh"
+    },
+    {
+      "time": 50343.804661546106,
+      "chainage_m": 149719.579648443,
+      "a": "B032",
+      "b": "D110",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 50371.71046924272,
+      "chainage_m": 120687.25340754831,
+      "a": "D104",
+      "b": "D137",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 50409.24864952014,
+      "chainage_m": 186989.73201815708,
+      "a": "B055",
+      "b": "B076",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 50409.765156571164,
+      "chainage_m": 147933.40988813387,
+      "a": "B032",
+      "b": "D103",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 50415.42444183196,
+      "chainage_m": 69851.607370953,
+      "a": "B004",
+      "b": "B015",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 50468.139513763446,
+      "chainage_m": 185470.08186009925,
+      "a": "B076",
+      "b": "D102",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 50481.2899750539,
+      "chainage_m": 188674.67402465377,
+      "a": "B017",
+      "b": "B055",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 50536.934482110104,
+      "chainage_m": 154129.9957626574,
+      "a": "B056",
+      "b": "B075",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 50537.48056277611,
+      "chainage_m": 187240.720203362,
+      "a": "B017",
+      "b": "D102",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 50594.835467881545,
+      "chainage_m": 153690.54577824043,
+      "a": "B075",
+      "b": "D110",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 50612.131916597675,
+      "chainage_m": 165322.369391228,
+      "a": "B016",
+      "b": "B025",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 50649.98792310252,
+      "chainage_m": 154133.203259312,
+      "a": "B056",
+      "b": "D110",
+      "kind": "overtake",
+      "overtaker": "D110",
+      "cleared": 50811.9999998199,
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 50690.10625792749,
+      "chainage_m": 152315.0083151885,
+      "a": "B075",
+      "b": "D103",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 50694.59905637172,
+      "chainage_m": 184990.162575091,
+      "a": "B017",
+      "b": "B076",
+      "kind": "overtake",
+      "overtaker": "B017",
+      "cleared": 50749.9999998208,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 50768.32337442295,
+      "chainage_m": 166993.8319035907,
+      "a": "B025",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 50812.44640622694,
+      "chainage_m": 183777.96833447643,
+      "a": "B017",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perunguzhi and Murukkampuzha"
+    },
+    {
+      "time": 50830.598559859616,
+      "chainage_m": 141659.403640426,
+      "a": "B003",
+      "b": "B032",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 50867.25510349331,
+      "chainage_m": 184863.1699231722,
+      "a": "B076",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 51056.30071320934,
+      "chainage_m": 138727.27920267635,
+      "a": "B032",
+      "b": "D104",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perinad and Kollam Junction"
+    },
+    {
+      "time": 51081.22267385975,
+      "chainage_m": 161252.7039413364,
+      "a": "B016",
+      "b": "D110",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 51082.75284170788,
+      "chainage_m": 146728.53521008661,
+      "a": "B003",
+      "b": "B075",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 51122.92787366481,
+      "chainage_m": 176115.77784850931,
+      "a": "B017",
+      "b": "B025",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kadakavur and Chirayinkeezh"
+    },
+    {
+      "time": 51128.56992635543,
+      "chainage_m": 83941.40525027225,
+      "a": "B004",
+      "b": "B040",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karuvatta and Haripad"
+    },
+    {
+      "time": 51177.445252455596,
+      "chainage_m": 163725.55945843126,
+      "a": "D110",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Edavai and Varkala Sivagiri"
+    },
+    {
+      "time": 51182.79585007694,
+      "chainage_m": 158660.847908768,
+      "a": "B016",
+      "b": "B056",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 51231.84857966132,
+      "chainage_m": 157433.68191094702,
+      "a": "B016",
+      "b": "D103",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 51262.3977205775,
+      "chainage_m": 179712.96063489866,
+      "a": "B025",
+      "b": "B076",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 51330.08284122517,
+      "chainage_m": 34023.989301084766,
+      "a": "B013",
+      "b": "B026",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 51337.81316746149,
+      "chainage_m": 159776.40802536538,
+      "a": "B056",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kappil and Edavai"
+    },
+    {
+      "time": 51377.36641197515,
+      "chainage_m": 101626.51824892248,
+      "a": "D105",
+      "b": "D137",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 51384.59673222706,
+      "chainage_m": 154517.86443492168,
+      "a": "B003",
+      "b": "B016",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 51406.5847486982,
+      "chainage_m": 158062.70544312618,
+      "a": "D103",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 51463.17902059386,
+      "chainage_m": 156571.41374174732,
+      "a": "B003",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 51512.94165908216,
+      "chainage_m": 165944.72181730767,
+      "a": "B017",
+      "b": "D110",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 51634.06346907492,
+      "chainage_m": 142304.08357886283,
+      "a": "B075",
+      "b": "D104",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 51734.08547230101,
+      "chainage_m": 164878.58503894843,
+      "a": "B017",
+      "b": "B056",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 51769.97272085817,
+      "chainage_m": 199076.395355441,
+      "a": "B055",
+      "b": "B077",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 51769.978930356454,
+      "chainage_m": 199076.393441603,
+      "a": "B077",
+      "b": "D102",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 51776.40966691788,
+      "chainage_m": 192907.179391758,
+      "a": "B025",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B025",
+      "cleared": 51797.9999998056,
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 51800.97022756858,
+      "chainage_m": 163532.29616099922,
+      "a": "B017",
+      "b": "D103",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Edavai and Varkala Sivagiri"
+    },
+    {
+      "time": 51802.56324776632,
+      "chainage_m": 199076.395355441,
+      "a": "B055",
+      "b": "D102",
+      "kind": "overtake",
+      "overtaker": "D102",
+      "cleared": 51869.9999998045,
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 51858.13343047235,
+      "chainage_m": 173912.35432496134,
+      "a": "B076",
+      "b": "D110",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 51866.24468253997,
+      "chainage_m": 161849.5058469797,
+      "a": "B003",
+      "b": "B017",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 51872.982314143694,
+      "chainage_m": 44891.73658006094,
+      "a": "B015",
+      "b": "B026",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 51914.775898696615,
+      "chainage_m": 196512.42351643,
+      "a": "B025",
+      "b": "B077",
+      "kind": "crossing",
+      "station": "VELI",
+      "location": "Veli"
+    },
+    {
+      "time": 51976.85619264133,
+      "chainage_m": 147094.4675426615,
+      "a": "B016",
+      "b": "D104",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 52009.80279161925,
+      "chainage_m": 193982.28170155795,
+      "a": "B077",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 52053.23699121481,
+      "chainage_m": 204007.39454246423,
+      "a": "D102",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "TVP",
+      "location": "Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 52118.78211084301,
+      "chainage_m": 143431.24600692486,
+      "a": "B016",
+      "b": "B057",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 52130.21074357923,
+      "chainage_m": 114640.211532342,
+      "a": "B032",
+      "b": "D105",
+      "kind": "crossing",
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 52145.63332910338,
+      "chainage_m": 151452.79561189224,
+      "a": "D104",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 52163.45972046595,
+      "chainage_m": 201142.3926244533,
+      "a": "B055",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 52172.26197561453,
+      "chainage_m": 170732.55158583142,
+      "a": "B056",
+      "b": "B076",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 52334.33368563802,
+      "chainage_m": 166379.77698929104,
+      "a": "B076",
+      "b": "D103",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 52340.81634868945,
+      "chainage_m": 146439.811294699,
+      "a": "B057",
+      "b": "D131",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 52354.20985839989,
+      "chainage_m": 154133.20452068,
+      "a": "B017",
+      "b": "D104",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 52418.280877743826,
+      "chainage_m": 24107.282187982782,
+      "a": "B005",
+      "b": "B013",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 52448.12992071645,
+      "chainage_m": 199077.043897153,
+      "a": "B025",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 52453.25381728389,
+      "chainage_m": 189173.2545219686,
+      "a": "B077",
+      "b": "D110",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 52491.964066613145,
+      "chainage_m": 165321.724382033,
+      "a": "B003",
+      "b": "B076",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 52526.74942265713,
+      "chainage_m": 213947.23553888194,
+      "a": "B090",
+      "b": "B096",
+      "kind": "crossing",
+      "station": "NEM",
+      "location": "Thiruvananthapuram South"
+    },
+    {
+      "time": 52599.447952587034,
+      "chainage_m": 150421.47097327161,
+      "a": "B017",
+      "b": "B057",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 52600.59594824714,
+      "chainage_m": 199076.393709781,
+      "a": "D124",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 52661.38530507127,
+      "chainage_m": 174474.025162972,
+      "a": "B056",
+      "b": "D103",
+      "kind": "overtake",
+      "overtaker": "D103",
+      "cleared": 52683.9999997927,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 52729.445969343404,
+      "chainage_m": 161516.809290019,
+      "a": "B076",
+      "b": "D104",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 52748.10291889792,
+      "chainage_m": 107198.9681489306,
+      "a": "B004",
+      "b": "B032",
+      "kind": "crossing",
+      "station": "OCR",
+      "location": "Ochira"
+    },
+    {
+      "time": 52842.657231917525,
+      "chainage_m": 194278.28743049823,
+      "a": "D110",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 52849.2829684004,
+      "chainage_m": 132124.8960471235,
+      "a": "B016",
+      "b": "D105",
+      "kind": "crossing",
+      "station": "PRND",
+      "location": "Perinad"
+    },
+    {
+      "time": 52910.33427773891,
+      "chainage_m": 34012.58356803735,
+      "a": "B005",
+      "b": "B015",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 52995.385304259165,
+      "chainage_m": 174474.025162972,
+      "a": "B003",
+      "b": "B056",
+      "kind": "overtake",
+      "overtaker": "B003",
+      "cleared": 53017.9999997878,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 53065.68929648882,
+      "chainage_m": 184854.84708797897,
+      "a": "B077",
+      "b": "D103",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 53138.75796823948,
+      "chainage_m": 57711.48637556007,
+      "a": "B026",
+      "b": "B040",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 53164.55559071657,
+      "chainage_m": 157159.99483914595,
+      "a": "B057",
+      "b": "B076",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 53234.126011689346,
+      "chainage_m": 189182.40938716356,
+      "a": "D103",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 53273.84626041729,
+      "chainage_m": 181626.542870465,
+      "a": "B003",
+      "b": "B077",
+      "kind": "crossing",
+      "station": "PGZ",
+      "location": "Perunguzhi"
+    },
+    {
+      "time": 53276.599086015485,
+      "chainage_m": 141658.749166708,
+      "a": "B017",
+      "b": "D105",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 53401.12482981961,
+      "chainage_m": 184890.19751694755,
+      "a": "B003",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 53437.9289928676,
+      "chainage_m": 116510.36469647645,
+      "a": "B004",
+      "b": "B016",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 53445.24679031035,
+      "chainage_m": 24023.8818568202,
+      "a": "B013",
+      "b": "B015",
+      "kind": "overtake",
+      "overtaker": "B015",
+      "cleared": 54153.9999997713,
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 53484.46795416987,
+      "chainage_m": 179015.6911131667,
+      "a": "B056",
+      "b": "B077",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 53556.4020278799,
+      "chainage_m": 180939.0574380914,
+      "a": "B056",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 53640.337407572246,
+      "chainage_m": 177571.028413089,
+      "a": "B077",
+      "b": "D104",
+      "kind": "crossing",
+      "station": "CRY",
+      "location": "Chirayinkeezh"
+    },
+    {
+      "time": 53675.95139598138,
+      "chainage_m": 178449.6970625837,
+      "a": "D104",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 53685.60102980923,
+      "chainage_m": 206269.843,
+      "a": "B078",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 53809.3313492185,
+      "chainage_m": 150416.60030099005,
+      "a": "B076",
+      "b": "D105",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 53840.376035556066,
+      "chainage_m": 205412.16531162322,
+      "a": "B078",
+      "b": "D110",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram Pettah and Thiruvananthapuram Central"
+    },
+    {
+      "time": 53859.85768917453,
+      "chainage_m": 127637.55306391654,
+      "a": "B004",
+      "b": "B017",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Munroturuttu and Perinad"
+    },
+    {
+      "time": 54031.57143711002,
+      "chainage_m": 174474.676975805,
+      "a": "B077",
+      "b": "D124",
+      "kind": "overtake",
+      "overtaker": "D124",
+      "cleared": 54053.9999997728,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 54108.416388427846,
+      "chainage_m": 23953.15301460286,
+      "a": "B015",
+      "b": "B037",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 54126.80606900219,
+      "chainage_m": 57622.91453898392,
+      "a": "B005",
+      "b": "B040",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 54164.58035645338,
+      "chainage_m": 202397.84508335634,
+      "a": "B078",
+      "b": "D103",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 54215.33531229026,
+      "chainage_m": 169800.94986536048,
+      "a": "B057",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 54239.98243284853,
+      "chainage_m": 24023.2316186899,
+      "a": "B013",
+      "b": "B037",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 54261.1235433719,
+      "chainage_m": 143624.9928912319,
+      "a": "B058",
+      "b": "B076",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 54350.246405007616,
+      "chainage_m": 82680.62922007528,
+      "a": "B026",
+      "b": "B032",
+      "kind": "crossing",
+      "station": "KVTA",
+      "location": "Karuvatta"
+    },
+    {
+      "time": 54381.67122273437,
+      "chainage_m": 199077.043349615,
+      "a": "B003",
+      "b": "B078",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 54404.48521366488,
+      "chainage_m": 171707.399718042,
+      "a": "B057",
+      "b": "B077",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 54589.725023791085,
+      "chainage_m": 164704.45984909538,
+      "a": "D105",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Edavai and Varkala Sivagiri"
+    },
+    {
+      "time": 54607.23831736944,
+      "chainage_m": 101023.26311672,
+      "a": "B016",
+      "b": "D116",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 54730.108081001614,
+      "chainage_m": 193483.77481059957,
+      "a": "B056",
+      "b": "B078",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 54776.42069802742,
+      "chainage_m": 165324.62941695782,
+      "a": "B077",
+      "b": "D105",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 54816.20842679398,
+      "chainage_m": 192907.828740557,
+      "a": "B078",
+      "b": "D104",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 54912.20717470196,
+      "chainage_m": 107490.16094938102,
+      "a": "B017",
+      "b": "D116",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 55051.43309762729,
+      "chainage_m": 244112.1895483056,
+      "a": "B018",
+      "b": "B090",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 55117.99128772065,
+      "chainage_m": 69851.6073352275,
+      "a": "B005",
+      "b": "B032",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 55153.9822010494,
+      "chainage_m": 154133.854470922,
+      "a": "B058",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 55155.058609336185,
+      "chainage_m": 93308.0610643364,
+      "a": "B016",
+      "b": "B026",
+      "kind": "crossing",
+      "station": "CHPD",
+      "location": "Cheppad"
+    },
+    {
+      "time": 55329.54777434896,
+      "chainage_m": 152992.0833716676,
+      "a": "B004",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 55450.47261326443,
+      "chainage_m": 100881.58944425733,
+      "a": "B017",
+      "b": "B026",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 55498.127422855716,
+      "chainage_m": 199076.395355441,
+      "a": "B056",
+      "b": "D104",
+      "kind": "overtake",
+      "overtaker": "D104",
+      "cleared": 55565.9999997508,
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 55531.89101604452,
+      "chainage_m": 158660.84576734,
+      "a": "B058",
+      "b": "B077",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 55554.87803204043,
+      "chainage_m": 185000.35980996524,
+      "a": "B057",
+      "b": "B078",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 55684.41770239789,
+      "chainage_m": 184990.162575095,
+      "a": "B078",
+      "b": "D105",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 55700.98430631177,
+      "chainage_m": 202830.34192165866,
+      "a": "D104",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 55735.6720460834,
+      "chainage_m": 154885.681193494,
+      "a": "B004",
+      "b": "B077",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 55801.491789303764,
+      "chainage_m": 200110.29553198078,
+      "a": "B056",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 55842.31103794797,
+      "chainage_m": 206099.01595484072,
+      "a": "B033",
+      "b": "D104",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 55902.15138780181,
+      "chainage_m": 977.383741155659,
+      "a": "B006",
+      "b": "B013",
+      "kind": "crossing",
+      "station": "ERS",
+      "location": "Ernakulam Junction"
+    },
+    {
+      "time": 55906.984935385684,
+      "chainage_m": 34032.20028397128,
+      "a": "B037",
+      "b": "B040",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 55912.38053086398,
+      "chainage_m": 83213.92261767061,
+      "a": "B005",
+      "b": "B016",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karuvatta and Haripad"
+    },
+    {
+      "time": 56057.641551631015,
+      "chainage_m": 203778.766149166,
+      "a": "B033",
+      "b": "B056",
+      "kind": "crossing",
+      "station": "TVP",
+      "location": "Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 56195.455477763084,
+      "chainage_m": 205685.6801309359,
+      "a": "B056",
+      "b": "B079",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 56210.05576520191,
+      "chainage_m": 235778.26689850146,
+      "a": "B018",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "PASA",
+      "location": "Parassala"
+    },
+    {
+      "time": 56240.21353204027,
+      "chainage_m": 88024.4946863539,
+      "a": "B005",
+      "b": "B017",
+      "kind": "crossing",
+      "station": "HAD",
+      "location": "Haripad"
+    },
+    {
+      "time": 56241.75373581112,
+      "chainage_m": 258864.6569623109,
+      "a": "B019",
+      "b": "B090",
+      "kind": "crossing",
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 56259.27871101638,
+      "chainage_m": 134952.35101672699,
+      "a": "D116",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perinad and Kollam Junction"
+    },
+    {
+      "time": 56336.001865312406,
+      "chainage_m": 192907.179391758,
+      "a": "B057",
+      "b": "D105",
+      "kind": "overtake",
+      "overtaker": "D105",
+      "cleared": 56403.9999997386,
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 56444.9062289337,
+      "chainage_m": 194216.70697843295,
+      "a": "D105",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 56501.65847120364,
+      "chainage_m": 193051.16409364663,
+      "a": "B057",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 56521.588803027094,
+      "chainage_m": 140160.79508537764,
+      "a": "D116",
+      "b": "D138",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 56612.76101753678,
+      "chainage_m": 198427.4599398421,
+      "a": "B033",
+      "b": "D105",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 56634.584952566205,
+      "chainage_m": 44921.1156492341,
+      "a": "B032",
+      "b": "B037",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 56737.2769187479,
+      "chainage_m": 196863.0453227249,
+      "a": "B033",
+      "b": "B057",
+      "kind": "crossing",
+      "station": "VELI",
+      "location": "Veli"
+    },
+    {
+      "time": 56794.68906431083,
+      "chainage_m": 223419.55740844813,
+      "a": "B003",
+      "b": "B018",
+      "kind": "crossing",
+      "station": "NYY",
+      "location": "Neyyattinkara"
+    },
+    {
+      "time": 56806.20753000044,
+      "chainage_m": 199077.043349615,
+      "a": "B079",
+      "b": "D105",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 56809.83080248928,
+      "chainage_m": 120574.7447100794,
+      "a": "B026",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 56856.745401473876,
+      "chainage_m": 173583.87819171822,
+      "a": "B058",
+      "b": "B078",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 56923.32622154302,
+      "chainage_m": 172257.06073200208,
+      "a": "B004",
+      "b": "B078",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 56944.3878127032,
+      "chainage_m": 198209.53007793313,
+      "a": "B057",
+      "b": "B079",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Veli and Thiruvananthapuram North"
+    },
+    {
+      "time": 56995.676413847475,
+      "chainage_m": 24014.824672835923,
+      "a": "B006",
+      "b": "B040",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 57013.88887746935,
+      "chainage_m": 174474.025162972,
+      "a": "B004",
+      "b": "B058",
+      "kind": "overtake",
+      "overtaker": "B004",
+      "cleared": 57033.9999997294,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 57037.05613005056,
+      "chainage_m": 126512.18754740326,
+      "a": "B026",
+      "b": "D138",
+      "kind": "crossing",
+      "station": "MQO",
+      "location": "Munroturuttu"
+    },
+    {
+      "time": 57056.2199739518,
+      "chainage_m": 244130.89538301816,
+      "a": "B019",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 57210.44296657794,
+      "chainage_m": 179509.5041459402,
+      "a": "B004",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 57291.50696403993,
+      "chainage_m": 177412.41171825773,
+      "a": "B058",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "CRY",
+      "location": "Chirayinkeezh"
+    },
+    {
+      "time": 57403.76125788652,
+      "chainage_m": 184529.3174548135,
+      "a": "B004",
+      "b": "B033",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 57472.98335507031,
+      "chainage_m": 235911.61555042412,
+      "a": "B003",
+      "b": "B019",
+      "kind": "crossing",
+      "station": "PASA",
+      "location": "Parassala"
+    },
+    {
+      "time": 57557.81741421165,
+      "chainage_m": 180593.44703086477,
+      "a": "B033",
+      "b": "B058",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 57575.285264687416,
+      "chainage_m": 188943.15318932416,
+      "a": "B004",
+      "b": "B079",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 57578.96358203152,
+      "chainage_m": 107705.29072351172,
+      "a": "B005",
+      "b": "D124",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 57601.97699535077,
+      "chainage_m": 34018.3383081487,
+      "a": "B006",
+      "b": "B032",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 57683.7369796249,
+      "chainage_m": 57650.42694508691,
+      "a": "B016",
+      "b": "B037",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 57824.117846066554,
+      "chainage_m": 114235.10904429811,
+      "a": "B005",
+      "b": "D138",
+      "kind": "crossing",
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 57825.0133260042,
+      "chainage_m": 275052.10102654394,
+      "a": "B090",
+      "b": "B097",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Nagercoil Town and Nagercoil Junction"
+    },
+    {
+      "time": 57898.88914420484,
+      "chainage_m": 57704.269035491154,
+      "a": "B017",
+      "b": "B037",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 58081.9784809451,
+      "chainage_m": 184990.162575112,
+      "a": "B058",
+      "b": "B079",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 58318.80810748079,
+      "chainage_m": 8485.06277557394,
+      "a": "B027",
+      "b": "B040",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 58341.79414480368,
+      "chainage_m": 44873.6240872259,
+      "a": "B006",
+      "b": "B016",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 58481.129179920674,
+      "chainage_m": 199565.865211511,
+      "a": "B004",
+      "b": "B018",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 58510.76254445298,
+      "chainage_m": 154196.31919210614,
+      "a": "B059",
+      "b": "B078",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 58575.08247212777,
+      "chainage_m": 155171.36191883837,
+      "a": "B059",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 58648.33614715211,
+      "chainage_m": 154092.97040840337,
+      "a": "B026",
+      "b": "B078",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 58651.17512884975,
+      "chainage_m": 203779.416242204,
+      "a": "B004",
+      "b": "B080",
+      "kind": "crossing",
+      "station": "TVP",
+      "location": "Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 58693.25270002704,
+      "chainage_m": 158222.29523543277,
+      "a": "B033",
+      "b": "B059",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 58737.831437202534,
+      "chainage_m": 258905.906610565,
+      "a": "B003",
+      "b": "K1",
+      "kind": "overtake",
+      "overtaker": "B003",
+      "cleared": 58793.9999997038,
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 58737.90171382834,
+      "chainage_m": 258906.55709861,
+      "a": "B003",
+      "b": "B097",
+      "kind": "crossing",
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 58791.524161219604,
+      "chainage_m": 8501.431203230648,
+      "a": "B027",
+      "b": "B032",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 58849.89791170004,
+      "chainage_m": 154142.73639126433,
+      "a": "B026",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 58889.20488412412,
+      "chainage_m": 44950.863057621435,
+      "a": "B006",
+      "b": "B017",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 58890.728642425296,
+      "chainage_m": 258906.55709861,
+      "a": "B097",
+      "b": "K1",
+      "kind": "crossing",
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 58915.04281315155,
+      "chainage_m": 194103.44298329574,
+      "a": "B018",
+      "b": "B058",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 58946.7484801737,
+      "chainage_m": 154971.403961573,
+      "a": "B026",
+      "b": "B033",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 59107.23876798458,
+      "chainage_m": 206269.518904748,
+      "a": "B004",
+      "b": "D132",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 59120.69001988106,
+      "chainage_m": 148218.68139649287,
+      "a": "B060",
+      "b": "B078",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 59207.62822977098,
+      "chainage_m": 150330.93579938123,
+      "a": "B060",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 59231.15414786025,
+      "chainage_m": 994.7535539515013,
+      "a": "B032",
+      "b": "B043",
+      "kind": "crossing",
+      "station": "ERS",
+      "location": "Ernakulam Junction"
+    },
+    {
+      "time": 59294.18197605316,
+      "chainage_m": 198257.70676849206,
+      "a": "B058",
+      "b": "B080",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Veli and Thiruvananthapuram North"
+    },
+    {
+      "time": 59445.04022210792,
+      "chainage_m": 152427.32674353718,
+      "a": "B033",
+      "b": "B060",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 59488.0087746754,
+      "chainage_m": 206361.0894937005,
+      "a": "B004",
+      "b": "B019",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 59539.98588239214,
+      "chainage_m": 199077.043897153,
+      "a": "B058",
+      "b": "D132",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 59638.25900605474,
+      "chainage_m": 168000.78183047255,
+      "a": "B059",
+      "b": "B079",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 59643.60712814782,
+      "chainage_m": 206270.167775566,
+      "a": "B019",
+      "b": "B091",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 59697.65820298476,
+      "chainage_m": 24090.286325244095,
+      "a": "B016",
+      "b": "B027",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 59718.8913712533,
+      "chainage_m": 142398.72946008432,
+      "a": "B005",
+      "b": "B078",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 59774.78255835636,
+      "chainage_m": 143630.00582389685,
+      "a": "B005",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 59790.98630374979,
+      "chainage_m": 171639.7563272131,
+      "a": "B018",
+      "b": "B059",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 59793.41740369626,
+      "chainage_m": 165457.74666643084,
+      "a": "B026",
+      "b": "B079",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 59812.491363686684,
+      "chainage_m": 144627.7245860554,
+      "a": "B005",
+      "b": "B033",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 59941.510844797514,
+      "chainage_m": 167628.47757856938,
+      "a": "B018",
+      "b": "B026",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 60063.042209217674,
+      "chainage_m": 205604.66863147388,
+      "a": "B019",
+      "b": "B058",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 60069.848406646444,
+      "chainage_m": 165322.372512769,
+      "a": "B018",
+      "b": "B079",
+      "kind": "overtake",
+      "overtaker": "B018",
+      "cleared": 60231.9999996829,
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 60192.594326993174,
+      "chainage_m": 34009.12723226228,
+      "a": "B017",
+      "b": "B027",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 60202.778418050264,
+      "chainage_m": 174474.025162972,
+      "a": "B026",
+      "b": "B059",
+      "kind": "overtake",
+      "overtaker": "B026",
+      "cleared": 60221.999999683,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 60371.59225121653,
+      "chainage_m": 161521.10992469123,
+      "a": "B018",
+      "b": "B060",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 60396.84914552039,
+      "chainage_m": 8433.446401613051,
+      "a": "B016",
+      "b": "B043",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 60471.69259674614,
+      "chainage_m": 163075.2266395379,
+      "a": "B060",
+      "b": "B079",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Edavai and Varkala Sivagiri"
+    },
+    {
+      "time": 60500.27509441147,
+      "chainage_m": 141659.076,
+      "a": "B033",
+      "b": "B061",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 60578.17739227479,
+      "chainage_m": 156220.07885433646,
+      "a": "B005",
+      "b": "B018",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 60610.478155105906,
+      "chainage_m": 184990.162575094,
+      "a": "B026",
+      "b": "B080",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 60626.282507424556,
+      "chainage_m": 185379.349212986,
+      "a": "B026",
+      "b": "D132",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 60668.07782305909,
+      "chainage_m": 184990.162575094,
+      "a": "B080",
+      "b": "D132",
+      "kind": "overtake",
+      "overtaker": "D132",
+      "cleared": 60723.9999996757,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 60735.37047620402,
+      "chainage_m": 160291.37889831475,
+      "a": "B005",
+      "b": "B079",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kappil and Edavai"
+    },
+    {
+      "time": 60796.38139645628,
+      "chainage_m": 8383.984215999924,
+      "a": "B007",
+      "b": "B016",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 60882.044463197715,
+      "chainage_m": 181625.891663182,
+      "a": "B059",
+      "b": "D132",
+      "kind": "crossing",
+      "station": "PGZ",
+      "location": "Perunguzhi"
+    },
+    {
+      "time": 60970.485725966326,
+      "chainage_m": 182393.8136486251,
+      "a": "B059",
+      "b": "B080",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perunguzhi and Murukkampuzha"
+    },
+    {
+      "time": 60974.16237774282,
+      "chainage_m": 146000.26051816455,
+      "a": "B018",
+      "b": "B061",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 61058.20873770562,
+      "chainage_m": 192907.181784445,
+      "a": "B019",
+      "b": "B026",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 61141.79223807648,
+      "chainage_m": 121468.95560657527,
+      "a": "D117",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 61181.62241236641,
+      "chainage_m": 45009.25408483503,
+      "a": "B027",
+      "b": "B046",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 61226.06096719211,
+      "chainage_m": 235849.361208478,
+      "a": "B004",
+      "b": "B097",
+      "kind": "crossing",
+      "station": "PASA",
+      "location": "Parassala"
+    },
+    {
+      "time": 61235.88786694127,
+      "chainage_m": 195990.86616142045,
+      "a": "B026",
+      "b": "B081",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 61263.096043111844,
+      "chainage_m": 171874.33037460278,
+      "a": "B060",
+      "b": "D132",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 61314.16579191595,
+      "chainage_m": 125958.22249396435,
+      "a": "B033",
+      "b": "D117",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Sasthankotta and Munroturuttu"
+    },
+    {
+      "time": 61328.68142077291,
+      "chainage_m": 187425.79676001237,
+      "a": "B019",
+      "b": "B059",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 61396.038322306034,
+      "chainage_m": 168372.13757571415,
+      "a": "B005",
+      "b": "D132",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 61460.84783764211,
+      "chainage_m": 23994.3864070022,
+      "a": "B017",
+      "b": "B043",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 61488.543184631984,
+      "chainage_m": 151166.9522953816,
+      "a": "B061",
+      "b": "B079",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 61630.8852610699,
+      "chainage_m": 174474.025162972,
+      "a": "B005",
+      "b": "B060",
+      "kind": "overtake",
+      "overtaker": "B005",
+      "cleared": 61651.9999996683,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 61632.61480108272,
+      "chainage_m": 23994.169609362743,
+      "a": "B007",
+      "b": "B017",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 61635.734664758886,
+      "chainage_m": 24023.2316186899,
+      "a": "B007",
+      "b": "B043",
+      "kind": "overtake",
+      "overtaker": "B007",
+      "cleared": 61691.9999996706,
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 61638.78892637489,
+      "chainage_m": 134390.72943566833,
+      "a": "B018",
+      "b": "D117",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perinad and Kollam Junction"
+    },
+    {
+      "time": 61639.80374120522,
+      "chainage_m": 174694.08467861838,
+      "a": "B005",
+      "b": "B080",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 61649.77210278701,
+      "chainage_m": 191742.2261811138,
+      "a": "B059",
+      "b": "B081",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kaniyapuram and Kazhakuttam"
+    },
+    {
+      "time": 61697.886411380234,
+      "chainage_m": 174474.676975806,
+      "a": "B060",
+      "b": "B080",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 61727.204137956775,
+      "chainage_m": 113304.60871527233,
+      "a": "D106",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 61731.21151216161,
+      "chainage_m": 177038.33714281174,
+      "a": "B005",
+      "b": "B019",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kadakavur and Chirayinkeezh"
+    },
+    {
+      "time": 61798.12117966113,
+      "chainage_m": 175289.13081469657,
+      "a": "B019",
+      "b": "B060",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kadakavur and Chirayinkeezh"
+    },
+    {
+      "time": 61928.89022997667,
+      "chainage_m": 114639.560510971,
+      "a": "B033",
+      "b": "D106",
+      "kind": "crossing",
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 61972.85157195281,
+      "chainage_m": 158490.4174298878,
+      "a": "B061",
+      "b": "D132",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 62014.41395824177,
+      "chainage_m": 145602.00940601525,
+      "a": "B079",
+      "b": "D111",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 62068.31681995735,
+      "chainage_m": 104539.04834842464,
+      "a": "B006",
+      "b": "D125",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kayamkulam Junction and Ochira"
+    },
+    {
+      "time": 62084.1307514589,
+      "chainage_m": 186064.85128130703,
+      "a": "B005",
+      "b": "B081",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 62237.48504435946,
+      "chainage_m": 108932.94892554799,
+      "a": "B006",
+      "b": "B033",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 62238.708126944985,
+      "chainage_m": 118661.67161685125,
+      "a": "B018",
+      "b": "D106",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 62355.39422995596,
+      "chainage_m": 154027.07774330306,
+      "a": "D111",
+      "b": "D132",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 62374.868778912634,
+      "chainage_m": 244197.13894552653,
+      "a": "B004",
+      "b": "B020",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 62419.728438845144,
+      "chainage_m": 113898.82890472724,
+      "a": "B006",
+      "b": "B018",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 62426.42968004731,
+      "chainage_m": 182983.0321581713,
+      "a": "B060",
+      "b": "B081",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perunguzhi and Murukkampuzha"
+    },
+    {
+      "time": 62429.220146032356,
+      "chainage_m": 223432.87739814163,
+      "a": "B091",
+      "b": "B097",
+      "kind": "crossing",
+      "station": "NYY",
+      "location": "Neyyattinkara"
+    },
+    {
+      "time": 62438.17627929846,
+      "chainage_m": 34018.987381691,
+      "a": "B007",
+      "b": "B046",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 62456.0227109081,
+      "chainage_m": 34018.281321089664,
+      "a": "B043",
+      "b": "B046",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 62547.52364946639,
+      "chainage_m": 165322.372512769,
+      "a": "B019",
+      "b": "B080",
+      "kind": "overtake",
+      "overtaker": "B019",
+      "cleared": 62707.9999997298,
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 62693.29694972635,
+      "chainage_m": 165014.43572571152,
+      "a": "B019",
+      "b": "B061",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 62757.062030873254,
+      "chainage_m": 203779.416242204,
+      "a": "B059",
+      "b": "B082",
+      "kind": "crossing",
+      "station": "TVP",
+      "location": "Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 62775.884758935405,
+      "chainage_m": 165321.722511667,
+      "a": "B061",
+      "b": "B080",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 62835.53379886756,
+      "chainage_m": 204726.63483368338,
+      "a": "B059",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram Pettah and Thiruvananthapuram Central"
+    },
+    {
+      "time": 62889.140690292916,
+      "chainage_m": 160531.64955303422,
+      "a": "B019",
+      "b": "D111",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kappil and Edavai"
+    },
+    {
+      "time": 62940.70569051136,
+      "chainage_m": 143040.27322257726,
+      "a": "B062",
+      "b": "D132",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 62969.58176935148,
+      "chainage_m": 162522.01384582423,
+      "a": "B080",
+      "b": "D111",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Edavai and Varkala Sivagiri"
+    },
+    {
+      "time": 63224.17097511707,
+      "chainage_m": 199077.043024515,
+      "a": "B005",
+      "b": "B082",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 63228.184347683,
+      "chainage_m": 199080.99973790767,
+      "a": "B005",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 63407.178296621685,
+      "chainage_m": 235849.360167542,
+      "a": "B020",
+      "b": "B091",
+      "kind": "crossing",
+      "station": "PASA",
+      "location": "Parassala"
+    },
+    {
+      "time": 63456.69536814531,
+      "chainage_m": 173583.8828634679,
+      "a": "B061",
+      "b": "B081",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 63497.92601313955,
+      "chainage_m": 196277.29843202714,
+      "a": "B060",
+      "b": "B082",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 63542.45669896565,
+      "chainage_m": 88024.4959946309,
+      "a": "B027",
+      "b": "B033",
+      "kind": "crossing",
+      "station": "HAD",
+      "location": "Haripad"
+    },
+    {
+      "time": 63563.26503210038,
+      "chainage_m": 150560.040491344,
+      "a": "B019",
+      "b": "B062",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 63608.40969456539,
+      "chainage_m": 171707.399718042,
+      "a": "B081",
+      "b": "D111",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 63612.83970508013,
+      "chainage_m": 196882.117366301,
+      "a": "B060",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "VELI",
+      "location": "Veli"
+    },
+    {
+      "time": 63639.61904426015,
+      "chainage_m": 148597.95331623236,
+      "a": "B019",
+      "b": "D106",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 63681.64187703715,
+      "chainage_m": 88814.65616630384,
+      "a": "B018",
+      "b": "B027",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Haripad and Cheppad"
+    },
+    {
+      "time": 63717.836155485726,
+      "chainage_m": 174474.025162972,
+      "a": "B061",
+      "b": "D111",
+      "kind": "overtake",
+      "overtaker": "D111",
+      "cleared": 63739.9999997898,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 63813.46512414625,
+      "chainage_m": 153856.56522005444,
+      "a": "B062",
+      "b": "B080",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 63831.449384330954,
+      "chainage_m": 275293.6613041281,
+      "a": "B004",
+      "b": "B021",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Nagercoil Town and Nagercoil Junction"
+    },
+    {
+      "time": 63875.35499298206,
+      "chainage_m": 153265.8555725153,
+      "a": "B080",
+      "b": "D106",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 63902.01929996343,
+      "chainage_m": 141966.9820596599,
+      "a": "B006",
+      "b": "B019",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 64040.45461051952,
+      "chainage_m": 206505.52681443046,
+      "a": "B005",
+      "b": "B097",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 64044.03323696579,
+      "chainage_m": 154133.203259312,
+      "a": "B062",
+      "b": "D106",
+      "kind": "overtake",
+      "overtaker": "D106",
+      "cleared": 64111.9999998115,
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 64190.33695996121,
+      "chainage_m": 186576.7004345509,
+      "a": "B082",
+      "b": "D111",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 64259.82603317769,
+      "chainage_m": 188425.96535109938,
+      "a": "D111",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 64284.26531470819,
+      "chainage_m": 147191.59696104744,
+      "a": "B006",
+      "b": "B080",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 64391.39606240709,
+      "chainage_m": 161516.809290019,
+      "a": "B081",
+      "b": "D106",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 64463.02775235002,
+      "chainage_m": 184990.162575094,
+      "a": "B082",
+      "b": "D126",
+      "kind": "overtake",
+      "overtaker": "D126",
+      "cleared": 64517.9999998351,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 64558.641299213254,
+      "chainage_m": 184089.3778766438,
+      "a": "B061",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perunguzhi and Murukkampuzha"
+    },
+    {
+      "time": 64573.83794044096,
+      "chainage_m": 205826.47071949934,
+      "a": "B060",
+      "b": "B083",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 64618.67965173566,
+      "chainage_m": 184969.02859315963,
+      "a": "B061",
+      "b": "B082",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 64633.056452384,
+      "chainage_m": 159709.05153888208,
+      "a": "B062",
+      "b": "B081",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kappil and Edavai"
+    },
+    {
+      "time": 64650.21883341561,
+      "chainage_m": 69851.51236764048,
+      "a": "B007",
+      "b": "B033",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 64726.81012325212,
+      "chainage_m": 158661.497551879,
+      "a": "B006",
+      "b": "B081",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 64848.13993677944,
+      "chainage_m": 223345.91483050524,
+      "a": "B005",
+      "b": "B020",
+      "kind": "crossing",
+      "station": "NYY",
+      "location": "Neyyattinkara"
+    },
+    {
+      "time": 64852.42435246889,
+      "chainage_m": 141955.6147887581,
+      "a": "B063",
+      "b": "B080",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 64909.60392587258,
+      "chainage_m": 258835.85460873123,
+      "a": "B021",
+      "b": "B091",
+      "kind": "crossing",
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 64969.22458536856,
+      "chainage_m": 69928.00807258018,
+      "a": "B007",
+      "b": "B018",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 65067.85605236816,
+      "chainage_m": 171632.79136793644,
+      "a": "D106",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 65083.61014532527,
+      "chainage_m": 199351.9532765652,
+      "a": "B083",
+      "b": "D111",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 65155.37830873988,
+      "chainage_m": 116313.17186006017,
+      "a": "B019",
+      "b": "B027",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 65249.10800504147,
+      "chainage_m": 8432.21837115752,
+      "a": "B008",
+      "b": "B046",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 65272.838931007595,
+      "chainage_m": 166144.0237334937,
+      "a": "B062",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 65283.78617526284,
+      "chainage_m": 177115.22824968363,
+      "a": "B082",
+      "b": "D106",
+      "kind": "crossing",
+      "station": "CRY",
+      "location": "Chirayinkeezh"
+    },
+    {
+      "time": 65409.51906937972,
+      "chainage_m": 206268.09858580827,
+      "a": "B034",
+      "b": "D111",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 65443.59401349687,
+      "chainage_m": 165321.7243582,
+      "a": "B006",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 65488.77520774855,
+      "chainage_m": 125189.65717627452,
+      "a": "B027",
+      "b": "D139",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Sasthankotta and Munroturuttu"
+    },
+    {
+      "time": 65509.76267854903,
+      "chainage_m": 193982.01098709254,
+      "a": "B061",
+      "b": "B083",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 65587.79503080533,
+      "chainage_m": 150560.040491344,
+      "a": "B063",
+      "b": "B081",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 65630.17316414756,
+      "chainage_m": 114640.210486037,
+      "a": "B019",
+      "b": "D107",
+      "kind": "crossing",
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 65674.10291498134,
+      "chainage_m": 57663.7388658845,
+      "a": "B018",
+      "b": "B033",
+      "kind": "overtake",
+      "overtaker": "B018",
+      "cleared": 65743.9999999065,
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 65701.1201089058,
+      "chainage_m": 172860.26476642414,
+      "a": "B062",
+      "b": "B082",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 65719.43618417758,
+      "chainage_m": 148251.64341268822,
+      "a": "B081",
+      "b": "D112",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Iravipuram and Mayyanad"
+    },
+    {
+      "time": 65787.13131560717,
+      "chainage_m": 117247.53580028414,
+      "a": "D107",
+      "b": "D139",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 65840.4097433313,
+      "chainage_m": 171707.399718042,
+      "a": "B006",
+      "b": "B082",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 65859.0846602546,
+      "chainage_m": 111441.00929311321,
+      "a": "B019",
+      "b": "D118",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 65946.29524781878,
+      "chainage_m": 192907.181723649,
+      "a": "B083",
+      "b": "D106",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 65949.83619949363,
+      "chainage_m": 174474.025162972,
+      "a": "B006",
+      "b": "B062",
+      "kind": "overtake",
+      "overtaker": "B006",
+      "cleared": 65971.9999999198,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 66005.43527631417,
+      "chainage_m": 199076.39370895,
+      "a": "B034",
+      "b": "B061",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 66122.55765942862,
+      "chainage_m": 154133.203259312,
+      "a": "B063",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 66122.55886644931,
+      "chainage_m": 154133.202553705,
+      "a": "D112",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 66128.30373303319,
+      "chainage_m": 235856.0450310009,
+      "a": "B005",
+      "b": "B021",
+      "kind": "crossing",
+      "station": "PASA",
+      "location": "Parassala"
+    },
+    {
+      "time": 66163.01304771368,
+      "chainage_m": 114639.560481901,
+      "a": "D118",
+      "b": "D139",
+      "kind": "crossing",
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 66182.00210659711,
+      "chainage_m": 154133.203259312,
+      "a": "B063",
+      "b": "D112",
+      "kind": "overtake",
+      "overtaker": "D112",
+      "cleared": 66249.9999999359,
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 66193.97448071427,
+      "chainage_m": 195607.8113785828,
+      "a": "B034",
+      "b": "D106",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 66228.64344170854,
+      "chainage_m": 200261.56594281006,
+      "a": "B020",
+      "b": "B061",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 66345.6774514942,
+      "chainage_m": 142231.32186169355,
+      "a": "B027",
+      "b": "B081",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 66405.68141404694,
+      "chainage_m": 186131.91019636064,
+      "a": "B006",
+      "b": "B083",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 66462.47669184963,
+      "chainage_m": 203778.768412501,
+      "a": "B061",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "TVP",
+      "location": "Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 66481.06739589882,
+      "chainage_m": 188161.25241744096,
+      "a": "B006",
+      "b": "B034",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 66519.06455514423,
+      "chainage_m": 146493.9767758139,
+      "a": "B027",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 66528.89603663833,
+      "chainage_m": 161516.809290019,
+      "a": "B082",
+      "b": "D112",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 66540.02336907826,
+      "chainage_m": 199076.39727977,
+      "a": "B020",
+      "b": "D106",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 66585.91380421349,
+      "chainage_m": 100442.54686223915,
+      "a": "B007",
+      "b": "B019",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 66644.22359162498,
+      "chainage_m": 199267.06767999977,
+      "a": "D106",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 66660.14347955139,
+      "chainage_m": 101022.615090066,
+      "a": "B007",
+      "b": "B041",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 66671.56987134978,
+      "chainage_m": 184990.162575095,
+      "a": "B034",
+      "b": "B083",
+      "kind": "overtake",
+      "overtaker": "B034",
+      "cleared": 66723.9999999635,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 66751.1231898701,
+      "chainage_m": 159260.51441316944,
+      "a": "B063",
+      "b": "B082",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kappil and Edavai"
+    },
+    {
+      "time": 66780.81384229829,
+      "chainage_m": 183890.41821450938,
+      "a": "B034",
+      "b": "B062",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perunguzhi and Murukkampuzha"
+    },
+    {
+      "time": 66791.92502086917,
+      "chainage_m": 196194.60364050968,
+      "a": "B006",
+      "b": "B020",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 66835.93248676705,
+      "chainage_m": 184901.9596550538,
+      "a": "B062",
+      "b": "B083",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 66915.52078067066,
+      "chainage_m": 141659.37709943345,
+      "a": "D107",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 67000.55535675967,
+      "chainage_m": 199076.393356216,
+      "a": "B006",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 67008.380186452,
+      "chainage_m": 34018.9864646241,
+      "a": "B008",
+      "b": "B018",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 67013.95761918322,
+      "chainage_m": 205564.68064553433,
+      "a": "B084",
+      "b": "D106",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 67023.95441636426,
+      "chainage_m": 34061.36720036075,
+      "a": "B008",
+      "b": "B033",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 67075.8538331211,
+      "chainage_m": 156008.55827767312,
+      "a": "B027",
+      "b": "B082",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 67142.27204098183,
+      "chainage_m": 137224.22163837566,
+      "a": "D118",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perinad and Kollam Junction"
+    },
+    {
+      "time": 67238.46505228501,
+      "chainage_m": 172443.3146496981,
+      "a": "B034",
+      "b": "D112",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 67256.35180205303,
+      "chainage_m": 188898.17397836482,
+      "a": "B020",
+      "b": "B062",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 67302.84964415056,
+      "chainage_m": 203532.46741696386,
+      "a": "B006",
+      "b": "B084",
+      "kind": "crossing",
+      "station": "TVP",
+      "location": "Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 67424.75185336065,
+      "chainage_m": 153411.15489037085,
+      "a": "B082",
+      "b": "D107",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 67439.0167239798,
+      "chainage_m": 177552.02233370134,
+      "a": "B083",
+      "b": "D112",
+      "kind": "crossing",
+      "station": "CRY",
+      "location": "Chirayinkeezh"
+    },
+    {
+      "time": 67455.08380985624,
+      "chainage_m": 166705.79810711037,
+      "a": "B034",
+      "b": "B063",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 67458.50626560002,
+      "chainage_m": 192820.6274511925,
+      "a": "B062",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 67524.16512175614,
+      "chainage_m": 24076.3548039398,
+      "a": "B018",
+      "b": "B028",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 67567.29331841745,
+      "chainage_m": 180913.51139498324,
+      "a": "B020",
+      "b": "D112",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Chirayinkeezh and Perunguzhi"
+    },
+    {
+      "time": 67670.09858106001,
+      "chainage_m": 165322.371506114,
+      "a": "B027",
+      "b": "B034",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 67699.75162748332,
+      "chainage_m": 24118.23464321225,
+      "a": "B028",
+      "b": "B033",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 67762.32163429543,
+      "chainage_m": 185844.0620236944,
+      "a": "D112",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 67766.17546472442,
+      "chainage_m": 258906.55709861,
+      "a": "B005",
+      "b": "B098",
+      "kind": "crossing",
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 67787.66323026382,
+      "chainage_m": 206354.516135115,
+      "a": "B006",
+      "b": "B021",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 67799.7081058579,
+      "chainage_m": 196882.09843231068,
+      "a": "B062",
+      "b": "B084",
+      "kind": "crossing",
+      "station": "VELI",
+      "location": "Veli"
+    },
+    {
+      "time": 67815.74147265384,
+      "chainage_m": 174474.676975805,
+      "a": "B020",
+      "b": "B083",
+      "kind": "overtake",
+      "overtaker": "B020",
+      "cleared": 67836.0000000283,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 67864.44338781523,
+      "chainage_m": 173259.1005846269,
+      "a": "B020",
+      "b": "B063",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 67886.09332096533,
+      "chainage_m": 117547.95899164851,
+      "a": "B007",
+      "b": "D126",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 67939.72665489733,
+      "chainage_m": 174120.62081919587,
+      "a": "B063",
+      "b": "B083",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 67949.52197898214,
+      "chainage_m": 206270.168209899,
+      "a": "B021",
+      "b": "B092",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 67957.20105423145,
+      "chainage_m": 162004.58412759867,
+      "a": "B034",
+      "b": "D107",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 67966.11430082115,
+      "chainage_m": 170687.25592505964,
+      "a": "B020",
+      "b": "B027",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 68045.1614377616,
+      "chainage_m": 172641.87090421456,
+      "a": "B027",
+      "b": "B083",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 68116.22476178937,
+      "chainage_m": 174474.025162972,
+      "a": "B027",
+      "b": "B063",
+      "kind": "overtake",
+      "overtaker": "B027",
+      "cleared": 68136.0000000457,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 68161.6299662413,
+      "chainage_m": 175600.68694203297,
+      "a": "B027",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kadakavur and Chirayinkeezh"
+    },
+    {
+      "time": 68161.87890562783,
+      "chainage_m": 192907.181723651,
+      "a": "B084",
+      "b": "D112",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 68203.38619534686,
+      "chainage_m": 174555.088679141,
+      "a": "B063",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 68273.60011345704,
+      "chainage_m": 165322.369443596,
+      "a": "B020",
+      "b": "D107",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 68277.66947047469,
+      "chainage_m": 8348.333458661715,
+      "a": "B018",
+      "b": "B038",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 68330.03303514158,
+      "chainage_m": 142962.44591961234,
+      "a": "B064",
+      "b": "B082",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 68340.24118517055,
+      "chainage_m": 200544.7679915175,
+      "a": "B021",
+      "b": "B062",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 68406.8764717785,
+      "chainage_m": 57663.0877949479,
+      "a": "B008",
+      "b": "B047",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 68422.42734073955,
+      "chainage_m": 166764.9517104921,
+      "a": "B083",
+      "b": "D107",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 68440.78321202159,
+      "chainage_m": 8431.56746601886,
+      "a": "B033",
+      "b": "B038",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 68495.17894532139,
+      "chainage_m": 168472.5623566873,
+      "a": "D107",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 68564.72146768945,
+      "chainage_m": 146328.5213549883,
+      "a": "B034",
+      "b": "B064",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 68588.70885660544,
+      "chainage_m": 199001.00632656767,
+      "a": "B021",
+      "b": "D112",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 68625.74298791579,
+      "chainage_m": 187624.27877295055,
+      "a": "B027",
+      "b": "B084",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 68655.99577716687,
+      "chainage_m": 165322.372512769,
+      "a": "B083",
+      "b": "D133",
+      "kind": "overtake",
+      "overtaker": "D133",
+      "cleared": 68818.0000000854,
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 68861.78903701814,
+      "chainage_m": 192902.44707052995,
+      "a": "B021",
+      "b": "B027",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 68999.1939352727,
+      "chainage_m": 57702.57483817718,
+      "a": "B008",
+      "b": "B019",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 69105.17395328973,
+      "chainage_m": 184990.162575095,
+      "a": "B063",
+      "b": "B084",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 69128.09415953285,
+      "chainage_m": 141658.749512117,
+      "a": "B007",
+      "b": "B034",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 69134.97809189513,
+      "chainage_m": 153075.6158404238,
+      "a": "B020",
+      "b": "B064",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 69169.05666835496,
+      "chainage_m": 185641.15321778107,
+      "a": "B021",
+      "b": "B063",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 69238.95062934067,
+      "chainage_m": 184990.162575095,
+      "a": "B021",
+      "b": "B084",
+      "kind": "overtake",
+      "overtaker": "B021",
+      "cleared": 69294.0000001131,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 69253.98426751143,
+      "chainage_m": 184850.17341588615,
+      "a": "B021",
+      "b": "D107",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 69261.56093463501,
+      "chainage_m": 184990.162575095,
+      "a": "B084",
+      "b": "D107",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 69310.89726584419,
+      "chainage_m": 154191.34724640084,
+      "a": "B064",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 69442.9812328846,
+      "chainage_m": 145462.4536899125,
+      "a": "B007",
+      "b": "B020",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 69521.51781221335,
+      "chainage_m": 158577.20490073253,
+      "a": "B064",
+      "b": "B083",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 69567.02858991428,
+      "chainage_m": 69807.5233736216,
+      "a": "B008",
+      "b": "B041",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 69586.6185457814,
+      "chainage_m": 44974.6532737534,
+      "a": "B028",
+      "b": "B047",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 69656.93804558876,
+      "chainage_m": 150937.08355939254,
+      "a": "B007",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 69723.32563761383,
+      "chainage_m": 244113.78233196135,
+      "a": "B006",
+      "b": "B098",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 69840.9701313582,
+      "chainage_m": 141659.076,
+      "a": "B020",
+      "b": "B065",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 69877.89851736558,
+      "chainage_m": 154133.201817803,
+      "a": "B007",
+      "b": "B083",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 69923.7131341496,
+      "chainage_m": 203779.416242204,
+      "a": "B027",
+      "b": "B085",
+      "kind": "crossing",
+      "station": "TVP",
+      "location": "Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 69945.83715254541,
+      "chainage_m": 44974.6532737534,
+      "a": "B019",
+      "b": "B028",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 69948.72028025318,
+      "chainage_m": 44921.7671136439,
+      "a": "B019",
+      "b": "B047",
+      "kind": "overtake",
+      "overtaker": "B019",
+      "cleared": 69980.0000001531,
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 69990.12899939796,
+      "chainage_m": 205439.59664981454,
+      "a": "B027",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram Pettah and Thiruvananthapuram Central"
+    },
+    {
+      "time": 70060.62743477266,
+      "chainage_m": 142943.07058714723,
+      "a": "B065",
+      "b": "D133",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 70244.30465114834,
+      "chainage_m": 165322.370468894,
+      "a": "B021",
+      "b": "B064",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 70280.72480540517,
+      "chainage_m": 235897.39834155116,
+      "a": "B092",
+      "b": "B098",
+      "kind": "crossing",
+      "station": "PASA",
+      "location": "Parassala"
+    },
+    {
+      "time": 70425.41726046422,
+      "chainage_m": 162543.33842332146,
+      "a": "B007",
+      "b": "B021",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Edavai and Varkala Sivagiri"
+    },
+    {
+      "time": 70432.47624252312,
+      "chainage_m": 146526.22611760403,
+      "a": "B065",
+      "b": "B083",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 70457.87524175717,
+      "chainage_m": 199076.395355441,
+      "a": "B063",
+      "b": "B085",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 70472.14083994765,
+      "chainage_m": 199036.7904607717,
+      "a": "B085",
+      "b": "D107",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 70582.68152426784,
+      "chainage_m": 57618.17305991625,
+      "a": "B028",
+      "b": "B041",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 70600.22778369421,
+      "chainage_m": 258906.554900377,
+      "a": "B006",
+      "b": "B022",
+      "kind": "crossing",
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 70616.46743654799,
+      "chainage_m": 199076.395355441,
+      "a": "B063",
+      "b": "D107",
+      "kind": "overtake",
+      "overtaker": "D107",
+      "cleared": 70684.000000194,
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 70620.55705533871,
+      "chainage_m": 199077.043115337,
+      "a": "D107",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 70640.7650787825,
+      "chainage_m": 171706.753167601,
+      "a": "B064",
+      "b": "B084",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 70672.16968306073,
+      "chainage_m": 199076.395355441,
+      "a": "B063",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 70832.36026429677,
+      "chainage_m": 152094.60572615956,
+      "a": "B021",
+      "b": "B065",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 70852.08985603265,
+      "chainage_m": 34018.9853713478,
+      "a": "B019",
+      "b": "B047",
+      "kind": "overtake",
+      "overtaker": "B047",
+      "cleared": 70912.0000002073,
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 70855.89043063934,
+      "chainage_m": 34018.3370896355,
+      "a": "B038",
+      "b": "B047",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 70889.30954683,
+      "chainage_m": 166197.13682101865,
+      "a": "B007",
+      "b": "B084",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 71083.8823371273,
+      "chainage_m": 34018.9853713478,
+      "a": "B019",
+      "b": "B038",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 71230.83615599398,
+      "chainage_m": 174474.025162972,
+      "a": "B007",
+      "b": "B064",
+      "kind": "overtake",
+      "overtaker": "B007",
+      "cleared": 71252.0000002271,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 71294.09540788806,
+      "chainage_m": 101022.612766857,
+      "a": "B008",
+      "b": "B034",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 71382.78973632753,
+      "chainage_m": 244195.38975890444,
+      "a": "B022",
+      "b": "B092",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 71493.73888038883,
+      "chainage_m": 158905.4888696817,
+      "a": "B065",
+      "b": "B084",
+      "kind": "crossing",
+      "station": "KFI",
+      "location": "Kappil"
+    },
+    {
+      "time": 71640.63533771517,
+      "chainage_m": 184990.162575094,
+      "a": "B007",
+      "b": "B085",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 71647.19100302791,
+      "chainage_m": 185151.5976842715,
+      "a": "B007",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 71664.52775276739,
+      "chainage_m": 184990.162575094,
+      "a": "B085",
+      "b": "D127",
+      "kind": "overtake",
+      "overtaker": "D127",
+      "cleared": 71720.0000002543,
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 71672.4866572201,
+      "chainage_m": 24094.28028029703,
+      "a": "B009",
+      "b": "B047",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 71677.76275752582,
+      "chainage_m": 107932.60990484434,
+      "a": "B008",
+      "b": "B020",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ochira and Karunagapalli"
+    },
+    {
+      "time": 71878.494436933,
+      "chainage_m": 181625.891663182,
+      "a": "B064",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "PGZ",
+      "location": "Perunguzhi"
+    },
+    {
+      "time": 71984.13241435522,
+      "chainage_m": 182093.45360489356,
+      "a": "B064",
+      "b": "B085",
+      "kind": "crossing",
+      "station": "PGZ",
+      "location": "Perunguzhi"
+    },
+    {
+      "time": 72104.09322779543,
+      "chainage_m": 88024.4950523357,
+      "a": "B028",
+      "b": "B034",
+      "kind": "crossing",
+      "station": "HAD",
+      "location": "Haripad"
+    },
+    {
+      "time": 72156.78345075446,
+      "chainage_m": 33983.21538221553,
+      "a": "B009",
+      "b": "B019",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 72163.88744409157,
+      "chainage_m": 44921.765785913,
+      "a": "B038",
+      "b": "B041",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 72364.86967972602,
+      "chainage_m": 169130.5122946588,
+      "a": "B065",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 72442.11695225244,
+      "chainage_m": 119363.6006459053,
+      "a": "B008",
+      "b": "B021",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Karunagapalli and Sasthankotta"
+    },
+    {
+      "time": 72520.56356943122,
+      "chainage_m": 94156.05680356937,
+      "a": "B020",
+      "b": "B028",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Cheppad and Kayamkulam Junction"
+    },
+    {
+      "time": 72667.07558084856,
+      "chainage_m": 24023.8816831428,
+      "a": "B019",
+      "b": "B047",
+      "kind": "overtake",
+      "overtaker": "B019",
+      "cleared": 72698.0000003113,
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 72667.1106487616,
+      "chainage_m": 24023.2309817498,
+      "a": "B019",
+      "b": "B044",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 72767.60583890988,
+      "chainage_m": 144331.4489783402,
+      "a": "B084",
+      "b": "D113",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 72769.89194859678,
+      "chainage_m": 24023.8816831428,
+      "a": "B044",
+      "b": "B047",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 72787.23253903189,
+      "chainage_m": 174315.91841636633,
+      "a": "B065",
+      "b": "B085",
+      "kind": "crossing",
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 72899.20473129007,
+      "chainage_m": 107171.50955641048,
+      "a": "B021",
+      "b": "D119",
+      "kind": "crossing",
+      "station": "OCR",
+      "location": "Ochira"
+    },
+    {
+      "time": 72998.54392646036,
+      "chainage_m": 34071.27515871937,
+      "a": "B009",
+      "b": "B041",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 73101.87426484977,
+      "chainage_m": 204777.67146640117,
+      "a": "B007",
+      "b": "B086",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram Pettah and Thiruvananthapuram Central"
+    },
+    {
+      "time": 73117.39161958417,
+      "chainage_m": 101476.8110274779,
+      "a": "B021",
+      "b": "B028",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 73279.89242573481,
+      "chainage_m": 272371.987904941,
+      "a": "B092",
+      "b": "B099",
+      "kind": "crossing",
+      "station": "NJT",
+      "location": "Nagercoil Town"
+    },
+    {
+      "time": 73324.17634518529,
+      "chainage_m": 154133.202690028,
+      "a": "D113",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 73482.15937721785,
+      "chainage_m": 199410.15539309243,
+      "a": "B064",
+      "b": "B086",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 73521.94775155273,
+      "chainage_m": 34005.22767032734,
+      "a": "B041",
+      "b": "B044",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 73591.89135308431,
+      "chainage_m": 57663.7377781212,
+      "a": "B034",
+      "b": "B038",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 73728.8960324046,
+      "chainage_m": 161516.809290019,
+      "a": "B085",
+      "b": "D113",
+      "kind": "crossing",
+      "station": "EVA",
+      "location": "Edavai"
+    },
+    {
+      "time": 73740.96319203467,
+      "chainage_m": 141659.076,
+      "a": "B008",
+      "b": "B066",
+      "kind": "overtake",
+      "overtaker": "B008",
+      "cleared": 73800.0000003754,
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 73848.22271721231,
+      "chainage_m": 143191.489955233,
+      "a": "B008",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 73914.18028179825,
+      "chainage_m": 213856.7264924353,
+      "a": "B007",
+      "b": "B022",
+      "kind": "crossing",
+      "station": "NEM",
+      "location": "Thiruvananthapuram South"
+    },
+    {
+      "time": 73926.24827529224,
+      "chainage_m": 141714.2679306631,
+      "a": "B066",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 74089.97011287017,
+      "chainage_m": 57626.18138083086,
+      "a": "B009",
+      "b": "B034",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 74321.99504313362,
+      "chainage_m": 136670.250143882,
+      "a": "D119",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perinad and Kollam Junction"
+    },
+    {
+      "time": 74373.31215435654,
+      "chainage_m": 188955.71660206918,
+      "a": "B065",
+      "b": "B086",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 74442.2600205788,
+      "chainage_m": 901.0628459483179,
+      "a": "B010",
+      "b": "B047",
+      "kind": "crossing",
+      "station": "ERS",
+      "location": "Ernakulam Junction"
+    },
+    {
+      "time": 74499.92381786637,
+      "chainage_m": 131975.08902118675,
+      "a": "B028",
+      "b": "D127",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Munroturuttu and Perinad"
+    },
+    {
+      "time": 74533.89363581562,
+      "chainage_m": 154133.203381558,
+      "a": "B008",
+      "b": "B085",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 74674.77472557622,
+      "chainage_m": 44920.09596964961,
+      "a": "B034",
+      "b": "B044",
+      "kind": "crossing",
+      "station": "MAKM",
+      "location": "Mararikulam"
+    },
+    {
+      "time": 74756.29976497355,
+      "chainage_m": 69852.2592569791,
+      "a": "B020",
+      "b": "B038",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 74759.97564188708,
+      "chainage_m": 150755.89557109846,
+      "a": "B066",
+      "b": "B085",
+      "kind": "crossing",
+      "station": "MYY",
+      "location": "Mayyanad"
+    },
+    {
+      "time": 74924.85560394374,
+      "chainage_m": 69843.40979537042,
+      "a": "B009",
+      "b": "B020",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 74924.89863643263,
+      "chainage_m": 184922.77052984026,
+      "a": "B086",
+      "b": "D113",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 74974.9780232001,
+      "chainage_m": 74540.99550743637,
+      "a": "B021",
+      "b": "B038",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ambalappuzha and Takazhi"
+    },
+    {
+      "time": 75041.38226825703,
+      "chainage_m": 72740.51260626984,
+      "a": "B009",
+      "b": "B021",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Ambalappuzha and Takazhi"
+    },
+    {
+      "time": 75261.9425656038,
+      "chainage_m": 199075.14683007615,
+      "a": "B022",
+      "b": "B065",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 75345.62313192476,
+      "chainage_m": 8467.452615400432,
+      "a": "B010",
+      "b": "B041",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 75383.11996401887,
+      "chainage_m": 144523.231904643,
+      "a": "B028",
+      "b": "B085",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kollam Junction and Iravipuram"
+    },
+    {
+      "time": 75491.53054424649,
+      "chainage_m": 194567.88552630632,
+      "a": "B022",
+      "b": "D113",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 75757.26434267766,
+      "chainage_m": 175371.3550491619,
+      "a": "B008",
+      "b": "B086",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kadakavur and Chirayinkeezh"
+    },
+    {
+      "time": 75974.76673274083,
+      "chainage_m": 205843.22460583693,
+      "a": "B035",
+      "b": "B065",
+      "kind": "crossing",
+      "station": "TVC",
+      "location": "Thiruvananthapuram Central"
+    },
+    {
+      "time": 76026.60538456823,
+      "chainage_m": 57617.34119183285,
+      "a": "B020",
+      "b": "B044",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 76055.35097582189,
+      "chainage_m": 23958.866080599073,
+      "a": "B010",
+      "b": "B034",
+      "kind": "crossing",
+      "station": "TUVR",
+      "location": "Turavur"
+    },
+    {
+      "time": 76058.77960190835,
+      "chainage_m": 244114.0046797488,
+      "a": "B007",
+      "b": "B099",
+      "kind": "crossing",
+      "station": "KZT",
+      "location": "Kulitturai"
+    },
+    {
+      "time": 76125.46973004789,
+      "chainage_m": 184892.79647292668,
+      "a": "B008",
+      "b": "B022",
+      "kind": "crossing",
+      "station": "MQU",
+      "location": "Murukkampuzha"
+    },
+    {
+      "time": 76218.8111652905,
+      "chainage_m": 202225.1470581478,
+      "a": "B035",
+      "b": "D113",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Thiruvananthapuram North and Thiruvananthapuram Pettah"
+    },
+    {
+      "time": 76300.49919413158,
+      "chainage_m": 171391.59273233972,
+      "a": "B066",
+      "b": "B086",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 76497.9378226806,
+      "chainage_m": 166396.0766442015,
+      "a": "B028",
+      "b": "B086",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 76562.38634904599,
+      "chainage_m": 173705.9564289276,
+      "a": "B022",
+      "b": "B066",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Akathumuri and Kadakavur"
+    },
+    {
+      "time": 76675.91814656543,
+      "chainage_m": 170840.9737092408,
+      "a": "B022",
+      "b": "B028",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Varkala Sivagiri and Akathumuri"
+    },
+    {
+      "time": 76757.06213737972,
+      "chainage_m": 8485.272987936385,
+      "a": "B029",
+      "b": "B034",
+      "kind": "crossing",
+      "station": "KUMM",
+      "location": "Kumbalam"
+    },
+    {
+      "time": 76813.07224298248,
+      "chainage_m": 192958.69137758613,
+      "a": "B008",
+      "b": "B035",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 76820.22478037824,
+      "chainage_m": 174474.025162972,
+      "a": "B028",
+      "b": "B066",
+      "kind": "overtake",
+      "overtaker": "B028",
+      "cleared": 76840.0000005524,
+      "station": "KVU",
+      "location": "Kadakavur"
+    },
+    {
+      "time": 77269.3185233589,
+      "chainage_m": 185986.07884955846,
+      "a": "B028",
+      "b": "B035",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Murukkampuzha and Kaniyapuram"
+    },
+    {
+      "time": 77269.8859841646,
+      "chainage_m": 199076.393810885,
+      "a": "B008",
+      "b": "B087",
+      "kind": "crossing",
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    },
+    {
+      "time": 77272.20384337779,
+      "chainage_m": 165322.36956591,
+      "a": "B022",
+      "b": "B086",
+      "kind": "overtake",
+      "overtaker": "B022",
+      "cleared": 77350.000000582,
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 77288.17165074928,
+      "chainage_m": 258905.904713115,
+      "a": "B007",
+      "b": "B023",
+      "kind": "crossing",
+      "station": "ERL",
+      "location": "Eraniel"
+    },
+    {
+      "time": 77317.00250469975,
+      "chainage_m": 34018.9871406042,
+      "a": "B010",
+      "b": "B020",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 77332.2563866037,
+      "chainage_m": 34053.9449011519,
+      "a": "B010",
+      "b": "B021",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 77351.97081276203,
+      "chainage_m": 34018.9871406042,
+      "a": "B020",
+      "b": "B021",
+      "kind": "overtake",
+      "overtaker": "B021",
+      "cleared": 78016.0000006208,
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 77440.61317773783,
+      "chainage_m": 181624.87801924095,
+      "a": "B035",
+      "b": "B066",
+      "kind": "crossing",
+      "station": "PGZ",
+      "location": "Perunguzhi"
+    },
+    {
+      "time": 77546.42610349478,
+      "chainage_m": 193192.4857985181,
+      "a": "B028",
+      "b": "B087",
+      "kind": "crossing",
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 77966.6055151322,
+      "chainage_m": 33979.77744573356,
+      "a": "B021",
+      "b": "B029",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 78058.14450770235,
+      "chainage_m": 223337.09407606407,
+      "a": "B093",
+      "b": "B099",
+      "kind": "crossing",
+      "station": "NYY",
+      "location": "Neyyattinkara"
+    },
+    {
+      "time": 78090.57112681067,
+      "chainage_m": 153584.1004250789,
+      "a": "B022",
+      "b": "B067",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Mayyanad and Paravur"
+    },
+    {
+      "time": 78095.31113592572,
+      "chainage_m": 34018.3353946116,
+      "a": "B020",
+      "b": "B029",
+      "kind": "crossing",
+      "station": "SRTL",
+      "location": "Cherthala"
+    },
+    {
+      "time": 78114.81599112002,
+      "chainage_m": 188885.97798853,
+      "a": "B066",
+      "b": "B087",
+      "kind": "crossing",
+      "station": "KXP",
+      "location": "Kaniyapuram"
+    },
+    {
+      "time": 78292.78016328547,
+      "chainage_m": 154389.42088867587,
+      "a": "B067",
+      "b": "B086",
+      "kind": "crossing",
+      "station": "PVU",
+      "location": "Paravur"
+    },
+    {
+      "time": 78658.85846121117,
+      "chainage_m": 213986.19364904345,
+      "a": "B008",
+      "b": "B099",
+      "kind": "crossing",
+      "station": "NEM",
+      "location": "Thiruvananthapuram South"
+    },
+    {
+      "time": 78735.7126824224,
+      "chainage_m": 159647.7723985962,
+      "a": "B035",
+      "b": "B067",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kappil and Edavai"
+    },
+    {
+      "time": 79029.65815090456,
+      "chainage_m": 138227.0846386278,
+      "a": "B009",
+      "b": "B022",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Perinad and Kollam Junction"
+    },
+    {
+      "time": 79065.66594922196,
+      "chainage_m": 235807.53840023378,
+      "a": "B023",
+      "b": "B093",
+      "kind": "crossing",
+      "station": "PASA",
+      "location": "Parassala"
+    },
+    {
+      "time": 79411.33464414232,
+      "chainage_m": 142481.7388786854,
+      "a": "B009",
+      "b": "B086",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 79573.54182094074,
+      "chainage_m": 146515.46608862755,
+      "a": "B009",
+      "b": "B035",
+      "kind": "crossing",
+      "station": "IRP",
+      "location": "Iravipuram"
+    },
+    {
+      "time": 79651.15301111531,
+      "chainage_m": 223423.68542941762,
+      "a": "B008",
+      "b": "B023",
+      "kind": "crossing",
+      "station": "NYY",
+      "location": "Neyyattinkara"
+    },
+    {
+      "time": 79824.87331704707,
+      "chainage_m": 786.6712166978883,
+      "a": "B011",
+      "b": "B020",
+      "kind": "crossing",
+      "station": "ERS",
+      "location": "Ernakulam Junction"
+    },
+    {
+      "time": 79831.80398368111,
+      "chainage_m": 171707.399718042,
+      "a": "B067",
+      "b": "B087",
+      "kind": "crossing",
+      "station": "AMY",
+      "location": "Akathumuri"
+    },
+    {
+      "time": 80370.4034516776,
+      "chainage_m": 165270.12727789217,
+      "a": "B009",
+      "b": "B087",
+      "kind": "crossing",
+      "station": "VAK",
+      "location": "Varkala Sivagiri"
+    },
+    {
+      "time": 80984.79135366404,
+      "chainage_m": 101026.74587976848,
+      "a": "B010",
+      "b": "B022",
+      "kind": "crossing",
+      "station": "KYJ",
+      "location": "Kayamkulam Junction"
+    },
+    {
+      "time": 81539.89080474198,
+      "chainage_m": 114249.39139944049,
+      "a": "B010",
+      "b": "B035",
+      "kind": "crossing",
+      "station": "KPY",
+      "location": "Karunagapalli"
+    },
+    {
+      "time": 81866.09517728604,
+      "chainage_m": 88025.1474825081,
+      "a": "B022",
+      "b": "B029",
+      "kind": "crossing",
+      "station": "HAD",
+      "location": "Haripad"
+    },
+    {
+      "time": 81902.01101828669,
+      "chainage_m": 192907.179391758,
+      "a": "B009",
+      "b": "B067",
+      "kind": "overtake",
+      "overtaker": "B009",
+      "cleared": 81924.0000008483,
+      "station": "KZK",
+      "location": "Kazhakuttam"
+    },
+    {
+      "time": 82029.04084040514,
+      "chainage_m": 196224.9118186368,
+      "a": "B009",
+      "b": "B023",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 82107.61593482687,
+      "chainage_m": 194127.4530777193,
+      "a": "B023",
+      "b": "B067",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Kazhakuttam and Veli"
+    },
+    {
+      "time": 82424.92387501069,
+      "chainage_m": 100301.42253950932,
+      "a": "B029",
+      "b": "B035",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Cheppad and Kayamkulam Junction"
+    },
+    {
+      "time": 83699.88291057352,
+      "chainage_m": 57699.18161089651,
+      "a": "B011",
+      "b": "B022",
+      "kind": "crossing",
+      "station": "ALLP",
+      "location": "Alappuzha"
+    },
+    {
+      "time": 84275.99294099965,
+      "chainage_m": 69814.6504811219,
+      "a": "B011",
+      "b": "B035",
+      "kind": "crossing",
+      "station": "AMPA",
+      "location": "Ambalappuzha"
+    },
+    {
+      "time": 84282.7257003808,
+      "chainage_m": 156340.62648087856,
+      "a": "B010",
+      "b": "B023",
+      "kind": "crossing",
+      "station": "",
+      "location": "Between Paravur and Kappil"
+    },
+    {
+      "time": 85152.72780516052,
+      "chainage_m": 142833.58710425635,
+      "a": "B023",
+      "b": "B029",
+      "kind": "crossing",
+      "station": "QLN",
+      "location": "Kollam Junction"
+    },
+    {
+      "time": 86954.5866824354,
+      "chainage_m": 114589.5631542153,
+      "a": "B011",
+      "b": "B023",
+      "kind": "crossing",
+      "station": "KPY",
+      "location": "Karunagapalli"
+    }
+  ],
+  "audit": {
+    "ok": true,
+    "sample_seconds": 2,
+    "samples": 34801,
+    "safety_events": [],
+    "distinct_k1_overtakers": [
+      "B001",
+      "B024",
+      "B002",
+      "D100",
+      "D114",
+      "D101",
+      "D109",
+      "B055",
+      "D102",
+      "B025",
+      "B003"
+    ],
+    "k1_overtake_stations": {
+      "TUVR": [
+        {
+          "train": "B001",
+          "time": 31981.887936327937
+        }
+      ],
+      "ALLP": [
+        {
+          "train": "B024",
+          "time": 36137.98194867924
+        }
+      ],
+      "STKT": [
+        {
+          "train": "B002",
+          "time": 42659.719852327406
+        },
+        {
+          "train": "D100",
+          "time": 43067.49013591696
+        },
+        {
+          "train": "D114",
+          "time": 43194.71990406717
+        }
+      ],
+      "PVU": [
+        {
+          "train": "D101",
+          "time": 46417.84561279731
+        },
+        {
+          "train": "D109",
+          "time": 46711.98374725782
+        }
+      ],
+      "KVU": [
+        {
+          "train": "B055",
+          "time": 49335.99667608031
+        },
+        {
+          "train": "D102",
+          "time": 49568.964794671585
+        }
+      ],
+      "KZK": [
+        {
+          "train": "B025",
+          "time": 51776.40966691788
+        }
+      ],
+      "ERL": [
+        {
+          "train": "B003",
+          "time": 58737.831437202534
+        }
+      ]
+    },
+    "partitions": [
+      {
+        "first": 28800,
+        "last": 98400.0000000001,
+        "steps": 34800,
+        "boundary_error_m": 0
+      }
+    ],
+    "crossing_count": 753,
+    "overtake_count": 78
+  }
+}
