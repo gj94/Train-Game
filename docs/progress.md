@@ -1,5 +1,17 @@
 # Progress
 
+## 24 October 2026 — smooth terrain lighting and rooted vegetation
+
+Shared smooth normals preserve ground geometry while reducing indexed terrain
+vertices by 67.33% in the 71-tile sample. Isolated tile generation costs +7.33%;
+this is CPU streaming work, not an FPS claim. Plants now use actual refined
+terrain triangles and reject wet root footprints: the 24-tile audit improves
+from 197 errors over 10 cm and eight wet plants to zero of each.
+896 full source tests and three final native views pass with clean cleanup.
+Evidence/playtest: [terrain and planting](../art/performance/map-2026-10-24/terrain-planting/README.md).
+Six active hours and the fixed 10:30 deadline are met. The southern pond-height
+defect remains the final map correction before release; R45 is still live.
+
 ## 2026-10-24 — Connected road mouths and low parallel-road clearance
 
 - Twelfth overnight increment keeps low parallel roads clear of ballast, including

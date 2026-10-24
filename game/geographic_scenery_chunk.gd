@@ -178,11 +178,15 @@ func _inside(point: Vector2,geometry: Dictionary) -> bool:
 func _terrain(size: float,steps: int,far_tile: bool) -> void:
 	var vertices:=PackedVector3Array()
 	var colors:=PackedColorArray()
+	var normals:=PackedVector3Array()
+	var terrain_normals=preload("res://game/geographic_terrain_normals.gd").new(
+		(func(x,z):return geo.height_at(origin.x+x,origin.z+z)-.35) if far_tile else _ground,size/steps)
 	for z in steps+1:
 		for x in steps+1:
 			var p:=Vector2(x*size/steps,z*size/steps)
 			var height: float=geo.height_at(origin.x+p.x,origin.z+p.y)-.35 if far_tile else _ground(p.x,p.y)
 			vertices.append(Vector3(p.x,height,p.y))
+			normals.append(terrain_normals.at(p))
 			var land:=_class_at(p.x,p.y)
 			var color:=Color(.30,.49,.23,.04)
 			if land==1 or land in [6,7,8]: color=Color(.38,.46,.30,.21)
@@ -198,29 +202,31 @@ func _terrain(size: float,steps: int,far_tile: bool) -> void:
 			var a:=vertices[i]; var b:=vertices[i+1]; var c:=vertices[i+steps+2]; var d:=vertices[i+steps+1]
 			if not far_tile:
 				if ShoreCells.refined(self,Vector2(a.x,a.z)):
-					_shore_cell(Vector2(a.x,a.z),size/steps,[a,b,c,d])
+					_shore_cell(Vector2(a.x,a.z),size/steps,[a,b,c,d],terrain_normals)
 					continue
-			var normal: Vector3=(d-a).cross(b-a).normalized()
 			var farmland:=not far_tile
 			for corner in [a,b,c,d]:
 				if _class_at(corner.x,corner.z)!=2:farmland=false;break
 			var surface: SurfaceTool=batch.surface("paddy" if farmland else "ground")
 			for index in [i,i+1,i+steps+2,i,i+steps+2,i+steps+1]:
 				var p: Vector3=vertices[index]
-				surface.set_normal(normal)
+				surface.set_normal(normals[index])
 				var tint:=colors[index]
 				if farmland:tint.a=Kerala.parcel_stage(Vector2((a.x+c.x)*.5+origin.x,(a.z+c.z)*.5+origin.z))
 				surface.set_color(tint)
 				surface.set_uv(Vector2(p.x+origin.x,p.z+origin.z)/3.5)
 				surface.add_vertex(p)
 
-func _shore_cell(start: Vector2,width: float,corners: Array) -> void:
+func _shore_cell(start: Vector2,width: float,corners: Array,terrain_normals=null) -> void:
 	assert(is_equal_approx(width,8))
+	if terrain_normals==null:terrain_normals=preload("res://game/geographic_terrain_normals.gd").new(_ground)
 	for points: PackedVector3Array in ShoreCells.quads(self,start,PackedVector3Array(corners),true):
 		var uvs:=[]
-		for p in points:uvs.append(Vector2(p.x+origin.x,p.z+origin.z)/3.5)
-		var normal: Vector3=(points[3]-points[0]).cross(points[1]-points[0]).normalized()
-		batch.quad("ground",points[0],points[1],points[2],points[3],normal,Color(.32,.44,.23,.18),uvs)
+		var normals:=PackedVector3Array()
+		for p in points:
+			uvs.append(Vector2(p.x+origin.x,p.z+origin.z)/3.5)
+			normals.append(terrain_normals.at(Vector2(p.x,p.z)))
+		batch.quad_normals("ground",points,normals,Color(.32,.44,.23,.18),uvs)
 
 func _water(feature: Dictionary) -> void:
 	var y: float=feature.get("water_height",0.0)+.06
@@ -404,7 +410,8 @@ func _planting() -> void:
 		# Cultivated land stays open; palms belong on the planted bunds.
 		if kind==2 and (Kerala.parcel_edge(Vector2(p.x+origin.x,p.z+origin.z))>3.5 or i%3!=0):continue
 		if not occupancy.clear(Vector2(p.x,p.z),3.5):continue
-		p.y=Foundations.surface_height(_ground,p.x,p.z)
+		p.y=preload("res://game/geographic_planting_site.gd").height(self,Vector2(p.x,p.z),.7)
+		if not is_finite(p.y):continue
 		var choice: String=["coconut_palm","coconut_palm","young_palm","tree_small_02","tree_small_02","mango_tree","mango_tree","rain_tree","rain_tree"][rng.randi_range(0,8)]
 		if kind==3 and rng.randf()<.55: choice="rain_tree"
 		# Coconut-rich lowlands give way to the more mixed, cultivated southern
@@ -426,7 +433,8 @@ func _planting() -> void:
 		if rail.distance<8 or rail.distance>130:continue
 		if geo.vegetation_clearance!=null and not geo.vegetation_clearance.clear(Vector2(p.x+origin.x,p.z+origin.z),2.5):continue
 		if not occupancy.clear(Vector2(p.x,p.z),2.5) or _near_mapped_rail(Vector2(p.x,p.z),5):continue
-		p.y=Foundations.surface_height(_ground,p.x,p.z)
+		p.y=preload("res://game/geographic_planting_site.gd").height(self,Vector2(p.x,p.z),.35)
+		if not is_finite(p.y):continue
 		var choice: String=["shrub","tf3_KL_LS_Fern_Clump","tf3_KL_LS_Colocasia_Clump","reeds","tf3_KL_LS_Pandanus_Clump"][i%5]
 		library.place(choice,p,rng.randf()*TAU,Vector3.ONE*rng.randf_range(.7,1.25))
 	preload("res://game/coastal_vegetation.gd").groundcover(self)

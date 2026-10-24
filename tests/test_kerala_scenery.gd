@@ -10,6 +10,7 @@ class FlatData:
 class RecordedMesh:
 	var points:=[]
 	func quad(_kind,a,b,c,d,_normal,_colour,_uvs) -> void:points.append_array([a,b,c,d])
+	func quad_normals(_kind,quad_points,_normals,_colour,_uvs) -> void:points.append_array(Array(quad_points))
 func catalog() -> Dictionary:return JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/scenery/manifest.json"))
 func test_road_facing_building_keeps_all_new_assets_inside_rotated_envelope():
 	var data:=catalog()

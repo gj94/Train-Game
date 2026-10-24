@@ -1,7 +1,9 @@
 extends RefCounted
 ## Worker-owned, bounded cache of real shore segments. Tiles share a narrow bank
 ## halo without sharing mutable geometry, adding water surfaces or altering data.
-const RADIUS:=10.0
+# Ten metres of bank grading plus the 8 m normal derivative halo. The bank's
+# grading/refinement distance remains unchanged; only context is expanded.
+const RADIUS:=18.0
 const CACHE_LIMIT:=64
 var entries:={}
 var order:=[]

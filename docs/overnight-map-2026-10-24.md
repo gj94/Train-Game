@@ -608,12 +608,14 @@ cycle was caught in native cleanup and fixed; a lifetime regression test passes)
 Vegetation now seats on actual refined terrain triangles and excludes mapped wet
 footprints. The 24-tile baseline found 197 root errors >10 cm, max1.861 m, and8 wet
 plants; the corrected audit has zero >10 cm errors, max0.0000038 m and no wet plants.
-The final full source suite is running in normal2-tests.log; do not edit runtime
-or test GDScript while it runs. Native final views complete without cleanup errors.
+The final full source suite completed in normal2-tests.log: 896 passes, clean stderr.
+Native final views complete without cleanup errors.
 A 71-tile geometry comparison shows identical positions; four previously reversed
 fine-bank triangles at tile6_107 now have consistent upward winding. Complete the
-isolated x3 terrain profile after other jobs finish, regenerate road input hashes,
-check protected files and commit the terrain/planting increment.
+isolated x3 terrain profile is complete: generation +7.33%, indexed vertices
+-67.33%, no position changes or invalid normals. Road input hashes refreshed with
+identical profiles, all 4,893 protected files unchanged. Evidence:
+art/performance/map-2026-10-24/terrain-planting. Both time minimums are now met.
 
 The new close southern views reveal another real baseline defect to address
 before release: pond a1522434304 near230.55 km has water51.5 m while nearby dry

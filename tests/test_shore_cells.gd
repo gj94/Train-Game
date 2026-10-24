@@ -10,6 +10,7 @@ class Ground:
 class RecordedMesh:
 	var points:=[]
 	func quad(_kind,a,b,c,d,_normal,_colour=Color.WHITE,_uv=[]):points.append_array([a,b,c,d])
+	func quad_normals(_kind,quad_points,_normals,_colour,_uv):points.append_array(Array(quad_points))
 func bank():
 	var c=Chunk.new(Ground.new(),{},null)
 	c.water_levels=[{height=.8,geometry={type="Polygon",coordinates=[[[0,0],[105,0],[0,210],[0,0]]]}}]

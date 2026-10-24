@@ -19,6 +19,7 @@ static func groundcover(chunk) -> void:
 			if chunk.geo.vegetation_clearance!=null and not chunk.geo.vegetation_clearance.clear(Vector2(absolute.x,absolute.z),2.0):continue
 			if chunk._near_mapped_rail(Vector2(p.x,p.z),5):continue
 			if not chunk.occupancy.clear(Vector2(p.x,p.z),1.8):continue
-			p.y=preload("res://game/geographic_foundations.gd").surface_height(chunk._ground,p.x,p.z)
+			p.y=preload("res://game/geographic_planting_site.gd").height(chunk,Vector2(p.x,p.z),.15)
+			if not is_finite(p.y):continue
 			var scale:=Vector3(chunk.rng.randf_range(.85,1.15),chunk.rng.randf_range(.6,1.4),chunk.rng.randf_range(.85,1.15))
 			chunk.library.place("coastal_grass",p,chunk.rng.randf()*TAU,scale)

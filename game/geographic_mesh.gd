@@ -25,6 +25,11 @@ func quad(kind: String,a: Vector3,b: Vector3,c: Vector3,d: Vector3,normal: Vecto
 	var coords := uv if uv.size()==4 else [Vector2(a.x+a.z,a.y),Vector2(b.x+b.z,b.y),Vector2(c.x+c.z,c.y),Vector2(d.x+d.z,d.y)]
 	triangle(kind,a,b,c,normal,color,[coords[0],coords[1],coords[2]])
 	triangle(kind,a,c,d,normal,color,[coords[0],coords[2],coords[3]])
+
+func quad_normals(kind: String,points: PackedVector3Array,normals: PackedVector3Array,color: Color,uv: Array) -> void:
+	var st:=surface(kind)
+	for index in [0,1,2,0,2,3]:
+		st.set_normal(normals[index]);st.set_color(color);st.set_uv(uv[index]);st.add_vertex(points[index])
 func box(kind: String,p: Vector3,size: Vector3,color: Color=Color.WHITE,basis: Basis=Basis.IDENTITY) -> void:
 	var v := []
 	for s in [Vector3(-1,-1,-1),Vector3(1,-1,-1),Vector3(1,1,-1),Vector3(-1,1,-1),Vector3(-1,-1,1),Vector3(1,-1,1),Vector3(1,1,1),Vector3(-1,1,1)]:

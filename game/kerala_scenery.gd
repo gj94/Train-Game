@@ -24,7 +24,9 @@ static func crops(c) -> void:
 			var stage:=parcel_stage(absolute)
 			if stage<.19 or stage>.92:continue
 			var jitter:=Vector2(posmod(x*17+z*13,11)-5,posmod(x*7+z*19,11)-5)*.035
-			c.library.place("rice_ripe" if stage>.7 else "rice_green",Vector3(x+jitter.x,c._ground(x,z),z+jitter.y),float(posmod(x*17+z*13,628))*.01,Vector3(1.85,.9,1.85))
+			var planted:=p+jitter
+			var height: float=preload("res://game/geographic_planting_site.gd").height(c,planted,.2)
+			if is_finite(height):c.library.place("rice_ripe" if stage>.7 else "rice_green",Vector3(planted.x,height,planted.y),float(posmod(x*17+z*13,628))*.01,Vector3(1.85,.9,1.85))
 
 static func dry_clear(c,p: Vector2,radius: float=2.5) -> bool:
 	# Complete object envelope must belong to this tile; adjacent workers never
