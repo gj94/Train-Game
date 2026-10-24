@@ -1,0 +1,7833 @@
+{
+	"catalogue_sha256": "83ae3656ccb1e43674b486d2b421855b64276179c5d8a4c3fd4053918ccad30c",
+	"directory": "res://data/timetables/standard_v2/times",
+	"failures": [],
+	"limitation": "Read-only planning equality across saved states; no railway stepping, live scheduling equivalence, safety certification or performance claim.",
+	"ok": true,
+	"proposal_actions": {
+		"follow": 246,
+		"pass": 52
+	},
+	"proposal_directions": {
+		"-1": 154,
+		"1": 144
+	},
+	"samples": [
+		{
+			"clock": 28800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						11,
+						9,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T028800",
+			"plans": 0,
+			"sha256": "0a6f4e0e9da55526ea1a3ffd6f94af0e6b30d0c7b71e71678d4722bd2c28583e",
+			"trains": 4
+		},
+		{
+			"clock": 29100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T029100",
+			"plans": 0,
+			"sha256": "eb487274b2ec6f7ee20c5f39420f2920167ecd3a4d5a45bd08b93691c0618c17",
+			"trains": 5
+		},
+		{
+			"clock": 29400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						8,
+						7,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T029400",
+			"plans": 1,
+			"sha256": "0862d5ea3d98746a78230fe590411c0ead6b6506b12d024efebeae47dc27c1b5",
+			"trains": 6
+		},
+		{
+			"clock": 29700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18,
+						20,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T029700",
+			"plans": 0,
+			"sha256": "e3da36db442e09c307a72e34399bb897743a66bb5110433174f133d09cf150ca",
+			"trains": 6
+		},
+		{
+			"clock": 30000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						6,
+						7,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T030000",
+			"plans": 0,
+			"sha256": "9249c3c6075069ef2f3252c304e80f83280a62035c12fc6a33f4e899e9bedd0b",
+			"trains": 7
+		},
+		{
+			"clock": 30300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14,
+						16,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T030300",
+			"plans": 0,
+			"sha256": "2d86dd9c68aef6472e4c3fdd8e91283ad9b15af2bf5110803844eb5f9f984d0c",
+			"trains": 8
+		},
+		{
+			"clock": 30600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27,
+						30,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T030600",
+			"plans": 1,
+			"sha256": "4c138bb8f684b9f027c8c8f52066854210b5af1b11db67b59ba44678da33b2ee",
+			"trains": 8
+		},
+		{
+			"clock": 30900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11,
+						12,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T030900",
+			"plans": 2,
+			"sha256": "3181186a89f34fdf47b5431286082ea683142387d4c7d4a5373fd7cf81d6d80b",
+			"trains": 10
+		},
+		{
+			"clock": 31200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						27,
+						24,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T031200",
+			"plans": 1,
+			"sha256": "f08e7e709934050119ef533a896bb213720f5ba06a9b7d6ab39dba247582d5c1",
+			"trains": 12
+		},
+		{
+			"clock": 31500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						9,
+						11,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T031500",
+			"plans": 1,
+			"sha256": "bf2241213920a4edcc72ec9e54d35b1851ac061c44c5bc69d8f0a23722717ffb",
+			"trains": 12
+		},
+		{
+			"clock": 31800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						18,
+						22,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T031800",
+			"plans": 1,
+			"sha256": "5e628a2e6c63cfe6618b22f4763e937ffc0b7d9b92f2487ab08ae255035b6f14",
+			"trains": 12
+		},
+		{
+			"clock": 32100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6,
+						7,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T032100",
+			"plans": 1,
+			"sha256": "9c13a6edfea982f1019d531970f89c46cc670f9be798eb3fae98088540350d18",
+			"trains": 12
+		},
+		{
+			"clock": 32400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16,
+						18,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T032400",
+			"plans": 1,
+			"sha256": "65c13ccb3c7b78b1ed746c1230775c2cb300fe815421ff5eaa612369f1f1698a",
+			"trains": 12
+		},
+		{
+			"clock": 32700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						27,
+						5,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T032700",
+			"plans": 1,
+			"sha256": "7dcf68186540a12ca1f36f100b1c4901dad70ac1db485a9a19db6dc776fb1b6a",
+			"trains": 13
+		},
+		{
+			"clock": 33000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						16,
+						12,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T033000",
+			"plans": 0,
+			"sha256": "279609b37af9f2c8a5a6eece98ca5f65f312643ba7f32bd3695487eff340a15e",
+			"trains": 15
+		},
+		{
+			"clock": 33300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						30,
+						27,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T033300",
+			"plans": 0,
+			"sha256": "dbc95fe3269bf3da5e51645307b581f7145b1ed6e6fce831d78200e5c33a64c2",
+			"trains": 16
+		},
+		{
+			"clock": 33600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						12,
+						9,
+						11
+					],
+					"workers": 4
+				}
+			],
+			"id": "T033600",
+			"plans": 0,
+			"sha256": "97a1cf02353065bef3b1ad78d9f2deb5ee1625de773c2e5bcb1067fef69f191f",
+			"trains": 16
+		},
+		{
+			"clock": 33900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22,
+						25,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T033900",
+			"plans": 0,
+			"sha256": "feecab04e6359f30631e30e122ea1e74d401518deae9a3ac3fc7bc5261e53bcb",
+			"trains": 16
+		},
+		{
+			"clock": 34200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						8,
+						9,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T034200",
+			"plans": 0,
+			"sha256": "4b5c362060f15ade3a38c6ec78bad2a1d564adb18f837ad74394ae547f9f8edb",
+			"trains": 17
+		},
+		{
+			"clock": 34500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						22,
+						18,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T034500",
+			"plans": 0,
+			"sha256": "b1a423acbbb6560cd76c722e8e1f5eb79137becc08c8a982ef9eab3719e296d7",
+			"trains": 16
+		},
+		{
+			"clock": 34800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						30,
+						6,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T034800",
+			"plans": 1,
+			"sha256": "b392adf9604afcbc02d34667cabffdf868bcc1228404d0d8f6fee4fd9691198e",
+			"trains": 16
+		},
+		{
+			"clock": 35100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						16,
+						14,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T035100",
+			"plans": 2,
+			"sha256": "3570d6f9be2a74ee0c1116ab67d5b79ecdebcd441efdc95c0ef7ea5996c91c53",
+			"trains": 16
+		},
+		{
+			"clock": 35400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27,
+						30,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T035400",
+			"plans": 2,
+			"sha256": "ddabf537204dc4687fe21b027af07363ac1b1533973b4d9fb4e4a9bffe12d990",
+			"trains": 16
+		},
+		{
+			"clock": 35700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12,
+						14,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T035700",
+			"plans": 3,
+			"sha256": "72339d862bbdc37d57ad3c2c7af0d35953226c884563db10275b49ef8ce56a20",
+			"trains": 17
+		},
+		{
+			"clock": 36000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						25,
+						27,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T036000",
+			"plans": 4,
+			"sha256": "5099b5963ddb6cecfc81b672c1aa0b98068dc257393981fc93d05d59580273c8",
+			"trains": 18
+		},
+		{
+			"clock": 36300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						11,
+						9,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T036300",
+			"plans": 3,
+			"sha256": "7681be070911356c24eed7d32a2b5406dfaa4f5fa38931f4e814fb47795698e0",
+			"trains": 18
+		},
+		{
+			"clock": 36600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						22,
+						24,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T036600",
+			"plans": 2,
+			"sha256": "59b7b310330fb1640656a97dc2b17968b70ab2eb69fc788229f8c5703ca75541",
+			"trains": 18
+		},
+		{
+			"clock": 36900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6,
+						7,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T036900",
+			"plans": 2,
+			"sha256": "3d389fbb5b9461fbc03e1e1f1c19fa4ec74db8503e8fa28f6b33e0fdef5d8428",
+			"trains": 18
+		},
+		{
+			"clock": 37200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16,
+						18,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T037200",
+			"plans": 3,
+			"sha256": "6f5808092713d65f4845f7de3044bd309596c009e63b3b8938f8dcbb8cef171b",
+			"trains": 16
+		},
+		{
+			"clock": 37500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5,
+						6,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T037500",
+			"plans": 3,
+			"sha256": "e891af412d9ca3a2304d107c74c4323eadaf810796a33d7a3f9bc40f880bd86e",
+			"trains": 17
+		},
+		{
+			"clock": 37800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						16,
+						12,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T037800",
+			"plans": 3,
+			"sha256": "dc940901fcd73e92416344b40f4a218787c8d6123286c4b522202f6931481cfa",
+			"trains": 17
+		},
+		{
+			"clock": 38100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						24,
+						30,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T038100",
+			"plans": 3,
+			"sha256": "4915904d05c89e7df96faafd1e98b34cd734ec930ffbe8ca30be442344ea065a",
+			"trains": 18
+		},
+		{
+			"clock": 38400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						11,
+						12,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T038400",
+			"plans": 3,
+			"sha256": "e68acb598ea877a555991abe3e5a7aa4c3dbfcd1adf13b736752c0afaaec7182",
+			"trains": 20
+		},
+		{
+			"clock": 38700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						25,
+						24,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T038700",
+			"plans": 5,
+			"sha256": "12c2f567428083ecac39ec2105ac14314db87f0ee4e87d519e72a64f971d7e04",
+			"trains": 20
+		},
+		{
+			"clock": 39000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8,
+						9,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T039000",
+			"plans": 1,
+			"sha256": "c9dab624a5368e7f75884a9f77b1a884022a9f91bf2ad03c3117dcbc036c907e",
+			"trains": 20
+		},
+		{
+			"clock": 39300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						22,
+						18,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T039300",
+			"plans": 3,
+			"sha256": "9dd0ed055488f0ec0932c08bbaabf7f41c9e3bfb1282f304056bf14d4840e933",
+			"trains": 19
+		},
+		{
+			"clock": 39600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						30,
+						7,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T039600",
+			"plans": 3,
+			"sha256": "b204871717df535fbed1ef1981a9e61c5eaf8eb7c5626afc954d172b1115a221",
+			"trains": 18
+		},
+		{
+			"clock": 39900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14,
+						16,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T039900",
+			"plans": 2,
+			"sha256": "cd023291ade631f1794eff6c958b5d1d03c0e359381d9a2224d863bf7981cbf7",
+			"trains": 18
+		},
+		{
+			"clock": 40200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27,
+						30,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T040200",
+			"plans": 2,
+			"sha256": "371c6ed35fbb3145057a65dbb85b0b8b4f5cbd8087451b3feb1461301380e611",
+			"trains": 18
+		},
+		{
+			"clock": 40500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11,
+						14,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T040500",
+			"plans": 0,
+			"sha256": "ef1e923a523c59a526e4115b29a8e16dff268770fcfa435e8c1ec1f6da71bf16",
+			"trains": 19
+		},
+		{
+			"clock": 40800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						27,
+						25,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T040800",
+			"plans": 3,
+			"sha256": "3bc31fa13ba795cbe8a5879b22d25b13ca33fcb2ee2786d41be1e84ecbb1b282",
+			"trains": 21
+		},
+		{
+			"clock": 41100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8,
+						11,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T041100",
+			"plans": 2,
+			"sha256": "39227ed78f13abe1ff1054ea065c649f7f72213d11dfb66927e64009cb2097a2",
+			"trains": 21
+		},
+		{
+			"clock": 41400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20,
+						22,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T041400",
+			"plans": 2,
+			"sha256": "69f9435dcd13ea7245c86cb7e2d3b4182b62af5602d1e57f083d0e3ed115ab72",
+			"trains": 21
+		},
+		{
+			"clock": 41700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						7,
+						8,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T041700",
+			"plans": 2,
+			"sha256": "d571389c3d50c30652e7fa51fc63658cbd095bc5d1ac98ab15c8cbb41c1836fb",
+			"trains": 19
+		},
+		{
+			"clock": 42000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						20,
+						18,
+						16
+					],
+					"workers": 4
+				}
+			],
+			"id": "T042000",
+			"plans": 1,
+			"sha256": "2b0c0c8baed68442c230be202b07623cc304d3df413b1a56e8e197b39f424db2",
+			"trains": 18
+		},
+		{
+			"clock": 42300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						6,
+						5,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T042300",
+			"plans": 2,
+			"sha256": "5954dbf8edc2627b87495d4bfc3ac78071aa4001ef08d4f97016a254015865cc",
+			"trains": 18
+		},
+		{
+			"clock": 42600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						16,
+						14,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T042600",
+			"plans": 1,
+			"sha256": "cac9713f59975e15ff1852d5aedc4814eb118da5c62d8b1a4fe1dbdab803bdaf",
+			"trains": 19
+		},
+		{
+			"clock": 42900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						30,
+						27,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T042900",
+			"plans": 2,
+			"sha256": "90163ce5c64d395d3793dbb37530fc0ee37cc7859d1af3cad1e2d9474c913300",
+			"trains": 20
+		},
+		{
+			"clock": 43200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9,
+						11,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T043200",
+			"plans": 3,
+			"sha256": "0418b245b6762ad58c0d893ebaaf21e45f890e010771324c8e3b715d4b89bad2",
+			"trains": 22
+		},
+		{
+			"clock": 43500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						24,
+						25,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T043500",
+			"plans": 2,
+			"sha256": "a438e8e4c3886e7fd494030d43f3acca7afe89423f5e6dd1446ae03208938962",
+			"trains": 22
+		},
+		{
+			"clock": 43800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						9,
+						7,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T043800",
+			"plans": 5,
+			"sha256": "6bf6f8944bc6d90c86843ce1780471c25d9537bea66fa57d8f79c28a5ff65345",
+			"trains": 21
+		},
+		{
+			"clock": 44100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18,
+						20,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T044100",
+			"plans": 3,
+			"sha256": "d92ebe71618b3e322d28b9859b95a14fd5468092d04d8b8e8c2fe3f541e50b5f",
+			"trains": 21
+		},
+		{
+			"clock": 44400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						7,
+						5,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T044400",
+			"plans": 1,
+			"sha256": "3a6044567c694afddaccba8c31b33859412e9431a2a51e1e279650ff1710fa64",
+			"trains": 21
+		},
+		{
+			"clock": 44700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						18,
+						14,
+						16
+					],
+					"workers": 4
+				}
+			],
+			"id": "T044700",
+			"plans": 1,
+			"sha256": "bc0c197171912745c11bf93ce8e6e8e6f25a0aa41168f511183b11d475658279",
+			"trains": 20
+		},
+		{
+			"clock": 45000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						5,
+						30,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T045000",
+			"plans": 2,
+			"sha256": "59bd5f14053200af4f4b95c59b2a678243d8fbf33d7fa954fb5d7e9d98ab983d",
+			"trains": 20
+		},
+		{
+			"clock": 45300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						14,
+						11,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T045300",
+			"plans": 2,
+			"sha256": "1c5eca8fc0ba27947519a93e9c694c0c1112ee4cfc14cff693f400788120053c",
+			"trains": 19
+		},
+		{
+			"clock": 45600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						27,
+						25,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T045600",
+			"plans": 1,
+			"sha256": "deaa46e72027a2a3eac7a48eab6713c2354587697ddd3d5c5e1aaea65a078feb",
+			"trains": 18
+		},
+		{
+			"clock": 45900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						11,
+						8,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T045900",
+			"plans": 1,
+			"sha256": "720ff79de3accb1e03f58f2e65a0571a01d2b9be27042eaac4b2fed4038083fe",
+			"trains": 20
+		},
+		{
+			"clock": 46200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						24,
+						22,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T046200",
+			"plans": 2,
+			"sha256": "532757a494282270d2abafbb7a0afa58f73b4e008281ff0e21c68ea12c87fca4",
+			"trains": 20
+		},
+		{
+			"clock": 46500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						7,
+						6,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T046500",
+			"plans": 1,
+			"sha256": "d6650556c9849c97322a9b12e72ee30f79fd718da44192e5878e88088fa49a62",
+			"trains": 20
+		},
+		{
+			"clock": 46800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						18,
+						16,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T046800",
+			"plans": 1,
+			"sha256": "64e7993337b7513ccb8e414609875cef40d7a0b5db6d30d998f76f8f1f8bb227",
+			"trains": 21
+		},
+		{
+			"clock": 47100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						6,
+						30,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T047100",
+			"plans": 2,
+			"sha256": "bf05c24e1932b87f435fd8e56ad6aef195bb85466a82dda674d83701800da756",
+			"trains": 19
+		},
+		{
+			"clock": 47400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14,
+						16,
+						11
+					],
+					"workers": 4
+				}
+			],
+			"id": "T047400",
+			"plans": 2,
+			"sha256": "8223c1b28f85d25b92846d72b7254e1c3e45ced8b68419494f68da4ffc1f3394",
+			"trains": 19
+		},
+		{
+			"clock": 47700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25,
+						30,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T047700",
+			"plans": 0,
+			"sha256": "a199dd303de4f35d401de4465e6f0f323cf179154236ab3b8be342645cb26d1b",
+			"trains": 19
+		},
+		{
+			"clock": 48000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9,
+						11,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T048000",
+			"plans": 0,
+			"sha256": "178692d2891efc09499a4fbc64c99d4793fdf804e901c001c165010560728049",
+			"trains": 19
+		},
+		{
+			"clock": 48300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22,
+						24,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T048300",
+			"plans": 1,
+			"sha256": "90faa1c042bbbe99c82c74b11f5f8a47b6d8308c21e5d14ef47275a6a58e15ec",
+			"trains": 19
+		},
+		{
+			"clock": 48600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						8,
+						9,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T048600",
+			"plans": 3,
+			"sha256": "076f6989de9613e3747c623afbb07a60001a0af95433978479d380367df35068",
+			"trains": 20
+		},
+		{
+			"clock": 48900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18,
+						20,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T048900",
+			"plans": 2,
+			"sha256": "9eb0fbbb6ff3fc6b1fbfb0ce31900bb6a09acd7421545cfb1ebfe3487795272b",
+			"trains": 19
+		},
+		{
+			"clock": 49200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						6,
+						7,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T049200",
+			"plans": 3,
+			"sha256": "1c1cd6c21d004fb3b1095966ba124ec912012cc08c4d71a83e575c5dafdd38ea",
+			"trains": 19
+		},
+		{
+			"clock": 49500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14,
+						16,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T049500",
+			"plans": 1,
+			"sha256": "0ed60e28dbb0871733d208c165f1283abf9ac1fc2d3b87c090b451f641a06a24",
+			"trains": 18
+		},
+		{
+			"clock": 49800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						30,
+						27,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T049800",
+			"plans": 0,
+			"sha256": "6e7911ade28a12d70996b6972c2d7533fe8aab2e61bdeacb6b514f1b3e33505e",
+			"trains": 18
+		},
+		{
+			"clock": 50100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12,
+						14,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T050100",
+			"plans": 1,
+			"sha256": "a2f5af6842afc0461436b3139d87f6ddb1b3d61763c6a46cd7ebd4f1b63dce8e",
+			"trains": 18
+		},
+		{
+			"clock": 50400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24,
+						25,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T050400",
+			"plans": 3,
+			"sha256": "ac31d0dcc8edf6b52b0af64f9bedb82324284c39976fb2df0c8f200dfff009a4",
+			"trains": 18
+		},
+		{
+			"clock": 50700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8,
+						9,
+						11
+					],
+					"workers": 4
+				}
+			],
+			"id": "T050700",
+			"plans": 3,
+			"sha256": "017d69ce55305390f3d0a5ff119907e2f0b21d2c61956c354e183c5771fc800a",
+			"trains": 19
+		},
+		{
+			"clock": 51000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						22,
+						24,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T051000",
+			"plans": 4,
+			"sha256": "849822cbb8198299eb678d370b5aa93cf2c1159a2e28310944b456a66567c41d",
+			"trains": 20
+		},
+		{
+			"clock": 51300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6,
+						7,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T051300",
+			"plans": 3,
+			"sha256": "e7ca16b02de63d668ff6c86b658c5fe49d6fb8e96f542e1b60535d179a8f6be1",
+			"trains": 22
+		},
+		{
+			"clock": 51600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						20,
+						16,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T051600",
+			"plans": 3,
+			"sha256": "41edfaf5e0c4595ae3cfb411dbdd7f4770fb9baf38e1cae1042999b30cab5adb",
+			"trains": 22
+		},
+		{
+			"clock": 51900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						6,
+						30,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T051900",
+			"plans": 0,
+			"sha256": "b8cb9619cac5e3ff59efbe360bf4c0b3e7ff62e982f3c5735ae495309a2ac28a",
+			"trains": 20
+		},
+		{
+			"clock": 52200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12,
+						14,
+						16
+					],
+					"workers": 4
+				}
+			],
+			"id": "T052200",
+			"plans": 0,
+			"sha256": "33b8a352533d0d3e539139ef06e880486679b9f8fd4d3637448e63c103ddcd06",
+			"trains": 20
+		},
+		{
+			"clock": 52500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						27,
+						25,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T052500",
+			"plans": 1,
+			"sha256": "8a875cb5acb94298ffeadbc0b513cd0af1cd2e0b6f078867755cc6e7849c874d",
+			"trains": 20
+		},
+		{
+			"clock": 52800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						8,
+						9,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T052800",
+			"plans": 0,
+			"sha256": "127e7f0092226e7b2ec05448d96a76521ac70e4eb633830e79da921db2dfa577",
+			"trains": 20
+		},
+		{
+			"clock": 53100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						24,
+						22,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T053100",
+			"plans": 1,
+			"sha256": "805553488177198105eb12532ba1ab2b33c7414eea01b926e416bebda22c5d85",
+			"trains": 20
+		},
+		{
+			"clock": 53400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						8,
+						7,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T053400",
+			"plans": 1,
+			"sha256": "c9be563cf50e80bd910b15b44da365ed38d149ba66390057faa9ab157a880e6f",
+			"trains": 20
+		},
+		{
+			"clock": 53700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						20,
+						22,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T053700",
+			"plans": 0,
+			"sha256": "40af0829662b8cf080c172f1c244ae4a8005879e7be1b51851f92618f68d72e3",
+			"trains": 21
+		},
+		{
+			"clock": 54000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5,
+						6,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T054000",
+			"plans": 1,
+			"sha256": "e315c33eb35048d1f8484a55505d52f95860b61416dcb07af7b29cec94d9f069",
+			"trains": 20
+		},
+		{
+			"clock": 54300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14,
+						16,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T054300",
+			"plans": 1,
+			"sha256": "fb274870811169b12a321d5e3947ddaf292eadcb047c5648703a5eaee9eb2035",
+			"trains": 20
+		},
+		{
+			"clock": 54600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						30,
+						27,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T054600",
+			"plans": 1,
+			"sha256": "47b1d78924ca3ac66280d3e777626af0b50ad910f131d668040594112acbfeb0",
+			"trains": 19
+		},
+		{
+			"clock": 54900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						12,
+						11,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T054900",
+			"plans": 1,
+			"sha256": "29d9e63f4a35eeced5f24adf9e8966514fe0d01241d2ef3d9ef1a26c993ba9bf",
+			"trains": 19
+		},
+		{
+			"clock": 55200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						27,
+						25,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T055200",
+			"plans": 1,
+			"sha256": "6749ec60a5346e7f5be7b410a8a084a62ac573c6e6684983689d13e76a4b4f81",
+			"trains": 19
+		},
+		{
+			"clock": 55500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8,
+						11,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T055500",
+			"plans": 1,
+			"sha256": "a854619437deb8da1804952fdfc1ab52235bf20d35fa7988d05c0268aa37c409",
+			"trains": 18
+		},
+		{
+			"clock": 55800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						18,
+						20,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T055800",
+			"plans": 2,
+			"sha256": "55d9edb4d9116577b3cab8d9fafe18556bc1f78a61672c5a405deaf53e36ced9",
+			"trains": 19
+		},
+		{
+			"clock": 56100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						7,
+						8,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T056100",
+			"plans": 2,
+			"sha256": "17ee886d0e66254fab63bd2b0eebe3ff1a7b62925eeec5b9797e1b45631177d9",
+			"trains": 19
+		},
+		{
+			"clock": 56400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						20,
+						16,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T056400",
+			"plans": 3,
+			"sha256": "e3ed0065995a60ebe82c23fd28493ea06fc3e87f6a1af359dcb13b7760777458",
+			"trains": 20
+		},
+		{
+			"clock": 56700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						6,
+						30,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T056700",
+			"plans": 3,
+			"sha256": "194e795d9fb1ceb550ed0dffb1f6eb919171df04b3c0470a8e64b21a25a19159",
+			"trains": 20
+		},
+		{
+			"clock": 57000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12,
+						14,
+						16
+					],
+					"workers": 4
+				}
+			],
+			"id": "T057000",
+			"plans": 2,
+			"sha256": "0aeca2c3b88ab607763d35febce20c613612f5f098117237cf732fbbf545a0bd",
+			"trains": 20
+		},
+		{
+			"clock": 57300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						24,
+						25,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T057300",
+			"plans": 3,
+			"sha256": "da3e8bce99fc1c34d291b17e3cf53bc6f1190b7079fc92e7e54e9765cde4c3e8",
+			"trains": 20
+		},
+		{
+			"clock": 57600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9,
+						11,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T057600",
+			"plans": 1,
+			"sha256": "4112ca00f2c7dc66e61bba9620519cc89fa444aae37bea56b5c17d6e4b57c0ec",
+			"trains": 20
+		},
+		{
+			"clock": 57900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						25,
+						22,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T057900",
+			"plans": 1,
+			"sha256": "840b301e78552494a56107e234d8d51b4f38e5ed5af6c6b210a3782c572668a8",
+			"trains": 20
+		},
+		{
+			"clock": 58200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						8,
+						7,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T058200",
+			"plans": 2,
+			"sha256": "d6026ae0fd0412ef880e531a3cef4fa197f7748a5fc7c3565508f1b9e3fc981c",
+			"trains": 20
+		},
+		{
+			"clock": 58500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18,
+						20,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T058500",
+			"plans": 5,
+			"sha256": "9eb88c5d332fd50b05d212c833c1f73a83c2b2c1ccce513f89d19e3d8ea330cb",
+			"trains": 20
+		},
+		{
+			"clock": 58800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						7,
+						6,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T058800",
+			"plans": 5,
+			"sha256": "b0336f3c283b391f99d9818b67de6e523389962d5b0ea0571a23ce450efd1d9b",
+			"trains": 21
+		},
+		{
+			"clock": 59100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						18,
+						16,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T059100",
+			"plans": 4,
+			"sha256": "7c502b159b1b2f4aa8f317fcdae4c1fa7352f9cef881de14545139db3b78d2d2",
+			"trains": 20
+		},
+		{
+			"clock": 59400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						5,
+						30,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T059400",
+			"plans": 3,
+			"sha256": "21c47736d2b02b9c6649a9516d272394e27bde9937a73217534a0821e735736b",
+			"trains": 19
+		},
+		{
+			"clock": 59700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						14,
+						11,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T059700",
+			"plans": 1,
+			"sha256": "9a5c58448fd3794732ac0897ceb00cbd857151d956b2561560677ef7827e20f6",
+			"trains": 20
+		},
+		{
+			"clock": 60000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						27,
+						24,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T060000",
+			"plans": 3,
+			"sha256": "52538340f549934bb26082d0c415815112a25c300e7b171d31daec9db0b140d7",
+			"trains": 20
+		},
+		{
+			"clock": 60300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						11,
+						8,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T060300",
+			"plans": 3,
+			"sha256": "50f15959736f7316f2f51a5ecb3730bc90de655e3e1818f38a9d054b49598856",
+			"trains": 21
+		},
+		{
+			"clock": 60600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						18,
+						22,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T060600",
+			"plans": 2,
+			"sha256": "6642a35c9579e2e720727d3b0ccf7db618dcf2787dd98f2d8e0a1f0fdae7966d",
+			"trains": 23
+		},
+		{
+			"clock": 60900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6,
+						8,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T060900",
+			"plans": 4,
+			"sha256": "781c74ccb20ec7a23b1510dea2f0e00432d108166ce89908775f1aa270013ed9",
+			"trains": 23
+		},
+		{
+			"clock": 61200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16,
+						18,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T061200",
+			"plans": 4,
+			"sha256": "4d8d88550094ef95c025d680e4a5a9455031e6f0cdd171ff2eba7ea9d10140df",
+			"trains": 23
+		},
+		{
+			"clock": 61500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						5,
+						6,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T061500",
+			"plans": 4,
+			"sha256": "ba451780e13618b1558bd825c3a6c10dd919f48fe0acf0bb8ebc5b7b949b6253",
+			"trains": 22
+		},
+		{
+			"clock": 61800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						16,
+						12,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T061800",
+			"plans": 4,
+			"sha256": "c35f30f24e3ec8030cb4ff6b8d07c4defcee5ac53b8f8b845adadf35b7140b33",
+			"trains": 21
+		},
+		{
+			"clock": 62100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						30,
+						27,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T062100",
+			"plans": 2,
+			"sha256": "3f0e09d767dae12007111324cec791daab0684034be9a8f9ca0836068bfbe6a1",
+			"trains": 21
+		},
+		{
+			"clock": 62400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9,
+						11,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T062400",
+			"plans": 1,
+			"sha256": "221d1db1de2f21763e9d773e9088a46028f4b7d354818baeb261095dac48345c",
+			"trains": 21
+		},
+		{
+			"clock": 62700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						20,
+						24,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T062700",
+			"plans": 1,
+			"sha256": "d0757f76d5662dbd4ac5e91faa7807b1a6d3913cb342848aff67e92fb0cd9994",
+			"trains": 21
+		},
+		{
+			"clock": 63000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7,
+						8,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T063000",
+			"plans": 1,
+			"sha256": "d384588823d14ffc70e9931f4624ac09b36b1e611d9a9fb2445c7dc475284f09",
+			"trains": 19
+		},
+		{
+			"clock": 63300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18,
+						20,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T063300",
+			"plans": 1,
+			"sha256": "97e743f6e7fffbb5dc30044e35f8d9f974c5ad7568e2e71dca750538890cd5b5",
+			"trains": 19
+		},
+		{
+			"clock": 63600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5,
+						6,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T063600",
+			"plans": 1,
+			"sha256": "91bc6af5d6fdd61fe4eb3506ccd680d5e052cab867ba0f23b358736e8e06d349",
+			"trains": 20
+		},
+		{
+			"clock": 63900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						16,
+						14,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T063900",
+			"plans": 1,
+			"sha256": "92f1740e89ad6b907a47a49ce6d47543a331283fc39a058f72aa829947560111",
+			"trains": 20
+		},
+		{
+			"clock": 64200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						5,
+						27,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T064200",
+			"plans": 1,
+			"sha256": "059e17959f6dbd9739c8d4b9b746b79ef2d3ae79a524e6a3c6252ee01f954988",
+			"trains": 18
+		},
+		{
+			"clock": 64500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						12,
+						11,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T064500",
+			"plans": 2,
+			"sha256": "77447d066d5915d8ad8a13e96442ad8a04c20db79bab328ab8c3833429e48a11",
+			"trains": 17
+		},
+		{
+			"clock": 64800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						27,
+						25,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T064800",
+			"plans": 2,
+			"sha256": "173bee9a6d1a0165f1c54ee212a314afececea362bbcd8497817298104b9334a",
+			"trains": 18
+		},
+		{
+			"clock": 65100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8,
+						9,
+						11
+					],
+					"workers": 4
+				}
+			],
+			"id": "T065100",
+			"plans": 2,
+			"sha256": "fa404cec7ef8fa12303c2fdec79cca63a93eb69a68707ebc78247bc650487635",
+			"trains": 18
+		},
+		{
+			"clock": 65400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20,
+						22,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T065400",
+			"plans": 3,
+			"sha256": "bbfdd39f8e3089f55572491734eae44ce91dc46029353f4b630b667cd098b49c",
+			"trains": 19
+		},
+		{
+			"clock": 65700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						8,
+						7,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T065700",
+			"plans": 4,
+			"sha256": "6c96379b29754a44ddf74c52f65eb1e43aedb2193f1cee017a29d06794cc63a7",
+			"trains": 19
+		},
+		{
+			"clock": 66000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18,
+						20,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T066000",
+			"plans": 2,
+			"sha256": "1f15afc072d99233891c00a65d0bab8c1a16b4bce4470cd2d4c4ed178b9beaa7",
+			"trains": 18
+		},
+		{
+			"clock": 66300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30,
+						5,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T066300",
+			"plans": 2,
+			"sha256": "9bd926d61884e2227f420960e7c030e8bc92e5f46f4724891334309e4ff22a1a",
+			"trains": 18
+		},
+		{
+			"clock": 66600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						14,
+						16,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T066600",
+			"plans": 4,
+			"sha256": "0d63890c3090b607ffb6ae1b5d37f160990df9f732ec8ee14cada2a00aeadad8",
+			"trains": 19
+		},
+		{
+			"clock": 66900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						27,
+						30,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T066900",
+			"plans": 5,
+			"sha256": "8ac80394c7132df17e34a871b399affee7323fe9e98995571a7b20c61ffd9747",
+			"trains": 19
+		},
+		{
+			"clock": 67200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						8,
+						12,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T067200",
+			"plans": 7,
+			"sha256": "cc00eeaa2bfd07f425300594c887973a443d56589f2290e30e7d99db051b8cc7",
+			"trains": 20
+		},
+		{
+			"clock": 67500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						25,
+						24,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T067500",
+			"plans": 5,
+			"sha256": "5b44a0901e4e4672acec276c5bf67e2f3ca1fd5eac5b40cfb23be633d70ab288",
+			"trains": 20
+		},
+		{
+			"clock": 67800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						9,
+						7,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T067800",
+			"plans": 2,
+			"sha256": "0d8146d57e90ba7200e4f4aef84270553725f8314c6e0f407f97a9acf13f97d6",
+			"trains": 22
+		},
+		{
+			"clock": 68100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						22,
+						18,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T068100",
+			"plans": 3,
+			"sha256": "499151fa0e0c4d72ccf99a6a439c8c5c871116305e655af09e8863a228d09af6",
+			"trains": 22
+		},
+		{
+			"clock": 68400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						7,
+						5,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T068400",
+			"plans": 2,
+			"sha256": "e2d61769f9ef9527802998f306034a3fd0514762c8983c1c56ac8a5e5ef609c8",
+			"trains": 23
+		},
+		{
+			"clock": 68700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16,
+						18,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T068700",
+			"plans": 2,
+			"sha256": "e466c8d6d9af5fba1f17f7915dda20cfb37672c86b773aeaacc3b5700d215622",
+			"trains": 21
+		},
+		{
+			"clock": 69000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						5,
+						27,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T069000",
+			"plans": 3,
+			"sha256": "3e8b598a0299450b976fb75164e2216e6a0bf4be8dad9b7f7be818318195301f",
+			"trains": 19
+		},
+		{
+			"clock": 69300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11,
+						14,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T069300",
+			"plans": 3,
+			"sha256": "fb17a4e05d0f09628e6225111996eacefd2de77381fd22ac03497d1557b36eb8",
+			"trains": 19
+		},
+		{
+			"clock": 69600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						27,
+						24,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T069600",
+			"plans": 4,
+			"sha256": "83287e8b465ef60fcb3d6b5844037605a1b571e7905c5ab279b828c364c8ae1b",
+			"trains": 21
+		},
+		{
+			"clock": 69900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						11,
+						8,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T069900",
+			"plans": 2,
+			"sha256": "5653b5f53b3cfd9008883e15bc7ae3d91b01d9ad1eda8c410f0c0a206a9e5a93",
+			"trains": 22
+		},
+		{
+			"clock": 70200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						24,
+						20,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T070200",
+			"plans": 2,
+			"sha256": "e2be4b7ffe83f3f3275a0d6db0c55b7bae7b30e44fa0df9275e41791a2542f9b",
+			"trains": 21
+		},
+		{
+			"clock": 70500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						8,
+						7,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T070500",
+			"plans": 0,
+			"sha256": "6e4f3e13a7939c696a9d9d9d7ad1e7fd6360d41ed4496a16047fc50b79099669",
+			"trains": 22
+		},
+		{
+			"clock": 70800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						20,
+						18,
+						16
+					],
+					"workers": 4
+				}
+			],
+			"id": "T070800",
+			"plans": 1,
+			"sha256": "1e91feb926f2cad6b932767d881a2417d1323a947a48a1cc0e1a85b00e52b334",
+			"trains": 21
+		},
+		{
+			"clock": 71100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						6,
+						30,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T071100",
+			"plans": 1,
+			"sha256": "7371e8d4813478e94d9b213c2bb140791c1dc4ad4233eeb4e1f1f5734b34d1c0",
+			"trains": 20
+		},
+		{
+			"clock": 71400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						16,
+						12,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T071400",
+			"plans": 2,
+			"sha256": "6cad6da0b599997cbd731d46804ac0e6648c53df4d7df2357132a360155476d2",
+			"trains": 20
+		},
+		{
+			"clock": 71700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						27,
+						25,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T071700",
+			"plans": 0,
+			"sha256": "1ccb0499018056a55310337289879a4bcfdab613d0ea056722ce0d2c75c7d6b0",
+			"trains": 19
+		},
+		{
+			"clock": 72000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						11,
+						12,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T072000",
+			"plans": 1,
+			"sha256": "a201a271cfdb1f0494434a38fa6b7563921b4bedbdfd5a7bbb10e099cffde47f",
+			"trains": 19
+		},
+		{
+			"clock": 72300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						25,
+						24,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T072300",
+			"plans": 1,
+			"sha256": "9b7d601e3251032df3ab1fcb449640292cf29b7c507d86640e3d4838f33c1c59",
+			"trains": 19
+		},
+		{
+			"clock": 72600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7,
+						8,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T072600",
+			"plans": 1,
+			"sha256": "0a129b96712f1ffd729d0080976f1b679ac7f78219da84f73916bc960ab454cd",
+			"trains": 19
+		},
+		{
+			"clock": 72900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18,
+						20,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T072900",
+			"plans": 1,
+			"sha256": "0aff0f4279a921448f0815328c70c844d143535d2da1a3a155278c2f243326df",
+			"trains": 21
+		},
+		{
+			"clock": 73200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5,
+						6,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T073200",
+			"plans": 1,
+			"sha256": "acd2d52ec17b9164ec5848413dce600d6714875a7ac7c87f85dc0ddd987fdd74",
+			"trains": 20
+		},
+		{
+			"clock": 73500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						16,
+						14,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T073500",
+			"plans": 2,
+			"sha256": "944bce5d957e4872155bd1f60c3eb2b7c42abe0aa7d96b0758df559b443c3108",
+			"trains": 20
+		},
+		{
+			"clock": 73800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27,
+						5,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T073800",
+			"plans": 1,
+			"sha256": "1837e15f52435e985e377e9c4add9d70b26f8e68ce983b17f50192aa43ea9ac8",
+			"trains": 17
+		},
+		{
+			"clock": 74100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11,
+						12,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T074100",
+			"plans": 2,
+			"sha256": "585f854f7a08e2b27bc5e5943db11d74820567c9f13b3cdd788116ba8e6127b8",
+			"trains": 17
+		},
+		{
+			"clock": 74400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						25,
+						27,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T074400",
+			"plans": 2,
+			"sha256": "a38a25cd856e77c93cc64de3a4f0ff06dab1b227056e684e3b6923ed21969665",
+			"trains": 18
+		},
+		{
+			"clock": 74700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						11,
+						9,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T074700",
+			"plans": 2,
+			"sha256": "e949044d43aa8d5295e759fb3a22a797dd7bcdac0f200058d493c4047fd3950f",
+			"trains": 17
+		},
+		{
+			"clock": 75000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						22,
+						20,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T075000",
+			"plans": 2,
+			"sha256": "6f34c4c0fa34fa52227437ce26623676b73d223ed769d100d24d5170e2e274ba",
+			"trains": 17
+		},
+		{
+			"clock": 75300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						7,
+						8,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T075300",
+			"plans": 2,
+			"sha256": "4c6a2f5eecefac9d88dff0776c0d1086bcc530853771cc32841ebbd0ec05dd21",
+			"trains": 17
+		},
+		{
+			"clock": 75600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						20,
+						18,
+						16
+					],
+					"workers": 4
+				}
+			],
+			"id": "T075600",
+			"plans": 2,
+			"sha256": "a9981f5c09b2102e52503afccec3bfd52b99945e5ad278452d0371d2f9002514",
+			"trains": 17
+		},
+		{
+			"clock": 75900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						6,
+						5,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T075900",
+			"plans": 1,
+			"sha256": "bfc2991c9d8014929caf13c57b2c637546cd6808b8ad2da3ab67c5a702b9f88d",
+			"trains": 17
+		},
+		{
+			"clock": 76200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12,
+						14,
+						16
+					],
+					"workers": 4
+				}
+			],
+			"id": "T076200",
+			"plans": 1,
+			"sha256": "5e90527e570ff4b1b76fce2a6693e34d965c787372968e78d12c8965e8d1693e",
+			"trains": 16
+		},
+		{
+			"clock": 76500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25,
+						30,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T076500",
+			"plans": 1,
+			"sha256": "bf7682773e438d182dce79e4c36f3e0469b26df7899010c3be402d02d0da22e3",
+			"trains": 18
+		},
+		{
+			"clock": 76800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						12,
+						9,
+						11
+					],
+					"workers": 4
+				}
+			],
+			"id": "T076800",
+			"plans": 0,
+			"sha256": "54b1bf00150b9d43950c495d885c88559ad4493cadbb05aa99d77358d2f2cdc0",
+			"trains": 18
+		},
+		{
+			"clock": 77100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22,
+						25,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T077100",
+			"plans": 0,
+			"sha256": "28d9ac1d5b8d47341f7de3af7202f1d9581e29cde47bd164c739996cd30bd7d2",
+			"trains": 19
+		},
+		{
+			"clock": 77400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						6,
+						8,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T077400",
+			"plans": 0,
+			"sha256": "5523e31b7e6eacb255a627ac6f68df868f344f6d3fb672867be5800004aeb400",
+			"trains": 17
+		},
+		{
+			"clock": 77700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						22,
+						18,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T077700",
+			"plans": 0,
+			"sha256": "f6d1b3e46b5b9d64667cb9861df3bf59702875017e90d30c390465e47df606ba",
+			"trains": 17
+		},
+		{
+			"clock": 78000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						6,
+						5,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T078000",
+			"plans": 0,
+			"sha256": "c2ac5dfbb98d0277919da4a91cc3c5fdd2ac9eab587acef56c8f3d5863763827",
+			"trains": 17
+		},
+		{
+			"clock": 78300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14,
+						16,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T078300",
+			"plans": 0,
+			"sha256": "28810e542094eb3e5ead2ef56e41bd021c162e9ccd6c9a9c79351798d23ba2bc",
+			"trains": 16
+		},
+		{
+			"clock": 78600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						5,
+						27,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T078600",
+			"plans": 0,
+			"sha256": "9feb99e74d5c21475fb1cf574f5b104b76a40d94edfa91adde15838f20da4028",
+			"trains": 15
+		},
+		{
+			"clock": 78900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11,
+						12,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T078900",
+			"plans": 0,
+			"sha256": "47b72c8c3cf2ecda34fec595bcc8c45deec00676880ae029c646c6cd1d612e9e",
+			"trains": 15
+		},
+		{
+			"clock": 79200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						27,
+						25,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T079200",
+			"plans": 0,
+			"sha256": "ae1026d96f062cfd8b99e7ca49c5124e3dc1a45504622bc8d1908a1fbc920ee5",
+			"trains": 15
+		},
+		{
+			"clock": 79500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8,
+						11,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T079500",
+			"plans": 0,
+			"sha256": "9007cdeb22e9eb0bd66fd600c2b3f88faccb1b1e61541ded80bf138e62c26edb",
+			"trains": 13
+		},
+		{
+			"clock": 79800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20,
+						24,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T079800",
+			"plans": 0,
+			"sha256": "26ec04ecdedaf3d0f835467b128c5a9226a9888ae13cd0f9d3bbba7333b1cc3b",
+			"trains": 12
+		},
+		{
+			"clock": 80100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6,
+						7,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T080100",
+			"plans": 0,
+			"sha256": "bbebeec6c93c201afaf670822f6c928824ccbc4070617ebcc92c8e059acc4069",
+			"trains": 11
+		},
+		{
+			"clock": 80400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						14,
+						18,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T080400",
+			"plans": 0,
+			"sha256": "58ae9f1d9584016ba909b579efc4ea6a54d286d193b0e434c1db571c7d92fad6",
+			"trains": 11
+		},
+		{
+			"clock": 80700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30,
+						5,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T080700",
+			"plans": 0,
+			"sha256": "90410bfd401f0cbe7554e428fd11af29233780cfa014cfbaec2eec6bcd4e37b2",
+			"trains": 11
+		},
+		{
+			"clock": 81000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12,
+						16,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T081000",
+			"plans": 0,
+			"sha256": "45c5217871b122527d89c747ae2229475a1abec7bac52fd96ad328e151db1799",
+			"trains": 11
+		},
+		{
+			"clock": 81300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						30,
+						27,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T081300",
+			"plans": 0,
+			"sha256": "0b8d5de71caf9ca4fc3fdf76ade80adcb5736e37a520ef5d958d0e57ddf9b0d1",
+			"trains": 11
+		},
+		{
+			"clock": 81600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9,
+						11,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T081600",
+			"plans": 0,
+			"sha256": "a9e68104c5abce04801b51bc84b9bc1bc6a0136c24a33fec00d970c309f10c27",
+			"trains": 11
+		},
+		{
+			"clock": 81900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22,
+						25,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T081900",
+			"plans": 0,
+			"sha256": "09e425f613c9dc255d226831a26a87070c62ffb11cf6789a127ff5e53305b6d4",
+			"trains": 11
+		},
+		{
+			"clock": 82200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7,
+						8,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T082200",
+			"plans": 0,
+			"sha256": "cc594d2b1773c1bd968c2099103723a6ba81967f1e4675b1098380ff6eda680e",
+			"trains": 11
+		},
+		{
+			"clock": 82500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18,
+						22,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T082500",
+			"plans": 0,
+			"sha256": "4e196cf78236f9d8e1e1398c756cc2080dc1bfb23d9877b0fcbc15c6ff037619",
+			"trains": 11
+		},
+		{
+			"clock": 82800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						6,
+						5,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T082800",
+			"plans": 0,
+			"sha256": "9749ed63afb5f562930d27982deec336225ab632199839c40dcfe6262595a51d",
+			"trains": 10
+		},
+		{
+			"clock": 83100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						12,
+						16,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T083100",
+			"plans": 0,
+			"sha256": "5f94b4cfecbe04e4046617770a003a954a576e04d9f1ff50e461f543595edfd2",
+			"trains": 9
+		},
+		{
+			"clock": 83400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27,
+						30,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T083400",
+			"plans": 0,
+			"sha256": "c880a856a8dbaa3147d57c4fb1d44b15e195a6e2626a873f49b59b007091d3ee",
+			"trains": 7
+		},
+		{
+			"clock": 83700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						12,
+						11,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T083700",
+			"plans": 0,
+			"sha256": "ec0b251c7bea0391ec0d4c2763305172dc87dec5b6a8ff244d53b62b3919eef2",
+			"trains": 7
+		},
+		{
+			"clock": 84000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						22,
+						25,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T084000",
+			"plans": 0,
+			"sha256": "b185f11621ef53600269b5b76737d12aca68d1b25c2b6b15935fabc4fbeb5cf1",
+			"trains": 7
+		},
+		{
+			"clock": 84300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						9,
+						8,
+						11
+					],
+					"workers": 4
+				}
+			],
+			"id": "T084300",
+			"plans": 0,
+			"sha256": "25178187c44c80b32692be82bf3bdc1b43bc982a13f7a22207bd255bbe315472",
+			"trains": 7
+		},
+		{
+			"clock": 84600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20,
+						24,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T084600",
+			"plans": 0,
+			"sha256": "6b9f81aa92c49635b7a91de110ac48cd0039a1941ad577920e2afaa0f2508f81",
+			"trains": 7
+		},
+		{
+			"clock": 84900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						5,
+						8,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T084900",
+			"plans": 0,
+			"sha256": "a11a70c7662bc7a6a852b8442794f7b4e0c416474a0d223e0f124651c9e4aa13",
+			"trains": 7
+		},
+		{
+			"clock": 85200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						18,
+						20,
+						16
+					],
+					"workers": 4
+				}
+			],
+			"id": "T085200",
+			"plans": 0,
+			"sha256": "88ab91f32016ee77bb1a54697b423074a266255769acaf5e0afc862590f80984",
+			"trains": 6
+		},
+		{
+			"clock": 85500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30,
+						5,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T085500",
+			"plans": 0,
+			"sha256": "14be6adf8ee3af79e1596666ad80b2136ea40353f14e4c6b8a8244b59e49a8e5",
+			"trains": 6
+		},
+		{
+			"clock": 85800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						11,
+						16,
+						14
+					],
+					"workers": 4
+				}
+			],
+			"id": "T085800",
+			"plans": 0,
+			"sha256": "86ed2a7ce1ea2e6c53f54a8a63245f0ade3ccbd9c423130aa8bc0e25c24cbe16",
+			"trains": 6
+		},
+		{
+			"clock": 86100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25,
+						27,
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T086100",
+			"plans": 0,
+			"sha256": "66f345a664f2b245fca2c84331cd66d445e46d858ff8c71517b966799dcbdefd",
+			"trains": 6
+		},
+		{
+			"clock": 86400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9,
+						11,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T086400",
+			"plans": 0,
+			"sha256": "d8acdc6c0be268c189d103670efdbac0423af446fd68c1870b80796879a77c00",
+			"trains": 6
+		},
+		{
+			"clock": 86700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24,
+						20,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T086700",
+			"plans": 0,
+			"sha256": "c48043aa8ba72f2628c65a86eea2263cd1e0d6335ba62cddeb3de45d7849024b",
+			"trains": 6
+		},
+		{
+			"clock": 87000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7,
+						8,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T087000",
+			"plans": 0,
+			"sha256": "37715f60a911bd306d055f3a9a01824f1233b839b57376f8052bc11db366fc7a",
+			"trains": 6
+		},
+		{
+			"clock": 87300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18,
+						20,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T087300",
+			"plans": 0,
+			"sha256": "889efb943992146db3994cbb211a7225824241e7c41f374943ecb3d2c02d6dd5",
+			"trains": 5
+		},
+		{
+			"clock": 87600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						6,
+						5,
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T087600",
+			"plans": 0,
+			"sha256": "e0c597154a2c8e5d61631fa5ffd30c3929b707dcc7ffd56c8c324a902187a5ec",
+			"trains": 5
+		},
+		{
+			"clock": 87900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14,
+						16,
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T087900",
+			"plans": 0,
+			"sha256": "fc2222929a7b36aa03f632df2295d471a494023c53a7cf40ef5d29307d37848e",
+			"trains": 5
+		},
+		{
+			"clock": 88200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						25,
+						30,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T088200",
+			"plans": 0,
+			"sha256": "f5ddda02d6fa7f78b95ce0e6ed93b8e780a7bb9a0e32f24d6344f21bd0ff10d4",
+			"trains": 5
+		},
+		{
+			"clock": 88500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11,
+						14,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T088500",
+			"plans": 0,
+			"sha256": "3149202bf26d05d25e5fe39a1cd88495742dde9c1c1e31928734bece812d95a5",
+			"trains": 4
+		},
+		{
+			"clock": 88800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24,
+						25,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T088800",
+			"plans": 0,
+			"sha256": "81f7a00bb40924f2ee686624283abde4bf52460f5cdcd9dc0fe32b06b09bf055",
+			"trains": 4
+		},
+		{
+			"clock": 89100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T089100",
+			"plans": 0,
+			"sha256": "2f798c77d31418a5b6c765c9d8369130601b16f4b7e7ff4d1cbcda15ef69207b",
+			"trains": 3
+		},
+		{
+			"clock": 89400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20,
+						22
+					],
+					"workers": 4
+				}
+			],
+			"id": "T089400",
+			"plans": 0,
+			"sha256": "b35ebdfef5d88dcf569a442af2c589157af217c02e52b2fccc09383158f86ec5",
+			"trains": 3
+		},
+		{
+			"clock": 89700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27,
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5,
+						7,
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T089700",
+			"plans": 0,
+			"sha256": "03ec1e322a61c5bc25fa8b3c719c4627bbd2fda845a0cfabf539900b016e14f2",
+			"trains": 3
+		},
+		{
+			"clock": 90000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						16,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T090000",
+			"plans": 0,
+			"sha256": "cc0217a50212e1c4f5d14db9bccbf812314c7703ec35d00d777406c15e5f5992",
+			"trains": 3
+		},
+		{
+			"clock": 90300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T090300",
+			"plans": 0,
+			"sha256": "f291078135e0e8f50510c6b16c22698bcde228d9bc988aae397014ef46745b38",
+			"trains": 3
+		},
+		{
+			"clock": 90600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8,
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T090600",
+			"plans": 0,
+			"sha256": "83e63c1a788bc0ce83679f1f580580ec4cb5b0e9e91534908d3710c41a0eaf12",
+			"trains": 3
+		},
+		{
+			"clock": 90900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20,
+						22
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24,
+						27,
+						25
+					],
+					"workers": 4
+				}
+			],
+			"id": "T090900",
+			"plans": 0,
+			"sha256": "01eb2eb1025f588eb73df84e93fdcd4e84518e0807186d8b0bda6bd57dbb6182",
+			"trains": 3
+		},
+		{
+			"clock": 91200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6,
+						7
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11,
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T091200",
+			"plans": 0,
+			"sha256": "2f96ac6672e1376e505ec523c7b489fd350d6f81f8c0c4ada96a25bf2e38f266",
+			"trains": 3
+		},
+		{
+			"clock": 91500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16,
+						18
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						20
+					],
+					"workers": 4
+				}
+			],
+			"id": "T091500",
+			"plans": 0,
+			"sha256": "cd718e484b6973f14efbc3cd6a59fde11630b0392209611dd74d493825204979",
+			"trains": 3
+		},
+		{
+			"clock": 91800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						6,
+						9
+					],
+					"workers": 4
+				}
+			],
+			"id": "T091800",
+			"plans": 0,
+			"sha256": "f6882a6b6e2c4d15b92c638c374cb3c462cbc1ec742e538ab2636a5afc30fc84",
+			"trains": 3
+		},
+		{
+			"clock": 92100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12,
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						16
+					],
+					"workers": 4
+				}
+			],
+			"id": "T092100",
+			"plans": 0,
+			"sha256": "ef8792a7183f00127e3443f03400f1350b3b2484bbbbe63ecee5576266fe03ea",
+			"trains": 3
+		},
+		{
+			"clock": 92400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30,
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T092400",
+			"plans": 0,
+			"sha256": "c8af1b5fcd455ff2bbd0c11de9eea729776c969c268585cad4d3c716ec2390ec",
+			"trains": 2
+		},
+		{
+			"clock": 92700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14,
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T092700",
+			"plans": 0,
+			"sha256": "964fe88d81044a117c79a5d2a7b15ca77f682da3b689d8f0f951a6dd607ccbdb",
+			"trains": 2
+		},
+		{
+			"clock": 93000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25,
+						27
+					],
+					"workers": 4
+				}
+			],
+			"id": "T093000",
+			"plans": 0,
+			"sha256": "e69396d7c2f92ee63d78f25f58e2239f6655101d999c8f9a8e7348727422547b",
+			"trains": 2
+		},
+		{
+			"clock": 93300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7,
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9,
+						11
+					],
+					"workers": 4
+				}
+			],
+			"id": "T093300",
+			"plans": 0,
+			"sha256": "f2c55ec1e61a48d3f69b04d5a95b7856a6503801a76ba3ce5e4232e38fe41ad9",
+			"trains": 2
+		},
+		{
+			"clock": 93600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18,
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						22,
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T093600",
+			"plans": 0,
+			"sha256": "ca98b987eefd13f71a9b189ffd0583833334eaa6cc5db80646a7fc30a7d2fd62",
+			"trains": 2
+		},
+		{
+			"clock": 93900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 4
+				}
+			],
+			"id": "T093900",
+			"plans": 0,
+			"sha256": "998d31af7e173f04f494ab3d304844ab99a3b6e3c0a361f9e616b4539245fb0c",
+			"trains": 1
+		},
+		{
+			"clock": 94200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T094200",
+			"plans": 0,
+			"sha256": "ce9e4544d1f5b96ac8abe8e1c41ebcbb901891b66ac16a3a6de0f37dab1b863d",
+			"trains": 1
+		},
+		{
+			"clock": 94500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 4
+				}
+			],
+			"id": "T094500",
+			"plans": 0,
+			"sha256": "c865c55c35fcc71b26ca10a3f05e31da550e79236003fa0f5c7e87a79fd5c1d2",
+			"trains": 1
+		},
+		{
+			"clock": 94800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T094800",
+			"plans": 0,
+			"sha256": "18f1459a9bedd13e2e7eac2bbacc2473f87fb6bc8572e1777a3b52cd9077792b",
+			"trains": 1
+		},
+		{
+			"clock": 95100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						22
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 4
+				}
+			],
+			"id": "T095100",
+			"plans": 0,
+			"sha256": "467dad634861b1459ddaeb7ad6b5dba3d385bcc29a9fb694d764f1dbb14d454b",
+			"trains": 1
+		},
+		{
+			"clock": 95400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						7
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T095400",
+			"plans": 0,
+			"sha256": "485cb1454b127c3ff0052087274be0d1f0051e4ed22b5d569669c61b22705016",
+			"trains": 1
+		},
+		{
+			"clock": 95700.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						20
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T095700",
+			"plans": 0,
+			"sha256": "880c0437fef51796419e908f73fdac50935454ccb30c1a01ce0fc3045e804ba9",
+			"trains": 1
+		},
+		{
+			"clock": 96000.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						5
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 4
+				}
+			],
+			"id": "T096000",
+			"plans": 0,
+			"sha256": "a840ec321c6e617d6503e62abf915fe948b2666d4c635b448004833dfbdb6324",
+			"trains": 1
+		},
+		{
+			"clock": 96300.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						14
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						16
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 4
+				}
+			],
+			"id": "T096300",
+			"plans": 0,
+			"sha256": "160cd5a5c6b697eafc445637846d2f43360bf9bfacd9fbfc1e4b42e8f625cff7",
+			"trains": 1
+		},
+		{
+			"clock": 96600.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						27
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						30
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T096600",
+			"plans": 0,
+			"sha256": "4b37478c32a91747db287720c1220782d7e0d0bf584fb007454cfc3d34a03fcc",
+			"trains": 1
+		},
+		{
+			"clock": 96900.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						11
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						18
+					],
+					"workers": 4
+				}
+			],
+			"id": "T096900",
+			"plans": 0,
+			"sha256": "4f1fccccf0a598e59681ef3f840b64e090d7f2c38c2a744c788fcea635d925eb",
+			"trains": 1
+		},
+		{
+			"clock": 97200.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						24
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						25
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						6
+					],
+					"workers": 4
+				}
+			],
+			"id": "T097200",
+			"plans": 0,
+			"sha256": "4edd232ee62e067f9f250bb4dfd2258b6a3ae8ad5d05806fe28ee5038b576e9f",
+			"trains": 1
+		},
+		{
+			"clock": 97500.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [
+						8
+					],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						9
+					],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [
+						12
+					],
+					"workers": 4
+				}
+			],
+			"id": "T097500",
+			"plans": 0,
+			"sha256": "df7e1010a029fde29c895c7bbfe01d0bc1424d645019fccab24a6083ef21d39b",
+			"trains": 1
+		},
+		{
+			"clock": 97800.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [],
+					"workers": 4
+				}
+			],
+			"id": "T097800",
+			"plans": 0,
+			"sha256": "b36963de8e927c7707b2cfc3171ec63946bbc317613c6522d086767b16abfaa7",
+			"trains": 0
+		},
+		{
+			"clock": 98100.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [],
+					"workers": 4
+				}
+			],
+			"id": "T098100",
+			"plans": 0,
+			"sha256": "e1784b5eb1e3c9fa37238ea18045f62b79d2ab0752da302f7dc2114988db902e",
+			"trains": 0
+		},
+		{
+			"clock": 98400.0,
+			"comparisons": [
+				{
+					"equal": true,
+					"worker_threads": [],
+					"workers": 1
+				},
+				{
+					"equal": true,
+					"worker_threads": [],
+					"workers": 2
+				},
+				{
+					"equal": true,
+					"worker_threads": [],
+					"workers": 4
+				}
+			],
+			"id": "T098400",
+			"plans": 0,
+			"sha256": "6c3d7f374927a32c718f188821c27563614645412526cf3d9477cbe543854715",
+			"trains": 0
+		}
+	],
+	"source_hashes": 4833,
+	"states_checked": 233,
+	"states_expected": 233
+}

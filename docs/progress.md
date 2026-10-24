@@ -1,5 +1,21 @@
 # Progress
 
+## 25 October 2026 — planner worker results match across the prepared day
+
+All 233 Standard V2 five-minute states pass 699 inline/one/two/four-worker
+comparisons, with unchanged detached inputs and railway state. Source and state
+hashes match; empty and active states, both directions and both following/passing
+proposals are covered. A Classic timeline is correctly rejected by this V2 audit.
+This proves sampled planning equality, not identical live scheduling or FPS.
+[Full evidence and reproduction](../art/performance/dispatcher-v2-2026-10-24/parallel-consistency/README.md).
+
+The operator guide now distinguishes changing planner mode during a journey from
+starting a different authored timetable, and records the Standard tradeoffs.
+Playtest: inspect Forecast details in V2 Standard, switch the planner in Journey
+tools and confirm the current railway and service timings remain unchanged.
+Four revised Intensive full-day runs still have frozen inputs; no final results
+or new executable release yet. R46 remains available.
+
 ## 25 October 2026 — revised Intensive replays started in isolated outputs
 
 The timing corrections and complete failed-candidate evidence are committed and

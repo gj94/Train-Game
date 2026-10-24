@@ -1,7 +1,13 @@
 # Optional predictive dispatcher evidence
 
-V2 is now integrated and selectable in source. Matching full-day preparations
-are in progress after the Kollam layout update; R46 remains published unchanged.
+V2 is now integrated and selectable in source. Classic and V2 Standard are
+[prepared and checked](standard-days/README.md). Revised Intensive full-day
+preparations are in progress after the Kollam layout update; the
+[first rejected candidates](complete-days/candidate-one/README.md) remain recorded.
+R46 remains published unchanged.
+The [prepared-state consistency audit](parallel-consistency/README.md) checks
+inline and one/two/four-worker planning at all233 Standard V2 states without
+stepping the railway; all699 comparisons pass.
 See the chronological checkpoints below and the current
 [operator/design guide](../../../docs/predictive-dispatcher.md).
 

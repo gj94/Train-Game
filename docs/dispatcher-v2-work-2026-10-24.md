@@ -558,3 +558,52 @@ installation. If a variant passes, certify it independently; retain all failures
 Then run actual `intensive`/`intensive_v2` native prepared-menu checks and commit
 the currently untracked checker only after both pass. Standard choices already
 passed36 native checks and need no repeat. No executable release requested.
+
+## 25 October 03:21 — complete-day planner equality audit pending
+
+Added an independent read-only diagnostic, currently uncommitted:
+`tools/audit_forecast_parallel_consistency.gd`. It reads the certified Standard V2
+timeline, checks source/state hashes and compares inline with one/two/four-worker
+proposals at every saved five-minute state. It also checks that detached inputs
+and the live restored railway remain byte-identical. This broadens the previous
+single-checkpoint equality check without stepping or regenerating a timetable.
+It is not a performance benchmark or proof of identical live asynchronous timing.
+
+Parse check passed. Wrapper27208/child18800 started03:19:20; output is
+`.local/dispatcher-v2-2026-10-24/parallel-consistency-standard`. No final result
+yet; keep the tool uncommitted until exercised successfully. Four v5 full-day
+jobs continue with frozen inputs; no runtime/preparation observer changes.
+
+03:29 continuation: equality audit reached100/233 checkpoints with no errors;
+all four v5 day jobs still run. Clarified the operator guide: switching the
+planner mid-journey preserves the current timetable and delays, whereas choosing
+the V2 Intensive day supplies its authored departures; baseline traffic remains
+historical. Updated source preparation status and retained the measured B012
+regression explicitly. These documentation edits and the audit tool remain
+uncommitted pending the diagnostic's final result. No runtime inputs changed.
+
+03:38 provisional observation: candidate-two V2 traffic through12:17 has five
+distinct K1 overtakers: B001 atTUVR, B024 atALLP, and B002/D100/D114 atSTKT.
+The two retimed reliefs now pass K1 instead of starting ahead of it. Three passes
+at one station remain the current maximum. This is incomplete midday evidence,
+not the ten-pass/spread/wait certificate; no timing edit follows from it. Local
+`candidate2-midday-partial.json` retains the partial-data warning. The complete-day
+planner equality audit has reached180/233 without errors; all five jobs continue.
+
+## 25 October 03:43 — all prepared-state worker comparisons pass
+
+Read-only equality audit completed233/233 Standard V2 states and699 worker
+comparisons with no failures or stderr. Every detached input and full restored
+railway remained byte-identical.4,833 source fingerprints and all state hashes
+checked; maximum23 active planning inputs. Both directions and pass/follow
+proposals are represented:154 northbound/144 southbound,246 follow/52 pass.
+These are proposal observations across time, not counts of actual overtakes.
+Wrong-mode negative check exits1 and writes no report. Wrapper27208/child18800
+have finished. Evidence is in `art/performance/dispatcher-v2-2026-10-24/parallel-consistency`.
+
+The diagnostic and clarified operator guide are ready to commit. No runtime,
+route, pack or preparation observer input changed; prior961 source tests still
+apply, and the new diagnostic itself has completed its full headless acceptance
+and rejection checks. Four original v5 day jobs continue. Do not repeat the
+Standard replay or its native menu checks. Intensive prepared-data/UI gates
+remain pending. No executable release requested.

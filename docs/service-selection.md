@@ -2,8 +2,9 @@
 
 Use **Operating day** to choose **Standard · 100 services** or the separately
 prepared **Intensive · 140 services**, with explicit Classic and optional
-[Predictive V2](predictive-dispatcher.md) choices. V2 preparation is in progress;
-incompatible or unfinished prepared data is rejected, never silently substituted.
+[Predictive V2](predictive-dispatcher.md) choices. Classic and V2 Standard are
+prepared in source; revised Intensive preparations are still being validated.
+Incompatible or unfinished prepared data is rejected, never silently substituted.
 Departure search/sort, Stops,
 Traffic and Explore by time use the selected day. Saved journeys retain their
 own railway and day regardless of the menu selection. See

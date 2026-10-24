@@ -4,7 +4,29 @@ V2 is an optional overtake planner for the Kerala Coast railway. Classic remains
 available. The home operating-day selector provides Standard 100 and Intensive
 140 choices for each dispatcher. The corresponding prepared departures, time
 states and traffic previews must pass their own full-day replay before use.
-Preparation is still in progress; the published R46 download remains Classic.
+Both Standard 100 variants are now prepared and checked in source. Revised
+Intensive 140 variants are still undergoing validation; the published R46
+download remains Classic.
+
+## Choosing a dispatcher
+
+For a new journey, select the named Classic or Predictive V2 operating day on
+Home, then choose a service or Explore by time. Stops and Traffic describe that
+exact day's prepared railway. An unfinished or incompatible day cannot substitute
+another day's snapshots.
+
+For an existing journey, open **Journey tools → Dispatcher** to switch between
+Classic and Predictive V2. This changes the planner for your current railway;
+it does not replace departure times, reset delays, move trains or cancel already
+committed routes. A Classic Intensive journey switched to V2 keeps its Classic
+service timings. To use the separately staggered V2 Intensive departures, begin
+a new journey from that operating day once it is validated. Save/Continue retains
+your chosen mode and actual railway progress.
+
+Use **Dispatch → inspect your train → Forecast details** to see a current plan.
+The plan can change as you drive. The home Traffic preview remains a record of
+the selected AI baseline, so it is not updated to promise your altered journey's
+future encounters.
 
 ## What the planner compares
 
@@ -83,6 +105,13 @@ proof against every possible deadlock. It does not invent platform crossovers,
 assume an operator-held train will leave, or know a manual driver's future input.
 Other route conflicts can still make actual ETAs later than free-running ones.
 
+An empty main road does not by itself make it available: an approach can already
+be committed, a crossing can require an escape road, or the road can lack room
+for the complete train. A passenger already stopped on the main cannot be moved
+sideways to a loop; the planner chooses a better road before arrival when there
+is a feasible opportunity. Signals and the current hold reason remain the source
+of movement authority, even when a forecast proposes onward running.
+
 Kollam's interim reconstructed layout has three passenger roads per direction:
 southbound P1/P3/P5 and northbound P2/P4/P6, each with 630 m usable berth length.
 Game road IDs are not official platform numbers. Universal access from both
@@ -97,3 +126,10 @@ events and individual wait distributions. Intensive additionally requires at
 least ten distinct K1 overtakers and reports their station distribution. Authored
 departure changes may spread encounters; no station is a forced passing site and
 K1's booked dwell is not padded to manufacture them.
+
+The checked Standard comparison improves the share of extra waits below ten
+minutes from 77.27% to 85.08%, but does not improve every service. Northbound
+VB B012 finishes 11m31s later after changed crossing interactions. See
+[the complete Standard comparison](../art/performance/dispatcher-v2-2026-10-24/standard-days/README.md)
+for call-level results and limitations. Predictive planning is not a promise of
+globally optimal dispatch or a hard maximum wait for an individual player.
