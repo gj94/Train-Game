@@ -563,3 +563,30 @@ increment, run it ONCE and verify-launch-v6.py; never relaunch v5. Preserve
 runtime/routes/observers and new packs throughout replays. No fake catalogues or
 stale signatures. UI/category tools remain uncommitted until accepted actualdata.
 Fixed10AM deadline and R47 remain. Completed audio/gangway checks need no repeat.
+
+
+## Affected-only v6 launch verified, 07:29
+
+`bbdf49a` is committed and pushed: both departure adjustments, four passing
+authoring tests and exact rejected evidence. All28 archived staged byte hashes
+match their originals. The four legacy v5 runs remain untouched and compatible.
+
+The v6 launcher ran ONCE at07:28:23. Eight actual wrapper/child command lines,
+single isolated output arguments, both baseline modes, 4,837 distinct source
+hashes and six observer hashes are verified; stderrempty. The initial verifier
+ran before catalogues existed; it was retried after startup, without relaunching
+anything, and passed. Source and authored inputs now stay frozen.
+
+| Network run | Wrapper | Child |
+| --- | ---: | ---: |
+| classic-network | 18968 | 12220 |
+| predictive-network | 17028 | 21860 |
+| classic-network-delayed | 13752 | 9084 |
+| predictive-network-delayed | 21252 | 2120 |
+
+Legacy v5 Standard12492/13108,11196/7004 and Intensive17300/3168,17768/10760
+continue. No full suite, native, diagnostic or Git operation remains. Run the
+read-only .local/realism-2026-10-26/inspect-current-replays.py for concise mixed
+v5/v6 clocks and final-audit status. No accepted current-source data is installed.
+Do not duplicate or restart any current jobs; do not use earlier failed/partial
+generations. All current acceptance and native-menu gates remain pending.

@@ -183,6 +183,12 @@ unchanged. Only the four affected Network runs need fresh preparation. No new
 prepared data is installed; full acceptance and native menu checks remain pending.
 
 
+Retiming/evidence commit **`bbdf49a`** is pushed. Four affected-only Network v6
+runs launched once at 07:28:23; eight actual commands, both modes, 4,837 source
+hashes and six observers are verified, with empty stderr. The four legacy v5
+runs continue. Whole-day results remain pending; no new build is published.
+
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,
