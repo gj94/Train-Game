@@ -759,9 +759,10 @@ func _drive_automatic(t: Train, dt: float = .05, prepared: Dictionary = {}) -> v
 			t.controller = -1.0
 			t.status = "Cannot reach stop: " + scheduled_stop.block
 			return
-		stop_at = minf(stop_at, to_stop)
-		station_distance = to_stop
-		station_zone = maxf(900.0, float(graph.edges[scheduled_stop.block].length) + 250.0)
+		if scheduled_stop.get("boundary","")!="exit":
+			stop_at = minf(stop_at, to_stop)
+			station_distance = to_stop
+			station_zone = maxf(900.0, float(graph.edges[scheduled_stop.block].length) + 250.0)
 		# A cleared route to the wrong platform is still wrong for this
 		# working. Stop at its entrance; never move points on the AI's behalf.
 		if not ns.is_empty() and signals[ns.id].cleared:

@@ -8,6 +8,8 @@ const variants=[
   {id:'intensive',folder:'data/timetables/intensive',count:140,mode:'classic',pack:'art/timetables/kerala-coast-intensive.json'},
   {id:'standard_v2',folder:'data/timetables/standard_v2',count:100,mode:'predictive',pack:null},
   {id:'intensive_v2',folder:'data/timetables/intensive_v2',count:140,mode:'predictive',pack:'art/timetables/kerala-coast-intensive-v2.json'},
+  {id:'network',folder:'data/timetables/network',count:208,mode:'classic',pack:'art/timetables/kerala-coast-network.json'},
+  {id:'network_v2',folder:'data/timetables/network_v2',count:208,mode:'predictive',pack:'art/timetables/kerala-coast-network-v2.json'},
 ];
 const requested=process.argv.find(a=>a.startsWith('--day='))?.slice(6);
 if(requested)assert.ok(variants.some(v=>v.id===requested),'Unknown alternate operating day');
@@ -22,7 +24,7 @@ assert.equal(starts.services.length,count);assert.equal(starts.audit.finished,co
 assert.deepEqual(starts.audit.events,[]);const fullAudit=JSON.parse(await readFile(folder+'/audit.json','utf8'));assertWaitQuality(fullAudit);assert.deepEqual(starts.audit,fullAudit.audit);
 assert.equal(starts.dispatcher??'classic',mode);assert.equal(times.dispatcher??'classic',mode);
 assert.equal(starts.audit.dispatcher??'classic',mode);assert.equal(traffic.dispatcher??'classic',mode);
-assert.equal(starts.audit.operating_day,count===100?'standard':'intensive');assert.equal(starts.audit.delay,0);
+assert.equal(starts.audit.operating_day,count===208?'network':(count===100?'standard':'intensive'));assert.equal(starts.audit.delay,0);
 assert.equal(traffic.start_sha256,sha(bytes));assert.equal(traffic.timeline_sha256,sha(timeBytes));
 assert.equal(times.departure_catalogue_sha256,sha(bytes));
 assert.deepEqual(times.sources,starts.sources);
@@ -50,7 +52,9 @@ for(const [path,digest]of Object.entries(traffic.observer_sources)){
   assert.equal(sha((await readFile(path,'utf8')).replaceAll('\r\n','\n')),digest,'Stale alternate preview: '+path);
 }
 let previous=-1;
-assert.equal(times.states[0].clock,ceilFiveMinute(Math.min(...starts.services.map(s=>s.start_clock))));
+// The network day starts at midnight, before its first 00:05 departure.
+// Its empty initial railway is a real checkpoint, not a missing service.
+assert.equal(times.states[0].clock,count===208?0:ceilFiveMinute(Math.min(...starts.services.map(s=>s.start_clock))));
 assert.equal(times.states.at(-1).clock,ceilFiveMinute(starts.audit.clock));
 assert.equal(traffic.audit.sample_seconds,2);
 assert.equal(traffic.audit.samples,(times.states.at(-1).clock-times.states[0].clock)/2+1);
@@ -78,6 +82,11 @@ for(const e of traffic.events){
   }else assert.equal(e.kind,'crossing');
 }
 if(count===140)assert.ok(overtakers.size>=10);
+if(count===208){
+  const passes=traffic.events.filter(e=>e.kind==='overtake');
+  assert.ok(passes.length>=2&&new Set(passes.map(e=>e.station||e.location)).size>=2);
+  for(const service of Object.values(fullAudit.services))assert.equal(service.terminal_kind,service.booked_stops.at(-1).boundary==='exit'?'boundary_exit':'depot');
+}
 assert.deepEqual([...overtakers].sort(),[...traffic.audit.distinct_k1_overtakers].sort());
 assert.equal(traffic.audit.crossing_count,traffic.events.filter(e=>e.kind==='crossing').length);
 assert.equal(traffic.audit.overtake_count,traffic.events.filter(e=>e.kind==='overtake').length);

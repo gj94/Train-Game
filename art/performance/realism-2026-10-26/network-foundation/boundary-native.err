@@ -1,0 +1,8 @@
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+   at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1435)
+WARNING: Screen-space indirect lighting (SSIL) is only available when using the Forward+ renderer.
+   at: environment_set_ssil (servers/rendering/storage/environment_storage.cpp:775)
+   GDScript backtrace (most recent call first):
+       [0] _build_environment (res://game/world_view.gd:181)
+       [1] build (res://game/geographic_world.gd:84)
+       [2] _ready (res://game/main.gd:196)

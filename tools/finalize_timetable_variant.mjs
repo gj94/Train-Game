@@ -11,14 +11,16 @@ import {TrafficEncounters, locationAt} from './lib/traffic-encounters.mjs';
 const folder=process.argv[2]??'.local/intensive-v2';
 const standard=process.argv.includes('--standard');
 const predictive=process.argv.includes('--predictive');
+const network=process.argv.includes('--network');
+assert.ok(!(standard&&network),'Choose one operating day');
 const mode=predictive?'predictive':'classic';
 const legacyStandard=standard&&!predictive;
 const destination=process.argv[3]?.startsWith('--')?undefined:process.argv[3];
-const expected=standard?100:140;
+const expected=network?208:(standard?100:140);
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const audit=JSON.parse(await readFile(folder+'/audit.json','utf8'));
 assert.ok(audit.audit.ok);assert.equal(audit.audit.finished,expected);
-assert.equal(audit.audit.operating_day,standard?'standard':'intensive');
+assert.equal(audit.audit.operating_day,network?'network':(standard?'standard':'intensive'));
 assert.equal(audit.audit.dispatcher??'classic',mode,'Wrong dispatcher rehearsal');
 assert.equal(audit.audit.events.length,0);assertWaitQuality(audit);
 assert.equal(Object.keys(audit.services).length,expected);
@@ -46,9 +48,15 @@ const reverse=events.filter(e=>e.kind==='overtake'&&[e.a,e.b].includes('B042')&&
 console.log(JSON.stringify({clock:detector.clock,services:audit.audit.finished,overtakers,
   crossings:events.filter(e=>e.kind==='crossing').length,overtakes:events.filter(e=>e.kind==='overtake').length,
   dispatcher:mode,k1_overtake_stations,b042_reverse_overtakes:reverse,max_wait:audit.audit.maximum_wait},null,2));
-if(!standard){
+if(!standard&&!network){
   assert.ok(overtakers.length>=10,'K1 requires at least ten DISTINCT overtaking trains');
   assert.equal(reverse.length,0,'B042 must not be sent back ahead of B002 in this baseline');
+}
+if(network){
+  const passes=events.filter(e=>e.kind==='overtake');
+  assert.ok(passes.length>=2,'Network day must demonstrate multiple actual overtakes');
+  assert.ok(new Set(passes.map(e=>e.station||e.location)).size>=2,'Network overtakes must occur at more than one location');
+  for(const service of Object.values(audit.services))assert.equal(service.terminal_kind,service.booked_stops.at(-1).boundary==='exit'?'boundary_exit':'depot');
 }
 if(!destination)process.exit();
 assert.equal(audit.audit.delay,0,'Never publish a delayed audit as the baseline');

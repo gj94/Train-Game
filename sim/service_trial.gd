@@ -32,7 +32,7 @@ func step(simulation_seconds: float = 2.0) -> void:
 		for train in world.trains.values():
 			var schedule = train.completed_timetable if train.completed_timetable!=null else train.timetable
 			late = maxf(late,schedule.actual_arrivals[-1]-schedule.planned_arrival(schedule.stops.size()-1))
-		report = "All %d services arrived safely and cleared to depot where provided. Latest passenger arrival delay: %.1f min. Manual driving may change the outcome." % [world.trains.size(),late/60]
+		report = "All %d services completed their simulated calls and cleared to depot or beyond the map boundary. Latest endpoint delay: %.1f min. Manual driving may change the outcome." % [world.trains.size(),late/60]
 	elif _stalled():
 		done = true
 		report = "Traffic did not finish: no train moved for five simulated minutes, and no booked departure, passenger exchange or depot release explains the wait. Check the dispatch blockers."

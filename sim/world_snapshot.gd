@@ -33,6 +33,7 @@ static func capture(w: RailWorld, session: Dictionary = {}) -> Dictionary:
 	var trains:=[];var switches:={}
 	for t: Train in w.trains.values():
 		var data:=fields(t,TRAIN)
+		if not t.journey.is_empty():data.journey=t.journey.duplicate(true)
 		data.merge(fields(t,ARRIVAL))
 		data.timetable=fields(t.timetable,TIMETABLE) if t.timetable!=null else null
 		data.completed_timetable=fields(t.completed_timetable,TIMETABLE) if t.completed_timetable!=null else null
@@ -44,6 +45,7 @@ static func capture(w: RailWorld, session: Dictionary = {}) -> Dictionary:
 		future=fields(w.dispatcher().future_clearances,FUTURE),session=session.duplicate(true)}
 	# Optional extension: original Classic checkpoints remain byte-identical.
 	if w.dispatcher().predictive.enabled:result.predictive=w.dispatcher().predictive.checkpoint()
+	if w.scenery.get("boundary_network",false):result.boundary_network=true
 	return result
 
 static func restore(data) -> Dictionary:
@@ -53,7 +55,9 @@ static func restore(data) -> Dictionary:
 	if not data.get("world") is Dictionary or not data.get("dispatcher") is Dictionary or not data.get("future") is Dictionary or not data.get("switches") is Dictionary or not data.get("session") is Dictionary:return error("Incomplete save")
 	if not data.get("trains") is Array or data.trains.is_empty() or data.trains.size()>256:return error("Invalid saved service list")
 	data=data.duplicate(true) # Restoring/stepping must never mutate the checkpoint.
-	var w:=Pack.blank(data.layout)
+	var boundaries=data.get("boundary_network",false)
+	if not boundaries is bool or (boundaries and data.layout!="kerala_coast"):return error("Invalid saved boundary network")
+	var w:=Pack.blank(data.layout,boundaries)
 	if data.get("layout_signature")!=signature(w) and data.get("layout_signature")!=signature(w,true):return error("The track, platforms or signalling layout has changed; this save cannot be resumed in this build")
 	if not matches(w,data.world,WORLD) or not matches(w.dispatcher(),data.dispatcher,DISPATCH) or not matches(w.dispatcher().future_clearances,data.future,FUTURE):return error("Invalid railway state")
 	if not is_finite(data.world.time) or data.world.time<0 or not is_finite(data.world.clock_start):return error("Invalid saved clock")
@@ -65,7 +69,7 @@ static func restore(data) -> Dictionary:
 	for entry in data.trains:
 		if not entry is Dictionary or not entry.get("id") is String or entry.id.is_empty() or w.trains.has(entry.id):return error("Invalid or duplicate train")
 		if not entry.has("lifecycle"): entry.lifecycle="active"
-		if entry.lifecycle not in ["active","scheduled","stored"]: return error("Invalid service lifecycle")
+		if entry.lifecycle not in ["active","scheduled","stored","exited"]: return error("Invalid service lifecycle")
 		var t:=Train.new(entry.id,1)
 		if not matches(t,entry,TRAIN):return error("Incomplete train "+entry.id)
 		for key in ["length","head_s","speed","odometer","controller","mass","max_power","max_accel","max_speed","service_decel","emergency_decel"]:
@@ -76,6 +80,9 @@ static func restore(data) -> Dictionary:
 		var stock=preload("res://sim/stock/ported_stock.gd")
 		if stock.resolve_profile(entry.stock_kind.trim_prefix("ported:"),entry.rake_profile) not in stock.profiles(entry.stock_kind.trim_prefix("ported:")):return error("Invalid saved rake")
 		apply(t,entry,TRAIN)
+		var journey=entry.get("journey",{})
+		if not preload("res://sim/boundary_services.gd").journey_reason(journey).is_empty():return error("Invalid saved journey identity")
+		t.journey=journey.duplicate(true)
 		# Optional extension: R29-R32 journeys retain compatibility.
 		for key in ARRIVAL:
 			if entry.has(key):
@@ -94,6 +101,7 @@ static func restore(data) -> Dictionary:
 			if not valid_timetable(w,entry[key],tt):return error("Invalid timetable for "+t.id)
 			apply(tt,entry[key],TIMETABLE);t.set(key,tt)
 		if entry.get("shared_timetable",false):t.completed_timetable=t.timetable
+		if t.lifecycle=="exited" and not preload("res://sim/boundary_services.gd").cleared(w,t):return error("Saved boundary exit has not cleared the whole train")
 		w.trains[t.id]=t
 	for id in data.world.signals:
 		if not w.signals.has(id) or not data.world.signals[id] is Dictionary:return error("Unknown saved signal")
@@ -150,6 +158,7 @@ static func valid_timetable(w: RailWorld, data, tt) -> bool:
 	if data.actual_arrivals.size()!=data.stops.size() or data.actual_departures.size()!=data.stops.size():return false
 	for stop in data.stops:
 		if not stop is Dictionary or not w.graph.edges.has(stop.get("block","")) or stop.get("direction",0) not in [-1,1]:return false
+		if not preload("res://sim/boundary_services.gd").stop_reason(w,stop,data.stops.find(stop),data.stops.size()).is_empty():return false
 		if not stop.get("name") is String:return false
 		for key in ["s","minutes_from_origin","dwell_minutes"]:
 			if not (stop.get(key) is float or stop.get(key) is int) or not is_finite(float(stop[key])) or stop[key]<0:return false

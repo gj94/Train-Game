@@ -13,8 +13,8 @@ static func layout_id(world: RailWorld) -> String:
 	if world.scenery.get("geographic",false): return "kerala_coast"
 	return "southern_corridor" if world.scenery.get("corridor", false) else "first_line"
 
-static func blank(layout: String) -> RailWorld:
-	if layout == "kerala_coast": return Kerala.build()
+static func blank(layout: String, boundary_network: bool=false) -> RailWorld:
+	if layout == "kerala_coast": return Kerala.build(boundary_network)
 	if layout == "southern_corridor": return Corridor.build()
 	if layout == "first_line":
 		var world := FirstLine.build()
@@ -88,7 +88,9 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 	var mode=data.get("dispatcher","classic")
 	if not mode is String or mode not in ["classic","predictive"]:return _error("Dispatcher must be classic or predictive")
 	if mode=="predictive" and layout!="kerala_coast":return _error("Predictive V2 currently requires the Kerala Coast layout")
-	var world := blank(layout)
+	var boundaries=data.get("boundary_network",false)
+	if not boundaries is bool or (boundaries and layout!="kerala_coast"):return _error("Boundary network requires the Kerala Coast layout")
+	var world := blank(layout,boundaries)
 	if data.get("layout_signature","") != signature(world) and data.get("layout_signature","") != signature(world,true):
 		return _error("Track layout has changed; this file's track/signals do not match this layout")
 	if not _text(data.get("name",""),100): return _error("Give the timetable a name (1–100 characters)")
@@ -127,6 +129,9 @@ static func build(data, expected_layout: String = "") -> Dictionary:
 			if not world.graph.allows(block,int(direction)): return _error(id + ": wrong-way stop on " + block)
 		if not _day(definition.get("day",1)): return _error(id + ": invalid departure day")
 		var train := Train.new(id,1)
+		var journey_issue: String=preload("res://sim/boundary_services.gd").journey_reason(definition.get("journey",{}))
+		if not journey_issue.is_empty():return _error(id+": "+journey_issue)
+		train.journey=definition.get("journey",{}).duplicate(true)
 		Stock.configure(train,stock,profile)
 		var speed=definition.get("speed_limit_kmh",train.max_speed*3.6)
 		if not _number(speed) or speed<5 or speed>train.max_speed*3.6+.001:return _error(id+": speed cap must be between 5 km/h and this stock's maximum")

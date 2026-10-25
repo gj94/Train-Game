@@ -357,6 +357,8 @@ func _prepared_platform(spot: Dictionary) -> void:
 	audio.set_interior(false);audio.reset_positions();walker.neutralize()
 
 
+var _boundary_notice_for:=""
+
 func _physics_process(delta: float) -> void:
 	simulation_ms=0.0
 	if paused or (geographic_drive and wv.loading):
@@ -388,7 +390,11 @@ func _physics_process(delta: float) -> void:
 		var slice:=minf(remaining,.05)
 		remaining-=slice
 		world.step(slice) # The simulation owns dispatch timing, even with the desk closed.
+		if train.lifecycle=="exited":break
 	for motion in train_motions.values(): motion.end_tick()
+	if train.lifecycle=="exited" and _boundary_notice_for!=train.id:
+		_boundary_notice_for=train.id
+		preload("res://game/boundary_arrival.gd").show(self)
 	if profiling:simulation_ms=(Time.get_ticks_usec()-began)*.001
 
 

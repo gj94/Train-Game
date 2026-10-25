@@ -30,6 +30,8 @@ static func check(w: RailWorld, s: Dictionary) -> String:
 	if not shape(s.get("walk"),{active=TYPE_BOOL,car=TYPE_INT,position=TYPE_VECTOR2,crouched=TYPE_BOOL,eye_height=TYPE_FLOAT,lamp_enabled=TYPE_BOOL,outside=TYPE_BOOL}):return "Invalid saved walking state"
 	if not s.walk.position.is_finite() or (s.walk.active and (s.walk.car<0 or s.walk.car>=formation.size())) or s.walk.eye_height<.5 or s.walk.eye_height>2:return "Invalid saved walking position"
 	if s.walk.active!=(s.camera.mode==4) or (s.walk.outside and not s.walk.active):return "Saved camera and walking state disagree"
+	if s.walk.has("gangway"):
+		if not s.walk.active or s.walk.outside or not preload("res://game/gangway_connection.gd").valid_saved_bridge(formation,s.walk.car,s.walk.gangway):return "Invalid saved gangway position"
 	if s.walk.outside:
 		if not shape(s.walk,{road=TYPE_STRING,side=TYPE_INT,platform_position=TYPE_VECTOR2}):return "Saved platform information is missing"
 		var surface:=preload("res://game/platform_navigation.gd").new(w,s.walk.road,s.walk.side)

@@ -29,6 +29,20 @@ static func connected_ends(formation: Array, index: int) -> Array:
 		if neighbour(formation,index,end)>=0:result.append(end)
 	return result
 
+static func valid_saved_bridge(formation: Array, car: int, bridge) -> bool:
+	if not bridge is Dictionary:return false
+	if bridge.is_empty():return true
+	for key in ["a","b","exit","entry"]:
+		if not bridge.get(key) is int:return false
+	if car<0 or car>=formation.size() or bridge.b<0 or bridge.b>=formation.size():return false
+	if bridge.a!=car or neighbour(formation,car,bridge.exit)!=bridge.b:return false
+	if bridge.entry!=end_for(formation,bridge.b,car):return false
+	for key in ["u","lateral"]:
+		if not (bridge.get(key) is float or bridge.get(key) is int) or not is_finite(bridge[key]):return false
+	if bridge.u<0 or bridge.u>1 or absf(bridge.lateral)>.3001:return false
+	if not bridge.get("from") is Vector3 or not bridge.get("to") is Vector3:return false
+	return bridge.from.is_equal_approx(local_end(formation[car].model,bridge.exit)) and bridge.to.is_equal_approx(local_end(formation[bridge.b].model,bridge.entry))
+
 static func local_end(model: String, end: int) -> Vector3:
 	var profile: Dictionary=load_profiles()[model]
 	return Vector3(0,profile.gangway_floor,end*profile.gangway_join)

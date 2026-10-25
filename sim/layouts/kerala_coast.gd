@@ -15,9 +15,9 @@ static func source() -> Dictionary:
 	if _source.is_empty(): _source = JSON.parse_string(FileAccess.get_file_as_string(ROOT+"route.json"))
 	return _source
 
-static func build() -> RailWorld:
+static func build(boundary_network: bool=false) -> RailWorld:
 	var builder = load("res://sim/layouts/kerala_coast.gd").new()
-	return builder._build()
+	return builder._build(boundary_network)
 
 func point(s: float, offset: float = 0.0) -> Array:
 	var index := clampi(distance.bsearch(clampf(s,0,distance[-1]))-1,0,distance.size()-2)
@@ -74,7 +74,7 @@ func _edge(w: RailWorld, id: String, a: String, b: String, speed: float = 80, di
 	w.graph.edges[id].chainage_end = sb
 	w.graph.edges[id].lateral = middle_offset if not is_inf(middle_offset) else (oa+ob)*.5
 
-func _build() -> RailWorld:
+func _build(boundary_network: bool=false) -> RailWorld:
 	data = source()
 	operations=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"operations.json"))
 	var signs: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"station-signs.json"))
@@ -84,6 +84,9 @@ func _build() -> RailWorld:
 	var w := RailWorld.new()
 	w.scenery = {geographic=true,layout_id="kerala_coast",route=data,route_root=ROOT,
 		corridor=false,x_min=-2000.0,x_max=130000.0}
+	if boundary_network:
+		w.scenery.boundary_network=true
+		w.scenery.network_portals={}
 	for i in data.stations.size():
 		var st: Dictionary = data.stations[i].duplicate(true)
 		st.merge(signs.get(st.code,{}),true)
@@ -120,7 +123,10 @@ func _build() -> RailWorld:
 		var st: Dictionary = w.stations[i]
 		for lane in ["D","U"]:
 			var station_node: String = st.code+"_"+("L" if i==0 else "R")+lane
-			station_node=_depot_exit(w,st,station_node,-1 if i==0 else 1,lane,30)
+			station_node=_depot_exit(w,st,station_node,-1 if i==0 else 1,lane,80 if boundary_network else 30)
+			if boundary_network:
+				_boundary(w,st,station_node,i==0,lane)
+				continue
 			var buffer: String = st.code+"_BUFFER_"+lane
 			_node(w,buffer,w.graph.nodes[station_node].chainage+(-300 if i==0 else 300),st.operating_roads[0 if lane=="D" else 1].offset)
 			_edge(w,st.code+"_END_"+lane,buffer if i==0 else station_node,station_node if i==0 else buffer,30)
@@ -148,6 +154,27 @@ func _build() -> RailWorld:
 		data.depot_alignment.append({points=points,s=e.chainage_start})
 	w._update_automatic_blocks()
 	return w
+
+func _boundary(w: RailWorld, st: Dictionary, station_node: String, north: bool, lane: String) -> void:
+	var outward:= -1 if north else 1
+	var direction:=1 if lane=="D" else -1
+	var offset: float=w.graph.nodes[station_node].lateral
+	var chainage: float=w.graph.nodes[station_node].chainage
+	var gate: String=st.code+"_BOUNDARY_"+lane
+	var outer: String=st.code+"_NETWORK_"+lane
+	_node(w,gate,chainage+outward*2000,offset)
+	_node(w,outer,chainage+outward*3200,offset)
+	var approach: String=st.code+"_END_"+lane
+	var road: String=st.code+"_PORTAL_"+lane
+	_edge(w,approach,gate if north else station_node,station_node if north else gate,80,direction)
+	_edge(w,road,outer if north else gate,gate if north else outer,80,direction)
+	var entering: bool=direction!=outward
+	w.scenery.network_portals[road]={kind="entry" if entering else "exit",boundary="north" if north else "south",direction=direction,station=st.code}
+	# Entry starts at rest on a separate full-rake reception. Both signals still
+	# require the ordinary dispatcher/interlocking route before any movement.
+	if entering:
+		w.add_signal(road+"-E",road,direction,60)
+		w.add_signal(approach+"-H",approach,direction,60)
 
 func _ladder_span(a: float,b: float) -> float:
 	var offset:=absf(b-a)

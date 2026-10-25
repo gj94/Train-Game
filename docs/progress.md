@@ -23,7 +23,20 @@ reversed VB cars; all 21 passenger interiors have supported main passages.
 Four source-derived narrow passages were corrected and occlusion rebuilt.
 [Geometry and walking evidence](../art/performance/realism-2026-10-26/gangways/README.md).
 Playtest walking through both ends, turning back mid-gangway and sitting in an
-unoccupied seat. Portal and 208-service work follows; no new build is published.
+unoccupied seat. No new build is published.
+
+**Boundary and timetable foundation verified:** 987 full source tests, twenty
+native exit/handover checks and eight publication-integrity tests pass. The
+Classic/V2 Network 208 packs contain identical calls, stock and departures:
+40 locals, 104 mail/express, 56 superfast and eight VB; 168 through journeys and
+67 overnight departures. The new day is representative and authored. Full-day
+completion, waits and natural passes are still unproven. Existing prepared data
+requires genuine regeneration after the boundary source change.
+[Foundation evidence](../art/performance/realism-2026-10-26/network-foundation/README.md).
+After installation, playtest a through train leaving the map in either direction
+and use its completion page to return to the station/Dispatch. Mid-gangway saves
+now retain the exact walking position. Current-source prepared menu checks remain
+pending; R47 remains the published build.
 
 ## 25 October 2026 — R47 published and independently checked
 

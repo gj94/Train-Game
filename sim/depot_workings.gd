@@ -20,9 +20,11 @@ static func active(t: Train) -> bool:
 	return t.depot.get("phase", "") == "working"
 
 static func finished(w, t: Train) -> bool:
+	if t.lifecycle=="exited":return preload("res://sim/boundary_services.gd").cleared(w,t)
 	return t.service_complete and (w.depots.is_empty() or t.depot.get("phase", "") == "stabled")
 
 static func update(w, t: Train) -> void:
+	if preload("res://sim/boundary_services.gd").has_exit(t):return
 	if w.depots.is_empty() or t.timetable == null: return
 	if active(t):
 		if not t.timetable.complete(): return

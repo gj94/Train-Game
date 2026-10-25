@@ -60,12 +60,12 @@ func test_timeline_and_departure_entries_keep_day_when_old_journey_is_cleared():
 	for key in previous:tree.set_meta(key,previous[key])
 	return ok
 
-func test_all_four_days_have_distinct_prepared_data_and_explicit_dispatcher():
+func test_all_days_have_distinct_prepared_data_and_explicit_dispatcher():
 	var paths:=[];var modes:={}
 	for day in Days.DAYS:
 		if day.starts in paths or day.times in paths:return "Shared prepared data"
 		paths.append(day.starts);paths.append(day.times);modes[day.id]=day.dispatcher
-	return modes=={standard="classic",intensive="classic",standard_v2="predictive",intensive_v2="predictive"}
+	return modes=={standard="classic",intensive="classic",standard_v2="predictive",intensive_v2="predictive",network="classic",network_v2="predictive"}
 
 func test_predictive_pack_opt_in_is_validated_and_keeps_classic_default():
 	var original:=Pack.defaults("kerala_coast",false)

@@ -77,6 +77,25 @@ func test_bridge_allows_turning_back_and_blocks_sideways_fall():
 	dispose(f)
 	return contained and returned
 
+func test_mid_gangway_checkpoint_keeps_camera_and_rejects_disconnected_ends():
+	var f:=fixture("vb_tc_cc",true,.04);var walk=f.walk
+	walk.move_inside(Vector2(0,.4))
+	if walk.bridge.is_empty():dispose(f);return "Missing bridge fixture"
+	var original: Transform3D=walk.camera_transform()
+	var saved: Dictionary=bytes_to_var(var_to_bytes(walk.bridge))
+	var ok:=Link.valid_saved_bridge(f.view.formation,walk.car,saved)
+	walk.bridge.clear();walk.bridge=saved.duplicate(true)
+	ok=ok and walk.camera_transform().is_equal_approx(original)
+	for key in ["b","entry","u","from"]:
+		var bad:=saved.duplicate(true)
+		match key:
+			"b":bad.b=0
+			"entry":bad.entry=-bad.entry
+			"u":bad.u=2.0
+			"from":bad.from+=Vector3(0,0,2)
+		if Link.valid_saved_bridge(f.view.formation,walk.car,bad):ok=false
+	dispose(f);return ok
+
 func test_unconnected_ends_keep_original_collision_and_do_not_reach_locomotive():
 	var profiles: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://data/interiors/walkways.json"))
 	var formation:=Stock.formation("icf")

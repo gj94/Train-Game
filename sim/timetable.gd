@@ -40,6 +40,8 @@ func configure(definition: Dictionary, world, train: Train) -> Dictionary:
 			return _error("Stop and dwell minutes must be finite non-negative numbers")
 		if not _number(dir) or float(dir) not in [-1.0, 1.0]:
 			return _error("Stop direction must be +1 or -1")
+		var boundary_issue: String=preload("res://sim/boundary_services.gd").stop_reason(world,raw,i,entries.size())
+		if not boundary_issue.is_empty():return _error(boundary_issue)
 		if (i == 0 and float(offset) != 0) or (i > 0 and float(offset) <= stops[-1].minutes_from_origin) or float(offset) < previous_departure:
 			return _error("Origin must be +0 min; later stops must follow prior stops and dwell times")
 		if i == 0 and (block != train.path[0].edge or int(dir) != train.path[0].dir):
@@ -60,6 +62,7 @@ func configure(definition: Dictionary, world, train: Train) -> Dictionary:
 		if not clearance.is_empty():return _error(clearance)
 		stops.append({block = block, name = str(raw.get("name", block)), direction = int(dir), s = position,
 			minutes_from_origin = float(offset), dwell_minutes = float(dwell) if i > 0 else 0.0})
+		if raw.has("boundary"):stops[-1].boundary=raw.boundary
 		previous_departure = float(offset) + stops[-1].dwell_minutes
 		actual_arrivals.append(-1.0)
 		actual_departures.append(-1.0)
@@ -109,6 +112,9 @@ func observe(train: Train, now: float, moved: bool, tolerance: float=1.1) -> voi
 	if train.path[0].edge != stop.block or train.path[0].dir != stop.direction:
 		return
 	var ahead: float = (stop.s - train.head_s) * stop.direction
+	if stop.get("boundary","")=="exit" and ahead<=0 and train.path.size()==1:
+		actual_arrivals[index]=now;at_stop=true;missed_stop=false
+		return
 	if absf(ahead) <= tolerance and train.speed <= 0.001:
 		actual_arrivals[index] = now
 		at_stop = true

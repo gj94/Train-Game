@@ -13,10 +13,15 @@ static func describe(w: RailWorld,t: Train) -> Dictionary:
 			if not is_finite(leg) or leg<0:return {}
 			distance+=leg
 		calls.append({name=stop.name,arrival=tt.planned_arrival(i),departure=tt.planned_departure(i),distance_m=distance})
+		if stop.has("boundary"):calls[-1].boundary=stop.boundary
 	var duration: float=tt.planned_arrival(tt.stops.size()-1)-tt.departure
 	if duration<=0:return {}
 	var advice: String=preload("res://sim/priority_dispatch.gd").hold_reason(w,t,true)
-	return {calls=calls,distance_m=distance,average_kmh=distance/duration*3.6,departure_advice=advice}
+	var result:={calls=calls,distance_m=distance,average_kmh=distance/duration*3.6,departure_advice=advice}
+	if not t.journey.is_empty():
+		result.journey=t.journey.duplicate(true)
+		result.passenger_calls=calls.filter(func(c):return not c.has("boundary")).size()
+	return result
 
 static func time_text(seconds: float) -> String:
 	var day:=floori(seconds/86400)+1

@@ -15,6 +15,7 @@ var delay_service:="K1"
 var delay_at:=0.0
 var standard:=false
 var predictive:=false
+var network:=false
 var call_waits:={}
 var signal_waits:={}
 
@@ -30,12 +31,15 @@ func run() -> void:
 		elif arg=="--snapshots":snapshots=true
 		elif arg=="--standard":standard=true
 		elif arg=="--predictive":predictive=true
+		elif arg=="--network":network=true
 		elif arg.begins_with("--delay="):delay=float(arg.trim_prefix("--delay="))
 		elif arg.begins_with("--delay-at="):delay_at=float(arg.trim_prefix("--delay-at="))
 		elif arg.begins_with("--delay-service="):delay_service=arg.trim_prefix("--delay-service=")
 	var decoded: Dictionary={ok=true,world=preload("res://sim/layouts/kerala_coast.gd").build_traffic(true)} if standard else Pack.decode(FileAccess.get_file_as_string(pack_path))
 	if not decoded.ok:printerr(decoded.reason);quit(1);return
 	var w: RailWorld=decoded.world
+	if network!=(w.scenery.get("boundary_network",false)):
+		printerr("Network preparation flag must match the actual boundary railway");quit(1);return
 	predictive=predictive or w.dispatcher().predictive.enabled
 	if predictive:
 		w.dispatcher().predictive.configure(true,false)
@@ -112,6 +116,9 @@ func run() -> void:
 		metrics[t.id].actual_arrivals=tt.actual_arrivals
 		metrics[t.id].actual_departures=tt.actual_departures
 		metrics[t.id].stabled=Depot.finished(w,t)
+		if network:
+			metrics[t.id].terminal_kind="boundary_exit" if t.lifecycle=="exited" else "depot"
+			metrics[t.id].journey=t.journey.duplicate(true)
 		metrics[t.id].arrival_delay=maxf(0,tt.actual_arrivals[-1]-tt.planned_arrival(tt.stops.size()-1)) if t.service_complete else -1
 	var wait_quality:=preload("res://tools/wait_quality.gd").summarize(call_waits.values()+signal_waits.values())
 	var station_quality:=preload("res://tools/wait_quality.gd").summarize(call_waits.values())
@@ -122,7 +129,7 @@ func run() -> void:
 	over_budget.sort_custom(func(a,b):return a.seconds>b.seconds)
 	var audit:={ok=trial.ok and maximum_wait<2700 and wait_quality.ok and station_quality.ok and w.events.is_empty(),report=trial.report,maximum_wait=maximum_wait,
 		wall_seconds=(Time.get_ticks_msec()-began)*.001,clock=w.clock_seconds(),events=w.events,finished=finished,total=w.trains.size(),peak_active=peak,
-		pack_sha256="" if standard else FileAccess.get_sha256(pack_path),operating_day="standard" if standard else "intensive",
+		pack_sha256="" if standard else FileAccess.get_sha256(pack_path),operating_day="network" if network else ("standard" if standard else "intensive"),
 		dispatcher="predictive" if predictive else "classic",
 		delay=delay,delay_service=delay_service,delay_at=delay_at,
 		wait_quality=wait_quality,station_wait_quality=station_quality,maximum_station_wait=longest_station,over_ten_minute_calls=over_budget}
@@ -159,8 +166,9 @@ func observe_station_waits(w: RailWorld, held_id: String) -> void:
 	# creeps. Exclude scheduled dwell, passenger exchange and injected pauses.
 	for t: Train in w.active_trains():
 		if t.service_complete or t.id==held_id or t.speed>=.1 or t.timetable==null:continue
-		var booked: bool=t.timetable.at_stop
-		if booked and w.clock_seconds()<=t.timetable.release_time()+2:continue
+		var at_timing_point: bool=t.timetable.at_stop
+		if at_timing_point and w.clock_seconds()<=t.timetable.release_time()+2:continue
+		var booked: bool=at_timing_point and t.timetable.stops[t.timetable.index].get("boundary","").is_empty()
 		var signal_id: String=w.next_signal(t).get("id",t.path[0].edge)
 		var key:="%s:call:%d" % [t.id,t.timetable.index] if booked else t.id+":signal:"+signal_id
 		var rows: Dictionary=call_waits if booked else signal_waits

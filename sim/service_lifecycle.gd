@@ -37,6 +37,7 @@ static func can_enter(w, t: Train) -> bool:
 static func update(w) -> void:
 	var scheduled := []
 	for t: Train in w.trains.values():
+		if t.lifecycle=="active" and preload("res://sim/boundary_services.gd").retire(w,t):continue
 		if t.lifecycle == "scheduled": scheduled.append(t)
 		elif t.lifecycle == "active" and t.depot.get("phase", "") == "stabled":
 			if w.clock_seconds() < t.depot.stabled_at + STORAGE_SECONDS: continue

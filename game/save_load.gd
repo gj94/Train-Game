@@ -35,6 +35,7 @@ func capture_session() -> Dictionary:
 	data.passenger_bookmarks=game.passenger_bookmark.seats.duplicate(true) if game.passenger_bookmark!=null else {}
 	data.walk=Snapshot.fields(game.walker,WALK)
 	data.walk.outside=game.walker.platform.outside
+	if game.walker.active and not game.walker.bridge.is_empty():data.walk.gangway=game.walker.bridge.duplicate(true)
 	if data.walk.outside:
 		data.walk.road=game.walker.platform.surface.edge
 		data.walk.side=int(game.walker.platform.surface.side)
@@ -156,6 +157,7 @@ func restore_view(session: Dictionary) -> void:
 		game.train.automatic=true
 		var walk=game.walker
 		Snapshot.apply(walk,session.walk,WALK)
+		walk.bridge=session.walk.get("gangway",{}).duplicate(true)
 		walk._train_id=game.train.id;walk.nav=walk.navigation(walk.car);walk._refresh_exits()
 		walk.platform.outside=session.walk.outside
 		if walk.platform.outside:
@@ -165,6 +167,7 @@ func restore_view(session: Dictionary) -> void:
 		else:
 			game.tv.walk_car=walk.car
 			game.tv.walk_eye=Vector3(walk.position.x,walk.nav.floor_height(walk.position)+walk.eye_height,walk.position.y)
+			if not walk.bridge.is_empty():game.tv.walk_eye=game.tv.cars[walk.car].to_local(walk.camera_transform().origin)
 		game.tv._apply_glass();walk._lamp.visible=walk.lamp_enabled;walk.neutralize()
 		game.audio.set_interior(not walk.platform.outside)
 		game.tv._interior_light.visible=not walk.platform.outside

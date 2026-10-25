@@ -112,3 +112,64 @@ continuous footsteps and stronger nearby-bogie sound at the coach ends.
 
 All gangway native, import, Blender and test jobs have finished. Next: safe
 boundary lifecycle, representative 208-service authorship and full-day evidence.
+
+## Boundary railway and representative authorship, 03:29
+
+The optional extended railway adds separate entry and exit roads beyond ERS and
+NCJ. The original layout remains unchanged when this option is absent. Scheduled
+entries still need a free road and normal route authority. An exit is acknowledged
+only beyond the last timing marker with the full formation on its outward road;
+the train then leaves the active railway without a fictitious passenger stop or
+depot working. Full origin/destination/category identity survives pack and save
+round trips. The player receives an explicit paused continuation page and a
+station camera after their train leaves the modeled section.
+
+The new Classic and V2 packs have **the same 208 services**: 40 passenger locals,
+104 mail/express, 56 superfast and eight VB. There are 168 through journeys, 67
+departures between 22:00 and 06:00, and four to thirteen departures in each hour.
+The final booked map endpoint is next day 04:08:12. Calls and real stock physics
+create the category hierarchy: a matched coast-length route has progressively
+fewer calls and shorter booked running times. No category speed cap, forced pass
+station, extended K1 dwell or traction edit was added.
+
+This is an **authored representative operating day**, not a claim that all 208
+workings run in real life. The coastal Mangaluru–TVC VB is a verified route
+reference; extra frequencies and southern VB workings are fictional. Distant
+city names describe off-map continuations, and portal times are map-entry/exit
+times, not invented departure times from those cities. Official references:
+[PIB, 6 February 2026](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2224512&lang=1&reg=3)
+and historical Southern Zone timetable 2018 tables 12–13; the latter is not a
+current schedule certificate. Kottayam-only 16347/48 was not copied onto the
+Alappuzha corridor.
+
+Focused checks pass: six boundary tests cover both actual entry/exit directions,
+occupied/reserved entry rejection, partial-tail rejection and saved identity;
+four network tests check authorship, same inputs in both modes, the call/traction
+hierarchy and checkpoint identity. An additional gangway test preserves the
+exact mid-bridge walking position through binary save/load and rejects malformed
+connections. The full source suite is running; no complete-day result exists
+yet. Existing prepared data correctly rejects the changed simulation fingerprint
+and requires genuine regeneration, even for the unchanged original schedules.
+
+The first native boundary harness reached and checked the north exit, but used
+direct scene deletion while the new station scenery was uploading, bypassing
+the game's existing safe menu-return path. It hung during harness teardown.
+The rerun waits for the observer station and uses that normal menu transition;
+the initial log and premature loading screenshot remain local, not acceptance
+evidence. No runtime workaround or weakened check was introduced.
+
+Next: finish the source/native checks, commit tested inputs, then launch isolated
+Classic/V2 Network baselines and 600-second manual K1 disturbances plus all four
+legacy baseline regenerations. The replay launcher is prepared but **not run**.
+Wait, safety, every-call/completion and actual spatially distributed overtake
+gates must pass before any new data is installed. Authorship alone proves none
+of those outcomes.
+
+Source/native completion: **987 full tests, zero failures, empty stderr** and
+**twenty native handover/menu-return checks** now pass. Four boundary screens
+were reviewed. Eight finalizer integrity tests pass, including the new network
+mode, distributed overtakes, wrong terminal identity and spawned/disappeared
+traffic rejection. Evidence is in `art/performance/realism-2026-10-26/network-foundation`.
+No test/native/Blender job remains. The generic approach advisory still says
+`No forward signal` on the final outward portal road; presentation refinement
+is pending. The full replay launcher is still not run at this source checkpoint.

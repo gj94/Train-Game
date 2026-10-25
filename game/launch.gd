@@ -292,7 +292,7 @@ func refresh() -> void:
 		if page=="services":
 			text=Briefing.time_text(row.departure)+"   "+row.id+"   "+row.origin.replace(" Junction","").replace(" Central","")+" → "+row.destination.replace(" Junction","").replace(" Central","")
 			if library.favourite(timetable_id,row.id):text="★ "+text
-			tooltip+="\n"+STOCK.get(row.stock,row.stock)+" · %d calls" % int(row.stops)
+			tooltip+="\n"+STOCK.get(row.stock,row.stock)+" · %d passenger calls" % int(row.get("passenger_calls",row.stops))
 		if page=="services" and sort_mode in [1,2]:text="%.1f km/h  ·  " % row.average_kmh+text
 		var index:=roster.add_item(text);roster.set_item_tooltip(index,tooltip)
 	count_label.text=("%d / %d services · Start at the origin · Dynamic AI traffic" % [shown.size(),services.size()]) if page=="services" else "Saved journeys · Load paused · Previous backups are available"
@@ -331,6 +331,8 @@ func _select(index: int) -> void:
 	var daylight: float=preload("res://sim/daylight.gd").sample(selected.start_clock).daylight
 	var light: String="Night" if daylight<.15 else ("Twilight" if daylight<.9 else "Daylight")
 	description.text="%s · %d vehicles\n%d stops · %dh %02dm · %.1f km · %.1f km/h average\n%s · board at %s" % [STOCK.get(selected.stock,selected.stock),selected.cars,selected.stops,duration/60,duration%60,selected.distance_m/1000.0,selected.average_kmh,light,Briefing.time_text(selected.start_clock)]
+	if selected.has("journey"):
+		description.text="%s · %d vehicles\n%d passenger calls · %dh %02dm on this map · %.1f km\n%s → %s\nRepresentative game service. Boundary times mark entry/exit here; the distant part of the journey is outside the map." % [STOCK.get(selected.stock,selected.stock),selected.cars,selected.passenger_calls,duration/60,duration%60,selected.distance_m/1000.0,selected.journey.origin,selected.journey.destination]
 	for heading in ["SCHEDULED STOPS","ARR","DEP"]:_label(calls_grid,heading,13,Color("86e4be"))
 	for i in selected.calls.size():
 		var call: Dictionary=selected.calls[i]
@@ -342,7 +344,7 @@ func _select(index: int) -> void:
 	if not selected.get("departure_advice","").is_empty():briefing.text+="\n\nDispatcher at departure\n"+selected.departure_advice
 	briefing.text+="\n\nCrossings and overtakes are decided dynamically; the signals and dispatcher give current instructions as you drive."
 	traffic_rows=Traffic.for_service(traffic_data,selected.id)
-	stops_tab.text="Stops · %d" % selected.calls.size();traffic_tab.text="Traffic · %d" % traffic_rows.size() if not traffic_data.is_empty() else "Traffic"
+	stops_tab.text=("Calls / boundaries · %d" if selected.has("journey") else "Stops · %d") % selected.calls.size();traffic_tab.text="Traffic · %d" % traffic_rows.size() if not traffic_data.is_empty() else "Traffic"
 	traffic_summary.text=("Predictive V2 AI baseline · " if Days.definition(timetable_id).dispatcher=="predictive" else "Classic AI baseline · ")+Traffic.summary(traffic_rows) if not traffic_data.is_empty() else "Traffic preview unavailable"
 	_build_traffic()
 	set_detail_mode(detail_mode)
