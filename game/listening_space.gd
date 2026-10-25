@@ -23,10 +23,23 @@ static func response(space: Dictionary, own: bool, layer: String) -> Vector2:
 	if not space.get("inside",false):return Vector2(1,18000)
 	var open: float=space.exposure
 	var sealed: bool=str(space.model).begins_with("vb_")
+	var vestibule: float=space.get("vestibule",0.0) if str(space.model)!="wap7" else 0.0
 	if layer=="traction" and own:
 		return Vector2(lerpf(.36,.85,float(space.get("machinery",0))),lerpf(2300,6500,float(space.get("machinery",0))))
-	if own and layer=="track":return Vector2(lerpf(.72,1.0,open),lerpf(3300,16500,open))
-	return Vector2(lerpf(.12 if sealed else .20,1,open),lerpf(1050 if sealed else 1700,18000,open))
+	if own and layer=="track":
+		# Thin end floors/bellows transmit the nearby pair of bogies more readily
+		# than a saloon. Keep their actual source distances and contact timing;
+		# a closed gangway is not an open side door or a new wind source.
+		return Vector2(lerpf(.72,1.0,open)*lerpf(1.0,1.5,vestibule),lerpf(lerpf(3300,8000,vestibule),16500,open))
+	var response:=Vector2(lerpf(.12 if sealed else .20,1,open),lerpf(1050 if sealed else 1700,18000,open))
+	if layer=="wind":
+		# Airborne rush is sheltered by the occupied coach; rail impacts must
+		# remain distinct. Open windows/doors gradually restore the outside mix.
+		response.x*=lerpf(.35,1.0,open)
+	elif layer=="track":
+		response.x*=lerpf(1.0,1.25,vestibule)*(1.0-open)+open
+		response.y=lerpf(response.y,maxf(response.y,4500),vestibule)
+	return response
 
 static func sample(game, delta: float=1.0/60) -> Dictionary:
 	if game==null or game.cam==null or game.tv==null:return {inside=false,exposure=1.0,room=0.0}

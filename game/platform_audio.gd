@@ -362,9 +362,14 @@ func _start_event(event: Dictionary) -> void:
 	var source: Vector3=event.source
 	var delay: float=event.arrival-_time-Data.KERNEL_LEAD
 	event.started=true
+	var buffered := Timing.delay_seconds()*simulation_rate
+	var offset := maxf(0,Data.PAD-delay+buffered)
 	var channels := 0
 	for pending in _events: channels+=pending.ids.size()
-	if source.distance_to(_ear.position)>1600 or delay< -.04 or channels+2>MAX_IMPACT_CHANNELS:
+	# A slow presentation frame may miss the attack while a physical joint's
+	# decay is still audible. Seek to its true age, including device latency;
+	# discard only exhausted kernels. Never restart an old clack at its attack.
+	if source.distance_to(_ear.position)>1600 or offset>=Data.PAD+Data.KERNEL_SECONDS or channels+2>MAX_IMPACT_CHANNELS:
 		event.virtual=true
 		return
 	var route := _route_for(event.contact,event.priority,event.bypass)
@@ -374,9 +379,7 @@ func _start_event(event: Dictionary) -> void:
 		event.route=route.bus; event.playback=route.playback
 		route.player.volume_db=_track.volume_db
 		var gains: Vector2 = Acoustics.stereo(source,_ear.position,_ear.forward,_ear.up,600 if event.bypass else 1600)*event.gain*received().x
-		var buffered := Timing.delay_seconds()*simulation_rate
 		output_delay_ms=Timing.delay_seconds()*1000
-		var offset := maxf(0,Data.PAD-delay+buffered)
 		event.output_delay=buffered; event.offset=offset; event.scheduled_at=_time
 		for side in 2:
 			event.ids.append(event.playback.play_stream(_routed[event.variant][side],offset,linear_to_db(maxf(.000001,gains[side])),Space.doppler(source,_ear.position,Vector3.ZERO,_receiver_velocity) if enhanced() else 1.0))

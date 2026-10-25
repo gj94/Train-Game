@@ -5,6 +5,20 @@ Active player: `game/platform_audio.gd`. The reference is the user's newer
 superseding the earlier curve-squeal snapshot from 21:56. The original nine BODY V2
 WAVs are unchanged. The old `body_v2_audio.gd` remains a regression reference.
 
+## Passenger ends and delayed contacts — 26 October 2026
+
+Closed passenger space now shelters passing air more strongly than rail impacts.
+Coach ends transmit stronger, less filtered rail sound from the existing physical
+bogies, without opening a fictitious window. No generated bank is changed.
+A contact arriving after a slow presentation frame seeks into its remaining
+341 ms decay; it is discarded only when the kernel has ended, rather than after
+40 ms. This avoids losing a still-audible clack without replaying its attack.
+
+The native fixed-eye yaw probe and 120 ms delayed-contact regression are recorded
+in [audio evidence](../art/performance/realism-2026-10-26/audio/README.md).
+All 969 headless tests pass. Fixed-position head turns did not reproduce a mute;
+intermittent silence during real moving gameplay still needs investigation.
+
 ## Free-camera receiver — R17
 
 Gameplay track sound now listens at the actual camera eye and orientation, as

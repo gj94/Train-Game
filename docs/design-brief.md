@@ -9,6 +9,13 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **26 Oct 2026 passenger and traffic realism:** work until 10:00 AM Singapore
+  on continuous passenger gangways, position-dependent coach-end bogie sound,
+  reliable passing-train sound when looking around, and safe boundary portals.
+  Build a new representative timetable with at least 200 services across day
+  and night, including credible long-distance identities beyond the map.
+  Locals, mails, superfast and VB should differ through stops and physical
+  performance, with natural overtakes. See `realism-work-2026-10-26.md`.
 - **24 Oct 2026 predictive dispatcher V2:** retain selectable Classic dispatch;
   Compare both train ETAs and following versus overtaking order explicitly by
   projected priority-train punctuality gain versus lower-priority delay. Balance

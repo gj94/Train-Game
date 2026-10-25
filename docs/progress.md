@@ -1,5 +1,22 @@
 # Progress
 
+## 26 October 2026 — passenger realism and 200-service day authorized
+
+Work runs from 02:00 to the user's fixed 10:00 AM Singapore deadline. Scope is
+continuous gangway walking, coach-end/nearby-train sound and head-turn continuity,
+safe map-boundary portals, and a researched representative timetable of at least
+200 services throughout day and night. Category performance comes from calls
+and rolling-stock physics; passing remains an outcome of safe dispatch.
+R47 remains available. First audio increment passes all 969 headless tests:
+late rail contacts retain their remaining decay, closed coaches suppress passing
+air relative to clacks, and coach ends transmit stronger bogie sound. The native
+PCM probe verifies the late-contact before/after and continuous fixed-eye head
+rotation; the reported intermittent moving-camera silence is not yet fully
+reproduced. [Audio evidence](../art/performance/realism-2026-10-26/audio/README.md).
+Playtest a passing train while turning through 360 degrees and compare the
+saloon, coach ends and open windows. [Work record](realism-work-2026-10-26.md) tracks
+jobs, provenance, implementation and playtest steps as they become available.
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,
