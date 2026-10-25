@@ -339,3 +339,39 @@ and full logs are retained in `network-browser`. No new suite is needed for
 these unchanged sources. The four v2 legacy baselines and four v3 Network jobs
 remain active without stderr or completed audits. Current-source native menu
 checks still require accepted installed outputs; no data has been installed.
+
+## Third Network failure and crossing-capacity correction, 05:25
+
+Both v3 delayed runs finish rejected before the 07:30 manual hold: Classic
+L021 at NEM, 07:29:16, 28/208; predictive L002 at KZT, 07:07:02, 26/208.
+Maximum extra wait is 2,702s and both have zero safety events. This is not valid
+disturbance acceptance. Exact failed/partial evidence is in
+`art/performance/realism-2026-10-26/network-candidate-three`.
+
+The original 06:50 Classic and 06:30 predictive snapshots show three arrival
+claims competing for two escape-station roads after a future-crossing promise.
+Read-only restoration confirms unchanged worlds and insufficient berth matching.
+The claimed road was physically empty, but L033/L022 had already departed toward
+it roughly 49/133 seconds before the promise. This is a shared planning defect,
+not a reason to retime another service or weaken the wait threshold.
+
+`future_clearance.gd` now includes existing arrival/route claims when selecting
+an escape berth. The transaction may remove only its departing opponent's old
+claim. Two regressions fail before/pass after, the unclaimed-escape positive
+case passes, and all 33 focused future-crossing tests pass. The complete source
+suite finishes: **995 passed, zero failures, empty stderr**. Wrapper 21244 /
+child 18120 have exited; exact `escape-full-tests.log/.err` are archived.
+
+The six unfinished baselines were stopped by verified child identity before
+this shared source change: legacy 22272/1252/12116/17960 and Network13568/17056.
+Original outputs remain preserved; no prepared data has been installed. Every
+baseline now needs genuine regeneration. The authored candidate-three packs
+remain unchanged. `launch-network-v4.ps1` is prepared but NOT RUN: after the full
+suite passes and the fix/evidence is committed, launch it once, then verify all
+actual commands, modes, source hashes and stderr. It creates six baseline and
+two Network disturbance jobs. Never restart earlier generations.
+
+After new data passes and installs, test both Network menu choices, a full
+long-distance journey through either portal, midnight continuation and a natural
+local/express crossing. All six actual prepared choices need native verification.
+The fixed 10:00 deadline and R47 publication remain unchanged.

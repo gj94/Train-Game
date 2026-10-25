@@ -1,0 +1,94 @@
+[
+	{
+		"all_claims_fit": false,
+		"claims": [
+			{
+				"id": "L002",
+				"roads": [
+					"NEM_P1"
+				]
+			},
+			{
+				"id": "L021",
+				"roads": [
+					"NEM_P2"
+				]
+			},
+			{
+				"id": "L033",
+				"roads": [
+					"NEM_P1",
+					"NEM_P2"
+				]
+			}
+		],
+		"clock": 24599.9999997823,
+		"mode": "classic",
+		"path": "res://.local/realism-2026-10-26/rehearsals-v3/classic-network/times/T024600.bin",
+		"plan": {
+			"approach_section": "NYY_single",
+			"created": 24400.0499997852,
+			"direction": -1,
+			"escape_road": "NEM_P1",
+			"escape_section": "NEM_single",
+			"escape_station": "NEM",
+			"escaped": false,
+			"future_road": "NYY_P1",
+			"incoming": "M078",
+			"opponent": "V005",
+			"opponent_received": false,
+			"opponent_road": "NYY_P2",
+			"received": false,
+			"station": "NYY",
+			"vacater": "L002"
+		},
+		"sha256": "f2fd30eb12a32cba49ddf22b6f1b7e58107bca96cba813f674efed78db9a3c86",
+		"snapshot_unchanged": true
+	},
+	{
+		"all_claims_fit": false,
+		"claims": [
+			{
+				"id": "M061",
+				"roads": [
+					"KZT_P1"
+				]
+			},
+			{
+				"id": "L002",
+				"roads": [
+					"KZT_P2"
+				]
+			},
+			{
+				"id": "L022",
+				"roads": [
+					"KZT_P1",
+					"KZT_P2"
+				]
+			}
+		],
+		"clock": 23399.9999997997,
+		"mode": "predictive",
+		"path": "res://.local/realism-2026-10-26/rehearsals-v3/predictive-network/times/T023400.bin",
+		"plan": {
+			"approach_section": "NYY_single",
+			"created": 23276.5499998015,
+			"direction": 1,
+			"escape_road": "KZT_P1",
+			"escape_section": "PASA_single",
+			"escape_station": "KZT",
+			"escaped": false,
+			"future_road": "PASA_P1",
+			"incoming": "S045",
+			"opponent": "M078",
+			"opponent_received": false,
+			"opponent_road": "PASA_P2",
+			"received": false,
+			"station": "PASA",
+			"vacater": "M061"
+		},
+		"sha256": "282941c6a6d07830f839f311158a6f6ae19622c06f888140d8f5bfbfe6afc818",
+		"snapshot_unchanged": true
+	}
+]

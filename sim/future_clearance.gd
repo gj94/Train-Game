@@ -91,6 +91,13 @@ func propose(w, engine, t: Train) -> Dictionary:
 			var other_roads:=Berths.roads(w,o,st,other.edge,o.path[0].dir,free)
 			if other_roads.is_empty():continue
 			if Planner._can_berth([{id=t.id,roads=own_free},{id=o.id,roads=other_roads}]):continue
+			# Empty track is not necessarily unclaimed capacity: a service may
+			# already be approaching the escape station from its other end. The
+			# opponent leaves before this vacater, but every other admitted or
+			# routed arrival must still fit beside the promised escape berth.
+			var escape_claims:=_planner._station_claims(w,escape.station).filter(func(c):return c.id not in [v.id,o.id])
+			var available_escape:=escape_roads.filter(func(r):return Planner._can_berth(escape_claims+[{id=v.id,roads=[r]}]))
+			if available_escape.is_empty():continue
 			# No optimistic chain of future vacancies: the escape berth is free NOW.
 			var actors: Array=[t.id,o.id,v.id]
 			if actors.any(func(id):return engine.platform_preferences.has(id)):continue
@@ -110,7 +117,7 @@ func propose(w, engine, t: Train) -> Dictionary:
 			var ready:=maxf(release,opposing_eta)+tail_clearance
 			if opposing_eta>HORIZON or incoming_eta>HORIZON or incoming_eta>ready+300:continue
 			return {station=st.code,escape_station=escape.station.code,incoming=t.id,opponent=o.id,vacater=v.id,
-				future_road=road,opponent_road=other_roads[0],escape_road=escape_roads[0],
+				future_road=road,opponent_road=other_roads[0],escape_road=available_escape[0],
 				approach_section=approach.section,escape_section=escape.section,direction=t.path[0].dir,
 				received=false,opponent_received=false,escaped=false,created=w.time}
 	return {}

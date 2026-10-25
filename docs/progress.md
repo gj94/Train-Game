@@ -93,6 +93,19 @@ After installation, playtest separate per-day selections, Full route with a
 long-distance through service, and its corridor-entry label versus a local's
 departure time. Full-day and actual installed-menu results are still pending.
 
+**Third Network candidate rejected; shared crossing defect corrected:** both
+pre-disturbance failures have zero safety events but exceed the 45-minute wait
+limit. Future crossing promises ignored arrival claims on otherwise empty escape
+roads. Original saved states prove three claims for two roads at Nemom/Kulitturai.
+Two fail-before/pass-after regressions and all 33 focused crossing checks pass;
+all **995 full source tests pass**, with zero failures and empty stderr.
+Six unfinished baselines were stopped before changing
+shared source. All six baselines and two Network disturbance audits must regenerate;
+no timetable is installed and the 208 authored definitions remain unchanged.
+[Failed evidence and diagnosis](../art/performance/realism-2026-10-26/network-candidate-three/README.md).
+The work record has exact stopped/live process IDs. After installation, playtest
+a portal journey and natural local/express crossings in both Network modes.
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

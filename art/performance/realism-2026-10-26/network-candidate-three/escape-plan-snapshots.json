@@ -1,0 +1,390 @@
+[
+	{
+		"clock": 24299.9999997866,
+		"file": "res://.local/realism-2026-10-26/rehearsals-v3/classic-network/times/T024300.bin",
+		"mode": "classic",
+		"plans": [],
+		"sha256": "f4fcfa6c77f88baf743ae8af2fdd30e62c535704866abe28bbf5c97553660602",
+		"trains": {
+			"L002": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "NYY_P1"
+					}
+				],
+				"speed": 0.0
+			},
+			"L021": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "NEM_P2"
+					}
+				],
+				"speed": 0.0
+			},
+			"L022": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "PYD_ERL_M7"
+					}
+				],
+				"speed": 17.4911193797359
+			},
+			"L033": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "TVC_P1"
+					}
+				],
+				"speed": 0.0
+			},
+			"M061": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "ERL_P1"
+					}
+				],
+				"speed": 0.0
+			},
+			"M078": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "PASA_P2"
+					}
+				],
+				"speed": 0.0
+			},
+			"S045": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "DAVM_PASA_M4"
+					},
+					{
+						"dir": 1,
+						"edge": "DAVM_PASA_M3"
+					}
+				],
+				"speed": 24.5999999999999
+			},
+			"V005": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "NEM_P1"
+					}
+				],
+				"speed": 22.4294939595072
+			}
+		}
+	},
+	{
+		"clock": 24599.9999997823,
+		"file": "res://.local/realism-2026-10-26/rehearsals-v3/classic-network/times/T024600.bin",
+		"mode": "classic",
+		"plans": [
+			{
+				"approach_section": "NYY_single",
+				"created": 24400.0499997852,
+				"direction": -1,
+				"escape_road": "NEM_P1",
+				"escape_section": "NEM_single",
+				"escape_station": "NEM",
+				"escaped": false,
+				"future_road": "NYY_P1",
+				"incoming": "M078",
+				"opponent": "V005",
+				"opponent_received": false,
+				"opponent_road": "NYY_P2",
+				"received": false,
+				"station": "NYY",
+				"vacater": "L002"
+			}
+		],
+		"sha256": "f2fd30eb12a32cba49ddf22b6f1b7e58107bca96cba813f674efed78db9a3c86",
+		"trains": {
+			"L002": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "NYY_P1"
+					}
+				],
+				"speed": 0.0
+			},
+			"L021": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "NEM_P2"
+					}
+				],
+				"speed": 0.0
+			},
+			"L022": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "PYD_P1"
+					},
+					{
+						"dir": -1,
+						"edge": "PYD_ERL_M0"
+					}
+				],
+				"speed": 14.2160212234908
+			},
+			"L033": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "TVC_NEM_M3"
+					}
+				],
+				"speed": 24.5999999999999
+			},
+			"M061": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "ERL_VRLR_D0"
+					}
+				],
+				"speed": 19.7291570773661
+			},
+			"M078": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "DAVM_PASA_M2"
+					},
+					{
+						"dir": -1,
+						"edge": "DAVM_PASA_M3"
+					}
+				],
+				"speed": 24.5999999918623
+			},
+			"S045": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "PASA_KZTW_M4"
+					},
+					{
+						"dir": 1,
+						"edge": "PASA_KZTW_M3"
+					}
+				],
+				"speed": 24.5999999999999
+			},
+			"V005": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "BRAM_NYY_M1"
+					},
+					{
+						"dir": 1,
+						"edge": "BRAM_NYY_M0"
+					}
+				],
+				"speed": 24.5999999999999
+			}
+		}
+	},
+	{
+		"clock": 23099.9999998041,
+		"file": "res://.local/realism-2026-10-26/rehearsals-v3/predictive-network/times/T023100.bin",
+		"mode": "predictive",
+		"plans": [],
+		"sha256": "a1b806ea01f042a097d88b8ea086914d360f4dfaaaf83397ff73f53f50d82297",
+		"trains": {
+			"L002": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "KZT_P2"
+					}
+				],
+				"speed": 0.0
+			},
+			"L021": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "TVC_P1"
+					}
+				],
+				"speed": 0.0
+			},
+			"L022": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "ERL_P2"
+					}
+				],
+				"speed": 0.0
+			},
+			"L033": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "TVC_P1"
+					}
+				],
+				"speed": 0.0
+			},
+			"M061": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "PASA_P1"
+					}
+				],
+				"speed": 0.0
+			},
+			"M078": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "KZT_P1"
+					}
+				],
+				"speed": 10.7012752954504
+			},
+			"S045": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "NEM_BRAM_M4"
+					},
+					{
+						"dir": 1,
+						"edge": "NEM_BRAM_M3"
+					}
+				],
+				"speed": 24.5999999999999
+			},
+			"V005": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "TVC_P1"
+					}
+				],
+				"speed": 0.0
+			}
+		}
+	},
+	{
+		"clock": 23399.9999997997,
+		"file": "res://.local/realism-2026-10-26/rehearsals-v3/predictive-network/times/T023400.bin",
+		"mode": "predictive",
+		"plans": [
+			{
+				"approach_section": "NYY_single",
+				"created": 23276.5499998015,
+				"direction": 1,
+				"escape_road": "KZT_P1",
+				"escape_section": "PASA_single",
+				"escape_station": "KZT",
+				"escaped": false,
+				"future_road": "PASA_P1",
+				"incoming": "S045",
+				"opponent": "M078",
+				"opponent_received": false,
+				"opponent_road": "PASA_P2",
+				"received": false,
+				"station": "PASA",
+				"vacater": "M061"
+			}
+		],
+		"sha256": "282941c6a6d07830f839f311158a6f6ae19622c06f888140d8f5bfbfe6afc818",
+		"trains": {
+			"L002": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "KZT_P2"
+					}
+				],
+				"speed": 0.0
+			},
+			"L021": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "TVC_NEM_M1"
+					}
+				],
+				"speed": 24.5998632348013
+			},
+			"L022": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "PYD_ERL_M3"
+					}
+				],
+				"speed": 24.5999999999999
+			},
+			"L033": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "TVC_P1"
+					}
+				],
+				"speed": 0.0
+			},
+			"M061": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "PASA_P1"
+					}
+				],
+				"speed": 0.0
+			},
+			"M078": {
+				"path": [
+					{
+						"dir": -1,
+						"edge": "PASA_KZTW_M0"
+					},
+					{
+						"dir": -1,
+						"edge": "PASA_KZTW_M1"
+					}
+				],
+				"speed": 22.9799484722111
+			},
+			"S045": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "NYY_AMVA_M0"
+					}
+				],
+				"speed": 16.6706054955478
+			},
+			"V005": {
+				"path": [
+					{
+						"dir": 1,
+						"edge": "TVC_P1"
+					}
+				],
+				"speed": 0.0
+			}
+		}
+	}
+]

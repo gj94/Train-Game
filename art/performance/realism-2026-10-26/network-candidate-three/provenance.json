@@ -1,0 +1,446 @@
+{
+  "recorded_at": "2026-10-26T05:23:01.173109+08:00",
+  "jobs": [
+    {
+      "day": "classic-network",
+      "pid": 21604,
+      "started": "2026-10-26T04:39:13.1120059+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v3/classic-network",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-network.json",
+        "--network",
+        "--snapshots"
+      ],
+      "source_commit": "0d84a7a11d8b97592b08aa3cdc5e3d5296f78e22",
+      "status": "stopped-incomplete",
+      "reason": "Owned child identity verified and stopped before shared future-clearance runtime correction. No final audit.",
+      "pack_sha256": "c8413cecc38a4c4d1479590e619e506a3a836d7659cd6a1e8fa8432b82a6d256",
+      "finished_or_stopped_recorded_at": "2026-10-26T05:23:01.173109+08:00"
+    },
+    {
+      "day": "predictive-network",
+      "pid": 22600,
+      "started": "2026-10-26T04:39:13.1815179+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v3/predictive-network",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-network-v2.json",
+        "--network",
+        "--snapshots"
+      ],
+      "source_commit": "0d84a7a11d8b97592b08aa3cdc5e3d5296f78e22",
+      "status": "stopped-incomplete",
+      "reason": "Owned child identity verified and stopped before shared future-clearance runtime correction. No final audit.",
+      "pack_sha256": "f1c81e8f241be7dcb5ca7d7b51427ab69012637b10cc83b5bca33371e182d314",
+      "finished_or_stopped_recorded_at": "2026-10-26T05:23:01.173109+08:00"
+    },
+    {
+      "day": "classic-network-delayed",
+      "pid": 19092,
+      "started": "2026-10-26T04:39:13.2110701+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v3/classic-network-delayed",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-network.json",
+        "--network",
+        "--delay=600",
+        "--delay-at=27000"
+      ],
+      "source_commit": "0d84a7a11d8b97592b08aa3cdc5e3d5296f78e22",
+      "status": "finished-rejected",
+      "reason": "Affected-only Network candidate after L005 and L033 authored departure changes; legacy v2 baselines continue unchanged",
+      "pack_sha256": "c8413cecc38a4c4d1479590e619e506a3a836d7659cd6a1e8fa8432b82a6d256",
+      "failure": {
+        "report": "Wait exceeded 45 minutes: L021",
+        "clock": 26955.999999748,
+        "finished": 28,
+        "total": 208,
+        "maximum_wait": 2702.0,
+        "maximum_station_wait": 2702.0,
+        "delay": 600.0,
+        "delay_at": 27000.0
+      },
+      "finished_or_stopped_recorded_at": "2026-10-26T05:23:01.173109+08:00"
+    },
+    {
+      "day": "predictive-network-delayed",
+      "pid": 1200,
+      "started": "2026-10-26T04:39:13.2427734+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v3/predictive-network-delayed",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-network-v2.json",
+        "--network",
+        "--delay=600",
+        "--delay-at=27000"
+      ],
+      "source_commit": "0d84a7a11d8b97592b08aa3cdc5e3d5296f78e22",
+      "status": "finished-rejected",
+      "reason": "Affected-only Network candidate after L005 and L033 authored departure changes; legacy v2 baselines continue unchanged",
+      "pack_sha256": "f1c81e8f241be7dcb5ca7d7b51427ab69012637b10cc83b5bca33371e182d314",
+      "failure": {
+        "report": "Wait exceeded 45 minutes: L002",
+        "clock": 25621.9999997674,
+        "finished": 26,
+        "total": 208,
+        "maximum_wait": 2702.0,
+        "maximum_station_wait": 2702.0,
+        "delay": 600.0,
+        "delay_at": 27000.0
+      },
+      "finished_or_stopped_recorded_at": "2026-10-26T05:23:01.173109+08:00"
+    }
+  ],
+  "legacy_partials": [
+    {
+      "day": "classic-standard",
+      "pid": 22816,
+      "started": "2026-10-26T04:00:37.2166701+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v2/classic-standard",
+      "options": [
+        "--standard",
+        "--snapshots"
+      ],
+      "source_commit": "66ab453481a917d39c8663728eb32c40e4932a8b",
+      "status": "stopped-incomplete",
+      "reason": "Owned child identity verified and stopped before shared future-clearance correction; all six baseline source fingerprints require regeneration.",
+      "finished_or_stopped_recorded_at": "2026-10-26T05:23:01.173109+08:00"
+    },
+    {
+      "day": "predictive-standard",
+      "pid": 8520,
+      "started": "2026-10-26T04:00:37.2476141+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v2/predictive-standard",
+      "options": [
+        "--standard",
+        "--predictive",
+        "--snapshots"
+      ],
+      "source_commit": "66ab453481a917d39c8663728eb32c40e4932a8b",
+      "status": "stopped-incomplete",
+      "reason": "Owned child identity verified and stopped before shared future-clearance correction; all six baseline source fingerprints require regeneration.",
+      "finished_or_stopped_recorded_at": "2026-10-26T05:23:01.173109+08:00"
+    },
+    {
+      "day": "classic-intensive",
+      "pid": 20876,
+      "started": "2026-10-26T04:00:37.2796305+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v2/classic-intensive",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-intensive.json",
+        "--snapshots"
+      ],
+      "source_commit": "66ab453481a917d39c8663728eb32c40e4932a8b",
+      "status": "stopped-incomplete",
+      "reason": "Owned child identity verified and stopped before shared future-clearance correction; all six baseline source fingerprints require regeneration.",
+      "pack_sha256": "b14c8f8730d626f9a093ae8ecc3df096f112e10e5e534e5808891355f3fe7afd",
+      "finished_or_stopped_recorded_at": "2026-10-26T05:23:01.173109+08:00"
+    },
+    {
+      "day": "predictive-intensive",
+      "pid": 9604,
+      "started": "2026-10-26T04:00:37.3214272+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v2/predictive-intensive",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-intensive-v2.json",
+        "--snapshots"
+      ],
+      "source_commit": "66ab453481a917d39c8663728eb32c40e4932a8b",
+      "status": "stopped-incomplete",
+      "reason": "Owned child identity verified and stopped before shared future-clearance correction; all six baseline source fingerprints require regeneration.",
+      "pack_sha256": "617b66c793141d883f57eddef71747c9feff9b3dba04ca00bc6d1cdfbed44ebd",
+      "finished_or_stopped_recorded_at": "2026-10-26T05:23:01.173109+08:00"
+    }
+  ],
+  "observed_prefixes": [
+    {
+      "mode": "classic",
+      "samples": 12409,
+      "equal": true,
+      "last_clock": 24815.9999997791,
+      "incomplete_line_preserved": true
+    },
+    {
+      "mode": "predictive",
+      "samples": 11812,
+      "equal": true,
+      "last_clock": 23621.9999997965,
+      "incomplete_line_preserved": true
+    }
+  ],
+  "files": [
+    {
+      "path": "classic-network/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network/traffic.jsonl",
+      "bytes": 15998381,
+      "sha256": "8037032af07bbc6399eecc67bedf0bb56def94af2b14a6223600458bcc7f0164"
+    },
+    {
+      "path": "classic-network/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network/run.log",
+      "bytes": 12209,
+      "sha256": "da16203ffd854716a8fd2693ab97cb927da57f0507560febbde1b6fd25aa0e32"
+    },
+    {
+      "path": "classic-network/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network/run.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "predictive-network/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network/traffic.jsonl",
+      "bytes": 14807675,
+      "sha256": "d90730a6a9f454ec29456d7d7043b2284698594d3e2cee1ec00ebdd0bdff09e4"
+    },
+    {
+      "path": "predictive-network/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network/run.log",
+      "bytes": 14203,
+      "sha256": "683d4c1285e8e60842e313ff85d4ea2dbb13ccac285fdcb962807ff9e0e6dc7b"
+    },
+    {
+      "path": "predictive-network/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network/run.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "classic-network-delayed/audit.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network-delayed/audit.json",
+      "bytes": 1575220,
+      "sha256": "9ae16d5e1f7b46f0bf0ef2a43f61f178cebd776256b40c28a63421d3c0ff3fc3"
+    },
+    {
+      "path": "classic-network-delayed/failure.bin.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network-delayed/failure.bin",
+      "bytes": 11384200,
+      "sha256": "3c3927fdb3eaeaca2c726676344e7380f7d9d0b195e076b0234c18dd89b251ae"
+    },
+    {
+      "path": "classic-network-delayed/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network-delayed/traffic.jsonl",
+      "bytes": 18676930,
+      "sha256": "e0bb4990f30a8c60b46b3f53938d9a286659cdf80c31dadecb891a4e565286c7"
+    },
+    {
+      "path": "classic-network-delayed/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network-delayed/run.log",
+      "bytes": 46350,
+      "sha256": "d7a8ca3105ebd87a5eceef710a69d606ab8b78461c84c746a56bb85a814b5a11"
+    },
+    {
+      "path": "classic-network-delayed/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network-delayed/run.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "classic-network-delayed/receiving-inspection.json",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network-delayed/receiving-inspection.json",
+      "bytes": 103605,
+      "sha256": "127cbc2bc0d00f7f9f106b0191280fc737111614f0d7197c0b5d86d2c01d874b"
+    },
+    {
+      "path": "predictive-network-delayed/audit.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network-delayed/audit.json",
+      "bytes": 1557462,
+      "sha256": "4f1a0f58258c2c9b15e75cf6b9d9867786409a6befd8b87e164e76f458a41e8c"
+    },
+    {
+      "path": "predictive-network-delayed/failure.bin.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network-delayed/failure.bin",
+      "bytes": 10935984,
+      "sha256": "2c5792298503e275a3c48a321ca29ec84be41e4939f925a6208a42d61745748f"
+    },
+    {
+      "path": "predictive-network-delayed/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network-delayed/traffic.jsonl",
+      "bytes": 17051209,
+      "sha256": "a3ab0ce522148333747f79190ae6001090456f8d555f2f05d6bf758b1be3d684"
+    },
+    {
+      "path": "predictive-network-delayed/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network-delayed/run.log",
+      "bytes": 44774,
+      "sha256": "2986b187e9344bcd34ce97f1dd71ce4e2415b20748b67c514eb2aabbe01b9e86"
+    },
+    {
+      "path": "predictive-network-delayed/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network-delayed/run.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "predictive-network-delayed/receiving-inspection.json",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network-delayed/receiving-inspection.json",
+      "bytes": 114194,
+      "sha256": "11c027c0d01b5f2f4e8aabcb9b7986577e742c63a471c2fa720d3562f33ff465"
+    },
+    {
+      "path": "kerala-coast-network.json",
+      "source": "art/timetables/kerala-coast-network.json",
+      "bytes": 652270,
+      "sha256": "c8413cecc38a4c4d1479590e619e506a3a836d7659cd6a1e8fa8432b82a6d256"
+    },
+    {
+      "path": "kerala-coast-network-v2.json",
+      "source": "art/timetables/kerala-coast-network-v2.json",
+      "bytes": 652279,
+      "sha256": "f1c81e8f241be7dcb5ca7d7b51427ab69012637b10cc83b5bca33371e182d314"
+    },
+    {
+      "path": "plan-context/classic-T024300.bin",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network/times/T024300.bin",
+      "bytes": 1580941,
+      "sha256": "f4fcfa6c77f88baf743ae8af2fdd30e62c535704866abe28bbf5c97553660602"
+    },
+    {
+      "path": "plan-context/classic-T024600.bin",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/classic-network/times/T024600.bin",
+      "bytes": 1608146,
+      "sha256": "f2fd30eb12a32cba49ddf22b6f1b7e58107bca96cba813f674efed78db9a3c86"
+    },
+    {
+      "path": "plan-context/predictive-T023100.bin",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network/times/T023100.bin",
+      "bytes": 1471256,
+      "sha256": "a1b806ea01f042a097d88b8ea086914d360f4dfaaaf83397ff73f53f50d82297"
+    },
+    {
+      "path": "plan-context/predictive-T023400.bin",
+      "source": ".local/realism-2026-10-26/rehearsals-v3/predictive-network/times/T023400.bin",
+      "bytes": 1479874,
+      "sha256": "282941c6a6d07830f839f311158a6f6ae19622c06f888140d8f5bfbfe6afc818"
+    },
+    {
+      "path": "escape-plan-snapshots.json",
+      "source": ".local/realism-2026-10-26/escape-plan-snapshots.json",
+      "bytes": 6130,
+      "sha256": "bb0ec44a5d0143438b38223fd69e24fbcc1ad59744b53f00d13f7ba7819886f7"
+    },
+    {
+      "path": "extract-crossing-plans.gd",
+      "source": ".local/realism-2026-10-26/extract-crossing-plans.gd",
+      "bytes": 1399,
+      "sha256": "d9673c56009f4c31c2823da80f7b6716efb03ec7027d8a46d0aa8b9e6619039d"
+    },
+    {
+      "path": "stopped-before-escape-fix.json",
+      "source": ".local/realism-2026-10-26/stopped-before-escape-fix.json",
+      "bytes": 2320,
+      "sha256": "064c314834e50e2f0c9bbac831b42ca5e81871138763e137185dcd000ae541bf"
+    },
+    {
+      "path": "escape-claims-before.log",
+      "source": ".local/realism-2026-10-26/escape-claims-before.log",
+      "bytes": 102,
+      "sha256": "be6d01b3b17d4357e61102f509d9eeeb8210905d0b67317320995215ffa2fd17"
+    },
+    {
+      "path": "escape-claims-before.err",
+      "source": ".local/realism-2026-10-26/escape-claims-before.err",
+      "bytes": 226,
+      "sha256": "5ddd6a9dd84a34854cc15294b09f30463983815bca233d5a1d2e208e8a58d336"
+    },
+    {
+      "path": "escape-claims-after.log",
+      "source": ".local/realism-2026-10-26/escape-claims-after.log",
+      "bytes": 103,
+      "sha256": "c5de8545de9d04f7332202aea69d4fb6bef10c83278511e7085f2de0448fc569"
+    },
+    {
+      "path": "escape-claims-after.err",
+      "source": ".local/realism-2026-10-26/escape-claims-after.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "legacy-partials/classic-standard/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v2/classic-standard/run.log",
+      "bytes": 15482,
+      "sha256": "18bf7978c1cc2bf6df355bf07fe8dda0b5ca795187c190f6cf0ee5bf4163d06a"
+    },
+    {
+      "path": "legacy-partials/classic-standard/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v2/classic-standard/run.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "legacy-partials/predictive-standard/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v2/predictive-standard/run.log",
+      "bytes": 13542,
+      "sha256": "690f424656ed2e61569dbb28fdf21a1f0468f2ca538ae78a5049f109ed508247"
+    },
+    {
+      "path": "legacy-partials/predictive-standard/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v2/predictive-standard/run.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "legacy-partials/classic-intensive/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v2/classic-intensive/run.log",
+      "bytes": 14827,
+      "sha256": "ba57e09a75747bd5069520a56702b0cba21344c0042db42de2241fe90e0a61e6"
+    },
+    {
+      "path": "legacy-partials/classic-intensive/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v2/classic-intensive/run.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "legacy-partials/predictive-intensive/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v2/predictive-intensive/run.log",
+      "bytes": 12085,
+      "sha256": "274e74d9aeed61f816ee32093fdcd9590c93be2685693fe1c1159e98c969aa6e"
+    },
+    {
+      "path": "legacy-partials/predictive-intensive/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v2/predictive-intensive/run.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "escape-plan-claims.json",
+      "source": ".local/realism-2026-10-26/escape-plan-claims.json",
+      "bytes": 1867,
+      "sha256": "dbd695095e9d64a9f49848145eb60dd5b41fe2c5fca0b31e8b15cfffe8cd2413"
+    },
+    {
+      "path": "validate-plan-claims.gd",
+      "source": ".local/realism-2026-10-26/validate-plan-claims.gd",
+      "bytes": 1427,
+      "sha256": "a9c491c75e2df94c3102991176c9c9a2966b509d518f522d24db7878e6f28757"
+    },
+    {
+      "path": "escape-approach-bounds.json",
+      "source": ".local/realism-2026-10-26/escape-approach-bounds.json",
+      "bytes": 1871,
+      "sha256": "c3fbfc62005eadfe6af5ebbbeb6b45cb00d2ed146f6a0bba3cf5971f35f88e06"
+    },
+    {
+      "path": "extract-approach-bounds.gd",
+      "source": ".local/realism-2026-10-26/extract-approach-bounds.gd",
+      "bytes": 567,
+      "sha256": "ed94605734d563dab288c39199bbc4329a2e54286873deb2684dddf1beb15467"
+    },
+    {
+      "path": "escape-full-tests.log",
+      "source": ".local/realism-2026-10-26/escape-full-tests.log",
+      "bytes": 5307,
+      "sha256": "bec4d4ebb0023dda4a169040397b5141fbd2e71183fa4633e31e37758fa4e94b"
+    },
+    {
+      "path": "escape-full-tests.err",
+      "source": ".local/realism-2026-10-26/escape-full-tests.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "full_suite": {
+    "passed": 995,
+    "failed": 0,
+    "stderr_empty": true,
+    "recorded_at": "2026-10-26T05:28:32.867295+08:00"
+  }
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "mode": "classic",
+    "train": "L033",
+    "call_index": 0,
+    "actual_departure": 24351.2999997859,
+    "promise_created": 24400.0499997852,
+    "departure_precedes_promise_seconds": 48.74999999929787,
+    "adjacent_traffic": [
+      [
+        24399.9999997852,
+        [
+          [
+            "L033",
+            206615.842576924,
+            206849.140155455,
+            206382.544998393,
+            1
+          ]
+        ]
+      ],
+      [
+        24401.9999997852,
+        [
+          [
+            "L033",
+            206645.448715186,
+            206878.746293717,
+            206412.151136656,
+            1
+          ]
+        ]
+      ]
+    ],
+    "pre_promise_head_location": {
+      "section": "TVC_single",
+      "matching_section_edges": [],
+      "sample_clock": 24399.9999997852,
+      "head_chainage": 206849.140155455,
+      "interpretation": "Head still within the TVC departure yard; actual departure already recorded. Exact route state at promise creation was not saved."
+    }
+  },
+  {
+    "mode": "predictive",
+    "train": "L022",
+    "call_index": 2,
+    "actual_departure": 23143.2999998035,
+    "promise_created": 23276.5499998015,
+    "departure_precedes_promise_seconds": 133.2499999979991,
+    "adjacent_traffic": [
+      [
+        23275.9999998015,
+        [
+          [
+            "L022",
+            256988.703244011,
+            256755.283283426,
+            257222.123204596,
+            -1
+          ]
+        ]
+      ],
+      [
+        23277.9999998015,
+        [
+          [
+            "L022",
+            256939.534261779,
+            256706.114301194,
+            257172.954222364,
+            -1
+          ]
+        ]
+      ]
+    ],
+    "pre_promise_head_location": {
+      "section": "KZT_single",
+      "matching_section_edges": [
+        {
+          "edge": "PYD_ERL_M6",
+          "from": 256380.24325,
+          "to": 257283.236625
+        }
+      ],
+      "sample_clock": 23275.9999998015,
+      "head_chainage": 256755.283283426,
+      "interpretation": "Head already physically within the approach section."
+    }
+  }
+]
