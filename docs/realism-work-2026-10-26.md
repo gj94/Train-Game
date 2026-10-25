@@ -499,3 +499,41 @@ and all earlier diagnostics are gone. Archive final logs in downstream-capacity,
 commit/push the tested planner/test/evidence increment, then launchv5once.
 Do not repeat the source suite unchanged. Authored208packs and all safeguards
 remain unchanged; whole-day acceptance still outstanding.
+
+## Eight corrected-source replays verified, 06:45
+
+`f3a1fda` is committed and pushed with the downstream-capacity correction,
+three new regressions and exact evidence. The final full suite passes all
+1,000 tests with zero failures and empty stderr. No suite remains running.
+
+The guarded v5 launcher ran ONCE at 06:43:04. All sixteen actual wrapper/child
+commands have one isolated output argument and the expected options; all six
+baseline modes, 4,839 distinct source hashes and six preparation-observer
+hashes match. Every stderr is empty. Source is frozen on `f3a1fda`; authored
+Network packs are unchanged. Do not run the launcher again or restart jobs.
+
+| Day | Wrapper | Child |
+| --- | ---: | ---: |
+| classic-network | 12240 | 9660 |
+| predictive-network | 12868 | 8436 |
+| classic-network-delayed | 9360 | 6004 |
+| predictive-network-delayed | 10984 | 2964 |
+| classic-standard | 12492 | 13108 |
+| predictive-standard | 11196 | 7004 |
+| classic-intensive | 17300 | 3168 |
+| predictive-intensive | 17768 | 10760 |
+
+Authoritative process/options files are rehearsal-jobs-v5.json,
+launch-v5-verification.json, owned-processes.json and latest-job-status.json
+under .local/realism-2026-10-26. Originals are in rehearsals-v5/<day>.
+The two delayed Network runs apply 600s manual K1 hold at simulation27000 and
+remain evidence only; the six baselines include actual snapshots. No complete
+audit or current-source prepared installation exists yet. Earlier generations
+remain preserved failures/partials. Never install them or relabel hashes.
+
+Next: accept completed runs against every call/completion/safety/wait and
+actual passing gate, finalize each passing baseline independently, then exercise
+its installed native UI. Network also requires category comparisons, actual
+midnight worker/save/restore checks and reviewed screenshots. The UI/category
+tools remain uncommitted pending that evidence. No repeated full suite or
+completed audio/gangway audit is needed. R47 and the fixed10AM deadline remain.

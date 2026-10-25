@@ -160,6 +160,16 @@ runs pass all gates. After installation, playtest natural crossings in both
 Network modes, through-portal journeys and overnight save/load.
 
 
+
+The tested correction/evidence is pushed as **`f3a1fda`**. Eight fresh v5 runs
+launched once at 06:43:04: all six baseline choices plus both Network manual-delay
+audits. Sixteen actual commands, baseline modes, 4,839 distinct current-source
+hashes and six observer hashes are verified; stderr is empty. Runtime inputs
+stay frozen while these original jobs run. Complete-day acceptance and installed
+menu checks remain pending. The work record contains exact wrapper/child IDs.
+No new executable is published; R47 remains available.
+
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,
