@@ -1,0 +1,5715 @@
+{
+	"all_cleared": false,
+	"claims": {
+		"KZT": [
+			{
+				"id": "L022",
+				"roads": [
+					"KZT_P1"
+				]
+			},
+			{
+				"id": "L002",
+				"roads": [
+					"KZT_P2"
+				]
+			}
+		],
+		"NEM": [
+			{
+				"id": "L033",
+				"roads": [
+					"NEM_P1"
+				]
+			},
+			{
+				"id": "L021",
+				"roads": [
+					"NEM_P2"
+				]
+			}
+		],
+		"NYY": [
+			{
+				"id": "S045",
+				"roads": [
+					"NYY_P1"
+				]
+			},
+			{
+				"id": "V005",
+				"roads": [
+					"NYY_P2"
+				]
+			}
+		],
+		"PASA": [
+			{
+				"id": "M061",
+				"roads": [
+					"PASA_P1"
+				]
+			},
+			{
+				"id": "M078",
+				"roads": [
+					"PASA_P2"
+				]
+			}
+		]
+	},
+	"cleared_at": {
+		"M078": 25695.9999997663
+	},
+	"events": [],
+	"finish": 26221.9999997587,
+	"future_plans": [
+		{
+			"approach_section": "TUVR_single",
+			"created": 25912.0499997632,
+			"direction": 1,
+			"escape_road": "MAKM_P1",
+			"escape_section": "SRTL_single",
+			"escape_station": "MAKM",
+			"escaped": false,
+			"future_road": "SRTL_P1",
+			"incoming": "K1",
+			"opponent": "M008",
+			"opponent_received": false,
+			"opponent_road": "SRTL_P2",
+			"received": false,
+			"station": "SRTL",
+			"vacater": "M063"
+		}
+	],
+	"initial_roads": {
+		"L002": [
+			"KZT_P2"
+		],
+		"L022": [
+			"KZT_P1"
+		],
+		"M061": [
+			"PASA_P1"
+		],
+		"M078": [
+			"PASA_KZTW_M0"
+		]
+	},
+	"input_sha256": "2ea7f812766a4427ecc5020b23c4eb81212f2266aa5e0b912f75062bdeb2f788",
+	"mode": "predictive",
+	"planner_sha256": "d688ccf30529fe3773a13e7be7f7f677635cc2351041ae8c09ec82cc6e191572",
+	"scope": "Limited historical failure-state continuation, not a baseline or complete-day acceptance",
+	"start": 25621.9999997674,
+	"trains": {
+		"K1": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 0.904302981719971,
+					"destination": "VAY_SRTL_M1-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 852.16845703125,
+						"destination": "VAY_SRTL_M1-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "VAY_SRTL_M1",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from VAY_SRTL_M0-SA",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26542.8490337544,
+					"block": "SRTL_P1",
+					"booked": 24414.0,
+					"delay": 2128.84903375436,
+					"distance": 6332.9038626502,
+					"index": 6,
+					"missed": false,
+					"name": "Cherthala",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 30.0,
+				"hold": {},
+				"id": "K1",
+				"name": "Ernakulam Junction–Nagercoil Junction Passenger",
+				"planned_crossing": "Planned crossing at SRTL: enter SRTL_P1 after Mangaluru–Tirunelveli Mail / Express (M063) clears; M008 will wait for your arrival",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Booked departure / dwell until 07:17:08",
+				"signal_distance": 1059.45139377813,
+				"signal_id": "VAY_SRTL_M0-SA",
+				"status": "dwell",
+				"wait_seconds": 0.0
+			},
+			"head_s": 732.767722432809,
+			"next_signal": {
+				"distance": 1059.45139377813,
+				"id": "VAY_SRTL_M0-SA"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "VAY_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Passenger exchange · 7 s · 939 aboard"
+		},
+		"L002": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "PASA_P1",
+							"train": "M061"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "PASA_P2",
+							"train": "M078"
+						}
+					],
+					"cost": 1.20319588378906,
+					"destination": "KZTW_KZT_M1-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1177.32574462891,
+						"destination": "KZTW_KZT_M1-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KZT_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": -1,
+								"edge": "KZTW_KZT_M1",
+								"reversed": true,
+								"seen": false,
+								"switch": "KZT_LM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Parassala: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "PASA_P1",
+								"train": "M061"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "PASA_P2",
+								"train": "M078"
+							}
+						],
+						"cost": 1.20319588378906,
+						"destination": "KZTW_KZT_M1-NA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1177.32574462891,
+							"destination": "KZTW_KZT_M1-NA",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "KZT_LLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": -1,
+									"edge": "KZTW_KZT_M1",
+									"reversed": true,
+									"seen": false,
+									"switch": "KZT_LM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Parassala: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "PASA_P1",
+						"train": "M061"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "PASA_P2",
+						"train": "M078"
+					}
+				],
+				"call": {
+					"arrival": 26405.4374800179,
+					"block": "KZTW_P1",
+					"booked": 21540.0,
+					"delay": 4865.43748001789,
+					"distance": 3072.61501926119,
+					"index": 5,
+					"missed": false,
+					"name": "Kulitturai West",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 140.0,
+				"hold": {},
+				"id": "L002",
+				"name": "Nagercoil Junction–Ernakulam Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Expect a wait before Parassala: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061), Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)",
+				"signal_distance": 75.8647751205625,
+				"signal_id": "KZT-N2",
+				"status": "blocked",
+				"wait_seconds": 3302.49999995194
+			},
+			"head_s": 285.864775120562,
+			"next_signal": {
+				"distance": 75.8647751205625,
+				"id": "KZT-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "KZT_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for KZT-N2"
+		},
+		"L005": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "single_line",
+							"resource": "ALLP_single",
+							"train": "S028"
+						},
+						{
+							"kind": "reserved",
+							"resource": "ALLP_PUPR_M0-NH",
+							"train": "S028"
+						},
+						{
+							"kind": "occupied",
+							"resource": "ALLP_PUPR_M0",
+							"train": "S028"
+						},
+						{
+							"kind": "reserved",
+							"resource": "ALLP_PUPR_M1-NA",
+							"train": "S028"
+						}
+					],
+					"cost": 1.53033674499512,
+					"destination": "ALLP_PUPR_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1466.23345947266,
+						"destination": "ALLP_PUPR_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "ALLP_RLEAD_U",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RU"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_PUPR_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							}
+						]
+					},
+					"reason": "Single line ALLP_single is locked for opposing traffic",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_RM_B1",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2260.87054443359,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B1",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "ALLP_RLEAD_U",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RU"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ROAD1",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G0"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Punnapra",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_RM_B2",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2287.85654067993,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B2",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "ALLP_RLEAD_U",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RU"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ROAD2",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G1"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Punnapra",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_RM_B3",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2315.26661872864,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B3",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "ALLP_RLEAD_U",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RU"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G1"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ROAD3",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Punnapra",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_RM_B4",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2292.95887947083,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B4",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "ALLP_RLEAD_U",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RU"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G1"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ROAD4",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Punnapra",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "single_line",
+								"resource": "ALLP_single",
+								"train": "S028"
+							},
+							{
+								"kind": "reserved",
+								"resource": "ALLP_PUPR_M0-NH",
+								"train": "S028"
+							},
+							{
+								"kind": "occupied",
+								"resource": "ALLP_PUPR_M0",
+								"train": "S028"
+							},
+							{
+								"kind": "reserved",
+								"resource": "ALLP_PUPR_M1-NA",
+								"train": "S028"
+							}
+						],
+						"cost": 1.53033674499512,
+						"destination": "ALLP_PUPR_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1466.23345947266,
+							"destination": "ALLP_PUPR_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "ALLP_RLEAD_U",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_RU"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ACCESS",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_PUPR_M0",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_J"
+								}
+							]
+						},
+						"reason": "Single line ALLP_single is locked for opposing traffic",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B1",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2260.87054443359,
+							"destination": "BUFFER:ALLP_DEPOT_RM_B1",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "ALLP_RLEAD_U",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_RU"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ACCESS",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ROAD1",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G0"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Punnapra",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B2",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2287.85654067993,
+							"destination": "BUFFER:ALLP_DEPOT_RM_B2",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "ALLP_RLEAD_U",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_RU"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ACCESS",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_FAN1",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G0"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ROAD2",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G1"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Punnapra",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B3",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2315.26661872864,
+							"destination": "BUFFER:ALLP_DEPOT_RM_B3",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "ALLP_RLEAD_U",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_RU"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ACCESS",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_FAN1",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G0"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_FAN2",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G1"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ROAD3",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G2"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Punnapra",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B4",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2292.95887947083,
+							"destination": "BUFFER:ALLP_DEPOT_RM_B4",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "ALLP_RLEAD_U",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_RU"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ACCESS",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_FAN1",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G0"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_FAN2",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G1"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ROAD4",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G2"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Punnapra",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "single_line",
+						"resource": "ALLP_single",
+						"train": "S028"
+					},
+					{
+						"kind": "reserved",
+						"resource": "ALLP_PUPR_M0-NH",
+						"train": "S028"
+					},
+					{
+						"kind": "occupied",
+						"resource": "ALLP_PUPR_M0",
+						"train": "S028"
+					},
+					{
+						"kind": "reserved",
+						"resource": "ALLP_PUPR_M1-NA",
+						"train": "S028"
+					}
+				],
+				"call": {
+					"arrival": 26567.2640429229,
+					"block": "PUPR_P1",
+					"booked": 24816.0,
+					"delay": 1751.26404292287,
+					"distance": 7118.27909188558,
+					"index": 12,
+					"missed": false,
+					"name": "Punnapra",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 125.774999998606,
+				"hold": {},
+				"id": "L005",
+				"name": "Ernakulam Junction–Kollam Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Single line ALLP_single is locked for opposing traffic · Tirunelveli–Mangaluru Superfast (S028)",
+				"signal_distance": 77.8768091707377,
+				"signal_id": "ALLP-S3",
+				"status": "blocked",
+				"wait_seconds": 1915.49999997213
+			},
+			"head_s": 753.7300023527,
+			"next_signal": {
+				"distance": 77.8768091707377,
+				"id": "ALLP-S3"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "ALLP_P3"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for ALLP-S3"
+		},
+		"L006": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "ALLP_P2",
+							"train": "S006"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "ALLP_P3",
+							"train": "L005"
+						}
+					],
+					"cost": 1.20779009887695,
+					"destination": "PUPR_AMPA_M3-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1161.95442199707,
+						"destination": "PUPR_AMPA_M3-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "AMPA_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": "AMPA_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "PUPR_AMPA_M3",
+								"reversed": false,
+								"seen": false,
+								"switch": "AMPA_LM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Alappuzha: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "ALLP_P2",
+								"train": "S006"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "ALLP_P3",
+								"train": "L005"
+							}
+						],
+						"cost": 1.20779009887695,
+						"destination": "PUPR_AMPA_M3-NA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1161.95442199707,
+							"destination": "PUPR_AMPA_M3-NA",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "AMPA_LLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": "AMPA_LU"
+								},
+								{
+									"dir": -1,
+									"edge": "PUPR_AMPA_M3",
+									"reversed": false,
+									"seen": false,
+									"switch": "AMPA_LM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Alappuzha: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "ALLP_P2",
+						"train": "S006"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "ALLP_P3",
+						"train": "L005"
+					}
+				],
+				"call": {
+					"arrival": 26485.355306068,
+					"block": "PUPR_P1",
+					"booked": 25596.0,
+					"delay": 889.355306068002,
+					"distance": 5070.56067051395,
+					"index": 11,
+					"missed": false,
+					"name": "Punnapra",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 49.724999999713,
+				"hold": {},
+				"id": "L006",
+				"name": "Kollam Junction–Ernakulam Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "Following order retained · no predicted punctuality benefit from an overtake by M010",
+				"priority": 30,
+				"reason": "Expect a wait before Alappuzha: no free platform suitable for this service · Thiruvananthapuram Central–New Delhi Superfast (S006), Ernakulam Junction–Kollam Junction Passenger (L005)",
+				"signal_distance": 76.9985214661031,
+				"signal_id": "AMPA-N2",
+				"status": "blocked",
+				"wait_seconds": 394.499999994259
+			},
+			"head_s": 286.998521466103,
+			"next_signal": {
+				"distance": 76.9985214661031,
+				"id": "AMPA-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "AMPA_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for AMPA-N2"
+		},
+		"L007": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "KUMM_AROR_M0-SA",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1216.28881835938,
+						"destination": "KUMM_AROR_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "KUMM_RLEAD_D",
+								"reversed": true,
+								"seen": false,
+								"switch": "KUMM_RD"
+							},
+							{
+								"dir": 1,
+								"edge": "KUMM_AROR_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "KUMM_RM"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Kumbalam",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26265.2572180466,
+					"block": "KUMM_P3",
+					"booked": 26340.0,
+					"delay": 0.0,
+					"distance": 603.233521175829,
+					"index": 1,
+					"missed": false,
+					"name": "Kumbalam",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 30.0,
+				"hold": {},
+				"id": "L007",
+				"name": "Ernakulam Junction–Kollam Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "Planned overtake by M013 at KUMM · KUMM_P3 / KUMM_P1",
+				"priority": 30,
+				"reason": "Arriving at Kumbalam; departure decision after the scheduled stop",
+				"signal_distance": 680.096924496141,
+				"signal_id": "KUMM-S3",
+				"status": "arriving",
+				"wait_seconds": 0.0
+			},
+			"head_s": 154.790998907234,
+			"next_signal": {
+				"distance": 675.435807733391,
+				"id": "KUMM-S3"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "KUMM_P3"
+				},
+				{
+					"dir": 1,
+					"edge": "KUMM_LLEAD_D"
+				},
+				{
+					"dir": 1,
+					"edge": "TNU_KUMM_M1"
+				}
+			],
+			"speed": 9.32223228174739,
+			"status": "Running to Kollam Junction"
+		},
+		"L013": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "reserved",
+							"resource": "PRND-S1",
+							"train": "M009"
+						}
+					],
+					"cost": 1.09628052108765,
+					"destination": "PRND_QLN_D0-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1008.63140869141,
+						"destination": "PRND_QLN_D0-A",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "PRND_QLN_D0",
+								"reversed": true,
+								"seen": false,
+								"switch": "PRND_RD"
+							}
+						]
+					},
+					"reason": "Conflicts with route from PRND-S1",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26675.3820361801,
+					"block": "QLN_P1",
+					"booked": 25128.0,
+					"delay": 1547.38203618011,
+					"distance": 9051.22892330317,
+					"index": 13,
+					"missed": false,
+					"name": "Kollam Junction",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 30.0,
+				"hold": {},
+				"id": "L013",
+				"name": "Alappuzha–Thiruvananthapuram Central Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "Following order retained · no predicted punctuality benefit from an overtake by M009",
+				"priority": 30,
+				"reason": "Booked departure / dwell until 07:17:32",
+				"signal_distance": 76.3176836791426,
+				"signal_id": "PRND-S4",
+				"status": "dwell",
+				"wait_seconds": 0.0
+			},
+			"head_s": 752.166935461482,
+			"next_signal": {
+				"distance": 76.3176836791426,
+				"id": "PRND-S4"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "PRND_P4"
+				}
+			],
+			"speed": 0.0,
+			"status": "Passenger exchange · 30 s · 991 aboard"
+		},
+		"L014": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.0406337890625,
+					"destination": "KPY-N2",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1040.6337890625,
+						"destination": "KPY-N2",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KPY_P2",
+								"reversed": false,
+								"seen": false,
+								"switch": "KPY_RU"
+							}
+						]
+					},
+					"reason": "Formation is too long for this road's clear platform length",
+					"stop": {
+						"block": "KPY_P2",
+						"direction": -1,
+						"dwell_minutes": 1.0,
+						"minutes_from_origin": 128.9,
+						"name": "Karunagapalli",
+						"s": -232.75
+					}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.09114001464844,
+					"destination": "KPY-N3",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1091.14001464844,
+						"destination": "KPY-N3",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KPY_P3",
+								"reversed": true,
+								"seen": false,
+								"switch": "KPY_RU"
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from KPY_STKT_U0-H",
+					"stop": {
+						"block": "KPY_P3",
+						"direction": -1,
+						"dwell_minutes": 1.0,
+						"minutes_from_origin": 128.9,
+						"name": "Karunagapalli",
+						"s": 287.320007324219
+					}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26281.5472795276,
+					"block": "KPY_P3",
+					"booked": 26034.0,
+					"delay": 247.547279527611,
+					"distance": 1499.6655638767,
+					"index": 20,
+					"missed": false,
+					"name": "Karunagapalli",
+					"qualified": true
+				},
+				"destination": "KPY-N3",
+				"effective_priority": 30.0,
+				"hold": {},
+				"id": "L014",
+				"name": "Thiruvananthapuram Central–Alappuzha Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "Following order retained · no predicted punctuality benefit from an overtake by S008",
+				"priority": 30,
+				"reason": "Authority to KPY-N3",
+				"signal_distance": 685.845556552476,
+				"signal_id": "KPY_STKT_U0-H",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 733.561434452783,
+			"next_signal": {
+				"distance": 673.561434452783,
+				"id": "KPY_STKT_U0-H"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "KPY_STKT_U0"
+				},
+				{
+					"dir": -1,
+					"edge": "KPY_STKT_U1"
+				}
+			],
+			"speed": 24.4853480789325,
+			"status": "Running to Alappuzha"
+		},
+		"L021": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "NYY_P1",
+							"train": "S045"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "NYY_P2",
+							"train": "V005"
+						}
+					],
+					"cost": 1.15347092559814,
+					"destination": "NEM_BRAM_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1103.39651489258,
+						"destination": "NEM_BRAM_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "NEM_RLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "NEM_BRAM_M0",
+								"reversed": true,
+								"seen": false,
+								"switch": "NEM_RM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Neyyattinkara: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "NYY_P1",
+								"train": "S045"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "NYY_P2",
+								"train": "V005"
+							}
+						],
+						"cost": 1.15347092559814,
+						"destination": "NEM_BRAM_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1103.39651489258,
+							"destination": "NEM_BRAM_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "NEM_RLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "NEM_BRAM_M0",
+									"reversed": true,
+									"seen": false,
+									"switch": "NEM_RM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Neyyattinkara: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "NYY_P1",
+						"train": "S045"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "NYY_P2",
+						"train": "V005"
+					}
+				],
+				"call": {
+					"arrival": 26502.2911440924,
+					"block": "BRAM_P1",
+					"booked": 23904.0,
+					"delay": 2598.29114409241,
+					"distance": 5493.95662112426,
+					"index": 19,
+					"missed": false,
+					"name": "Balaramapuram",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 140.0,
+				"hold": {},
+				"id": "L021",
+				"name": "Kollam Junction–Nagercoil Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Expect a wait before Neyyattinkara: no free platform suitable for this service · Thiruvananthapuram Central–Rameswaram Superfast (S045), Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005)",
+				"signal_distance": 77.6064624328585,
+				"signal_id": "NEM-S2",
+				"status": "blocked",
+				"wait_seconds": 2491.49999996374
+			},
+			"head_s": 753.453718231204,
+			"next_signal": {
+				"distance": 77.6064624328585,
+				"id": "NEM-S2"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "NEM_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for NEM-S2"
+		},
+		"L022": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "PASA_P1",
+							"train": "M061"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "PASA_P2",
+							"train": "M078"
+						}
+					],
+					"cost": 1.15328348449707,
+					"destination": "KZTW_KZT_M1-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1127.41334533691,
+						"destination": "KZTW_KZT_M1-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KZT_LLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": -1,
+								"edge": "KZTW_KZT_M1",
+								"reversed": false,
+								"seen": false,
+								"switch": "KZT_LM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Parassala: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "PASA_P1",
+								"train": "M061"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "PASA_P2",
+								"train": "M078"
+							}
+						],
+						"cost": 1.15328348449707,
+						"destination": "KZTW_KZT_M1-NA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1127.41334533691,
+							"destination": "KZTW_KZT_M1-NA",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "KZT_LLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": -1,
+									"edge": "KZTW_KZT_M1",
+									"reversed": false,
+									"seen": false,
+									"switch": "KZT_LM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Parassala: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "PASA_P1",
+						"train": "M061"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "PASA_P2",
+						"train": "M078"
+					}
+				],
+				"call": {
+					"arrival": 26405.4831866242,
+					"block": "KZTW_P1",
+					"booked": 23340.0,
+					"delay": 3065.48318662417,
+					"distance": 3073.75768441809,
+					"index": 5,
+					"missed": false,
+					"name": "Kulitturai West",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 137.074999998442,
+				"hold": {},
+				"id": "L022",
+				"name": "Nagercoil Junction–Kollam Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Expect a wait before Parassala: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061), Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)",
+				"signal_distance": 76.9198395694576,
+				"signal_id": "KZT-N1",
+				"status": "blocked",
+				"wait_seconds": 2141.49999996884
+			},
+			"head_s": 286.919839569458,
+			"next_signal": {
+				"distance": 76.9198395694576,
+				"id": "KZT-N1"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "KZT_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for KZT-N1"
+		},
+		"L023": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "EVA_VAK_D1-A",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 927.695434570313,
+						"destination": "EVA_VAK_D1-A",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "EVA_VAK_D1",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Edavai",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26243.7526331214,
+					"block": "EVA_P1",
+					"booked": 26316.0,
+					"delay": 0.0,
+					"distance": 470.765729406466,
+					"index": 5,
+					"missed": false,
+					"name": "Edavai",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 30.0,
+				"hold": {},
+				"id": "L023",
+				"name": "Kollam Junction–Nagercoil Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Arriving at Edavai; departure decision after the scheduled stop",
+				"signal_distance": 1605.22471378147,
+				"signal_id": "EVA_VAK_D0-A",
+				"status": "arriving",
+				"wait_seconds": 0.0
+			},
+			"head_s": 271.304216857068,
+			"next_signal": {
+				"distance": 1595.81388617028,
+				"id": "EVA_VAK_D0-A"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "EVA_P1"
+				},
+				{
+					"dir": 1,
+					"edge": "KFI_EVA_D1"
+				}
+			],
+			"speed": 18.7349301450864,
+			"status": "Route must serve EVA_P1"
+		},
+		"L033": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "NYY_P1",
+							"train": "S045"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "NYY_P2",
+							"train": "V005"
+						}
+					],
+					"cost": 1.10391986968994,
+					"destination": "NEM_BRAM_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1053.84545898438,
+						"destination": "NEM_BRAM_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "NEM_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "NEM_BRAM_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "NEM_RM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Neyyattinkara: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26528.2847905649,
+					"block": "BRAM_P1",
+					"booked": 24714.0,
+					"delay": 1814.28479056491,
+					"distance": 5493.79778291961,
+					"index": 2,
+					"missed": false,
+					"name": "Balaramapuram",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 30.0,
+				"hold": {},
+				"id": "L033",
+				"name": "Thiruvananthapuram Central–Nagercoil Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Booked departure / dwell until 07:17:27",
+				"signal_distance": 76.9986801364042,
+				"signal_id": "NEM-S1",
+				"status": "dwell",
+				"wait_seconds": 0.0
+			},
+			"head_s": 752.848731972971,
+			"next_signal": {
+				"distance": 76.9986801364042,
+				"id": "NEM-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "NEM_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Passenger exchange · 26 s · 765 aboard"
+		},
+		"L034": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "KZT_P1",
+							"train": "L022"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "KZT_P2",
+							"train": "L002"
+						}
+					],
+					"cost": 1.23173472686768,
+					"destination": "PYD_ERL_M7-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1152.19812011719,
+						"destination": "PYD_ERL_M7-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ERL_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": -1,
+								"edge": "PYD_ERL_M7",
+								"reversed": true,
+								"seen": false,
+								"switch": "ERL_LM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Kulitturai: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "KZT_P1",
+								"train": "L022"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "KZT_P2",
+								"train": "L002"
+							}
+						],
+						"cost": 1.23173472686768,
+						"destination": "PYD_ERL_M7-NA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1152.19812011719,
+							"destination": "PYD_ERL_M7-NA",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "ERL_LLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": -1,
+									"edge": "PYD_ERL_M7",
+									"reversed": true,
+									"seen": false,
+									"switch": "ERL_LM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Kulitturai: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "KZT_P1",
+						"train": "L022"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "KZT_P2",
+						"train": "L002"
+					}
+				],
+				"call": {
+					"arrival": 26620.1119511088,
+					"block": "PYD_P1",
+					"booked": 23976.0,
+					"delay": 2644.11195110883,
+					"distance": 8439.47679653467,
+					"index": 3,
+					"missed": false,
+					"name": "Palliyadi",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 140.0,
+				"hold": {},
+				"id": "L034",
+				"name": "Nagercoil Junction–Thiruvananthapuram Central Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Expect a wait before Kulitturai: no free platform suitable for this service · Nagercoil Junction–Kollam Junction Passenger (L022), Nagercoil Junction–Ernakulam Junction Passenger (L002)",
+				"signal_distance": 76.040730860845,
+				"signal_id": "ERL-N2",
+				"status": "blocked",
+				"wait_seconds": 2821.49999995894
+			},
+			"head_s": 286.040730860845,
+			"next_signal": {
+				"distance": 76.040730860845,
+				"id": "ERL-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "ERL_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for ERL-N2"
+		},
+		"M007": {
+			"candidates": [
+				{
+					"available": true,
+					"blockers": [],
+					"cost": 1.11089533463745,
+					"destination": "TVCN_TVP_D0-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1045.28088378906,
+						"destination": "TVCN_TVP_D0-A",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_RD"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_TVP_D0",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_J"
+							}
+						]
+					},
+					"reason": "",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:TVCN_DEPOT_RD_B1",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1866.52426147461,
+						"destination": "BUFFER:TVCN_DEPOT_RD_B1",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_RD"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_J"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_ROAD1",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_G0"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Thiruvananthapuram Central",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:TVCN_DEPOT_RD_B2",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1896.87581825256,
+						"destination": "BUFFER:TVCN_DEPOT_RD_B2",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_RD"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_J"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_ROAD2",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_G1"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Thiruvananthapuram Central",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:TVCN_DEPOT_RD_B3",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1928.20378303528,
+						"destination": "BUFFER:TVCN_DEPOT_RD_B3",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_RD"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_J"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_G1"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_ROAD3",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Thiruvananthapuram Central",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:TVCN_DEPOT_RD_B4",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1910.10136604309,
+						"destination": "BUFFER:TVCN_DEPOT_RD_B4",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_RD"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_J"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_G1"
+							},
+							{
+								"dir": 1,
+								"edge": "TVCN_DEPOT_RD_ROAD4",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVCN_DEPOT_RD_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Thiruvananthapuram Central",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26677.5656513898,
+					"block": "TVC_P1",
+					"booked": 26622.0,
+					"delay": 55.5656513897702,
+					"distance": 7190.36428661761,
+					"index": 13,
+					"missed": false,
+					"name": "Thiruvananthapuram Central",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 55.0,
+				"hold": {},
+				"id": "M007",
+				"name": "Shoranur–Thiruvananthapuram Central Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "Following order retained · no predicted punctuality benefit from an overtake by S027",
+				"priority": 55,
+				"reason": "Booked departure / dwell until 07:18:31",
+				"signal_distance": 198.952404903738,
+				"signal_id": "TVCN-S1",
+				"status": "dwell",
+				"wait_seconds": 0.0
+			},
+			"head_s": 956.865222049387,
+			"next_signal": {
+				"distance": 198.952404903738,
+				"id": "TVCN-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "TVCN_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Passenger exchange · 38 s · 1042 aboard"
+		},
+		"M008": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "VAY_SRTL_M5-NA",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1101.63217163086,
+						"destination": "VAY_SRTL_M5-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "SRTL_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": -1,
+								"edge": "VAY_SRTL_M5",
+								"reversed": true,
+								"seen": false,
+								"switch": "SRTL_LM"
+							}
+						]
+					},
+					"reason": "Approach reserved for K1 to enter SRTL_P1",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26260.7626876976,
+					"block": "SRTL_P2",
+					"booked": 25638.0,
+					"delay": 622.762687697585,
+					"distance": 760.831153036748,
+					"index": 11,
+					"missed": false,
+					"name": "Cherthala",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 55.0,
+				"hold": {},
+				"id": "M008",
+				"name": "Thiruvananthapuram Central–Shoranur Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Arriving at Cherthala; departure decision after the scheduled stop",
+				"signal_distance": 796.88428291956,
+				"signal_id": "SRTL-N2",
+				"status": "arriving",
+				"wait_seconds": 0.0
+			},
+			"head_s": 998.750930809604,
+			"next_signal": {
+				"distance": 788.750930809604,
+				"id": "SRTL-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "SRTL_P2"
+				},
+				{
+					"dir": -1,
+					"edge": "SRTL_RLEAD_U"
+				},
+				{
+					"dir": -1,
+					"edge": "SRTL_TRVZ_M0"
+				}
+			],
+			"speed": 16.2667000877521,
+			"status": "Running to Continues north beyond ERS"
+		},
+		"M009": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.04669082108765,
+					"destination": "PRND_QLN_D0-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 958.631408691406,
+						"destination": "PRND_QLN_D0-A",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "PRND_QLN_D0",
+								"reversed": false,
+								"seen": false,
+								"switch": "PRND_RD"
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from PRND-S1",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26614.1489027697,
+					"block": "QLN_P1",
+					"booked": 26130.0,
+					"delay": 484.148902769739,
+					"distance": 9814.55364193999,
+					"index": 8,
+					"missed": false,
+					"name": "Kollam Junction",
+					"qualified": true
+				},
+				"destination": "PRND_QLN_D0-A",
+				"effective_priority": 55.0,
+				"hold": {},
+				"id": "M009",
+				"name": "Thrissur–Thiruvananthapuram Central Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Authority to PRND_QLN_D0-A",
+				"signal_distance": 798.612402315963,
+				"signal_id": "PRND-S1",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 42.491821227418,
+			"next_signal": {
+				"distance": 786.297607483519,
+				"id": "PRND-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "PRND_P1"
+				},
+				{
+					"dir": 1,
+					"edge": "MQO_PRND_D4"
+				}
+			],
+			"speed": 24.6263337751298,
+			"status": "Running to Thiruvananthapuram Central"
+		},
+		"M010": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "KVTA_HAD_U4-A",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1013.521484375,
+						"destination": "KVTA_HAD_U4-A",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KVTA_HAD_U4",
+								"reversed": true,
+								"seen": false,
+								"switch": "HAD_LU"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Haripad",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26244.42082949,
+					"block": "HAD_P3",
+					"booked": 26358.0,
+					"delay": 0.0,
+					"distance": 255.038980747747,
+					"index": 8,
+					"missed": false,
+					"name": "Haripad",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 55.0,
+				"hold": {},
+				"id": "M010",
+				"name": "Thiruvananthapuram Central–Thrissur Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "Following order retained · no predicted punctuality benefit from an overtake by V002",
+				"priority": 55,
+				"reason": "Arriving at Haripad; departure decision after the scheduled stop",
+				"signal_distance": 290.849007603216,
+				"signal_id": "HAD-N3",
+				"status": "arriving",
+				"wait_seconds": 0.0
+			},
+			"head_s": 496.187896492105,
+			"next_signal": {
+				"distance": 286.187896492105,
+				"id": "HAD-N3"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "HAD_P3"
+				},
+				{
+					"dir": -1,
+					"edge": "HAD_CHPD_U0"
+				}
+			],
+			"speed": 9.32222222222225,
+			"status": "Running to Continues north beyond ERS"
+		},
+		"M011": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "ALLP_P2",
+							"train": "S006"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "ALLP_P3",
+							"train": "L005"
+						}
+					],
+					"cost": 1.08197241778442,
+					"destination": "MAKM_KAVR_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 959.234664916992,
+						"destination": "MAKM_KAVR_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "MAKM_RLEAD_D",
+								"reversed": true,
+								"seen": false,
+								"switch": "MAKM_RD"
+							},
+							{
+								"dir": 1,
+								"edge": "MAKM_KAVR_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "MAKM_RM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Alappuzha: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "ALLP_P2",
+								"train": "S006"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "ALLP_P3",
+								"train": "L005"
+							}
+						],
+						"cost": 1.08197241778442,
+						"destination": "MAKM_KAVR_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 959.234664916992,
+							"destination": "MAKM_KAVR_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "MAKM_RLEAD_D",
+									"reversed": true,
+									"seen": false,
+									"switch": "MAKM_RD"
+								},
+								{
+									"dir": 1,
+									"edge": "MAKM_KAVR_M0",
+									"reversed": false,
+									"seen": false,
+									"switch": "MAKM_RM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Alappuzha: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "ALLP_P2",
+						"train": "S006"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "ALLP_P3",
+						"train": "L005"
+					}
+				],
+				"call": {
+					"arrival": 26795.5092253437,
+					"block": "ALLP_P1",
+					"booked": 24882.0,
+					"delay": 1913.5092253437,
+					"distance": 12690.2820846159,
+					"index": 3,
+					"missed": false,
+					"name": "Alappuzha",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 109.9999999992,
+				"hold": {},
+				"id": "M011",
+				"name": "Guruvayur–Thiruvananthapuram Central Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Expect a wait before Alappuzha: no free platform suitable for this service · Thiruvananthapuram Central–New Delhi Superfast (S006), Ernakulam Junction–Kollam Junction Passenger (L005)",
+				"signal_distance": 6.50803383468315,
+				"signal_id": "MAKM-S3",
+				"status": "blocked",
+				"wait_seconds": 1099.99999998399
+			},
+			"head_s": 823.502708352817,
+			"next_signal": {
+				"distance": 6.50803383468315,
+				"id": "MAKM-S3"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "MAKM_P3"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for MAKM-S3"
+		},
+		"M012": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.02825185000488,
+					"destination": "EVA_VAK_U1-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 928.401794433594,
+						"destination": "EVA_VAK_U1-A",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "EVA_VAK_U1",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from EVA_VAK_U2-A",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26698.7162032564,
+					"block": "PVU_P3",
+					"booked": 26826.0,
+					"delay": 0.0,
+					"distance": 11086.6698099282,
+					"index": 4,
+					"missed": false,
+					"name": "Paravur",
+					"qualified": true
+				},
+				"destination": "EVA_VAK_U1-A",
+				"effective_priority": 55.0,
+				"hold": {},
+				"id": "M012",
+				"name": "Thiruvananthapuram Central–Guruvayur Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Authority to PVU_KFI_U0-H",
+				"signal_distance": 1041.6642527993,
+				"signal_id": "EVA_VAK_U2-A",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 169.570507488233,
+			"next_signal": {
+				"distance": 1038.03406949995,
+				"id": "EVA_VAK_U2-A"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "VAK_P2"
+				}
+			],
+			"speed": 7.32375627159227,
+			"status": "Running to Continues north beyond ERS"
+		},
+		"M013": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 2.27816642838745,
+					"destination": "TNU_KUMM_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1992.63092041016,
+						"destination": "TNU_KUMM_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TNU_P1",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "TNU_KUMM_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from ERS_TNU_M2-SA",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 27413.629896595,
+					"block": "SRTL_P1",
+					"booked": 27924.0,
+					"delay": 0.0,
+					"distance": 29801.497253994,
+					"index": 2,
+					"missed": false,
+					"name": "Cherthala",
+					"qualified": true
+				},
+				"destination": "TNU_KUMM_M0-SA",
+				"effective_priority": 55.0,
+				"hold": {},
+				"id": "M013",
+				"name": "Bengaluru–Thiruvananthapuram Central Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Authority to TNU_KUMM_M0-SA",
+				"signal_distance": 187.99241573712,
+				"signal_id": "ERS_TNU_M2-SA",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 685.528104282314,
+			"next_signal": {
+				"distance": 175.692415737218,
+				"id": "ERS_TNU_M2-SA"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "ERS_TNU_M2"
+				}
+			],
+			"speed": 24.5999999998265,
+			"status": "Running to Thiruvananthapuram Central"
+		},
+		"M043": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "NEM_P1",
+							"train": "L033"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "NEM_P2",
+							"train": "L021"
+						}
+					],
+					"cost": 1.52866343096802,
+					"destination": "TVC_NEM_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1367.17730712891,
+						"destination": "TVC_NEM_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TVC_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_NEM_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_J"
+							}
+						]
+					},
+					"reason": "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:TVC_DEPOT_RM_B1",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2123.02789306641,
+						"destination": "BUFFER:TVC_DEPOT_RM_B1",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TVC_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_ROAD1",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_G0"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Neyyattinkara",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:TVC_DEPOT_RM_B2",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2147.15511894226,
+						"destination": "BUFFER:TVC_DEPOT_RM_B2",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TVC_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_ROAD2",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_G1"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Neyyattinkara",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:TVC_DEPOT_RM_B3",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2169.89471244812,
+						"destination": "BUFFER:TVC_DEPOT_RM_B3",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TVC_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_G1"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_ROAD3",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Neyyattinkara",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:TVC_DEPOT_RM_B4",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2143.15069389343,
+						"destination": "BUFFER:TVC_DEPOT_RM_B4",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TVC_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_G1"
+							},
+							{
+								"dir": 1,
+								"edge": "TVC_DEPOT_RM_ROAD4",
+								"reversed": false,
+								"seen": false,
+								"switch": "TVC_DEPOT_RM_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Neyyattinkara",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "NEM_P1",
+								"train": "L033"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "NEM_P2",
+								"train": "L021"
+							}
+						],
+						"cost": 1.52866343096802,
+						"destination": "TVC_NEM_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1367.17730712891,
+							"destination": "TVC_NEM_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "TVC_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_ACCESS",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_NEM_M0",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_J"
+								}
+							]
+						},
+						"reason": "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:TVC_DEPOT_RM_B1",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2123.02789306641,
+							"destination": "BUFFER:TVC_DEPOT_RM_B1",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "TVC_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_ACCESS",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_ROAD1",
+									"reversed": true,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_G0"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Neyyattinkara",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:TVC_DEPOT_RM_B2",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2147.15511894226,
+							"destination": "BUFFER:TVC_DEPOT_RM_B2",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "TVC_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_ACCESS",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_FAN1",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_G0"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_ROAD2",
+									"reversed": true,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_G1"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Neyyattinkara",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:TVC_DEPOT_RM_B3",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2169.89471244812,
+							"destination": "BUFFER:TVC_DEPOT_RM_B3",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "TVC_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_ACCESS",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_FAN1",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_G0"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_FAN2",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_G1"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_ROAD3",
+									"reversed": true,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_G2"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Neyyattinkara",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:TVC_DEPOT_RM_B4",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2143.15069389343,
+							"destination": "BUFFER:TVC_DEPOT_RM_B4",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "TVC_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_ACCESS",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_FAN1",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_G0"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_FAN2",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_G1"
+								},
+								{
+									"dir": 1,
+									"edge": "TVC_DEPOT_RM_ROAD4",
+									"reversed": false,
+									"seen": false,
+									"switch": "TVC_DEPOT_RM_G2"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Neyyattinkara",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "NEM_P1",
+						"train": "L033"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "NEM_P2",
+						"train": "L021"
+					}
+				],
+				"call": {
+					"arrival": 26972.1174133554,
+					"block": "NYY_P1",
+					"booked": 25842.0,
+					"delay": 1130.11741335535,
+					"distance": 17105.4867849072,
+					"index": 14,
+					"missed": false,
+					"name": "Neyyattinkara",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 58.0999999999549,
+				"hold": {},
+				"id": "M043",
+				"name": "Guruvayur–Nagercoil Junction Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033), Kollam Junction–Nagercoil Junction Passenger (L021)",
+				"signal_distance": 327.075267695264,
+				"signal_id": "TVC-S1",
+				"status": "blocked",
+				"wait_seconds": 61.9999999990978
+			},
+			"head_s": 1047.51750574224,
+			"next_signal": {
+				"distance": 327.075267695264,
+				"id": "TVC-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "TVC_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for TVC-S1"
+		},
+		"M044": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.42933458941528,
+					"destination": "VAY_SRTL_M5-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1101.40412902832,
+						"destination": "VAY_SRTL_M5-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "SRTL_LLEAD_D",
+								"reversed": true,
+								"seen": false,
+								"switch": "SRTL_LD"
+							},
+							{
+								"dir": -1,
+								"edge": "VAY_SRTL_M5",
+								"reversed": false,
+								"seen": false,
+								"switch": "SRTL_LM"
+							}
+						]
+					},
+					"reason": "Approach reserved for K1 to enter SRTL_P1",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1.42933458941528,
+						"destination": "VAY_SRTL_M5-NA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1101.40412902832,
+							"destination": "VAY_SRTL_M5-NA",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "SRTL_LLEAD_D",
+									"reversed": true,
+									"seen": false,
+									"switch": "SRTL_LD"
+								},
+								{
+									"dir": -1,
+									"edge": "VAY_SRTL_M5",
+									"reversed": false,
+									"seen": false,
+									"switch": "SRTL_LM"
+								}
+							]
+						},
+						"reason": "Approach reserved for K1 to enter SRTL_P1",
+						"stop": {}
+					}
+				],
+				"blockers": [],
+				"call": {
+					"arrival": 27618.1965469226,
+					"block": "ERS_P2",
+					"booked": 26850.0,
+					"delay": 768.196546922572,
+					"distance": 33257.4651240877,
+					"index": 17,
+					"missed": false,
+					"name": "Ernakulam Junction",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 64.2499999998654,
+				"hold": {},
+				"id": "M044",
+				"name": "Nagercoil Junction–Guruvayur Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Approach reserved for K1 to enter SRTL_P1",
+				"signal_distance": 54.7697171052521,
+				"signal_id": "SRTL-N3",
+				"status": "blocked",
+				"wait_seconds": 184.999999997308
+			},
+			"head_s": 264.769717105252,
+			"next_signal": {
+				"distance": 54.7697171052521,
+				"id": "SRTL-N3"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "SRTL_P3"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for SRTL-N3"
+		},
+		"M045": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.01007436066895,
+					"destination": "KVTA_HAD_D1-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 963.568542480469,
+						"destination": "KVTA_HAD_D1-A",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "KVTA_HAD_D1",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from KVTA_HAD_D0-A",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26454.4948272243,
+					"block": "HAD_P4",
+					"booked": 24798.0,
+					"delay": 1656.49482722427,
+					"distance": 5823.12051974235,
+					"index": 5,
+					"missed": false,
+					"name": "Haripad",
+					"qualified": true
+				},
+				"destination": "KVTA_HAD_D1-A",
+				"effective_priority": 55.0,
+				"hold": {},
+				"id": "M045",
+				"name": "Bengaluru–Nagercoil Junction Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Authority to KVTA_HAD_D4-H",
+				"signal_distance": 1112.53870089469,
+				"signal_id": "KVTA_HAD_D0-A",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 803.204231236921,
+			"next_signal": {
+				"distance": 1100.23870089199,
+				"id": "KVTA_HAD_D0-A"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "KVTA_P1"
+				}
+			],
+			"speed": 24.6000000048154,
+			"status": "Running to Nagercoil Junction"
+		},
+		"M046": {
+			"candidates": [
+				{
+					"available": true,
+					"blockers": [],
+					"cost": 1.02291920823364,
+					"destination": "MYY_PVU_U2-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 900.691162109375,
+						"destination": "MYY_PVU_U2-A",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "MYY_PVU_U2",
+								"reversed": true,
+								"seen": false,
+								"switch": "PVU_LU"
+							}
+						]
+					},
+					"reason": "",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26861.0183071236,
+					"block": "QLN_P2",
+					"booked": 26844.0,
+					"delay": 17.0183071235733,
+					"distance": 12469.1806799711,
+					"index": 10,
+					"missed": false,
+					"name": "Kollam Junction",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 55.0,
+				"hold": {},
+				"id": "M046",
+				"name": "Nagercoil Junction–Bengaluru Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Booked departure / dwell until 07:18:04",
+				"signal_distance": 36.3760675443073,
+				"signal_id": "PVU-N3",
+				"status": "dwell",
+				"wait_seconds": 0.0
+			},
+			"head_s": 246.376067544307,
+			"next_signal": {
+				"distance": 36.3760675443073,
+				"id": "PVU-N3"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "PVU_P3"
+				}
+			],
+			"speed": 0.0,
+			"status": "Passenger exchange · 62 s · 1142 aboard"
+		},
+		"M061": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "KZT_P1",
+							"train": "L022"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "KZT_P2",
+							"train": "L002"
+						}
+					],
+					"cost": 1.07958234360962,
+					"destination": "PASA_KZTW_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1001.04130554199,
+						"destination": "PASA_KZTW_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "PASA_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "PASA_KZTW_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "PASA_RM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Kulitturai: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "KZT_P1",
+								"train": "L022"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "KZT_P2",
+								"train": "L002"
+							}
+						],
+						"cost": 1.07958234360962,
+						"destination": "PASA_KZTW_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1001.04130554199,
+							"destination": "PASA_KZTW_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "PASA_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "PASA_KZTW_M0",
+									"reversed": false,
+									"seen": false,
+									"switch": "PASA_RM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Kulitturai: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "KZT_P1",
+						"train": "L022"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "KZT_P2",
+						"train": "L002"
+					}
+				],
+				"call": {
+					"arrival": 26631.6886949218,
+					"block": "KZT_P1",
+					"booked": 23436.0,
+					"delay": 3195.68869492179,
+					"distance": 8299.69037492888,
+					"index": 16,
+					"missed": false,
+					"name": "Kulitturai",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 165.0,
+				"hold": {},
+				"id": "M061",
+				"name": "Mumbai–Kanniyakumari Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Expect a wait before Kulitturai: no free platform suitable for this service · Nagercoil Junction–Kollam Junction Passenger (L022), Nagercoil Junction–Ernakulam Junction Passenger (L002)",
+				"signal_distance": 35.7845204366953,
+				"signal_id": "PASA-S1",
+				"status": "blocked",
+				"wait_seconds": 3220.99999995313
+			},
+			"head_s": 793.696924875805,
+			"next_signal": {
+				"distance": 35.7845204366953,
+				"id": "PASA-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "PASA_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for PASA-S1"
+		},
+		"M063": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "occupied",
+							"resource": "SRTL_TRVZ_M0",
+							"train": "M008"
+						},
+						{
+							"kind": "single_line",
+							"resource": "SRTL_single",
+							"train": "M008"
+						},
+						{
+							"kind": "point_clearance",
+							"resource": "SRTL_RM",
+							"train": "M008"
+						},
+						{
+							"kind": "reserved",
+							"resource": "SRTL_TRVZ_M0-NH",
+							"train": "M008"
+						}
+					],
+					"cost": 1.353253360625,
+					"destination": "SRTL_TRVZ_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1121.50448608398,
+						"destination": "SRTL_TRVZ_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "SRTL_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": "SRTL_RD"
+							},
+							{
+								"dir": 1,
+								"edge": "SRTL_TRVZ_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "SRTL_RM"
+							}
+						]
+					},
+					"reason": "Single line SRTL_single is locked for opposing traffic",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 27233.4702732991,
+					"block": "ALLP_P1",
+					"booked": 26982.0,
+					"delay": 251.470273299146,
+					"distance": 23639.308283502,
+					"index": 3,
+					"missed": false,
+					"name": "Alappuzha",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 88.3749999995143,
+				"hold": {},
+				"id": "M063",
+				"name": "Mangaluru–Tirunelveli Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Expect a wait at SRTL until Thiruvananthapuram Central–Shoranur Mail / Express (M008) clears the escape approach",
+				"signal_distance": 54.6430278867804,
+				"signal_id": "SRTL-S1",
+				"status": "held",
+				"wait_seconds": 667.499999990287
+			},
+			"head_s": 775.088661566345,
+			"next_signal": {
+				"distance": 54.6430278867804,
+				"id": "SRTL-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "SRTL_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for SRTL-S1"
+		},
+		"M064": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.20093264529297,
+					"destination": "PRND_QLN_U5-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 956.325012207031,
+						"destination": "PRND_QLN_U5-A",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "PRND_QLN_U5",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from PRND_QLN_U6-A",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 27280.9159606052,
+					"block": "KPY_P3",
+					"booked": 27072.0,
+					"delay": 208.915960605213,
+					"distance": 25580.2046703316,
+					"index": 12,
+					"missed": false,
+					"name": "Karunagapalli",
+					"qualified": true
+				},
+				"destination": "PRND_QLN_U5-A",
+				"effective_priority": 55.0,
+				"hold": {},
+				"id": "M064",
+				"name": "Tirunelveli–Mangaluru Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Authority to PRND_QLN_U0-H",
+				"signal_distance": 1059.44136173789,
+				"signal_id": "PRND_QLN_U6-A",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 159.968211781293,
+			"next_signal": {
+				"distance": 1056.16913951567,
+				"id": "PRND_QLN_U6-A"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "QLN_DEPOT_LU_ACCESS"
+				},
+				{
+					"dir": -1,
+					"edge": "QLN_LADDER_LU0"
+				},
+				{
+					"dir": -1,
+					"edge": "QLN_LADDER_LU1"
+				}
+			],
+			"speed": 6.54444444444446,
+			"status": "Running to Continues north beyond ERS"
+		},
+		"M078": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "NYY_P1",
+							"train": "S045"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "NYY_P2",
+							"train": "V005"
+						}
+					],
+					"cost": 1.20588398362427,
+					"destination": "DAVM_PASA_M5-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1085.74157714844,
+						"destination": "DAVM_PASA_M5-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "PASA_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": -1,
+								"edge": "DAVM_PASA_M5",
+								"reversed": true,
+								"seen": false,
+								"switch": "PASA_LM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Neyyattinkara: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "NYY_P1",
+								"train": "S045"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "NYY_P2",
+								"train": "V005"
+							}
+						],
+						"cost": 1.20588398362427,
+						"destination": "DAVM_PASA_M5-NA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1085.74157714844,
+							"destination": "DAVM_PASA_M5-NA",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "PASA_LLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": -1,
+									"edge": "DAVM_PASA_M5",
+									"reversed": true,
+									"seen": false,
+									"switch": "PASA_LM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Neyyattinkara: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "NYY_P1",
+						"train": "S045"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "NYY_P2",
+						"train": "V005"
+					}
+				],
+				"call": {
+					"arrival": 26798.0350403558,
+					"block": "NYY_P2",
+					"booked": 23484.0,
+					"delay": 3314.03504035576,
+					"distance": 12458.3490107781,
+					"index": 5,
+					"missed": false,
+					"name": "Neyyattinkara",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 75.2999999997046,
+				"hold": {},
+				"id": "M078",
+				"name": "Kanniyakumari–Thiruvananthapuram Central Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Expect a wait before Neyyattinkara: no free platform suitable for this service · Thiruvananthapuram Central–Rameswaram Superfast (S045), Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005)",
+				"signal_distance": 34.015955968566,
+				"signal_id": "PASA-N2",
+				"status": "blocked",
+				"wait_seconds": 405.999999994092
+			},
+			"head_s": 244.015955968566,
+			"next_signal": {
+				"distance": 34.015955968566,
+				"id": "PASA-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "PASA_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for PASA-N2"
+		},
+		"M101": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.12464220429688,
+					"destination": "OCR-S1",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1039.98291015625,
+						"destination": "OCR-S1",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "OCR_P1",
+								"reversed": false,
+								"seen": false,
+								"switch": "OCR_LD"
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from KYJ_OCR_D4-H",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.17528689301758,
+					"destination": "OCR-S4",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1090.62121582031,
+						"destination": "OCR-S4",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "OCR_P4",
+								"reversed": true,
+								"seen": false,
+								"switch": "OCR_LD"
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from KYJ_OCR_D4-H",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26598.0542097207,
+					"block": "KPY_P1",
+					"booked": 25728.0,
+					"delay": 870.054209720736,
+					"distance": 9412.60524905153,
+					"index": 4,
+					"missed": false,
+					"name": "Karunagapalli",
+					"qualified": true
+				},
+				"destination": "OCR-S1",
+				"effective_priority": 55.0,
+				"hold": {},
+				"id": "M101",
+				"name": "Alappuzha–Kanniyakumari Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Authority to OCR-S1",
+				"signal_distance": 886.67583498903,
+				"signal_id": "KYJ_OCR_D4-H",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 901.003898626422,
+			"next_signal": {
+				"distance": 872.98694610014,
+				"id": "KYJ_OCR_D4-H"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "KYJ_OCR_D3"
+				}
+			],
+			"speed": 27.3777777777777,
+			"status": "Running to Continues south beyond NCJ"
+		},
+		"M102": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "occupied",
+							"resource": "ERL_VRLR_U0",
+							"train": "S046"
+						}
+					],
+					"cost": 0.939601282666016,
+					"destination": "ERL_VRLR_U0-H",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 922.444396972656,
+						"destination": "ERL_VRLR_U0-H",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ERL_VRLR_U0",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Block ERL_VRLR_U0 occupied by S046",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [
+					{
+						"kind": "occupied",
+						"resource": "ERL_VRLR_U0",
+						"train": "S046"
+					}
+				],
+				"call": {
+					"arrival": 26370.8314251283,
+					"block": "ERL_P2",
+					"booked": 25728.0,
+					"delay": 642.831425128334,
+					"distance": 1782.20057172222,
+					"index": 2,
+					"missed": false,
+					"name": "Eraniel",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 90.2249999994874,
+				"hold": {},
+				"id": "M102",
+				"name": "Kanniyakumari–Alappuzha Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Waiting for automatic block clearance",
+				"signal_distance": 6.51200238628554,
+				"signal_id": "ERL_VRLR_U1-A",
+				"status": "waiting",
+				"wait_seconds": 704.499999989748
+			},
+			"head_s": 66.5120023862855,
+			"next_signal": {
+				"distance": 6.51200238628554,
+				"id": "ERL_VRLR_U1-A"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "ERL_VRLR_U1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for ERL_VRLR_U1-A"
+		},
+		"S005": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.96869825776367,
+					"destination": "IRP_MYY_D0-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1782.14379882813,
+						"destination": "IRP_MYY_D0-A",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "IRP_P1",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "IRP_MYY_D0",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from QLN_IRP_D2-A",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 27036.1538799958,
+					"block": "VAK_P4",
+					"booked": 25488.0,
+					"delay": 1548.15387999577,
+					"distance": 20365.0970059275,
+					"index": 5,
+					"missed": false,
+					"name": "Varkala Sivagiri",
+					"qualified": true
+				},
+				"destination": "IRP_MYY_D0-A",
+				"effective_priority": 75.0,
+				"hold": {},
+				"id": "S005",
+				"name": "New Delhi–Thiruvananthapuram Central Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Authority to MYY_PVU_D2-H",
+				"signal_distance": 649.702565009575,
+				"signal_id": "QLN_IRP_D2-A",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 116.406367621967,
+			"next_signal": {
+				"distance": 636.013676323345,
+				"id": "QLN_IRP_D2-A"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "QLN_IRP_D2"
+				},
+				{
+					"dir": 1,
+					"edge": "QLN_IRP_D1"
+				}
+			],
+			"speed": 27.3777774170596,
+			"status": "Running to Thiruvananthapuram Central"
+		},
+		"S006": {
+			"candidates": [
+				{
+					"available": true,
+					"blockers": [],
+					"cost": 1.87142259476929,
+					"destination": "TMPY_ALLP_M2-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1309.11610412598,
+						"destination": "TMPY_ALLP_M2-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ALLP_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_ACCESS",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_LM"
+							},
+							{
+								"dir": -1,
+								"edge": "TMPY_ALLP_M2",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_J"
+							}
+						]
+					},
+					"reason": "",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_LM_B1",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2250.00486755371,
+						"destination": "BUFFER:ALLP_DEPOT_LM_B1",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ALLP_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_ACCESS",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_LM"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_J"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_ROAD1",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_G0"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Ernakulam Junction",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_LM_B2",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2279.62733459473,
+						"destination": "BUFFER:ALLP_DEPOT_LM_B2",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ALLP_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_ACCESS",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_LM"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_J"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_G0"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_ROAD2",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_G1"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Ernakulam Junction",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_LM_B3",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2308.14073562622,
+						"destination": "BUFFER:ALLP_DEPOT_LM_B3",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ALLP_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_ACCESS",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_LM"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_J"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_G0"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_G1"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_ROAD3",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Ernakulam Junction",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_LM_B4",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2286.9676399231,
+						"destination": "BUFFER:ALLP_DEPOT_LM_B4",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ALLP_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_ACCESS",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_LM"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_J"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_G0"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_G1"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_LM_ROAD4",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_LM_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Ernakulam Junction",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 28658.7756596224,
+					"block": "ERS_P2",
+					"booked": 27432.0,
+					"delay": 1226.77565962242,
+					"distance": 56896.8644924314,
+					"index": 5,
+					"missed": false,
+					"name": "Ernakulam Junction",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 75.0,
+				"hold": {},
+				"id": "S006",
+				"name": "Thiruvananthapuram Central–New Delhi Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Booked departure / dwell until 07:18:24",
+				"signal_distance": 36.1721389157493,
+				"signal_id": "ALLP-N2",
+				"status": "dwell",
+				"wait_seconds": 0.0
+			},
+			"head_s": 246.172138915749,
+			"next_signal": {
+				"distance": 36.1721389157493,
+				"id": "ALLP-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "ALLP_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Passenger exchange · 34 s · 793 aboard"
+		},
+		"S007": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.34476645829468,
+					"destination": "TUVR_VAY_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1012.91786193848,
+						"destination": "TUVR_VAY_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "TUVR_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": "TUVR_RD"
+							},
+							{
+								"dir": 1,
+								"edge": "TUVR_VAY_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "TUVR_RM"
+							}
+						]
+					},
+					"reason": "Approach reserved for K1 to enter SRTL_P1",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1.34476645829468,
+						"destination": "TUVR_VAY_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1012.91786193848,
+							"destination": "TUVR_VAY_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "TUVR_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": "TUVR_RD"
+								},
+								{
+									"dir": 1,
+									"edge": "TUVR_VAY_M0",
+									"reversed": false,
+									"seen": false,
+									"switch": "TUVR_RM"
+								}
+							]
+						},
+						"reason": "Approach reserved for K1 to enter SRTL_P1",
+						"stop": {}
+					}
+				],
+				"blockers": [],
+				"call": {
+					"arrival": 27643.7541406889,
+					"block": "ALLP_P1",
+					"booked": 28038.0,
+					"delay": 0.0,
+					"distance": 33601.3265191071,
+					"index": 2,
+					"missed": false,
+					"name": "Alappuzha",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 97.0749999996788,
+				"hold": {},
+				"id": "S007",
+				"name": "Hyderabad–Thiruvananthapuram Central Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Approach reserved for K1 to enter SRTL_P1",
+				"signal_distance": 6.51063043519264,
+				"signal_id": "TUVR-S1",
+				"status": "blocked",
+				"wait_seconds": 441.499999993575
+			},
+			"head_s": 823.401967221057,
+			"next_signal": {
+				"distance": 6.51063043519264,
+				"id": "TUVR-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "TUVR_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for TUVR-S1"
+		},
+		"S008": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 2.12807662827759,
+					"destination": "STKT_MQO_U3-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1872.5263671875,
+						"destination": "STKT_MQO_U3-A",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "MQO_P2",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": -1,
+								"edge": "STKT_MQO_U3",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from MQO_PRND_U0-A",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 27294.2296446091,
+					"block": "KYJ_P2",
+					"booked": 27648.0,
+					"delay": 0.0,
+					"distance": 26816.9911212612,
+					"index": 3,
+					"missed": false,
+					"name": "Kayamkulam Junction",
+					"qualified": true
+				},
+				"destination": "STKT_MQO_U3-A",
+				"effective_priority": 75.0,
+				"hold": {},
+				"id": "S008",
+				"name": "Thiruvananthapuram Central–Hyderabad Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Authority to STKT-N2",
+				"signal_distance": 202.464951217282,
+				"signal_id": "MQO_PRND_U0-A",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 248.893217871514,
+			"next_signal": {
+				"distance": 188.893217871514,
+				"id": "MQO_PRND_U0-A"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "MQO_PRND_U0"
+				}
+			],
+			"speed": 27.0827057172267,
+			"status": "Running to Continues north beyond ERS"
+		},
+		"S027": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.10516107178955,
+					"destination": "KZK_VELI_D1-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 983.945922851563,
+						"destination": "KZK_VELI_D1-A",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "KZK_VELI_D1",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from KZK_VELI_D0-A",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26742.9884802034,
+					"block": "TVC_P1",
+					"booked": 26376.0,
+					"delay": 366.988480203439,
+					"distance": 13035.4618442061,
+					"index": 6,
+					"missed": false,
+					"name": "Thiruvananthapuram Central",
+					"qualified": true
+				},
+				"destination": "KZK_VELI_D1-A",
+				"effective_priority": 75.0,
+				"hold": {},
+				"id": "S027",
+				"name": "Mangaluru–Tirunelveli Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Authority to VELI_TVCN_D0-H",
+				"signal_distance": 853.946950407247,
+				"signal_id": "KZK_VELI_D0-A",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 81.645041780257,
+			"next_signal": {
+				"distance": 841.646950407243,
+				"id": "KZK_VELI_D0-A"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "KZK_VELI_D0"
+				},
+				{
+					"dir": 1,
+					"edge": "KZK_P1"
+				}
+			],
+			"speed": 24.6000000000066,
+			"status": "Running to Continues south beyond NCJ"
+		},
+		"S028": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.45996327209473,
+					"destination": "ALLP-N1",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1459.96327209473,
+						"destination": "ALLP-N1",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_P1",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from ALLP_PUPR_M0-NH",
+					"stop": {
+						"block": "ALLP_P1",
+						"direction": -1,
+						"dwell_minutes": 2.0,
+						"minutes_from_origin": 209.0,
+						"name": "Alappuzha",
+						"s": 245.701079101562
+					}
+				},
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "occupied",
+							"resource": "ALLP_P2",
+							"train": "S006"
+						}
+					],
+					"cost": 1.51032653808594,
+					"destination": "ALLP-N2",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1510.32653808594,
+						"destination": "ALLP-N2",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_RLEAD_U",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_P2",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_RU"
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from ALLP_PUPR_M0-NH",
+					"stop": {
+						"block": "ALLP_P2",
+						"direction": -1,
+						"dwell_minutes": 2.0,
+						"minutes_from_origin": 209.0,
+						"name": "Alappuzha",
+						"s": 245.846403808594
+					}
+				},
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "occupied",
+							"resource": "ALLP_P3",
+							"train": "L005"
+						}
+					],
+					"cost": 1.56168054199219,
+					"destination": "ALLP-N3",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1561.68054199219,
+						"destination": "ALLP-N3",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_RLEAD_U",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": -1,
+								"edge": "ALLP_P3",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_RU"
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from ALLP_PUPR_M0-NH",
+					"stop": {
+						"block": "ALLP_P3",
+						"direction": -1,
+						"dwell_minutes": 2.0,
+						"minutes_from_origin": 209.0,
+						"name": "Alappuzha",
+						"s": 246.523405761719
+					}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 26304.6686880153,
+					"block": "ALLP_P1",
+					"booked": 25440.0,
+					"delay": 864.668688015274,
+					"distance": 2077.46703950192,
+					"index": 7,
+					"missed": false,
+					"name": "Alappuzha",
+					"qualified": true
+				},
+				"destination": "ALLP-N1",
+				"effective_priority": 75.0,
+				"hold": {},
+				"id": "S028",
+				"name": "Tirunelveli–Mangaluru Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Authority to ALLP-N1",
+				"signal_distance": 803.204846508757,
+				"signal_id": "ALLP_PUPR_M0-NH",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 850.904846508757,
+			"next_signal": {
+				"distance": 790.904846508757,
+				"id": "ALLP_PUPR_M0-NH"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "ALLP_PUPR_M0"
+				},
+				{
+					"dir": -1,
+					"edge": "ALLP_PUPR_M1"
+				}
+			],
+			"speed": 24.5999999999999,
+			"status": "Running to Continues north beyond ERS"
+		},
+		"S030": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "occupied",
+							"resource": "ERL_VRLR_U1",
+							"train": "M102"
+						}
+					],
+					"cost": 1.09592520692139,
+					"destination": "ERL_VRLR_U1-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 922.116271972656,
+						"destination": "ERL_VRLR_U1-A",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ERL_VRLR_U1",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Block ERL_VRLR_U1 occupied by M102",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [
+					{
+						"kind": "occupied",
+						"resource": "ERL_VRLR_U1",
+						"train": "M102"
+					}
+				],
+				"call": {
+					"arrival": 26997.597141439,
+					"block": "KZT_P2",
+					"booked": 27144.0,
+					"delay": 0.0,
+					"distance": 17447.4015378593,
+					"index": 2,
+					"missed": false,
+					"name": "Kulitturai",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 81.8999999998996,
+				"hold": {},
+				"id": "S030",
+				"name": "Kanniyakumari–Bengaluru Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Waiting for automatic block clearance",
+				"signal_distance": 6.50804298623191,
+				"signal_id": "ERL_VRLR_U2-A",
+				"status": "waiting",
+				"wait_seconds": 137.999999997992
+			},
+			"head_s": 66.5080429862319,
+			"next_signal": {
+				"distance": 6.50804298623191,
+				"id": "ERL_VRLR_U2-A"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "ERL_VRLR_U2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for ERL_VRLR_U2-A"
+		},
+		"S045": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "PASA_P1",
+							"train": "M061"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "PASA_P2",
+							"train": "M078"
+						}
+					],
+					"cost": 1.0971047871521,
+					"destination": "NYY_AMVA_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 894.007583618164,
+						"destination": "NYY_AMVA_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "NYY_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "NYY_AMVA_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "NYY_RM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Parassala: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "PASA_P1",
+								"train": "M061"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "PASA_P2",
+								"train": "M078"
+							}
+						],
+						"cost": 1.0971047871521,
+						"destination": "NYY_AMVA_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 894.007583618164,
+							"destination": "NYY_AMVA_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "NYY_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "NYY_AMVA_M0",
+									"reversed": false,
+									"seen": false,
+									"switch": "NYY_RM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Parassala: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "PASA_P1",
+						"train": "M061"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "PASA_P2",
+						"train": "M078"
+					}
+				],
+				"call": {
+					"arrival": 27128.737330927,
+					"block": "KZT_P1",
+					"booked": 24138.0,
+					"delay": 2990.737330927,
+					"distance": 20725.9062750592,
+					"index": 1,
+					"missed": false,
+					"name": "Kulitturai",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 185.0,
+				"hold": {},
+				"id": "S045",
+				"name": "Thiruvananthapuram Central–Rameswaram Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Expect a wait before Parassala: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061), Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)",
+				"signal_distance": 6.51006412173842,
+				"signal_id": "NYY-S1",
+				"status": "blocked",
+				"wait_seconds": 2948.49999995709
+			},
+			"head_s": 823.495551112637,
+			"next_signal": {
+				"distance": 6.51006412173842,
+				"id": "NYY-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "NYY_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for NYY-S1"
+		},
+		"S046": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "occupied",
+							"resource": "ERL_P2",
+							"train": "L034"
+						}
+					],
+					"cost": 1.19329167298584,
+					"destination": "ERL-N2",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1037.92834472656,
+						"destination": "ERL-N2",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ERL_P2",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Block ERL_P2 occupied by L034",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "occupied",
+								"resource": "ERL_P2",
+								"train": "L034"
+							}
+						],
+						"cost": 1.19329167298584,
+						"destination": "ERL-N2",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1037.92834472656,
+							"destination": "ERL-N2",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "ERL_P2",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								}
+							]
+						},
+						"reason": "Block ERL_P2 occupied by L034",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "occupied",
+						"resource": "ERL_P2",
+						"train": "L034"
+					}
+				],
+				"call": {
+					"arrival": 26923.8148383336,
+					"block": "KZT_P2",
+					"booked": 24744.0,
+					"delay": 2179.81483833363,
+					"distance": 15602.8439602249,
+					"index": 2,
+					"missed": false,
+					"name": "Kulitturai",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 185.0,
+				"hold": {},
+				"id": "S046",
+				"name": "Rameswaram–Thiruvananthapuram Central Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Block ERL_P2 occupied by L034 · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)",
+				"signal_distance": 6.51113429721548,
+				"signal_id": "ERL_VRLR_U0-H",
+				"status": "blocked",
+				"wait_seconds": 2470.99999996404
+			},
+			"head_s": 66.5111342972155,
+			"next_signal": {
+				"distance": 6.51113429721548,
+				"id": "ERL_VRLR_U0-H"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "ERL_VRLR_U0"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for ERL_VRLR_U0-H"
+		},
+		"V002": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.54470898086548,
+					"destination": "CHPD_KYJ_U6-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1117.74794006348,
+						"destination": "CHPD_KYJ_U6-A",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "CHPD_KYJ_U6",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_J"
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from KYJ-N2",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:KYJ_DEPOT_LU_B1",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1775.09175109863,
+						"destination": "BUFFER:KYJ_DEPOT_LU_B1",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_J"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_ROAD1",
+								"reversed": true,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_G0"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Alappuzha",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:KYJ_DEPOT_LU_B2",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1812.98356819153,
+						"destination": "BUFFER:KYJ_DEPOT_LU_B2",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_J"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_G0"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_ROAD2",
+								"reversed": true,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_G1"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Alappuzha",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:KYJ_DEPOT_LU_B3",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1850.4640712738,
+						"destination": "BUFFER:KYJ_DEPOT_LU_B3",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_J"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_G0"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_G1"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_ROAD3",
+								"reversed": true,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Alappuzha",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:KYJ_DEPOT_LU_B4",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1837.01106834412,
+						"destination": "BUFFER:KYJ_DEPOT_LU_B4",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_J"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_G0"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_G1"
+							},
+							{
+								"dir": -1,
+								"edge": "KYJ_DEPOT_LU_ROAD4",
+								"reversed": false,
+								"seen": false,
+								"switch": "KYJ_DEPOT_LU_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Alappuzha",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 27956.3848760111,
+					"block": "ALLP_P2",
+					"booked": 28512.0,
+					"delay": 0.0,
+					"distance": 43370.6825572048,
+					"index": 2,
+					"missed": false,
+					"name": "Alappuzha",
+					"qualified": true
+				},
+				"destination": "CHPD_KYJ_U6-A",
+				"effective_priority": 95.0,
+				"hold": {},
+				"id": "V002",
+				"name": "Thiruvananthapuram Central–Mangaluru Vande Bharat",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 95,
+				"reason": "Authority to CHPD_KYJ_U6-A",
+				"signal_distance": 243.999604323941,
+				"signal_id": "KYJ-N2",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 441.699604320921,
+			"next_signal": {
+				"distance": 231.699604320921,
+				"id": "KYJ-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "KYJ_P2"
+				}
+			],
+			"speed": 24.6000000053749,
+			"status": "Running to Continues north beyond ERS"
+		},
+		"V005": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "PASA_P1",
+							"train": "M061"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "PASA_P2",
+							"train": "M078"
+						}
+					],
+					"cost": 1.47865327011108,
+					"destination": "NYY_AMVA_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 944.79573059082,
+						"destination": "NYY_AMVA_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "NYY_RLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "NYY_AMVA_M0",
+								"reversed": true,
+								"seen": false,
+								"switch": "NYY_RM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Parassala: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "PASA_P1",
+								"train": "M061"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "PASA_P2",
+								"train": "M078"
+							}
+						],
+						"cost": 1.47865327011108,
+						"destination": "NYY_AMVA_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 944.79573059082,
+							"destination": "NYY_AMVA_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "NYY_RLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "NYY_AMVA_M0",
+									"reversed": true,
+									"seen": false,
+									"switch": "NYY_RM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Parassala: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "PASA_P1",
+						"train": "M061"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "PASA_P2",
+						"train": "M078"
+					}
+				],
+				"call": {
+					"arrival": 28403.2449003467,
+					"block": "NCJ_P1",
+					"booked": 26922.0,
+					"delay": 1481.24490034669,
+					"distance": 53802.7275442863,
+					"index": 1,
+					"missed": false,
+					"name": "Nagercoil Junction",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 102.374999999893,
+				"hold": {},
+				"id": "V005",
+				"name": "Thiruvananthapuram Central–Tirunelveli Vande Bharat",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 95,
+				"reason": "Expect a wait before Parassala: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061), Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)",
+				"signal_distance": 6.50958774334481,
+				"signal_id": "NYY-S2",
+				"status": "blocked",
+				"wait_seconds": 147.499999997854
+			},
+			"head_s": 823.682184717593,
+			"next_signal": {
+				"distance": 6.50958774334481,
+				"id": "NYY-S2"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "NYY_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for NYY-S2"
+		},
+		"V006": {
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1.65553433319092,
+					"destination": "VRLR_NJT_U4-A",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 998.123657226563,
+						"destination": "VRLR_NJT_U4-A",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "VRLR_NJT_U4",
+								"reversed": false,
+								"seen": false,
+								"switch": "NJT_LU"
+							}
+						]
+					},
+					"reason": "Route already set / awaiting tail clearance from NJT-N2",
+					"stop": {}
+				}
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [],
+				"call": {
+					"arrival": 28861.1212483258,
+					"block": "TVC_P2",
+					"booked": 29682.0,
+					"delay": 0.0,
+					"distance": 65989.0918650702,
+					"index": 2,
+					"missed": false,
+					"name": "Thiruvananthapuram Central",
+					"qualified": true
+				},
+				"destination": "VRLR_NJT_U4-A",
+				"effective_priority": 95.0,
+				"hold": {},
+				"id": "V006",
+				"name": "Tirunelveli–Thiruvananthapuram Central Vande Bharat",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 95,
+				"reason": "Authority to VRLR_NJT_U4-A",
+				"signal_distance": 38.0242686346023,
+				"signal_id": "NJT-N2",
+				"status": "cleared",
+				"wait_seconds": 0.0
+			},
+			"head_s": 235.724268632183,
+			"next_signal": {
+				"distance": 25.7242686321829,
+				"id": "NJT-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "NJT_P2"
+				}
+			],
+			"speed": 24.6000000043066,
+			"status": "Running to Thiruvananthapuram Central"
+		}
+	}
+}

@@ -141,6 +141,23 @@ The suite now finishes **997 passed, zero failures, empty stderr**. Limited
 historical continuations admit V005/M078, but the surrounding queues do not
 clear within one hour (zero safety events). Upstream admission remains under
 investigation; no v5 replay has launched. This limitation is preserved explicitly.
+The verified arrival correction and failure evidence are pushed as `0404fd2`.
+A further upstream check now follows blocked same-direction queues through a
+bounded downstream lookahead. Its new blocked-yard regression fails before and
+passes after; a free-road case still proceeds and a six-train three-yard queue
+completes safely. All 51 focused capacity/crossing checks pass. The full
+1,000-test suite is running; no fresh day preparation has launched. Runtime
+and tests remain frozen. Existing overfilled historical states are not claimed
+to recover; fresh from-start validation is still required.
+Latest suite check at 06:32: the original 1,000-test run is still active, with
+empty stderr. No duplicate run or source edit.
+The final suite completes at 06:38: **1,000 passed, zero failures, empty stderr**.
+[Downstream-capacity evidence](../art/performance/realism-2026-10-26/downstream-capacity/README.md)
+retains the regression and six-train completion proof. All earlier day outputs
+remain failed/stopped evidence. The tested fix is ready for commitment and
+fresh v5 preparation; no acceptance or installation is claimed before those
+runs pass all gates. After installation, playtest natural crossings in both
+Network modes, through-portal journeys and overnight save/load.
 
 
 ## 25 October 2026 — R47 published and independently checked

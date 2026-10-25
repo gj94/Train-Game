@@ -2,6 +2,7 @@ extends RefCounted
 ## Route alternatives and downstream admission. Topology is cached, occupation isn't.
 const Policy := preload("res://sim/priority_dispatch.gd")
 const Resources := preload("res://sim/dispatch_resources.gd")
+const MAX_EXIT_LOOKAHEAD := 8
 var _section_ends := {}
 var _outbound_sections := {}
 var _evaluating := false
@@ -322,7 +323,7 @@ func _preserve_arrival_exits(w,t: Train,st: Dictionary,roads: Array) -> Dictiona
 			blockers=[{train=other.id,kind="onward_capacity",resource=st.code}]+check.get("blockers",[])}
 	return {}
 
-func _escape_capacity(w,t: Train,st: Dictionary,direction: int,own_roads: Array,proposed: Dictionary={}) -> Dictionary:
+func _escape_capacity(w,t: Train,st: Dictionary,direction: int,own_roads: Array,proposed: Dictionary={},depth: int=0) -> Dictionary:
 	if own_roads.is_empty() or preload("res://sim/depot_workings.gd").active(t):return {}
 	var future=w.dispatcher().future_clearances
 	if not future.assigned(t,st.code).is_empty():return {} # exclusive, checked escape transaction
@@ -352,7 +353,20 @@ func _escape_capacity(w,t: Train,st: Dictionary,direction: int,own_roads: Array,
 			if arriving==null or arriving.path[0].dir==direction:continue
 			if (arriving.path+_committed_routes(w,arriving)).any(func(p):return w.single_line_sections.get(p.edge,"")==away_section):
 				away_blocked=true;break
-	var opposing:=claims.filter(func(c):return away_blocked or not w.trains.has(c.id) or w.trains[c.id].path[0].dir!=direction)
+	# A same-direction occupant is not an assured vacancy when the next yard
+	# already blocks its onward crossing. Follow this queue monotonically in
+	# its running direction; bounded uncertainty must not invent an exit.
+	var blocked_away:={}
+	if not away_blocked:
+		for claim in claims:
+			var other: Train=w.trains.get(claim.id)
+			if other==null or other.path[0].dir!=direction:continue
+			if depth>=MAX_EXIT_LOOKAHEAD:
+				blocked_away[other.id]=[{train=other.id,kind="exit_lookahead",resource=next.code}]
+				continue
+			var onward_check:=_escape_capacity(w,other,next,direction,claim.roads,{},depth+1)
+			if not onward_check.is_empty():blocked_away[other.id]=onward_check.get("blockers",[])
+	var opposing:=claims.filter(func(c):return away_blocked or blocked_away.has(c.id) or not w.trains.has(c.id) or w.trains[c.id].path[0].dir!=direction)
 	if _can_berth(opposing+[onward]):return {}
 	var here:=_station_claims(w,st).filter(func(c):return c.id!=t.id and c.id!=proposed_id)
 	here.append({id=t.id,roads=own_roads})
@@ -366,5 +380,10 @@ func _escape_capacity(w,t: Train,st: Dictionary,direction: int,own_roads: Array,
 		var escape:=_receiving_roads(w,other,st,other.path[0].edge,-direction,st.platform_tracks)
 		if _can_berth(here+[{id=other.id,roads=escape}]):return {}
 		blockers.append({train=other.id,kind="exit_capacity",resource=next.code})
-	if blockers.is_empty():return {} # no proved two-station opposing cycle
+	if blockers.is_empty():
+		if blocked_away.is_empty():return {} # no proved opposing cycle
+		for id in blocked_away:
+			blockers.append({train=id,kind="downstream_exit_capacity",resource=next.code})
+			blockers.append_array(blocked_away[id])
+		return {reason="Expect a wait before "+st.name+": preserve downstream crossing capacity beyond "+next.name,blockers=blockers}
 	return {reason="Expect a wait before %s: preserve a crossing platform for opposing services at %s" % [st.name,next.name],blockers=blockers}

@@ -466,3 +466,36 @@ results. The admitted-arrival correction is independently verified but does
 not repair the already-congested surrounding arrangement. Investigate upstream
 admission before launching v5; the prepared launcher is STILL NOT RUN.
 No full suite, diagnostic or full-day job remains.
+
+## Downstream queue correction under validation, 06:30
+
+Verified arrival correction/evidence0404fd2 pushed;997fullsuite passed. Both
+600s follow-up state captures confirm the surrounding four southern yards
+remain full: same-direction occupants cannot leave into the next opposing
+yard, despite the old admission assumption that they can clear away. These
+are diagnostic continuations of old failed states, never baseline evidence.
+
+The planner now follows same-direction blocked crossing queues monotonically
+through a bounded downstream lookahead, treating unresolved bounded capacity conservatively.
+It still allows a genuinely free downstream road. New blocked-yard regression
+fails before/passes after; free-road positive passes both. Six-train three-yard
+completion test passes safely, and all51focused checks pass (3new,2admitted,
+13exit,33future). Full1000suite launched once: see downstream-full-tests-job.json
+and downstream-full-tests.log/.err. Runtime/tests frozen until it finishes.
+No suite from the previous997 run or diagnostic remains. No full-day jobs run.
+
+After fullpass, archive final log, update docs, commit/push only verified planner,
+new test and downstream-capacity evidence; preserve pending UI/category tools.
+Then launch guarded launch-network-v5.ps1 ONCE (still NOT RUN), verify actual
+commands/modes/current hashes/stderr with verify-launch-v5.py. Eight genuine
+full-day jobs required; authored208packs stay unchanged. Never relabel earlier
+failed/partial outputs. Deadline10AM and R47 unchanged.
+
+## Final downstream source suite passes, 06:42
+
+The original1000suite16796/17780 finished at06:38:16 with1000passed0failed
+and empty stderr. No source/test edits occurred while it ran. Both processes
+and all earlier diagnostics are gone. Archive final logs in downstream-capacity,
+commit/push the tested planner/test/evidence increment, then launchv5once.
+Do not repeat the source suite unchanged. Authored208packs and all safeguards
+remain unchanged; whole-day acceptance still outstanding.
