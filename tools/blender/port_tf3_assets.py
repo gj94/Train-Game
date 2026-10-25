@@ -11,6 +11,8 @@ import math
 import sys
 from pathlib import Path
 from mathutils import Matrix, Vector
+sys.path.insert(0, str(Path(__file__).parent))
+import passage_clearance
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / '.local/transport-fever-3-mods'
@@ -170,8 +172,10 @@ def convert(entry, source=SOURCE, pin=PIN, detailed=False):
             transform = C @ parent.matrix_world.inverted() @ ob.matrix_world
             normal_transform = transform.to_3x3().inverted().transposed()
             offset = len(vertices)
-            vertices.extend(tuple(transform @ v.co) for v in mesh.vertices)
-            all_bounds.extend(D @ ob.matrix_world @ v.co for v in mesh.vertices)
+            world_vertices=[passage_clearance.position(key,ob.name,ob.matrix_world @ v.co) for v in mesh.vertices]
+            to_group=C @ parent.matrix_world.inverted()
+            vertices.extend(tuple(to_group @ v) for v in world_vertices)
+            all_bounds.extend(D @ v for v in world_vertices)
             active_uv = mesh.uv_layers.active
             if detailed:
                 minimum = Vector([min(v.co[i] for v in mesh.vertices) for i in range(3)])
@@ -265,6 +269,9 @@ def convert(entry, source=SOURCE, pin=PIN, detailed=False):
         from wap7_materials import export_materials
         detail_root = OUT/(key+'_detail')
         shaders = export_materials(material_sources.values(), detail_root/'textures', key)
+        (detail_root/'shaders').mkdir(exist_ok=True)
+        for material in shaders:
+            (detail_root/'shaders'/material['shader']).write_text(material['code'], encoding='utf-8')
         (ROOT/f'.local/{key}-materials.json').write_text(json.dumps(shaders,indent=2))
         material_index = [{k:v for k,v in m.items() if k != 'code'} for m in shaders]
         (detail_root/'materials.json').write_text(json.dumps(dict(materials=material_index,frames=group_frames),indent=2)+'\n')
@@ -310,6 +317,7 @@ def convert(entry, source=SOURCE, pin=PIN, detailed=False):
         result['shadow_triangles']=export_shadows([o for o in coll.objects if o.type=='MESH'],shadow_path)
         result['shadow_sha256']=hashlib.sha256(shadow_path.read_bytes()).hexdigest()
         print('SHADOW TRIANGLES',result['shadow_triangles'],flush=True)
+    if key in passage_clearance.MODELS:result['passage_clearance_revision']=passage_clearance.REVISION
     print('PORTED', key, len(objects), 'objects ->', len(groups), 'rigid mesh groups', flush=True)
     return result
 

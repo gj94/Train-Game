@@ -29,7 +29,8 @@ alight, walk along the platform, and board a passenger coach.
 | Crouch / stand | C | Camera & passengers menu |
 | Sit in a passenger seat | E or left click | A interact |
 | Stand / sit at nearby driver controls | E | Y |
-| Use a door / gangway / board / alight | Left click | A |
+| Use a private door / board / alight | Left click | A |
+| Cross a passenger gangway | Keep walking | Keep walking |
 | Headlamp | L | RB |
 | Dispatch / progress | 9 / F12 | View tap / hold |
 | Return to pilot | 4 | Hold Left/Right D-pad |
@@ -62,7 +63,10 @@ services. Use the dispatcher handover to change service.
 R12 animates platform-side passenger doors during scheduled exchanges. Interior
 doors and locomotive cab doors remain static artwork. Where a closed door or a
 narrow doorway blocks the body, a prompt takes you through with a short fade.
-Gangways also use this transition. Jumping and clickable cab instruments are not
+Connected passenger gangways now support continuous walking without an interaction,
+fade or viewpoint reset. Their main passage doors are held open; the flexible floor
+follows both moving coaches, including reversed VB cars. Private compartment and
+WAP machinery doors retain their prompted transition. Jumping and clickable cab instruments are not
 included. Cab controls remain available from the existing driving input/menu.
 
 ## Implementation and source
@@ -92,8 +96,18 @@ Runtime sweeps are shorter than one cell, block diagonal corner cuts and floor
 steps over 21 cm, and slide along furniture. Disconnected room results are cached;
 tiny isolated floor fragments cannot be standing or gangway destinations. Axial
 room transitions join nearby clear spaces across the partition; lateral
-compartment transitions require a source door header. Detailed visual meshes are
-unchanged and are not instantiated as triangle collision bodies.
+compartment transitions require a source door header. Detailed meshes are not instantiated as triangle collision bodies. The 26 October
+passage correction moves three LHB end partitions and one VB DTC accessible-room
+assembly enough to admit the same 16 cm body radius. It preserves seats, stock
+capacity, bogies and all pinned authoring masters. `passage_clearance.py` applies
+the identical translation to rendered vertices and the bake.
+
+`walkways_open.json` adds source-derived door openings and supported gangway floors
+with a centered 4 cm grid (2 cm for the tight ICF 1A approach). All 21 passenger
+models have a connected saloon-to-gangway path. Unconnected ends retain their
+closed profile and a visible barrier; WAP couplers cannot be walked through. The
+sound listener and footstep distance continue across the bridge. Open passage
+profiles are rebuilt with the same command plus `-- --open-passages`.
 
 Rebuild with background Blender after downloading the pinned source masters using
 the existing coach/VB/WAP source tools:
@@ -121,8 +135,10 @@ See [Passengers](passengers.md) for behaviour, controls and remaining limits.
 2. Tap X to enable AI (standing also enables it), enter the first/middle/last
    passenger coach, stand, walk and run down the aisle. Seats and partitions should
    stop you. Crouch and try the headlamp; sit in a different seat.
-3. At a coach end, look toward the next coach and use the gangway prompt. Turn
-   around and return. Repeat in VB8/VB16, where the second half faces the other way.
+3. At a coach end, keep walking through the open gangway without clicking. Turn
+   around midway and return, then cross fully. Repeat in VB8/VB16, where the second
+   half faces the other way. Watch for view jumps, side falls or missing floors;
+   clacks should become more prominent near the neighboring bogies.
 4. Walk while the train moves and while using fast forward. The view should stay
    attached to the same coach without sliding or rail-joint sound offset.
 5. Open dispatch/pause while holding RT, then close it. Release controls before

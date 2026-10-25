@@ -96,7 +96,10 @@ func run() -> void:
 	await tap(JOY_BUTTON_B);check(not game.train.emergency,"B does not apply emergency on foot")
 	# Sample all coaches, including opposite-facing trailing VB cab and EC cars.
 	for car in game.tv.passenger_coaches():
-		game.tv.passenger_coach=car;game.tv.passenger_seat=true;game.tv.passenger_seat_index=0
+		var available: Array=load("res://game/coach_directory.gd").available(game.tv,game.train,car)
+		check(not available.is_empty(),"coach has a real unoccupied passenger seat")
+		if available.is_empty():continue
+		game.tv.passenger_coach=car;game.tv.passenger_seat=true;game.tv.passenger_seat_index=int(available[0])
 		game._enter_passenger();await frames()
 		check(walk.stand(),"stand from seat in "+str(game.tv.formation[car].model))
 		await frames()
@@ -109,7 +112,15 @@ func run() -> void:
 		check(walk.camera_transform().origin.distance_to(expected)<.0001,"walking follows moving/rotating/rebased carriage")
 		check(walk.audio_position().is_equal_approx(game.tv.interior_audio_position()),"audio listener follows walked position")
 		game.tv.cars[car].global_transform=previous
-		check(walk.sit(),"nearby real passenger seat can be re-entered")
+		var reseated: bool=walk.sit()
+		if not reseated:
+			var nearby:=[]
+			for seat_index in game.tv.specs[car].passengers.size():
+				var seat_position: Array=game.tv.specs[car].passengers[seat_index].position
+				var distance: float=Vector2(seat_position[0],seat_position[2]).distance_to(walk.position)
+				if distance<3:nearby.append({seat=seat_index,distance=distance,occupied=game.train.passengers.cars[car].seats[seat_index]})
+			printerr("SEAT_DEBUG ",JSON.stringify({model=game.tv.formation[car].model,car=car,position=[walk.position.x,walk.position.y],nearby=nearby}))
+		check(reseated,"nearby real passenger seat can be re-entered in "+str(game.tv.formation[car].model))
 		check(game.tv.passenger_seat_index>=0 and not walk.active,"sit stores exact selected seat")
 	# Aisle movement, view shift, doorway and gangway links.
 	game._passenger_preset(1);await frames();walk.stand();await frames()
@@ -123,33 +134,23 @@ func run() -> void:
 	check(absf(game.cam._look.x)<=PI,"on-foot look wraps through a full turn")
 	game.cam._look=Vector2.ZERO;await shot("aisle")
 	var original_car:int=walk.car
-	var passage_trace:=[]
-	for attempt in 5:
-		var entries:Array=walk.nav.room_exits(walk.position)
-		var chosen:Dictionary={}
-		for entry in entries:
-			if entry.direction==1:chosen=entry;break
-		if chosen.is_empty():break
-		walk.position=chosen.point;walk.crouched=true
-		game.cam._look=Vector2(PI,0);walk.update(.016)
-		passage_trace.append({car=walk.car,position=walk.position,target=walk.target})
-		walk.interact();await frames()
-		if walk.car!=original_car:break
-	check(walk.car==original_car+1,"doorway sequence reaches next passenger coach · "+str(passage_trace))
-	check(walk.nav.allowed(walk.position,true),"gangway lands on supported interior floor")
+	var link=load("res://game/gangway_connection.gd")
+	var end: int=link.end_for(game.tv.formation,walk.car,original_car+1)
+	var model: String=game.tv.formation[walk.car].model
+	walk.position=Vector2(0,end*(link.load_profiles()[model].gangway_join-.2))
+	game.cam._look=Vector2(PI if end>0 else 0,0)
+	for frame in 150:
+		var direction:=Basis(Vector3.UP,game.cam._look.x)*Vector3(0,0,-.02)
+		walk.move_inside(Vector2(direction.x,direction.z))
+	check(walk.car==original_car+1,"continuous walking reaches next passenger coach")
+	check(walk.bridge.is_empty() and walk.nav.allowed(walk.position,true),"gangway reaches supported interior floor")
 	for i in 18:walk.update(.016)
 	await shot("gangway")
-	var returning_car:int=walk.car
-	var return_direction:int=1 if game.tv.formation[walk.car].reverse else -1
-	for attempt in 5:
-		var chosen:Dictionary={}
-		for entry in walk.nav.room_exits(walk.position):
-			if entry.direction==return_direction:chosen=entry;break
-		if chosen.is_empty():break
-		walk.position=chosen.point
-		game.cam._look=Vector2(PI if return_direction>0 else 0,0)
-		walk.interact();await frames()
-		if walk.car!=returning_car:break
+	end=link.end_for(game.tv.formation,walk.car,original_car)
+	game.cam._look=Vector2(PI if end>0 else 0,0)
+	for frame in 150:
+		var direction:=Basis(Vector3.UP,game.cam._look.x)*Vector3(0,0,-.02)
+		walk.move_inside(Vector2(direction.x,direction.z))
 	check(walk.car==original_car,"gangway returns correctly through an oppositely-oriented car")
 	var started:=Time.get_ticks_usec()
 	for i in 200:walk.update(.016)

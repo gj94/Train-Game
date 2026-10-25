@@ -1,6 +1,7 @@
 extends Node
 ## On-foot state lives in carriage coordinates; interpolated train poses carry it.
 const Navigation := preload("res://game/interior_navigation.gd")
+const Gangway := preload("res://game/gangway_connection.gd")
 static var _profiles: Dictionary = {}
 static var _navigation := {}
 var game
@@ -22,6 +23,8 @@ var _fade: ColorRect
 var _fade_time := 0.0
 var _lamp: SpotLight3D
 var lamp_enabled := false
+var bridge := {}
+var walked_metres := 0.0
 
 func _ready() -> void:
 	if _profiles.is_empty():
@@ -31,7 +34,7 @@ func _ready() -> void:
 	_overlay.layer=6
 	add_child(_overlay)
 	_reticle=Label.new()
-	_reticle.text="·"
+	_reticle.text="Â·"
 	_reticle.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	_reticle.add_theme_font_size_override("font_size",26)
 	_reticle.add_theme_constant_override("outline_size",4)
@@ -72,8 +75,10 @@ func toggle_lamp() -> void:
 		_lamp.visible=lamp_enabled
 
 func navigation(index: int):
-	var key: String=game.tv.formation[index].model
-	if not _navigation.has(key): _navigation[key]=Navigation.new(_profiles[key])
+	var model: String=game.tv.formation[index].model
+	var ends:=Gangway.connected_ends(game.tv.formation,index)
+	var key:=model+str(ends)
+	if not _navigation.has(key):_navigation[key]=Gangway.navigation(model,ends,_profiles[model])
 	return _navigation[key]
 
 func neutralize() -> void:
@@ -108,6 +113,7 @@ func stand() -> bool:
 	eye_height=clampf(eye.y-nav.floor_height(position),1.0,1.58)
 	_train_id=game.train.id
 	active=true
+	bridge.clear()
 	game.train.automatic=true
 	game.tv.passenger_seat=false
 	game._passenger_seating_changed()
@@ -131,6 +137,7 @@ func stand() -> bool:
 func stop() -> void:
 	if not active: return
 	active=false
+	bridge.clear()
 	platform.outside=false
 	game.cam.set_meta("on_platform",false)
 	_lamp.visible=false
@@ -143,6 +150,10 @@ func stop() -> void:
 func camera_transform() -> Transform3D:
 	if not active: return game.tv.cab_transform()
 	if platform.outside: return platform.camera_transform()
+	if not bridge.is_empty():
+		var frame:=_bridge_frame()
+		frame.origin+=frame.basis.y*eye_height
+		return frame
 	var t: Transform3D=game.tv.cars[car].global_transform
 	return Transform3D(t.basis,t*Vector3(position.x,nav.floor_height(position)+eye_height,position.y))
 
@@ -152,6 +163,10 @@ func passenger_interior() -> bool:
 	return game.tv.formation[car].model!="vb_dtc" or position.y>=-6.0
 
 func audio_position() -> Vector2:
+	if not bridge.is_empty():
+		var a: float=game.tv._center(bridge.a)+game.tv._direction(bridge.a)*bridge.from.z
+		var b: float=game.tv._center(bridge.b)+game.tv._direction(bridge.b)*bridge.to.z
+		return Vector2(lerpf(a,b,bridge.u),lerpf(bridge.from.y,bridge.to.y,bridge.u)+eye_height-.5)
 	return Vector2(game.tv._center(car)+game.tv._direction(car)*position.y,
 		maxf(.8,nav.floor_height(position)+eye_height-.5))
 
@@ -184,10 +199,11 @@ func update(delta: float) -> void:
 		var running: bool=Input.is_physical_key_pressed(KEY_SHIFT) or (game.controller!=null and game.controller.walk_running())
 		var speed: float=.65 if crouched else (2.35 if running else 1.25)
 		var direction:=Basis(Vector3.UP,game.cam._look.x)*Vector3(input.x,0,input.y)
-		position=nav.move(position,Vector2(direction.x,direction.z)*speed*minf(delta,.1),crouched)
+		move_inside(Vector2(direction.x,direction.z)*speed*minf(delta,.1))
 	eye_height=move_toward(eye_height,.94 if crouched else 1.58,delta*3.6)
 	game.tv.walk_car=car
 	game.tv.walk_eye=Vector3(position.x,nav.floor_height(position)+eye_height,position.y)
+	if not bridge.is_empty():game.tv.walk_eye=game.tv.cars[car].to_local(camera_transform().origin)
 	game.tv.update_interior_lighting()
 	game.audio.interior_listener=audio_position()
 	_fade_time=maxf(0,_fade_time-delta)
@@ -195,15 +211,72 @@ func update(delta: float) -> void:
 	target=_interaction()
 	var control: String="Y" if game.hud.controller_active else "E"
 	var interact: String="A" if game.hud.controller_active else "Left click"
-	var fallback: String="WAP-7 has no coach gangway · use a cab side door at a platform" if game.tv.formation[car].model=="wap7" else "Look toward a seat or an interior doorway"
+	var fallback: String="WAP-7 has no coach gangway Â· use a cab side door at a platform" if game.tv.formation[car].model=="wap7" else "Look toward a seat or an interior doorway"
 	var action: String=target.get("label",fallback)
-	if target.get("kind","")=="driver": action=control+" · "+action
-	elif target.get("kind","")=="seat":action=("A" if game.hud.controller_active else "E")+" · "+action
-	elif target.get("kind","") in ["alight","board","door","gangway"]: action=interact+" · "+action
+	if target.get("kind","")=="driver": action=control+" Â· "+action
+	elif target.get("kind","")=="seat":action=("A" if game.hud.controller_active else "E")+" Â· "+action
+	elif target.get("kind","") in ["alight","board","door","gangway"]: action=interact+" Â· "+action
 	_prompt.text=action
 
 func _refresh_exits() -> void:
 	exits=nav.room_exits(position)
+
+func _bridge_frame() -> Transform3D:
+	return Gangway.frame(game.tv.cars[bridge.a].global_transform,bridge.from,bridge.exit,
+		game.tv.cars[bridge.b].global_transform,bridge.to,bridge.entry,bridge.u,bridge.lateral)
+
+func move_inside(displacement: Vector2) -> void:
+	var before:=camera_transform().origin
+	_move_inside(displacement)
+	walked_metres+=before.distance_to(camera_transform().origin)
+
+func _move_inside(displacement: Vector2) -> void:
+	# Small swept steps preserve furniture collision and avoid skipping a short
+	# bridge on a slow frame. No fade, input reset, camera snap or sound reset.
+	var steps:=maxi(1,ceili(displacement.length()/.02))
+	var increment:=displacement/float(steps)
+	for i in steps:
+		if not bridge.is_empty():
+			var length: float=(game.tv.cars[bridge.a].global_transform*bridge.from).distance_to(game.tv.cars[bridge.b].global_transform*bridge.to)
+			bridge.lateral=clampf(bridge.lateral+increment.x,-.30,.30)
+			bridge.u+=increment.y/maxf(.05,length)
+			if bridge.u<0 or bridge.u>1:
+				var onward: bool=bridge.u>1
+				var old_frame:=_bridge_frame()
+				var next: int=bridge.b if onward else bridge.a
+				var end: Vector3=bridge.to if onward else bridge.from
+				var side: int=-bridge.entry if onward else bridge.exit
+				var over: float=(bridge.u-1 if onward else bridge.u)*length
+				var local:=Vector2(bridge.lateral*side,end.z+over*side)
+				var next_nav=navigation(next)
+				if not next_nav.allowed(local,crouched):
+					bridge.u=clampf(bridge.u,0,1);continue
+				game.cam._look=Gangway.look_in_frame(old_frame.basis,game.tv.cars[next].global_basis,game.cam._look)
+				increment=Vector2(increment.x*side,increment.y*side)
+				car=next;nav=next_nav;position=local;bridge.clear()
+				game.tv.passenger_coach=car;game.tv.walk_car=car;game.tv._apply_glass()
+				_refresh_exits()
+			continue
+		var point:=position+increment
+		var model: String=game.tv.formation[car].model
+		var join: float=Gangway.load_profiles()[model].gangway_join
+		var end:=signi(point.y)
+		var next:=Gangway.neighbour(game.tv.formation,car,end)
+		if next>=0 and absf(position.x)<=.30 and absf(point.x)<=.30 and absf(position.y)<=join and absf(point.y)>join:
+			var other_end:=Gangway.end_for(game.tv.formation,next,car)
+			var from:=Gangway.local_end(model,end)
+			var to:=Gangway.local_end(game.tv.formation[next].model,other_end)
+			var span: float=(game.tv.cars[car].global_transform*from).distance_to(game.tv.cars[next].global_transform*to)
+			if span<.02 or span>3.0:continue
+			bridge={a=car,b=next,exit=end,entry=other_end,from=Gangway.local_end(model,end),to=Gangway.local_end(game.tv.formation[next].model,other_end),u=0.0,lateral=position.x*end}
+			var frame:=_bridge_frame()
+			game.cam._look=Gangway.look_in_frame(game.tv.cars[car].global_basis,frame.basis,game.cam._look)
+			var length: float=(game.tv.cars[car].global_transform*bridge.from).distance_to(game.tv.cars[next].global_transform*bridge.to)
+			bridge.u=(absf(point.y)-join)/maxf(.05,length)
+			bridge.lateral=point.x*end
+			position=Vector2(position.x,end*join)
+			increment*=end
+		else:position=nav.move(position,increment,crouched)
 
 func _seat_target(require_facing: bool=true) -> Dictionary:
 	var best:=1.65
@@ -227,6 +300,7 @@ func _seat_target(require_facing: bool=true) -> Dictionary:
 
 func _interaction() -> Dictionary:
 	if platform.outside: return platform.boarding_target()
+	if not bridge.is_empty():return {kind="notice",label="Walk through gangway"}
 	var door: Dictionary=platform.inside_target()
 	# A nearby closed/unsupported exterior exit must not mask an aligned interior
 	# doorway or gangway. Keep usable platform exits available as before.
@@ -241,10 +315,11 @@ func _interaction() -> Dictionary:
 		var next: int=car+entry.direction*reverse
 		if next<0 or next>=game.tv.cars.size(): continue
 		if game.tv.formation[car].model=="wap7" or game.tv.formation[next].model=="wap7":
-			return {kind="notice",label="No physical gangway · use Go to passenger coach, or the platform at a stop"}
+			return {kind="notice",label="No physical gangway Â· use Go to passenger coach, or the platform at a stop"}
 		# Do not label a short furniture alcove as the end of the carriage.
 		if absf(entry.point.y)<float(game.tv.specs[car].pitch)*.5-3.0: continue
-		return {kind="gangway",car=next,label="Through gangway to "+preload("res://game/coach_directory.gd").name(game.tv.formation[next].model,next)}
+		if Gangway.neighbour(game.tv.formation,car,entry.direction)>=0:
+			return {kind="notice",label="Walk through gangway to "+preload("res://game/coach_directory.gd").name(game.tv.formation[next].model,next)}
 	return door if not door.is_empty() else _seat_target()
 
 func interact() -> void:
@@ -261,7 +336,6 @@ func interact() -> void:
 			if "interior_sound" in game and game.interior_sound!=null:game.interior_sound.play("door",.45)
 			_refresh_exits()
 			_fade_time=.22
-		"gangway": _gangway(target.car)
 
 func sit(selected: Dictionary = {}) -> bool:
 	if platform.outside:
@@ -283,20 +357,3 @@ func sit(selected: Dictionary = {}) -> bool:
 	game.cam._blend=1
 	if game.controller!=null: game.controller.neutralize()
 	return true
-
-func _gangway(next: int) -> void:
-	var next_nav=navigation(next)
-	var reverse: int=-1 if game.tv.formation[next].reverse else 1
-	var entry_end: int=(-1 if next>car else 1)*reverse
-	var found: Dictionary=next_nav.nearest(Vector2(0,entry_end*(float(game.tv.specs[next].pitch)*.5-1.0)),crouched,3.5,40)
-	if found.is_empty():
-		game.hud.toast("The next vestibule has no walking clearance.")
-		return
-	car=next;nav=next_nav;position=found.point
-	game.tv.passenger_coach=car
-	game.tv.walk_car=car
-	game.tv._apply_glass()
-	game.cam._look=Vector2(0 if entry_end>0 else PI,0)
-	_refresh_exits()
-	_fade_time=.22
-	game.audio.reset_positions()

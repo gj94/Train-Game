@@ -17,6 +17,14 @@ Playtest a passing train while turning through 360 degrees and compare the
 saloon, coach ends and open windows. [Work record](realism-work-2026-10-26.md) tracks
 jobs, provenance, implementation and playtest steps as they become available.
 
+**Gangways now verified:** 976 full headless tests and 342 actual-game ICF/VB
+checks pass. Walking crosses connected moving cars continuously, including
+reversed VB cars; all 21 passenger interiors have supported main passages.
+Four source-derived narrow passages were corrected and occlusion rebuilt.
+[Geometry and walking evidence](../art/performance/realism-2026-10-26/gangways/README.md).
+Playtest walking through both ends, turning back mid-gangway and sitting in an
+unoccupied seat. Portal and 208-service work follows; no new build is published.
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

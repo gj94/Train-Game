@@ -50,8 +50,10 @@ func _process(delta: float) -> void:
 	bus.filter.cutoff_hz=6500 if inside else 18000
 	for route in cue_buses.values():route.filter.cutoff_hz=bus.filter.cutoff_hz
 	var walk=game.walker
-	var key:="%s/%d/%s" % [game.train.id,walk.car,walk.platform.outside]
-	var position: Vector2=walk.platform.position if walk.platform.outside else walk.position
+	# Coach ownership changes halfway through continuous walking. A train-local
+	# distance counter keeps footsteps through the bridge without a door cue.
+	var key:="%s/%s" % [game.train.id,walk.platform.outside]
+	var position: Vector2=walk.platform.position if walk.platform.outside else Vector2(walk.walked_metres,0)
 	if walk.active and key==_walk_key:
 		var distance:=position.distance_to(_position)
 		if distance<.6:

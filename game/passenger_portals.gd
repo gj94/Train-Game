@@ -9,15 +9,24 @@ var model_key:=""
 var last:=Vector2(INF,INF)
 var positions:=[]
 
-func _init(model: Node3D, key: String, spec: Dictionary) -> void:
+func _init(model: Node3D, key: String, spec: Dictionary, connected: Array=[]) -> void:
 	model_key=key
 	if spec.passengers.is_empty():return
 	if _doors.is_empty():_doors=JSON.parse_string(FileAccess.get_file_as_string("res://data/interiors/exterior_doors.json"))
 	var floor: float=spec.passengers[0].position[1]-.08
+	var passage: Dictionary=preload("res://game/gangway_connection.gd").load_profiles()[key]
+	var passage_low:=PackedVector4Array();var passage_high:=PackedVector4Array()
+	for i in 8:
+		var box: Dictionary=passage.open_doors[i] if i<passage.open_doors.size() else {}
+		var lo: Array=box.get("lo",[0,0,0]);var hi: Array=box.get("hi",[0,0,0])
+		var end: int=signi(lo[2]) if absf(lo[2])>passage.gangway_join-1.2 else 0
+		passage_low.append(Vector4(lo[0],maxf(lo[1],passage.gangway_floor+.035),lo[2],end))
+		passage_high.append(Vector4(hi[0],hi[1],hi[2],0))
 	positions=_doors.get(key,{}).get("doors",[]).filter(func(d):return not (key=="vb_dtc" and absf(d.point[0])>1.61))
 	for mesh: MeshInstance3D in model.find_children("*","MeshInstance3D",true,false):
 		if str(mesh.name).begins_with("Shadow_"):continue
 		meshes.append(mesh)
+		mesh.set_instance_shader_parameter("passage_connected",Vector2(1 if -1 in connected else 0,1 if 1 in connected else 0))
 		for i in mesh.mesh.get_surface_count():
 			var source: Material=mesh.get_active_material(i)
 			if not source is ShaderMaterial:continue
@@ -28,12 +37,17 @@ func _init(model: Node3D, key: String, spec: Dictionary) -> void:
 				if not _shaders.has(shader_id):
 					var shader:=Shader.new()
 					var code: String=source.shader.code
+					code=code.replace("void vertex() {","uniform vec4 passage_low[8];\nuniform vec4 passage_high[8];\nuniform int passage_count=0;\ninstance uniform vec2 passage_connected;\nvoid vertex() {")
 					code=code.replace("void vertex() {","uniform mat4 passenger_from_mesh;\nuniform vec2 passenger_vertical;\ninstance uniform vec4 passenger_openings;\nvarying vec3 passenger_local;\nvoid vertex() {\n passenger_local=(passenger_from_mesh*vec4(VERTEX,1.0)).xyz;")
 					code=code.replace("void fragment() {","void fragment() {\n if (passenger_openings.y>0.001 && passenger_local.x*passenger_openings.x>1.42 && passenger_local.y>passenger_vertical.x && passenger_local.y<passenger_vertical.y && min(abs(passenger_local.z-passenger_openings.z),abs(passenger_local.z-passenger_openings.w))<0.40*passenger_openings.y) { discard; }")
+					code=code.replace("void fragment() {","void fragment() {\n for (int i=0;i<8;i++) { if (i>=passage_count) break; float e=passage_low[i].w; bool opened=abs(e)<0.5 || (e<0.0 ? passage_connected.x>0.5 : passage_connected.y>0.5); if (opened && all(greaterThan(passenger_local,passage_low[i].xyz)) && all(lessThan(passenger_local,passage_high[i].xyz))) discard; }")
 					shader.code=code;_shaders[shader_id]=shader
 				material.shader=_shaders[shader_id]
 				material.set_shader_parameter("passenger_from_mesh",model.global_transform.affine_inverse()*mesh.global_transform)
 				material.set_shader_parameter("passenger_vertical",Vector2(floor,floor+1.93))
+				material.set_shader_parameter("passage_low",passage_low)
+				material.set_shader_parameter("passage_high",passage_high)
+				material.set_shader_parameter("passage_count",passage.open_doors.size())
 				_materials[identity]=material
 			mesh.set_surface_override_material(i,_materials[identity])
 	for side in [-1,1]:

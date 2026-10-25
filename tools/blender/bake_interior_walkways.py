@@ -8,15 +8,21 @@ import bpy, hashlib, json, math, sys
 from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
+sys.path.insert(0, str(Path(__file__).parent))
+import passage_clearance
 
 ROOT = Path(__file__).resolve().parents[2]
-STEP = .08
+OPEN = '--open-passages' in sys.argv
+STEP = .04 if OPEN else .08
+STEP_OVERRIDE = next((float(arg.split('=',1)[1]) for arg in sys.argv if arg.startswith('--step=')),None)
 RADIUS = .16
 HEIGHTS = (1.72, 1.08)
-OUT = ROOT / 'data/interiors/walkways.json'
+OUT = ROOT / ('data/interiors/walkways_open.json' if OPEN else 'data/interiors/walkways.json')
 
 
 def bake(entry, folder, pin):
+    global STEP
+    STEP = STEP_OVERRIDE or ((.02 if entry['id']=='icf_1a' else .04) if OPEN else .08)
     path = ROOT / folder / entry['path']
     raw = path.read_bytes()
     expected = next(p['sha'] for p in pin['files'] if p['path'] == entry['path'])
@@ -27,6 +33,15 @@ def bake(entry, folder, pin):
     graph = bpy.context.evaluated_depsgraph_get()
     verts, faces, floor_verts, floor_faces = [], [], [], []
     owners = []
+    open_parts = []
+    def passage_leaf(name):
+        name=name.lower()
+        if key.startswith('icf_'):
+            return name.startswith(('end door clear window','end glazed door','end sliding door','vestibule door grab pull'))
+        if key.startswith('vb_'):
+            return ('saloon_door_leaf' in name or 'saloon_glass' in name or 'saloon_clear_sliding_glass' in name or (key!='vb_dtc' and ('service_removable_closed_door' in name or 'service_door_kickplate' in name or 'service_door_lever' in name or 'service_door_lock_escutcheon' in name)))
+        return False
+
     for ob in root.children_recursive:
         if ob.type not in {'MESH', 'FONT', 'CURVE'} or ob.hide_render or any(c.hide_render for c in ob.users_collection):
             continue
@@ -39,13 +54,32 @@ def bake(entry, folder, pin):
         mesh = evaluated.to_mesh()
         if not mesh: continue
         mesh.calc_loop_triangles()
-        world = [ob.matrix_world @ v.co for v in mesh.vertices]
+        world = [passage_clearance.position(key, ob.name, ob.matrix_world @ v.co) for v in mesh.vertices]
+        if OPEN and passage_leaf(ob.name):
+            # Source objects can contain BOTH distant door leaves. Split by
+            # connected mesh component before deriving local clipping boxes.
+            neighbours=[[] for _ in mesh.vertices]
+            for edge in mesh.edges:
+                a,b=edge.vertices;neighbours[a].append(b);neighbours[b].append(a)
+            unseen=set(range(len(world)))
+            while unseen:
+                todo=[unseen.pop()]; ids=[]
+                while todo:
+                    at=todo.pop();ids.append(at)
+                    for near in neighbours[at]:
+                        if near in unseen:unseen.remove(near);todo.append(near)
+                pts=[world[i] for i in ids]
+                lo=[min(v[i] for v in pts) for i in range(3)]
+                hi=[max(v[i] for v in pts) for i in range(3)]
+                open_parts.append(dict(name=ob.name,lo=lo,hi=hi))
+            evaluated.to_mesh_clear()
+            continue
         offset = len(verts)
         verts.extend(world)
         faces.extend(tuple(offset+i for i in t.vertices) for t in mesh.loop_triangles)
         owners.append((len(faces),ob.name))
         # Use named structural walking surfaces, not seat tops, as the floor.
-        if any(s in ob.name.lower() for s in ['floor', 'walkway', 'footplate', 'anti-slip mat']):
+        if any(s in ob.name.lower() for s in ['floor', 'walkway', 'footplate', 'anti-slip mat']+(['bridge'] if OPEN else [])):
             offset = len(floor_verts)
             floor_verts.extend(world)
             for t in mesh.loop_triangles:
@@ -58,10 +92,10 @@ def bake(entry, folder, pin):
     assert floor_faces, key + ': no floor geometry'
     hull = BVHTree.FromPolygons(verts, faces, all_triangles=True)
     floor = BVHTree.FromPolygons(floor_verts, floor_faces, all_triangles=True)
-    length = 19.0 if key == 'wap7' else (21.12 if key.startswith('icf_') else 23.52)
-    width, rows = 37, math.ceil(length/STEP)
+    length = 19.0 if key == 'wap7' else ((22.08 if key.startswith('icf_') else 24.0) if OPEN else (21.12 if key.startswith('icf_') else 23.52))
+    width, rows = round(2.96/STEP) | 1, math.ceil(length/STEP)
     # Godot local (x,z) = Blender (-y,-x).
-    origin = [-1.48, -rows*STEP/2]
+    origin = [-width*STEP/2, -rows*STEP/2]
     masks = [[], []]
     floor_rows = []
     for row in range(rows):
@@ -99,17 +133,39 @@ def bake(entry, folder, pin):
     result = dict(step=STEP,radius=RADIUS,heights=list(HEIGHTS),origin=origin,width=width,side_doors=side_doors,
                   standing=masks[0],crouching=masks[1],floor_mm=floor_rows,
                   source_sha256=hashlib.sha256(raw).hexdigest(),source_revision=pin['revision'])
+    if key in passage_clearance.MODELS:result['passage_clearance_revision']=passage_clearance.REVISION
+    if OPEN:
+        # Merge components belonging to the same transverse doorway, retaining
+        # the wall jambs, headers, exterior doors and toilet/crew-room partitions.
+        groups=[]
+        for part in sorted(open_parts,key=lambda p:(p['lo'][0]+p['hi'][0])/2):
+            mid=(part['lo'][0]+part['hi'][0])/2
+            group=next((g for g in groups if abs(g['mid']-mid)<.60),None)
+            if group is None:
+                group=dict(mid=mid,lo=part['lo'][:],hi=part['hi'][:],parts=[]);groups.append(group)
+            group['lo']=[min(a,b) for a,b in zip(group['lo'],part['lo'])]
+            group['hi']=[max(a,b) for a,b in zip(group['hi'],part['hi'])]
+            group['parts'].append(part['name'])
+        result['open_doors']=[dict(lo=[-g['hi'][1]-.003,g['lo'][2]-.003,-g['hi'][0]-.003],hi=[-g['lo'][1]+.003,g['hi'][2]+.003,-g['lo'][0]+.003],parts=sorted(set(g['parts']))) for g in groups]
+        result['gangway_ends']=[] if key=='wap7' else ([1] if key=='vb_dtc' else [-1,1])
+        result['gangway_floor']=1.296 if key.startswith('icf_') else (1.325 if key.startswith('vb_') else 1.34)
+        result['gangway_join']=10.80 if key.startswith('icf_') else (11.76 if key.startswith('lhb_') else 11.65)
+        if key!='wap7':
+            row=int((result['gangway_join']-origin[1])/STEP);col=int(-origin[0]/STEP)
+            result['gangway_floor']=floor_rows[row][col]*.001
+            assert 1.2<result['gangway_floor']<1.95
+        assert len(groups)<=8, key+': too many passenger doorway groups'
     assert sum(s.count('1') for s in masks[0]) > 30, key + ': no usable walking clearance'
     print('WALK_BAKED',key,'standing',sum(s.count('1') for s in masks[0]),'crouch',sum(s.count('1') for s in masks[1]),flush=True)
     return result
 
 
-selected = sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []
-result = json.loads(OUT.read_text()) if OUT.exists() else {}
+selected = [arg for arg in sys.argv[sys.argv.index('--')+1:] if not arg.startswith('--')] if '--' in sys.argv else []
+result = json.loads(OUT.read_text(encoding='utf-8')) if OUT.exists() else {}
 for family, folder in [('coach','.local/coach-v02-source'),('vb','.local/vb-v02-source'),('wap7','.local/wap7-v02-source')]:
     pin = json.loads((ROOT/f'tools/{family}_v02_sources.json').read_text())
     for entry in pin['models']:
         if selected and entry['id'] not in selected: continue
         result[entry['id']] = bake(entry,folder,pin)
         OUT.parent.mkdir(parents=True,exist_ok=True)
-        OUT.write_text(json.dumps(result,separators=(',',':'))+'\n')
+        OUT.write_text(json.dumps(result,separators=(',',':'))+'\n',encoding='utf-8')

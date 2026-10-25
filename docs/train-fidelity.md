@@ -69,8 +69,11 @@ records GPU/draw counts, and compares pixels across shadow-detail switches.
 `--night` repeats the fixed cameras at 22:00. The five-train benchmark and
 `tools/check_day_night.gd` exercise the integrated game.
 
-The preservation audit compares against R31 source commit `2405060`; changing
-the source masters intentionally requires updating that comparison baseline.
+The preservation audit compares against R31 source commit `2405060`. The four
+26 October passage corrections instead use explicit hashed pre-occlusion headers
+in `art/performance/realism-2026-10-26/gangways/pre-occlusion`: their visible
+partitions/handrail intentionally moved, and the lighting bake must preserve
+those corrected streams. All pinned authoring masters remain unchanged.
 Blender Cycles and Godot still differ in indirect light, reflection, glass,
 noise and antialiasing. This pass does not establish pixel-identical renders.
 

@@ -11,6 +11,7 @@ var choice := ""
 var cars: Array[Node3D] = []
 var models: Array[Node3D] = []
 var passenger_portals := []
+var gangways
 var specs: Array = []
 var formation: Array = []
 var bogies: Array = []
@@ -86,7 +87,7 @@ func build_next_car() -> bool:
 	else:
 		preload("res://game/fleet_surface.gd").apply(model, entry.model.begins_with("vb_"))
 	models.append(model)
-	passenger_portals.append(preload("res://game/passenger_portals.gd").new(model,entry.model,spec))
+	passenger_portals.append(preload("res://game/passenger_portals.gd").new(model,entry.model,spec,preload("res://game/gangway_connection.gd").connected_ends(formation,cars.size()-1)))
 	var car_bogies := []
 	for pivot in spec.bogies:
 		car_bogies.append(model.find_child(pivot.node, true, false))
@@ -170,6 +171,7 @@ func finish_build() -> void:
 	assert(cars.size()==formation.size())
 	ride=preload("res://game/vehicle_ride.gd").new(self)
 	_interior_setup(_build_parent)
+	gangways=preload("res://game/gangway_view.gd").new(self,_build_parent)
 	_build_parent=null;_build_catalog={}
 	passenger_coach = 1 if choice in ["icf", "lhb"] else 0
 	update()
@@ -258,6 +260,7 @@ func update() -> void:
 			lamps[i][0].visible = leading and sign_dir > 0
 			lamps[i][1].visible = leading and sign_dir < 0
 	_equipment_cab=train.cab_end
+	if gangways!=null:gangways.update()
 	if cab_on or passenger_on or walk_car>=0:update_interior_lighting()
 
 

@@ -23,7 +23,18 @@ def main():
         if not spec.get('detailed_materials') or not key.startswith(('wap7', 'lhb_', 'icf_', 'vb_')):
             continue
         relative = f'assets/models/ported/{key}.glb'
-        old = subprocess.run(['git', '-c', 'safe.directory=D:/ClaudeWS/train-game', 'show', '2405060:' + relative], cwd=ROOT, check=True, capture_output=True).stdout
+        if spec.get('passage_clearance_revision'):
+            # These four interiors intentionally move a partition/handrail to
+            # admit the player. Compare the lighting bake with that explicit
+            # corrected geometry, not the historical blocked passage.
+            references = json.loads((ROOT / 'art/performance/realism-2026-10-26/gangways/pre-occlusion/references.json').read_text(encoding='utf-8'))
+            reference = references[key]
+            assert spec['passage_clearance_revision'] == reference['revision'] == 1
+            assert spec['source_sha256'] == reference['source_sha256']
+            old = (ROOT / reference['path']).read_bytes()
+            assert hashlib.sha256(old).hexdigest() == reference['sha256']
+        else:
+            old = subprocess.run(['git', '-c', 'safe.directory=D:/ClaudeWS/train-game', 'show', '2405060:' + relative], cwd=ROOT, check=True, capture_output=True).stdout
         new = (ROOT / relative).read_bytes()
         before, after = decode(old), decode(new)
         vertices = preserved(before, after)

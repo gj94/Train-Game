@@ -78,3 +78,37 @@ It is a historical reference, not a current timetable claim.
 Next: continuous connected gangway navigation with matching visible openings,
 then boundary lifecycle and the new representative operating day. No test,
 native, Blender or full-day replay job remains at this checkpoint.
+
+## Continuous gangways verified, 03:16
+
+Continuous walking now follows actual moving coach-end frames, including reversed
+VB cars and curved formations, with no fade or coach teleport. Flexible floors,
+sides and roofs bridge connected cars; disconnected ends stay closed and WAP-7
+locomotives remain inaccessible from passenger stock. Footstep distance continues
+across the join. Private compartment prompts remain separate.
+
+The source-derived 32 cm body clearance exposed real narrow passages in LHB 2A,
+GS, SL and VB DTC. Four exported interiors received small documented partition
+translations; passenger seats, capacities, stock physics and source masters stay
+unchanged. All 21 passenger models now have continuous main passage navigation.
+Generated material graphs match their previous used values; a new shader filename
+needed explicit livery recognition. Occlusion was rebaked and all 22 asset audits
+pass against documented source-derived geometry.
+
+Validation: **976 full headless tests passed**, zero failures and empty stderr;
+seven new gangway regressions; five rendered ICF/LHB/VB traversal cases; actual
+main-scene controller/camera/audio integration **139 VB and 203 ICF checks**, zero
+failures. The initial ICF fixture wrongly chose occupied seat zero; it now uses
+the same available-seat query as the real coach directory. No sitting-distance or
+NPC-occupancy rule was weakened. Native compatibility-renderer AA/SSIL warnings
+are retained; Dummy audio checks do not establish hardware sound or frame rate.
+Evidence and reviewed screenshots: `art/performance/realism-2026-10-26/gangways`.
+
+Playtest: stand in an ICF, LHB or VB aisle and walk through both ends without
+pressing Interact. Turn around halfway over a gangway, walk back, then continue
+into the next coach on a curve; check the trailing reversed VB cab connection.
+A disconnected end must block movement. Sit in an unoccupied seat and listen for
+continuous footsteps and stronger nearby-bogie sound at the coach ends.
+
+All gangway native, import, Blender and test jobs have finished. Next: safe
+boundary lifecycle, representative 208-service authorship and full-day evidence.
