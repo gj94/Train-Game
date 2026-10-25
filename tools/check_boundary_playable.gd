@@ -1,7 +1,7 @@
 extends SceneTree
 ## Real main scene and player handover on simulated boundary exits. These small
 ## test workings are explicit fixtures, never prepared timetable catalogues.
-const OUT:="res://.local/realism-2026-10-26/boundary-native"
+const OUT:="res://.local/realism-2026-10-26/boundary-native-v2"
 var failures:=[]
 var checks:=0
 func _initialize() -> void:call_deferred("run")
@@ -19,6 +19,9 @@ func run() -> void:
 		var w=load("res://sim/layouts/kerala_coast.gd").build(true)
 		var data: Dictionary=fixture.definition(w,north,false)
 		data.world_start="11:55";data.services[0].departure="11:55"
+		data.services[0].journey.origin="Thiruvananthapuram"
+		data.services[0].journey.destination="Mangaluru" if north else "Madurai"
+		data.services[0].name="Thiruvananthapuram–"+data.services[0].journey.destination+" Mail / Express"
 		var built: Dictionary=load("res://sim/service_pack.gd").build(data)
 		if not built.ok:printerr(built.reason);quit(1);return
 		w=built.world;w.dispatcher().enabled=true
@@ -36,6 +39,8 @@ func run() -> void:
 		check(not game.wv.loading,"boundary scenery loaded")
 		game.hud.show_modal("");game._set_paused(false)
 		await frames(8)
+		check(not game.hud._dispatch_notice.text.contains("No forward signal"),"outward road has no false missing-signal warning")
+		check(game.hud._info.text.contains("Railway continues beyond the map"),"outward road displays continuation")
 		await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png(OUT+("/north" if north else "/south")+"-approach.png")
 		for frame in 1400:

@@ -11,7 +11,7 @@ static func snapshot(world: RailWorld,train: Train) -> Dictionary:
 		complete=tt.complete(),current=tt.stops[tt.index].name if tt.at_stop else "",missed=tt.missed_stop}
 	result.passengers=preload("res://sim/passenger_service.gd").snapshot(train)
 	if result.complete:
-		result.depot_status=train.status if not train.depot.is_empty() else ""
+		result.depot_status=train.status if not train.depot.is_empty() or train.lifecycle=="exited" else "All scheduled stops completed"
 		return result
 	var next: int=mini(tt.index+1,tt.stops.size()-1) if tt.at_stop else tt.index
 	var stop: Dictionary=tt.stops[next]

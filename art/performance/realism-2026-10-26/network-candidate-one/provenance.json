@@ -1,0 +1,248 @@
+{
+  "recorded_at": "2026-10-26T03:47:39.135761+08:00",
+  "source_commit": "2a280cccf71b67ab18917695db6f9d8e2bddc22c",
+  "jobs": [
+    {
+      "day": "classic-network",
+      "pid": 13356,
+      "started": "2026-10-26T03:33:09.7516897+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v1/classic-network",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-network.json",
+        "--network",
+        "--snapshots"
+      ],
+      "source_commit": "2a280cccf71b67ab18917695db6f9d8e2bddc22c",
+      "status": "finished-rejected",
+      "reason": "Non-stop receiving-road reachability defect; S001 wait 2702s at 02:33:46, before K1 disturbance. No installation.",
+      "pack_sha256": "8aa70bb27d397a38aeb718fc09fd99771c6a55fb7a9d35b9e0fa4abea742edeb",
+      "finished_or_stopped_at": "2026-10-26T03:47:39.135761+08:00"
+    },
+    {
+      "day": "predictive-network",
+      "pid": 2988,
+      "started": "2026-10-26T03:33:09.8165259+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v1/predictive-network",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-network-v2.json",
+        "--network",
+        "--snapshots"
+      ],
+      "source_commit": "2a280cccf71b67ab18917695db6f9d8e2bddc22c",
+      "status": "finished-rejected",
+      "reason": "Non-stop receiving-road reachability defect; S001 wait 2702s at 02:33:46, before K1 disturbance. No installation.",
+      "pack_sha256": "c0a9207e32a697de1de3c60578f5b0095ac7084a885f37edc6cabfa3d87d3070",
+      "finished_or_stopped_at": "2026-10-26T03:47:39.135761+08:00"
+    },
+    {
+      "day": "classic-network-delayed",
+      "pid": 21844,
+      "started": "2026-10-26T03:33:09.8428919+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v1/classic-network-delayed",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-network.json",
+        "--network",
+        "--delay=600",
+        "--delay-at=27000"
+      ],
+      "source_commit": "2a280cccf71b67ab18917695db6f9d8e2bddc22c",
+      "status": "finished-rejected",
+      "reason": "Non-stop receiving-road reachability defect; S001 wait 2702s at 02:33:46, before K1 disturbance. No installation.",
+      "pack_sha256": "8aa70bb27d397a38aeb718fc09fd99771c6a55fb7a9d35b9e0fa4abea742edeb",
+      "finished_or_stopped_at": "2026-10-26T03:47:39.135761+08:00"
+    },
+    {
+      "day": "predictive-network-delayed",
+      "pid": 22508,
+      "started": "2026-10-26T03:33:09.8722857+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v1/predictive-network-delayed",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-network-v2.json",
+        "--network",
+        "--delay=600",
+        "--delay-at=27000"
+      ],
+      "source_commit": "2a280cccf71b67ab18917695db6f9d8e2bddc22c",
+      "status": "finished-rejected",
+      "reason": "Non-stop receiving-road reachability defect; S001 wait 2702s at 02:33:46, before K1 disturbance. No installation.",
+      "pack_sha256": "c0a9207e32a697de1de3c60578f5b0095ac7084a885f37edc6cabfa3d87d3070",
+      "finished_or_stopped_at": "2026-10-26T03:47:39.135761+08:00"
+    },
+    {
+      "day": "classic-standard",
+      "pid": 11724,
+      "started": "2026-10-26T03:33:09.9021959+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v1/classic-standard",
+      "options": [
+        "--standard",
+        "--snapshots"
+      ],
+      "source_commit": "2a280cccf71b67ab18917695db6f9d8e2bddc22c",
+      "status": "stopped-incomplete",
+      "reason": "Stopped owned child before correcting shared receiving-road source. Partial states preserved; never certified or installed.",
+      "finished_or_stopped_at": "2026-10-26T03:47:39.135761+08:00"
+    },
+    {
+      "day": "predictive-standard",
+      "pid": 21340,
+      "started": "2026-10-26T03:33:09.9318961+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v1/predictive-standard",
+      "options": [
+        "--standard",
+        "--predictive",
+        "--snapshots"
+      ],
+      "source_commit": "2a280cccf71b67ab18917695db6f9d8e2bddc22c",
+      "status": "stopped-incomplete",
+      "reason": "Stopped owned child before correcting shared receiving-road source. Partial states preserved; never certified or installed.",
+      "finished_or_stopped_at": "2026-10-26T03:47:39.135761+08:00"
+    },
+    {
+      "day": "classic-intensive",
+      "pid": 3892,
+      "started": "2026-10-26T03:33:09.9625518+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v1/classic-intensive",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-intensive.json",
+        "--snapshots"
+      ],
+      "source_commit": "2a280cccf71b67ab18917695db6f9d8e2bddc22c",
+      "status": "stopped-incomplete",
+      "reason": "Stopped owned child before correcting shared receiving-road source. Partial states preserved; never certified or installed.",
+      "pack_sha256": "b14c8f8730d626f9a093ae8ecc3df096f112e10e5e534e5808891355f3fe7afd",
+      "finished_or_stopped_at": "2026-10-26T03:47:39.135761+08:00"
+    },
+    {
+      "day": "predictive-intensive",
+      "pid": 19092,
+      "started": "2026-10-26T03:33:09.9964102+08:00",
+      "output": ".local/realism-2026-10-26/rehearsals-v1/predictive-intensive",
+      "options": [
+        "--pack=res://art/timetables/kerala-coast-intensive-v2.json",
+        "--snapshots"
+      ],
+      "source_commit": "2a280cccf71b67ab18917695db6f9d8e2bddc22c",
+      "status": "stopped-incomplete",
+      "reason": "Stopped owned child before correcting shared receiving-road source. Partial states preserved; never certified or installed.",
+      "pack_sha256": "617b66c793141d883f57eddef71747c9feff9b3dba04ca00bc6d1cdfbed44ebd",
+      "finished_or_stopped_at": "2026-10-26T03:47:39.135761+08:00"
+    }
+  ],
+  "files": [
+    {
+      "path": "classic-network/audit.json.gz",
+      "raw_bytes": 1316084,
+      "raw_sha256": "ea22fcf1dedd2c54ab5f4c4194c4a5e3a3fafd6dc1f478755df0f293c94f1524"
+    },
+    {
+      "path": "classic-network/traffic.jsonl.gz",
+      "raw_bytes": 3171687,
+      "raw_sha256": "b89134c04b09e08091f9f91bcc5aed9fba1df51715bd337bb46864b0baabb1d0"
+    },
+    {
+      "path": "classic-network/failure.bin.gz",
+      "raw_bytes": 3989576,
+      "raw_sha256": "5582900f9eb193fb601c75a5d63a5fc0d015cad4da66dabcb335b222b48b162a"
+    },
+    {
+      "path": "classic-network/run.log",
+      "raw_bytes": 9194,
+      "raw_sha256": "236774a570454b759971381cf2961539e06c3cfe7d42d3c8210de11b555c6f00"
+    },
+    {
+      "path": "classic-network/run.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "predictive-network/audit.json.gz",
+      "raw_bytes": 1315398,
+      "raw_sha256": "c45222c5a0b02b8690ef6ba08ee994965ed636a9a22d33e377c959c9d9fea439"
+    },
+    {
+      "path": "predictive-network/traffic.jsonl.gz",
+      "raw_bytes": 3177733,
+      "raw_sha256": "5929b7d92accd9f8e3a1f05545d56fbdea6345e49156a8ea0c3c3a4fdd388afa"
+    },
+    {
+      "path": "predictive-network/failure.bin.gz",
+      "raw_bytes": 3985124,
+      "raw_sha256": "8bb46226605c0a6b6ff3c19ce2a393f66e4f3e9fd0ff4f4747655d6fd992a00f"
+    },
+    {
+      "path": "predictive-network/run.log",
+      "raw_bytes": 8654,
+      "raw_sha256": "7a107f42d0f4d7a7dd8d0b95412e0c3404bce673c6bc5082c41e152ada255f72"
+    },
+    {
+      "path": "predictive-network/run.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "classic-network-delayed/audit.json.gz",
+      "raw_bytes": 1316089,
+      "raw_sha256": "6356520fce8beed9027fd89c146f3ffe21d7e21b511cb415e224d89ff9794758"
+    },
+    {
+      "path": "classic-network-delayed/traffic.jsonl.gz",
+      "raw_bytes": 3171687,
+      "raw_sha256": "b89134c04b09e08091f9f91bcc5aed9fba1df51715bd337bb46864b0baabb1d0"
+    },
+    {
+      "path": "classic-network-delayed/failure.bin.gz",
+      "raw_bytes": 3989576,
+      "raw_sha256": "5582900f9eb193fb601c75a5d63a5fc0d015cad4da66dabcb335b222b48b162a"
+    },
+    {
+      "path": "classic-network-delayed/run.log",
+      "raw_bytes": 9197,
+      "raw_sha256": "71e333c671c39cf5c62ca198544c0fe8fbd2b74cb0db806d7726b6b0be83abd9"
+    },
+    {
+      "path": "classic-network-delayed/run.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "classic-network-delayed/receiving-inspection.json",
+      "raw_bytes": 45193,
+      "raw_sha256": "dfc2ab0763a38fa17289063646ad4f479665532696b1e1b2bafd0954d4bb1118"
+    },
+    {
+      "path": "predictive-network-delayed/audit.json.gz",
+      "raw_bytes": 1315405,
+      "raw_sha256": "c2adfecd8aaf99b6ad47efdb6368af88b876ade3f08b96cf66babca0b353651f"
+    },
+    {
+      "path": "predictive-network-delayed/traffic.jsonl.gz",
+      "raw_bytes": 3177733,
+      "raw_sha256": "5929b7d92accd9f8e3a1f05545d56fbdea6345e49156a8ea0c3c3a4fdd388afa"
+    },
+    {
+      "path": "predictive-network-delayed/failure.bin.gz",
+      "raw_bytes": 3985124,
+      "raw_sha256": "8bb46226605c0a6b6ff3c19ce2a393f66e4f3e9fd0ff4f4747655d6fd992a00f"
+    },
+    {
+      "path": "predictive-network-delayed/run.log",
+      "raw_bytes": 8659,
+      "raw_sha256": "6533b5c63df12332404cbe6e8e601bbe4565a6674c4a8ec61620a3bd1f2abb12"
+    },
+    {
+      "path": "predictive-network-delayed/run.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "kerala-coast-network.json",
+      "raw_bytes": 652178,
+      "raw_sha256": "8aa70bb27d397a38aeb718fc09fd99771c6a55fb7a9d35b9e0fa4abea742edeb"
+    },
+    {
+      "path": "kerala-coast-network-v2.json",
+      "raw_bytes": 652187,
+      "raw_sha256": "c0a9207e32a697de1de3c60578f5b0095ac7084a885f37edc6cabfa3d87d3070"
+    }
+  ]
+}

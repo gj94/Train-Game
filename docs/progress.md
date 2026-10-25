@@ -38,6 +38,18 @@ and use its completion page to return to the station/Dispatch. Mid-gangway saves
 now retain the exact walking position. Current-source prepared menu checks remain
 pending; R47 remains the published build.
 
+**First overnight candidate rejected:** four 208-service replays hit a 2,702s
+S001 wait at 02:33:46, before the configured manual delay. A shared admission
+defect counted roads a non-stop service could enter but could not leave toward
+its next call. The correction passes two fail-before/pass-after regressions;
+all 990 source tests and 24 updated native boundary checks pass. All failed
+evidence is retained in [candidate one](../art/performance/realism-2026-10-26/network-candidate-one/README.md).
+Four incomplete legacy replays were stopped before changing the shared source.
+No new timetable is installed. Thirty-two distant journey labels were corrected
+without changing any of the 208 operating definitions. Twelve controlled moving
+audio cases pass across ICF/LHB/VB, head turns and coordinate shifts; full-scene
+intermittent dropout investigation remains open.
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

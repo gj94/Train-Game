@@ -29,6 +29,12 @@ static func journey_reason(data) -> String:
 static func has_exit(t: Train) -> bool:
 	return t.timetable!=null and not t.timetable.stops.is_empty() and t.timetable.stops[-1].get("boundary","")=="exit"
 
+static func on_exit_road(w, t: Train) -> bool:
+	if not has_exit(t) or t.path.is_empty() or t.timetable.index!=t.timetable.stops.size()-1:return false
+	var stop: Dictionary=t.timetable.stops[-1]
+	var portal: Dictionary=portals(w).get(stop.block,{})
+	return portal.get("kind","")=="exit" and t.path[0].edge==stop.block and t.path[0].dir==portal.direction
+
 static func cleared(w, t: Train) -> bool:
 	if not has_exit(t) or not t.service_complete or not t.timetable.complete() or t.path.size()!=1:return false
 	var stop: Dictionary=t.timetable.stops[-1]

@@ -3,7 +3,7 @@ extends SceneTree
 ## timeline workers, isolated preferences/saves, no alternate fixture catalogues.
 const Days:=preload("res://persistence/operating_days.gd")
 const Traffic:=preload("res://persistence/service_traffic.gd")
-const OUT:="res://.local/dispatcher-v2-2026-10-24/prepared-ui"
+var OUT:="res://.local/dispatcher-v2-2026-10-24/prepared-ui"
 var checks:=0
 var failures:=[]
 var results:=[]
@@ -23,6 +23,7 @@ func shot(label: String) -> void:
 func run() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--day="):requested.append(arg.trim_prefix("--day="))
+		if arg.begins_with("--output="):OUT=arg.trim_prefix("--output=")
 	for id: String in requested:
 		if not Days.DAYS.any(func(day):return day.id==id):printerr("Unknown day ",id);quit(1);return
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUT))

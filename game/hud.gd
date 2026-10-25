@@ -441,7 +441,8 @@ func refresh(s: Dictionary) -> void:
 	if over:
 		speed = "[color=#ff7868]" + speed + "  OVERSPEED[/color]"
 	var signal_text := preload("res://game/signal_readout.gd").text(s.next_signal,s.next_aspect,s.get("show_signal_aspect",true))
-	if s.buffer < 500.0:
+	if s.get("boundary_exit",false) and s.next_signal.is_empty():signal_text="Railway continues beyond the map"
+	elif s.buffer < 500.0:
 		signal_text += "  ·  Buffer %d m" % roundi(s.buffer)
 	_info.text = "%s   ·   %s\n%s   ·   %s / %s%s" % [speed, handle, signal_text, s.train_id, "AI" if s.automatic else "MANUAL", "  [color=#ffca72]PROTECTION OFF[/color]" if not s.protection else ""]
 	_dispatch_notice.text=s.get("dispatch_expectation","")

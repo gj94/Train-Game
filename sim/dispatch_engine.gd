@@ -157,6 +157,8 @@ func _evaluate(w, t: Train, route_trains: bool, approach: Dictionary = {}) -> Di
 	if not future_hold.is_empty():
 		state.status="held"; state.reason=future_hold; return state
 	if ns.is_empty():
+		if preload("res://sim/boundary_services.gd").on_exit_road(w,t):
+			state.reason="Continuing beyond the map to "+str(t.journey.get("destination",t.destination));return state
 		state.status="attention"; state.reason="No forward signal; check the working and destination"; return state
 	var sig: Dictionary = w.signals[ns.id]
 	if not sig.route.is_empty():

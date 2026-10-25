@@ -1,0 +1,2158 @@
+{
+	"claims": [
+		{
+			"id": "S002",
+			"roads": [
+				"AMPA_P2"
+			]
+		},
+		{
+			"id": "M001",
+			"roads": [
+				"AMPA_P1"
+			]
+		},
+		{
+			"id": "S001",
+			"roads": [
+				"AMPA_P1",
+				"AMPA_P2",
+				"AMPA_P3"
+			]
+		}
+	],
+	"clock": 9226.00000000599,
+	"occupancy": {
+		"ALLP_P1": "M041",
+		"ALLP_P2": "M003",
+		"AMPA_P2": "S002",
+		"CRY_PGZ_U2": "S004",
+		"CRY_PGZ_U3": "S004",
+		"ERS_PORTAL_D": "M005",
+		"HAD_CHPD_U4": "M002",
+		"KXP_KZK_U1": "M004",
+		"NEM_BRAM_M0": "S042",
+		"NEM_BRAM_M1": "S042",
+		"PASA_P1": "M094",
+		"PUPR_AMPA_M2": "M001",
+		"PUPR_AMPA_M3": "S001",
+		"PVU_P3": "M042",
+		"TMPY_ALLP_M0": "S025",
+		"TVC_NEM_M3": "M093",
+		"TVC_NEM_M4": "M093",
+		"TVC_P1": "M075",
+		"TVC_P2": "M062",
+		"VAK_P2": "S026",
+		"VAY_P1": "M061"
+	},
+	"signals": [
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": 1,
+			"edge": "AMPA_P1",
+			"id": "AMPA-S1",
+			"owner": "",
+			"route": [],
+			"s": 826.03955078125
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "AMPA_P1",
+			"id": "AMPA-N1",
+			"owner": "",
+			"route": [],
+			"s": 210.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": 1,
+			"edge": "AMPA_P2",
+			"id": "AMPA-S2",
+			"owner": "",
+			"route": [],
+			"s": 829.850830078125
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "AMPA_P2",
+			"id": "AMPA-N2",
+			"owner": "",
+			"route": [],
+			"s": 210.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": 1,
+			"edge": "AMPA_P3",
+			"id": "AMPA-S3",
+			"owner": "",
+			"route": [],
+			"s": 831.172729492188
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "AMPA_P3",
+			"id": "AMPA-N3",
+			"owner": "",
+			"route": [],
+			"s": 210.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": true,
+			"destination": "PUPR_AMPA_M1-SA",
+			"dir": 1,
+			"edge": "PUPR_AMPA_M0",
+			"id": "PUPR_AMPA_M0-SA",
+			"owner": "",
+			"route": [
+				{
+					"dir": 1,
+					"edge": "PUPR_AMPA_M1",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				}
+			],
+			"s": 902.838623046875
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "PUPR_AMPA_M0",
+			"id": "PUPR_AMPA_M0-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": 1,
+			"edge": "PUPR_AMPA_M1",
+			"id": "PUPR_AMPA_M1-SA",
+			"owner": "",
+			"route": [],
+			"s": 902.832763671875
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "PUPR_AMPA_M1",
+			"id": "PUPR_AMPA_M1-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": 1,
+			"edge": "PUPR_AMPA_M2",
+			"id": "PUPR_AMPA_M2-SA",
+			"owner": "",
+			"route": [],
+			"s": 902.686462402344
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "PUPR_AMPA_M2",
+			"id": "PUPR_AMPA_M2-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": 1,
+			"edge": "PUPR_AMPA_M3",
+			"id": "PUPR_AMPA_M3-SH",
+			"owner": "",
+			"route": [],
+			"s": 901.9599609375
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "PUPR_AMPA_M3",
+			"id": "PUPR_AMPA_M3-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": true,
+			"destination": "AMPA_TZH_D1-A",
+			"dir": 1,
+			"edge": "AMPA_TZH_D0",
+			"id": "AMPA_TZH_D0-A",
+			"owner": "",
+			"route": [
+				{
+					"dir": 1,
+					"edge": "AMPA_TZH_D1",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				}
+			],
+			"s": 874.849304199219
+		},
+		{
+			"cancel_pending": false,
+			"cleared": true,
+			"destination": "AMPA_TZH_D2-A",
+			"dir": 1,
+			"edge": "AMPA_TZH_D1",
+			"id": "AMPA_TZH_D1-A",
+			"owner": "",
+			"route": [
+				{
+					"dir": 1,
+					"edge": "AMPA_TZH_D2",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				}
+			],
+			"s": 877.225524902344
+		},
+		{
+			"cancel_pending": false,
+			"cleared": true,
+			"destination": "AMPA_TZH_D3-A",
+			"dir": 1,
+			"edge": "AMPA_TZH_D2",
+			"id": "AMPA_TZH_D2-A",
+			"owner": "",
+			"route": [
+				{
+					"dir": 1,
+					"edge": "AMPA_TZH_D3",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				}
+			],
+			"s": 881.537292480469
+		},
+		{
+			"cancel_pending": false,
+			"cleared": true,
+			"destination": "AMPA_TZH_D4-A",
+			"dir": 1,
+			"edge": "AMPA_TZH_D3",
+			"id": "AMPA_TZH_D3-A",
+			"owner": "",
+			"route": [
+				{
+					"dir": 1,
+					"edge": "AMPA_TZH_D4",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				}
+			],
+			"s": 877.4150390625
+		},
+		{
+			"cancel_pending": false,
+			"cleared": true,
+			"destination": "TZH_KVTA_D0-A",
+			"dir": 1,
+			"edge": "AMPA_TZH_D4",
+			"id": "AMPA_TZH_D4-A",
+			"owner": "",
+			"route": [
+				{
+					"dir": 1,
+					"edge": "TZH_P1",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				},
+				{
+					"dir": 1,
+					"edge": "TZH_KVTA_D0",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				}
+			],
+			"s": 881.146057128906
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "AMPA_TZH_U0",
+			"id": "AMPA_TZH_U0-H",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": true,
+			"destination": "AMPA_TZH_U0-H",
+			"dir": -1,
+			"edge": "AMPA_TZH_U1",
+			"id": "AMPA_TZH_U1-A",
+			"owner": "",
+			"route": [
+				{
+					"dir": -1,
+					"edge": "AMPA_TZH_U0",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				}
+			],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": true,
+			"destination": "AMPA_TZH_U1-A",
+			"dir": -1,
+			"edge": "AMPA_TZH_U2",
+			"id": "AMPA_TZH_U2-A",
+			"owner": "",
+			"route": [
+				{
+					"dir": -1,
+					"edge": "AMPA_TZH_U1",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				}
+			],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": true,
+			"destination": "AMPA_TZH_U2-A",
+			"dir": -1,
+			"edge": "AMPA_TZH_U3",
+			"id": "AMPA_TZH_U3-A",
+			"owner": "",
+			"route": [
+				{
+					"dir": -1,
+					"edge": "AMPA_TZH_U2",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				}
+			],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": true,
+			"destination": "AMPA_TZH_U3-A",
+			"dir": -1,
+			"edge": "AMPA_TZH_U4",
+			"id": "AMPA_TZH_U4-A",
+			"owner": "",
+			"route": [
+				{
+					"dir": -1,
+					"edge": "AMPA_TZH_U3",
+					"reversed": false,
+					"seen": false,
+					"switch": ""
+				}
+			],
+			"s": 60.0
+		}
+	],
+	"snapshot_unchanged": true,
+	"station": {
+		"board_hindi": "अम्बलप्पुष़ा",
+		"board_local_name": "അമ്പലപ്പുഴ",
+		"board_name": "Ambalappuzha",
+		"building": "(7636.295, 5.65444, 64134.86)",
+		"code": "AMPA",
+		"display_code": "AMPA",
+		"distance": 15.74,
+		"halt": false,
+		"height": 5.65,
+		"km_from_ers": 69.108,
+		"lat": 9.3862866,
+		"local_name": "അമ്പലപ്പുഴ",
+		"lon": 76.3627219,
+		"major": false,
+		"name": "Ambalappuzha",
+		"official_km": 69.16,
+		"operating_roads": [
+			{
+				"lane": "D",
+				"offset": -15.441,
+				"osm_way": 640907588.0,
+				"platform_side": -1.0,
+				"platform_width": 3.43,
+				"road": 1.0,
+				"service": "main"
+			},
+			{
+				"lane": "U",
+				"offset": 0.0,
+				"osm_way": 1034298611.0,
+				"platform_side": -1.0,
+				"platform_width": 3.43,
+				"road": 2.0,
+				"service": "main"
+			},
+			{
+				"lane": "U",
+				"offset": 4.993,
+				"osm_way": 640907594.0,
+				"platform_side": 1.0,
+				"platform_width": 3.43,
+				"road": 3.0,
+				"service": "main"
+			}
+		],
+		"origin": "(7636.295, 5.65444, 64134.86)",
+		"osm_id": 2078446831.0,
+		"passenger_open": true,
+		"platform_details": {
+			"AMPA_P1": {
+				"lane": "D",
+				"offset": -15.441,
+				"osm_way": 640907588.0,
+				"platform_side": -1.0,
+				"platform_width": 3.43,
+				"road": 1.0,
+				"service": "main"
+			},
+			"AMPA_P2": {
+				"lane": "U",
+				"offset": 0.0,
+				"osm_way": 1034298611.0,
+				"platform_side": -1.0,
+				"platform_width": 3.43,
+				"road": 2.0,
+				"service": "main"
+			},
+			"AMPA_P3": {
+				"lane": "U",
+				"offset": 4.993,
+				"osm_way": 640907594.0,
+				"platform_side": 1.0,
+				"platform_width": 3.43,
+				"road": 3.0,
+				"service": "main"
+			}
+		},
+		"platform_tracks": [
+			"AMPA_P1",
+			"AMPA_P2",
+			"AMPA_P3"
+		],
+		"platforms": [],
+		"point": [
+			7633.366,
+			64150.351
+		],
+		"roads": 3,
+		"s": 69851.934,
+		"through_halt": false,
+		"track_z": [
+			-15.441,
+			0.0,
+			4.993
+		],
+		"yard_half": 520.0
+	},
+	"trains": {
+		"M001": {
+			"approaches": [
+				{
+					"distance": 6.50756377526682,
+					"id": "PUPR_AMPA_M2-SA"
+				}
+			],
+			"arrivals": [
+				-1.0,
+				1156.0999999995,
+				2932.0000000019,
+				4522.00000000769,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"calls": [
+				{
+					"block": "ERS_PORTAL_D",
+					"boundary": "entry",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 0.0,
+					"name": "Enters railway north of ERS",
+					"s": 842.696442871094
+				},
+				{
+					"block": "ERS_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 5.4,
+					"name": "Ernakulam Junction",
+					"s": 1066.79013183594
+				},
+				{
+					"block": "SRTL_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 40.4,
+					"name": "Cherthala",
+					"s": 794.145844726562
+				},
+				{
+					"block": "ALLP_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 65.6,
+					"name": "Alappuzha",
+					"s": 794.261079101562
+				},
+				{
+					"block": "AMPA_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 81.1,
+					"name": "Ambalappuzha",
+					"s": 792.299775390625
+				},
+				{
+					"block": "HAD_P4",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 98.3,
+					"name": "Haripad",
+					"s": 794.36349609375
+				},
+				{
+					"block": "KYJ_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 111.6,
+					"name": "Kayamkulam Junction",
+					"s": 894.254487304687
+				},
+				{
+					"block": "KPY_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 126.4,
+					"name": "Karunagapalli",
+					"s": 794.244294433594
+				},
+				{
+					"block": "QLN_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 150.5,
+					"name": "Kollam Junction",
+					"s": 1885.11203125
+				},
+				{
+					"block": "PVU_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 164.4,
+					"name": "Paravur",
+					"s": 793.629060058594
+				},
+				{
+					"block": "VAK_P4",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 176.3,
+					"name": "Varkala Sivagiri",
+					"s": 799.229157714844
+				},
+				{
+					"block": "KZK_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 200.8,
+					"name": "Kazhakuttam",
+					"s": 794.247346191406
+				},
+				{
+					"block": "TVCN_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 208.8,
+					"name": "Thiruvananthapuram North",
+					"s": 957.188813476562
+				},
+				{
+					"block": "TVC_P1",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 218.7,
+					"name": "Thiruvananthapuram Central",
+					"s": 1066.57638671875
+				}
+			],
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "occupied",
+							"resource": "PUPR_AMPA_M3",
+							"train": "S001"
+						}
+					],
+					"cost": 0.981509791882324,
+					"destination": "PUPR_AMPA_M3-SH",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 961.9599609375,
+						"destination": "PUPR_AMPA_M3-SH",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "PUPR_AMPA_M3",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Block PUPR_AMPA_M3 occupied by S001",
+					"stop": {}
+				}
+			],
+			"departures": [
+				904.799999999725,
+				1348.79999999932,
+				3388.75000000356,
+				6121.2500000135,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"dispatch": {
+				"alternatives": [],
+				"blockers": [
+					{
+						"kind": "occupied",
+						"resource": "PUPR_AMPA_M3",
+						"train": "S001"
+					}
+				],
+				"call": {
+					"arrival": 9384.56070650226,
+					"block": "AMPA_P1",
+					"booked": 5766.0,
+					"delay": 3618.56070650226,
+					"distance": 2021.49065825769,
+					"index": 4,
+					"missed": false,
+					"name": "Ambalappuzha",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 165.0,
+				"hold": {},
+				"id": "M001",
+				"name": "Mangaluru–Thiruvananthapuram Central Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Waiting for automatic block clearance",
+				"signal_distance": 6.50756377526682,
+				"signal_id": "PUPR_AMPA_M2-SA",
+				"status": "waiting",
+				"wait_seconds": 2663.99999999089
+			},
+			"head_s": 896.178898627077,
+			"length": 548.56,
+			"next_signal": {
+				"distance": 6.50756377526682,
+				"id": "PUPR_AMPA_M2-SA"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "PUPR_AMPA_M2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for PUPR_AMPA_M2-SA",
+			"stop": {
+				"block": "AMPA_P1",
+				"direction": 1,
+				"dwell_minutes": 1.0,
+				"minutes_from_origin": 81.1,
+				"name": "Ambalappuzha",
+				"s": 792.299775390625
+			}
+		},
+		"M041": {
+			"approaches": [
+				{
+					"distance": 36.0274628624539,
+					"id": "ALLP-S1"
+				}
+			],
+			"arrivals": [
+				-1.0,
+				3556.05000000417,
+				5331.95000001063,
+				6922.00000001642,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"calls": [
+				{
+					"block": "ERS_PORTAL_D",
+					"boundary": "entry",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 0.0,
+					"name": "Enters railway north of ERS",
+					"s": 842.696442871094
+				},
+				{
+					"block": "ERS_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 5.4,
+					"name": "Ernakulam Junction",
+					"s": 1066.79013183594
+				},
+				{
+					"block": "SRTL_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 40.4,
+					"name": "Cherthala",
+					"s": 794.145844726562
+				},
+				{
+					"block": "ALLP_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 65.6,
+					"name": "Alappuzha",
+					"s": 794.261079101562
+				},
+				{
+					"block": "AMPA_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 81.1,
+					"name": "Ambalappuzha",
+					"s": 792.299775390625
+				},
+				{
+					"block": "HAD_P4",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 98.3,
+					"name": "Haripad",
+					"s": 794.36349609375
+				},
+				{
+					"block": "KYJ_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 111.6,
+					"name": "Kayamkulam Junction",
+					"s": 894.254487304687
+				},
+				{
+					"block": "KPY_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 126.4,
+					"name": "Karunagapalli",
+					"s": 794.244294433594
+				},
+				{
+					"block": "QLN_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 150.5,
+					"name": "Kollam Junction",
+					"s": 1885.11203125
+				},
+				{
+					"block": "PVU_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 164.4,
+					"name": "Paravur",
+					"s": 793.629060058594
+				},
+				{
+					"block": "VAK_P4",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 176.3,
+					"name": "Varkala Sivagiri",
+					"s": 799.229157714844
+				},
+				{
+					"block": "KZK_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 200.8,
+					"name": "Kazhakuttam",
+					"s": 794.247346191406
+				},
+				{
+					"block": "TVCN_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 208.8,
+					"name": "Thiruvananthapuram North",
+					"s": 957.188813476562
+				},
+				{
+					"block": "TVC_P1",
+					"direction": 1,
+					"dwell_minutes": 3.0,
+					"minutes_from_origin": 218.7,
+					"name": "Thiruvananthapuram Central",
+					"s": 1066.57638671875
+				},
+				{
+					"block": "NYY_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 239.8,
+					"name": "Neyyattinkara",
+					"s": 794.282807617187
+				},
+				{
+					"block": "PASA_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 254.6,
+					"name": "Parassala",
+					"s": 794.02072265625
+				},
+				{
+					"block": "KZT_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 265.6,
+					"name": "Kulitturai",
+					"s": 794.125153808594
+				},
+				{
+					"block": "ERL_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 282.4,
+					"name": "Eraniel",
+					"s": 794.120942382812
+				},
+				{
+					"block": "NCJ_P1",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 299.9,
+					"name": "Nagercoil Junction",
+					"s": 903.1696484375
+				}
+			],
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "AMPA_P2",
+							"train": "S002"
+						},
+						{
+							"kind": "receiving_capacity",
+							"resource": "AMPA",
+							"train": "M001"
+						},
+						{
+							"kind": "receiving_capacity",
+							"resource": "AMPA",
+							"train": "S001"
+						}
+					],
+					"cost": 1.4813650366333,
+					"destination": "ALLP_PUPR_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1366.16084289551,
+						"destination": "ALLP_PUPR_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "ALLP_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_PUPR_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							}
+						]
+					},
+					"reason": "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_RM_B1",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2160.79792785645,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B1",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "ALLP_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ROAD1",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G0"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Ambalappuzha",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_RM_B2",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2187.78392410278,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B2",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "ALLP_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ROAD2",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G1"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Ambalappuzha",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_RM_B3",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2215.19400215149,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B3",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "ALLP_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G1"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ROAD3",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Ambalappuzha",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "BUFFER:ALLP_DEPOT_RM_B4",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 2192.88626289368,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B4",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "ALLP_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ACCESS",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_RM"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_LEAD",
+								"reversed": true,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_J"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_FAN1",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G0"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_FAN2",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G1"
+							},
+							{
+								"dir": 1,
+								"edge": "ALLP_DEPOT_RM_ROAD4",
+								"reversed": false,
+								"seen": false,
+								"switch": "ALLP_DEPOT_RM_G2"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Ambalappuzha",
+					"stop": {}
+				}
+			],
+			"departures": [
+				3304.75000000326,
+				3748.75000000487,
+				5788.75000001229,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "AMPA_P2",
+								"train": "S002"
+							},
+							{
+								"kind": "receiving_capacity",
+								"resource": "AMPA",
+								"train": "M001"
+							},
+							{
+								"kind": "receiving_capacity",
+								"resource": "AMPA",
+								"train": "S001"
+							}
+						],
+						"cost": 1.4813650366333,
+						"destination": "ALLP_PUPR_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1366.16084289551,
+							"destination": "ALLP_PUPR_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "ALLP_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ACCESS",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_PUPR_M0",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_J"
+								}
+							]
+						},
+						"reason": "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B1",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2160.79792785645,
+							"destination": "BUFFER:ALLP_DEPOT_RM_B1",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "ALLP_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ACCESS",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ROAD1",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G0"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Ambalappuzha",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B2",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2187.78392410278,
+							"destination": "BUFFER:ALLP_DEPOT_RM_B2",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "ALLP_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ACCESS",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_FAN1",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G0"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ROAD2",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G1"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Ambalappuzha",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B3",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2215.19400215149,
+							"destination": "BUFFER:ALLP_DEPOT_RM_B3",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "ALLP_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ACCESS",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_FAN1",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G0"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_FAN2",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G1"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ROAD3",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G2"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Ambalappuzha",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "BUFFER:ALLP_DEPOT_RM_B4",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 2192.88626289368,
+							"destination": "BUFFER:ALLP_DEPOT_RM_B4",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "ALLP_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ACCESS",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_RM"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_LEAD",
+									"reversed": true,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_J"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_FAN1",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G0"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_FAN2",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G1"
+								},
+								{
+									"dir": 1,
+									"edge": "ALLP_DEPOT_RM_ROAD4",
+									"reversed": false,
+									"seen": false,
+									"switch": "ALLP_DEPOT_RM_G2"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Ambalappuzha",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "AMPA_P2",
+						"train": "S002"
+					},
+					{
+						"kind": "receiving_capacity",
+						"resource": "AMPA",
+						"train": "M001"
+					},
+					{
+						"kind": "receiving_capacity",
+						"resource": "AMPA",
+						"train": "S001"
+					}
+				],
+				"call": {
+					"arrival": 9791.15899819329,
+					"block": "AMPA_P1",
+					"booked": 8166.0,
+					"delay": 1625.15899819329,
+					"distance": 12186.4479505334,
+					"index": 4,
+					"missed": false,
+					"name": "Ambalappuzha",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 148.4749999994,
+				"hold": {},
+				"id": "M041",
+				"name": "Thrissur–Nagercoil Junction Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Mumbai Superfast (S002), Mangaluru–Thiruvananthapuram Central Mail / Express (M001), Mumbai–Thiruvananthapuram Central Superfast (S001)",
+				"signal_distance": 36.0274628624539,
+				"signal_id": "ALLP-S1",
+				"status": "blocked",
+				"wait_seconds": 1869.499999988
+			},
+			"head_s": 793.934695340671,
+			"length": 548.56,
+			"next_signal": {
+				"distance": 36.0274628624539,
+				"id": "ALLP-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "ALLP_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for ALLP-S1",
+			"stop": {
+				"block": "AMPA_P1",
+				"direction": 1,
+				"dwell_minutes": 1.0,
+				"minutes_from_origin": 81.1,
+				"name": "Ambalappuzha",
+				"s": 792.299775390625
+			}
+		},
+		"S001": {
+			"approaches": [
+				{
+					"distance": 6.51123307580042,
+					"id": "PUPR_AMPA_M3-SH"
+				}
+			],
+			"arrivals": [
+				-1.0,
+				2356.04999999981,
+				5199.50000001015,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"calls": [
+				{
+					"block": "ERS_PORTAL_D",
+					"boundary": "entry",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 0.0,
+					"name": "Enters railway north of ERS",
+					"s": 842.696442871094
+				},
+				{
+					"block": "ERS_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 5.4,
+					"name": "Ernakulam Junction",
+					"s": 1066.79013183594
+				},
+				{
+					"block": "ALLP_P2",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 62.3,
+					"name": "Alappuzha",
+					"s": 794.406403808594
+				},
+				{
+					"block": "KYJ_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 101.8,
+					"name": "Kayamkulam Junction",
+					"s": 894.254487304687
+				},
+				{
+					"block": "QLN_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 137.3,
+					"name": "Kollam Junction",
+					"s": 1885.11203125
+				},
+				{
+					"block": "VAK_P4",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 159.8,
+					"name": "Varkala Sivagiri",
+					"s": 799.229157714844
+				},
+				{
+					"block": "TVC_P1",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 194.6,
+					"name": "Thiruvananthapuram Central",
+					"s": 1066.57638671875
+				}
+			],
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_capacity",
+							"resource": "AMPA",
+							"train": "S002"
+						},
+						{
+							"kind": "receiving_capacity",
+							"resource": "AMPA",
+							"train": "M001"
+						}
+					],
+					"cost": -998.393620426318,
+					"destination": "AMPA-S1",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1286.76290893555,
+						"destination": "AMPA-S1",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "AMPA_LLEAD_D",
+								"reversed": true,
+								"seen": false,
+								"switch": "AMPA_LM"
+							},
+							{
+								"dir": 1,
+								"edge": "AMPA_P1",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							}
+						]
+					},
+					"reason": "Preserve a compatible receiving road at Ambalappuzha for admitted services",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "AMPA-S2",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1239.8452911377,
+						"destination": "AMPA-S2",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "AMPA_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": "AMPA_LM"
+							},
+							{
+								"dir": 1,
+								"edge": "AMPA_P2",
+								"reversed": false,
+								"seen": false,
+								"switch": "AMPA_LU"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Kayamkulam Junction",
+					"stop": {}
+				},
+				{
+					"available": false,
+					"blockers": [],
+					"cost": 1e99999,
+					"destination": "AMPA-S3",
+					"eligible": false,
+					"hold": {},
+					"option": {
+						"cost": 1291.16719055176,
+						"destination": "AMPA-S3",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "AMPA_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": "AMPA_LM"
+							},
+							{
+								"dir": 1,
+								"edge": "AMPA_P3",
+								"reversed": true,
+								"seen": false,
+								"switch": "AMPA_LU"
+							}
+						]
+					},
+					"reason": "Cannot reach next call: Kayamkulam Junction",
+					"stop": {}
+				}
+			],
+			"departures": [
+				2104.74999999889,
+				2548.75000000051,
+				5962.75000001293,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_capacity",
+								"resource": "AMPA",
+								"train": "S002"
+							},
+							{
+								"kind": "receiving_capacity",
+								"resource": "AMPA",
+								"train": "M001"
+							}
+						],
+						"cost": -998.393620426318,
+						"destination": "AMPA-S1",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1286.76290893555,
+							"destination": "AMPA-S1",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "AMPA_LLEAD_D",
+									"reversed": true,
+									"seen": false,
+									"switch": "AMPA_LM"
+								},
+								{
+									"dir": 1,
+									"edge": "AMPA_P1",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								}
+							]
+						},
+						"reason": "Preserve a compatible receiving road at Ambalappuzha for admitted services",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "AMPA-S2",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 1239.8452911377,
+							"destination": "AMPA-S2",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "AMPA_LLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": "AMPA_LM"
+								},
+								{
+									"dir": 1,
+									"edge": "AMPA_P2",
+									"reversed": false,
+									"seen": false,
+									"switch": "AMPA_LU"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Kayamkulam Junction",
+						"stop": {}
+					},
+					{
+						"available": false,
+						"blockers": [],
+						"cost": 1e99999,
+						"destination": "AMPA-S3",
+						"eligible": false,
+						"hold": {},
+						"option": {
+							"cost": 1291.16719055176,
+							"destination": "AMPA-S3",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "AMPA_LLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": "AMPA_LM"
+								},
+								{
+									"dir": 1,
+									"edge": "AMPA_P3",
+									"reversed": true,
+									"seen": false,
+									"switch": "AMPA_LU"
+								}
+							]
+						},
+						"reason": "Cannot reach next call: Kayamkulam Junction",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_capacity",
+						"resource": "AMPA",
+						"train": "S002"
+					},
+					{
+						"kind": "receiving_capacity",
+						"resource": "AMPA",
+						"train": "M001"
+					}
+				],
+				"call": {
+					"arrival": 10592.8571228055,
+					"block": "KYJ_P1",
+					"booked": 8208.0,
+					"delay": 2384.85712280554,
+					"distance": 32228.9010658395,
+					"index": 3,
+					"missed": false,
+					"name": "Kayamkulam Junction",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 185.0,
+				"hold": {},
+				"id": "S001",
+				"name": "Mumbai–Thiruvananthapuram Central Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Preserve a compatible receiving road at Ambalappuzha for admitted services · Thiruvananthapuram Central–Mumbai Superfast (S002), Mangaluru–Thiruvananthapuram Central Mail / Express (M001)",
+				"signal_distance": 6.51123307580042,
+				"signal_id": "PUPR_AMPA_M3-SH",
+				"status": "blocked",
+				"wait_seconds": 2783.49999999133
+			},
+			"head_s": 895.4487278617,
+			"length": 548.56,
+			"next_signal": {
+				"distance": 6.51123307580042,
+				"id": "PUPR_AMPA_M3-SH"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "PUPR_AMPA_M3"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for PUPR_AMPA_M3-SH",
+			"stop": {
+				"block": "KYJ_P1",
+				"direction": 1,
+				"dwell_minutes": 2.0,
+				"minutes_from_origin": 101.8,
+				"name": "Kayamkulam Junction",
+				"s": 894.254487304687
+			}
+		},
+		"S002": {
+			"approaches": [
+				{
+					"distance": 6.50895436797569,
+					"id": "AMPA-N2"
+				}
+			],
+			"arrivals": [
+				-1.0,
+				2395.19999999995,
+				3711.70000000474,
+				5678.75000001189,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"calls": [
+				{
+					"block": "TVC_P3",
+					"direction": -1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 0.0,
+					"name": "Thiruvananthapuram Central",
+					"s": 347.29568359375
+				},
+				{
+					"block": "VAK_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 33.8,
+					"name": "Varkala Sivagiri",
+					"s": 245.630705566406
+				},
+				{
+					"block": "QLN_P2",
+					"direction": -1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 55.3,
+					"name": "Kollam Junction",
+					"s": 1345.98281738281
+				},
+				{
+					"block": "KYJ_P2",
+					"direction": -1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 90.8,
+					"name": "Kayamkulam Junction",
+					"s": 345.416899414062
+				},
+				{
+					"block": "ALLP_P2",
+					"direction": -1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 130.4,
+					"name": "Alappuzha",
+					"s": 245.846403808594
+				},
+				{
+					"block": "ERS_P2",
+					"direction": -1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 187.2,
+					"name": "Ernakulam Junction",
+					"s": 518.196684570313
+				},
+				{
+					"block": "ERS_PORTAL_U",
+					"boundary": "exit",
+					"direction": -1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 194.6,
+					"name": "Continues north beyond ERS",
+					"s": 327.136442871094
+				}
+			],
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "occupied",
+							"resource": "PUPR_AMPA_M3",
+							"train": "S001"
+						},
+						{
+							"kind": "single_line",
+							"resource": "ALLP_single",
+							"train": "M001"
+						},
+						{
+							"kind": "single_line",
+							"resource": "ALLP_single",
+							"train": "S001"
+						},
+						{
+							"kind": "point_clearance",
+							"resource": "AMPA_LM",
+							"train": "S001"
+						}
+					],
+					"cost": 1.27937318574219,
+					"destination": "PUPR_AMPA_M3-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1161.95442199707,
+						"destination": "PUPR_AMPA_M3-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "AMPA_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": "AMPA_LU"
+							},
+							{
+								"dir": -1,
+								"edge": "PUPR_AMPA_M3",
+								"reversed": false,
+								"seen": false,
+								"switch": "AMPA_LM"
+							}
+						]
+					},
+					"reason": "Single line ALLP_single is locked for opposing traffic",
+					"stop": {}
+				}
+			],
+			"departures": [
+				604.799999999998,
+				2692.75000000103,
+				4042.75000000594,
+				6172.75000001369,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "occupied",
+								"resource": "PUPR_AMPA_M3",
+								"train": "S001"
+							},
+							{
+								"kind": "single_line",
+								"resource": "ALLP_single",
+								"train": "M001"
+							},
+							{
+								"kind": "single_line",
+								"resource": "ALLP_single",
+								"train": "S001"
+							},
+							{
+								"kind": "point_clearance",
+								"resource": "AMPA_LM",
+								"train": "S001"
+							}
+						],
+						"cost": 1.27937318574219,
+						"destination": "PUPR_AMPA_M3-NA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1161.95442199707,
+							"destination": "PUPR_AMPA_M3-NA",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "AMPA_LLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": "AMPA_LU"
+								},
+								{
+									"dir": -1,
+									"edge": "PUPR_AMPA_M3",
+									"reversed": false,
+									"seen": false,
+									"switch": "AMPA_LM"
+								}
+							]
+						},
+						"reason": "Single line ALLP_single is locked for opposing traffic",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "occupied",
+						"resource": "PUPR_AMPA_M3",
+						"train": "S001"
+					},
+					{
+						"kind": "single_line",
+						"resource": "ALLP_single",
+						"train": "M001"
+					},
+					{
+						"kind": "single_line",
+						"resource": "ALLP_single",
+						"train": "S001"
+					},
+					{
+						"kind": "point_clearance",
+						"resource": "AMPA_LM",
+						"train": "S001"
+					}
+				],
+				"call": {
+					"arrival": 9790.03627176953,
+					"block": "ALLP_P2",
+					"booked": 8424.0,
+					"delay": 1366.03627176953,
+					"distance": 12158.3797899393,
+					"index": 4,
+					"missed": false,
+					"name": "Alappuzha",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 167.249999999396,
+				"hold": {},
+				"id": "S002",
+				"name": "Thiruvananthapuram Central–Mumbai Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Single line ALLP_single is locked for opposing traffic · Mumbai–Thiruvananthapuram Central Superfast (S001), Mangaluru–Thiruvananthapuram Central Mail / Express (M001)",
+				"signal_distance": 6.50895436797569,
+				"signal_id": "AMPA-N2",
+				"status": "blocked",
+				"wait_seconds": 1844.99999998791
+			},
+			"head_s": 216.508954367976,
+			"length": 548.56,
+			"next_signal": {
+				"distance": 6.50895436797569,
+				"id": "AMPA-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "AMPA_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for AMPA-N2",
+			"stop": {
+				"block": "ALLP_P2",
+				"direction": -1,
+				"dwell_minutes": 2.0,
+				"minutes_from_origin": 130.4,
+				"name": "Alappuzha",
+				"s": 245.846403808594
+			}
+		}
+	}
+}

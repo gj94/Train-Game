@@ -493,6 +493,7 @@ func _process(delta: float) -> void:
 		next_aspect = world.aspect(ns.id) if not ns.is_empty() else 0,
 		show_signal_aspect=journey_tools.show_signal_aspect if journey_tools!=null else true,
 		buffer = world.distance_to_buffer(train, 600.0),
+		boundary_exit = preload("res://sim/boundary_services.gd").on_exit_road(world,train),
 		protection = world.protection,
 		cab = cam.mode == CameraRig.Mode.CAB,
 		on_foot = walker!=null and walker.active,

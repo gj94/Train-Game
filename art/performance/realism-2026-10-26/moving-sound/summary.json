@@ -1,0 +1,182 @@
+[
+  {
+    "fleet": "icf",
+    "case": {
+      "case": "icf-oncoming-fixed",
+      "maximum_frame_seconds": 0.0327130000000002,
+      "opposite": true,
+      "rotating": false
+    },
+    "bins": 80,
+    "near_bins": 50,
+    "near_rolling_rms_min": 0.000308273531598097,
+    "near_rolling_rms_max": 0.0407746082909382,
+    "impact_rms_max": 0.0251112483115817,
+    "max_receiver_error": 0.046875
+  },
+  {
+    "fleet": "icf",
+    "case": {
+      "case": "icf-oncoming-turning",
+      "maximum_frame_seconds": 0.0279250000000002,
+      "opposite": true,
+      "rotating": true
+    },
+    "bins": 80,
+    "near_bins": 50,
+    "near_rolling_rms_min": 0.000306632027752848,
+    "near_rolling_rms_max": 0.0414680805123741,
+    "impact_rms_max": 0.0241035857055331,
+    "max_receiver_error": 0.0390625
+  },
+  {
+    "fleet": "icf",
+    "case": {
+      "case": "icf-overtaking-fixed",
+      "maximum_frame_seconds": 0.0319190000000003,
+      "opposite": false,
+      "rotating": false
+    },
+    "bins": 80,
+    "near_bins": 70,
+    "near_rolling_rms_min": 0.000531751954505161,
+    "near_rolling_rms_max": 0.0448337268100109,
+    "impact_rms_max": 0.0292103875589443,
+    "max_receiver_error": 0.0390625
+  },
+  {
+    "fleet": "icf",
+    "case": {
+      "case": "icf-overtaking-turning",
+      "maximum_frame_seconds": 0.0282419999999988,
+      "opposite": false,
+      "rotating": true
+    },
+    "bins": 80,
+    "near_bins": 70,
+    "near_rolling_rms_min": 0.000556823419911001,
+    "near_rolling_rms_max": 0.0458652618204652,
+    "impact_rms_max": 0.027375522632721,
+    "max_receiver_error": 0.0390625
+  },
+  {
+    "fleet": "lhb",
+    "case": {
+      "case": "lhb-oncoming-fixed",
+      "maximum_frame_seconds": 0.0298789999999993,
+      "opposite": true,
+      "rotating": false
+    },
+    "bins": 80,
+    "near_bins": 52,
+    "near_rolling_rms_min": 0.000141955555211742,
+    "near_rolling_rms_max": 0.0182179603003746,
+    "impact_rms_max": 0.0126641627784163,
+    "max_receiver_error": 0.046875
+  },
+  {
+    "fleet": "lhb",
+    "case": {
+      "case": "lhb-oncoming-turning",
+      "maximum_frame_seconds": 0.0293260000000011,
+      "opposite": true,
+      "rotating": true
+    },
+    "bins": 80,
+    "near_bins": 52,
+    "near_rolling_rms_min": 0.000145083778006252,
+    "near_rolling_rms_max": 0.0180325841784457,
+    "impact_rms_max": 0.0126424213193391,
+    "max_receiver_error": 0.0390625
+  },
+  {
+    "fleet": "lhb",
+    "case": {
+      "case": "lhb-overtaking-fixed",
+      "maximum_frame_seconds": 0.0268680000000003,
+      "opposite": false,
+      "rotating": false
+    },
+    "bins": 80,
+    "near_bins": 70,
+    "near_rolling_rms_min": 0.000253146411057687,
+    "near_rolling_rms_max": 0.0196343898274389,
+    "impact_rms_max": 0.0131996180395076,
+    "max_receiver_error": 0.0390625
+  },
+  {
+    "fleet": "lhb",
+    "case": {
+      "case": "lhb-overtaking-turning",
+      "maximum_frame_seconds": 0.0276129999999988,
+      "opposite": false,
+      "rotating": true
+    },
+    "bins": 80,
+    "near_bins": 70,
+    "near_rolling_rms_min": 0.000251702807632511,
+    "near_rolling_rms_max": 0.0197279133821766,
+    "impact_rms_max": 0.013263869764175,
+    "max_receiver_error": 0.0390625
+  },
+  {
+    "fleet": "vb16",
+    "case": {
+      "case": "vb16-oncoming-fixed",
+      "maximum_frame_seconds": 0.0230139999999999,
+      "opposite": true,
+      "rotating": false
+    },
+    "bins": 80,
+    "near_bins": 43,
+    "near_rolling_rms_min": 0.000203795557578273,
+    "near_rolling_rms_max": 0.0126425667497541,
+    "impact_rms_max": 0.00933585858358367,
+    "max_receiver_error": 0.046875
+  },
+  {
+    "fleet": "vb16",
+    "case": {
+      "case": "vb16-oncoming-turning",
+      "maximum_frame_seconds": 0.0206379999999999,
+      "opposite": true,
+      "rotating": true
+    },
+    "bins": 80,
+    "near_bins": 43,
+    "near_rolling_rms_min": 0.000213351221678126,
+    "near_rolling_rms_max": 0.0124482126585093,
+    "impact_rms_max": 0.00862431094785905,
+    "max_receiver_error": 0.046875
+  },
+  {
+    "fleet": "vb16",
+    "case": {
+      "case": "vb16-overtaking-fixed",
+      "maximum_frame_seconds": 0.0218170000000022,
+      "opposite": false,
+      "rotating": false
+    },
+    "bins": 80,
+    "near_bins": 70,
+    "near_rolling_rms_min": 0.000199933143709872,
+    "near_rolling_rms_max": 0.0135781921199317,
+    "impact_rms_max": 0.0095206866224117,
+    "max_receiver_error": 0.046875
+  },
+  {
+    "fleet": "vb16",
+    "case": {
+      "case": "vb16-overtaking-turning",
+      "maximum_frame_seconds": 0.0237230000000004,
+      "opposite": false,
+      "rotating": true
+    },
+    "bins": 80,
+    "near_bins": 70,
+    "near_rolling_rms_min": 0.000202639361446732,
+    "near_rolling_rms_max": 0.013679073415758,
+    "impact_rms_max": 0.00903462919093245,
+    "max_receiver_error": 0.046875
+  }
+]

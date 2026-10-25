@@ -98,3 +98,20 @@ func test_head_only_exit_and_forged_saved_exit_are_rejected():
 	t.lifecycle="exited"
 	if Snapshot.restore(Snapshot.capture(w)).ok:return "Loaded forged incomplete tail exit"
 	return true
+
+func test_outward_portal_is_running_but_emergency_and_operator_holds_still_win():
+	var w:=Kerala.build(true);var built:=Pack.build(definition(w,true,false))
+	if not built.ok:return built.reason
+	w=built.world;var t: Train=w.trains.THROUGH
+	var stop: Dictionary=t.timetable.stops[-1]
+	t.timetable.index=1;t.timetable.at_stop=false
+	w.place_train(t,stop.block,stop.s+50,-1)
+	var engine=w.dispatcher();var state: Dictionary=engine._evaluate(w,t,false)
+	if state.status!="running" or not state.reason.begins_with("Continuing beyond the map"):return "Legitimate exit reported as missing authority: "+state.reason
+	t.emergency=true
+	if engine._evaluate(w,t,false).status!="attention":return "Boundary hid emergency"
+	t.emergency=false;engine.operator_holds[t.id]=true
+	if engine._evaluate(w,t,false).status!="held":return "Boundary hid operator hold"
+	engine.operator_holds.clear()
+	w.place_train(t,"ERS_END_U",100,-1)
+	return engine._evaluate(w,t,false).status=="attention"

@@ -12,6 +12,10 @@ static func roads(w,t: Train,st: Dictionary,edge: String,direction: int,free: Ar
 				call=stop;final_call=i==t.timetable.stops.size()-1
 				if not final_call:following=t.timetable.stops[i+1]
 				break
+		# Non-stop services still need a way out toward their next booked call.
+		# Counting an enterable but wrong-direction road as spare capacity can
+		# admit a follower into a single line with no usable receiving berth.
+		if call.is_empty():following=t.timetable.stop_ahead()
 	var result:=[]
 	for road: String in free:
 		if not w.graph.allows(road,direction):continue

@@ -12,7 +12,15 @@ const SUPERFAST := ["ERS","ALLP","KYJ","QLN","VAK","TVC","KZT","NCJ"]
 const VB := ["ERS","ALLP","QLN","TVC","NCJ"]
 const PRIORITIES := {local=30,mail=55,superfast=75,vb=95}
 const NORTH := ["Mangaluru","Kannur","Kozhikode","Shoranur","Thrissur","Guruvayur","Bengaluru","Chennai","Mumbai","Pune","New Delhi","Hyderabad","Ahmedabad","Indore","Patna","Guwahati","Jaipur","Vadodara","Nagpur","Tatanagar"]
-const SOUTH := ["Tirunelveli","Madurai","Chennai","Kanniyakumari","Tiruchirappalli","Tuticorin","Rameswaram","Coimbatore"]
+const SOUTH := ["Tirunelveli","Madurai","Chennai","Kanniyakumari","Tiruchirappalli","Tuticorin","Rameswaram","Velankanni"]
+# Cross-map workings continue down the west coast to the far south. Pairing
+# every northern city with every eastern city would invent implausible detours
+# such as Chennai–Delhi via Nagercoil. These are representative route families.
+const THROUGH := [
+	["Mumbai","Kanniyakumari"],["Mangaluru","Tirunelveli"],
+	["Bengaluru","Kanniyakumari"],["New Delhi","Kanniyakumari"],
+	["Pune","Tirunelveli"],["Ahmedabad","Tirunelveli"],
+	["Indore","Kanniyakumari"],["Jaipur","Tirunelveli"]]
 
 static func definitions() -> Array:
 	var rows:=[]
@@ -45,6 +53,9 @@ static func pairs(rows: Array, category: String, first: String, last: String, so
 	for i in south.size():
 		var first_name: String=NORTH[(i+offset)%NORTH.size()] if first=="NORTH" else first
 		var last_name: String=SOUTH[(i+offset)%SOUTH.size()] if last=="SOUTH" else last
+		if first=="NORTH" and last=="SOUTH":
+			first_name=THROUGH[i%THROUGH.size()][0]
+			last_name=THROUGH[i%THROUGH.size()][1]
 		for direction in [1,-1]:
 			var id:="%s%03d" % [{local="L",mail="M",superfast="S",vb="V"}[category],rows.filter(func(r):return r.category==category).size()+1]
 			if category=="local" and rows.is_empty():id="K1"

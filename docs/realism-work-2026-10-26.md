@@ -173,3 +173,47 @@ traffic rejection. Evidence is in `art/performance/realism-2026-10-26/network-fo
 No test/native/Blender job remains. The generic approach advisory still says
 `No forward signal` on the final outward portal road; presentation refinement
 is pending. The full replay launcher is still not run at this source checkpoint.
+
+## Overnight failure and receiving-road correction, 03:51
+
+The eight v1 jobs launched once at 03:33 from committed `2a280cc`; actual child
+commands, isolated outputs, modes and initial source hashes were checked. All
+four new Network runs subsequently failed at simulated 02:33:46: S001 continuous
+wait 2,702 seconds, three of 208 finished, zero safety events. The configured
+07:30 K1 disturbance had not yet happened. These are rejected partial days,
+not successful disturbance evidence. Audits, failure checkpoints, traffic, logs
+and exact old packs are compressed and hashed in `network-candidate-one`.
+
+Read-only inspection of the real failure found a shared receiving-capacity
+defect: non-stop S001 could use only AMPA_P1 to continue to KYJ_P1, but the
+capacity check also counted AMPA_P2/P3. That admitted M001 behind it, also
+requiring P1; opposing S002 could not vacate the occupied single line. Two
+regressions reproduce the wrong capacity/admission, and pass after checking a
+non-stop service's onward reachability to its next booked call. All ten receiving
+tests pass. No passing location, stock, priority, dwell or track was changed.
+
+The four incomplete original-day baselines were stopped by their verified owned
+child PIDs before the source edit. Their partial files remain local. A fresh
+generation is required for every baseline. All v1 processes have finished.
+
+Thirty-two distant journey identities now avoid implausible cross-map city
+pairings. Exact comparison confirms all 208 departures, calls, dwell, stock,
+priorities and other operating fields are unchanged. Both modes retain identical
+service arrays. All four network authoring tests pass. The legitimate outward
+road now reports continuation instead of missing authority; a seventh boundary
+regression fails before and passes after, including emergency/operator-hold
+precedence. Updated native boundary screens and the full source suite are running.
+
+The moving PCM diagnostic passes twelve ICF/LHB/VB oncoming/overtaking cases,
+fixed and turning heads, with map-origin shifts. Each has eighty half-second
+samples and no nearby external-rail mute. Maximum proxy position error is
+0.046875 m. Evidence is in `moving-sound`. This controlled native Dummy mixer
+check is not a full scenery-load reproduction or physical listening verdict.
+
+Validation complete: **990 full source tests passed**, zero failures, empty stderr.
+All 24 native boundary checks pass and four screens were reviewed. The twelve
+controlled moving-sound cases pass. A separate real rendered scene diagnostic
+is still running around the historical Sasthamkotta passing fixture; two earlier
+harness attempts are retained locally as incomplete (compressed-file reader,
+then first-frame audio metadata handling). They are not acceptance evidence.
+Next: commit the tested source and launch the fresh v2 generation once.
