@@ -170,6 +170,19 @@ menu checks remain pending. The work record contains exact wrapper/child IDs.
 No new executable is published; R47 remains available.
 
 
+**Fifth Network attempt rejected:** Classic delayed reaches 07:51:24 (30/208)
+and V2 reaches 07:08:24 (26/208), both exceeding a 2,702s wait with zero safety
+events. V2 fails before the manual-delay window. Read-only states show southern
+traffic still moving; the morning local/through queue imposes excessive waits.
+[Exact evidence and actual calls](../art/performance/realism-2026-10-26/network-candidate-five/README.md)
+are preserved. Only L022 05:45→06:55 and L034 06:10→04:30 change in both Network
+packs, spreading the NCJ local starts. All other service fields remain unchanged;
+four authoring tests pass. Two affected incomplete baselines were stopped before
+retiming. The four Standard/Intensive v5 jobs continue with every source hash
+unchanged. Only the four affected Network runs need fresh preparation. No new
+prepared data is installed; full acceptance and native menu checks remain pending.
+
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

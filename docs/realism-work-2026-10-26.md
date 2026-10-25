@@ -537,3 +537,29 @@ its installed native UI. Network also requires category comparisons, actual
 midnight worker/save/restore checks and reviewed screenshots. The UI/category
 tools remain uncommitted pending that evidence. No repeated full suite or
 completed audio/gangway audit is needed. R47 and the fixed10AM deadline remain.
+
+
+## Fifth Network failure and affected-only retiming, 07:28
+
+Both v5 Network delayed jobs finished rejected: Classic28284s/30of208/M043 NEM,
+V225704s/26of208/M061PASA; each2702s wait and zero safety events. Each4836source
+hashes plus raw pack hash verified before edits. V2 fails before27000hold;
+Classic reaches beyond the configured27000–27600window. Neither is accepted.
+Read-only saved-world inspections are immutable and show moving southern traffic.
+Exact raw gzip audits/traffic/failure worlds, old packs, actualcalls and original
+stopped baseline catalogues are in network-candidate-five. Do not install them.
+
+Only L02205:45→06:55 and L03406:10→04:30 change in BOTH Network packs, spreading
+northbound locals originally bunched05:15/05:45/06:10. No other service field,
+stock, dwell, priority, physical speed or runtime changed. Four headless authoring
+tests pass after retiming, emptystderr. Runtime1000fullpass remains current.
+Networkbaseline12240/9660 and12868/8436 stopped by exact child command identity;
+delayed9360/6004 and10984/2964 had finished. Originals preserved. All four legacy
+v5 Standard/Intensive baselines continue and every4835/4836source hash matches.
+
+Guarded launch-network-v6.ps1 is prepared, NOT YET RUN: only four Network jobs,
+allowing the four live legacy jobs. After committing/pushing the verified pack
+increment, run it ONCE and verify-launch-v6.py; never relaunch v5. Preserve
+runtime/routes/observers and new packs throughout replays. No fake catalogues or
+stale signatures. UI/category tools remain uncommitted until accepted actualdata.
+Fixed10AM deadline and R47 remain. Completed audio/gangway checks need no repeat.
