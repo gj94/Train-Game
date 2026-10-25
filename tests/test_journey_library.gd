@@ -39,3 +39,29 @@ func test_invalid_preferences_do_not_activate_unknown_filters():
 	if config.save(PATH)!=OK:return "Could not create isolated fixture preferences"
 	var library:=Library.new();library.restore(PATH);DirAccess.remove_absolute(PATH)
 	return library.stock.is_empty() and library.timetable=="standard" and library.favourites==["standard:K1"] and not library.selections.has("standard") and library.selections.intensive=="B002"
+
+func test_preferences_keep_all_registered_operating_days_separate():
+	DirAccess.make_dir_recursive_absolute("res://.local/r45")
+	var library:=Library.new();var days:=preload("res://persistence/operating_days.gd").DAYS
+	for i in days.size():
+		library.selections[days[i].id]="SERVICE"+str(i)
+		library.toggle(days[i].id,"SHARED")
+	library.timetable="network_v2"
+	var config:=ConfigFile.new();library.write(config)
+	if config.save(PATH)!=OK:return "Could not save isolated preferences"
+	var restored:=Library.new();restored.restore(PATH);DirAccess.remove_absolute(PATH)
+	if restored.timetable!="network_v2":return "New operating day was reset"
+	for i in days.size():
+		if restored.selections.get(days[i].id,"")!="SERVICE"+str(i) or not restored.favourite(days[i].id,"SHARED"):return "Operating-day selection lost: "+days[i].id
+	return true
+
+func test_full_route_includes_boundary_workings_covering_both_map_termini():
+	var library:=Library.new();library.through_only=true
+	var service:=row("M061")
+	service.origin="Enters railway north of ERS";service.destination="Continues south beyond NCJ"
+	service.calls=[{name=service.origin,boundary="entry"},{name="Ernakulam Junction"},{name="Thiruvananthapuram Central"},{name="Nagercoil Junction"},{name=service.destination,boundary="exit"}]
+	var original:=service.duplicate(true)
+	if not library.accepts(service,"network",""):return "Full-corridor through working was hidden"
+	if service!=original:return "Browsing mutated source metadata"
+	service.calls.remove_at(3);service.destination="Thiruvananthapuram Central"
+	return not library.accepts(service,"network","")

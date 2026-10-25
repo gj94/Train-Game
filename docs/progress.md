@@ -78,6 +78,21 @@ Only L005 04:55→05:20 and L033 05:40→06:35 change in both new packs; all oth
 The four legacy v2 baselines continue with every source hash unchanged; only
 the four affected Network jobs require another generation. No new data installed.
 
+Retiming/evidence commit `0d84a7a` is pushed. Four affected-only Network v3 runs
+launched at 04:39; commands, isolated outputs, modes and source hashes are verified.
+Browser follow-up fixes lost V2/Network day preferences and includes full-corridor
+boundary workings in Full route. Two fail-before/pass-after regressions and all
+seven library checks pass; the full source suite is running. Full journey names
+appear in the roster and boundary start times say corridor entry. Actual installed
+menu checks remain pending, along with all complete-day acceptance.
+
+The browser follow-up full source suite finishes with **992 passed, zero
+failures, empty stderr**. [Before/after regression evidence](../art/performance/realism-2026-10-26/network-browser/README.md)
+is retained. No replay input changed; the eight existing jobs continue.
+After installation, playtest separate per-day selections, Full route with a
+long-distance through service, and its corridor-entry label versus a local's
+departure time. Full-day and actual installed-menu results are still pending.
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

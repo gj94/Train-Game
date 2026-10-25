@@ -194,7 +194,7 @@ func _build() -> void:
 		var button:=_button(filter_row,FILTERS[i],func():set_period(index));button.toggle_mode=true;filters.append(button)
 	favourites_button=_button(filter_row,"Favourites",func():library.favourites_only=not library.favourites_only;refresh());favourites_button.toggle_mode=true
 	through_button=_button(filter_row,"Full route",func():library.through_only=not library.through_only;refresh());through_button.toggle_mode=true
-	through_button.tooltip_text="Services covering the full Ernakulam–Nagercoil route in either direction."
+	through_button.tooltip_text="Services covering Ernakulam–Nagercoil in either direction, including journeys that continue beyond the map."
 	var spacer:=Control.new();spacer.size_flags_horizontal=SIZE_EXPAND_FILL;filter_row.add_child(spacer)
 	sort_button=OptionButton.new();sort_button.custom_minimum_size=Vector2(320,42);filter_row.add_child(sort_button)
 	for text in SORTS:sort_button.add_item(text)
@@ -290,12 +290,15 @@ func refresh() -> void:
 		var text: String=(Briefing.time_text(row.departure)+"  ·  "+row.id+"  ·  "+row.name) if page=="services" else row.name
 		var tooltip:=text
 		if page=="services":
-			text=Briefing.time_text(row.departure)+"   "+row.id+"   "+row.origin.replace(" Junction","").replace(" Central","")+" → "+row.destination.replace(" Junction","").replace(" Central","")
+			var journey: Dictionary=row.get("journey",{})
+			var origin: String=journey.get("origin",row.origin)
+			var destination: String=journey.get("destination",row.destination)
+			text=Briefing.time_text(row.departure)+"   "+row.id+"   "+origin.replace(" Junction","").replace(" Central","")+" → "+destination.replace(" Junction","").replace(" Central","")
 			if library.favourite(timetable_id,row.id):text="★ "+text
 			tooltip+="\n"+STOCK.get(row.stock,row.stock)+" · %d passenger calls" % int(row.get("passenger_calls",row.stops))
 		if page=="services" and sort_mode in [1,2]:text="%.1f km/h  ·  " % row.average_kmh+text
 		var index:=roster.add_item(text);roster.set_item_tooltip(index,tooltip)
-	count_label.text=("%d / %d services · Start at the origin · Dynamic AI traffic" % [shown.size(),services.size()]) if page=="services" else "Saved journeys · Load paused · Previous backups are available"
+	count_label.text=("%d / %d services · Drive or ride · Dynamic AI traffic" % [shown.size(),services.size()]) if page=="services" else "Saved journeys · Load paused · Previous backups are available"
 	start_button.text="Drive this service" if page=="services" else "Load saved journey"
 	start_button.disabled=shown.is_empty()
 	ride_button.visible=page=="services";ride_button.disabled=shown.is_empty()
@@ -326,7 +329,8 @@ func _select(index: int) -> void:
 			description.text=selected.get("reason","This save could not be read.")+"\n\n"+("Select this slot's previous backup from the list to recover the earlier version." if selected.get("has_backup",false) else "No readable previous backup was found for this slot. Other saves remain available.")
 		else:description.text=preload("res://game/save_summary.gd").describe(selected.get("summary",{}),selected.get("backup",false))+"\n\nThe complete railway and your viewpoint will be restored, paused. Resume when ready."
 		return
-	departure.text=Briefing.time_text(selected.departure)+" departure"
+	var boundary_entry: bool=not selected.get("calls",[]).is_empty() and selected.calls[0].get("boundary","")=="entry"
+	departure.text=Briefing.time_text(selected.departure)+(" corridor entry" if boundary_entry else " departure")
 	var duration:=roundi(float(selected.duration)/60)
 	var daylight: float=preload("res://sim/daylight.gd").sample(selected.start_clock).daylight
 	var light: String="Night" if daylight<.15 else ("Twilight" if daylight<.9 else "Daylight")

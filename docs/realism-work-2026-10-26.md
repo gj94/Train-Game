@@ -309,3 +309,33 @@ the author script parse check also passes. The prior 990-test full runtime suite
 still covers unchanged simulation. Exact field and legacy fingerprint checks
 are retained alongside the failed evidence. Next: commit, then launch only four
 new Network jobs in isolated v3 folders.
+
+## Affected-only relaunch and browser integration, 04:42
+
+Retiming/evidence commit `0d84a7a` is pushed. Exactly four Network v3 jobs
+launched at 04:39:13: Classic 21604/13568, Predictive 22600/17056, Classic delayed
+19092/15232, Predictive delayed 1200/3760 (wrapper/child). At 04:39:51 all eight
+actual command lines, isolated output arguments, both baseline modes, 4,837
+distinct input fingerprints and six observer hashes passed verification; stderr
+was empty. Read `rehearsal-jobs-v3.json` and `launch-v3-verification.json`.
+Never rerun this launcher or duplicate the four legacy v2 baseline jobs.
+
+Browser inspection found two integration defects: preference restoration only
+recognised the original two days, and Full route excluded services whose origins
+or destinations were beyond the map despite covering both termini. Two new
+regressions fail before and pass after using the registered operating-day list
+and actual on-map calls. All seven library tests pass. The roster now uses full
+journey identities and labels boundary starts as corridor entry; ordinary
+departures retain their label. This is presentation only and changes no replay
+fingerprints. The complete source suite is now running (job record
+`network-browser-full-test-job.json`, wrapper 1960); do not edit runtime/tests until it finishes.
+Actual current-source menu/worker checks still await certified installed data.
+
+## Browser source checks complete, 04:55
+
+The original full suite 1960/10776 finishes with **992 passed, zero failures,
+empty stderr** and both processes have exited. Exact before/after regression
+and full logs are retained in `network-browser`. No new suite is needed for
+these unchanged sources. The four v2 legacy baselines and four v3 Network jobs
+remain active without stderr or completed audits. Current-source native menu
+checks still require accepted installed outputs; no data has been installed.

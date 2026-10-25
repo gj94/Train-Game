@@ -3,14 +3,19 @@
 R45 journey discovery, passenger boarding and recovery controls.
 
 The departure browser combines train type, time of day, full-route and favourite
-filters. Full route means Ernakulam Junction to Nagercoil Junction, in either
-direction. Searching multiple words matches all of them across the service,
+filters. Full route means covering Ernakulam Junction to Nagercoil Junction, in
+either direction, including journeys that continue beyond the map. Searching
+multiple words matches all of them across the service,
 stock and calling stations. Reset clears the filters without changing timetable.
 
 Use the star beside the service title, L3 or F2 to favourite a service.
-Favourites are separate for Standard and Intensive: the same ID can describe
-different workings. The browser remembers the chosen timetable and each day's
+Favourites are separate for every operating day and dispatcher: the same ID can
+describe different workings. The browser remembers the chosen timetable and each day's
 selected service. B returns from service details to the roster before Home.
+
+Network services show their full journey endpoints in the list. For a train
+arriving from outside the map, the displayed start time is labelled **corridor
+entry**; it is not a departure time from the distant origin city.
 
 Drive starts at the controls as before. Ride as passenger starts paused in the
 first passenger carriage with space, with AI driving and a remembered seat. A full train opens in the aisle instead. Boarding does
