@@ -90,9 +90,13 @@ try {
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/map-refinement.md') -Destination (Join-Path $buildRoot 'guides/map-refinement.md')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/ported/station-notices') -Destination $buildRoot -Recurse -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/trackside/notices') -Destination (Join-Path $buildRoot 'guides/trackside-notices') -Recurse -Force
-    foreach ($guide in @('menu-qol.md', 'event-skip.md', 'journey-audio-and-comfort.md', 'service-selection.md', 'intensive-timetable.md', 'day-night.md', 'busy-timetable.md', 'map-corrections.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'extreme-visuals.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
+    foreach ($guide in @('r47-release-notes.md', 'predictive-dispatcher.md', 'menu-qol.md', 'event-skip.md', 'journey-audio-and-comfort.md', 'service-selection.md', 'intensive-timetable.md', 'day-night.md', 'busy-timetable.md', 'map-corrections.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'extreme-visuals.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
+    # Keep the portable operator guide's evidence links usable without copying
+    # the large development audit archive into every release.
+    $predictiveGuide = Join-Path $buildRoot 'guides/predictive-dispatcher.md'
+    [IO.File]::WriteAllText($predictiveGuide, [IO.File]::ReadAllText($predictiveGuide).Replace('(dispatcher-v2-work-2026-10-24.md)', '(https://github.com/gj94/Train-Game/blob/2006a4d/docs/dispatcher-v2-work-2026-10-24.md)').Replace('../art/performance/dispatcher-v2-2026-10-24/', 'https://github.com/gj94/Train-Game/blob/2006a4d/art/performance/dispatcher-v2-2026-10-24/'))
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/timetable-2026-10-10') -Destination (Join-Path $buildRoot 'guides/timetable-evidence') -Recurse -Force
     $timetableGuide = Join-Path $buildRoot 'guides/busy-timetable.md'
     [IO.File]::WriteAllText($timetableGuide, [IO.File]::ReadAllText($timetableGuide).Replace('../art/performance/timetable-2026-10-10/', 'timetable-evidence/'))

@@ -1,7 +1,7 @@
 > Preparation status: all four days have been regenerated, independently
 > certified and checked in the actual menus on the corrected forecast source.
 > Both Intensive manual-delay audits also pass. Historical pre-fix results are
-> retained separately. R46 remains the published executable.
+> retained separately. R47 packages these prepared days with the optional V2 dispatcher.
 
 # Predictive dispatcher V2
 
@@ -11,8 +11,8 @@ available. The home operating-day selector provides Standard 100 and Intensive
 states and traffic previews must pass their own full-day replay before use.
 All four variants are now prepared and checked in source. The revised V2
 Intensive baseline gives K1 eleven distinct overtakers across seven stations.
-The published R46 download remains Classic; no new executable release has been
-prepared for this work.
+R47 includes both engines. Start a new R47 journey: Kollam's layout change can
+make R46 saves incompatible. Save files and preferences are retained.
 
 ## Choosing a dispatcher
 

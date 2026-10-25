@@ -1,6 +1,22 @@
-TRAIN GAME - KERALA COAST R46
+TRAIN GAME - KERALA COAST R47
 
-R46: More consistent countryside, roads, banks and vegetation.
+R47: Optional Predictive V2 dispatch and four fully prepared operating days.
+Choose Classic or Predictive V2 in the Home operating-day selector, with
+Standard 100 and Intensive 140 services for each. V2 compares following with
+passing at future loops using physical ETAs, booked calls and priority-weighted
+lateness saved versus passenger detention. Forecast details explain its advice;
+signals and interlocking still control every movement.
+Kollam now has three passenger roads per direction. Start a NEW R47 journey:
+R46 saves may be rejected because the track/platform layout changed. Your save
+files and preferences are preserved; keep an R46 installation for older journeys.
+In the validated Intensive comparison, K1 lateness is 46m52s with Classic and
+9m22s with V2; some express services become later. Fifteen V2 departure changes
+also contribute, so this is not a pure planner comparison or an FPS claim.
+See guides/r47-release-notes.md for exact changes, results, limitations and
+playtest steps, and guides/predictive-dispatcher.md for the controls and policy.
+R47 supports full downloads and incremental updates through Update & Play v4.
+
+Includes R46: More consistent countryside, roads, banks and vegetation.
 Varied terrain beside unchanged tracks; connected grounded road junctions,
 supported approaches, rural road finishes, village paths, steps and walls.
 Continuous canal banks, actual bridge footprints and supported terminal ends.
@@ -87,11 +103,11 @@ and traffic previews are regenerated for R42 departure and line-speed changes.
 The included v4 updater supports signed, verified incremental LAN updates.
 
 Includes the detailed sound mixer, alternate operating day and safer route allocation.
-Use Operating day on the home page to choose Standard (100 services) or
-Intensive (140 services). Each has its own departures, five-minute railway
+Use Operating day on the home page to choose Classic or Predictive V2, with
+Standard (100 services) and Intensive (140 services) for each. Each has its own departures, five-minute railway
 states and simulated crossings/overtakes preview. K1 is the slowest scheduled
-service in Intensive, with 14 distinct overtaking trains in its
-validated AI baseline. Manual driving changes the actual encounters.
+service in Intensive, with 12 distinct overtaking trains in the R47 Classic
+AI baseline and 11 in the separately authored V2 baseline. Manual driving changes the actual encounters.
 Sound settings separately control rail hiss, joint clacks, squeal, own wind,
 passing air, floor thumps, metallic rattles, motors, fans, horns, compressor,
 ventilation, footsteps, doors and brake air. Existing mixer settings migrate.

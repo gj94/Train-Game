@@ -1,5 +1,20 @@
 # Progress
 
+## 25 October 2026 — R47 packaging prepared at the user's request
+
+The user explicitly requested a new build after dispatcher validation completed.
+R47 will package both selectable engines and all four corrected prepared days.
+Fixed the export include filter to carry the V2 Standard and Intensive binary
+states/catalogues. Added a portable release guide with every authored departure
+change, measured benefits, regressions, save compatibility and playtest steps;
+the operator guide's portable evidence links point to the repository.
+
+The runtime remains the 964-test corrected source. Eight focused headless
+operating-day checks, 8 pack tests, 7 download-catalogue tests and 57 updater
+checks pass; no runtime or frozen preparation input changed. Export/publication
+and archive/mounted-data verification are the next steps. R46 stays available
+until R47 publication succeeds, and its local files will be retained.
+
 ## 25 October 2026 — all corrected prepared days validated
 
 The fixed deadline and six actual active hours are satisfied; final evidence
