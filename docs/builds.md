@@ -1,6 +1,34 @@
 # Windows portable build
 
-Current release: **R46 — countryside and map consistency**.
+Current release: **R47 — optional predictive dispatch and four prepared days**.
+Published 25 October 2026 from clean source **3856008**, signed sequence **49**,
+at http://192.168.8.183:8765/.
+Full ZIP: **5,227,700,484 bytes**; SHA-256
+5ece26630843146d4adab14cd211c8b11e89c7bb78d0ca7fea5ead9c6529743c.
+
+Classic remains selectable. V2 adds asynchronous physical ETA-based passing
+proposals and forecast details. Four corrected day datasets include 480 departure
+states and 932 five-minute states. Kollam has three passenger roads per direction.
+Start a new R47 journey; R46 saves can fail layout compatibility. Save files and
+settings remain intact. [Exact changes and playtest](r47-release-notes.md).
+
+964 runtime tests and 91 native source checks cover the corrected code and menus;
+four complete baselines and two disturbance days pass. Fresh release checks pass:
+8 operating-day, 57 updater, 8 pack and 7 download-catalogue tests. The exported
+1,412 snapshots and all four modes are verified by read-only pack mounting.
+516 archive CRCs / 514 managed hashes,
+192 packs, signatures and served ZIP/PCK/compressed ranges pass.
+[Publication evidence](../art/performance/r47-release-2026-10-25/README.md).
+No extracted-distribution gameplay replay or new target-PC FPS claim.
+
+Use **Update & Play v4**. R46→R47 reuses 2,410,115,905 bytes;
+changed target blocks total 3,683,412,647 bytes, estimated unique
+compressed payload 3,300,389,442 bytes
+plus catalogue. These are calculated sizes, not measured transfer speeds.
+Only R47 is advertised; R46 full files remain locally available.
+Next release requires a fresh name and sequence **50+**.
+
+Previous release: **R46 — countryside and map consistency**.
 Published 24 October 2026 from clean runtime **bfcd8aa**, signed sequence **48**,
 at http://192.168.8.183:8765/.
 Full ZIP: **3,589,389,055 bytes**; SHA-256
@@ -25,8 +53,8 @@ Use **Update & Play v4** for incremental transfers. R45→R46 reuses
 4,224,050,895 bytes; changed target blocks total 32,346,422
 bytes, estimated unique compressed payload 23,234,096
 bytes plus catalogue. These are calculated sizes, not LAN throughput measurements.
-Only R46 is offered as a full download. Verified R45 full files retired, freeing 7,844,606,771 bytes; historical catalogues/payloads remain.
-Next release requires a fresh name and sequence **49+**.
+At its publication, only R46 was offered as a full download. Verified R45 full files retired, freeing 7,844,606,771 bytes; historical catalogues/payloads remain.
+
 
 Previous release: **R45 — journey discovery, passenger boarding and recovery QoL**.
 Published 22 October 2026 from clean runtime **47e0ab6**, signed sequence **47**,

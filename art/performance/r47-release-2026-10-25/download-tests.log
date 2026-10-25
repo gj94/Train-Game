@@ -1,0 +1,15 @@
+✔ full-only release exposes only current ZIP, checksum and guides (14.8729ms)
+✔ next release can offer full ZIP and signed incremental endpoints together (9.5508ms)
+✔ unfinished ZIPs, malformed policies and mismatched manifests fail closed (12.4291ms)
+✔ compressed payload routes require the current incremental release and signed membership (16.5261ms)
+✔ timetable download is explicit, has an attachment filename and preserves full/update downloads (37.6504ms)
+✔ missing or malformed timetable publications are never offered (38.8223ms)
+✔ crash capture is opt-in, complete and strictly allowlisted, without changing release routes (18.4149ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 152.171

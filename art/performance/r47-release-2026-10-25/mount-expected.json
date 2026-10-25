@@ -1,0 +1,46 @@
+[
+  {
+    "name": "standard",
+    "starts": "service_starts",
+    "times": "railway_times",
+    "dispatcher": "classic",
+    "services": 100,
+    "states": 233,
+    "crossings": 470,
+    "overtakes": 47,
+    "k1_overtakers": 3
+  },
+  {
+    "name": "standard_v2",
+    "starts": "timetables/standard_v2/starts",
+    "times": "timetables/standard_v2/times",
+    "dispatcher": "predictive",
+    "services": 100,
+    "states": 233,
+    "crossings": 470,
+    "overtakes": 46,
+    "k1_overtakers": 3
+  },
+  {
+    "name": "intensive",
+    "starts": "timetables/intensive/starts",
+    "times": "timetables/intensive/times",
+    "dispatcher": "classic",
+    "services": 140,
+    "states": 233,
+    "crossings": 763,
+    "overtakes": 92,
+    "k1_overtakers": 12
+  },
+  {
+    "name": "intensive_v2",
+    "starts": "timetables/intensive_v2/starts",
+    "times": "timetables/intensive_v2/times",
+    "dispatcher": "predictive",
+    "services": 140,
+    "states": 233,
+    "crossings": 753,
+    "overtakes": 78,
+    "k1_overtakers": 11
+  }
+]

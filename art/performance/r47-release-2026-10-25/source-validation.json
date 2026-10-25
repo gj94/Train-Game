@@ -1,0 +1,48 @@
+{
+  "source": "3856008c7d34be7a3d8d9ea791b03d9df0769071",
+  "checked_at": "2026-10-25T12:20:10.212921+08:00",
+  "runtime_reference": "b28e2c1",
+  "runtime_diff_empty": true,
+  "full_suite_passed": 964,
+  "source_native_checks": 91,
+  "complete_baseline_replays": 4,
+  "complete_disturbed_replays": 2,
+  "logs": [
+    {
+      "check": "full_source",
+      "path": ".local/dispatcher-v2-2026-10-24/dwell-final-full-tests.log",
+      "passed": 964,
+      "sha256": "7294d9ad96778f53fe220ccd857046976901f91ac7d885f4836f21a8b0405428"
+    },
+    {
+      "check": "headless_operating_days",
+      "path": ".local/r47-release/operating-days.log",
+      "passed": 8,
+      "sha256": "7ebce6438426d9b323dadbdeb7a473170dd45b9d5ff5a58814bf81fa3613d431"
+    },
+    {
+      "check": "updater",
+      "path": ".local/r47-release/updater-tests.log",
+      "passed": 57,
+      "sha256": "55654b3401caf13addc0d211c1065912773dd7d4a9f35a51678a4641c8e9562f"
+    },
+    {
+      "check": "stable_pack",
+      "path": ".local/r47-release/pack-tests.log",
+      "passed": 8,
+      "sha256": "049523e6f5066dd13e0f00d56230bd5e0722730d80ab1f8d0b80f828be582f81"
+    },
+    {
+      "check": "download_catalogue",
+      "path": ".local/r47-release/download-tests.log",
+      "passed": 7,
+      "sha256": "fe5620991e5836f8648eb63efcee68708a0e7b819575b702a8aaa82fa7df65ca"
+    }
+  ],
+  "notes": [
+    "Runtime and prepared inputs are unchanged from completed source validation.",
+    "Release changes add export includes and portable guides.",
+    "Export also checks all four current prepared variants and road surfaces.",
+    "No extracted-distribution gameplay replay or new FPS benchmark."
+  ]
+}

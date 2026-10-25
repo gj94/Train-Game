@@ -1,0 +1,73 @@
+import {readFile,writeFile,open,readdir} from 'node:fs/promises';
+import {createPublicKey,verify,createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
+import assert from 'node:assert/strict';
+import {readPack} from '../../tools/updater/split-packs.mjs';
+const base='http://192.168.8.183:8765',version='TrainGame-Kerala-Coast-R47-Windows',oldVersion='TrainGame-Kerala-Coast-R46-Windows';
+const policy=JSON.parse(await readFile('export/download-release.json','utf8'));
+assert.equal(policy.build,version);assert.equal(policy.incremental,true);assert.equal(policy.updaterVersion,4);
+const signed=JSON.parse(await readFile('export/updates/latest.json','utf8'));
+const payload=Buffer.from(signed.payload,'base64'),xml=await readFile('tools/updater/public-key.xml','utf8');
+const field=n=>Buffer.from(xml.match(new RegExp(`<${n}>([^<]+)</${n}>`))[1],'base64').toString('base64url');
+const key=createPublicKey({key:{kty:'RSA',n:field('Modulus'),e:field('Exponent')},format:'jwk'});
+assert(verify('sha256',payload,key,Buffer.from(signed.signature,'base64')));
+const manifest=JSON.parse(payload);
+assert.equal(manifest.version,version);assert.equal(manifest.sequence,49);
+assert.equal(manifest.format,2);assert.equal(manifest.minimumLauncher,3);
+const pack=await readPack('export/'+version+'/TrainGame.pck');
+const entry=pack.entries.find(e=>e.path==='pack-index.json');assert(entry);
+const index=JSON.parse(await pack.read(entry.offset,entry.size));await pack.file.close();
+assert.equal(index.format,1);assert.equal(index.packs.length,192);
+assert.deepEqual([...index.packs].sort(),manifest.files.filter(f=>f.path.startsWith('packs/')).map(f=>f.path).sort());
+assert.deepEqual([...index.packs].sort(),(await readdir('export/'+version+'/packs')).map(f=>'packs/'+f).sort());
+const pageResponse=await fetch(base+'/');assert.equal(pageResponse.status,200);const page=await pageResponse.text();
+assert(page.includes(version)&&page.includes('Incremental updates')&&!page.includes(oldVersion));
+const zipLinks=[...page.matchAll(/href="([^"]+\.zip)"/g)].map(m=>m[1]);
+assert.deepEqual(zipLinks.filter(p=>/Kerala-Coast-R\d+-Windows\.zip/.test(p)),['/'+version+'.zip']);
+assert(zipLinks.includes('/TrainGame-Updater.zip'));assert(page.includes('Faster LAN updates:'));
+async function ranges(relative,local){
+ const file=await open(local,'r'),size=(await file.stat()).size;
+ const head=await fetch(base+relative,{method:'HEAD'});assert.equal(head.status,200);assert.equal(Number(head.headers.get('content-length')),size);
+ for(const start of [0,Math.floor(size/2),Math.max(0,size-65536)]){
+  const end=Math.min(size-1,start+65535),response=await fetch(base+relative,{headers:{Range:`bytes=${start}-${end}`}});
+  assert.equal(response.status,206);assert.equal(response.headers.get('content-range'),`bytes ${start}-${end}/${size}`);
+  const expected=Buffer.alloc(end-start+1);await file.read(expected,0,expected.length,start);assert.deepEqual(Buffer.from(await response.arrayBuffer()),expected);
+ }
+ await file.close();return size;
+}
+const size=await ranges('/'+version+'.zip','export/'+version+'.zip');
+await ranges('/update-files/'+version+'/TrainGame.pck','export/'+version+'/TrainGame.pck');
+assert.equal(size,manifest.archive.size);
+const checksum=await fetch(base+'/'+version+'.zip.sha256');assert.equal(checksum.status,200);assert.equal(await checksum.text(),await readFile('export/'+version+'.zip.sha256','utf8'));
+const remote=await fetch(base+'/updates/latest.json');assert.equal(remote.status,200);assert.deepEqual(await remote.json(),signed);
+assert.equal((await fetch(base+'/TrainGame-Updater.zip',{method:'HEAD'})).status,200);
+assert.equal((await fetch(base+'/'+oldVersion+'.zip',{method:'HEAD'})).status,404);
+const guide=await fetch(base+'/release/README.txt');assert.equal(guide.status,200);assert((await guide.text()).includes('R47 supports full downloads and incremental updates'));
+const old=JSON.parse(Buffer.from(JSON.parse(await readFile('export/updates/'+oldVersion+'.json','utf8')).payload,'base64'));
+let changed=0,reused=0,blocks=0;const needed=new Map();
+for(const file of manifest.files){
+ const previous=old.files.find(f=>f.path===file.path);
+ for(let i=0;i<file.chunks.length;i++){
+  const length=Math.min(manifest.blockSize,file.size-i*manifest.blockSize);
+  if(previous?.chunks[i]===file.chunks[i])reused+=length;
+  else{changed+=length;blocks++;needed.set(file.chunks[i],file.encodedSizes[i]);}
+ }
+}
+// Exercise the actual compressed route and validate its decoded block hash.
+const core=manifest.files.find(f=>f.path==='TrainGame.pck');let offset=0;
+const payloadFile=await open('export/update-payloads/'+version+'/TrainGame.pck.blocks','r');
+for(let i=0;i<core.chunks.length;i++){
+ const encodedLength=core.encodedSizes[i],length=Math.abs(encodedLength);
+ if([0,Math.floor(core.chunks.length/2),core.chunks.length-1].includes(i)){
+  const response=await fetch(base+'/update-payloads/'+version+'/TrainGame.pck.blocks',{headers:{Range:`bytes=${offset}-${offset+length-1}`}});
+  assert.equal(response.status,206);const encoded=Buffer.from(await response.arrayBuffer());
+  const expected=Buffer.alloc(length);await payloadFile.read(expected,0,length,offset);assert.deepEqual(encoded,expected);
+  const rawLength=Math.min(manifest.blockSize,core.size-i*manifest.blockSize);
+  const raw=encodedLength>0?gunzipSync(encoded):encoded;
+  assert.equal(raw.length,rawLength);assert.equal(createHash('sha256').update(raw).digest('hex'),core.chunks[i]);
+ }
+ offset+=length;
+}
+await payloadFile.close();
+const report={version,sequence:49,zip_bytes:size,full_and_incremental:true,updater_version:4,signature_valid:true,lan_downloads_verified:true,zip_range_checks:3,pck_range_checks:3,compressed_payload_checks:3,checksum_served:true,old_full_download_hidden:true,managed_files:manifest.files.length,stable_packs:index.packs.length,explicit_pack_inventory_valid:true,catalogue_format:2,minimum_launcher:3,from_r46:{changed_bytes:changed,reused_bytes:reused,changed_blocks:blocks,estimated_compressed_unique_block_bytes:[...needed.values()].reduce((a,b)=>a+Math.abs(b),0)},distribution_gameplay_test:false};
+await writeFile('.local/r47-release/publication.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));

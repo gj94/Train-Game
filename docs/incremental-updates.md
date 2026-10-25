@@ -1,15 +1,17 @@
 # Incremental Windows updates
 
-## Current publication — R46
+## Current publication — R47
 
-Sequence 48 ships the full ZIP and v4 updater, retaining 192 stable packs.
-R45→R46 estimated unique compressed changed payload is
-23,234,096 bytes plus the signed catalogue;
-4,224,050,895 managed bytes are reused. These are calculated transfer
-sizes, not measured client throughput. Signatures, compressed ranges, archive
-hashes and read-only mounted states/previews pass. Only the latest full ZIP is
-advertised. Next publication needs a fresh name and sequence 49+.
-See [builds.md](builds.md) for checksum, source revision and evidence.
+Sequence 49 ships the full ZIP and v4 updater, retaining 192 stable packs and
+including all four prepared days. R46→R47 estimated unique compressed changed
+payload is 3,300,389,442 bytes plus the
+signed catalogue; 2,410,115,905 managed bytes are reused. These are
+calculated transfer sizes, not client throughput measurements. Signatures,
+compressed ranges, archive hashes and all 1,412 mounted snapshots pass.
+Only R47's full ZIP is advertised; R46 files are retained locally.
+Next publication requires a fresh name and sequence 50+.
+See [builds.md](builds.md) for checksum, source and evidence. Save files are
+preserved, but R46 journeys can be incompatible with R47's Kollam layout.
 
 ## V4 transfer optimization — shipped in R39
 

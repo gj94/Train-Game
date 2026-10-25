@@ -1,0 +1,71 @@
+import base64, hashlib, json, pathlib, zipfile, sys
+root = pathlib.Path('D:/ClaudeWS/train-game')
+build = 'TrainGame-Kerala-Coast-R47-Windows'
+archive = root / 'export' / (build + '.zip')
+folder = root / 'export' / build
+envelope = json.loads((root / 'export/updates/latest.json').read_text(encoding='utf-8-sig'))
+manifest = json.loads(base64.b64decode(envelope['payload']))
+assert manifest['version'] == build and manifest['sequence'] == 49
+assert manifest['format'] == 2 and manifest['minimumLauncher'] == 3
+assert len([f for f in manifest['files'] if f['path'].startswith('packs/')]) == 192
+expected = {f['path']: f for f in manifest['files']}
+extras = {'Update and Play.exe', 'UPDATER-README.txt'}
+required = {'TrainGame.exe', 'TrainGame.pck', 'BUILD.txt', 'README.txt',
+            'guides/controllers.md', 'guides/walking.md', 'guides/journey-audio-and-comfort.md', 'guides/train-fidelity.md', 'guides/train-fidelity-evidence/gallery.html'} | extras
+with archive.open('rb') as stream:
+    digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+assert digest == pathlib.Path(str(archive) + '.sha256').read_text(encoding='utf-8-sig').split()[0].lower()
+assert manifest['archive'] == {'size': archive.stat().st_size, 'sha256': digest}
+seen = set()
+with zipfile.ZipFile(archive) as z:
+    for item in z.infolist():
+        assert item.filename.startswith(build + '/') and '..' not in item.filename.split('/')
+        if item.is_dir(): continue
+        name = item.filename[len(build) + 1:]
+        assert name not in seen and name in expected.keys() | extras, name
+        # Retried Copy-Item must never nest a renamed source directory inside
+        # its existing guide destination.
+        forbidden_prefixes = [
+            'guides/timetables/timetables/',
+            'guides/trackside-notices/notices/',
+            'guides/timetable-evidence/timetable-2026-10-10/',
+            'guides/timetable-through-evidence/timetable-through-2026-10-10/',
+            'guides/map-evidence/map-2026-10-11/',
+            'guides/train-fidelity-evidence/train-fidelity-2026-10-14/',
+            'guides/crowded-benchmark-evidence/crowded-2026-10-10/',
+            'guides/corridor-rendering-evidence/corridor-2026-10-10/',
+            'station-notices/station-notices/',
+        ]
+        assert not any(name.startswith(p) for p in forbidden_prefixes), name
+        seen.add(name)
+        sha = hashlib.sha256()
+        with z.open(item) as stream:
+            while chunk := stream.read(4 * 1024 * 1024): sha.update(chunk)
+        with (folder / name).open('rb') as stream:
+            installed_sha = hashlib.file_digest(stream, 'sha256').hexdigest()
+        assert sha.hexdigest() == installed_sha, name
+        if name in expected:
+            assert item.file_size == expected[name]['size'] and sha.hexdigest() == expected[name]['sha256'], name
+    assert seen == expected.keys() | extras and required <= seen
+    assert 'UPDATE & PLAY v4' in z.read(build + '/UPDATER-README.txt').decode('utf-8-sig')
+    identity = z.read(build + '/BUILD.txt').decode('utf-8-sig')
+    assert 'Source base: ' + sys.argv[1] in identity and 'Uncommitted tracked changes included: False' in identity
+    assert z.read(build + '/README.txt') == (root / 'docs/portable-readme.txt').read_bytes()
+    for guide_name in ['station-surroundings.md', 'intensive-timetable.md', 'journey-audio-and-comfort.md', 'service-selection.md', 'speed-boards.md', 'day-night.md', 'controllers.md', 'graphics-settings.md', 'extreme-visuals.md', 'event-skip.md', 'menu-qol.md', 'streaming-and-passenger-qol.md', 'journey-library.md', 'map-refinement.md', 'r47-release-notes.md']:
+        assert z.read(build + '/guides/' + guide_name) == (root / 'docs' / guide_name).read_bytes(), guide_name
+    predictive = z.read(build + '/guides/predictive-dispatcher.md').decode('utf-8-sig')
+    source_predictive = (root / 'docs/predictive-dispatcher.md').read_text(encoding='utf-8-sig').replace('(dispatcher-v2-work-2026-10-24.md)', '(https://github.com/gj94/Train-Game/blob/2006a4d/docs/dispatcher-v2-work-2026-10-24.md)').replace('../art/performance/dispatcher-v2-2026-10-24/', 'https://github.com/gj94/Train-Game/blob/2006a4d/art/performance/dispatcher-v2-2026-10-24/')
+    assert predictive.replace('\r\n', '\n') == source_predictive
+    guide = z.read(build + '/guides/train-fidelity.md').decode('utf-8-sig')
+    source_guide = (root / 'docs/train-fidelity.md').read_text(encoding='utf-8-sig').replace('../art/performance/train-fidelity-2026-10-14/', 'train-fidelity-evidence/')
+    assert guide.replace('\r\n', '\n') == source_guide
+    gallery = z.read(build + '/guides/train-fidelity-evidence/gallery.html').decode('utf-8-sig')
+    source_gallery = (root / 'art/performance/train-fidelity-2026-10-14/gallery.html').read_text(encoding='utf-8-sig').replace('../../../docs/train-fidelity.md', '../train-fidelity.md')
+    assert gallery.replace('\r\n', '\n') == source_gallery
+report = dict(version=build, source=sys.argv[1], zip_bytes=archive.stat().st_size,
+              zip_sha256=digest, files_crc_checked=len(seen), managed_files=len(expected),
+              all_managed_sha256_valid=True, folder_matches_archive=True,
+              packaged_guides_match_source=True, clean_build_identity=True,
+              updater_included=True, stable_asset_packs=192, catalogue_format=2, minimum_launcher=3, distribution_gameplay_test=False)
+(root / '.local/r47-release/archive-integrity.json').write_text(json.dumps(report, indent=2) + '\n',encoding='utf-8')
+print(json.dumps(report))

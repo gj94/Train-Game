@@ -1,0 +1,46 @@
+extends SceneTree
+func fail(message: String) -> void:
+	printerr(message);quit(1)
+func _initialize() -> void:
+	var args:=OS.get_cmdline_user_args()
+	if args.is_empty() or not ProjectSettings.load_resource_pack(args[0]):fail("Core mount failed");return
+	var index=JSON.parse_string(FileAccess.get_file_as_string("res://pack-index.json"))
+	if not index is Dictionary or index.get("format")!=1 or index.packs.size()!=192:fail("Invalid pack inventory");return
+	for relative in index.packs:
+		if not ProjectSettings.load_resource_pack(args[0].get_base_dir().path_join(relative),false):fail("Mount failed: "+relative);return
+	for path in ["sim/dispatch_forecast.gd","sim/dispatch_forecast_worker.gd","sim/predictive_dispatch.gd","sim/overtake_solver.gd","game/dispatch_forecast_details.gd","game/geographic_water_bank.gd","game/geographic_terrain_normals.gd","game/geographic_planting_site.gd","game/geographic_road_junctions.gd","game/geographic_shore_context.gd","game/geographic_bridge_deck.gd","game/geographic_formation_support.gd","game/geographic_stream_surface.gd"]:
+		if not ResourceLoader.exists("res://"+path):fail("Missing R47 resource: "+path);return
+	for path in ["game/journey_library.gd","game/home_preferences.gd","game/save_summary.gd","game/coach_directory.gd","game/dispatch_labels.gd","game/menu_picker_input.gd","game/launch_home.gd","game/passenger_bookmark.gd","game/stream_lookahead.gd","assets/ui/kerala_home.png","game/menu_theme.gd","game/pause_menu.gd","game/loading_screen.gd","game/extreme_visuals.gd","game/shaders/extreme_surface_detail.gdshaderinc","game/geographic_road_profiles.gd","game/geographic_road_surface.gd","game/geographic_road_reservations.gd","game/geographic_road_water.gd","game/launch.tscn","game/launch.gd","game/launch_timeline.tscn","game/launch_timeline.gd","game/day_night.gd","game/skip_map.gd","sim/skip_to_event.gd","sim/skip_history.gd","game/audio_menu.gd","persistence/operating_days.gd","persistence/service_starts.gd","persistence/railway_times.gd"]:
+		if not ResourceLoader.exists("res://"+path):fail("Missing resource: "+path);return
+	var expected=JSON.parse_string(FileAccess.get_file_as_string(args[1]))
+	for day in expected:
+		var counts:=[]
+		for folder in [day.starts,day.times]:
+			var base: String="res://data/"+folder+"/"
+			var data=JSON.parse_string(FileAccess.get_file_as_string(base+"catalogue.json"))
+			if not data is Dictionary or not data.get("complete",false):fail("Incomplete "+folder);return
+			if data.get("dispatcher","classic")!=day.dispatcher:fail("Wrong dispatcher: "+folder);return
+			var rows: Array=data.services if folder==day.starts else data.states
+			for row in rows:
+				if FileAccess.get_sha256(base+row.file)!=row.sha256:fail("Snapshot hash: "+folder+"/"+str(row.get("id",row.file)));return
+			counts.append(rows.size())
+		if counts!=[int(day.services),int(day.states)]:fail("Incorrect snapshot count: %s observed %s expected %s" % [day.name,counts,[day.services,day.states]]);return
+		var traffic=JSON.parse_string(FileAccess.get_file_as_string("res://data/"+day.starts+"/traffic.json"))
+		if not traffic is Dictionary or not traffic.get("complete",false):fail("Missing traffic preview");return
+		if traffic.start_sha256!=FileAccess.get_sha256("res://data/"+day.starts+"/catalogue.json") or traffic.timeline_sha256!=FileAccess.get_sha256("res://data/"+day.times+"/catalogue.json"):fail("Traffic belongs to another railway");return
+		if traffic.services.size()!=day.services or traffic.events.size()!=day.crossings+day.overtakes:fail("Traffic counts");return
+		if traffic.events.filter(func(e):return e.kind=="crossing").size()!=day.crossings or traffic.events.filter(func(e):return e.kind=="overtake").size()!=day.overtakes:fail("Encounter roles");return
+		if day.services==140:
+			var overtakers:={}
+			for event in traffic.events:
+				if event.kind=="overtake" and "K1" in [event.a,event.b] and event.overtaker!="K1":overtakers[event.overtaker]=true
+				if event.kind=="overtake" and "B042" in [event.a,event.b] and "B002" in [event.a,event.b] and event.overtaker=="B042":fail("Reverse B042 pass");return
+			if overtakers.size()!=day.k1_overtakers:fail("Wrong K1 overtaker count");return
+		print("%s: %d departures, %d time states, %d crossings, %d overtakes; all hashes verified." % [day.name,counts[0],counts[1],day.crossings,day.overtakes])
+	var roads=JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/scenery/road-surfaces.json"))
+	if not roads is Dictionary or roads.get("segments",[]).size()!=32860 or roads.get("station_pedestrian_ways",[]).size()!=20:fail("Missing current road profiles");return
+	var settings=load("res://game/graphics_options.gd").new()
+	if settings.preset_name()!="High" or not settings.PRESETS.has("Epic"):fail("Missing Epic or changed default");return
+	settings.preset("Epic")
+	if not settings.values.surface_detail or not settings.values.station_shadows or settings.values.reflections:fail("Wrong Epic options");return
+	print("R47 read-only pack audit passed. Gameplay not launched.");quit()

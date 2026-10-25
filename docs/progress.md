@@ -1,5 +1,28 @@
 # Progress
 
+## 25 October 2026 — R47 published and independently checked
+
+Published the user-requested R47 from clean source `3856008`, signed sequence 49,
+with full ZIP and v4 incremental delivery. All four operating days are included;
+the export filter now explicitly carries the V2 binary snapshots and catalogues.
+The full ZIP is 5,227,700,484 bytes, SHA-256 `5ece26630843146d4adab14cd211c8b11e89c7bb78d0ca7fea5ead9c6529743c`.
+R46's full ZIP and directory remain on disk; the server offers R47 as current.
+
+All 516 archive CRCs and 514 managed
+hashes match; signatures and served full/core/compressed ranges pass. Read-only
+mounting verifies the four modes and every one of 1,412 snapshot hashes plus
+matching traffic previews. Fresh headless/release checks pass (8 operating-day,
+57 updater, 8 pack, 7 catalogue). Runtime is unchanged from the 964 passing full
+suite; existing 91 native checks and six full-day replays remain applicable.
+No additional full-day replay, extracted gameplay or FPS claim.
+
+[Release evidence](../art/performance/r47-release-2026-10-25/README.md) and
+[exact changes, all 15 departure differences, limits and playtest](r47-release-notes.md).
+Start a new V2 Intensive journey at noon and inspect K1 on STKT loop P3 as D114
+uses main P1; compare Classic at KPY, inspect Forecast details, then Save/Continue
+and time skip to confirm mode persistence. Kollam's revised layout can reject
+R46 saves; files/preferences survive, and the old installation remains locally.
+
 ## 25 October 2026 — R47 packaging prepared at the user's request
 
 The user explicitly requested a new build after dispatcher validation completed.
