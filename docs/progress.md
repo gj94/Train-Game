@@ -113,6 +113,36 @@ Shared inputs remain frozen. Earlier generations are historical partials/failure
 no compatible timetable is installed yet. Exact jobs and remaining acceptance
 checks are recorded in the work record. R47 remains available.
 
+The prepared UI checker is extended for actual Network through-train labels,
+Full route selection, midnight/day-2 timeline loading and a complete 208-service
+save/restore. Its parse check passes; native execution and commitment await
+accepted installed data. No frozen runtime/observer changed, and the eight
+original v4 replays continue. This is pending validation, not a completed check.
+
+At the 05:52 checkpoint all eight original v4 replays remain active with empty
+stderr and no final audits. Prepared-menu and category tools still await accepted
+data; no source changes or duplicate runs were made.
+
+
+**Fourth Network candidate rejected:** both runs exceed the 45-minute wait
+limit before the manual disturbance, with zero safety events. Read-only failed
+states show admitted trains held outside compatible free platforms by an
+onward-exit recheck. Two new regressions fail before/pass after the correction;
+the four-train crossing completes safely and all 46 existing capacity/future
+crossing checks pass. The full 997-test suite and short historical-state
+continuations are running. Six unfinished baselines were stopped before editing
+shared source; no timetable is installed and the authored 208 services are unchanged.
+[Exact fourth-candidate evidence](../art/performance/realism-2026-10-26/network-candidate-four/README.md).
+All six baselines and both Network disturbances require fresh preparation after
+the tested correction is committed; the v5 launcher is prepared but NOT RUN.
+At 06:11 the original full suite and two limited continuations remain active
+with empty stderr; runtime/tests are frozen until they finish.
+The suite now finishes **997 passed, zero failures, empty stderr**. Limited
+historical continuations admit V005/M078, but the surrounding queues do not
+clear within one hour (zero safety events). Upstream admission remains under
+investigation; no v5 replay has launched. This limitation is preserved explicitly.
+
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

@@ -304,12 +304,20 @@ func _preserve_arrival_exits(w,t: Train,st: Dictionary,roads: Array) -> Dictiona
 	# actual road, replacing (rather than duplicating) any flexible old claim.
 	if roads.is_empty():return {}
 	var proposed:={id=t.id,roads=roads}
-	for claim in _station_claims(w,st):
+	var claims:=_station_claims(w,st)
+	var admitted:=claims.any(func(c):return c.id==t.id)
+	for claim in claims:
 		if claim.id==t.id:continue
 		var other: Train=w.trains.get(claim.id)
 		if other==null or other.path.is_empty():continue
 		var check:=_escape_capacity(w,other,st,other.path[0].dir,claim.roads,proposed)
 		if check.is_empty():continue
+		# An admitted approach already consumes a compatible receiving berth.
+		# Do not strand it outside the home for an onward restriction that
+		# exists with its current flexible claim too: stopping here can itself
+		# block the opponent's departure. Still reject a road choice that
+		# creates a new restriction, and check this arrival's own exit below.
+		if admitted and not _escape_capacity(w,other,st,other.path[0].dir,claim.roads).is_empty():continue
 		return {reason="Preserve the onward crossing route for "+other.id+" at "+st.name,
 			blockers=[{train=other.id,kind="onward_capacity",resource=st.code}]+check.get("blockers",[])}
 	return {}

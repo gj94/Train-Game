@@ -406,3 +406,63 @@ required. Category analysis is still intentionally uncommitted pending a real
 208-service positive result. Do not repeat completed gangway/PCM/native sound
 checks without changes. At 10:00 stop expanding scope and safely checkpoint
 in-flight validation, then remove the continuation automation as authorized.
+
+## Prepared-menu follow-up staged, 05:44
+
+All eight original v4 replays continue; no completed audit or stderr failure at
+this checkpoint. Runtime inputs remain frozen on `c8dec7d`. No duplicate run,
+new full suite or prepared-data installation was made.
+
+The existing `tools/check_predictive_prepared_ui.gd` now also checks Network M061
+in the actual roster and Full route filter, distant origin/destination labels,
+portal-entry wording, the representative-service explanation, real departure
+loading and per-day saved selection. It adds an actual 24:00 timeline-worker
+load with day-2 display, live overnight roster and a checksummed 208-service
+save/restore whose full world bytes must match without changing the displayed
+world. The script parse check passes with empty stderr; these checks have NOT
+run against installed Network data yet. Leave the tool uncommitted until actual
+accepted data exercises both Network modes. It modifies no runtime or frozen
+preparation observer. The category-analysis tool remains uncommitted for the
+same missing positive-day validation. Do not fabricate fixture catalogues.
+
+After independently accepting/installing each day, run the native checker for
+all six choices, review the real images, and retain the output. Standard and
+Intensive must also use the new compatible source generation. Fixed10AM deadline
+and R47 availability are unchanged.
+
+## Fourth Network candidate rejected, 06:04
+
+Both v4 Network delayed runs failed before the 07:30 hold: Classic at
+07:24:04 (27/208) and predictive at 07:07:02 (26/208), each L002 extra
+wait 2,702s and zero safety events. All 4,836 source hashes per report match
+the unchanged committed source. Exact audits, failed worlds, traffic, packs
+and read-only receiving inspections are preserved in network-candidate-four.
+Six unfinished baselines were stopped by verified child identity before any
+shared runtime correction; their original outputs and compressed traffic remain.
+
+The recorded arrangements have a compatible free receiving road for V005 at
+NYY / M078 at PASA, but the onward-exit recheck holds these already admitted
+trains outside it. The original world remains byte-identical after inspection.
+A four-train regression is running on the unchanged planner; correction and
+full validation remain pending. No retiming, data installation or acceptance.
+A guarded v5 launcher is prepared but NOT RUN; wait for regression/full-suite
+results and a committed fix. All six baselines must regenerate if source changes.
+
+The admission correction passes both new tests, including complete safe drainage
+of the four-train crossing. Existing exit-capacity13 and future33 tests pass.
+Actual failed-state read-only inspections now permit the free P2 while rejecting
+occupied P1; worlds remain unchanged. Full suite4752 started06:08:48, expected997,
+logs admitted-full-tests.log/.err. Limited historical continuations14840/12896
+started alongside it; their reports are diagnostic only. Runtime/tests frozen
+until completion. No new full-day job exists.
+
+## 06:21 results and remaining congestion
+
+Full suite4752/20128 finishes997passed0failed,stderr0; both diagnostic jobs
+finish too. V005 and M078 clear their original approaches after42s/74s, but
+the other three monitored services each remain on their original roads after
+3600simulatedseconds,zero safety events. Preserve both unsuccessful drainage
+results. The admitted-arrival correction is independently verified but does
+not repair the already-congested surrounding arrangement. Investigate upstream
+admission before launching v5; the prepared launcher is STILL NOT RUN.
+No full suite, diagnostic or full-day job remains.

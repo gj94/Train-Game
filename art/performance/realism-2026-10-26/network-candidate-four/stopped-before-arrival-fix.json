@@ -1,0 +1,44 @@
+[
+  {
+    "day": "classic-network",
+    "wrapper": 12492,
+    "child": 5312,
+    "command": "D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64.exe --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v4/classic-network --pack=res://art/timetables/kerala-coast-network.json --network --snapshots",
+    "reason": "Preserve original incomplete replay before correcting admission recheck deadlock exposed by both completed failure audits"
+  },
+  {
+    "day": "predictive-network",
+    "wrapper": 22192,
+    "child": 6392,
+    "command": "D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64.exe --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v4/predictive-network --pack=res://art/timetables/kerala-coast-network-v2.json --network --snapshots",
+    "reason": "Preserve original incomplete replay before correcting admission recheck deadlock exposed by both completed failure audits"
+  },
+  {
+    "day": "classic-standard",
+    "wrapper": 13188,
+    "child": 18312,
+    "command": "D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64.exe --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v4/classic-standard --standard --snapshots",
+    "reason": "Preserve original incomplete replay before correcting admission recheck deadlock exposed by both completed failure audits"
+  },
+  {
+    "day": "predictive-standard",
+    "wrapper": 21980,
+    "child": 14968,
+    "command": "D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64.exe --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v4/predictive-standard --standard --predictive --snapshots",
+    "reason": "Preserve original incomplete replay before correcting admission recheck deadlock exposed by both completed failure audits"
+  },
+  {
+    "day": "classic-intensive",
+    "wrapper": 22304,
+    "child": 14324,
+    "command": "D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64.exe --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v4/classic-intensive --pack=res://art/timetables/kerala-coast-intensive.json --snapshots",
+    "reason": "Preserve original incomplete replay before correcting admission recheck deadlock exposed by both completed failure audits"
+  },
+  {
+    "day": "predictive-intensive",
+    "wrapper": 7788,
+    "child": 1188,
+    "command": "D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64.exe --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v4/predictive-intensive --pack=res://art/timetables/kerala-coast-intensive-v2.json --snapshots",
+    "reason": "Preserve original incomplete replay before correcting admission recheck deadlock exposed by both completed failure audits"
+  }
+]
