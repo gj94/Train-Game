@@ -66,6 +66,18 @@ including explicit occupied-interior visibility and finished camera transitions.
 The existing ICF/VB checks were not repeated. Full-day replay acceptance remains
 the outstanding gate before prepared data can be installed.
 
+**Second Network candidate rejected:** both Classic runs fail L005's 45-minute
+origin-wait limit at 05:40:04. The predictive delayed run later fails L022 at
+07:00:24 amid full opposing yards around Parassala. Both happen before the
+07:30 manual disturbance; none is successful delay evidence. The predictive
+baseline was stopped after preserving its matching observed traffic prefix.
+[Exact rejected evidence](../art/performance/realism-2026-10-26/network-candidate-two/README.md)
+includes raw audits, failure checkpoints, traffic and read-only inspection.
+Only L005 04:55→05:20 and L033 05:40→06:35 change in both new packs; all other
+208-service fields remain identical. The day now has 66 overnight departures.
+The four legacy v2 baselines continue with every source hash unchanged; only
+the four affected Network jobs require another generation. No new data installed.
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

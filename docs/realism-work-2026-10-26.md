@@ -272,3 +272,40 @@ compares actual/booked times on matching corridor sections, and reports all
 full-formation passes by category. Syntax and rejection of the actual failed
 candidate pass; no positive full-day result exists yet. Use alongside, not in
 place of, the existing independent acceptance/finalization tools.
+
+## Morning Network conflicts and minimal departure edits, 04:38
+
+The two Classic Network v2 jobs finish rejected at 05:40:04 simulated: L005
+has waited 2,702s at Ernakulam, 18/208 services finish, zero safety events.
+Read-only Kumbalam inspection finds moving opposing M004 and sequential
+M009/M045 traffic, not the earlier non-stop receiving-road defect.
+
+The predictive delayed job independently fails at 07:00:24 for L022 at Eraniel,
+26/208 complete, zero safety events. Both Kulitturai roads hold northbound
+L002/M078, both Neyyattinkara roads hold southbound L033/S045, and M061 occupies
+Parassala awaiting Kulitturai. Existing onward crossing protection holds the
+approaches. This is before the scheduled 07:30 manual hold, so neither delayed
+run is valid disturbance acceptance. Its restored failure inspection is immutable.
+
+The remaining predictive Network baseline child 10248 was verified by exact
+command line and stopped before changing shared authored inputs. Its first
+10,677 complete traffic samples match the delayed run; the interrupted trailing
+line is archived unchanged and excluded from comparison. No final audit is
+invented. Original folders and all failed/partial states remain preserved;
+compressed exact evidence is in `network-candidate-two`.
+
+Authoring now applies explicit validated departure overrides outside the frozen
+simulation source: L005 04:55→05:20 and L033 05:40→06:35. Exact old/new comparison
+confirms these are the only field changes in both packs. All 208 calls, running
+offsets, dwell, stock and priorities remain unchanged; both mode service arrays
+are identical. There are now 66 overnight departures, 4–14 in each hour.
+No successful-day claim follows from these edits. A fresh affected-only Network
+baseline/disturbance generation is required. The four legacy v2 baselines remain
+running; all their 4,835/4,836 source fingerprints still match. No runtime change,
+gate relaxation, forced pass site, or prepared-data installation occurred.
+
+All four headless Network authoring tests pass after retiming, with empty stderr;
+the author script parse check also passes. The prior 990-test full runtime suite
+still covers unchanged simulation. Exact field and legacy fingerprint checks
+are retained alongside the failed evidence. Next: commit, then launch only four
+new Network jobs in isolated v3 folders.

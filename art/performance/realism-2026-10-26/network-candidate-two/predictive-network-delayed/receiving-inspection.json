@@ -1,0 +1,2652 @@
+{
+	"claims": [
+		{
+			"id": "M061",
+			"roads": [
+				"PASA_P1"
+			]
+		}
+	],
+	"clock": 25223.9999997732,
+	"occupancy": {
+		"ALLP_P1": "M008",
+		"ALLP_PUPR_M3": "L005",
+		"AMPA_P2": "S028",
+		"AMPA_TZH_U3": "L006",
+		"CRY_P2": "M046",
+		"CRY_PGZ_D1": "M007",
+		"CRY_PGZ_D2": "M007",
+		"ERL_P2": "L022",
+		"ERL_VRLR_U0": "L034",
+		"ERL_VRLR_U1": "S046",
+		"EZP_P1": "K1",
+		"HAD_P4": "M101",
+		"IRP_MYY_D1": "L023",
+		"IRP_MYY_D2": "L023",
+		"IRP_MYY_U0": "S008",
+		"IRP_MYY_U1": "S008",
+		"KPY_STKT_D5": "L013",
+		"KUMM_AROR_M0": "S007",
+		"KXP_P2": "M012",
+		"KYJ_OCR_U2": "M010",
+		"KYJ_OCR_U3": "M010",
+		"KZT_P1": "M078",
+		"KZT_P2": "L002",
+		"MAKM_P3": "M045",
+		"MQO_PRND_U0": "V002",
+		"MQO_PRND_U4": "L014",
+		"MYY_PVU_U0": "M064",
+		"MYY_PVU_U1": "M064",
+		"NCJ_P4": "S030",
+		"NEM_P1": "V005",
+		"NEM_P2": "L021",
+		"NYY_P1": "L033",
+		"NYY_P2": "S045",
+		"OCR_KPY_D2": "M009",
+		"PASA_P1": "M061",
+		"SRTL_P2": "M044",
+		"STKT_MQO_D1": "S005",
+		"STKT_MQO_D2": "S005",
+		"TMPY_P1": "S006",
+		"TRVZ_P1": "M011",
+		"TVC_P1": "M043",
+		"VAK_AMY_D1": "S027",
+		"VAK_AMY_D2": "S027",
+		"VAY_SRTL_M4": "M063",
+		"VAY_SRTL_M5": "M063",
+		"VRLR_NJT_U2": "M102"
+	},
+	"signals": [
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": 1,
+			"edge": "PASA_P1",
+			"id": "PASA-S1",
+			"owner": "",
+			"route": [],
+			"s": 829.4814453125
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "PASA_P1",
+			"id": "PASA-N1",
+			"owner": "",
+			"route": [],
+			"s": 210.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": 1,
+			"edge": "PASA_P2",
+			"id": "PASA-S2",
+			"owner": "",
+			"route": [],
+			"s": 825.9404296875
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "PASA_P2",
+			"id": "PASA-N2",
+			"owner": "",
+			"route": [],
+			"s": 210.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "DAVM_PASA_M1-SA",
+			"dir": 1,
+			"edge": "DAVM_PASA_M0",
+			"id": "DAVM_PASA_M0-SA",
+			"owner": "",
+			"route": [],
+			"s": 775.912048339844
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "AMVA_DAVM_M2-NA",
+			"dir": -1,
+			"edge": "DAVM_PASA_M0",
+			"id": "DAVM_PASA_M0-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "DAVM_PASA_M2-SA",
+			"dir": 1,
+			"edge": "DAVM_PASA_M1",
+			"id": "DAVM_PASA_M1-SA",
+			"owner": "",
+			"route": [],
+			"s": 775.543701171875
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "DAVM_PASA_M0-NA",
+			"dir": -1,
+			"edge": "DAVM_PASA_M1",
+			"id": "DAVM_PASA_M1-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "DAVM_PASA_M3-SA",
+			"dir": 1,
+			"edge": "DAVM_PASA_M2",
+			"id": "DAVM_PASA_M2-SA",
+			"owner": "",
+			"route": [],
+			"s": 775.438720703125
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "DAVM_PASA_M1-NA",
+			"dir": -1,
+			"edge": "DAVM_PASA_M2",
+			"id": "DAVM_PASA_M2-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "DAVM_PASA_M4-SA",
+			"dir": 1,
+			"edge": "DAVM_PASA_M3",
+			"id": "DAVM_PASA_M3-SA",
+			"owner": "",
+			"route": [],
+			"s": 775.931335449219
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "DAVM_PASA_M2-NA",
+			"dir": -1,
+			"edge": "DAVM_PASA_M3",
+			"id": "DAVM_PASA_M3-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": 1,
+			"edge": "DAVM_PASA_M4",
+			"id": "DAVM_PASA_M4-SA",
+			"owner": "",
+			"route": [],
+			"s": 775.307006835938
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "DAVM_PASA_M3-NA",
+			"dir": -1,
+			"edge": "DAVM_PASA_M4",
+			"id": "DAVM_PASA_M4-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": 1,
+			"edge": "DAVM_PASA_M5",
+			"id": "DAVM_PASA_M5-SH",
+			"owner": "",
+			"route": [],
+			"s": 775.649169921875
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "DAVM_PASA_M4-NA",
+			"dir": -1,
+			"edge": "DAVM_PASA_M5",
+			"id": "DAVM_PASA_M5-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "PASA_KZTW_M1-SA",
+			"dir": 1,
+			"edge": "PASA_KZTW_M0",
+			"id": "PASA_KZTW_M0-SA",
+			"owner": "",
+			"route": [],
+			"s": 741.2392578125
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "PASA_KZTW_M0",
+			"id": "PASA_KZTW_M0-NH",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "PASA_KZTW_M2-SA",
+			"dir": 1,
+			"edge": "PASA_KZTW_M1",
+			"id": "PASA_KZTW_M1-SA",
+			"owner": "",
+			"route": [],
+			"s": 740.956787109375
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "",
+			"dir": -1,
+			"edge": "PASA_KZTW_M1",
+			"id": "PASA_KZTW_M1-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "PASA_KZTW_M3-SA",
+			"dir": 1,
+			"edge": "PASA_KZTW_M2",
+			"id": "PASA_KZTW_M2-SA",
+			"owner": "",
+			"route": [],
+			"s": 741.065612792969
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "PASA_KZTW_M1-NA",
+			"dir": -1,
+			"edge": "PASA_KZTW_M2",
+			"id": "PASA_KZTW_M2-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "PASA_KZTW_M4-SA",
+			"dir": 1,
+			"edge": "PASA_KZTW_M3",
+			"id": "PASA_KZTW_M3-SA",
+			"owner": "",
+			"route": [],
+			"s": 741.880126953125
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "PASA_KZTW_M2-NA",
+			"dir": -1,
+			"edge": "PASA_KZTW_M3",
+			"id": "PASA_KZTW_M3-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "KZTW_KZT_M0-SA",
+			"dir": 1,
+			"edge": "PASA_KZTW_M4",
+			"id": "PASA_KZTW_M4-SA",
+			"owner": "",
+			"route": [],
+			"s": 741.712890625
+		},
+		{
+			"cancel_pending": false,
+			"cleared": false,
+			"destination": "PASA_KZTW_M3-NA",
+			"dir": -1,
+			"edge": "PASA_KZTW_M4",
+			"id": "PASA_KZTW_M4-NA",
+			"owner": "",
+			"route": [],
+			"s": 60.0
+		}
+	],
+	"snapshot_unchanged": true,
+	"station": {
+		"board_hindi": "पारश्शाला",
+		"board_local_name": "പാറശ്ശാല",
+		"board_name": "Parassala",
+		"building": "(96513.33, 44.53484, 179474.8)",
+		"code": "PASA",
+		"display_code": "PASA",
+		"distance": 16.15,
+		"halt": false,
+		"height": 44.54,
+		"km_from_ers": 235.105,
+		"lat": 8.3397236,
+		"local_name": "പാറശ്ശാല",
+		"lon": 77.165665,
+		"major": false,
+		"name": "Parassala",
+		"official_km": 235.24,
+		"operating_roads": [
+			{
+				"lane": "D",
+				"offset": 0.091,
+				"osm_way": 31546483.0,
+				"platform_side": 1.0,
+				"platform_width": 3.43,
+				"road": 1.0,
+				"service": "main"
+			},
+			{
+				"lane": "U",
+				"offset": -5.243,
+				"osm_way": 642058768.0,
+				"platform_side": -1.0,
+				"platform_width": 3.43,
+				"road": 2.0,
+				"service": "siding"
+			}
+		],
+		"origin": "(96513.33, 44.53484, 179474.8)",
+		"osm_id": 431201162.0,
+		"passenger_open": true,
+		"platform_details": {
+			"PASA_P1": {
+				"lane": "D",
+				"offset": 0.091,
+				"osm_way": 31546483.0,
+				"platform_side": 1.0,
+				"platform_width": 3.43,
+				"road": 1.0,
+				"service": "main"
+			},
+			"PASA_P2": {
+				"lane": "U",
+				"offset": -5.243,
+				"osm_way": 642058768.0,
+				"platform_side": -1.0,
+				"platform_width": 3.43,
+				"road": 2.0,
+				"service": "siding"
+			}
+		},
+		"platform_tracks": [
+			"PASA_P1",
+			"PASA_P2"
+		],
+		"platforms": [],
+		"point": [
+			96507.563,
+			179490.847
+		],
+		"roads": 2,
+		"s": 235849.035,
+		"through_halt": false,
+		"track_z": [
+			0.091,
+			-5.243
+		],
+		"yard_half": 520.0
+	},
+	"trains": {
+		"L002": {
+			"approaches": [
+				{
+					"distance": 75.8647751205625,
+					"id": "KZT-N2"
+				}
+			],
+			"arrivals": [
+				-1.0,
+				19265.6499998599,
+				20245.9999998456,
+				22425.0999998139,
+				22852.9999998077,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"calls": [
+				{
+					"block": "NCJ_P4",
+					"direction": -1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 0.0,
+					"name": "Nagercoil Junction",
+					"s": 286.826232910156
+				},
+				{
+					"block": "NJT_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 5.7,
+					"name": "Nagercoil Town",
+					"s": 286.739196777344
+				},
+				{
+					"block": "ERL_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 19.0,
+					"name": "Eraniel",
+					"s": 285.714172363281
+				},
+				{
+					"block": "PYD_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 29.6,
+					"name": "Palliyadi",
+					"s": 266.720062255859
+				},
+				{
+					"block": "KZT_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 38.3,
+					"name": "Kulitturai",
+					"s": 285.539184570312
+				},
+				{
+					"block": "KZTW_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 44.0,
+					"name": "Kulitturai West",
+					"s": 266.2861328125
+				},
+				{
+					"block": "PASA_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 51.7,
+					"name": "Parassala",
+					"s": 284.72021484375
+				},
+				{
+					"block": "DAVM_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 60.4,
+					"name": "Dhanuvachapuram",
+					"s": 266.597045898437
+				},
+				{
+					"block": "AMVA_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 66.6,
+					"name": "Amaravila",
+					"s": 266.500091552734
+				},
+				{
+					"block": "NYY_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 71.8,
+					"name": "Neyyattinkara",
+					"s": 286.845886230469
+				},
+				{
+					"block": "BRAM_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 78.4,
+					"name": "Balaramapuram",
+					"s": 266.104888916016
+				},
+				{
+					"block": "NEM_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 86.3,
+					"name": "Thiruvananthapuram South",
+					"s": 287.280090332031
+				},
+				{
+					"block": "TVC_P2",
+					"direction": -1,
+					"dwell_minutes": 3.0,
+					"minutes_from_origin": 96.2,
+					"name": "Thiruvananthapuram Central",
+					"s": 559.489501953125
+				},
+				{
+					"block": "TVP_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 103.0,
+					"name": "Thiruvananthapuram Pettah",
+					"s": 266.532379150391
+				},
+				{
+					"block": "TVCN_P2",
+					"direction": -1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 109.5,
+					"name": "Thiruvananthapuram North",
+					"s": 447.708129882812
+				},
+				{
+					"block": "KZK_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 118.1,
+					"name": "Kazhakuttam",
+					"s": 286.748168945312
+				},
+				{
+					"block": "KXP_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 124.1,
+					"name": "Kaniyapuram",
+					"s": 266.755554199219
+				},
+				{
+					"block": "MQU_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 130.0,
+					"name": "Murukkampuzha",
+					"s": 286.715881347656
+				},
+				{
+					"block": "PGZ_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 135.4,
+					"name": "Perunguzhi",
+					"s": 266.70458984375
+				},
+				{
+					"block": "CRY_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 141.4,
+					"name": "Chirayinkeezh",
+					"s": 266.687225341797
+				},
+				{
+					"block": "KVU_P3",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 146.7,
+					"name": "Kadakavur",
+					"s": 287.374267578125
+				},
+				{
+					"block": "AMY_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 151.7,
+					"name": "Akathumuri",
+					"s": 266.264678955078
+				},
+				{
+					"block": "VAK_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 159.4,
+					"name": "Varkala Sivagiri",
+					"s": 286.660705566406
+				},
+				{
+					"block": "EVA_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 165.2,
+					"name": "Edavai",
+					"s": 266.680114746094
+				},
+				{
+					"block": "KFI_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 170.3,
+					"name": "Kappil",
+					"s": 266.066864013672
+				},
+				{
+					"block": "PVU_P3",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 176.7,
+					"name": "Paravur",
+					"s": 287.080383300781
+				},
+				{
+					"block": "MYY_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 182.3,
+					"name": "Mayyanad",
+					"s": 266.751190185547
+				},
+				{
+					"block": "IRP_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 188.3,
+					"name": "Iravipuram",
+					"s": 266.742126464844
+				},
+				{
+					"block": "QLN_P2",
+					"direction": -1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 194.9,
+					"name": "Kollam Junction",
+					"s": 1387.01281738281
+				},
+				{
+					"block": "PRND_P3",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 205.7,
+					"name": "Perinad",
+					"s": 286.990051269531
+				},
+				{
+					"block": "MQO_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 213.1,
+					"name": "Munroturuttu",
+					"s": 266.500030517578
+				},
+				{
+					"block": "STKT_P4",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 219.4,
+					"name": "Sasthankotta",
+					"s": 285.313171386719
+				},
+				{
+					"block": "KPY_P3",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 228.2,
+					"name": "Karunagapalli",
+					"s": 287.320007324219
+				},
+				{
+					"block": "OCR_P3",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 236.9,
+					"name": "Ochira",
+					"s": 286.935668945312
+				},
+				{
+					"block": "KYJ_P2",
+					"direction": -1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 244.4,
+					"name": "Kayamkulam Junction",
+					"s": 386.446899414062
+				},
+				{
+					"block": "CHPD_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 254.3,
+					"name": "Cheppad",
+					"s": 398.301147460937
+				},
+				{
+					"block": "HAD_P3",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 261.1,
+					"name": "Haripad",
+					"s": 286.840026855469
+				},
+				{
+					"block": "KVTA_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 268.5,
+					"name": "Karuvatta",
+					"s": 266.752105712891
+				},
+				{
+					"block": "AMPA_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 280.9,
+					"name": "Ambalappuzha",
+					"s": 286.675415039062
+				},
+				{
+					"block": "PUPR_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 288.4,
+					"name": "Punnapra",
+					"s": 266.749877929687
+				},
+				{
+					"block": "ALLP_P2",
+					"direction": -1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 297.9,
+					"name": "Alappuzha",
+					"s": 286.876403808594
+				},
+				{
+					"block": "TMPY_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 305.4,
+					"name": "Tumboli",
+					"s": 266.59765625
+				},
+				{
+					"block": "KAVR_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 313.3,
+					"name": "Kalavur",
+					"s": 266.740539550781
+				},
+				{
+					"block": "MAKM_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 319.3,
+					"name": "Mararikulam",
+					"s": 286.915710449219
+				},
+				{
+					"block": "TRVZ_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 326.8,
+					"name": "Tiruvizha",
+					"s": 266.747406005859
+				},
+				{
+					"block": "SRTL_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 335.1,
+					"name": "Cherthala",
+					"s": 287.083129882812
+				},
+				{
+					"block": "VAY_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 343.8,
+					"name": "Vayalar",
+					"s": 266.591186523437
+				},
+				{
+					"block": "TUVR_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 350.0,
+					"name": "Turavur",
+					"s": 286.291870117187
+				},
+				{
+					"block": "EZP_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 357.6,
+					"name": "Ezhupunna",
+					"s": 266.533569335937
+				},
+				{
+					"block": "AROR_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 365.5,
+					"name": "Aroor",
+					"s": 266.720764160156
+				},
+				{
+					"block": "KUMM_P3",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 373.0,
+					"name": "Kumbalam",
+					"s": 286.863403320312
+				},
+				{
+					"block": "ERS_P2",
+					"direction": -1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 383.0,
+					"name": "Ernakulam Junction",
+					"s": 559.226684570312
+				}
+			],
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "exit_capacity",
+							"resource": "NYY",
+							"train": "L033"
+						},
+						{
+							"kind": "exit_capacity",
+							"resource": "NYY",
+							"train": "S045"
+						}
+					],
+					"cost": 1.20319588378906,
+					"destination": "KZTW_KZT_M1-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1177.32574462891,
+						"destination": "KZTW_KZT_M1-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KZT_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": -1,
+								"edge": "KZTW_KZT_M1",
+								"reversed": true,
+								"seen": false,
+								"switch": "KZT_LM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Neyyattinkara",
+					"stop": {}
+				}
+			],
+			"departures": [
+				18904.7999998651,
+				19345.7999998587,
+				21988.2999998203,
+				22500.3499998128,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "exit_capacity",
+								"resource": "NYY",
+								"train": "L033"
+							},
+							{
+								"kind": "exit_capacity",
+								"resource": "NYY",
+								"train": "S045"
+							}
+						],
+						"cost": 1.20319588378906,
+						"destination": "KZTW_KZT_M1-NA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1177.32574462891,
+							"destination": "KZTW_KZT_M1-NA",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "KZT_LLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": -1,
+									"edge": "KZTW_KZT_M1",
+									"reversed": true,
+									"seen": false,
+									"switch": "KZT_LM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Neyyattinkara",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "exit_capacity",
+						"resource": "NYY",
+						"train": "L033"
+					},
+					{
+						"kind": "exit_capacity",
+						"resource": "NYY",
+						"train": "S045"
+					}
+				],
+				"call": {
+					"arrival": 25407.4374800324,
+					"block": "KZTW_P1",
+					"booked": 21540.0,
+					"delay": 3867.43748003241,
+					"distance": 3072.61501926119,
+					"index": 5,
+					"missed": false,
+					"name": "Kulitturai West",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 140.0,
+				"hold": {},
+				"id": "L002",
+				"name": "Nagercoil Junction–Ernakulam Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Neyyattinkara · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033), Thiruvananthapuram Central–Rameswaram Superfast (S045)",
+				"signal_distance": 75.8647751205625,
+				"signal_id": "KZT-N2",
+				"status": "blocked",
+				"wait_seconds": 2304.49999996647
+			},
+			"head_s": 285.864775120562,
+			"length": 466.5,
+			"next_signal": {
+				"distance": 75.8647751205625,
+				"id": "KZT-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "KZT_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for KZT-N2",
+			"stop": {
+				"block": "KZTW_P1",
+				"direction": -1,
+				"dwell_minutes": 1.0,
+				"minutes_from_origin": 44.0,
+				"name": "Kulitturai West",
+				"s": 266.2861328125
+			}
+		},
+		"L022": {
+			"approaches": [
+				{
+					"distance": 76.0407362714777,
+					"id": "ERL-N2"
+				}
+			],
+			"arrivals": [
+				-1.0,
+				21065.6499998337,
+				22442.4999998137,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"calls": [
+				{
+					"block": "NCJ_P4",
+					"direction": -1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 0.0,
+					"name": "Nagercoil Junction",
+					"s": 286.826232910156
+				},
+				{
+					"block": "NJT_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 5.7,
+					"name": "Nagercoil Town",
+					"s": 286.739196777344
+				},
+				{
+					"block": "ERL_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 19.0,
+					"name": "Eraniel",
+					"s": 285.714172363281
+				},
+				{
+					"block": "PYD_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 29.6,
+					"name": "Palliyadi",
+					"s": 266.720062255859
+				},
+				{
+					"block": "KZT_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 38.3,
+					"name": "Kulitturai",
+					"s": 285.539184570312
+				},
+				{
+					"block": "KZTW_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 44.0,
+					"name": "Kulitturai West",
+					"s": 266.2861328125
+				},
+				{
+					"block": "PASA_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 51.7,
+					"name": "Parassala",
+					"s": 284.72021484375
+				},
+				{
+					"block": "DAVM_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 60.4,
+					"name": "Dhanuvachapuram",
+					"s": 266.597045898437
+				},
+				{
+					"block": "AMVA_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 66.6,
+					"name": "Amaravila",
+					"s": 266.500091552734
+				},
+				{
+					"block": "NYY_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 71.8,
+					"name": "Neyyattinkara",
+					"s": 286.845886230469
+				},
+				{
+					"block": "BRAM_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 78.4,
+					"name": "Balaramapuram",
+					"s": 266.104888916016
+				},
+				{
+					"block": "NEM_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 86.3,
+					"name": "Thiruvananthapuram South",
+					"s": 287.280090332031
+				},
+				{
+					"block": "TVC_P2",
+					"direction": -1,
+					"dwell_minutes": 3.0,
+					"minutes_from_origin": 96.2,
+					"name": "Thiruvananthapuram Central",
+					"s": 559.489501953125
+				},
+				{
+					"block": "TVP_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 103.0,
+					"name": "Thiruvananthapuram Pettah",
+					"s": 266.532379150391
+				},
+				{
+					"block": "TVCN_P2",
+					"direction": -1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 109.5,
+					"name": "Thiruvananthapuram North",
+					"s": 447.708129882812
+				},
+				{
+					"block": "KZK_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 118.1,
+					"name": "Kazhakuttam",
+					"s": 286.748168945312
+				},
+				{
+					"block": "KXP_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 124.1,
+					"name": "Kaniyapuram",
+					"s": 266.755554199219
+				},
+				{
+					"block": "MQU_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 130.0,
+					"name": "Murukkampuzha",
+					"s": 286.715881347656
+				},
+				{
+					"block": "PGZ_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 135.4,
+					"name": "Perunguzhi",
+					"s": 266.70458984375
+				},
+				{
+					"block": "CRY_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 141.4,
+					"name": "Chirayinkeezh",
+					"s": 266.687225341797
+				},
+				{
+					"block": "KVU_P3",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 146.7,
+					"name": "Kadakavur",
+					"s": 287.374267578125
+				},
+				{
+					"block": "AMY_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 151.7,
+					"name": "Akathumuri",
+					"s": 266.264678955078
+				},
+				{
+					"block": "VAK_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 159.4,
+					"name": "Varkala Sivagiri",
+					"s": 286.660705566406
+				},
+				{
+					"block": "EVA_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 165.2,
+					"name": "Edavai",
+					"s": 266.680114746094
+				},
+				{
+					"block": "KFI_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 170.3,
+					"name": "Kappil",
+					"s": 266.066864013672
+				},
+				{
+					"block": "PVU_P3",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 176.7,
+					"name": "Paravur",
+					"s": 287.080383300781
+				},
+				{
+					"block": "MYY_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 182.3,
+					"name": "Mayyanad",
+					"s": 266.751190185547
+				},
+				{
+					"block": "IRP_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 188.3,
+					"name": "Iravipuram",
+					"s": 266.742126464844
+				},
+				{
+					"block": "QLN_P2",
+					"direction": -1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 194.9,
+					"name": "Kollam Junction",
+					"s": 1387.01281738281
+				}
+			],
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "KZT_P1",
+							"train": "M078"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "KZT_P2",
+							"train": "L002"
+						}
+					],
+					"cost": 1.23173472686768,
+					"destination": "PYD_ERL_M7-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1152.19812011719,
+						"destination": "PYD_ERL_M7-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "ERL_LLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": -1,
+								"edge": "PYD_ERL_M7",
+								"reversed": true,
+								"seen": false,
+								"switch": "ERL_LM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Kulitturai: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"departures": [
+				20704.799999839,
+				21145.7999998325,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "KZT_P1",
+								"train": "M078"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "KZT_P2",
+								"train": "L002"
+							}
+						],
+						"cost": 1.23173472686768,
+						"destination": "PYD_ERL_M7-NA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1152.19812011719,
+							"destination": "PYD_ERL_M7-NA",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "ERL_LLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": -1,
+									"edge": "PYD_ERL_M7",
+									"reversed": true,
+									"seen": false,
+									"switch": "ERL_LM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Kulitturai: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "KZT_P1",
+						"train": "M078"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "KZT_P2",
+						"train": "L002"
+					}
+				],
+				"call": {
+					"arrival": 25622.1119513398,
+					"block": "PYD_P1",
+					"booked": 22476.0,
+					"delay": 3146.11195133978,
+					"distance": 8439.47680194531,
+					"index": 3,
+					"missed": false,
+					"name": "Palliyadi",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 140.0,
+				"hold": {},
+				"id": "L022",
+				"name": "Nagercoil Junction–Kollam Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Expect a wait before Kulitturai: no free platform suitable for this service · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078), Nagercoil Junction–Ernakulam Junction Passenger (L002)",
+				"signal_distance": 76.0407362714777,
+				"signal_id": "ERL-N2",
+				"status": "blocked",
+				"wait_seconds": 2702.99999996067
+			},
+			"head_s": 286.040736271478,
+			"length": 466.5,
+			"next_signal": {
+				"distance": 76.0407362714777,
+				"id": "ERL-N2"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "ERL_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for ERL-N2",
+			"stop": {
+				"block": "PYD_P1",
+				"direction": -1,
+				"dwell_minutes": 1.0,
+				"minutes_from_origin": 29.6,
+				"name": "Palliyadi",
+				"s": 266.720062255859
+			}
+		},
+		"L033": {
+			"approaches": [
+				{
+					"distance": 77.0758679779325,
+					"id": "NYY-S1"
+				}
+			],
+			"arrivals": [
+				-1.0,
+				22409.0499998142,
+				23204.3499998026,
+				23539.3499997977,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"calls": [
+				{
+					"block": "TVC_P1",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 0.0,
+					"name": "Thiruvananthapuram Central",
+					"s": 1025.54638671875
+				},
+				{
+					"block": "NEM_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 8.9,
+					"name": "Thiruvananthapuram South",
+					"s": 753.173706054688
+				},
+				{
+					"block": "BRAM_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 16.9,
+					"name": "Balaramapuram",
+					"s": 732.604888916016
+				},
+				{
+					"block": "NYY_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 23.4,
+					"name": "Neyyattinkara",
+					"s": 753.252807617188
+				},
+				{
+					"block": "AMVA_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 28.7,
+					"name": "Amaravila",
+					"s": 733.000091552734
+				},
+				{
+					"block": "DAVM_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 34.9,
+					"name": "Dhanuvachapuram",
+					"s": 733.097045898438
+				},
+				{
+					"block": "PASA_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 43.5,
+					"name": "Parassala",
+					"s": 752.99072265625
+				},
+				{
+					"block": "KZTW_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 51.2,
+					"name": "Kulitturai West",
+					"s": 732.7861328125
+				},
+				{
+					"block": "KZT_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 56.9,
+					"name": "Kulitturai",
+					"s": 753.095153808594
+				},
+				{
+					"block": "PYD_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 65.6,
+					"name": "Palliyadi",
+					"s": 733.220062255859
+				},
+				{
+					"block": "ERL_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 76.3,
+					"name": "Eraniel",
+					"s": 753.090942382813
+				},
+				{
+					"block": "VRLR_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 84.9,
+					"name": "Viranialur",
+					"s": 733.24853515625
+				},
+				{
+					"block": "NJT_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 92.4,
+					"name": "Nagercoil Town",
+					"s": 753.256958007813
+				},
+				{
+					"block": "NCJ_P1",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 99.1,
+					"name": "Nagercoil Junction",
+					"s": 862.1396484375
+				}
+			],
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "exit_capacity",
+							"resource": "KZT",
+							"train": "M078"
+						},
+						{
+							"kind": "exit_capacity",
+							"resource": "KZT",
+							"train": "L002"
+						}
+					],
+					"cost": 0.915231894836426,
+					"destination": "NYY_AMVA_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 894.007583618164,
+						"destination": "NYY_AMVA_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "NYY_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "NYY_AMVA_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "NYY_RM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Kulitturai",
+					"stop": {}
+				}
+			],
+			"departures": [
+				21566.2999998264,
+				22887.2999998072,
+				23280.7999998015,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "exit_capacity",
+								"resource": "KZT",
+								"train": "M078"
+							},
+							{
+								"kind": "exit_capacity",
+								"resource": "KZT",
+								"train": "L002"
+							}
+						],
+						"cost": 0.915231894836426,
+						"destination": "NYY_AMVA_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 894.007583618164,
+							"destination": "NYY_AMVA_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "NYY_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "NYY_AMVA_M0",
+									"reversed": false,
+									"seen": false,
+									"switch": "NYY_RM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Kulitturai",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "exit_capacity",
+						"resource": "KZT",
+						"train": "M078"
+					},
+					{
+						"kind": "exit_capacity",
+						"resource": "KZT",
+						"train": "L002"
+					}
+				],
+				"call": {
+					"arrival": 25388.9001931559,
+					"block": "AMVA_P1",
+					"booked": 22122.0,
+					"delay": 3266.90019315589,
+					"distance": 2609.18284734805,
+					"index": 4,
+					"missed": false,
+					"name": "Amaravila",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 110.624999998827,
+				"hold": {},
+				"id": "L033",
+				"name": "Thiruvananthapuram Central–Nagercoil Junction Passenger",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 30,
+				"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Kulitturai · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078), Nagercoil Junction–Ernakulam Junction Passenger (L002)",
+				"signal_distance": 77.0758679779325,
+				"signal_id": "NYY-S1",
+				"status": "blocked",
+				"wait_seconds": 1612.49999997654
+			},
+			"head_s": 752.929747256443,
+			"length": 466.5,
+			"next_signal": {
+				"distance": 77.0758679779325,
+				"id": "NYY-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "NYY_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for NYY-S1",
+			"stop": {
+				"block": "AMVA_P1",
+				"direction": 1,
+				"dwell_minutes": 1.0,
+				"minutes_from_origin": 28.7,
+				"name": "Amaravila",
+				"s": 733.000091552734
+			}
+		},
+		"M061": {
+			"approaches": [
+				{
+					"distance": 35.7845204366953,
+					"id": "PASA-S1"
+				}
+			],
+			"arrivals": [
+				-1.0,
+				7756.05000001945,
+				9565.35000000105,
+				11154.6499999779,
+				12175.1999999631,
+				13270.3499999471,
+				14099.7499999351,
+				14934.7999999229,
+				16273.1999999034,
+				17235.3499998894,
+				18013.6999998781,
+				19354.0999998586,
+				19954.2999998499,
+				20532.6999998415,
+				21680.0999998248,
+				22933.2999998065,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"calls": [
+				{
+					"block": "ERS_PORTAL_D",
+					"boundary": "entry",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 0.0,
+					"name": "Enters railway north of ERS",
+					"s": 842.696442871094
+				},
+				{
+					"block": "ERS_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 5.4,
+					"name": "Ernakulam Junction",
+					"s": 1066.79013183594
+				},
+				{
+					"block": "SRTL_P3",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 40.4,
+					"name": "Cherthala",
+					"s": 794.271577148437
+				},
+				{
+					"block": "ALLP_P2",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 65.6,
+					"name": "Alappuzha",
+					"s": 794.406403808594
+				},
+				{
+					"block": "AMPA_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 81.1,
+					"name": "Ambalappuzha",
+					"s": 792.299775390625
+				},
+				{
+					"block": "HAD_P4",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 98.3,
+					"name": "Haripad",
+					"s": 794.36349609375
+				},
+				{
+					"block": "KYJ_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 111.6,
+					"name": "Kayamkulam Junction",
+					"s": 894.254487304687
+				},
+				{
+					"block": "KPY_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 126.4,
+					"name": "Karunagapalli",
+					"s": 794.244294433594
+				},
+				{
+					"block": "QLN_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 150.5,
+					"name": "Kollam Junction",
+					"s": 1885.11203125
+				},
+				{
+					"block": "PVU_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 164.4,
+					"name": "Paravur",
+					"s": 793.629060058594
+				},
+				{
+					"block": "VAK_P4",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 176.3,
+					"name": "Varkala Sivagiri",
+					"s": 799.229157714844
+				},
+				{
+					"block": "KZK_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 200.8,
+					"name": "Kazhakuttam",
+					"s": 794.247346191406
+				},
+				{
+					"block": "TVCN_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 208.8,
+					"name": "Thiruvananthapuram North",
+					"s": 957.188813476562
+				},
+				{
+					"block": "TVC_P1",
+					"direction": 1,
+					"dwell_minutes": 3.0,
+					"minutes_from_origin": 218.7,
+					"name": "Thiruvananthapuram Central",
+					"s": 1066.57638671875
+				},
+				{
+					"block": "NYY_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 239.8,
+					"name": "Neyyattinkara",
+					"s": 794.282807617187
+				},
+				{
+					"block": "PASA_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 254.6,
+					"name": "Parassala",
+					"s": 794.02072265625
+				},
+				{
+					"block": "KZT_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 265.6,
+					"name": "Kulitturai",
+					"s": 794.125153808594
+				},
+				{
+					"block": "ERL_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 282.4,
+					"name": "Eraniel",
+					"s": 794.120942382812
+				},
+				{
+					"block": "NCJ_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 299.9,
+					"name": "Nagercoil Junction",
+					"s": 903.1696484375
+				},
+				{
+					"block": "NCJ_PORTAL_D",
+					"boundary": "exit",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 307.2,
+					"name": "Continues south beyond NCJ",
+					"s": 875.266389160156
+				}
+			],
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "receiving_road",
+							"resource": "KZT_P1",
+							"train": "M078"
+						},
+						{
+							"kind": "receiving_road",
+							"resource": "KZT_P2",
+							"train": "L002"
+						}
+					],
+					"cost": 1.07958234360962,
+					"destination": "PASA_KZTW_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1001.04130554199,
+						"destination": "PASA_KZTW_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "PASA_RLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "PASA_KZTW_M0",
+								"reversed": false,
+								"seen": false,
+								"switch": "PASA_RM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Kulitturai: no free platform suitable for this service",
+					"stop": {}
+				}
+			],
+			"departures": [
+				7504.75000001854,
+				7948.75000002015,
+				9988.79999999489,
+				11560.799999972,
+				12430.7999999594,
+				13462.7999999443,
+				14320.7999999319,
+				15148.7999999198,
+				16654.7999998979,
+				17428.7999998866,
+				18142.7999998762,
+				19612.7999998548,
+				20152.799999847,
+				20806.7999998375,
+				22307.7999998156,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "receiving_road",
+								"resource": "KZT_P1",
+								"train": "M078"
+							},
+							{
+								"kind": "receiving_road",
+								"resource": "KZT_P2",
+								"train": "L002"
+							}
+						],
+						"cost": 1.07958234360962,
+						"destination": "PASA_KZTW_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1001.04130554199,
+							"destination": "PASA_KZTW_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "PASA_RLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "PASA_KZTW_M0",
+									"reversed": false,
+									"seen": false,
+									"switch": "PASA_RM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Kulitturai: no free platform suitable for this service",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "receiving_road",
+						"resource": "KZT_P1",
+						"train": "M078"
+					},
+					{
+						"kind": "receiving_road",
+						"resource": "KZT_P2",
+						"train": "L002"
+					}
+				],
+				"call": {
+					"arrival": 25633.6886949363,
+					"block": "KZT_P1",
+					"booked": 23436.0,
+					"delay": 2197.68869493631,
+					"distance": 8299.69037492888,
+					"index": 16,
+					"missed": false,
+					"name": "Kulitturai",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 165.0,
+				"hold": {},
+				"id": "M061",
+				"name": "Mumbai–Kanniyakumari Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Expect a wait before Kulitturai: no free platform suitable for this service · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078), Nagercoil Junction–Ernakulam Junction Passenger (L002)",
+				"signal_distance": 35.7845204366953,
+				"signal_id": "PASA-S1",
+				"status": "blocked",
+				"wait_seconds": 2222.99999996765
+			},
+			"head_s": 793.696924875805,
+			"length": 548.56,
+			"next_signal": {
+				"distance": 35.7845204366953,
+				"id": "PASA-S1"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "PASA_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for PASA-S1",
+			"stop": {
+				"block": "KZT_P1",
+				"direction": 1,
+				"dwell_minutes": 1.0,
+				"minutes_from_origin": 265.6,
+				"name": "Kulitturai",
+				"s": 794.125153808594
+			}
+		},
+		"M078": {
+			"approaches": [
+				{
+					"distance": 35.8903541317644,
+					"id": "KZT-N1"
+				}
+			],
+			"arrivals": [
+				-1.0,
+				19842.6999998515,
+				22178.6499998175,
+				22978.5499998059,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"calls": [
+				{
+					"block": "NCJ_PORTAL_U",
+					"boundary": "entry",
+					"direction": -1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 0.0,
+					"name": "Enters railway south of NCJ",
+					"s": 359.706389160156
+				},
+				{
+					"block": "NCJ_P4",
+					"direction": -1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 5.3,
+					"name": "Nagercoil Junction",
+					"s": 245.796232910156
+				},
+				{
+					"block": "ERL_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 23.8,
+					"name": "Eraniel",
+					"s": 244.684172363281
+				},
+				{
+					"block": "KZT_P1",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 40.7,
+					"name": "Kulitturai",
+					"s": 245.565153808594
+				},
+				{
+					"block": "PASA_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 51.6,
+					"name": "Parassala",
+					"s": 243.69021484375
+				},
+				{
+					"block": "NYY_P2",
+					"direction": -1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 66.4,
+					"name": "Neyyattinkara",
+					"s": 245.815886230469
+				},
+				{
+					"block": "TVC_P2",
+					"direction": -1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 85.5,
+					"name": "Thiruvananthapuram Central",
+					"s": 518.459501953125
+				}
+			],
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "exit_capacity",
+							"resource": "NYY",
+							"train": "L033"
+						},
+						{
+							"kind": "exit_capacity",
+							"resource": "NYY",
+							"train": "S045"
+						}
+					],
+					"cost": 1.20593922425537,
+					"destination": "KZTW_KZT_M1-NA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 1127.41334533691,
+						"destination": "KZTW_KZT_M1-NA",
+						"edges": [
+							{
+								"dir": -1,
+								"edge": "KZT_LLEAD_D",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": -1,
+								"edge": "KZTW_KZT_M1",
+								"reversed": false,
+								"seen": false,
+								"switch": "KZT_LM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Neyyattinkara",
+					"stop": {}
+				}
+			],
+			"departures": [
+				19504.7999998564,
+				19967.7999998497,
+				22251.7999998164,
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "exit_capacity",
+								"resource": "NYY",
+								"train": "L033"
+							},
+							{
+								"kind": "exit_capacity",
+								"resource": "NYY",
+								"train": "S045"
+							}
+						],
+						"cost": 1.20593922425537,
+						"destination": "KZTW_KZT_M1-NA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 1127.41334533691,
+							"destination": "KZTW_KZT_M1-NA",
+							"edges": [
+								{
+									"dir": -1,
+									"edge": "KZT_LLEAD_D",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": -1,
+									"edge": "KZTW_KZT_M1",
+									"reversed": false,
+									"seen": false,
+									"switch": "KZT_LM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Neyyattinkara",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "exit_capacity",
+						"resource": "NYY",
+						"train": "L033"
+					},
+					{
+						"kind": "exit_capacity",
+						"resource": "NYY",
+						"train": "S045"
+					}
+				],
+				"call": {
+					"arrival": 25633.6331669316,
+					"block": "PASA_P2",
+					"booked": 22596.0,
+					"delay": 3037.63316693158,
+					"distance": 8298.30217481047,
+					"index": 4,
+					"missed": false,
+					"name": "Parassala",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 163.724999998418,
+				"hold": {},
+				"id": "M078",
+				"name": "Kanniyakumari–Thiruvananthapuram Central Mail / Express",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 55,
+				"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Neyyattinkara · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033), Thiruvananthapuram Central–Rameswaram Superfast (S045)",
+				"signal_distance": 35.8903541317644,
+				"signal_id": "KZT-N1",
+				"status": "blocked",
+				"wait_seconds": 2174.49999996836
+			},
+			"head_s": 245.890354131764,
+			"length": 548.56,
+			"next_signal": {
+				"distance": 35.8903541317644,
+				"id": "KZT-N1"
+			},
+			"path": [
+				{
+					"dir": -1,
+					"edge": "KZT_P1"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for KZT-N1",
+			"stop": {
+				"block": "PASA_P2",
+				"direction": -1,
+				"dwell_minutes": 1.0,
+				"minutes_from_origin": 51.6,
+				"name": "Parassala",
+				"s": 243.69021484375
+			}
+		},
+		"S045": {
+			"approaches": [
+				{
+					"distance": 6.50974596586696,
+					"id": "NYY-S2"
+				}
+			],
+			"arrivals": [
+				-1.0,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"calls": [
+				{
+					"block": "TVC_P1",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 0.0,
+					"name": "Thiruvananthapuram Central",
+					"s": 1066.57638671875
+				},
+				{
+					"block": "KZT_P1",
+					"direction": 1,
+					"dwell_minutes": 1.0,
+					"minutes_from_origin": 37.3,
+					"name": "Kulitturai",
+					"s": 794.125153808594
+				},
+				{
+					"block": "NCJ_P1",
+					"direction": 1,
+					"dwell_minutes": 2.0,
+					"minutes_from_origin": 68.3,
+					"name": "Nagercoil Junction",
+					"s": 903.1696484375
+				},
+				{
+					"block": "NCJ_PORTAL_D",
+					"boundary": "exit",
+					"direction": 1,
+					"dwell_minutes": 0.0,
+					"minutes_from_origin": 75.6,
+					"name": "Continues south beyond NCJ",
+					"s": 875.266389160156
+				}
+			],
+			"candidates": [
+				{
+					"available": false,
+					"blockers": [
+						{
+							"kind": "exit_capacity",
+							"resource": "KZT",
+							"train": "M078"
+						},
+						{
+							"kind": "exit_capacity",
+							"resource": "KZT",
+							"train": "L002"
+						}
+					],
+					"cost": 1.14789293412476,
+					"destination": "NYY_AMVA_M0-SA",
+					"eligible": true,
+					"hold": {},
+					"option": {
+						"cost": 944.79573059082,
+						"destination": "NYY_AMVA_M0-SA",
+						"edges": [
+							{
+								"dir": 1,
+								"edge": "NYY_RLEAD_U",
+								"reversed": false,
+								"seen": false,
+								"switch": ""
+							},
+							{
+								"dir": 1,
+								"edge": "NYY_AMVA_M0",
+								"reversed": true,
+								"seen": false,
+								"switch": "NYY_RM"
+							}
+						]
+					},
+					"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Kulitturai",
+					"stop": {}
+				}
+			],
+			"departures": [
+				22472.7999998132,
+				-1.0,
+				-1.0,
+				-1.0
+			],
+			"dispatch": {
+				"alternatives": [
+					{
+						"available": false,
+						"blockers": [
+							{
+								"kind": "exit_capacity",
+								"resource": "KZT",
+								"train": "M078"
+							},
+							{
+								"kind": "exit_capacity",
+								"resource": "KZT",
+								"train": "L002"
+							}
+						],
+						"cost": 1.14789293412476,
+						"destination": "NYY_AMVA_M0-SA",
+						"eligible": true,
+						"hold": {},
+						"option": {
+							"cost": 944.79573059082,
+							"destination": "NYY_AMVA_M0-SA",
+							"edges": [
+								{
+									"dir": 1,
+									"edge": "NYY_RLEAD_U",
+									"reversed": false,
+									"seen": false,
+									"switch": ""
+								},
+								{
+									"dir": 1,
+									"edge": "NYY_AMVA_M0",
+									"reversed": true,
+									"seen": false,
+									"switch": "NYY_RM"
+								}
+							]
+						},
+						"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Kulitturai",
+						"stop": {}
+					}
+				],
+				"blockers": [
+					{
+						"kind": "exit_capacity",
+						"resource": "KZT",
+						"train": "M078"
+					},
+					{
+						"kind": "exit_capacity",
+						"resource": "KZT",
+						"train": "L002"
+					}
+				],
+				"call": {
+					"arrival": 26130.7688440942,
+					"block": "KZT_P1",
+					"booked": 24138.0,
+					"delay": 1992.7688440942,
+					"distance": 20726.694103876,
+					"index": 1,
+					"missed": false,
+					"name": "Kulitturai",
+					"qualified": true
+				},
+				"destination": "",
+				"effective_priority": 155.874999998823,
+				"hold": {},
+				"id": "S045",
+				"name": "Thiruvananthapuram Central–Rameswaram Superfast",
+				"planned_crossing": "",
+				"planned_overtake": "",
+				"priority": 75,
+				"reason": "Expect a wait before Parassala: preserve a crossing platform for opposing services at Kulitturai · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078), Nagercoil Junction–Ernakulam Junction Passenger (L002)",
+				"signal_distance": 6.50974596586696,
+				"signal_id": "NYY-S2",
+				"status": "blocked",
+				"wait_seconds": 1617.49999997646
+			},
+			"head_s": 823.682026495071,
+			"length": 548.56,
+			"next_signal": {
+				"distance": 6.50974596586696,
+				"id": "NYY-S2"
+			},
+			"path": [
+				{
+					"dir": 1,
+					"edge": "NYY_P2"
+				}
+			],
+			"speed": 0.0,
+			"status": "Waiting for NYY-S2",
+			"stop": {
+				"block": "KZT_P1",
+				"direction": 1,
+				"dwell_minutes": 1.0,
+				"minutes_from_origin": 37.3,
+				"name": "Kulitturai",
+				"s": 794.125153808594
+			}
+		}
+	}
+}

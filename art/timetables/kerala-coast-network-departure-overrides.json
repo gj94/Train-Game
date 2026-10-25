@@ -1,0 +1,18 @@
+{
+  "format": "train-game-authored-departure-overrides",
+  "version": 1,
+  "changes": [
+    {
+      "service": "L005",
+      "from": "04:55",
+      "to": "05:20",
+      "reason": "The completed failure audit records a 45-minute origin hold behind M009, then M045, while opposing northern arrivals occupy the single-line approaches. Move the first Ernakulam-Kollam local into a later departure slot; retain every call, running time, dwell, stock and priority. Whole-day acceptance remains required."
+    },
+    {
+      "service": "L033",
+      "from": "05:40",
+      "to": "06:35",
+      "reason": "The pre-disturbance predictive failure shows both Neyyattinkara roads occupied southbound, both Kulitturai roads northbound and M061 awaiting a crossing at Parassala. Move this TVC-Nagercoil local behind the 06:25 VB origin departure to separate the opposing morning clusters. Retain all calls, running times, dwell, stock and priority; this remains an unproven authored candidate until a new complete replay passes."
+    }
+  ]
+}

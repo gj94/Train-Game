@@ -6,7 +6,7 @@ with its existing Standard and Intensive days.
 
 Coastal Network represents a full day of traffic on the Ernakulam–Alappuzha–
 Kollam–Thiruvananthapuram–Nagercoil corridor. It contains 208 services, including
-67 departures between 22:00 and 06:00 and traffic in every hour. Late departures
+66 departures between 22:00 and 06:00 and traffic in every hour. Late departures
 continue after midnight; the last booked arrival is on the following morning.
 
 | Category | Services | Intended character |
@@ -52,6 +52,11 @@ safety event, meet the existing station and signal waiting targets, and record
 real overtakes at different locations. The comparison will report actual ride
 times over matching sections, rather than compare a short local with a much
 longer express journey. Final counts and delays remain pending.
+
+The first operating candidates exposed an admission defect and then morning
+departure conflicts. The admission correction is tested; the current candidate
+moves two local departures, L005 to 05:20 and L033 to 06:35, with all calls,
+stock and dwell retained. Its complete-day acceptance is still pending.
 
 Once installed, try a daylight local, a limited-stop VB, a through working and
 an overnight departure. Compare the Stops and Traffic lists, ride through a
