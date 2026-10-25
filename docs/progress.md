@@ -50,6 +50,22 @@ without changing any of the 208 operating definitions. Twelve controlled moving
 audio cases pass across ICF/LHB/VB, head turns and coordinate shifts; full-scene
 intermittent dropout investigation remains open.
 
+Corrected source `66ab453` is pushed. Eight isolated v2 full-day jobs launched
+once at 04:00:37 and their actual commands/source hashes were verified. Inputs
+remain frozen; complete-day acceptance is pending. The first actual rendered
+passenger sound probe completes 903 capture bins covering an overtake and an
+oncoming train with head rotation, without nearby rolling dropout. A separate
+moving-passenger Forward+ check also passes 720 capture bins, including an
+oncoming train while K1 travels at 98.56 km/h. Both tests retain native clacks
+and no nearby rolling/residency dropout. [Full-scene evidence](../art/performance/realism-2026-10-26/rendered-sound/README.md).
+Physical listening remains a playtest requirement. The gangway help now says
+to keep walking; the full suite again passes all 990 tests. A subsequent cleanup
+of six garbled walking UI separators passes all eleven focused walking tests.
+LHB integration now passes 215 checks with four reviewed Forward+ screens,
+including explicit occupied-interior visibility and finished camera transitions.
+The existing ICF/VB checks were not repeated. Full-day replay acceptance remains
+the outstanding gate before prepared data can be installed.
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

@@ -217,3 +217,58 @@ is still running around the historical Sasthamkotta passing fixture; two earlier
 harness attempts are retained locally as incomplete (compressed-file reader,
 then first-frame audio metadata handling). They are not acceptance evidence.
 Next: commit the tested source and launch the fresh v2 generation once.
+
+## Corrected replay launch and rendered sound, 04:08
+
+Tested source `66ab453` is committed and pushed. Eight v2 jobs launched once at
+04:00:37: the Classic/V2 Network baselines and 600-second K1 disturbances, plus
+four legacy baselines. All sixteen wrapper/child command lines, isolated output
+arguments, modes, 4,839 distinct source hashes and six observer hashes were
+verified. The job record and exact launch verification remain in
+`.local/realism-2026-10-26`. Simulation, routes, packs and preparation observers
+are frozen. No completed v2 audit exists yet; no new data is installed.
+
+The actual rendered Sasthamkotta passenger fixture now completes: 903 quarter-
+second capture bins, with 113 nearby B002 overtake bins and 114 nearby B014
+oncoming bins during full head rotation. Minimum external rolling RMS is
+0.000525/0.000520 respectively, with no nearby residency loss, paused sound,
+receiver-position error or safety event. This uses Compatibility rendering and
+Dummy audio; its two unsupported renderer-feature warnings are retained. The
+historical snapshot is a hashed diagnostic fixture, not current certified data.
+A separate moving-passenger Forward+ probe is running. Neither PCM check
+substitutes for listening on the user's audio device or proves every reported
+intermittent silence is fixed.
+
+## Sound completion and operator guide, 04:24
+
+The moving Forward+ probe completes 720 bins with no failures or stderr. Its
+oncoming B012 interval has 35 nearby bins, both trains at 98.56 km/h, minimum
+external rolling RMS 0.000909 and zero receiver-position error/residency loss.
+Complete raw compressed reports and reviewed screens for both rendered probes
+are archived in `rendered-sound`. The two historical snapshots and original
+catalogue are also retained locally in `rendered-sound-fixtures` before future
+prepared-data replacement. These are measurement fixtures, never new baselines.
+
+Gangway help, controller reference, sound guide and operating-day documentation
+now describe current behavior and clearly mark the 208-day preparation pending.
+The new Network guide records category counts and same-section booked examples.
+All 990 headless tests pass again with empty stderr. After that suite finished,
+six existing mojibake separators in `train_walk.gd` were corrected; all eleven
+focused walking tests pass. No walking mechanics or frozen replay input changed.
+
+The LHB controller harness passed 203 checks, then 209 including explicit
+interior visibility. Its stopped presentation loop and unfinished seat-to-walk
+blend made the first screenshots unsuitable visual evidence. A derived harness
+uses the normal presentation update, waits for the blend and checks the camera
+against the walked position. The final native pass completes **215 checks,
+zero failures, empty stderr**, with four reviewed Forward+ screens. The forward
+post-gangway view correctly faces the berth partition at the turn into the side
+aisle; an additional look-back shows the vestibule. Evidence is in
+`gangways/lhb-followup`. No native, full-suite or audio probe remains running.
+
+`tools/summarize_network_categories.mjs` is intentionally uncommitted pending a
+real completed 208-service acceptance run. It reads exact current-source audits,
+compares actual/booked times on matching corridor sections, and reports all
+full-formation passes by category. Syntax and rejection of the actual failed
+candidate pass; no positive full-day result exists yet. Use alongside, not in
+place of, the existing independent acceptance/finalization tools.

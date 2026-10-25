@@ -34,7 +34,7 @@ func _ready() -> void:
 	_overlay.layer=6
 	add_child(_overlay)
 	_reticle=Label.new()
-	_reticle.text="Â·"
+	_reticle.text="·"
 	_reticle.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	_reticle.add_theme_font_size_override("font_size",26)
 	_reticle.add_theme_constant_override("outline_size",4)
@@ -211,11 +211,11 @@ func update(delta: float) -> void:
 	target=_interaction()
 	var control: String="Y" if game.hud.controller_active else "E"
 	var interact: String="A" if game.hud.controller_active else "Left click"
-	var fallback: String="WAP-7 has no coach gangway Â· use a cab side door at a platform" if game.tv.formation[car].model=="wap7" else "Look toward a seat or an interior doorway"
+	var fallback: String="WAP-7 has no coach gangway · use a cab side door at a platform" if game.tv.formation[car].model=="wap7" else "Look toward a seat or an interior doorway"
 	var action: String=target.get("label",fallback)
-	if target.get("kind","")=="driver": action=control+" Â· "+action
-	elif target.get("kind","")=="seat":action=("A" if game.hud.controller_active else "E")+" Â· "+action
-	elif target.get("kind","") in ["alight","board","door","gangway"]: action=interact+" Â· "+action
+	if target.get("kind","")=="driver": action=control+" · "+action
+	elif target.get("kind","")=="seat":action=("A" if game.hud.controller_active else "E")+" · "+action
+	elif target.get("kind","") in ["alight","board","door","gangway"]: action=interact+" · "+action
 	_prompt.text=action
 
 func _refresh_exits() -> void:
@@ -315,7 +315,7 @@ func _interaction() -> Dictionary:
 		var next: int=car+entry.direction*reverse
 		if next<0 or next>=game.tv.cars.size(): continue
 		if game.tv.formation[car].model=="wap7" or game.tv.formation[next].model=="wap7":
-			return {kind="notice",label="No physical gangway Â· use Go to passenger coach, or the platform at a stop"}
+			return {kind="notice",label="No physical gangway · use Go to passenger coach, or the platform at a stop"}
 		# Do not label a short furniture alcove as the end of the carriage.
 		if absf(entry.point.y)<float(game.tv.specs[car].pitch)*.5-3.0: continue
 		if Gangway.neighbour(game.tv.formation,car,entry.direction)>=0:

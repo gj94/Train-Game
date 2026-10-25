@@ -11,7 +11,7 @@ const PAGES := [
 	["WALKING","Explore the moving train while AI handles the driving.",[
 		["LS / RS","Move / look","Left stick walks and strafes within the carriage. Right stick looks around."],
 		["L3","Walk / run","Click the left stick to toggle running. Triggers never operate traction on foot."],
-		["A","Interact / sit","Use the highlighted seat, door or gangway. At a stopped platform, use a doorway to alight or board."],
+		["A","Interact / sit","Use the highlighted seat or door. Keep walking to cross a connected passenger gangway. At a stopped platform, use a doorway to alight or board."],
 		["Y","Stand / driver seat","Stand from a passenger seat. When walking beside driving controls, sit at them. Hold X separately to take over."],
 		["UP / DOWN","Adjacent carriage","Tap D-pad up toward the loco, down toward the tail. Arrive standing with AI driving, including WAP passenger coaches."],
 		["HOLD ↑ / ↓","Return to locomotive","Hold either vertical D-pad direction to arrive standing at the loco. RB toggles your torch."]]],

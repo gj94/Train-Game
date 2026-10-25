@@ -1,14 +1,16 @@
-> Current development status: the imminent-call ETA correction requires fresh
-> preparation of all four mode/day combinations. Old catalogues correctly fail
-> source compatibility; release R46 remains unchanged while regeneration runs.
+> Current development status, 26 October: boundary services and a receiving-road
+> correction require fresh preparation of all six mode/day combinations. Eight
+> full-day runs, including two Network disturbance audits, are in progress.
+> Incompatible catalogues are rejected. Published R47 remains available.
 
 # Choosing a service at launch
 
 Use **Operating day** to choose **Standard · 100 services** or the separately
 prepared **Intensive · 140 services**, with explicit Classic and optional
-[Predictive V2](predictive-dispatcher.md) choices. All four variants are
-prepared in source with independently verified matching departures, five-minute
-states and reciprocal encounter previews. The published R46 remains unchanged.
+[Predictive V2](predictive-dispatcher.md) choices. The new
+[Coastal Network · 208 services](network-timetable.md) adds through journeys and
+overnight traffic; its prepared departures, five-minute states and traffic
+previews are awaiting complete-day validation before installation.
 Incompatible or unfinished prepared data is rejected, never silently substituted.
 Departure search/sort, Stops,
 Traffic and Explore by time use the selected day. Saved journeys retain their
@@ -26,7 +28,8 @@ or service name. Average speed is track distance between booked stop markers
 divided by origin departure to destination arrival, including intermediate dwell.
 Search also matches intermediate station names. Arrival/departure columns mark
 times after midnight as day 2.
-K1 remains the first/default 08:00 stopping passenger. **Night** filters the
+K1 remains the first/default stopping passenger: 08:00 in Standard/Intensive,
+06:00 in Coastal Network. **Night** filters the
 evening departures so you can begin after dark without replaying the day locally.
 
 Select a row, review the journey, then choose **Drive this service**. The railway

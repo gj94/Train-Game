@@ -1,0 +1,94 @@
+[
+  {
+    "failures": [],
+    "final_clock": 42841.1666666026,
+    "initial_clock": 42599.9999999394,
+    "rotating": true,
+    "safety_events": [],
+    "snapshots_are_historical_fixtures": true,
+    "source": "res://data/timetables/intensive_v2/times/T042600.bin",
+    "source_sha256": "fbf7a0c71db17114612e97ed5a7ed0538e00cfc30aefa739526e372f2bc6f0e4",
+    "target_ids": [
+      "B002",
+      "B014"
+    ],
+    "renderer": "Compatibility",
+    "bins": 903,
+    "raw_report_sha256": "f135ade2d334a304da02e933e64a1e677782716fa868da88be8a0ddde878bac4",
+    "targets": {
+      "B002": {
+        "near_bogie_bins": 113,
+        "near_head_or_tail_bins": 61,
+        "rolling_rms_min": 0.00052485325021673,
+        "rolling_rms_max": 0.0380490198436084,
+        "receiver_error_max": 0.0,
+        "yaw_radians_min": -3.14127707481384,
+        "yaw_radians_max": 3.14157915115356,
+        "own_speed_min": 0.0,
+        "own_speed_max": 0.0,
+        "other_speed_min": 24.6000000000002,
+        "other_speed_max": 24.6000001982107,
+        "nearby_audio_residency_losses": 0,
+        "nearby_rolling_dropouts": 0,
+        "impact_rms_max": 0.018311753037978,
+        "passing_air_rms_max": 0.00440307274609022
+      },
+      "B014": {
+        "near_bogie_bins": 114,
+        "near_head_or_tail_bins": 61,
+        "rolling_rms_min": 0.000519650695313498,
+        "rolling_rms_max": 0.0174140128789113,
+        "receiver_error_max": 0.0,
+        "yaw_radians_min": -3.14148902893066,
+        "yaw_radians_max": 3.13954544067383,
+        "own_speed_min": 0.0,
+        "own_speed_max": 0.0,
+        "other_speed_min": 24.6000000001306,
+        "other_speed_max": 24.6004250017674,
+        "nearby_audio_residency_losses": 0,
+        "nearby_rolling_dropouts": 0,
+        "impact_rms_max": 0.0134632621533827,
+        "passing_air_rms_max": 0.00188096596717225
+      }
+    }
+  },
+  {
+    "command_arguments": [
+      "--script",
+      "res://tools/check_rendered_passenger_sound.gd"
+    ],
+    "failures": [],
+    "final_clock": 41610.8166666205,
+    "initial_clock": 41399.9999999569,
+    "rotating": true,
+    "safety_events": [],
+    "snapshots_are_historical_fixtures": true,
+    "source": "res://data/timetables/intensive_v2/times/T041400.bin",
+    "source_sha256": "d9a9d4aa22e7cabf2c5a3b4cbf10884f304828cb60a306fefbcb37c964dd8a94",
+    "target_ids": [
+      "B012"
+    ],
+    "renderer": "Forward+",
+    "bins": 720,
+    "raw_report_sha256": "bcedfa32294dbac7b5ec8469a95fff1e1eea7f406fc0e2e66f7fae2a036a7f72",
+    "targets": {
+      "B012": {
+        "near_bogie_bins": 35,
+        "near_head_or_tail_bins": 25,
+        "rolling_rms_min": 0.000909036770454628,
+        "rolling_rms_max": 0.0178538029814495,
+        "receiver_error_max": 0.0,
+        "yaw_radians_min": -3.12984013557434,
+        "yaw_radians_max": 3.14095687866211,
+        "own_speed_min": 27.3777777777776,
+        "own_speed_max": 27.3777777777776,
+        "other_speed_min": 27.3777777777776,
+        "other_speed_max": 27.3777777777776,
+        "nearby_audio_residency_losses": 0,
+        "nearby_rolling_dropouts": 0,
+        "impact_rms_max": 0.00990426378492433,
+        "passing_air_rms_max": 0.000745310619116267
+      }
+    }
+  }
+]

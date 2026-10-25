@@ -1,6 +1,6 @@
 # Xbox controller
 
-Current source controls (R45). Xbox 360, One, Series and Elite use Godot's
+Current source controls. Xbox 360, One, Series and Elite use Godot's
 standard layout. Elite paddles follow the controller's own assigned buttons.
 
 Open **Pause → Reference → Controller layout** for separate **Driving**, **Walking**,
@@ -39,7 +39,7 @@ in Pause → Train & camera → Driving actions and on keyboard Space.
 | --- | --- |
 | LS / RS | Walk and strafe / look |
 | L3 | Toggle walk/run |
-| A | Interact, sit in an available passenger seat, use doors and gangways |
+| A | Interact, sit in an available passenger seat, use private doors, board or alight |
 | Y | Stand from a seat, or sit at nearby driver controls |
 | RB | Torch |
 | D-pad Down / Up | Move one passenger carriage toward tail / locomotive, standing |
@@ -50,6 +50,8 @@ Returning to the driver's seat leaves AI enabled until explicit takeover. Taking
 manual control is blocked on foot or in a passenger viewpoint. D-pad transfers
 work in a moving WAP formation despite the lack of a physical locomotive gangway.
 The end of the rake does not wrap. Vertical order follows the active driving end.
+Connected passenger gangways are crossed by walking with LS; no A press or
+viewpoint transfer is needed. You can turn back while between coaches.
 
 At a passenger seat, D-pad Left/Right cycles the row's left head-out, interior and
 right head-out. It preserves the selected coach and seat. Y stands up. At a stopped

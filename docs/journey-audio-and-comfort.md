@@ -35,6 +35,21 @@ power/brake handle ramp is retained; this is not a complete pneumatic brake-pipe
 
 ## Sound
 
+The 26 October development changes make rail sound stronger and less muffled
+near coach ends and gangways, where the neighboring bogies are close. Closed
+coach interiors reduce passing-air noise more than external rail clacks. A rail
+contact processed late now plays its remaining decay instead of discarding an
+otherwise audible strike. The approved sound banks are unchanged.
+
+Controlled ICF/LHB/VB checks and two actual rendered passenger cases retain
+nearby rolling sound throughout head turns. The rendered cases cover a
+stationary passenger being overtaken and crossed, plus two trains meeting at
+about 99 km/h. These are native mixer measurements, not a physical listening
+verdict or proof that every intermittent report is resolved. See the
+[rendered sound evidence](../art/performance/realism-2026-10-26/rendered-sound/README.md).
+Playtest turning toward and away from a passing train, then walk from the saloon
+through a gangway and compare the bogie/clack balance.
+
 - Listener location distinguishes pilot areas, WAP machinery aisle, coach centres,
   open ICF windows and vestibules with open passenger doors. Sealed VB interiors
   attenuate external sources more strongly. Transmission changes smoothly.

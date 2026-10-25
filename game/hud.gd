@@ -14,7 +14,7 @@ Tab cab / exterior · A selected train AI / manual
 [b]CAMERA & PASSENGERS[/b]
 4 pilot seat · Q left head-out / return · Shift+E right head-out / return
 E stand up / sit down near a seat. On foot: WASD walk, Shift run, C crouch, L headlamp.
-Right-drag looks all around; left click uses the seat / doorway / gangway prompt.
+Right-drag looks all around; left click uses a seat or doorway prompt. Keep walking through connected passenger gangways.
 WAP-7 has no coach gangway. At a platform stop: cab side door → platform → coach door.
 9 opens dispatch while walking. Getting up hands driving to AI; sitting does not take it back.
 F follow train · 1 / 2 / 3 visit a station
