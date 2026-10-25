@@ -106,6 +106,13 @@ no timetable is installed and the 208 authored definitions remain unchanged.
 The work record has exact stopped/live process IDs. After installation, playtest
 a portal journey and natural local/express crossings in both Network modes.
 
+The correction/evidence is pushed as `c8dec7d`. Eight genuine v4 replays launched
+once at 05:28:44 and passed launch verification: sixteen actual commands, six
+baseline modes, 4,839 distinct source hashes and all observer hashes, empty stderr.
+Shared inputs remain frozen. Earlier generations are historical partials/failures;
+no compatible timetable is installed yet. Exact jobs and remaining acceptance
+checks are recorded in the work record. R47 remains available.
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

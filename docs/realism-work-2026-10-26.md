@@ -375,3 +375,34 @@ After new data passes and installs, test both Network menu choices, a full
 long-distance journey through either portal, midnight continuation and a natural
 local/express crossing. All six actual prepared choices need native verification.
 The fixed 10:00 deadline and R47 publication remain unchanged.
+
+## Corrected replay generation launched and verified, 05:29
+
+Runtime/evidence commit `c8dec7d` is pushed. After all **995 tests passed**, eight
+new v4 replays launched exactly once at **05:28:44** on that committed source:
+
+| Job | Wrapper / child |
+|---|---|
+| classic-network | 12492 / 5312 |
+| predictive-network | 22192 / 6392 |
+| classic-network-delayed | 13272 / 9192 |
+| predictive-network-delayed | 3536 / 15828 |
+| classic-standard | 13188 / 18312 |
+| predictive-standard | 21980 / 14968 |
+| classic-intensive | 22304 / 14324 |
+| predictive-intensive | 7788 / 1188 |
+
+At 05:29 the launch check verified all sixteen actual command lines, one isolated
+output argument per process, all six baseline modes, **4,839 distinct source
+fingerprints** and the six preparation observer hashes; every stderr is empty.
+See `rehearsal-jobs-v4.json`, `launch-v4-verification.json` and `rehearsals-v4`.
+No suite, diagnostic or native job remains running. Never rerun the launcher or
+duplicate/restart these jobs. Freeze sim/routes/packs and the six observers.
+
+Earlier generations are failed/stopped historical evidence. No new compatible
+data has been installed. Complete-day calls, portal/depot completion, safety,
+wait distributions, spatial passes and actual installed-menu checks remain
+required. Category analysis is still intentionally uncommitted pending a real
+208-service positive result. Do not repeat completed gangway/PCM/native sound
+checks without changes. At 10:00 stop expanding scope and safely checkpoint
+in-flight validation, then remove the continuation automation as authorized.
