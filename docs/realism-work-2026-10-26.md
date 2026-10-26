@@ -3137,3 +3137,23 @@ safety/wait/physical/recovery gates remain unchanged. Network208V2 is not accept
 or installed; runtime9ec3530, approved sound, gangways/portals, legacy certification,
 R47 and pending UI/category files remain unchanged. No new gameplay playtest until
 passing installation. Feasibility and completion ETA remain unproven.
+
+27 October 06:38 — candidate26 V2-only launch verified.
+
+Candidate26 is committed/pushed as 5e7379de. Exactly two original V2 runs were
+launched once at 06:37:37: baseline wrapper 3728 / child 12192 in
+rehearsals-v26/predictive-network with --network --snapshots; delayed wrapper
+16324 / child 14784 in rehearsals-v26/predictive-network-delayed with --network
+--delay=600 --delay-at=27000. All four actual commands/options, unique output
+folders, initial predictive baseline catalogue, 4836 distinct source hashes and
+six observer hashes are verified. Five exact launch files and their raw hash
+manifest are preserved in network-candidate-twenty-six. Verification waited for
+the original baseline catalogue to exist and succeeded without a failed attempt.
+
+At 06:38:30 the baseline reaches 00:20 and delayed 00:40, matching original
+process identities, with empty error logs and no final audits. Partial clocks
+are not acceptance. Do not rerun launch-network-v26.ps1, duplicate or restart.
+Freeze runtime/routes/packs/six observers while either original run lives.
+inspect-current-replays.py now selects v26 first. No Classic208, suite, native,
+search or diagnostic job remains. Network208V2 is unaccepted/uninstalled;
+continue checking these original runs. No new gameplay playtest.
