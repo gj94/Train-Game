@@ -1,0 +1,83 @@
+{
+	"all_cleared": false,
+	"cleared_at": {
+		"L006": 26731.9999997512,
+		"M008": 27065.9999997464
+	},
+	"events": [],
+	"finish": 27135.9999997454,
+	"future_sha256": "fb7f92649b0384e9f58dfe42179ad1199172546eaafcbb94ce05c1af234a22d8",
+	"initial_plans": [
+		{
+			"approach_section": "TVC_single",
+			"created": 25082.5499997752,
+			"direction": 1,
+			"escape_road": "NYY_P2",
+			"escape_section": "NEM_single",
+			"escape_station": "NYY",
+			"escaped": false,
+			"future_road": "NEM_P2",
+			"incoming": "M043",
+			"opponent": "M078",
+			"opponent_received": true,
+			"opponent_road": "NEM_P1",
+			"received": true,
+			"station": "NEM",
+			"vacater": "L021"
+		},
+		{
+			"approach_section": "ALLP_single",
+			"created": 25250.5499997728,
+			"direction": -1,
+			"escape_road": "MAKM_P1",
+			"escape_section": "MAKM_single",
+			"escape_station": "MAKM",
+			"escaped": false,
+			"future_road": "ALLP_P3",
+			"incoming": "M008",
+			"opponent": "L005",
+			"opponent_received": true,
+			"opponent_road": "ALLP_P1",
+			"received": true,
+			"station": "ALLP",
+			"vacater": "S006"
+		}
+	],
+	"initial_roads": {
+		"L006": [
+			"AMPA_P3"
+		],
+		"M008": [
+			"ALLP_P3"
+		],
+		"M045": [
+			"ALLP_P2"
+		],
+		"S028": [
+			"AMPA_P2"
+		]
+	},
+	"input_sha256": "39a95ca8faa1178708226250647aed66e9758ed5bd82fe8c0209018c2ee7a16a",
+	"mode": "predictive",
+	"remaining_plans": [
+		{
+			"approach_section": "ALLP_single",
+			"created": 26615.5499997529,
+			"direction": -1,
+			"escape_road": "MAKM_P1",
+			"escape_section": "MAKM_single",
+			"escape_station": "MAKM",
+			"escaped": false,
+			"future_road": "ALLP_P3",
+			"incoming": "L006",
+			"opponent": "M011",
+			"opponent_received": true,
+			"opponent_road": "ALLP_P1",
+			"received": false,
+			"station": "ALLP",
+			"vacater": "M008"
+		}
+	],
+	"scope": "Limited historical failure-state continuation, not a baseline or complete-day acceptance",
+	"start": 25935.9999997628
+}

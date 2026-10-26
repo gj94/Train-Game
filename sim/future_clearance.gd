@@ -31,7 +31,12 @@ func update(w, engine, discover: bool) -> void:
 			engine._record(w,"crossing_cancelled",p.incoming,"Working ended before its planned arrival at "+p.station)
 			plans.erase(p)
 			continue
-		if p.received and p.escaped and not w.trains[p.opponent].path.any(func(seg):return seg.edge==p.opponent_road):
+		# The promise is fulfilled once all three full formations have arrived.
+		# Waiting for the opponent to depart can keep the vacater's now-empty
+		# escape berth reserved and trap both departures behind that stale claim.
+		# Normal occupation, tail clearance and interlocking protect every later
+		# movement; retiring this transaction grants no route or vacancy.
+		if p.received and p.opponent_received and p.escaped:
 			engine._record(w,"crossing_complete",p.incoming,"Planned platform succession completed at "+p.station)
 			plans.erase(p)
 	if not enabled or not discover or w.time < _next_search: return

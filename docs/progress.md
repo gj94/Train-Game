@@ -189,6 +189,29 @@ hashes and six observers are verified, with empty stderr. The four legacy v5
 runs continue. Whole-day results remain pending; no new build is published.
 
 
+**Sixth Network attempt rejected; shared defect reproduced:** Classic reaches
+07:46:04 (30/208, M043 NEM) and V2 07:12:16 (27/208, M045 ALLP), each 2,702s
+wait and zero safety events. Classic retains a completed NYY crossing promise:
+all three full-arrival flags are true, yet PASA remains reserved for L021 after
+it has reached ERL. This stale claim prevents following/opposing movements.
+All six unfinished baselines were stopped by verified identities before the
+shared source correction; original partials and failed raw evidence are kept.
+[Candidate-six evidence](../art/performance/realism-2026-10-26/network-candidate-six/README.md).
+
+The correction ends the virtual transaction once all three formations arrive,
+leaving every physical signal/occupancy/interlocking check intact. Three new
+regressions fail before/pass after; thirty existing crossing tests pass. The
+full **1,003-test suite passes with zero failures and empty stderr**. Limited
+1,200s continuations
+finished with zero safety events but incomplete recovery: Classic frees V005
+and M043 in 52/128s, three other tracked trains remain; V2 frees L006/M008 but
+M045/S028 remain. Both return `all_cleared: false`; no full-recovery claim.
+The final suite is complete; no diagnostic or full-day job is now active. All six baselines and both Network delayed runs
+will require fresh preparation after the tested correction is committed.
+The 208 authored definitions remain unchanged. No current-source timetable is
+installed or certified; R47 remains published and the 10:00 deadline stands.
+
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

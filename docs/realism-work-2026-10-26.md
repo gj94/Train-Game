@@ -590,3 +590,64 @@ read-only .local/realism-2026-10-26/inspect-current-replays.py for concise mixed
 v5/v6 clocks and final-audit status. No accepted current-source data is installed.
 Do not duplicate or restart any current jobs; do not use earlier failed/partial
 generations. All current acceptance and native-menu gates remain pending.
+
+
+## Completed crossing promises retain stale reservations, 08:13
+
+Both v6 Network delayed runs failed: Classic07:46:04/M043NEM/30of208 and
+V207:12:16/M045ALLP/27of208, each2702s,zero safety. V2 precedes the configured
+manual hold. Read-only saved worlds remain byte-identical. Classic's NYY plan
+has received/opponent_received/escaped all true; vacaterL021 is already atERL,
+yet PASA_P1 and NYY escape corridor stay reserved until opponentL002 departs.
+L002 cannot reach fullNEM, while V005 cannot use physically free PASA_P1.
+This is a shared transaction-lifetime defect, not grounds for more retiming.
+
+Six unfinished baselines stopped by exact child PID/parent/command identities:
+v5Standard12492/13108,11196/7004; Intensive17300/3168,17768/10760;
+v6Network18968/12220,17028/21860. Both delayed jobs already finished. All original
+outputs preserved;42 exact raw evidence files and4839distinct pre-fix source
+hashes verified in network-candidate-six. future_clearance.gd verified against
+pre-fixHEAD bytes, not relabelled as matching the corrected file. Packsunchanged.
+
+Three new tests use the current real layout: completed promises release while
+opponent remains berthed without changing signals/occupancy; restored staleplan
+releases the vacated escapeberth; vacater tail must clear first. All failbefore
+and passafter;30 existingfuturecrossing tests pass. First local prototype used
+an altered historical fixture and correctly failed compatibility, excludedfrom
+validbefore evidence; no signature bypass. Runtimefix only changes completion
+to received AND opponent_received AND escaped; physical interlocking unchanged.
+
+Full1003 suite20300/19764 started08:11:07, logscompleted-plan-full-tests.log/.err;
+freeze runtime/tests until finalresult. Historical1200s checks7124/352 and
+9992/18360 running, diagnostic only. No full-day job. Guardedlaunch-network-v7.ps1
+andverify-launch-v7.py prepared NOTRUN: afterfullpass/archivelogs/docs/explicit
+commitpush, launchall8 once and verifyactualcommands/modes/currenthashes. Do not
+rerunv5/v6. Currentauthoredcandidate-six staysfixed. PendingUI/categorytools await
+acceptedinstalleddata; nofakecatalogues. R47/fixed10AM remain. Atdeadline safely
+checkpoint any unfinished validation rather than claiming certified208traffic.
+
+
+08:15 diagnostic completion: both1200s historical continuations finish with
+zero safety events but all_cleared=false. ClassicV005 clearsinitialroad52s,
+M043128s; L002/L033/M078 remain. V2L006796s,M0081130s; M045/S028 remain. These
+are limited evidence for removing the original stale claim, not full recovery
+or timetable acceptance. Exactoutputs/script archived in candidate-six with
+hashes. Full1003 suite20300/19764 stillrunning/emptystderr, no other jobs.
+Afterfullpass completefinalevidence/docs/commit thenlaunchv7once, notbefore.
+
+
+## Completed crossing fix passes full suite, 2026-10-26T08:20:04+08:00
+
+All1,003 source tests pass, zero failures and empty stderr. The final source and
+three-test file exactly match their archived after-test bytes. Full-suite logs
+are added to candidate-six provenance. Both historical diagnostics have ended;
+keep their incomplete-recovery limits explicit. No running suite or diagnostic
+remains. No current-source prepared timetable is installed.
+
+Commit/push the small runtime correction, three regressions, exact rejected-run
+evidence and these records, excluding pending prepared-UI/category tools and
+unrelated files. Then launch-network-v7.ps1 ONCE and verify-launch-v7.py. All
+eight fresh runs use unchanged candidate-six authored packs. Their source and
+six preparation observers remain frozen during replay. Stop scope expansion at
+10:00, safely checkpoint unfinished validation and delete the automation. R47
+stays available; no executable is published from these incomplete timetable runs.
