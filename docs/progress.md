@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 01:32:03 checkpoint: original v22 V2 baseline2360/13668 remains
+active with matching identity,at11:50 (65/208 complete),empty errors and no
+final audit. Delayed failure evidence remains committed/pushed511eb04a.
+Baseline clocks are partial; no acceptance or recovery claim. Runtime/routes/
+packs/six observers remain frozen until its original outcome. No duplicate,
+restart,Classic208 job,unchanged test rerun or installation. Pending helpers,
+original outputs and unrelated files are preserved.
+
 27 October 01:27 — delayed v22 rejection preserved
 
 At01:27:25 the original baseline2360/13668 identity matches,at11:00
