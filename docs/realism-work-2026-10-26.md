@@ -2946,3 +2946,15 @@ Runtime/routes/packs/six observers remain frozen until both original outcomes.
 Partial clocks and waits do not establish acceptance. Network208V2 remains
 unaccepted/uninstalled. No duplicate/restart, Classic208 work, unchanged tests
 or new gameplay playtest; continue checking the original runs.
+
+## 27 October 05:49 — original v25 runs continue
+
+27 October 05:49:06 checkpoint: original v25 V2 baseline13108/11232 reaches
+09:40 (49/208 complete); delayed22180/19280 reaches12:50 (69/208). Both original
+process identities match, error logs are empty and neither final audit exists.
+The V2 pack and all six observer fingerprints still match launch, using the
+launch proof's UTF-8/LF normalization for observer text. Runtime/routes/packs/
+observers remain frozen until both original outcomes. Partial clocks and waits
+do not establish acceptance; Network208V2 remains unaccepted/uninstalled.
+No duplicate/restart, Classic208 work, unchanged tests or new gameplay playtest;
+continue checking the original runs.
