@@ -134,9 +134,10 @@ eight process identities, single isolated outputs, modes,4,837 current source
 hashes and six observers verify. Initial catalogue timing required one verifier
 retry, without restarting jobs. All inputs are frozen while the original runs
 continue. Both baselines save snapshots; delayed audits hold K1 at07:30 for600s.
-At15:51 all four original identities match, with empty stderr and no final
-audits. Both baselines are at04:50 (14/208), both delayed runs at06:20 (23/208);
-no intervention has occurred. Inputs and observers remain frozen, with no
+At16:02 all four original identities match, with empty stderr and no final
+audits. Both baselines are at06:20 (23/208), both delayed runs at08:10 (33/208).
+The delayed clocks have passed the scheduled intervention window; completed
+audits must still verify the intervention and recovery. Inputs remain frozen, with no
 duplicate jobs or repeated audits.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
