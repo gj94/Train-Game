@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+At 22:10:04, both original candidate20 V2 jobs remain live with verified
+process identities: baseline 20044/380 reaches 02:20 (1/208 complete), and
+delayed 4108/21748 reaches 03:20 (2/208). Both error logs are empty and
+neither final audit exists. These are partial clocks, not acceptance or
+recovery results. No jobs were restarted or added; runtime, routes, packs
+and all six observers remain frozen. Network208V2 remains unaccepted and
+uninstalled. Await both original outcomes before departure-only replanning.
+
 Candidate7d7f91ea is committed/pushed. Exactly two original V2 replays have
 launched once in isolatedv20outputs: baseline20044/380 anddelayed4108/21748
 (wrapper/child). All four actual commands/options, one distinct output per
