@@ -2,6 +2,38 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 04:39:35: original v24 delayed 14452/4928 finished naturally and
+failed M050 at TUVR-N3 at 14:43:20: 84/208 complete, maximum all-location wait
+2702 seconds, station-only maximum 2454 seconds, zero safety events and empty
+run/inspection errors. Candidate24 c71d550c remains unaccepted/uninstalled.
+Seventeen exact raw evidence files, 4836 verified current-at-run source hashes,
+the actual summary and two byte-immutable inspections are preserved under
+`network-candidate-twenty-four/failed-predictive-delayed`. Original outputs remain.
+All-location cumulative counts 239/334,294/334,324/334,333/334 fail the 20/30/45
+minute gates; station counts 121/183,159/183,178/183,183/183 fail 10/20/30.
+Passing fractions apply only to this failed prefix; never round failures up.
+
+M050 left SRTL at 13:48:55.25; the failed signal wait comprises 2100 seconds
+opposing M049/M065/M053 (730/696/674), 546 receiving, 26 blocks and 30 conflicts.
+Actual KUMM claims are M021 P1/M015 P2; both await TUVR capacity for S016/M050.
+Actual TUVR claims are S016 P2/M050 P3/approaching M053 P1. M050/S016 await
+M053 in KUMM_single; M028 at SRTL also waits for TUVR capacity. M049 waits at
+MAKM for S012. M053/M065/M019/S007/S011/S012/S015 move; both inspections have
+no future plans and byte-identical captures. No permanent-deadlock or runtime-defect inference. M019 now leaves ALLP 13:03:17.75 and VAK 14:35:31.75;
+K1/L025 are in NCJ depot (passenger arrivals 13:31:09.15/13:11:10.65). These
+local observations do not prove whole-day improvement or recovery. One V001
+pass of K1 at TVCN is a prefix observation. Eleven K1 minute samples brake
+27.4545764399 metres by 07:31, then preserve extents through 07:40; they are
+not exact controller frames or a recovery certificate.
+
+The original baseline 11988/12204 still runs: 13:40, 74/208 complete, matching
+identities, empty errors and no final audit at 04:39:35. Keep runtime, routes,
+packs and six observers frozen until its outcome; then use both actual queues
+for coordinated departure-only planning. No duplicate/restart, Classic208 run,
+installation, complete-population comparison or unchanged test rerun. Gameplay
+is unchanged; no new playtest is requested. Source hashes are current for24
+and must become historical after a later candidate changes source.
+
 27 October 04:27:32 checkpoint: original v24 V2 baseline (11988/12204)
 reaches 11:20 with 61/208 services complete; delayed (14452/4928) reaches
 14:30 with 83/208 complete. Both original process identities match, error logs
