@@ -14,6 +14,18 @@ it was not rerun for these data edits. Ten exact proof files are preserved in
 [candidate-fifteen evidence](../art/performance/realism-2026-10-26/network-candidate-fifteen/README.md).
 Fresh isolated runs remain required; Network is not accepted or installed.
 
+Candidate `81875feb` is committed/pushed. Four v15 replays launched once at
+17:57:11: Classic baseline 21452/12244, V2 baseline 7968/9656, Classic delayed
+14684/21820 and V2 delayed 22140/3124 (wrapper/child). All eight actual commands
+and options, distinct single output arguments, initial baseline modes, 4,837
+distinct source fingerprints and six observer hashes are verified. Verification
+waited for initial catalogues; no jobs restarted. Five exact launch files are
+archived with hashes. At 17:57 both baselines reach 00:10 and disturbances 00:30,
+with empty stderr and no final audits. These partial clocks do not certify traffic.
+Inputs/observers are frozen while the original jobs run. Baselines save genuine
+snapshots; delayed runs apply a 600-second K1 manual hold at 07:30 and cannot be
+installed. No source suite, native test, authoring search or diagnostic remains.
+
 The user extended the work beyond the original 10:00 deadline and emphasized
 single-line capacity. The previous deadline checkpoint remains historical.
 Plan departure timings around measured section occupation, opposing movements,

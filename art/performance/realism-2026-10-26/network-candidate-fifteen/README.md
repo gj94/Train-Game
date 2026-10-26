@@ -14,3 +14,15 @@ Restoring these four departures recovers each entire predecessor JSON object. Ev
 Normal authoring through 205 overrides and exact --check reproduction pass. All four headless authoring tests pass with empty stderr. Runtime and tests remain unchanged from the completed 1,003-test source suite on candidate ten; the full suite was not rerun for four data timings. Ten exact diagnostic files and their SHA-256 hashes are preserved here. Exact predecessor files remain in candidate-fifteen-before.
 
 Fresh Classic/V2 baselines and 600-second K1 disturbances must meet every unchanged service/call/departure/full-tail completion, safety and both wait-distribution gates. Actual overtakes, matched-section category comparisons, prepared menu/midnight/save-load and independent installation remain required. Network 208 is not accepted or installed. R47, legacy certifications, pending helpers and unrelated files are preserved.
+
+Candidate `81875feb` is committed/pushed. Four v15 replays launched once at
+17:57:11: Classic baseline 21452/12244, V2 baseline 7968/9656, Classic delayed
+14684/21820 and V2 delayed 22140/3124 (wrapper/child). All eight actual commands
+and options, distinct single output arguments, initial baseline modes, 4,837
+distinct source fingerprints and six observer hashes are verified. Verification
+waited for initial catalogues; no jobs restarted. Five exact launch files are
+archived with hashes. At 17:57 both baselines reach 00:10 and disturbances 00:30,
+with empty stderr and no final audits. These partial clocks do not certify traffic.
+Inputs/observers are frozen while the original jobs run. Baselines save genuine
+snapshots; delayed runs apply a 600-second K1 manual hold at 07:30 and cannot be
+installed. No source suite, native test, authoring search or diagnostic remains.
