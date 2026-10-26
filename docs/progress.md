@@ -94,9 +94,13 @@ All four v11 jobs are now finished; [Classic evidence](../art/performance/realis
 preserves13 exact raw files and an immutable inspection with no future plans.
 Current process identities and clocks are in
 `.local/realism-2026-10-26/latest-job-status.json`. Never rerun unchanged failures.
-The next departure-only hypothesis moves L00205:45->05:05, M00605:50->05:20
+Candidate twelve now moves only L00205:45->05:05, M00605:50->05:20
 and L03507:20->06:45 to separate the observed opposing/overtaking waves.
-It must be authored, checked and replayed before any acceptance claim.
+Whole-pack non-departure equality, identical modes, exact normal author
+reproduction and all four headless authoring tests pass with empty stderr.
+Counts remain208 services,70 overnight,3–12/hour; K1 remains06:00.
+[Candidate-twelve proof](../art/performance/realism-2026-10-26/network-candidate-twelve/README.md).
+This candidate needs new genuine baseline and disturbed replays before acceptance.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.

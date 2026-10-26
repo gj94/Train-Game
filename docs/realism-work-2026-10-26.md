@@ -1328,3 +1328,17 @@ unchanged. These are timetable hypotheses, not guarantees or forced pass sites.
 Check exact author reproduction and headless authoring guards, then commit and
 launch a new isolated generation once. Runtime/tests remain unchanged from1003
 passing source tests; preserve all failed evidence and pendingUI/category files.
+
+## Candidate twelve authored and guarded
+
+The three planned departure edits are authored through the normal205override
+pipeline. Restoring only L002/L035/M006 departures exactly recovers each whole
+predecessor pack; both predecessor byte hashes match committed candidate eleven.
+All other fields and identical Classic/V2 services remain, K106:00,L01508:15,
+L02407:40.208 services/168boundary/70overnight/3-12starts perhour, category mix
+40local/104mail/56SF/8VB unchanged. Exact --check reproduction and all4headless
+authoring tests pass with empty stderr. No runtime/tests/observer edits or new
+full suite; existing1003source result remains explicit. Nine raw evidence files
+archived. Candidate remains unaccepted. Guarded v12 launcher/verifier prepared
+but NOT RUN; commit/push tested data first, then launch four isolated jobs ONCE.
+All earlier jobs/diagnostics are finished. Preserve pendingUI/category/unrelated.

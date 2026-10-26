@@ -1,0 +1,121 @@
+{
+  "identical_modes": true,
+  "K1": "06:00",
+  "packs": [
+    {
+      "pack": "kerala-coast-network.json",
+      "sha256": "ca093993a309c7c0818c7b759105c6d3a8573cbf71c896d87ddcebf320925b4e",
+      "predecessor_sha256": "7acbd287f9c856a9853ad929c8a864b1e5cc786ed4c4c1415fb2ac16a3e2b28e",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "L002",
+          "before": "05:45",
+          "after": "05:05"
+        },
+        {
+          "id": "L035",
+          "before": "07:20",
+          "after": "06:45"
+        },
+        {
+          "id": "M006",
+          "before": "05:50",
+          "after": "05:20"
+        }
+      ],
+      "services": 208,
+      "categories": {
+        "local": 40,
+        "mail": 104,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 70,
+      "hourly": [
+        10,
+        8,
+        4,
+        7,
+        9,
+        11,
+        7,
+        6,
+        9,
+        12,
+        10,
+        9,
+        11,
+        6,
+        9,
+        9,
+        11,
+        8,
+        12,
+        9,
+        3,
+        7,
+        9,
+        12
+      ]
+    },
+    {
+      "pack": "kerala-coast-network-v2.json",
+      "sha256": "99a225d5961359b72de1c920c5650b6f2af225bf818024bcbb297c44e66cc74e",
+      "predecessor_sha256": "09a8f58cc18d09a48f954cccb18103bce36b19f276a8901113681a254fb13c63",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "L002",
+          "before": "05:45",
+          "after": "05:05"
+        },
+        {
+          "id": "L035",
+          "before": "07:20",
+          "after": "06:45"
+        },
+        {
+          "id": "M006",
+          "before": "05:50",
+          "after": "05:20"
+        }
+      ],
+      "services": 208,
+      "categories": {
+        "local": 40,
+        "mail": 104,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 70,
+      "hourly": [
+        10,
+        8,
+        4,
+        7,
+        9,
+        11,
+        7,
+        6,
+        9,
+        12,
+        10,
+        9,
+        11,
+        6,
+        9,
+        9,
+        11,
+        8,
+        12,
+        9,
+        3,
+        7,
+        9,
+        12
+      ]
+    }
+  ],
+  "override_count": 205
+}

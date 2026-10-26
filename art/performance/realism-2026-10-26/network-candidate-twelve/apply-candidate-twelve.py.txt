@@ -1,0 +1,44 @@
+from pathlib import Path
+import hashlib, json, shutil, subprocess
+
+root = Path('D:/ClaudeWS/train-game')
+local = root / '.local/realism-2026-10-26'
+archive = local / 'candidate-twelve-before'
+assert not archive.exists(), 'Application already started; inspect instead of repeating'
+shell = 'C:/Users/Gokul/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe'
+active = subprocess.check_output([shell, '-NoProfile', '-Command',
+    "@(Get-CimInstance Win32_Process | Where-Object { $_.Name -like 'Godot*' -and ($_.CommandLine -like '*--script res://tools/prepare_timetable_variant.gd*' -or $_.CommandLine -like '*--script res://tests/run_tests.gd*') }).Count"], text=True).strip()
+assert active == '0', active
+paths = [root / 'art/timetables' / n for n in ['kerala-coast-network.json', 'kerala-coast-network-v2.json', 'kerala-coast-network-departure-overrides.json']]
+packs = [json.loads(p.read_text(encoding='utf-8')) for p in paths[:2]]
+assert packs[0]['services'] == packs[1]['services']
+expected = {'L002': ('05:45', '05:05'), 'M006': ('05:50', '05:20'), 'L035': ('07:20', '06:45')}
+services = {s['id']: s for s in packs[0]['services']}
+for id, (before, after) in expected.items():
+    assert services[id]['departure'] == before
+assert services['K1']['departure'] == '06:00'
+overrides = json.loads(paths[2].read_text(encoding='utf-8'))
+reasons = {
+    'L002':'Move the northbound local earlier than the observed ERL/NEM opposing wave; preserve calls and physical performance.',
+    'M006':'Increase the mail lead ahead of S030 and move its AMPA approach before the observed K1/opposing queue.',
+    'L035':'Separate the southbound local from M047/M061 around the observed L024 KZT receiving-space conflict.'}
+for id, (before, after) in expected.items():
+    rows = [r for r in overrides['changes'] if r['service'] == id]
+    assert len(rows) <= 1
+    if not rows:
+        row = dict(service=id, **{'from':before}, to=after, reason='')
+        overrides['changes'].append(row)
+    else:
+        row=rows[0]
+    row['to']=after
+    row['reason']='Network candidate twelve: observed v11 queue repair, departure only. '+reasons[id]+' This is an unaccepted hypothesis pending complete baseline and disturbance replays.'
+archive.mkdir()
+for p in paths:
+    shutil.copyfile(p, archive / p.name)
+paths[2].write_bytes((json.dumps(overrides, ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
+(local / 'candidate-twelve-plan.json').write_bytes((json.dumps(dict(
+    predecessors={p.name: hashlib.sha256((archive / p.name).read_bytes()).hexdigest() for p in paths},
+    changes=[dict(service=id, before=b, after=a) for id, (b, a) in expected.items()],
+    evidence_commit='c65925e8', status='Departure-only candidate; no traffic acceptance'
+), ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
+print('Updated three overrides only; packs await normal authoring')
