@@ -1,0 +1,68 @@
+[
+  {
+    "day": "classic-network",
+    "pid": 3816,
+    "started": "2026-10-26T19:51:50.1816320+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v18/classic-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "9559f4f707609b0ed3a89da90d9a559bcb67a349",
+    "status": "running",
+    "reason": "Candidate eighteen changes only S03004:20->04:50 and L00604:40->04:05 based on completed v17 PASA/KZT and ALLP/MAKM opposing and receiving queues; actual full-day gates remain required",
+    "pack_sha256": "c58cb99cb34dda4d79d06db5f418d5956527c928c918a983e1c83947490c657d",
+    "child_pid": 13752
+  },
+  {
+    "day": "predictive-network",
+    "pid": 22532,
+    "started": "2026-10-26T19:51:50.2434131+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v18/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "9559f4f707609b0ed3a89da90d9a559bcb67a349",
+    "status": "running",
+    "reason": "Candidate eighteen changes only S03004:20->04:50 and L00604:40->04:05 based on completed v17 PASA/KZT and ALLP/MAKM opposing and receiving queues; actual full-day gates remain required",
+    "pack_sha256": "cdd878e6c4df3cb7d52b31f99571a26543eb59526f45fa50afed817f889c7ee3",
+    "child_pid": 11016
+  },
+  {
+    "day": "classic-network-delayed",
+    "pid": 13112,
+    "started": "2026-10-26T19:51:50.2720016+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v18/classic-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "9559f4f707609b0ed3a89da90d9a559bcb67a349",
+    "status": "finished-rejected",
+    "reason": "Candidate eighteen changes only S03004:20->04:50 and L00604:40->04:05 based on completed v17 PASA/KZT and ALLP/MAKM opposing and receiving queues; actual full-day gates remain required",
+    "pack_sha256": "c58cb99cb34dda4d79d06db5f418d5956527c928c918a983e1c83947490c657d",
+    "child_pid": 460
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 10336,
+    "started": "2026-10-26T19:51:50.2993773+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v18/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "9559f4f707609b0ed3a89da90d9a559bcb67a349",
+    "status": "running",
+    "reason": "Candidate eighteen changes only S03004:20->04:50 and L00604:40->04:05 based on completed v17 PASA/KZT and ALLP/MAKM opposing and receiving queues; actual full-day gates remain required",
+    "pack_sha256": "cdd878e6c4df3cb7d52b31f99571a26543eb59526f45fa50afed817f889c7ee3",
+    "child_pid": 9808
+  }
+]

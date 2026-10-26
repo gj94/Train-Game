@@ -2,6 +2,19 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+The original v18 Classic delayed run13112/460 ended naturally and failed
+S030 at PASA-N1 06:35:52,23/208 complete,2,702s extra wait,zero safety and empty
+stderr. It ended before the planned07:30hold, so no actual intervention or
+recovery occurred.13 exact raw files,4,836 current source hashes and a byte-
+immutable inspection are preserved in [Classic delayed failure evidence](../art/performance/realism-2026-10-26/network-candidate-eighteen/failed-classic-delayed/README.md).
+All-location77/106,97/106,103/106,105/106 failsunder30/45. Station-only
+51/70,64/70,69/70,70/70 passes only this failed prefix, not the whole day.
+S030's wait is1,460s NYY receiving,1,216s opposing M077/S027/M079 occupation
+and26s conflicts. NYY claims L034P1/M079P2;L034 waits for NEM's L033/L021.
+Several trains move; no future plans remain. No permanent-deadlock/runtime-
+defect claim. Both baselines and V2 delayed remain pending; inputs/observers
+stay frozen. Network208 remains unaccepted and uninstalled.
+
 At20:15:00 all four original v18 wrapper/child identities match, stderr is
 empty and no final audits exist. Classic/V2 baselines reach04:50 with15/208
 and16/208 complete respectively. Classic delayed reaches06:20 (23/208),
