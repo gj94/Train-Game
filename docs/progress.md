@@ -171,8 +171,8 @@ complete,zero safety,empty stderr after the hold. Station under10 and both
 under45 gates fail. [Exact V2 disturbed evidence](../art/performance/realism-2026-10-26/network-candidate-fourteen/failed-predictive-delayed/README.md)
 preserves13 raw files and4,836 verified source hashes. Its inspection is
 immutable,with one active SRTL crossing plan and several moving trains.
-At17:20 both original baseline identities match,emptyerrs,noaudits: Classic
-08:20(35/208),V208:30(36/208). Await their final outcomes before departure-only
+At17:25 both original baseline identities match,emptyerrs,noaudits: Classic
+09:10(42/208),V209:10(43/208). Await their final outcomes before departure-only
 repair. Inputs and six observers remain frozen.
 Do not duplicate or restart these original jobs; inspector followsv14.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
