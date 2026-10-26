@@ -2569,3 +2569,13 @@ exists. Partial clocks and wait maxima do not establish acceptance or recovery.
 The original jobs continue with runtime, routes, packs and six observers frozen.
 No duplicate, restart, Classic208 work, unchanged tests or installation occurred.
 Network208V2 remains unaccepted and uninstalled pending the actual final reports.
+
+## 27 October 02:43 — original v23 jobs continue
+
+27 October 02:43:03 checkpoint: original v23 V2 baseline 8580/19068 has
+reached 09:30 (48/208 complete); delayed 832/10968 has reached 12:50 (69/208).
+Both process identities match, both error logs are empty and neither final audit
+exists. The delayed clock is beyond candidate22's failure time, but this partial
+run is not a complete-population improvement or recovery certificate. Runtime,
+routes, packs and six observers remain frozen. No duplicate, restart, Classic208
+work, unchanged tests or installation occurred. Network208V2 remains unaccepted.
