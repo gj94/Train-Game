@@ -1945,3 +1945,21 @@ improvement or reliable completion ETA is claimed. Await both V2 outcomes, then
 coordinate opposing departure groups across connected single-line sections
 using actual queues rather than continuing isolated one-train fixes. Preserve
 all non-departure fields, identical modes, K1 and every acceptance gate.
+
+## v18 V2 delayed failure after intervention
+
+The original v18 V2 delayed run10336/9808 finished naturally and failed V001
+at MAKM-S3 09:30:08 after the600s K1hold:47/208complete,2,702s extra wait,
+2,454s station maximum,zero safety,empty stderr.13 exact raw files and4,836
+current-at-run sources are preserved in [V2 delayed failure evidence](../art/performance/realism-2026-10-26/network-candidate-eighteen/failed-predictive-delayed/README.md).
+All-location137/197,178/197,190/197,196/197 failsunder10/30/45; station-only
+75/119,105/119,114/119,119/119 failsunder10/20/30. These are failed prefixes;
+137/197 is below70%, never rounded up. V001's failed wait is1,254s opposing,
+1,150s receiving,184s blocks,114s conflicts. Immutable inspection: ALLPclaims
+S006P1/S009P2/L002P3,no futureplans,several trains move. No permanent-deadlock
+or runtime-defect inference. K1 minute samples brake27.4546m by07:31 then
+remain unchanged through07:40; sampled extents are not exact controllerframes.
+No recovery/full-day certificate or installation. The original V2 baseline
+22532/11016 remains running,08:10 (33/208) at20:36:16,matching identity,empty
+stderr,no audit. Inputs remain frozen until its outcome; then coordinate
+opposing departure groups using actual queues. Legacy readiness is unchanged.
