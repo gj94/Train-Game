@@ -1362,3 +1362,27 @@ certifications unchanged,Network unavailable,R47 preserved. PendingUI/category
 and unrelated files remain outside coherent committed work. Need original full
 acceptance gates, independent baseline installations and actualcategory/native/
 midnight/save-load checks before declaring ready.
+
+
+## Candidate twelve V2 delayed run rejected before intervention, 15:12
+
+The original 2636/8496 pair finished naturally at 06:38:42 with S025 waiting
+2,702 seconds at PASA-S2. Only 24/208 services complete, zero safety events,
+empty stderr. It never reaches the scheduled 07:30 manual K1 hold. All-location
+under30 is 111/114 and under45 is 113/114, both failed; station-only gates pass
+within this failed prefix, maximum1,810 seconds. No full-day or recovery claim.
+
+S025 records2,242 seconds of Kulitturai roads reserved for S030/L022,446 seconds
+of opposing L002 occupation and14 seconds of route conflict. Read-only inspection
+is byte-immutable with no future plans: S025/M077 occupy both Parassala roads,
+S030 waits at KZT-N2 for Parassala, L022 waits before Kulitturai while preserving
+Parassala crossing space. All eight inspected trains are stopped at this instant;
+no permanent-deadlock or runtime-defect conclusion from one snapshot. Wider
+NYY/NEM receiving queues are preserved in the raw evidence.
+
+Thirteen exact raw files, the V2 pack and4,836 current source hashes verified;
+lossless failed-predictive-delayed evidence is archived under candidate twelve.
+No source/packs/observers changed, no full suite repeated, no Network install.
+Both original baselines and Classic delayed remain live; await actual results
+before selecting departure-only repairs. Preserve all earlier evidence, pending
+UI/category helpers, legacy certifications and R47. No diagnostic remains running.

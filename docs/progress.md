@@ -102,13 +102,15 @@ Counts remain208 services,70 overnight,3–12/hour; K1 remains06:00.
 [Candidate-twelve proof](../art/performance/realism-2026-10-26/network-candidate-twelve/README.md).
 Candidatec8856a27 is pushed. Four v12 jobs launched once at14:42; actual eight
 commands, distinct outputs, both baseline modes,4,837 current source fingerprints
-and six observer hashes verify. All stderr is empty and no final audits exist.
-Runtime/routes/packs/observers are frozen until these runs finish. The candidate
-still needs genuine whole-day baseline and disturbed acceptance.
-At the 14:59 checkpoint, all four original process identities still match,
-with empty stderr and no final audits. Both baselines are at 04:00 (3/208);
-both delayed runs are at 05:20 (15/208), before the planned 07:30 intervention.
-These partial runs establish neither full-day acceptance nor disturbance recovery.
+and six observer hashes verify. The V2 delayed run has now failed S025 at
+Parassala, 06:38:42: 2,702 seconds of extra waiting, 24/208 services completed,
+zero safety events and empty stderr. This occurs before its scheduled 07:30
+manual hold. All-location under-30 and under-45 gates fail; station-only gates
+pass only within this failed prefix. [Exact failure evidence](../art/performance/realism-2026-10-26/network-candidate-twelve/failed-predictive-delayed/README.md)
+preserves 13 raw files and an immutable inspection with 4,836 verified hashes.
+Both original baselines and the Classic delayed replay remain running. Keep
+runtime/routes/packs/observers frozen and await their results before retiming.
+No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.
