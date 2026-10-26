@@ -30,3 +30,12 @@ service, call, departure, full-tail completion, safety and both wait-distributio
 gates before installation. Actual category/menu/midnight/save-load validation
 also remains required. Network data is unaccepted; R47 and legacy prepared data
 remain available.
+
+
+The tested candidate is committed as e81de25a. Four isolated v13 runs launched
+once at15:28:43. Wrapper/child pairs: Classic12028/21668,V25080/14780,
+Classic delayed1180/18720,V2 delayed18248/10524. Actual eight commands/options,
+separate single output arguments, baseline modes,4,837 distinct current source
+hashes and six observer hashes are verified. An initial verifier attempt occurred
+before catalogue creation; its retry passed without restarting jobs. Five exact
+launch files are archived with hashes. Inputs stay frozen throughout the replays.

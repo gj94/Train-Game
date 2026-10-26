@@ -1455,3 +1455,23 @@ Prepared launch-network-v13.ps1 and verifier, NOT RUN; commit/push tested inputs
 before launching four new isolated actual replays once. Old v12 fingerprints
 are historical after pack change; never relabel. PendingUI/category/unrelated
 preserved. No suite/diagnostic remains active.
+
+
+## Candidate thirteen committed; v13 launched once at15:28
+
+Candidatee81de25a committed/pushed after9raw evidence and both stagedpack hashes
+verify. Launch-network-v13.ps1 ran once15:28:43. Wrapper/child pairs:
+Classic12028/21668,V25080/14780,Classicdelay1180/18720,V2delay18248/10524.
+All8actualcommands/options,single distinctoutputs,baseline modes,4,837distinct
+source fingerprints and6observerhashes verify. First verifier was before initial
+catalogue creation; retry passed, no jobs restarted. Five exact launchfiles archived.
+Inspector now follows existingv13. Do not relaunch,duplicate or restart.
+
+Freeze runtime/routes/packs/sixobservers throughout the four runs. No suite,
+native,authoringsearch,diagnostic or Git operation remains aftercheckpoint.
+All v12 failures preserved:084590b0(V2delayed),55a0aa8b(Classicdelayed),
+21314ee5(V2baseline),6407d5a9(Classicbaseline). Old fingerprints are historical
+following the new pack;never relabel. Existing1003source/fourauthorchecks stand.
+Network unaccepted/uninstalled,R47/legacycertifications and pendingUI/category/
+unrelated files preserved. Need genuine complete-day gates,independentinstall,
+actual category/menu/midnight/save-load before readiness.

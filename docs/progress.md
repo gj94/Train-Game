@@ -129,6 +129,11 @@ All 208 services,70 overnight origins and K1 06:00 remain. Exact normal author
 reproduction and four headless authoring checks pass with empty stderr.
 [Candidate-thirteen proof](../art/performance/realism-2026-10-26/network-candidate-thirteen/README.md).
 The runtime/tests remain unchanged from 1,003 passed; no full suite was repeated.
+Candidate e81de25a is pushed. Four v13 runs launched once at15:28:43; all
+eight process identities, single isolated outputs, modes,4,837 current source
+hashes and six observers verify. Initial catalogue timing required one verifier
+retry, without restarting jobs. All inputs are frozen while the original runs
+continue. Both baselines save snapshots; delayed audits hold K1 at07:30 for600s.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
