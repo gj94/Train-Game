@@ -2,9 +2,9 @@
 
 ## 26 October 2026 — user resumed work until ready
 
-At 22:10:04, both original candidate20 V2 jobs remain live with verified
-process identities: baseline 20044/380 reaches 02:20 (1/208 complete), and
-delayed 4108/21748 reaches 03:20 (2/208). Both error logs are empty and
+At 22:16:14, both original candidate20 V2 jobs remain live with verified
+process identities: baseline 20044/380 reaches 03:40 (2/208 complete), and
+delayed 4108/21748 reaches 04:50 (16/208). Both error logs are empty and
 neither final audit exists. These are partial clocks, not acceptance or
 recovery results. No jobs were restarted or added; runtime, routes, packs
 and all six observers remain frozen. Network208V2 remains unaccepted and
