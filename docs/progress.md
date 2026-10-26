@@ -2,12 +2,18 @@
 
 ## 26 October 2026 — user resumed work until ready
 
-At19:21:59, all four original v17 process identities match, stderr is empty
-and no final audits exist. Both baselines reach03:20 (2/208 complete); Classic
-delayed reaches04:30 (10/208), V2 delayed04:20 (7/208), before the planned07:30
-intervention. Runtime, routes, packs and six observers remain frozen. No jobs
-were duplicated or restarted and no unchanged checks were repeated. Partial
-runs are not acceptance; Network208 remains unaccepted and uninstalled.
+Both original v17 V2 runs ended naturally and failed M045 at PASA05:06:26,
+16/208complete,2,702s extra wait,zero safety,empty stderr,before the planned
+07:30 hold. Their entire service records,both wait lists and traffic bytes
+match within this failed prefix only.24 exact raw files,4,836 current source
+hashes per report and two immutable inspections are preserved in
+[V2 failure evidence](../art/performance/realism-2026-10-26/network-candidate-seventeen/failed-predictive-runs/README.md).
+All-location55/59,58/59,58/59,58/59 failsunder45;station35/38,37/38,37/38,37/38
+failsunder30/45. M045 leaves NYY04:09:46.30 then reachesPASA04:20:11.70 without
+departure:1,690s opposing occupation,976s KZT receiving reservations,36s conflicts.
+No future plans remain;several trains move. No recovery,whole-day acceptance,
+permanent-deadlock or runtime-defect claim. The two original Classic runs are
+still pending; inputs/observers remain frozen and Network remains uninstalled.
 
 Candidate seventeen changes only M100 03:05→02:00 and M078 03:20→02:10.
 These northbound mails move ahead of S026/M092/M076, aiming to create a gap
