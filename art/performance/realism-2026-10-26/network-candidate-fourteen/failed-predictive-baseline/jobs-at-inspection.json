@@ -1,0 +1,68 @@
+[
+  {
+    "day": "classic-network",
+    "pid": 19884,
+    "started": "2026-10-26T16:32:06.3430345+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v14/classic-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "433be026def6b81b01db4d69c33ea0e572521209",
+    "status": "finished-rejected",
+    "reason": "Candidate fourteen changes only L02407:40->09:20 and L01508:15->10:05 to move origins outside observed opposing/receiving waves; actual full-day gates remain required",
+    "pack_sha256": "1e11ceaeb40a783f872026494674e35a396eb804d6ab74b4ab28ab70b7a03e03",
+    "child_pid": 3816
+  },
+  {
+    "day": "predictive-network",
+    "pid": 22452,
+    "started": "2026-10-26T16:32:06.4047590+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v14/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "433be026def6b81b01db4d69c33ea0e572521209",
+    "status": "finished-rejected",
+    "reason": "Candidate fourteen changes only L02407:40->09:20 and L01508:15->10:05 to move origins outside observed opposing/receiving waves; actual full-day gates remain required",
+    "pack_sha256": "3ce1ba3d917162d4f6ff0d5669ebd1d3f973127520bf22c9ff0ad7c3a6f2f138",
+    "child_pid": 10152
+  },
+  {
+    "day": "classic-network-delayed",
+    "pid": 18440,
+    "started": "2026-10-26T16:32:06.4349825+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v14/classic-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "433be026def6b81b01db4d69c33ea0e572521209",
+    "status": "finished-rejected",
+    "reason": "Candidate fourteen changes only L02407:40->09:20 and L01508:15->10:05 to move origins outside observed opposing/receiving waves; actual full-day gates remain required",
+    "pack_sha256": "1e11ceaeb40a783f872026494674e35a396eb804d6ab74b4ab28ab70b7a03e03",
+    "child_pid": 20884
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 22416,
+    "started": "2026-10-26T16:32:06.4623506+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v14/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "433be026def6b81b01db4d69c33ea0e572521209",
+    "status": "finished-rejected",
+    "reason": "Candidate fourteen changes only L02407:40->09:20 and L01508:15->10:05 to move origins outside observed opposing/receiving waves; actual full-day gates remain required",
+    "pack_sha256": "3ce1ba3d917162d4f6ff0d5669ebd1d3f973127520bf22c9ff0ad7c3a6f2f138",
+    "child_pid": 6768
+  }
+]

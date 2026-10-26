@@ -176,11 +176,14 @@ Classic baseline also finishes rejected at09:34:44: M008 atAMPA waits2,702s,
 gates fail. [Exact Classic baseline evidence](../art/performance/realism-2026-10-26/network-candidate-fourteen/failed-classic-baseline/README.md)
 preserves13 raw files,4,836 verified hashes and an immutable inspection with no
 future plans. Several trains move; M064 has reached the ERS approach in this
-run. At17:35 only original V2 baseline22452/10152 remains live,11:00(59/208),
-identitymatches,emptyerrs,noaudit. Await its final outcome before departure-only
-repair. Inputs and six observers remain frozen.
-Do not duplicate or restart these original jobs; inspector followsv14.
-No full-day acceptance or disturbance-recovery claim follows from partial runs.
+run. The original V2 baseline also finishes rejected at11:28:50: S047 waits2,702s
+atNEM-S1,62/208 complete,zero safety,empty stderr. All-location under45 fails;
+station-only prefix passes do not waive it. [Exact V2 baseline evidence](../art/performance/realism-2026-10-26/network-candidate-fourteen/failed-predictive-baseline/README.md)
+preserves13 raw files,4,836 verified hashes and an immutable inspection with no
+future plans. L024/M068 occupy or approach NYY receiving roads while opposing
+trains clear toward TVC; multiple trains move. All four v14 runs are now finished
+and rejected. Inspect these actual queues before departure-only replanning;
+never rerun unchanged failures or install their partial outputs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.

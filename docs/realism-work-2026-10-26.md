@@ -1621,3 +1621,17 @@ At17:35 originalV2baseline22452/10152 remainslive11:00,59/208,identitymatches,
 emptyerr,noaudit. Await its outcome before altering frozen departures/observers.
 No duplicate jobs,source/test edits,repeated suite or installations. Network
 unaccepted;R47,legacycertifications,pendingUI/category/unrelatedpreserved.
+
+## All v14 runs finished rejected
+
+OriginalV2baseline22452/10152 ends naturally11:28:50: S047NEM-S1 wait2,702s,
+62/208finished,zero safety,emptyerr,withoutmanualhold. All-location cumulative
+249/329,307/329,326/329,328/329 failsunder45;station124/171,158/171,170/171,
+171/171 passes onlywithinprefix,max2040s,not a waiver. S047wait1796s opposing
+S032/M048/M050/M084,858receiving/onwardPASAprotection,48conflicts. Immutable
+inspection,no futureplans:L024NYYP2awaitsM068approachingP1,L036PASAwaitS050;
+M048,M050,S032,M068,L025,L026move,M084returnsTVCdepot. No permanent-deadlock/
+runtime-defect conclusion.13exactrawfiles/4836currenthashespreserved in
+network-candidate-fourteen/failed-predictive-baseline. Allv14jobsfinished;
+do not rerun unchanged. No Networkacceptance/installation. Plan only departure
+repairs from actualqueueevidence,preserve all otherfields and source/testguards.
