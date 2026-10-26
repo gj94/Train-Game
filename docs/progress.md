@@ -2,6 +2,26 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+The original v18 Classic baseline3816/13752 also ended naturally and failed
+S030 at PASA-N1 06:35:52 without a manual hold:23/208 complete,2,702s maximum
+extra wait,1,912s station maximum,zero safety,empty stderr.14 exact raw files,
+4,836 current-at-run source hashes and an immutable inspection are preserved
+in [Classic baseline failure evidence](../art/performance/realism-2026-10-26/network-candidate-eighteen/failed-classic-baseline/README.md).
+Classic baseline/delayed full service records,both wait lists and traffic bytes
+match only these failed prefixes before intervention. Both fail all-location
+under30/45; station-only targets pass only the prefix. No recovery certificate,
+whole-day equivalence or permanent-deadlock/runtime-defect claim. Both original
+V2 runs remain live at20:27:12:baseline06:40 (25/208),delayed08:40 (37/208),
+identities match,empty stderr,no final audit. Inputs remain frozen.
+
+The user asked whether this is solvable, whether progress is real, and for an
+ETA. A feasible208-service day within all wait gates is still unproven. Local
+M045/L006 improvements coexist with a Classic S030 failure; no steady whole-day
+improvement or reliable completion ETA is claimed. Await both V2 outcomes, then
+coordinate opposing departure groups across connected single-line sections
+using actual queues rather than continuing isolated one-train fixes. Preserve
+all non-departure fields, identical modes, K1 and every acceptance gate.
+
 The original v18 Classic delayed run13112/460 ended naturally and failed
 S030 at PASA-N1 06:35:52,23/208 complete,2,702s extra wait,zero safety and empty
 stderr. It ended before the planned07:30hold, so no actual intervention or

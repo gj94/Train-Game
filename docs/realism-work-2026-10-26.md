@@ -1923,3 +1923,25 @@ and26s conflicts. NYY claims L034P1/M079P2;L034 waits for NEM's L033/L021.
 Several trains move; no future plans remain. No permanent-deadlock/runtime-
 defect claim. Both baselines and V2 delayed remain pending; inputs/observers
 stay frozen. Network208 remains unaccepted and uninstalled.
+
+## v18 Classic baseline failure and progress assessment
+
+The original v18 Classic baseline3816/13752 also ended naturally and failed
+S030 at PASA-N1 06:35:52 without a manual hold:23/208 complete,2,702s maximum
+extra wait,1,912s station maximum,zero safety,empty stderr.14 exact raw files,
+4,836 current-at-run source hashes and an immutable inspection are preserved
+in [Classic baseline failure evidence](../art/performance/realism-2026-10-26/network-candidate-eighteen/failed-classic-baseline/README.md).
+Classic baseline/delayed full service records,both wait lists and traffic bytes
+match only these failed prefixes before intervention. Both fail all-location
+under30/45; station-only targets pass only the prefix. No recovery certificate,
+whole-day equivalence or permanent-deadlock/runtime-defect claim. Both original
+V2 runs remain live at20:27:12:baseline06:40 (25/208),delayed08:40 (37/208),
+identities match,empty stderr,no final audit. Inputs remain frozen.
+
+The user asked whether this is solvable, whether progress is real, and for an
+ETA. A feasible208-service day within all wait gates is still unproven. Local
+M045/L006 improvements coexist with a Classic S030 failure; no steady whole-day
+improvement or reliable completion ETA is claimed. Await both V2 outcomes, then
+coordinate opposing departure groups across connected single-line sections
+using actual queues rather than continuing isolated one-train fixes. Preserve
+all non-departure fields, identical modes, K1 and every acceptance gate.
