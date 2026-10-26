@@ -155,6 +155,12 @@ remain unchanged.208 services,70 overnight origins,3–13 starts/hour,K106:00.
 Exact author reproduction and all four headless authoring guards pass,empty
 stderr. [Candidate-fourteen proof](../art/performance/realism-2026-10-26/network-candidate-fourteen/README.md)
 preserves ten exact files. No runtime/tests change or full-suite repetition.
+Candidate433be026 is pushed. Four v14 jobs launched once16:32:06; all eight
+actual identities/options, separate outputs, initial modes,4,837 current source
+hashes and six observer hashes verify. Baselines19884/3816 and22452/10152 save
+snapshots; delayed18440/20884 and22416/6768 apply600s manual K1hold at07:30.
+At16:32 baselines00:10,delayed00:40,emptyerrs,noaudits. Inputs now frozen.
+Do not duplicate or restart these original jobs; inspector followsv14.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network

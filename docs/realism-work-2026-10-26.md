@@ -1542,3 +1542,23 @@ Runtime/tests unchanged from1003fullsuite,not repeated for two data edits.
 Ten exact proof files and predecessor backups preserved. No traffic acceptance.
 Prepared launch-network-v14.ps1/verifier are not run; commit testedinputs first.
 All v13jobs finished,baselineproof7342da7d pushed; no source suite/diagnostic active.
+
+
+## Candidate fourteen committed; four verified v14 runs launched once
+
+Candidate433be026 committed/pushed after10staged proof hashes and both pack
+hashes verified; override JSON matches despite Git text normalization.
+Launch-network-v14.ps1 ran once16:32:06. Classic baseline19884/3816;
+V2baseline22452/10152; Classic delayed18440/20884; V2delayed22416/6768.
+All8actual commands/options,single distinctoutputs,both baseline modes,
+4,837 distinct current source fingerprints and6observer hashes verify.
+Waited for catalogue creation before verifier; no jobs restarted. Five exact
+launch files/hashmanifest preserved. Inspector now follows existingv14 first.
+At16:32 baselines00:10,delayed00:40,allidentitiesmatch,emptyerrs,no finalaudits.
+
+Freeze runtime/routes/packs/sixobservers until all finish. No suite/native/search/
+diagnostic remains. Preserve all v13failure evidence with historical hashes;
+do not relabel after pack changes. No partial acceptance/installation. Need
+genuine full-day and disturbance gates plus independent prepared and actual
+category/menu/midnight/save-load validation. PendingUI/category/unrelated and
+R47/legacycertifications unchanged.

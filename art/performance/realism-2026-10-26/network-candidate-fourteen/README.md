@@ -30,3 +30,12 @@ every unchanged service/call/full-tail completion, safety and both wait gates.
 Actual overtakes, category comparisons, prepared menu/midnight/save-load and
 independent installation remain required. Network208 is not accepted/installed.
 R47, all certified legacy choices and unrelated files remain preserved.
+
+Candidate433be026 is committed/pushed. Four v14 jobs launched once16:32:06:
+Classic baseline19884/3816, V2baseline22452/10152, Classic delayed18440/20884,
+V2delayed22416/6768 (wrapper/child). All eight actual commands/options, separate
+single output arguments, both baseline modes,4,837 distinct source fingerprints
+and six observer hashes are verified. Verification waited for initial catalogues;
+no job was restarted. Five exact launch files are archived with hashes. Inputs
+are frozen while these original jobs run. Baselines save real snapshots;
+delayed runs apply the600-second K1 manual hold at07:30 and cannot be installed.
