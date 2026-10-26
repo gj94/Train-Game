@@ -84,10 +84,14 @@ with zero safety events and empty stderr. L005 now clears Alappuzha with
 816/802 seconds of extra waiting, but that local improvement is not acceptance.
 Both failure inspections are immutable, with no future-clearance plans remaining.
 [Exact failed-run evidence](../art/performance/realism-2026-10-26/network-candidate-eleven/failed-disturbances/README.md).
-The two original baselines continue; at14:22 both clocks are07:20.
+The V2 baseline also fails L002 at NYY07:56:50,32/208,zero safety. Its complete
+L002 service record and station waits match the disturbed run, while whole
+service records and traffic differ; the manual hold is not necessary for this
+local failure. [V2 baseline evidence](../art/performance/realism-2026-10-26/network-candidate-eleven/failed-predictive-baseline/README.md).
+Only the original Classic baseline continues, at09:10 with41/208 at14:31.
 Current process identities and clocks are in
 `.local/realism-2026-10-26/latest-job-status.json`. Do not duplicate/restart them
-or edit frozen inputs. Await their results before selecting further timing repairs.
+or edit frozen inputs. Await the Classic result before further timing repairs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.

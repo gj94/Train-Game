@@ -1289,3 +1289,21 @@ installation. Runtime1003 source tests/four authoring checks remain current.
 Two original baselines18724/5380 and16164/4076 continue, both07:20 at14:22,
 empty stderr/no audit. Frozen inputs and pendingUI/category/unrelated preserved;
 R47 unchanged. No diagnostic/Git operation remains after this checkpoint.
+
+## V2 baseline also rejected; Classic continues, 14:31
+
+The original V2 baseline16164/4076 finished naturally at07:56:50 with L002
+NYY2702s,32/208,zero safety,empty stderr. All shorter cumulative wait gates
+pass in this prefix; under45 all141/142 and station84/85 fail100%. L002's
+entire service record and station-wait rows exactly match its disturbed run,
+but whole service records and traffic hashes differ. This local failure does
+not require the K1 hold. No full-day comparison or uniform equivalence claim.
+
+Read-only headless inspection is byte-immutable, with no future plan and other
+trains moving. Verified4,836 source hashes/exact V2 pack and14 exact raw files,
+including scoped comparison, archived in failed-predictive-baseline. Original
+outputs remain. No runtime/packs/observer/test edits; no new suite required for
+this read-only evidence. Existing1,003 source/four authoring checks stand.
+Classic18724/5380 remains the sole live replay, at09:10 and41/208 at14:31,
+empty stderr/no audit. Preserve frozen inputs until that actual result. Pending
+UI/category/unrelated files remain unchanged; Network uninstalled,R47 intact.

@@ -1,0 +1,14 @@
+{
+  "scope": "Two failed prefixes ending at the same L002 gate; not a full-day comparison or recovery certificate.",
+  "baseline_clock": 28609.9999997239,
+  "disturbed_clock": 28609.9999997239,
+  "same_pack_hash": true,
+  "l002_service_record_equal": true,
+  "l002_station_waits_equal": true,
+  "whole_service_records_equal": false,
+  "traffic_hashes": {
+    "predictive-network": "4568e114e0215f17eb12a6bda8367d86e3244b042652bbe46fe0da8d36510c26",
+    "predictive-network-delayed": "6a0a151f1e0bc5404c844349f166931fccffdfdc68b37a3cba243d5d178ed65c"
+  },
+  "conclusion": "The manual K1 hold is not necessary for the L002 failure. Equality is asserted only for the recorded L002 service and station waits."
+}
