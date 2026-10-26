@@ -1404,3 +1404,21 @@ No immovable-deadlock/runtime-defect conclusion. Another13 exact raw files and
 Both original baselines21244/3532 and5504/5044 remain live; await actual results
 before retiming. No input/observer/source changes, duplicate jobs, suite or
 native diagnostic remains. Network uninstalled; pending UI/category preserved.
+
+
+## V2 baseline also rejected at the same pre-intervention queue
+
+The original5504/5044 pair has finished S025 PASA06:38:42,24/208,2,702s,
+zero safety and empty stderr. Full service records, station waits, signal waits
+and traffic bytes exactly match the V2 delayed failed prefix. Both end before
+07:30; this is scoped prefix equality, not recovery or full-day equivalence.
+The actual byte hashes and equality checks are preserved separately, without
+misapplying the complete-population comparator. The fresh read-only inspection
+is byte-immutable, no future plans, same eight inspected trains stopped.
+
+Fourteen exact raw files and4,836 current source hashes/exact pack verified.
+The local archive guard initially expected the delayed default delay_at in a
+baseline; corrected only that diagnostic assertion to compare clock<27000,
+before any archive directory was created. No simulation/replay edits or rerun.
+Only Classic21244/3532 remains live. Await its result before retiming. Inputs
+remain frozen, pendingUI/category and R47/legacy data preserved, no Network install.

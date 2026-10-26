@@ -112,8 +112,12 @@ Classic delayed also fails before the hold, at 07:21:20: L002 waits 2,702s
 at Neyyattinkara, 28/208 completed, zero safety and empty stderr. Both cumulative
 under30 and under45 distributions fail. [Classic failure evidence](../art/performance/realism-2026-10-26/network-candidate-twelve/failed-classic-delayed/README.md)
 preserves another 13 raw files and immutable inspection with 4,836 verified hashes.
-Only the two original baselines remain running. Keep runtime/routes/packs/observers
-frozen and await their results before choosing departure-only repairs.
+The V2 baseline now fails the same S025 gate at 06:38:42. Its full service
+records, both wait lists and traffic bytes match the delayed failed prefix,
+which ends before intervention. [V2 baseline evidence](../art/performance/realism-2026-10-26/network-candidate-twelve/failed-predictive-baseline/README.md)
+preserves 14 exact raw files and immutable inspection with 4,836 verified hashes.
+Only the original Classic baseline remains running. Keep runtime/routes/packs/
+observers frozen and await its result before choosing departure-only repairs.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
