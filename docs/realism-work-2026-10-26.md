@@ -2275,3 +2275,14 @@ recovery results. No jobs were restarted or added; runtime, routes, packs
 and all six observers remain frozen. Network208V2 remains unaccepted and
 uninstalled. Await both original outcomes before departure-only replanning.
 No gameplay change or new playtest is available at this checkpoint.
+
+## Candidate21 checkpoint — 23:37
+
+At 23:37:09, both original candidate21 V2 jobs remain live with matching
+process identities: baseline 26756/20168 reaches 05:40 (18/208 complete), and
+delayed 20296/14748 reaches 07:10 (28/208). Both error logs are empty and
+neither final audit exists. These are partial clocks, not acceptance or
+recovery results. No jobs were restarted or added; runtime, routes, packs
+and all six observers remain frozen. Network208V2 remains unaccepted and
+uninstalled. Await both original outcomes before departure-only replanning.
+No gameplay change or new playtest is available at this checkpoint.
