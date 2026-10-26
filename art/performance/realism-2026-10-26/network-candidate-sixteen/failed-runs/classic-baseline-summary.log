@@ -1,0 +1,236 @@
+{
+  "finished": true,
+  "first": 0,
+  "clock": 17151.9999998907,
+  "samples": 8577,
+  "active": 26,
+  "distinct_k1_overtakers": [],
+  "by_station": {},
+  "distribution": {
+    "stations": 0,
+    "passes": 0,
+    "maximum_at_one_station": 0,
+    "concentration": 0
+  },
+  "events": [],
+  "audit": {
+    "clock": 17151.9999998907,
+    "delay": 0,
+    "delay_at": 0,
+    "delay_service": "K1",
+    "dispatcher": "classic",
+    "events": [],
+    "finished": 13,
+    "maximum_station_wait": 2702,
+    "maximum_wait": 2702,
+    "ok": false,
+    "operating_day": "network",
+    "over_ten_minute_calls": [
+      {
+        "call": 14,
+        "id": "M045",
+        "reasons": {
+          "Conflicts with route from NYY_AMVA_M0-NH · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 14,
+          "Conflicts with route from NYY_AMVA_M0-NH · Tiruchirappalli–Thiruvananthapuram Central Superfast (S042)": 12,
+          "Conflicts with route from NYY_AMVA_M0-NH · Tuticorin–Kollam Junction Mail / Express (M100)": 12,
+          "Expect a wait before Parassala: no free platform suitable for this service · Nagercoil Junction–Guruvayur Mail / Express (M044)": 70,
+          "Expect a wait before Parassala: no free platform suitable for this service · Nagercoil Junction–Guruvayur Mail / Express (M044), Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 200,
+          "Expect a wait before Parassala: no free platform suitable for this service · Nagercoil Junction–Guruvayur Mail / Express (M044), Rameswaram–Thiruvananthapuram Central Superfast (S046)": 134,
+          "Expect a wait before Parassala: preserve a crossing platform for opposing services at Kulitturai · Nagercoil Junction–Guruvayur Mail / Express (M044), Tirunelveli–Mangaluru Mail / Express (M064)": 64,
+          "Single line NYY_single is locked for opposing traffic · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 574,
+          "Single line NYY_single is locked for opposing traffic · Nagercoil Junction–Guruvayur Mail / Express (M044)": 530,
+          "Single line NYY_single is locked for opposing traffic · Tiruchirappalli–Thiruvananthapuram Central Superfast (S042)": 518,
+          "Single line NYY_single is locked for opposing traffic · Tuticorin–Kollam Junction Mail / Express (M100)": 574
+        },
+        "seconds": 2702,
+        "signal_id": "",
+        "station": "NYY"
+      },
+      {
+        "call": 0,
+        "id": "M012",
+        "reasons": {
+          "Authority to TVP_TVC_U0-A": 4,
+          "Block TVC_DEPOT_LU_ACCESS occupied by S026 · Kanniyakumari–Mumbai Superfast (S026)": 26,
+          "Block TVP_TVC_U0 occupied by S026 · Kanniyakumari–Mumbai Superfast (S026)": 40,
+          "Expect a wait at TVC until Kanniyakumari–Mumbai Superfast (S026) overtakes": 900,
+          "Route set to TVP_TVC_U0-A": 2
+        },
+        "seconds": 972,
+        "signal_id": "",
+        "station": "TVC"
+      },
+      {
+        "call": 3,
+        "id": "M064",
+        "reasons": {
+          "Authority to KZTW_KZT_M1-NA": 4,
+          "Block KZTW_KZT_M1 occupied by S046 · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 60,
+          "Expect a wait at KZT until Rameswaram–Thiruvananthapuram Central Superfast (S046) overtakes": 432,
+          "Expect a wait before Parassala: no free platform suitable for this service · Nagercoil Junction–Guruvayur Mail / Express (M044)": 200,
+          "Expect a wait before Parassala: no free platform suitable for this service · Nagercoil Junction–Guruvayur Mail / Express (M044), Rameswaram–Thiruvananthapuram Central Superfast (S046)": 216,
+          "Expect a wait before Parassala: the remaining platforms are reserved for approaching services · Nagercoil Junction–Guruvayur Mail / Express (M044), Rameswaram–Thiruvananthapuram Central Superfast (S046)": 36
+        },
+        "seconds": 948,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 3,
+        "id": "M044",
+        "reasons": {
+          "Authority to DAVM_PASA_M5-NA": 4,
+          "Block DAVM_PASA_M5 occupied by M078 · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 76,
+          "Conflicts with route from PASA-N2 · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 26,
+          "Expect a wait at PASA until Rameswaram–Thiruvananthapuram Central Superfast (S046) overtakes": 216,
+          "Expect a wait before Neyyattinkara: no free platform suitable for this service · Bengaluru–Nagercoil Junction Mail / Express (M045)": 72,
+          "Expect a wait before Neyyattinkara: no free platform suitable for this service · Bengaluru–Nagercoil Junction Mail / Express (M045), Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 150,
+          "Expect a wait before Neyyattinkara: the remaining platforms are reserved for approaching services · Bengaluru–Nagercoil Junction Mail / Express (M045), Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 210
+        },
+        "seconds": 754,
+        "signal_id": "",
+        "station": "PASA"
+      },
+      {
+        "call": 0,
+        "id": "L002",
+        "reasons": {
+          "Authority to NJT_NCJ_U3-A": 4,
+          "Block NCJ_DEPOT_LU_ACCESS occupied by S046 · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 24,
+          "Block NCJ_LADDER_LU0 occupied by S046 · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 20,
+          "Block NJT_NCJ_U3 occupied by S046 · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 52,
+          "Expect a wait at NCJ until Rameswaram–Thiruvananthapuram Central Superfast (S046) overtakes": 596
+        },
+        "seconds": 696,
+        "signal_id": "",
+        "station": "NCJ"
+      },
+      {
+        "call": 2,
+        "id": "M078",
+        "reasons": {
+          "Authority to PYD_ERL_M7-NA": 4,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Tuticorin–Kollam Junction Mail / Express (M100)": 134,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Tuticorin–Kollam Junction Mail / Express (M100), Tiruchirappalli–Thiruvananthapuram Central Superfast (S042)": 468,
+          "Route set to PYD_ERL_M7-NA": 2
+        },
+        "seconds": 608,
+        "signal_id": "",
+        "station": "ERL"
+      }
+    ],
+    "pack_sha256": "a3c049fce31f868f981e5afe8aee63212e0bbd57948434a59906dd651f23252b",
+    "peak_active": 29,
+    "report": "Wait exceeded 45 minutes: M045",
+    "station_wait_quality": {
+      "bins": [
+        26,
+        5,
+        0,
+        0,
+        1
+      ],
+      "brief_count": 215,
+      "count": 32,
+      "cumulative": [
+        {
+          "count": 26,
+          "fraction": 0.8125,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 31,
+          "fraction": 0.96875,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 31,
+          "fraction": 0.96875,
+          "met": false,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 31,
+          "fraction": 0.96875,
+          "met": false,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 2702,
+      "minimum_seconds": 30,
+      "ok": false
+    },
+    "total": 208,
+    "wait_quality": {
+      "bins": [
+        39,
+        5,
+        0,
+        0,
+        1
+      ],
+      "brief_count": 460,
+      "count": 45,
+      "cumulative": [
+        {
+          "count": 39,
+          "fraction": 0.866666666666667,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 44,
+          "fraction": 0.977777777777778,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 44,
+          "fraction": 0.977777777777778,
+          "met": false,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 44,
+          "fraction": 0.977777777777778,
+          "met": false,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 2702,
+      "minimum_seconds": 30,
+      "ok": false
+    },
+    "wall_seconds": 1309.882
+  },
+  "punctuality": {
+    "30": {
+      "services": 1,
+      "mean_delay_seconds": 0,
+      "p90_delay_seconds": 0,
+      "maximum_delay_seconds": 0
+    },
+    "55": {
+      "services": 8,
+      "mean_delay_seconds": 110.28124994846763,
+      "p90_delay_seconds": 389.649999903375,
+      "maximum_delay_seconds": 389.649999903375
+    },
+    "75": {
+      "services": 4,
+      "mean_delay_seconds": 21.649999961934544,
+      "p90_delay_seconds": 85.7999999079711,
+      "maximum_delay_seconds": 85.7999999079711
+    }
+  }
+}

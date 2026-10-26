@@ -1759,3 +1759,18 @@ empty and no final audit exists. Partial runs do not establish acceptance.
 Runtime, routes, packs and the six observers remain frozen; no jobs were
 duplicated or restarted and no unchanged checks were repeated. Network 208
 remains unaccepted and uninstalled.
+
+## All v16 runs rejected before intervention
+
+All four original v16 runs have ended naturally and are rejected: M045 at
+NYY 04:45:52, 13/208 complete, 2,702 seconds extra waiting, zero safety events
+and empty stderr, before the planned 07:30 intervention. Both wait populations
+fail under-30/45 targets. Within each mode, baseline/delayed entire service
+records, both wait lists and traffic bytes match this failed prefix only;
+across modes M045's record matches but wider traffic differs. Forty-five exact
+raw files, 4,837 distinct current source hashes and four immutable read-only
+inspections are preserved in [v16 failed-run evidence](../art/performance/realism-2026-10-26/network-candidate-sixteen/failed-runs/README.md).
+No future plans remain; multiple trains move. M045's wait includes 2,196s
+opposing occupation, 468s receiving/downstream protection and 38s conflicts.
+No permanent-deadlock, runtime-defect or full-day claim. No v16 job remains;
+never rerun this unchanged candidate. Network remains unaccepted/uninstalled.

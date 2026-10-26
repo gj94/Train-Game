@@ -1,0 +1,35 @@
+{
+  "scope": "Completed failed prefixes only; not full-day, not causal equivalence.",
+  "pairs": [
+    {
+      "a": "classic-network",
+      "b": "classic-network-delayed",
+      "services_equal": true,
+      "station_waits_equal": true,
+      "signal_waits_equal": true,
+      "traffic_sha256_a": "ef3b9e700ca0685b9a3641127c13947f75e89fc95915d391d6308b6c8fe8d915",
+      "traffic_sha256_b": "ef3b9e700ca0685b9a3641127c13947f75e89fc95915d391d6308b6c8fe8d915",
+      "M045_record_equal": true
+    },
+    {
+      "a": "predictive-network",
+      "b": "predictive-network-delayed",
+      "services_equal": true,
+      "station_waits_equal": true,
+      "signal_waits_equal": true,
+      "traffic_sha256_a": "da324c0ecf5a4357f75188c0dc342ad8feb91f3bfd90eaa8cf37c54d63503295",
+      "traffic_sha256_b": "da324c0ecf5a4357f75188c0dc342ad8feb91f3bfd90eaa8cf37c54d63503295",
+      "M045_record_equal": true
+    },
+    {
+      "a": "classic-network",
+      "b": "predictive-network",
+      "services_equal": false,
+      "station_waits_equal": false,
+      "signal_waits_equal": false,
+      "traffic_sha256_a": "ef3b9e700ca0685b9a3641127c13947f75e89fc95915d391d6308b6c8fe8d915",
+      "traffic_sha256_b": "da324c0ecf5a4357f75188c0dc342ad8feb91f3bfd90eaa8cf37c54d63503295",
+      "M045_record_equal": true
+    }
+  ]
+}
