@@ -2,6 +2,17 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Candidate9559f4f7 is committed/pushed. Four v18 replays launched once at19:51:50:
+Classic baseline3816/13752, V2 baseline22532/11016, Classic delayed13112/460,
+V2 delayed10336/9808 (wrapper/child). All eight actual commands/options,
+exactly one distinct isolated output each, initial baseline modes,4,837 distinct
+source fingerprints and six observer hashes are verified. Verification waited
+for initial catalogues; no jobs restarted. Five exact launch files and hashes
+are archived. Both baselines save genuine snapshots; delayed runs apply600s
+manual K1hold at07:30 and can never be installed. Runtime, routes, packs and
+six observers are frozen. No suite/native/search/diagnostic/Git job remains.
+Partial clocks are not acceptance. Await these original outcomes before edits.
+
 Candidate eighteen changes only S03004:20→04:50 and L00604:40→04:05.
 The later S030 aims to open KZT receiving space for M045 after L002; the earlier
 L006 aims to reach ALLP before the observed M063/L013/S029/M009 queue forms.

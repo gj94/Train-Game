@@ -1865,3 +1865,16 @@ empty stderr. Runtime/tests remain unchanged from the completed1,003-test suite,
 which was not rerun. Ten exact proof files are in
 [candidate eighteen evidence](../art/performance/realism-2026-10-26/network-candidate-eighteen/README.md).
 Network remains unaccepted/uninstalled; all actual full-day gates remain required.
+
+## Candidate eighteen: original replay launch verified
+
+Candidate9559f4f7 is committed/pushed. Four v18 replays launched once at19:51:50:
+Classic baseline3816/13752, V2 baseline22532/11016, Classic delayed13112/460,
+V2 delayed10336/9808 (wrapper/child). All eight actual commands/options,
+exactly one distinct isolated output each, initial baseline modes,4,837 distinct
+source fingerprints and six observer hashes are verified. Verification waited
+for initial catalogues; no jobs restarted. Five exact launch files and hashes
+are archived. Both baselines save genuine snapshots; delayed runs apply600s
+manual K1hold at07:30 and can never be installed. Runtime, routes, packs and
+six observers are frozen. No suite/native/search/diagnostic/Git job remains.
+Partial clocks are not acceptance. Await these original outcomes before edits.

@@ -40,3 +40,16 @@ data may be installed. No new isolated planning-model score is claimed.
 Runtime9ec3530, routes, six observers, calls, dwell, stock, speeds and priorities
 remain unchanged. Legacy certifications, R47, approved sound banks and pending
 Network UI/category work are preserved. Network208 is unaccepted and uninstalled.
+
+## Verified launch
+
+Candidate9559f4f7 is committed/pushed. Four v18 replays launched once at19:51:50:
+Classic baseline3816/13752, V2 baseline22532/11016, Classic delayed13112/460,
+V2 delayed10336/9808 (wrapper/child). All eight actual commands/options,
+exactly one distinct isolated output each, initial baseline modes,4,837 distinct
+source fingerprints and six observer hashes are verified. Verification waited
+for initial catalogues; no jobs restarted. Five exact launch files and hashes
+are archived. Both baselines save genuine snapshots; delayed runs apply600s
+manual K1hold at07:30 and can never be installed. Runtime, routes, packs and
+six observers are frozen. No suite/native/search/diagnostic/Git job remains.
+Partial clocks are not acceptance. Await these original outcomes before edits.
