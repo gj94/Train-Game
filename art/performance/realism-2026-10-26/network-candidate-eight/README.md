@@ -38,3 +38,16 @@ geographically distributed actual overtakes, and real installed native menu,
 midnight and save/load validation. Preserve all failures and the user's fixed
 10:00 checkpoint. The source suite remains at 1,003 passes, with four passing
 authoring tests for the current unchanged packs. R47 remains published.
+
+
+## Final baseline results at the deadline checkpoint
+
+Both original baselines have also finished and failed. Classic fails at
+07:46:04 with 29/208 complete, M043 continuous wait 2,702 s and longest
+station wait 2,524 s. V2 fails at 07:59:52 with 32/208 complete, S046
+continuous wait 2,702 s and longest station wait 2,570 s. Both record zero
+safety events and match their 4,836 current source hashes. Their exact raw
+audits, traffic, failure snapshots and incomplete catalogues are now archived
+with provenance. All four v8 runs are rejected; none is installed. The V2
+baseline fails on a different service than its disturbance run, so those
+results must not be treated as interchangeable. No late retiming was attempted.

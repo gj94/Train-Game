@@ -797,3 +797,38 @@ No source/tests changed;1003full remainscurrent. Intensive originals continue.
 Classicv8Networkbaseline now rejected sameM0437:46:04,29/208,zero safety;
 exact baseline evidence added to candidate-eight. V2baseline stillfinishing
 at09:57. No additional jobs or runtime/timing changes. Fixed10AM cleanup next.
+
+
+## Final deadline checkpoint, 2026-10-26T10:02:37.354809+08:00
+
+The user deadline has passed; no further scope expansion or new jobs. The
+continuation automation was deleted through the app at10:00:17; deletion
+confirmed, its config is absent, and the other Train Game automations remain
+paused. Standard data8d0d67d/3e3aa46 and evidence0315da1 are pushed; the former
+in-flight Git push and native23536 have ended.
+
+Both v8 Network baselines are now rejected: Classic M043 at07:46:04,29/208,
+2,702s continuous and2,524s station maximum; V2 S046 at07:59:52,32/208,
+2,702s continuous and2,570s station maximum. Zero safety events each. Both
+disturbances also rejected. All four exact current-source audits/traffic/failed
+worlds and incomplete baseline catalogues are archived in candidate-eight.
+No Network installation, no acceptance claim, no further retiming.
+
+Two original finite Intensive runs remain: Classic18308/14120 at23:20,133/140;
+V218084/17900 at22:20,128/140, empty stderr and verified command identities.
+They may finish to existing rehearsals-v7 folders without any new automatic
+work. Keep simulation/routes/packs/six observers frozen. On an authorized next
+turn, inspect those exact jobs before acting; independently verify complete
+audit gates before installing either, then run actual native Intensive menus.
+Do not rerun Standard or unchanged audio/gangway checks. Network needs further
+scheduling investigation and a genuinely passing complete baseline/disturbance
+pair before installation and category/midnight/save-load menu checks.
+
+Pending local tools: check_predictive_prepared_ui.gd has unvalidated Network
+branches; summarize_network_categories.mjs lacks an accepted208 positivecase.
+Their work is preserved, not falsely certified. Exact executed Standard checker
+is archived. R47 and unrelated files remain. Scope implemented: continuous
+gangways, spatial bogie/clack/air corrections, controlled head-turn continuity,
+safe full-tail boundary portals,208 honestly labelled representative authored
+services. Scope incomplete: acceptable208 operating day and its real-data
+validation; Intensive preparation/native checks. No new executable.

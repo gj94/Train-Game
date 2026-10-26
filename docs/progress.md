@@ -1,5 +1,37 @@
 # Progress
 
+## 26 October 2026 — 10:00 deadline checkpoint
+
+The continuation automation was deleted at 10:00. Gangway walking, positional
+coach-end/passing sound corrections and safe boundary portals are implemented
+and tested in source; all 1,003 source tests pass. Classic and V2 Standard 100
+are genuinely regenerated, independently certified, installed and native-tested
+(36 checks, four reviewed screenshots). Changes and evidence through `0315da1`
+are pushed. R47 remains published; no new executable was released.
+
+The representative 208-service timetable is **not accepted**. All four final
+v8 runs exceed the 45-minute continuous wait limit with zero safety events:
+Classic baseline and delayed M043 at 07:46:04; V2 delayed L006 at 07:51:52;
+V2 baseline S046 at 07:59:52. Counts are only 29–32/208. All failed evidence
+is preserved; no Network data is installed. Category comparisons and actual
+Network menu/midnight/save-load checks remain incomplete.
+
+Two original finite Intensive preparations remain active and are safely
+checkpointed: Classic 18308/14120 and V2 18084/17900, at 133/140 and128/140
+services at the final process check. They may finish into their existing
+isolated folders; there is no automatic follow-up, installation or release.
+Do not restart them or edit frozen inputs while running. The pending prepared
+UI and category diagnostic tools remain local until real-data validation.
+[Final checkpoint](../art/performance/realism-2026-10-26/deadline-checkpoint.json)
+and [work record](realism-work-2026-10-26.md) contain exact continuation details.
+
+Source playtest: use either certified Standard mode, walk forward and backward
+through ICF/LHB/VB coach joins, turn back mid-gangway, compare saloon/end bogie
+sound, and turn through 360 degrees as another train passes. Controlled PCM
+checks pass; physical listening is still the user's playtest. R47 does not
+contain this unreleased source work.
+
+
 ## 26 October 2026 — passenger realism and 200-service day authorized
 
 Work runs from 02:00 to the user's fixed 10:00 AM Singapore deadline. Scope is
