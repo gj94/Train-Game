@@ -2521,3 +2521,12 @@ orClassic208 job. Baselineuses snapshots;delayed600smanualK1hold07:30.
 Runtime/routes/packs/sixobservers frozen. Partialclocksnotacceptance;
 Network208V2unaccepted/uninstalled. No suite/native/search/diagnostic job
 remains. PendingUI/categoryhelpers and unrelatedfiles preserved.
+
+## 27 October 01:53 — original v23 jobs continue
+
+27 October 01:53:07 checkpoint: both original v23 V2 identities match.
+Baseline8580/19068 is at00:50 (0/208 complete); delayed832/10968 is at01:30
+(1/208),before its configured intervention. Both error logs are empty and
+neither final audit exists. Partial clocks/waits are not acceptance. Frozen
+inputs,original jobs,pending helpers and unrelated files are preserved;
+no duplicate,restart,Classic208 job,unchanged tests or installation.
