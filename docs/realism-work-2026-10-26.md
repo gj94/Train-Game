@@ -1635,3 +1635,17 @@ runtime-defect conclusion.13exactrawfiles/4836currenthashespreserved in
 network-candidate-fourteen/failed-predictive-baseline. Allv14jobsfinished;
 do not rerun unchanged. No Networkacceptance/installation. Plan only departure
 repairs from actualqueueevidence,preserve all otherfields and source/testguards.
+
+## Candidate fifteen departure-only hypothesis
+
+Candidate fifteen now changes only M064 04:10→03:40, L002 04:20→03:50,
+M008 06:25→05:55 and S047 10:35→10:00. These earlier departures aim to avoid
+observed opposing and receiving queues; no complete-day improvement is claimed.
+Restoring them recovers both whole predecessor JSON objects, with every other
+field unchanged, identical mode services and K1 fixed at 06:00. There are 208
+services, 168 boundary journeys, 71 overnight origins and 3–13 starts/hour.
+Normal author reproduction and four headless authoring checks pass with empty
+stderr. The unchanged runtime/tests retain the completed 1,003-test source suite;
+it was not rerun for these data edits. Ten exact proof files are preserved in
+network-candidate-fifteen evidence.
+Fresh isolated runs remain required; Network is not accepted or installed.

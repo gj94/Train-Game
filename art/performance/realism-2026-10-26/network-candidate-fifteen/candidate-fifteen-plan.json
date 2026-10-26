@@ -1,0 +1,35 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "1e11ceaeb40a783f872026494674e35a396eb804d6ab74b4ab28ab70b7a03e03",
+    "kerala-coast-network-v2.json": "3ce1ba3d917162d4f6ff0d5669ebd1d3f973127520bf22c9ff0ad7c3a6f2f138",
+    "kerala-coast-network-departure-overrides.json": "8e1c328f26e22b19b0f8b74d78a730bb8aca536453580de4d9b651f6459c4388"
+  },
+  "changes": [
+    {
+      "service": "M064",
+      "before": "04:10",
+      "after": "03:40",
+      "reason": "Give the northbound mail more lead to clear the observed MAKM/SRTL opposing S009/M017 wave."
+    },
+    {
+      "service": "L002",
+      "before": "04:20",
+      "after": "03:50",
+      "reason": "Keep the local behind the earlier M064 and aim to clear ALLP before the observed S008/M017/M019 receiving wave and L015 origin supply."
+    },
+    {
+      "service": "M008",
+      "before": "06:25",
+      "after": "05:55",
+      "reason": "Increase lead over S030/S006 and approach AMPA before the observed opposing V001/M013/S009 wave."
+    },
+    {
+      "service": "S047",
+      "before": "10:35",
+      "after": "10:00",
+      "reason": "Enter the southern single-line corridor before the observed succession of northbound M050/S032/M084/M048 at NEM."
+    }
+  ],
+  "evidence_commit": "9cde0e52",
+  "status": "Departure-only hypothesis; no acceptance"
+}
