@@ -1035,3 +1035,35 @@ running. All four legacy choices and runtime hashes remain unchanged. The
 continuation automation now describes these actual jobs instead of the ended v9
 replays. Preserve pending UI/category tools and unrelated files; continue until
 all authorized readiness gates pass, then delete that automation.
+
+## Independent proposal review, 12:11
+
+Both original diagnostics have finished with empty stderr. Strict v2 returned
+UNKNOWN after 901.128 seconds; no solution or infeasibility proof. Heuristic v3
+proposes 110 departure changes from candidate nine, with 69 overnight services
+and 3–13 starts per hour. This proposal has NOT been applied. Candidate nine's
+packs, all runtime/observer sources and all certified legacy data remain unchanged.
+
+The independent hash-checked arithmetic review shows 240 to seven shared-section
+SF/VB pair gaps below 35 minutes, minimum 20 seconds to 31.8 minutes, but opposing
+overlap instances increase 329 to 382 and summed pair overlap 988.80 to 1,099.93
+minutes. These periodic isolated-profile measurements are not observed delays.
+The read-only physical yard export succeeds for 56 stations. Conservative visit
+estimates still reach four trains at three-road ALLP and AMPA; ten passing yards
+exceed total road counts somewhere in the proposal. Total roads are only an upper
+bound; actual passenger faces, directional connectivity, full-tail berth fit,
+route conflicts and escape roads remain stricter. This is a planning warning,
+not an actual occupancy or admission proof. Exact 16 raw files are preserved
+with hashes in network-planning-revision.
+
+One new authoring diagnostic is running: plan-network-spacing-v4.py, PID 3760,
+recorded in network-spacing-search-v4.job.json. It seeds from v3, adds a conservative
+minute-cell yard over-capacity penalty and increases opposing-overlap weight.
+Calls, dwell, stock, priorities and speeds remain untouched. The 35-minute express
+gap remains a soft departure-planning target, not a runtime hold or forced pass.
+Twenty incremental-versus-direct yard-cost comparisons pass; detailed local result
+is yard-cost-arithmetic-check.json. Output will be network-spacing-proposal-v4.json.
+Inspect the existing process/output first; do not duplicate or edit its live script.
+No full-day, suite, native or diagnostic Godot job remains. Full 1,003 source tests
+and four authoring guards remain current because their inputs have not changed.
+Readiness is still pending; R47 and unrelated work are preserved.

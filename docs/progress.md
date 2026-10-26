@@ -35,10 +35,15 @@ still move. Successive overtake holds and opposing queues around Alappuzha and
 Ambalappuzha invalidate the model's hoped-for improvement.
 [Failed candidate evidence](../art/performance/realism-2026-10-26/network-candidate-nine/README.md).
 
-No full-day replay remains active. The first stricter search ended UNKNOWN after three minutes,
-which does not prove infeasibility. A broader long-distance search and a separate
-approach-spacing proposal are running on the same 44 physical profiles. These
-are planning diagnostics, not acceptance. No new pack or runtime edit has been made. All legacy choices
+No full-day replay remains active. Both strict searches ended UNKNOWN (180 and
+901 seconds), which does not prove infeasibility. The express-spacing proposal
+reduces modeled close SF/VB approaches but increases opposing overlap, and still
+overfills some nominal receiving yards. It has not been applied. The independent
+review and exact results are preserved in
+[planning evidence](../art/performance/realism-2026-10-26/network-planning-revision/README.md).
+A combined yard-capacity/express-spacing authoring search is running; it edits
+no packs. Its incremental yard-cost arithmetic passes 20 direct comparisons.
+No new pack or runtime edit has been made. All legacy choices
 remain certified. New traffic must still pass the original complete-day gates.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network

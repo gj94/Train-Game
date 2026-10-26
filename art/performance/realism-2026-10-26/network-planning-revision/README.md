@@ -24,6 +24,28 @@ Package versions and download hashes are recorded. API and installation sources:
 [Google installation guide](https://developers.google.com/optimization/install)
 and [official Python model source](https://github.com/google/or-tools/blob/stable/ortools/sat/python/cp_model.py).
 
-A broader strict search and an independent proposal with express-spacing
-penalties are still under evaluation. Neither is accepted traffic. Preserve
-the source timetable until a proposal has been reviewed and validated.
+The broader strict search also finished **UNKNOWN**, after 901.128 seconds,
+with empty stderr. Mail/superfast origins could move across the full day while
+local/VB shifts stayed within 90 minutes and K1 remained fixed. No solution or
+infeasibility proof was produced. Its exact script, logs and result are preserved.
+
+The express-spacing heuristic produced 110 proposed origin changes. Independent
+arithmetic review confirms the intended tradeoff: shared-section SF/VB gaps
+below the 35-minute planning target fall from 240 to seven, and the minimum
+modeled gap rises from 20 seconds to 31.8 minutes. However, opposing overlap
+instances rise from 329 to 382, and summed pair overlap rises from 988.80 to
+1,099.93 minutes. These are periodic isolated-profile pair measurements, not
+observed waits, unique blocked minutes or capacity acceptance.
+
+The physical-yard inventory and conservative nominal visit estimates flag
+simultaneous demand beyond total roads at ten passing yards in the proposal.
+Alappuzha and Ambalappuzha still reach four estimated trains against three roads.
+Total road counts are only upper bounds: passenger faces, directional connectivity,
+full-rake fit, protected routes and escape roads further restrict real admission.
+The visit estimates cannot predict interaction-induced queues or passing holds.
+The proposal is therefore **not applied**. The authored timetable remains candidate
+nine, and no new replay or Network installation has been started from this proposal.
+
+`completed-search-review-hashes.json` records the exact 16 copied source/results/
+log files. The review verifies all proposal input hashes before doing independent
+pair and yard arithmetic. No runtime, pack, observer or accepted legacy data changed.
