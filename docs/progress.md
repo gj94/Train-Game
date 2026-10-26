@@ -36,9 +36,16 @@ source fingerprints per report are preserved in candidate-fifteen evidence,
 with three byte-immutable inspections and no remaining future-clearance plans.
 V2's inspected active queues are stopped; Classic still has moving trains.
 Neither snapshot proves permanent deadlock or a runtime defect.
-Only Classic baseline 21452/12244 remains running (05:20 at 18:22, 16/208),
-with matching identities, empty stderr and no final audit. Await its outcome
-before any departure-only repair; inputs and observers stay frozen.
+The original Classic baseline 21452/12244 has now ended naturally at 06:37:06:
+S030 waits 2,702 seconds at PASA-N2, 22/208 services finish, zero safety events
+and empty stderr. All four v15 runs are rejected before the scheduled hold.
+Classic baseline and delayed entire service records, both wait lists and traffic
+bytes match within this failed prefix only. Fourteen additional exact raw files,
+4,836 current source fingerprints and an immutable inspection are preserved in
+candidate-fifteen/failed-classic-baseline. No future-clearance plans remain;
+M071, M077, S025 and S027 still move. The failed-prefix fractions and queue reasons
+match Classic delayed. No permanent-deadlock, runtime-defect or whole-day claim.
+No Network installation; plan the next departure-only repair from actual queues.
 
 The user extended the work beyond the original 10:00 deadline and emphasized
 single-line capacity. The previous deadline checkpoint remains historical.

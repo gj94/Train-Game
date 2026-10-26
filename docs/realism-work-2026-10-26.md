@@ -1699,3 +1699,16 @@ with matching identities, empty stderr and no final audit. Await its outcome
 before any departure-only repair; inputs and observers stay frozen.
 
 V2 M045 wait: 2,564 seconds preserving NYY crossing capacity plus 138 seconds protecting compatible NEM receiving roads. M078 occupies NEM_P2 and waits for M045; M044/M064 wait at NYY, L002/S046 at PASA. Seven active inspected trains stop, M001 is stored. V2 cumulative all49/62,52/62,53/62,61/62; station30/37,32/37,32/37,37/37. Classic S030 wait: 1,504s receiving,1,172s opposing,26s conflicts. NYY claimsS027P1/L034P2;M071/M077/S025/S027move. Classic cumulativeall92/116,106/116,112/116,115/116;station57/72,67/72,70/72,72/72. These failed-prefix populations miss multiple unchanged targets.
+
+## All v15 runs rejected before the intervention
+
+The original Classic baseline 21452/12244 has now ended naturally at 06:37:06:
+S030 waits 2,702 seconds at PASA-N2, 22/208 services finish, zero safety events
+and empty stderr. All four v15 runs are rejected before the scheduled hold.
+Classic baseline and delayed entire service records, both wait lists and traffic
+bytes match within this failed prefix only. Fourteen additional exact raw files,
+4,836 current source fingerprints and an immutable inspection are preserved in
+candidate-fifteen/failed-classic-baseline. No future-clearance plans remain;
+M071, M077, S025 and S027 still move. The failed-prefix fractions and queue reasons
+match Classic delayed. No permanent-deadlock, runtime-defect or whole-day claim.
+No Network installation; plan the next departure-only repair from actual queues.
