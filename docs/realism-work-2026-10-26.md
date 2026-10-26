@@ -870,3 +870,16 @@ priorities, speeds, routes and interlocking stay fixed. Preserve candidate-eight
 failure evidence. Repair the authoring override record to reproduce the actual
 packs before the next affected Network replay. Complete baseline/disturbance,
 category, midnight/save and actual menu gates remain mandatory.
+
+
+Authoring continuation: `author_network_timetable.gd --check` now reproduces
+both current packs without writing them. The old override record omitted
+L022/L034/M101 and retained the old L033 departure; repaired to exactly match
+candidate eight. A final-code negative test against the previous override
+correctly rejects, and all four Network guards pass. The comparison uses the
+author's actual JSON serialization precision, with no fingerprint exceptions.
+Both operating pack bytes and runtime remain unchanged. Evidence is in
+`authoring-reproduction`. Original solo measurements continue; do not duplicate.
+The new continuation automation `complete-train-game-realism-and-network-208`
+runs every ten minutes until all readiness work is complete; delete it then.
+Other completed Train Game automations stay paused.
