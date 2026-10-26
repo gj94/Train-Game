@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 05:59:03 checkpoint: original v25 V2 baseline13108/11232 reaches
+11:20 (61/208 complete); delayed22180/19280 reaches14:30 (84/208). Both original
+process identities match, error logs are empty and neither final audit exists.
+Runtime/routes/packs/six observers remain frozen until both original outcomes.
+Partial clocks and waits do not establish acceptance. Network208V2 remains
+unaccepted/uninstalled. No duplicate/restart, Classic208 work, unchanged tests
+or new gameplay playtest; continue checking the original runs.
+
 27 October 05:49:06 checkpoint: original v25 V2 baseline13108/11232 reaches
 09:40 (49/208 complete); delayed22180/19280 reaches12:50 (69/208). Both original
 process identities match, error logs are empty and neither final audit exists.
