@@ -75,7 +75,11 @@ authoring reproduces both packs and all four authoring checks pass, empty stderr
 The runtime remains the same one that passed the 1,003-test source suite; no
 runtime/tests were edited or full suite repeated for these two timing changes.
 [Candidate-eleven proof](../art/performance/realism-2026-10-26/network-candidate-eleven/README.md).
-These targeted queue repairs still require new full baseline/disturbance replays.
+Candidate8056ea2f is pushed. Its four v11 replays launched once at13:42;
+actual commands, separate outputs, modes,4,837current fingerprints and six frozen
+observers are verified. All have empty stderr and no final audits at13:43.
+Do not restart/duplicate them or edit frozen inputs. These targeted queue repairs
+still require genuine whole-day baseline and disturbance acceptance.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.

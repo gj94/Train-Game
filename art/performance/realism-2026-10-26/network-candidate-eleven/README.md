@@ -32,3 +32,12 @@ full-tail completion, safety, both wait distributions, and actual distributed
 overtakes. No call, dwell, stock, priority, speed, track or interlocking changes,
 forced passing sites or runtime hold caps were introduced. Original failed v10
 evidence remains in network-candidate-ten. No Network prepared data is installed.
+
+Candidate eleven was committed/pushed as8056ea2f. Four v11 replays launched ONCE
+at13:42 on that commit. All eight actual wrapper/child commands, distinct output
+arguments, baseline modes, 4,837 distinct current source fingerprints and six
+observer hashes are verified. Initial startup verification was attempted before
+the first departure catalogue existed; it was retried after generation and passed.
+No job was restarted. All four stderr files are empty. At13:43 the baselines
+reached00:10 and disturbances00:40; no final audit or acceptance is implied.
+launch-evidence-hashes.json preserves five exact launch/verification files.

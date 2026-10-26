@@ -1244,3 +1244,20 @@ hypotheses based on actual queues, not traffic acceptance. Prepared launcher
 launch-network-v11.ps1/verifier exist but have not yet run. Commit this tested
 data, then launch four isolated actual baselines/disturbances once and freeze
 inputs. PendingUI/category/unrelated preserved, Network notinstalled,R47intact.
+
+## Candidate eleven committed; v11 launched once, 13:43
+
+Candidate8056ea2f committed/pushed after9exact staged diagnostic files and both
+pack hashes verified. launch-network-v11.ps1 ran ONCE13:42. Original process pairs:
+Classic18724/5380,V216164/4076,Classicdelay13332/1016,V2delay16736/15508.
+All8actual commands/options/single isolated outputs,baseline modes,4837distinct
+currentfingerprints and6observers verified. First verifier attempted before the
+initial departurecatalogue existed; later completecheck passes withoutrestart.
+At13:43baselines00:10,delayed00:40,emptyerrs,noaudits. No acceptance frompartials.
+
+Five exact launchfiles/hashmanifest archived alongside candidate11proof. Inputs
+frozen:runtime/routes/packs/sixobservers. No suite/native/diagnostic/Gitoperation
+left aftercheckpoint;onlyfour originalv11replays. Do not rerunlauncher,duplicate
+or restart. Allv10failures preserved;legacychoicescertified,R47unchanged. Need
+fulloriginalgates thenindependentinstall,category/native/midnight/save-load. Only
+pendingUItracked/categoryuntracked andunrelatedfilesremainoutsidecommittedwork.
