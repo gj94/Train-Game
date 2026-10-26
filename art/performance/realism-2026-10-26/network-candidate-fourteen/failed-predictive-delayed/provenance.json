@@ -1,0 +1,4466 @@
+{
+  "recorded_at": "2026-10-26T17:21:10.912350+08:00",
+  "runtime": "9ec3530",
+  "authored_commit": "433be026",
+  "source_hashes_verified": 4836,
+  "records": [
+    {
+      "job": {
+        "day": "predictive-network-delayed",
+        "pid": 22416,
+        "started": "2026-10-26T16:32:06.4623506+08:00",
+        "output": ".local/realism-2026-10-26/rehearsals-v14/predictive-network-delayed",
+        "options": [
+          "--pack=res://art/timetables/kerala-coast-network-v2.json",
+          "--network",
+          "--delay=600",
+          "--delay-at=27000"
+        ],
+        "source_commit": "433be026def6b81b01db4d69c33ea0e572521209",
+        "status": "finished-rejected",
+        "reason": "Candidate fourteen changes only L02407:40->09:20 and L01508:15->10:05 to move origins outside observed opposing/receiving waves; actual full-day gates remain required",
+        "pack_sha256": "3ce1ba3d917162d4f6ff0d5669ebd1d3f973127520bf22c9ff0ad7c3a6f2f138",
+        "child_pid": 6768
+      },
+      "source_hashes_verified": 4836,
+      "audit": {
+        "clock": 38103.999999974,
+        "delay": 600.0,
+        "delay_at": 27000.0,
+        "delay_service": "K1",
+        "dispatcher": "predictive",
+        "events": [],
+        "finished": 57,
+        "maximum_station_wait": 2702.0,
+        "maximum_wait": 2702.0,
+        "ok": false,
+        "operating_day": "network",
+        "over_ten_minute_calls": [
+          {
+            "call": 40,
+            "id": "L002",
+            "reasons": {
+              "Approach reserved for M011 to enter ALLP_P1": 96.0,
+              "Block ALLP_DEPOT_LM_ACCESS occupied by S008 · Thiruvananthapuram Central–Hyderabad Superfast (S008)": 16.0,
+              "Block ALLP_LLEAD_U occupied by S008 · Thiruvananthapuram Central–Hyderabad Superfast (S008)": 20.0,
+              "Block TMPY_ALLP_M2 occupied by S008 · Thiruvananthapuram Central–Hyderabad Superfast (S008)": 42.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH · Mumbai–Thiruvananthapuram Central Mail / Express (M017)": 12.0,
+              "Expect a wait at ALLP until Mumbai–Thiruvananthapuram Central Mail / Express (M017) crosses": 280.0,
+              "Expect a wait at ALLP until Thiruvananthapuram Central–Hyderabad Superfast (S008) overtakes": 968.0,
+              "Expect a wait before Mararikulam: no free platform suitable for this service · Pune–Thiruvananthapuram Central Mail / Express (M019), Patna–Thiruvananthapuram Central Superfast (S013)": 410.0,
+              "Expect a wait before Mararikulam: no free platform suitable for this service · Thiruvananthapuram Central–Hyderabad Superfast (S008), Pune–Thiruvananthapuram Central Mail / Express (M019), Patna–Thiruvananthapuram Central Superfast (S013)": 34.0,
+              "Expect a wait before Mararikulam: preserve a crossing platform for opposing services at Cherthala · Pune–Thiruvananthapuram Central Mail / Express (M019), Patna–Thiruvananthapuram Central Superfast (S013)": 372.0,
+              "Single line MAKM_single is locked for opposing traffic · Mumbai–Thiruvananthapuram Central Mail / Express (M017)": 22.0,
+              "Single line MAKM_single is locked for opposing traffic · Pune–Thiruvananthapuram Central Mail / Express (M019)": 430.0
+            },
+            "seconds": 2702.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 2,
+            "id": "V001",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M013 · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 46.0,
+              "Block ALLP_PUPR_M0 occupied by M013 · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 44.0,
+              "Block ALLP_RLEAD_U occupied by S030 · Kanniyakumari–Bengaluru Superfast (S030)": 12.0,
+              "Conflicts with route from ALLP-S1 · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 48.0,
+              "Conflicts with route from ALLP_PUPR_M0-NH · Kanniyakumari–Bengaluru Superfast (S030), Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 20.0,
+              "Conflicts with route from ALLP_PUPR_M0-NH · Thiruvananthapuram Central–New Delhi Superfast (S006)": 12.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service · Bengaluru–Thiruvananthapuram Central Mail / Express (M013), Thiruvananthapuram Central–New Delhi Superfast (S006), Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 34.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service · Ernakulam Junction–Kollam Junction Passenger (L007), Kanniyakumari–Bengaluru Superfast (S030), Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 68.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service · Kanniyakumari–Bengaluru Superfast (S030), Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 2.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service · Thiruvananthapuram Central–New Delhi Superfast (S006), Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 198.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service · Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 158.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–New Delhi Superfast (S006), Thiruvananthapuram Central–Shoranur Mail / Express (M008), Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 186.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Shoranur Mail / Express (M008), Ernakulam Junction–Kollam Junction Passenger (L007)": 56.0,
+              "Single line ALLP_single is locked for opposing traffic · Kanniyakumari–Bengaluru Superfast (S030)": 542.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–New Delhi Superfast (S006)": 110.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 182.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Shoranur Mail / Express (M008), Thiruvananthapuram Central–New Delhi Superfast (S006)": 448.0
+            },
+            "seconds": 2170.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 0,
+            "id": "L033",
+            "reasons": {
+              "Authority to TVC_NEM_M0-SA": 4.0,
+              "Conflicts with route from TVC_NEM_M0-NH · Kanniyakumari–Bengaluru Superfast (S030)": 12.0,
+              "Conflicts with route from TVC_NEM_M0-NH · Nagercoil Junction–Ernakulam Junction Passenger (L002)": 12.0,
+              "Conflicts with route from TVC_NEM_M0-NH · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 30.0,
+              "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034), Thiruvananthapuram Central–Tiruchirappalli Mail / Express (M079)": 142.0,
+              "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Thiruvananthapuram Central–Tiruchirappalli Mail / Express (M079)": 354.0,
+              "Expect a wait before Thiruvananthapuram South: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Tiruchirappalli Mail / Express (M079), Kanniyakumari–Bengaluru Superfast (S030)": 56.0,
+              "Expect a wait before Thiruvananthapuram South: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Tiruchirappalli Mail / Express (M079), Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 120.0,
+              "Route set to TVC_NEM_M0-SA": 2.0,
+              "Single line TVC_single is locked for opposing traffic · Kanniyakumari–Bengaluru Superfast (S030)": 388.0,
+              "Single line TVC_single is locked for opposing traffic · Nagercoil Junction–Ernakulam Junction Passenger (L002)": 78.0,
+              "Single line TVC_single is locked for opposing traffic · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 390.0
+            },
+            "seconds": 1588.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 15,
+            "id": "M044",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Block ALLP_DEPOT_LM_ACCESS occupied by V002 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 10.0,
+              "Block ALLP_LLEAD_U occupied by V002 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 36.0,
+              "Block TMPY_ALLP_M2 occupied by V002 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 34.0,
+              "Conflicts with route from ALLP-N2 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 40.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 12.0,
+              "Route set to TMPY_ALLP_M2-NA": 2.0,
+              "Single line MAKM_single is locked for opposing traffic · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 1434.0
+            },
+            "seconds": 1572.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 9,
+            "id": "M008",
+            "reasons": {
+              "Authority to PUPR_AMPA_M3-NA": 4.0,
+              "Block AMPA_LLEAD_U occupied by S030 · Kanniyakumari–Bengaluru Superfast (S030)": 48.0,
+              "Block PUPR_AMPA_M3 occupied by S030 · Kanniyakumari–Bengaluru Superfast (S030)": 50.0,
+              "Conflicts with route from AMPA-N2 · Kanniyakumari–Bengaluru Superfast (S030)": 30.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 12.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH · Ernakulam Junction–Kollam Junction Passenger (L007)": 12.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service · Bengaluru–Thiruvananthapuram Central Mail / Express (M013), Kanniyakumari–Bengaluru Superfast (S030), Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 34.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service · Bengaluru–Thiruvananthapuram Central Mail / Express (M013), Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 208.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service · Bengaluru–Thiruvananthapuram Central Mail / Express (M013), Tirunelveli–Mangaluru Mail / Express (M064), Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 40.0,
+              "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Bengaluru–Thiruvananthapuram Central Mail / Express (M013), Mangaluru–Thiruvananthapuram Central Vande Bharat (V001), Kanniyakumari–Bengaluru Superfast (S030)": 184.0,
+              "Single line ALLP_single is locked for opposing traffic · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 564.0,
+              "Single line ALLP_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L007)": 384.0
+            },
+            "seconds": 1570.0,
+            "signal_id": "",
+            "station": "AMPA"
+          },
+          {
+            "call": 16,
+            "id": "M064",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 12.0,
+              "Route set to TMPY_ALLP_M2-NA": 2.0,
+              "Single line MAKM_single is locked for opposing traffic · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 342.0,
+              "Single line MAKM_single is locked for opposing traffic · Bengaluru–Thiruvananthapuram Central Mail / Express (M013), Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 46.0,
+              "Single line MAKM_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L007)": 488.0,
+              "Single line MAKM_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L007), Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 240.0,
+              "Single line MAKM_single is locked for opposing traffic · Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 244.0,
+              "Single line MAKM_single is locked for opposing traffic · Mangaluru–Thiruvananthapuram Central Vande Bharat (V001), Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 192.0
+            },
+            "seconds": 1570.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 2,
+            "id": "V002",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 12.0,
+              "Single line MAKM_single is locked for opposing traffic · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 1374.0
+            },
+            "seconds": 1390.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 8,
+            "id": "L035",
+            "reasons": {
+              "Authority to KZT_PYD_M0-SA": 4.0,
+              "Block KZT_PYD_M0 occupied by M075 · Thiruvananthapuram Central–Chennai Mail / Express (M075)": 56.0,
+              "Expect a wait at KZT until Thiruvananthapuram Central–Chennai Mail / Express (M075) overtakes": 456.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service": 204.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L021)": 132.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service · Thiruvananthapuram Central–Chennai Mail / Express (M075)": 224.0,
+              "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Chennai Mail / Express (M075)": 302.0,
+              "Route set to KZT_PYD_M0-SA": 2.0
+            },
+            "seconds": 1380.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 8,
+            "id": "L007",
+            "reasons": {
+              "Authority to MAKM_KAVR_M0-SA": 4.0,
+              "Block MAKM_RLEAD_D occupied by M006 · Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 14.0,
+              "Conflicts with route from MAKM_KAVR_M0-NH · Nagercoil Junction–Guruvayur Mail / Express (M044)": 12.0,
+              "Conflicts with route from MAKM_KAVR_M0-NH · Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 18.0,
+              "Expect a wait at MAKM until Thiruvananthapuram Central–Mangaluru Vande Bharat (V002) crosses": 472.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service · Ernakulam Junction–Nagercoil Junction Passenger (K1), Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 60.0,
+              "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Ernakulam Junction–Nagercoil Junction Passenger (K1), Tirunelveli–Mangaluru Mail / Express (M064)": 8.0,
+              "Single line MAKM_single is locked for opposing traffic · Nagercoil Junction–Guruvayur Mail / Express (M044)": 158.0,
+              "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Alappuzha Passenger (L014), Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 106.0,
+              "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 406.0,
+              "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Kozhikode Mail / Express (M006), Thiruvananthapuram Central–Alappuzha Passenger (L014)": 74.0,
+              "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002), Nagercoil Junction–Guruvayur Mail / Express (M044)": 34.0
+            },
+            "seconds": 1366.0,
+            "signal_id": "",
+            "station": "MAKM"
+          },
+          {
+            "call": 16,
+            "id": "M061",
+            "reasons": {
+              "Authority to KZT_PYD_M0-SA": 4.0,
+              "Block KZT_PYD_M0 occupied by M047 · Chennai–Nagercoil Junction Mail / Express (M047)": 78.0,
+              "Block KZT_PYD_M0 occupied by S029 · Bengaluru–Kanniyakumari Superfast (S029)": 56.0,
+              "Conflicts with route from KZT-S1 · Chennai–Nagercoil Junction Mail / Express (M047)": 68.0,
+              "Expect a wait at KZT until Bengaluru–Kanniyakumari Superfast (S029) overtakes": 658.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service": 110.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L023)": 216.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service · Thiruvananthapuram Central–Rameswaram Superfast (S045)": 64.0,
+              "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006), Chennai–Nagercoil Junction Mail / Express (M047)": 90.0
+            },
+            "seconds": 1344.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 11,
+            "id": "K1",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Conflicts with route from ALLP_PUPR_M0-NH · Tirunelveli–Mangaluru Mail / Express (M064)": 12.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Alappuzha Passenger (L014)": 252.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Alappuzha Passenger (L014), Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 294.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Alappuzha Passenger (L014), Tirunelveli–Mangaluru Mail / Express (M064)": 110.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 58.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Kozhikode Mail / Express (M006), Thiruvananthapuram Central–Alappuzha Passenger (L014)": 120.0,
+              "Single line ALLP_single is locked for opposing traffic · Tirunelveli–Mangaluru Mail / Express (M064)": 446.0
+            },
+            "seconds": 1296.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 0,
+            "id": "L013",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M009 · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 70.0,
+              "Block ALLP_PUPR_M0 occupied by M009 · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 46.0,
+              "Conflicts with route from ALLP-S3 · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 74.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 398.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service · Bengaluru–Kanniyakumari Superfast (S029)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 236.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Bengaluru–Kanniyakumari Superfast (S029)": 184.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 186.0
+            },
+            "seconds": 1284.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 6,
+            "id": "L034",
+            "reasons": {
+              "Authority to DAVM_PASA_M5-NA": 4.0,
+              "Conflicts with route from DAVM_PASA_M5-SH · Mumbai–Kanniyakumari Superfast (S025)": 12.0,
+              "Expect a wait before Neyyattinkara: no free platform suitable for this service": 142.0,
+              "Expect a wait before Neyyattinkara: no free platform suitable for this service · Mumbai–Kanniyakumari Superfast (S025)": 476.0,
+              "Expect a wait before Neyyattinkara: no free platform suitable for this service · Thiruvananthapuram Central–Kanniyakumari Mail / Express (M077), Nagercoil Junction–Ernakulam Junction Passenger (L002)": 42.0,
+              "Expect a wait before Neyyattinkara: preserve a crossing platform for opposing services at Thiruvananthapuram South · Mangaluru–Tirunelveli Superfast (S027)": 20.0,
+              "Single line NYY_single is locked for opposing traffic · Mumbai–Kanniyakumari Superfast (S025)": 568.0
+            },
+            "seconds": 1264.0,
+            "signal_id": "",
+            "station": "PASA"
+          },
+          {
+            "call": 25,
+            "id": "L023",
+            "reasons": {
+              "Authority to KZT_PYD_M0-SA": 4.0,
+              "Block KZT_PYD_M0 occupied by L035 · Thiruvananthapuram Central–Nagercoil Junction Passenger (L035)": 70.0,
+              "Block KZT_PYD_M0 occupied by S045 · Thiruvananthapuram Central–Rameswaram Superfast (S045)": 56.0,
+              "Conflicts with route from KZT-S1 · Thiruvananthapuram Central–Nagercoil Junction Passenger (L035)": 64.0,
+              "Expect a wait at KZT until Thiruvananthapuram Central–Rameswaram Superfast (S045) overtakes": 504.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service · Thiruvananthapuram Central–Chennai Mail / Express (M075)": 106.0,
+              "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Nagercoil Junction Passenger (L035)": 426.0
+            },
+            "seconds": 1230.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 15,
+            "id": "M063",
+            "reasons": {
+              "Authority to PASA_KZTW_M0-SA": 4.0,
+              "Block PASA_KZTW_M0 occupied by S029 · Bengaluru–Kanniyakumari Superfast (S029)": 54.0,
+              "Expect a wait at PASA until Bengaluru–Kanniyakumari Superfast (S029) overtakes": 452.0,
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Bengaluru–Kanniyakumari Superfast (S029), Mumbai–Kanniyakumari Mail / Express (M061)": 426.0,
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061)": 198.0,
+              "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Mumbai–Kanniyakumari Mail / Express (M061), Bengaluru–Kanniyakumari Superfast (S029)": 44.0,
+              "Route set to PASA_KZTW_M0-SA": 2.0
+            },
+            "seconds": 1180.0,
+            "signal_id": "",
+            "station": "PASA"
+          },
+          {
+            "call": 1,
+            "id": "K1",
+            "reasons": {
+              "Authority to KUMM_AROR_M0-SA": 4.0,
+              "Block KUMM_RLEAD_D occupied by S026 · Kanniyakumari–Mumbai Superfast (S026)": 12.0,
+              "Conflicts with route from KUMM_AROR_M0-NH · Kanniyakumari–Mumbai Superfast (S026)": 12.0,
+              "Expect a wait before Turavur: no free platform suitable for this service · Kanniyakumari–Mumbai Superfast (S026)": 168.0,
+              "Expect a wait before Turavur: no free platform suitable for this service · Kanniyakumari–Mumbai Superfast (S026), Ernakulam Junction–Kollam Junction Passenger (L005)": 50.0,
+              "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Ernakulam Junction–Kollam Junction Passenger (L005)": 94.0,
+              "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Ernakulam Junction–Kollam Junction Passenger (L005), Kanniyakumari–Mumbai Superfast (S026)": 16.0,
+              "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Kanniyakumari–Mumbai Superfast (S026), Ernakulam Junction–Kollam Junction Passenger (L005)": 64.0,
+              "Single line KUMM_single is locked for opposing traffic · Kanniyakumari–Mumbai Superfast (S026)": 696.0
+            },
+            "seconds": 1116.0,
+            "signal_id": "",
+            "station": "KUMM"
+          },
+          {
+            "call": 7,
+            "id": "S025",
+            "reasons": {
+              "Authority to KZT_PYD_M0-SA": 4.0,
+              "Conflicts with route from KZT_PYD_M0-NH · Nagercoil Junction–Kollam Junction Passenger (L022)": 12.0,
+              "Single line KZT_single is locked for opposing traffic · Nagercoil Junction–Kollam Junction Passenger (L022)": 1080.0
+            },
+            "seconds": 1096.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 2,
+            "id": "M080",
+            "reasons": {
+              "Authority to PYD_ERL_M7-NA": 4.0,
+              "Conflicts with route from PYD_ERL_M7-SH · Mangaluru–Tirunelveli Mail / Express (M063)": 12.0,
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Mangaluru–Tirunelveli Mail / Express (M063)": 200.0,
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006), Mangaluru–Tirunelveli Mail / Express (M063)": 22.0,
+              "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Mangaluru–Tirunelveli Mail / Express (M063), Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006)": 174.0,
+              "Single line KZT_single is locked for opposing traffic · Mangaluru–Tirunelveli Mail / Express (M063)": 660.0
+            },
+            "seconds": 1072.0,
+            "signal_id": "",
+            "station": "ERL"
+          },
+          {
+            "call": 2,
+            "id": "M011",
+            "reasons": {
+              "Authority to SRTL_TRVZ_M0-SA": 4.0,
+              "Block SRTL_RLEAD_D occupied by S006 · Thiruvananthapuram Central–New Delhi Superfast (S006)": 22.0,
+              "Conflicts with route from SRTL_TRVZ_M0-NH · Thiruvananthapuram Central–New Delhi Superfast (S006)": 22.0,
+              "Expect a wait before Mararikulam: preserve a crossing platform for opposing services at Alappuzha · Thiruvananthapuram Central–Shoranur Mail / Express (M008), Nagercoil Junction–Ernakulam Junction Passenger (L002)": 18.0,
+              "Expect a wait before Mararikulam: the remaining platforms are reserved for approaching services · Mumbai–Thiruvananthapuram Central Mail / Express (M017), Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 184.0,
+              "Expect a wait before Mararikulam: the remaining platforms are reserved for approaching services · Mumbai–Thiruvananthapuram Central Mail / Express (M017), Thiruvananthapuram Central–Shoranur Mail / Express (M008), Thiruvananthapuram Central–New Delhi Superfast (S006)": 122.0,
+              "Single line SRTL_single is locked for opposing traffic · Thiruvananthapuram Central–New Delhi Superfast (S006)": 648.0
+            },
+            "seconds": 1020.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 2,
+            "id": "M013",
+            "reasons": {
+              "Authority to SRTL_TRVZ_M0-SA": 4.0,
+              "Block SRTL_RLEAD_D occupied by V001 · Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 36.0,
+              "Block SRTL_TRVZ_M0 occupied by V001 · Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 42.0,
+              "Conflicts with route from SRTL-S1 · Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 26.0,
+              "Conflicts with route from SRTL_TRVZ_M0-NH · Nagercoil Junction–Guruvayur Mail / Express (M044)": 14.0,
+              "Conflicts with route from SRTL_TRVZ_M0-NH · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 12.0,
+              "Expect a wait at SRTL until Thiruvananthapuram Central–Mangaluru Vande Bharat (V002) crosses": 204.0,
+              "Expect a wait before Mararikulam: no free platform suitable for this service · Nagercoil Junction–Guruvayur Mail / Express (M044), Ernakulam Junction–Kollam Junction Passenger (L007)": 2.0,
+              "Expect a wait before Mararikulam: preserve a crossing platform for opposing services at Alappuzha · Thiruvananthapuram Central–Alappuzha Passenger (L014), Tirunelveli–Mangaluru Mail / Express (M064)": 124.0,
+              "Single line SRTL_single is locked for opposing traffic · Nagercoil Junction–Guruvayur Mail / Express (M044)": 494.0,
+              "Single line SRTL_single is locked for opposing traffic · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 10.0
+            },
+            "seconds": 968.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 6,
+            "id": "S025",
+            "reasons": {
+              "Authority to TVC_NEM_M0-SA": 4.0,
+              "Conflicts with route from TVC_NEM_M0-NH · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 30.0,
+              "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Ahmedabad–Tirunelveli Mail / Express (M071)": 56.0,
+              "Expect a wait before Thiruvananthapuram South: preserve a crossing platform for opposing services at Neyyattinkara · Tirunelveli–Mangaluru Mail / Express (M064)": 442.0,
+              "Single line TVC_single is locked for opposing traffic · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 432.0
+            },
+            "seconds": 964.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 17,
+            "id": "L002",
+            "reasons": {
+              "Authority to PGZ_MQU_U2-A": 4.0,
+              "Block PGZ_MQU_U2 occupied by M008 · Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 38.0,
+              "Block PGZ_MQU_U2 occupied by S030 · Kanniyakumari–Bengaluru Superfast (S030)": 54.0,
+              "Expect a wait at MQU until Kanniyakumari–Bengaluru Superfast (S030) overtakes": 492.0,
+              "Expect a wait at MQU until Thiruvananthapuram Central–Shoranur Mail / Express (M008) overtakes": 334.0
+            },
+            "seconds": 922.0,
+            "signal_id": "",
+            "station": "MQU"
+          },
+          {
+            "call": 12,
+            "id": "L006",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 20.0,
+              "Expect a wait before Mararikulam: no free platform suitable for this service · Bengaluru–Kanniyakumari Superfast (S029)": 76.0,
+              "Expect a wait before Mararikulam: no free platform suitable for this service · Thiruvananthapuram Central–Guruvayur Mail / Express (M012), Bengaluru–Kanniyakumari Superfast (S029)": 30.0,
+              "Route set to TMPY_ALLP_M2-NA": 2.0,
+              "Single line MAKM_single is locked for opposing traffic · Bengaluru–Kanniyakumari Superfast (S029)": 162.0,
+              "Single line MAKM_single is locked for opposing traffic · Bengaluru–Kanniyakumari Superfast (S029), Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 108.0,
+              "Single line MAKM_single is locked for opposing traffic · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 142.0,
+              "Single line MAKM_single is locked for opposing traffic · Thrissur–Thiruvananthapuram Central Mail / Express (M009), Bengaluru–Kanniyakumari Superfast (S029)": 354.0
+            },
+            "seconds": 898.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 6,
+            "id": "L002",
+            "reasons": {
+              "Authority to DAVM_PASA_M5-NA": 4.0,
+              "Expect a wait at PASA until Ahmedabad–Tirunelveli Mail / Express (M071) clears the escape approach": 488.0,
+              "Expect a wait before Neyyattinkara: no free platform suitable for this service · Ahmedabad–Tirunelveli Mail / Express (M071)": 306.0,
+              "Single line NYY_single is locked for opposing traffic · Ahmedabad–Tirunelveli Mail / Express (M071)": 92.0
+            },
+            "seconds": 890.0,
+            "signal_id": "",
+            "station": "PASA"
+          },
+          {
+            "call": 1,
+            "id": "M077",
+            "reasons": {
+              "Authority to NYY_AMVA_M0-SA": 4.0,
+              "Expect a wait at NYY until Nagercoil Junction–Thiruvananthapuram Central Passenger (L034) clears the escape approach": 384.0,
+              "Single line NYY_single is locked for opposing traffic · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 488.0
+            },
+            "seconds": 876.0,
+            "signal_id": "",
+            "station": "NYY"
+          },
+          {
+            "call": 2,
+            "id": "S030",
+            "reasons": {
+              "Authority to KZTW_KZT_M1-NA": 4.0,
+              "Conflicts with route from KZTW_KZT_M1-SH · Mumbai–Kanniyakumari Superfast (S025)": 14.0,
+              "Expect a wait before Parassala: no free platform suitable for this service · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 184.0,
+              "Expect a wait before Parassala: preserve a crossing platform for opposing services at Neyyattinkara · Thiruvananthapuram Central–Kanniyakumari Mail / Express (M077)": 236.0,
+              "Single line PASA_single is locked for opposing traffic · Mumbai–Kanniyakumari Superfast (S025)": 426.0
+            },
+            "seconds": 864.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 15,
+            "id": "M047",
+            "reasons": {
+              "Authority to PASA_KZTW_M0-SA": 4.0,
+              "Block PASA_KZTW_M0 occupied by S045 · Thiruvananthapuram Central–Rameswaram Superfast (S045)": 56.0,
+              "Expect a wait at PASA until Thiruvananthapuram Central–Rameswaram Superfast (S045) overtakes": 278.0,
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L023)": 200.0,
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Thiruvananthapuram Central–Rameswaram Superfast (S045), Kollam Junction–Nagercoil Junction Passenger (L023)": 272.0,
+              "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Kollam Junction–Nagercoil Junction Passenger (L023), Thiruvananthapuram Central–Rameswaram Superfast (S045)": 42.0,
+              "Route set to PASA_KZTW_M0-SA": 2.0
+            },
+            "seconds": 854.0,
+            "signal_id": "",
+            "station": "PASA"
+          },
+          {
+            "call": 16,
+            "id": "M063",
+            "reasons": {
+              "Authority to KZT_PYD_M0-SA": 4.0,
+              "Conflicts with route from KZT_PYD_M0-NH · Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006)": 12.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061), Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006), Bengaluru–Kanniyakumari Superfast (S029)": 34.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service · Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006), Bengaluru–Kanniyakumari Superfast (S029)": 58.0,
+              "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006), Bengaluru–Kanniyakumari Superfast (S029), Mumbai–Kanniyakumari Mail / Express (M061)": 80.0,
+              "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006), Mumbai–Kanniyakumari Mail / Express (M061)": 20.0,
+              "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006), Mumbai–Kanniyakumari Mail / Express (M061), Bengaluru–Kanniyakumari Superfast (S029)": 22.0,
+              "Route set to KZT_PYD_M0-SA": 2.0,
+              "Single line KZT_single is locked for opposing traffic · Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006)": 620.0
+            },
+            "seconds": 852.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 2,
+            "id": "M017",
+            "reasons": {
+              "Authority to SRTL_TRVZ_M0-SA": 4.0,
+              "Block SRTL_TRVZ_M0 occupied by S009 · Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 60.0,
+              "Expect a wait at SRTL until Ahmedabad–Thiruvananthapuram Central Superfast (S009) overtakes": 778.0,
+              "Route set to SRTL_TRVZ_M0-SA": 2.0
+            },
+            "seconds": 844.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 14,
+            "id": "M061",
+            "reasons": {
+              "Authority to NYY_AMVA_M0-SA": 4.0,
+              "Block NYY_AMVA_M0 occupied by S045 · Thiruvananthapuram Central–Rameswaram Superfast (S045)": 48.0,
+              "Expect a wait at NYY until Thiruvananthapuram Central–Rameswaram Superfast (S045) overtakes": 272.0,
+              "Expect a wait before Parassala: no free platform suitable for this service · Chennai–Nagercoil Junction Mail / Express (M047)": 198.0,
+              "Expect a wait before Parassala: no free platform suitable for this service · Chennai–Nagercoil Junction Mail / Express (M047), Thiruvananthapuram Central–Rameswaram Superfast (S045)": 96.0,
+              "Expect a wait before Parassala: the remaining platforms are reserved for approaching services · Chennai–Nagercoil Junction Mail / Express (M047), Thiruvananthapuram Central–Rameswaram Superfast (S045)": 218.0
+            },
+            "seconds": 836.0,
+            "signal_id": "",
+            "station": "NYY"
+          },
+          {
+            "call": 10,
+            "id": "M008",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Block ALLP_DEPOT_LM_ACCESS occupied by S006 · Thiruvananthapuram Central–New Delhi Superfast (S006)": 28.0,
+              "Block TMPY_ALLP_M2 occupied by S006 · Thiruvananthapuram Central–New Delhi Superfast (S006)": 38.0,
+              "Expect a wait at ALLP until Thiruvananthapuram Central–New Delhi Superfast (S006) overtakes": 760.0,
+              "Route set to TMPY_ALLP_M2-NA": 2.0
+            },
+            "seconds": 832.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 1,
+            "id": "L007",
+            "reasons": {
+              "Authority to KUMM_AROR_M0-SA": 4.0,
+              "Block KUMM_RLEAD_D occupied by M012 · Thiruvananthapuram Central–Guruvayur Mail / Express (M012)": 12.0,
+              "Conflicts with route from KUMM_AROR_M0-NH · Thiruvananthapuram Central–Guruvayur Mail / Express (M012)": 12.0,
+              "Expect a wait before Turavur: no free platform suitable for this service · Thiruvananthapuram Central–Guruvayur Mail / Express (M012)": 48.0,
+              "Expect a wait before Turavur: no free platform suitable for this service · Thiruvananthapuram Central–Guruvayur Mail / Express (M012), Ernakulam Junction–Nagercoil Junction Passenger (K1)": 48.0,
+              "Single line KUMM_single is locked for opposing traffic · Thiruvananthapuram Central–Guruvayur Mail / Express (M012)": 686.0
+            },
+            "seconds": 810.0,
+            "signal_id": "",
+            "station": "KUMM"
+          },
+          {
+            "call": 11,
+            "id": "L005",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Conflicts with route from ALLP_PUPR_M0-NH · Nagercoil Junction–Guruvayur Mail / Express (M044)": 20.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service · Alappuzha–Thiruvananthapuram Central Passenger (L013), Thiruvananthapuram Central–Mangaluru Vande Bharat (V002), Nagercoil Junction–Guruvayur Mail / Express (M044)": 28.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002), Nagercoil Junction–Guruvayur Mail / Express (M044)": 34.0,
+              "Route set to ALLP_PUPR_M0-SA": 2.0,
+              "Single line ALLP_single is locked for opposing traffic · Nagercoil Junction–Guruvayur Mail / Express (M044)": 186.0,
+              "Single line ALLP_single is locked for opposing traffic · Nagercoil Junction–Guruvayur Mail / Express (M044), Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 312.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 106.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002), Nagercoil Junction–Guruvayur Mail / Express (M044)": 110.0
+            },
+            "seconds": 802.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 11,
+            "id": "M002",
+            "reasons": {
+              "Authority to VAY_SRTL_M5-NA": 4.0,
+              "Conflicts with route from VAY_SRTL_M5-SH · Chennai–Nagercoil Junction Mail / Express (M047)": 22.0,
+              "Expect a wait before Turavur: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061)": 172.0,
+              "Expect a wait before Turavur: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061), Chennai–Nagercoil Junction Mail / Express (M047)": 34.0,
+              "Expect a wait before Turavur: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061), Chennai–Nagercoil Junction Mail / Express (M047), Thiruvananthapuram Central–Tatanagar Mail / Express (M040)": 58.0,
+              "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Mumbai–Kanniyakumari Mail / Express (M061), Thiruvananthapuram Central–Tatanagar Mail / Express (M040)": 18.0,
+              "Single line TUVR_single is locked for opposing traffic · Chennai–Nagercoil Junction Mail / Express (M047)": 490.0
+            },
+            "seconds": 798.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 2,
+            "id": "S009",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_RLEAD_U occupied by L002 · Nagercoil Junction–Ernakulam Junction Passenger (L002)": 12.0,
+              "Conflicts with route from ALLP_PUPR_M0-NH · Nagercoil Junction–Ernakulam Junction Passenger (L002)": 18.0,
+              "Single line ALLP_single is locked for opposing traffic · Nagercoil Junction–Ernakulam Junction Passenger (L002)": 684.0
+            },
+            "seconds": 718.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 0,
+            "id": "L035",
+            "reasons": {
+              "Approach reserved for M095 to enter NEM_P2": 694.0,
+              "Authority to TVC_NEM_M0-SA": 4.0
+            },
+            "seconds": 698.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 0,
+            "id": "L015",
+            "reasons": {
+              "Expect a wait at ALLP until Pune–Thiruvananthapuram Central Mail / Express (M019) overtakes": 110.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 200.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service · Guruvayur–Thiruvananthapuram Central Mail / Express (M011)": 202.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Guruvayur–Thiruvananthapuram Central Mail / Express (M011)": 170.0
+            },
+            "seconds": 682.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 4,
+            "id": "L034",
+            "reasons": {
+              "Approach reserved for L002 to enter PASA_P1": 570.0,
+              "Authority to KZTW_KZT_M1-NA": 4.0,
+              "Conflicts with route from KZTW_KZT_M1-SH · Bengaluru–Nagercoil Junction Mail / Express (M045)": 2.0,
+              "Expect a wait before Parassala: the remaining platforms are reserved for approaching services · Nagercoil Junction–Ernakulam Junction Passenger (L002), Ahmedabad–Tirunelveli Mail / Express (M071)": 90.0,
+              "Route set to KZTW_KZT_M1-NA": 2.0
+            },
+            "seconds": 668.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 0,
+            "id": "L005",
+            "reasons": {
+              "Authority to ERS_TNU_M0-SA": 4.0,
+              "Conflicts with route from ERS_TNU_M0-NH · Tirunelveli–Mangaluru Superfast (S028)": 30.0,
+              "Expect a wait before Kumbalam: no free platform suitable for this service · Thrissur–Thiruvananthapuram Central Mail / Express (M009), Bengaluru–Kanniyakumari Superfast (S029)": 188.0,
+              "Route set to ERS_TNU_M0-SA": 2.0,
+              "Single line ERS_single is locked for opposing traffic · Tirunelveli–Mangaluru Superfast (S028)": 436.0
+            },
+            "seconds": 660.0,
+            "signal_id": "",
+            "station": "ERS"
+          },
+          {
+            "call": 18,
+            "id": "L021",
+            "reasons": {
+              "Approach reserved for L033 to enter NYY_P1": 268.0,
+              "Authority to NEM_BRAM_M0-SA": 4.0,
+              "Expect a wait at NEM until Nagercoil Junction–Kollam Junction Passenger (L022) clears the escape approach": 268.0,
+              "Single line NEM_single is locked for opposing traffic · Nagercoil Junction–Kollam Junction Passenger (L022)": 114.0
+            },
+            "seconds": 654.0,
+            "signal_id": "",
+            "station": "NEM"
+          },
+          {
+            "call": 11,
+            "id": "M006",
+            "reasons": {
+              "Authority to VAY_SRTL_M5-NA": 4.0,
+              "Conflicts with route from VAY_SRTL_M5-SH · Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 12.0,
+              "Route set to VAY_SRTL_M5-NA": 2.0,
+              "Single line TUVR_single is locked for opposing traffic · Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 200.0,
+              "Single line TUVR_single is locked for opposing traffic · Mumbai–Thiruvananthapuram Central Mail / Express (M017)": 28.0,
+              "Single line TUVR_single is locked for opposing traffic · Mumbai–Thiruvananthapuram Central Mail / Express (M017), Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 388.0
+            },
+            "seconds": 634.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 2,
+            "id": "M078",
+            "reasons": {
+              "Authority to PYD_ERL_M7-NA": 4.0,
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Tuticorin–Kollam Junction Mail / Express (M100)": 134.0,
+              "Expect a wait before Kulitturai: no free platform suitable for this service · Tuticorin–Kollam Junction Mail / Express (M100), Tiruchirappalli–Thiruvananthapuram Central Superfast (S042)": 468.0,
+              "Route set to PYD_ERL_M7-NA": 2.0
+            },
+            "seconds": 608.0,
+            "signal_id": "",
+            "station": "ERL"
+          },
+          {
+            "call": 3,
+            "id": "M017",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Expect a wait at ALLP until Thiruvananthapuram Central–Hyderabad Superfast (S008) clears the escape approach": 394.0,
+              "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Hyderabad Superfast (S008)": 208.0
+            },
+            "seconds": 606.0,
+            "signal_id": "",
+            "station": "ALLP"
+          }
+        ],
+        "pack_sha256": "3ce1ba3d917162d4f6ff0d5669ebd1d3f973127520bf22c9ff0ad7c3a6f2f138",
+        "peak_active": 36,
+        "report": "Wait exceeded 45 minutes: L002",
+        "station_wait_quality": {
+          "bins": [
+            99,
+            29,
+            12,
+            1,
+            1
+          ],
+          "brief_count": 750,
+          "count": 142,
+          "cumulative": [
+            {
+              "count": 99,
+              "fraction": 0.697183098591549,
+              "met": false,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 128,
+              "fraction": 0.901408450704225,
+              "met": true,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 140,
+              "fraction": 0.985915492957747,
+              "met": true,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 141,
+              "fraction": 0.992957746478873,
+              "met": false,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 2702.0,
+          "minimum_seconds": 30.0,
+          "ok": false
+        },
+        "total": 208,
+        "wait_quality": {
+          "bins": [
+            197,
+            53,
+            20,
+            2,
+            1
+          ],
+          "brief_count": 1541,
+          "count": 273,
+          "cumulative": [
+            {
+              "count": 197,
+              "fraction": 0.721611721611722,
+              "met": true,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 250,
+              "fraction": 0.915750915750916,
+              "met": true,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 270,
+              "fraction": 0.989010989010989,
+              "met": true,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 272,
+              "fraction": 0.996336996336996,
+              "met": false,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 2702.0,
+          "minimum_seconds": 30.0,
+          "ok": false
+        },
+        "wall_seconds": 2775.484
+      },
+      "failed_station_waits": [
+        {
+          "call": 0,
+          "id": "L002",
+          "reasons": {
+            "Authority to NJT_NCJ_U3-A": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "NCJ"
+        },
+        {
+          "call": 1,
+          "id": "L002",
+          "reasons": {
+            "Authority to VRLR_NJT_U4-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "NJT"
+        },
+        {
+          "call": 2,
+          "id": "L002",
+          "reasons": {
+            "Authority to PYD_ERL_M7-NA": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "ERL"
+        },
+        {
+          "call": 3,
+          "id": "L002",
+          "reasons": {
+            "Authority to KZT_PYD_M0-NH": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "PYD"
+        },
+        {
+          "call": 4,
+          "id": "L002",
+          "reasons": {
+            "Authority to KZTW_KZT_M1-NA": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "KZT"
+        },
+        {
+          "call": 5,
+          "id": "L002",
+          "reasons": {
+            "Authority to PASA_KZTW_M0-NH": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "KZTW"
+        },
+        {
+          "call": 6,
+          "id": "L002",
+          "reasons": {
+            "Authority to DAVM_PASA_M5-NA": 4.0,
+            "Expect a wait at PASA until Ahmedabad–Tirunelveli Mail / Express (M071) clears the escape approach": 488.0,
+            "Expect a wait before Neyyattinkara: no free platform suitable for this service · Ahmedabad–Tirunelveli Mail / Express (M071)": 306.0,
+            "Single line NYY_single is locked for opposing traffic · Ahmedabad–Tirunelveli Mail / Express (M071)": 92.0
+          },
+          "seconds": 890.0,
+          "signal_id": "",
+          "station": "PASA"
+        },
+        {
+          "call": 7,
+          "id": "L002",
+          "reasons": {
+            "Authority to NYY_AMVA_M0-NH": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "DAVM"
+        },
+        {
+          "call": 8,
+          "id": "L002",
+          "reasons": {
+            "Authority to NYY-N2": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "AMVA"
+        },
+        {
+          "call": 9,
+          "id": "L002",
+          "reasons": {
+            "Authority to BRAM_NYY_M2-NA": 4.0,
+            "Conflicts with route from BRAM_NYY_M2-SH · Thiruvananthapuram Central–Kanniyakumari Mail / Express (M077)": 12.0,
+            "Single line NEM_single is locked for opposing traffic · Thiruvananthapuram Central–Kanniyakumari Mail / Express (M077)": 416.0
+          },
+          "seconds": 432.0,
+          "signal_id": "",
+          "station": "NYY"
+        },
+        {
+          "call": 10,
+          "id": "L002",
+          "reasons": {
+            "Authority to NEM_BRAM_M0-NH": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "BRAM"
+        },
+        {
+          "call": 11,
+          "id": "L002",
+          "reasons": {
+            "Authority to TVC_NEM_M5-NA": 4.0,
+            "Conflicts with route from TVC_NEM_M5-SH · Thiruvananthapuram Central–Tiruchirappalli Mail / Express (M079)": 12.0,
+            "Route set to TVC_NEM_M5-NA": 2.0,
+            "Single line TVC_single is locked for opposing traffic · Thiruvananthapuram Central–Tiruchirappalli Mail / Express (M079)": 350.0
+          },
+          "seconds": 368.0,
+          "signal_id": "",
+          "station": "NEM"
+        },
+        {
+          "call": 12,
+          "id": "L002",
+          "reasons": {
+            "Authority to TVP_TVC_U0-A": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "TVC"
+        },
+        {
+          "call": 13,
+          "id": "L002",
+          "reasons": {
+            "Authority to TVCN_TVP_U0-H": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "TVP"
+        },
+        {
+          "call": 14,
+          "id": "L002",
+          "reasons": {
+            "Authority to VELI_TVCN_U0-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "TVCN"
+        },
+        {
+          "call": 15,
+          "id": "L002",
+          "reasons": {
+            "Authority to KXP_KZK_U3-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "KZK"
+        },
+        {
+          "call": 16,
+          "id": "L002",
+          "reasons": {
+            "Authority to MQU_KXP_U0-H": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "KXP"
+        },
+        {
+          "call": 17,
+          "id": "L002",
+          "reasons": {
+            "Authority to PGZ_MQU_U2-A": 4.0,
+            "Block PGZ_MQU_U2 occupied by M008 · Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 38.0,
+            "Block PGZ_MQU_U2 occupied by S030 · Kanniyakumari–Bengaluru Superfast (S030)": 54.0,
+            "Expect a wait at MQU until Kanniyakumari–Bengaluru Superfast (S030) overtakes": 492.0,
+            "Expect a wait at MQU until Thiruvananthapuram Central–Shoranur Mail / Express (M008) overtakes": 334.0
+          },
+          "seconds": 922.0,
+          "signal_id": "",
+          "station": "MQU"
+        },
+        {
+          "call": 18,
+          "id": "L002",
+          "reasons": {
+            "Authority to KVU_CRY_U2-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "PGZ"
+        },
+        {
+          "call": 19,
+          "id": "L002",
+          "reasons": {
+            "Authority to KVU-N3": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "CRY"
+        },
+        {
+          "call": 20,
+          "id": "L002",
+          "reasons": {
+            "Authority to AMY_KVU_U1-A": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "KVU"
+        },
+        {
+          "call": 21,
+          "id": "L002",
+          "reasons": {
+            "Authority to VAK_AMY_U0-H": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "AMY"
+        },
+        {
+          "call": 22,
+          "id": "L002",
+          "reasons": {
+            "Authority to EVA_VAK_U2-A": 4.0,
+            "Block EVA_VAK_U2 occupied by S006 · Thiruvananthapuram Central–New Delhi Superfast (S006)": 44.0,
+            "Expect a wait at VAK until Thiruvananthapuram Central–New Delhi Superfast (S006) overtakes": 248.0,
+            "Route set to EVA_VAK_U2-A": 2.0
+          },
+          "seconds": 298.0,
+          "signal_id": "",
+          "station": "VAK"
+        },
+        {
+          "call": 23,
+          "id": "L002",
+          "reasons": {
+            "Authority to PVU_KFI_U1-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "EVA"
+        },
+        {
+          "call": 24,
+          "id": "L002",
+          "reasons": {
+            "Authority to PVU_KFI_U0-H": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "KFI"
+        },
+        {
+          "call": 25,
+          "id": "L002",
+          "reasons": {
+            "Authority to MYY_PVU_U2-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "PVU"
+        },
+        {
+          "call": 26,
+          "id": "L002",
+          "reasons": {
+            "Authority to QLN_IRP_U0-H": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "MYY"
+        },
+        {
+          "call": 27,
+          "id": "L002",
+          "reasons": {
+            "Authority to QLN_IRP_U0-H": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "IRP"
+        },
+        {
+          "call": 28,
+          "id": "L002",
+          "reasons": {
+            "Authority to PRND_QLN_U6-A": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "QLN"
+        },
+        {
+          "call": 29,
+          "id": "L002",
+          "reasons": {
+            "Authority to MQO_PRND_U4-A": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "PRND"
+        },
+        {
+          "call": 30,
+          "id": "L002",
+          "reasons": {
+            "Authority to STKT_MQO_U0-H": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "MQO"
+        },
+        {
+          "call": 31,
+          "id": "L002",
+          "reasons": {
+            "Authority to KPY_STKT_U6-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "STKT"
+        },
+        {
+          "call": 32,
+          "id": "L002",
+          "reasons": {
+            "Authority to OCR_KPY_U6-A": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "KPY"
+        },
+        {
+          "call": 33,
+          "id": "L002",
+          "reasons": {
+            "Authority to KYJ_OCR_U4-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "OCR"
+        },
+        {
+          "call": 34,
+          "id": "L002",
+          "reasons": {
+            "Authority to CHPD_KYJ_U6-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "KYJ"
+        },
+        {
+          "call": 35,
+          "id": "L002",
+          "reasons": {
+            "Authority to HAD_CHPD_U4-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "CHPD"
+        },
+        {
+          "call": 36,
+          "id": "L002",
+          "reasons": {
+            "Authority to KVTA_HAD_U4-A": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "HAD"
+        },
+        {
+          "call": 37,
+          "id": "L002",
+          "reasons": {
+            "Authority to AMPA_TZH_U0-H": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "KVTA"
+        },
+        {
+          "call": 38,
+          "id": "L002",
+          "reasons": {
+            "Authority to PUPR_AMPA_M3-NA": 4.0
+          },
+          "seconds": 4.0,
+          "signal_id": "",
+          "station": "AMPA"
+        },
+        {
+          "call": 39,
+          "id": "L002",
+          "reasons": {
+            "Authority to ALLP_PUPR_M0-NH": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "",
+          "station": "PUPR"
+        },
+        {
+          "call": 40,
+          "id": "L002",
+          "reasons": {
+            "Approach reserved for M011 to enter ALLP_P1": 96.0,
+            "Block ALLP_DEPOT_LM_ACCESS occupied by S008 · Thiruvananthapuram Central–Hyderabad Superfast (S008)": 16.0,
+            "Block ALLP_LLEAD_U occupied by S008 · Thiruvananthapuram Central–Hyderabad Superfast (S008)": 20.0,
+            "Block TMPY_ALLP_M2 occupied by S008 · Thiruvananthapuram Central–Hyderabad Superfast (S008)": 42.0,
+            "Conflicts with route from TMPY_ALLP_M2-SH · Mumbai–Thiruvananthapuram Central Mail / Express (M017)": 12.0,
+            "Expect a wait at ALLP until Mumbai–Thiruvananthapuram Central Mail / Express (M017) crosses": 280.0,
+            "Expect a wait at ALLP until Thiruvananthapuram Central–Hyderabad Superfast (S008) overtakes": 968.0,
+            "Expect a wait before Mararikulam: no free platform suitable for this service · Pune–Thiruvananthapuram Central Mail / Express (M019), Patna–Thiruvananthapuram Central Superfast (S013)": 410.0,
+            "Expect a wait before Mararikulam: no free platform suitable for this service · Thiruvananthapuram Central–Hyderabad Superfast (S008), Pune–Thiruvananthapuram Central Mail / Express (M019), Patna–Thiruvananthapuram Central Superfast (S013)": 34.0,
+            "Expect a wait before Mararikulam: preserve a crossing platform for opposing services at Cherthala · Pune–Thiruvananthapuram Central Mail / Express (M019), Patna–Thiruvananthapuram Central Superfast (S013)": 372.0,
+            "Single line MAKM_single is locked for opposing traffic · Mumbai–Thiruvananthapuram Central Mail / Express (M017)": 22.0,
+            "Single line MAKM_single is locked for opposing traffic · Pune–Thiruvananthapuram Central Mail / Express (M019)": 430.0
+          },
+          "seconds": 2702.0,
+          "signal_id": "",
+          "station": "ALLP"
+        }
+      ],
+      "failed_signal_waits": [
+        {
+          "call": 2,
+          "id": "L002",
+          "reasons": {
+            "Authority to VRLR_NJT_U4-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "NJT-N2",
+          "station": "NJT"
+        },
+        {
+          "call": 3,
+          "id": "L002",
+          "reasons": {
+            "Authority to PYD_ERL_M7-NA": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "ERL-N2",
+          "station": "ERL"
+        },
+        {
+          "call": 4,
+          "id": "L002",
+          "reasons": {
+            "Authority to KZT_PYD_M0-NH": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "KZT_PYD_M5-NA",
+          "station": "PYD"
+        },
+        {
+          "call": 5,
+          "id": "L002",
+          "reasons": {
+            "Authority to KZTW_KZT_M1-NA": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "KZT-N2",
+          "station": "KZT"
+        },
+        {
+          "call": 6,
+          "id": "L002",
+          "reasons": {
+            "Authority to PASA_KZTW_M0-NH": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "PASA_KZTW_M4-NA",
+          "station": "KZTW"
+        },
+        {
+          "call": 6,
+          "id": "L002",
+          "reasons": {
+            "Planned crossing at PASA: enter PASA_P1 after Tirunelveli–Mangaluru Mail / Express (M064) clears; M045 will wait for your arrival · Block PASA_P1 occupied by M064 · Tirunelveli–Mangaluru Mail / Express (M064)": 72.0
+          },
+          "seconds": 72.0,
+          "signal_id": "PASA_KZTW_M0-NH",
+          "station": "PASA_KZTW_M0"
+        },
+        {
+          "call": 7,
+          "id": "L002",
+          "reasons": {
+            "Authority to DAVM_PASA_M5-NA": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "PASA-N1",
+          "station": "PASA"
+        },
+        {
+          "call": 8,
+          "id": "L002",
+          "reasons": {
+            "Arriving at Amaravila; departure decision after the scheduled stop": 2.0,
+            "Authority to NYY-N2": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "NYY_AMVA_M1-NA",
+          "station": "AMVA"
+        },
+        {
+          "call": 10,
+          "id": "L002",
+          "reasons": {
+            "Authority to BRAM_NYY_M2-NA": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "NYY-N2",
+          "station": "NYY"
+        },
+        {
+          "call": 11,
+          "id": "L002",
+          "reasons": {
+            "Authority to NEM_BRAM_M0-NH": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "NEM_BRAM_M4-NA",
+          "station": "BRAM"
+        },
+        {
+          "call": 14,
+          "id": "L002",
+          "reasons": {
+            "Authority to TVCN_TVP_U0-H": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "TVCN_TVP_U3-A",
+          "station": "TVP"
+        },
+        {
+          "call": 15,
+          "id": "L002",
+          "reasons": {
+            "Authority to VELI_TVCN_U0-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "TVCN-N2",
+          "station": "TVCN"
+        },
+        {
+          "call": 16,
+          "id": "L002",
+          "reasons": {
+            "Authority to KXP_KZK_U3-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "KZK-N2",
+          "station": "KZK"
+        },
+        {
+          "call": 18,
+          "id": "L002",
+          "reasons": {
+            "Authority to PGZ_MQU_U2-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "MQU-N2",
+          "station": "MQU"
+        },
+        {
+          "call": 18,
+          "id": "L002",
+          "reasons": {
+            "Arriving at Perunguzhi; departure decision after the scheduled stop": 2.0,
+            "Authority to KVU_CRY_U2-A": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "CRY_PGZ_U3-A",
+          "station": "PGZ"
+        },
+        {
+          "call": 19,
+          "id": "L002",
+          "reasons": {
+            "Arriving at Chirayinkeezh; departure decision after the scheduled stop": 2.0,
+            "Authority to KVU-N3": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "KVU_CRY_U2-A",
+          "station": "CRY"
+        },
+        {
+          "call": 20,
+          "id": "L002",
+          "reasons": {
+            "Arriving at Kadakavur; departure decision after the scheduled stop": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "KVU-N3",
+          "station": "KVU"
+        },
+        {
+          "call": 22,
+          "id": "L002",
+          "reasons": {
+            "Arriving at Varkala Sivagiri; departure decision after the scheduled stop": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "VAK-N3",
+          "station": "VAK"
+        },
+        {
+          "call": 23,
+          "id": "L002",
+          "reasons": {
+            "Arriving at Edavai; departure decision after the scheduled stop": 2.0,
+            "Authority to PVU_KFI_U0-H": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "KFI_EVA_U1-A",
+          "station": "EVA"
+        },
+        {
+          "call": 25,
+          "id": "L002",
+          "reasons": {
+            "Arriving at Paravur; departure decision after the scheduled stop": 2.0,
+            "Authority to MYY_PVU_U2-A": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "PVU-N3",
+          "station": "PVU"
+        },
+        {
+          "call": 27,
+          "id": "L002",
+          "reasons": {
+            "Authority to QLN_IRP_U0-H": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "IRP_MYY_U3-A",
+          "station": "MYY"
+        },
+        {
+          "call": 28,
+          "id": "L002",
+          "reasons": {
+            "Authority to QLN_IRP_U0-H": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "QLN_IRP_U2-A",
+          "station": "IRP"
+        },
+        {
+          "call": 29,
+          "id": "L002",
+          "reasons": {
+            "Arriving at Perinad; departure decision after the scheduled stop": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "PRND-N3",
+          "station": "PRND"
+        },
+        {
+          "call": 31,
+          "id": "L002",
+          "reasons": {
+            "Authority to STKT_MQO_U0-H": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "STKT_MQO_U3-A",
+          "station": "MQO"
+        },
+        {
+          "call": 32,
+          "id": "L002",
+          "reasons": {
+            "Authority to KPY_STKT_U6-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "STKT-N4",
+          "station": "STKT"
+        },
+        {
+          "call": 33,
+          "id": "L002",
+          "reasons": {
+            "Authority to OCR_KPY_U6-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "KPY-N3",
+          "station": "KPY"
+        },
+        {
+          "call": 33,
+          "id": "L002",
+          "reasons": {
+            "Arriving at Ochira; departure decision after the scheduled stop": 2.0,
+            "Authority to KYJ_OCR_U4-A": 2.0
+          },
+          "seconds": 4.0,
+          "signal_id": "OCR-N3",
+          "station": "OCR"
+        },
+        {
+          "call": 35,
+          "id": "L002",
+          "reasons": {
+            "Authority to CHPD_KYJ_U6-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "KYJ-N2",
+          "station": "KYJ"
+        },
+        {
+          "call": 36,
+          "id": "L002",
+          "reasons": {
+            "Authority to HAD_CHPD_U4-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "CHPD-N2",
+          "station": "CHPD"
+        },
+        {
+          "call": 37,
+          "id": "L002",
+          "reasons": {
+            "Authority to KVTA_HAD_U4-A": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "HAD-N3",
+          "station": "HAD"
+        },
+        {
+          "call": 38,
+          "id": "L002",
+          "reasons": {
+            "Authority to AMPA_TZH_U0-H": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "TZH_KVTA_U5-A",
+          "station": "KVTA"
+        },
+        {
+          "call": 38,
+          "id": "L002",
+          "reasons": {
+            "Expect a wait before Ambalappuzha: preserve a crossing platform for opposing services at Alappuzha · Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 172.0
+          },
+          "seconds": 172.0,
+          "signal_id": "AMPA_TZH_U0-H",
+          "station": "AMPA_TZH_U0"
+        },
+        {
+          "call": 39,
+          "id": "L002",
+          "reasons": {
+            "Authority to PUPR_AMPA_M3-NA": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "AMPA-N2",
+          "station": "AMPA"
+        },
+        {
+          "call": 40,
+          "id": "L002",
+          "reasons": {
+            "Authority to ALLP_PUPR_M0-NH": 2.0
+          },
+          "seconds": 2.0,
+          "signal_id": "ALLP_PUPR_M5-NA",
+          "station": "PUPR"
+        }
+      ],
+      "selected_service_records": {
+        "L002": {
+          "actual_arrivals": [
+            -1.0,
+            16047.1499999067,
+            16719.9999998969,
+            17241.5999998893,
+            17793.3999998813,
+            18181.3999998757,
+            18759.5999998673,
+            20061.9499998483,
+            20368.0999998439,
+            20643.1999998399,
+            21401.6499998288,
+            21793.0499998231,
+            22655.3999998106,
+            23023.7999998052,
+            23360.8499998003,
+            23810.6999997938,
+            24127.1499997892,
+            24437.6999997846,
+            25664.5499997668,
+            25976.0499997622,
+            26302.3999997575,
+            26617.0999997529,
+            27060.0999997465,
+            27700.3999997372,
+            27973.8999997332,
+            28350.5499997277,
+            28691.5499997227,
+            29009.0499997181,
+            29351.4999997131,
+            29950.2499997044,
+            30373.0499996983,
+            30752.6499996927,
+            31290.5999996849,
+            31830.3999996771,
+            32254.8499996709,
+            32758.5999996635,
+            33161.8999996863,
+            33585.149999711,
+            34456.5999997617,
+            34824.5999997831,
+            35280.7499998097,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            15686.299999912,
+            16127.2999999056,
+            16804.7999998957,
+            17440.7499998865,
+            17962.7999998789,
+            18304.7499998739,
+            19714.7999998534,
+            20138.3999998472,
+            20440.9499998428,
+            21145.7999998325,
+            21473.2999998278,
+            22232.2999998167,
+            22840.2999998079,
+            23095.4499998042,
+            23485.7999997985,
+            23887.2999997926,
+            24202.3999997881,
+            25431.7999997702,
+            25734.9999997658,
+            26048.8999997612,
+            26380.2999997564,
+            26686.3499997519,
+            27424.2999997412,
+            27776.849999736,
+            28044.3499997321,
+            28423.7999997266,
+            28765.5999997217,
+            29079.4999997171,
+            29476.2999997113,
+            30024.2999997033,
+            30447.0999996972,
+            30825.7999996917,
+            31364.7999996838,
+            31899.799999676,
+            32379.7999996691,
+            32831.7499996671,
+            33234.7499996906,
+            33653.1499997149,
+            34524.7499997657,
+            34894.9999997872,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "NCJ_P4",
+              "direction": -1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Nagercoil Junction",
+              "s": 286.826232910156
+            },
+            {
+              "block": "NJT_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 5.7,
+              "name": "Nagercoil Town",
+              "s": 286.739196777344
+            },
+            {
+              "block": "ERL_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 19.0,
+              "name": "Eraniel",
+              "s": 285.714172363281
+            },
+            {
+              "block": "PYD_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 29.6,
+              "name": "Palliyadi",
+              "s": 266.720062255859
+            },
+            {
+              "block": "KZT_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 38.3,
+              "name": "Kulitturai",
+              "s": 285.539184570312
+            },
+            {
+              "block": "KZTW_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 44.0,
+              "name": "Kulitturai West",
+              "s": 266.2861328125
+            },
+            {
+              "block": "PASA_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 51.7,
+              "name": "Parassala",
+              "s": 284.72021484375
+            },
+            {
+              "block": "DAVM_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 60.4,
+              "name": "Dhanuvachapuram",
+              "s": 266.597045898437
+            },
+            {
+              "block": "AMVA_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 66.6,
+              "name": "Amaravila",
+              "s": 266.500091552734
+            },
+            {
+              "block": "NYY_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 71.8,
+              "name": "Neyyattinkara",
+              "s": 286.845886230469
+            },
+            {
+              "block": "BRAM_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 78.4,
+              "name": "Balaramapuram",
+              "s": 266.104888916016
+            },
+            {
+              "block": "NEM_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 86.3,
+              "name": "Thiruvananthapuram South",
+              "s": 287.280090332031
+            },
+            {
+              "block": "TVC_P2",
+              "direction": -1,
+              "dwell_minutes": 3.0,
+              "minutes_from_origin": 96.2,
+              "name": "Thiruvananthapuram Central",
+              "s": 559.489501953125
+            },
+            {
+              "block": "TVP_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 103.0,
+              "name": "Thiruvananthapuram Pettah",
+              "s": 266.532379150391
+            },
+            {
+              "block": "TVCN_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 109.5,
+              "name": "Thiruvananthapuram North",
+              "s": 447.708129882812
+            },
+            {
+              "block": "KZK_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 118.1,
+              "name": "Kazhakuttam",
+              "s": 286.748168945312
+            },
+            {
+              "block": "KXP_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 124.1,
+              "name": "Kaniyapuram",
+              "s": 266.755554199219
+            },
+            {
+              "block": "MQU_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 130.0,
+              "name": "Murukkampuzha",
+              "s": 286.715881347656
+            },
+            {
+              "block": "PGZ_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 135.4,
+              "name": "Perunguzhi",
+              "s": 266.70458984375
+            },
+            {
+              "block": "CRY_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 141.4,
+              "name": "Chirayinkeezh",
+              "s": 266.687225341797
+            },
+            {
+              "block": "KVU_P3",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 146.7,
+              "name": "Kadakavur",
+              "s": 287.374267578125
+            },
+            {
+              "block": "AMY_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 151.7,
+              "name": "Akathumuri",
+              "s": 266.264678955078
+            },
+            {
+              "block": "VAK_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 159.4,
+              "name": "Varkala Sivagiri",
+              "s": 286.660705566406
+            },
+            {
+              "block": "EVA_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 165.2,
+              "name": "Edavai",
+              "s": 266.680114746094
+            },
+            {
+              "block": "KFI_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 170.3,
+              "name": "Kappil",
+              "s": 266.066864013672
+            },
+            {
+              "block": "PVU_P3",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 176.7,
+              "name": "Paravur",
+              "s": 287.080383300781
+            },
+            {
+              "block": "MYY_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 182.3,
+              "name": "Mayyanad",
+              "s": 266.751190185547
+            },
+            {
+              "block": "IRP_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 188.3,
+              "name": "Iravipuram",
+              "s": 266.742126464844
+            },
+            {
+              "block": "QLN_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 194.9,
+              "name": "Kollam Junction",
+              "s": 1387.01281738281
+            },
+            {
+              "block": "PRND_P3",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 205.7,
+              "name": "Perinad",
+              "s": 286.990051269531
+            },
+            {
+              "block": "MQO_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 213.1,
+              "name": "Munroturuttu",
+              "s": 266.500030517578
+            },
+            {
+              "block": "STKT_P4",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 219.4,
+              "name": "Sasthankotta",
+              "s": 285.313171386719
+            },
+            {
+              "block": "KPY_P3",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 228.2,
+              "name": "Karunagapalli",
+              "s": 287.320007324219
+            },
+            {
+              "block": "OCR_P3",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 236.9,
+              "name": "Ochira",
+              "s": 286.935668945312
+            },
+            {
+              "block": "KYJ_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 244.4,
+              "name": "Kayamkulam Junction",
+              "s": 386.446899414062
+            },
+            {
+              "block": "CHPD_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 254.3,
+              "name": "Cheppad",
+              "s": 398.301147460937
+            },
+            {
+              "block": "HAD_P3",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 261.1,
+              "name": "Haripad",
+              "s": 286.840026855469
+            },
+            {
+              "block": "KVTA_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 268.5,
+              "name": "Karuvatta",
+              "s": 266.752105712891
+            },
+            {
+              "block": "AMPA_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 280.9,
+              "name": "Ambalappuzha",
+              "s": 286.675415039062
+            },
+            {
+              "block": "PUPR_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 288.4,
+              "name": "Punnapra",
+              "s": 266.749877929687
+            },
+            {
+              "block": "ALLP_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 297.9,
+              "name": "Alappuzha",
+              "s": 286.876403808594
+            },
+            {
+              "block": "TMPY_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 305.4,
+              "name": "Tumboli",
+              "s": 266.59765625
+            },
+            {
+              "block": "KAVR_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 313.3,
+              "name": "Kalavur",
+              "s": 266.740539550781
+            },
+            {
+              "block": "MAKM_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 319.3,
+              "name": "Mararikulam",
+              "s": 286.915710449219
+            },
+            {
+              "block": "TRVZ_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 326.8,
+              "name": "Tiruvizha",
+              "s": 266.747406005859
+            },
+            {
+              "block": "SRTL_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 335.1,
+              "name": "Cherthala",
+              "s": 287.083129882812
+            },
+            {
+              "block": "VAY_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 343.8,
+              "name": "Vayalar",
+              "s": 266.591186523437
+            },
+            {
+              "block": "TUVR_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 350.0,
+              "name": "Turavur",
+              "s": 286.291870117187
+            },
+            {
+              "block": "EZP_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 357.6,
+              "name": "Ezhupunna",
+              "s": 266.533569335937
+            },
+            {
+              "block": "AROR_P1",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 365.5,
+              "name": "Aroor",
+              "s": 266.720764160156
+            },
+            {
+              "block": "KUMM_P3",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 373.0,
+              "name": "Kumbalam",
+              "s": 286.863403320312
+            },
+            {
+              "block": "ERS_P2",
+              "direction": -1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 383.0,
+              "name": "Ernakulam Junction",
+              "s": 559.226684570312
+            }
+          ],
+          "current_wait": 2702.0,
+          "departure": 15600.0,
+          "journey": {
+            "category": "local",
+            "destination": "Ernakulam Junction",
+            "origin": "Nagercoil Junction",
+            "representative": true
+          },
+          "max_wait_seconds": 2702.0,
+          "name": "Nagercoil Junction–Ernakulam Junction Passenger",
+          "priority": 30,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 6026.0
+        },
+        "S008": {
+          "actual_arrivals": [
+            -1.0,
+            30895.1999996907,
+            32211.7499996715,
+            34178.7999997455,
+            36527.2499998822,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            29104.7999997167,
+            31192.7999996863,
+            32542.7999996667,
+            34672.7499997743,
+            37048.7499999126,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "TVC_P3",
+              "direction": -1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Thiruvananthapuram Central",
+              "s": 347.29568359375
+            },
+            {
+              "block": "VAK_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 33.8,
+              "name": "Varkala Sivagiri",
+              "s": 245.630705566406
+            },
+            {
+              "block": "QLN_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 55.3,
+              "name": "Kollam Junction",
+              "s": 1345.98281738281
+            },
+            {
+              "block": "KYJ_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 90.8,
+              "name": "Kayamkulam Junction",
+              "s": 345.416899414062
+            },
+            {
+              "block": "ALLP_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 130.4,
+              "name": "Alappuzha",
+              "s": 245.846403808594
+            },
+            {
+              "block": "ERS_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 187.2,
+              "name": "Ernakulam Junction",
+              "s": 518.196684570313
+            },
+            {
+              "block": "ERS_PORTAL_U",
+              "boundary": "exit",
+              "direction": -1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 194.6,
+              "name": "Continues north beyond ERS",
+              "s": 327.136442871094
+            }
+          ],
+          "current_wait": 0.0,
+          "departure": 29100.0,
+          "journey": {
+            "category": "superfast",
+            "destination": "Hyderabad",
+            "origin": "Thiruvananthapuram Central",
+            "representative": true
+          },
+          "max_wait_seconds": 4.0,
+          "name": "Thiruvananthapuram Central–Hyderabad Superfast",
+          "priority": 75,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 20.0
+        },
+        "M011": {
+          "actual_arrivals": [
+            -1.0,
+            31148.699999687,
+            34531.099999766,
+            36828.2999998997,
+            37868.5499999603,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            30904.7999996905,
+            31330.7999996843,
+            35616.7499998292,
+            37261.749999925,
+            37939.2499999644,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "ERS_PORTAL_D",
+              "boundary": "entry",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Enters railway north of ERS",
+              "s": 823.963442871094
+            },
+            {
+              "block": "ERS_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 5.1,
+              "name": "Ernakulam Junction",
+              "s": 1048.05713183594
+            },
+            {
+              "block": "SRTL_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 39.9,
+              "name": "Cherthala",
+              "s": 775.412844726563
+            },
+            {
+              "block": "ALLP_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 64.7,
+              "name": "Alappuzha",
+              "s": 775.528079101563
+            },
+            {
+              "block": "AMPA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 79.9,
+              "name": "Ambalappuzha",
+              "s": 773.566775390625
+            },
+            {
+              "block": "HAD_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 96.9,
+              "name": "Haripad",
+              "s": 775.63049609375
+            },
+            {
+              "block": "KYJ_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 109.9,
+              "name": "Kayamkulam Junction",
+              "s": 875.521487304688
+            },
+            {
+              "block": "KPY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 124.3,
+              "name": "Karunagapalli",
+              "s": 775.511294433594
+            },
+            {
+              "block": "QLN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 148.1,
+              "name": "Kollam Junction",
+              "s": 1866.37903125
+            },
+            {
+              "block": "PVU_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 161.7,
+              "name": "Paravur",
+              "s": 774.896060058594
+            },
+            {
+              "block": "VAK_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 173.3,
+              "name": "Varkala Sivagiri",
+              "s": 780.496157714844
+            },
+            {
+              "block": "KZK_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 197.6,
+              "name": "Kazhakuttam",
+              "s": 775.514346191406
+            },
+            {
+              "block": "TVCN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 205.3,
+              "name": "Thiruvananthapuram North",
+              "s": 938.455813476563
+            },
+            {
+              "block": "TVC_P1",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 214.9,
+              "name": "Thiruvananthapuram Central",
+              "s": 1047.84338671875
+            }
+          ],
+          "current_wait": 0.0,
+          "departure": 30900.0,
+          "journey": {
+            "category": "mail",
+            "destination": "Thiruvananthapuram Central",
+            "origin": "Guruvayur",
+            "representative": true
+          },
+          "max_wait_seconds": 1504.0,
+          "name": "Guruvayur–Thiruvananthapuram Central Mail / Express",
+          "priority": 55,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 2854.0
+        },
+        "M017": {
+          "actual_arrivals": [
+            -1.0,
+            30016.9999997034,
+            31926.5499996757,
+            35759.6499998375,
+            37101.6499999157,
+            38012.7999999687,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            29704.799999708,
+            30148.7999997015,
+            33030.2499996787,
+            36487.2499998799,
+            37173.2499999198,
+            38084.7499999729,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "ERS_PORTAL_D",
+              "boundary": "entry",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Enters railway north of ERS",
+              "s": 842.696442871094
+            },
+            {
+              "block": "ERS_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 5.4,
+              "name": "Ernakulam Junction",
+              "s": 1066.79013183594
+            },
+            {
+              "block": "SRTL_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 40.4,
+              "name": "Cherthala",
+              "s": 794.145844726562
+            },
+            {
+              "block": "ALLP_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 65.6,
+              "name": "Alappuzha",
+              "s": 794.261079101562
+            },
+            {
+              "block": "AMPA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 81.1,
+              "name": "Ambalappuzha",
+              "s": 792.299775390625
+            },
+            {
+              "block": "HAD_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 98.3,
+              "name": "Haripad",
+              "s": 794.36349609375
+            },
+            {
+              "block": "KYJ_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 111.6,
+              "name": "Kayamkulam Junction",
+              "s": 894.254487304687
+            },
+            {
+              "block": "KPY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 126.4,
+              "name": "Karunagapalli",
+              "s": 794.244294433594
+            },
+            {
+              "block": "QLN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 150.5,
+              "name": "Kollam Junction",
+              "s": 1885.11203125
+            },
+            {
+              "block": "PVU_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 164.4,
+              "name": "Paravur",
+              "s": 793.629060058594
+            },
+            {
+              "block": "VAK_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 176.3,
+              "name": "Varkala Sivagiri",
+              "s": 799.229157714844
+            },
+            {
+              "block": "KZK_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 200.8,
+              "name": "Kazhakuttam",
+              "s": 794.247346191406
+            },
+            {
+              "block": "TVCN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 208.8,
+              "name": "Thiruvananthapuram North",
+              "s": 957.188813476562
+            },
+            {
+              "block": "TVC_P1",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 218.7,
+              "name": "Thiruvananthapuram Central",
+              "s": 1066.57638671875
+            }
+          ],
+          "current_wait": 0.0,
+          "departure": 29700.0,
+          "journey": {
+            "category": "mail",
+            "destination": "Thiruvananthapuram Central",
+            "origin": "Mumbai",
+            "representative": true
+          },
+          "max_wait_seconds": 1198.0,
+          "name": "Mumbai–Thiruvananthapuram Central Mail / Express",
+          "priority": 55,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 2924.0
+        },
+        "M019": {
+          "actual_arrivals": [
+            -1.0,
+            33608.3999997123,
+            36015.8999998525,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            33304.7499996947,
+            33886.2499997285,
+            36414.7499998757,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "ERS_PORTAL_D",
+              "boundary": "entry",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Enters railway north of ERS",
+              "s": 823.963442871094
+            },
+            {
+              "block": "ERS_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 5.1,
+              "name": "Ernakulam Junction",
+              "s": 1048.05713183594
+            },
+            {
+              "block": "SRTL_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 39.9,
+              "name": "Cherthala",
+              "s": 775.412844726563
+            },
+            {
+              "block": "ALLP_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 64.7,
+              "name": "Alappuzha",
+              "s": 775.528079101563
+            },
+            {
+              "block": "AMPA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 79.9,
+              "name": "Ambalappuzha",
+              "s": 773.566775390625
+            },
+            {
+              "block": "HAD_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 96.9,
+              "name": "Haripad",
+              "s": 775.63049609375
+            },
+            {
+              "block": "KYJ_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 109.9,
+              "name": "Kayamkulam Junction",
+              "s": 875.521487304688
+            },
+            {
+              "block": "KPY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 124.3,
+              "name": "Karunagapalli",
+              "s": 775.511294433594
+            },
+            {
+              "block": "QLN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 148.1,
+              "name": "Kollam Junction",
+              "s": 1866.37903125
+            },
+            {
+              "block": "PVU_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 161.7,
+              "name": "Paravur",
+              "s": 774.896060058594
+            },
+            {
+              "block": "VAK_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 173.3,
+              "name": "Varkala Sivagiri",
+              "s": 780.496157714844
+            },
+            {
+              "block": "KZK_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 197.6,
+              "name": "Kazhakuttam",
+              "s": 775.514346191406
+            },
+            {
+              "block": "TVCN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 205.3,
+              "name": "Thiruvananthapuram North",
+              "s": 938.455813476563
+            },
+            {
+              "block": "TVC_P1",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 214.9,
+              "name": "Thiruvananthapuram Central",
+              "s": 1047.84338671875
+            }
+          ],
+          "current_wait": 0.0,
+          "departure": 33300.0,
+          "journey": {
+            "category": "mail",
+            "destination": "Thiruvananthapuram Central",
+            "origin": "Pune",
+            "representative": true
+          },
+          "max_wait_seconds": 700.0,
+          "name": "Pune–Thiruvananthapuram Central Mail / Express",
+          "priority": 55,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 1558.0
+        },
+        "S013": {
+          "actual_arrivals": [
+            -1.0,
+            33256.0499996918,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            33004.7499996772,
+            33712.2499997184,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "ERS_PORTAL_D",
+              "boundary": "entry",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Enters railway north of ERS",
+              "s": 842.696442871094
+            },
+            {
+              "block": "ERS_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 5.4,
+              "name": "Ernakulam Junction",
+              "s": 1066.79013183594
+            },
+            {
+              "block": "ALLP_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 62.3,
+              "name": "Alappuzha",
+              "s": 794.261079101562
+            },
+            {
+              "block": "KYJ_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 101.8,
+              "name": "Kayamkulam Junction",
+              "s": 894.254487304687
+            },
+            {
+              "block": "QLN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 137.3,
+              "name": "Kollam Junction",
+              "s": 1885.11203125
+            },
+            {
+              "block": "VAK_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 159.8,
+              "name": "Varkala Sivagiri",
+              "s": 799.229157714844
+            },
+            {
+              "block": "TVC_P1",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 194.6,
+              "name": "Thiruvananthapuram Central",
+              "s": 1066.57638671875
+            }
+          ],
+          "current_wait": 1236.0,
+          "departure": 33000.0,
+          "journey": {
+            "category": "superfast",
+            "destination": "Thiruvananthapuram Central",
+            "origin": "Patna",
+            "representative": true
+          },
+          "max_wait_seconds": 1236.0,
+          "name": "Patna–Thiruvananthapuram Central Superfast",
+          "priority": 75,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 2210.0
+        },
+        "L015": {
+          "actual_arrivals": [
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "ALLP_P1",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Alappuzha",
+              "s": 753.231079101563
+            },
+            {
+              "block": "PUPR_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 8.4,
+              "name": "Punnapra",
+              "s": 733.249877929688
+            },
+            {
+              "block": "AMPA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 16.0,
+              "name": "Ambalappuzha",
+              "s": 751.269775390625
+            },
+            {
+              "block": "TZH_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 23.2,
+              "name": "Takazhi",
+              "s": 733.820037841797
+            },
+            {
+              "block": "KVTA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 31.2,
+              "name": "Karuvatta",
+              "s": 733.250152587891
+            },
+            {
+              "block": "HAD_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 38.6,
+              "name": "Haripad",
+              "s": 753.33349609375
+            },
+            {
+              "block": "CHPD_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 45.4,
+              "name": "Cheppad",
+              "s": 864.80419921875
+            },
+            {
+              "block": "KYJ_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 54.3,
+              "name": "Kayamkulam Junction",
+              "s": 853.224487304688
+            },
+            {
+              "block": "OCR_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 62.7,
+              "name": "Ochira",
+              "s": 753.241455078125
+            },
+            {
+              "block": "KPY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 71.5,
+              "name": "Karunagapalli",
+              "s": 753.214294433594
+            },
+            {
+              "block": "STKT_P3",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 80.3,
+              "name": "Sasthankotta",
+              "s": 753.602844238281
+            },
+            {
+              "block": "MQO_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 86.6,
+              "name": "Munroturuttu",
+              "s": 734.816192626953
+            },
+            {
+              "block": "PRND_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 94.0,
+              "name": "Perinad",
+              "s": 752.492309570313
+            },
+            {
+              "block": "QLN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 103.8,
+              "name": "Kollam Junction",
+              "s": 1844.08203125
+            },
+            {
+              "block": "IRP_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 111.3,
+              "name": "Iravipuram",
+              "s": 733.224273681641
+            },
+            {
+              "block": "MYY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 117.4,
+              "name": "Mayyanad",
+              "s": 733.222839355469
+            },
+            {
+              "block": "PVU_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 123.0,
+              "name": "Paravur",
+              "s": 752.599060058594
+            },
+            {
+              "block": "KFI_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 129.4,
+              "name": "Kappil",
+              "s": 731.051208496094
+            },
+            {
+              "block": "EVA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 134.4,
+              "name": "Edavai",
+              "s": 732.659118652344
+            },
+            {
+              "block": "VAK_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 140.2,
+              "name": "Varkala Sivagiri",
+              "s": 758.199157714844
+            },
+            {
+              "block": "AMY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 148.0,
+              "name": "Akathumuri",
+              "s": 736.676239013672
+            },
+            {
+              "block": "KVU_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 153.0,
+              "name": "Kadakavur",
+              "s": 751.678833007813
+            },
+            {
+              "block": "CRY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 158.3,
+              "name": "Chirayinkeezh",
+              "s": 732.537567138672
+            },
+            {
+              "block": "PGZ_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 164.3,
+              "name": "Perunguzhi",
+              "s": 732.882385253906
+            },
+            {
+              "block": "MQU_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 169.7,
+              "name": "Murukkampuzha",
+              "s": 752.716125488281
+            },
+            {
+              "block": "KXP_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 175.6,
+              "name": "Kaniyapuram",
+              "s": 733.26953125
+            },
+            {
+              "block": "KZK_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 181.6,
+              "name": "Kazhakuttam",
+              "s": 753.217346191406
+            },
+            {
+              "block": "VELI_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 187.5,
+              "name": "Veli",
+              "s": 731.217224121094
+            },
+            {
+              "block": "TVCN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 192.0,
+              "name": "Thiruvananthapuram North",
+              "s": 916.158813476563
+            },
+            {
+              "block": "TVP_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 199.5,
+              "name": "Thiruvananthapuram Pettah",
+              "s": 734.062438964844
+            },
+            {
+              "block": "TVC_P1",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 204.4,
+              "name": "Thiruvananthapuram Central",
+              "s": 1025.54638671875
+            }
+          ],
+          "current_wait": 682.0,
+          "departure": 36300.0,
+          "journey": {
+            "category": "local",
+            "destination": "Thiruvananthapuram Central",
+            "origin": "Alappuzha",
+            "representative": true
+          },
+          "max_wait_seconds": 682.0,
+          "name": "Alappuzha–Thiruvananthapuram Central Passenger",
+          "priority": 30,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 682.0
+        },
+        "M008": {
+          "actual_arrivals": [
+            -1.0,
+            23693.0999997955,
+            24249.1499997874,
+            25642.1499997671,
+            26299.3499997575,
+            26999.7499997474,
+            28368.2999997274,
+            29301.6999997139,
+            30167.4999997013,
+            31206.5499996861,
+            33576.7999997105,
+            37519.29999994,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            23104.799999804,
+            23818.2999997936,
+            24322.2999997863,
+            25715.299999766,
+            26371.2999997565,
+            27196.7999997445,
+            28642.7999997234,
+            29524.7999997106,
+            30322.799999699,
+            32929.7499996728,
+            34530.249999766,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "TVC_P3",
+              "direction": -1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Thiruvananthapuram Central",
+              "s": 347.29568359375
+            },
+            {
+              "block": "TVCN_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 7.8,
+              "name": "Thiruvananthapuram North",
+              "s": 406.678129882812
+            },
+            {
+              "block": "KZK_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 16.9,
+              "name": "Kazhakuttam",
+              "s": 245.718168945312
+            },
+            {
+              "block": "VAK_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 41.4,
+              "name": "Varkala Sivagiri",
+              "s": 245.630705566406
+            },
+            {
+              "block": "PVU_P3",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 53.3,
+              "name": "Paravur",
+              "s": 246.050383300781
+            },
+            {
+              "block": "QLN_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 66.2,
+              "name": "Kollam Junction",
+              "s": 1345.98281738281
+            },
+            {
+              "block": "KPY_P3",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 91.3,
+              "name": "Karunagapalli",
+              "s": 246.290007324219
+            },
+            {
+              "block": "KYJ_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 105.0,
+              "name": "Kayamkulam Junction",
+              "s": 345.416899414062
+            },
+            {
+              "block": "HAD_P3",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 119.3,
+              "name": "Haripad",
+              "s": 245.810026855469
+            },
+            {
+              "block": "AMPA_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 136.6,
+              "name": "Ambalappuzha",
+              "s": 245.645415039062
+            },
+            {
+              "block": "ALLP_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 151.2,
+              "name": "Alappuzha",
+              "s": 245.846403808594
+            },
+            {
+              "block": "SRTL_P2",
+              "direction": -1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 177.3,
+              "name": "Cherthala",
+              "s": 246.053129882812
+            },
+            {
+              "block": "ERS_P2",
+              "direction": -1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 211.3,
+              "name": "Ernakulam Junction",
+              "s": 518.196684570313
+            },
+            {
+              "block": "ERS_PORTAL_U",
+              "boundary": "exit",
+              "direction": -1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 218.7,
+              "name": "Continues north beyond ERS",
+              "s": 327.136442871094
+            }
+          ],
+          "current_wait": 510.0,
+          "departure": 23100.0,
+          "journey": {
+            "category": "mail",
+            "destination": "Shoranur",
+            "origin": "Thiruvananthapuram Central",
+            "representative": true
+          },
+          "max_wait_seconds": 1754.0,
+          "name": "Thiruvananthapuram Central–Shoranur Mail / Express",
+          "priority": 55,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 4710.0
+        },
+        "M013": {
+          "actual_arrivals": [
+            -1.0,
+            26656.0999997524,
+            29268.5999997143,
+            31754.1499996782,
+            32967.699999675,
+            33881.2999997282,
+            34588.6999997694,
+            35327.7499998124,
+            37115.0499999164,
+            38096.7499999736,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            26404.799999756,
+            26848.7999997495,
+            30306.7999996992,
+            32353.2999996694,
+            33041.7499996793,
+            33951.7499997323,
+            34713.7499997767,
+            35400.7499998167,
+            37356.2499999305,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "ERS_PORTAL_D",
+              "boundary": "entry",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Enters railway north of ERS",
+              "s": 842.696442871094
+            },
+            {
+              "block": "ERS_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 5.4,
+              "name": "Ernakulam Junction",
+              "s": 1066.79013183594
+            },
+            {
+              "block": "SRTL_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 40.4,
+              "name": "Cherthala",
+              "s": 794.145844726562
+            },
+            {
+              "block": "ALLP_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 65.6,
+              "name": "Alappuzha",
+              "s": 794.261079101562
+            },
+            {
+              "block": "AMPA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 81.1,
+              "name": "Ambalappuzha",
+              "s": 792.299775390625
+            },
+            {
+              "block": "HAD_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 98.3,
+              "name": "Haripad",
+              "s": 794.36349609375
+            },
+            {
+              "block": "KYJ_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 111.6,
+              "name": "Kayamkulam Junction",
+              "s": 894.254487304687
+            },
+            {
+              "block": "KPY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 126.4,
+              "name": "Karunagapalli",
+              "s": 794.244294433594
+            },
+            {
+              "block": "QLN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 150.5,
+              "name": "Kollam Junction",
+              "s": 1885.11203125
+            },
+            {
+              "block": "PVU_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 164.4,
+              "name": "Paravur",
+              "s": 793.629060058594
+            },
+            {
+              "block": "VAK_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 176.3,
+              "name": "Varkala Sivagiri",
+              "s": 799.229157714844
+            },
+            {
+              "block": "KZK_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 200.8,
+              "name": "Kazhakuttam",
+              "s": 794.247346191406
+            },
+            {
+              "block": "TVCN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 208.8,
+              "name": "Thiruvananthapuram North",
+              "s": 957.188813476562
+            },
+            {
+              "block": "TVC_P1",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 218.7,
+              "name": "Thiruvananthapuram Central",
+              "s": 1066.57638671875
+            }
+          ],
+          "current_wait": 0.0,
+          "departure": 26400.0,
+          "journey": {
+            "category": "mail",
+            "destination": "Thiruvananthapuram Central",
+            "origin": "Bengaluru",
+            "representative": true
+          },
+          "max_wait_seconds": 970.0,
+          "name": "Bengaluru–Thiruvananthapuram Central Mail / Express",
+          "priority": 55,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 2622.0
+        },
+        "S031": {
+          "actual_arrivals": [
+            -1.0,
+            35356.0499998141,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            35104.7499997994,
+            35548.7499998253,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "ERS_PORTAL_D",
+              "boundary": "entry",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Enters railway north of ERS",
+              "s": 842.696442871094
+            },
+            {
+              "block": "ERS_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 5.4,
+              "name": "Ernakulam Junction",
+              "s": 1066.79013183594
+            },
+            {
+              "block": "ALLP_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 62.3,
+              "name": "Alappuzha",
+              "s": 794.261079101562
+            },
+            {
+              "block": "KYJ_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 101.8,
+              "name": "Kayamkulam Junction",
+              "s": 894.254487304687
+            },
+            {
+              "block": "QLN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 137.3,
+              "name": "Kollam Junction",
+              "s": 1885.11203125
+            },
+            {
+              "block": "VAK_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 159.8,
+              "name": "Varkala Sivagiri",
+              "s": 799.229157714844
+            },
+            {
+              "block": "TVC_P1",
+              "direction": 1,
+              "dwell_minutes": 3.0,
+              "minutes_from_origin": 194.6,
+              "name": "Thiruvananthapuram Central",
+              "s": 1066.57638671875
+            },
+            {
+              "block": "KZT_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 234.9,
+              "name": "Kulitturai",
+              "s": 794.125153808594
+            },
+            {
+              "block": "NCJ_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 266.0,
+              "name": "Nagercoil Junction",
+              "s": 903.1696484375
+            },
+            {
+              "block": "NCJ_PORTAL_D",
+              "boundary": "exit",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 273.2,
+              "name": "Continues south beyond NCJ",
+              "s": 875.266389160156
+            }
+          ],
+          "current_wait": 0.0,
+          "departure": 35100.0,
+          "journey": {
+            "category": "superfast",
+            "destination": "Kanniyakumari",
+            "origin": "New Delhi",
+            "representative": true
+          },
+          "max_wait_seconds": 482.0,
+          "name": "New Delhi–Kanniyakumari Superfast",
+          "priority": 75,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 830.0
+        },
+        "K1": {
+          "actual_arrivals": [
+            -1.0,
+            22843.8499998078,
+            24365.9499997857,
+            24746.4499997801,
+            25155.0499997742,
+            25499.9499997692,
+            25927.8499997629,
+            26331.5999997571,
+            26891.5499997489,
+            27859.6999997348,
+            28234.8999997294,
+            28566.2499997246,
+            30368.3499996983,
+            30744.8499996929,
+            31120.8499996874,
+            31530.9499996814,
+            31959.3499996752,
+            32358.1499996694,
+            32808.8499996658,
+            33243.8999996911,
+            33693.5499997173,
+            34184.6999997459,
+            34557.2999997676,
+            34981.1999997922,
+            35525.1499998239,
+            36114.4499998582,
+            36434.2999998768,
+            36778.2499998968,
+            37151.3999999186,
+            37420.0499999342,
+            37775.1499999549,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "actual_departures": [
+            22343.7999998151,
+            24034.7999997905,
+            24443.5999997845,
+            24820.4999997791,
+            25226.7999997731,
+            25573.9999997681,
+            26000.7999997619,
+            26404.449999756,
+            26989.2999997475,
+            27931.3499997338,
+            28308.9499997283,
+            29985.2999997039,
+            30442.3999996973,
+            30819.2999996918,
+            31196.0999996863,
+            31604.9999996803,
+            32031.2999996741,
+            32429.7999996683,
+            32933.7499996731,
+            33320.2999996956,
+            33764.2499997214,
+            34255.24999975,
+            34628.8999997717,
+            35052.7999997964,
+            35719.7499998352,
+            36188.4499998625,
+            36507.0999998811,
+            36848.7499999009,
+            37222.9999999227,
+            37492.8499999384,
+            37851.7499999593,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "arrival_delay": -1,
+          "booked_stops": [
+            {
+              "block": "ERS_P3",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 0.0,
+              "name": "Ernakulam Junction",
+              "s": 1025.98342895508
+            },
+            {
+              "block": "KUMM_P3",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 9.0,
+              "name": "Kumbalam",
+              "s": 753.363403320313
+            },
+            {
+              "block": "AROR_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 16.5,
+              "name": "Aroor",
+              "s": 733.220764160156
+            },
+            {
+              "block": "EZP_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 24.4,
+              "name": "Ezhupunna",
+              "s": 733.033569335938
+            },
+            {
+              "block": "TUVR_P3",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 32.0,
+              "name": "Turavur",
+              "s": 753.644592285156
+            },
+            {
+              "block": "VAY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 38.2,
+              "name": "Vayalar",
+              "s": 733.091186523438
+            },
+            {
+              "block": "SRTL_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 46.9,
+              "name": "Cherthala",
+              "s": 753.115844726563
+            },
+            {
+              "block": "TRVZ_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 55.2,
+              "name": "Tiruvizha",
+              "s": 733.247406005859
+            },
+            {
+              "block": "MAKM_P3",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 62.8,
+              "name": "Mararikulam",
+              "s": 753.25537109375
+            },
+            {
+              "block": "KAVR_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 68.7,
+              "name": "Kalavur",
+              "s": 733.240539550781
+            },
+            {
+              "block": "TMPY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 76.6,
+              "name": "Tumboli",
+              "s": 733.09765625
+            },
+            {
+              "block": "ALLP_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 83.1,
+              "name": "Alappuzha",
+              "s": 753.231079101563
+            },
+            {
+              "block": "PUPR_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 93.6,
+              "name": "Punnapra",
+              "s": 733.249877929688
+            },
+            {
+              "block": "AMPA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 101.1,
+              "name": "Ambalappuzha",
+              "s": 751.269775390625
+            },
+            {
+              "block": "TZH_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 108.4,
+              "name": "Takazhi",
+              "s": 733.820037841797
+            },
+            {
+              "block": "KVTA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 116.3,
+              "name": "Karuvatta",
+              "s": 733.250152587891
+            },
+            {
+              "block": "HAD_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 123.7,
+              "name": "Haripad",
+              "s": 753.33349609375
+            },
+            {
+              "block": "CHPD_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 130.5,
+              "name": "Cheppad",
+              "s": 864.80419921875
+            },
+            {
+              "block": "KYJ_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 139.4,
+              "name": "Kayamkulam Junction",
+              "s": 853.224487304688
+            },
+            {
+              "block": "OCR_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 147.9,
+              "name": "Ochira",
+              "s": 753.241455078125
+            },
+            {
+              "block": "KPY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 156.7,
+              "name": "Karunagapalli",
+              "s": 753.214294433594
+            },
+            {
+              "block": "STKT_P3",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 165.4,
+              "name": "Sasthankotta",
+              "s": 753.602844238281
+            },
+            {
+              "block": "MQO_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 171.8,
+              "name": "Munroturuttu",
+              "s": 734.816192626953
+            },
+            {
+              "block": "PRND_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 179.1,
+              "name": "Perinad",
+              "s": 752.492309570313
+            },
+            {
+              "block": "QLN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 188.9,
+              "name": "Kollam Junction",
+              "s": 1844.08203125
+            },
+            {
+              "block": "IRP_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 196.5,
+              "name": "Iravipuram",
+              "s": 733.224273681641
+            },
+            {
+              "block": "MYY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 202.5,
+              "name": "Mayyanad",
+              "s": 733.222839355469
+            },
+            {
+              "block": "PVU_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 208.1,
+              "name": "Paravur",
+              "s": 752.599060058594
+            },
+            {
+              "block": "KFI_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 214.5,
+              "name": "Kappil",
+              "s": 731.051208496094
+            },
+            {
+              "block": "EVA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 219.6,
+              "name": "Edavai",
+              "s": 732.659118652344
+            },
+            {
+              "block": "VAK_P4",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 225.4,
+              "name": "Varkala Sivagiri",
+              "s": 758.199157714844
+            },
+            {
+              "block": "AMY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 233.1,
+              "name": "Akathumuri",
+              "s": 736.676239013672
+            },
+            {
+              "block": "KVU_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 238.2,
+              "name": "Kadakavur",
+              "s": 751.678833007813
+            },
+            {
+              "block": "CRY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 243.4,
+              "name": "Chirayinkeezh",
+              "s": 732.537567138672
+            },
+            {
+              "block": "PGZ_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 249.4,
+              "name": "Perunguzhi",
+              "s": 732.882385253906
+            },
+            {
+              "block": "MQU_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 254.9,
+              "name": "Murukkampuzha",
+              "s": 752.716125488281
+            },
+            {
+              "block": "KXP_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 260.7,
+              "name": "Kaniyapuram",
+              "s": 733.26953125
+            },
+            {
+              "block": "KZK_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 266.7,
+              "name": "Kazhakuttam",
+              "s": 753.217346191406
+            },
+            {
+              "block": "VELI_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 272.6,
+              "name": "Veli",
+              "s": 731.217224121094
+            },
+            {
+              "block": "TVCN_P1",
+              "direction": 1,
+              "dwell_minutes": 2.0,
+              "minutes_from_origin": 277.2,
+              "name": "Thiruvananthapuram North",
+              "s": 916.158813476563
+            },
+            {
+              "block": "TVP_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 284.7,
+              "name": "Thiruvananthapuram Pettah",
+              "s": 734.062438964844
+            },
+            {
+              "block": "TVC_P1",
+              "direction": 1,
+              "dwell_minutes": 3.0,
+              "minutes_from_origin": 289.5,
+              "name": "Thiruvananthapuram Central",
+              "s": 1025.54638671875
+            },
+            {
+              "block": "NEM_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 301.4,
+              "name": "Thiruvananthapuram South",
+              "s": 753.173706054688
+            },
+            {
+              "block": "BRAM_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 309.4,
+              "name": "Balaramapuram",
+              "s": 732.604888916016
+            },
+            {
+              "block": "NYY_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 315.9,
+              "name": "Neyyattinkara",
+              "s": 753.252807617188
+            },
+            {
+              "block": "AMVA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 321.2,
+              "name": "Amaravila",
+              "s": 733.000091552734
+            },
+            {
+              "block": "DAVM_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 327.4,
+              "name": "Dhanuvachapuram",
+              "s": 733.097045898438
+            },
+            {
+              "block": "PASA_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 336.0,
+              "name": "Parassala",
+              "s": 752.99072265625
+            },
+            {
+              "block": "KZTW_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 343.7,
+              "name": "Kulitturai West",
+              "s": 732.7861328125
+            },
+            {
+              "block": "KZT_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 349.4,
+              "name": "Kulitturai",
+              "s": 753.095153808594
+            },
+            {
+              "block": "PYD_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 358.1,
+              "name": "Palliyadi",
+              "s": 733.220062255859
+            },
+            {
+              "block": "ERL_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 368.8,
+              "name": "Eraniel",
+              "s": 753.090942382813
+            },
+            {
+              "block": "VRLR_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 377.4,
+              "name": "Viranialur",
+              "s": 733.24853515625
+            },
+            {
+              "block": "NJT_P1",
+              "direction": 1,
+              "dwell_minutes": 1.0,
+              "minutes_from_origin": 384.9,
+              "name": "Nagercoil Town",
+              "s": 753.256958007813
+            },
+            {
+              "block": "NCJ_P1",
+              "direction": 1,
+              "dwell_minutes": 0.0,
+              "minutes_from_origin": 391.6,
+              "name": "Nagercoil Junction",
+              "s": 862.1396484375
+            }
+          ],
+          "current_wait": 0.0,
+          "departure": 21600.0,
+          "journey": {
+            "category": "local",
+            "destination": "Nagercoil Junction",
+            "origin": "Ernakulam Junction",
+            "representative": true
+          },
+          "max_wait_seconds": 1298.0,
+          "name": "Ernakulam Junction–Nagercoil Junction Passenger",
+          "priority": 30,
+          "stabled": false,
+          "terminal_kind": "depot",
+          "wait_seconds": 3252.0
+        }
+      },
+      "snapshot_unchanged": true,
+      "future_clearance_plans": [
+        {
+          "approach_section": "SRTL_single",
+          "created": 37628.5499999463,
+          "direction": -1,
+          "escape_road": "TUVR_P3",
+          "escape_section": "TUVR_single",
+          "escape_station": "TUVR",
+          "escaped": false,
+          "future_road": "SRTL_P3",
+          "incoming": "S008",
+          "opponent": "S031",
+          "opponent_received": false,
+          "opponent_road": "SRTL_P2",
+          "received": false,
+          "station": "SRTL",
+          "vacater": "M008"
+        }
+      ],
+      "k1_minute_position_samples_during_intervention": [
+        {
+          "clock": 26999.9999997473,
+          "position": [
+            "K1",
+            44934.862970419,
+            45168.1105611985,
+            44701.6153796395,
+            1
+          ]
+        },
+        {
+          "clock": 27059.9999997465,
+          "position": [
+            "K1",
+            44948.4184726624,
+            45181.6660634418,
+            44715.1708818829,
+            1
+          ]
+        },
+        {
+          "clock": 27119.9999997456,
+          "position": [
+            "K1",
+            44948.4184726624,
+            45181.6660634418,
+            44715.1708818829,
+            1
+          ]
+        },
+        {
+          "clock": 27179.9999997447,
+          "position": [
+            "K1",
+            44948.4184726624,
+            45181.6660634418,
+            44715.1708818829,
+            1
+          ]
+        },
+        {
+          "clock": 27239.9999997439,
+          "position": [
+            "K1",
+            44948.4184726624,
+            45181.6660634418,
+            44715.1708818829,
+            1
+          ]
+        },
+        {
+          "clock": 27299.999999743,
+          "position": [
+            "K1",
+            44948.4184726624,
+            45181.6660634418,
+            44715.1708818829,
+            1
+          ]
+        },
+        {
+          "clock": 27359.9999997421,
+          "position": [
+            "K1",
+            44948.4184726624,
+            45181.6660634418,
+            44715.1708818829,
+            1
+          ]
+        },
+        {
+          "clock": 27419.9999997412,
+          "position": [
+            "K1",
+            44948.4184726624,
+            45181.6660634418,
+            44715.1708818829,
+            1
+          ]
+        },
+        {
+          "clock": 27479.9999997404,
+          "position": [
+            "K1",
+            44948.4184726624,
+            45181.6660634418,
+            44715.1708818829,
+            1
+          ]
+        },
+        {
+          "clock": 27539.9999997395,
+          "position": [
+            "K1",
+            44948.4184726624,
+            45181.6660634418,
+            44715.1708818829,
+            1
+          ]
+        },
+        {
+          "clock": 27599.9999997386,
+          "position": [
+            "K1",
+            44948.4184726624,
+            45181.6660634418,
+            44715.1708818829,
+            1
+          ]
+        }
+      ],
+      "trains": [
+        {
+          "id": "K1",
+          "speed": 27.3777777777777,
+          "status": "Running to Nagercoil Junction",
+          "reason": "Authority to VAK_AMY_D5-A"
+        },
+        {
+          "id": "L002",
+          "speed": 0.0,
+          "status": "Waiting for ALLP-N2",
+          "reason": "Single line MAKM_single is locked for opposing traffic · Pune–Thiruvananthapuram Central Mail / Express (M019)"
+        },
+        {
+          "id": "L015",
+          "speed": 0.0,
+          "status": "Expect a wait at ALLP until Pune–Thiruvananthapuram Central Mail / Express (M019) overtakes",
+          "reason": "Expect a wait at ALLP until Pune–Thiruvananthapuram Central Mail / Express (M019) overtakes"
+        },
+        {
+          "id": "M008",
+          "speed": 0.0,
+          "status": "Waiting for SRTL-N3",
+          "reason": "Expect a wait at SRTL until New Delhi–Kanniyakumari Superfast (S031) clears the escape approach"
+        },
+        {
+          "id": "M011",
+          "speed": 27.3777777749102,
+          "status": "Running to Thiruvananthapuram Central",
+          "reason": "Authority to KVTA_HAD_D4-H"
+        },
+        {
+          "id": "M013",
+          "speed": 0.0,
+          "status": "Passenger exchange · 62 s · 1141 aboard",
+          "reason": "Booked departure / dwell until 10:36:06"
+        },
+        {
+          "id": "M017",
+          "speed": 4.29568715634234,
+          "status": "Running to Thiruvananthapuram Central",
+          "reason": "Authority to HAD_CHPD_D4-H"
+        },
+        {
+          "id": "M019",
+          "speed": 24.5999999999999,
+          "status": "Running to Thiruvananthapuram Central",
+          "reason": "Authority to ALLP-S3"
+        },
+        {
+          "id": "S008",
+          "speed": 17.1790766322885,
+          "status": "Running to Continues north beyond ERS",
+          "reason": "Planned crossing at SRTL: enter SRTL_P3 after Thiruvananthapuram Central–Shoranur Mail / Express (M008) clears; S031 will wait for your arrival · Planned crossing platform: SRTL_P3 · Thiruvananthapuram Central–Shoranur Mail / Express (M008)"
+        },
+        {
+          "id": "S013",
+          "speed": 0.0,
+          "status": "Waiting for MAKM-S3",
+          "reason": "Expect a wait before Alappuzha: no free platform suitable for this service · Alappuzha–Thiruvananthapuram Central Passenger (L015), Nagercoil Junction–Ernakulam Junction Passenger (L002)"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "predictive-network-delayed/audit.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v14/predictive-network-delayed/audit.json",
+      "raw_bytes": 1778054,
+      "raw_sha256": "912ccadffadfb512c881d1be5422aeddc47ca8125e53f85ed1ddab15c0b42b18"
+    },
+    {
+      "path": "predictive-network-delayed/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v14/predictive-network-delayed/traffic.jsonl",
+      "raw_bytes": 28004253,
+      "raw_sha256": "977fbbd1855b878896efcd9cc342785c90318d6607db9c069dc0006c77d0b5b3"
+    },
+    {
+      "path": "predictive-network-delayed/failure.bin.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v14/predictive-network-delayed/failure.bin",
+      "raw_bytes": 17764372,
+      "raw_sha256": "9f07e4a44295e9f60c0d868d25a02a148455a9a34d9d18a02c4bc7c509ec3b07"
+    },
+    {
+      "path": "predictive-network-delayed/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v14/predictive-network-delayed/run.log",
+      "raw_bytes": 71341,
+      "raw_sha256": "9e3fb064b1d525e92a9e9a168a7c86faa0c1d7734dcb691d48928bf23e113f2a"
+    },
+    {
+      "path": "predictive-network-delayed/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v14/predictive-network-delayed/run.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "predictive-network-delayed/receiving-after.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v14/predictive-network-delayed/receiving-after.json",
+      "raw_bytes": 137464,
+      "raw_sha256": "505b1031569db20d7d47c3e38c4d40d7f7ef4df2be1231a1ad5f77e45c9ccbc1"
+    },
+    {
+      "path": "predictive-delayed-inspection.log",
+      "source": ".local/realism-2026-10-26/v14-predictive-delayed-inspection.log",
+      "raw_bytes": 241,
+      "raw_sha256": "ea452ce6e0072c27b33ee30c5833ff59ad11752c1a90774a5a41afdf593c5795"
+    },
+    {
+      "path": "predictive-delayed-inspection.err",
+      "source": ".local/realism-2026-10-26/v14-predictive-delayed-inspection.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "predictive-delayed-summary.json",
+      "source": ".local/realism-2026-10-26/v14-predictive-delayed-summary.json",
+      "raw_bytes": 49286,
+      "raw_sha256": "814c40593edc7f3495ce51822f75adbc649f65824cafd9e3eebf95f25a6e27a4"
+    },
+    {
+      "path": "predictive-delayed-summary.log",
+      "source": ".local/realism-2026-10-26/v14-predictive-delayed-summary.log",
+      "raw_bytes": 49286,
+      "raw_sha256": "814c40593edc7f3495ce51822f75adbc649f65824cafd9e3eebf95f25a6e27a4"
+    },
+    {
+      "path": "kerala-coast-network-v2.json",
+      "source": "art/timetables/kerala-coast-network-v2.json",
+      "raw_bytes": 652279,
+      "raw_sha256": "3ce1ba3d917162d4f6ff0d5669ebd1d3f973127520bf22c9ff0ad7c3a6f2f138"
+    },
+    {
+      "path": "inspection-tool.gd.txt",
+      "source": ".local/realism-2026-10-26/inspect-crossing-after.gd",
+      "raw_bytes": 2267,
+      "raw_sha256": "37f762a8fefd85ae20c7e6667beb3453342fe7221d8c5879dd7bcecaeeff16ba"
+    },
+    {
+      "path": "jobs-at-inspection.json",
+      "source": ".local/realism-2026-10-26/rehearsal-jobs-v14.json",
+      "raw_bytes": 2963,
+      "raw_sha256": "7eca46925cc6d7cd9ee8d4a070b3456b712d5f00e142fbab64d3c25593b84069"
+    }
+  ],
+  "status": "V2 disturbed run failed after the manual hold. Both original baselines remain pending; no whole-day acceptance or disturbance-recovery certificate."
+}

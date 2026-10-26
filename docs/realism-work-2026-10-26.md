@@ -1585,3 +1585,21 @@ match,emptystderr,no audits. Wait for their outcomes before departure-only
 repairs; runtime/routes/packs/sixobservers remain frozen. No duplicate/restarted
 jobs,source-suite repetition or pendingUI/category edits. R47 and legacy
 certifications remain unchanged. Network208 is unaccepted and uninstalled.
+
+## Candidate fourteen V2 disturbance also rejected
+
+Original22416/6768 ended naturally at10:35:04: L002ALLP2,702s extra wait,
+57/208finished,zero safety,empty stderr after the07:30 manualhold. All-location
+fractions197/273,250/273,270/273,272/273 fail under45. Station99/142,128/142,
+140/142,141/142 fail under10 and45;99/142 is below70%,not a rounded pass.
+L002 arrivesALLP09:48:00.75 withoutdeparture;968s awaitingS008pass,280M017crossing,
+912receiving/onward protection,452opposing occupation,78blocks,12conflicts.
+
+Immutable inspection: ALLPclaimsL015P1,L002P2,M019P3;S013 waits atMAKM forALLP.
+M019,M011,M017,S008,K1move,M013exchanges passengers. One future plan atSRTL:
+incomingS008P3,vacaterM008,opponentS031P2,escapeTUVRP3;receipt/escape flagsfalse.
+No permanent-deadlock/runtime-defect inference.13 exact raw files and4,836
+current source hashes preserved in failed-predictive-delayed. Both disturbances
+are rejected; no recoverycertificate or installation. Original baselines remain
+live at17:20 Classic08:20(35/208),V208:30(36/208),identitymatches,emptyerrs,noaudits.
+Freezeinputs and await their outcomes before any departure-only repair.
