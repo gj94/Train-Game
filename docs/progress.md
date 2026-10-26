@@ -1,5 +1,31 @@
 # Progress
 
+## 26 October 2026 — user resumed work until ready
+
+The user extended the work beyond the original 10:00 deadline and emphasized
+single-line capacity. The previous deadline checkpoint remains historical.
+Plan departure timings around measured section occupation, opposing movements,
+receiving-platform capacity and full-tail clearance; preserve calls, dwell,
+stock, priorities and dynamic interlocking. Network 208 is still unaccepted.
+
+Both original v7 Intensive jobs have now completed and are independently
+certified and installed: 140 services, all 1,726 arrivals and departures,
+zero safety events, both wait distributions passing, 140 departure states,
+233 five-minute states and 4,836 current source hashes each. Classic has twelve
+K1 overtakers at eight stations; V2 eleven at seven. All 55 actual native menu
+checks pass, with four reviewed screenshots. All four legacy day choices are
+now current-source certified. The unchanged source has 1,003 passing tests.
+[Intensive evidence](../art/performance/realism-2026-10-26/intensive-realism-v7/README.md).
+Keep the documented regressions and authored-departure confound; V2 is not
+uniformly better. No new executable has been released; preserve R47.
+
+Next: use isolated physical running profiles to plan single-line departure
+spacing, then validate complete Network baselines and manual-delay runs before
+installation, category comparisons and actual Network midnight/save-load menus.
+Those planning profiles are diagnostics, never substitutes for complete traffic.
+Playtest the source Intensive traffic lists and noon timeline; the Network
+choice must remain unavailable until genuinely compatible data passes.
+
 ## 26 October 2026 — 10:00 deadline checkpoint
 
 The continuation automation was deleted at 10:00. Gangway walking, positional

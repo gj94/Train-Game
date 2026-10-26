@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **26 Oct 2026 continuation:** the user explicitly resumed the realism work
+  beyond 10:00 until ready. Plan the 208-service day around the finite capacity
+  of single-line sections, including opposing flows and full-tail clearance;
+  double-track departure spacing cannot simply be reused. Preserve the original
+  gameplay scope and acceptance gates.
 - **26 Oct 2026 passenger and traffic realism:** work until 10:00 AM Singapore
   on continuous passenger gangways, position-dependent coach-end bogie sound,
   reliable passing-train sound when looking around, and safe boundary portals.

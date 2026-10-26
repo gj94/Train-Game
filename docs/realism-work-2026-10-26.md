@@ -799,7 +799,7 @@ exact baseline evidence added to candidate-eight. V2baseline stillfinishing
 at09:57. No additional jobs or runtime/timing changes. Fixed10AM cleanup next.
 
 
-## Final deadline checkpoint, 2026-10-26T10:02:37.354809+08:00
+## Historical deadline checkpoint, 2026-10-26T10:02:37.354809+08:00
 
 The user deadline has passed; no further scope expansion or new jobs. The
 continuation automation was deleted through the app at10:00:17; deletion
@@ -832,3 +832,41 @@ gangways, spatial bogie/clack/air corrections, controlled head-turn continuity,
 safe full-tail boundary portals,208 honestly labelled representative authored
 services. Scope incomplete: acceptable208 operating day and its real-data
 validation; Intensive preparation/native checks. No new executable.
+
+
+## User resumed until ready, 2026-10-26T10:25:46.736680+08:00
+
+The user explicitly extended work beyond the deadline and emphasized finite
+single-line capacity. Original deadline and stopped-automation records remain
+historical; the active ledger session is resumed without a replacement cutoff.
+No subagents. Preserve R47 and the existing tested gangway/audio/portal scope.
+
+Both original v7 Intensive jobs have finished. Independently checked and
+installed current-source data: 140 services, 1,726 arrivals and departures,
+zero safety, all station/all-location wait targets, 140 departure states and
+233 five-minute states per mode, 4,836 fingerprints. Old 754 prepared files
+were copied and hash-verified before replacement. Classic 12 K1 overtakers at
+8 stations, maximum 5 KPY; V2 11 at 7, maximum 3 STKT. Native wrapper3316 has
+finished with55checks0failures; four1280x720screens reviewed. Dummy audio and
+Compatibility AA availability warning only. Data commits4c58ab3/2be158a;
+full evidence intensive-realism-v7. Preserve priority75/85 regressions and the
+15 authored-departure confound. No new executable. Runtime9ec3530 unchanged;
+1003 passing full tests remain current. No full-day replay remains active.
+
+Two isolated physical-profile measurements run from the same unchanged source:
+part0 wrapper2912/child14628, part1 wrapper8588/child6576. Each covers22 distinct
+stock/call profiles with one train in an isolated world. Outputs are
+solo-profiles-0/1.json; source hashes included, no shared prepared data writes.
+Do not duplicate these measurements. They are departure-planning diagnostics,
+not complete-day traffic certification. Static section export reflects actual
+single_line_sections grouped between passing places. Planning includes opposing
+occupancy and same-direction headway; the sum of individual occupancy times is
+not a one-train-at-a-time capacity limit for a section permitting followers.
+
+The proposal script plan-network-spacing.py only emits JSON, never edits packs.
+It must wait for all44 profiles, then proposed departures must be reviewed and
+verified to leave every other service field unchanged. Calls, stock, dwell,
+priorities, speeds, routes and interlocking stay fixed. Preserve candidate-eight
+failure evidence. Repair the authoring override record to reproduce the actual
+packs before the next affected Network replay. Complete baseline/disturbance,
+category, midnight/save and actual menu gates remain mandatory.
