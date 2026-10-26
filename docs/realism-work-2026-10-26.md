@@ -2559,3 +2559,13 @@ certificate. Both process identities match, error logs remain empty and neither
 final audit exists. Runtime, routes, packs and six observers remain frozen.
 No duplicate, restart, Classic208 job, unchanged checks or installation occurred.
 Network208V2 remains unaccepted; await the original runs' actual final reports.
+
+## 27 October 02:33 — original v23 jobs continue
+
+27 October 02:33:05 checkpoint: original v23 V2 baseline 8580/19068 has
+reached 08:00 (33/208 complete); delayed 832/10968 has reached 10:40 (59/208).
+Both process identities match, both error logs are empty and neither final audit
+exists. Partial clocks and wait maxima do not establish acceptance or recovery.
+The original jobs continue with runtime, routes, packs and six observers frozen.
+No duplicate, restart, Classic208 work, unchanged tests or installation occurred.
+Network208V2 remains unaccepted and uninstalled pending the actual final reports.
