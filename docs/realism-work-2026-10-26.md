@@ -2063,3 +2063,16 @@ Classic Network jobs, restarts, repeated unchanged tests, acceptance or
 installation. Await both original outcomes before departure changes.
 Network208V2 remains unaccepted and uninstalled; legacy readiness and pending
 NetworkV2 UI/category work remain preserved.
+
+## 21:41:02 v19 V2 checkpoint
+
+At 21:41:02 both original v19 V2 wrapper/child identities still match,
+stderr is empty and no final audits exist. The baseline reaches 08:00
+(33/208 complete); the delayed run reaches 10:30 (57/208). Its disturbance
+and recovery audit is still pending. These partial results do not establish
+complete-day improvement or acceptance. Runtime, routes, packs and six
+observers remain frozen. No duplicate or Classic Network jobs, restarts,
+repeated unchanged tests, acceptance or installation. Await both original
+outcomes before departure changes. Network208V2 remains unaccepted and
+uninstalled; legacy readiness and pending NetworkV2 UI/category work remain
+preserved.
