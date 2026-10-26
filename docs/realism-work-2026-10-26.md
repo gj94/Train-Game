@@ -1184,3 +1184,25 @@ No source suite, authoring diagnostic, native or Git operation remains running.
 Five exact launch evidence files/hashes are saved beside candidate-ten proof.
 Continue real full-day acceptance, independent installations, category comparisons
 and actual Network menu/midnight/save-load checks before calling this ready.
+
+## Candidate ten disturbed failures, 13:27
+
+Both original delayed jobs have finished naturally and failed at 08:00:10 with
+L005's 2,702-second wait at Alappuzha, 32/208 completed, zero safety, empty stderr.
+The 600-second K1 manual hold at 27,000 was exercised; no recovery claim follows.
+All-location under30 fractions143/146 and139/142; station92/94 and87/89: all below
+98%, with under45 failing too. No rounded-up acceptance. Full-day comparison
+requires complete populations and was not misapplied to these failed prefixes.
+
+Both existing read-only inspections pass byte-immutability. L005's ALLP reasons
+include1,208s reserved for M044 plus earlier V002 crossing/L015/receiving queues.
+One future plan remains with M044/K1 received and V002's MAKM escape not yet
+reached; several trains move. No deadlock or runtime-defect conclusion. No edits
+to runtime, routes, packs or frozen observers. Exact4,837distinct hashes and both
+pack hashes pass;22 raw diagnostic/replay files archived losslessly with hashes.
+
+Two original baselines20756/8912 and11764/2888 continue; at13:26 both07:20, no
+final audit and empty stderr. Never restart/duplicate them. Need their genuine
+results before attributing disturbance effects or departure-only repairs.
+All1003 source/four authoring checks remain current. PendingUI/category and
+unrelated files preserved, no Network data installed, R47 unchanged.

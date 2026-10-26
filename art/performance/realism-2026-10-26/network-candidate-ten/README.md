@@ -53,3 +53,7 @@ distinct output arguments, initial modes, 4,837 distinct current source hashes
 and six frozen observer hashes are verified. `launch-evidence-hashes.json` records
 five exact launch/provenance files. The launch status is an initial snapshot;
 all four had empty stderr and no final audits. No full-day acceptance is implied.
+
+Both disturbed runs subsequently failed the wait gates at 08:00:10 on L005.
+See [exact failed disturbance evidence](failed-disturbances/README.md). The
+undisturbed baselines remain in flight; no Network data is accepted or installed.

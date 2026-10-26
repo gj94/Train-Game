@@ -55,9 +55,16 @@ Candidate ten is committed/pushed as `a5e93191`. Its four v10 Network replays
 launched once at 12:46: both modes' baselines with snapshots, plus the 600-second
 manual K1 disturbances at 07:30. All eight actual wrapper/child commands, isolated
 outputs, both baseline modes, 4,837 distinct current fingerprints and six observer
-hashes are verified. At 12:47 all were running with empty stderr; no final audits.
-Freeze their inputs and do not restart or duplicate them. All legacy choices
-remain certified. New traffic must still pass the original complete-day gates.
+hashes are verified. Both delayed runs have now failed at 08:00:10: L005 waits
+2,702 seconds at Alappuzha, 32/208 services finish, zero safety events and empty
+stderr. Both pass through the actual 07:30–07:40 manual K1 intervention; this is
+not a recovery certificate. Both under-30-minute cumulative wait distributions
+also miss 98%. Exact raw audits and immutable inspections are preserved in
+[failed disturbance evidence](../art/performance/realism-2026-10-26/network-candidate-ten/failed-disturbances/README.md).
+The two original baseline pairs still run with empty stderr (07:20 at 13:26).
+Keep their inputs frozen and do not restart them. Inspect completed baseline
+results before selecting departure-only repairs. All legacy choices remain
+certified; Network is not accepted or installed.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.
