@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 13108,
+    "started": "2026-10-27T04:56:13.0519617+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v25/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "2dd2b9f8fcf6d3496e081b1466aec139b948e50f",
+    "status": "running",
+    "reason": "User limits Network208 to V2. Candidate twenty-five changes nine northern departures from candidate twenty-four, moving five southbound mails into two later groups and shifting following fast/local services to target actual Turavur opposing queues. Based on both actual V2 queues and sampled full-rake envelopes; origin spacing is not guaranteed clearance. Actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "ba01a5ae7a8b7e1125503ec18c20ded7f60b1e865b1282195c7a87312b920e84",
+    "child_pid": 11232
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 22180,
+    "started": "2026-10-27T04:56:13.1038323+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v25/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "2dd2b9f8fcf6d3496e081b1466aec139b948e50f",
+    "status": "finished-rejected",
+    "reason": "User limits Network208 to V2. Candidate twenty-five changes nine northern departures from candidate twenty-four, moving five southbound mails into two later groups and shifting following fast/local services to target actual Turavur opposing queues. Based on both actual V2 queues and sampled full-rake envelopes; origin spacing is not guaranteed clearance. Actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "ba01a5ae7a8b7e1125503ec18c20ded7f60b1e865b1282195c7a87312b920e84",
+    "child_pid": 19280
+  }
+]
