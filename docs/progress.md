@@ -159,8 +159,8 @@ Candidate433be026 is pushed. Four v14 jobs launched once16:32:06; all eight
 actual identities/options, separate outputs, initial modes,4,837 current source
 hashes and six observer hashes verify. Baselines19884/3816 and22452/10152 save
 snapshots; delayed18440/20884 and22416/6768 apply600s manual K1hold at07:30.
-At16:36 all four original identities match,emptyerrs,noaudits. Both baselines
-are at01:20 (0/208); delayed Classic02:00 andV202:10 (1/208 each),before the
+At16:46 all four original identities match,emptyerrs,noaudits. Baseline Classic
+is at03:20 andV203:30 (2/208 each); both delayed runs04:30 (9/208),before the
 scheduled07:30 hold. Inputs and six observers remain frozen.
 Do not duplicate or restart these original jobs; inspector followsv14.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
