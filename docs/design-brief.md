@@ -9,6 +9,11 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **26 Oct 2026 Network208 scope correction:** the user explicitly says not to
+  bother with Classic dispatcher for208. Validate, prepare and install Network208
+  for V2 only: normal baseline plus the delayed-driver recovery run. Preserve
+  certified Classic Standard/Intensive choices and historical Network evidence.
+  All other Network acceptance gates remain unchanged.
 - **26 Oct 2026 continuation:** the user explicitly resumed the realism work
   beyond 10:00 until ready. Plan the 208-service day around the finite capacity
   of single-line sections, including opposing flows and full-tail clearance;

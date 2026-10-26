@@ -1,0 +1,54 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "c58cb99cb34dda4d79d06db5f418d5956527c928c918a983e1c83947490c657d",
+    "kerala-coast-network-v2.json": "cdd878e6c4df3cb7d52b31f99571a26543eb59526f45fa50afed817f889c7ee3",
+    "kerala-coast-network-departure-overrides.json": "7cf51d46697de88ad48d3d55f4ea7b65f00c8dce05cd9f57969260efbca103cc"
+  },
+  "changes": [
+    {
+      "service": "V001",
+      "before": "07:20",
+      "after": "08:30",
+      "reason": "Coordinate the northern KUMM-TUVR-SRTL-MAKM-ALLP group: separate the later southbound batch from K1/L007 and the V002/M044/M064/M006/M008 northbound group, with V001 then S009 then M013 and spaced following mails. Avoid simultaneous M013/V001 opposing approaches at SRTL; actual reruns must establish receiving and full-tail clearance."
+    },
+    {
+      "service": "S009",
+      "before": "08:10",
+      "after": "08:40",
+      "reason": "Coordinate the northern KUMM-TUVR-SRTL-MAKM-ALLP group: separate the later southbound batch from K1/L007 and the V002/M044/M064/M006/M008 northbound group, with V001 then S009 then M013 and spaced following mails. Avoid simultaneous M013/V001 opposing approaches at SRTL; actual reruns must establish receiving and full-tail clearance."
+    },
+    {
+      "service": "M013",
+      "before": "07:20",
+      "after": "08:50",
+      "reason": "Coordinate the northern KUMM-TUVR-SRTL-MAKM-ALLP group: separate the later southbound batch from K1/L007 and the V002/M044/M064/M006/M008 northbound group, with V001 then S009 then M013 and spaced following mails. Avoid simultaneous M013/V001 opposing approaches at SRTL; actual reruns must establish receiving and full-tail clearance."
+    },
+    {
+      "service": "M017",
+      "before": "08:15",
+      "after": "09:10",
+      "reason": "Coordinate the northern KUMM-TUVR-SRTL-MAKM-ALLP group: separate the later southbound batch from K1/L007 and the V002/M044/M064/M006/M008 northbound group, with V001 then S009 then M013 and spaced following mails. Avoid simultaneous M013/V001 opposing approaches at SRTL; actual reruns must establish receiving and full-tail clearance."
+    },
+    {
+      "service": "M011",
+      "before": "08:35",
+      "after": "09:25",
+      "reason": "Coordinate the northern KUMM-TUVR-SRTL-MAKM-ALLP group: separate the later southbound batch from K1/L007 and the V002/M044/M064/M006/M008 northbound group, with V001 then S009 then M013 and spaced following mails. Avoid simultaneous M013/V001 opposing approaches at SRTL; actual reruns must establish receiving and full-tail clearance."
+    },
+    {
+      "service": "S013",
+      "before": "09:10",
+      "after": "10:20",
+      "reason": "Coordinate the northern KUMM-TUVR-SRTL-MAKM-ALLP group: separate the later southbound batch from K1/L007 and the V002/M044/M064/M006/M008 northbound group, with V001 then S009 then M013 and spaced following mails. Avoid simultaneous M013/V001 opposing approaches at SRTL; actual reruns must establish receiving and full-tail clearance."
+    },
+    {
+      "service": "M019",
+      "before": "09:15",
+      "after": "10:35",
+      "reason": "Coordinate the northern KUMM-TUVR-SRTL-MAKM-ALLP group: separate the later southbound batch from K1/L007 and the V002/M044/M064/M006/M008 northbound group, with V001 then S009 then M013 and spaced following mails. Avoid simultaneous M013/V001 opposing approaches at SRTL; actual reruns must establish receiving and full-tail clearance."
+    }
+  ],
+  "evidence_commit": "d17723a9;55efef53",
+  "scope": "User requests Network208 V2 only. Classic-specific seven-timing draft removed before launch; no Classic Network replay or installation is required.",
+  "status": "Departure-only hypothesis; no acceptance"
+}

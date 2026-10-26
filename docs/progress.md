@@ -2,6 +2,24 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+The user removed Classic dispatcher work from Network208. Readiness now
+requires only V2 baseline and V2 disturbed validation; legacy Classic choices
+stay certified and available. No Classic Network replay/native/install is
+required. Candidate19 narrows the unlaunched14-timing draft to seven V2-focused
+departures:V00107:20->08:30,S00908:10->08:40,M01307:20->08:50,M01708:15->09:10,
+M01108:35->09:25,S01309:10->10:20,M01909:15->10:35. These coordinate the later
+southbound group across KUMM/TUVR/SRTL/MAKM/ALLP using both completed V2 queues.
+The seven Classic-only draft edits were restored before launch; that draft
+is preserved locally and was never committed or replayed. Actual sampled
+full-rake envelopes are planning inputs, not future-capacity proof. All other
+pack fields, identical authored services,K106:00,runtime/routes/observers and
+approved sounds remain unchanged.208services168boundary71overnight3–13hour.
+Normal authoring/exact reproduction/four headless authoring guards pass with
+empty stderr; prior1,003-source suite unchanged,not rerun. Eleven exact raw
+proofs are in [candidate19 evidence](../art/performance/realism-2026-10-26/network-candidate-nineteen/README.md).
+Network208 remains unaccepted/uninstalled. Next launch only two V2 replays
+once in isolatedv19outputs, then freeze inputs and require every existing gate.
+
 The final original v18 V2 baseline22532/11016 has finished naturally and
 failed M013 at SRTL08:46:28,37/208complete,2,702s maximum extra wait in both
 populations,zero safety,empty stderr,without a manual hold.13 exact raw files,

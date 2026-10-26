@@ -1,0 +1,1382 @@
+{
+  "kind": "Sampled full-rake axis-envelope overlaps with static single-line envelopes; not exact interlocking ownership, future clearance or acceptance",
+  "bounds": {
+    "ERS_single": {
+      "start": 1736.50451150103,
+      "finish": 7711.894
+    },
+    "KUMM_single": {
+      "start": 9151.894,
+      "finish": 23303.556
+    },
+    "TUVR_single": {
+      "start": 24743.556,
+      "finish": 33298.662
+    },
+    "SRTL_single": {
+      "start": 34738.662,
+      "finish": 44201.441
+    },
+    "MAKM_single": {
+      "start": 45641.441,
+      "finish": 56943.413
+    },
+    "ALLP_single": {
+      "start": 58383.413,
+      "finish": 69131.934
+    }
+  },
+  "runs": [
+    {
+      "run": "predictive-network",
+      "last_clock": 31587.9999996806,
+      "max_sample_interval_seconds": 2.0000000000100044,
+      "traffic_sha256": "4e7e2f7d34dbd7ae59ea3feba4699da7b58bb4e2793af0d69e9ddb2fe58d05c6",
+      "audit_sha256": "20f1671f87b796834de355bf86b65a7ed228c1c72abbc5b37b086719dde26fcd",
+      "intervals": [
+        {
+          "id": "M045",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 530.000000000066,
+          "last_sample": 829.999999999793,
+          "samples": 151,
+          "right_censored": false
+        },
+        {
+          "id": "M045",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 883.999999999744,
+          "last_sample": 1515.99999999917,
+          "samples": 317,
+          "right_censored": false
+        },
+        {
+          "id": "M045",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 1569.99999999912,
+          "last_sample": 1975.99999999875,
+          "samples": 204,
+          "right_censored": false
+        },
+        {
+          "id": "M045",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 2552.00000000052,
+          "last_sample": 2994.00000000213,
+          "samples": 222,
+          "right_censored": false
+        },
+        {
+          "id": "M045",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 3050.00000000233,
+          "last_sample": 3566.00000000421,
+          "samples": 259,
+          "right_censored": false
+        },
+        {
+          "id": "M045",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 4124.00000000624,
+          "last_sample": 4618.00000000803,
+          "samples": 248,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 4708.00000000836,
+          "last_sample": 5002.00000000943,
+          "samples": 148,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 5058.00000000964,
+          "last_sample": 5686.00000001192,
+          "samples": 315,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 5742.00000001212,
+          "last_sample": 6144.00000001359,
+          "samples": 202,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 6718.00000001567,
+          "last_sample": 7156.00000001727,
+          "samples": 220,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 7212.00000001747,
+          "last_sample": 7724.00000001933,
+          "samples": 257,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 8380.0000000183,
+          "last_sample": 8868.0000000112,
+          "samples": 245,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 9530.00000000157,
+          "last_sample": 9829.9999999972,
+          "samples": 151,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 9883.99999999641,
+          "last_sample": 10515.9999999872,
+          "samples": 317,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 10569.9999999864,
+          "last_sample": 10997.9999999802,
+          "samples": 215,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 11217.999999977,
+          "last_sample": 11685.9999999702,
+          "samples": 235,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 11739.9999999694,
+          "last_sample": 12279.9999999615,
+          "samples": 271,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 13183.9999999484,
+          "last_sample": 13705.9999999408,
+          "samples": 262,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 22441.9999998137,
+          "last_sample": 22771.9999998089,
+          "samples": 166,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 22991.9999998057,
+          "last_sample": 23951.9999997917,
+          "samples": 481,
+          "right_censored": false
+        },
+        {
+          "id": "L007",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 24103.9999997895,
+          "last_sample": 24433.9999997847,
+          "samples": 166,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 24603.9999997822,
+          "last_sample": 25175.9999997739,
+          "samples": 287,
+          "right_censored": false
+        },
+        {
+          "id": "L007",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 25351.9999997713,
+          "last_sample": 26323.9999997572,
+          "samples": 487,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 25501.9999997691,
+          "last_sample": 26127.99999976,
+          "samples": 314,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 26343.9999997569,
+          "last_sample": 27181.9999997447,
+          "samples": 420,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 26397.9999997561,
+          "last_sample": 26885.999999749,
+          "samples": 245,
+          "right_censored": false
+        },
+        {
+          "id": "L007",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 26541.999999754,
+          "last_sample": 27113.9999997457,
+          "samples": 287,
+          "right_censored": false
+        },
+        {
+          "id": "M013",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 26929.9999997484,
+          "last_sample": 27229.999999744,
+          "samples": 151,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 27283.9999997432,
+          "last_sample": 27805.9999997356,
+          "samples": 262,
+          "right_censored": false
+        },
+        {
+          "id": "L007",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 27299.999999743,
+          "last_sample": 27889.9999997344,
+          "samples": 296,
+          "right_censored": false
+        },
+        {
+          "id": "M013",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 27619.9999997383,
+          "last_sample": 28253.9999997291,
+          "samples": 318,
+          "right_censored": false
+        },
+        {
+          "id": "M044",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 27719.9999997369,
+          "last_sample": 28231.9999997294,
+          "samples": 257,
+          "right_censored": false
+        },
+        {
+          "id": "V001",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 27767.9999997362,
+          "last_sample": 28059.9999997319,
+          "samples": 147,
+          "right_censored": false
+        },
+        {
+          "id": "M064",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 27883.9999997345,
+          "last_sample": 28393.9999997271,
+          "samples": 256,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 27957.9999997334,
+          "last_sample": 28405.9999997269,
+          "samples": 225,
+          "right_censored": false
+        },
+        {
+          "id": "V001",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 28119.999999731,
+          "last_sample": 28731.9999997221,
+          "samples": 307,
+          "right_censored": false
+        },
+        {
+          "id": "M013",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 28307.9999997283,
+          "last_sample": 28713.9999997224,
+          "samples": 204,
+          "right_censored": false
+        },
+        {
+          "id": "M044",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 28473.9999997259,
+          "last_sample": 29005.9999997182,
+          "samples": 267,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 28501.9999997255,
+          "last_sample": 29143.9999997161,
+          "samples": 322,
+          "right_censored": false
+        },
+        {
+          "id": "M064",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 28657.9999997232,
+          "last_sample": 29191.9999997154,
+          "samples": 268,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 28801.9999997211,
+          "last_sample": 29197.9999997154,
+          "samples": 199,
+          "right_censored": false
+        },
+        {
+          "id": "M044",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 29107.9999997167,
+          "last_sample": 31587.9999996806,
+          "samples": 1241,
+          "right_censored": true
+        },
+        {
+          "id": "M006",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 29231.9999997149,
+          "last_sample": 29753.9999997073,
+          "samples": 262,
+          "right_censored": false
+        },
+        {
+          "id": "M064",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 29251.9999997146,
+          "last_sample": 31587.9999996806,
+          "samples": 1169,
+          "right_censored": true
+        },
+        {
+          "id": "V002",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 29259.9999997145,
+          "last_sample": 29871.9999997056,
+          "samples": 307,
+          "right_censored": false
+        },
+        {
+          "id": "V001",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 29267.9999997143,
+          "last_sample": 31587.9999996806,
+          "samples": 1161,
+          "right_censored": true
+        },
+        {
+          "id": "L007",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 29269.9999997143,
+          "last_sample": 30105.9999997021,
+          "samples": 419,
+          "right_censored": false
+        },
+        {
+          "id": "M008",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 29629.9999997091,
+          "last_sample": 30151.9999997015,
+          "samples": 262,
+          "right_censored": false
+        },
+        {
+          "id": "S009",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 29929.9999997047,
+          "last_sample": 30251.9999997,
+          "samples": 162,
+          "right_censored": false
+        },
+        {
+          "id": "M006",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 30217.9999997005,
+          "last_sample": 30757.9999996927,
+          "samples": 271,
+          "right_censored": false
+        },
+        {
+          "id": "M017",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 30247.9999997001,
+          "last_sample": 30573.9999996953,
+          "samples": 164,
+          "right_censored": false
+        },
+        {
+          "id": "S030",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 30305.9999996992,
+          "last_sample": 30825.9999996917,
+          "samples": 261,
+          "right_censored": false
+        },
+        {
+          "id": "S009",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 30349.9999996986,
+          "last_sample": 31007.999999689,
+          "samples": 330,
+          "right_censored": false
+        },
+        {
+          "id": "M008",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 30559.9999996955,
+          "last_sample": 31077.999999688,
+          "samples": 260,
+          "right_censored": false
+        },
+        {
+          "id": "M017",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 30627.9999996946,
+          "last_sample": 31283.999999685,
+          "samples": 329,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 30627.9999996946,
+          "last_sample": 30937.99999969,
+          "samples": 156,
+          "right_censored": false
+        },
+        {
+          "id": "L014",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 30645.9999996943,
+          "last_sample": 31285.999999685,
+          "samples": 321,
+          "right_censored": false
+        },
+        {
+          "id": "S030",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 31071.9999996881,
+          "last_sample": 31587.9999996806,
+          "samples": 259,
+          "right_censored": true
+        },
+        {
+          "id": "L007",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 31391.9999996834,
+          "last_sample": 31587.9999996806,
+          "samples": 99,
+          "right_censored": true
+        },
+        {
+          "id": "M011",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 31407.9999996832,
+          "last_sample": 31587.9999996806,
+          "samples": 91,
+          "right_censored": true
+        }
+      ]
+    },
+    {
+      "run": "predictive-network-delayed",
+      "last_clock": 34207.9999997472,
+      "max_sample_interval_seconds": 2.000000000203727,
+      "traffic_sha256": "90e520df810c180be6ee60bd6d28614eaff6c3acb7bd40bcb498879823d8c1ac",
+      "audit_sha256": "9b3006f4c6dbd5455be6f0a906ecc0c580fb4bf66b19020044c224c427519660",
+      "intervals": [
+        {
+          "id": "M045",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 530.000000000066,
+          "last_sample": 829.999999999793,
+          "samples": 151,
+          "right_censored": false
+        },
+        {
+          "id": "M045",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 883.999999999744,
+          "last_sample": 1515.99999999917,
+          "samples": 317,
+          "right_censored": false
+        },
+        {
+          "id": "M045",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 1569.99999999912,
+          "last_sample": 1975.99999999875,
+          "samples": 204,
+          "right_censored": false
+        },
+        {
+          "id": "M045",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 2552.00000000052,
+          "last_sample": 2994.00000000213,
+          "samples": 222,
+          "right_censored": false
+        },
+        {
+          "id": "M045",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 3050.00000000233,
+          "last_sample": 3566.00000000421,
+          "samples": 259,
+          "right_censored": false
+        },
+        {
+          "id": "M045",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 4124.00000000624,
+          "last_sample": 4618.00000000803,
+          "samples": 248,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 4708.00000000836,
+          "last_sample": 5002.00000000943,
+          "samples": 148,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 5058.00000000964,
+          "last_sample": 5686.00000001192,
+          "samples": 315,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 5742.00000001212,
+          "last_sample": 6144.00000001359,
+          "samples": 202,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 6718.00000001567,
+          "last_sample": 7156.00000001727,
+          "samples": 220,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 7212.00000001747,
+          "last_sample": 7724.00000001933,
+          "samples": 257,
+          "right_censored": false
+        },
+        {
+          "id": "M071",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 8380.0000000183,
+          "last_sample": 8868.0000000112,
+          "samples": 245,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 9530.00000000157,
+          "last_sample": 9829.9999999972,
+          "samples": 151,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 9883.99999999641,
+          "last_sample": 10515.9999999872,
+          "samples": 317,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 10569.9999999864,
+          "last_sample": 10997.9999999802,
+          "samples": 215,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 11217.999999977,
+          "last_sample": 11685.9999999702,
+          "samples": 235,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 11739.9999999694,
+          "last_sample": 12279.9999999615,
+          "samples": 271,
+          "right_censored": false
+        },
+        {
+          "id": "S027",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 13183.9999999484,
+          "last_sample": 13705.9999999408,
+          "samples": 262,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 22441.9999998137,
+          "last_sample": 22771.9999998089,
+          "samples": 166,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 22991.9999998057,
+          "last_sample": 23951.9999997917,
+          "samples": 481,
+          "right_censored": false
+        },
+        {
+          "id": "L007",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 24103.9999997895,
+          "last_sample": 24433.9999997847,
+          "samples": 166,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 24603.9999997822,
+          "last_sample": 25175.9999997739,
+          "samples": 287,
+          "right_censored": false
+        },
+        {
+          "id": "L007",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 25351.9999997713,
+          "last_sample": 26323.9999997572,
+          "samples": 487,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 25501.9999997691,
+          "last_sample": 26127.99999976,
+          "samples": 314,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 26343.9999997569,
+          "last_sample": 27797.9999997357,
+          "samples": 728,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 26397.9999997561,
+          "last_sample": 26885.999999749,
+          "samples": 245,
+          "right_censored": false
+        },
+        {
+          "id": "L007",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 26541.999999754,
+          "last_sample": 27113.9999997457,
+          "samples": 287,
+          "right_censored": false
+        },
+        {
+          "id": "M013",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 26929.9999997484,
+          "last_sample": 27229.999999744,
+          "samples": 151,
+          "right_censored": false
+        },
+        {
+          "id": "L007",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 27299.999999743,
+          "last_sample": 27907.9999997341,
+          "samples": 305,
+          "right_censored": false
+        },
+        {
+          "id": "M013",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 27619.9999997383,
+          "last_sample": 28253.9999997291,
+          "samples": 318,
+          "right_censored": false
+        },
+        {
+          "id": "M044",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 27719.9999997369,
+          "last_sample": 28231.9999997294,
+          "samples": 257,
+          "right_censored": false
+        },
+        {
+          "id": "V001",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 27767.9999997362,
+          "last_sample": 28059.9999997319,
+          "samples": 147,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 27899.9999997342,
+          "last_sample": 28407.9999997269,
+          "samples": 255,
+          "right_censored": false
+        },
+        {
+          "id": "M064",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 27983.999999733,
+          "last_sample": 28493.9999997256,
+          "samples": 256,
+          "right_censored": false
+        },
+        {
+          "id": "V001",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 28119.999999731,
+          "last_sample": 28731.9999997221,
+          "samples": 307,
+          "right_censored": false
+        },
+        {
+          "id": "M013",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 28307.9999997283,
+          "last_sample": 28735.9999997221,
+          "samples": 215,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 28467.999999726,
+          "last_sample": 28889.9999997198,
+          "samples": 212,
+          "right_censored": false
+        },
+        {
+          "id": "M044",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 28473.9999997259,
+          "last_sample": 28985.9999997184,
+          "samples": 257,
+          "right_censored": false
+        },
+        {
+          "id": "M006",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 28567.9999997245,
+          "last_sample": 29087.999999717,
+          "samples": 261,
+          "right_censored": false
+        },
+        {
+          "id": "M064",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 28757.9999997218,
+          "last_sample": 29291.999999714,
+          "samples": 268,
+          "right_censored": false
+        },
+        {
+          "id": "L014",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 28869.9999997201,
+          "last_sample": 29529.9999997105,
+          "samples": 331,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 28949.999999719,
+          "last_sample": 29335.9999997134,
+          "samples": 194,
+          "right_censored": false
+        },
+        {
+          "id": "M044",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 29041.9999997176,
+          "last_sample": 29479.9999997113,
+          "samples": 220,
+          "right_censored": false
+        },
+        {
+          "id": "M006",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 29341.9999997133,
+          "last_sample": 29859.9999997057,
+          "samples": 260,
+          "right_censored": false
+        },
+        {
+          "id": "M064",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 29347.9999997132,
+          "last_sample": 29785.9999997068,
+          "samples": 220,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 29395.9999997125,
+          "last_sample": 30007.9999997036,
+          "samples": 307,
+          "right_censored": false
+        },
+        {
+          "id": "V001",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 29521.9999997106,
+          "last_sample": 29981.999999704,
+          "samples": 231,
+          "right_censored": false
+        },
+        {
+          "id": "M008",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 29629.9999997091,
+          "last_sample": 30151.9999997015,
+          "samples": 262,
+          "right_censored": false
+        },
+        {
+          "id": "S030",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 29857.9999997058,
+          "last_sample": 30373.9999996982,
+          "samples": 259,
+          "right_censored": false
+        },
+        {
+          "id": "M013",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 29891.9999997053,
+          "last_sample": 30361.9999996984,
+          "samples": 236,
+          "right_censored": false
+        },
+        {
+          "id": "S009",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 29929.9999997047,
+          "last_sample": 30229.9999997003,
+          "samples": 151,
+          "right_censored": false
+        },
+        {
+          "id": "M064",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 30089.9999997024,
+          "last_sample": 30489.9999996966,
+          "samples": 201,
+          "right_censored": false
+        },
+        {
+          "id": "M017",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 30247.9999997001,
+          "last_sample": 30595.999999695,
+          "samples": 175,
+          "right_censored": false
+        },
+        {
+          "id": "S009",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 30283.9999996996,
+          "last_sample": 30937.99999969,
+          "samples": 328,
+          "right_censored": false
+        },
+        {
+          "id": "M006",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 30437.9999996973,
+          "last_sample": 30879.9999996909,
+          "samples": 222,
+          "right_censored": false
+        },
+        {
+          "id": "M044",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 30439.9999996973,
+          "last_sample": 30839.9999996915,
+          "samples": 201,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 30483.9999996966,
+          "last_sample": 31125.9999996873,
+          "samples": 322,
+          "right_censored": false
+        },
+        {
+          "id": "L007",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 30573.9999996953,
+          "last_sample": 31409.9999996832,
+          "samples": 419,
+          "right_censored": false
+        },
+        {
+          "id": "V002",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 30659.9999996941,
+          "last_sample": 30967.9999996896,
+          "samples": 155,
+          "right_censored": false
+        },
+        {
+          "id": "V001",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 30967.9999996896,
+          "last_sample": 31415.9999996831,
+          "samples": 225,
+          "right_censored": false
+        },
+        {
+          "id": "M044",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 31017.9999996889,
+          "last_sample": 31645.9999996797,
+          "samples": 315,
+          "right_censored": false
+        },
+        {
+          "id": "S009",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 31035.9999996886,
+          "last_sample": 31489.999999682,
+          "samples": 228,
+          "right_censored": false
+        },
+        {
+          "id": "M064",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 31151.9999996869,
+          "last_sample": 31779.9999996778,
+          "samples": 315,
+          "right_censored": false
+        },
+        {
+          "id": "S009",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 31587.9999996806,
+          "last_sample": 32055.9999996738,
+          "samples": 235,
+          "right_censored": false
+        },
+        {
+          "id": "M006",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 31601.9999996804,
+          "last_sample": 32007.9999996745,
+          "samples": 204,
+          "right_censored": false
+        },
+        {
+          "id": "L007",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 31653.9999996796,
+          "last_sample": 32291.9999996703,
+          "samples": 320,
+          "right_censored": false
+        },
+        {
+          "id": "M044",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 31701.9999996789,
+          "last_sample": 32037.999999674,
+          "samples": 169,
+          "right_censored": false
+        },
+        {
+          "id": "M013",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 31729.9999996785,
+          "last_sample": 32247.999999671,
+          "samples": 260,
+          "right_censored": false
+        },
+        {
+          "id": "M064",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 31835.999999677,
+          "last_sample": 32255.9999996709,
+          "samples": 211,
+          "right_censored": false
+        },
+        {
+          "id": "M017",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 31871.9999996764,
+          "last_sample": 32529.9999996669,
+          "samples": 330,
+          "right_censored": false
+        },
+        {
+          "id": "M008",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 32329.9999996698,
+          "last_sample": 32845.9999996679,
+          "samples": 259,
+          "right_censored": false
+        },
+        {
+          "id": "M011",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 32367.9999996692,
+          "last_sample": 32683.9999996646,
+          "samples": 159,
+          "right_censored": false
+        },
+        {
+          "id": "M017",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 32585.9999996661,
+          "last_sample": 33011.9999996776,
+          "samples": 214,
+          "right_censored": false
+        },
+        {
+          "id": "M006",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 32605.9999996658,
+          "last_sample": 33237.9999996908,
+          "samples": 317,
+          "right_censored": false
+        },
+        {
+          "id": "M008",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 32901.9999996712,
+          "last_sample": 33343.9999996969,
+          "samples": 222,
+          "right_censored": false
+        },
+        {
+          "id": "M013",
+          "group": "ALLP_single",
+          "direction": 1,
+          "first_sample": 32977.9999996756,
+          "last_sample": 33471.9999997044,
+          "samples": 248,
+          "right_censored": false
+        },
+        {
+          "id": "S030",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 32995.9999996767,
+          "last_sample": 33539.9999997083,
+          "samples": 273,
+          "right_censored": false
+        },
+        {
+          "id": "M006",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 33291.9999996939,
+          "last_sample": 33637.999999714,
+          "samples": 174,
+          "right_censored": false
+        },
+        {
+          "id": "M011",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 33327.999999696,
+          "last_sample": 33977.9999997338,
+          "samples": 326,
+          "right_censored": false
+        },
+        {
+          "id": "M008",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 33539.9999997083,
+          "last_sample": 33945.999999732,
+          "samples": 204,
+          "right_censored": false
+        },
+        {
+          "id": "L002",
+          "group": "ALLP_single",
+          "direction": -1,
+          "first_sample": 33559.9999997095,
+          "last_sample": 34207.9999997472,
+          "samples": 325,
+          "right_censored": true
+        },
+        {
+          "id": "S030",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 33593.9999997115,
+          "last_sample": 34035.9999997372,
+          "samples": 222,
+          "right_censored": false
+        },
+        {
+          "id": "S009",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 33613.9999997127,
+          "last_sample": 34131.9999997428,
+          "samples": 260,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 33753.9999997208,
+          "last_sample": 34075.9999997395,
+          "samples": 162,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 33945.999999732,
+          "last_sample": 34207.9999997472,
+          "samples": 132,
+          "right_censored": true
+        },
+        {
+          "id": "M011",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 34033.9999997371,
+          "last_sample": 34207.9999997472,
+          "samples": 88,
+          "right_censored": true
+        },
+        {
+          "id": "M008",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 34043.9999997377,
+          "last_sample": 34207.9999997472,
+          "samples": 83,
+          "right_censored": true
+        },
+        {
+          "id": "M017",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 34123.9999997423,
+          "last_sample": 34207.9999997472,
+          "samples": 43,
+          "right_censored": true
+        }
+      ]
+    }
+  ],
+  "scope": "Actual completed v18 V2 evidence only. Sampled axis envelopes are planning inputs, not a guaranteed future gap, receiving-road assignment or new-candidate capacity proof."
+}
