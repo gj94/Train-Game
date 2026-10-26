@@ -2659,3 +2659,17 @@ cceb1bca/7c47e1bf, source hashes now historical. Commit/push before one V2
 baseline plus one delayed run in new isolatedv24 outputs. No Classic208 work,
 acceptance,comparison,installation or recovery certificate. Pending helpers
 and unrelated files remain untouched.
+
+## 27 October 03:24 — original v24 V2 launch verified
+
+Candidate24 c71d550c committed/pushed. Exactly two original V2 v24 replays
+launched once at2026-10-27T03:24:05.1420854+08:00: baseline11988/12204,
+delayed14452/4928 (wrapper/child). Four actual commands/options, unique outputs,
+initial predictive baseline mode,4836 source fingerprints and six observer
+hashes verified; five exact launch files/hash manifest retained. At03:24:18
+baseline starting,delayed00:10; both identities match,empty errors,no final
+audits. Baseline uses --network --snapshots; delayed uses --network --delay=600
+--delay-at=27000. No duplicate,restart or Classic208 job. Freeze runtime/routes/
+packs/six observers throughout either run. No suite/native/search/diagnostic
+job remains. Partial clocks are not acceptance. Network208V2 remains unaccepted
+and uninstalled. Pending UI/category helpers and unrelated files preserved.

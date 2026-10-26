@@ -2,6 +2,18 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Candidate24 c71d550c committed/pushed. Exactly two original V2 v24 replays
+launched once at2026-10-27T03:24:05.1420854+08:00: baseline11988/12204,
+delayed14452/4928 (wrapper/child). Four actual commands/options, unique outputs,
+initial predictive baseline mode,4836 source fingerprints and six observer
+hashes verified; five exact launch files/hash manifest retained. At03:24:18
+baseline starting,delayed00:10; both identities match,empty errors,no final
+audits. Baseline uses --network --snapshots; delayed uses --network --delay=600
+--delay-at=27000. No duplicate,restart or Classic208 job. Freeze runtime/routes/
+packs/six observers throughout either run. No suite/native/search/diagnostic
+job remains. Partial clocks are not acceptance. Network208V2 remains unaccepted
+and uninstalled. Pending UI/category helpers and unrelated files preserved.
+
 Candidate24 changes13 northern departures from23: S01311:25->10:55,
 M05111:05->11:10,M02311:15->11:25,M01911:35->11:40,S00713:25->12:55,
 S01513:45->13:05,M04912:55->13:25,M06513:05->13:35,M05313:15->13:45,

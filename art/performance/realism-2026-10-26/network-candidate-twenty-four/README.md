@@ -65,3 +65,17 @@ delayed run (600s manual K1hold07:30) in new isolatedv24 outputs. All208
 services/calls/departures/full-tail portals and depots, zero safety, both wait
 populations, multiple-location overtakes and disturbance recovery remain
 required. Network208V2 is unaccepted/uninstalled. No Classic208 job or check.
+
+## Verified launch
+
+Candidate24 c71d550c committed/pushed. Exactly two original V2 v24 replays
+launched once at2026-10-27T03:24:05.1420854+08:00: baseline11988/12204,
+delayed14452/4928 (wrapper/child). Four actual commands/options, unique outputs,
+initial predictive baseline mode,4836 source fingerprints and six observer
+hashes verified; five exact launch files/hash manifest retained. At03:24:18
+baseline starting,delayed00:10; both identities match,empty errors,no final
+audits. Baseline uses --network --snapshots; delayed uses --network --delay=600
+--delay-at=27000. No duplicate,restart or Classic208 job. Freeze runtime/routes/
+packs/six observers throughout either run. No suite/native/search/diagnostic
+job remains. Partial clocks are not acceptance. Network208V2 remains unaccepted
+and uninstalled. Pending UI/category helpers and unrelated files preserved.
