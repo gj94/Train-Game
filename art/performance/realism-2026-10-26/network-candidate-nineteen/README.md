@@ -67,3 +67,18 @@ actual overtakes at multiple locations. Install only a passing normal run.
 Verify the separate600s K1hold at07:30 and recovery; then perform category
 comparisons and actual NetworkV2 menu/midnight/save-load checks. No Classic
 Network replay, native check, installation or comparison is required.
+
+## Verified V2-only launch
+
+Candidate9192c022 is committed/pushed. Exactly two V2 replays launched once
+at20:56:38:baseline9132/15716 anddelayed7124/15688 (wrapper/child). All four
+actual commands/options,distinct single outputs,predictive baseline mode,
+4,836 source fingerprints and six observer hashes were verified after the
+initial catalogue appeared. Five exact launch files and their manifest are
+preserved in candidate19 evidence. No restart or Classic Network launch.
+At20:56:58 baseline is starting and delayed00:10,identities match,empty stderr,
+no final audit. Baseline saves genuine snapshots; delayed applies600s manual
+K1hold at07:30 and can never be installed. Runtime/routes/packs/six observers
+are frozen. Await these original outcomes; no pending suite/native/search/
+diagnostic/Git job remains. Network208V2 is not accepted or installed. Classic
+Network readiness is explicitly out of scope; legacy Classic remains intact.

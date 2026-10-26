@@ -2001,3 +2001,18 @@ empty stderr; prior1,003-source suite unchanged,not rerun. Eleven exact raw
 proofs are in [candidate19 evidence](../art/performance/realism-2026-10-26/network-candidate-nineteen/README.md).
 Network208 remains unaccepted/uninstalled. Next launch only two V2 replays
 once in isolatedv19outputs, then freeze inputs and require every existing gate.
+
+## Candidate19 two-job launch
+
+Candidate9192c022 is committed/pushed. Exactly two V2 replays launched once
+at20:56:38:baseline9132/15716 anddelayed7124/15688 (wrapper/child). All four
+actual commands/options,distinct single outputs,predictive baseline mode,
+4,836 source fingerprints and six observer hashes were verified after the
+initial catalogue appeared. Five exact launch files and their manifest are
+preserved in candidate19 evidence. No restart or Classic Network launch.
+At20:56:58 baseline is starting and delayed00:10,identities match,empty stderr,
+no final audit. Baseline saves genuine snapshots; delayed applies600s manual
+K1hold at07:30 and can never be installed. Runtime/routes/packs/six observers
+are frozen. Await these original outcomes; no pending suite/native/search/
+diagnostic/Git job remains. Network208V2 is not accepted or installed. Classic
+Network readiness is explicitly out of scope; legacy Classic remains intact.

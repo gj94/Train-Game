@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-10-26T20:56:52.283562+08:00",
+  "jobs": [
+    {
+      "day": "predictive-network",
+      "processes": [
+        {
+          "ProcessId": 9132,
+          "ParentProcessId": 11748,
+          "CommandLine": "\"D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64_console.exe\" --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v19/predictive-network --pack=res://art/timetables/kerala-coast-network-v2.json --network --snapshots"
+        },
+        {
+          "ProcessId": 15716,
+          "ParentProcessId": 9132,
+          "CommandLine": "D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64.exe --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v19/predictive-network --pack=res://art/timetables/kerala-coast-network-v2.json --network --snapshots"
+        }
+      ],
+      "source_hashes": 4836,
+      "stderr_empty": true
+    },
+    {
+      "day": "predictive-network-delayed",
+      "processes": [
+        {
+          "ProcessId": 7124,
+          "ParentProcessId": 11748,
+          "CommandLine": "\"D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64_console.exe\" --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v19/predictive-network-delayed --pack=res://art/timetables/kerala-coast-network-v2.json --network --delay=600 --delay-at=27000"
+        },
+        {
+          "ProcessId": 15688,
+          "ParentProcessId": 7124,
+          "CommandLine": "D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64.exe --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v19/predictive-network-delayed --pack=res://art/timetables/kerala-coast-network-v2.json --network --delay=600 --delay-at=27000"
+        }
+      ],
+      "source_hashes": null,
+      "stderr_empty": true
+    }
+  ],
+  "observer_hashes": {
+    "tools/prepare_timetable_variant.gd": "9063a48993646fffabca830babd26f3a41c983f927f08d81f14a7069815c25f0",
+    "tools/wait_quality.gd": "cb1a8f82cb1cea9d16255ff825ac633489ce08a6bcb47d758cdfea27e68389af",
+    "tools/lib/wait-quality.mjs": "091fe042f0842c092602cfa24d1ec5ec6ddbfec4fec74bbeeaea00a634847136",
+    "tools/record_service_traffic.gd": "30947f698bb1715f1ea6c5026d924a54dd8dcfdea5d8e21c5dbee42f9086e251",
+    "tools/lib/traffic-encounters.mjs": "7b1a74bd27398cd150d080ba87333f47ab3fdac593d4866142392c938661a858",
+    "tools/finalize_timetable_variant.mjs": "7c35cf72798e69418003716a1e925cd30d9ca8c4a33c3faeae9b8595469019b7"
+  }
+}
