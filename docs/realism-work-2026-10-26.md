@@ -2379,3 +2379,13 @@ restart/duplicate/Classic208 job. Baseline uses snapshots; delayed uses600s
 manual K1hold at27000/07:30. Runtime/routes/packs/six observers now frozen.
 Partial clocks are not acceptance; Network208V2 unaccepted/uninstalled.
 No suite/native/search/diagnostic/Git job remains after this checkpoint.
+
+## 27 October 00:32 — original v22 jobs continue
+
+27 October 00:32:06 checkpoint: both original v22 V2 jobs remain active
+with matching wrapper/child identities. Baseline2360/13668 is at01:00
+(0/208 complete); delayed7952/19620 is at01:50 (1/208). Both error logs
+are empty and neither final audit exists. These partial clocks are not
+acceptance. Runtime/routes/packs/six observers remain frozen; no duplicate,
+restart,Classic208 job,unchanged test rerun or installation. Pending UI/category
+helpers and unrelated files are preserved. Await the original outcomes.

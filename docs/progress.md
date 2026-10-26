@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 00:32:06 checkpoint: both original v22 V2 jobs remain active
+with matching wrapper/child identities. Baseline2360/13668 is at01:00
+(0/208 complete); delayed7952/19620 is at01:50 (1/208). Both error logs
+are empty and neither final audit exists. These partial clocks are not
+acceptance. Runtime/routes/packs/six observers remain frozen; no duplicate,
+restart,Classic208 job,unchanged test rerun or installation. Pending UI/category
+helpers and unrelated files are preserved. Await the original outcomes.
+
 Candidate6d6f0518 committed/pushed; exactly two original V2 v22 replays
 launched once at2026-10-27T00:28:56.3993166+08:00: baseline2360/13668 and delayed7952/19620
 (wrapper/child). All four actual commands/options,distinct isolated outputs,
