@@ -2097,3 +2097,20 @@ K1 delayed minute samples show27.4546m braking then unchanged extents through
 or complete-population comparison. Both original jobs are finished; next
 coordinate departure groups from these actual queues, retaining every gate,
 K1, all non-departure fields and V2-only scope.
+
+## Candidate20 departure-group hypothesis
+
+Candidate20 changes twelve departures from19 to coordinate northern batches
+and the southern opposing flow. M017/M011/S031 become10:00/10:10/10:20;
+M051/M023/S013/M019/S011/M049/M065/M053 become11:05/11:15/11:25/11:35/11:45/
+11:55/12:05/12:15;S047 becomes08:50. Actual19queues and sampled full-rake
+section envelopes motivate intended gaps forM008/S006 thenL002/S008, and
+S047 joining the earlier southern group. Future gaps/receiving capacity and
+whole-day improvement remain unproven. Restoring these departures recovers
+both entire predecessor objects; every other field,common-author service
+consistency,K106:00,runtime/routes/observers/sounds remain unchanged.
+208services168boundary71overnight3-13starts/hour. Normal reproduction and all
+four headless authoring guards pass,emptystderr; unchanged1003suite notrerun.
+Eleven raw proofs are in [candidate20 evidence](../art/performance/realism-2026-10-26/network-candidate-twenty/README.md).
+V2-only readiness remains unaccepted/uninstalled. Next launch exactly two
+V2 replays once, then freeze inputs through their actual outcomes.
