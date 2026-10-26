@@ -27,8 +27,9 @@ with 38 seconds of route conflicts. L035's earlier departure still leads to
 L023 accumulates 2,686 seconds at NYY before leaving at 08:43:37.80.
 
 V2 V001 waits at MAKM-S3 while Alappuzha receiving space and opposing traffic
-remain constrained. Opposing M064 and S030 account for 1,164 seconds; the
-remaining 1,538 seconds concern ALLP receiving availability/reservations.
+remain constrained. Opposing M064 and S030 account for 1,164 seconds; ALLP
+receiving availability/reservations account for 1,250 seconds, occupied blocks
+for 168 seconds and route conflicts for 120 seconds.
 At the failure snapshot L007 remains at ALLP, M008 is arriving there and M017
 is moving through its approach. K1, L015, M013, M064 and S030 also move.
 

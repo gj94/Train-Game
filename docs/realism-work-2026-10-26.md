@@ -1491,8 +1491,9 @@ exact fractions are in network-candidate-thirteen/failed-disturbances/README.md.
 L024 reaches KZT08:32:55.40 with no departure. Its wait includes1,562s opposing
 L035/M075/M047/L023,1,102s receiving/downstream crossing protection and38s
 route conflicts. L035 still accumulates2,696s at PASA, L0232,686s at NYY.
-V001's MAKM wait includes1,164s opposing M064/S030 and1,538s ALLP receiving
-availability/reservations. At inspection L007 waits atALLP,M008 arrives,M017
+V001's MAKM wait includes1,164s opposing M064/S030,1,250s ALLP receiving
+availability/reservations,168s occupied blocks and120s route conflicts.
+At inspection L007 waits atALLP,M008 arrives,M017
 moves; K1/L015/M013/M064/S030 also move. Both read-only snapshots remain
 byte-immutable, no future plans. No permanent-deadlock/runtime-defect conclusion.
 
