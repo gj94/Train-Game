@@ -2487,3 +2487,24 @@ notwhole-dayimprovement. BaselinesummaryhasnoK1overtakes inprefix.
 No permanentdeadlock/runtime-defect claim,populationcomparison,recoveryproof
 orinstallation. Delayed evidence511eb04a remains distinct. No existingjobs
 remain;departure-only group replanning can now use bothactualV2queues.
+
+## 27 October — candidate23 departure groups
+
+Candidate23 changes only13 southern departures from22: M06811:35,M09611:45,
+S05011:55,M08612:05,L03612:20,L02612:30,S04813:25,M08213:35,S03413:45,
+M06613:55,M10214:05,M05414:20,S05214:30. The six-service first wave moves45m
+later,aiming for K1/L025 southbound full-rake clearance afterL024/M048;following
+fast group starts55originminutes afterL026. Actual22 queues and sampled
+full-rake envelopes inform this hypothesis,not guaranteed gaps/assignedroads.
+Later locals/opposing queues may worsen;no newmodelscore/full-dayclaim.
+
+Normal authoring and exact--check reproduce both packs from205overrides;
+all4headlessguards pass,empty errors. Restoring13departures recovers entire
+predecessorJSON objects,common208services identical,K106:00,40local/104mail/
+56superfast/8VB,71overnight,3–13starts/hour. Runtime/routes/tests/sixobservers
+unchanged;completed1003suite notrerun.11exactrawproofs preserved;exact22
+predecessors in candidate-twenty-three-before. Initial uncommitted/unlaunched
+draft failed local14-start-hour guard;exactdraft retained in candidate-twenty-three-draft-density-rejected.
+Following group revised before final passing checks. Network208V2 remains
+unaccepted/uninstalled. Commit/push then one V2baseline and one600s07:30
+K1delayed run inisolatedv23. NoClassic208 work;pendinghelpers preserved.

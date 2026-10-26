@@ -1,0 +1,90 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "3608224e99bbe611cdb762d98e723dcf2ec223daa6f7553a8b7dd8aa94d98845",
+    "kerala-coast-network-v2.json": "f069d6726596ab79096a171dcf7e3f9802a471e989b6906f521f3ae9b9fff766",
+    "kerala-coast-network-departure-overrides.json": "afede9782eb9d74717671152209b25a92270a610165945431b40bdaed5cae4da"
+  },
+  "changes": [
+    {
+      "service": "M068",
+      "before": "10:50",
+      "after": "11:35",
+      "reason": "Move the six-service southern northbound wave 45 minutes later: M068/M096/S050/M086 at11:35/11:45/11:55/12:05, then locals L036/L026 at12:20/12:30. Both actual22 runs fail L025 atNYY after repeated opposing traffic and constrained PASA receiving roads; baseline K1 also occupies a PASA road. Actual22 M068 NYY envelope11:43:44-11:52:10 and later S050/M096/M086 refill it. Aim to allow L025 and K1 southbound full-rake clearance after L024/M048 and before this wave. Baseline and delayed K1 reach different queues; no guaranteed receiving interval or clearance claim."
+    },
+    {
+      "service": "M096",
+      "before": "11:00",
+      "after": "11:45",
+      "reason": "Move the six-service southern northbound wave 45 minutes later: M068/M096/S050/M086 at11:35/11:45/11:55/12:05, then locals L036/L026 at12:20/12:30. Both actual22 runs fail L025 atNYY after repeated opposing traffic and constrained PASA receiving roads; baseline K1 also occupies a PASA road. Actual22 M068 NYY envelope11:43:44-11:52:10 and later S050/M096/M086 refill it. Aim to allow L025 and K1 southbound full-rake clearance after L024/M048 and before this wave. Baseline and delayed K1 reach different queues; no guaranteed receiving interval or clearance claim."
+    },
+    {
+      "service": "S050",
+      "before": "11:10",
+      "after": "11:55",
+      "reason": "Move the six-service southern northbound wave 45 minutes later: M068/M096/S050/M086 at11:35/11:45/11:55/12:05, then locals L036/L026 at12:20/12:30. Both actual22 runs fail L025 atNYY after repeated opposing traffic and constrained PASA receiving roads; baseline K1 also occupies a PASA road. Actual22 M068 NYY envelope11:43:44-11:52:10 and later S050/M096/M086 refill it. Aim to allow L025 and K1 southbound full-rake clearance after L024/M048 and before this wave. Baseline and delayed K1 reach different queues; no guaranteed receiving interval or clearance claim."
+    },
+    {
+      "service": "M086",
+      "before": "11:20",
+      "after": "12:05",
+      "reason": "Move the six-service southern northbound wave 45 minutes later: M068/M096/S050/M086 at11:35/11:45/11:55/12:05, then locals L036/L026 at12:20/12:30. Both actual22 runs fail L025 atNYY after repeated opposing traffic and constrained PASA receiving roads; baseline K1 also occupies a PASA road. Actual22 M068 NYY envelope11:43:44-11:52:10 and later S050/M096/M086 refill it. Aim to allow L025 and K1 southbound full-rake clearance after L024/M048 and before this wave. Baseline and delayed K1 reach different queues; no guaranteed receiving interval or clearance claim."
+    },
+    {
+      "service": "L036",
+      "before": "11:35",
+      "after": "12:20",
+      "reason": "Move the six-service southern northbound wave 45 minutes later: M068/M096/S050/M086 at11:35/11:45/11:55/12:05, then locals L036/L026 at12:20/12:30. Both actual22 runs fail L025 atNYY after repeated opposing traffic and constrained PASA receiving roads; baseline K1 also occupies a PASA road. Actual22 M068 NYY envelope11:43:44-11:52:10 and later S050/M096/M086 refill it. Aim to allow L025 and K1 southbound full-rake clearance after L024/M048 and before this wave. Baseline and delayed K1 reach different queues; no guaranteed receiving interval or clearance claim."
+    },
+    {
+      "service": "L026",
+      "before": "11:45",
+      "after": "12:30",
+      "reason": "Move the six-service southern northbound wave 45 minutes later: M068/M096/S050/M086 at11:35/11:45/11:55/12:05, then locals L036/L026 at12:20/12:30. Both actual22 runs fail L025 atNYY after repeated opposing traffic and constrained PASA receiving roads; baseline K1 also occupies a PASA road. Actual22 M068 NYY envelope11:43:44-11:52:10 and later S050/M096/M086 refill it. Aim to allow L025 and K1 southbound full-rake clearance after L024/M048 and before this wave. Baseline and delayed K1 reach different queues; no guaranteed receiving interval or clearance claim."
+    },
+    {
+      "service": "S048",
+      "before": "13:20",
+      "after": "13:25",
+      "reason": "Keep the following southern northbound fast wave out of the intended interval after the shifted locals: S048/M082/S034/M066/M102/M054/S052 at13:25/13:35/13:45/13:55/14:05/14:20/14:30; M05214:40 and S05415:00 remain. This leaves55 minutes between L026 origin departure and the next fast departure, and avoids a14-start hour in the rejected unlaunched draft. It is a departure-group hypothesis, not a live section or berth reservation. Unchanged later locals and opposing services may worsen; full-day V2 gates remain required."
+    },
+    {
+      "service": "M082",
+      "before": "13:40",
+      "after": "13:35",
+      "reason": "Keep the following southern northbound fast wave out of the intended interval after the shifted locals: S048/M082/S034/M066/M102/M054/S052 at13:25/13:35/13:45/13:55/14:05/14:20/14:30; M05214:40 and S05415:00 remain. This leaves55 minutes between L026 origin departure and the next fast departure, and avoids a14-start hour in the rejected unlaunched draft. It is a departure-group hypothesis, not a live section or berth reservation. Unchanged later locals and opposing services may worsen; full-day V2 gates remain required."
+    },
+    {
+      "service": "S034",
+      "before": "12:45",
+      "after": "13:45",
+      "reason": "Keep the following southern northbound fast wave out of the intended interval after the shifted locals: S048/M082/S034/M066/M102/M054/S052 at13:25/13:35/13:45/13:55/14:05/14:20/14:30; M05214:40 and S05415:00 remain. This leaves55 minutes between L026 origin departure and the next fast departure, and avoids a14-start hour in the rejected unlaunched draft. It is a departure-group hypothesis, not a live section or berth reservation. Unchanged later locals and opposing services may worsen; full-day V2 gates remain required."
+    },
+    {
+      "service": "M066",
+      "before": "12:55",
+      "after": "13:55",
+      "reason": "Keep the following southern northbound fast wave out of the intended interval after the shifted locals: S048/M082/S034/M066/M102/M054/S052 at13:25/13:35/13:45/13:55/14:05/14:20/14:30; M05214:40 and S05415:00 remain. This leaves55 minutes between L026 origin departure and the next fast departure, and avoids a14-start hour in the rejected unlaunched draft. It is a departure-group hypothesis, not a live section or berth reservation. Unchanged later locals and opposing services may worsen; full-day V2 gates remain required."
+    },
+    {
+      "service": "M102",
+      "before": "13:05",
+      "after": "14:05",
+      "reason": "Keep the following southern northbound fast wave out of the intended interval after the shifted locals: S048/M082/S034/M066/M102/M054/S052 at13:25/13:35/13:45/13:55/14:05/14:20/14:30; M05214:40 and S05415:00 remain. This leaves55 minutes between L026 origin departure and the next fast departure, and avoids a14-start hour in the rejected unlaunched draft. It is a departure-group hypothesis, not a live section or berth reservation. Unchanged later locals and opposing services may worsen; full-day V2 gates remain required."
+    },
+    {
+      "service": "M054",
+      "before": "14:00",
+      "after": "14:20",
+      "reason": "Keep the following southern northbound fast wave out of the intended interval after the shifted locals: S048/M082/S034/M066/M102/M054/S052 at13:25/13:35/13:45/13:55/14:05/14:20/14:30; M05214:40 and S05415:00 remain. This leaves55 minutes between L026 origin departure and the next fast departure, and avoids a14-start hour in the rejected unlaunched draft. It is a departure-group hypothesis, not a live section or berth reservation. Unchanged later locals and opposing services may worsen; full-day V2 gates remain required."
+    },
+    {
+      "service": "S052",
+      "before": "14:20",
+      "after": "14:30",
+      "reason": "Keep the following southern northbound fast wave out of the intended interval after the shifted locals: S048/M082/S034/M066/M102/M054/S052 at13:25/13:35/13:45/13:55/14:05/14:20/14:30; M05214:40 and S05415:00 remain. This leaves55 minutes between L026 origin departure and the next fast departure, and avoids a14-start hour in the rejected unlaunched draft. It is a departure-group hypothesis, not a live section or berth reservation. Unchanged later locals and opposing services may worsen; full-day V2 gates remain required."
+    }
+  ],
+  "evidence_commit": "9535e761; delayed 511eb04a",
+  "scope": "Network208 V2 only; thirteen coordinated departure timings, no Classic replay or readiness requirement.",
+  "status": "Departure-only hypothesis; no acceptance"
+}
