@@ -116,8 +116,13 @@ The V2 baseline now fails the same S025 gate at 06:38:42. Its full service
 records, both wait lists and traffic bytes match the delayed failed prefix,
 which ends before intervention. [V2 baseline evidence](../art/performance/realism-2026-10-26/network-candidate-twelve/failed-predictive-baseline/README.md)
 preserves 14 exact raw files and immutable inspection with 4,836 verified hashes.
-Only the original Classic baseline remains running. Keep runtime/routes/packs/
-observers frozen and await its result before choosing departure-only repairs.
+Classic baseline also fails L002 at 07:21:20,28/208; its full service/wait
+records and traffic bytes match the corresponding pre-hold delayed prefix.
+All four v12 runs are finished and rejected. [Classic baseline evidence](../art/performance/realism-2026-10-26/network-candidate-twelve/failed-classic-baseline/README.md)
+preserves 14 exact raw files and immutable inspection with 4,836 verified hashes.
+The next departure-only hypothesis moves L002 to 04:20, after M064 04:10 and
+before L034 04:30, avoiding the shared 05:05 entry with S030. It needs authoring
+guards and actual new replays; no source, stock, calls or gate changes.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network

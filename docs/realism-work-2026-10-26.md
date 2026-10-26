@@ -1422,3 +1422,21 @@ baseline; corrected only that diagnostic assertion to compare clock<27000,
 before any archive directory was created. No simulation/replay edits or rerun.
 Only Classic21244/3532 remains live. Await its result before retiming. Inputs
 remain frozen, pendingUI/category and R47/legacy data preserved, no Network install.
+
+
+## All v12 jobs finished rejected; next ordered departure hypothesis
+
+Classic21244/3532 also fails L002 NYY07:21:20,28/208,2,702s,zero safety,
+empty stderr. Its full service records,both wait lists andtraffic bytes match
+the Classic delayed failed prefix. Both stop before07:30; no recovery/full-day
+certificate. Another14 raw files and4,836 current hashes verified,immutable
+inspection,no future plans,L033/M079 moving. All original v12 outputs remain.
+No replay/suite/diagnostic is active. No Network installation or changed gates.
+
+Next limited hypothesis: L00205:05->04:20, following M06404:10 and preceding
+L03404:30, avoids the shared05:05 origin with faster S030. It aims to preserve
+northbound order before the observed southern opposing wave; no guarantee of
+capacity or complete-day improvement. Keep all other service fields, M00605:20,
+L03506:45,K106:00 unchanged. Require exact reproduction/four authoring guards,
+then explicit commit and new isolated four-run generation. No full-suite repeat
+for a departure-only data edit; the runtime/tests are unchanged from1003 passed.
