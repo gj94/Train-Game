@@ -1504,3 +1504,28 @@ Original baseline12028/21668 and5080/14780 remain live; at16:12 Classic07:50
 attribution or departure-only repair. No frozen input/runtime/test edits,duplicates,
 installation or full-suite repetition;1003 source/four authoring checks stand.
 R47,legacy certifications,pending UI/category helpers and unrelated files preserved.
+
+
+## All v13 runs finished rejected; move two origins outside observed waves
+
+Classic baseline12028/21668 fails L007 ALLP09:07:06,41/208; V2baseline5080/14780
+fails L024 KZT09:19:08,44/208. Both2,702s extra wait,zero safety,empty stderr.
+Both wait distributions fail; exact fractions and24 raw files are preserved in
+network-candidate-thirteen/failed-baselines. All4,837 distinct current hashes
+verified. Read-only snapshots remain immutable,no future plans,several trains
+move. No permanent-deadlock/runtime-defect conclusion or Network installation.
+V2 baseline L024's entire record/station waits match Classic delayed at the
+same clock, but whole services/traffic differ. No full-population comparison.
+
+Classic L007 arrivesALLP08:20:02.65,then1,088s awaiting M013's pass and646s
+opposing L014 plus other recorded receiving/block/conflict waits. L015 leaves
+ALLP08:33:16.30,M01308:57:13.30; M008/S006 wait atAMPA and S030 atALLP.
+V001,M013,M006,M017,K1 move. L024's southern opposing-wave failure also occurs
+without the manual hold. All four v13 jobs are now finished naturally.
+
+Next limited hypothesis moves L02407:40->09:20 after the observed southbound
+wave and L01508:15->10:05 after the crowded ALLP receiving/origin interval.
+This retains at most13 starts/hour. These are not acceptance or capacity proof;
+later queues remain unknown. Preserve every other field,identical modes,K106:00;
+require exact normal authoring and four headless guards before commit/launch.
+No full-suite repeat for data-only edits; runtime/tests remain1003passed.

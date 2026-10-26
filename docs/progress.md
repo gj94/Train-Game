@@ -140,10 +140,15 @@ Classic L024 at KZT09:19:08 and V2 V001 at MAKM09:17:48, each43/208 complete,
 wait distributions fail. [Exact disturbed evidence](../art/performance/realism-2026-10-26/network-candidate-thirteen/failed-disturbances/README.md)
 preserves22 raw files,4,837 verified source hashes and immutable inspections.
 No future-clearance plans remain in either snapshot; several trains move.
-At16:12 the original baselines still match their identities, Classic07:50
-(32/208), V207:40 (31/208), empty stderr and no final audits. Await their results
-before selecting departure-only repairs or attributing effects to the hold.
-Inputs remain frozen, with no duplicate jobs or repeated audits.
+Both original baselines have now finished rejected: Classic L007 at ALLP09:07:06
+(41/208), V2 L024 at KZT09:19:08 (44/208), each2,702s extra wait, zero safety
+and empty stderr. [Exact baseline evidence](../art/performance/realism-2026-10-26/network-candidate-thirteen/failed-baselines/README.md)
+preserves24 raw files and immutable inspections, with4,837 verified source hashes.
+No future plans remain; trains still move. V2 baseline L024 matches only the
+L024 record/waits in Classic delayed; whole services/traffic differ. All v13
+jobs are finished; no unchanged rerun or installation. Next departure-only
+hypothesis moves L02407:40->09:20 and L01508:15->10:05 outside the observed
+opposing/origin crowding. It requires exact authoring checks and fresh replays.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
