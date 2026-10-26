@@ -127,6 +127,20 @@
 				"station": "SRTL"
 			},
 			{
+				"call": 2,
+				"id": "B003",
+				"reasons": {
+					"Authority to ALLP_PUPR_M0-SA": 4.0,
+					"Conflicts with route from ALLP_PUPR_M0-NH · Backwater Intercity 02 · TVC–ERS (B031)": 12.0,
+					"Expect a wait before Ambalappuzha: no free platform suitable for this service · Backwater Intercity 02 · TVC–ERS (B031)": 120.0,
+					"Expect a wait before Ambalappuzha: no free platform suitable for this service · Coastal Passenger 01 · ERS–KYJ (B036), Backwater Intercity 02 · TVC–ERS (B031)": 28.0,
+					"Single line ALLP_single is locked for opposing traffic · Backwater Intercity 02 · TVC–ERS (B031)": 580.0
+				},
+				"seconds": 744.0,
+				"signal_id": "",
+				"station": "ALLP"
+			},
+			{
 				"call": 0,
 				"id": "B066",
 				"reasons": {
@@ -154,17 +168,6 @@
 				"station": "VAK"
 			},
 			{
-				"call": 6,
-				"id": "K1",
-				"reasons": {
-					"Authority to SRTL_TRVZ_M0-SA": 4.0,
-					"Expect a wait at SRTL until Coastal Vande Bharat · Ernakulam to Nagercoil (B001) overtakes": 690.0
-				},
-				"seconds": 694.0,
-				"signal_id": "",
-				"station": "SRTL"
-			},
-			{
 				"call": 2,
 				"id": "B014",
 				"reasons": {
@@ -175,6 +178,17 @@
 				"seconds": 694.0,
 				"signal_id": "",
 				"station": "KZT"
+			},
+			{
+				"call": 6,
+				"id": "K1",
+				"reasons": {
+					"Authority to SRTL_TRVZ_M0-SA": 4.0,
+					"Expect a wait at SRTL until Coastal Vande Bharat · Ernakulam to Nagercoil (B001) overtakes": 690.0
+				},
+				"seconds": 694.0,
+				"signal_id": "",
+				"station": "SRTL"
 			},
 			{
 				"call": 9,
@@ -284,41 +298,41 @@
 		],
 		"pack_sha256": "",
 		"peak_active": 27,
-		"report": "All 100 services arrived safely and cleared to depot where provided. Latest passenger arrival delay: 32.9 min. Manual driving may change the outcome.",
+		"report": "All 100 services completed their simulated calls and cleared to depot or beyond the map boundary. Latest endpoint delay: 32.9 min. Manual driving may change the outcome.",
 		"station_wait_quality": {
 			"bins": [
-				96,
-				18,
+				99,
+				19,
 				3,
 				0,
 				0
 			],
-			"brief_count": 1413,
-			"count": 117,
+			"brief_count": 1409,
+			"count": 121,
 			"cumulative": [
 				{
-					"count": 96,
-					"fraction": 0.82051282051282,
+					"count": 99,
+					"fraction": 0.818181818181818,
 					"met": true,
 					"required": 0.7,
 					"under_seconds": 600.0
 				},
 				{
-					"count": 114,
-					"fraction": 0.974358974358974,
+					"count": 118,
+					"fraction": 0.975206611570248,
 					"met": true,
 					"required": 0.9,
 					"under_seconds": 1200.0
 				},
 				{
-					"count": 117,
+					"count": 121,
 					"fraction": 1.0,
 					"met": true,
 					"required": 0.98,
 					"under_seconds": 1800.0
 				},
 				{
-					"count": 117,
+					"count": 121,
 					"fraction": 1.0,
 					"met": true,
 					"required": 1.0,
@@ -332,38 +346,38 @@
 		"total": 100,
 		"wait_quality": {
 			"bins": [
-				154,
-				22,
+				151,
+				23,
 				5,
 				0,
 				0
 			],
-			"brief_count": 2708,
-			"count": 181,
+			"brief_count": 2704,
+			"count": 179,
 			"cumulative": [
 				{
-					"count": 154,
-					"fraction": 0.850828729281768,
+					"count": 151,
+					"fraction": 0.843575418994413,
 					"met": true,
 					"required": 0.7,
 					"under_seconds": 600.0
 				},
 				{
-					"count": 176,
-					"fraction": 0.972375690607735,
+					"count": 174,
+					"fraction": 0.972067039106145,
 					"met": true,
 					"required": 0.9,
 					"under_seconds": 1200.0
 				},
 				{
-					"count": 181,
+					"count": 179,
 					"fraction": 1.0,
 					"met": true,
 					"required": 0.98,
 					"under_seconds": 1800.0
 				},
 				{
-					"count": 181,
+					"count": 179,
 					"fraction": 1.0,
 					"met": true,
 					"required": 1.0,
@@ -374,7 +388,7 @@
 			"minimum_seconds": 30.0,
 			"ok": true
 		},
-		"wall_seconds": 5579.888
+		"wall_seconds": 5560.768
 	},
 	"history": [
 		{
@@ -528,7 +542,7 @@
 			"kind": "overtake",
 			"other": "B003",
 			"station": "KZK",
-			"time": 53434.0499997818,
+			"time": 53415.0499997821,
 			"train": "B056"
 		},
 		{
@@ -598,7 +612,7 @@
 			"kind": "overtake",
 			"other": "B020",
 			"station": "KVU",
-			"time": 67846.5500000289,
+			"time": 67749.5500000232,
 			"train": "B083"
 		},
 		{
@@ -960,27 +974,27 @@
 				-1.0,
 				44325.1499999143,
 				46152.2999998877,
-				48024.3999998605,
-				48927.8499998473,
-				50702.3499998215,
-				51893.4499998042,
-				53683.3499997781,
-				54188.1999997708,
-				55306.5999997545,
-				56417.8999997384,
+				48421.9499998547,
+				49153.7499998441,
+				50917.8499998184,
+				52108.9499998011,
+				53664.3499997784,
+				54169.1999997711,
+				55287.5999997548,
+				56406.8999997385,
 				58335.4499997105
 			],
 			"actual_departures": [
 				42604.7999999394,
 				44602.7999999103,
-				46277.2999998859,
-				48119.2999998591,
-				49063.2999998454,
-				50827.2999998197,
-				51988.2999998028,
-				53808.2999997763,
-				54433.2999997672,
-				55401.7999997531,
+				47018.7999998751,
+				48516.7999998533,
+				49278.7999998422,
+				51042.7999998166,
+				52203.7999997997,
+				53789.2999997766,
+				54414.2999997675,
+				55390.7999997533,
 				56902.2999997313,
 				-1.0
 			],
@@ -1085,18 +1099,18 @@
 			],
 			"current_wait": 0.0,
 			"departure": 42600.0,
-			"max_wait_seconds": 250.0,
+			"max_wait_seconds": 746.0,
 			"name": "Cape Express 02 · ERS–NCJ",
 			"priority": 85,
 			"stabled": true,
-			"wait_seconds": 834.0
+			"wait_seconds": 1236.0
 		},
 		"B004": {
 			"actual_arrivals": [
 				-1.0,
 				47518.8499998679,
-				49157.649999844,
-				50243.5999998282,
+				49443.6999998398,
+				50243.6499998282,
 				51370.0499998118,
 				52237.6999997992,
 				53066.0999997871,
@@ -1114,7 +1128,7 @@
 			],
 			"actual_departures": [
 				45904.7999998913,
-				48034.7999998603,
+				48320.7999998562,
 				49636.799999837,
 				50542.7999998239,
 				51610.7999998083,
@@ -1285,7 +1299,7 @@
 			"name": "Cape Express 03 · ERS–NCJ",
 			"priority": 75,
 			"stabled": true,
-			"wait_seconds": 1004.0
+			"wait_seconds": 1290.0
 		},
 		"B005": {
 			"actual_arrivals": [
@@ -2665,12 +2679,12 @@
 				45815.5999998926,
 				46384.9499998844,
 				46867.1999998773,
-				47566.0499998672,
-				48196.649999858,
+				47614.1499998665,
+				48227.3999998575,
 				48792.4999998493,
-				49375.4499998408,
-				49862.2999998337,
-				50362.7999998265,
+				49659.3999998367,
+				50038.1999998312,
+				50372.6999998263,
 				50819.2499998198,
 				51338.2499998123,
 				51919.9499998038,
@@ -2721,9 +2735,9 @@
 				47014.7499998752,
 				47896.7999998624,
 				48406.7499998549,
-				49120.7999998445,
-				49558.7499998382,
-				50098.7499998303,
+				49404.7999998404,
+				49734.6499998356,
+				50108.6499998302,
 				50488.7999998246,
 				51004.7499998171,
 				51568.7999998089,
@@ -3159,7 +3173,7 @@
 			"name": "Northbound Coastal Passenger · Nagercoil to Ernakulam",
 			"priority": 30,
 			"stabled": true,
-			"wait_seconds": 3414.0
+			"wait_seconds": 3698.0
 		},
 		"B014": {
 			"actual_arrivals": [
@@ -3889,9 +3903,9 @@
 			"actual_arrivals": [
 				-1.0,
 				55116.7499997573,
-				56607.7999997356,
-				57576.1499997215,
-				58198.8499997124,
+				56596.7999997358,
+				57565.1499997217,
+				58187.8499997126,
 				59934.3999996872,
 				61048.249999671,
 				62809.2999997357,
@@ -3903,9 +3917,9 @@
 			"actual_departures": [
 				53104.7999997866,
 				55211.7999997559,
-				56702.7999997342,
-				57821.2999997179,
-				58323.7999997106,
+				56691.7999997344,
+				57810.2999997181,
+				58312.7999997108,
 				60029.2999996858,
 				61173.2999996692,
 				63082.7499997516,
@@ -4019,7 +4033,7 @@
 			"name": "Malabar Express 05 · NCJ–ERS",
 			"priority": 85,
 			"stabled": true,
-			"wait_seconds": 1040.0
+			"wait_seconds": 1038.0
 		},
 		"B019": {
 			"actual_arrivals": [
@@ -4224,11 +4238,11 @@
 				62395.5499997116,
 				63189.4999997578,
 				64042.5499998074,
-				65693.1499999035,
-				66411.7999999454,
-				66956.199999977,
-				68204.8500000497,
-				68871.4500000885,
+				65770.149999908,
+				66383.5499999437,
+				66837.3499999701,
+				68107.5500000441,
+				68844.4500000869,
 				69629.4500001326,
 				70998.6500002123,
 				71981.6500002696,
@@ -4243,11 +4257,11 @@
 				61684.7499996702,
 				62740.7499997317,
 				63424.7499997715,
-				64830.2499998533,
-				65938.2499999178,
-				66536.7499999526,
-				67051.2499999826,
-				68299.7500000552,
+				64907.2499998578,
+				66015.2499999223,
+				66508.249999951,
+				66932.2499999756,
+				68272.7500000537,
 				69010.7500000966,
 				69838.7500001448,
 				71332.7500002318,
@@ -4411,7 +4425,7 @@
 			"name": "Malabar Express 07 · NCJ–ERS",
 			"priority": 75,
 			"stabled": true,
-			"wait_seconds": 2458.0
+			"wait_seconds": 2538.0
 		},
 		"B021": {
 			"actual_arrivals": [
@@ -5196,7 +5210,7 @@
 		"B026": {
 			"actual_arrivals": [
 				-1.0,
-				50840.9499998195,
+				50842.2499998195,
 				52470.0999997958,
 				53722.6499997776,
 				54638.2999997642,
@@ -5337,7 +5351,7 @@
 			"name": "Capital Intercity 03 · ERS–TVC",
 			"priority": 70,
 			"stabled": true,
-			"wait_seconds": 656.0
+			"wait_seconds": 658.0
 		},
 		"B027": {
 			"actual_arrivals": [
@@ -5891,9 +5905,9 @@
 				41676.2499999529,
 				43643.9999999242,
 				44625.8999999099,
-				47516.9999998679,
-				49139.6999998443,
-				51667.3499998075
+				47058.4999998745,
+				48341.7499998559,
+				50138.1499998297
 			],
 			"actual_departures": [
 				38104.8000000048,
@@ -5902,11 +5916,11 @@
 				42014.7999999479,
 				43990.7999999192,
 				44800.7999999074,
-				47641.7999998661,
-				49234.7999998429,
+				47183.2999998727,
+				48436.7999998545,
 				-1.0
 			],
-			"arrival_delay": 1489.34999980748,
+			"arrival_delay": 0.0,
 			"booked_stops": [
 				{
 					"block": "TVC_P3",
@@ -5983,11 +5997,11 @@
 			],
 			"current_wait": 0.0,
 			"departure": 38100.0,
-			"max_wait_seconds": 1198.0,
+			"max_wait_seconds": 740.0,
 			"name": "Backwater Intercity 02 · TVC–ERS",
 			"priority": 70,
 			"stabled": true,
-			"wait_seconds": 2304.0
+			"wait_seconds": 976.0
 		},
 		"B032": {
 			"actual_arrivals": [
@@ -8015,7 +8029,7 @@
 			"actual_arrivals": [
 				-1.0,
 				71004.8000002127,
-				71531.9000002434,
+				71623.4000002487,
 				72013.5500002714,
 				72585.2500003047,
 				73039.9000003312,
@@ -8028,7 +8042,7 @@
 			],
 			"actual_departures": [
 				70504.7500001836,
-				71200.7500002241,
+				71292.2500002294,
 				71710.7000002538,
 				72250.7000002852,
 				72766.7500003153,
@@ -8141,11 +8155,11 @@
 			],
 			"current_wait": 0.0,
 			"departure": 70500.0,
-			"max_wait_seconds": 6.0,
+			"max_wait_seconds": 96.0,
 			"name": "Alappuzha Passenger 03 · ERS–ALLP",
 			"priority": 30,
 			"stabled": true,
-			"wait_seconds": 58.0
+			"wait_seconds": 148.0
 		},
 		"B045": {
 			"actual_arrivals": [
@@ -10139,10 +10153,10 @@
 				52558.5499997945,
 				52914.0499997893,
 				53338.8499997832,
-				53759.149999777,
-				54098.3999997721,
-				54581.3999997651,
-				54839.3999997613
+				53740.1499997773,
+				54079.3999997724,
+				54562.3999997654,
+				54820.3999997616
 			],
 			"actual_departures": [
 				48628.2999998517,
@@ -10158,13 +10172,13 @@
 				52342.7499997977,
 				52678.7999997928,
 				53050.7499997874,
-				53476.7999997812,
-				53829.599999776,
-				54223.2999997703,
-				54655.449999764,
+				53457.7999997814,
+				53810.5999997763,
+				54204.2999997706,
+				54636.4499997643,
 				-1.0
 			],
-			"arrival_delay": 65.3999997613282,
+			"arrival_delay": 46.3999997616047,
 			"booked_stops": [
 				{
 					"block": "QLN_P3",
@@ -10317,7 +10331,7 @@
 			"name": "Capital Regional 09 · QLN–TVC",
 			"priority": 45,
 			"stabled": true,
-			"wait_seconds": 262.0
+			"wait_seconds": 246.0
 		},
 		"B057": {
 			"actual_arrivals": [
@@ -15271,40 +15285,40 @@
 				64785.1499998507,
 				65128.1499998706,
 				65591.6499998976,
-				66183.099999932,
-				66489.9999999499,
+				65998.5999999213,
+				66365.9999999427,
 				67042.4499999821,
 				67356.3000000003,
 				67680.2000000192,
-				68122.0500000449,
-				68565.0000000707,
-				68912.8500000909,
-				69181.5000001066,
-				69558.1000001285,
-				69897.5000001483,
-				70214.9500001667,
-				70779.6000001996
+				68025.0500000392,
+				68468.000000065,
+				68815.8500000853,
+				69084.5000001009,
+				69461.1000001229,
+				69800.5000001426,
+				70117.9500001611,
+				70682.600000194
 			],
 			"actual_departures": [
 				64504.7499998343,
 				64862.7499998552,
 				65266.7499998787,
-				65943.2499999181,
-				66254.6999999362,
+				65758.7499999073,
+				66130.699999929,
 				66810.7499999686,
 				67115.2499999863,
 				67426.7000000044,
-				67885.2500000311,
-				68191.2500000489,
-				68636.7500000749,
-				68984.4500000951,
-				69251.9000001107,
-				69629.7500001327,
-				69971.5000001526,
-				70290.1500001711,
+				67788.2500000255,
+				68094.2500000433,
+				68539.7500000692,
+				68887.4500000894,
+				69154.900000105,
+				69532.750000127,
+				69874.5000001469,
+				70193.1500001654,
 				-1.0
 			],
-			"arrival_delay": 267.6000001996,
+			"arrival_delay": 170.600000193954,
 			"booked_stops": [
 				{
 					"block": "TVC_P3",
@@ -15445,11 +15459,11 @@
 			],
 			"current_wait": 0.0,
 			"departure": 64500.0,
-			"max_wait_seconds": 254.0,
+			"max_wait_seconds": 312.0,
 			"name": "Capital Regional 16 · TVC–QLN",
 			"priority": 45,
 			"stabled": true,
-			"wait_seconds": 648.0
+			"wait_seconds": 422.0
 		},
 		"B084": {
 			"actual_arrivals": [
@@ -17724,7 +17738,7 @@
 				69099.4500001018,
 				69795.4500001423,
 				70173.5000001643,
-				70591.4000001886,
+				70700.900000195,
 				71064.4000002162,
 				71450.9000002387,
 				71846.6000002617,
@@ -17738,7 +17752,7 @@
 				68746.7000000813,
 				69576.7500001296,
 				69864.6500001463,
-				70244.2500001684,
+				70353.7500001748,
 				70834.7000002028,
 				71248.7000002269,
 				71590.7500002468,
@@ -17859,7 +17873,7 @@
 			"name": "Cape Passenger 05 · NCJ–TVC",
 			"priority": 30,
 			"stabled": true,
-			"wait_seconds": 296.0
+			"wait_seconds": 406.0
 		},
 		"B099": {
 			"actual_arrivals": [
@@ -22689,14 +22703,11 @@
 			"call": 6,
 			"id": "B031",
 			"reasons": {
-				"Conflicts with route from PUPR_AMPA_M3-SH · Cape Express 02 · ERS–NCJ (B003)": 12.0,
-				"Route set to PUPR_AMPA_M3-NA": 2.0,
-				"Single line ALLP_single is locked for opposing traffic · Cape Express 02 · ERS–NCJ (B003)": 446.0,
-				"Single line ALLP_single is locked for opposing traffic · Cape Express 02 · ERS–NCJ (B003), Coastal Passenger 01 · ERS–KYJ (B036)": 12.0,
-				"Single line ALLP_single is locked for opposing traffic · Coastal Passenger 01 · ERS–KYJ (B036)": 588.0,
-				"Single line ALLP_single is locked for opposing traffic · Coastal Passenger 01 · ERS–KYJ (B036), Cape Express 02 · ERS–NCJ (B003)": 138.0
+				"Authority to PUPR_AMPA_M3-NA": 2.0,
+				"Conflicts with route from PUPR_AMPA_M3-SH · Coastal Passenger 01 · ERS–KYJ (B036)": 12.0,
+				"Single line ALLP_single is locked for opposing traffic · Coastal Passenger 01 · ERS–KYJ (B036)": 726.0
 			},
-			"seconds": 1198.0,
+			"seconds": 740.0,
 			"signal_id": "AMPA-N3",
 			"station": "AMPA"
 		},
@@ -23188,6 +23199,17 @@
 			"station": "PVU"
 		},
 		{
+			"call": 6,
+			"id": "B031",
+			"reasons": {
+				"Arriving at Alappuzha; departure decision after the scheduled stop": 2.0,
+				"Authority to TMPY_ALLP_M2-NA": 2.0
+			},
+			"seconds": 4.0,
+			"signal_id": "ALLP-N1",
+			"station": "ALLP"
+		},
+		{
 			"call": 5,
 			"id": "B025",
 			"reasons": {
@@ -23270,17 +23292,6 @@
 			"station": "VELI"
 		},
 		{
-			"call": 3,
-			"id": "B003",
-			"reasons": {
-				"Authority to KVTA_HAD_D0-A": 2.0,
-				"Waiting for automatic block clearance": 56.0
-			},
-			"seconds": 58.0,
-			"signal_id": "TZH_KVTA_D5-A",
-			"station": "TZH_KVTA_D5"
-		},
-		{
 			"call": 2,
 			"id": "B032",
 			"reasons": {
@@ -23354,17 +23365,6 @@
 			"station": "KXP"
 		},
 		{
-			"call": 38,
-			"id": "B013",
-			"reasons": {
-				"Arriving at Ambalappuzha; departure decision after the scheduled stop": 2.0,
-				"Authority to PUPR_AMPA_M3-NA": 2.0
-			},
-			"seconds": 4.0,
-			"signal_id": "AMPA-N2",
-			"station": "AMPA"
-		},
-		{
 			"call": 10,
 			"id": "B002",
 			"reasons": {
@@ -23377,25 +23377,15 @@
 			"station": "MQU_KXP_D2"
 		},
 		{
-			"call": 7,
-			"id": "B031",
+			"call": 38,
+			"id": "B013",
 			"reasons": {
-				"Authority to TMPY_ALLP_M2-NA": 2.0
+				"Arriving at Ambalappuzha; departure decision after the scheduled stop": 2.0,
+				"Authority to PUPR_AMPA_M3-NA": 2.0
 			},
-			"seconds": 2.0,
-			"signal_id": "ALLP-N1",
-			"station": "ALLP"
-		},
-		{
-			"call": 3,
-			"id": "B003",
-			"reasons": {
-				"Authority to HAD-S4": 2.0,
-				"Formation is too long for this road's clear platform length · Coastal Passenger 01 · ERS–KYJ (B036)": 130.0
-			},
-			"seconds": 132.0,
-			"signal_id": "KVTA_HAD_D4-H",
-			"station": "KVTA_HAD_D4"
+			"seconds": 4.0,
+			"signal_id": "AMPA-N3",
+			"station": "AMPA"
 		},
 		{
 			"call": 6,
@@ -23449,17 +23439,6 @@
 			"station": "KZK"
 		},
 		{
-			"call": 3,
-			"id": "B003",
-			"reasons": {
-				"Arriving at Haripad; departure decision after the scheduled stop": 2.0,
-				"Authority to HAD_CHPD_D0-A": 2.0
-			},
-			"seconds": 4.0,
-			"signal_id": "HAD-S4",
-			"station": "HAD"
-		},
-		{
 			"call": 14,
 			"id": "B054",
 			"reasons": {
@@ -23468,16 +23447,6 @@
 			"seconds": 2.0,
 			"signal_id": "KZK-S3",
 			"station": "KZK"
-		},
-		{
-			"call": 2,
-			"id": "B004",
-			"reasons": {
-				"Authority to SRTL_TRVZ_M0-SA": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "SRTL-S1",
-			"station": "SRTL"
 		},
 		{
 			"call": 41,
@@ -23550,19 +23519,6 @@
 			"station": "TVC"
 		},
 		{
-			"call": 7,
-			"id": "B031",
-			"reasons": {
-				"Block MAKM_LLEAD_D occupied by B004 · Cape Express 03 · ERS–NCJ (B004)": 12.0,
-				"Conflicts with route from TRVZ_MAKM_M3-SH · Cape Express 03 · ERS–NCJ (B004)": 12.0,
-				"Expect a wait at MAKM until Cape Express 03 · ERS–NCJ (B004) crosses": 200.0,
-				"Single line SRTL_single is locked for opposing traffic · Cape Express 03 · ERS–NCJ (B004)": 18.0
-			},
-			"seconds": 242.0,
-			"signal_id": "MAKM-N3",
-			"station": "MAKM"
-		},
-		{
 			"call": 8,
 			"id": "B075",
 			"reasons": {
@@ -23571,6 +23527,16 @@
 			"seconds": 2.0,
 			"signal_id": "KVU_CRY_U2-A",
 			"station": "CRY"
+		},
+		{
+			"call": 2,
+			"id": "B004",
+			"reasons": {
+				"Authority to SRTL_TRVZ_M0-SA": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "SRTL-S1",
+			"station": "SRTL"
 		},
 		{
 			"call": 15,
@@ -23625,6 +23591,16 @@
 			"station": "TVC"
 		},
 		{
+			"call": 8,
+			"id": "B031",
+			"reasons": {
+				"Authority to VAY_SRTL_M5-NA": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "SRTL-N3",
+			"station": "SRTL"
+		},
+		{
 			"call": 42,
 			"id": "K1",
 			"reasons": {
@@ -23633,6 +23609,16 @@
 			"seconds": 2.0,
 			"signal_id": "TVC-S1",
 			"station": "TVC"
+		},
+		{
+			"call": 4,
+			"id": "B003",
+			"reasons": {
+				"Authority to HAD_CHPD_D0-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "HAD-S4",
+			"station": "HAD"
 		},
 		{
 			"call": 8,
@@ -23685,7 +23671,7 @@
 				"Authority to TMPY_ALLP_M2-NA": 2.0
 			},
 			"seconds": 4.0,
-			"signal_id": "ALLP-N2",
+			"signal_id": "ALLP-N1",
 			"station": "ALLP"
 		},
 		{
@@ -23781,16 +23767,6 @@
 			"station": "QLN"
 		},
 		{
-			"call": 5,
-			"id": "B003",
-			"reasons": {
-				"Authority to KYJ_OCR_D0-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "KYJ-S1",
-			"station": "KYJ"
-		},
-		{
 			"call": 2,
 			"id": "B076",
 			"reasons": {
@@ -23822,16 +23798,6 @@
 			"station": "ERS"
 		},
 		{
-			"call": 8,
-			"id": "B031",
-			"reasons": {
-				"Authority to VAY_SRTL_M5-NA": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "SRTL-N1",
-			"station": "SRTL"
-		},
-		{
 			"call": 10,
 			"id": "B055",
 			"reasons": {
@@ -23840,6 +23806,16 @@
 			"seconds": 2.0,
 			"signal_id": "CRY_PGZ_D0-A",
 			"station": "CRY"
+		},
+		{
+			"call": 5,
+			"id": "B003",
+			"reasons": {
+				"Authority to KYJ_OCR_D0-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "KYJ-S1",
+			"station": "KYJ"
 		},
 		{
 			"call": 8,
@@ -23924,23 +23900,13 @@
 			"station": "KZT"
 		},
 		{
-			"call": 42,
-			"id": "B013",
-			"reasons": {
-				"Authority to MAKM_KAVR_M0-NH": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "KAVR_TMPY_M4-NA",
-			"station": "TMPY"
-		},
-		{
 			"call": 3,
 			"id": "B004",
 			"reasons": {
 				"Authority to ALLP_PUPR_M0-SA": 2.0
 			},
 			"seconds": 2.0,
-			"signal_id": "ALLP-S1",
+			"signal_id": "ALLP-S2",
 			"station": "ALLP"
 		},
 		{
@@ -23972,19 +23938,6 @@
 			"seconds": 2.0,
 			"signal_id": "TVC-S1",
 			"station": "TVC"
-		},
-		{
-			"call": 8,
-			"id": "B031",
-			"reasons": {
-				"Conflicts with route from EZP_TUVR_M3-SH · Capital Intercity 03 · ERS–TVC (B026)": 12.0,
-				"Expect a wait at TUVR until Capital Intercity 03 · ERS–TVC (B026) crosses": 518.0,
-				"Route set to EZP_TUVR_M3-NA": 2.0,
-				"Single line KUMM_single is locked for opposing traffic · Capital Intercity 03 · ERS–TVC (B026)": 16.0
-			},
-			"seconds": 548.0,
-			"signal_id": "TUVR-N2",
-			"station": "TUVR"
 		},
 		{
 			"call": 4,
@@ -24038,17 +23991,6 @@
 			"station": "MQU"
 		},
 		{
-			"call": 42,
-			"id": "B013",
-			"reasons": {
-				"Arriving at Kalavur; departure decision after the scheduled stop": 2.0,
-				"Authority to MAKM-N3": 2.0
-			},
-			"seconds": 4.0,
-			"signal_id": "MAKM_KAVR_M2-NA",
-			"station": "KAVR"
-		},
-		{
 			"call": 4,
 			"id": "B056",
 			"reasons": {
@@ -24080,6 +24022,16 @@
 			"station": "KZK"
 		},
 		{
+			"call": 42,
+			"id": "B013",
+			"reasons": {
+				"Arriving at Kalavur; departure decision after the scheduled stop": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "MAKM_KAVR_M2-NA",
+			"station": "KAVR"
+		},
+		{
 			"call": 5,
 			"id": "B032",
 			"reasons": {
@@ -24098,6 +24050,16 @@
 			"seconds": 2.0,
 			"signal_id": "PVU_KFI_U3-A",
 			"station": "KFI"
+		},
+		{
+			"call": 8,
+			"id": "B031",
+			"reasons": {
+				"Arriving at Ernakulam Junction; departure decision after the scheduled stop": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "ERS-N5",
+			"station": "ERS"
 		},
 		{
 			"call": 12,
@@ -24212,17 +24174,6 @@
 			"station": "MQU"
 		},
 		{
-			"call": 5,
-			"id": "B003",
-			"reasons": {
-				"Arriving at Kollam Junction; departure decision after the scheduled stop": 2.0,
-				"Authority to QLN_IRP_D0-A": 2.0
-			},
-			"seconds": 4.0,
-			"signal_id": "QLN-S1",
-			"station": "QLN"
-		},
-		{
 			"call": 1,
 			"id": "B005",
 			"reasons": {
@@ -24252,6 +24203,17 @@
 			"seconds": 4.0,
 			"signal_id": "IRP_MYY_U3-A",
 			"station": "MYY"
+		},
+		{
+			"call": 1,
+			"id": "B026",
+			"reasons": {
+				"Arriving at Cherthala; departure decision after the scheduled stop": 2.0,
+				"Authority to SRTL_TRVZ_M0-SA": 2.0
+			},
+			"seconds": 4.0,
+			"signal_id": "SRTL-S3",
+			"station": "SRTL"
 		},
 		{
 			"call": 3,
@@ -24314,17 +24276,14 @@
 			"station": "TVC"
 		},
 		{
-			"call": 8,
-			"id": "B031",
+			"call": 6,
+			"id": "B003",
 			"reasons": {
-				"Conflicts with route from TNU_KUMM_M1-SH · Cape Express 04 · ERS–NCJ (B005)": 12.0,
-				"Expect a wait at KUMM until Cape Express 04 · ERS–NCJ (B005) crosses": 50.0,
-				"Route set to TNU_KUMM_M1-NA": 2.0,
-				"Single line ERS_single is locked for opposing traffic · Cape Express 04 · ERS–NCJ (B005)": 20.0
+				"Authority to QLN_IRP_D0-A": 2.0
 			},
-			"seconds": 84.0,
-			"signal_id": "KUMM-N2",
-			"station": "KUMM"
+			"seconds": 2.0,
+			"signal_id": "QLN-S1",
+			"station": "QLN"
 		},
 		{
 			"call": 7,
@@ -24418,16 +24377,6 @@
 			"seconds": 2.0,
 			"signal_id": "TVC-S1",
 			"station": "TVC"
-		},
-		{
-			"call": 2,
-			"id": "B026",
-			"reasons": {
-				"Authority to SRTL_TRVZ_M0-SA": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "SRTL-S3",
-			"station": "SRTL"
 		},
 		{
 			"call": 45,
@@ -24692,6 +24641,16 @@
 			"station": "VAY"
 		},
 		{
+			"call": 7,
+			"id": "B003",
+			"reasons": {
+				"Authority to VAK_AMY_D0-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "VAK-S4",
+			"station": "VAK"
+		},
+		{
 			"call": 10,
 			"id": "B017",
 			"reasons": {
@@ -24947,18 +24906,6 @@
 		},
 		{
 			"call": 7,
-			"id": "B003",
-			"reasons": {
-				"Authority to KXP_KZK_D0-A": 2.0,
-				"Signal at red; route locked until safe release · Capital Regional 09 · QLN–TVC (B056)": 78.0,
-				"Waiting for automatic block clearance": 60.0
-			},
-			"seconds": 140.0,
-			"signal_id": "MQU_KXP_D2-A",
-			"station": "MQU_KXP_D2"
-		},
-		{
-			"call": 7,
 			"id": "B032",
 			"reasons": {
 				"Arriving at Kayamkulam Junction; departure decision after the scheduled stop": 2.0,
@@ -25064,6 +25011,16 @@
 			"station": "NEM"
 		},
 		{
+			"call": 14,
+			"id": "B056",
+			"reasons": {
+				"Authority to KZK_VELI_D0-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "KZK-S3",
+			"station": "KZK"
+		},
+		{
 			"call": 11,
 			"id": "B015",
 			"reasons": {
@@ -25074,16 +25031,6 @@
 			"seconds": 626.0,
 			"signal_id": "TUVR-N1",
 			"station": "TUVR"
-		},
-		{
-			"call": 14,
-			"id": "B056",
-			"reasons": {
-				"Authority to KZK_VELI_D0-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "KZK-S3",
-			"station": "KZK"
 		},
 		{
 			"call": 14,
@@ -25118,6 +25065,17 @@
 			"station": "DAVM"
 		},
 		{
+			"call": 7,
+			"id": "B003",
+			"reasons": {
+				"Arriving at Thiruvananthapuram North; departure decision after the scheduled stop": 2.0,
+				"Authority to TVCN_TVP_D0-A": 2.0
+			},
+			"seconds": 4.0,
+			"signal_id": "TVCN-S1",
+			"station": "TVCN"
+		},
+		{
 			"call": 1,
 			"id": "B078",
 			"reasons": {
@@ -25136,6 +25094,16 @@
 			"seconds": 2.0,
 			"signal_id": "KVU_CRY_U2-A",
 			"station": "CRY"
+		},
+		{
+			"call": 14,
+			"id": "B056",
+			"reasons": {
+				"Arriving at Veli; departure decision after the scheduled stop": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "VELI_TVCN_D0-H",
+			"station": "VELI"
 		},
 		{
 			"call": 4,
@@ -25157,16 +25125,6 @@
 			"seconds": 4.0,
 			"signal_id": "QLN_IRP_U2-A",
 			"station": "IRP"
-		},
-		{
-			"call": 15,
-			"id": "B056",
-			"reasons": {
-				"Authority to TVCN-S4": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "VELI_TVCN_D0-H",
-			"station": "VELI"
 		},
 		{
 			"call": 4,
@@ -25260,28 +25218,6 @@
 			"seconds": 2.0,
 			"signal_id": "TVCN_TVP_U3-A",
 			"station": "TVP"
-		},
-		{
-			"call": 15,
-			"id": "B056",
-			"reasons": {
-				"Arriving at Thiruvananthapuram North; departure decision after the scheduled stop": 2.0,
-				"Authority to TVCN_TVP_D0-A": 2.0
-			},
-			"seconds": 4.0,
-			"signal_id": "TVCN-S4",
-			"station": "TVCN"
-		},
-		{
-			"call": 8,
-			"id": "B003",
-			"reasons": {
-				"Arriving at Thiruvananthapuram Central; departure decision after the scheduled stop": 2.0,
-				"Authority to TVC_NEM_M0-SA": 2.0
-			},
-			"seconds": 4.0,
-			"signal_id": "TVC-S1",
-			"station": "TVC"
 		},
 		{
 			"call": 8,
@@ -25385,6 +25321,16 @@
 			"station": "ERL"
 		},
 		{
+			"call": 16,
+			"id": "B056",
+			"reasons": {
+				"Arriving at Thiruvananthapuram Pettah; departure decision after the scheduled stop": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "TVP_TVC_D0-H",
+			"station": "TVP"
+		},
+		{
 			"call": 4,
 			"id": "B026",
 			"reasons": {
@@ -25404,16 +25350,6 @@
 			"seconds": 2.0,
 			"signal_id": "KPY-N3",
 			"station": "KPY"
-		},
-		{
-			"call": 17,
-			"id": "B056",
-			"reasons": {
-				"Authority to TVC-S1": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "TVP_TVC_D0-H",
-			"station": "TVP"
 		},
 		{
 			"call": 10,
@@ -25465,6 +25401,16 @@
 			"seconds": 2.0,
 			"signal_id": "KYJ-N2",
 			"station": "KYJ"
+		},
+		{
+			"call": 17,
+			"id": "B056",
+			"reasons": {
+				"Arriving at Thiruvananthapuram Central; departure decision after the scheduled stop": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "TVC-S1",
+			"station": "TVC"
 		},
 		{
 			"call": 8,
@@ -25747,11 +25693,12 @@
 			"call": 2,
 			"id": "B018",
 			"reasons": {
+				"Authority to DAVM_PASA_M5-NA": 2.0,
 				"Conflicts with route from DAVM_PASA_M5-SH · Cape Express 02 · ERS–NCJ (B003)": 12.0,
-				"Expect a wait at PASA until Cape Express 02 · ERS–NCJ (B003) crosses": 278.0,
-				"Single line NYY_single is locked for opposing traffic · Cape Express 02 · ERS–NCJ (B003)": 22.0
+				"Expect a wait at PASA until Cape Express 02 · ERS–NCJ (B003) crosses": 268.0,
+				"Single line NYY_single is locked for opposing traffic · Cape Express 02 · ERS–NCJ (B003)": 20.0
 			},
-			"seconds": 312.0,
+			"seconds": 302.0,
 			"signal_id": "PASA-N2",
 			"station": "PASA"
 		},
@@ -26281,17 +26228,6 @@
 			"station": "SRTL"
 		},
 		{
-			"call": 3,
-			"id": "B018",
-			"reasons": {
-				"Arriving at Thiruvananthapuram Central; departure decision after the scheduled stop": 2.0,
-				"Authority to TVP_TVC_U0-A": 2.0
-			},
-			"seconds": 4.0,
-			"signal_id": "TVC-N2",
-			"station": "TVC"
-		},
-		{
 			"call": 12,
 			"id": "B032",
 			"reasons": {
@@ -26522,6 +26458,16 @@
 			"station": "EVA"
 		},
 		{
+			"call": 5,
+			"id": "B018",
+			"reasons": {
+				"Authority to VELI_TVCN_U0-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "TVCN-N2",
+			"station": "TVCN"
+		},
+		{
 			"call": 12,
 			"id": "B058",
 			"reasons": {
@@ -26542,16 +26488,6 @@
 			"seconds": 4.0,
 			"signal_id": "CRY_PGZ_U3-A",
 			"station": "PGZ"
-		},
-		{
-			"call": 5,
-			"id": "B018",
-			"reasons": {
-				"Authority to VELI_TVCN_U0-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "TVCN-N2",
-			"station": "TVCN"
 		},
 		{
 			"call": 4,
@@ -26877,6 +26813,18 @@
 			"station": "TVCN"
 		},
 		{
+			"call": 5,
+			"id": "B018",
+			"reasons": {
+				"Authority to VAK_AMY_U5-A": 2.0,
+				"Signal at red; route locked until safe release · Capital Regional 12 · TVC–QLN (B079)": 46.0,
+				"Waiting for automatic block clearance": 66.0
+			},
+			"seconds": 114.0,
+			"signal_id": "AMY_KVU_U0-A",
+			"station": "AMY_KVU_U0"
+		},
+		{
 			"call": 10,
 			"id": "B079",
 			"reasons": {
@@ -26895,18 +26843,6 @@
 			"seconds": 2.0,
 			"signal_id": "KZK-N2",
 			"station": "KZK"
-		},
-		{
-			"call": 5,
-			"id": "B018",
-			"reasons": {
-				"Authority to VAK_AMY_U5-A": 2.0,
-				"Signal at red; route locked until safe release · Capital Regional 12 · TVC–QLN (B079)": 36.0,
-				"Waiting for automatic block clearance": 66.0
-			},
-			"seconds": 104.0,
-			"signal_id": "AMY_KVU_U0-A",
-			"station": "AMY_KVU_U0"
 		},
 		{
 			"call": 5,
@@ -28280,9 +28216,10 @@
 			"call": 4,
 			"id": "B020",
 			"reasons": {
-				"Arriving at Neyyattinkara; departure decision after the scheduled stop": 2.0
+				"Arriving at Neyyattinkara; departure decision after the scheduled stop": 2.0,
+				"Authority to BRAM_NYY_M2-NA": 2.0
 			},
-			"seconds": 2.0,
+			"seconds": 4.0,
 			"signal_id": "NYY-N1",
 			"station": "NYY"
 		},
@@ -28693,6 +28630,27 @@
 		},
 		{
 			"call": 4,
+			"id": "B083",
+			"reasons": {
+				"Authority to KXP_KZK_U3-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "KZK-N2",
+			"station": "KZK"
+		},
+		{
+			"call": 5,
+			"id": "B020",
+			"reasons": {
+				"Arriving at Thiruvananthapuram Central; departure decision after the scheduled stop": 2.0,
+				"Authority to TVP_TVC_U0-A": 2.0
+			},
+			"seconds": 4.0,
+			"signal_id": "TVC-N2",
+			"station": "TVC"
+		},
+		{
+			"call": 4,
 			"id": "B007",
 			"reasons": {
 				"Arriving at Haripad; departure decision after the scheduled stop": 2.0,
@@ -28731,16 +28689,6 @@
 			"seconds": 2.0,
 			"signal_id": "QLN_IRP_U2-A",
 			"station": "IRP"
-		},
-		{
-			"call": 4,
-			"id": "B083",
-			"reasons": {
-				"Authority to KXP_KZK_U3-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "KZK-N2",
-			"station": "KZK"
 		},
 		{
 			"call": 4,
@@ -28813,16 +28761,6 @@
 			"seconds": 2.0,
 			"signal_id": "QLN-N6",
 			"station": "QLN"
-		},
-		{
-			"call": 7,
-			"id": "B020",
-			"reasons": {
-				"Authority to VELI_TVCN_U0-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "TVCN-N3",
-			"station": "TVCN"
 		},
 		{
 			"call": 1,
@@ -28936,17 +28874,6 @@
 			"seconds": 2.0,
 			"signal_id": "PVU-S1",
 			"station": "PVU"
-		},
-		{
-			"call": 7,
-			"id": "B020",
-			"reasons": {
-				"Arriving at Kazhakuttam; departure decision after the scheduled stop": 2.0,
-				"Authority to KXP_KZK_U3-A": 2.0
-			},
-			"seconds": 4.0,
-			"signal_id": "KZK-N2",
-			"station": "KZK"
 		},
 		{
 			"call": 7,
@@ -29098,10 +29025,9 @@
 			"call": 8,
 			"id": "B083",
 			"reasons": {
-				"Arriving at Kadakavur; departure decision after the scheduled stop": 2.0,
-				"Authority to AMY_KVU_U1-A": 2.0
+				"Arriving at Kadakavur; departure decision after the scheduled stop": 2.0
 			},
-			"seconds": 4.0,
+			"seconds": 2.0,
 			"signal_id": "KVU-N3",
 			"station": "KVU"
 		},
@@ -29185,17 +29111,6 @@
 			"seconds": 4.0,
 			"signal_id": "TVCN-S1",
 			"station": "TVCN"
-		},
-		{
-			"call": 9,
-			"id": "B083",
-			"reasons": {
-				"Arriving at Akathumuri; departure decision after the scheduled stop": 2.0,
-				"Authority to VAK_AMY_U0-H": 2.0
-			},
-			"seconds": 4.0,
-			"signal_id": "VAK_AMY_U5-A",
-			"station": "AMY"
 		},
 		{
 			"call": 4,
@@ -29321,6 +29236,16 @@
 			"station": "ALLP"
 		},
 		{
+			"call": 11,
+			"id": "B083",
+			"reasons": {
+				"Authority to EVA_VAK_U2-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "VAK-N3",
+			"station": "VAK"
+		},
+		{
 			"call": 16,
 			"id": "B082",
 			"reasons": {
@@ -29339,16 +29264,6 @@
 			"seconds": 2.0,
 			"signal_id": "TZH_KVTA_U5-A",
 			"station": "KVTA"
-		},
-		{
-			"call": 11,
-			"id": "B083",
-			"reasons": {
-				"Authority to EVA_VAK_U2-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "VAK-N3",
-			"station": "VAK"
 		},
 		{
 			"call": 1,
@@ -29392,6 +29307,27 @@
 			"station": "PGZ"
 		},
 		{
+			"call": 9,
+			"id": "B020",
+			"reasons": {
+				"Arriving at Paravur; departure decision after the scheduled stop": 2.0,
+				"Authority to MYY_PVU_U2-A": 2.0
+			},
+			"seconds": 4.0,
+			"signal_id": "PVU-N3",
+			"station": "PVU"
+		},
+		{
+			"call": 12,
+			"id": "B083",
+			"reasons": {
+				"Authority to PVU_KFI_U0-H": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "KFI_EVA_U1-A",
+			"station": "EVA"
+		},
+		{
 			"call": 11,
 			"id": "B018",
 			"reasons": {
@@ -29400,16 +29336,6 @@
 			"seconds": 2.0,
 			"signal_id": "ERS-N6",
 			"station": "ERS"
-		},
-		{
-			"call": 10,
-			"id": "B020",
-			"reasons": {
-				"Authority to MYY_PVU_U2-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "PVU-N3",
-			"station": "PVU"
 		},
 		{
 			"call": 2,
@@ -29432,6 +29358,17 @@
 			"seconds": 2.0,
 			"signal_id": "NYY-S1",
 			"station": "NYY"
+		},
+		{
+			"call": 12,
+			"id": "B083",
+			"reasons": {
+				"Arriving at Kappil; departure decision after the scheduled stop": 2.0,
+				"Authority to PVU_KFI_U0-H": 2.0
+			},
+			"seconds": 4.0,
+			"signal_id": "PVU_KFI_U3-A",
+			"station": "KFI"
 		},
 		{
 			"call": 2,
@@ -29462,16 +29399,6 @@
 			"seconds": 2.0,
 			"signal_id": "QLN-S1",
 			"station": "QLN"
-		},
-		{
-			"call": 13,
-			"id": "B083",
-			"reasons": {
-				"Authority to PVU_KFI_U0-H": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "PVU_KFI_U3-A",
-			"station": "KFI"
 		},
 		{
 			"call": 1,
@@ -29525,13 +29452,12 @@
 			"station": "TVCN"
 		},
 		{
-			"call": 13,
+			"call": 14,
 			"id": "B083",
 			"reasons": {
-				"Arriving at Paravur; departure decision after the scheduled stop": 2.0,
 				"Authority to MYY_PVU_U2-A": 2.0
 			},
-			"seconds": 4.0,
+			"seconds": 2.0,
 			"signal_id": "PVU-N3",
 			"station": "PVU"
 		},
@@ -29607,6 +29533,16 @@
 			"station": "MAKM"
 		},
 		{
+			"call": 14,
+			"id": "B083",
+			"reasons": {
+				"Arriving at Mayyanad; departure decision after the scheduled stop": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "IRP_MYY_U3-A",
+			"station": "MYY"
+		},
+		{
 			"call": 11,
 			"id": "B020",
 			"reasons": {
@@ -29648,16 +29584,6 @@
 			"station": "PASA"
 		},
 		{
-			"call": 15,
-			"id": "B083",
-			"reasons": {
-				"Authority to QLN_IRP_U0-H": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "IRP_MYY_U3-A",
-			"station": "MYY"
-		},
-		{
 			"call": 9,
 			"id": "B007",
 			"reasons": {
@@ -29687,6 +29613,16 @@
 			"seconds": 4.0,
 			"signal_id": "KVU-S1",
 			"station": "KVU"
+		},
+		{
+			"call": 16,
+			"id": "B083",
+			"reasons": {
+				"Authority to QLN_IRP_U0-H": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "QLN_IRP_U2-A",
+			"station": "IRP"
 		},
 		{
 			"call": 15,
@@ -29728,6 +29664,16 @@
 			"seconds": 2.0,
 			"signal_id": "ALLP-S1",
 			"station": "ALLP"
+		},
+		{
+			"call": 7,
+			"id": "B098",
+			"reasons": {
+				"Authority to DAVM_PASA_M5-NA": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "PASA-N1",
+			"station": "PASA"
 		},
 		{
 			"call": 3,
@@ -29871,16 +29817,6 @@
 			"seconds": 4.0,
 			"signal_id": "MQU-S1",
 			"station": "MQU"
-		},
-		{
-			"call": 2,
-			"id": "B044",
-			"reasons": {
-				"Authority to KUMM_AROR_M0-SA": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "KUMM-S3",
-			"station": "KUMM"
 		},
 		{
 			"call": 5,
@@ -37392,22 +37328,23 @@
 		"data/routes/kerala_coast/tiles/9_99.json": "c8448c2746c987929e78b1885987257f0a860e5b92db7c58e6b57d7866f1ec69",
 		"sim/automatic_control.gd": "c68831ea36c04d4ede98a20bf32fd11d699303b01887a8707656ed8136b1540f",
 		"sim/berth_clearance.gd": "ed1a2fc6fc924bcdf37ee884523cc7980a3de5c3b26e1bcd524fccf1cce908a8",
+		"sim/boundary_services.gd": "62131c8b0b686db21e7a1b43f67d80c1e7a259358ce2b330ceca7193b1c615c3",
 		"sim/coach_rattle.gd": "84931555bcd128fa51b6cd4a9e6870ca4439f1c000fe8a6a4ad44374d2487ad5",
 		"sim/daylight.gd": "9b63ded13acc5bf004b51699337364d3ab936d4c8e68bf8b890700161ab3eff8",
 		"sim/departure_cues.gd": "c066516dfeb3c94024d0e850fdcabe1d0f2be36283c1a967303482533cc5e8fc",
-		"sim/depot_workings.gd": "29bac8c4041061924eb0c32d09e0a66b13b79c3316364e6a7d86de52ab0a11fc",
-		"sim/dispatch_engine.gd": "88df585780b62166aeccbce93faecc8ead3e143d68bd70827d8819f82b1ebee8",
+		"sim/depot_workings.gd": "e26068bf3b79cbcf8cadec7b75ef51542a5fb9404f4f7b6c98da079287bc00a2",
+		"sim/dispatch_engine.gd": "1234d61af82731ee190b761d6309eddd2e8d348b5f9e18414f621db3a362a02a",
 		"sim/dispatch_forecast.gd": "2bda23cab7126d35e53a3dba1dd7ebc4acbca5a97cde9cd0bab093849799de43",
 		"sim/dispatch_forecast_input.gd": "294736e1760c49d465eba5b3af5ca25e0f4a58f6e456880adbd5344c64417099",
 		"sim/dispatch_forecast_worker.gd": "93b16c09b0fa19db9f4a3d8969a1f77e3abdfb126bec8437e22681499b1ceb67",
 		"sim/dispatch_order_comparison.gd": "d54fde0321ef7a82a07c9b30d2e01c8b676a9056553ab91faac8915780936707",
 		"sim/dispatch_plan.gd": "c723c51f326e8c3f18cdd14f0d8a782bd8a538aff036ecfc8701fb0221e3e631",
-		"sim/dispatch_planner.gd": "e18c0daf54f31781d0c63d3b6355099e373cf97fe1542934bfbb921c78276858",
+		"sim/dispatch_planner.gd": "63077292de0a4068b724202ea8d5602630ae3ae35c3c08fc6f567871f79d8775",
 		"sim/dispatch_prediction.gd": "adb756bd75f60eeb787cfd04c2020884b25def437085c4309d0c6e3ae8b56c66",
 		"sim/dispatch_resources.gd": "ad4fa38061b62b0241d71a802d45ef1f069254bff3c4fcd7f92379f9fd4f1575",
-		"sim/future_clearance.gd": "68d2c5ef4f67f6a91d2c033e2162fda076496dc22b4035b76bbcf80340ddec77",
+		"sim/future_clearance.gd": "e18ac5a9ba51e9b857132e817faaeaf633d7d14c2e73caaa154cc6ad6c73cf0f",
 		"sim/layouts/first_line.gd": "f6b5312fa92137525e60dfbdb55f52c016ab6ea07ba29b2e25e4c7e3ff116a33",
-		"sim/layouts/kerala_coast.gd": "36757c3af97ac449e552fc98b1029ea145a986036053c742768d8506da02550b",
+		"sim/layouts/kerala_coast.gd": "4231e98e32f8bb1424beeb450e0f421732263cceeb9fcd007fc45f95e7d7506a",
 		"sim/layouts/ported_fleet.gd": "b3d929e613b5033215717143a650bf355455d1c1ac3eb20c9c4a07a6f70e331e",
 		"sim/layouts/southern_corridor.gd": "68294241dbbdc9f895b32ec9e8bce6177f3f8194b1181edec99a3015b4e2a7b2",
 		"sim/layouts/traffic_service.gd": "e6b49c2b0f5314cfe35148c5430e27054ed5583165e0e52c02c5157b9c353c32",
@@ -37417,14 +37354,14 @@
 		"sim/platform_faces.gd": "9fd4d278c93ee314cad479c2de077a44d2cd83389ea03c2dc510064bd95757cf",
 		"sim/predictive_dispatch.gd": "ba9aa516d4a78ef41ea1ac631350785db12622a8b0e01883b219df119a7d993b",
 		"sim/priority_dispatch.gd": "f6d5b1cc6514e93b66a2030fa7c0e98bf13b699e182dc4e9fbef24337104486a",
-		"sim/rail_world.gd": "acbcb863e59977357a31a7a932dc8188e9dac30caba49bce972652c51459ba4d",
-		"sim/receiving_berths.gd": "383d6765d83fde88d1ee2e8ea63348346fe8309a5a29ad5458cdc2ccfcc0ab92",
+		"sim/rail_world.gd": "0377da206da546304b6a3a2b48f7d94dc89b3835de8ec9ddda8dacd676a6d451",
+		"sim/receiving_berths.gd": "2a4079551e6b518701e653fce8480d6aead3a1070c3f40b79f6e73223bb417cc",
 		"sim/ride_dynamics.gd": "79c6d55a59ab62d3f7d5d1575088d5b573539f59073d8c29519d85656bf4cb60",
 		"sim/route_distances.gd": "5113bdefbfbe577940ba31c6af1513985414d8a56a585fa307c49496862ba891",
-		"sim/service_lifecycle.gd": "1664182630a7045df3764525f1cc79970efe70b45b84d3b0e76454f48790d37b",
-		"sim/service_pack.gd": "5ff95c6426e8bdb37a0fe7f0d82a93b5981fda5cc70158d474416f0250000564",
-		"sim/service_progress.gd": "80563a74599159dd2644d0f6a9b47e58f1c52e894ccc018796aa98c7c7b50eb0",
-		"sim/service_trial.gd": "d72fc6f9ef9e73ddbe6e3a47f7374f5ba1e903ddec6090af4317c1d48f8627e3",
+		"sim/service_lifecycle.gd": "9697d9705fe7fb60d1d173714be29040aa1dd85789386d304bd48562ee9bd4cf",
+		"sim/service_pack.gd": "865716ce1dafdf88b0bb40250fa7b105935a1a0439ac441fb2f567c306ac9189",
+		"sim/service_progress.gd": "d2f7b3d9594f604ded856938167b8fe971afb6a61fc6e8d609e43866194d95f1",
+		"sim/service_trial.gd": "878bb7ed0f1f9026ecb29faab4c6d59504552e1e8d1be64b84b51c8ba5717c20",
 		"sim/skip_encounters.gd": "b0adb08bbe74f5a0ad01ab8f446e7294f3ed7db15541f0f3165dbde121543794",
 		"sim/skip_history.gd": "800a79ae7f88f2607b43dd6a1b22f15e58416c7e416b59d67a3d7ed8530b110b",
 		"sim/skip_map_state.gd": "8af4365fba3303a0cd52fa7d0057ddd1976d71f675b5ba4e6a3adf54d8d5608d",
@@ -37435,17 +37372,18 @@
 		"sim/stock/ported_stock.gd": "a82a5252c0e55752c45a2a5f406512218372219237bd1a90c01435bf00d8727c",
 		"sim/time_skip.gd": "5bbb0f0bfc2daf734cd718771417113f854f562b3b6ddcdccb693b52bea1afba",
 		"sim/time_skip_worker.gd": "1016178d75078a3e74ea02cf861976ffbafbfe6ec021ec1f997f52c41113eda4",
-		"sim/timetable.gd": "3784d95e57434c9410eff3c75d9898865ed2e3f2c0eab4ef3f5e0a3c75c95c84",
+		"sim/timetable.gd": "dcc5a6e0dc84e5a253695c50008ade61c9347b19ebe0287008ada1aadc77023d",
 		"sim/timetables/first_line.json": "46501e3e0e7ab3110f508df1edebb825cdfc948327caf0cc51ec8baa8dbcf72a",
 		"sim/timetables/kerala_busy.gd": "9d80c12bc152587861b5f63c81bb9d4c1432e5b4d0ca18999dd9493087d280ab",
+		"sim/timetables/kerala_network.gd": "42f0c35c04adb618f8b58e80d7fe05e3209c3db2ed91b7e285bd12f8b5cb683a",
 		"sim/timetables/kerala_regional.json": "9567a88acdb298fd6febd873e0d382a51cbad267570028aedd3a40e65085602b",
 		"sim/timetables/southern_corridor.json": "dab78fe87f7b0db84b33fd181a40362a44eab3aced124051e16a1dd8c282d629",
 		"sim/track_graph.gd": "012f57064ce7f126ddc7994e0c49d7252f8a3066b954cb658fec8bbac4a71620",
 		"sim/track_speed_boards.gd": "1efd17f4d4c229bf7310e2f19287e1b8301e82836562e3a0f56b5ce253f5edd5",
-		"sim/train.gd": "258bba44530175e3e5f2177198dc83404086987373e4937081773500b12c2157",
+		"sim/train.gd": "5cd47d27a3d487d4e8f59d809be1aad64fed9370f0996e937c813397913b0c07",
 		"sim/train_footprint.gd": "0a773bf5e1c8ced5d2f9276344eed79d462b8e5db5853cea3800f9f3cf1369be",
 		"sim/world_clock.gd": "e583d633701c534d5e1c78cb42fcd143c8c023a524c36df0ee77231e58f9828e",
-		"sim/world_snapshot.gd": "696d0ffc46458fe0243fedc45fbb5fb6859a348dc2b9da64519fcc98c6735728"
+		"sim/world_snapshot.gd": "88f8525dec0a3a98b0bd4109b97444e4cf268c565599e69bd7b4b53e801ef5d2"
 	},
 	"station_waits": [
 		{
@@ -42300,9 +42238,13 @@
 			"call": 2,
 			"id": "B003",
 			"reasons": {
-				"Authority to ALLP_PUPR_M0-SA": 2.0
+				"Authority to ALLP_PUPR_M0-SA": 4.0,
+				"Conflicts with route from ALLP_PUPR_M0-NH · Backwater Intercity 02 · TVC–ERS (B031)": 12.0,
+				"Expect a wait before Ambalappuzha: no free platform suitable for this service · Backwater Intercity 02 · TVC–ERS (B031)": 120.0,
+				"Expect a wait before Ambalappuzha: no free platform suitable for this service · Coastal Passenger 01 · ERS–KYJ (B036), Backwater Intercity 02 · TVC–ERS (B031)": 28.0,
+				"Single line ALLP_single is locked for opposing traffic · Backwater Intercity 02 · TVC–ERS (B031)": 580.0
 			},
-			"seconds": 2.0,
+			"seconds": 744.0,
 			"signal_id": "",
 			"station": "ALLP"
 		},
@@ -42579,6 +42521,16 @@
 			"station": "EVA"
 		},
 		{
+			"call": 6,
+			"id": "B031",
+			"reasons": {
+				"Authority to TMPY_ALLP_M2-NA": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "",
+			"station": "ALLP"
+		},
+		{
 			"call": 4,
 			"id": "B075",
 			"reasons": {
@@ -42693,16 +42645,6 @@
 			"station": "MQU"
 		},
 		{
-			"call": 6,
-			"id": "B031",
-			"reasons": {
-				"Authority to TMPY_ALLP_M2-NA": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "ALLP"
-		},
-		{
 			"call": 39,
 			"id": "K1",
 			"reasons": {
@@ -42796,9 +42738,12 @@
 			"call": 1,
 			"id": "B004",
 			"reasons": {
-				"Authority to SRTL_TRVZ_M0-SA": 2.0
+				"Authority to SRTL_TRVZ_M0-SA": 4.0,
+				"Block SRTL_RLEAD_D occupied by B031 · Backwater Intercity 02 · TVC–ERS (B031)": 22.0,
+				"Conflicts with route from SRTL_TRVZ_M0-NH · Backwater Intercity 02 · TVC–ERS (B031)": 22.0,
+				"Single line SRTL_single is locked for opposing traffic · Backwater Intercity 02 · TVC–ERS (B031)": 240.0
 			},
-			"seconds": 2.0,
+			"seconds": 288.0,
 			"signal_id": "",
 			"station": "SRTL"
 		},
@@ -42811,16 +42756,6 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "TVP"
-		},
-		{
-			"call": 3,
-			"id": "B003",
-			"reasons": {
-				"Authority to HAD_CHPD_D0-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "HAD"
 		},
 		{
 			"call": 6,
@@ -42927,6 +42862,16 @@
 			"station": "PUPR"
 		},
 		{
+			"call": 7,
+			"id": "B031",
+			"reasons": {
+				"Authority to VAY_SRTL_M5-NA": 4.0
+			},
+			"seconds": 4.0,
+			"signal_id": "",
+			"station": "SRTL"
+		},
+		{
 			"call": 41,
 			"id": "K1",
 			"reasons": {
@@ -42935,6 +42880,16 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "TVC"
+		},
+		{
+			"call": 3,
+			"id": "B003",
+			"reasons": {
+				"Authority to HAD_CHPD_D0-A": 4.0
+			},
+			"seconds": 4.0,
+			"signal_id": "",
+			"station": "HAD"
 		},
 		{
 			"call": 15,
@@ -43073,23 +43028,14 @@
 			"station": "AMY"
 		},
 		{
-			"call": 4,
-			"id": "B003",
-			"reasons": {
-				"Authority to KYJ_OCR_D0-A": 4.0,
-				"Conflicts with route from KYJ-S3 · Coastal Passenger 01 · ERS–KYJ (B036)": 10.0
-			},
-			"seconds": 14.0,
-			"signal_id": "",
-			"station": "KYJ"
-		},
-		{
 			"call": 40,
 			"id": "B013",
 			"reasons": {
-				"Authority to TMPY_ALLP_M2-NA": 2.0
+				"Authority to TMPY_ALLP_M2-NA": 4.0,
+				"Conflicts with route from TMPY_ALLP_M2-SH · Cape Express 03 · ERS–NCJ (B004)": 14.0,
+				"Single line MAKM_single is locked for opposing traffic · Cape Express 03 · ERS–NCJ (B004)": 268.0
 			},
-			"seconds": 2.0,
+			"seconds": 286.0,
 			"signal_id": "",
 			"station": "ALLP"
 		},
@@ -43124,16 +43070,6 @@
 			"station": "ERS"
 		},
 		{
-			"call": 7,
-			"id": "B031",
-			"reasons": {
-				"Authority to VAY_SRTL_M5-NA": 4.0
-			},
-			"seconds": 4.0,
-			"signal_id": "",
-			"station": "SRTL"
-		},
-		{
 			"call": 9,
 			"id": "B055",
 			"reasons": {
@@ -43142,6 +43078,16 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "CRY"
+		},
+		{
+			"call": 4,
+			"id": "B003",
+			"reasons": {
+				"Authority to KYJ_OCR_D0-A": 4.0
+			},
+			"seconds": 4.0,
+			"signal_id": "",
+			"station": "KYJ"
 		},
 		{
 			"call": 5,
@@ -43245,16 +43191,6 @@
 			"station": "KZT"
 		},
 		{
-			"call": 41,
-			"id": "B013",
-			"reasons": {
-				"Authority to MAKM_KAVR_M0-NH": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "TMPY"
-		},
-		{
 			"call": 8,
 			"id": "B015",
 			"reasons": {
@@ -43283,6 +43219,16 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "PGZ"
+		},
+		{
+			"call": 41,
+			"id": "B013",
+			"reasons": {
+				"Authority to MAKM_KAVR_M0-NH": 4.0
+			},
+			"seconds": 4.0,
+			"signal_id": "",
+			"station": "TMPY"
 		},
 		{
 			"call": 43,
@@ -43390,9 +43336,9 @@
 			"call": 42,
 			"id": "B013",
 			"reasons": {
-				"Authority to MAKM-N3": 2.0
+				"Authority to MAKM-N3": 4.0
 			},
-			"seconds": 2.0,
+			"seconds": 4.0,
 			"signal_id": "",
 			"station": "KAVR"
 		},
@@ -43559,16 +43505,6 @@
 			"station": "KZK"
 		},
 		{
-			"call": 5,
-			"id": "B003",
-			"reasons": {
-				"Authority to QLN_IRP_D0-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "QLN"
-		},
-		{
 			"call": 8,
 			"id": "B016",
 			"reasons": {
@@ -43647,6 +43583,16 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "TVC"
+		},
+		{
+			"call": 5,
+			"id": "B003",
+			"reasons": {
+				"Authority to QLN_IRP_D0-A": 4.0
+			},
+			"seconds": 4.0,
+			"signal_id": "",
+			"station": "QLN"
 		},
 		{
 			"call": 14,
@@ -43899,16 +43845,6 @@
 			"station": "CRY"
 		},
 		{
-			"call": 6,
-			"id": "B003",
-			"reasons": {
-				"Authority to VAK_AMY_D0-A": 4.0
-			},
-			"seconds": 4.0,
-			"signal_id": "",
-			"station": "VAK"
-		},
-		{
 			"call": 1,
 			"id": "B090",
 			"reasons": {
@@ -43969,6 +43905,16 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "VAY"
+		},
+		{
+			"call": 6,
+			"id": "B003",
+			"reasons": {
+				"Authority to VAK_AMY_D0-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "",
+			"station": "VAK"
 		},
 		{
 			"call": 9,
@@ -44386,10 +44332,9 @@
 			"id": "B056",
 			"reasons": {
 				"Authority to KZK_VELI_D0-A": 4.0,
-				"Block KZK_VELI_D0 occupied by B003 · Cape Express 02 · ERS–NCJ (B003)": 38.0,
-				"Expect a wait at KZK until Cape Express 02 · ERS–NCJ (B003) overtakes": 14.0
+				"Block KZK_VELI_D0 occupied by B003 · Cape Express 02 · ERS–NCJ (B003)": 32.0
 			},
-			"seconds": 56.0,
+			"seconds": 36.0,
 			"signal_id": "",
 			"station": "KZK"
 		},
@@ -44479,11 +44424,21 @@
 			"call": 7,
 			"id": "B003",
 			"reasons": {
-				"Authority to TVCN_TVP_D0-A": 4.0
+				"Authority to TVCN_TVP_D0-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "",
+			"station": "TVCN"
+		},
+		{
+			"call": 14,
+			"id": "B056",
+			"reasons": {
+				"Authority to TVCN-S4": 4.0
 			},
 			"seconds": 4.0,
 			"signal_id": "",
-			"station": "TVCN"
+			"station": "VELI"
 		},
 		{
 			"call": 3,
@@ -44494,16 +44449,6 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "AMPA"
-		},
-		{
-			"call": 14,
-			"id": "B056",
-			"reasons": {
-				"Authority to TVCN-S4": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "VELI"
 		},
 		{
 			"call": 3,
@@ -44599,9 +44544,9 @@
 			"call": 15,
 			"id": "B056",
 			"reasons": {
-				"Authority to TVCN_TVP_D0-A": 2.0
+				"Authority to TVCN_TVP_D0-A": 4.0
 			},
-			"seconds": 2.0,
+			"seconds": 4.0,
 			"signal_id": "",
 			"station": "TVCN"
 		},
@@ -44649,9 +44594,9 @@
 			"call": 8,
 			"id": "B003",
 			"reasons": {
-				"Authority to TVC_NEM_M0-SA": 2.0
+				"Authority to TVC_NEM_M0-SA": 4.0
 			},
-			"seconds": 2.0,
+			"seconds": 4.0,
 			"signal_id": "",
 			"station": "TVC"
 		},
@@ -44716,6 +44661,16 @@
 			"station": "EZP"
 		},
 		{
+			"call": 16,
+			"id": "B056",
+			"reasons": {
+				"Authority to TVC-S1": 4.0
+			},
+			"seconds": 4.0,
+			"signal_id": "",
+			"station": "TVP"
+		},
+		{
 			"call": 11,
 			"id": "B017",
 			"reasons": {
@@ -44724,16 +44679,6 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "KPY"
-		},
-		{
-			"call": 16,
-			"id": "B056",
-			"reasons": {
-				"Authority to TVC-S1": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "TVP"
 		},
 		{
 			"call": 9,
@@ -45368,9 +45313,9 @@
 			"call": 2,
 			"id": "B018",
 			"reasons": {
-				"Authority to BRAM_NYY_M2-NA": 4.0
+				"Authority to BRAM_NYY_M2-NA": 2.0
 			},
-			"seconds": 4.0,
+			"seconds": 2.0,
 			"signal_id": "",
 			"station": "NYY"
 		},
@@ -45727,9 +45672,9 @@
 			"call": 3,
 			"id": "B018",
 			"reasons": {
-				"Authority to TVP_TVC_U0-A": 2.0
+				"Authority to TVP_TVC_U0-A": 4.0
 			},
-			"seconds": 2.0,
+			"seconds": 4.0,
 			"signal_id": "",
 			"station": "TVC"
 		},
@@ -45878,9 +45823,9 @@
 			"call": 4,
 			"id": "B018",
 			"reasons": {
-				"Authority to VELI_TVCN_U0-A": 2.0
+				"Authority to VELI_TVCN_U0-A": 4.0
 			},
-			"seconds": 2.0,
+			"seconds": 4.0,
 			"signal_id": "",
 			"station": "TVCN"
 		},
@@ -47822,10 +47767,10 @@
 			"reasons": {
 				"Authority to BRAM_NYY_M2-NA": 4.0,
 				"Conflicts with route from BRAM_NYY_M2-SH · Cape Express 04 · ERS–NCJ (B005)": 12.0,
-				"Route set to BRAM_NYY_M2-NA": 2.0,
+				"Expect a wait before Thiruvananthapuram South: the remaining platforms are reserved for approaching services · Capital Regional 13 · QLN–TVC (B060)": 78.0,
 				"Single line NEM_single is locked for opposing traffic · Cape Express 04 · ERS–NCJ (B005)": 472.0
 			},
-			"seconds": 490.0,
+			"seconds": 566.0,
 			"signal_id": "",
 			"station": "NYY"
 		},
@@ -48234,10 +48179,9 @@
 			"call": 3,
 			"id": "B083",
 			"reasons": {
-				"Authority to KXP_KZK_U3-A": 4.0,
-				"Expect a wait at KZK until Backwater Intercity 05 · TVC–ERS (B034) overtakes": 182.0
+				"Authority to KXP_KZK_U3-A": 2.0
 			},
-			"seconds": 186.0,
+			"seconds": 2.0,
 			"signal_id": "",
 			"station": "KZK"
 		},
@@ -48260,16 +48204,6 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "NJT"
-		},
-		{
-			"call": 5,
-			"id": "B020",
-			"reasons": {
-				"Authority to TVP_TVC_U0-A": 4.0
-			},
-			"seconds": 4.0,
-			"signal_id": "",
-			"station": "TVC"
 		},
 		{
 			"call": 3,
@@ -48312,6 +48246,16 @@
 			"station": "HAD"
 		},
 		{
+			"call": 5,
+			"id": "B020",
+			"reasons": {
+				"Authority to TVP_TVC_U0-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "",
+			"station": "TVC"
+		},
+		{
 			"call": 14,
 			"id": "B005",
 			"reasons": {
@@ -48344,6 +48288,16 @@
 			"station": "CRY"
 		},
 		{
+			"call": 4,
+			"id": "B083",
+			"reasons": {
+				"Authority to MQU_KXP_U0-H": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "",
+			"station": "KXP"
+		},
+		{
 			"call": 15,
 			"id": "B061",
 			"reasons": {
@@ -48362,16 +48316,6 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "VAK"
-		},
-		{
-			"call": 4,
-			"id": "B083",
-			"reasons": {
-				"Authority to MQU_KXP_U0-H": 4.0
-			},
-			"seconds": 4.0,
-			"signal_id": "",
-			"station": "KXP"
 		},
 		{
 			"call": 7,
@@ -48414,6 +48358,18 @@
 			"station": "PGZ"
 		},
 		{
+			"call": 5,
+			"id": "B083",
+			"reasons": {
+				"Authority to PGZ_MQU_U2-A": 4.0,
+				"Block PGZ_MQU_U2 occupied by B034 · Backwater Intercity 05 · TVC–ERS (B034)": 54.0,
+				"Expect a wait at MQU until Backwater Intercity 05 · TVC–ERS (B034) overtakes": 252.0
+			},
+			"seconds": 310.0,
+			"signal_id": "",
+			"station": "MQU"
+		},
+		{
 			"call": 6,
 			"id": "B020",
 			"reasons": {
@@ -48432,18 +48388,6 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "TVP"
-		},
-		{
-			"call": 5,
-			"id": "B083",
-			"reasons": {
-				"Authority to PGZ_MQU_U2-A": 4.0,
-				"Block PGZ_MQU_U2 occupied by B034 · Backwater Intercity 05 · TVC–ERS (B034)": 54.0,
-				"Expect a wait at MQU until Backwater Intercity 05 · TVC–ERS (B034) overtakes": 194.0
-			},
-			"seconds": 252.0,
-			"signal_id": "",
-			"station": "MQU"
 		},
 		{
 			"call": 0,
@@ -48566,6 +48510,16 @@
 			"station": "KFI"
 		},
 		{
+			"call": 7,
+			"id": "B020",
+			"reasons": {
+				"Authority to KXP_KZK_U3-A": 4.0
+			},
+			"seconds": 4.0,
+			"signal_id": "",
+			"station": "KZK"
+		},
+		{
 			"call": 1,
 			"id": "B008",
 			"reasons": {
@@ -48617,16 +48571,6 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "VAK"
-		},
-		{
-			"call": 7,
-			"id": "B020",
-			"reasons": {
-				"Authority to KXP_KZK_U3-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "KZK"
 		},
 		{
 			"call": 1,
@@ -48799,9 +48743,9 @@
 			"reasons": {
 				"Authority to AMY_KVU_U1-A": 4.0,
 				"Block AMY_KVU_U1 occupied by B020 · Malabar Express 07 · NCJ–ERS (B020)": 34.0,
-				"Expect a wait at KVU until Malabar Express 07 · NCJ–ERS (B020) overtakes": 98.0
+				"Route set to AMY_KVU_U1-A": 2.0
 			},
-			"seconds": 136.0,
+			"seconds": 40.0,
 			"signal_id": "",
 			"station": "KVU"
 		},
@@ -48918,6 +48862,16 @@
 			"station": "IRP"
 		},
 		{
+			"call": 9,
+			"id": "B083",
+			"reasons": {
+				"Authority to VAK_AMY_U0-H": 4.0
+			},
+			"seconds": 4.0,
+			"signal_id": "",
+			"station": "AMY"
+		},
+		{
 			"call": 3,
 			"id": "B084",
 			"reasons": {
@@ -48938,16 +48892,6 @@
 			"station": "HAD"
 		},
 		{
-			"call": 9,
-			"id": "B083",
-			"reasons": {
-				"Authority to VAK_AMY_U0-H": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "AMY"
-		},
-		{
 			"call": 15,
 			"id": "B062",
 			"reasons": {
@@ -48961,9 +48905,9 @@
 			"call": 8,
 			"id": "B020",
 			"reasons": {
-				"Authority to EVA_VAK_U2-A": 2.0
+				"Authority to EVA_VAK_U2-A": 4.0
 			},
-			"seconds": 2.0,
+			"seconds": 4.0,
 			"signal_id": "",
 			"station": "VAK"
 		},
@@ -49048,6 +48992,16 @@
 			"station": "ALLP"
 		},
 		{
+			"call": 10,
+			"id": "B083",
+			"reasons": {
+				"Authority to EVA_VAK_U2-A": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "",
+			"station": "VAK"
+		},
+		{
 			"call": 4,
 			"id": "B021",
 			"reasons": {
@@ -49076,16 +49030,6 @@
 			"seconds": 4.0,
 			"signal_id": "",
 			"station": "NYY"
-		},
-		{
-			"call": 10,
-			"id": "B083",
-			"reasons": {
-				"Authority to EVA_VAK_U2-A": 4.0
-			},
-			"seconds": 4.0,
-			"signal_id": "",
-			"station": "VAK"
 		},
 		{
 			"call": 16,
@@ -49162,6 +49106,16 @@
 			"station": "TMPY"
 		},
 		{
+			"call": 11,
+			"id": "B083",
+			"reasons": {
+				"Authority to PVU_KFI_U0-H": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "",
+			"station": "EVA"
+		},
+		{
 			"call": 5,
 			"id": "B084",
 			"reasons": {
@@ -49173,16 +49127,6 @@
 			"seconds": 476.0,
 			"signal_id": "",
 			"station": "MQU"
-		},
-		{
-			"call": 11,
-			"id": "B083",
-			"reasons": {
-				"Authority to PVU_KFI_U0-H": 4.0
-			},
-			"seconds": 4.0,
-			"signal_id": "",
-			"station": "EVA"
 		},
 		{
 			"call": 9,
@@ -49245,6 +49189,16 @@
 			"station": "QLN"
 		},
 		{
+			"call": 12,
+			"id": "B083",
+			"reasons": {
+				"Authority to PVU_KFI_U0-H": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "",
+			"station": "KFI"
+		},
+		{
 			"call": 10,
 			"id": "B027",
 			"reasons": {
@@ -49276,16 +49230,6 @@
 			"seconds": 4.0,
 			"signal_id": "",
 			"station": "QLN"
-		},
-		{
-			"call": 12,
-			"id": "B083",
-			"reasons": {
-				"Authority to PVU_KFI_U0-H": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "KFI"
 		},
 		{
 			"call": 0,
@@ -49360,6 +49304,16 @@
 			"station": "AMPA"
 		},
 		{
+			"call": 13,
+			"id": "B083",
+			"reasons": {
+				"Authority to MYY_PVU_U2-A": 4.0
+			},
+			"seconds": 4.0,
+			"signal_id": "",
+			"station": "PVU"
+		},
+		{
 			"call": 3,
 			"id": "B038",
 			"reasons": {
@@ -49398,16 +49352,6 @@
 			"seconds": 4.0,
 			"signal_id": "",
 			"station": "DAVM"
-		},
-		{
-			"call": 13,
-			"id": "B083",
-			"reasons": {
-				"Authority to MYY_PVU_U2-A": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "PVU"
 		},
 		{
 			"call": 5,
@@ -49480,6 +49424,16 @@
 			"station": "KZTW"
 		},
 		{
+			"call": 14,
+			"id": "B083",
+			"reasons": {
+				"Authority to QLN_IRP_U0-H": 4.0
+			},
+			"seconds": 4.0,
+			"signal_id": "",
+			"station": "MYY"
+		},
+		{
 			"call": 15,
 			"id": "B019",
 			"reasons": {
@@ -49531,16 +49485,6 @@
 			"seconds": 2.0,
 			"signal_id": "",
 			"station": "TVP"
-		},
-		{
-			"call": 14,
-			"id": "B083",
-			"reasons": {
-				"Authority to QLN_IRP_U0-H": 2.0
-			},
-			"seconds": 2.0,
-			"signal_id": "",
-			"station": "MYY"
 		},
 		{
 			"call": 7,
@@ -49596,6 +49540,16 @@
 			"station": "TUVR"
 		},
 		{
+			"call": 15,
+			"id": "B083",
+			"reasons": {
+				"Authority to QLN_IRP_U0-H": 2.0
+			},
+			"seconds": 2.0,
+			"signal_id": "",
+			"station": "IRP"
+		},
+		{
 			"call": 8,
 			"id": "B064",
 			"reasons": {
@@ -49609,9 +49563,10 @@
 			"call": 6,
 			"id": "B098",
 			"reasons": {
-				"Authority to DAVM_PASA_M5-NA": 4.0
+				"Authority to DAVM_PASA_M5-NA": 4.0,
+				"Expect a wait before Neyyattinkara: preserve a crossing platform for opposing services at Thiruvananthapuram South · Capital Intercity 04 · ERS–TVC (B027)": 108.0
 			},
-			"seconds": 4.0,
+			"seconds": 112.0,
 			"signal_id": "",
 			"station": "PASA"
 		},
@@ -49647,16 +49602,6 @@
 			"seconds": 4.0,
 			"signal_id": "",
 			"station": "TRVZ"
-		},
-		{
-			"call": 15,
-			"id": "B083",
-			"reasons": {
-				"Authority to QLN_IRP_U0-H": 4.0
-			},
-			"seconds": 4.0,
-			"signal_id": "",
-			"station": "IRP"
 		},
 		{
 			"call": 8,
@@ -49908,9 +49853,11 @@
 			"call": 1,
 			"id": "B044",
 			"reasons": {
-				"Authority to KUMM_AROR_M0-SA": 4.0
+				"Authority to KUMM_AROR_M0-SA": 4.0,
+				"Expect a wait before Turavur: preserve a crossing platform for opposing services at Cherthala · Malabar Express 06 · NCJ–ERS (B019)": 90.0,
+				"Route set to KUMM_AROR_M0-SA": 2.0
 			},
-			"seconds": 4.0,
+			"seconds": 96.0,
 			"signal_id": "",
 			"station": "KUMM"
 		},
