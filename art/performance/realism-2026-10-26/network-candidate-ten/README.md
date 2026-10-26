@@ -45,3 +45,11 @@ The staged-file check confirms all 26 raw evidence files and both authored packs
 are byte-identical to their recorded hashes. Git normalizes the override file
 from CRLF to LF; its JSON is identical, and both worktree and staged hashes are
 recorded explicitly. No prepared-data source fingerprint was altered or relabeled.
+
+The tested candidate was committed as `a5e93191`. Four genuine v10 replays launched
+once at 12:46 on that commit: Classic/V2 baselines with snapshots and both modes'
+600-second manual K1 disturbance at 07:30. All eight wrapper/child commands,
+distinct output arguments, initial modes, 4,837 distinct current source hashes
+and six frozen observer hashes are verified. `launch-evidence-hashes.json` records
+five exact launch/provenance files. The launch status is an initial snapshot;
+all four had empty stderr and no final audits. No full-day acceptance is implied.

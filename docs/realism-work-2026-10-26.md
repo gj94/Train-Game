@@ -1153,3 +1153,34 @@ evidence. No runtime/tests or observer edits occurred. Proceed with the explicit
 candidate-ten commit/push and the already-prepared v10 launcher exactly once;
 v10 output folders are still absent. This source-suite result is not full-day
 traffic acceptance, installation or a new executable release.
+
+## Candidate ten committed and v10 launched, 12:47
+
+Candidate-ten packs, diagnostics and full 1,003-test evidence are committed/pushed
+as a5e93191. All 26 staged raw evidence files and both packs match exact hashes.
+The override JSON has only Git's CRLF-to-LF normalization; both hashes and exact
+JSON equality are explicitly recorded, not relabeled. No prepared fingerprint
+was altered. The only remaining tracked change outside this checkpoint is the
+previous pending Network UI checker; unrelated untracked files remain untouched.
+
+launch-network-v10.ps1 ran ONCE at 12:46:13 from that commit. Existing process pairs:
+- Classic baseline: wrapper20756 / child8912.
+- V2 baseline: wrapper11764 / child2888.
+- Classic delayed: wrapper21044 / child17784.
+- V2 delayed: wrapper11944 / child17700.
+
+All eight actual commands match their recorded modes/options and have exactly one
+distinct isolated output under rehearsals-v10. Both initial baseline catalogues
+have the correct mode and current source hashes; 4,837 distinct source fingerprints
+and all six observer hashes are verified. Empty stderr for all four. At 12:47,
+baselines reached 00:20 and delayed runs 00:40; these prefixes prove no whole-day
+acceptance. No final audits yet. Baselines save real snapshots; disturbances apply
+600 seconds of manual K1 holding at clock27,000 and must never be installed.
+
+Frozen scope: runtime/routes/packs and six preparation observers. Do not rerun the
+launcher or restart/duplicate these jobs. Inspector now follows original v10 jobs
+only, with the completed candidate-ten full suite as its source-test evidence.
+No source suite, authoring diagnostic, native or Git operation remains running.
+Five exact launch evidence files/hashes are saved beside candidate-ten proof.
+Continue real full-day acceptance, independent installations, category comparisons
+and actual Network menu/midnight/save-load checks before calling this ready.

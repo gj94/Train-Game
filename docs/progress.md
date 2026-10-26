@@ -35,7 +35,7 @@ still move. Successive overtake holds and opposing queues around Alappuzha and
 Ambalappuzha invalidate the model's hoped-for improvement.
 [Failed candidate evidence](../art/performance/realism-2026-10-26/network-candidate-nine/README.md).
 
-No full-day replay remains active. Both strict searches ended UNKNOWN (180 and
+Both strict searches ended UNKNOWN (180 and
 901 seconds), which does not prove infeasibility. The rejected express-only and
 total-yard proposals remain preserved in
 [planning evidence](../art/performance/realism-2026-10-26/network-planning-revision/README.md).
@@ -51,10 +51,13 @@ order reversals to zero, but opposing overlap increases. These are planning
 estimates, not traffic acceptance or measured improvements. The remaining TVC
 berth clash and all model limits are explicit in
 [candidate-ten evidence](../art/performance/realism-2026-10-26/network-candidate-ten/README.md).
-The tested candidate is ready to commit and launch its four genuine Network
-baseline/disturbance replays. No v10 replay has started at this checkpoint.
-All legacy choices remain certified. New traffic must still pass the original
-complete-day gates.
+Candidate ten is committed/pushed as `a5e93191`. Its four v10 Network replays
+launched once at 12:46: both modes' baselines with snapshots, plus the 600-second
+manual K1 disturbances at 07:30. All eight actual wrapper/child commands, isolated
+outputs, both baseline modes, 4,837 distinct current fingerprints and six observer
+hashes are verified. At 12:47 all were running with empty stderr; no final audits.
+Freeze their inputs and do not restart or duplicate them. All legacy choices
+remain certified. New traffic must still pass the original complete-day gates.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.

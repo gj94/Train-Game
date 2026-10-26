@@ -1,0 +1,75 @@
+{
+  "checked_at": "2026-10-26T12:47:04.008124+08:00",
+  "phase": "certified v7 legacy and affected-only v10 Network replays",
+  "latest_pushed": "a5e93191",
+  "source_tests": {
+    "passed": 1003,
+    "failed": 0
+  },
+  "network_authoring_tests": {
+    "passed": 4,
+    "failed": 0
+  },
+  "full_day_jobs": [
+    {
+      "day": "classic-network",
+      "generation": "v10",
+      "wrapper": 20756,
+      "processes": [
+        20756,
+        8912
+      ],
+      "identity_matches": true,
+      "last_clock": "00:20:00 complete=0/208 peak=2 max_wait=0.1m wall=44.7s",
+      "stderr_bytes": 0,
+      "final_audit": false
+    },
+    {
+      "day": "predictive-network",
+      "generation": "v10",
+      "wrapper": 11764,
+      "processes": [
+        11764,
+        2888
+      ],
+      "identity_matches": true,
+      "last_clock": "00:20:00 complete=0/208 peak=2 max_wait=0.1m wall=43.1s",
+      "stderr_bytes": 0,
+      "final_audit": false
+    },
+    {
+      "day": "classic-network-delayed",
+      "generation": "v10",
+      "wrapper": 21044,
+      "processes": [
+        21044,
+        17784
+      ],
+      "identity_matches": true,
+      "last_clock": "00:40:00 complete=0/208 peak=5 max_wait=0.1m wall=38.0s",
+      "stderr_bytes": 0,
+      "final_audit": false
+    },
+    {
+      "day": "predictive-network-delayed",
+      "generation": "v10",
+      "wrapper": 11944,
+      "processes": [
+        11944,
+        17700
+      ],
+      "identity_matches": true,
+      "last_clock": "00:40:00 complete=0/208 peak=5 max_wait=0.1m wall=36.2s",
+      "stderr_bytes": 0,
+      "final_audit": false
+    }
+  ],
+  "prepared_data_installed": {
+    "standard": true,
+    "standard_v2": true,
+    "intensive": true,
+    "intensive_v2": true,
+    "network": false,
+    "network_v2": false
+  }
+}
