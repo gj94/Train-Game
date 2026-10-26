@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 00:52:01 checkpoint: both original v22 V2 jobs remain active
+with matching identities. Baseline2360/13668 is at05:00 (16/208 complete);
+delayed7952/19620 is at06:20 (23/208), still before its configured intervention.
+Both error logs are empty and no final audits exist. Partial clocks/waits
+are not acceptance. Frozen inputs, original jobs, pending helpers and unrelated
+files are preserved. No duplicate/restart/Classic208 job, unchanged test rerun
+or installation. Await original outcomes before any departure replanning.
+
 27 October 00:42:04 checkpoint: both original v22 V2 identities match.
 Baseline2360/13668 is at03:20 (2/208 complete); delayed7952/19620 is at04:20
 (7/208). Both error logs are empty and no final audits exist. Partial clocks

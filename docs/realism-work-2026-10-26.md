@@ -2398,3 +2398,13 @@ Baseline2360/13668 is at03:20 (2/208 complete); delayed7952/19620 is at04:20
 are not acceptance. Frozen inputs, original jobs, pending helpers and unrelated
 files are preserved; no duplicate/restart/Classic208 job, unchanged tests or
 installation. Await the original baseline and disturbed outcomes.
+
+## 27 October 00:52 — original v22 jobs continue
+
+27 October 00:52:01 checkpoint: both original v22 V2 jobs remain active
+with matching identities. Baseline2360/13668 is at05:00 (16/208 complete);
+delayed7952/19620 is at06:20 (23/208), still before its configured intervention.
+Both error logs are empty and no final audits exist. Partial clocks/waits
+are not acceptance. Frozen inputs, original jobs, pending helpers and unrelated
+files are preserved. No duplicate/restart/Classic208 job, unchanged test rerun
+or installation. Await original outcomes before any departure replanning.
