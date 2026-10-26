@@ -2349,3 +2349,20 @@ outputs remain; no rerun,installation,full-population comparison or recovery
 certificate. Prior1003 tests and four authoring guards remain applicable;
 no unchanged tests rerun. Next departure-only grouping must address both
 actual southern queues. Network208V2 readiness remains unproven.
+
+## 27 October — candidate22 southern group hypothesis
+
+Candidate22 changes only15 southern departures from21: M06810:50,M09611:00,
+S05011:10,M08611:20,L03611:35,L02611:45,S03412:45,M06612:55,M10213:05,
+S04813:20,M08213:40,M05414:00,S05214:20,M05214:40,S05415:00. Faster trains
+precede the two locals, with a longer intended interval before the following
+wave. Actual21 baseline NEM/NYY and delayed PASA/NYY queues and sampled
+full-rake envelopes inform this hypothesis; no guaranteed gap/assigned road,
+capacity proof or whole-day improvement. Later queues and delayed K1 may worsen.
+Whole predecessor restoration proves all other fields unchanged; K1 remains
+06:00,common services identical,208 total,168 boundary,71 overnight,3–12/hour.
+Normal author/exact reproduction and four headless guards pass,empty errors;
+205 overrides. Runtime/tests unchanged from1003-test suite; no unchanged
+suite rerun. Eleven exact raw proofs in network-candidate-twenty-two. Next
+commit/push and exactly two new isolatedV2 replays; no Classic208 job or
+readiness requirement. Network208V2 remains unaccepted/uninstalled.

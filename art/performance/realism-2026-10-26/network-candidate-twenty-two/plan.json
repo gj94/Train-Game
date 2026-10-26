@@ -1,0 +1,102 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "8b1d1db4afe7ac0fbd1a6b1f2b99da76d19a9197583fed99f29d7144cacb7ee8",
+    "kerala-coast-network-v2.json": "4da9a6b1e863841a64427f4bdfc218fc35132b9e01f6503602986fb2a7435e8a",
+    "kerala-coast-network-departure-overrides.json": "e7e4c9b331c51289bd7e32d3bb0db0643eefb713d50606486655c35dfb3ad67d"
+  },
+  "changes": [
+    {
+      "service": "M068",
+      "before": "10:30",
+      "after": "10:50",
+      "reason": "Reorder the southern northbound wave: move M068/M096/S050/M086 to 10:50/11:00/11:10/11:20, then L036/L026 to 11:35/11:45. Actual v21 baseline M048 NEM envelope clears 11:31:22, while L036 occupies a NYY road and M068/M096 follow. Actual delayed L026 waits at PASA for faster S050/M086 and receiving capacity. Aim for an interval after L024/M048 for K1/L025, with faster trains ahead of the locals. Timing propagation and both baseline/delayed receiving capacity remain unproven."
+    },
+    {
+      "service": "M096",
+      "before": "10:40",
+      "after": "11:00",
+      "reason": "Reorder the southern northbound wave: move M068/M096/S050/M086 to 10:50/11:00/11:10/11:20, then L036/L026 to 11:35/11:45. Actual v21 baseline M048 NEM envelope clears 11:31:22, while L036 occupies a NYY road and M068/M096 follow. Actual delayed L026 waits at PASA for faster S050/M086 and receiving capacity. Aim for an interval after L024/M048 for K1/L025, with faster trains ahead of the locals. Timing propagation and both baseline/delayed receiving capacity remain unproven."
+    },
+    {
+      "service": "S050",
+      "before": "10:50",
+      "after": "11:10",
+      "reason": "Reorder the southern northbound wave: move M068/M096/S050/M086 to 10:50/11:00/11:10/11:20, then L036/L026 to 11:35/11:45. Actual v21 baseline M048 NEM envelope clears 11:31:22, while L036 occupies a NYY road and M068/M096 follow. Actual delayed L026 waits at PASA for faster S050/M086 and receiving capacity. Aim for an interval after L024/M048 for K1/L025, with faster trains ahead of the locals. Timing propagation and both baseline/delayed receiving capacity remain unproven."
+    },
+    {
+      "service": "M086",
+      "before": "11:15",
+      "after": "11:20",
+      "reason": "Reorder the southern northbound wave: move M068/M096/S050/M086 to 10:50/11:00/11:10/11:20, then L036/L026 to 11:35/11:45. Actual v21 baseline M048 NEM envelope clears 11:31:22, while L036 occupies a NYY road and M068/M096 follow. Actual delayed L026 waits at PASA for faster S050/M086 and receiving capacity. Aim for an interval after L024/M048 for K1/L025, with faster trains ahead of the locals. Timing propagation and both baseline/delayed receiving capacity remain unproven."
+    },
+    {
+      "service": "L036",
+      "before": "10:20",
+      "after": "11:35",
+      "reason": "Reorder the southern northbound wave: move M068/M096/S050/M086 to 10:50/11:00/11:10/11:20, then L036/L026 to 11:35/11:45. Actual v21 baseline M048 NEM envelope clears 11:31:22, while L036 occupies a NYY road and M068/M096 follow. Actual delayed L026 waits at PASA for faster S050/M086 and receiving capacity. Aim for an interval after L024/M048 for K1/L025, with faster trains ahead of the locals. Timing propagation and both baseline/delayed receiving capacity remain unproven."
+    },
+    {
+      "service": "L026",
+      "before": "10:40",
+      "after": "11:45",
+      "reason": "Reorder the southern northbound wave: move M068/M096/S050/M086 to 10:50/11:00/11:10/11:20, then L036/L026 to 11:35/11:45. Actual v21 baseline M048 NEM envelope clears 11:31:22, while L036 occupies a NYY road and M068/M096 follow. Actual delayed L026 waits at PASA for faster S050/M086 and receiving capacity. Aim for an interval after L024/M048 for K1/L025, with faster trains ahead of the locals. Timing propagation and both baseline/delayed receiving capacity remain unproven."
+    },
+    {
+      "service": "S034",
+      "before": "11:40",
+      "after": "12:45",
+      "reason": "Move the following southern northbound group S034/M066/M102 to 12:45/12:55/13:05 and S048/M082/M054/S052/M052/S054 to 13:20/13:40/14:00/14:20/14:40/15:00. Aim to leave one hour after the later L026 departure, allowing its full rake to cross before the next faster wave and reducing repeated overtakes in two-road receiving stations. Include the later services to avoid immediate corridor refill. Other southbound groups and later queues may worsen; no assigned road, guaranteed gap or full-day capacity claim."
+    },
+    {
+      "service": "M066",
+      "before": "11:45",
+      "after": "12:55",
+      "reason": "Move the following southern northbound group S034/M066/M102 to 12:45/12:55/13:05 and S048/M082/M054/S052/M052/S054 to 13:20/13:40/14:00/14:20/14:40/15:00. Aim to leave one hour after the later L026 departure, allowing its full rake to cross before the next faster wave and reducing repeated overtakes in two-road receiving stations. Include the later services to avoid immediate corridor refill. Other southbound groups and later queues may worsen; no assigned road, guaranteed gap or full-day capacity claim."
+    },
+    {
+      "service": "M102",
+      "before": "11:55",
+      "after": "13:05",
+      "reason": "Move the following southern northbound group S034/M066/M102 to 12:45/12:55/13:05 and S048/M082/M054/S052/M052/S054 to 13:20/13:40/14:00/14:20/14:40/15:00. Aim to leave one hour after the later L026 departure, allowing its full rake to cross before the next faster wave and reducing repeated overtakes in two-road receiving stations. Include the later services to avoid immediate corridor refill. Other southbound groups and later queues may worsen; no assigned road, guaranteed gap or full-day capacity claim."
+    },
+    {
+      "service": "S048",
+      "before": "12:15",
+      "after": "13:20",
+      "reason": "Move the following southern northbound group S034/M066/M102 to 12:45/12:55/13:05 and S048/M082/M054/S052/M052/S054 to 13:20/13:40/14:00/14:20/14:40/15:00. Aim to leave one hour after the later L026 departure, allowing its full rake to cross before the next faster wave and reducing repeated overtakes in two-road receiving stations. Include the later services to avoid immediate corridor refill. Other southbound groups and later queues may worsen; no assigned road, guaranteed gap or full-day capacity claim."
+    },
+    {
+      "service": "M082",
+      "before": "12:20",
+      "after": "13:40",
+      "reason": "Move the following southern northbound group S034/M066/M102 to 12:45/12:55/13:05 and S048/M082/M054/S052/M052/S054 to 13:20/13:40/14:00/14:20/14:40/15:00. Aim to leave one hour after the later L026 departure, allowing its full rake to cross before the next faster wave and reducing repeated overtakes in two-road receiving stations. Include the later services to avoid immediate corridor refill. Other southbound groups and later queues may worsen; no assigned road, guaranteed gap or full-day capacity claim."
+    },
+    {
+      "service": "M054",
+      "before": "12:40",
+      "after": "14:00",
+      "reason": "Move the following southern northbound group S034/M066/M102 to 12:45/12:55/13:05 and S048/M082/M054/S052/M052/S054 to 13:20/13:40/14:00/14:20/14:40/15:00. Aim to leave one hour after the later L026 departure, allowing its full rake to cross before the next faster wave and reducing repeated overtakes in two-road receiving stations. Include the later services to avoid immediate corridor refill. Other southbound groups and later queues may worsen; no assigned road, guaranteed gap or full-day capacity claim."
+    },
+    {
+      "service": "S052",
+      "before": "12:50",
+      "after": "14:20",
+      "reason": "Move the following southern northbound group S034/M066/M102 to 12:45/12:55/13:05 and S048/M082/M054/S052/M052/S054 to 13:20/13:40/14:00/14:20/14:40/15:00. Aim to leave one hour after the later L026 departure, allowing its full rake to cross before the next faster wave and reducing repeated overtakes in two-road receiving stations. Include the later services to avoid immediate corridor refill. Other southbound groups and later queues may worsen; no assigned road, guaranteed gap or full-day capacity claim."
+    },
+    {
+      "service": "M052",
+      "before": "13:10",
+      "after": "14:40",
+      "reason": "Move the following southern northbound group S034/M066/M102 to 12:45/12:55/13:05 and S048/M082/M054/S052/M052/S054 to 13:20/13:40/14:00/14:20/14:40/15:00. Aim to leave one hour after the later L026 departure, allowing its full rake to cross before the next faster wave and reducing repeated overtakes in two-road receiving stations. Include the later services to avoid immediate corridor refill. Other southbound groups and later queues may worsen; no assigned road, guaranteed gap or full-day capacity claim."
+    },
+    {
+      "service": "S054",
+      "before": "13:35",
+      "after": "15:00",
+      "reason": "Move the following southern northbound group S034/M066/M102 to 12:45/12:55/13:05 and S048/M082/M054/S052/M052/S054 to 13:20/13:40/14:00/14:20/14:40/15:00. Aim to leave one hour after the later L026 departure, allowing its full rake to cross before the next faster wave and reducing repeated overtakes in two-road receiving stations. Include the later services to avoid immediate corridor refill. Other southbound groups and later queues may worsen; no assigned road, guaranteed gap or full-day capacity claim."
+    }
+  ],
+  "evidence_commit": "b1bbd659; delayed b80e8990",
+  "scope": "Network208 V2 only; fifteen coordinated departure timings, no Classic replay or readiness requirement.",
+  "status": "Departure-only hypothesis; no acceptance"
+}
