@@ -3201,3 +3201,14 @@ hashes still match the launch. Continue the original runs with frozen inputs;
 partial clocks do not establish acceptance or disturbance recovery.
 Network208V2 remains unaccepted/uninstalled. No duplicate, Classic208, repeated
 suite or native job was launched. No new gameplay playtest.
+
+27 October 07:20 — original v26 runs checkpointed.
+
+At 07:20:04 baseline 3728/12192 reaches 08:00 with 33/208 complete; delayed
+16324/14784 reaches 10:40 with 59/208 complete. Both retain their original
+commands and parent/child identities, empty error logs and no final audits.
+Only these four Godot processes are present. The V2 pack and all six observer
+hashes still match the verified launch. Continue these original runs with
+runtime/routes/packs/observers frozen. Partial clocks and waits are not
+acceptance or recovery proof. Network208V2 remains unaccepted/uninstalled.
+No new replay, Classic208, suite or native job; no new gameplay playtest.
