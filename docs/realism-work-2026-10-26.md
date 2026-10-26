@@ -1726,3 +1726,16 @@ empty stderr. The unchanged runtime retains its completed1,003-test source suite
 it was not rerun for two data timings. Ten exact proof files are preserved in
 [candidate-sixteen evidence](../art/performance/realism-2026-10-26/network-candidate-sixteen/README.md).
 Fresh isolated runs are required. Network208 remains unaccepted and uninstalled.
+
+## Verified v16 launch
+
+Candidate146339ab is committed/pushed. Four v16 replays launched once at18:36:57:
+Classic baseline1200/9828, V2baseline13572/12168, Classicdelayed16820/21556,
+V2delayed9104/5132 (wrapper/child). All eight actual commands/options, distinct
+single output arguments, initial baseline modes,4,837 distinct source hashes
+and six observer hashes are verified. Verification waited for initial catalogues;
+no jobs restarted. Five exact launch files and hashes are archived. At18:37
+baselines are starting and delayed runs reach00:10,empty stderr,no final audits.
+Partial clocks are not acceptance. Inputs/observers are frozen throughout these
+original runs. Baselines save genuine snapshots; delayed runs apply600s K1hold
+at07:30 and cannot be installed. No suite,native,search,diagnostic or Git job remains.

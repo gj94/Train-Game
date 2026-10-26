@@ -12,3 +12,14 @@ Restoring the two departures recovers each entire predecessor JSON object. Every
 Normal authoring through205 overrides and exact --check reproduction pass. All four headless authoring tests pass with empty stderr. Runtime/tests remain unchanged from the completed1,003-test source suite on candidate ten; the full suite was not rerun for these two data timings. Ten exact diagnostic files and their hashes are preserved. Exact predecessor files remain in candidate-sixteen-before.
 
 Fresh Classic/V2 baselines and600-second K1 disturbances must pass every unchanged service/call/departure/full-tail completion, safety and both wait-distribution gates. Actual overtakes, matched-section category comparisons, prepared menu/midnight/save-load and independent installation remain required. Network208 is not accepted or installed. Preserve R47, legacy certifications, pending helpers and unrelated files.
+
+Candidate146339ab is committed/pushed. Four v16 replays launched once at18:36:57:
+Classic baseline1200/9828, V2baseline13572/12168, Classicdelayed16820/21556,
+V2delayed9104/5132 (wrapper/child). All eight actual commands/options, distinct
+single output arguments, initial baseline modes,4,837 distinct source hashes
+and six observer hashes are verified. Verification waited for initial catalogues;
+no jobs restarted. Five exact launch files and hashes are archived. At18:37
+baselines are starting and delayed runs reach00:10,empty stderr,no final audits.
+Partial clocks are not acceptance. Inputs/observers are frozen throughout these
+original runs. Baselines save genuine snapshots; delayed runs apply600s K1hold
+at07:30 and cannot be installed. No suite,native,search,diagnostic or Git job remains.
