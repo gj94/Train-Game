@@ -2,6 +2,22 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 00:22 checkpoint: Candidate21's original V2 baseline26756/20168 has now failed naturally at
+11:52:24: K1 atNEM,65/208 complete,2702s maximum in both wait populations,
+zero safety,empty errors,no manual hold. All-location182/251,225/251,243/251,
+250/251 fails under20/30/45; station102/150,133/150,147/150,149/150 fails
+under10/20/45. 225/251 remains below90%. K1NEM arrival11:06:17.70 has no
+departure:1638s opposing,994s receiving/onward,22s crossing,48s conflicts.
+Immutable snapshot has NYY L036P2/incomingS050 P1/P2 alternatives; M096,
+S050,L024,S034,L008 move, and no future plans exist. No permanent-deadlock
+or runtime-defect inference. Both21 runs are now rejected; no live owned
+jobs remain. Evidence in network-candidate-twenty-one/failed-predictive-baseline
+preserves13 exact raw files and4836 current-at-run source hashes. Original
+outputs remain; no rerun,installation,full-population comparison or recovery
+certificate. Prior1003 tests and four authoring guards remain applicable;
+no unchanged tests rerun. Next departure-only grouping must address both
+actual southern queues. Network208V2 readiness remains unproven.
+
 The original candidate21 V2 delayed run 20296/14748 finished naturally and
 failed L026 at Parassala, 12:25:14, with 68/208 complete, 2,702s maximum extra
 wait in both populations, zero safety events and empty errors. All-location
