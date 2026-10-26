@@ -2,6 +2,17 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Candidate6d6f0518 committed/pushed; exactly two original V2 v22 replays
+launched once at2026-10-27T00:28:56.3993166+08:00: baseline2360/13668 and delayed7952/19620
+(wrapper/child). All four actual commands/options,distinct isolated outputs,
+initial predictive baseline mode,4836 source hashes and six observer hashes
+verified. Five exact launch files and manifest preserved. At00:29:16 baseline
+is starting,delayed00:10,identities match,empty errors,no final audits. No
+restart/duplicate/Classic208 job. Baseline uses snapshots; delayed uses600s
+manual K1hold at27000/07:30. Runtime/routes/packs/six observers now frozen.
+Partial clocks are not acceptance; Network208V2 unaccepted/uninstalled.
+No suite/native/search/diagnostic/Git job remains after this checkpoint.
+
 Candidate22 changes only15 southern departures from21: M06810:50,M09611:00,
 S05011:10,M08611:20,L03611:35,L02611:45,S03412:45,M06612:55,M10213:05,
 S04813:20,M08213:40,M05414:00,S05214:20,M05214:40,S05415:00. Faster trains

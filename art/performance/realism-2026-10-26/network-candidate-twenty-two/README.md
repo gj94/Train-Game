@@ -68,3 +68,16 @@ Next commit/push, then launch exactly one V2 baseline with snapshots and one
 full-tail portal/depot,safety,both wait populations,overtaking and recovery
 gates remain mandatory. Network208V2 is unaccepted/uninstalled. No Classic208
 replay,installation or native/category requirement is in scope.
+
+## Verified launch
+
+Candidate6d6f0518 committed/pushed; exactly two original V2 v22 replays
+launched once at2026-10-27T00:28:56.3993166+08:00: baseline2360/13668 and delayed7952/19620
+(wrapper/child). All four actual commands/options,distinct isolated outputs,
+initial predictive baseline mode,4836 source hashes and six observer hashes
+verified. Five exact launch files and manifest preserved. At00:29:16 baseline
+is starting,delayed00:10,identities match,empty errors,no final audits. No
+restart/duplicate/Classic208 job. Baseline uses snapshots; delayed uses600s
+manual K1hold at27000/07:30. Runtime/routes/packs/six observers now frozen.
+Partial clocks are not acceptance; Network208V2 unaccepted/uninstalled.
+No suite/native/search/diagnostic/Git job remains after this checkpoint.

@@ -2366,3 +2366,16 @@ Normal author/exact reproduction and four headless guards pass,empty errors;
 suite rerun. Eleven exact raw proofs in network-candidate-twenty-two. Next
 commit/push and exactly two new isolatedV2 replays; no Classic208 job or
 readiness requirement. Network208V2 remains unaccepted/uninstalled.
+
+## 27 October 00:29 — verified V2 v22 launch
+
+Candidate6d6f0518 committed/pushed; exactly two original V2 v22 replays
+launched once at2026-10-27T00:28:56.3993166+08:00: baseline2360/13668 and delayed7952/19620
+(wrapper/child). All four actual commands/options,distinct isolated outputs,
+initial predictive baseline mode,4836 source hashes and six observer hashes
+verified. Five exact launch files and manifest preserved. At00:29:16 baseline
+is starting,delayed00:10,identities match,empty errors,no final audits. No
+restart/duplicate/Classic208 job. Baseline uses snapshots; delayed uses600s
+manual K1hold at27000/07:30. Runtime/routes/packs/six observers now frozen.
+Partial clocks are not acceptance; Network208V2 unaccepted/uninstalled.
+No suite/native/search/diagnostic/Git job remains after this checkpoint.
