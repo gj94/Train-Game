@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+At the 18:44 checkpoint, all four original v16 wrapper/child identities still
+match. Classic/V2 baselines reach 02:00/02:10 (1/208 complete each); delayed
+runs reach 03:00/03:10 (2/208 each), before the planned 07:30 intervention.
+All stderr files are empty and no final audit exists. These are partial runs,
+not acceptance. Runtime, routes, packs and the six observers remain frozen;
+no jobs were duplicated or restarted and no unchanged tests were repeated.
+Network 208 remains unaccepted and uninstalled.
+
 Candidate sixteen changes only M045 00:45→00:00 and S030 05:05→04:20 from v15.
 The earlier departures aim to precede the observed NEM/NYY receiving cluster
 and PASA opposing wave; actual full-day improvement remains unproven. Both
@@ -12,7 +20,7 @@ Exact normal author reproduction and four headless authoring checks pass with
 empty stderr. The unchanged runtime retains its completed1,003-test source suite;
 it was not rerun for two data timings. Ten exact proof files are preserved in
 [candidate-sixteen evidence](../art/performance/realism-2026-10-26/network-candidate-sixteen/README.md).
-Fresh isolated runs are required. Network208 remains unaccepted and uninstalled.
+The four isolated v16 runs below are underway. Network208 remains unaccepted and uninstalled.
 
 Candidate146339ab is committed/pushed. Four v16 replays launched once at18:36:57:
 Classic baseline1200/9828, V2baseline13572/12168, Classicdelayed16820/21556,

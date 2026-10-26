@@ -1739,3 +1739,13 @@ baselines are starting and delayed runs reach00:10,empty stderr,no final audits.
 Partial clocks are not acceptance. Inputs/observers are frozen throughout these
 original runs. Baselines save genuine snapshots; delayed runs apply600s K1hold
 at07:30 and cannot be installed. No suite,native,search,diagnostic or Git job remains.
+
+## 18:44 v16 checkpoint
+
+At the 18:44 checkpoint, all four original v16 wrapper/child identities still
+match. Classic/V2 baselines reach 02:00/02:10 (1/208 complete each); delayed
+runs reach 03:00/03:10 (2/208 each), before the planned 07:30 intervention.
+All stderr files are empty and no final audit exists. These are partial runs,
+not acceptance. Runtime, routes, packs and the six observers remain frozen;
+no jobs were duplicated or restarted and no unchanged tests were repeated.
+Network 208 remains unaccepted and uninstalled.
