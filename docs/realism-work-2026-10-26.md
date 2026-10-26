@@ -720,3 +720,34 @@ No runtime/tests/observers changed. PendingUI/categorytools remainuncommitted
 untilacceptedrealdata; nofakecatalogues. Full-day/native/category/midnightgates
 pending. R47andfixed10AM preserved; checkpointunfinishedvalidationanddelete
 automationatthedeadline.
+
+
+## Affected v8 Network launch verified, 2026-10-26T09:05:56.713741+08:00
+
+Departure spacing and exact failed-run evidence are committed and pushed in
+`ac69057`. The guarded launcher ran once at 2026-10-26T09:04:57.9243245+08:00. All eight
+actual wrapper/child commands have a single isolated output and the expected
+pack and baseline/disturbance options. Both baseline modes and all 4,837
+distinct source hashes match; the six preparation-observer hashes are recorded.
+All four stderr files are empty. Do not rerun the launcher or restart jobs.
+
+| Run | Wrapper | Child |
+| --- | ---: | ---: |
+| classic-network | 20172 | 11600 |
+| predictive-network | 10012 | 23432 |
+| classic-network-delayed | 10828 | 22028 |
+| predictive-network-delayed | 20596 | 6276 |
+
+The four unchanged v7 legacy baselines also retain their original identities:
+Standard 12052/21916 and 16856/6856; Intensive 18308/14120 and 18084/17900.
+At 09:05 their clocks are 16:40/16:30 and 15:10/14:50 respectively, with no
+final audits and empty stderr. No complete-day acceptance is implied by these
+partial results. The v8 Network baselines are at 00:10 and disturbances 00:40.
+
+Read rehearsal-jobs-v8.json, launch-v8-verification.json, latest-job-status.json
+and rehearsals-v8 outputs. inspect-current-replays.py now selects the mixed
+v7 legacy/v8 Network jobs. Simulation, routes, active packs and observers are
+frozen. No suite, diagnostic, native check or Git operation remains after this
+checkpoint. The prepared-UI and category tools remain pending real accepted
+data. R47 is preserved. At 10:00 stop expanding scope, safely checkpoint any
+unfinished validation, report incomplete work and delete the automation.

@@ -237,6 +237,12 @@ Full-day acceptance and actual installed native checks remain pending. No data
 is certified from these failures. The next four Network replays must use new
 isolated v8 outputs after this increment is committed; do not restart v7.
 
+The affected-only v8 launch ran once at 09:04:58 from pushed `ac69057`. Eight
+actual process commands, both modes, 4,837 distinct source hashes and six
+observer hashes are verified; stderr is empty. The four unchanged v7 legacy
+baselines continue. No current-source prepared data has yet passed all gates
+or been installed. See the work record for exact PIDs and continuation steps.
+
 
 ## 25 October 2026 — R47 published and independently checked
 
