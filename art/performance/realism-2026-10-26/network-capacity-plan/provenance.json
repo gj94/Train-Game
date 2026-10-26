@@ -1,0 +1,236 @@
+{
+  "recorded_at": "2026-10-26T10:47:13.200394+08:00",
+  "runtime": "9ec3530",
+  "physical_profiles": 44,
+  "verified_runtime_hashes": 4835,
+  "services": 208,
+  "changed_departures": 203,
+  "all_other_service_fields_unchanged": true,
+  "both_modes_identical_services": true,
+  "hourly_departures": {
+    "0": 11,
+    "1": 13,
+    "2": 9,
+    "3": 6,
+    "4": 6,
+    "5": 11,
+    "6": 10,
+    "7": 10,
+    "8": 11,
+    "9": 7,
+    "10": 5,
+    "11": 11,
+    "12": 11,
+    "13": 8,
+    "14": 5,
+    "15": 11,
+    "16": 11,
+    "17": 6,
+    "18": 11,
+    "19": 13,
+    "20": 7,
+    "21": 3,
+    "22": 6,
+    "23": 6
+  },
+  "overnight_departures": 68,
+  "first_proposal_rejected_reason": "Opposing-conflict objective bunched traffic; predicted fleet increased from39to46. Never applied.",
+  "final_proposal": {
+    "initial_cost": 16902.06833321879,
+    "proposed_cost": 2028.578888885246,
+    "initial_peak_isolated_fleet": 39.0,
+    "proposed_peak_isolated_fleet": 34.0
+  },
+  "files": [
+    {
+      "path": "measure-solo-profiles.gd.txt",
+      "source": ".local/realism-2026-10-26/measure-solo-profiles.gd",
+      "raw_bytes": 3041,
+      "raw_sha256": "4d497957869d1d7dd2901b76b688fbe08ddd84d511da141827f97a93529bc0e3"
+    },
+    {
+      "path": "export-planning-sections.gd.txt",
+      "source": ".local/realism-2026-10-26/export-planning-sections.gd",
+      "raw_bytes": 1049,
+      "raw_sha256": "5c03d06d543a583dd0407481cdc581fc0c733ef47213744580c9e150da264693"
+    },
+    {
+      "path": "plan-network-spacing.py",
+      "source": ".local/realism-2026-10-26/plan-network-spacing.py",
+      "raw_bytes": 8112,
+      "raw_sha256": "f5adb869ee02bf19341cd1fd64b140ce4fefab2ec9f96aec0e8ceb0af2345e55"
+    },
+    {
+      "path": "planning-sections.json",
+      "source": ".local/realism-2026-10-26/planning-sections.json",
+      "raw_bytes": 11530,
+      "raw_sha256": "6ee19f5868f8de004db7d80414aa3ff91f3b474ca6978e37d1d044e5bf7932cc"
+    },
+    {
+      "path": "network-spacing-proposal.json",
+      "source": ".local/realism-2026-10-26/network-spacing-proposal.json",
+      "raw_bytes": 27869,
+      "raw_sha256": "83dee565411e081e283ce68d1e29fbf91da7ec0ba741f821722883fea72a532a"
+    },
+    {
+      "path": "network-spacing-proposal-v2.json",
+      "source": ".local/realism-2026-10-26/network-spacing-proposal-v2.json",
+      "raw_bytes": 28745,
+      "raw_sha256": "3942b74c7b5db6989506e0bcc5eca433ffb8fac88648c63d845fcb5a881d6ad7"
+    },
+    {
+      "path": "network-spacing-search.log",
+      "source": ".local/realism-2026-10-26/network-spacing-search.log",
+      "raw_bytes": 1574,
+      "raw_sha256": "6ab9fae91f0bda971b6b5d49f01fb744e1877c6b7d7620c496835428bdf45848"
+    },
+    {
+      "path": "network-spacing-search.err",
+      "source": ".local/realism-2026-10-26/network-spacing-search.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "network-spacing-search-v2.log",
+      "source": ".local/realism-2026-10-26/network-spacing-search-v2.log",
+      "raw_bytes": 1525,
+      "raw_sha256": "5bbfda5756f3c45076e30e3ad1a8ce02c85c50e5fc67fcbcc59f6f2ab8290650"
+    },
+    {
+      "path": "network-spacing-search-v2.err",
+      "source": ".local/realism-2026-10-26/network-spacing-search-v2.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "solo-profiles-0.json.gz",
+      "source": ".local/realism-2026-10-26/solo-profiles-0.json",
+      "raw_bytes": 760141,
+      "raw_sha256": "f81aaa841457dc337f30babf5977698ff708bbf6c911b9bb523c2782410a4756"
+    },
+    {
+      "path": "solo-profiles-0.log",
+      "source": ".local/realism-2026-10-26/solo-profiles-0.log",
+      "raw_bytes": 841,
+      "raw_sha256": "5a7ca7c0093b1fcb9fef1527c9cb88138bdbf54b952f54f5f416bbee89de40a1"
+    },
+    {
+      "path": "solo-profiles-0.err",
+      "source": ".local/realism-2026-10-26/solo-profiles-0.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "solo-profiles-0.job.json",
+      "source": ".local/realism-2026-10-26/solo-profiles-0.job.json",
+      "raw_bytes": 86,
+      "raw_sha256": "ac8f627471c5b2f2ea77a801bc3e8d736e78d00d4f2813ec9455a8820b34b1d3"
+    },
+    {
+      "path": "solo-profiles-1.json.gz",
+      "source": ".local/realism-2026-10-26/solo-profiles-1.json",
+      "raw_bytes": 759792,
+      "raw_sha256": "4cf8a26c771510ea0b5abe990c9a119bdfb71e97afedf385370ff95f8d28bfc3"
+    },
+    {
+      "path": "solo-profiles-1.log",
+      "source": ".local/realism-2026-10-26/solo-profiles-1.log",
+      "raw_bytes": 843,
+      "raw_sha256": "d9ee6a1e26678865a27af04efb2e65dc004078081479e1558dec5a4484274f55"
+    },
+    {
+      "path": "solo-profiles-1.err",
+      "source": ".local/realism-2026-10-26/solo-profiles-1.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "solo-profiles-1.job.json",
+      "source": ".local/realism-2026-10-26/solo-profiles-1.job.json",
+      "raw_bytes": 86,
+      "raw_sha256": "193973198224b5abe2d7a40c81a5dd4973ced47c9285adafaeca86ba45ac3d50"
+    },
+    {
+      "path": "previous-departure-overrides.json",
+      "source": "art/timetables/kerala-coast-network-departure-overrides.json",
+      "raw_bytes": 1586,
+      "raw_sha256": "337a2995407fcc1c754df9ad679055620941920a728dfccda2d7cd344ba69fc4"
+    },
+    {
+      "path": "previous-kerala-coast-network.json",
+      "source": "art/timetables/kerala-coast-network.json",
+      "raw_bytes": 680436,
+      "raw_sha256": "daacefca4a39b9893c85ff6a7a339523fc73f10d485eaca98a225128b16cf725"
+    },
+    {
+      "path": "previous-kerala-coast-network-v2.json",
+      "source": "art/timetables/kerala-coast-network-v2.json",
+      "raw_bytes": 680445,
+      "raw_sha256": "8977027214ea250088c085cfb8f54ea01ac91b1873238f78221d63875fb1f57c"
+    },
+    {
+      "path": "capacity-author-reproduction.log",
+      "source": ".local/realism-2026-10-26/capacity-author-reproduction.log",
+      "raw_bytes": 222,
+      "raw_sha256": "3cf310cb2832fd79a913e3173f737f309806343957d7c3ed24970b294c367574"
+    },
+    {
+      "path": "capacity-author-reproduction.err",
+      "source": ".local/realism-2026-10-26/capacity-author-reproduction.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capacity-author-tests.log",
+      "source": ".local/realism-2026-10-26/capacity-author-tests.log",
+      "raw_bytes": 328,
+      "raw_sha256": "fdde787111942e27d38bc33a4aadb92d0400dad07f666d384560d4ecfa6113f5"
+    },
+    {
+      "path": "capacity-author-tests.err",
+      "source": ".local/realism-2026-10-26/capacity-author-tests.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capacity-full-tests.log",
+      "source": ".local/realism-2026-10-26/capacity-full-tests.log",
+      "raw_bytes": 5693,
+      "raw_sha256": "9e4cb3b38c41b4a6a8111994dcc7b415432d504e6171ba0834a09a1488682be5"
+    },
+    {
+      "path": "capacity-full-tests.err",
+      "source": ".local/realism-2026-10-26/capacity-full-tests.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capacity-full-tests.job.json",
+      "source": ".local/realism-2026-10-26/capacity-full-tests.job.json",
+      "raw_bytes": 94,
+      "raw_sha256": "ceb5b1dbdce1d089af9ca22dd29783dbe7c307f6b6fbcb5e62d16fb8480f4508"
+    },
+    {
+      "path": "capacity-full-test-timings.json",
+      "source": ".local/realism-2026-10-26/capacity-full-test-timings.json",
+      "raw_bytes": 125879,
+      "raw_sha256": "54766a7975dd14a719e7b59c7d44d0abe4419d22370ee485f25328de7fd1fa32"
+    },
+    {
+      "path": "capacity-opposing-overlap-review.json",
+      "source": ".local/realism-2026-10-26/capacity-opposing-overlap-review.json",
+      "raw_bytes": 3682,
+      "raw_sha256": "a3283c2e25493366efc2a13034111c08da0cfed49366b17f164fd0c27348209c"
+    }
+  ],
+  "validated_at": "2026-10-26T10:57:01.306049+08:00",
+  "full_source_tests": {
+    "passed": 1003,
+    "failed": 0,
+    "stderr_bytes": 0
+  },
+  "current_packs": {
+    "kerala-coast-network.json": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed",
+    "kerala-coast-network-v2.json": "dbfd1ee6e87402e3cace318a5200f1b9818544cb088a31ae8759d091978b5d49"
+  }
+}

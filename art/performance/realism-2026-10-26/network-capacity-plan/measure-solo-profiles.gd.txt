@@ -1,0 +1,51 @@
+extends SceneTree
+## Planning measurements only. One physical train per world, never accepted traffic.
+const Pack = preload("res://sim/service_pack.gd")
+const Trial = preload("res://sim/service_trial.gd")
+const Observer = preload("res://tools/record_service_traffic.gd")
+func _initialize() -> void: call_deferred("run")
+func run() -> void:
+	var part := 0
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--part="): part = int(arg.trim_prefix("--part="))
+	var base: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://art/timetables/kerala-coast-network.json"))
+	var groups := {}
+	for service in base.services:
+		var key := JSON.stringify([service.stock, service.rake, service.stops])
+		if not groups.has(key): groups[key] = []
+		groups[key].append(service)
+	var result := {kind="isolated physical profiles for departure planning; not timetable acceptance",part=part,profiles=[],sources=preload("res://persistence/prepared_sources.gd").collect()}
+	var began := Time.get_ticks_msec()
+	for index in groups.size():
+		if index % 2 != part: continue
+		var services: Array = groups.values()[index]
+		var data := base.duplicate(true)
+		data.services = [services[0].duplicate(true)]
+		data.services[0].departure = "00:03"
+		var decoded: Dictionary = Pack.build(data)
+		if not decoded.ok: printerr(decoded.reason); quit(1); return
+		var w: RailWorld = decoded.world
+		var t: Train = w.trains.values()[0]
+		t.automatic = true
+		var trial = Trial.new(w)
+		var intervals := {}
+		var stations := []
+		for s in w.stations: stations.append({code=s.code,s=s.s,half=s.yard_half})
+		while not trial.done:
+			trial.step()
+			if t.lifecycle != "active" or t.service_complete: continue
+			var head: float = Observer.chainage(w,{edge=t.path[0].edge,s=t.head_s})
+			var tail: float = Observer.chainage(w,t.locate_behind(w.graph,t.length))
+			for i in w.stations.size()-1:
+				var first: Dictionary = w.stations[i]
+				var last: Dictionary = w.stations[i+1]
+				if maxf(head,tail) < first.s + first.yard_half or minf(head,tail) > last.s - last.yard_half: continue
+				var section: String = first.code + "-" + last.code
+				if not intervals.has(section): intervals[section] = {start=w.clock_seconds()-180,finish=w.clock_seconds()-180,tracks=w.scenery.route.sections[i].tracks}
+				intervals[section].finish = w.clock_seconds()-180
+		if not trial.ok: printerr(t.id,": ",trial.report); quit(1); return
+		var tt = t.completed_timetable if t.completed_timetable != null else t.timetable
+		result.profiles.append({ids=services.map(func(s):return s.id),direction=services[0].stops[0].direction,stock=services[0].stock,category=services[0].journey.category,intervals=intervals,arrivals=tt.actual_arrivals,departures=tt.actual_departures,stations=stations,events=w.events,finished=true})
+		FileAccess.open("res://.local/realism-2026-10-26/solo-profiles-%d.json" % part,FileAccess.WRITE).store_string(JSON.stringify(result,"\t"))
+		print("PROFILE %s count=%d wall=%.1fs" % [t.id,result.profiles.size(),(Time.get_ticks_msec()-began)*.001])
+	quit()

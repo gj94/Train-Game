@@ -1,0 +1,18 @@
+extends SceneTree
+func _initialize() -> void:
+	var w: RailWorld = preload("res://sim/layouts/kerala_coast.gd").build(true)
+	var groups := {}
+	for edge in w.single_line_sections:
+		var name: String = w.single_line_sections[edge]
+		var e: Dictionary = w.graph.edges[edge]
+		if not groups.has(name): groups[name] = {start=INF,finish=-INF,edges=[]}
+		groups[name].start = minf(groups[name].start,minf(e.chainage_start,e.chainage_end))
+		groups[name].finish = maxf(groups[name].finish,maxf(e.chainage_start,e.chainage_end))
+		groups[name].edges.append(edge)
+	var sections := {}
+	for i in w.stations.size()-1:
+		var a: Dictionary=w.stations[i]
+		var b: Dictionary=w.stations[i+1]
+		sections[a.code+"-"+b.code] = {tracks=w.scenery.route.sections[i].tracks,group=w.single_line_sections.get(a.code+"_"+b.code+"_M0",""),start=a.s,finish=b.s,from_halt=a.through_halt,to_halt=b.through_halt}
+	FileAccess.open("res://.local/realism-2026-10-26/planning-sections.json",FileAccess.WRITE).store_string(JSON.stringify({sections=sections,groups=groups},"\t"))
+	quit()

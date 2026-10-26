@@ -19,10 +19,14 @@ now current-source certified. The unchanged source has 1,003 passing tests.
 Keep the documented regressions and authored-departure confound; V2 is not
 uniformly better. No new executable has been released; preserve R47.
 
-Next: use isolated physical running profiles to plan single-line departure
-spacing, then validate complete Network baselines and manual-delay runs before
-installation, category comparisons and actual Network midnight/save-load menus.
-Those planning profiles are diagnostics, never substitutes for complete traffic.
+All 44 isolated stock/call profiles now finish safely. Candidate nine changes
+203 departure times only, preserving K1 at 06:00, all other service fields and
+identical Classic/V2 definitions. It has 68 overnight services and 3–13 departures
+per hour. The planning model reduces peak isolated fleet from 39 to 34; that is not a
+measured traffic result. Four authoring checks and exact reproduction pass;
+the full source suite passes 1,003 tests with zero failures and empty stderr.
+Fresh Network baseline/disturbance preparation is next. [Capacity plan](../art/performance/realism-2026-10-26/network-capacity-plan/README.md).
+Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.
 

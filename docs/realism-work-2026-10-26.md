@@ -883,3 +883,41 @@ Both operating pack bytes and runtime remain unchanged. Evidence is in
 The new continuation automation `complete-train-game-realism-and-network-208`
 runs every ten minutes until all readiness work is complete; delete it then.
 Other completed Train Game automations stay paused.
+
+
+## Capacity-aware candidate nine, 10:48
+
+Both original isolated-profile jobs finished 22 profiles each, all 44 safe and 4,835
+current source hashes verified. No diagnostic job remains. Search proposal 1
+reduced opposing overlap but increased peak fleet from 39 to 46; rejected without any
+pack edit. Revised search adds following-batch/overall load penalties; candidate
+peak 34, 3–13 departures/hour, 68 overnight. These are planning estimates, not full
+traffic performance. All 203 departure-only changes are semantically verified;
+K1 remains at 06:00, all other fields identical, both modes have identical 208 services. Old packs,
+overrides, all measurements/scripts, rejected first proposal and new proposal are archived
+in network-capacity-plan. Current authoring overrides reproduce both packs.
+Four Network guards pass. Runtime 9ec3530 is unchanged; all legacy data remains
+compatible. Do not repeat unchanged legacy menus, audio or gangway checks.
+
+Full source suite wrapper 13240 is NOW RUNNING, capacity-full-tests.log/.err,
+expected 1,003. Freeze runtime/tests until it ends. Do not duplicate. Before
+launch: require full pass, archive final logs, update records, explicitly commit/push
+only coherent capacity pack/override/evidence/docs. Guarded launch-network-v9.ps1
+and verify-launch-v9.py are prepared but NOT RUN. After commitment launch four affected Network jobs
+ONCE, verify eight actual commands, modes, isolated outputs, current hashes and six observers.
+All earlier replays ended; no full-day job is active now. Keep prepared UI Network
+branches/category helper local until accepted real data; preserve unrelated files.
+The new continuation automation complete-train-game-realism-and-network-208 is active,
+with no 10 AM cutoff; stop/delete only when all authorized readiness validation is complete.
+
+
+## Capacity candidate validated, 10:56
+
+The original full-suite wrapper 13240 and child 2296 have finished: 1,003 passed,
+zero failed, empty stderr. Final log, error file, timings and job identity are
+archived in network-capacity-plan with exact raw hashes. The final pack check
+confirms 203 departure-only changes in each mode and every other field unchanged.
+No suite or diagnostic remains active. Commit/push these coherent inputs, then
+launch the guarded v9 script once and verify live command lines and fingerprints.
+No full-day v9 job has been launched at this checkpoint. Legacy choices remain
+certified; no unchanged legacy replay or native checks are needed.

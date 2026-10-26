@@ -1,0 +1,632 @@
+{
+	"groups": {
+		"ALLP_single": {
+			"edges": [
+				"ALLP_PUPR_M0",
+				"ALLP_PUPR_M1",
+				"ALLP_PUPR_M2",
+				"ALLP_PUPR_M3",
+				"ALLP_PUPR_M4",
+				"ALLP_PUPR_M5",
+				"ALLP_DEPOT_RM_ACCESS",
+				"PUPR_AMPA_M0",
+				"PUPR_AMPA_M1",
+				"PUPR_AMPA_M2",
+				"PUPR_AMPA_M3",
+				"PUPR_P1"
+			],
+			"finish": 69131.934,
+			"start": 58383.413
+		},
+		"ERS_single": {
+			"edges": [
+				"ERS_TNU_M0",
+				"ERS_TNU_M1",
+				"ERS_TNU_M2",
+				"ERS_DEPOT_RM_ACCESS",
+				"TNU_KUMM_M0",
+				"TNU_KUMM_M1",
+				"TNU_P1"
+			],
+			"finish": 7711.894,
+			"start": 1736.50451150103
+		},
+		"KUMM_single": {
+			"edges": [
+				"KUMM_AROR_M0",
+				"KUMM_AROR_M1",
+				"KUMM_AROR_M2",
+				"KUMM_AROR_M3",
+				"AROR_EZP_M0",
+				"AROR_EZP_M1",
+				"AROR_EZP_M2",
+				"AROR_EZP_M3",
+				"AROR_EZP_M4",
+				"AROR_P1",
+				"EZP_TUVR_M0",
+				"EZP_TUVR_M1",
+				"EZP_TUVR_M2",
+				"EZP_TUVR_M3",
+				"EZP_P1"
+			],
+			"finish": 23303.556,
+			"start": 9151.894
+		},
+		"KZT_single": {
+			"edges": [
+				"KZT_PYD_M0",
+				"KZT_PYD_M1",
+				"KZT_PYD_M2",
+				"KZT_PYD_M3",
+				"KZT_PYD_M4",
+				"KZT_PYD_M5",
+				"PYD_ERL_M0",
+				"PYD_ERL_M1",
+				"PYD_ERL_M2",
+				"PYD_ERL_M3",
+				"PYD_ERL_M4",
+				"PYD_ERL_M5",
+				"PYD_ERL_M6",
+				"PYD_ERL_M7",
+				"PYD_P1"
+			],
+			"finish": 258186.23,
+			"start": 244874.63
+		},
+		"MAKM_single": {
+			"edges": [
+				"MAKM_KAVR_M0",
+				"MAKM_KAVR_M1",
+				"MAKM_KAVR_M2",
+				"KAVR_TMPY_M0",
+				"KAVR_TMPY_M1",
+				"KAVR_TMPY_M2",
+				"KAVR_TMPY_M3",
+				"KAVR_TMPY_M4",
+				"KAVR_P1",
+				"TMPY_ALLP_M0",
+				"TMPY_ALLP_M1",
+				"TMPY_ALLP_M2",
+				"ALLP_DEPOT_LM_ACCESS",
+				"TMPY_P1"
+			],
+			"finish": 56943.413,
+			"start": 45641.441
+		},
+		"NEM_single": {
+			"edges": [
+				"NEM_BRAM_M0",
+				"NEM_BRAM_M1",
+				"NEM_BRAM_M2",
+				"NEM_BRAM_M3",
+				"NEM_BRAM_M4",
+				"BRAM_NYY_M0",
+				"BRAM_NYY_M1",
+				"BRAM_NYY_M2",
+				"BRAM_P1"
+			],
+			"finish": 222664.721,
+			"start": 214619.189
+		},
+		"NYY_single": {
+			"edges": [
+				"NYY_AMVA_M0",
+				"NYY_AMVA_M1",
+				"AMVA_DAVM_M0",
+				"AMVA_DAVM_M1",
+				"AMVA_DAVM_M2",
+				"AMVA_P1",
+				"DAVM_PASA_M0",
+				"DAVM_PASA_M1",
+				"DAVM_PASA_M2",
+				"DAVM_PASA_M3",
+				"DAVM_PASA_M4",
+				"DAVM_PASA_M5",
+				"DAVM_P1"
+			],
+			"finish": 235129.035,
+			"start": 224104.721
+		},
+		"PASA_single": {
+			"edges": [
+				"PASA_KZTW_M0",
+				"PASA_KZTW_M1",
+				"PASA_KZTW_M2",
+				"PASA_KZTW_M3",
+				"PASA_KZTW_M4",
+				"KZTW_KZT_M0",
+				"KZTW_KZT_M1",
+				"KZTW_P1"
+			],
+			"finish": 243434.63,
+			"start": 236569.035
+		},
+		"SRTL_single": {
+			"edges": [
+				"SRTL_TRVZ_M0",
+				"SRTL_TRVZ_M1",
+				"SRTL_TRVZ_M2",
+				"SRTL_TRVZ_M3",
+				"SRTL_TRVZ_M4",
+				"TRVZ_MAKM_M0",
+				"TRVZ_MAKM_M1",
+				"TRVZ_MAKM_M2",
+				"TRVZ_MAKM_M3",
+				"TRVZ_P1"
+			],
+			"finish": 44201.441,
+			"start": 34738.662
+		},
+		"TUVR_single": {
+			"edges": [
+				"TUVR_VAY_M0",
+				"TUVR_VAY_M1",
+				"TUVR_VAY_M2",
+				"VAY_SRTL_M0",
+				"VAY_SRTL_M1",
+				"VAY_SRTL_M2",
+				"VAY_SRTL_M3",
+				"VAY_SRTL_M4",
+				"VAY_SRTL_M5",
+				"VAY_P1"
+			],
+			"finish": 33298.662,
+			"start": 24743.556
+		},
+		"TVC_single": {
+			"edges": [
+				"TVC_NEM_M0",
+				"TVC_NEM_M1",
+				"TVC_NEM_M2",
+				"TVC_NEM_M3",
+				"TVC_NEM_M4",
+				"TVC_NEM_M5",
+				"TVC_DEPOT_RM_ACCESS"
+			],
+			"finish": 213179.189,
+			"start": 207262.301
+		}
+	},
+	"sections": {
+		"ALLP-PUPR": {
+			"finish": 64780.598,
+			"from_halt": false,
+			"group": "ALLP_single",
+			"start": 57663.413,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"AMPA-TZH": {
+			"finish": 75558.828,
+			"from_halt": false,
+			"group": "",
+			"start": 69851.934,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"AMVA-DAVM": {
+			"finish": 229613.552,
+			"from_halt": true,
+			"group": "NYY_single",
+			"start": 225994.883,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"AMY-KVU": {
+			"finish": 174474.351,
+			"from_halt": true,
+			"group": "",
+			"start": 171707.074,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"AROR-EZP": {
+			"finish": 18940.823,
+			"from_halt": true,
+			"group": "KUMM_single",
+			"start": 13522.538,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"BRAM-NYY": {
+			"finish": 223384.721,
+			"from_halt": true,
+			"group": "NEM_single",
+			"start": 219396.005,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"CHPD-KYJ": {
+			"finish": 101022.939,
+			"from_halt": false,
+			"group": "",
+			"start": 93202.276,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"CRY-PGZ": {
+			"finish": 181626.217,
+			"from_halt": true,
+			"group": "",
+			"start": 177570.705,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"DAVM-PASA": {
+			"finish": 235849.035,
+			"from_halt": true,
+			"group": "NYY_single",
+			"start": 229613.552,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"ERL-VRLR": {
+			"finish": 266361.366,
+			"from_halt": false,
+			"group": "",
+			"start": 258906.23,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"ERS-TNU": {
+			"finish": 5224.583,
+			"from_halt": false,
+			"group": "ERS_single",
+			"start": 744.044,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"EVA-VAK": {
+			"finish": 165322.046,
+			"from_halt": true,
+			"group": "",
+			"start": 161516.486,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"EZP-TUVR": {
+			"finish": 24023.556,
+			"from_halt": true,
+			"group": "KUMM_single",
+			"start": 18940.823,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"HAD-CHPD": {
+			"finish": 93202.276,
+			"from_halt": false,
+			"group": "",
+			"start": 88024.821,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"IRP-MYY": {
+			"finish": 150560.364,
+			"from_halt": true,
+			"group": "",
+			"start": 146440.135,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"KAVR-TMPY": {
+			"finish": 53704.031,
+			"from_halt": true,
+			"group": "MAKM_single",
+			"start": 48270.239,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"KFI-EVA": {
+			"finish": 161516.486,
+			"from_halt": true,
+			"group": "",
+			"start": 158661.173,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"KPY-STKT": {
+			"finish": 122291.956,
+			"from_halt": false,
+			"group": "",
+			"start": 114639.887,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"KUMM-AROR": {
+			"finish": 13522.538,
+			"from_halt": false,
+			"group": "KUMM_single",
+			"start": 8431.894,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"KVTA-HAD": {
+			"finish": 88024.821,
+			"from_halt": true,
+			"group": "",
+			"start": 82187.201,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"KVU-CRY": {
+			"finish": 177570.705,
+			"from_halt": false,
+			"group": "",
+			"start": 174474.351,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"KXP-KZK": {
+			"finish": 192907.505,
+			"from_halt": true,
+			"group": "",
+			"start": 188885.654,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"KYJ-OCR": {
+			"finish": 106968.214,
+			"from_halt": false,
+			"group": "",
+			"start": 101022.939,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"KZK-VELI": {
+			"finish": 196882.442,
+			"from_halt": false,
+			"group": "",
+			"start": 192907.505,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"KZT-PYD": {
+			"finish": 250462.283,
+			"from_halt": false,
+			"group": "KZT_single",
+			"start": 244154.63,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"KZTW-KZT": {
+			"finish": 244154.63,
+			"from_halt": true,
+			"group": "PASA_single",
+			"start": 241079.086,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"MAKM-KAVR": {
+			"finish": 48270.239,
+			"from_halt": false,
+			"group": "MAKM_single",
+			"start": 44921.441,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"MQO-PRND": {
+			"finish": 132599.021,
+			"from_halt": true,
+			"group": "",
+			"start": 126804.697,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"MQU-KXP": {
+			"finish": 188885.654,
+			"from_halt": false,
+			"group": "",
+			"start": 184989.836,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"MYY-PVU": {
+			"finish": 154133.529,
+			"from_halt": true,
+			"group": "",
+			"start": 150560.364,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"NEM-BRAM": {
+			"finish": 219396.005,
+			"from_halt": false,
+			"group": "NEM_single",
+			"start": 213899.189,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"NJT-NCJ": {
+			"finish": 277328.528,
+			"from_halt": false,
+			"group": "",
+			"start": 272371.663,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"NYY-AMVA": {
+			"finish": 225994.883,
+			"from_halt": false,
+			"group": "NYY_single",
+			"start": 223384.721,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"OCR-KPY": {
+			"finish": 114639.887,
+			"from_halt": false,
+			"group": "",
+			"start": 106968.214,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"PASA-KZTW": {
+			"finish": 241079.086,
+			"from_halt": false,
+			"group": "PASA_single",
+			"start": 235849.035,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"PGZ-MQU": {
+			"finish": 184989.836,
+			"from_halt": true,
+			"group": "",
+			"start": 181626.217,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"PRND-QLN": {
+			"finish": 141659.076,
+			"from_halt": false,
+			"group": "",
+			"start": 132599.021,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"PUPR-AMPA": {
+			"finish": 69851.934,
+			"from_halt": true,
+			"group": "ALLP_single",
+			"start": 64780.598,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"PVU-KFI": {
+			"finish": 158661.173,
+			"from_halt": false,
+			"group": "",
+			"start": 154133.529,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"PYD-ERL": {
+			"finish": 258906.23,
+			"from_halt": true,
+			"group": "KZT_single",
+			"start": 250462.283,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"QLN-IRP": {
+			"finish": 146440.135,
+			"from_halt": false,
+			"group": "",
+			"start": 141659.076,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"SRTL-TRVZ": {
+			"finish": 39851.7,
+			"from_halt": false,
+			"group": "SRTL_single",
+			"start": 34018.662,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"STKT-MQO": {
+			"finish": 126804.697,
+			"from_halt": false,
+			"group": "",
+			"start": 122291.956,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"TMPY-ALLP": {
+			"finish": 57663.413,
+			"from_halt": true,
+			"group": "MAKM_single",
+			"start": 53704.031,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"TNU-KUMM": {
+			"finish": 8431.894,
+			"from_halt": true,
+			"group": "ERS_single",
+			"start": 5224.583,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"TRVZ-MAKM": {
+			"finish": 44921.441,
+			"from_halt": true,
+			"group": "SRTL_single",
+			"start": 39851.7,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"TUVR-VAY": {
+			"finish": 27682.924,
+			"from_halt": false,
+			"group": "TUVR_single",
+			"start": 24023.556,
+			"to_halt": true,
+			"tracks": 1.0
+		},
+		"TVC-NEM": {
+			"finish": 213899.189,
+			"from_halt": false,
+			"group": "TVC_single",
+			"start": 206269.843,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"TVCN-TVP": {
+			"finish": 203779.092,
+			"from_halt": false,
+			"group": "",
+			"start": 199076.719,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"TVP-TVC": {
+			"finish": 206269.843,
+			"from_halt": true,
+			"group": "",
+			"start": 203779.092,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"TZH-KVTA": {
+			"finish": 82187.201,
+			"from_halt": true,
+			"group": "",
+			"start": 75558.828,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"VAK-AMY": {
+			"finish": 171707.074,
+			"from_halt": false,
+			"group": "",
+			"start": 165322.046,
+			"to_halt": true,
+			"tracks": 2.0
+		},
+		"VAY-SRTL": {
+			"finish": 34018.662,
+			"from_halt": true,
+			"group": "TUVR_single",
+			"start": 27682.924,
+			"to_halt": false,
+			"tracks": 1.0
+		},
+		"VELI-TVCN": {
+			"finish": 199076.719,
+			"from_halt": true,
+			"group": "",
+			"start": 196882.442,
+			"to_halt": false,
+			"tracks": 2.0
+		},
+		"VRLR-NJT": {
+			"finish": 272371.663,
+			"from_halt": true,
+			"group": "",
+			"start": 266361.366,
+			"to_halt": false,
+			"tracks": 2.0
+		}
+	}
+}
