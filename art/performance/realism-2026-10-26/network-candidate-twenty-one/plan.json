@@ -1,0 +1,84 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "310203721bace6705bc2987551c7a7ad75851e37ab85254b29a857b411357377",
+    "kerala-coast-network-v2.json": "0ab39da251019c6e8516d4ecb787580c087a3d0da78d003e7e403f39a386b615",
+    "kerala-coast-network-departure-overrides.json": "ecab233b45fc883fb49bc453239e76ef6be84b68e024fbed02641a5316ffdc6f"
+  },
+  "changes": [
+    {
+      "service": "S011",
+      "before": "11:45",
+      "after": "12:45",
+      "reason": "Split the northern southbound batch after M019 to leave an intended full-rake crossing interval for L008 and other northbound traffic. Actual v20 delayed KUMM envelopes show M019 clearing near 11:59 then S011/M049/M065/M053/S007 occupying through failure. Include M015/S015/M021 in the moved batch to avoid refilling the intended interval. Receiving-road availability, effects on following queues and safe clearance remain unproven."
+    },
+    {
+      "service": "M049",
+      "before": "11:55",
+      "after": "12:55",
+      "reason": "Split the northern southbound batch after M019 to leave an intended full-rake crossing interval for L008 and other northbound traffic. Actual v20 delayed KUMM envelopes show M019 clearing near 11:59 then S011/M049/M065/M053/S007 occupying through failure. Include M015/S015/M021 in the moved batch to avoid refilling the intended interval. Receiving-road availability, effects on following queues and safe clearance remain unproven."
+    },
+    {
+      "service": "M065",
+      "before": "12:05",
+      "after": "13:05",
+      "reason": "Split the northern southbound batch after M019 to leave an intended full-rake crossing interval for L008 and other northbound traffic. Actual v20 delayed KUMM envelopes show M019 clearing near 11:59 then S011/M049/M065/M053/S007 occupying through failure. Include M015/S015/M021 in the moved batch to avoid refilling the intended interval. Receiving-road availability, effects on following queues and safe clearance remain unproven."
+    },
+    {
+      "service": "M053",
+      "before": "12:15",
+      "after": "13:15",
+      "reason": "Split the northern southbound batch after M019 to leave an intended full-rake crossing interval for L008 and other northbound traffic. Actual v20 delayed KUMM envelopes show M019 clearing near 11:59 then S011/M049/M065/M053/S007 occupying through failure. Include M015/S015/M021 in the moved batch to avoid refilling the intended interval. Receiving-road availability, effects on following queues and safe clearance remain unproven."
+    },
+    {
+      "service": "S007",
+      "before": "12:15",
+      "after": "13:25",
+      "reason": "Split the northern southbound batch after M019 to leave an intended full-rake crossing interval for L008 and other northbound traffic. Actual v20 delayed KUMM envelopes show M019 clearing near 11:59 then S011/M049/M065/M053/S007 occupying through failure. Include M015/S015/M021 in the moved batch to avoid refilling the intended interval. Receiving-road availability, effects on following queues and safe clearance remain unproven."
+    },
+    {
+      "service": "M015",
+      "before": "12:30",
+      "after": "13:35",
+      "reason": "Split the northern southbound batch after M019 to leave an intended full-rake crossing interval for L008 and other northbound traffic. Actual v20 delayed KUMM envelopes show M019 clearing near 11:59 then S011/M049/M065/M053/S007 occupying through failure. Include M015/S015/M021 in the moved batch to avoid refilling the intended interval. Receiving-road availability, effects on following queues and safe clearance remain unproven."
+    },
+    {
+      "service": "S015",
+      "before": "13:15",
+      "after": "13:45",
+      "reason": "Split the northern southbound batch after M019 to leave an intended full-rake crossing interval for L008 and other northbound traffic. Actual v20 delayed KUMM envelopes show M019 clearing near 11:59 then S011/M049/M065/M053/S007 occupying through failure. Include M015/S015/M021 in the moved batch to avoid refilling the intended interval. Receiving-road availability, effects on following queues and safe clearance remain unproven."
+    },
+    {
+      "service": "M021",
+      "before": "13:35",
+      "after": "13:55",
+      "reason": "Split the northern southbound batch after M019 to leave an intended full-rake crossing interval for L008 and other northbound traffic. Actual v20 delayed KUMM envelopes show M019 clearing near 11:59 then S011/M049/M065/M053/S007 occupying through failure. Include M015/S015/M021 in the moved batch to avoid refilling the intended interval. Receiving-road availability, effects on following queues and safe clearance remain unproven."
+    },
+    {
+      "service": "L036",
+      "before": "09:40",
+      "after": "10:20",
+      "reason": "Move the later northbound L036/M068/M096/S050 group behind the existing L024/M048 movements to create an intended NEM/NYY receiving interval for K1. Actual v20 baseline K1 waits at NEM from 11:06 while these successive opposing movements fill compatible roads. The delayed K1 arrives later; this change may worsen its wait or other traffic. Actual baseline and disturbed outcomes remain required."
+    },
+    {
+      "service": "M068",
+      "before": "10:00",
+      "after": "10:30",
+      "reason": "Move the later northbound L036/M068/M096/S050 group behind the existing L024/M048 movements to create an intended NEM/NYY receiving interval for K1. Actual v20 baseline K1 waits at NEM from 11:06 while these successive opposing movements fill compatible roads. The delayed K1 arrives later; this change may worsen its wait or other traffic. Actual baseline and disturbed outcomes remain required."
+    },
+    {
+      "service": "M096",
+      "before": "10:10",
+      "after": "10:40",
+      "reason": "Move the later northbound L036/M068/M096/S050 group behind the existing L024/M048 movements to create an intended NEM/NYY receiving interval for K1. Actual v20 baseline K1 waits at NEM from 11:06 while these successive opposing movements fill compatible roads. The delayed K1 arrives later; this change may worsen its wait or other traffic. Actual baseline and disturbed outcomes remain required."
+    },
+    {
+      "service": "S050",
+      "before": "10:25",
+      "after": "10:50",
+      "reason": "Move the later northbound L036/M068/M096/S050 group behind the existing L024/M048 movements to create an intended NEM/NYY receiving interval for K1. Actual v20 baseline K1 waits at NEM from 11:06 while these successive opposing movements fill compatible roads. The delayed K1 arrives later; this change may worsen its wait or other traffic. Actual baseline and disturbed outcomes remain required."
+    }
+  ],
+  "evidence_commit": "91fdba59; delayed 89ddee21",
+  "scope": "Network208 V2 only; twelve coordinated departure timings, no Classic replay or readiness requirement.",
+  "status": "Departure-only hypothesis; no acceptance"
+}

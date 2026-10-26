@@ -2219,3 +2219,22 @@ The delayed L008 failure is preserved in89ddee21. Both results extend beyond
 candidate19's failure points, but neither provides whole-day acceptance or
 recovery. No installation or complete-population comparison. Next coordinate
 the actual northern and southern opposing queues; preserveK1 and every gate.
+
+## Candidate21 departure-group hypothesis
+
+Candidate21 changes twelve departures from20 after both original V2 failures
+were preserved (91fdba59 baseline,89ddee21 delayed). Northern S011/M049/M065/
+M053/S007/M015/S015/M021 become12:45/12:55/13:05/13:15/13:25/13:35/13:45/13:55,
+aiming for an L008 crossing interval afterM019. Southern L036/M068/M096/S050
+become10:20/10:30/10:40/10:50, aiming for a K1 receiving interval afterL024/M048.
+Actual20 queues and sampled full-rake section envelopes support these timing
+hypotheses, not guaranteed clearance, assigned roads or capacity proof. Later
+queues and the disturbedK1 wait may worsen. All actual gates remain required.
+Restoring12departures recovers both entire predecessor objects; common service
+records,all non-departure fields andK106:00 remain unchanged.208services,
+168boundary journeys,71overnight origins,3–12starts/hour.205overrides reproduce
+both packs normally; exact --check and four headless authoring guards pass,
+empty stderr. Unchanged1003-test runtime suite was not rerun. Eleven rawproofs
+are in [candidate21 evidence](../art/performance/realism-2026-10-26/network-candidate-twenty-one/README.md).
+Network208V2 remains unaccepted/uninstalled. Next launch only two V2 runs
+once in isolatedv21, then freeze inputs through their original outcomes.

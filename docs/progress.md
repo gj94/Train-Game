@@ -2,6 +2,23 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Candidate21 changes twelve departures from20 after both original V2 failures
+were preserved (91fdba59 baseline,89ddee21 delayed). Northern S011/M049/M065/
+M053/S007/M015/S015/M021 become12:45/12:55/13:05/13:15/13:25/13:35/13:45/13:55,
+aiming for an L008 crossing interval afterM019. Southern L036/M068/M096/S050
+become10:20/10:30/10:40/10:50, aiming for a K1 receiving interval afterL024/M048.
+Actual20 queues and sampled full-rake section envelopes support these timing
+hypotheses, not guaranteed clearance, assigned roads or capacity proof. Later
+queues and the disturbedK1 wait may worsen. All actual gates remain required.
+Restoring12departures recovers both entire predecessor objects; common service
+records,all non-departure fields andK106:00 remain unchanged.208services,
+168boundary journeys,71overnight origins,3–12starts/hour.205overrides reproduce
+both packs normally; exact --check and four headless authoring guards pass,
+empty stderr. Unchanged1003-test runtime suite was not rerun. Eleven rawproofs
+are in [candidate21 evidence](../art/performance/realism-2026-10-26/network-candidate-twenty-one/README.md).
+Network208V2 remains unaccepted/uninstalled. Next launch only two V2 runs
+once in isolatedv21, then freeze inputs through their original outcomes.
+
 Both original candidate20 V2 runs are now finished and rejected. The baseline
 20044/380 failed K1 at NEM at11:52:24,65/208 complete,2,702s in both wait
 populations,zero safety,empty errors and no manual hold. All-location
