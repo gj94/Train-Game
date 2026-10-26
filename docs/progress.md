@@ -2,6 +2,22 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Both original v17 Classic runs ended naturally and failed M063 at ALLP07:04:42,
+28/208complete,2,702s extra wait,zero safety,empty stderr,before the plannedhold.
+All four v17 runs are now rejected.24 exact raw files,4,836 current-at-run source
+hashes per report,two byte-immutable inspections and a scoped baseline/delayed
+comparison are preserved in [Classic failure evidence](../art/performance/realism-2026-10-26/network-candidate-seventeen/failed-classic-runs/README.md).
+Complete service records,both wait lists and traffic bytes match within this
+Classic failed prefix only. All-location96/127,116/127,118/127,126/127 and
+station65/87,82/87,83/87,86/87 both failunder30/45 gates. M063 arrivesALLP06:17:38.50,
+withoutdeparture:2,516s opposingL006 occupation+186s crossing. L006 waits2,436s
+beforeALLP preservingMAKM crossing capacity forM009/S029 andALLP forL013/M063.
+ActualALLPclaimsL013P1/M063P3/incomingL006P1P2P3. All11inspectedtrains stopped,
+K1exchangespassengers. OneNYYfutureplan hasL021P1received,L022P2received,
+L033vacater,escapePASA_P2notyetescaped. No permanent-deadlock/runtime-defect,
+recovery orwhole-dayequivalence claim. Inputs remainunchanged pending departure
+planning; Network208 remains unaccepted/uninstalled. Originaloutputs retained.
+
 Both original v17 V2 runs ended naturally and failed M045 at PASA05:06:26,
 16/208complete,2,702s extra wait,zero safety,empty stderr,before the planned
 07:30 hold. Their entire service records,both wait lists and traffic bytes
