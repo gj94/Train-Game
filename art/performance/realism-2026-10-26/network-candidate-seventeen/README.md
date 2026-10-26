@@ -35,3 +35,16 @@ runs must actually reach and recover from the600s K1hold07:30–07:40. Passing
 baselines can be finalized independently; category comparisons and actual menu,
 midnight and save-load checks remain required. Network208 is not accepted or
 installed. Legacy certifications, runtime9ec3530, R47 and unrelated files remain.
+
+## Verified v17 launch
+
+Candidate5ffdb3da is committed/pushed. Four v17 replays launched once at19:08:12:
+Classic baseline16000/12508, V2baseline15064/2092, Classicdelayed16736/12232,
+V2delayed10492/17808 (wrapper/child). All eight actual commands/options, distinct
+single outputs, initial baseline modes,4,837 distinct source hashes and six
+observer hashes are verified. Verification waited for initial catalogues;
+no jobs restarted. Five exact launch files and hashes are archived. At19:08
+baselines are starting,delayed00:20,empty stderr,no final audits. Partial clocks
+are not acceptance. Runtime/routes/packs/observers are frozen. Baselines save
+real snapshots; delayed runs apply600s K1hold07:30–07:40 and cannot be installed.
+No suite,native,search or diagnostic job remains.

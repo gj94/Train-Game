@@ -11,7 +11,18 @@ verified. There are208 services,168 boundary journeys,71 overnight origins,
 3–13 starts/hour. Exact normal reproduction and four headless authoring tests
 pass with empty stderr. The unchanged1,003-test source suite was not rerun.
 Ten exact proof files are preserved in [candidate-seventeen evidence](../art/performance/realism-2026-10-26/network-candidate-seventeen/README.md).
-Fresh isolated replays are required; Network remains unaccepted/uninstalled.
+Network remains unaccepted/uninstalled.
+
+Candidate5ffdb3da is committed/pushed. Four v17 replays launched once at19:08:12:
+Classic baseline16000/12508, V2baseline15064/2092, Classicdelayed16736/12232,
+V2delayed10492/17808 (wrapper/child). All eight actual commands/options, distinct
+single outputs, initial baseline modes,4,837 distinct source hashes and six
+observer hashes are verified. Verification waited for initial catalogues;
+no jobs restarted. Five exact launch files and hashes are archived. At19:08
+baselines are starting,delayed00:20,empty stderr,no final audits. Partial clocks
+are not acceptance. Runtime/routes/packs/observers are frozen. Baselines save
+real snapshots; delayed runs apply600s K1hold07:30–07:40 and cannot be installed.
+No suite,native,search or diagnostic job remains.
 
 All four original v16 runs have ended naturally and are rejected: M045 at
 NYY 04:45:52, 13/208 complete, 2,702 seconds extra waiting, zero safety events

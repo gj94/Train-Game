@@ -1,0 +1,68 @@
+[
+  {
+    "day": "classic-network",
+    "pid": 16000,
+    "started": "2026-10-26T19:08:12.8220703+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v17/classic-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "5ffdb3dab0c3e90834f7a0ed426dfd0e7a9884a4",
+    "status": "running",
+    "reason": "Candidate seventeen changes only M10003:05->02:00 and M07803:20->02:10 based on completed v16 NYY/PASA opposing and receiving queues; actual full-day gates remain required",
+    "pack_sha256": "d4e2a16bc09a6e39357845f04cfdf1a4401845b40b1d64cd8777305d0f815d25",
+    "child_pid": 12508
+  },
+  {
+    "day": "predictive-network",
+    "pid": 15064,
+    "started": "2026-10-26T19:08:12.8721690+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v17/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "5ffdb3dab0c3e90834f7a0ed426dfd0e7a9884a4",
+    "status": "running",
+    "reason": "Candidate seventeen changes only M10003:05->02:00 and M07803:20->02:10 based on completed v16 NYY/PASA opposing and receiving queues; actual full-day gates remain required",
+    "pack_sha256": "3acff85b58b4471600faf129a7a13a8dde27ae9a93f0369a7727ff454597d3d6",
+    "child_pid": 2092
+  },
+  {
+    "day": "classic-network-delayed",
+    "pid": 16736,
+    "started": "2026-10-26T19:08:12.8998294+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v17/classic-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "5ffdb3dab0c3e90834f7a0ed426dfd0e7a9884a4",
+    "status": "running",
+    "reason": "Candidate seventeen changes only M10003:05->02:00 and M07803:20->02:10 based on completed v16 NYY/PASA opposing and receiving queues; actual full-day gates remain required",
+    "pack_sha256": "d4e2a16bc09a6e39357845f04cfdf1a4401845b40b1d64cd8777305d0f815d25",
+    "child_pid": 12232
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 10492,
+    "started": "2026-10-26T19:08:12.9321773+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v17/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "5ffdb3dab0c3e90834f7a0ed426dfd0e7a9884a4",
+    "status": "running",
+    "reason": "Candidate seventeen changes only M10003:05->02:00 and M07803:20->02:10 based on completed v16 NYY/PASA opposing and receiving queues; actual full-day gates remain required",
+    "pack_sha256": "3acff85b58b4471600faf129a7a13a8dde27ae9a93f0369a7727ff454597d3d6",
+    "child_pid": 17808
+  }
+]
