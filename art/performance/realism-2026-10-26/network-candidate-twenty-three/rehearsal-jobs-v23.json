@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 8580,
+    "started": "2026-10-27T01:50:35.8812222+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v23/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "87de4c8a3c8257eb1dedf3443713606e437b30f0",
+    "status": "running",
+    "reason": "User limits Network208 to V2. Candidate twenty-three changes only thirteen southern group departures from candidate twenty-two, moving the first northbound wave45 minutes later and separating the following fast group using both actual V2 queues and sampled full-rake envelopes. Actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "a30ab5b88ead7e7019e0c8c22fc6d499f4dceee329c71df7c5bb60cf6b54e6a7",
+    "child_pid": 19068
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 832,
+    "started": "2026-10-27T01:50:35.9430981+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v23/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "87de4c8a3c8257eb1dedf3443713606e437b30f0",
+    "status": "running",
+    "reason": "User limits Network208 to V2. Candidate twenty-three changes only thirteen southern group departures from candidate twenty-two, moving the first northbound wave45 minutes later and separating the following fast group using both actual V2 queues and sampled full-rake envelopes. Actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "a30ab5b88ead7e7019e0c8c22fc6d499f4dceee329c71df7c5bb60cf6b54e6a7",
+    "child_pid": 10968
+  }
+]

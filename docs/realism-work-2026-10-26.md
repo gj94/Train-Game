@@ -2508,3 +2508,16 @@ draft failed local14-start-hour guard;exactdraft retained in candidate-twenty-th
 Following group revised before final passing checks. Network208V2 remains
 unaccepted/uninstalled. Commit/push then one V2baseline and one600s07:30
 K1delayed run inisolatedv23. NoClassic208 work;pendinghelpers preserved.
+
+## 27 October 01:50 — verified original V2 v23 launch
+
+Candidate87de4c8a committed/pushed; exactly two original V2 v23 replays
+launched once at2026-10-27T01:50:35.8812222+08:00: baseline8580/19068,
+delayed832/10968 (wrapper/child). Four actualcommands/options,distinctoutputs,
+initialpredictivebaselinemode,4836sourcehashes and sixobserverhashes verified.
+Five exactlaunchfiles/hashmanifest preserved. At01:50:51 baseline starting,
+delayed00:10;identitiesmatch,emptyerrors,nofinalaudits. No restart,duplicate
+orClassic208 job. Baselineuses snapshots;delayed600smanualK1hold07:30.
+Runtime/routes/packs/sixobservers frozen. Partialclocksnotacceptance;
+Network208V2unaccepted/uninstalled. No suite/native/search/diagnostic job
+remains. PendingUI/categoryhelpers and unrelatedfiles preserved.

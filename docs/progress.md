@@ -2,6 +2,17 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Candidate87de4c8a committed/pushed; exactly two original V2 v23 replays
+launched once at2026-10-27T01:50:35.8812222+08:00: baseline8580/19068,
+delayed832/10968 (wrapper/child). Four actualcommands/options,distinctoutputs,
+initialpredictivebaselinemode,4836sourcehashes and sixobserverhashes verified.
+Five exactlaunchfiles/hashmanifest preserved. At01:50:51 baseline starting,
+delayed00:10;identitiesmatch,emptyerrors,nofinalaudits. No restart,duplicate
+orClassic208 job. Baselineuses snapshots;delayed600smanualK1hold07:30.
+Runtime/routes/packs/sixobservers frozen. Partialclocksnotacceptance;
+Network208V2unaccepted/uninstalled. No suite/native/search/diagnostic job
+remains. PendingUI/categoryhelpers and unrelatedfiles preserved.
+
 27 October — candidate23 authoring verified
 
 Candidate23 changes only13 southern departures from22: M06811:35,M09611:45,
