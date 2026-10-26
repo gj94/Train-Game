@@ -1475,3 +1475,31 @@ following the new pack;never relabel. Existing1003source/fourauthorchecks stand.
 Network unaccepted/uninstalled,R47/legacycertifications and pendingUI/category/
 unrelated files preserved. Need genuine complete-day gates,independentinstall,
 actual category/menu/midnight/save-load before readiness.
+
+
+## Candidate thirteen: disturbed failures preserved, baselines still pending
+
+Both original delayed jobs have finished naturally: Classic1180/18720 fails
+L024 at KZT09:19:08; V218248/10524 fails V001 at MAKM-S3 09:17:48. Each has
+43/208 completions,2,702 seconds extra waiting,zero safety and empty stderr.
+Both traverse the actual07:30–07:40 manual K1 intervention; no recovery certificate.
+Minute K1 extent samples show Classic stationary and V2 braking13.56m further
+by07:31 before remaining stationary. These are sampled positions,not invented
+controller-state snapshots. Both station and all-location cumulative gates fail;
+exact fractions are in network-candidate-thirteen/failed-disturbances/README.md.
+
+L024 reaches KZT08:32:55.40 with no departure. Its wait includes1,562s opposing
+L035/M075/M047/L023,1,102s receiving/downstream crossing protection and38s
+route conflicts. L035 still accumulates2,696s at PASA, L0232,686s at NYY.
+V001's MAKM wait includes1,164s opposing M064/S030 and1,538s ALLP receiving
+availability/reservations. At inspection L007 waits atALLP,M008 arrives,M017
+moves; K1/L015/M013/M064/S030 also move. Both read-only snapshots remain
+byte-immutable, no future plans. No permanent-deadlock/runtime-defect conclusion.
+
+Twenty-two exact raw files and4,837 distinct current source hashes verified,
+including both packs,lossless audits/traffic/snapshots,summaries and inspections.
+Original baseline12028/21668 and5080/14780 remain live; at16:12 Classic07:50
+(32/208),V207:40(31/208),emptyerrs,noaudits. Wait for these outcomes before
+attribution or departure-only repair. No frozen input/runtime/test edits,duplicates,
+installation or full-suite repetition;1003 source/four authoring checks stand.
+R47,legacy certifications,pending UI/category helpers and unrelated files preserved.

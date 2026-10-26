@@ -134,11 +134,16 @@ eight process identities, single isolated outputs, modes,4,837 current source
 hashes and six observers verify. Initial catalogue timing required one verifier
 retry, without restarting jobs. All inputs are frozen while the original runs
 continue. Both baselines save snapshots; delayed audits hold K1 at07:30 for600s.
-At16:02 all four original identities match, with empty stderr and no final
-audits. Both baselines are at06:20 (23/208), both delayed runs at08:10 (33/208).
-The delayed clocks have passed the scheduled intervention window; completed
-audits must still verify the intervention and recovery. Inputs remain frozen, with no
-duplicate jobs or repeated audits.
+Both delayed runs have now finished rejected after the actual manual hold:
+Classic L024 at KZT09:19:08 and V2 V001 at MAKM09:17:48, each43/208 complete,
+2,702 seconds extra waiting, zero safety and empty stderr. Both cumulative
+wait distributions fail. [Exact disturbed evidence](../art/performance/realism-2026-10-26/network-candidate-thirteen/failed-disturbances/README.md)
+preserves22 raw files,4,837 verified source hashes and immutable inspections.
+No future-clearance plans remain in either snapshot; several trains move.
+At16:12 the original baselines still match their identities, Classic07:50
+(32/208), V207:40 (31/208), empty stderr and no final audits. Await their results
+before selecting departure-only repairs or attributing effects to the hold.
+Inputs remain frozen, with no duplicate jobs or repeated audits.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network

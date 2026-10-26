@@ -39,3 +39,9 @@ separate single output arguments, baseline modes,4,837 distinct current source
 hashes and six observer hashes are verified. An initial verifier attempt occurred
 before catalogue creation; its retry passed without restarting jobs. Five exact
 launch files are archived with hashes. Inputs stay frozen throughout the replays.
+
+Both delayed runs have now finished rejected after the manual intervention:
+Classic L024 at KZT09:19:08 and V2 V001 at MAKM09:17:48, each43/208 complete,
+2,702 seconds extra waiting, zero safety and empty stderr. Exact evidence and
+immutable inspections are in [failed disturbances](failed-disturbances/README.md).
+Both original baselines remain pending; no new departure repair is selected yet.
