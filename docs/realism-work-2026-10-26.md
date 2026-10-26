@@ -2169,3 +2169,13 @@ neither final audit exists. These are partial clocks, not acceptance or
 recovery results. No jobs were restarted or added; runtime, routes, packs
 and all six observers remain frozen. Network208V2 remains unaccepted and
 uninstalled. Await both original outcomes before departure-only replanning.
+
+## Candidate20 checkpoint — 22:46
+
+At 22:46:04, both original candidate20 V2 jobs remain live with verified
+process identities: baseline 20044/380 reaches 09:30 (48/208 complete), and
+delayed 4108/21748 reaches 12:10 (66/208). Both error logs are empty and
+neither final audit exists. These are partial clocks, not acceptance or
+recovery results. No jobs were restarted or added; runtime, routes, packs
+and all six observers remain frozen. Network208V2 remains unaccepted and
+uninstalled. Await both original outcomes before departure-only replanning.
