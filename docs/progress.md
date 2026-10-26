@@ -2,15 +2,15 @@
 
 ## 26 October 2026 — user resumed work until ready
 
-At 21:14:58 both original v19 V2 wrapper/child identities still match,
-stderr is empty and no final audits exist. The baseline reaches 04:10
-(6/208 complete); the delayed run reaches 05:30 (17/208), before its planned
-07:30 intervention. These are partial clocks, not acceptance or full-day
-improvement evidence. Runtime, routes, packs and six observers remain frozen.
-No duplicate or Classic Network jobs, restarts, repeated unchanged tests,
-partial acceptance or installation. Await both original outcomes before any
-departure changes. Network208V2 remains unaccepted and uninstalled; legacy
-readiness and pending NetworkV2 UI/category work remain preserved.
+At 21:21:07 both original v19 V2 wrapper/child identities still match,
+stderr is empty and no final audits exist. The baseline reaches 05:10
+(16/208 complete); the delayed run reaches 06:30 (25/208), before its planned
+07:30 intervention. Partial clocks do not certify the complete day. Runtime,
+routes, packs and six observers remain frozen. No duplicate or Classic
+Network jobs, restarts, repeated unchanged tests, acceptance or installation.
+Await both original outcomes before departure changes. Network208V2 remains
+unaccepted and uninstalled; legacy readiness and pending NetworkV2 UI/category
+work remain preserved.
 
 Candidate9192c022 is committed/pushed. Exactly two V2 replays launched once
 at20:56:38:baseline9132/15716 anddelayed7124/15688 (wrapper/child). All four
