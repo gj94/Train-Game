@@ -2,6 +2,15 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+At 23:17:23, both original candidate21 V2 jobs remain live with matching
+process identities: baseline 26756/20168 reaches 02:10 (1/208 complete), and
+delayed 20296/14748 reaches 03:10 (2/208). Both error logs are empty and
+neither final audit exists. These are partial clocks, not acceptance or
+recovery results. No jobs were restarted or added; runtime, routes, packs
+and all six observers remain frozen. Network208V2 remains unaccepted and
+uninstalled. Await both original outcomes before departure-only replanning.
+No gameplay change or new playtest is available at this checkpoint.
+
 Candidate74637eef is committed/pushed. Exactly two original V2 replays
 launched once at23:09:51 in isolatedv21: baseline26756/20168 and delayed
 20296/14748 (wrapper/child). All four actual commands/options, one distinct

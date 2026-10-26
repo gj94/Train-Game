@@ -2253,3 +2253,14 @@ snapshots; delayed uses600s manual K1hold at27000/07:30 and must never be
 installed. Freeze runtime/routes/packs/six observers through these original
 outcomes. No suite/native/search/diagnostic/Git job remains. Network208V2 is
 unaccepted/uninstalled; all completed legacy readiness is preserved.
+
+## Candidate21 checkpoint — 23:17
+
+At 23:17:23, both original candidate21 V2 jobs remain live with matching
+process identities: baseline 26756/20168 reaches 02:10 (1/208 complete), and
+delayed 20296/14748 reaches 03:10 (2/208). Both error logs are empty and
+neither final audit exists. These are partial clocks, not acceptance or
+recovery results. No jobs were restarted or added; runtime, routes, packs
+and all six observers remain frozen. Network208V2 remains unaccepted and
+uninstalled. Await both original outcomes before departure-only replanning.
+No gameplay change or new playtest is available at this checkpoint.
