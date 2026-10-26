@@ -2408,3 +2408,13 @@ Both error logs are empty and no final audits exist. Partial clocks/waits
 are not acceptance. Frozen inputs, original jobs, pending helpers and unrelated
 files are preserved. No duplicate/restart/Classic208 job, unchanged test rerun
 or installation. Await original outcomes before any departure replanning.
+
+## 27 October 01:02 — original v22 jobs continue
+
+27 October 01:02:01 checkpoint: both original v22 V2 identities match.
+Baseline2360/13668 is at06:30 (25/208 complete); delayed7952/19620 is at08:20
+(34/208), past its configured hold window; final disturbance/recovery proof
+remains pending. Both error logs are empty and no final audits exist. Partial
+clocks/waits are not acceptance. Frozen inputs, original jobs, pending helpers
+and unrelated files are preserved; no duplicate/restart/Classic208 job,
+unchanged tests or installation. Await original outcomes before replanning.
