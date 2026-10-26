@@ -134,6 +134,9 @@ eight process identities, single isolated outputs, modes,4,837 current source
 hashes and six observers verify. Initial catalogue timing required one verifier
 retry, without restarting jobs. All inputs are frozen while the original runs
 continue. Both baselines save snapshots; delayed audits hold K1 at07:30 for600s.
+At15:32 all four original identities match, with empty stderr and no final
+audits. Both baselines are at01:00, both delayed runs at01:50; no intervention
+has occurred yet. No inputs or observers changed and no jobs were duplicated.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
