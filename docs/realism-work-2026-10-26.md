@@ -2179,3 +2179,24 @@ neither final audit exists. These are partial clocks, not acceptance or
 recovery results. No jobs were restarted or added; runtime, routes, packs
 and all six observers remain frozen. Network208V2 remains unaccepted and
 uninstalled. Await both original outcomes before departure-only replanning.
+
+## Candidate20 original V2 delayed failure
+
+The original candidate20 V2 delayed run 4108/21748 finished naturally and
+failed L008 at Turavur, 12:47:48, with 69/208 complete and 2,702 seconds of
+extra wait in both populations. Zero safety events; empty run/inspection errors.
+All-location fractions 229/308, 277/308, 296/308, 307/308 fail under20/30/45;
+station-only 113/166, 146/166, 159/166, 165/166 fail all four gates.
+277/308 is below90%; do not round up. Every fraction covers only this failed
+prefix. L008's wait is 2,626s opposing S011/M049/M065/M053/S007, 52s receiving,
+12s blocks and12s conflicts. Immutable inspection shows connected TUVR/SRTL/
+MAKM receiving queues, KUMM claim M015 P1, M011/M017 moving and no future plans.
+No permanent-deadlock or runtime-defect conclusion. Thirteen exact raw files,
+4,836 verified current-at-run source hashes, lossless audit/traffic/failure,
+exact pack and immutable inspection are preserved in
+[candidate20 delayed evidence](../art/performance/realism-2026-10-26/network-candidate-twenty/failed-predictive-delayed/README.md).
+K1 minute samples brake27.4545764399m by07:31 then retain extents through07:40;
+samples are not exact controller frames or recovery proof. No installation,
+acceptance or complete-population comparison. The original baseline20044/380
+remains running (11:30,63/208 at22:56:02), empty errors and no final audit.
+Keep runtime/routes/packs/six observers frozen until its original outcome.
