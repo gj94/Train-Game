@@ -100,7 +100,11 @@ Whole-pack non-departure equality, identical modes, exact normal author
 reproduction and all four headless authoring tests pass with empty stderr.
 Counts remain208 services,70 overnight,3–12/hour; K1 remains06:00.
 [Candidate-twelve proof](../art/performance/realism-2026-10-26/network-candidate-twelve/README.md).
-This candidate needs new genuine baseline and disturbed replays before acceptance.
+Candidatec8856a27 is pushed. Four v12 jobs launched once at14:42; actual eight
+commands, distinct outputs, both baseline modes,4,837 current source fingerprints
+and six observer hashes verify. All stderr is empty and no final audits exist.
+Runtime/routes/packs/observers are frozen until these runs finish. The candidate
+still needs genuine whole-day baseline and disturbed acceptance.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.

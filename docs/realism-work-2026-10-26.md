@@ -1342,3 +1342,23 @@ full suite; existing1003source result remains explicit. Nine raw evidence files
 archived. Candidate remains unaccepted. Guarded v12 launcher/verifier prepared
 but NOT RUN; commit/push tested data first, then launch four isolated jobs ONCE.
 All earlier jobs/diagnostics are finished. Preserve pendingUI/category/unrelated.
+
+## Candidate twelve committed; four v12 jobs launched once, 14:42
+
+Candidatec8856a27 is committed/pushed after9staged evidence hashes and both
+exact pack hashes verify. launch-network-v12.ps1 ran ONCE14:42:16. Original
+wrapper/child pairs: Classic21244/3532,V25504/5044,Classicdelay4720/13732,
+V2delay2636/8496. All8actual commands/options/single distinct outputs, both
+baseline modes,4837current source hashes and six observers verify. At14:42
+baselines are starting, disturbed clocks00:20/00:30,stderr empty,no finalaudit.
+No acceptance from prefixes. Five exact launchfiles/hashmanifest archived.
+Inspector now follows existingv12. Do not restart,duplicate or rerunlauncher.
+
+Freeze runtime/routes/packs/sixobservers while jobs run. No suite/native/search/
+diagnostic/Git operation remains aftercheckpoint. Allv11 failures preserved:
+disturbed6be9de56,V2baselinee9bdccd2,Classicbaselinec65925e8. Old fingerprints
+remain historical after the new authored pack change; never relabel. Legacy
+certifications unchanged,Network unavailable,R47 preserved. PendingUI/category
+and unrelated files remain outside coherent committed work. Need original full
+acceptance gates, independent baseline installations and actualcategory/native/
+midnight/save-load checks before declaring ready.

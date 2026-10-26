@@ -1,0 +1,75 @@
+{
+  "checked_at": "2026-10-26T14:42:45.067071+08:00",
+  "phase": "certified v7 legacy and affected-only v12 Network replays",
+  "latest_pushed": "c8856a27",
+  "source_tests": {
+    "passed": 1003,
+    "failed": 0
+  },
+  "network_authoring_tests": {
+    "passed": 4,
+    "failed": 0
+  },
+  "full_day_jobs": [
+    {
+      "day": "classic-network",
+      "generation": "v12",
+      "wrapper": 21244,
+      "processes": [
+        21244,
+        3532
+      ],
+      "identity_matches": true,
+      "last_clock": null,
+      "stderr_bytes": 0,
+      "final_audit": false
+    },
+    {
+      "day": "predictive-network",
+      "generation": "v12",
+      "wrapper": 5504,
+      "processes": [
+        5504,
+        5044
+      ],
+      "identity_matches": true,
+      "last_clock": null,
+      "stderr_bytes": 0,
+      "final_audit": false
+    },
+    {
+      "day": "classic-network-delayed",
+      "generation": "v12",
+      "wrapper": 4720,
+      "processes": [
+        4720,
+        13732
+      ],
+      "identity_matches": true,
+      "last_clock": "00:20:00 complete=0/208 peak=2 max_wait=0.1m wall=18.7s",
+      "stderr_bytes": 0,
+      "final_audit": false
+    },
+    {
+      "day": "predictive-network-delayed",
+      "generation": "v12",
+      "wrapper": 2636,
+      "processes": [
+        2636,
+        8496
+      ],
+      "identity_matches": true,
+      "last_clock": "00:30:00 complete=0/208 peak=3 max_wait=0.1m wall=25.4s",
+      "stderr_bytes": 0,
+      "final_audit": false
+    }
+  ],
+  "prepared_data_installed": {
+    "standard": true,
+    "standard_v2": true,
+    "intensive": true,
+    "intensive_v2": true,
+    "network": false,
+    "network_v2": false
+  }
+}
