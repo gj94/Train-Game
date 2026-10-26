@@ -1749,3 +1749,13 @@ All stderr files are empty and no final audit exists. These are partial runs,
 not acceptance. Runtime, routes, packs and the six observers remain frozen;
 no jobs were duplicated or restarted and no unchanged tests were repeated.
 Network 208 remains unaccepted and uninstalled.
+
+## 18:51 v16 checkpoint
+
+At the 18:51 checkpoint, all four original v16 wrapper/child identities still
+match. Both baselines reach 03:20 (2/208 complete); both delayed runs reach
+04:30 (9/208), before the planned 07:30 intervention. All stderr files are
+empty and no final audit exists. Partial runs do not establish acceptance.
+Runtime, routes, packs and the six observers remain frozen; no jobs were
+duplicated or restarted and no unchanged checks were repeated. Network 208
+remains unaccepted and uninstalled.

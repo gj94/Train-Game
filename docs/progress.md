@@ -2,13 +2,13 @@
 
 ## 26 October 2026 — user resumed work until ready
 
-At the 18:44 checkpoint, all four original v16 wrapper/child identities still
-match. Classic/V2 baselines reach 02:00/02:10 (1/208 complete each); delayed
-runs reach 03:00/03:10 (2/208 each), before the planned 07:30 intervention.
-All stderr files are empty and no final audit exists. These are partial runs,
-not acceptance. Runtime, routes, packs and the six observers remain frozen;
-no jobs were duplicated or restarted and no unchanged tests were repeated.
-Network 208 remains unaccepted and uninstalled.
+At the 18:51 checkpoint, all four original v16 wrapper/child identities still
+match. Both baselines reach 03:20 (2/208 complete); both delayed runs reach
+04:30 (9/208), before the planned 07:30 intervention. All stderr files are
+empty and no final audit exists. Partial runs do not establish acceptance.
+Runtime, routes, packs and the six observers remain frozen; no jobs were
+duplicated or restarted and no unchanged checks were repeated. Network 208
+remains unaccepted and uninstalled.
 
 Candidate sixteen changes only M045 00:45→00:00 and S030 05:05→04:20 from v15.
 The earlier departures aim to precede the observed NEM/NYY receiving cluster
