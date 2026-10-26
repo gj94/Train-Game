@@ -35,9 +35,10 @@ still move. Successive overtake holds and opposing queues around Alappuzha and
 Ambalappuzha invalidate the model's hoped-for improvement.
 [Failed candidate evidence](../art/performance/realism-2026-10-26/network-candidate-nine/README.md).
 
-No full-day replay remains active. A stricter departure-only constraint search
-is being evaluated on the same 44 physical profiles; it is a planning diagnostic,
-not acceptance. No new pack or runtime edit has been made. All legacy choices
+No full-day replay remains active. The first stricter search ended UNKNOWN after three minutes,
+which does not prove infeasibility. A broader long-distance search and a separate
+approach-spacing proposal are running on the same 44 physical profiles. These
+are planning diagnostics, not acceptance. No new pack or runtime edit has been made. All legacy choices
 remain certified. New traffic must still pass the original complete-day gates.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network

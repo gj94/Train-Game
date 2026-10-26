@@ -998,3 +998,40 @@ feasibility would not certify real traffic. UNKNOWN would not prove infeasibilit
 Do not edit the running script or duplicate this diagnostic. No runtime/tests,
 prepared observers or timetable packs changed. No source suite/native/Git/full-day
 job remains beyond this diagnostic and the existing editor/bridge/server.
+
+
+## Planning continuation, 11:46
+
+Failed v9 evidence is committed/pushed f977bbf2. Both read-only inspections have
+finished. Additional exact actual-versus-solo call timing shows M003 at ALLP
+arrives 02:04:41 in both, then actually leaves 02:56:19. M041 incurs an earlier
+Ernakulam hold while two superfast trains follow about twenty minutes apart.
+This timing divergence matters before any opposing-flow model can be trusted.
+The selected-call comparison is diagnostic, not a full accuracy certificate.
+
+The first strict solver process 22460 finished UNKNOWN after 180.247 seconds,
+with empty stderr and no departure proposal. Preserve its script, final logs,
+result and source pack hash in network-planning-revision; UNKNOWN does not prove
+208 services infeasible. OR-Tools dependency versions/download hashes are recorded
+there; the full pip report remains local. No game/Python-global changes occurred.
+
+Two independent authoring diagnostics are now active, neither edits any pack:
+- PID 16028: plan-network-constraints-v2.py, started 11:40:23, bounded 900 seconds.
+  This broadens mail/superfast origins while keeping local/VB within 90 minutes
+  and K1 fixed. Output network-constraint-proposal-v2.json; log/err/job record
+  constraint-search-v2.*. No actual timetable acceptance follows from a result.
+- PID 11944: plan-network-spacing-v3.py, started about 11:44. Output
+  network-spacing-proposal-v3.json; logs/job record network-spacing-search-v3.*.
+  Adds a 35-minute same-direction SF/VB approach-spacing penalty to limit repeated
+  holds by successive expresses. This is a soft authoring target, never a runtime
+  limit, forced pass location, dwell change or guarantee of actual separation.
+
+Inspect existing diagnostic processes and results, do not duplicate them or edit
+running scripts. Review station capacity, actual available separation and daily
+coverage before applying any departure-only proposal. New pack changes still
+need exact author reproduction, appropriate headless guards, explicit commit and
+four affected Network baseline/disturbance replays. No current full-day job is
+running. All four legacy choices and runtime hashes remain unchanged. The
+continuation automation now describes these actual jobs instead of the ended v9
+replays. Preserve pending UI/category tools and unrelated files; continue until
+all authorized readiness gates pass, then delete that automation.

@@ -58,8 +58,10 @@ The current candidate replans departures across the day using measured running
 profiles and actual single-line sections. Opposing occupation, following
 headways and traffic concentration guide the spacing. All calls, stock, dwell,
 priorities and speeds are retained, with identical services in Classic and V2.
-These planning estimates do not certify traffic: complete-day acceptance is
-still pending. [Planning evidence](../art/performance/realism-2026-10-26/network-capacity-plan/README.md).
+The latest complete-day candidate still failed the 45-minute waiting limit
+before 04:04. Its lower planning score did not predict acceptable traffic.
+Stricter spacing and station-capacity checks are under investigation; complete-day
+acceptance remains pending. [Planning evidence](../art/performance/realism-2026-10-26/network-capacity-plan/README.md).
 
 Once installed, try a daylight local, a limited-stop VB, a through working and
 an overnight departure. Compare the Stops and Traffic lists, ride through a

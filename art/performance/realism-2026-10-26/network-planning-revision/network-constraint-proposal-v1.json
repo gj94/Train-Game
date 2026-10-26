@@ -1,0 +1,16 @@
+{
+  "kind": "strict isolated-profile authoring model; not accepted railway traffic",
+  "solver_version": "9.15.6755",
+  "status": "UNKNOWN",
+  "wall_seconds": 180.24723740000002,
+  "pair_constraints": 15816,
+  "full_range": false,
+  "pack_sha256": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed",
+  "limits": [
+    "One-minute section-end planning allowance; not authored dwell.",
+    "Three-minute entrance/exit separation and no catching inside a shared section.",
+    "Isolated profiles exclude dispatch and receiving-road delays.",
+    "A feasible plan still needs genuine baseline/disturbance acceptance; UNKNOWN is not an infeasibility proof."
+  ],
+  "search_statistics": "CpSolverResponse summary:\nstatus: UNKNOWN\nobjective: 0\nbest_bound: 0\nintegers: 1825\nbooleans: 35341\nconflicts: 31684\nbranches: 336674\npropagations: 44995010\ninteger_propagations: 7435148\nrestarts: 139\nlp_iterations: 80784\nwalltime: 180.247\nusertime: 180.247\ndeterministic_time: 345.068\ngap_integral: 0\n"
+}
