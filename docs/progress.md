@@ -77,8 +77,8 @@ runtime/tests were edited or full suite repeated for these two timing changes.
 [Candidate-eleven proof](../art/performance/realism-2026-10-26/network-candidate-eleven/README.md).
 Candidate8056ea2f is pushed. Its four v11 replays launched once at13:42;
 actual commands, separate outputs, modes,4,837current fingerprints and six frozen
-observers are verified. At the 13:58 read-only checkpoint all four original
-process pairs still match: both baselines 03:40 and both delayed runs 04:50;
+observers are verified. At the 14:08 read-only checkpoint all four original
+process pairs still match: both baselines 05:20 and both delayed runs 06:50;
 stderr is empty and no final audit exists. Current clocks and process identities
 are recorded in `.local/realism-2026-10-26/latest-job-status.json`.
 Do not restart/duplicate them or edit frozen inputs. These targeted queue repairs
