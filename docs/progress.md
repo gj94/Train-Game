@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 04:07:31 checkpoint: original v24 V2 baseline (11988/12204)
+reaches 08:00 with 33/208 services complete; delayed (14452/4928) reaches
+10:50 with 60/208 complete. Both original process identities match, error logs
+are empty and neither final audit exists. Runtime, routes, packs and six
+observers remain frozen until both original outcomes. These partial results
+do not establish acceptance. Network208V2 remains unaccepted and uninstalled.
+No gameplay change or new playtest; continue checking the original runs.
+
 27 October 04:00:18 checkpoint: the original v24 V2 baseline (11988/12204)
 reaches 07:00 with 27/208 services complete; the delayed run (14452/4928)
 reaches 09:00 with 42/208 complete. Both process identities match, error logs

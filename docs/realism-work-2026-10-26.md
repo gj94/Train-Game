@@ -2711,3 +2711,13 @@ hashes still match the launch records. Keep runtime, routes, packs and observers
 frozen until both original outcomes. These partial results do not certify
 acceptance. Network208V2 remains unaccepted and uninstalled; no gameplay or
 playtest change, duplicate run, Classic208 work or unchanged test rerun.
+
+## 27 October 04:07 — original v24 runs continue
+
+27 October 04:07:31 checkpoint: original v24 V2 baseline (11988/12204)
+reaches 08:00 with 33/208 services complete; delayed (14452/4928) reaches
+10:50 with 60/208 complete. Both original process identities match, error logs
+are empty and neither final audit exists. Runtime, routes, packs and six
+observers remain frozen until both original outcomes. These partial results
+do not establish acceptance. Network208V2 remains unaccepted and uninstalled.
+No gameplay change or new playtest; continue checking the original runs.
