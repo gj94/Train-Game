@@ -2,6 +2,13 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October03:27:52 checkpoint: original v24 V2 baseline11988/12204 reaches
+01:10 (0/208 complete); delayed14452/4928 reaches02:00 (1/208). Both process
+identities match, error logs are empty and neither final audit exists. These
+partial clocks are not acceptance. Inputs remain frozen; no duplicate,restart,
+Classic208 work,unchanged tests or installation. Network208V2 remains
+unaccepted/uninstalled. Continue checking these original jobs for final audits.
+
 Candidate24 c71d550c committed/pushed. Exactly two original V2 v24 replays
 launched once at2026-10-27T03:24:05.1420854+08:00: baseline11988/12204,
 delayed14452/4928 (wrapper/child). Four actual commands/options, unique outputs,

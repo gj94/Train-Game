@@ -2673,3 +2673,12 @@ audits. Baseline uses --network --snapshots; delayed uses --network --delay=600
 packs/six observers throughout either run. No suite/native/search/diagnostic
 job remains. Partial clocks are not acceptance. Network208V2 remains unaccepted
 and uninstalled. Pending UI/category helpers and unrelated files preserved.
+
+## 27 October03:27 — original v24 runs continue
+
+27 October03:27:52 checkpoint: original v24 V2 baseline11988/12204 reaches
+01:10 (0/208 complete); delayed14452/4928 reaches02:00 (1/208). Both process
+identities match, error logs are empty and neither final audit exists. These
+partial clocks are not acceptance. Inputs remain frozen; no duplicate,restart,
+Classic208 work,unchanged tests or installation. Network208V2 remains
+unaccepted/uninstalled. Continue checking these original jobs for final audits.
