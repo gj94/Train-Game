@@ -123,6 +123,12 @@ preserves 14 exact raw files and immutable inspection with 4,836 verified hashes
 The next departure-only hypothesis moves L002 to 04:20, after M064 04:10 and
 before L034 04:30, avoiding the shared 05:05 entry with S030. It needs authoring
 guards and actual new replays; no source, stock, calls or gate changes.
+Candidate thirteen is now authored with only that L002 departure changed.
+Restoring it recovers each whole predecessor pack; both modes remain identical.
+All 208 services,70 overnight origins and K1 06:00 remain. Exact normal author
+reproduction and four headless authoring checks pass with empty stderr.
+[Candidate-thirteen proof](../art/performance/realism-2026-10-26/network-candidate-thirteen/README.md).
+The runtime/tests remain unchanged from 1,003 passed; no full suite was repeated.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network

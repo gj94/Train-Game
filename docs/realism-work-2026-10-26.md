@@ -1440,3 +1440,18 @@ capacity or complete-day improvement. Keep all other service fields, M00605:20,
 L03506:45,K106:00 unchanged. Require exact reproduction/four authoring guards,
 then explicit commit and new isolated four-run generation. No full-suite repeat
 for a departure-only data edit; the runtime/tests are unchanged from1003 passed.
+
+
+## Candidate thirteen authored and guarded
+
+Only L00205:05->04:20 changes. Restoring its old departure recovers each whole
+predecessor pack; predecessor bytes match committed candidate twelve. Identical
+mode services,208total/70overnight/3–12hourly,40local/104mail/56SF/8VB remain.
+K106:00,M00605:20,L03506:45,L01508:15,L02407:40 unchanged. Normal authoring
+through205 overrides and exact --check reproduction pass. All4 headless authoring
+tests pass,emptystderr;runtime/tests unchanged from1003 full source tests,not
+rerun for one departure edit. Nine exact raw files archived. No acceptance claim.
+Prepared launch-network-v13.ps1 and verifier, NOT RUN; commit/push tested inputs
+before launching four new isolated actual replays once. Old v12 fingerprints
+are historical after pack change; never relabel. PendingUI/category/unrelated
+preserved. No suite/diagnostic remains active.
