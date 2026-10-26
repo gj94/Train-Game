@@ -1808,3 +1808,12 @@ no final audits exist. Both baselines reach01:10 (0/208 complete); both delayed
 runs reach02:00 (1/208), before the planned07:30 intervention. Runtime, routes,
 packs and six observers remain frozen. No duplicates, restarts, unchanged test
 repeats, partial acceptance or installations. Await the original runs' outcomes.
+
+## 19:21:59 v17 checkpoint
+
+At19:21:59, all four original v17 process identities match, stderr is empty
+and no final audits exist. Both baselines reach03:20 (2/208 complete); Classic
+delayed reaches04:30 (10/208), V2 delayed04:20 (7/208), before the planned07:30
+intervention. Runtime, routes, packs and six observers remain frozen. No jobs
+were duplicated or restarted and no unchanged checks were repeated. Partial
+runs are not acceptance; Network208 remains unaccepted and uninstalled.
