@@ -52,3 +52,11 @@ isolated Classic/V2 baseline preparations with snapshots and 600-second manual K
 holds at 07:30 must pass every call, completion, safety, wait and passing gate.
 Never install planning outputs, failed partials or disturbed runs as baselines.
 The four already certified legacy choices remain unchanged.
+
+At 11:02 the four affected Network preparations launched once from committed
+`a24151d3`: Classic/V2 baselines with snapshots and Classic/V2 manual-delay
+audits. All eight actual wrapper/child commands, separate output arguments,
+initial baseline modes, 4,837 distinct current hashes and six frozen observer
+hashes are verified. Initial stderr is empty. Launch records are preserved;
+complete-day acceptance is still pending. No source, route, pack or preparation
+observer may change during these runs. Do not rerun the launch script.

@@ -221,6 +221,30 @@
       "source": ".local/realism-2026-10-26/capacity-opposing-overlap-review.json",
       "raw_bytes": 3682,
       "raw_sha256": "a3283c2e25493366efc2a13034111c08da0cfed49366b17f164fd0c27348209c"
+    },
+    {
+      "path": "launch-network-v9.ps1.txt",
+      "source": ".local/realism-2026-10-26/launch-network-v9.ps1",
+      "raw_bytes": 3180,
+      "raw_sha256": "7811d4146bbdddee8716b1ea69f9f38fe9f05d6464516d32f034446a27ae38ae"
+    },
+    {
+      "path": "verify-launch-v9.py",
+      "source": ".local/realism-2026-10-26/verify-launch-v9.py",
+      "raw_bytes": 3059,
+      "raw_sha256": "e7c79065cc454feb2c64528218b593da85199cea8da5eef21c0fc1eddb4dd379"
+    },
+    {
+      "path": "initial-rehearsal-jobs-v9.json",
+      "source": ".local/realism-2026-10-26/rehearsal-jobs-v9.json",
+      "raw_bytes": 2781,
+      "raw_sha256": "cf3731ca2ea818c7cb02873b02b853b474b1e7c03e9edf54225df183dcc4c4e9"
+    },
+    {
+      "path": "launch-v9-verification.json",
+      "source": ".local/realism-2026-10-26/launch-v9-verification.json",
+      "raw_bytes": 4932,
+      "raw_sha256": "4bac70884457f63e85fb9ac7ace797280a7e5a8954c3afbf51b3af1a29fe9061"
     }
   ],
   "validated_at": "2026-10-26T10:57:01.306049+08:00",
@@ -232,5 +256,14 @@
   "current_packs": {
     "kerala-coast-network.json": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed",
     "kerala-coast-network-v2.json": "dbfd1ee6e87402e3cace318a5200f1b9818544cb088a31ae8759d091978b5d49"
+  },
+  "launch": {
+    "source_commit": "a24151d3c87ea0e5d63a077c45f3e5f7ff248668",
+    "verified_jobs": 4,
+    "actual_process_commands": 8,
+    "unique_current_source_hashes": 4837,
+    "frozen_preparation_observers": 6,
+    "initial_stderr_empty": true,
+    "acceptance": "pending complete-day audits"
   }
 }

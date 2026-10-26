@@ -921,3 +921,40 @@ No suite or diagnostic remains active. Commit/push these coherent inputs, then
 launch the guarded v9 script once and verify live command lines and fingerprints.
 No full-day v9 job has been launched at this checkpoint. Legacy choices remain
 certified; no unchanged legacy replay or native checks are needed.
+
+
+## Candidate nine full-day launch, 11:02–11:04
+
+Capacity candidate a24151d3 is committed and pushed after all 1,003 full source
+tests passed. The commit completed automatic Git maintenance before pushing.
+The guarded launch-network-v9.ps1 was executed ONCE at 11:02:33. Four affected
+Network jobs are now active, recorded in rehearsal-jobs-v9.json:
+
+- Classic baseline wrapper 7684 / child 23444.
+- V2 baseline wrapper 22912 / child 240.
+- Classic manual-delay wrapper 10888 / child 17992.
+- V2 manual-delay wrapper 15504 / child 8840.
+
+Each has its own rehearsals-v9 output folder and exactly one --output argument.
+Both baselines record actual starts and time snapshots; both disturbances use
+a 600-second manual K1 hold at simulation time 27,000 (07:30). After initial
+catalogues appeared, all eight actual commands, baseline dispatcher modes,
+4,837 distinct current source hashes and six frozen preparation observer hashes
+were verified; stderr is empty. The initial check merely preceded catalogue
+creation and was retried once data existed. No job was restarted or duplicated.
+Exact launch script, verifier, initial records and verification are archived in
+network-capacity-plan. The local inspector now follows certified v7 legacy and
+active v9 Network jobs; it preserves historical rejected v8 evidence.
+
+Freeze sim, routes, authored packs and all six preparation observers. Do not
+rerun launch-network-v9.ps1. No suite/native/diagnostic/Git job remains after
+this records commit. All four legacy choices stay certified and unchanged.
+Network acceptance, category comparisons, installation and actual Network
+menu/midnight/save-load checks remain pending. The pending prepared UI Network
+branches and category helper must await real accepted traffic. Keep all failed
+evidence and limitations; no baseline installation from disturbances or partials.
+
+The continuation automation complete-train-game-realism-and-network-208 remains
+active every ten minutes with the new process identities and current records.
+The user extended work until ready; the historical 10:00 cutoff does not apply.
+Delete this automation only once all authorized readiness work is finished.

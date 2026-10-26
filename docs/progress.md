@@ -25,7 +25,9 @@ identical Classic/V2 definitions. It has 68 overnight services and 3–13 depart
 per hour. The planning model reduces peak isolated fleet from 39 to 34; that is not a
 measured traffic result. Four authoring checks and exact reproduction pass;
 the full source suite passes 1,003 tests with zero failures and empty stderr.
-Fresh Network baseline/disturbance preparation is next. [Capacity plan](../art/performance/realism-2026-10-26/network-capacity-plan/README.md).
+Four Network baseline/disturbance jobs launched once at 11:02 from `a24151d3`.
+All actual commands, modes, isolated outputs and source hashes are verified;
+inputs are frozen while complete-day acceptance runs. [Capacity plan](../art/performance/realism-2026-10-26/network-capacity-plan/README.md).
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.
