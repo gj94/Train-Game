@@ -108,8 +108,12 @@ zero safety events and empty stderr. This occurs before its scheduled 07:30
 manual hold. All-location under-30 and under-45 gates fail; station-only gates
 pass only within this failed prefix. [Exact failure evidence](../art/performance/realism-2026-10-26/network-candidate-twelve/failed-predictive-delayed/README.md)
 preserves 13 raw files and an immutable inspection with 4,836 verified hashes.
-Both original baselines and the Classic delayed replay remain running. Keep
-runtime/routes/packs/observers frozen and await their results before retiming.
+Classic delayed also fails before the hold, at 07:21:20: L002 waits 2,702s
+at Neyyattinkara, 28/208 completed, zero safety and empty stderr. Both cumulative
+under30 and under45 distributions fail. [Classic failure evidence](../art/performance/realism-2026-10-26/network-candidate-twelve/failed-classic-delayed/README.md)
+preserves another 13 raw files and immutable inspection with 4,836 verified hashes.
+Only the two original baselines remain running. Keep runtime/routes/packs/observers
+frozen and await their results before choosing departure-only repairs.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network

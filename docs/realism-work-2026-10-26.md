@@ -1386,3 +1386,21 @@ No source/packs/observers changed, no full suite repeated, no Network install.
 Both original baselines and Classic delayed remain live; await actual results
 before selecting departure-only repairs. Preserve all earlier evidence, pending
 UI/category helpers, legacy certifications and R47. No diagnostic remains running.
+
+
+## Both v12 delayed jobs rejected before their scheduled hold
+
+Classic4720/13732 has now finished at07:21:20: L002 waits2,702s atNYY after
+arrival06:35:08.70,28/208 complete,zero safety,empty stderr. All-location under30
+128/131 and station80/82 fail98%; under45130/131 and81/82 fail100%. The manual
+K1hold scheduled07:30 never occurs in either v12 delayed prefix. Neither is a
+recovery certificate. L002 records1,640s opposing M079/L033/L021 section traffic,
+38s route conflicts and1,024s NEM receiving availability/reservations.
+
+Read-only snapshot inspection is byte-immutable with no future-clearance plans.
+L002/L021 occupy NYY;L035/M095 occupy NEM;L021 awaits PASA. L033/M079 still move.
+No immovable-deadlock/runtime-defect conclusion. Another13 exact raw files and
+4,836 current source hashes/exact Classic pack verified, original outputs kept.
+Both original baselines21244/3532 and5504/5044 remain live; await actual results
+before retiming. No input/observer/source changes, duplicate jobs, suite or
+native diagnostic remains. Network uninstalled; pending UI/category preserved.
