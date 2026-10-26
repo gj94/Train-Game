@@ -1,0 +1,1530 @@
+{
+  "kind": "Direct static berth matching against isolated-profile minute envelopes, not traffic acceptance",
+  "proposal": "network-spacing-proposal-v5-polished.json",
+  "proposal_sha256": "cc6eae958244a9b1a88644d2ddf1e2d3b0cf555cb2b0b8e84c598ca05d56fc50",
+  "road_inventory_sha256": "ab1396da42361a20bdcbd740fb81d096f93c9cc3f42e170ff2ecb3c01a8074dc",
+  "origin_upper_bound_fallbacks": 110,
+  "before": {
+    "direct_matching_vs_subset_checks": 41760,
+    "failed_yard_minute_cells": 897,
+    "yards_with_failures": 26,
+    "yards": [
+      {
+        "station": "ERS",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "KUMM",
+        "failed_nominal_minute_cells": 9,
+        "examples": [
+          {
+            "minute": 366,
+            "claims": {
+              "K1": [
+                "KUMM_P3"
+              ],
+              "L005": [
+                "KUMM_P3"
+              ],
+              "S004": [
+                "KUMM_P1",
+                "KUMM_P2",
+                "KUMM_P3"
+              ]
+            }
+          },
+          {
+            "minute": 675,
+            "claims": {
+              "L002": [
+                "KUMM_P3"
+              ],
+              "L008": [
+                "KUMM_P3"
+              ],
+              "M019": [
+                "KUMM_P1",
+                "KUMM_P2",
+                "KUMM_P3"
+              ]
+            }
+          },
+          {
+            "minute": 1348,
+            "claims": {
+              "L004": [
+                "KUMM_P3"
+              ],
+              "L012": [
+                "KUMM_P3"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "TUVR",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "SRTL",
+        "failed_nominal_minute_cells": 6,
+        "examples": [
+          {
+            "minute": 56,
+            "claims": {
+              "M038": [
+                "SRTL_P1",
+                "SRTL_P2",
+                "SRTL_P3"
+              ],
+              "M059": [
+                "SRTL_P1",
+                "SRTL_P2",
+                "SRTL_P3"
+              ],
+              "M071": [
+                "SRTL_P1",
+                "SRTL_P2",
+                "SRTL_P3"
+              ],
+              "S024": [
+                "SRTL_P1",
+                "SRTL_P2",
+                "SRTL_P3"
+              ]
+            }
+          },
+          {
+            "minute": 463,
+            "claims": {
+              "M010": [
+                "SRTL_P1",
+                "SRTL_P2",
+                "SRTL_P3"
+              ],
+              "M011": [
+                "SRTL_P1",
+                "SRTL_P2",
+                "SRTL_P3"
+              ],
+              "M047": [
+                "SRTL_P1",
+                "SRTL_P2",
+                "SRTL_P3"
+              ],
+              "V002": [
+                "SRTL_P1",
+                "SRTL_P2",
+                "SRTL_P3"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "MAKM",
+        "failed_nominal_minute_cells": 1,
+        "examples": [
+          {
+            "minute": 420,
+            "claims": {
+              "K1": [
+                "MAKM_P2",
+                "MAKM_P3"
+              ],
+              "L005": [
+                "MAKM_P2",
+                "MAKM_P3"
+              ],
+              "L006": [
+                "MAKM_P2",
+                "MAKM_P3"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "ALLP",
+        "failed_nominal_minute_cells": 41,
+        "examples": [
+          {
+            "minute": 26,
+            "claims": {
+              "M037": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ],
+              "M038": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ],
+              "M039": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ],
+              "S024": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ]
+            }
+          },
+          {
+            "minute": 191,
+            "claims": {
+              "M005": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ],
+              "M007": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ],
+              "M040": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ],
+              "S002": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ]
+            }
+          },
+          {
+            "minute": 440,
+            "claims": {
+              "K1": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ],
+              "L005": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ],
+              "M010": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ],
+              "V002": [
+                "ALLP_P1",
+                "ALLP_P2",
+                "ALLP_P3"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "AMPA",
+        "failed_nominal_minute_cells": 57,
+        "examples": [
+          {
+            "minute": 41,
+            "claims": {
+              "M037": [
+                "AMPA_P1"
+              ],
+              "M039": [
+                "AMPA_P1"
+              ]
+            }
+          },
+          {
+            "minute": 100,
+            "claims": {
+              "M059": [
+                "AMPA_P1"
+              ],
+              "M071": [
+                "AMPA_P1"
+              ]
+            }
+          },
+          {
+            "minute": 152,
+            "claims": {
+              "M041": [
+                "AMPA_P1"
+              ],
+              "S025": [
+                "AMPA_P1"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "HAD",
+        "failed_nominal_minute_cells": 63,
+        "examples": [
+          {
+            "minute": 59,
+            "claims": {
+              "M037": [
+                "HAD_P4"
+              ],
+              "M039": [
+                "HAD_P4"
+              ]
+            }
+          },
+          {
+            "minute": 117,
+            "claims": {
+              "M059": [
+                "HAD_P4"
+              ],
+              "M071": [
+                "HAD_P4"
+              ]
+            }
+          },
+          {
+            "minute": 224,
+            "claims": {
+              "M005": [
+                "HAD_P4"
+              ],
+              "M007": [
+                "HAD_P4"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "CHPD",
+        "failed_nominal_minute_cells": 23,
+        "examples": [
+          {
+            "minute": 167,
+            "claims": {
+              "M003": [
+                "CHPD_P1"
+              ],
+              "S002": [
+                "CHPD_P2",
+                "CHPD_P3",
+                "CHPD_P4"
+              ],
+              "S025": [
+                "CHPD_P1"
+              ]
+            }
+          },
+          {
+            "minute": 178,
+            "claims": {
+              "M041": [
+                "CHPD_P1"
+              ],
+              "S001": [
+                "CHPD_P1"
+              ]
+            }
+          },
+          {
+            "minute": 233,
+            "claims": {
+              "M007": [
+                "CHPD_P1"
+              ],
+              "M042": [
+                "CHPD_P2",
+                "CHPD_P3",
+                "CHPD_P4"
+              ],
+              "S005": [
+                "CHPD_P1"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "KYJ",
+        "failed_nominal_minute_cells": 8,
+        "examples": [
+          {
+            "minute": 222,
+            "claims": {
+              "M042": [
+                "KYJ_P2",
+                "KYJ_P5"
+              ],
+              "M062": [
+                "KYJ_P2",
+                "KYJ_P5"
+              ],
+              "S040": [
+                "KYJ_P2",
+                "KYJ_P5"
+              ]
+            }
+          },
+          {
+            "minute": 974,
+            "claims": {
+              "M054": [
+                "KYJ_P2",
+                "KYJ_P5"
+              ],
+              "M068": [
+                "KYJ_P2",
+                "KYJ_P5"
+              ],
+              "S034": [
+                "KYJ_P2",
+                "KYJ_P5"
+              ]
+            }
+          },
+          {
+            "minute": 1002,
+            "claims": {
+              "L010": [
+                "KYJ_P2",
+                "KYJ_P5"
+              ],
+              "M028": [
+                "KYJ_P2",
+                "KYJ_P5"
+              ],
+              "S016": [
+                "KYJ_P2",
+                "KYJ_P5"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "OCR",
+        "failed_nominal_minute_cells": 10,
+        "examples": [
+          {
+            "minute": 504,
+            "claims": {
+              "K1": [
+                "OCR_P1"
+              ],
+              "L005": [
+                "OCR_P1"
+              ]
+            }
+          },
+          {
+            "minute": 539,
+            "claims": {
+              "L007": [
+                "OCR_P1"
+              ],
+              "L015": [
+                "OCR_P1"
+              ]
+            }
+          },
+          {
+            "minute": 1215,
+            "claims": {
+              "L004": [
+                "OCR_P3"
+              ],
+              "L012": [
+                "OCR_P3"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "KPY",
+        "failed_nominal_minute_cells": 68,
+        "examples": [
+          {
+            "minute": 184,
+            "claims": {
+              "M002": [
+                "KPY_P3"
+              ],
+              "M060": [
+                "KPY_P3"
+              ]
+            }
+          },
+          {
+            "minute": 207,
+            "claims": {
+              "M042": [
+                "KPY_P3"
+              ],
+              "M062": [
+                "KPY_P3"
+              ]
+            }
+          },
+          {
+            "minute": 291,
+            "claims": {
+              "M006": [
+                "KPY_P3"
+              ],
+              "M008": [
+                "KPY_P3"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "STKT",
+        "failed_nominal_minute_cells": 12,
+        "examples": [
+          {
+            "minute": 522,
+            "claims": {
+              "K1": [
+                "STKT_P3"
+              ],
+              "L002": [
+                "STKT_P4"
+              ],
+              "L005": [
+                "STKT_P3"
+              ],
+              "L008": [
+                "STKT_P4"
+              ]
+            }
+          },
+          {
+            "minute": 557,
+            "claims": {
+              "L007": [
+                "STKT_P3"
+              ],
+              "L015": [
+                "STKT_P3"
+              ],
+              "M047": [
+                "STKT_P1",
+                "STKT_P3"
+              ]
+            }
+          },
+          {
+            "minute": 1047,
+            "claims": {
+              "L009": [
+                "STKT_P3"
+              ],
+              "S015": [
+                "STKT_P1",
+                "STKT_P3"
+              ],
+              "V003": [
+                "STKT_P1",
+                "STKT_P3"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "PRND",
+        "failed_nominal_minute_cells": 12,
+        "examples": [
+          {
+            "minute": 508,
+            "claims": {
+              "L002": [
+                "PRND_P3"
+              ],
+              "L008": [
+                "PRND_P3"
+              ]
+            }
+          },
+          {
+            "minute": 536,
+            "claims": {
+              "K1": [
+                "PRND_P4"
+              ],
+              "L005": [
+                "PRND_P4"
+              ]
+            }
+          },
+          {
+            "minute": 566,
+            "claims": {
+              "L015": [
+                "PRND_P4"
+              ],
+              "M011": [
+                "PRND_P1",
+                "PRND_P4"
+              ],
+              "M047": [
+                "PRND_P1",
+                "PRND_P4"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "QLN",
+        "failed_nominal_minute_cells": 10,
+        "examples": [
+          {
+            "minute": 278,
+            "claims": {
+              "M005": [
+                "QLN_P1",
+                "QLN_P3",
+                "QLN_P5"
+              ],
+              "M007": [
+                "QLN_P1",
+                "QLN_P3",
+                "QLN_P5"
+              ],
+              "S005": [
+                "QLN_P1",
+                "QLN_P3",
+                "QLN_P5"
+              ],
+              "S027": [
+                "QLN_P1",
+                "QLN_P3",
+                "QLN_P5"
+              ]
+            }
+          },
+          {
+            "minute": 1066,
+            "claims": {
+              "L009": [
+                "QLN_P1",
+                "QLN_P3",
+                "QLN_P5"
+              ],
+              "M027": [
+                "QLN_P1",
+                "QLN_P3",
+                "QLN_P5"
+              ],
+              "S015": [
+                "QLN_P1",
+                "QLN_P3",
+                "QLN_P5"
+              ],
+              "V003": [
+                "QLN_P1",
+                "QLN_P3",
+                "QLN_P5"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "PVU",
+        "failed_nominal_minute_cells": 41,
+        "examples": [
+          {
+            "minute": 255,
+            "claims": {
+              "M006": [
+                "PVU_P3"
+              ],
+              "M008": [
+                "PVU_P3"
+              ]
+            }
+          },
+          {
+            "minute": 292,
+            "claims": {
+              "M005": [
+                "PVU_P1",
+                "PVU_P4"
+              ],
+              "M007": [
+                "PVU_P1",
+                "PVU_P4"
+              ],
+              "S005": [
+                "PVU_P1",
+                "PVU_P4"
+              ]
+            }
+          },
+          {
+            "minute": 628,
+            "claims": {
+              "M063": [
+                "PVU_P1",
+                "PVU_P4"
+              ],
+              "M101": [
+                "PVU_P1",
+                "PVU_P4"
+              ],
+              "V001": [
+                "PVU_P1",
+                "PVU_P4"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "VAK",
+        "failed_nominal_minute_cells": 115,
+        "examples": [
+          {
+            "minute": 138,
+            "claims": {
+              "M037": [
+                "VAK_P4"
+              ],
+              "M039": [
+                "VAK_P4"
+              ],
+              "M060": [
+                "VAK_P2",
+                "VAK_P3"
+              ]
+            }
+          },
+          {
+            "minute": 156,
+            "claims": {
+              "M042": [
+                "VAK_P2",
+                "VAK_P3"
+              ],
+              "M062": [
+                "VAK_P2",
+                "VAK_P3"
+              ],
+              "M093": [
+                "VAK_P4"
+              ],
+              "S040": [
+                "VAK_P2",
+                "VAK_P3"
+              ]
+            }
+          },
+          {
+            "minute": 195,
+            "claims": {
+              "M059": [
+                "VAK_P4"
+              ],
+              "M071": [
+                "VAK_P4"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "KVU",
+        "failed_nominal_minute_cells": 5,
+        "examples": [
+          {
+            "minute": 219,
+            "claims": {
+              "M094": [
+                "KVU_P2",
+                "KVU_P3"
+              ],
+              "S004": [
+                "KVU_P2",
+                "KVU_P3"
+              ],
+              "S028": [
+                "KVU_P2",
+                "KVU_P3"
+              ]
+            }
+          },
+          {
+            "minute": 452,
+            "claims": {
+              "L002": [
+                "KVU_P3"
+              ],
+              "M064": [
+                "KVU_P2",
+                "KVU_P3"
+              ],
+              "S008": [
+                "KVU_P2",
+                "KVU_P3"
+              ]
+            }
+          },
+          {
+            "minute": 1060,
+            "claims": {
+              "L017": [
+                "KVU_P1",
+                "KVU_P4"
+              ],
+              "L029": [
+                "KVU_P1",
+                "KVU_P4"
+              ],
+              "M053": [
+                "KVU_P1",
+                "KVU_P4"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "MQU",
+        "failed_nominal_minute_cells": 30,
+        "examples": [
+          {
+            "minute": 212,
+            "claims": {
+              "M059": [
+                "MQU_P1"
+              ],
+              "M094": [
+                "MQU_P2",
+                "MQU_P3"
+              ],
+              "S004": [
+                "MQU_P2",
+                "MQU_P3"
+              ],
+              "S028": [
+                "MQU_P2",
+                "MQU_P3"
+              ]
+            }
+          },
+          {
+            "minute": 254,
+            "claims": {
+              "M003": [
+                "MQU_P1"
+              ],
+              "S025": [
+                "MQU_P1"
+              ]
+            }
+          },
+          {
+            "minute": 265,
+            "claims": {
+              "M041": [
+                "MQU_P1"
+              ],
+              "S001": [
+                "MQU_P1"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "KZK",
+        "failed_nominal_minute_cells": 37,
+        "examples": [
+          {
+            "minute": 207,
+            "claims": {
+              "M094": [
+                "KZK_P2"
+              ],
+              "S004": [
+                "KZK_P2",
+                "KZK_P4"
+              ],
+              "S028": [
+                "KZK_P2",
+                "KZK_P4"
+              ]
+            }
+          },
+          {
+            "minute": 219,
+            "claims": {
+              "M006": [
+                "KZK_P2"
+              ],
+              "M008": [
+                "KZK_P2"
+              ],
+              "M059": [
+                "KZK_P1",
+                "KZK_P3"
+              ],
+              "M071": [
+                "KZK_P1",
+                "KZK_P3"
+              ]
+            }
+          },
+          {
+            "minute": 325,
+            "claims": {
+              "M005": [
+                "KZK_P1",
+                "KZK_P3"
+              ],
+              "M007": [
+                "KZK_P1",
+                "KZK_P3"
+              ],
+              "S005": [
+                "KZK_P1",
+                "KZK_P3"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "TVCN",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "TVC",
+        "failed_nominal_minute_cells": 100,
+        "examples": [
+          {
+            "minute": 175,
+            "claims": {
+              "M037": [
+                "TVC_P1"
+              ],
+              "S023": [
+                "TVC_P1"
+              ],
+              "S026": [
+                "TVC_P2",
+                "TVC_P3",
+                "TVC_P4",
+                "TVC_P5"
+              ]
+            }
+          },
+          {
+            "minute": 192,
+            "claims": {
+              "M093": [
+                "TVC_P1"
+              ],
+              "S028": [
+                "TVC_P2",
+                "TVC_P3",
+                "TVC_P4",
+                "TVC_P5"
+              ],
+              "S039": [
+                "TVC_P1"
+              ],
+              "S044": [
+                "TVC_P2",
+                "TVC_P3",
+                "TVC_P4",
+                "TVC_P5"
+              ]
+            }
+          },
+          {
+            "minute": 236,
+            "claims": {
+              "M059": [
+                "TVC_P1"
+              ],
+              "M071": [
+                "TVC_P1"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "NEM",
+        "failed_nominal_minute_cells": 8,
+        "examples": [
+          {
+            "minute": 330,
+            "claims": {
+              "L034": [
+                "NEM_P1",
+                "NEM_P2"
+              ],
+              "M043": [
+                "NEM_P1",
+                "NEM_P2"
+              ],
+              "M077": [
+                "NEM_P1",
+                "NEM_P2"
+              ]
+            }
+          },
+          {
+            "minute": 389,
+            "claims": {
+              "L002": [
+                "NEM_P1",
+                "NEM_P2"
+              ],
+              "L021": [
+                "NEM_P1",
+                "NEM_P2"
+              ],
+              "V005": [
+                "NEM_P1",
+                "NEM_P2"
+              ]
+            }
+          },
+          {
+            "minute": 492,
+            "claims": {
+              "L023": [
+                "NEM_P1",
+                "NEM_P2"
+              ],
+              "L035": [
+                "NEM_P1",
+                "NEM_P2"
+              ],
+              "V006": [
+                "NEM_P1",
+                "NEM_P2"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "NYY",
+        "failed_nominal_minute_cells": 28,
+        "examples": [
+          {
+            "minute": 215,
+            "claims": {
+              "M093": [
+                "NYY_P1",
+                "NYY_P2"
+              ],
+              "S039": [
+                "NYY_P1",
+                "NYY_P2"
+              ],
+              "S042": [
+                "NYY_P1",
+                "NYY_P2"
+              ]
+            }
+          },
+          {
+            "minute": 317,
+            "claims": {
+              "L034": [
+                "NYY_P1",
+                "NYY_P2"
+              ],
+              "M041": [
+                "NYY_P1",
+                "NYY_P2"
+              ],
+              "S045": [
+                "NYY_P1",
+                "NYY_P2"
+              ]
+            }
+          },
+          {
+            "minute": 339,
+            "claims": {
+              "M043": [
+                "NYY_P1",
+                "NYY_P2"
+              ],
+              "M046": [
+                "NYY_P1",
+                "NYY_P2"
+              ],
+              "M077": [
+                "NYY_P1",
+                "NYY_P2"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "PASA",
+        "failed_nominal_minute_cells": 27,
+        "examples": [
+          {
+            "minute": 14,
+            "claims": {
+              "L040": [
+                "PASA_P1",
+                "PASA_P2"
+              ],
+              "M099": [
+                "PASA_P1",
+                "PASA_P2"
+              ],
+              "S056": [
+                "PASA_P1",
+                "PASA_P2"
+              ]
+            }
+          },
+          {
+            "minute": 299,
+            "claims": {
+              "L034": [
+                "PASA_P1",
+                "PASA_P2"
+              ],
+              "M075": [
+                "PASA_P1",
+                "PASA_P2"
+              ],
+              "S025": [
+                "PASA_P1",
+                "PASA_P2"
+              ]
+            }
+          },
+          {
+            "minute": 327,
+            "claims": {
+              "M041": [
+                "PASA_P1",
+                "PASA_P2"
+              ],
+              "M046": [
+                "PASA_P1",
+                "PASA_P2"
+              ],
+              "S045": [
+                "PASA_P1",
+                "PASA_P2"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "KZT",
+        "failed_nominal_minute_cells": 52,
+        "examples": [
+          {
+            "minute": 0,
+            "claims": {
+              "L040": [
+                "KZT_P1",
+                "KZT_P2"
+              ],
+              "M055": [
+                "KZT_P1",
+                "KZT_P2"
+              ],
+              "S041": [
+                "KZT_P1",
+                "KZT_P2"
+              ]
+            }
+          },
+          {
+            "minute": 281,
+            "claims": {
+              "L034": [
+                "KZT_P1",
+                "KZT_P2"
+              ],
+              "M059": [
+                "KZT_P1",
+                "KZT_P2"
+              ],
+              "M071": [
+                "KZT_P1",
+                "KZT_P2"
+              ]
+            }
+          },
+          {
+            "minute": 339,
+            "claims": {
+              "L002": [
+                "KZT_P1",
+                "KZT_P2"
+              ],
+              "M041": [
+                "KZT_P1",
+                "KZT_P2"
+              ],
+              "S045": [
+                "KZT_P1",
+                "KZT_P2"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "ERL",
+        "failed_nominal_minute_cells": 90,
+        "examples": [
+          {
+            "minute": 16,
+            "claims": {
+              "M055": [
+                "ERL_P1"
+              ],
+              "M057": [
+                "ERL_P1"
+              ],
+              "S041": [
+                "ERL_P1",
+                "ERL_P3"
+              ]
+            }
+          },
+          {
+            "minute": 45,
+            "claims": {
+              "M062": [
+                "ERL_P2"
+              ],
+              "M092": [
+                "ERL_P2"
+              ],
+              "M099": [
+                "ERL_P1"
+              ]
+            }
+          },
+          {
+            "minute": 70,
+            "claims": {
+              "M100": [
+                "ERL_P2"
+              ],
+              "S040": [
+                "ERL_P2"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "NJT",
+        "failed_nominal_minute_cells": 36,
+        "examples": [
+          {
+            "minute": 34,
+            "claims": {
+              "M057": [
+                "NJT_P1"
+              ],
+              "M092": [
+                "NJT_P2",
+                "NJT_P3"
+              ],
+              "S037": [
+                "NJT_P1"
+              ]
+            }
+          },
+          {
+            "minute": 334,
+            "claims": {
+              "M075": [
+                "NJT_P1"
+              ],
+              "S025": [
+                "NJT_P1"
+              ]
+            }
+          },
+          {
+            "minute": 471,
+            "claims": {
+              "L021": [
+                "NJT_P1"
+              ],
+              "M061": [
+                "NJT_P1"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "NCJ",
+        "failed_nominal_minute_cells": 8,
+        "examples": [
+          {
+            "minute": 478,
+            "claims": {
+              "L021": [
+                "NCJ_P1",
+                "NCJ_P6"
+              ],
+              "M061": [
+                "NCJ_P1",
+                "NCJ_P6"
+              ],
+              "M079": [
+                "NCJ_P1",
+                "NCJ_P6"
+              ]
+            }
+          },
+          {
+            "minute": 1012,
+            "claims": {
+              "L027": [
+                "NCJ_P1",
+                "NCJ_P6"
+              ],
+              "M065": [
+                "NCJ_P1",
+                "NCJ_P6"
+              ],
+              "M097": [
+                "NCJ_P1",
+                "NCJ_P6"
+              ]
+            }
+          },
+          {
+            "minute": 1045,
+            "claims": {
+              "L030": [
+                "NCJ_P1",
+                "NCJ_P4",
+                "NCJ_P5",
+                "NCJ_P6"
+              ],
+              "M087": [
+                "NCJ_P1",
+                "NCJ_P6"
+              ],
+              "S033": [
+                "NCJ_P1",
+                "NCJ_P6"
+              ],
+              "S036": [
+                "NCJ_P4",
+                "NCJ_P5"
+              ],
+              "S053": [
+                "NCJ_P1",
+                "NCJ_P6"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "after": {
+    "direct_matching_vs_subset_checks": 41760,
+    "failed_yard_minute_cells": 1,
+    "yards_with_failures": 1,
+    "yards": [
+      {
+        "station": "ERS",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "KUMM",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "TUVR",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "SRTL",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "MAKM",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "ALLP",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "AMPA",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "HAD",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "CHPD",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "KYJ",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "OCR",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "KPY",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "STKT",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "PRND",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "QLN",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "PVU",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "VAK",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "KVU",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "MQU",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "KZK",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "TVCN",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "TVC",
+        "failed_nominal_minute_cells": 1,
+        "examples": [
+          {
+            "minute": 1310,
+            "claims": {
+              "M069": [
+                "TVC_P1"
+              ],
+              "S019": [
+                "TVC_P1"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "station": "NEM",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "NYY",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "PASA",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "KZT",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "ERL",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "NJT",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      },
+      {
+        "station": "NCJ",
+        "failed_nominal_minute_cells": 0,
+        "examples": []
+      }
+    ]
+  },
+  "limitations": [
+    "Minute cells include any occupied fraction; they are conservative planning estimates.",
+    "No interaction-induced holds, route reservations or escape guarantees are represented.",
+    "Origin supply uses physical passenger-road upper bounds; static receiving compatibility applies to other visits.",
+    "Summed failed yard-minute cells are not observed train waiting time."
+  ]
+}

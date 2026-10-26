@@ -1104,3 +1104,52 @@ must remain unapplied until reviewed; any later selected times need exact author
 reproduction, appropriate headless checks and committed inputs before four genuine
 Network baseline/disturbance replays. Preserve pending UI/category and unrelated
 files. Full 1,003 tests and four authoring guards remain current for unchanged inputs.
+
+## Candidate ten authored, 12:31
+
+Search v5 PID 18712 finished normally with empty stderr. It proposes 202 origin
+changes; independent review leaves only three conservative unmatched yard-minute
+cells, but opposing overlap increases. Two small repairs move L031 18:30 to 18:31
+and L023 05:50 to 05:47. Strict zero-target repair attempts within five and fifteen
+minutes cannot remove the final TVC clash without creating another modeled issue.
+The scripts are preserved; this is a planning limit, not a change to actual gates.
+One nominal cell at minute 1,310 remains, with M069/S019 both needing TVC P1.
+
+The final proposal still has 202 changes from candidate nine. It has 485 modeled
+opposing-overlap pair instances / 1,935 summed minutes, 47 following-gap conflicts,
+zero following-order reversals, twelve SF/VB gaps below the 35-minute soft target
+(minimum 31.53), and isolated peak fleet 35. These figures are not observed waits,
+capacity acceptance or a performance claim. Genuine full-day simulation must
+resolve this tradeoff rather than continuing to optimize an incomplete model.
+
+The normal authoring tool wrote both packs using 205 overrides from the original
+definitions. An exact field proof restores old departures and recovers each
+whole predecessor pack byte-value structure; every non-departure field is unchanged.
+Both modes have identical 208 services, 168 boundary journeys, 69 overnight origins,
+3–12 departures/hour and K1 at 06:00. Exact author --check and all four headless
+authoring tests pass, empty stderr. The prior exact packs/overrides are preserved
+in candidate-ten-before and match the committed candidate-nine evidence.
+
+Full suite wrapper 1276 / child 11920 is RUNNING on the new packs, logs
+candidate-ten-full-tests.log/.err, job record candidate-ten-full-tests.job.json.
+Inspect this existing job first; do not duplicate it or edit runtime/tests while
+it runs. Runtime9ec3530 remains unchanged. Nothing new is committed yet: pending
+coherent work is the three Network authored files, candidate-ten evidence and docs.
+Preserve the unrelated pending prepared-UI Network checker/category helper.
+Once the full suite passes, archive its final logs, commit/push exact paths, then
+run prepared launch-network-v10.ps1 ONCE and verify-launch-v10.py against actual
+process identities/modes/isolated outputs/current sources/six observers. Neither
+v10 script has been run. All v9 replay jobs and all authoring diagnostics finished.
+All four legacy choices remain installed/current/native-tested; no Network data
+is installed. R47 is unchanged. Original actual wait/safety/call/completion/overtake
+gates remain mandatory, followed by category and actual Network UI/save/midnight checks.
+
+## Candidate ten full suite complete, 12:45
+
+The original wrapper1276/child11920 finished: 1,003 passed, zero failed and empty
+stderr. No suite process remains. All three authored hashes are unchanged from
+launch. The final log/err/job and exact hashes are now archived in candidate-ten
+evidence. No runtime/tests or observer edits occurred. Proceed with the explicit
+candidate-ten commit/push and the already-prepared v10 launcher exactly once;
+v10 output folders are still absent. This source-suite result is not full-day
+traffic acceptance, installation or a new executable release.

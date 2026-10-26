@@ -36,20 +36,25 @@ Ambalappuzha invalidate the model's hoped-for improvement.
 [Failed candidate evidence](../art/performance/realism-2026-10-26/network-candidate-nine/README.md).
 
 No full-day replay remains active. Both strict searches ended UNKNOWN (180 and
-901 seconds), which does not prove infeasibility. The express-spacing proposal
-reduces modeled close SF/VB approaches but increases opposing overlap, and still
-overfills some nominal receiving yards. It has not been applied. The independent
-review and exact results are preserved in
+901 seconds), which does not prove infeasibility. The rejected express-only and
+total-yard proposals remain preserved in
 [planning evidence](../art/performance/realism-2026-10-26/network-planning-revision/README.md).
-A combined yard-capacity search removed nominal total-road overflows, but retained
-incompatible passenger-road demands and eleven modeled following-order reversals.
-It also remains unapplied. The next search uses the runtime's actual static
-receiving-road compatibility for all 44 profiles, including full-rake fit and
-onward route, and stronger following separation. Direct berth matching agrees
-with its subset constraints in 83,520 modeled yard-minute checks; 20 incremental
-cost checks also pass. These are planning checks, not actual traffic acceptance.
-No new pack or runtime edit has been made. All legacy choices
-remain certified. New traffic must still pass the original complete-day gates.
+The completed receiving-compatible search is now authored as candidate ten:
+202 departures changed from candidate nine, all other fields unchanged, identical
+Classic/V2 services and K1 still 06:00. There are 69 overnight origins and 3–12
+departures per hour. Exact author reproduction, four authoring checks and all
+1,003 full source tests pass, with zero failures and empty stderr. The authored
+hashes remain unchanged from suite launch. No runtime or test source changed.
+
+Nominal compatible-berth clashes fall to one yard-minute and modeled following
+order reversals to zero, but opposing overlap increases. These are planning
+estimates, not traffic acceptance or measured improvements. The remaining TVC
+berth clash and all model limits are explicit in
+[candidate-ten evidence](../art/performance/realism-2026-10-26/network-candidate-ten/README.md).
+The tested candidate is ready to commit and launch its four genuine Network
+baseline/disturbance replays. No v10 replay has started at this checkpoint.
+All legacy choices remain certified. New traffic must still pass the original
+complete-day gates.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.

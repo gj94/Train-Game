@@ -1,0 +1,2826 @@
+{
+  "kind": "departure spacing proposal, not validated traffic",
+  "inputs": {
+    "planning-sections.json": "6ee19f5868f8de004db7d80414aa3ff91f3b474ca6978e37d1d044e5bf7932cc",
+    "solo-profiles-0.json": "f81aaa841457dc337f30babf5977698ff708bbf6c911b9bb523c2782410a4756",
+    "solo-profiles-1.json": "4cf8a26c771510ea0b5abe990c9a119bdfb71e97afedf385370ff95f8d28bfc3",
+    "kerala-coast-network.json": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed",
+    "planning-yards.json": "85e38689821523257d3c789da658d094385c2e68b7e83e837925e11930cefba5",
+    "planning-berths-v2.json": "ab1396da42361a20bdcbd740fb81d096f93c9cc3f42e170ff2ecb3c01a8074dc",
+    "network-spacing-proposal-v4.json": "a23621a7e49f44bd97d4ec3fb8245a926b0c9f80bc4d887000ed6b8c58c83b30"
+  },
+  "initial_cost": 208399.1586103499,
+  "proposed_cost": 11419.493610889567,
+  "changes": [
+    {
+      "service": "L002",
+      "before": "05:05",
+      "after": "06:10",
+      "minutes_shift": 65
+    },
+    {
+      "service": "L003",
+      "before": "16:05",
+      "after": "15:10",
+      "minutes_shift": -55
+    },
+    {
+      "service": "L004",
+      "before": "16:15",
+      "after": "14:55",
+      "minutes_shift": -80
+    },
+    {
+      "service": "L005",
+      "before": "05:55",
+      "after": "05:50",
+      "minutes_shift": -5
+    },
+    {
+      "service": "L006",
+      "before": "05:00",
+      "after": "04:40",
+      "minutes_shift": -20
+    },
+    {
+      "service": "L007",
+      "before": "06:35",
+      "after": "06:40",
+      "minutes_shift": 5
+    },
+    {
+      "service": "L008",
+      "before": "08:20",
+      "after": "09:15",
+      "minutes_shift": 55
+    },
+    {
+      "service": "L009",
+      "before": "14:40",
+      "after": "16:00",
+      "minutes_shift": 80
+    },
+    {
+      "service": "L010",
+      "before": "15:55",
+      "after": "15:40",
+      "minutes_shift": -15
+    },
+    {
+      "service": "L011",
+      "before": "18:00",
+      "after": "16:45",
+      "minutes_shift": -75
+    },
+    {
+      "service": "L012",
+      "before": "19:35",
+      "after": "20:20",
+      "minutes_shift": 45
+    },
+    {
+      "service": "L013",
+      "before": "05:55",
+      "after": "06:20",
+      "minutes_shift": 25
+    },
+    {
+      "service": "L014",
+      "before": "04:35",
+      "after": "04:40",
+      "minutes_shift": 5
+    },
+    {
+      "service": "L015",
+      "before": "07:55",
+      "after": "06:55",
+      "minutes_shift": -60
+    },
+    {
+      "service": "L016",
+      "before": "08:50",
+      "after": "08:25",
+      "minutes_shift": -25
+    },
+    {
+      "service": "L017",
+      "before": "15:10",
+      "after": "16:00",
+      "minutes_shift": 50
+    },
+    {
+      "service": "L018",
+      "before": "16:05",
+      "after": "15:30",
+      "minutes_shift": -35
+    },
+    {
+      "service": "L019",
+      "before": "18:30",
+      "after": "17:45",
+      "minutes_shift": -45
+    },
+    {
+      "service": "L020",
+      "before": "19:40",
+      "after": "21:10",
+      "minutes_shift": 90
+    },
+    {
+      "service": "L021",
+      "before": "04:40",
+      "after": "04:45",
+      "minutes_shift": 5
+    },
+    {
+      "service": "L022",
+      "before": "06:20",
+      "after": "05:35",
+      "minutes_shift": -45
+    },
+    {
+      "service": "L023",
+      "before": "06:20",
+      "after": "05:50",
+      "minutes_shift": -30
+    },
+    {
+      "service": "L024",
+      "before": "08:15",
+      "after": "07:40",
+      "minutes_shift": -35
+    },
+    {
+      "service": "L025",
+      "before": "09:15",
+      "after": "09:50",
+      "minutes_shift": 35
+    },
+    {
+      "service": "L026",
+      "before": "10:05",
+      "after": "10:40",
+      "minutes_shift": 35
+    },
+    {
+      "service": "L027",
+      "before": "13:30",
+      "after": "15:00",
+      "minutes_shift": 90
+    },
+    {
+      "service": "L028",
+      "before": "14:00",
+      "after": "14:20",
+      "minutes_shift": 20
+    },
+    {
+      "service": "L029",
+      "before": "16:55",
+      "after": "17:55",
+      "minutes_shift": 60
+    },
+    {
+      "service": "L031",
+      "before": "20:00",
+      "after": "18:30",
+      "minutes_shift": -90
+    },
+    {
+      "service": "L032",
+      "before": "20:50",
+      "after": "19:25",
+      "minutes_shift": -85
+    },
+    {
+      "service": "L033",
+      "before": "07:10",
+      "after": "06:15",
+      "minutes_shift": -55
+    },
+    {
+      "service": "L034",
+      "before": "04:05",
+      "after": "04:30",
+      "minutes_shift": 25
+    },
+    {
+      "service": "L035",
+      "before": "08:05",
+      "after": "07:20",
+      "minutes_shift": -45
+    },
+    {
+      "service": "L036",
+      "before": "08:20",
+      "after": "09:40",
+      "minutes_shift": 80
+    },
+    {
+      "service": "L037",
+      "before": "17:05",
+      "after": "16:30",
+      "minutes_shift": -35
+    },
+    {
+      "service": "L038",
+      "before": "18:25",
+      "after": "17:35",
+      "minutes_shift": -50
+    },
+    {
+      "service": "L039",
+      "before": "22:25",
+      "after": "22:50",
+      "minutes_shift": 25
+    },
+    {
+      "service": "L040",
+      "before": "23:25",
+      "after": "00:55",
+      "minutes_shift": 90
+    },
+    {
+      "service": "M001",
+      "before": "00:40",
+      "after": "00:55",
+      "minutes_shift": 15
+    },
+    {
+      "service": "M002",
+      "before": "01:30",
+      "after": "01:55",
+      "minutes_shift": 25
+    },
+    {
+      "service": "M003",
+      "before": "01:05",
+      "after": "22:25",
+      "minutes_shift": -160
+    },
+    {
+      "service": "M004",
+      "before": "02:10",
+      "after": "00:50",
+      "minutes_shift": -80
+    },
+    {
+      "service": "M005",
+      "before": "02:05",
+      "after": "23:45",
+      "minutes_shift": -140
+    },
+    {
+      "service": "M006",
+      "before": "03:20",
+      "after": "05:50",
+      "minutes_shift": 150
+    },
+    {
+      "service": "M007",
+      "before": "02:10",
+      "after": "00:10",
+      "minutes_shift": -120
+    },
+    {
+      "service": "M008",
+      "before": "03:25",
+      "after": "06:25",
+      "minutes_shift": 180
+    },
+    {
+      "service": "M009",
+      "before": "05:30",
+      "after": "05:35",
+      "minutes_shift": 5
+    },
+    {
+      "service": "M010",
+      "before": "04:50",
+      "after": "01:10",
+      "minutes_shift": -220
+    },
+    {
+      "service": "M011",
+      "before": "07:10",
+      "after": "08:35",
+      "minutes_shift": 85
+    },
+    {
+      "service": "M012",
+      "before": "06:50",
+      "after": "03:30",
+      "minutes_shift": -200
+    },
+    {
+      "service": "M013",
+      "before": "06:40",
+      "after": "07:20",
+      "minutes_shift": 40
+    },
+    {
+      "service": "M014",
+      "before": "06:25",
+      "after": "09:50",
+      "minutes_shift": 205
+    },
+    {
+      "service": "M015",
+      "before": "10:05",
+      "after": "12:30",
+      "minutes_shift": 145
+    },
+    {
+      "service": "M016",
+      "before": "11:05",
+      "after": "11:45",
+      "minutes_shift": 40
+    },
+    {
+      "service": "M017",
+      "before": "11:05",
+      "after": "08:15",
+      "minutes_shift": -170
+    },
+    {
+      "service": "M018",
+      "before": "11:35",
+      "after": "10:15",
+      "minutes_shift": -80
+    },
+    {
+      "service": "M019",
+      "before": "11:00",
+      "after": "09:15",
+      "minutes_shift": -105
+    },
+    {
+      "service": "M020",
+      "before": "12:25",
+      "after": "14:15",
+      "minutes_shift": 110
+    },
+    {
+      "service": "M021",
+      "before": "12:00",
+      "after": "13:35",
+      "minutes_shift": 95
+    },
+    {
+      "service": "M022",
+      "before": "12:10",
+      "after": "12:35",
+      "minutes_shift": 25
+    },
+    {
+      "service": "M023",
+      "before": "11:30",
+      "after": "10:00",
+      "minutes_shift": -90
+    },
+    {
+      "service": "M024",
+      "before": "12:05",
+      "after": "12:50",
+      "minutes_shift": 45
+    },
+    {
+      "service": "M025",
+      "before": "15:55",
+      "after": "14:45",
+      "minutes_shift": -70
+    },
+    {
+      "service": "M026",
+      "before": "14:05",
+      "after": "12:05",
+      "minutes_shift": -120
+    },
+    {
+      "service": "M027",
+      "before": "15:25",
+      "after": "19:05",
+      "minutes_shift": 220
+    },
+    {
+      "service": "M028",
+      "before": "15:00",
+      "after": "11:15",
+      "minutes_shift": -225
+    },
+    {
+      "service": "M029",
+      "before": "18:30",
+      "after": "19:30",
+      "minutes_shift": 60
+    },
+    {
+      "service": "M030",
+      "before": "19:45",
+      "after": "23:20",
+      "minutes_shift": 215
+    },
+    {
+      "service": "M031",
+      "before": "20:10",
+      "after": "19:20",
+      "minutes_shift": -50
+    },
+    {
+      "service": "M032",
+      "before": "19:40",
+      "after": "18:50",
+      "minutes_shift": -50
+    },
+    {
+      "service": "M033",
+      "before": "18:50",
+      "after": "18:55",
+      "minutes_shift": 5
+    },
+    {
+      "service": "M034",
+      "before": "20:40",
+      "after": "19:00",
+      "minutes_shift": -100
+    },
+    {
+      "service": "M035",
+      "before": "19:15",
+      "after": "19:40",
+      "minutes_shift": 25
+    },
+    {
+      "service": "M036",
+      "before": "19:55",
+      "after": "23:50",
+      "minutes_shift": 235
+    },
+    {
+      "service": "M037",
+      "before": "23:20",
+      "after": "23:55",
+      "minutes_shift": 35
+    },
+    {
+      "service": "M038",
+      "before": "22:00",
+      "after": "00:25",
+      "minutes_shift": 145
+    },
+    {
+      "service": "M039",
+      "before": "23:25",
+      "after": "00:35",
+      "minutes_shift": 70
+    },
+    {
+      "service": "M040",
+      "before": "00:45",
+      "after": "01:45",
+      "minutes_shift": 60
+    },
+    {
+      "service": "M041",
+      "before": "01:15",
+      "after": "22:55",
+      "minutes_shift": -140
+    },
+    {
+      "service": "M042",
+      "before": "00:40",
+      "after": "22:55",
+      "minutes_shift": -105
+    },
+    {
+      "service": "M043",
+      "before": "01:45",
+      "after": "22:10",
+      "minutes_shift": -215
+    },
+    {
+      "service": "M044",
+      "before": "01:10",
+      "after": "03:40",
+      "minutes_shift": 150
+    },
+    {
+      "service": "M045",
+      "before": "03:25",
+      "after": "00:45",
+      "minutes_shift": -160
+    },
+    {
+      "service": "M046",
+      "before": "04:45",
+      "after": "00:45",
+      "minutes_shift": -240
+    },
+    {
+      "service": "M047",
+      "before": "07:05",
+      "after": "04:25",
+      "minutes_shift": -160
+    },
+    {
+      "service": "M048",
+      "before": "09:20",
+      "after": "09:35",
+      "minutes_shift": 15
+    },
+    {
+      "service": "M049",
+      "before": "10:25",
+      "after": "10:55",
+      "minutes_shift": 30
+    },
+    {
+      "service": "M050",
+      "before": "10:00",
+      "after": "09:15",
+      "minutes_shift": -45
+    },
+    {
+      "service": "M051",
+      "before": "12:05",
+      "after": "09:50",
+      "minutes_shift": -135
+    },
+    {
+      "service": "M052",
+      "before": "12:45",
+      "after": "13:10",
+      "minutes_shift": 25
+    },
+    {
+      "service": "M053",
+      "before": "14:35",
+      "after": "11:15",
+      "minutes_shift": -200
+    },
+    {
+      "service": "M054",
+      "before": "13:05",
+      "after": "12:40",
+      "minutes_shift": -25
+    },
+    {
+      "service": "M055",
+      "before": "19:35",
+      "after": "18:45",
+      "minutes_shift": -50
+    },
+    {
+      "service": "M056",
+      "before": "18:05",
+      "after": "19:10",
+      "minutes_shift": 65
+    },
+    {
+      "service": "M057",
+      "before": "19:40",
+      "after": "18:00",
+      "minutes_shift": -100
+    },
+    {
+      "service": "M058",
+      "before": "18:00",
+      "after": "18:55",
+      "minutes_shift": 55
+    },
+    {
+      "service": "M059",
+      "before": "00:25",
+      "after": "20:25",
+      "minutes_shift": -240
+    },
+    {
+      "service": "M060",
+      "before": "00:20",
+      "after": "23:40",
+      "minutes_shift": -40
+    },
+    {
+      "service": "M061",
+      "before": "03:00",
+      "after": "04:15",
+      "minutes_shift": 75
+    },
+    {
+      "service": "M062",
+      "before": "00:25",
+      "after": "22:35",
+      "minutes_shift": -110
+    },
+    {
+      "service": "M063",
+      "before": "07:45",
+      "after": "04:50",
+      "minutes_shift": -175
+    },
+    {
+      "service": "M064",
+      "before": "05:35",
+      "after": "04:10",
+      "minutes_shift": -85
+    },
+    {
+      "service": "M065",
+      "before": "11:50",
+      "after": "11:05",
+      "minutes_shift": -45
+    },
+    {
+      "service": "M066",
+      "before": "09:40",
+      "after": "11:45",
+      "minutes_shift": 125
+    },
+    {
+      "service": "M067",
+      "before": "15:40",
+      "after": "17:50",
+      "minutes_shift": 130
+    },
+    {
+      "service": "M068",
+      "before": "13:05",
+      "after": "10:00",
+      "minutes_shift": -185
+    },
+    {
+      "service": "M069",
+      "before": "19:05",
+      "after": "18:15",
+      "minutes_shift": -50
+    },
+    {
+      "service": "M070",
+      "before": "18:05",
+      "after": "16:30",
+      "minutes_shift": -95
+    },
+    {
+      "service": "M071",
+      "before": "00:20",
+      "after": "01:10",
+      "minutes_shift": 50
+    },
+    {
+      "service": "M072",
+      "before": "18:45",
+      "after": "16:55",
+      "minutes_shift": -110
+    },
+    {
+      "service": "M073",
+      "before": "22:25",
+      "after": "21:10",
+      "minutes_shift": -75
+    },
+    {
+      "service": "M074",
+      "before": "01:10",
+      "after": "23:45",
+      "minutes_shift": -85
+    },
+    {
+      "service": "M075",
+      "before": "04:25",
+      "after": "07:10",
+      "minutes_shift": 165
+    },
+    {
+      "service": "M076",
+      "before": "01:20",
+      "after": "02:45",
+      "minutes_shift": 85
+    },
+    {
+      "service": "M078",
+      "before": "07:20",
+      "after": "03:20",
+      "minutes_shift": -240
+    },
+    {
+      "service": "M079",
+      "before": "06:45",
+      "after": "06:00",
+      "minutes_shift": -45
+    },
+    {
+      "service": "M081",
+      "before": "11:45",
+      "after": "14:10",
+      "minutes_shift": 145
+    },
+    {
+      "service": "M082",
+      "before": "12:25",
+      "after": "12:20",
+      "minutes_shift": -5
+    },
+    {
+      "service": "M083",
+      "before": "12:25",
+      "after": "16:25",
+      "minutes_shift": 240
+    },
+    {
+      "service": "M084",
+      "before": "12:30",
+      "after": "09:20",
+      "minutes_shift": -190
+    },
+    {
+      "service": "M085",
+      "before": "16:00",
+      "after": "15:10",
+      "minutes_shift": -50
+    },
+    {
+      "service": "M086",
+      "before": "13:40",
+      "after": "11:15",
+      "minutes_shift": -145
+    },
+    {
+      "service": "M087",
+      "before": "16:05",
+      "after": "15:40",
+      "minutes_shift": -25
+    },
+    {
+      "service": "M088",
+      "before": "18:55",
+      "after": "18:40",
+      "minutes_shift": -15
+    },
+    {
+      "service": "M089",
+      "before": "21:15",
+      "after": "21:20",
+      "minutes_shift": 5
+    },
+    {
+      "service": "M090",
+      "before": "19:30",
+      "after": "18:00",
+      "minutes_shift": -90
+    },
+    {
+      "service": "M091",
+      "before": "22:10",
+      "after": "21:00",
+      "minutes_shift": -70
+    },
+    {
+      "service": "M092",
+      "before": "00:20",
+      "after": "02:35",
+      "minutes_shift": 135
+    },
+    {
+      "service": "M093",
+      "before": "02:10",
+      "after": "23:45",
+      "minutes_shift": -145
+    },
+    {
+      "service": "M094",
+      "before": "01:40",
+      "after": "01:50",
+      "minutes_shift": 10
+    },
+    {
+      "service": "M095",
+      "before": "09:25",
+      "after": "05:50",
+      "minutes_shift": -215
+    },
+    {
+      "service": "M096",
+      "before": "09:05",
+      "after": "10:10",
+      "minutes_shift": 65
+    },
+    {
+      "service": "M097",
+      "before": "14:30",
+      "after": "14:45",
+      "minutes_shift": 15
+    },
+    {
+      "service": "M098",
+      "before": "16:55",
+      "after": "17:50",
+      "minutes_shift": 55
+    },
+    {
+      "service": "M099",
+      "before": "22:35",
+      "after": "19:35",
+      "minutes_shift": -180
+    },
+    {
+      "service": "M100",
+      "before": "00:50",
+      "after": "03:05",
+      "minutes_shift": 135
+    },
+    {
+      "service": "M101",
+      "before": "08:55",
+      "after": "12:45",
+      "minutes_shift": 230
+    },
+    {
+      "service": "M102",
+      "before": "08:00",
+      "after": "11:55",
+      "minutes_shift": 235
+    },
+    {
+      "service": "M103",
+      "before": "17:45",
+      "after": "15:20",
+      "minutes_shift": -145
+    },
+    {
+      "service": "M104",
+      "before": "19:25",
+      "after": "18:30",
+      "minutes_shift": -55
+    },
+    {
+      "service": "S001",
+      "before": "01:30",
+      "after": "04:10",
+      "minutes_shift": 160
+    },
+    {
+      "service": "S002",
+      "before": "01:10",
+      "after": "23:35",
+      "minutes_shift": -95
+    },
+    {
+      "service": "S003",
+      "before": "01:40",
+      "after": "23:35",
+      "minutes_shift": -125
+    },
+    {
+      "service": "S004",
+      "before": "03:15",
+      "after": "01:10",
+      "minutes_shift": -125
+    },
+    {
+      "service": "S005",
+      "before": "02:25",
+      "after": "03:25",
+      "minutes_shift": 60
+    },
+    {
+      "service": "S006",
+      "before": "06:30",
+      "after": "07:00",
+      "minutes_shift": 30
+    },
+    {
+      "service": "S007",
+      "before": "08:30",
+      "after": "12:15",
+      "minutes_shift": 225
+    },
+    {
+      "service": "S008",
+      "before": "07:10",
+      "after": "08:05",
+      "minutes_shift": 55
+    },
+    {
+      "service": "S009",
+      "before": "10:30",
+      "after": "08:10",
+      "minutes_shift": -140
+    },
+    {
+      "service": "S010",
+      "before": "07:30",
+      "after": "10:00",
+      "minutes_shift": 150
+    },
+    {
+      "service": "S011",
+      "before": "11:20",
+      "after": "10:40",
+      "minutes_shift": -40
+    },
+    {
+      "service": "S013",
+      "before": "11:25",
+      "after": "09:10",
+      "minutes_shift": -135
+    },
+    {
+      "service": "S014",
+      "before": "11:45",
+      "after": "13:50",
+      "minutes_shift": 125
+    },
+    {
+      "service": "S015",
+      "before": "15:30",
+      "after": "13:15",
+      "minutes_shift": -135
+    },
+    {
+      "service": "S016",
+      "before": "15:20",
+      "after": "11:20",
+      "minutes_shift": -240
+    },
+    {
+      "service": "S017",
+      "before": "19:20",
+      "after": "16:35",
+      "minutes_shift": -165
+    },
+    {
+      "service": "S018",
+      "before": "16:15",
+      "after": "14:35",
+      "minutes_shift": -100
+    },
+    {
+      "service": "S019",
+      "before": "18:55",
+      "after": "18:40",
+      "minutes_shift": -15
+    },
+    {
+      "service": "S020",
+      "before": "20:45",
+      "after": "21:55",
+      "minutes_shift": 70
+    },
+    {
+      "service": "S021",
+      "before": "20:05",
+      "after": "20:20",
+      "minutes_shift": 15
+    },
+    {
+      "service": "S022",
+      "before": "21:30",
+      "after": "19:05",
+      "minutes_shift": -145
+    },
+    {
+      "service": "S023",
+      "before": "23:45",
+      "after": "21:20",
+      "minutes_shift": -145
+    },
+    {
+      "service": "S024",
+      "before": "22:25",
+      "after": "00:35",
+      "minutes_shift": 130
+    },
+    {
+      "service": "S025",
+      "before": "01:20",
+      "after": "01:45",
+      "minutes_shift": 25
+    },
+    {
+      "service": "S026",
+      "before": "01:40",
+      "after": "02:25",
+      "minutes_shift": 45
+    },
+    {
+      "service": "S028",
+      "before": "02:00",
+      "after": "01:30",
+      "minutes_shift": -30
+    },
+    {
+      "service": "S029",
+      "before": "08:25",
+      "after": "05:30",
+      "minutes_shift": -175
+    },
+    {
+      "service": "S030",
+      "before": "05:30",
+      "after": "05:05",
+      "minutes_shift": -25
+    },
+    {
+      "service": "S031",
+      "before": "11:45",
+      "after": "09:45",
+      "minutes_shift": -120
+    },
+    {
+      "service": "S032",
+      "before": "09:35",
+      "after": "09:15",
+      "minutes_shift": -20
+    },
+    {
+      "service": "S033",
+      "before": "13:05",
+      "after": "14:10",
+      "minutes_shift": 65
+    },
+    {
+      "service": "S034",
+      "before": "13:30",
+      "after": "11:40",
+      "minutes_shift": -110
+    },
+    {
+      "service": "S035",
+      "before": "17:35",
+      "after": "17:45",
+      "minutes_shift": 10
+    },
+    {
+      "service": "S036",
+      "before": "17:20",
+      "after": "16:10",
+      "minutes_shift": -70
+    },
+    {
+      "service": "S037",
+      "before": "20:20",
+      "after": "22:05",
+      "minutes_shift": 105
+    },
+    {
+      "service": "S038",
+      "before": "19:05",
+      "after": "17:10",
+      "minutes_shift": -115
+    },
+    {
+      "service": "S039",
+      "before": "00:05",
+      "after": "22:55",
+      "minutes_shift": -70
+    },
+    {
+      "service": "S040",
+      "before": "00:50",
+      "after": "21:40",
+      "minutes_shift": -190
+    },
+    {
+      "service": "S041",
+      "before": "23:25",
+      "after": "23:00",
+      "minutes_shift": -25
+    },
+    {
+      "service": "S042",
+      "before": "02:40",
+      "after": "03:15",
+      "minutes_shift": 35
+    },
+    {
+      "service": "S043",
+      "before": "03:35",
+      "after": "23:55",
+      "minutes_shift": -220
+    },
+    {
+      "service": "S044",
+      "before": "02:05",
+      "after": "23:05",
+      "minutes_shift": -180
+    },
+    {
+      "service": "S045",
+      "before": "05:05",
+      "after": "08:15",
+      "minutes_shift": 190
+    },
+    {
+      "service": "S046",
+      "before": "05:10",
+      "after": "03:50",
+      "minutes_shift": -80
+    },
+    {
+      "service": "S047",
+      "before": "07:20",
+      "after": "10:35",
+      "minutes_shift": 195
+    },
+    {
+      "service": "S048",
+      "before": "09:50",
+      "after": "12:15",
+      "minutes_shift": 145
+    },
+    {
+      "service": "S049",
+      "before": "12:00",
+      "after": "14:30",
+      "minutes_shift": 150
+    },
+    {
+      "service": "S050",
+      "before": "13:25",
+      "after": "10:25",
+      "minutes_shift": -180
+    },
+    {
+      "service": "S051",
+      "before": "15:20",
+      "after": "13:55",
+      "minutes_shift": -85
+    },
+    {
+      "service": "S052",
+      "before": "13:50",
+      "after": "12:50",
+      "minutes_shift": -60
+    },
+    {
+      "service": "S053",
+      "before": "16:25",
+      "after": "16:10",
+      "minutes_shift": -15
+    },
+    {
+      "service": "S054",
+      "before": "17:05",
+      "after": "13:35",
+      "minutes_shift": -210
+    },
+    {
+      "service": "S055",
+      "before": "21:50",
+      "after": "22:05",
+      "minutes_shift": 15
+    },
+    {
+      "service": "S056",
+      "before": "23:30",
+      "after": "00:05",
+      "minutes_shift": 35
+    },
+    {
+      "service": "V001",
+      "before": "08:10",
+      "after": "07:20",
+      "minutes_shift": -50
+    },
+    {
+      "service": "V002",
+      "before": "05:25",
+      "after": "05:30",
+      "minutes_shift": 5
+    },
+    {
+      "service": "V003",
+      "before": "15:45",
+      "after": "15:50",
+      "minutes_shift": 5
+    },
+    {
+      "service": "V004",
+      "before": "16:30",
+      "after": "16:15",
+      "minutes_shift": -15
+    },
+    {
+      "service": "V005",
+      "before": "06:25",
+      "after": "07:05",
+      "minutes_shift": 40
+    },
+    {
+      "service": "V006",
+      "before": "07:20",
+      "after": "08:45",
+      "minutes_shift": 85
+    },
+    {
+      "service": "V007",
+      "before": "15:10",
+      "after": "15:30",
+      "minutes_shift": 20
+    },
+    {
+      "service": "V008",
+      "before": "16:55",
+      "after": "18:25",
+      "minutes_shift": 90
+    }
+  ],
+  "sections": [
+    {
+      "section": "ALLP_single",
+      "trains": 140,
+      "southbound": 70,
+      "northbound": 70,
+      "sum_individual_envelope_minutes": 1575.866666662468,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    },
+    {
+      "section": "ERS_single",
+      "trains": 128,
+      "southbound": 64,
+      "northbound": 64,
+      "sum_individual_envelope_minutes": 1017.0666666603397,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    },
+    {
+      "section": "KUMM_single",
+      "trains": 128,
+      "southbound": 64,
+      "northbound": 64,
+      "sum_individual_envelope_minutes": 1751.7999999884082,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    },
+    {
+      "section": "KZT_single",
+      "trains": 124,
+      "southbound": 62,
+      "northbound": 62,
+      "sum_individual_envelope_minutes": 1642.9333333290153,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    },
+    {
+      "section": "MAKM_single",
+      "trains": 128,
+      "southbound": 64,
+      "northbound": 64,
+      "sum_individual_envelope_minutes": 1506.2666666614155,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    },
+    {
+      "section": "NEM_single",
+      "trains": 124,
+      "southbound": 62,
+      "northbound": 62,
+      "sum_individual_envelope_minutes": 1181.7999999989775,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    },
+    {
+      "section": "NYY_single",
+      "trains": 124,
+      "southbound": 62,
+      "northbound": 62,
+      "sum_individual_envelope_minutes": 1522.1333333313205,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    },
+    {
+      "section": "PASA_single",
+      "trains": 124,
+      "southbound": 62,
+      "northbound": 62,
+      "sum_individual_envelope_minutes": 1082.933333331801,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    },
+    {
+      "section": "SRTL_single",
+      "trains": 128,
+      "southbound": 64,
+      "northbound": 64,
+      "sum_individual_envelope_minutes": 1298.86666666174,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    },
+    {
+      "section": "TUVR_single",
+      "trains": 128,
+      "southbound": 64,
+      "northbound": 64,
+      "sum_individual_envelope_minutes": 1217.6666666599806,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    },
+    {
+      "section": "TVC_single",
+      "trains": 124,
+      "southbound": 62,
+      "northbound": 62,
+      "sum_individual_envelope_minutes": 931.6333333326347,
+      "note": "Sum includes overlapping permitted same-direction operation; not a one-train capacity limit."
+    }
+  ],
+  "limitations": [
+    "Isolated profiles exclude interaction-induced running delays.",
+    "Approach allowance is a planning estimate; full simulation owns actual route and tail clearance.",
+    "No calls, dwell, stock, priority, speed or forced passing changes.",
+    "A lower heuristic cost does not certify wait distributions or completion."
+  ],
+  "express_spacing_planning_target_minutes": 35,
+  "yard_model": "Conservative isolated-profile minute cells with static compatible-road subset capacities; not live receiving admission.",
+  "receiving_resources": [
+    {
+      "station": "ERS",
+      "roads": [
+        "ERS_P1",
+        "ERS_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "ERS",
+      "roads": [
+        "ERS_P2",
+        "ERS_P4",
+        "ERS_P5",
+        "ERS_P6"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "ERS",
+      "roads": [
+        "ERS_P1",
+        "ERS_P2",
+        "ERS_P3",
+        "ERS_P4",
+        "ERS_P5",
+        "ERS_P6"
+      ],
+      "capacity": 6
+    },
+    {
+      "station": "KUMM",
+      "roads": [
+        "KUMM_P3"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "KUMM",
+      "roads": [
+        "KUMM_P1",
+        "KUMM_P2",
+        "KUMM_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "TUVR",
+      "roads": [
+        "TUVR_P2",
+        "TUVR_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "TUVR",
+      "roads": [
+        "TUVR_P1",
+        "TUVR_P2",
+        "TUVR_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "SRTL",
+      "roads": [
+        "SRTL_P1",
+        "SRTL_P2",
+        "SRTL_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "MAKM",
+      "roads": [
+        "MAKM_P2",
+        "MAKM_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "MAKM",
+      "roads": [
+        "MAKM_P1",
+        "MAKM_P2",
+        "MAKM_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "ALLP",
+      "roads": [
+        "ALLP_P1",
+        "ALLP_P2",
+        "ALLP_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "AMPA",
+      "roads": [
+        "AMPA_P1"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "AMPA",
+      "roads": [
+        "AMPA_P2",
+        "AMPA_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "AMPA",
+      "roads": [
+        "AMPA_P1",
+        "AMPA_P2",
+        "AMPA_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "HAD",
+      "roads": [
+        "HAD_P3"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "HAD",
+      "roads": [
+        "HAD_P4"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "HAD",
+      "roads": [
+        "HAD_P1",
+        "HAD_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "HAD",
+      "roads": [
+        "HAD_P2",
+        "HAD_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "HAD",
+      "roads": [
+        "HAD_P3",
+        "HAD_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "HAD",
+      "roads": [
+        "HAD_P1",
+        "HAD_P3",
+        "HAD_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "HAD",
+      "roads": [
+        "HAD_P2",
+        "HAD_P3",
+        "HAD_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "HAD",
+      "roads": [
+        "HAD_P1",
+        "HAD_P2",
+        "HAD_P3",
+        "HAD_P4"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "CHPD",
+      "roads": [
+        "CHPD_P1"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "CHPD",
+      "roads": [
+        "CHPD_P2",
+        "CHPD_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "CHPD",
+      "roads": [
+        "CHPD_P1",
+        "CHPD_P2",
+        "CHPD_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "CHPD",
+      "roads": [
+        "CHPD_P2",
+        "CHPD_P3",
+        "CHPD_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "CHPD",
+      "roads": [
+        "CHPD_P1",
+        "CHPD_P2",
+        "CHPD_P3",
+        "CHPD_P4"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "KYJ",
+      "roads": [
+        "KYJ_P2",
+        "KYJ_P5"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "KYJ",
+      "roads": [
+        "KYJ_P1",
+        "KYJ_P3",
+        "KYJ_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "KYJ",
+      "roads": [
+        "KYJ_P1",
+        "KYJ_P2",
+        "KYJ_P3",
+        "KYJ_P4",
+        "KYJ_P5"
+      ],
+      "capacity": 5
+    },
+    {
+      "station": "OCR",
+      "roads": [
+        "OCR_P1"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "OCR",
+      "roads": [
+        "OCR_P3"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "OCR",
+      "roads": [
+        "OCR_P1",
+        "OCR_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "OCR",
+      "roads": [
+        "OCR_P1",
+        "OCR_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "OCR",
+      "roads": [
+        "OCR_P2",
+        "OCR_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "OCR",
+      "roads": [
+        "OCR_P1",
+        "OCR_P2",
+        "OCR_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "OCR",
+      "roads": [
+        "OCR_P1",
+        "OCR_P3",
+        "OCR_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "OCR",
+      "roads": [
+        "OCR_P1",
+        "OCR_P2",
+        "OCR_P3",
+        "OCR_P4"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "KPY",
+      "roads": [
+        "KPY_P3"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "KPY",
+      "roads": [
+        "KPY_P1",
+        "KPY_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "KPY",
+      "roads": [
+        "KPY_P2",
+        "KPY_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "KPY",
+      "roads": [
+        "KPY_P1",
+        "KPY_P3",
+        "KPY_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "KPY",
+      "roads": [
+        "KPY_P1",
+        "KPY_P2",
+        "KPY_P3",
+        "KPY_P4"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "STKT",
+      "roads": [
+        "STKT_P3"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "STKT",
+      "roads": [
+        "STKT_P4"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "STKT",
+      "roads": [
+        "STKT_P1",
+        "STKT_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "STKT",
+      "roads": [
+        "STKT_P2",
+        "STKT_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "STKT",
+      "roads": [
+        "STKT_P3",
+        "STKT_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "STKT",
+      "roads": [
+        "STKT_P1",
+        "STKT_P3",
+        "STKT_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "STKT",
+      "roads": [
+        "STKT_P2",
+        "STKT_P3",
+        "STKT_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "STKT",
+      "roads": [
+        "STKT_P1",
+        "STKT_P2",
+        "STKT_P3",
+        "STKT_P4"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "PRND",
+      "roads": [
+        "PRND_P3"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "PRND",
+      "roads": [
+        "PRND_P4"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "PRND",
+      "roads": [
+        "PRND_P1",
+        "PRND_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "PRND",
+      "roads": [
+        "PRND_P2",
+        "PRND_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "PRND",
+      "roads": [
+        "PRND_P3",
+        "PRND_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "PRND",
+      "roads": [
+        "PRND_P1",
+        "PRND_P3",
+        "PRND_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "PRND",
+      "roads": [
+        "PRND_P2",
+        "PRND_P3",
+        "PRND_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "PRND",
+      "roads": [
+        "PRND_P1",
+        "PRND_P2",
+        "PRND_P3",
+        "PRND_P4"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "QLN",
+      "roads": [
+        "QLN_P1",
+        "QLN_P3",
+        "QLN_P5"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "QLN",
+      "roads": [
+        "QLN_P2",
+        "QLN_P4",
+        "QLN_P6"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "QLN",
+      "roads": [
+        "QLN_P1",
+        "QLN_P2",
+        "QLN_P3",
+        "QLN_P4",
+        "QLN_P5",
+        "QLN_P6"
+      ],
+      "capacity": 6
+    },
+    {
+      "station": "PVU",
+      "roads": [
+        "PVU_P3"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "PVU",
+      "roads": [
+        "PVU_P1",
+        "PVU_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "PVU",
+      "roads": [
+        "PVU_P2",
+        "PVU_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "PVU",
+      "roads": [
+        "PVU_P1",
+        "PVU_P3",
+        "PVU_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "PVU",
+      "roads": [
+        "PVU_P1",
+        "PVU_P2",
+        "PVU_P3",
+        "PVU_P4"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "VAK",
+      "roads": [
+        "VAK_P4"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "VAK",
+      "roads": [
+        "VAK_P1",
+        "VAK_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "VAK",
+      "roads": [
+        "VAK_P2",
+        "VAK_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "VAK",
+      "roads": [
+        "VAK_P2",
+        "VAK_P3",
+        "VAK_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "VAK",
+      "roads": [
+        "VAK_P1",
+        "VAK_P2",
+        "VAK_P3",
+        "VAK_P4"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "KVU",
+      "roads": [
+        "KVU_P3"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "KVU",
+      "roads": [
+        "KVU_P1",
+        "KVU_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "KVU",
+      "roads": [
+        "KVU_P2",
+        "KVU_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "KVU",
+      "roads": [
+        "KVU_P1",
+        "KVU_P3",
+        "KVU_P4"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "KVU",
+      "roads": [
+        "KVU_P1",
+        "KVU_P2",
+        "KVU_P3",
+        "KVU_P4"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "MQU",
+      "roads": [
+        "MQU_P1"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "MQU",
+      "roads": [
+        "MQU_P2"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "MQU",
+      "roads": [
+        "MQU_P1",
+        "MQU_P2"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "MQU",
+      "roads": [
+        "MQU_P2",
+        "MQU_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "MQU",
+      "roads": [
+        "MQU_P1",
+        "MQU_P2",
+        "MQU_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "KZK",
+      "roads": [
+        "KZK_P2"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "KZK",
+      "roads": [
+        "KZK_P1",
+        "KZK_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "KZK",
+      "roads": [
+        "KZK_P2",
+        "KZK_P4"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "KZK",
+      "roads": [
+        "KZK_P1",
+        "KZK_P2",
+        "KZK_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "KZK",
+      "roads": [
+        "KZK_P1",
+        "KZK_P2",
+        "KZK_P3",
+        "KZK_P4"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "TVCN",
+      "roads": [
+        "TVCN_P1",
+        "TVCN_P4",
+        "TVCN_P6"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "TVCN",
+      "roads": [
+        "TVCN_P2",
+        "TVCN_P3",
+        "TVCN_P5"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "TVCN",
+      "roads": [
+        "TVCN_P1",
+        "TVCN_P2",
+        "TVCN_P3",
+        "TVCN_P4",
+        "TVCN_P5",
+        "TVCN_P6"
+      ],
+      "capacity": 6
+    },
+    {
+      "station": "TVC",
+      "roads": [
+        "TVC_P1"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "TVC",
+      "roads": [
+        "TVC_P2",
+        "TVC_P3",
+        "TVC_P4",
+        "TVC_P5"
+      ],
+      "capacity": 4
+    },
+    {
+      "station": "TVC",
+      "roads": [
+        "TVC_P1",
+        "TVC_P2",
+        "TVC_P3",
+        "TVC_P4",
+        "TVC_P5"
+      ],
+      "capacity": 5
+    },
+    {
+      "station": "NEM",
+      "roads": [
+        "NEM_P1",
+        "NEM_P2"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "NYY",
+      "roads": [
+        "NYY_P1",
+        "NYY_P2"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "PASA",
+      "roads": [
+        "PASA_P1",
+        "PASA_P2"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "KZT",
+      "roads": [
+        "KZT_P1",
+        "KZT_P2"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "ERL",
+      "roads": [
+        "ERL_P1"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "ERL",
+      "roads": [
+        "ERL_P2"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "ERL",
+      "roads": [
+        "ERL_P1",
+        "ERL_P2"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "ERL",
+      "roads": [
+        "ERL_P1",
+        "ERL_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "ERL",
+      "roads": [
+        "ERL_P1",
+        "ERL_P2",
+        "ERL_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "NJT",
+      "roads": [
+        "NJT_P1"
+      ],
+      "capacity": 1
+    },
+    {
+      "station": "NJT",
+      "roads": [
+        "NJT_P2",
+        "NJT_P3"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "NJT",
+      "roads": [
+        "NJT_P1",
+        "NJT_P2",
+        "NJT_P3"
+      ],
+      "capacity": 3
+    },
+    {
+      "station": "NCJ",
+      "roads": [
+        "NCJ_P1",
+        "NCJ_P6"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "NCJ",
+      "roads": [
+        "NCJ_P4",
+        "NCJ_P5"
+      ],
+      "capacity": 2
+    },
+    {
+      "station": "NCJ",
+      "roads": [
+        "NCJ_P1",
+        "NCJ_P4",
+        "NCJ_P5",
+        "NCJ_P6"
+      ],
+      "capacity": 4
+    }
+  ],
+  "origin_upper_bound_fallbacks": [
+    {
+      "service": "K1",
+      "station": "ERS",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L002",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L003",
+      "station": "ERS",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L004",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L005",
+      "station": "ERS",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L006",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L007",
+      "station": "ERS",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L008",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L009",
+      "station": "ERS",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L010",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L011",
+      "station": "ERS",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L012",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L013",
+      "station": "ALLP",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L014",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L015",
+      "station": "ALLP",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L016",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L017",
+      "station": "ALLP",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L018",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L019",
+      "station": "ALLP",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L020",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L021",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L022",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L023",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L024",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L025",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L026",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L027",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L028",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L029",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L030",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L031",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L032",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L033",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L034",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L035",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L036",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L037",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L038",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L039",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "L040",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M002",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M004",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M006",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M008",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M010",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M012",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M014",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M016",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M018",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M020",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M022",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M024",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M026",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M028",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M030",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M032",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M034",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M036",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M038",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M040",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M042",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M044",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M046",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M048",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M050",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M052",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M054",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M056",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M058",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M060",
+      "station": "NCJ",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M073",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M075",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M077",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M079",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M081",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M083",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M085",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M087",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M089",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M091",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M093",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M095",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M097",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M099",
+      "station": "QLN",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M101",
+      "station": "ALLP",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "M103",
+      "station": "ALLP",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S002",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S004",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S006",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S008",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S010",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S012",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S014",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S016",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S018",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S020",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S022",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S024",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S041",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S043",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S045",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S047",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S049",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S051",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S053",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "S055",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "V002",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "V004",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "V005",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    },
+    {
+      "service": "V007",
+      "station": "TVC",
+      "reason": "Origin supply; physical passenger-road upper bound"
+    }
+  ],
+  "initial_yard_penalty": 101600.0,
+  "proposed_yard_penalty": 240.0,
+  "seed_cost": 90971.24124998722,
+  "initial_peak_isolated_fleet": 34.0,
+  "proposed_peak_isolated_fleet": 35.0,
+  "hourly_departures": [
+    10,
+    8,
+    4,
+    7,
+    9,
+    10,
+    8,
+    7,
+    8,
+    12,
+    10,
+    9,
+    11,
+    6,
+    9,
+    9,
+    11,
+    8,
+    12,
+    9,
+    3,
+    7,
+    9,
+    12
+  ]
+}
