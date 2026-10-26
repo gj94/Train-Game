@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 02:23:01 checkpoint: original v23 V2 baseline 8580/19068 has
+reached 06:20 (23/208 complete); delayed 832/10968 has reached 08:20 (34/208).
+The delayed log includes 07:30 and 07:40, but its partial clock is not a recovery
+certificate. Both process identities match, error logs remain empty and neither
+final audit exists. Runtime, routes, packs and six observers remain frozen.
+No duplicate, restart, Classic208 job, unchanged checks or installation occurred.
+Network208V2 remains unaccepted; await the original runs' actual final reports.
+
 27 October 02:13:05 checkpoint: the original v23 V2 baseline 8580/19068
 has reached 04:50 (16/208 complete); delayed 832/10968 has reached 06:20
 (23/208), before the configured 07:30 hold. Both identities match, both error
