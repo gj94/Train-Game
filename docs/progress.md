@@ -2,6 +2,17 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 07:00 — original v26 runs checkpointed.
+
+At 07:00:08 the original baseline (3728/12192) reaches 05:00, 16/208 complete,
+and the original delayed run (16324/14784) reaches 06:20, 23/208 complete.
+Both retain their original commands and parent/child identities, with empty
+error logs and no final audits. The V2 pack and all six observer hashes match
+the launch. Only the four original Godot processes are present. Keep these
+runs and frozen inputs unchanged; partial clocks and waits are not acceptance.
+Network208V2 remains unaccepted/uninstalled. No duplicate, Classic208, suite
+or native job was launched; no new gameplay playtest.
+
 27 October 06:50 — original v26 runs remain active.
 
 At 06:50:05 the original baseline (3728/12192) reaches 03:20, 2/208 complete,
