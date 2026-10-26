@@ -2906,3 +2906,13 @@ pack and all six observer hashes still match launch. Runtime/routes/packs/
 observers remain frozen until both original outcomes. Partial clocks are not
 acceptance; Network208V2 remains unaccepted/uninstalled. No duplicate/restart,
 Classic208 work, unchanged tests or new gameplay playtest. Continue the originals.
+
+## 27 October 05:09 — original v25 runs continue
+
+27 October 05:09:05 checkpoint: original v25 V2 baseline13108/11232 reaches
+03:20 (2/208 complete); delayed22180/19280 reaches04:20 (7/208). Both original
+process identities match, error logs are empty and neither final audit exists.
+Runtime/routes/packs/six observers remain frozen. No duplicate/restart,
+Classic208 work, unchanged tests or installation. Partial clocks are not
+acceptance; Network208V2 remains unaccepted/uninstalled. No gameplay change or
+new playtest; continue checking the original runs for their final outcomes.
