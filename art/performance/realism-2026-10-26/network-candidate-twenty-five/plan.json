@@ -1,0 +1,66 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "f451d9470adca94ff3e75a8a978240c665aae8396fc3a563a870210eb40e191a",
+    "kerala-coast-network-v2.json": "9ba503245a4920a3ad469250b626271100327bb26fe5bb503cfbe1904a220907",
+    "kerala-coast-network-departure-overrides.json": "e8d271fcf143bb3a344c0952cee73a53ecb83a031fb6247634ead20180742964"
+  },
+  "changes": [
+    {
+      "service": "M049",
+      "before": "13:25",
+      "after": "14:15",
+      "reason": "Move the five southbound mail services behind the actual24 northbound S032/M018/M050/S016 group: M04914:15,M06514:30, then M05315:00,M01515:15,M02115:30, with30 origin minutes between the second and third mail. Baseline S032 waited2686s for opposing traffic atTUVR-N2; delayed M050 waited2100s opposingM049/M065/M053 plus546s for KUMM receiving occupied byM015/M021. Actual24 KUMM S015 envelope ends13:42:38 baseline and S00713:36:46 delayed, but M049 refills13:40:50/14:04:50. Delaying all five also removes downstream receiving claims from the proposed northbound window. These origin gaps are hypotheses, not guaranteed full-rake clearance or legal compatible-road availability; later opposing traffic may worsen."
+    },
+    {
+      "service": "M065",
+      "before": "13:35",
+      "after": "14:30",
+      "reason": "Move the five southbound mail services behind the actual24 northbound S032/M018/M050/S016 group: M04914:15,M06514:30, then M05315:00,M01515:15,M02115:30, with30 origin minutes between the second and third mail. Baseline S032 waited2686s for opposing traffic atTUVR-N2; delayed M050 waited2100s opposingM049/M065/M053 plus546s for KUMM receiving occupied byM015/M021. Actual24 KUMM S015 envelope ends13:42:38 baseline and S00713:36:46 delayed, but M049 refills13:40:50/14:04:50. Delaying all five also removes downstream receiving claims from the proposed northbound window. These origin gaps are hypotheses, not guaranteed full-rake clearance or legal compatible-road availability; later opposing traffic may worsen."
+    },
+    {
+      "service": "M053",
+      "before": "13:45",
+      "after": "15:00",
+      "reason": "Move the five southbound mail services behind the actual24 northbound S032/M018/M050/S016 group: M04914:15,M06514:30, then M05315:00,M01515:15,M02115:30, with30 origin minutes between the second and third mail. Baseline S032 waited2686s for opposing traffic atTUVR-N2; delayed M050 waited2100s opposingM049/M065/M053 plus546s for KUMM receiving occupied byM015/M021. Actual24 KUMM S015 envelope ends13:42:38 baseline and S00713:36:46 delayed, but M049 refills13:40:50/14:04:50. Delaying all five also removes downstream receiving claims from the proposed northbound window. These origin gaps are hypotheses, not guaranteed full-rake clearance or legal compatible-road availability; later opposing traffic may worsen."
+    },
+    {
+      "service": "M015",
+      "before": "13:55",
+      "after": "15:15",
+      "reason": "Move the five southbound mail services behind the actual24 northbound S032/M018/M050/S016 group: M04914:15,M06514:30, then M05315:00,M01515:15,M02115:30, with30 origin minutes between the second and third mail. Baseline S032 waited2686s for opposing traffic atTUVR-N2; delayed M050 waited2100s opposingM049/M065/M053 plus546s for KUMM receiving occupied byM015/M021. Actual24 KUMM S015 envelope ends13:42:38 baseline and S00713:36:46 delayed, but M049 refills13:40:50/14:04:50. Delaying all five also removes downstream receiving claims from the proposed northbound window. These origin gaps are hypotheses, not guaranteed full-rake clearance or legal compatible-road availability; later opposing traffic may worsen."
+    },
+    {
+      "service": "M021",
+      "before": "14:05",
+      "after": "15:30",
+      "reason": "Move the five southbound mail services behind the actual24 northbound S032/M018/M050/S016 group: M04914:15,M06514:30, then M05315:00,M01515:15,M02115:30, with30 origin minutes between the second and third mail. Baseline S032 waited2686s for opposing traffic atTUVR-N2; delayed M050 waited2100s opposingM049/M065/M053 plus546s for KUMM receiving occupied byM015/M021. Actual24 KUMM S015 envelope ends13:42:38 baseline and S00713:36:46 delayed, but M049 refills13:40:50/14:04:50. Delaying all five also removes downstream receiving claims from the proposed northbound window. These origin gaps are hypotheses, not guaranteed full-rake clearance or legal compatible-road availability; later opposing traffic may worsen."
+    },
+    {
+      "service": "S033",
+      "before": "15:00",
+      "after": "16:00",
+      "reason": "Move following S033/M025 to16:00/16:05, leaving30 origin minutes after shiftedM021 beforeS033; retain V00315:50 and S01716:35. Shift L003 behind this following group to16:20 and L009 to17:00, retaining L01116:45. This avoids putting the slow L003 ahead of the moved mail and fast group and maintains3-13 hourly starts. Actual later crossings, V003/S017 overtakes and local waits remain unproven; no whole-day improvement claim."
+    },
+    {
+      "service": "M025",
+      "before": "15:05",
+      "after": "16:05",
+      "reason": "Move following S033/M025 to16:00/16:05, leaving30 origin minutes after shiftedM021 beforeS033; retain V00315:50 and S01716:35. Shift L003 behind this following group to16:20 and L009 to17:00, retaining L01116:45. This avoids putting the slow L003 ahead of the moved mail and fast group and maintains3-13 hourly starts. Actual later crossings, V003/S017 overtakes and local waits remain unproven; no whole-day improvement claim."
+    },
+    {
+      "service": "L003",
+      "before": "15:10",
+      "after": "16:20",
+      "reason": "Move following S033/M025 to16:00/16:05, leaving30 origin minutes after shiftedM021 beforeS033; retain V00315:50 and S01716:35. Shift L003 behind this following group to16:20 and L009 to17:00, retaining L01116:45. This avoids putting the slow L003 ahead of the moved mail and fast group and maintains3-13 hourly starts. Actual later crossings, V003/S017 overtakes and local waits remain unproven; no whole-day improvement claim."
+    },
+    {
+      "service": "L009",
+      "before": "16:00",
+      "after": "17:00",
+      "reason": "Move following S033/M025 to16:00/16:05, leaving30 origin minutes after shiftedM021 beforeS033; retain V00315:50 and S01716:35. Shift L003 behind this following group to16:20 and L009 to17:00, retaining L01116:45. This avoids putting the slow L003 ahead of the moved mail and fast group and maintains3-13 hourly starts. Actual later crossings, V003/S017 overtakes and local waits remain unproven; no whole-day improvement claim."
+    }
+  ],
+  "evidence_commit": "dc5eaf49 baseline; delayed 7c3076a4",
+  "scope": "Network208 V2 only; nine northern group departure timings, no Classic replay or readiness requirement.",
+  "status": "Departure-only hypothesis; no acceptance"
+}
