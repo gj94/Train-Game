@@ -65,3 +65,18 @@ isolated v21 outputs. Freeze inputs throughout. Never install disturbed or
 partial data. All physical, safety, both wait-distribution and recovery gates
 remain mandatory. Network208V2 is not accepted or installed; no Classic208
 replay, installation or native check is required.
+
+## Verified launch
+
+Candidate74637eef is committed/pushed. Exactly two original V2 replays
+launched once at23:09:51 in isolatedv21: baseline26756/20168 and delayed
+20296/14748 (wrapper/child). All four actual commands/options, one distinct
+output each, initial predictive baseline mode,4,836 source fingerprints and
+six observer hashes are verified. Five exact launch files and their manifest
+are in candidate21 evidence. At23:10:26 baseline is starting and delayed
+00:30; identities match,empty errors,no final audits. Initial catalogue wait
+only; no job restarted and no Classic208 job launched. Baseline saves genuine
+snapshots; delayed uses600s manual K1hold at27000/07:30 and must never be
+installed. Freeze runtime/routes/packs/six observers through these original
+outcomes. No suite/native/search/diagnostic/Git job remains. Network208V2 is
+unaccepted/uninstalled; all completed legacy readiness is preserved.
