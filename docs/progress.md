@@ -41,8 +41,13 @@ reduces modeled close SF/VB approaches but increases opposing overlap, and still
 overfills some nominal receiving yards. It has not been applied. The independent
 review and exact results are preserved in
 [planning evidence](../art/performance/realism-2026-10-26/network-planning-revision/README.md).
-A combined yard-capacity/express-spacing authoring search is running; it edits
-no packs. Its incremental yard-cost arithmetic passes 20 direct comparisons.
+A combined yard-capacity search removed nominal total-road overflows, but retained
+incompatible passenger-road demands and eleven modeled following-order reversals.
+It also remains unapplied. The next search uses the runtime's actual static
+receiving-road compatibility for all 44 profiles, including full-rake fit and
+onward route, and stronger following separation. Direct berth matching agrees
+with its subset constraints in 83,520 modeled yard-minute checks; 20 incremental
+cost checks also pass. These are planning checks, not actual traffic acceptance.
 No new pack or runtime edit has been made. All legacy choices
 remain certified. New traffic must still pass the original complete-day gates.
 Complete traffic, category, midnight/save and actual menu gates remain pending.

@@ -1,0 +1,2185 @@
+{
+  "kind": "independent departure-proposal arithmetic review, not validated traffic",
+  "proposal_sha256": "a23621a7e49f44bd97d4ec3fb8245a926b0c9f80bc4d887000ed6b8c58c83b30",
+  "before": {
+    "hourly": [
+      11,
+      13,
+      9,
+      6,
+      6,
+      11,
+      10,
+      10,
+      11,
+      7,
+      5,
+      11,
+      11,
+      8,
+      5,
+      11,
+      11,
+      6,
+      11,
+      13,
+      7,
+      3,
+      6,
+      6
+    ],
+    "overnight": 68,
+    "opposing_overlap_pairs": 329,
+    "opposing_overlap_minutes": 988.799999999695,
+    "largest_opposing_overlaps": [
+      {
+        "group": "NYY_single",
+        "trains": [
+          "L002",
+          "S027"
+        ],
+        "minutes": 10.833333333204962
+      },
+      {
+        "group": "KUMM_single",
+        "trains": [
+          "M010",
+          "M063"
+        ],
+        "minutes": 10.73333333275474
+      },
+      {
+        "group": "NYY_single",
+        "trains": [
+          "L026",
+          "M047"
+        ],
+        "minutes": 10.600000001343801
+      },
+      {
+        "group": "NYY_single",
+        "trains": [
+          "L037",
+          "V008"
+        ],
+        "minutes": 10.500000000030923
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "M048",
+          "M065"
+        ],
+        "minutes": 9.433333334383974
+      },
+      {
+        "group": "MAKM_single",
+        "trains": [
+          "L003",
+          "M068"
+        ],
+        "minutes": 8.999999998531848
+      },
+      {
+        "group": "NEM_single",
+        "trains": [
+          "L028",
+          "V007"
+        ],
+        "minutes": 8.466666666660785
+      },
+      {
+        "group": "NEM_single",
+        "trains": [
+          "M049",
+          "M068"
+        ],
+        "minutes": 8.366666667840036
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "M054",
+          "V003"
+        ],
+        "minutes": 8.133333332209986
+      },
+      {
+        "group": "PASA_single",
+        "trains": [
+          "L028",
+          "M049"
+        ],
+        "minutes": 8.099999999911688
+      },
+      {
+        "group": "MAKM_single",
+        "trains": [
+          "M013",
+          "V002"
+        ],
+        "minutes": 7.933333333627786
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "S031",
+          "S032"
+        ],
+        "minutes": 7.933333332598181
+      },
+      {
+        "group": "NYY_single",
+        "trains": [
+          "L029",
+          "M070"
+        ],
+        "minutes": 7.533333333098881
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "M067",
+          "M068"
+        ],
+        "minutes": 7.233333334487384
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "M061",
+          "M062"
+        ],
+        "minutes": 7.233333334487327
+      },
+      {
+        "group": "TVC_single",
+        "trains": [
+          "K1",
+          "S048"
+        ],
+        "minutes": 7.23333333325661
+      },
+      {
+        "group": "PASA_single",
+        "trains": [
+          "L029",
+          "M072"
+        ],
+        "minutes": 7.166666666662422
+      },
+      {
+        "group": "PASA_single",
+        "trains": [
+          "L024",
+          "L035"
+        ],
+        "minutes": 7.066666666721517
+      },
+      {
+        "group": "KZT_single",
+        "trains": [
+          "L004",
+          "M085"
+        ],
+        "minutes": 7.033333333296923
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "M054",
+          "M067"
+        ],
+        "minutes": 7.033333332187794
+      }
+    ],
+    "following_conflicts": 92,
+    "following_order_reversals": 0,
+    "express_gap_below_35_count": 240,
+    "express_gap_min": 0.33333333338919147,
+    "express_gap_shortfalls": [
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "S018",
+          "V004"
+        ],
+        "minimum_gap": 0.33333333338919147
+      },
+      {
+        "group": "TVC_single",
+        "trains": [
+          "S033",
+          "S053"
+        ],
+        "minimum_gap": 2.3666666672670544
+      },
+      {
+        "group": "NEM_single",
+        "trains": [
+          "S033",
+          "S053"
+        ],
+        "minimum_gap": 2.4000000006849405
+      },
+      {
+        "group": "NYY_single",
+        "trains": [
+          "S033",
+          "S053"
+        ],
+        "minimum_gap": 2.400000000784985
+      },
+      {
+        "group": "PASA_single",
+        "trains": [
+          "S033",
+          "S053"
+        ],
+        "minimum_gap": 2.4000000009114046
+      },
+      {
+        "group": "KZT_single",
+        "trains": [
+          "S033",
+          "S053"
+        ],
+        "minimum_gap": 2.4000000011590146
+      },
+      {
+        "group": "KZT_single",
+        "trains": [
+          "S031",
+          "V007"
+        ],
+        "minimum_gap": 2.7999999988683157
+      },
+      {
+        "group": "ERS_single",
+        "trains": [
+          "S018",
+          "V004"
+        ],
+        "minimum_gap": 2.966666666842457
+      },
+      {
+        "group": "KUMM_single",
+        "trains": [
+          "S018",
+          "V004"
+        ],
+        "minimum_gap": 3.4666666668349535
+      },
+      {
+        "group": "KUMM_single",
+        "trains": [
+          "S004",
+          "S028"
+        ],
+        "minimum_gap": 3.59999999885531
+      },
+      {
+        "group": "TUVR_single",
+        "trains": [
+          "S004",
+          "S028"
+        ],
+        "minimum_gap": 3.5999999988555373
+      },
+      {
+        "group": "MAKM_single",
+        "trains": [
+          "S004",
+          "S028"
+        ],
+        "minimum_gap": 3.599999998856333
+      },
+      {
+        "group": "SRTL_single",
+        "trains": [
+          "S004",
+          "S028"
+        ],
+        "minimum_gap": 3.599999998856447
+      },
+      {
+        "group": "ERS_single",
+        "trains": [
+          "S004",
+          "S028"
+        ],
+        "minimum_gap": 3.599999998856674
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "S004",
+          "S028"
+        ],
+        "minimum_gap": 3.5999999990561946
+      },
+      {
+        "group": "TUVR_single",
+        "trains": [
+          "S018",
+          "V004"
+        ],
+        "minimum_gap": 3.7000000001644366
+      },
+      {
+        "group": "SRTL_single",
+        "trains": [
+          "S018",
+          "V004"
+        ],
+        "minimum_gap": 3.9333333334943745
+      },
+      {
+        "group": "TVC_single",
+        "trains": [
+          "S034",
+          "S050"
+        ],
+        "minimum_gap": 3.9666666666628316
+      },
+      {
+        "group": "MAKM_single",
+        "trains": [
+          "S018",
+          "V004"
+        ],
+        "minimum_gap": 4.166666666787933
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "S005",
+          "S027"
+        ],
+        "minimum_gap": 5.0
+      }
+    ],
+    "yard_estimates": [
+      {
+        "station": "ERS",
+        "total_physical_roads": 6,
+        "passenger_roads": 6,
+        "lane_labels": {
+          "D": 2,
+          "U": 4,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 83.79999999931329,
+        "nominal_peak_trains": [
+          "M038",
+          "M041",
+          "S024",
+          "S025"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "M038",
+          "M041",
+          "S024",
+          "S025"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "KUMM",
+        "total_physical_roads": 3,
+        "passenger_roads": 1,
+        "lane_labels": {
+          "D": 1,
+          "U": 0,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 678.0333333333269,
+        "nominal_peak_trains": [
+          "L002",
+          "L008",
+          "M017"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "K1",
+          "L005"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "TUVR",
+        "total_physical_roads": 3,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 654.4666666666499,
+        "nominal_peak_trains": [
+          "L002",
+          "L008",
+          "S009"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "K1",
+          "L005"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "SRTL",
+        "total_physical_roads": 3,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 2,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 56.5999999999835,
+        "nominal_peak_trains": [
+          "M038",
+          "M059",
+          "M071",
+          "S024"
+        ],
+        "exceeds_total_road_count": true,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "M038",
+          "M059",
+          "M071"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "MAKM",
+        "total_physical_roads": 3,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 420.0333333336385,
+        "nominal_peak_trains": [
+          "K1",
+          "L005",
+          "L006"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "K1",
+          "L005",
+          "L006"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "ALLP",
+        "total_physical_roads": 3,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 1,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 5,
+        "nominal_peak_at": 992.0333333333729,
+        "nominal_peak_trains": [
+          "M026",
+          "M027",
+          "M052",
+          "S015",
+          "V003"
+        ],
+        "exceeds_total_road_count": true,
+        "nominal_stopping_peak": 5,
+        "stopping_peak_trains": [
+          "M026",
+          "M027",
+          "M052",
+          "S015",
+          "V003"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "AMPA",
+        "total_physical_roads": 3,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 1,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 543.5999999999976,
+        "nominal_peak_trains": [
+          "M012",
+          "M063",
+          "M101",
+          "S008"
+        ],
+        "exceeds_total_road_count": true,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "M016",
+          "M021",
+          "M051",
+          "M066"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "HAD",
+        "total_physical_roads": 4,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 229.53333333350935,
+        "nominal_peak_trains": [
+          "M007",
+          "M062",
+          "S005",
+          "S040"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "L002",
+          "L008",
+          "M063",
+          "M101"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "CHPD",
+        "total_physical_roads": 4,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 1,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 167.7666666668545,
+        "nominal_peak_trains": [
+          "M003",
+          "S002",
+          "S025"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "K1",
+          "L005"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "KYJ",
+        "total_physical_roads": 5,
+        "passenger_roads": 5,
+        "lane_labels": {
+          "D": 3,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 5,
+        "nominal_peak_at": 773.1666666669287,
+        "nominal_peak_trains": [
+          "M016",
+          "M017",
+          "M019",
+          "M066",
+          "S011"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 5,
+        "stopping_peak_trains": [
+          "M016",
+          "M017",
+          "M019",
+          "M066",
+          "S011"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "OCR",
+        "total_physical_roads": 4,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 540.3999999988533,
+        "nominal_peak_trains": [
+          "L002",
+          "L007",
+          "L008",
+          "L015"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "L002",
+          "L007",
+          "L008",
+          "L015"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "KPY",
+        "total_physical_roads": 5,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 2,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 202.8333333333885,
+        "nominal_peak_trains": [
+          "M041",
+          "M062",
+          "S001",
+          "S040"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "K1",
+          "L005",
+          "M064"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "STKT",
+        "total_physical_roads": 4,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 522.9333333332415,
+        "nominal_peak_trains": [
+          "K1",
+          "L002",
+          "L005",
+          "L008"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "K1",
+          "L002",
+          "L005",
+          "L008"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "PRND",
+        "total_physical_roads": 4,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 1283.8333333335795,
+        "nominal_peak_trains": [
+          "L020",
+          "M069",
+          "M072",
+          "S017"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "L002",
+          "L008"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "QLN",
+        "total_physical_roads": 12,
+        "passenger_roads": 6,
+        "lane_labels": {
+          "D": 3,
+          "U": 3,
+          "M": 0
+        },
+        "nominal_peak": 5,
+        "nominal_peak_at": 279.0791666666668,
+        "nominal_peak_trains": [
+          "L021",
+          "M005",
+          "M007",
+          "S005",
+          "S027"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 5,
+        "stopping_peak_trains": [
+          "L021",
+          "M005",
+          "M007",
+          "S005",
+          "S027"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "PVU",
+        "total_physical_roads": 4,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 2,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 238.93333333359084,
+        "nominal_peak_trains": [
+          "M041",
+          "M094",
+          "S001",
+          "S004"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "M004",
+          "M059",
+          "M071"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "VAK",
+        "total_physical_roads": 4,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 1,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 164.866666666662,
+        "nominal_peak_trains": [
+          "M004",
+          "M042",
+          "S039",
+          "S040"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "M004",
+          "M042",
+          "S039",
+          "S040"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "KVU",
+        "total_physical_roads": 4,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 2,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 150.93333333360533,
+        "nominal_peak_trains": [
+          "M039",
+          "M042",
+          "S040"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "L014",
+          "L021"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "MQU",
+        "total_physical_roads": 3,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 212.433333332885,
+        "nominal_peak_trains": [
+          "M059",
+          "M094",
+          "S004",
+          "S028"
+        ],
+        "exceeds_total_road_count": true,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "K1",
+          "L025"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "KZK",
+        "total_physical_roads": 4,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 2,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 219.09999999999266,
+        "nominal_peak_trains": [
+          "M006",
+          "M008",
+          "M059",
+          "M071"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "M006",
+          "M008",
+          "M059",
+          "M071"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "TVCN",
+        "total_physical_roads": 6,
+        "passenger_roads": 6,
+        "lane_labels": {
+          "D": 3,
+          "U": 3,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 636.0000000001995,
+        "nominal_peak_trains": [
+          "K1",
+          "M011",
+          "M047",
+          "M096"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "K1",
+          "M011",
+          "M047",
+          "M096"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "TVC",
+        "total_physical_roads": 5,
+        "passenger_roads": 5,
+        "lane_labels": {
+          "D": 1,
+          "U": 4,
+          "M": 0
+        },
+        "nominal_peak": 5,
+        "nominal_peak_at": 194.0791666666668,
+        "nominal_peak_trains": [
+          "M093",
+          "S004",
+          "S028",
+          "S039",
+          "S044"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 5,
+        "stopping_peak_trains": [
+          "M093",
+          "S004",
+          "S028",
+          "S039",
+          "S044"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "NEM",
+        "total_physical_roads": 2,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 391.0000000000903,
+        "nominal_peak_trains": [
+          "L002",
+          "L021",
+          "S030",
+          "V005"
+        ],
+        "exceeds_total_road_count": true,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "L002",
+          "L021"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "NYY",
+        "total_physical_roads": 2,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 215.49999999921664,
+        "nominal_peak_trains": [
+          "M093",
+          "S039",
+          "S042"
+        ],
+        "exceeds_total_road_count": true,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "M043",
+          "M046",
+          "M077"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "PASA",
+        "total_physical_roads": 2,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 354.3666666666965,
+        "nominal_peak_trains": [
+          "L002",
+          "M043",
+          "M077",
+          "S046"
+        ],
+        "exceeds_total_road_count": true,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "L002",
+          "M043",
+          "M077"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "KZT",
+        "total_physical_roads": 2,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 5,
+        "nominal_peak_at": 1.6333333333168412,
+        "nominal_peak_trains": [
+          "L040",
+          "M055",
+          "M057",
+          "S041",
+          "S056"
+        ],
+        "exceeds_total_road_count": true,
+        "nominal_stopping_peak": 5,
+        "stopping_peak_trains": [
+          "L040",
+          "M055",
+          "M057",
+          "S041",
+          "S056"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "ERL",
+        "total_physical_roads": 3,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 460.2333333334027,
+        "nominal_peak_trains": [
+          "L021",
+          "M061",
+          "M079",
+          "V006"
+        ],
+        "exceeds_total_road_count": true,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "M062",
+          "M092",
+          "M099"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "NJT",
+        "total_physical_roads": 3,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 1,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 2,
+        "nominal_peak_at": 24.366666666668,
+        "nominal_peak_trains": [
+          "M060",
+          "S041"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "L023",
+          "L035"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "NCJ",
+        "total_physical_roads": 6,
+        "passenger_roads": 4,
+        "lane_labels": {
+          "D": 2,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 5,
+        "nominal_peak_at": 1045.4333333334216,
+        "nominal_peak_trains": [
+          "L030",
+          "M087",
+          "S033",
+          "S036",
+          "S053"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 5,
+        "stopping_peak_trains": [
+          "L030",
+          "M087",
+          "S033",
+          "S036",
+          "S053"
+        ],
+        "exceeds_passenger_road_count": true
+      }
+    ]
+  },
+  "after": {
+    "hourly": [
+      13,
+      13,
+      8,
+      5,
+      7,
+      8,
+      13,
+      8,
+      9,
+      10,
+      5,
+      13,
+      10,
+      5,
+      9,
+      12,
+      3,
+      8,
+      13,
+      13,
+      5,
+      4,
+      7,
+      7
+    ],
+    "overnight": 68,
+    "opposing_overlap_pairs": 253,
+    "opposing_overlap_minutes": 786.499999977401,
+    "largest_opposing_overlaps": [
+      {
+        "group": "KZT_single",
+        "trains": [
+          "S026",
+          "S039"
+        ],
+        "minutes": 11.999999998710535
+      },
+      {
+        "group": "KUMM_single",
+        "trains": [
+          "M013",
+          "M046"
+        ],
+        "minutes": 9.36666666825812
+      },
+      {
+        "group": "NYY_single",
+        "trains": [
+          "M068",
+          "S029"
+        ],
+        "minutes": 9.366666665687262
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "S006",
+          "S007"
+        ],
+        "minutes": 9.333333333541987
+      },
+      {
+        "group": "TUVR_single",
+        "trains": [
+          "L007",
+          "S004"
+        ],
+        "minutes": 9.166666666562378
+      },
+      {
+        "group": "NYY_single",
+        "trains": [
+          "M059",
+          "S030"
+        ],
+        "minutes": 9.133333334560348
+      },
+      {
+        "group": "SRTL_single",
+        "trains": [
+          "L003",
+          "L010"
+        ],
+        "minutes": 8.733333333103019
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "S015",
+          "S032"
+        ],
+        "minutes": 8.433333333973678
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "S029",
+          "S030"
+        ],
+        "minutes": 8.433333333973678
+      },
+      {
+        "group": "TUVR_single",
+        "trains": [
+          "M072",
+          "S039"
+        ],
+        "minutes": 7.500000001513627
+      },
+      {
+        "group": "KZT_single",
+        "trains": [
+          "L029",
+          "L030"
+        ],
+        "minutes": 7.46666666670103
+      },
+      {
+        "group": "KUMM_single",
+        "trains": [
+          "L006",
+          "M009"
+        ],
+        "minutes": 7.433333333278824
+      },
+      {
+        "group": "NEM_single",
+        "trains": [
+          "M042",
+          "S037"
+        ],
+        "minutes": 7.433333332463036
+      },
+      {
+        "group": "NEM_single",
+        "trains": [
+          "M050",
+          "S029"
+        ],
+        "minutes": 7.4333333324630075
+      },
+      {
+        "group": "NYY_single",
+        "trains": [
+          "M066",
+          "S029"
+        ],
+        "minutes": 7.366666667550021
+      },
+      {
+        "group": "MAKM_single",
+        "trains": [
+          "M054",
+          "V003"
+        ],
+        "minutes": 7.033333332063762
+      },
+      {
+        "group": "NYY_single",
+        "trains": [
+          "S028",
+          "S039"
+        ],
+        "minutes": 6.966666665714968
+      },
+      {
+        "group": "NYY_single",
+        "trains": [
+          "S037",
+          "S040"
+        ],
+        "minutes": 6.966666665714911
+      },
+      {
+        "group": "MAKM_single",
+        "trains": [
+          "M068",
+          "S009"
+        ],
+        "minutes": 6.766666665280923
+      },
+      {
+        "group": "KUMM_single",
+        "trains": [
+          "M056",
+          "S039"
+        ],
+        "minutes": 6.499999998240128
+      }
+    ],
+    "following_conflicts": 159,
+    "following_order_reversals": 11,
+    "express_gap_below_35_count": 14,
+    "express_gap_min": 29.399999999961437,
+    "express_gap_shortfalls": [
+      {
+        "group": "KZT_single",
+        "trains": [
+          "S053",
+          "V007"
+        ],
+        "minimum_gap": 29.399999999961437
+      },
+      {
+        "group": "TVC_single",
+        "trains": [
+          "S031",
+          "S053"
+        ],
+        "minimum_gap": 32.366666667267054
+      },
+      {
+        "group": "NEM_single",
+        "trains": [
+          "S031",
+          "S053"
+        ],
+        "minimum_gap": 32.40000000068494
+      },
+      {
+        "group": "NYY_single",
+        "trains": [
+          "S031",
+          "S053"
+        ],
+        "minimum_gap": 32.400000000784985
+      },
+      {
+        "group": "PASA_single",
+        "trains": [
+          "S031",
+          "S053"
+        ],
+        "minimum_gap": 32.400000000911405
+      },
+      {
+        "group": "KZT_single",
+        "trains": [
+          "S031",
+          "S053"
+        ],
+        "minimum_gap": 32.400000001159015
+      },
+      {
+        "group": "MAKM_single",
+        "trains": [
+          "S030",
+          "V002"
+        ],
+        "minimum_gap": 33.99999999889815
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "S004",
+          "V002"
+        ],
+        "minimum_gap": 34.299999999942884
+      },
+      {
+        "group": "SRTL_single",
+        "trains": [
+          "S030",
+          "V002"
+        ],
+        "minimum_gap": 34.33333333205951
+      },
+      {
+        "group": "TUVR_single",
+        "trains": [
+          "S030",
+          "V002"
+        ],
+        "minimum_gap": 34.566666665362504
+      },
+      {
+        "group": "KUMM_single",
+        "trains": [
+          "S030",
+          "V002"
+        ],
+        "minimum_gap": 34.7999999986925
+      },
+      {
+        "group": "ALLP_single",
+        "trains": [
+          "S005",
+          "S023"
+        ],
+        "minimum_gap": 34.999999999999986
+      },
+      {
+        "group": "ERS_single",
+        "trains": [
+          "S005",
+          "S023"
+        ],
+        "minimum_gap": 34.99999999999999
+      },
+      {
+        "group": "KUMM_single",
+        "trains": [
+          "S005",
+          "S023"
+        ],
+        "minimum_gap": 34.99999999999999
+      }
+    ],
+    "yard_estimates": [
+      {
+        "station": "ERS",
+        "total_physical_roads": 6,
+        "passenger_roads": 6,
+        "lane_labels": {
+          "D": 2,
+          "U": 4,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 33.267500000001085,
+        "nominal_peak_trains": [
+          "M005",
+          "M070",
+          "S005",
+          "S024"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "M005",
+          "M070",
+          "S005",
+          "S024"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "KUMM",
+        "total_physical_roads": 3,
+        "passenger_roads": 1,
+        "lane_labels": {
+          "D": 1,
+          "U": 0,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 643.7333333331567,
+        "nominal_peak_trains": [
+          "M011",
+          "S008",
+          "S011"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "K1",
+          "L005"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "TUVR",
+        "total_physical_roads": 3,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 14.466666666649871,
+        "nominal_peak_trains": [
+          "M070",
+          "S003",
+          "S024"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "K1",
+          "L005"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "SRTL",
+        "total_physical_roads": 3,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 2,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 62.13333333331867,
+        "nominal_peak_trains": [
+          "M005",
+          "S005",
+          "S020"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "M003",
+          "M007",
+          "M045"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "MAKM",
+        "total_physical_roads": 3,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 455.53333333367664,
+        "nominal_peak_trains": [
+          "L007",
+          "M009",
+          "V002"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "K1",
+          "L005"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "ALLP",
+        "total_physical_roads": 3,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 1,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 43.63333333341507,
+        "nominal_peak_trains": [
+          "M037",
+          "S003",
+          "S020"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "M037",
+          "S003",
+          "S020"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "AMPA",
+        "total_physical_roads": 3,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 1,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 461.7333333324583,
+        "nominal_peak_trains": [
+          "K1",
+          "M064",
+          "S030"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "L007",
+          "M008",
+          "M009"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "HAD",
+        "total_physical_roads": 4,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 199.53333333350935,
+        "nominal_peak_trains": [
+          "M044",
+          "M045",
+          "M061",
+          "S025"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "M044",
+          "M045",
+          "M061"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "CHPD",
+        "total_physical_roads": 4,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 1,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 203.1666666669105,
+        "nominal_peak_trains": [
+          "M002",
+          "M045",
+          "S025"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "K1",
+          "L005"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "KYJ",
+        "total_physical_roads": 5,
+        "passenger_roads": 5,
+        "lane_labels": {
+          "D": 3,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 5,
+        "nominal_peak_at": 213.16666666692868,
+        "nominal_peak_trains": [
+          "M042",
+          "M045",
+          "M061",
+          "S025",
+          "S040"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 5,
+        "stopping_peak_trains": [
+          "M042",
+          "M045",
+          "M061",
+          "S025",
+          "S040"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "OCR",
+        "total_physical_roads": 4,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 1257.7666666668908,
+        "nominal_peak_trains": [
+          "L004",
+          "M027",
+          "M030",
+          "M036"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "K1",
+          "L005"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "KPY",
+        "total_physical_roads": 5,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 2,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 5,
+        "nominal_peak_at": 1246.399999998985,
+        "nominal_peak_trains": [
+          "L004",
+          "L011",
+          "M029",
+          "M030",
+          "M036"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 5,
+        "stopping_peak_trains": [
+          "L004",
+          "L011",
+          "M029",
+          "M030",
+          "M036"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "STKT",
+        "total_physical_roads": 4,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 200.333333333494,
+        "nominal_peak_trains": [
+          "M040",
+          "M060",
+          "S040"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "L014",
+          "L015"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "PRND",
+        "total_physical_roads": 4,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 1233.7666666668035,
+        "nominal_peak_trains": [
+          "M030",
+          "M036",
+          "M057",
+          "S019"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "L013",
+          "L014"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "QLN",
+        "total_physical_roads": 12,
+        "passenger_roads": 6,
+        "lane_labels": {
+          "D": 3,
+          "U": 3,
+          "M": 0
+        },
+        "nominal_peak": 5,
+        "nominal_peak_at": 186.33333333355583,
+        "nominal_peak_trains": [
+          "M001",
+          "M040",
+          "M060",
+          "M071",
+          "S040"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 5,
+        "stopping_peak_trains": [
+          "M001",
+          "M040",
+          "M060",
+          "M071",
+          "S040"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "PVU",
+        "total_physical_roads": 4,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 2,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 1230.5333333332765,
+        "nominal_peak_trains": [
+          "L030",
+          "M058",
+          "M067",
+          "M069"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "L030",
+          "M058",
+          "M067",
+          "M069"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "VAK",
+        "total_physical_roads": 4,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 1,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 158.4666666664216,
+        "nominal_peak_trains": [
+          "M037",
+          "M040",
+          "M060",
+          "S040"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "M037",
+          "M040",
+          "M060",
+          "S040"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "KVU",
+        "total_physical_roads": 4,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 2,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 103.23333333363189,
+        "nominal_peak_trains": [
+          "M100",
+          "S002",
+          "S039"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "K1",
+          "L022"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "MQU",
+        "total_physical_roads": 3,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 142.89999999998466,
+        "nominal_peak_trains": [
+          "M040",
+          "M060",
+          "S040"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "L031",
+          "L032"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "KZK",
+        "total_physical_roads": 4,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 2,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 330.83333333276335,
+        "nominal_peak_trains": [
+          "L002",
+          "M041",
+          "M093",
+          "S027"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "L023",
+          "M008",
+          "M012",
+          "M095"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "TVCN",
+        "total_physical_roads": 6,
+        "passenger_roads": 6,
+        "lane_labels": {
+          "D": 3,
+          "U": 3,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 853.0333333335038,
+        "nominal_peak_trains": [
+          "M019",
+          "M026",
+          "M047",
+          "S032"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "L025",
+          "M066",
+          "M068"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "TVC",
+        "total_physical_roads": 5,
+        "passenger_roads": 5,
+        "lane_labels": {
+          "D": 1,
+          "U": 4,
+          "M": 0
+        },
+        "nominal_peak": 5,
+        "nominal_peak_at": 79.0791666666668,
+        "nominal_peak_trains": [
+          "M044",
+          "M094",
+          "S002",
+          "S037",
+          "S056"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 5,
+        "stopping_peak_trains": [
+          "M044",
+          "M094",
+          "S002",
+          "S037",
+          "S056"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "NEM",
+        "total_physical_roads": 2,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 2,
+        "nominal_peak_at": 71.00000000009034,
+        "nominal_peak_trains": [
+          "M044",
+          "S056"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "L023",
+          "L035"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "NYY",
+        "total_physical_roads": 2,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 2,
+        "nominal_peak_at": 51.36666666675842,
+        "nominal_peak_trains": [
+          "M094",
+          "M100"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "M094",
+          "M100"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "PASA",
+        "total_physical_roads": 2,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 2,
+        "nominal_peak_at": 21.600000000038108,
+        "nominal_peak_trains": [
+          "M076",
+          "S044"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "M094",
+          "M100"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "KZT",
+        "total_physical_roads": 2,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 2,
+        "nominal_peak_at": 9.366666666660194,
+        "nominal_peak_trains": [
+          "M076",
+          "S044"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "M076",
+          "S044"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "ERL",
+        "total_physical_roads": 3,
+        "passenger_roads": 2,
+        "lane_labels": {
+          "D": 1,
+          "U": 1,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 70.7999999999865,
+        "nominal_peak_trains": [
+          "L040",
+          "M062",
+          "S040"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 3,
+        "stopping_peak_trains": [
+          "L021",
+          "M075",
+          "M079"
+        ],
+        "exceeds_passenger_road_count": true
+      },
+      {
+        "station": "NJT",
+        "total_physical_roads": 3,
+        "passenger_roads": 3,
+        "lane_labels": {
+          "D": 1,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 3,
+        "nominal_peak_at": 461.50000000029286,
+        "nominal_peak_trains": [
+          "L022",
+          "M095",
+          "V005"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 2,
+        "stopping_peak_trains": [
+          "L023",
+          "L036"
+        ],
+        "exceeds_passenger_road_count": false
+      },
+      {
+        "station": "NCJ",
+        "total_physical_roads": 6,
+        "passenger_roads": 4,
+        "lane_labels": {
+          "D": 2,
+          "U": 2,
+          "M": 0
+        },
+        "nominal_peak": 4,
+        "nominal_peak_at": 454.0791666666668,
+        "nominal_peak_trains": [
+          "L022",
+          "L033",
+          "M075",
+          "M102"
+        ],
+        "exceeds_total_road_count": false,
+        "nominal_stopping_peak": 4,
+        "stopping_peak_trains": [
+          "L022",
+          "L033",
+          "M075",
+          "M102"
+        ],
+        "exceeds_passenger_road_count": false
+      }
+    ]
+  },
+  "limits": [
+    "One-minute section padding is a planning allowance only.",
+    "Yard estimates are isolated-profile approximations, not actual simultaneous occupancy.",
+    "Passenger lane labels do not establish directional connectivity, full-rake berth fit, escape roads or route admission. Total road count is only an upper bound.",
+    "Repeated holds, changed passing plans and resulting opposing queues require real complete-day validation."
+  ]
+}

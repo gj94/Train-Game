@@ -1067,3 +1067,40 @@ Inspect the existing process/output first; do not duplicate or edit its live scr
 No full-day, suite, native or diagnostic Godot job remains. Full 1,003 source tests
 and four authoring guards remain current because their inputs have not changed.
 Readiness is still pending; R47 and unrelated work are preserved.
+
+## Compatible receiving-road planning, 12:22
+
+Search v4 PID 3760 finished normally with empty stderr, producing 198 proposed
+origin changes. The independent review shows no nominal total-road overflows,
+but seven passenger-face capacity warnings, eleven following order reversals,
+159 following-gap conflicts and peak isolated fleet 35. Opposing overlap falls
+to 253 pair instances / 786.50 summed minutes; 14 SF/VB pair gaps remain below
+35 minutes, minimum 29.4. These are estimates, not acceptance; v4 is not applied.
+
+The final local export-planning-berths-v2.gd now uses the existing runtime
+receiving_berths rule on an empty world for all 44 stock/call profiles, including
+full-rake berth capacity, legal approach/onward route, passenger faces and terminal
+compatibility. Its 4,835 source hashes and exact pack hash match current files.
+KUMM stopping traffic shares only P3 in both directions; AMPA southbound traffic
+has only P1, while northbound uses P2/P3. QLN retains the authorized 3/3 split.
+The local first export rejected its flawed road-name filter; a subsequent export
+needed exact origin-road membership so portal-fed arrivals were not omitted.
+All are finished; only final v2 inventory is used. No runtime fix/change was needed.
+
+The new static model constructs 108 compatible-road subset capacity constraints.
+Direct bipartite matching agrees in 83,520 minute-cell cases across candidate nine
+and v4. V4 still has 746 unmatched nominal yard-minute cells at 20 yards, against
+897 at 26 originally. Counts are not observed waiting times. The 110 origin visits
+use explicit physical passenger-road upper bounds; actual depot supply, reservations,
+receiving escape and interaction delays are not certified by this model.
+
+ONE authoring search is now running: plan-network-spacing-v5.py, PID 18712,
+network-spacing-search-v5.job.json/log/err, output network-spacing-proposal-v5.json.
+It seeds from v4, strengthens following separation and uses compatible-road subset
+penalties. Twenty incremental/direct cost checks pass. All earlier search/export
+jobs ended. Do not duplicate this search or edit its live script. Candidate nine
+packs are unchanged, and no Network replay or suite is running. Both proposals
+must remain unapplied until reviewed; any later selected times need exact author
+reproduction, appropriate headless checks and committed inputs before four genuine
+Network baseline/disturbance replays. Preserve pending UI/category and unrelated
+files. Full 1,003 tests and four authoring guards remain current for unchanged inputs.
