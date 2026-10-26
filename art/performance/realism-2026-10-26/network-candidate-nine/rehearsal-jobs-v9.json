@@ -1,0 +1,68 @@
+[
+  {
+    "day": "classic-network",
+    "pid": 7684,
+    "started": "2026-10-26T11:02:33.2311228+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v9/classic-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "a24151d3c87ea0e5d63a077c45f3e5f7ff248668",
+    "status": "finished-rejected",
+    "reason": "Departure-only single-line capacity plan from isolated physical profiles; all four legacy baselines are certified and unchanged",
+    "pack_sha256": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed",
+    "child_pid": 23444
+  },
+  {
+    "day": "predictive-network",
+    "pid": 22912,
+    "started": "2026-10-26T11:02:33.2930458+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v9/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "a24151d3c87ea0e5d63a077c45f3e5f7ff248668",
+    "status": "finished-rejected",
+    "reason": "Departure-only single-line capacity plan from isolated physical profiles; all four legacy baselines are certified and unchanged",
+    "pack_sha256": "dbfd1ee6e87402e3cace318a5200f1b9818544cb088a31ae8759d091978b5d49",
+    "child_pid": 240
+  },
+  {
+    "day": "classic-network-delayed",
+    "pid": 10888,
+    "started": "2026-10-26T11:02:33.3219623+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v9/classic-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "a24151d3c87ea0e5d63a077c45f3e5f7ff248668",
+    "status": "finished-rejected",
+    "reason": "Departure-only single-line capacity plan from isolated physical profiles; all four legacy baselines are certified and unchanged",
+    "pack_sha256": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed",
+    "child_pid": 17992
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 15504,
+    "started": "2026-10-26T11:02:33.3532902+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v9/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "a24151d3c87ea0e5d63a077c45f3e5f7ff248668",
+    "status": "finished-rejected",
+    "reason": "Departure-only single-line capacity plan from isolated physical profiles; all four legacy baselines are certified and unchanged",
+    "pack_sha256": "dbfd1ee6e87402e3cace318a5200f1b9818544cb088a31ae8759d091978b5d49",
+    "child_pid": 8840
+  }
+]

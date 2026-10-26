@@ -1,0 +1,1473 @@
+{
+  "recorded_at": "2026-10-26T11:32:07.424416+08:00",
+  "runtime": "9ec3530",
+  "authored_packs_commit": "a24151d3",
+  "source_hashes_verified": 4837,
+  "records": [
+    {
+      "job": {
+        "day": "classic-network",
+        "pid": 7684,
+        "started": "2026-10-26T11:02:33.2311228+08:00",
+        "output": ".local/realism-2026-10-26/rehearsals-v9/classic-network",
+        "options": [
+          "--pack=res://art/timetables/kerala-coast-network.json",
+          "--network",
+          "--snapshots"
+        ],
+        "source_commit": "a24151d3c87ea0e5d63a077c45f3e5f7ff248668",
+        "status": "finished-rejected",
+        "reason": "Departure-only single-line capacity plan from isolated physical profiles; all four legacy baselines are certified and unchanged",
+        "pack_sha256": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed",
+        "child_pid": 23444
+      },
+      "source_hashes_verified": 4836,
+      "audit": {
+        "clock": 14287.9999999323,
+        "delay": 0.0,
+        "delay_at": 0.0,
+        "delay_service": "K1",
+        "dispatcher": "classic",
+        "events": [],
+        "finished": 5,
+        "maximum_station_wait": 2676.0,
+        "maximum_wait": 2702.0,
+        "ok": false,
+        "operating_day": "network",
+        "over_ten_minute_calls": [
+          {
+            "call": 3,
+            "id": "M003",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 26.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 26.0,
+              "Block ALLP_PUPR_M0 occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 44.0,
+              "Block ALLP_PUPR_M0 occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 44.0,
+              "Expect a wait at ALLP until Mumbai\u2013Kanniyakumari Superfast (S025) overtakes": 844.0,
+              "Expect a wait at ALLP until Pune\u2013Thiruvananthapuram Central Superfast (S003) overtakes": 960.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 272.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 86.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 184.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 186.0
+            },
+            "seconds": 2676.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M043",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 16.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 16.0,
+              "Block ALLP_PUPR_M0 occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 46.0,
+              "Block ALLP_PUPR_M0 occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 46.0,
+              "Block ALLP_RLEAD_U occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 76.0,
+              "Block ALLP_RLEAD_U occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 20.0,
+              "Conflicts with route from ALLP-S3 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 52.0,
+              "Expect a wait at ALLP until New Delhi\u2013Thiruvananthapuram Central Superfast (S005) overtakes": 890.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 198.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 228.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 62.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 198.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 128.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 186.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 186.0
+            },
+            "seconds": 2438.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M005",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M043 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 44.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 36.0,
+              "Block ALLP_PUPR_M0 occupied by M043 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 42.0,
+              "Block ALLP_PUPR_M0 occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 46.0,
+              "Conflicts with route from ALLP-S2 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 64.0,
+              "Expect a wait at ALLP until New Delhi\u2013Thiruvananthapuram Central Superfast (S005) overtakes": 890.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 222.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 62.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 396.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 156.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 188.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 186.0
+            },
+            "seconds": 2422.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 9,
+            "id": "M040",
+            "reasons": {
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 12.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 12.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005), Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 52.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005), Guruvayur\u2013Nagercoil Junction Mail / Express (M043), New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 228.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005), Mangaluru\u2013Tirunelveli Superfast (S027), Shoranur\u2013Thiruvananthapuram Central Mail / Express (M007)": 116.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005), Shoranur\u2013Thiruvananthapuram Central Mail / Express (M007)": 74.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 556.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 312.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 596.0
+            },
+            "seconds": 1958.0,
+            "signal_id": "",
+            "station": "AMPA"
+          },
+          {
+            "call": 1,
+            "id": "M041",
+            "reasons": {
+              "Authority to ERS_TNU_M0-SA": 4.0,
+              "Block ERS_DEPOT_RM_ACCESS occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 14.0,
+              "Block ERS_RLEAD_D occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 32.0,
+              "Block ERS_RLEAD_D occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 50.0,
+              "Block ERS_RLEAD_D occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 32.0,
+              "Block ERS_TNU_M0 occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 46.0,
+              "Expect a wait at ERS until Mumbai\u2013Kanniyakumari Superfast (S025) overtakes": 408.0,
+              "Expect a wait at ERS until Mumbai\u2013Thiruvananthapuram Central Superfast (S001) overtakes": 568.0,
+              "Expect a wait at ERS until Pune\u2013Thiruvananthapuram Central Superfast (S003) overtakes": 568.0
+            },
+            "seconds": 1722.0,
+            "signal_id": "",
+            "station": "ERS"
+          },
+          {
+            "call": 3,
+            "id": "M041",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M003 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 44.0,
+              "Block ALLP_PUPR_M0 occupied by M003 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 42.0,
+              "Conflicts with route from ALLP-S1 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 64.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 398.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 228.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 86.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 188.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 70.0
+            },
+            "seconds": 1124.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 6,
+            "id": "M094",
+            "reasons": {
+              "Authority to TVP_TVC_U0-A": 4.0,
+              "Block TVC_DEPOT_LU_ACCESS occupied by S028 \u00b7 Tirunelveli\u2013Mangaluru Superfast (S028)": 26.0,
+              "Block TVP_TVC_U0 occupied by S028 \u00b7 Tirunelveli\u2013Mangaluru Superfast (S028)": 40.0,
+              "Expect a wait at TVC until Tirunelveli\u2013Mangaluru Superfast (S028) overtakes": 872.0,
+              "Route set to TVP_TVC_U0-A": 2.0
+            },
+            "seconds": 944.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 7,
+            "id": "M040",
+            "reasons": {
+              "Authority to CHPD_KYJ_U6-A": 4.0,
+              "Block CHPD_KYJ_U6 occupied by S002 \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 50.0,
+              "Block KYJ_DEPOT_LU_ACCESS occupied by S002 \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 32.0,
+              "Expect a wait at KYJ until Thiruvananthapuram Central\u2013Mumbai Superfast (S002) overtakes": 756.0
+            },
+            "seconds": 842.0,
+            "signal_id": "",
+            "station": "KYJ"
+          },
+          {
+            "call": 3,
+            "id": "M007",
+            "reasons": {
+              "Expect a wait at ALLP until Mangaluru\u2013Tirunelveli Superfast (S027) overtakes": 660.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 72.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 66.0
+            },
+            "seconds": 798.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M059",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 200.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Ahmedabad\u2013Tirunelveli Mail / Express (M071)": 396.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Ahmedabad\u2013Tirunelveli Mail / Express (M071)": 36.0
+            },
+            "seconds": 636.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 9,
+            "id": "M062",
+            "reasons": {
+              "Authority to EVA_VAK_U2-A": 4.0,
+              "Block EVA_VAK_U2 occupied by S040 \u00b7 Tirunelveli\u2013Jaipur Superfast (S040)": 62.0,
+              "Expect a wait at VAK until Tirunelveli\u2013Jaipur Superfast (S040) overtakes": 558.0
+            },
+            "seconds": 624.0,
+            "signal_id": "",
+            "station": "VAK"
+          },
+          {
+            "call": 5,
+            "id": "M042",
+            "reasons": {
+              "Authority to TVP_TVC_U0-A": 4.0,
+              "Block TVC_DEPOT_LU_ACCESS occupied by S040 \u00b7 Tirunelveli\u2013Jaipur Superfast (S040)": 26.0,
+              "Block TVP_TVC_U0 occupied by S040 \u00b7 Tirunelveli\u2013Jaipur Superfast (S040)": 40.0,
+              "Expect a wait at TVC until Tirunelveli\u2013Jaipur Superfast (S040) overtakes": 530.0,
+              "Route set to TVP_TVC_U0-A": 2.0
+            },
+            "seconds": 602.0,
+            "signal_id": "",
+            "station": "TVC"
+          }
+        ],
+        "pack_sha256": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed",
+        "peak_active": 35,
+        "report": "Wait exceeded 45 minutes: S002",
+        "station_wait_quality": {
+          "bins": [
+            21,
+            7,
+            1,
+            4,
+            0
+          ],
+          "brief_count": 197,
+          "count": 33,
+          "cumulative": [
+            {
+              "count": 21,
+              "fraction": 0.636363636363636,
+              "met": false,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 28,
+              "fraction": 0.848484848484849,
+              "met": false,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 29,
+              "fraction": 0.878787878787879,
+              "met": false,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 33,
+              "fraction": 1.0,
+              "met": true,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 2676.0,
+          "minimum_seconds": 30.0,
+          "ok": false
+        },
+        "total": 208,
+        "wait_quality": {
+          "bins": [
+            37,
+            10,
+            3,
+            4,
+            1
+          ],
+          "brief_count": 425,
+          "count": 55,
+          "cumulative": [
+            {
+              "count": 37,
+              "fraction": 0.672727272727273,
+              "met": false,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 47,
+              "fraction": 0.854545454545455,
+              "met": false,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 50,
+              "fraction": 0.909090909090909,
+              "met": false,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 54,
+              "fraction": 0.981818181818182,
+              "met": false,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 2702.0,
+          "minimum_seconds": 30.0,
+          "ok": false
+        },
+        "wall_seconds": 1331.786
+      }
+    },
+    {
+      "job": {
+        "day": "predictive-network",
+        "pid": 22912,
+        "started": "2026-10-26T11:02:33.2930458+08:00",
+        "output": ".local/realism-2026-10-26/rehearsals-v9/predictive-network",
+        "options": [
+          "--pack=res://art/timetables/kerala-coast-network-v2.json",
+          "--network",
+          "--snapshots"
+        ],
+        "source_commit": "a24151d3c87ea0e5d63a077c45f3e5f7ff248668",
+        "status": "finished-rejected",
+        "reason": "Departure-only single-line capacity plan from isolated physical profiles; all four legacy baselines are certified and unchanged",
+        "pack_sha256": "dbfd1ee6e87402e3cace318a5200f1b9818544cb088a31ae8759d091978b5d49",
+        "child_pid": 240
+      },
+      "source_hashes_verified": 4836,
+      "audit": {
+        "clock": 14603.9999999277,
+        "delay": 0.0,
+        "delay_at": 0.0,
+        "delay_service": "K1",
+        "dispatcher": "predictive",
+        "events": [],
+        "finished": 6,
+        "maximum_station_wait": 2702.0,
+        "maximum_wait": 2702.0,
+        "ok": false,
+        "operating_day": "network",
+        "over_ten_minute_calls": [
+          {
+            "call": 9,
+            "id": "M040",
+            "reasons": {
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 14.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 14.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 12.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 12.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043), Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 124.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043), New Delhi\u2013Thiruvananthapuram Central Superfast (S005), Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 344.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Mangaluru\u2013Tirunelveli Superfast (S027), Shoranur\u2013Thiruvananthapuram Central Mail / Express (M007)": 50.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Mangaluru\u2013Tirunelveli Superfast (S027), Shoranur\u2013Thiruvananthapuram Central Mail / Express (M007), Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 86.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Shoranur\u2013Thiruvananthapuram Central Mail / Express (M007), Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 104.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 554.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 596.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 564.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 228.0
+            },
+            "seconds": 2702.0,
+            "signal_id": "",
+            "station": "AMPA"
+          },
+          {
+            "call": 3,
+            "id": "M003",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 26.0,
+              "Block ALLP_PUPR_M0 occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 44.0,
+              "Expect a wait at ALLP until Mumbai\u2013Kanniyakumari Superfast (S025) overtakes": 1700.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 198.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 86.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 186.0
+            },
+            "seconds": 2244.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M043",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 70.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 46.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 26.0,
+              "Block ALLP_PUPR_M0 occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 46.0,
+              "Block ALLP_PUPR_M0 occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 44.0,
+              "Block ALLP_PUPR_M0 occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 44.0,
+              "Conflicts with route from ALLP-S2 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 68.0,
+              "Conflicts with route from ALLP-S3 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 8.0,
+              "Expect a wait at ALLP until New Delhi\u2013Thiruvananthapuram Central Superfast (S005) overtakes": 664.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 198.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 200.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 72.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 186.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 184.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Pune\u2013Thiruvananthapuram Central Superfast (S003)": 186.0
+            },
+            "seconds": 2218.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M005",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M043 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 44.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 14.0,
+              "Block ALLP_PUPR_M0 occupied by M043 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 42.0,
+              "Block ALLP_PUPR_M0 occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 44.0,
+              "Block ALLP_RLEAD_U occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 12.0,
+              "Conflicts with route from ALLP-S1 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 64.0,
+              "Expect a wait at ALLP until New Delhi\u2013Thiruvananthapuram Central Superfast (S005) overtakes": 664.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 222.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 400.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 74.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 186.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 184.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Pune\u2013Thiruvananthapuram Central Superfast (S003)": 70.0
+            },
+            "seconds": 2110.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 2,
+            "id": "S001",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M003 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 44.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 12.0,
+              "Block ALLP_PUPR_M0 occupied by M003 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 42.0,
+              "Block ALLP_PUPR_M0 occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 44.0,
+              "Block ALLP_RLEAD_U occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 50.0,
+              "Conflicts with route from ALLP-S1 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 64.0,
+              "Conflicts with route from ALLP-S2 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 52.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 396.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 228.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 58.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 188.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 186.0
+            },
+            "seconds": 1454.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M007",
+            "reasons": {
+              "Expect a wait at ALLP until Mangaluru\u2013Tirunelveli Superfast (S027) overtakes": 928.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 50.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 104.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 118.0
+            },
+            "seconds": 1200.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 2,
+            "id": "S003",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 16.0,
+              "Block ALLP_PUPR_M0 occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 46.0,
+              "Block ALLP_RLEAD_U occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 76.0,
+              "Conflicts with route from ALLP-S3 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 52.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 396.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 228.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 86.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 88.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 186.0
+            },
+            "seconds": 1178.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 2,
+            "id": "S025",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 16.0,
+              "Block ALLP_PUPR_M0 occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 46.0,
+              "Block ALLP_RLEAD_U occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 26.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 198.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 384.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 186.0
+            },
+            "seconds": 860.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 0,
+            "id": "S043",
+            "reasons": {
+              "Authority to TVC_NEM_M0-SA": 4.0,
+              "Conflicts with route from TVC_NEM_M0-NH \u00b7 Tiruchirappalli\u2013Thiruvananthapuram Central Superfast (S042)": 30.0,
+              "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service \u00b7 Jaipur\u2013Tirunelveli Superfast (S039)": 182.0,
+              "Expect a wait before Thiruvananthapuram South: the remaining platforms are reserved for approaching services \u00b7 Jaipur\u2013Tirunelveli Superfast (S039), Tiruchirappalli\u2013Thiruvananthapuram Central Superfast (S042)": 186.0,
+              "Single line TVC_single is locked for opposing traffic \u00b7 Tiruchirappalli\u2013Thiruvananthapuram Central Superfast (S042)": 434.0
+            },
+            "seconds": 836.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 3,
+            "id": "M059",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 200.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Ahmedabad\u2013Tirunelveli Mail / Express (M071)": 396.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Ahmedabad\u2013Tirunelveli Mail / Express (M071)": 36.0
+            },
+            "seconds": 636.0,
+            "signal_id": "",
+            "station": "ALLP"
+          }
+        ],
+        "pack_sha256": "dbfd1ee6e87402e3cace318a5200f1b9818544cb088a31ae8759d091978b5d49",
+        "peak_active": 36,
+        "report": "Wait exceeded 45 minutes: M040",
+        "station_wait_quality": {
+          "bins": [
+            17,
+            4,
+            2,
+            3,
+            1
+          ],
+          "brief_count": 214,
+          "count": 27,
+          "cumulative": [
+            {
+              "count": 17,
+              "fraction": 0.62962962962963,
+              "met": false,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 21,
+              "fraction": 0.777777777777778,
+              "met": false,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 23,
+              "fraction": 0.851851851851852,
+              "met": false,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 26,
+              "fraction": 0.962962962962963,
+              "met": false,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 2702.0,
+          "minimum_seconds": 30.0,
+          "ok": false
+        },
+        "total": 208,
+        "wait_quality": {
+          "bins": [
+            29,
+            11,
+            4,
+            4,
+            1
+          ],
+          "brief_count": 458,
+          "count": 49,
+          "cumulative": [
+            {
+              "count": 29,
+              "fraction": 0.591836734693878,
+              "met": false,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 40,
+              "fraction": 0.816326530612245,
+              "met": false,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 44,
+              "fraction": 0.897959183673469,
+              "met": false,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 48,
+              "fraction": 0.979591836734694,
+              "met": false,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 2702.0,
+          "minimum_seconds": 30.0,
+          "ok": false
+        },
+        "wall_seconds": 1435.788
+      }
+    },
+    {
+      "job": {
+        "day": "classic-network-delayed",
+        "pid": 10888,
+        "started": "2026-10-26T11:02:33.3219623+08:00",
+        "output": ".local/realism-2026-10-26/rehearsals-v9/classic-network-delayed",
+        "options": [
+          "--pack=res://art/timetables/kerala-coast-network.json",
+          "--network",
+          "--delay=600",
+          "--delay-at=27000"
+        ],
+        "source_commit": "a24151d3c87ea0e5d63a077c45f3e5f7ff248668",
+        "status": "finished-rejected",
+        "reason": "Departure-only single-line capacity plan from isolated physical profiles; all four legacy baselines are certified and unchanged",
+        "pack_sha256": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed",
+        "child_pid": 17992
+      },
+      "source_hashes_verified": 4836,
+      "audit": {
+        "clock": 14287.9999999323,
+        "delay": 600.0,
+        "delay_at": 27000.0,
+        "delay_service": "K1",
+        "dispatcher": "classic",
+        "events": [],
+        "finished": 5,
+        "maximum_station_wait": 2676.0,
+        "maximum_wait": 2702.0,
+        "ok": false,
+        "operating_day": "network",
+        "over_ten_minute_calls": [
+          {
+            "call": 3,
+            "id": "M003",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 26.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 26.0,
+              "Block ALLP_PUPR_M0 occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 44.0,
+              "Block ALLP_PUPR_M0 occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 44.0,
+              "Expect a wait at ALLP until Mumbai\u2013Kanniyakumari Superfast (S025) overtakes": 844.0,
+              "Expect a wait at ALLP until Pune\u2013Thiruvananthapuram Central Superfast (S003) overtakes": 960.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 272.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 86.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 184.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 186.0
+            },
+            "seconds": 2676.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M043",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 16.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 16.0,
+              "Block ALLP_PUPR_M0 occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 46.0,
+              "Block ALLP_PUPR_M0 occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 46.0,
+              "Block ALLP_RLEAD_U occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 76.0,
+              "Block ALLP_RLEAD_U occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 20.0,
+              "Conflicts with route from ALLP-S3 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 52.0,
+              "Expect a wait at ALLP until New Delhi\u2013Thiruvananthapuram Central Superfast (S005) overtakes": 890.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 198.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 228.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 62.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 198.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 128.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 186.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 186.0
+            },
+            "seconds": 2438.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M005",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M043 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 44.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 36.0,
+              "Block ALLP_PUPR_M0 occupied by M043 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 42.0,
+              "Block ALLP_PUPR_M0 occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 46.0,
+              "Conflicts with route from ALLP-S2 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 64.0,
+              "Expect a wait at ALLP until New Delhi\u2013Thiruvananthapuram Central Superfast (S005) overtakes": 890.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 222.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 62.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 396.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 156.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 188.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 186.0
+            },
+            "seconds": 2422.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 9,
+            "id": "M040",
+            "reasons": {
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 12.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 12.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005), Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 52.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005), Guruvayur\u2013Nagercoil Junction Mail / Express (M043), New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 228.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005), Mangaluru\u2013Tirunelveli Superfast (S027), Shoranur\u2013Thiruvananthapuram Central Mail / Express (M007)": 116.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005), Shoranur\u2013Thiruvananthapuram Central Mail / Express (M007)": 74.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 556.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 312.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 596.0
+            },
+            "seconds": 1958.0,
+            "signal_id": "",
+            "station": "AMPA"
+          },
+          {
+            "call": 1,
+            "id": "M041",
+            "reasons": {
+              "Authority to ERS_TNU_M0-SA": 4.0,
+              "Block ERS_DEPOT_RM_ACCESS occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 14.0,
+              "Block ERS_RLEAD_D occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 32.0,
+              "Block ERS_RLEAD_D occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 50.0,
+              "Block ERS_RLEAD_D occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 32.0,
+              "Block ERS_TNU_M0 occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 46.0,
+              "Expect a wait at ERS until Mumbai\u2013Kanniyakumari Superfast (S025) overtakes": 408.0,
+              "Expect a wait at ERS until Mumbai\u2013Thiruvananthapuram Central Superfast (S001) overtakes": 568.0,
+              "Expect a wait at ERS until Pune\u2013Thiruvananthapuram Central Superfast (S003) overtakes": 568.0
+            },
+            "seconds": 1722.0,
+            "signal_id": "",
+            "station": "ERS"
+          },
+          {
+            "call": 3,
+            "id": "M041",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M003 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 44.0,
+              "Block ALLP_PUPR_M0 occupied by M003 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 42.0,
+              "Conflicts with route from ALLP-S1 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 64.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 398.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 228.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 86.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 188.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 70.0
+            },
+            "seconds": 1124.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 6,
+            "id": "M094",
+            "reasons": {
+              "Authority to TVP_TVC_U0-A": 4.0,
+              "Block TVC_DEPOT_LU_ACCESS occupied by S028 \u00b7 Tirunelveli\u2013Mangaluru Superfast (S028)": 26.0,
+              "Block TVP_TVC_U0 occupied by S028 \u00b7 Tirunelveli\u2013Mangaluru Superfast (S028)": 40.0,
+              "Expect a wait at TVC until Tirunelveli\u2013Mangaluru Superfast (S028) overtakes": 872.0,
+              "Route set to TVP_TVC_U0-A": 2.0
+            },
+            "seconds": 944.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 7,
+            "id": "M040",
+            "reasons": {
+              "Authority to CHPD_KYJ_U6-A": 4.0,
+              "Block CHPD_KYJ_U6 occupied by S002 \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 50.0,
+              "Block KYJ_DEPOT_LU_ACCESS occupied by S002 \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 32.0,
+              "Expect a wait at KYJ until Thiruvananthapuram Central\u2013Mumbai Superfast (S002) overtakes": 756.0
+            },
+            "seconds": 842.0,
+            "signal_id": "",
+            "station": "KYJ"
+          },
+          {
+            "call": 3,
+            "id": "M007",
+            "reasons": {
+              "Expect a wait at ALLP until Mangaluru\u2013Tirunelveli Superfast (S027) overtakes": 660.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002)": 72.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 66.0
+            },
+            "seconds": 798.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M059",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 200.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Ahmedabad\u2013Tirunelveli Mail / Express (M071)": 396.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Ahmedabad\u2013Tirunelveli Mail / Express (M071)": 36.0
+            },
+            "seconds": 636.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 9,
+            "id": "M062",
+            "reasons": {
+              "Authority to EVA_VAK_U2-A": 4.0,
+              "Block EVA_VAK_U2 occupied by S040 \u00b7 Tirunelveli\u2013Jaipur Superfast (S040)": 62.0,
+              "Expect a wait at VAK until Tirunelveli\u2013Jaipur Superfast (S040) overtakes": 558.0
+            },
+            "seconds": 624.0,
+            "signal_id": "",
+            "station": "VAK"
+          },
+          {
+            "call": 5,
+            "id": "M042",
+            "reasons": {
+              "Authority to TVP_TVC_U0-A": 4.0,
+              "Block TVC_DEPOT_LU_ACCESS occupied by S040 \u00b7 Tirunelveli\u2013Jaipur Superfast (S040)": 26.0,
+              "Block TVP_TVC_U0 occupied by S040 \u00b7 Tirunelveli\u2013Jaipur Superfast (S040)": 40.0,
+              "Expect a wait at TVC until Tirunelveli\u2013Jaipur Superfast (S040) overtakes": 530.0,
+              "Route set to TVP_TVC_U0-A": 2.0
+            },
+            "seconds": 602.0,
+            "signal_id": "",
+            "station": "TVC"
+          }
+        ],
+        "pack_sha256": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed",
+        "peak_active": 35,
+        "report": "Wait exceeded 45 minutes: S002",
+        "station_wait_quality": {
+          "bins": [
+            21,
+            7,
+            1,
+            4,
+            0
+          ],
+          "brief_count": 197,
+          "count": 33,
+          "cumulative": [
+            {
+              "count": 21,
+              "fraction": 0.636363636363636,
+              "met": false,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 28,
+              "fraction": 0.848484848484849,
+              "met": false,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 29,
+              "fraction": 0.878787878787879,
+              "met": false,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 33,
+              "fraction": 1.0,
+              "met": true,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 2676.0,
+          "minimum_seconds": 30.0,
+          "ok": false
+        },
+        "total": 208,
+        "wait_quality": {
+          "bins": [
+            37,
+            10,
+            3,
+            4,
+            1
+          ],
+          "brief_count": 425,
+          "count": 55,
+          "cumulative": [
+            {
+              "count": 37,
+              "fraction": 0.672727272727273,
+              "met": false,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 47,
+              "fraction": 0.854545454545455,
+              "met": false,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 50,
+              "fraction": 0.909090909090909,
+              "met": false,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 54,
+              "fraction": 0.981818181818182,
+              "met": false,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 2702.0,
+          "minimum_seconds": 30.0,
+          "ok": false
+        },
+        "wall_seconds": 948.801
+      }
+    },
+    {
+      "job": {
+        "day": "predictive-network-delayed",
+        "pid": 15504,
+        "started": "2026-10-26T11:02:33.3532902+08:00",
+        "output": ".local/realism-2026-10-26/rehearsals-v9/predictive-network-delayed",
+        "options": [
+          "--pack=res://art/timetables/kerala-coast-network-v2.json",
+          "--network",
+          "--delay=600",
+          "--delay-at=27000"
+        ],
+        "source_commit": "a24151d3c87ea0e5d63a077c45f3e5f7ff248668",
+        "status": "finished-rejected",
+        "reason": "Departure-only single-line capacity plan from isolated physical profiles; all four legacy baselines are certified and unchanged",
+        "pack_sha256": "dbfd1ee6e87402e3cace318a5200f1b9818544cb088a31ae8759d091978b5d49",
+        "child_pid": 8840
+      },
+      "source_hashes_verified": 4836,
+      "audit": {
+        "clock": 14603.9999999277,
+        "delay": 600.0,
+        "delay_at": 27000.0,
+        "delay_service": "K1",
+        "dispatcher": "predictive",
+        "events": [],
+        "finished": 6,
+        "maximum_station_wait": 2702.0,
+        "maximum_wait": 2702.0,
+        "ok": false,
+        "operating_day": "network",
+        "over_ten_minute_calls": [
+          {
+            "call": 9,
+            "id": "M040",
+            "reasons": {
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 14.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 14.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 12.0,
+              "Conflicts with route from PUPR_AMPA_M3-SH \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 12.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043), Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 124.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043), New Delhi\u2013Thiruvananthapuram Central Superfast (S005), Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 344.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Mangaluru\u2013Tirunelveli Superfast (S027), Shoranur\u2013Thiruvananthapuram Central Mail / Express (M007)": 50.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Mangaluru\u2013Tirunelveli Superfast (S027), Shoranur\u2013Thiruvananthapuram Central Mail / Express (M007), Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 86.0,
+              "Expect a wait before Alappuzha: no free platform suitable for this service \u00b7 Shoranur\u2013Thiruvananthapuram Central Mail / Express (M007), Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 104.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 554.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005)": 596.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 564.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 228.0
+            },
+            "seconds": 2702.0,
+            "signal_id": "",
+            "station": "AMPA"
+          },
+          {
+            "call": 3,
+            "id": "M003",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 26.0,
+              "Block ALLP_PUPR_M0 occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 44.0,
+              "Expect a wait at ALLP until Mumbai\u2013Kanniyakumari Superfast (S025) overtakes": 1700.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 198.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 86.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 186.0
+            },
+            "seconds": 2244.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M043",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 70.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 46.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 26.0,
+              "Block ALLP_PUPR_M0 occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 46.0,
+              "Block ALLP_PUPR_M0 occupied by S003 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 44.0,
+              "Block ALLP_PUPR_M0 occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 44.0,
+              "Conflicts with route from ALLP-S2 \u00b7 Pune\u2013Thiruvananthapuram Central Superfast (S003)": 68.0,
+              "Conflicts with route from ALLP-S3 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 8.0,
+              "Expect a wait at ALLP until New Delhi\u2013Thiruvananthapuram Central Superfast (S005) overtakes": 664.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 198.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 200.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 72.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 186.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 184.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Pune\u2013Thiruvananthapuram Central Superfast (S003)": 186.0
+            },
+            "seconds": 2218.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M005",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M043 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 44.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 14.0,
+              "Block ALLP_PUPR_M0 occupied by M043 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 42.0,
+              "Block ALLP_PUPR_M0 occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 44.0,
+              "Block ALLP_RLEAD_U occupied by S005 \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 12.0,
+              "Conflicts with route from ALLP-S1 \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 64.0,
+              "Expect a wait at ALLP until New Delhi\u2013Thiruvananthapuram Central Superfast (S005) overtakes": 664.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Guruvayur\u2013Nagercoil Junction Mail / Express (M043), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 222.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 New Delhi\u2013Thiruvananthapuram Central Superfast (S005), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 400.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 74.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 186.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), New Delhi\u2013Thiruvananthapuram Central Superfast (S005)": 184.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Pune\u2013Thiruvananthapuram Central Superfast (S003)": 70.0
+            },
+            "seconds": 2110.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 2,
+            "id": "S001",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M003 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 44.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 12.0,
+              "Block ALLP_PUPR_M0 occupied by M003 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 42.0,
+              "Block ALLP_PUPR_M0 occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 44.0,
+              "Block ALLP_RLEAD_U occupied by S025 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 50.0,
+              "Conflicts with route from ALLP-S1 \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 64.0,
+              "Conflicts with route from ALLP-S2 \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 52.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 396.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 228.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 86.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 58.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 188.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Mumbai\u2013Kanniyakumari Superfast (S025)": 186.0
+            },
+            "seconds": 1454.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 3,
+            "id": "M007",
+            "reasons": {
+              "Expect a wait at ALLP until Mangaluru\u2013Tirunelveli Superfast (S027) overtakes": 928.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Kozhikode\u2013Thiruvananthapuram Central Mail / Express (M005), Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 50.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040)": 104.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thiruvananthapuram Central\u2013Mumbai Superfast (S002), Thiruvananthapuram Central\u2013Tatanagar Mail / Express (M040), Guruvayur\u2013Nagercoil Junction Mail / Express (M043)": 118.0
+            },
+            "seconds": 1200.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 2,
+            "id": "S003",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 16.0,
+              "Block ALLP_PUPR_M0 occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 46.0,
+              "Block ALLP_RLEAD_U occupied by S001 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 76.0,
+              "Conflicts with route from ALLP-S3 \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 52.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 396.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 228.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 86.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Kannur\u2013Thiruvananthapuram Central Mail / Express (M003)": 88.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Mumbai\u2013Thiruvananthapuram Central Superfast (S001)": 186.0
+            },
+            "seconds": 1178.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 2,
+            "id": "S025",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_DEPOT_RM_ACCESS occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 16.0,
+              "Block ALLP_PUPR_M0 occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 46.0,
+              "Block ALLP_RLEAD_U occupied by M041 \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 26.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 198.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 384.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Thrissur\u2013Nagercoil Junction Mail / Express (M041)": 186.0
+            },
+            "seconds": 860.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 0,
+            "id": "S043",
+            "reasons": {
+              "Authority to TVC_NEM_M0-SA": 4.0,
+              "Conflicts with route from TVC_NEM_M0-NH \u00b7 Tiruchirappalli\u2013Thiruvananthapuram Central Superfast (S042)": 30.0,
+              "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service \u00b7 Jaipur\u2013Tirunelveli Superfast (S039)": 182.0,
+              "Expect a wait before Thiruvananthapuram South: the remaining platforms are reserved for approaching services \u00b7 Jaipur\u2013Tirunelveli Superfast (S039), Tiruchirappalli\u2013Thiruvananthapuram Central Superfast (S042)": 186.0,
+              "Single line TVC_single is locked for opposing traffic \u00b7 Tiruchirappalli\u2013Thiruvananthapuram Central Superfast (S042)": 434.0
+            },
+            "seconds": 836.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 3,
+            "id": "M059",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service": 200.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Ahmedabad\u2013Tirunelveli Mail / Express (M071)": 396.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Ahmedabad\u2013Tirunelveli Mail / Express (M071)": 36.0
+            },
+            "seconds": 636.0,
+            "signal_id": "",
+            "station": "ALLP"
+          }
+        ],
+        "pack_sha256": "dbfd1ee6e87402e3cace318a5200f1b9818544cb088a31ae8759d091978b5d49",
+        "peak_active": 36,
+        "report": "Wait exceeded 45 minutes: M040",
+        "station_wait_quality": {
+          "bins": [
+            17,
+            4,
+            2,
+            3,
+            1
+          ],
+          "brief_count": 214,
+          "count": 27,
+          "cumulative": [
+            {
+              "count": 17,
+              "fraction": 0.62962962962963,
+              "met": false,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 21,
+              "fraction": 0.777777777777778,
+              "met": false,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 23,
+              "fraction": 0.851851851851852,
+              "met": false,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 26,
+              "fraction": 0.962962962962963,
+              "met": false,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 2702.0,
+          "minimum_seconds": 30.0,
+          "ok": false
+        },
+        "total": 208,
+        "wait_quality": {
+          "bins": [
+            29,
+            11,
+            4,
+            4,
+            1
+          ],
+          "brief_count": 458,
+          "count": 49,
+          "cumulative": [
+            {
+              "count": 29,
+              "fraction": 0.591836734693878,
+              "met": false,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 40,
+              "fraction": 0.816326530612245,
+              "met": false,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 44,
+              "fraction": 0.897959183673469,
+              "met": false,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 48,
+              "fraction": 0.979591836734694,
+              "met": false,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 2702.0,
+          "minimum_seconds": 30.0,
+          "ok": false
+        },
+        "wall_seconds": 1059.175
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "classic-network/audit.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network/audit.json",
+      "raw_bytes": 1412818,
+      "raw_sha256": "31c5d2c1d8ce086f4d2b87a7d32c2d63e4b6783af8733e28b4e99f9ffd78033e"
+    },
+    {
+      "path": "classic-network/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network/traffic.jsonl",
+      "raw_bytes": 9641431,
+      "raw_sha256": "a64273f8611330ac9814b61c6313c2e15ed7df3411ce21ddaab85c800b94ee4f"
+    },
+    {
+      "path": "classic-network/failure.bin.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network/failure.bin",
+      "raw_bytes": 6638416,
+      "raw_sha256": "9663fbe5996e69e159a56587313fa373846ec0ce6e88c668f99e7039b9d3e6e4"
+    },
+    {
+      "path": "classic-network/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network/run.log",
+      "raw_bytes": 24021,
+      "raw_sha256": "867db846fbfba78ae745db10b81953daa1e0ef22bba0749ca6bf2b1814fe118d"
+    },
+    {
+      "path": "classic-network/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network/run.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "classic-network/receiving-after.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network/receiving-after.json",
+      "raw_bytes": 118434,
+      "raw_sha256": "e598aea55a98bcfa2319db0727f41567fbe7088bbcba6c34a6cf7daf52926a7a"
+    },
+    {
+      "path": "predictive-network/audit.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network/audit.json",
+      "raw_bytes": 1419475,
+      "raw_sha256": "166633952895e69b3f076f8fba3b8e816f5ebeb3afb785c6855c11842d729570"
+    },
+    {
+      "path": "predictive-network/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network/traffic.jsonl",
+      "raw_bytes": 9992139,
+      "raw_sha256": "80b10a669a66522c9215b41382308219c0e3e3d0f66d1e938e09ba6eedb30e5a"
+    },
+    {
+      "path": "predictive-network/failure.bin.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network/failure.bin",
+      "raw_bytes": 6812484,
+      "raw_sha256": "b5865915b4a6b95586a8b4f25f8ed619f0e79fdd7556a16b870c1aa18349dae6"
+    },
+    {
+      "path": "predictive-network/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network/run.log",
+      "raw_bytes": 26080,
+      "raw_sha256": "c339567560b5ff1e955d83f8b6aa85197af0b720082ce2c2b9bacacc4a80ca21"
+    },
+    {
+      "path": "predictive-network/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network/run.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "predictive-network/receiving-after.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network/receiving-after.json",
+      "raw_bytes": 128350,
+      "raw_sha256": "02fbce2bda2c9656f2d544cd68e27d72c36bfb478608ae13e1102b6aac80b484"
+    },
+    {
+      "path": "classic-network-delayed/audit.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network-delayed/audit.json",
+      "raw_bytes": 1412823,
+      "raw_sha256": "82cbaeb5dc55ff136a6e589457cb331e13e142c0a07d729b01fffcd44a6fccea"
+    },
+    {
+      "path": "classic-network-delayed/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network-delayed/traffic.jsonl",
+      "raw_bytes": 9641431,
+      "raw_sha256": "a64273f8611330ac9814b61c6313c2e15ed7df3411ce21ddaab85c800b94ee4f"
+    },
+    {
+      "path": "classic-network-delayed/failure.bin.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network-delayed/failure.bin",
+      "raw_bytes": 6638416,
+      "raw_sha256": "4733e683a05b398dff8554b312b4955e7a71685aed845242c4564586034259fd"
+    },
+    {
+      "path": "classic-network-delayed/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network-delayed/run.log",
+      "raw_bytes": 24019,
+      "raw_sha256": "1439165c99835e90a5e3e3fdb71a75161d66464f18b6ff9cb6482edddba4dd3f"
+    },
+    {
+      "path": "classic-network-delayed/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/classic-network-delayed/run.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "predictive-network-delayed/audit.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network-delayed/audit.json",
+      "raw_bytes": 1419481,
+      "raw_sha256": "4dfa3e5cf175d0384c36c9bbfbb324a87aa262f6dc21e879aca11e1ae4433fb7"
+    },
+    {
+      "path": "predictive-network-delayed/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network-delayed/traffic.jsonl",
+      "raw_bytes": 9992139,
+      "raw_sha256": "80b10a669a66522c9215b41382308219c0e3e3d0f66d1e938e09ba6eedb30e5a"
+    },
+    {
+      "path": "predictive-network-delayed/failure.bin.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network-delayed/failure.bin",
+      "raw_bytes": 6812484,
+      "raw_sha256": "b5865915b4a6b95586a8b4f25f8ed619f0e79fdd7556a16b870c1aa18349dae6"
+    },
+    {
+      "path": "predictive-network-delayed/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network-delayed/run.log",
+      "raw_bytes": 26077,
+      "raw_sha256": "3895862589150229dc91d48c41d0683e10df6eaaaf4be69712a156997eff23b6"
+    },
+    {
+      "path": "predictive-network-delayed/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v9/predictive-network-delayed/run.err",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "kerala-coast-network.json",
+      "source": "art/timetables/kerala-coast-network.json",
+      "raw_bytes": 680436,
+      "raw_sha256": "001d0dbb9e65cb596c294ff4bc67b49cd3da071ad853dc0a9c734e48eef3dfed"
+    },
+    {
+      "path": "kerala-coast-network-v2.json",
+      "source": "art/timetables/kerala-coast-network-v2.json",
+      "raw_bytes": 680445,
+      "raw_sha256": "dbfd1ee6e87402e3cace318a5200f1b9818544cb088a31ae8759d091978b5d49"
+    },
+    {
+      "path": "kerala-coast-network-departure-overrides.json",
+      "source": "art/timetables/kerala-coast-network-departure-overrides.json",
+      "raw_bytes": 77848,
+      "raw_sha256": "77840e5969c65d52ab92b112a389d2dc60259bb5e028fab743fa52f8bb28226d"
+    },
+    {
+      "path": "inspection-tool.gd.txt",
+      "source": ".local/realism-2026-10-26/inspect-crossing-after.gd",
+      "raw_bytes": 2267,
+      "raw_sha256": "37f762a8fefd85ae20c7e6667beb3453342fe7221d8c5879dd7bcecaeeff16ba"
+    },
+    {
+      "path": "rehearsal-jobs-v9.json",
+      "source": ".local/realism-2026-10-26/rehearsal-jobs-v9.json",
+      "raw_bytes": 2821,
+      "raw_sha256": "1ebb99097714c46a8ded65f2752d7fc41a1fc96cf8a6e244a46a23dd4239a344"
+    }
+  ],
+  "prefix_equivalence": [
+    {
+      "mode": "classic",
+      "traffic_sha256": "a64273f8611330ac9814b61c6313c2e15ed7df3411ce21ddaab85c800b94ee4f",
+      "all_service_records_equal": true,
+      "scope": "Failed prefixes only; neither reaches the scheduled manual hold"
+    },
+    {
+      "mode": "predictive",
+      "traffic_sha256": "80b10a669a66522c9215b41382308219c0e3e3d0f66d1e938e09ba6eedb30e5a",
+      "all_service_records_equal": true,
+      "scope": "Failed prefixes only; neither reaches the scheduled manual hold"
+    }
+  ],
+  "status": "All four jobs finished rejected; no installation"
+}

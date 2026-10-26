@@ -25,9 +25,20 @@ identical Classic/V2 definitions. It has 68 overnight services and 3–13 depart
 per hour. The planning model reduces peak isolated fleet from 39 to 34; that is not a
 measured traffic result. Four authoring checks and exact reproduction pass;
 the full source suite passes 1,003 tests with zero failures and empty stderr.
-Four Network baseline/disturbance jobs launched once at 11:02 from `a24151d3`.
-All actual commands, modes, isolated outputs and source hashes are verified;
-inputs are frozen while complete-day acceptance runs. [Capacity plan](../art/performance/realism-2026-10-26/network-capacity-plan/README.md).
+All four candidate-nine runs have now finished and failed the unchanged
+45-minute continuous-wait gate. Classic fails S002 at 03:58:08 (5/208 finished);
+V2 fails M040 at 04:03:24 (6/208). All have zero safety events and empty stderr.
+The delayed prefixes match their respective baselines exactly and end before
+the planned manual hold, so they do not certify disturbance recovery. Both
+failure snapshots remain byte-identical after read-only inspection; trains
+still move. Successive overtake holds and opposing queues around Alappuzha and
+Ambalappuzha invalidate the model's hoped-for improvement.
+[Failed candidate evidence](../art/performance/realism-2026-10-26/network-candidate-nine/README.md).
+
+No full-day replay remains active. A stricter departure-only constraint search
+is being evaluated on the same 44 physical profiles; it is a planning diagnostic,
+not acceptance. No new pack or runtime edit has been made. All legacy choices
+remain certified. New traffic must still pass the original complete-day gates.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.

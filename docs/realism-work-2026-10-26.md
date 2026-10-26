@@ -958,3 +958,43 @@ The continuation automation complete-train-game-realism-and-network-208 remains
 active every ten minutes with the new process identities and current records.
 The user extended work until ready; the historical 10:00 cutoff does not apply.
 Delete this automation only once all authorized readiness work is finished.
+
+
+## Candidate nine rejected; stricter planning search, 11:27–11:38
+
+All four original v9 jobs finished naturally and failed; no process was restarted
+or stopped early. Classic baseline and delayed fail S002 at 03:58:08, 5/208
+finished, maximum continuous 2,702 seconds and station maximum 2,676. V2 baseline
+and delayed fail M040 at 04:03:24, 6/208, both maxima 2,702. Zero safety events and
+empty stderr throughout. Each audit has 4,836 current source hashes; 4,837
+unique inputs verified across modes. Exact raw audit, traffic, failure state,
+logs, packs and two immutable read-only inspections are preserved in
+network-candidate-nine with 27 raw file hashes. Full service records and traffic
+hashes match baseline/delayed within each mode over the failed prefix only;
+neither reaches the 07:30 manual hold. No disturbance success claim is valid.
+
+Both inspected snapshots have no future-clearance promises; several trains
+are moving. Do not call this an immovable deadlock. Station receiving capacity,
+repeated overtake holds and opposing flows make actual timing diverge from the
+isolated profiles. The candidate's lower conflict score and estimated peak did
+not predict acceptable traffic. Preserve failed evidence; no Network installed.
+
+A local authoring-only constraint solver was installed under ignored
+.local/realism-planning-deps, leaving the shared Python runtime and game inputs
+unchanged. OR-Tools 9.15.6755 and exact downloaded dependency hashes are recorded
+in planning-dependency-install.json. Official installation/API references:
+https://developers.google.com/optimization/install and
+https://github.com/google/or-tools/blob/stable/ortools/sat/python/cp_model.py.
+
+plan-network-constraints.py emits proposals only. Original search process 22460
+is running a bounded 180-second feasibility search: 208 departures, 15,816
+pairwise separation constraints over the actual shared single-line groups,
+three-minute following separation/no catching inside those groups, one-minute
+section-end allowance, 3–13 starts/hour and isolated recurring fleet bound 34.
+K1 remains 06:00; local/VB shifts bounded to 90 minutes, others 240 minutes.
+These are planning constraints, never authored dwell or interlocking controls.
+The model still omits interaction-induced delays and receiving-road detail;
+feasibility would not certify real traffic. UNKNOWN would not prove infeasibility.
+Do not edit the running script or duplicate this diagnostic. No runtime/tests,
+prepared observers or timetable packs changed. No source suite/native/Git/full-day
+job remains beyond this diagnostic and the existing editor/bridge/server.
