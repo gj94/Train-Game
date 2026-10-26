@@ -2731,3 +2731,14 @@ are empty and neither final audit exists. Runtime, routes, packs and six
 observers remain frozen until both original outcomes. These partial results
 do not establish acceptance. Network208V2 remains unaccepted and uninstalled.
 No gameplay change or new playtest; continue checking the original runs.
+
+## 27 October 04:27 — original v24 runs continue
+
+27 October 04:27:32 checkpoint: original v24 V2 baseline (11988/12204)
+reaches 11:20 with 61/208 services complete; delayed (14452/4928) reaches
+14:30 with 83/208 complete. Both original process identities match, error logs
+are empty and neither final audit exists. Runtime, routes, packs and six
+observers remain frozen until both original outcomes. Partial progress beyond
+an earlier failure clock is not a whole-day improvement or recovery certificate.
+Network208V2 remains unaccepted and uninstalled. No gameplay change or new
+playtest; continue checking the original runs.
