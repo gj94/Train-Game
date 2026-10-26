@@ -2,6 +2,27 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+The original candidate21 V2 delayed run 20296/14748 finished naturally and
+failed L026 at Parassala, 12:25:14, with 68/208 complete, 2,702s maximum extra
+wait in both populations, zero safety events and empty errors. All-location
+194/263,237/263,252/263,262/263 fails under30/45; station-only
+106/157,138/157,150/157,156/157 fails all four gates. Fractions cover only this
+failed prefix. L026 arrived11:38:56.85 with no departure:970s NYY approach
+reservation forM086,916s overtakes,622s receiving/onward,130s blocks,64s conflicts.
+Immutable inspection shows NYY claims L025P1/M086P2; several trains move.
+Two actual future plans are preserved: ALLP M014/M023/vacaterS010 toMAKM_P1
+(received/opponent_received true,escaped false), and NYY M086/L025/vacaterM096
+toNEM_P1 (received/escaped true,opponent_received false). No permanent-deadlock
+or runtime-defect inference. L008 now leaves TUVR12:02:50.75 and KUMM12:22:34.25;
+this local improvement is not whole-day progress, and this run fails earlier
+elsewhere. Thirteen exact raw files and4,836 current-at-run source hashes are in
+[candidate21 delayed evidence](../art/performance/realism-2026-10-26/network-candidate-twenty-one/failed-predictive-delayed/README.md).
+K1 minute samples show27.4545764399m braking then unchanged extents through07:40;
+not exact controller frames or recovery proof. No installation or complete-
+population comparison. The original baseline26756/20168 remains running
+(10:40,59/208 at00:07:06 on27October), empty errors and no final audit.
+Inputs remain frozen pending its original outcome. Network208V2 is unaccepted.
+
 At 23:57:09, both original candidate21 V2 jobs remain live with matching
 process identities: baseline 26756/20168 reaches 08:40 (37/208 complete), and
 delayed 20296/14748 reaches 11:30 (64/208). Both error logs are empty and
