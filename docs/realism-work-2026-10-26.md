@@ -3168,3 +3168,14 @@ Only these four owned Godot processes are present; no duplicate or Classic208
 job was started. Runtime/routes/packs/observers stay frozen. Partial clocks
 are not acceptance; Network208V2 remains unaccepted and uninstalled.
 No source change, repeated headless suite or gameplay playtest in this checkpoint.
+
+27 October 06:50 — original v26 runs remain active.
+
+At 06:50:05 the original baseline (3728/12192) reaches 03:20, 2/208 complete,
+and the original delayed run (16324/14784) reaches 04:20, 7/208 complete.
+Both original command lines and parent/child identities match the launch;
+error logs are empty and neither final audit exists. Only the four original
+Godot processes are present. The V2 pack and six observer hashes remain unchanged.
+Continue these original runs with runtime/routes/packs/observers frozen.
+Partial clocks are not acceptance. Network208V2 remains unaccepted/uninstalled;
+no duplicate, Classic208, repeated test or native job was launched. No new playtest.
