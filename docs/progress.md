@@ -212,6 +212,15 @@ The 208 authored definitions remain unchanged. No current-source timetable is
 installed or certified; R47 remains published and the 10:00 deadline stands.
 
 
+**Corrected preparation restarted:** `9ec3530` is pushed after all 1,003 source
+tests passed. Eight fresh v7 runs launched once at 08:20: the six Classic/V2
+baselines plus both Network manual-delay audits. All sixteen actual process
+commands, six baseline modes, 4,839 input hashes and six observer hashes match;
+stderr is empty. Inputs remain frozen. No complete-day or installed-data claim
+is made yet. The actual native menu and overnight checks will follow accepted
+results. The 10:00 deadline and published R47 remain unchanged.
+
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

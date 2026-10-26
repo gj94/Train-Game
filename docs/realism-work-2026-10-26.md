@@ -651,3 +651,46 @@ eight fresh runs use unchanged candidate-six authored packs. Their source and
 six preparation observers remain frozen during replay. Stop scope expansion at
 10:00, safely checkpoint unfinished validation and delete the automation. R47
 stays available; no executable is published from these incomplete timetable runs.
+
+
+## Fresh v7 preparation launched and verified, 2026-10-26T08:21:36.534629+08:00
+
+Correction and exact evidence **`9ec3530`** are committed and pushed. All 1,003
+source tests passed with zero failures and empty stderr. The six old partial
+baselines and two failed audits remain historical evidence. No inputs were
+retimed for this source correction.
+
+The guarded launcher ran once at 2026-10-26T08:20:40.5706725+08:00. All sixteen actual
+wrapper/child command lines have the correct isolated output and mode options.
+All six initial baseline catalogues match the corrected source: 4,839 distinct
+input hashes and all six preparation-observer hashes verified. Every stderr
+is empty. Do not duplicate or restart these jobs.
+
+| Run | Wrapper | Child |
+| --- | ---: | ---: |
+| classic-network | 5248 | 6380 |
+| predictive-network | 21820 | 12472 |
+| classic-network-delayed | 18252 | 17940 |
+| predictive-network-delayed | 9620 | 11328 |
+| classic-standard | 12052 | 21916 |
+| predictive-standard | 16856 | 6856 |
+| classic-intensive | 18308 | 14120 |
+| predictive-intensive | 18084 | 17900 |
+
+Records: rehearsal-jobs-v7.json, launch-v7-verification.json, owned-processes.json
+and latest-job-status.json under .local/realism-2026-10-26. Outputs are in
+rehearsals-v7/<day>. The status inspector now selects v7 automatically. Network
+delayed runs apply the same 600-second K1 manual hold at 07:30 and are evidence
+only; the other six runs create real departure and time snapshots.
+
+Freeze simulation, routes, authored packs and the six observers throughout
+these runs. Accept each complete baseline independently against every service,
+call, depot/portal full-tail completion, safety, waits and actual passing gate.
+Install only compatible passing data, then exercise the real native menus.
+Network category comparisons and midnight/save/restore checks remain pending.
+The prepared-UI and category tools remain uncommitted until those real checks.
+
+No full suite, diagnostic or Git operation is needed while unchanged. R47 is
+preserved. At 10:00 stop expanding scope; safely checkpoint any unfinished
+validation and delete the continuation automation. Do not call partial or
+failed data complete and do not publish an executable from it.
