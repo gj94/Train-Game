@@ -1850,3 +1850,18 @@ K1exchangespassengers. OneNYYfutureplan hasL021P1received,L022P2received,
 L033vacater,escapePASA_P2notyetescaped. No permanent-deadlock/runtime-defect,
 recovery orwhole-dayequivalence claim. Inputs remainunchanged pending departure
 planning; Network208 remains unaccepted/uninstalled. Originaloutputs retained.
+
+## Candidate eighteen: two departure hypotheses
+
+Candidate eighteen changes only S03004:20→04:50 and L00604:40→04:05.
+The later S030 aims to open KZT receiving space for M045 after L002; the earlier
+L006 aims to reach ALLP before the observed M063/L013/S029/M009 queue forms.
+These are traffic hypotheses, with earlier/later conflicts still possible.
+Whole predecessor JSON restoration, every other field unchanged, identical
+modes and K1 06:00 are verified. The208 services,168 boundary journeys,
+71 overnight origins and3–13 starts/hour remain. All205 overrides reproduce
+both packs normally; exact --check and four headless authoring tests pass with
+empty stderr. Runtime/tests remain unchanged from the completed1,003-test suite,
+which was not rerun. Ten exact proof files are in
+[candidate eighteen evidence](../art/performance/realism-2026-10-26/network-candidate-eighteen/README.md).
+Network remains unaccepted/uninstalled; all actual full-day gates remain required.

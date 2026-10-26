@@ -1,0 +1,23 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "d4e2a16bc09a6e39357845f04cfdf1a4401845b40b1d64cd8777305d0f815d25",
+    "kerala-coast-network-v2.json": "3acff85b58b4471600faf129a7a13a8dde27ae9a93f0369a7727ff454597d3d6",
+    "kerala-coast-network-departure-overrides.json": "5470fca0256a480dc33c8b5464bfbff03b36f425a9021b60d74df761ba376ff4"
+  },
+  "changes": [
+    {
+      "service": "S030",
+      "before": "04:20",
+      "after": "04:50",
+      "reason": "Defer this northbound superfast beyond L034, aiming to open KZT receiving space after L002 clears for the observed M045 southbound PASA wait; full-tail clearance and later NYY queues require actual replay."
+    },
+    {
+      "service": "L006",
+      "before": "04:40",
+      "after": "04:05",
+      "reason": "Advance this QLN northbound local before the observed M100 origin hold and M063/L013/S029/M009 ALLP-MAKM crossing queue, aiming to clear receiving and onward roads before they fill; earlier conflicts remain unproven."
+    }
+  ],
+  "evidence_commit": "c56f9221; V2 8c9a56c1",
+  "status": "Departure-only hypothesis; no acceptance"
+}
