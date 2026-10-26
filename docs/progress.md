@@ -2,6 +2,27 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Candidate23 original V2 delayed832/10968 finished naturally and was rejected:
+M019 at ALLP13:26:44,71/208 complete,2702s maximum in both wait populations,
+zero safety events and empty errors after the configured600s K1hold07:30.
+All-location196/275,244/275,266/275,274/275 fails under20/30/45; station-only
+104/158,138/158,152/158,157/158 fails all four gates. These are failed prefixes.
+M019arrALLP12:36:22.45 has no departure:1014s S013overtake,746s opposing
+M018/S016,708s AMPAreceiving,170s blocks,64s conflicts. Two byte-immutable
+inspections retain no future-clearance plans; final AMPAclaimsM050P3/incoming
+M028P2. M019/M101 await moving S016; M050 awaits ALLPreceiving forM101/M019.
+Several trains move; no permanent-deadlock or runtime-defect inference.
+L025 is in its NCJdepot; K1leftNJT13:24:57.25 and approachesNCJ. These local
+movements beyond the earlier southern blockage are not whole-day improvement.
+Sixteen exact raw files and4836 current-at-run sources are verified in
+network-candidate-twenty-three/failed-predictive-delayed. Eleven K1minute
+samples preserve braking then unchanged extents through07:40, not exact
+controller frames or recovery proof. Summary has one V001overpass ofK1 atTVCN,
+not completed multiple-location evidence. No comparison,certificate or install.
+At02:53:02 the original baseline8580/19068 remains live at11:40 (64/208),
+identitymatching,emptyerrors,no finalaudit. Keep all inputs frozen until it ends;
+never rerun unchangedv23. Pending helpers and unrelated files are preserved.
+
 27 October 02:43:03 checkpoint: original v23 V2 baseline 8580/19068 has
 reached 09:30 (48/208 complete); delayed 832/10968 has reached 12:50 (69/208).
 Both process identities match, both error logs are empty and neither final audit
