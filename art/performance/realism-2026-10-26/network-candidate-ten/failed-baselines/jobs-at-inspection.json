@@ -1,0 +1,68 @@
+[
+  {
+    "day": "classic-network",
+    "pid": 20756,
+    "started": "2026-10-26T12:46:13.9365734+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v10/classic-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "a5e93191f10f9d2bf2aca3324f0ec062ffeedf40",
+    "status": "finished-rejected",
+    "reason": "Candidate ten departure-only receiving-compatible plan; increased opposing overlap and one nominal berth-minute require actual full-day validation",
+    "pack_sha256": "09b60a09cc6191fc91d46fb6e487de5804f4d859f1c63ce59fad93d71348f131",
+    "child_pid": 8912
+  },
+  {
+    "day": "predictive-network",
+    "pid": 11764,
+    "started": "2026-10-26T12:46:13.9986708+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v10/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "a5e93191f10f9d2bf2aca3324f0ec062ffeedf40",
+    "status": "finished-rejected",
+    "reason": "Candidate ten departure-only receiving-compatible plan; increased opposing overlap and one nominal berth-minute require actual full-day validation",
+    "pack_sha256": "2caf0ca3644e1a70a8853de63fa551c616f3c9f35b1341974498a88fbbc8f0a9",
+    "child_pid": 2888
+  },
+  {
+    "day": "classic-network-delayed",
+    "pid": 21044,
+    "started": "2026-10-26T12:46:14.0275905+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v10/classic-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "a5e93191f10f9d2bf2aca3324f0ec062ffeedf40",
+    "status": "finished-rejected",
+    "reason": "Candidate ten departure-only receiving-compatible plan; increased opposing overlap and one nominal berth-minute require actual full-day validation",
+    "pack_sha256": "09b60a09cc6191fc91d46fb6e487de5804f4d859f1c63ce59fad93d71348f131",
+    "child_pid": 17784
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 11944,
+    "started": "2026-10-26T12:46:14.0582993+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v10/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "a5e93191f10f9d2bf2aca3324f0ec062ffeedf40",
+    "status": "finished-rejected",
+    "reason": "Candidate ten departure-only receiving-compatible plan; increased opposing overlap and one nominal berth-minute require actual full-day validation",
+    "pack_sha256": "2caf0ca3644e1a70a8853de63fa551c616f3c9f35b1341974498a88fbbc8f0a9",
+    "child_pid": 17700
+  }
+]

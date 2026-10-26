@@ -61,9 +61,11 @@ stderr. Both pass through the actual 07:30–07:40 manual K1 intervention; this 
 not a recovery certificate. Both under-30-minute cumulative wait distributions
 also miss 98%. Exact raw audits and immutable inspections are preserved in
 [failed disturbance evidence](../art/performance/realism-2026-10-26/network-candidate-ten/failed-disturbances/README.md).
-The two original baseline pairs still run with empty stderr (07:20 at 13:26).
-Keep their inputs frozen and do not restart them. Inspect completed baseline
-results before selecting departure-only repairs. All legacy choices remain
+Both original baselines also failed the same L005 gate at 08:00:10; all four
+v10 jobs have now ended naturally. Baseline failure inspections are immutable,
+with no remaining future-clearance plans. The manual hold is not necessary for
+this failure. Preserve the [baseline evidence](../art/performance/realism-2026-10-26/network-candidate-ten/failed-baselines/README.md).
+Observed queues motivate a small departure-only revision for L015 and L002. All legacy choices remain
 certified; Network is not accepted or installed.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network

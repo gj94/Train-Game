@@ -1206,3 +1206,22 @@ final audit and empty stderr. Never restart/duplicate them. Need their genuine
 results before attributing disturbance effects or departure-only repairs.
 All1003 source/four authoring checks remain current. PendingUI/category and
 unrelated files preserved, no Network data installed, R47 unchanged.
+
+## All v10 jobs finished rejected, 13:35
+
+The two original baseline pairs have exited naturally. Both fail L005ALLP at
+08:00:10,2702s,32/208,zero safety,empty stderr. All four v10 jobs are finished.
+Two new read-only inspections preserve bytes, with no future plans remaining
+in these baseline failures. Service records differ from disturbed runs, but
+same failed gate/time proves the manual hold is not necessary for this failure.
+Exact22 raw baseline files/4837current hashes preserved with prefix comparison.
+No Network installation; no runtime changes, no new full suite necessary for
+read-only evidence. Existing1003 source and four authoring checks remain current.
+
+Actual L013/L015 ALLP departures07:04/07:25 bunch with L005's07:13 arrival and
+opposing V002/M044, then M064/L014. L002 also has2622s extra wait atPASA after
+1188s atERL; opposing L021/V005/M095/M075 form the southern queue. EarlierL022
+passes the same corridor without >10min station waits in this prefix. Next test:
+L01506:55->08:15 to free the ALLP origin/receiving conflict, L00206:10->05:45
+behind L022 but before the opposing wave. These are hypotheses needing actual
+new replays; preserve every other field, including K106:00 and all208 services.

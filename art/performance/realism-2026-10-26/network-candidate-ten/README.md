@@ -56,4 +56,6 @@ all four had empty stderr and no final audits. No full-day acceptance is implied
 
 Both disturbed runs subsequently failed the wait gates at 08:00:10 on L005.
 See [exact failed disturbance evidence](failed-disturbances/README.md). The
-undisturbed baselines remain in flight; no Network data is accepted or installed.
+undisturbed baselines subsequently failed the same gate; see
+[baseline failure evidence](failed-baselines/README.md). All four jobs are finished.
+No Network data is accepted or installed.
