@@ -243,6 +243,16 @@ observer hashes are verified; stderr is empty. The four unchanged v7 legacy
 baselines continue. No current-source prepared data has yet passed all gates
 or been installed. See the work record for exact PIDs and continuation steps.
 
+**Eighth Network disturbance runs rejected:** Classic M043 exceeds 45 minutes
+at NEM at 07:46:04, with 29/208 complete; V2 L006 exceeds the same limit at
+AMPA at 07:51:52, with 31/208 complete. Both have zero recorded safety events.
+Read-only worlds contain moving traffic and no active future-crossing plan,
+but neither result meets acceptance. [Exact failed evidence](../art/performance/realism-2026-10-26/network-candidate-eight/README.md)
+is preserved. The two original Network baselines and four legacy baselines
+continue unchanged. No further retiming or runtime edit is made from these
+late partial results. Whole-day certification and installed native checks remain
+incomplete; R47 is preserved for the fixed 10:00 checkpoint.
+
 
 ## 25 October 2026 — R47 published and independently checked
 

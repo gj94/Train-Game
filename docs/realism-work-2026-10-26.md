@@ -751,3 +751,28 @@ frozen. No suite, diagnostic, native check or Git operation remains after this
 checkpoint. The prepared-UI and category tools remain pending real accepted
 data. R47 is preserved. At 10:00 stop expanding scope, safely checkpoint any
 unfinished validation, report incomplete work and delete the automation.
+
+
+## v8 disturbances rejected; preserve deadline checkpoint, 2026-10-26T09:49:33.953442+08:00
+
+Both disturbance jobs have ended: Classic 10828/22028 fails at 07:46:04,
+29/208 complete, M043 NEM continuous wait 2,702 seconds (longest station
+wait 2,524 seconds). V2 20596/6276 fails at 07:51:52, 31/208 complete,
+L006 AMPA station/continuous wait 2,702 seconds. Both record zero safety
+events and reach beyond the 07:30–07:40 K1 manual hold interval.
+
+Read-only inspections of the actual failed worlds are byte-immutable. Classic
+shows S046 and M078 moving north, with L002 already at KZK; V2 shows M010
+leaving AMPA ahead of L006 and M008 north of ALLP. Neither has an active
+future-crossing transaction. Actual wait causes and exact raw audits, traffic,
+worlds and packs are preserved in network-candidate-eight; 4,837 distinct
+source hashes verified. This is failed evidence, never baseline data.
+
+The two original v8 Network baselines and four original v7 legacy baselines
+continue. Do not duplicate them or change frozen inputs. No new timing or
+runtime patch is justified without another complete validation cycle this
+close to 10:00. Source tests remain 1,003 passing, current authoring tests four.
+Use remaining time to independently verify any completed baselines. At 10:00
+stop scope expansion, safely checkpoint unfinished runs, report all incomplete
+acceptance/native/category/midnight work and delete the continuation automation.
+R47 remains published. Pending prepared-UI/category tools are not certified.

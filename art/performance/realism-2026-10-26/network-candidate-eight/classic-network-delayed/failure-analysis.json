@@ -1,0 +1,368 @@
+{
+  "id": "M043",
+  "station_waits": [
+    {
+      "call": 1,
+      "id": "M043",
+      "reasons": {
+        "Authority to ERS_TNU_M0-SA": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "",
+      "station": "ERS"
+    },
+    {
+      "call": 2,
+      "id": "M043",
+      "reasons": {
+        "Authority to SRTL_TRVZ_M0-SA": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "",
+      "station": "SRTL"
+    },
+    {
+      "call": 3,
+      "id": "M043",
+      "reasons": {
+        "Authority to ALLP_PUPR_M0-SA": 4.0,
+        "Block ALLP_RLEAD_U occupied by M042 · Nagercoil Junction–Thrissur Mail / Express (M042)": 14.0,
+        "Conflicts with route from ALLP_PUPR_M0-NH · Nagercoil Junction–Thrissur Mail / Express (M042)": 20.0,
+        "Single line ALLP_single is locked for opposing traffic · Nagercoil Junction–Thrissur Mail / Express (M042)": 136.0,
+        "Single line ALLP_single is locked for opposing traffic · Nagercoil Junction–Thrissur Mail / Express (M042), Thiruvananthapuram Central–Pune Superfast (S004)": 312.0,
+        "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Pune Superfast (S004), Nagercoil Junction–Thrissur Mail / Express (M042)": 98.0
+      },
+      "seconds": 584.0,
+      "signal_id": "",
+      "station": "ALLP"
+    },
+    {
+      "call": 4,
+      "id": "M043",
+      "reasons": {
+        "Authority to AMPA_TZH_D0-A": 4.0
+      },
+      "seconds": 4.0,
+      "signal_id": "",
+      "station": "AMPA"
+    },
+    {
+      "call": 5,
+      "id": "M043",
+      "reasons": {
+        "Authority to HAD_CHPD_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "",
+      "station": "HAD"
+    },
+    {
+      "call": 6,
+      "id": "M043",
+      "reasons": {
+        "Authority to KYJ_OCR_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "",
+      "station": "KYJ"
+    },
+    {
+      "call": 7,
+      "id": "M043",
+      "reasons": {
+        "Authority to KPY_STKT_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "",
+      "station": "KPY"
+    },
+    {
+      "call": 8,
+      "id": "M043",
+      "reasons": {
+        "Authority to QLN_IRP_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "",
+      "station": "QLN"
+    },
+    {
+      "call": 9,
+      "id": "M043",
+      "reasons": {
+        "Authority to PVU_KFI_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "",
+      "station": "PVU"
+    },
+    {
+      "call": 10,
+      "id": "M043",
+      "reasons": {
+        "Authority to VAK_AMY_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "",
+      "station": "VAK"
+    },
+    {
+      "call": 11,
+      "id": "M043",
+      "reasons": {
+        "Authority to KZK_VELI_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "",
+      "station": "KZK"
+    },
+    {
+      "call": 12,
+      "id": "M043",
+      "reasons": {
+        "Authority to TVCN_TVP_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "",
+      "station": "TVCN"
+    },
+    {
+      "call": 13,
+      "id": "M043",
+      "reasons": {
+        "Authority to TVC_NEM_M0-SA": 4.0,
+        "Preserve the onward crossing route for V005 at Thiruvananthapuram South · Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005), Nagercoil Junction–Ernakulam Junction Passenger (L002)": 20.0
+      },
+      "seconds": 24.0,
+      "signal_id": "",
+      "station": "TVC"
+    }
+  ],
+  "signal_waits": [
+    {
+      "call": 0,
+      "id": "M043",
+      "reasons": {
+        "Authority to ERS_END_D-H": 4.0
+      },
+      "seconds": 4.0,
+      "signal_id": "ERS_PORTAL_D-E",
+      "station": "ERS"
+    },
+    {
+      "call": 2,
+      "id": "M043",
+      "reasons": {
+        "Authority to ERS_TNU_M0-SA": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "ERS-S1",
+      "station": "ERS"
+    },
+    {
+      "call": 3,
+      "id": "M043",
+      "reasons": {
+        "Authority to SRTL_TRVZ_M0-SA": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "SRTL-S1",
+      "station": "SRTL"
+    },
+    {
+      "call": 3,
+      "id": "M043",
+      "reasons": {
+        "Arriving at Alappuzha; departure decision after the scheduled stop": 2.0,
+        "Authority to ALLP_PUPR_M0-SA": 2.0
+      },
+      "seconds": 4.0,
+      "signal_id": "ALLP-S3",
+      "station": "ALLP"
+    },
+    {
+      "call": 6,
+      "id": "M043",
+      "reasons": {
+        "Authority to HAD_CHPD_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "HAD-S4",
+      "station": "HAD"
+    },
+    {
+      "call": 6,
+      "id": "M043",
+      "reasons": {
+        "Arriving at Kayamkulam Junction; departure decision after the scheduled stop": 2.0,
+        "Authority to KYJ_OCR_D0-A": 2.0
+      },
+      "seconds": 4.0,
+      "signal_id": "KYJ-S1",
+      "station": "KYJ"
+    },
+    {
+      "call": 8,
+      "id": "M043",
+      "reasons": {
+        "Authority to KPY_STKT_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "KPY-S1",
+      "station": "KPY"
+    },
+    {
+      "call": 8,
+      "id": "M043",
+      "reasons": {
+        "Arriving at Kollam Junction; departure decision after the scheduled stop": 2.0,
+        "Authority to QLN_IRP_D0-A": 2.0
+      },
+      "seconds": 4.0,
+      "signal_id": "QLN-S1",
+      "station": "QLN"
+    },
+    {
+      "call": 10,
+      "id": "M043",
+      "reasons": {
+        "Authority to PVU_KFI_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "PVU-S1",
+      "station": "PVU"
+    },
+    {
+      "call": 11,
+      "id": "M043",
+      "reasons": {
+        "Authority to VAK_AMY_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "VAK-S4",
+      "station": "VAK"
+    },
+    {
+      "call": 11,
+      "id": "M043",
+      "reasons": {
+        "Arriving at Kazhakuttam; departure decision after the scheduled stop": 2.0,
+        "Authority to KZK_VELI_D0-A": 2.0
+      },
+      "seconds": 4.0,
+      "signal_id": "KZK-S1",
+      "station": "KZK"
+    },
+    {
+      "call": 13,
+      "id": "M043",
+      "reasons": {
+        "Authority to TVCN_TVP_D0-A": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "TVCN-S1",
+      "station": "TVCN"
+    },
+    {
+      "call": 13,
+      "id": "M043",
+      "reasons": {
+        "Authority to TVC-S1": 2.0,
+        "Block TVC_P1 occupied by V005 · Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005)": 24.0
+      },
+      "seconds": 26.0,
+      "signal_id": "TVP_TVC_D0-H",
+      "station": "TVP_TVC_D0"
+    },
+    {
+      "call": 14,
+      "id": "M043",
+      "reasons": {
+        "Authority to TVC_NEM_M0-SA": 2.0
+      },
+      "seconds": 2.0,
+      "signal_id": "TVC-S1",
+      "station": "TVC"
+    },
+    {
+      "call": 14,
+      "id": "M043",
+      "reasons": {
+        "Approach reserved for V005 to enter NYY_P1": 1044.0,
+        "Conflicts with route from NEM_BRAM_M0-NH · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 12.0,
+        "Expect a wait before Neyyattinkara: no free platform suitable for this service · Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005)": 356.0,
+        "Expect a wait before Neyyattinkara: no free platform suitable for this service · Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005), Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 148.0,
+        "Expect a wait before Neyyattinkara: preserve a crossing platform for opposing services at Parassala · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 90.0,
+        "Expect a wait before Neyyattinkara: preserve a crossing platform for opposing services at Parassala · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 76.0,
+        "Expect a wait before Neyyattinkara: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005), Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 188.0,
+        "Single line NEM_single is locked for opposing traffic · Kanniyakumari–Thiruvananthapuram Central Mail / Express (M078)": 454.0,
+        "Single line NEM_single is locked for opposing traffic · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 334.0
+      },
+      "seconds": 2702.0,
+      "signal_id": "NEM-S1",
+      "station": "NEM"
+    }
+  ],
+  "current_trains": {
+    "L002": {
+      "speed": 7.52019263531104,
+      "path": [
+        {
+          "dir": -1,
+          "edge": "KZK_P2"
+        }
+      ],
+      "status": "Running to Ernakulam Junction",
+      "reason": "Authority to MQU_KXP_U0-H"
+    },
+    "M043": {
+      "speed": 0.0,
+      "path": [
+        {
+          "dir": 1,
+          "edge": "NEM_P1"
+        }
+      ],
+      "status": "Waiting for NEM-S1",
+      "reason": "Single line NEM_single is locked for opposing traffic · Rameswaram–Thiruvananthapuram Central Superfast (S046)"
+    },
+    "M078": {
+      "speed": 4.9682428649787,
+      "path": [
+        {
+          "dir": -1,
+          "edge": "TVC_P4"
+        }
+      ],
+      "status": "Running to Thiruvananthapuram Central",
+      "reason": "Arriving at Thiruvananthapuram Central; departure decision after the scheduled stop"
+    },
+    "S046": {
+      "speed": 24.5999999999999,
+      "path": [
+        {
+          "dir": -1,
+          "edge": "NEM_BRAM_M2"
+        },
+        {
+          "dir": -1,
+          "edge": "NEM_BRAM_M3"
+        }
+      ],
+      "status": "Running to Thiruvananthapuram Central",
+      "reason": "Authority to NEM-N2"
+    },
+    "V005": {
+      "speed": 0.0,
+      "path": [
+        {
+          "dir": 1,
+          "edge": "NYY_P1"
+        }
+      ],
+      "status": "Waiting for NYY-S1",
+      "reason": "Single line NYY_single is locked for opposing traffic · Kanniyakumari–Bengaluru Superfast (S030)"
+    }
+  },
+  "future_plans": []
+}
