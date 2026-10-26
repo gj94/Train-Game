@@ -1261,3 +1261,31 @@ left aftercheckpoint;onlyfour originalv11replays. Do not rerunlauncher,duplicate
 or restart. Allv10failures preserved;legacychoicescertified,R47unchanged. Need
 fulloriginalgates thenindependentinstall,category/native/midnight/save-load. Only
 pendingUItracked/categoryuntracked andunrelatedfilesremainoutsidecommittedwork.
+
+## Candidate eleven disturbed failures preserved, 14:22
+
+Both original disturbed jobs finished naturally. Classic rejects M006 at AMPA
+08:52:40 with 38/208 complete; V2 rejects L002 at NYY07:56:50 with32/208.
+Both record2702s extra waiting, zero safety and empty stderr, after the actual
+07:30-07:40 K1 hold. All shorter cumulative wait gates pass in the prefixes,
+but all-location under45 fractions179/180 and142/143, station110/111 and85/86,
+fail the required100%. No complete-day comparison or recovery certificate.
+
+L005 clears ALLP07:28:45.80/07:28:30.30, with816/802s extra station waiting;
+Classic's maximum all-location wait for this service is818s, a distinct metric.
+This fixes the previously observed local obstruction only. Classic M006 then
+waits for S030/overtaking and opposing K1/L007/receiving queues at AMPA. V2
+L002 instead waits at NYY for successive opposing services and NEM capacity.
+Classic L002 left NYY07:12:31.30, before the manual intervention; that divergence
+cannot be attributed to the later hold. Await both baseline results before
+further departure-only repairs. No runtime-defect or immovable-deadlock claim.
+
+Both headless read-only inspections pass byte-immutability; no future-clearance
+plan remains in either failure snapshot and several trains still move. All4837
+distinct current fingerprints and exact authored packs verify.24 raw files are
+archived losslessly with hashes in network-candidate-eleven/failed-disturbances.
+Original outputs remain intact. No suite/source/packs/observer changes or new
+installation. Runtime1003 source tests/four authoring checks remain current.
+Two original baselines18724/5380 and16164/4076 continue, both07:20 at14:22,
+empty stderr/no audit. Frozen inputs and pendingUI/category/unrelated preserved;
+R47 unchanged. No diagnostic/Git operation remains after this checkpoint.

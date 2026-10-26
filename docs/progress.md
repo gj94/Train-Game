@@ -77,12 +77,17 @@ runtime/tests were edited or full suite repeated for these two timing changes.
 [Candidate-eleven proof](../art/performance/realism-2026-10-26/network-candidate-eleven/README.md).
 Candidate8056ea2f is pushed. Its four v11 replays launched once at13:42;
 actual commands, separate outputs, modes,4,837current fingerprints and six frozen
-observers are verified. At the 14:08 read-only checkpoint all four original
-process pairs still match: both baselines 05:20 and both delayed runs 06:50;
-stderr is empty and no final audit exists. Current clocks and process identities
-are recorded in `.local/realism-2026-10-26/latest-job-status.json`.
-Do not restart/duplicate them or edit frozen inputs. These targeted queue repairs
-still require genuine whole-day baseline and disturbance acceptance.
+observers are verified. Both disturbed runs now finish rejected: Classic M006
+at Ambalappuzha, 08:52:40, 38/208 completed; V2 L002 at Neyyattinkara, 07:56:50,
+32/208. Both reach the manual K1 hold and exceed 45 minutes of extra waiting
+with zero safety events and empty stderr. L005 now clears Alappuzha with
+816/802 seconds of extra waiting, but that local improvement is not acceptance.
+Both failure inspections are immutable, with no future-clearance plans remaining.
+[Exact failed-run evidence](../art/performance/realism-2026-10-26/network-candidate-eleven/failed-disturbances/README.md).
+The two original baselines continue; at14:22 both clocks are07:20.
+Current process identities and clocks are in
+`.local/realism-2026-10-26/latest-job-status.json`. Do not duplicate/restart them
+or edit frozen inputs. Await their results before selecting further timing repairs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.
