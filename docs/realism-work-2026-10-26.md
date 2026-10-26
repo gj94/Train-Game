@@ -694,3 +694,29 @@ No full suite, diagnostic or Git operation is needed while unchanged. R47 is
 preserved. At 10:00 stop expanding scope; safely checkpoint any unfinished
 validation and delete the continuation automation. Do not call partial or
 failed data complete and do not publish an executable from it.
+
+
+## Morning queue failures and affected departure spacing, 2026-10-26T09:04:24.099575+08:00
+
+Both v7 Network delayed runs rejected: Classic L002 at NYY 07:50:40,32/208;
+V2 M045 at ALLP 07:12:16,27/208. Each2,702s station/continuous wait andzero
+safety. V2 fails before07:30hold; Classicafter. V2services/rawtraffic exactly
+match v6 failedprefix only. Classicreadonlyinspection immutable, movingtraffic
+andno stalecompletedNYYtransaction. Exactaudits/traffic/failureworlds/oldpacks
+andstoppedbaselinecatalogues archived network-candidate-seven,4,837unique
+currentinputhashes verified beforeedits. Oldoutputs preserved,neverinstall.
+
+ONLYbothpacks M10106:10->07:25 andL03306:35->07:55 change; semanticcheck
+provesallotherfieldsidentical. Rationale/actualwaitcauses in evidenceREADME.
+Fourauthoringtestspass;unchangedruntime9ec3530 has1003fullpass. Allfour
+continuingv7legacycatalogues stillmatch4835Standard/4836Intensivehashes.
+Theirpairs12052/21916,16856/6856,18308/14120,18084/17900 mustcontinue.
+OnlyNetworkbaselines5248/6380 and21820/12472 wereidentity-stopped.
+
+Guarded launch-network-v8.ps1 andverify-launch-v8.py prepared NOTRUN. After
+explicitcommit/push launchfouraffectedNetworkjobs once;inspectactualcommands,
+modes,isolatedoutputs/sourcehashes. Inspectorselectsmixedv7legacy/v8Network.
+No runtime/tests/observers changed. PendingUI/categorytools remainuncommitted
+untilacceptedrealdata; nofakecatalogues. Full-day/native/category/midnightgates
+pending. R47andfixed10AM preserved; checkpointunfinishedvalidationanddelete
+automationatthedeadline.

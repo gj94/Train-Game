@@ -221,6 +221,23 @@ is made yet. The actual native menu and overnight checks will follow accepted
 results. The 10:00 deadline and published R47 remain unchanged.
 
 
+**Seventh Network candidate rejected:** Classic reaches 07:50:40 with 32/208
+complete before L002 exceeds 45 minutes at Neyyattinkara; V2 reaches 07:12:16
+with 27/208 before M045 exceeds the same limit at Alappuzha. Both record zero
+safety events. Moving traffic and the saved-world inspection show queueing;
+no new immovable cycle is established. Exact failed/partial evidence is retained
+in [candidate seven](../art/performance/realism-2026-10-26/network-candidate-seven/README.md).
+
+Only M101 06:10→07:25 and L033 06:35→07:55 change, identically in both authored
+Network packs, to spread originating departures around through traffic. Four
+authoring tests pass; unchanged runtime retains its 1,003-test full-suite pass.
+The two affected incomplete Network baselines are stopped and preserved. The
+four original v7 Standard/Intensive jobs continue with matching source hashes.
+Full-day acceptance and actual installed native checks remain pending. No data
+is certified from these failures. The next four Network replays must use new
+isolated v8 outputs after this increment is committed; do not restart v7.
+
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,
