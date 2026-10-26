@@ -1,0 +1,23 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "dd9c3d1e2c7a220f857fa7ee05d1eeaeff071aee7380433b053117b10a9d7d65",
+    "kerala-coast-network-v2.json": "c7a309af02489ee972eae894d6de18624a51e0bdd4a4ac64e6897e1c9d4bfb48",
+    "kerala-coast-network-departure-overrides.json": "95d17d6475a235ccbf5824b5a0635168e8b6dfc809fd60e4b3441dfa9bb3d073"
+  },
+  "changes": [
+    {
+      "service": "M045",
+      "before": "00:45",
+      "after": "00:00",
+      "reason": "Aim to clear NEM/NYY before the observed northbound M100/M078/M044/M064 cluster fills compatible receiving roads."
+    },
+    {
+      "service": "S030",
+      "before": "05:05",
+      "after": "04:20",
+      "reason": "Aim to reach PASA/NYY before the observed M071/M077/S027 opposing wave and L034 receiving queue."
+    }
+  ],
+  "evidence_commit": "82d3c13a",
+  "status": "Departure-only hypothesis; no acceptance"
+}

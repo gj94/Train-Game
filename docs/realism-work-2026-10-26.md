@@ -1712,3 +1712,17 @@ candidate-fifteen/failed-classic-baseline. No future-clearance plans remain;
 M071, M077, S025 and S027 still move. The failed-prefix fractions and queue reasons
 match Classic delayed. No permanent-deadlock, runtime-defect or whole-day claim.
 No Network installation; plan the next departure-only repair from actual queues.
+
+## Candidate sixteen departure-only hypothesis
+
+Candidate sixteen changes only M045 00:45→00:00 and S030 05:05→04:20 from v15.
+The earlier departures aim to precede the observed NEM/NYY receiving cluster
+and PASA opposing wave; actual full-day improvement remains unproven. Both
+whole predecessor JSON objects recover exactly when these departures are
+restored; every other field, identical mode services and K1 06:00 remain.
+There are208 services,168 boundary journeys,71 overnight origins and3–13 starts/hour.
+Exact normal author reproduction and four headless authoring checks pass with
+empty stderr. The unchanged runtime retains its completed1,003-test source suite;
+it was not rerun for two data timings. Ten exact proof files are preserved in
+[candidate-sixteen evidence](../art/performance/realism-2026-10-26/network-candidate-sixteen/README.md).
+Fresh isolated runs are required. Network208 remains unaccepted and uninstalled.

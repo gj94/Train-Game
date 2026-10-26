@@ -1,0 +1,26 @@
+from pathlib import Path
+import hashlib,json,shutil,subprocess
+root=Path('D:/ClaudeWS/train-game');local=root/'.local/realism-2026-10-26'
+archive=local/'candidate-sixteen-before';assert not archive.exists()
+shell='C:/Users/Gokul/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe'
+active=subprocess.check_output([shell,'-NoProfile','-Command',"@(Get-CimInstance Win32_Process | Where-Object { $_.Name -like 'Godot*' -and ($_.CommandLine -like '*--script res://tools/prepare_timetable_variant.gd*' -or $_.CommandLine -like '*--script res://tests/run_tests.gd*') }).Count"],text=True).strip()
+assert active=='0',active
+paths=[root/'art/timetables'/n for n in ['kerala-coast-network.json','kerala-coast-network-v2.json','kerala-coast-network-departure-overrides.json']]
+packs=[json.loads(p.read_text(encoding='utf-8')) for p in paths[:2]]
+assert packs[0]['services']==packs[1]['services']
+services={s['id']:s for s in packs[0]['services']};assert services['K1']['departure']=='06:00'
+changes={'M045': ('00:45', '00:00', 'Aim to clear NEM/NYY before the observed northbound M100/M078/M044/M064 cluster fills compatible receiving roads.'), 'S030': ('05:05', '04:20', 'Aim to reach PASA/NYY before the observed M071/M077/S027 opposing wave and L034 receiving queue.')}
+overrides=json.loads(paths[2].read_text(encoding='utf-8'))
+for id,(before,after,reason) in changes.items():
+ assert services[id]['departure']==before
+ rows=[r for r in overrides['changes'] if r['service']==id];assert len(rows)==1
+ rows[0]['to']=after;rows[0]['reason']='Network candidate sixteen: '+reason+' Departure-only hypothesis; actual baseline and disturbance acceptance remains required.'
+archive.mkdir()
+for p in paths:
+ shutil.copyfile(p,archive/p.name)
+ committed=subprocess.check_output(['git','-c','safe.directory=D:/ClaudeWS/train-game','show','HEAD:'+p.relative_to(root).as_posix()])
+ assert json.loads(committed)==json.loads(p.read_bytes())
+ if 'overrides' not in p.name:assert committed==p.read_bytes()
+paths[2].write_text(json.dumps(overrides,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+(local/'candidate-sixteen-plan.json').write_text(json.dumps(dict(predecessors={p.name:hashlib.sha256((archive/p.name).read_bytes()).hexdigest() for p in paths},changes=[dict(service=id,before=v[0],after=v[1],reason=v[2]) for id,v in changes.items()],evidence_commit='82d3c13a',status='Departure-only hypothesis; no acceptance'),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+print('Two departure overrides changed; packs await normal authoring')
