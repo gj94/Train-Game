@@ -1800,3 +1800,11 @@ baselines are starting,delayed00:20,empty stderr,no final audits. Partial clocks
 are not acceptance. Runtime/routes/packs/observers are frozen. Baselines save
 real snapshots; delayed runs apply600s K1hold07:30–07:40 and cannot be installed.
 No suite,native,search or diagnostic job remains.
+
+## 19:12 v17 checkpoint
+
+At19:12, all four original v17 process identities match, stderr is empty and
+no final audits exist. Both baselines reach01:10 (0/208 complete); both delayed
+runs reach02:00 (1/208), before the planned07:30 intervention. Runtime, routes,
+packs and six observers remain frozen. No duplicates, restarts, unchanged test
+repeats, partial acceptance or installations. Await the original runs' outcomes.
