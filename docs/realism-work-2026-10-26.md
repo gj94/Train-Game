@@ -1562,3 +1562,26 @@ do not relabel after pack changes. No partial acceptance/installation. Need
 genuine full-day and disturbance gates plus independent prepared and actual
 category/menu/midnight/save-load validation. PendingUI/category/unrelated and
 R47/legacycertifications unchanged.
+
+## Candidate fourteen Classic disturbance rejected; other runs pending
+
+Original Classic delayed18440/20884 ended naturally at09:30:48: M064 waits2,702s
+atMAKM-N2,46/208 services complete,zero safety,empty stderr. The actual600s
+K1 manual hold at07:30 is reflected by unchanged minute extent samples through
+07:40; no recovery certificate. All-location cumulative153/211,187/211,208/211,
+210/211 fails under20/45; station92/130,117/130,130/130,130/130 passes only this
+prefix. No rounding,complete-population comparison or installation.
+
+M064's failed wait records2,194s opposing section occupation,346s awaitingV001,
+142s receiving availability,20s conflicts. EarlierALLPwait1,326s includes1,308s
+protectingL007's escape atMAKM. Two byte-immutable read-only inspections find no
+future plans. M064/S030 waitMAKM-N2/N1,S009 protects compatible receiving roads,
+M017 waits for automatic block clearance. K1,L007,M013,M044,V001 move; no
+permanent-deadlock/runtime-defect conclusion.17 exact raw files and4,836 current
+source hashes preserved in network-candidate-fourteen/failed-classic-delayed.
+
+At17:16 both original baselines07:50(32/208),V2delayed10:00(50/208),identities
+match,emptystderr,no audits. Wait for their outcomes before departure-only
+repairs; runtime/routes/packs/sixobservers remain frozen. No duplicate/restarted
+jobs,source-suite repetition or pendingUI/category edits. R47 and legacy
+certifications remain unchanged. Network208 is unaccepted and uninstalled.

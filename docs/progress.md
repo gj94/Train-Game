@@ -159,10 +159,16 @@ Candidate433be026 is pushed. Four v14 jobs launched once16:32:06; all eight
 actual identities/options, separate outputs, initial modes,4,837 current source
 hashes and six observer hashes verify. Baselines19884/3816 and22452/10152 save
 snapshots; delayed18440/20884 and22416/6768 apply600s manual K1hold at07:30.
-At17:05 all four original identities match,emptyerrs,noaudits. Both baselines
-are at06:30 (23/208 each); both delayed runs08:20 (35/208),past the scheduled
-hold window. Final reports must verify the intervention and recovery; partial
-clocks do not. Inputs and six observers remain frozen.
+Classic delayed has finished rejected at09:30:48: M064 at MAKM-N2 waits2,702s,
+46/208 complete,zero safety,empty stderr,after the600s manual K1hold. All-location
+under20 and under45 gates fail; passing station-only prefix gates do not waive
+them. [Exact Classic disturbed evidence](../art/performance/realism-2026-10-26/network-candidate-fourteen/failed-classic-delayed/README.md)
+preserves17 raw files,4,836 verified source hashes and two immutable inspections.
+M064/S030 wait for opposing S009/M017 occupation and receiving roads; several
+other trains move,no future plans remain. No permanent-deadlock conclusion.
+At17:16 the other three original identities match,emptyerrs,noaudits. Both
+baselines07:50(32/208),V2delayed10:00(50/208). Await their final outcomes before
+departure-only repair. Inputs and six observers remain frozen.
 Do not duplicate or restart these original jobs; inspector followsv14.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
