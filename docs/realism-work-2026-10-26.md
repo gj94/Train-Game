@@ -1663,3 +1663,12 @@ with empty stderr and no final audits. These partial clocks do not certify traff
 Inputs/observers are frozen while the original jobs run. Baselines save genuine
 snapshots; delayed runs apply a 600-second K1 manual hold at 07:30 and cannot be
 installed. No source suite, native test, authoring search or diagnostic remains.
+
+## 18:01 original v15 checkpoint
+
+At 18:01 the four original v15 process pairs still match their recorded commands.
+Classic baseline reaches 01:10 and V2 01:20 (0/208); both delayed runs reach
+02:00 (1/208), before the planned 07:30 hold. All stderr files remain empty and
+no final audit exists. Inputs and observers remain frozen; continue inspecting
+these original jobs. No repeated tests, duplicate jobs, partial acceptance or
+installation. The 1,003 source tests and four authoring checks remain unchanged.
