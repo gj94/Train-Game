@@ -149,6 +149,12 @@ L024 record/waits in Classic delayed; whole services/traffic differ. All v13
 jobs are finished; no unchanged rerun or installation. Next departure-only
 hypothesis moves L02407:40->09:20 and L01508:15->10:05 outside the observed
 opposing/origin crowding. It requires exact authoring checks and fresh replays.
+Candidate fourteen now contains only those two departure edits. Restoring them
+recovers both predecessor packs exactly; mode services and all other fields
+remain unchanged.208 services,70 overnight origins,3–13 starts/hour,K106:00.
+Exact author reproduction and all four headless authoring guards pass,empty
+stderr. [Candidate-fourteen proof](../art/performance/realism-2026-10-26/network-candidate-fourteen/README.md)
+preserves ten exact files. No runtime/tests change or full-suite repetition.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network

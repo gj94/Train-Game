@@ -1,0 +1,23 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "7d97afab92cc6bc5466ce8f06e2dfc4bd49a0e477f9e62460b78ca8156214747",
+    "kerala-coast-network-v2.json": "9bcaf2e0064bd50b62446e3ae6dc9b9f96ea06a9a8adcc15abf3fee2516cdd1b",
+    "kerala-coast-network-departure-overrides.json": "739b7ede247c8993dd11f7964813dc35c6d281ec6416c4da99302759c6db7cb2"
+  },
+  "changes": [
+    {
+      "service": "L024",
+      "before": "07:40",
+      "after": "09:20",
+      "reason": "Move the northern departure after the observed concentrated southbound KZT/PASA wave."
+    },
+    {
+      "service": "L015",
+      "before": "08:15",
+      "after": "10:05",
+      "reason": "Move ALLP origin supply outside the observed L007/M013/V001 and opposing S030/M008/S006 receiving congestion."
+    }
+  ],
+  "evidence_commit": "7342da7d",
+  "status": "Departure-only hypothesis; no acceptance"
+}

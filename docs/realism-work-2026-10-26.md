@@ -1529,3 +1529,16 @@ This retains at most13 starts/hour. These are not acceptance or capacity proof;
 later queues remain unknown. Preserve every other field,identical modes,K106:00;
 require exact normal authoring and four headless guards before commit/launch.
 No full-suite repeat for data-only edits; runtime/tests remain1003passed.
+
+
+## Candidate fourteen authored and checked
+
+Only L02407:40->09:20 and L01508:15->10:05 changed through normal authoring.
+Restoring the two departures recovers whole predecessor packs exactly; modes
+have identical services,K106:00,L00204:20,M00605:20,L03506:45 unchanged.
+208services,168boundary,70overnight,3–13hourly,40local/104mail/56SF/8VB.
+Exact --check reproduction and four headless authoring guards pass,emptyerrs.
+Runtime/tests unchanged from1003fullsuite,not repeated for two data edits.
+Ten exact proof files and predecessor backups preserved. No traffic acceptance.
+Prepared launch-network-v14.ps1/verifier are not run; commit testedinputs first.
+All v13jobs finished,baselineproof7342da7d pushed; no source suite/diagnostic active.

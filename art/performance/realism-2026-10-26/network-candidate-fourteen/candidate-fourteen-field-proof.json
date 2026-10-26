@@ -1,0 +1,110 @@
+{
+  "identical_modes": true,
+  "K1": "06:00",
+  "packs": [
+    {
+      "pack": "kerala-coast-network.json",
+      "sha256": "1e11ceaeb40a783f872026494674e35a396eb804d6ab74b4ab28ab70b7a03e03",
+      "predecessor_sha256": "7d97afab92cc6bc5466ce8f06e2dfc4bd49a0e477f9e62460b78ca8156214747",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "L015",
+          "before": "08:15",
+          "after": "10:05"
+        },
+        {
+          "id": "L024",
+          "before": "07:40",
+          "after": "09:20"
+        }
+      ],
+      "services": 208,
+      "categories": {
+        "local": 40,
+        "mail": 104,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 70,
+      "hourly": [
+        10,
+        8,
+        4,
+        7,
+        10,
+        10,
+        7,
+        5,
+        8,
+        13,
+        11,
+        9,
+        11,
+        6,
+        9,
+        9,
+        11,
+        8,
+        12,
+        9,
+        3,
+        7,
+        9,
+        12
+      ]
+    },
+    {
+      "pack": "kerala-coast-network-v2.json",
+      "sha256": "3ce1ba3d917162d4f6ff0d5669ebd1d3f973127520bf22c9ff0ad7c3a6f2f138",
+      "predecessor_sha256": "9bcaf2e0064bd50b62446e3ae6dc9b9f96ea06a9a8adcc15abf3fee2516cdd1b",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "L015",
+          "before": "08:15",
+          "after": "10:05"
+        },
+        {
+          "id": "L024",
+          "before": "07:40",
+          "after": "09:20"
+        }
+      ],
+      "services": 208,
+      "categories": {
+        "local": 40,
+        "mail": 104,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 70,
+      "hourly": [
+        10,
+        8,
+        4,
+        7,
+        10,
+        10,
+        7,
+        5,
+        8,
+        13,
+        11,
+        9,
+        11,
+        6,
+        9,
+        9,
+        11,
+        8,
+        12,
+        9,
+        3,
+        7,
+        9,
+        12
+      ]
+    }
+  ]
+}
