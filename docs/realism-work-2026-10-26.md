@@ -3015,3 +3015,10 @@ and uninstalled. Runtime9ec3530, approved audio/gangways/portals, certified lega
 choices and pending UI/category files are preserved. No Classic208 job, unchanged
 full-suite rerun or new gameplay playtest. Feasibility and completion ETA remain
 unproven.
+
+27 October 06:19:06 checkpoint: the original v25 V2 baseline 13108/11232
+reaches 14:50 with 86/208 complete, matching process identities, empty errors
+and no final audit. The delayed failure remains preserved in 1b5bfcab.
+Runtime/routes/packs/six observers remain frozen until the baseline finishes.
+Partial progress is not acceptance; Network208V2 remains unaccepted/uninstalled.
+No duplicate, restart, Classic208 work, unchanged tests or new gameplay playtest.

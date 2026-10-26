@@ -2,6 +2,13 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 06:19:06 checkpoint: the original v25 V2 baseline 13108/11232
+reaches 14:50 with 86/208 complete, matching process identities, empty errors
+and no final audit. The delayed failure remains preserved in 1b5bfcab.
+Runtime/routes/packs/six observers remain frozen until the baseline finishes.
+Partial progress is not acceptance; Network208V2 remains unaccepted/uninstalled.
+No duplicate, restart, Classic208 work, unchanged tests or new gameplay playtest.
+
 27 October 06:09 — v25 delayed failure preserved.
 
 The original v25 V2 delayed run (wrapper22180/child19280) finished naturally
