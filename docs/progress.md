@@ -2,6 +2,15 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 04:00:18 checkpoint: the original v24 V2 baseline (11988/12204)
+reaches 07:00 with 27/208 services complete; the delayed run (14452/4928)
+reaches 09:00 with 42/208 complete. Both process identities match, error logs
+are empty and neither final audit exists. The V2 pack and all six observer
+hashes still match the launch records. Keep runtime, routes, packs and observers
+frozen until both original outcomes. These partial results do not certify
+acceptance. Network208V2 remains unaccepted and uninstalled; no gameplay or
+playtest change, duplicate run, Classic208 work or unchanged test rerun.
+
 27 October03:47:39 checkpoint: original v24 V2 baseline11988/12204 reaches
 05:00 (16/208 complete); delayed14452/4928 reaches06:30 (25/208). Both process
 identities match, error logs are empty and neither final audit exists. Keep

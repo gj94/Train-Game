@@ -2700,3 +2700,14 @@ identities match, error logs are empty and neither final audit exists. Keep
 runtime/routes/packs/six observers frozen until both original outcomes. Partial
 clocks and waits do not certify acceptance. No duplicate,restart,Classic208
 work,unchanged tests or installation; Network208V2 remains unaccepted.
+
+## 27 October 04:00 — original v24 runs continue
+
+27 October 04:00:18 checkpoint: the original v24 V2 baseline (11988/12204)
+reaches 07:00 with 27/208 services complete; the delayed run (14452/4928)
+reaches 09:00 with 42/208 complete. Both process identities match, error logs
+are empty and neither final audit exists. The V2 pack and all six observer
+hashes still match the launch records. Keep runtime, routes, packs and observers
+frozen until both original outcomes. These partial results do not certify
+acceptance. Network208V2 remains unaccepted and uninstalled; no gameplay or
+playtest change, duplicate run, Classic208 work or unchanged test rerun.
