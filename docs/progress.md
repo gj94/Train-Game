@@ -2,6 +2,17 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 06:42 — original v26 runs checkpointed.
+
+At 06:42:21 the original baseline (3728/12192) reaches 01:30, 1/208 complete,
+and the original delayed run (16324/14784) reaches 02:20, 1/208 complete.
+Both identities match, error logs are empty and neither final audit exists.
+The V2 pack and all six observer hashes still match the verified launch.
+Only these four owned Godot processes are present; no duplicate or Classic208
+job was started. Runtime/routes/packs/observers stay frozen. Partial clocks
+are not acceptance; Network208V2 remains unaccepted and uninstalled.
+No source change, repeated headless suite or gameplay playtest in this checkpoint.
+
 27 October 06:38 — candidate26 V2-only launch verified.
 
 Candidate26 is committed/pushed as 5e7379de. Exactly two original V2 runs were
