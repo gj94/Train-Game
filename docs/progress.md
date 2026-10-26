@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 04:59:05 checkpoint: original v25 V2 baseline13108/11232 reaches
+01:00 (0/208 complete); delayed22180/19280 reaches01:40 (1/208). Both process
+identities match, error logs are empty and neither final audit exists. The V2
+pack and all six observer hashes still match launch. Runtime/routes/packs/
+observers remain frozen until both original outcomes. Partial clocks are not
+acceptance; Network208V2 remains unaccepted/uninstalled. No duplicate/restart,
+Classic208 work, unchanged tests or new gameplay playtest. Continue the originals.
+
 Candidate25 2dd2b9f8 committed/pushed. Exactly two original V2 runs launched
 once at2026-10-27T04:56:13.0519617+08:00: baseline wrapper13108/child11232,
 delayed wrapper22180/child19280, new isolated rehearsals-v25 outputs.
