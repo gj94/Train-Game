@@ -2,6 +2,22 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+The final original v18 V2 baseline22532/11016 has finished naturally and
+failed M013 at SRTL08:46:28,37/208complete,2,702s maximum extra wait in both
+populations,zero safety,empty stderr,without a manual hold.13 exact raw files,
+4,836 current-at-run source hashes and a byte-immutable inspection are in
+[V2 baseline failure evidence](../art/performance/realism-2026-10-26/network-candidate-eighteen/failed-predictive-baseline/README.md).
+All119/169,154/169,162/169,168/169 failsunder30/45; station66/103,93/103,
+100/103,102/103 failsunder10/30/45. M013 arrives SRTL07:59:29.75 with no
+departure;2,634s opposing M044/M064,66s receiving and2s V001pass. ActualSRTL
+claimsM013P1 and incomingM044/M064/V001P1P2P3;approaching trains protect
+compatible roads,M006/M008 await onward crossing atMAKM,S009 awaitsSRTL.
+K1,L002,L007,S030move;no futureplans,no permanentdeadlock/runtimebugclaim.
+All four original v18 runs have now failed. No acceptance/install/recovery
+certificate or unchanged rerun. Next: coordinate opposing departure groups
+across connected single lines from actual queues, preserving non-departure
+fields,identical modes,K1 and all gates. Legacy readiness remains complete.
+
 The original v18 V2 delayed run10336/9808 finished naturally and failed V001
 at MAKM-S3 09:30:08 after the600s K1hold:47/208complete,2,702s extra wait,
 2,454s station maximum,zero safety,empty stderr.13 exact raw files and4,836
