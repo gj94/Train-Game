@@ -2540,3 +2540,12 @@ Both error logs are empty; neither final audit exists. These partial results
 are not acceptance. Runtime, routes, source packs and all six observers remain
 frozen. The original jobs continue without duplicates or restarts. Network208V2
 remains unaccepted and uninstalled; no Classic208 work or unchanged checks ran.
+
+## 27 October 02:13 — original v23 jobs continue
+
+27 October 02:13:05 checkpoint: the original v23 V2 baseline 8580/19068
+has reached 04:50 (16/208 complete); delayed 832/10968 has reached 06:20
+(23/208), before the configured 07:30 hold. Both identities match, both error
+logs are empty and neither final audit exists. These are partial runs, not
+acceptance. All frozen inputs and original processes are preserved. No new
+replay, Classic208 work, unchanged tests or installation was performed.

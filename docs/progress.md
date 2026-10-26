@@ -2,6 +2,13 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 02:13:05 checkpoint: the original v23 V2 baseline 8580/19068
+has reached 04:50 (16/208 complete); delayed 832/10968 has reached 06:20
+(23/208), before the configured 07:30 hold. Both identities match, both error
+logs are empty and neither final audit exists. These are partial runs, not
+acceptance. All frozen inputs and original processes are preserved. No new
+replay, Classic208 work, unchanged tests or installation was performed.
+
 27 October 02:05:32 checkpoint: both original v23 V2 process identities match.
 Baseline 8580/19068 has reached 03:40 (2/208 complete); delayed 832/10968
 has reached 04:50 (16/208), before its configured 07:30 intervention.
