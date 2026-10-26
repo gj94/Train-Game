@@ -1,0 +1,84 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "cb93cc8c29713e13a8705c40dbcb78ca90a2f798a4be182ce71d1032fa22fc18",
+    "kerala-coast-network-v2.json": "ba01a5ae7a8b7e1125503ec18c20ded7f60b1e865b1282195c7a87312b920e84",
+    "kerala-coast-network-departure-overrides.json": "4d8fed79ae435dce1c2846871810fe81841c616d7f2c3f039743ff131cc0fd06"
+  },
+  "changes": [
+    {
+      "service": "S034",
+      "before": "13:45",
+      "after": "13:35",
+      "reason": "Place northbound S034 at13:35 ahead of M08213:50 to reduce the KZT overtake reversal. Actual25 baseline M082 occupies PASA while protecting S034 at NYY; S034 cannot receive at NEM because M081/S051 hold both roads. Actual PASA full-rake envelopes are S03414:24:32-14:30:08 and M08214:32:32-14:38:08 baseline, later in delayed. Origin order alone does not guarantee the actual crossing or overtake order."
+    },
+    {
+      "service": "M082",
+      "before": "13:35",
+      "after": "13:50",
+      "reason": "Place northbound S034 at13:35 ahead of M08213:50 to reduce the KZT overtake reversal. Actual25 baseline M082 occupies PASA while protecting S034 at NYY; S034 cannot receive at NEM because M081/S051 hold both roads. Actual PASA full-rake envelopes are S03414:24:32-14:30:08 and M08214:32:32-14:38:08 baseline, later in delayed. Origin order alone does not guarantee the actual crossing or overtake order."
+    },
+    {
+      "service": "M066",
+      "before": "13:55",
+      "after": "14:45",
+      "reason": "Delay following northbound mails M066/M102 to14:45/14:55 and M054 to15:40 to reduce the KZT receiving pressure during S031 southbound passage. Actual25 baseline S031 waits2274s for KZT receiving held by M066/M102; delayed waits1312s receiving and1244s opposing, with M054/L028 eventually claiming KZT. S04813:25, S05214:30, M05214:40, S05415:00 and L02814:20 remain and may still constrain this window. This is no guaranteed free section or compatible-road clearance."
+    },
+    {
+      "service": "M102",
+      "before": "14:05",
+      "after": "14:55",
+      "reason": "Delay following northbound mails M066/M102 to14:45/14:55 and M054 to15:40 to reduce the KZT receiving pressure during S031 southbound passage. Actual25 baseline S031 waits2274s for KZT receiving held by M066/M102; delayed waits1312s receiving and1244s opposing, with M054/L028 eventually claiming KZT. S04813:25, S05214:30, M05214:40, S05415:00 and L02814:20 remain and may still constrain this window. This is no guaranteed free section or compatible-road clearance."
+    },
+    {
+      "service": "M054",
+      "before": "14:20",
+      "after": "15:40",
+      "reason": "Delay following northbound mails M066/M102 to14:45/14:55 and M054 to15:40 to reduce the KZT receiving pressure during S031 southbound passage. Actual25 baseline S031 waits2274s for KZT receiving held by M066/M102; delayed waits1312s receiving and1244s opposing, with M054/L028 eventually claiming KZT. S04813:25, S05214:30, M05214:40, S05415:00 and L02814:20 remain and may still constrain this window. This is no guaranteed free section or compatible-road clearance."
+    },
+    {
+      "service": "S051",
+      "before": "13:55",
+      "after": "14:45",
+      "reason": "Move opposing TVC southbound S051/S049 to14:45/15:05, keeping V00715:30 ahead of M08115:40, then S05316:10 ahead of M08516:20/M08716:35. Move following M083 to17:15 and local L037 behind it at17:30, preserving3-13 hourly starts. In actual25 baseline S051 and M081 occupy NEM P2/P1 together, blocking S034 northward and the PASA/KZT queues; shifting this wave aims to leave receiving capacity for S034/M082 before it enters. Actual delayed NEM envelopes S03414:42:24-14:48:48 and M08215:01:38-15:08:02 are sampled observations, not predicted candidate26 times. Later opposing waves, overtakes and local waits remain unproven."
+    },
+    {
+      "service": "S049",
+      "before": "14:30",
+      "after": "15:05",
+      "reason": "Move opposing TVC southbound S051/S049 to14:45/15:05, keeping V00715:30 ahead of M08115:40, then S05316:10 ahead of M08516:20/M08716:35. Move following M083 to17:15 and local L037 behind it at17:30, preserving3-13 hourly starts. In actual25 baseline S051 and M081 occupy NEM P2/P1 together, blocking S034 northward and the PASA/KZT queues; shifting this wave aims to leave receiving capacity for S034/M082 before it enters. Actual delayed NEM envelopes S03414:42:24-14:48:48 and M08215:01:38-15:08:02 are sampled observations, not predicted candidate26 times. Later opposing waves, overtakes and local waits remain unproven."
+    },
+    {
+      "service": "M081",
+      "before": "14:10",
+      "after": "15:40",
+      "reason": "Move opposing TVC southbound S051/S049 to14:45/15:05, keeping V00715:30 ahead of M08115:40, then S05316:10 ahead of M08516:20/M08716:35. Move following M083 to17:15 and local L037 behind it at17:30, preserving3-13 hourly starts. In actual25 baseline S051 and M081 occupy NEM P2/P1 together, blocking S034 northward and the PASA/KZT queues; shifting this wave aims to leave receiving capacity for S034/M082 before it enters. Actual delayed NEM envelopes S03414:42:24-14:48:48 and M08215:01:38-15:08:02 are sampled observations, not predicted candidate26 times. Later opposing waves, overtakes and local waits remain unproven."
+    },
+    {
+      "service": "M085",
+      "before": "15:10",
+      "after": "16:20",
+      "reason": "Move opposing TVC southbound S051/S049 to14:45/15:05, keeping V00715:30 ahead of M08115:40, then S05316:10 ahead of M08516:20/M08716:35. Move following M083 to17:15 and local L037 behind it at17:30, preserving3-13 hourly starts. In actual25 baseline S051 and M081 occupy NEM P2/P1 together, blocking S034 northward and the PASA/KZT queues; shifting this wave aims to leave receiving capacity for S034/M082 before it enters. Actual delayed NEM envelopes S03414:42:24-14:48:48 and M08215:01:38-15:08:02 are sampled observations, not predicted candidate26 times. Later opposing waves, overtakes and local waits remain unproven."
+    },
+    {
+      "service": "M087",
+      "before": "15:40",
+      "after": "16:35",
+      "reason": "Move opposing TVC southbound S051/S049 to14:45/15:05, keeping V00715:30 ahead of M08115:40, then S05316:10 ahead of M08516:20/M08716:35. Move following M083 to17:15 and local L037 behind it at17:30, preserving3-13 hourly starts. In actual25 baseline S051 and M081 occupy NEM P2/P1 together, blocking S034 northward and the PASA/KZT queues; shifting this wave aims to leave receiving capacity for S034/M082 before it enters. Actual delayed NEM envelopes S03414:42:24-14:48:48 and M08215:01:38-15:08:02 are sampled observations, not predicted candidate26 times. Later opposing waves, overtakes and local waits remain unproven."
+    },
+    {
+      "service": "M083",
+      "before": "16:25",
+      "after": "17:15",
+      "reason": "Move opposing TVC southbound S051/S049 to14:45/15:05, keeping V00715:30 ahead of M08115:40, then S05316:10 ahead of M08516:20/M08716:35. Move following M083 to17:15 and local L037 behind it at17:30, preserving3-13 hourly starts. In actual25 baseline S051 and M081 occupy NEM P2/P1 together, blocking S034 northward and the PASA/KZT queues; shifting this wave aims to leave receiving capacity for S034/M082 before it enters. Actual delayed NEM envelopes S03414:42:24-14:48:48 and M08215:01:38-15:08:02 are sampled observations, not predicted candidate26 times. Later opposing waves, overtakes and local waits remain unproven."
+    },
+    {
+      "service": "L037",
+      "before": "16:30",
+      "after": "17:30",
+      "reason": "Move opposing TVC southbound S051/S049 to14:45/15:05, keeping V00715:30 ahead of M08115:40, then S05316:10 ahead of M08516:20/M08716:35. Move following M083 to17:15 and local L037 behind it at17:30, preserving3-13 hourly starts. In actual25 baseline S051 and M081 occupy NEM P2/P1 together, blocking S034 northward and the PASA/KZT queues; shifting this wave aims to leave receiving capacity for S034/M082 before it enters. Actual delayed NEM envelopes S03414:42:24-14:48:48 and M08215:01:38-15:08:02 are sampled observations, not predicted candidate26 times. Later opposing waves, overtakes and local waits remain unproven."
+    }
+  ],
+  "evidence_commit": "7260820d baseline; delayed 1b5bfcab",
+  "scope": "Network208 V2 only; twelve southern group departure timings, no Classic replay or readiness requirement.",
+  "status": "Departure-only hypothesis; no acceptance"
+}
