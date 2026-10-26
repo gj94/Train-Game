@@ -2635,3 +2635,27 @@ Both original23 runs are finished and rejected; delayed evidence7c47e1bf
 remains preserved. No duplicate/restart,Classic208 job,unchanged tests,
 complete-population comparison,installation or certificate. Network208V2 is
 unaccepted. Replan departure groups only after preserving this baseline proof.
+
+## 27 October — candidate24 northern groups authored
+
+Candidate24 changes13 northern departures from23: S01311:25->10:55,
+M05111:05->11:10,M02311:15->11:25,M01911:35->11:40,S00713:25->12:55,
+S01513:45->13:05,M04912:55->13:25,M06513:05->13:35,M05313:15->13:45,
+M01513:35->13:55,M02113:55->14:05,S03314:10->15:00,M02514:45->15:05.
+Hypothesis: faster S013 before the first mail group; unchanged S01112:45 then
+S007/S015 ahead of the next mail group, with S033/M025 together later. Uses
+actual23 M019 overtake/AMPA receiving waits and M028 opposing/MAKM receiving
+waits; origin spacing is not a guaranteed physical gap. Opposing waits and
+later local/V003 interactions may worsen. No isolated-model or whole-day claim.
+Southern23 timings unchanged. Restoring13 departures recovers both complete
+predecessor JSON objects; every other field unchanged, identical common-author
+services,K1=06:00,208services,168boundary journeys,71overnight,3–12/hour.
+205 overrides reproduce both packs normally; exact --check and all four headless
+authoring guards pass with empty errors. Eleven exact raw proofs retained in
+network-candidate-twenty-four. Actual23 sampled envelopes retain hashes and
+censoring, not live clearance/receiving certificates. Runtime/tests/observers
+unchanged; no unchanged1003-test suite rerun. Both23 failures preserved in
+cceb1bca/7c47e1bf, source hashes now historical. Commit/push before one V2
+baseline plus one delayed run in new isolatedv24 outputs. No Classic208 work,
+acceptance,comparison,installation or recovery certificate. Pending helpers
+and unrelated files remain untouched.
