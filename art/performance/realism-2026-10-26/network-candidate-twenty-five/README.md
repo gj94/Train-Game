@@ -57,3 +57,24 @@ required. Network208V2 remains unaccepted/uninstalled. No Classic208 job/check.
 Pending UI/category helpers and unrelated files remain outside this work. No
 installed gameplay change or new playtest; native NetworkV2 checks follow only
 accepted installation. Feasibility and completion ETA remain unproven.
+
+## Verified launch
+
+Candidate25 2dd2b9f8 committed/pushed. Exactly two original V2 runs launched
+once at2026-10-27T04:56:13.0519617+08:00: baseline wrapper13108/child11232,
+delayed wrapper22180/child19280, new isolated rehearsals-v25 outputs.
+Baseline uses --network --snapshots; delayed --network --delay=600
+--delay-at=27000. All four actual commands/options, unique outputs, initial
+predictive baseline mode,4836 source fingerprints and six observer hashes
+verified. Five exact launch files/hash manifest retained. The first read-only
+verification attempt preceded creation of the initial catalogue; it stopped
+without restarting either run. Verification succeeded once the original
+baseline wrote its catalogue. At04:56:53 baseline00:10/delayed00:30, matching
+identities, empty errors and no final audits. Partial clocks are not acceptance.
+
+Freeze runtime/routes/packs/six observers while either original run lives.
+Do not rerun launch-network-v25.ps1, duplicate or restart. No Classic208 job,
+suite/native/search/diagnostic job remains. Both original24 runs are finished
+and rejected; their fingerprints remain historical. Network208V2 remains
+unaccepted/uninstalled; all safety/wait/full-tail/recovery gates remain. Pending
+UI/category helpers and unrelated files preserved. No new gameplay playtest.
