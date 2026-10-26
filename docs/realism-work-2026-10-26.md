@@ -1603,3 +1603,21 @@ current source hashes preserved in failed-predictive-delayed. Both disturbances
 are rejected; no recoverycertificate or installation. Original baselines remain
 live at17:20 Classic08:20(35/208),V208:30(36/208),identitymatches,emptyerrs,noaudits.
 Freezeinputs and await their outcomes before any departure-only repair.
+
+## Candidate fourteen Classic baseline rejected; V2 baseline still running
+
+Original19884/3816 ended naturally at09:34:44,withoutmanualhold: M008AMPA2,702s,
+47/208finished,zero safety,empty stderr. Cumulative all154/211,195/211,208/211,
+210/211 and station91/130,119/130,128/130,129/130 fail both under45 gates. Earlier
+targets pass only within these failed-prefix populations,not whole-day evidence.
+M008arrAMPA08:48:33.20,nodeparture:1,194s opposingS009/M013/V001,748receiving,
+662S006overtake,74occupiedblocks,24conflicts. Immutableinspection,no futureplans:
+M008waitsAMPA-N2,M017waitsALLP-S2 behindS009. M013,M064,S006,S009,S030,V001,K1
+move,L007exchangespassengers. M064approachesERS instead of its disturbedMAKM
+failure; no universal equivalence/permanent-deadlock/runtime-defect inference.
+
+13 exactrawfiles and4,836current sourcehashes preserved in failed-classic-baseline.
+At17:35 originalV2baseline22452/10152 remainslive11:00,59/208,identitymatches,
+emptyerr,noaudit. Await its outcome before altering frozen departures/observers.
+No duplicate jobs,source/test edits,repeated suite or installations. Network
+unaccepted;R47,legacycertifications,pendingUI/category/unrelatedpreserved.

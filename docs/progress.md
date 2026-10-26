@@ -171,8 +171,13 @@ complete,zero safety,empty stderr after the hold. Station under10 and both
 under45 gates fail. [Exact V2 disturbed evidence](../art/performance/realism-2026-10-26/network-candidate-fourteen/failed-predictive-delayed/README.md)
 preserves13 raw files and4,836 verified source hashes. Its inspection is
 immutable,with one active SRTL crossing plan and several moving trains.
-At17:25 both original baseline identities match,emptyerrs,noaudits: Classic
-09:10(42/208),V209:10(43/208). Await their final outcomes before departure-only
+Classic baseline also finishes rejected at09:34:44: M008 atAMPA waits2,702s,
+47/208 complete,zero safety,empty stderr,without a manual hold. Both under45
+gates fail. [Exact Classic baseline evidence](../art/performance/realism-2026-10-26/network-candidate-fourteen/failed-classic-baseline/README.md)
+preserves13 raw files,4,836 verified hashes and an immutable inspection with no
+future plans. Several trains move; M064 has reached the ERS approach in this
+run. At17:35 only original V2 baseline22452/10152 remains live,11:00(59/208),
+identitymatches,emptyerrs,noaudit. Await its final outcome before departure-only
 repair. Inputs and six observers remain frozen.
 Do not duplicate or restart these original jobs; inspector followsv14.
 No full-day acceptance or disturbance-recovery claim follows from partial runs.
