@@ -254,6 +254,19 @@ late partial results. Whole-day certification and installed native checks remain
 incomplete; R47 is preserved for the fixed 10:00 checkpoint.
 
 
+**Current Standard pair certified and installed:** both fresh v7 100-service
+baselines pass every call/depot, zero safety events, both wait targets and all
+4,835 source hashes. Each has 100 departure states and 233 exact time states.
+Independent installed-data verifiers and 36 actual native menu/worker checks
+pass; four screenshots reviewed. Data commits are `8d0d67d` (Classic) and
+`3e3aa46` (V2). [Current Standard evidence](../art/performance/realism-2026-10-26/standard-realism-v7/README.md).
+V2 regressions remain explicit: B020 +891.05s, B012 +691.15s and K1 +78s
+endpoint lateness. This completes only the two Standard choices. Intensive
+replays and the rejected/incomplete 208-service Network remain separate; no
+new executable is published. Playtest each Standard mode's K1 departure, traffic
+list and noon Explore-by-time restoration.
+
+
 ## 25 October 2026 — R47 published and independently checked
 
 Published the user-requested R47 from clean source `3856008`, signed sequence 49,

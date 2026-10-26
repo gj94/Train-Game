@@ -1,0 +1,47 @@
+{
+  "clock": 98400.0000000001,
+  "services": 100,
+  "overtakers": [
+    "B001",
+    "B024",
+    "B002"
+  ],
+  "crossings": 468,
+  "overtakes": 44,
+  "dispatcher": "classic",
+  "k1_overtake_stations": {
+    "MAKM": [
+      {
+        "train": "B001",
+        "time": 33410.10514524166
+      }
+    ],
+    "KPY": [
+      {
+        "train": "B024",
+        "time": 39859.99873230404
+      }
+    ],
+    "NYY": [
+      {
+        "train": "B002",
+        "time": 50404.14575861568
+      }
+    ]
+  },
+  "b042_reverse_overtakes": [
+    {
+      "time": 38018.444129446354,
+      "chainage_m": 34018.3383081487,
+      "a": "B002",
+      "b": "B042",
+      "kind": "overtake",
+      "overtaker": "B042",
+      "cleared": 38092.000000005,
+      "station": "SRTL",
+      "location": "Cherthala"
+    }
+  ],
+  "max_wait": 1696
+}
+Prepared variant copied to data

@@ -776,3 +776,24 @@ Use remaining time to independently verify any completed baselines. At 10:00
 stop scope expansion, safely checkpoint unfinished runs, report all incomplete
 acceptance/native/category/midnight work and delete the continuation automation.
 R47 remains published. Pending prepared-UI/category tools are not certified.
+
+
+## Standard pair installed and native-verified, 2026-10-26T09:58:37.848983+08:00
+
+Both fresh v7 Standard baselines passed all100 services,1530arrivals and1530
+departures each, depot completion, zero safety and both wait distributions.
+100 real starts,233exacttime states,4835currenthashes each. Independent
+installed verifiers pass. Old674prepared files copied and hash-verified in
+pre-realism-standard-data before replacement. Data commits8d0d67d and3e3aa46;
+Git push is in flight at this checkpoint (session36428), inspect beforeanother
+Git operation. Native23536 finished:36checks0failures,4screens reviewed,
+realdeparture/noonworker/mode/reciprocaltraffic. Compatibility AA warning only;
+Dummy audio, no audio/FPSclaim. Exact raw/evidence standard-realism-v7.
+
+Keep regressions: V2B020+891.05s,B012+691.15s,K1+78s. This is Standard only;
+Network208 request remains incomplete. Working preparedUItool contains
+untested Network branches and remainsuncommitted; executedcopy archived.
+No source/tests changed;1003full remainscurrent. Intensive originals continue.
+Classicv8Networkbaseline now rejected sameM0437:46:04,29/208,zero safety;
+exact baseline evidence added to candidate-eight. V2baseline stillfinishing
+at09:57. No additional jobs or runtime/timing changes. Fixed10AM cleanup next.

@@ -1,0 +1,1104 @@
+{
+  "recorded_at": "2026-10-26T09:54:21.933022+08:00",
+  "runtime": "9ec3530",
+  "records": [
+    {
+      "mode": "classic",
+      "audit": {
+        "clock": 98400.0000000001,
+        "delay": 0.0,
+        "delay_at": 0.0,
+        "delay_service": "K1",
+        "dispatcher": "classic",
+        "events": [],
+        "finished": 100,
+        "maximum_station_wait": 1694.0,
+        "maximum_wait": 1696.0,
+        "ok": true,
+        "operating_day": "standard",
+        "over_ten_minute_calls": [
+          {
+            "call": 44,
+            "id": "K1",
+            "reasons": {
+              "Authority to NYY_AMVA_M0-SA": 4.0,
+              "Block NYY_AMVA_M0 occupied by B002 \u00b7 Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 50.0,
+              "Conflicts with route from NYY_AMVA_M0-NH \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096)": 14.0,
+              "Expect a wait at NYY until Cape Express 01 \u00b7 ERS\u2013NCJ (B002) overtakes": 308.0,
+              "Expect a wait before Parassala: no free platform suitable for this service \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096)": 200.0,
+              "Expect a wait before Parassala: no free platform suitable for this service \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096), Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 34.0,
+              "Expect a wait before Parassala: the remaining platforms are reserved for approaching services \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096), Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 216.0,
+              "Single line NYY_single is locked for opposing traffic \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096)": 868.0
+            },
+            "seconds": 1694.0,
+            "signal_id": "",
+            "station": "NYY"
+          },
+          {
+            "call": 47,
+            "id": "B013",
+            "reasons": {
+              "Authority to EZP_TUVR_M3-NA": 4.0,
+              "Block EZP_TUVR_M3 occupied by B015 \u00b7 Malabar Express 02 \u00b7 NCJ\u2013ERS (B015)": 50.0,
+              "Block TUVR_LLEAD_D occupied by B015 \u00b7 Malabar Express 02 \u00b7 NCJ\u2013ERS (B015)": 12.0,
+              "Expect a wait at TUVR until Malabar Express 02 \u00b7 NCJ\u2013ERS (B015) overtakes": 1020.0,
+              "Expect a wait before Kumbalam: no free platform suitable for this service": 194.0,
+              "Expect a wait before Kumbalam: no free platform suitable for this service \u00b7 Coastal Passenger 02 \u00b7 ERS\u2013KYJ (B037)": 174.0,
+              "Single line KUMM_single is locked for opposing traffic \u00b7 Coastal Passenger 02 \u00b7 ERS\u2013KYJ (B037)": 196.0
+            },
+            "seconds": 1650.0,
+            "signal_id": "",
+            "station": "TUVR"
+          },
+          {
+            "call": 3,
+            "id": "B091",
+            "reasons": {
+              "Authority to NYY_AMVA_M0-SA": 4.0,
+              "Conflicts with route from NYY_AMVA_M0-NH \u00b7 Cape Passenger 04 \u00b7 NCJ\u2013TVC (B097)": 12.0,
+              "Expect a wait before Parassala: no free platform suitable for this service": 90.0,
+              "Expect a wait before Parassala: no free platform suitable for this service \u00b7 Cape Passenger 04 \u00b7 NCJ\u2013TVC (B097)": 10.0,
+              "Expect a wait before Parassala: no free platform suitable for this service \u00b7 Cape Passenger 04 \u00b7 NCJ\u2013TVC (B097), Cape Express 03 \u00b7 ERS\u2013NCJ (B004)": 274.0,
+              "Route set to NYY_AMVA_M0-SA": 2.0,
+              "Single line NYY_single is locked for opposing traffic \u00b7 Cape Passenger 04 \u00b7 NCJ\u2013TVC (B097)": 1156.0
+            },
+            "seconds": 1548.0,
+            "signal_id": "",
+            "station": "NYY"
+          },
+          {
+            "call": 16,
+            "id": "B019",
+            "reasons": {
+              "Authority to VAY_SRTL_M5-NA": 4.0,
+              "Block VAY_SRTL_M5 occupied by B047 \u00b7 Alappuzha Passenger 03 \u00b7 ALLP\u2013ERS (B047)": 70.0,
+              "Conflicts with route from SRTL-N2 \u00b7 Alappuzha Passenger 03 \u00b7 ALLP\u2013ERS (B047)": 2.0,
+              "Conflicts with route from VAY_SRTL_M5-SH \u00b7 Cape Express 08 \u00b7 ERS\u2013NCJ (B009)": 12.0,
+              "Expect a wait before Turavur: the remaining platforms are reserved for approaching services \u00b7 Cape Express 08 \u00b7 ERS\u2013NCJ (B009), Alappuzha Passenger 03 \u00b7 ALLP\u2013ERS (B047), Alappuzha Passenger 03 \u00b7 ERS\u2013ALLP (B044)": 28.0,
+              "Expect a wait before Turavur: the remaining platforms are reserved for approaching services \u00b7 Cape Express 08 \u00b7 ERS\u2013NCJ (B009), Alappuzha Passenger 03 \u00b7 ERS\u2013ALLP (B044)": 124.0,
+              "Expect a wait before Turavur: the remaining platforms are reserved for approaching services \u00b7 Cape Express 08 \u00b7 ERS\u2013NCJ (B009), Alappuzha Passenger 03 \u00b7 ERS\u2013ALLP (B044), Alappuzha Passenger 03 \u00b7 ALLP\u2013ERS (B047)": 202.0,
+              "Preserve the onward crossing route for B047 at Turavur \u00b7 Alappuzha Passenger 03 \u00b7 ALLP\u2013ERS (B047), Alappuzha Passenger 03 \u00b7 ERS\u2013ALLP (B044)": 318.0,
+              "Route set to VAY_SRTL_M5-NA": 2.0,
+              "Single line TUVR_single is locked for opposing traffic \u00b7 Cape Express 08 \u00b7 ERS\u2013NCJ (B009)": 468.0
+            },
+            "seconds": 1230.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 1,
+            "id": "B010",
+            "reasons": {
+              "Authority to SRTL_TRVZ_M0-SA": 4.0,
+              "Block SRTL_RLEAD_D occupied by B021 \u00b7 Malabar Express 08 \u00b7 NCJ\u2013ERS (B021)": 22.0,
+              "Conflicts with route from SRTL_TRVZ_M0-NH \u00b7 Malabar Express 08 \u00b7 NCJ\u2013ERS (B021)": 22.0,
+              "Single line SRTL_single is locked for opposing traffic \u00b7 Malabar Express 07 \u00b7 NCJ\u2013ERS (B020)": 422.0,
+              "Single line SRTL_single is locked for opposing traffic \u00b7 Malabar Express 07 \u00b7 NCJ\u2013ERS (B020), Malabar Express 08 \u00b7 NCJ\u2013ERS (B021)": 76.0,
+              "Single line SRTL_single is locked for opposing traffic \u00b7 Malabar Express 08 \u00b7 NCJ\u2013ERS (B021)": 566.0
+            },
+            "seconds": 1112.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 7,
+            "id": "B047",
+            "reasons": {
+              "Authority to EZP_TUVR_M3-NA": 4.0,
+              "Block EZP_TUVR_M3 occupied by B019 \u00b7 Malabar Express 06 \u00b7 NCJ\u2013ERS (B019)": 62.0,
+              "Expect a wait at TUVR until Malabar Express 06 \u00b7 NCJ\u2013ERS (B019) overtakes": 324.0,
+              "Route set to EZP_TUVR_M3-NA": 2.0,
+              "Single line KUMM_single is locked for opposing traffic \u00b7 Alappuzha Passenger 03 \u00b7 ERS\u2013ALLP (B044)": 526.0
+            },
+            "seconds": 918.0,
+            "signal_id": "",
+            "station": "TUVR"
+          },
+          {
+            "call": 2,
+            "id": "B009",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Conflicts with route from ALLP_PUPR_M0-NH \u00b7 Malabar Express 07 \u00b7 NCJ\u2013ERS (B020)": 12.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Coastal Passenger 03 \u00b7 ERS\u2013KYJ (B038), Malabar Express 07 \u00b7 NCJ\u2013ERS (B020)": 30.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Malabar Express 07 \u00b7 NCJ\u2013ERS (B020)": 160.0,
+              "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services \u00b7 Malabar Express 07 \u00b7 NCJ\u2013ERS (B020), Coastal Passenger 03 \u00b7 ERS\u2013KYJ (B038)": 80.0,
+              "Route set to ALLP_PUPR_M0-SA": 2.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Malabar Express 07 \u00b7 NCJ\u2013ERS (B020)": 586.0
+            },
+            "seconds": 874.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 0,
+            "id": "B056",
+            "reasons": {
+              "Authority to QLN_IRP_D0-A": 4.0,
+              "Block QLN_DEPOT_RD_ACCESS occupied by B025 \u00b7 Capital Intercity 02 \u00b7 ERS\u2013TVC (B025)": 30.0,
+              "Block QLN_IRP_D0 occupied by B025 \u00b7 Capital Intercity 02 \u00b7 ERS\u2013TVC (B025)": 30.0,
+              "Conflicts with route from QLN-S1 \u00b7 Capital Intercity 02 \u00b7 ERS\u2013TVC (B025)": 28.0,
+              "Expect a wait at QLN until Capital Intercity 02 \u00b7 ERS\u2013TVC (B025) overtakes": 758.0,
+              "Route set to QLN_IRP_D0-A": 2.0
+            },
+            "seconds": 852.0,
+            "signal_id": "",
+            "station": "QLN"
+          },
+          {
+            "call": 0,
+            "id": "B076",
+            "reasons": {
+              "Authority to TVP_TVC_U0-A": 4.0,
+              "Block TVC_DEPOT_LU_ACCESS occupied by B017 \u00b7 Malabar Express 04 \u00b7 NCJ\u2013ERS (B017)": 24.0,
+              "Block TVC_LADDER_LU0 occupied by B017 \u00b7 Malabar Express 04 \u00b7 NCJ\u2013ERS (B017)": 46.0,
+              "Block TVP_TVC_U0 occupied by B017 \u00b7 Malabar Express 04 \u00b7 NCJ\u2013ERS (B017)": 56.0,
+              "Expect a wait at TVC until Malabar Express 04 \u00b7 NCJ\u2013ERS (B017) overtakes": 714.0
+            },
+            "seconds": 844.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 5,
+            "id": "B012",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH \u00b7 Coastal Passenger 01 \u00b7 ERS\u2013KYJ (B036)": 12.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Coastal Passenger 01 \u00b7 ERS\u2013KYJ (B036)": 812.0
+            },
+            "seconds": 828.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 5,
+            "id": "B014",
+            "reasons": {
+              "Authority to TVP_TVC_U0-A": 4.0,
+              "Block TVC_DEPOT_LU_ACCESS occupied by B012 \u00b7 Coastal Vande Bharat \u00b7 Nagercoil to Ernakulam (B012)": 64.0,
+              "Block TVP_TVC_U0 occupied by B012 \u00b7 Coastal Vande Bharat \u00b7 Nagercoil to Ernakulam (B012)": 40.0,
+              "Expect a wait at TVC until Coastal Vande Bharat \u00b7 Nagercoil to Ernakulam (B012) overtakes": 690.0,
+              "Route set to TVP_TVC_U0-A": 2.0
+            },
+            "seconds": 800.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 4,
+            "id": "B042",
+            "reasons": {
+              "Authority to TUVR_VAY_M0-SA": 4.0,
+              "Block TUVR_VAY_M0 occupied by B002 \u00b7 Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 56.0,
+              "Expect a wait at TUVR until Cape Express 01 \u00b7 ERS\u2013NCJ (B002) overtakes": 326.0,
+              "Single line TUVR_single is locked for opposing traffic \u00b7 Coastal Passenger 01 \u00b7 KYJ\u2013ERS (B039)": 402.0
+            },
+            "seconds": 788.0,
+            "signal_id": "",
+            "station": "TUVR"
+          },
+          {
+            "call": 9,
+            "id": "B033",
+            "reasons": {
+              "Authority to PUPR_AMPA_M3-NA": 4.0,
+              "Block AMPA_LLEAD_U occupied by B018 \u00b7 Malabar Express 05 \u00b7 NCJ\u2013ERS (B018)": 20.0,
+              "Block PUPR_AMPA_M3 occupied by B018 \u00b7 Malabar Express 05 \u00b7 NCJ\u2013ERS (B018)": 52.0,
+              "Expect a wait at AMPA until Malabar Express 05 \u00b7 NCJ\u2013ERS (B018) overtakes": 244.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Cape Express 06 \u00b7 ERS\u2013NCJ (B007)": 364.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Cape Express 06 \u00b7 ERS\u2013NCJ (B007), Alappuzha Passenger 02 \u00b7 ERS\u2013ALLP (B043)": 100.0
+            },
+            "seconds": 784.0,
+            "signal_id": "",
+            "station": "AMPA"
+          },
+          {
+            "call": 15,
+            "id": "B020",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH \u00b7 Alappuzha Passenger 03 \u00b7 ERS\u2013ALLP (B044)": 12.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Alappuzha Passenger 03 \u00b7 ERS\u2013ALLP (B044)": 726.0
+            },
+            "seconds": 742.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 6,
+            "id": "B039",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH \u00b7 Coastal Stopping Passenger \u00b7 Ernakulam to Nagercoil (K1)": 12.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Coastal Stopping Passenger \u00b7 Ernakulam to Nagercoil (K1)": 464.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Coastal Stopping Passenger \u00b7 Ernakulam to Nagercoil (K1), Coastal Vande Bharat \u00b7 Ernakulam to Nagercoil (B001)": 230.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Coastal Vande Bharat \u00b7 Ernakulam to Nagercoil (B001), Coastal Stopping Passenger \u00b7 Ernakulam to Nagercoil (K1)": 24.0
+            },
+            "seconds": 734.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 1,
+            "id": "B009",
+            "reasons": {
+              "Authority to SRTL_TRVZ_M0-SA": 4.0,
+              "Conflicts with route from SRTL_TRVZ_M0-NH \u00b7 Coastal Passenger 03 \u00b7 KYJ\u2013ERS (B041)": 20.0,
+              "Route set to SRTL_TRVZ_M0-SA": 2.0,
+              "Single line SRTL_single is locked for opposing traffic \u00b7 Coastal Passenger 03 \u00b7 KYJ\u2013ERS (B041)": 684.0
+            },
+            "seconds": 710.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 0,
+            "id": "B066",
+            "reasons": {
+              "Authority to QLN_IRP_D0-A": 4.0,
+              "Block QLN_DEPOT_RD_ACCESS occupied by B008 \u00b7 Cape Express 07 \u00b7 ERS\u2013NCJ (B008)": 30.0,
+              "Block QLN_IRP_D0 occupied by B008 \u00b7 Cape Express 07 \u00b7 ERS\u2013NCJ (B008)": 30.0,
+              "Conflicts with route from QLN-S1 \u00b7 Cape Express 07 \u00b7 ERS\u2013NCJ (B008)": 28.0,
+              "Expect a wait at QLN until Cape Express 07 \u00b7 ERS\u2013NCJ (B008) overtakes": 612.0,
+              "Route set to QLN_IRP_D0-A": 2.0
+            },
+            "seconds": 706.0,
+            "signal_id": "",
+            "station": "QLN"
+          },
+          {
+            "call": 10,
+            "id": "B086",
+            "reasons": {
+              "Authority to EVA_VAK_U2-A": 4.0,
+              "Block EVA_VAK_U2 occupied by B022 \u00b7 Malabar Express 09 \u00b7 NCJ\u2013ERS (B022)": 62.0,
+              "Expect a wait at VAK until Malabar Express 09 \u00b7 NCJ\u2013ERS (B022) overtakes": 630.0
+            },
+            "seconds": 696.0,
+            "signal_id": "",
+            "station": "VAK"
+          },
+          {
+            "call": 10,
+            "id": "B080",
+            "reasons": {
+              "Authority to EVA_VAK_U2-A": 4.0,
+              "Block EVA_VAK_U2 occupied by B019 \u00b7 Malabar Express 06 \u00b7 NCJ\u2013ERS (B019)": 62.0,
+              "Expect a wait at VAK until Malabar Express 06 \u00b7 NCJ\u2013ERS (B019) overtakes": 628.0
+            },
+            "seconds": 694.0,
+            "signal_id": "",
+            "station": "VAK"
+          },
+          {
+            "call": 2,
+            "id": "B014",
+            "reasons": {
+              "Authority to KZTW_KZT_M1-NA": 4.0,
+              "Expect a wait at KZT until Cape Passenger 01 \u00b7 TVC\u2013NCJ (B088) clears the escape approach": 248.0,
+              "Single line PASA_single is locked for opposing traffic \u00b7 Cape Passenger 01 \u00b7 TVC\u2013NCJ (B088)": 442.0
+            },
+            "seconds": 694.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 15,
+            "id": "B008",
+            "reasons": {
+              "Authority to KZT_PYD_M0-SA": 4.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service": 200.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service \u00b7 Cape Passenger 06 \u00b7 TVC\u2013NCJ (B093)": 450.0,
+              "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services \u00b7 Cape Passenger 06 \u00b7 TVC\u2013NCJ (B093)": 22.0
+            },
+            "seconds": 676.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 20,
+            "id": "K1",
+            "reasons": {
+              "Authority to KPY_STKT_D0-A": 4.0,
+              "Block KPY_STKT_D0 occupied by B024 \u00b7 Capital Intercity 01 \u00b7 ERS\u2013TVC (B024)": 62.0,
+              "Expect a wait at KPY until Capital Intercity 01 \u00b7 ERS\u2013TVC (B024) overtakes": 594.0
+            },
+            "seconds": 660.0,
+            "signal_id": "",
+            "station": "KPY"
+          },
+          {
+            "call": 3,
+            "id": "B058",
+            "reasons": {
+              "Authority to PVU_KFI_D0-A": 4.0,
+              "Block PVU_KFI_D0 occupied by B004 \u00b7 Cape Express 03 \u00b7 ERS\u2013NCJ (B004)": 56.0,
+              "Expect a wait at PVU until Cape Express 03 \u00b7 ERS\u2013NCJ (B004) overtakes": 588.0,
+              "Route set to PVU_KFI_D0-A": 2.0
+            },
+            "seconds": 650.0,
+            "signal_id": "",
+            "station": "PVU"
+          },
+          {
+            "call": 8,
+            "id": "B089",
+            "reasons": {
+              "Authority to KZT_PYD_M0-SA": 4.0,
+              "Conflicts with route from KZT_PYD_M0-NH \u00b7 Cape Passenger 02 \u00b7 NCJ\u2013TVC (B095)": 12.0,
+              "Expect a wait at KZT until Cape Passenger 02 \u00b7 NCJ\u2013TVC (B095) crosses": 14.0,
+              "Single line KZT_single is locked for opposing traffic \u00b7 Cape Passenger 02 \u00b7 NCJ\u2013TVC (B095)": 608.0
+            },
+            "seconds": 638.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 1,
+            "id": "B043",
+            "reasons": {
+              "Authority to KUMM_AROR_M0-SA": 4.0,
+              "Block KUMM_RLEAD_D occupied by B016 \u00b7 Malabar Express 03 \u00b7 NCJ\u2013ERS (B016)": 12.0,
+              "Conflicts with route from KUMM_AROR_M0-NH \u00b7 Malabar Express 03 \u00b7 NCJ\u2013ERS (B016)": 16.0,
+              "Route set to KUMM_AROR_M0-SA": 2.0,
+              "Single line KUMM_single is locked for opposing traffic \u00b7 Malabar Express 03 \u00b7 NCJ\u2013ERS (B016)": 594.0
+            },
+            "seconds": 628.0,
+            "signal_id": "",
+            "station": "KUMM"
+          },
+          {
+            "call": 0,
+            "id": "B074",
+            "reasons": {
+              "Authority to TVP_TVC_U0-A": 4.0,
+              "Block TVC_DEPOT_LU_ACCESS occupied by B015 \u00b7 Malabar Express 02 \u00b7 NCJ\u2013ERS (B015)": 24.0,
+              "Block TVP_TVC_U0 occupied by B015 \u00b7 Malabar Express 02 \u00b7 NCJ\u2013ERS (B015)": 42.0,
+              "Expect a wait at TVC until Malabar Express 02 \u00b7 NCJ\u2013ERS (B015) overtakes": 556.0
+            },
+            "seconds": 626.0,
+            "signal_id": "",
+            "station": "TVC"
+          },
+          {
+            "call": 6,
+            "id": "B040",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH \u00b7 Cape Express 04 \u00b7 ERS\u2013NCJ (B005)": 12.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Cape Express 04 \u00b7 ERS\u2013NCJ (B005)": 606.0
+            },
+            "seconds": 622.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 2,
+            "id": "B003",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Block ALLP_RLEAD_U occupied by B031 \u00b7 Backwater Intercity 02 \u00b7 TVC\u2013ERS (B031)": 20.0,
+              "Conflicts with route from ALLP_PUPR_M0-NH \u00b7 Backwater Intercity 02 \u00b7 TVC\u2013ERS (B031)": 22.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Backwater Intercity 02 \u00b7 TVC\u2013ERS (B031)": 144.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Malabar Express 01 \u00b7 NCJ\u2013ERS (B014), Backwater Intercity 02 \u00b7 TVC\u2013ERS (B031)": 418.0
+            },
+            "seconds": 608.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 1,
+            "id": "B090",
+            "reasons": {
+              "Authority to NEM_BRAM_M0-SA": 4.0,
+              "Conflicts with route from NEM_BRAM_M0-NH \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096)": 12.0,
+              "Single line NEM_single is locked for opposing traffic \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096)": 586.0
+            },
+            "seconds": 602.0,
+            "signal_id": "",
+            "station": "NEM"
+          }
+        ],
+        "pack_sha256": "",
+        "peak_active": 27,
+        "report": "All 100 services completed their simulated calls and cleared to depot or beyond the map boundary. Latest endpoint delay: 32.9 min. Manual driving may change the outcome.",
+        "station_wait_quality": {
+          "bins": [
+            87,
+            26,
+            4,
+            0,
+            0
+          ],
+          "brief_count": 1413,
+          "count": 117,
+          "cumulative": [
+            {
+              "count": 87,
+              "fraction": 0.743589743589744,
+              "met": true,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 113,
+              "fraction": 0.965811965811966,
+              "met": true,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 117,
+              "fraction": 1.0,
+              "met": true,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 117,
+              "fraction": 1.0,
+              "met": true,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 1694.0,
+          "minimum_seconds": 30.0,
+          "ok": true
+        },
+        "total": 100,
+        "wait_quality": {
+          "bins": [
+            135,
+            32,
+            6,
+            0,
+            0
+          ],
+          "brief_count": 2697,
+          "count": 173,
+          "cumulative": [
+            {
+              "count": 135,
+              "fraction": 0.780346820809249,
+              "met": true,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 167,
+              "fraction": 0.965317919075145,
+              "met": true,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 173,
+              "fraction": 1.0,
+              "met": true,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 173,
+              "fraction": 1.0,
+              "met": true,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 1694.0,
+          "minimum_seconds": 30.0,
+          "ok": true
+        },
+        "wall_seconds": 5515.497
+      },
+      "source_hashes": 4835,
+      "starts": 100,
+      "states": 233,
+      "arrivals": 1530,
+      "departures": 1530
+    },
+    {
+      "mode": "predictive",
+      "audit": {
+        "clock": 98400.0000000001,
+        "delay": 0.0,
+        "delay_at": 0.0,
+        "delay_service": "K1",
+        "dispatcher": "predictive",
+        "events": [],
+        "finished": 100,
+        "maximum_station_wait": 1772.0,
+        "maximum_wait": 1774.0,
+        "ok": true,
+        "operating_day": "standard",
+        "over_ten_minute_calls": [
+          {
+            "call": 44,
+            "id": "K1",
+            "reasons": {
+              "Authority to NYY_AMVA_M0-SA": 4.0,
+              "Block NYY_AMVA_M0 occupied by B002 \u00b7 Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 50.0,
+              "Expect a wait at NYY until Cape Express 01 \u00b7 ERS\u2013NCJ (B002) overtakes": 386.0,
+              "Expect a wait at NYY until Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096) clears the escape approach": 230.0,
+              "Expect a wait before Parassala: no free platform suitable for this service \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096)": 200.0,
+              "Expect a wait before Parassala: no free platform suitable for this service \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096), Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 34.0,
+              "Expect a wait before Parassala: the remaining platforms are reserved for approaching services \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096), Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 216.0,
+              "Single line NYY_single is locked for opposing traffic \u00b7 Cape Passenger 03 \u00b7 NCJ\u2013TVC (B096)": 652.0
+            },
+            "seconds": 1772.0,
+            "signal_id": "",
+            "station": "NYY"
+          },
+          {
+            "call": 47,
+            "id": "B013",
+            "reasons": {
+              "Authority to EZP_TUVR_M3-NA": 4.0,
+              "Block EZP_TUVR_M3 occupied by B015 \u00b7 Malabar Express 02 \u00b7 NCJ\u2013ERS (B015)": 50.0,
+              "Block TUVR_LLEAD_D occupied by B015 \u00b7 Malabar Express 02 \u00b7 NCJ\u2013ERS (B015)": 12.0,
+              "Expect a wait at TUVR until Malabar Express 02 \u00b7 NCJ\u2013ERS (B015) overtakes": 1020.0,
+              "Expect a wait before Kumbalam: no free platform suitable for this service": 194.0,
+              "Expect a wait before Kumbalam: no free platform suitable for this service \u00b7 Coastal Passenger 02 \u00b7 ERS\u2013KYJ (B037)": 174.0,
+              "Single line KUMM_single is locked for opposing traffic \u00b7 Coastal Passenger 02 \u00b7 ERS\u2013KYJ (B037)": 196.0
+            },
+            "seconds": 1650.0,
+            "signal_id": "",
+            "station": "TUVR"
+          },
+          {
+            "call": 3,
+            "id": "B091",
+            "reasons": {
+              "Authority to NYY_AMVA_M0-SA": 4.0,
+              "Conflicts with route from NYY_AMVA_M0-NH \u00b7 Cape Passenger 04 \u00b7 NCJ\u2013TVC (B097)": 12.0,
+              "Expect a wait before Parassala: no free platform suitable for this service": 90.0,
+              "Expect a wait before Parassala: no free platform suitable for this service \u00b7 Cape Passenger 04 \u00b7 NCJ\u2013TVC (B097)": 10.0,
+              "Expect a wait before Parassala: no free platform suitable for this service \u00b7 Cape Passenger 04 \u00b7 NCJ\u2013TVC (B097), Cape Express 03 \u00b7 ERS\u2013NCJ (B004)": 274.0,
+              "Route set to NYY_AMVA_M0-SA": 2.0,
+              "Single line NYY_single is locked for opposing traffic \u00b7 Cape Passenger 04 \u00b7 NCJ\u2013TVC (B097)": 1156.0
+            },
+            "seconds": 1548.0,
+            "signal_id": "",
+            "station": "NYY"
+          },
+          {
+            "call": 6,
+            "id": "B039",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH \u00b7 Coastal Stopping Passenger \u00b7 Ernakulam to Nagercoil (K1)": 12.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Coastal Stopping Passenger \u00b7 Ernakulam to Nagercoil (K1)": 464.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Coastal Stopping Passenger \u00b7 Ernakulam to Nagercoil (K1), Coastal Vande Bharat \u00b7 Ernakulam to Nagercoil (B001)": 354.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Coastal Vande Bharat \u00b7 Ernakulam to Nagercoil (B001), Coastal Stopping Passenger \u00b7 Ernakulam to Nagercoil (K1)": 80.0
+            },
+            "seconds": 914.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 5,
+            "id": "B012",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Block ALLP_LLEAD_U occupied by B036 \u00b7 Coastal Passenger 01 \u00b7 ERS\u2013KYJ (B036)": 22.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH \u00b7 Coastal Passenger 01 \u00b7 ERS\u2013KYJ (B036)": 22.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Coastal Passenger 01 \u00b7 ERS\u2013KYJ (B036)": 830.0
+            },
+            "seconds": 878.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 7,
+            "id": "B047",
+            "reasons": {
+              "Authority to EZP_TUVR_M3-NA": 4.0,
+              "Block EZP_TUVR_M3 occupied by B019 \u00b7 Malabar Express 06 \u00b7 NCJ\u2013ERS (B019)": 62.0,
+              "Expect a wait at TUVR until Malabar Express 06 \u00b7 NCJ\u2013ERS (B019) overtakes": 776.0
+            },
+            "seconds": 842.0,
+            "signal_id": "",
+            "station": "TUVR"
+          },
+          {
+            "call": 4,
+            "id": "B042",
+            "reasons": {
+              "Authority to TUVR_VAY_M0-SA": 4.0,
+              "Block TUVR_VAY_M0 occupied by B002 \u00b7 Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 56.0,
+              "Expect a wait at TUVR until Cape Express 01 \u00b7 ERS\u2013NCJ (B002) overtakes": 246.0,
+              "Single line TUVR_single is locked for opposing traffic \u00b7 Coastal Passenger 01 \u00b7 KYJ\u2013ERS (B039)": 482.0
+            },
+            "seconds": 788.0,
+            "signal_id": "",
+            "station": "TUVR"
+          },
+          {
+            "call": 16,
+            "id": "B020",
+            "reasons": {
+              "Authority to VAY_SRTL_M5-NA": 4.0,
+              "Block VAY_SRTL_M5 occupied by B021 \u00b7 Malabar Express 08 \u00b7 NCJ\u2013ERS (B021)": 56.0,
+              "Expect a wait at SRTL until Malabar Express 08 \u00b7 NCJ\u2013ERS (B021) overtakes": 688.0,
+              "Route set to VAY_SRTL_M5-NA": 2.0
+            },
+            "seconds": 750.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 2,
+            "id": "B003",
+            "reasons": {
+              "Authority to ALLP_PUPR_M0-SA": 4.0,
+              "Conflicts with route from ALLP_PUPR_M0-NH \u00b7 Backwater Intercity 02 \u00b7 TVC\u2013ERS (B031)": 12.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Backwater Intercity 02 \u00b7 TVC\u2013ERS (B031)": 120.0,
+              "Expect a wait before Ambalappuzha: no free platform suitable for this service \u00b7 Coastal Passenger 01 \u00b7 ERS\u2013KYJ (B036), Backwater Intercity 02 \u00b7 TVC\u2013ERS (B031)": 28.0,
+              "Single line ALLP_single is locked for opposing traffic \u00b7 Backwater Intercity 02 \u00b7 TVC\u2013ERS (B031)": 580.0
+            },
+            "seconds": 744.0,
+            "signal_id": "",
+            "station": "ALLP"
+          },
+          {
+            "call": 0,
+            "id": "B066",
+            "reasons": {
+              "Authority to QLN_IRP_D0-A": 4.0,
+              "Block QLN_DEPOT_RD_ACCESS occupied by B008 \u00b7 Cape Express 07 \u00b7 ERS\u2013NCJ (B008)": 30.0,
+              "Block QLN_IRP_D0 occupied by B008 \u00b7 Cape Express 07 \u00b7 ERS\u2013NCJ (B008)": 30.0,
+              "Conflicts with route from QLN-S1 \u00b7 Cape Express 07 \u00b7 ERS\u2013NCJ (B008)": 28.0,
+              "Expect a wait at QLN until Cape Express 07 \u00b7 ERS\u2013NCJ (B008) overtakes": 612.0,
+              "Route set to QLN_IRP_D0-A": 2.0
+            },
+            "seconds": 706.0,
+            "signal_id": "",
+            "station": "QLN"
+          },
+          {
+            "call": 10,
+            "id": "B086",
+            "reasons": {
+              "Authority to EVA_VAK_U2-A": 4.0,
+              "Block EVA_VAK_U2 occupied by B022 \u00b7 Malabar Express 09 \u00b7 NCJ\u2013ERS (B022)": 62.0,
+              "Expect a wait at VAK until Malabar Express 09 \u00b7 NCJ\u2013ERS (B022) overtakes": 630.0
+            },
+            "seconds": 696.0,
+            "signal_id": "",
+            "station": "VAK"
+          },
+          {
+            "call": 2,
+            "id": "B014",
+            "reasons": {
+              "Authority to KZTW_KZT_M1-NA": 4.0,
+              "Expect a wait at KZT until Cape Passenger 01 \u00b7 TVC\u2013NCJ (B088) clears the escape approach": 248.0,
+              "Single line PASA_single is locked for opposing traffic \u00b7 Cape Passenger 01 \u00b7 TVC\u2013NCJ (B088)": 442.0
+            },
+            "seconds": 694.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 6,
+            "id": "K1",
+            "reasons": {
+              "Authority to SRTL_TRVZ_M0-SA": 4.0,
+              "Expect a wait at SRTL until Coastal Vande Bharat \u00b7 Ernakulam to Nagercoil (B001) overtakes": 690.0
+            },
+            "seconds": 694.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 9,
+            "id": "B096",
+            "reasons": {
+              "Authority to BRAM_NYY_M2-NA": 4.0,
+              "Expect a wait at NYY until Cape Passenger 03 \u00b7 TVC\u2013NCJ (B090) enters NYY_P1 after K1 leaves": 688.0
+            },
+            "seconds": 692.0,
+            "signal_id": "",
+            "station": "NYY"
+          },
+          {
+            "call": 15,
+            "id": "B008",
+            "reasons": {
+              "Authority to KZT_PYD_M0-SA": 4.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service": 200.0,
+              "Expect a wait before Eraniel: no free platform suitable for this service \u00b7 Cape Passenger 06 \u00b7 TVC\u2013NCJ (B093)": 450.0,
+              "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services \u00b7 Cape Passenger 06 \u00b7 TVC\u2013NCJ (B093)": 22.0
+            },
+            "seconds": 676.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 1,
+            "id": "B010",
+            "reasons": {
+              "Authority to SRTL_TRVZ_M0-SA": 4.0,
+              "Conflicts with route from SRTL_TRVZ_M0-NH \u00b7 Malabar Express 08 \u00b7 NCJ\u2013ERS (B021)": 12.0,
+              "Single line SRTL_single is locked for opposing traffic \u00b7 Malabar Express 07 \u00b7 NCJ\u2013ERS (B020)": 162.0,
+              "Single line SRTL_single is locked for opposing traffic \u00b7 Malabar Express 07 \u00b7 NCJ\u2013ERS (B020), Malabar Express 08 \u00b7 NCJ\u2013ERS (B021)": 426.0,
+              "Single line SRTL_single is locked for opposing traffic \u00b7 Malabar Express 08 \u00b7 NCJ\u2013ERS (B021)": 70.0
+            },
+            "seconds": 674.0,
+            "signal_id": "",
+            "station": "SRTL"
+          },
+          {
+            "call": 9,
+            "id": "B041",
+            "reasons": {
+              "Authority to TRVZ_MAKM_M3-NA": 4.0,
+              "Conflicts with route from TRVZ_MAKM_M3-SH \u00b7 Coastal Passenger 03 \u00b7 ERS\u2013KYJ (B038)": 12.0,
+              "Expect a wait at MAKM until Cape Express 08 \u00b7 ERS\u2013NCJ (B009) crosses": 170.0,
+              "Route set to TRVZ_MAKM_M3-NA": 2.0,
+              "Single line SRTL_single is locked for opposing traffic \u00b7 Cape Express 08 \u00b7 ERS\u2013NCJ (B009), Coastal Passenger 03 \u00b7 ERS\u2013KYJ (B038)": 44.0,
+              "Single line SRTL_single is locked for opposing traffic \u00b7 Coastal Passenger 03 \u00b7 ERS\u2013KYJ (B038)": 440.0
+            },
+            "seconds": 672.0,
+            "signal_id": "",
+            "station": "MAKM"
+          },
+          {
+            "call": 8,
+            "id": "B089",
+            "reasons": {
+              "Authority to KZT_PYD_M0-SA": 4.0,
+              "Conflicts with route from KZT_PYD_M0-NH \u00b7 Cape Passenger 02 \u00b7 NCJ\u2013TVC (B095)": 12.0,
+              "Expect a wait at KZT until Cape Passenger 02 \u00b7 NCJ\u2013TVC (B095) crosses": 14.0,
+              "Single line KZT_single is locked for opposing traffic \u00b7 Cape Passenger 02 \u00b7 NCJ\u2013TVC (B095)": 608.0
+            },
+            "seconds": 638.0,
+            "signal_id": "",
+            "station": "KZT"
+          },
+          {
+            "call": 6,
+            "id": "B096",
+            "reasons": {
+              "Authority to DAVM_PASA_M5-NA": 4.0,
+              "Conflicts with route from DAVM_PASA_M5-SH \u00b7 Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 14.0,
+              "Expect a wait before Neyyattinkara: no free platform suitable for this service \u00b7 Coastal Stopping Passenger \u00b7 Ernakulam to Nagercoil (K1), Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 40.0,
+              "Single line NYY_single is locked for opposing traffic \u00b7 Cape Express 01 \u00b7 ERS\u2013NCJ (B002)": 574.0
+            },
+            "seconds": 632.0,
+            "signal_id": "",
+            "station": "PASA"
+          },
+          {
+            "call": 1,
+            "id": "B043",
+            "reasons": {
+              "Authority to KUMM_AROR_M0-SA": 4.0,
+              "Block KUMM_RLEAD_D occupied by B016 \u00b7 Malabar Express 03 \u00b7 NCJ\u2013ERS (B016)": 12.0,
+              "Conflicts with route from KUMM_AROR_M0-NH \u00b7 Malabar Express 03 \u00b7 NCJ\u2013ERS (B016)": 16.0,
+              "Route set to KUMM_AROR_M0-SA": 2.0,
+              "Single line KUMM_single is locked for opposing traffic \u00b7 Malabar Express 03 \u00b7 NCJ\u2013ERS (B016)": 594.0
+            },
+            "seconds": 628.0,
+            "signal_id": "",
+            "station": "KUMM"
+          },
+          {
+            "call": 6,
+            "id": "B040",
+            "reasons": {
+              "Authority to TMPY_ALLP_M2-NA": 4.0,
+              "Conflicts with route from TMPY_ALLP_M2-SH \u00b7 Cape Express 04 \u00b7 ERS\u2013NCJ (B005)": 12.0,
+              "Single line MAKM_single is locked for opposing traffic \u00b7 Cape Express 04 \u00b7 ERS\u2013NCJ (B005)": 606.0
+            },
+            "seconds": 622.0,
+            "signal_id": "",
+            "station": "ALLP"
+          }
+        ],
+        "pack_sha256": "",
+        "peak_active": 27,
+        "report": "All 100 services completed their simulated calls and cleared to depot or beyond the map boundary. Latest endpoint delay: 32.9 min. Manual driving may change the outcome.",
+        "station_wait_quality": {
+          "bins": [
+            99,
+            19,
+            3,
+            0,
+            0
+          ],
+          "brief_count": 1409,
+          "count": 121,
+          "cumulative": [
+            {
+              "count": 99,
+              "fraction": 0.818181818181818,
+              "met": true,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 118,
+              "fraction": 0.975206611570248,
+              "met": true,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 121,
+              "fraction": 1.0,
+              "met": true,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 121,
+              "fraction": 1.0,
+              "met": true,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 1772.0,
+          "minimum_seconds": 30.0,
+          "ok": true
+        },
+        "total": 100,
+        "wait_quality": {
+          "bins": [
+            151,
+            23,
+            5,
+            0,
+            0
+          ],
+          "brief_count": 2704,
+          "count": 179,
+          "cumulative": [
+            {
+              "count": 151,
+              "fraction": 0.843575418994413,
+              "met": true,
+              "required": 0.7,
+              "under_seconds": 600.0
+            },
+            {
+              "count": 174,
+              "fraction": 0.972067039106145,
+              "met": true,
+              "required": 0.9,
+              "under_seconds": 1200.0
+            },
+            {
+              "count": 179,
+              "fraction": 1.0,
+              "met": true,
+              "required": 0.98,
+              "under_seconds": 1800.0
+            },
+            {
+              "count": 179,
+              "fraction": 1.0,
+              "met": true,
+              "required": 1.0,
+              "under_seconds": 2700.0
+            }
+          ],
+          "maximum": 1772.0,
+          "minimum_seconds": 30.0,
+          "ok": true
+        },
+        "wall_seconds": 5560.768
+      },
+      "source_hashes": 4835,
+      "starts": 100,
+      "states": 233,
+      "arrivals": 1530,
+      "departures": 1530
+    }
+  ],
+  "files": [
+    {
+      "path": "classic/audit.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/classic-standard/audit.json",
+      "raw_sha256": "6bed43828efc179bc1c1f64b5ea00544bdf768cd04982e46ab30b172c9e5bc47",
+      "raw_bytes": 1524290
+    },
+    {
+      "path": "classic/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/classic-standard/traffic.jsonl",
+      "raw_sha256": "0cb35d3381f3b4e28b57c69794f3bd49f7fe581020cce263a8ea96a76b52f2f8",
+      "raw_bytes": 32323984
+    },
+    {
+      "path": "classic/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/classic-standard/run.log",
+      "raw_sha256": "62781a827ce83beaac264bd2b7fbafa691977a6a5e3dd1bbf0d68105d6dbc56a",
+      "raw_bytes": 33130
+    },
+    {
+      "path": "classic/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/classic-standard/run.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "classic/starts-catalogue.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/classic-standard/starts/catalogue.json",
+      "raw_sha256": "c34225e1515669d303dcd7c810fb929e64f58a34e029116d2cef0f41b636cfc2",
+      "raw_bytes": 841833
+    },
+    {
+      "path": "classic/times-catalogue.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/classic-standard/times/catalogue.json",
+      "raw_sha256": "668b5f5650235cc8901d87be42bde7fb9cb6a248c877d117576603834dbc9706",
+      "raw_bytes": 600970
+    },
+    {
+      "path": "classic/install.log",
+      "source": ".local/realism-2026-10-26/classic-standard-v7-install.log",
+      "raw_sha256": "8a93eccf93ca75b705fee4adf4d1d4e5af11427a4ca85fabd63af4b69afb1b67",
+      "raw_bytes": 844
+    },
+    {
+      "path": "classic/verify.log",
+      "source": ".local/realism-2026-10-26/classic-standard-v7-verify.log",
+      "raw_sha256": "16042c34d21067554b567e3685f3a8c84cc10c0aebc8e93acebb0509d6ede457",
+      "raw_bytes": 283
+    },
+    {
+      "path": "predictive/audit.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/predictive-standard/audit.json",
+      "raw_sha256": "c1520972617b07d47a00112f3ce42242d6cf24440e79e03ea4a614ed99fe616c",
+      "raw_bytes": 1519012
+    },
+    {
+      "path": "predictive/traffic.jsonl.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/predictive-standard/traffic.jsonl",
+      "raw_sha256": "0c4ab6cd919cfd2760b132561087100b9816f657650ca35bbc06c540d9395bc3",
+      "raw_bytes": 32241547
+    },
+    {
+      "path": "predictive/run.log",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/predictive-standard/run.log",
+      "raw_sha256": "fd5583bcee34dda7b4a2a456c4fecdb655aa0b46fe0c09ca17660307fddf37f7",
+      "raw_bytes": 26727
+    },
+    {
+      "path": "predictive/run.err",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/predictive-standard/run.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "predictive/starts-catalogue.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/predictive-standard/starts/catalogue.json",
+      "raw_sha256": "619063a0ef946fea9d428d9bfc5bda0b645cbf53da238a9e0e2320feefc54f90",
+      "raw_bytes": 836542
+    },
+    {
+      "path": "predictive/times-catalogue.json.gz",
+      "source": ".local/realism-2026-10-26/rehearsals-v7/predictive-standard/times/catalogue.json",
+      "raw_sha256": "a47bf541539004f6c7a571bce86c069f15476bd3dfb3bf4a732fd526a6196822",
+      "raw_bytes": 600973
+    },
+    {
+      "path": "predictive/install.log",
+      "source": ".local/realism-2026-10-26/predictive-standard-v7-install.log",
+      "raw_sha256": "3ff0709307079679a70d6ebcf1750b85d8664fcfd95d8fc7115904db4ce24cb1",
+      "raw_bytes": 871
+    },
+    {
+      "path": "predictive/verify.log",
+      "source": ".local/realism-2026-10-26/predictive-standard-v7-verify.log",
+      "raw_sha256": "400479112cdad33e70ff7b50a85770a2fc47722a15fcf91b2cab08468435057c",
+      "raw_bytes": 92
+    },
+    {
+      "path": "previous-data-backup-inventory.json",
+      "source": ".local/realism-2026-10-26/pre-realism-standard-data/inventory.json",
+      "raw_sha256": "d6b70162e6f853fe07c6620478d8a9da4938fcc20e0838c60a9a8797ec09f9b1",
+      "raw_bytes": 121281
+    },
+    {
+      "path": "native/run.log",
+      "source": ".local/realism-2026-10-26/standard-v7-native.log",
+      "raw_bytes": 410,
+      "raw_sha256": "0d11d137a1c39f2782f81ff7be123950e4327e509127c642e42863eb8f80b455"
+    },
+    {
+      "path": "native/run.err",
+      "source": ".local/realism-2026-10-26/standard-v7-native.err",
+      "raw_bytes": 172,
+      "raw_sha256": "4b6c8e7a47156753f60a42941ffb74727b72161c3f3cb3cc01214c9bc1805a1b"
+    },
+    {
+      "path": "native/executed-checker.gd.txt",
+      "source": "tools/check_predictive_prepared_ui.gd",
+      "raw_bytes": 9041,
+      "raw_sha256": "7d1dca4208711bfadd1aefc3d802bac33d6204d7ec87c650cdc4067b2a8f1585"
+    },
+    {
+      "path": "native/standard-traffic.png",
+      "source": ".local/realism-2026-10-26/standard-v7-native/standard-traffic.png",
+      "raw_bytes": 167697,
+      "raw_sha256": "8ece2f7ba293daf206472cd69687bab9a6b1609114ba7392a00d9bfece98a40d"
+    },
+    {
+      "path": "native/standard-noon.png",
+      "source": ".local/realism-2026-10-26/standard-v7-native/standard-noon.png",
+      "raw_bytes": 147010,
+      "raw_sha256": "85b32d0bc86b7b9e3bda316d9c6f42f872713aedda5bb4f78505ff8c1884d9b6"
+    },
+    {
+      "path": "native/standard_v2-traffic.png",
+      "source": ".local/realism-2026-10-26/standard-v7-native/standard_v2-traffic.png",
+      "raw_bytes": 168950,
+      "raw_sha256": "3f35896ca33b687a84ec7f5594efbdc57841feda94c7482f348e8e8a7f9f944d"
+    },
+    {
+      "path": "native/standard_v2-noon.png",
+      "source": ".local/realism-2026-10-26/standard-v7-native/standard_v2-noon.png",
+      "raw_bytes": 157349,
+      "raw_sha256": "c40da515b9fbb2181fcde9c4148e033109dbc688da17b597831a628b4aa7146c"
+    },
+    {
+      "path": "native/result.json",
+      "source": ".local/realism-2026-10-26/standard-v7-native/result.json",
+      "raw_bytes": 244,
+      "raw_sha256": "751a7caab5219d8e47eed82e672797e380cf216f3ff28fcbf656dd15f9e17c18"
+    }
+  ],
+  "native": {
+    "result": {
+      "checks": 36,
+      "days": [
+        {
+          "day": "standard",
+          "k1_distinct_overtakers": 3,
+          "timeline_loaded": true
+        },
+        {
+          "day": "standard_v2",
+          "k1_distinct_overtakers": 3,
+          "timeline_loaded": true
+        }
+      ],
+      "failures": [],
+      "ok": true
+    },
+    "reviewed_screens": [
+      "standard-traffic.png",
+      "standard-noon.png",
+      "standard_v2-traffic.png",
+      "standard_v2-noon.png"
+    ],
+    "audio": "Dummy",
+    "renderer": "Compatibility",
+    "warning": "Screen-space AA unavailable in Compatibility; not an audio or FPS check",
+    "checker_network_branches": "Pending real accepted Network data"
+  }
+}
