@@ -2,6 +2,17 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Candidate seventeen changes only M100 03:05→02:00 and M078 03:20→02:10.
+These northbound mails move ahead of S026/M092/M076, aiming to create a gap
+for M045 through the observed NYY/PASA opposing wave. Earlier queues and
+complete-day performance remain unproven. Every other whole-pack field is
+unchanged; predecessor JSON restoration, identical modes and K1 06:00 are
+verified. There are208 services,168 boundary journeys,71 overnight origins,
+3–13 starts/hour. Exact normal reproduction and four headless authoring tests
+pass with empty stderr. The unchanged1,003-test source suite was not rerun.
+Ten exact proof files are preserved in [candidate-seventeen evidence](../art/performance/realism-2026-10-26/network-candidate-seventeen/README.md).
+Fresh isolated replays are required; Network remains unaccepted/uninstalled.
+
 All four original v16 runs have ended naturally and are rejected: M045 at
 NYY 04:45:52, 13/208 complete, 2,702 seconds extra waiting, zero safety events
 and empty stderr, before the planned 07:30 intervention. Both wait populations

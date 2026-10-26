@@ -1774,3 +1774,16 @@ No future plans remain; multiple trains move. M045's wait includes 2,196s
 opposing occupation, 468s receiving/downstream protection and 38s conflicts.
 No permanent-deadlock, runtime-defect or full-day claim. No v16 job remains;
 never rerun this unchanged candidate. Network remains unaccepted/uninstalled.
+
+## Candidate seventeen departure-only hypothesis
+
+Candidate seventeen changes only M100 03:05→02:00 and M078 03:20→02:10.
+These northbound mails move ahead of S026/M092/M076, aiming to create a gap
+for M045 through the observed NYY/PASA opposing wave. Earlier queues and
+complete-day performance remain unproven. Every other whole-pack field is
+unchanged; predecessor JSON restoration, identical modes and K1 06:00 are
+verified. There are208 services,168 boundary journeys,71 overnight origins,
+3–13 starts/hour. Exact normal reproduction and four headless authoring tests
+pass with empty stderr. The unchanged1,003-test source suite was not rerun.
+Ten exact proof files are preserved in [candidate-seventeen evidence](../art/performance/realism-2026-10-26/network-candidate-seventeen/README.md).
+Fresh isolated replays are required; Network remains unaccepted/uninstalled.

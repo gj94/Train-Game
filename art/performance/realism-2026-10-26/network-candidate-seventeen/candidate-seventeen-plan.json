@@ -1,0 +1,23 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "a3c049fce31f868f981e5afe8aee63212e0bbd57948434a59906dd651f23252b",
+    "kerala-coast-network-v2.json": "d4768dd1dd8debbabbf85e10b27a0a2dae8f7355f9adf5407eecaab1b19007d9",
+    "kerala-coast-network-departure-overrides.json": "0cf44d2ce3a5904b3c63d80b251ad649e04f1c1094f2bf11c7f8044dc42c73ca"
+  },
+  "changes": [
+    {
+      "service": "M100",
+      "before": "03:05",
+      "after": "02:00",
+      "reason": "Move this northbound mail ahead of the observed S042/M078/M044 wave; aim to free NYY/PASA section and receiving capacity when M045 reaches NYY at 03:57."
+    },
+    {
+      "service": "M078",
+      "before": "03:20",
+      "after": "02:10",
+      "reason": "Follow the earlier M100 before S026/M092/M076, removing the observed 04:23-04:35 opposing occupation from M045s crossing window; actual clearance remains unproven."
+    }
+  ],
+  "evidence_commit": "4a25536a",
+  "status": "Departure-only hypothesis; no acceptance"
+}
