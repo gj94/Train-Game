@@ -1681,3 +1681,21 @@ the planned 07:30 hold. All stderr files remain empty and no final audit exists.
 Inputs and observers remain frozen; continue inspecting these original jobs.
 No repeated tests, duplicate jobs, partial acceptance or installation. The 1,003
 source tests and four authoring checks remain unchanged.
+
+## Three v15 failures before the intervention
+
+At 18:22 three v15 jobs have finished and failed before the planned 07:30 hold.
+V2 baseline and delayed both fail M045 at TVC_NEM_M5-SH, 05:22:18, 14/208;
+their entire service records, both wait lists and traffic bytes match within
+that failed prefix. Classic delayed fails S030 at PASA-N2, 06:37:06, 22/208.
+All have 2,702-second waits, zero safety events and empty stderr. No recovery
+or whole-day certificate follows. Forty exact raw files and 4,836 current
+source fingerprints per report are preserved in candidate-fifteen evidence,
+with three byte-immutable inspections and no remaining future-clearance plans.
+V2's inspected active queues are stopped; Classic still has moving trains.
+Neither snapshot proves permanent deadlock or a runtime defect.
+Only Classic baseline 21452/12244 remains running (05:20 at 18:22, 16/208),
+with matching identities, empty stderr and no final audit. Await its outcome
+before any departure-only repair; inputs and observers stay frozen.
+
+V2 M045 wait: 2,564 seconds preserving NYY crossing capacity plus 138 seconds protecting compatible NEM receiving roads. M078 occupies NEM_P2 and waits for M045; M044/M064 wait at NYY, L002/S046 at PASA. Seven active inspected trains stop, M001 is stored. V2 cumulative all49/62,52/62,53/62,61/62; station30/37,32/37,32/37,37/37. Classic S030 wait: 1,504s receiving,1,172s opposing,26s conflicts. NYY claimsS027P1/L034P2;M071/M077/S025/S027move. Classic cumulativeall92/116,106/116,112/116,115/116;station57/72,67/72,70/72,72/72. These failed-prefix populations miss multiple unchanged targets.

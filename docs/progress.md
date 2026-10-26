@@ -26,12 +26,19 @@ Inputs/observers are frozen while the original jobs run. Baselines save genuine
 snapshots; delayed runs apply a 600-second K1 manual hold at 07:30 and cannot be
 installed. No source suite, native test, authoring search or diagnostic remains.
 
-At 18:10 the four original v15 process pairs still match their recorded commands.
-Both baselines reach 03:20 (2/208); both delayed runs reach 04:30 (9/208), before
-the planned 07:30 hold. All stderr files remain empty and no final audit exists.
-Inputs and observers remain frozen; continue inspecting these original jobs.
-No repeated tests, duplicate jobs, partial acceptance or installation. The 1,003
-source tests and four authoring checks remain unchanged.
+At 18:22 three v15 jobs have finished and failed before the planned 07:30 hold.
+V2 baseline and delayed both fail M045 at TVC_NEM_M5-SH, 05:22:18, 14/208;
+their entire service records, both wait lists and traffic bytes match within
+that failed prefix. Classic delayed fails S030 at PASA-N2, 06:37:06, 22/208.
+All have 2,702-second waits, zero safety events and empty stderr. No recovery
+or whole-day certificate follows. Forty exact raw files and 4,836 current
+source fingerprints per report are preserved in candidate-fifteen evidence,
+with three byte-immutable inspections and no remaining future-clearance plans.
+V2's inspected active queues are stopped; Classic still has moving trains.
+Neither snapshot proves permanent deadlock or a runtime defect.
+Only Classic baseline 21452/12244 remains running (05:20 at 18:22, 16/208),
+with matching identities, empty stderr and no final audit. Await its outcome
+before any departure-only repair; inputs and observers stay frozen.
 
 The user extended the work beyond the original 10:00 deadline and emphasized
 single-line capacity. The previous deadline checkpoint remains historical.

@@ -1,0 +1,68 @@
+[
+  {
+    "day": "classic-network",
+    "pid": 21452,
+    "started": "2026-10-26T17:57:11.4382172+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v15/classic-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "81875feb04bcc55d99bee7279b894309d3a6180b",
+    "status": "running",
+    "reason": "Candidate fifteen changes only M06404:10->03:40, L00204:20->03:50, M00806:25->05:55 and S04710:35->10:00 based on completed v14 opposing/receiving queues; actual full-day gates remain required",
+    "pack_sha256": "dd9c3d1e2c7a220f857fa7ee05d1eeaeff071aee7380433b053117b10a9d7d65",
+    "child_pid": 12244
+  },
+  {
+    "day": "predictive-network",
+    "pid": 7968,
+    "started": "2026-10-26T17:57:11.4982761+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v15/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "81875feb04bcc55d99bee7279b894309d3a6180b",
+    "status": "running",
+    "reason": "Candidate fifteen changes only M06404:10->03:40, L00204:20->03:50, M00806:25->05:55 and S04710:35->10:00 based on completed v14 opposing/receiving queues; actual full-day gates remain required",
+    "pack_sha256": "c7a309af02489ee972eae894d6de18624a51e0bdd4a4ac64e6897e1c9d4bfb48",
+    "child_pid": 9656
+  },
+  {
+    "day": "classic-network-delayed",
+    "pid": 14684,
+    "started": "2026-10-26T17:57:11.5248563+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v15/classic-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "81875feb04bcc55d99bee7279b894309d3a6180b",
+    "status": "running",
+    "reason": "Candidate fifteen changes only M06404:10->03:40, L00204:20->03:50, M00806:25->05:55 and S04710:35->10:00 based on completed v14 opposing/receiving queues; actual full-day gates remain required",
+    "pack_sha256": "dd9c3d1e2c7a220f857fa7ee05d1eeaeff071aee7380433b053117b10a9d7d65",
+    "child_pid": 21820
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 22140,
+    "started": "2026-10-26T17:57:11.5531371+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v15/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "81875feb04bcc55d99bee7279b894309d3a6180b",
+    "status": "finished-rejected",
+    "reason": "Candidate fifteen changes only M06404:10->03:40, L00204:20->03:50, M00806:25->05:55 and S04710:35->10:00 based on completed v14 opposing/receiving queues; actual full-day gates remain required",
+    "pack_sha256": "c7a309af02489ee972eae894d6de18624a51e0bdd4a4ac64e6897e1c9d4bfb48",
+    "child_pid": 3124
+  }
+]
