@@ -1898,3 +1898,13 @@ delayed reaches04:20 (7/208), V2 delayed04:10 (6/208), before the planned07:30
 hold. Runtime, routes, packs and six observers remain frozen. No duplicate
 jobs, restarts, repeated unchanged tests, partial acceptance or installation.
 Await the original outcomes; Network208 remains unaccepted and uninstalled.
+
+## 20:15:00 v18 checkpoint
+
+At20:15:00 all four original v18 wrapper/child identities match, stderr is
+empty and no final audits exist. Classic/V2 baselines reach04:50 with15/208
+and16/208 complete respectively. Classic delayed reaches06:20 (23/208),
+V2 delayed06:10 (22/208), before the planned07:30 hold. These are partial runs,
+not acceptance or proof of improvement. Runtime, routes, packs and six observers
+remain frozen. No duplicates, restarts, unchanged test repeats or installations.
+Await the original outcomes; Network208 remains unaccepted and uninstalled.

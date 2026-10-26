@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+At20:15:00 all four original v18 wrapper/child identities match, stderr is
+empty and no final audits exist. Classic/V2 baselines reach04:50 with15/208
+and16/208 complete respectively. Classic delayed reaches06:20 (23/208),
+V2 delayed06:10 (22/208), before the planned07:30 hold. These are partial runs,
+not acceptance or proof of improvement. Runtime, routes, packs and six observers
+remain frozen. No duplicates, restarts, unchanged test repeats or installations.
+Await the original outcomes; Network208 remains unaccepted and uninstalled.
+
 At20:05:02 all four original v18 process identities match, stderr is empty,
 and no final audits exist. Both baselines reach03:10 (2/208 complete); Classic
 delayed reaches04:20 (7/208), V2 delayed04:10 (6/208), before the planned07:30
