@@ -2,6 +2,27 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Candidate23 original V2 baseline8580/19068 finished naturally and failed
+M028 at ALLP14:38:34:81/208 complete,2702s maximum in both wait populations,
+zero safety events and empty run/final-inspection errors, without manual hold.
+All-location244/348,308/348,332/348,347/348 fails under20/30/45; station-only
+122/190,165/190,182/190,189/190 fails all four gates. Every fraction is a failed
+prefix. M028arrALLP13:51:31.85 has no departure:1512s opposingM065/M049,
+1014s receiving/onward protection,86s blocks,90s conflicts. Two byte-immutable
+inspections have no future plans; MAKM claimsM053P3/incomingM015P1/P2/P3,
+ALLPclaimsM028P1 plus incomingM016/M065/S012 alternative roads. M028 awaits
+M065; M065/M053/S012 protect ALLP receiving capacity, M016 awaits its block.
+Several trains move; no permanent-deadlock/runtime-defect inference.
+K1 and L025 are in NCJdepot, arrivals12:46:12.65/13:14:56.65. M019 has left
+VAK14:29:22.75. Local movement is not whole-day improvement or recovery.
+Baseline summary has no K1overtakes. Fifteen exact raw files and4836 source
+fingerprints verified in network-candidate-twenty-three/failed-predictive-baseline;
+first inspection has a combined log, final inspection has separate empty stderr.
+Both original23 runs are finished and rejected; delayed evidence7c47e1bf
+remains preserved. No duplicate/restart,Classic208 job,unchanged tests,
+complete-population comparison,installation or certificate. Network208V2 is
+unaccepted. Replan departure groups only after preserving this baseline proof.
+
 27 October 03:03:03 checkpoint: the original v23 V2 baseline 8580/19068
 remains active at13:30 (73/208 complete), with matching identity, empty error
 log and no final audit. Its partial clock beyond the delayed failure does not
