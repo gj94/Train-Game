@@ -88,10 +88,15 @@ The V2 baseline also fails L002 at NYY07:56:50,32/208,zero safety. Its complete
 L002 service record and station waits match the disturbed run, while whole
 service records and traffic differ; the manual hold is not necessary for this
 local failure. [V2 baseline evidence](../art/performance/realism-2026-10-26/network-candidate-eleven/failed-predictive-baseline/README.md).
-Only the original Classic baseline continues, at09:10 with41/208 at14:31.
+Classic has also finished rejected at09:23:20: L024 waits2,702s at KZT,44/208
+completed,zero safety,empty stderr. Under30 and under45 distributions fail too.
+All four v11 jobs are now finished; [Classic evidence](../art/performance/realism-2026-10-26/network-candidate-eleven/failed-classic-baseline/README.md)
+preserves13 exact raw files and an immutable inspection with no future plans.
 Current process identities and clocks are in
-`.local/realism-2026-10-26/latest-job-status.json`. Do not duplicate/restart them
-or edit frozen inputs. Await the Classic result before further timing repairs.
+`.local/realism-2026-10-26/latest-job-status.json`. Never rerun unchanged failures.
+The next departure-only hypothesis moves L00205:45->05:05, M00605:50->05:20
+and L03507:20->06:45 to separate the observed opposing/overtaking waves.
+It must be authored, checked and replayed before any acceptance claim.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.

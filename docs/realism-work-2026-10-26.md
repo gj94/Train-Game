@@ -1307,3 +1307,24 @@ this read-only evidence. Existing1,003 source/four authoring checks stand.
 Classic18724/5380 remains the sole live replay, at09:10 and41/208 at14:31,
 empty stderr/no audit. Preserve frozen inputs until that actual result. Pending
 UI/category/unrelated files remain unchanged; Network uninstalled,R47 intact.
+
+## All v11 runs finished rejected; next departure hypothesis
+
+Classic18724/5380 finished at09:23:20: L024 atKZT2702s,44/208,zero safety,
+empty stderr. Under30 all197/202 and station119/123 miss98%; under45 also fails.
+L024 reachesERL07:57:44.50, leaves08:22:45.80 after1362s extra, then reaches
+KZT08:37:07 and waits for M047/L035 and later S045/M061 receiving-space queues.
+Read-only inspection preserves bytes; no future plan remains, several trains move.
+Classic M006 clearsAMPA08:07:40.80 without the manual hold; its disturbed run
+fails there.13 exact raw files and4836source hashes verified for Classic failure.
+All original outputs remain, no Network data installed. No replay/suite active.
+
+Next bounded hypothesis: L00205:45->05:05 to move its northbound approach ahead
+of the observed ERL/NEM opposing wave; M00605:50->05:20 to increase its lead over
+S030 and reach AMPA before the K1/opposing queue; L03507:20->06:45 to separate
+its southbound approach from M047/M061 around L024's KZT arrival. L015 stays
+08:15 and L024 stays07:40. Every other field, K106:00 and208 services must stay
+unchanged. These are timetable hypotheses, not guarantees or forced pass sites.
+Check exact author reproduction and headless authoring guards, then commit and
+launch a new isolated generation once. Runtime/tests remain unchanged from1003
+passing source tests; preserve all failed evidence and pendingUI/category files.
