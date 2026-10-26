@@ -2,6 +2,15 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+At19:55:03 all four original v18 wrapper/child identities match, stderr is
+empty and no final audits exist. Both baselines reach01:00 (0/208 complete);
+both delayed runs reach01:50 (1/208), before the planned07:30 intervention.
+Runtime, routes, packs and six observers remain frozen. No jobs were duplicated
+or restarted and no unchanged tests were repeated. These partial runs are not
+acceptance; Network208 remains unaccepted and uninstalled. Await the original
+outcomes before departure-only repairs. Legacy certifications and pending
+Network UI/category work remain preserved.
+
 Candidate9559f4f7 is committed/pushed. Four v18 replays launched once at19:51:50:
 Classic baseline3816/13752, V2 baseline22532/11016, Classic delayed13112/460,
 V2 delayed10336/9808 (wrapper/child). All eight actual commands/options,

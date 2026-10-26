@@ -1878,3 +1878,14 @@ are archived. Both baselines save genuine snapshots; delayed runs apply600s
 manual K1hold at07:30 and can never be installed. Runtime, routes, packs and
 six observers are frozen. No suite/native/search/diagnostic/Git job remains.
 Partial clocks are not acceptance. Await these original outcomes before edits.
+
+## 19:55:03 v18 checkpoint
+
+At19:55:03 all four original v18 wrapper/child identities match, stderr is
+empty and no final audits exist. Both baselines reach01:00 (0/208 complete);
+both delayed runs reach01:50 (1/208), before the planned07:30 intervention.
+Runtime, routes, packs and six observers remain frozen. No jobs were duplicated
+or restarted and no unchanged tests were repeated. These partial runs are not
+acceptance; Network208 remains unaccepted and uninstalled. Await the original
+outcomes before departure-only repairs. Legacy certifications and pending
+Network UI/category work remain preserved.
