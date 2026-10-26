@@ -105,6 +105,10 @@ commands, distinct outputs, both baseline modes,4,837 current source fingerprint
 and six observer hashes verify. All stderr is empty and no final audits exist.
 Runtime/routes/packs/observers are frozen until these runs finish. The candidate
 still needs genuine whole-day baseline and disturbed acceptance.
+At the 14:49 checkpoint, all four original process identities still match,
+with empty stderr and no final audits. Both baselines are at 02:10; the delayed
+runs are at 03:00/03:10, before the planned 07:30 intervention. These partial
+runs establish neither full-day acceptance nor disturbance recovery.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.
