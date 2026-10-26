@@ -2602,3 +2602,13 @@ not completed multiple-location evidence. No comparison,certificate or install.
 At02:53:02 the original baseline8580/19068 remains live at11:40 (64/208),
 identitymatching,emptyerrors,no finalaudit. Keep all inputs frozen until it ends;
 never rerun unchangedv23. Pending helpers and unrelated files are preserved.
+
+## 27 October 03:03 — original v23 baseline continues
+
+27 October 03:03:03 checkpoint: the original v23 V2 baseline 8580/19068
+remains active at13:30 (73/208 complete), with matching identity, empty error
+log and no final audit. Its partial clock beyond the delayed failure does not
+establish whole-day success. The original delayed failure is preserved in
+7c47e1bf and was not rerun. Runtime, routes, packs and six observers remain
+frozen until the baseline ends. No duplicate, Classic208 work, unchanged tests
+or installation occurred; Network208V2 remains unaccepted and uninstalled.
