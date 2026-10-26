@@ -2,6 +2,25 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 01:45 — baseline v22 rejection preserved
+
+Both original candidate22 V2 runs are now naturally finished and rejected.
+Baseline2360/13668 failedL025NYY12:42:04,69/208,2702s both populations,zero
+safety,empty errors,no manualhold. Thirteen exact raw files,4836 verified
+current-at-run source hashes,lossless reports/traffic/failure,exact pack and
+immutable inspection are preserved in network-candidate-twenty-two/failed-predictive-baseline.
+All197/272,245/272,263/272,271/272 failsunder30/45;station110/163,144/163,
+159/163,162/163 failsALL.159/163<98%;passingfractions applyonlyfailedprefix.
+L025arrNYY11:55:48.15nodep:1708s opposingM096/S050/M086,954sPASAreceiving,
+40sconflicts. NYYclaimsM086P1/L025P2;L036justarrPASA,L026KZTawaitsK1.
+No futureplans inbaseline. K1/L008/L024/M068/M096move,M086exchanges;
+M048awaitsblock,S010ALLPawaitsM019/M023,S050depot,S034awaitsdeparture.
+K1depNEM11:20:44.25/NYY11:52:28.75/PASA12:41:23.25. Localmovementonly,
+notwhole-dayimprovement. BaselinesummaryhasnoK1overtakes inprefix.
+No permanentdeadlock/runtime-defect claim,populationcomparison,recoveryproof
+orinstallation. Delayed evidence511eb04a remains distinct. No existingjobs
+remain;departure-only group replanning can now use bothactualV2queues.
+
 27 October 01:32:03 checkpoint: original v22 V2 baseline2360/13668 remains
 active with matching identity,at11:50 (65/208 complete),empty errors and no
 final audit. Delayed failure evidence remains committed/pushed511eb04a.
