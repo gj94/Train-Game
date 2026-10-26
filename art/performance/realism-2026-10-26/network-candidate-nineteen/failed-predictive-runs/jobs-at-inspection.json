@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 9132,
+    "started": "2026-10-26T20:56:38.9074719+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v19/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "9192c02271727f803c4f31cd7b7f33bf27a1bae8",
+    "status": "finished-rejected",
+    "reason": "User limits Network208 to V2. Candidate nineteen changes only seven southbound group departures from candidate eighteen, based on both completed V2 queues and sampled full-rake envelopes; actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "577d44946046f2bd2757d4ae45554c4ec6505fbef37b0327b30988c45d693fc8",
+    "child_pid": 15716
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 7124,
+    "started": "2026-10-26T20:56:38.9712841+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v19/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "9192c02271727f803c4f31cd7b7f33bf27a1bae8",
+    "status": "finished-rejected",
+    "reason": "User limits Network208 to V2. Candidate nineteen changes only seven southbound group departures from candidate eighteen, based on both completed V2 queues and sampled full-rake envelopes; actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "577d44946046f2bd2757d4ae45554c4ec6505fbef37b0327b30988c45d693fc8",
+    "child_pid": 15688
+  }
+]

@@ -2,16 +2,24 @@
 
 ## 26 October 2026 — user resumed work until ready
 
-At 21:41:02 both original v19 V2 wrapper/child identities still match,
-stderr is empty and no final audits exist. The baseline reaches 08:00
-(33/208 complete); the delayed run reaches 10:30 (57/208). Its disturbance
-and recovery audit is still pending. These partial results do not establish
-complete-day improvement or acceptance. Runtime, routes, packs and six
-observers remain frozen. No duplicate or Classic Network jobs, restarts,
-repeated unchanged tests, acceptance or installation. Await both original
-outcomes before departure changes. Network208V2 remains unaccepted and
-uninstalled; legacy readiness and pending NetworkV2 UI/category work remain
-preserved.
+Both original v19 V2 runs have finished naturally and failed the 45-minute
+wait gate: baseline M008 at TUVR-N3 09:52:28,51/208; delayed S047 at NYY-S1
+11:06:08,60/208. Both maximum all-location waits are2702s,zero safety,empty
+stderr. Baseline all-location135/191,173/191,186/191,190/191 failsunder30/45;
+station74/116,104/116,114/116,116/116 failsunder10/20. Delayedall181/255,
+235/255,247/255,254/255 failsunder30/45;station88/135,121/135,129/135,135/135
+failsunder10/20/30. Passing fractions certify only failed prefixes.
+M008wait1628s opposing northern group,564receiving,354crossing,96blocks,
+60conflicts;S047wait2072opposing southern group,592receiving/onward,38conflicts.
+Two immutable inspections show several moving trains and no future plans;
+no permanent-deadlock/runtime-defect inference.23 exact raw files and4836
+current-at-run source hashes per report are preserved in
+[v19 V2 failure evidence](../art/performance/realism-2026-10-26/network-candidate-nineteen/failed-predictive-runs/README.md).
+K1 delayed minute samples show27.4546m braking then unchanged extents through
+07:40;not exact controller frames or recovery certification. No installation
+or complete-population comparison. Both original jobs are finished; next
+coordinate departure groups from these actual queues, retaining every gate,
+K1, all non-departure fields and V2-only scope.
 
 Candidate9192c022 is committed/pushed. Exactly two V2 replays launched once
 at20:56:38:baseline9132/15716 anddelayed7124/15688 (wrapper/child). All four
