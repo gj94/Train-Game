@@ -2114,3 +2114,18 @@ four headless authoring guards pass,emptystderr; unchanged1003suite notrerun.
 Eleven raw proofs are in [candidate20 evidence](../art/performance/realism-2026-10-26/network-candidate-twenty/README.md).
 V2-only readiness remains unaccepted/uninstalled. Next launch exactly two
 V2 replays once, then freeze inputs through their actual outcomes.
+
+## Candidate20 V2 launch
+
+Candidate7d7f91ea is committed/pushed. Exactly two original V2 replays have
+launched once in isolatedv20outputs: baseline20044/380 anddelayed4108/21748
+(wrapper/child). All four actual commands/options, one distinct output per
+job, initial predictive baseline mode,4,836 source fingerprints and six
+observer hashes are verified. Five exact launch files and their manifest
+are in candidate20 evidence. At22:02:04 baseline is starting and delayed
+00:30; both identities match,emptystderr,no final audits. No job restarted
+and no Classic Network job launched. Baseline saves genuine snapshots;
+delayed uses600s manual K1hold at27000/07:30 and must never be installed.
+Runtime/routes/packs/six observers remain frozen through these original
+outcomes. No suite/native/search/diagnostic/Git job remains. Network208V2 is
+unaccepted/uninstalled; all legacy readiness and unrelated work are preserved.

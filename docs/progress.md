@@ -2,6 +2,19 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Candidate7d7f91ea is committed/pushed. Exactly two original V2 replays have
+launched once in isolatedv20outputs: baseline20044/380 anddelayed4108/21748
+(wrapper/child). All four actual commands/options, one distinct output per
+job, initial predictive baseline mode,4,836 source fingerprints and six
+observer hashes are verified. Five exact launch files and their manifest
+are in candidate20 evidence. At22:02:04 baseline is starting and delayed
+00:30; both identities match,emptystderr,no final audits. No job restarted
+and no Classic Network job launched. Baseline saves genuine snapshots;
+delayed uses600s manual K1hold at27000/07:30 and must never be installed.
+Runtime/routes/packs/six observers remain frozen through these original
+outcomes. No suite/native/search/diagnostic/Git job remains. Network208V2 is
+unaccepted/uninstalled; all legacy readiness and unrelated work are preserved.
+
 Candidate20 changes twelve departures from19 to coordinate northern batches
 and the southern opposing flow. M017/M011/S031 become10:00/10:10/10:20;
 M051/M023/S013/M019/S011/M049/M065/M053 become11:05/11:15/11:25/11:35/11:45/
