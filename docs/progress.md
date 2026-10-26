@@ -2,6 +2,36 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 01:27 — delayed v22 rejection preserved
+
+At01:27:25 the original baseline2360/13668 identity matches,at11:00
+(61/208 complete),empty errors and no final audit. This remains partial.
+
+Candidate22 original V2 delayed7952/19620 finished naturally and failed L025
+at NYY12:42:12:70/208 complete,2702s in both wait populations,zero safety,
+empty run/inspection errors after the configured600s K1hold at07:30.
+Thirteen exact raw files,4836 verified current-at-run source hashes,lossless
+reports/traffic/failure,exact pack,actual summary and byte-immutable inspection
+are preserved in network-candidate-twenty-two/failed-predictive-delayed.
+All-location193/260,234/260,250/260,259/260 fails under30/45;station106/155,
+136/155,148/155,154/155 fails all four gates.234/260 is exactly90%;passing
+fractions apply only to this failed prefix. No whole-population comparison,
+recovery certificate or installation; never rerun this unchanged failure.
+
+L025 arrived NYY11:55:56.65 with no departure:2076s opposingM096/S050/M086/L036,
+556s receiving/onward,34s escape-approach clearance,36s conflicts. NYY claims
+L025P1,L036P2,incomingK1P1/P2 alternatives,not simultaneous reservations.
+One actual NYY future plan:incomingK1P1,opponentL036P2,vacaterL025,escapePASA_P2;
+received/opponent_received/escaped all false. L036 exchanges passengers atAMVA;
+L026PASA waits for L025's protected escape. K1,M048,M068,M086,M096,S010 move;
+L008 and S050 are depot-stored. No permanent-deadlock/runtime-defect inference.
+K1 leftTVC11:52:15.75 and NEM12:41:53.25. These are local observations only.
+Eleven K1 minute samples preserve27.4545764399m braking then unchanged extents
+through07:40,not exact controller frames or recovery proof. Original baseline
+2360/13668 remains running at inspection;all inputs frozen until its outcome.
+No Classic208 job,unchanged tests,duplicate,restart or installation. Pending
+UI/category helpers,original outputs and unrelated files remain preserved.
+
 27 October 01:12:03 checkpoint: both original v22 V2 identities match.
 Baseline2360/13668 is at08:10 (33/208 complete); delayed7952/19620 is at10:50
 (60/208). Both error logs are empty and no final audits exist. Partial clocks
