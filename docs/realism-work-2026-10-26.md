@@ -1225,3 +1225,22 @@ passes the same corridor without >10min station waits in this prefix. Next test:
 L01506:55->08:15 to free the ALLP origin/receiving conflict, L00206:10->05:45
 behind L022 but before the opposing wave. These are hypotheses needing actual
 new replays; preserve every other field, including K106:00 and all208 services.
+
+## Candidate eleven authored and guarded
+
+Changed only L00206:10->05:45 and L01506:55->08:15 using normal author overrides.
+Both resulting whole packs recover the exact committed predecessors by restoring
+those two departures; every other field remains unchanged. Identical services
+both modes, K106:00,208total/168boundary/70overnight/3-12perhour. Categorycounts
+remain40local,104mail,56SF,8VB. Normal --check reproduction and all4authoring
+tests pass,emptyerrs. No runtime/test/observer edits; prior1003full source result
+retained explicitly, no needless repeated full suite for two data timings.
+
+All44failedv10rawfiles are already preserved in two evidence commits, including
+22baseline hashes verified before ac1c4f16 push. Candidate11before preserves
+three exact prior authored files. Nine completed candidate11 diagnostic/authoring
+files and field/hash proof are in network-candidate-eleven. Small changes are
+hypotheses based on actual queues, not traffic acceptance. Prepared launcher
+launch-network-v11.ps1/verifier exist but have not yet run. Commit this tested
+data, then launch four isolated actual baselines/disturbances once and freeze
+inputs. PendingUI/category/unrelated preserved, Network notinstalled,R47intact.

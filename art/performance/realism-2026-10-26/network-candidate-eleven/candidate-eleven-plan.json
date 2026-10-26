@@ -1,0 +1,21 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "09b60a09cc6191fc91d46fb6e487de5804f4d859f1c63ce59fad93d71348f131",
+    "kerala-coast-network-v2.json": "2caf0ca3644e1a70a8853de63fa551c616f3c9f35b1341974498a88fbbc8f0a9",
+    "kerala-coast-network-departure-overrides.json": "6939197f16a1362328fd72646db8637d7df1ab49c55b7f872e3a08c358ea16f8"
+  },
+  "changes": [
+    {
+      "service": "L002",
+      "before": "06:10",
+      "after": "05:45"
+    },
+    {
+      "service": "L015",
+      "before": "06:55",
+      "after": "08:15"
+    }
+  ],
+  "evidence_commit": "ac1c4f16",
+  "status": "Departure-only candidate; no traffic acceptance"
+}

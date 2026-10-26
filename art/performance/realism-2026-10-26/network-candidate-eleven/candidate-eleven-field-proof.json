@@ -1,0 +1,111 @@
+{
+  "identical_modes": true,
+  "K1": "06:00",
+  "packs": [
+    {
+      "pack": "kerala-coast-network.json",
+      "sha256": "7acbd287f9c856a9853ad929c8a864b1e5cc786ed4c4c1415fb2ac16a3e2b28e",
+      "predecessor_sha256": "09b60a09cc6191fc91d46fb6e487de5804f4d859f1c63ce59fad93d71348f131",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "L002",
+          "before": "06:10",
+          "after": "05:45"
+        },
+        {
+          "id": "L015",
+          "before": "06:55",
+          "after": "08:15"
+        }
+      ],
+      "services": 208,
+      "categories": {
+        "local": 40,
+        "mail": 104,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 70,
+      "hourly": [
+        10,
+        8,
+        4,
+        7,
+        9,
+        11,
+        6,
+        7,
+        9,
+        12,
+        10,
+        9,
+        11,
+        6,
+        9,
+        9,
+        11,
+        8,
+        12,
+        9,
+        3,
+        7,
+        9,
+        12
+      ]
+    },
+    {
+      "pack": "kerala-coast-network-v2.json",
+      "sha256": "09a8f58cc18d09a48f954cccb18103bce36b19f276a8901113681a254fb13c63",
+      "predecessor_sha256": "2caf0ca3644e1a70a8853de63fa551c616f3c9f35b1341974498a88fbbc8f0a9",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "L002",
+          "before": "06:10",
+          "after": "05:45"
+        },
+        {
+          "id": "L015",
+          "before": "06:55",
+          "after": "08:15"
+        }
+      ],
+      "services": 208,
+      "categories": {
+        "local": 40,
+        "mail": 104,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 70,
+      "hourly": [
+        10,
+        8,
+        4,
+        7,
+        9,
+        11,
+        6,
+        7,
+        9,
+        12,
+        10,
+        9,
+        11,
+        6,
+        9,
+        9,
+        11,
+        8,
+        12,
+        9,
+        3,
+        7,
+        9,
+        12
+      ]
+    }
+  ],
+  "status": "Authoring proof only; no actual traffic acceptance"
+}

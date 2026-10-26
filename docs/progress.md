@@ -67,6 +67,15 @@ with no remaining future-clearance plans. The manual hold is not necessary for
 this failure. Preserve the [baseline evidence](../art/performance/realism-2026-10-26/network-candidate-ten/failed-baselines/README.md).
 Observed queues motivate a small departure-only revision for L015 and L002. All legacy choices remain
 certified; Network is not accepted or installed.
+Candidate eleven now changes only L002 06:10 to 05:45 and L015 06:55 to 08:15.
+The two packs remain otherwise exactly identical to their predecessors and to
+each other's service definitions. All 208 services, 168 boundary journeys and
+K1 06:00 remain, with 70 overnight origins and 3–12 departures/hour. Normal
+authoring reproduces both packs and all four authoring checks pass, empty stderr.
+The runtime remains the same one that passed the 1,003-test source suite; no
+runtime/tests were edited or full suite repeated for these two timing changes.
+[Candidate-eleven proof](../art/performance/realism-2026-10-26/network-candidate-eleven/README.md).
+These targeted queue repairs still require new full baseline/disturbance replays.
 Complete traffic, category, midnight/save and actual menu gates remain pending.
 Playtest the source Intensive traffic lists and noon timeline; the Network
 choice must remain unavailable until genuinely compatible data passes.
