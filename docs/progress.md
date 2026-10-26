@@ -2,6 +2,23 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+Both original candidate20 V2 runs are now finished and rejected. The baseline
+20044/380 failed K1 at NEM at11:52:24,65/208 complete,2,702s in both wait
+populations,zero safety,empty errors and no manual hold. All-location
+198/272,246/272,264/272,271/272 fails under30/45; station-only
+101/151,134/151,148/151,150/151 fails under10/20/45. Passing fractions apply
+only to this failed prefix. K1 arrivedNEM11:06:17.70 with no departure;
+1,990s opposingM084/L024/M048/M068/S050,630s receiving/onward protection,
+22s crossing and60s conflicts. Immutable inspection: NYY claims L036P2 and
+incomingM096P1; L036 awaitsM096's overtake. Several trains move, no future
+plans; no permanent-deadlock/runtime-defect conclusion. Thirteen exact raw
+files and4,836 current-at-run source hashes are preserved in
+[candidate20 baseline evidence](../art/performance/realism-2026-10-26/network-candidate-twenty/failed-predictive-baseline/README.md).
+The delayed L008 failure is preserved in89ddee21. Both results extend beyond
+candidate19's failure points, but neither provides whole-day acceptance or
+recovery. No installation or complete-population comparison. Next coordinate
+the actual northern and southern opposing queues; preserveK1 and every gate.
+
 The original candidate20 V2 delayed run 4108/21748 finished naturally and
 failed L008 at Turavur, 12:47:48, with 69/208 complete and 2,702 seconds of
 extra wait in both populations. Zero safety events; empty run/inspection errors.
