@@ -2,6 +2,14 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 02:05:32 checkpoint: both original v23 V2 process identities match.
+Baseline 8580/19068 has reached 03:40 (2/208 complete); delayed 832/10968
+has reached 04:50 (16/208), before its configured 07:30 intervention.
+Both error logs are empty; neither final audit exists. These partial results
+are not acceptance. Runtime, routes, source packs and all six observers remain
+frozen. The original jobs continue without duplicates or restarts. Network208V2
+remains unaccepted and uninstalled; no Classic208 work or unchanged checks ran.
+
 27 October 01:53:07 checkpoint: both original v23 V2 identities match.
 Baseline8580/19068 is at00:50 (0/208 complete); delayed832/10968 is at01:30
 (1/208),before its configured intervention. Both error logs are empty and
