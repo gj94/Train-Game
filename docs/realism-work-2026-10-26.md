@@ -2682,3 +2682,12 @@ identities match, error logs are empty and neither final audit exists. These
 partial clocks are not acceptance. Inputs remain frozen; no duplicate,restart,
 Classic208 work,unchanged tests or installation. Network208V2 remains
 unaccepted/uninstalled. Continue checking these original jobs for final audits.
+
+## 27 October03:37 — original v24 runs continue
+
+27 October03:37:31 checkpoint: original v24 V2 baseline11988/12204 reaches
+03:20 (2/208 complete); delayed14452/4928 reaches04:20 (7/208). Both process
+identities match, error logs are empty and neither final audit exists. Runtime,
+routes,packs and six observers remain frozen. No duplicate,restart,Classic208
+work,unchanged tests or installation. These partial clocks do not establish
+acceptance; continue checking the original jobs. Network208V2 remains unaccepted.

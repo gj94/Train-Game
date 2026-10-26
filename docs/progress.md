@@ -2,6 +2,13 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October03:37:31 checkpoint: original v24 V2 baseline11988/12204 reaches
+03:20 (2/208 complete); delayed14452/4928 reaches04:20 (7/208). Both process
+identities match, error logs are empty and neither final audit exists. Runtime,
+routes,packs and six observers remain frozen. No duplicate,restart,Classic208
+work,unchanged tests or installation. These partial clocks do not establish
+acceptance; continue checking the original jobs. Network208V2 remains unaccepted.
+
 27 October03:27:52 checkpoint: original v24 V2 baseline11988/12204 reaches
 01:10 (0/208 complete); delayed14452/4928 reaches02:00 (1/208). Both process
 identities match, error logs are empty and neither final audit exists. These
