@@ -1672,3 +1672,12 @@ Classic baseline reaches 01:10 and V2 01:20 (0/208); both delayed runs reach
 no final audit exists. Inputs and observers remain frozen; continue inspecting
 these original jobs. No repeated tests, duplicate jobs, partial acceptance or
 installation. The 1,003 source tests and four authoring checks remain unchanged.
+
+## 18:10 original v15 checkpoint
+
+At 18:10 the four original v15 process pairs still match their recorded commands.
+Both baselines reach 03:20 (2/208); both delayed runs reach 04:30 (9/208), before
+the planned 07:30 hold. All stderr files remain empty and no final audit exists.
+Inputs and observers remain frozen; continue inspecting these original jobs.
+No repeated tests, duplicate jobs, partial acceptance or installation. The 1,003
+source tests and four authoring checks remain unchanged.
