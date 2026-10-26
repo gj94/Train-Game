@@ -1889,3 +1889,12 @@ or restarted and no unchanged tests were repeated. These partial runs are not
 acceptance; Network208 remains unaccepted and uninstalled. Await the original
 outcomes before departure-only repairs. Legacy certifications and pending
 Network UI/category work remain preserved.
+
+## 20:05:02 v18 checkpoint
+
+At20:05:02 all four original v18 process identities match, stderr is empty,
+and no final audits exist. Both baselines reach03:10 (2/208 complete); Classic
+delayed reaches04:20 (7/208), V2 delayed04:10 (6/208), before the planned07:30
+hold. Runtime, routes, packs and six observers remain frozen. No duplicate
+jobs, restarts, repeated unchanged tests, partial acceptance or installation.
+Await the original outcomes; Network208 remains unaccepted and uninstalled.
