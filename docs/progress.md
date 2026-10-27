@@ -2,6 +2,18 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 07:44 — original candidate37 pair continues; no final audit.
+
+At07:44:29 original baseline23304/6112 reports01:40 simulated,1/200 complete,
+peak14,maxwait6.1minutes; original delayed11576/1016 reports02:30,1/200,
+peak21,maxwait6.1minutes. Both error logs are empty and final audits absent.
+All four exact process/parent/command identities still match the original launch;
+4836 source hashes, six observers and five acceptance/selection hashes remain
+unchanged. No other Godot job exists. No restart, duplicate, source edit,
+summary, inspection, installation or gameplay playtest was performed. Inputs
+remain frozen while either original37 lives. Partial progress is not acceptance;
+Network200V2 remains unaccepted/uninstalled with no reliable readiness ETA.
+
 28 October 07:39 — both original candidate37 V2 runs launched once and verified; inputs frozen.
 
 Author2f4a9c35787b34031f91b44c91ee13df91745f06 is pushed. The new isolated
