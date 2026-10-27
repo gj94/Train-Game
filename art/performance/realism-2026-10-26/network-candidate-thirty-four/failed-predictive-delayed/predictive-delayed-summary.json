@@ -1,0 +1,1455 @@
+{
+  "finished": true,
+  "first": 0,
+  "clock": 78508.0000023258,
+  "samples": 39255,
+  "active": 35,
+  "distinct_k1_overtakers": [
+    "V001"
+  ],
+  "by_station": {
+    "TVCN": [
+      {
+        "train": "V001",
+        "time": 41005.39167879844
+      }
+    ]
+  },
+  "distribution": {
+    "stations": 1,
+    "passes": 1,
+    "maximum_at_one_station": 1,
+    "concentration": 1
+  },
+  "events": [
+    {
+      "time": 41005.39167879844,
+      "chainage_m": 199076.397665853,
+      "a": "K1",
+      "b": "V001",
+      "kind": "overtake",
+      "overtaker": "V001",
+      "cleared": 41024.000000144,
+      "station": "TVCN",
+      "location": "Thiruvananthapuram North"
+    }
+  ],
+  "audit": {
+    "clock": 78508.0000023258,
+    "delay": 600,
+    "delay_at": 27000,
+    "delay_service": "K1",
+    "dispatcher": "predictive",
+    "events": [],
+    "finished": 133,
+    "maximum_station_wait": 2702,
+    "maximum_wait": 2702,
+    "ok": false,
+    "operating_day": "network",
+    "over_ten_minute_calls": [
+      {
+        "call": 47,
+        "id": "L004",
+        "reasons": {
+          "Conflicts with route from EZP_TUVR_M3-SH · Indore–Thiruvananthapuram Central Mail / Express (M027)": 12,
+          "Expect a wait before Kumbalam: no free platform suitable for this service · Indore–Thiruvananthapuram Central Mail / Express (M027), Nagpur–Thiruvananthapuram Central Superfast (S021)": 166,
+          "Expect a wait before Kumbalam: no free platform suitable for this service · Indore–Thiruvananthapuram Central Mail / Express (M027), Nagpur–Thiruvananthapuram Central Superfast (S021), Ernakulam Junction–Kollam Junction Passenger (L009)": 46,
+          "Expect a wait before Kumbalam: no free platform suitable for this service · Patna–Thiruvananthapuram Central Mail / Express (M029), Guwahati–Thiruvananthapuram Central Mail / Express (M031), Tatanagar–Thiruvananthapuram Central Superfast (S023)": 544,
+          "Expect a wait before Kumbalam: the remaining platforms are reserved for approaching services · Indore–Thiruvananthapuram Central Mail / Express (M027), Nagpur–Thiruvananthapuram Central Superfast (S021), Ernakulam Junction–Kollam Junction Passenger (L009)": 48,
+          "Expect a wait before Kumbalam: the remaining platforms are reserved for approaching services · Nagpur–Thiruvananthapuram Central Superfast (S021), Ernakulam Junction–Kollam Junction Passenger (L009)": 128,
+          "Expect a wait before Kumbalam: the remaining platforms are reserved for approaching services · Nagpur–Thiruvananthapuram Central Superfast (S021), Ernakulam Junction–Kollam Junction Passenger (L009), Indore–Thiruvananthapuram Central Mail / Express (M027)": 16,
+          "Single line KUMM_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L009)": 50,
+          "Single line KUMM_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L009), Indore–Thiruvananthapuram Central Mail / Express (M027)": 716,
+          "Single line KUMM_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L009), Nagpur–Thiruvananthapuram Central Superfast (S021)": 108,
+          "Single line KUMM_single is locked for opposing traffic · Indore–Thiruvananthapuram Central Mail / Express (M027)": 258,
+          "Single line KUMM_single is locked for opposing traffic · Nagpur–Thiruvananthapuram Central Superfast (S021)": 432,
+          "Single line KUMM_single is locked for opposing traffic · Nagpur–Thiruvananthapuram Central Superfast (S021), Ernakulam Junction–Kollam Junction Passenger (L009)": 178
+        },
+        "seconds": 2702,
+        "signal_id": "",
+        "station": "TUVR"
+      },
+      {
+        "call": 8,
+        "id": "L007",
+        "reasons": {
+          "Authority to MAKM_KAVR_M0-SA": 4,
+          "Conflicts with route from MAKM_KAVR_M0-NH · Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 12,
+          "Expect a wait at MAKM until Thiruvananthapuram Central–Mangaluru Vande Bharat (V002) crosses": 350,
+          "Expect a wait before Alappuzha: no free platform suitable for this service · Thiruvananthapuram Central–Shoranur Mail / Express (M008), Ernakulam Junction–Nagercoil Junction Passenger (K1)": 172,
+          "Expect a wait before Alappuzha: no free platform suitable for this service · Thiruvananthapuram Central–Shoranur Mail / Express (M008), Ernakulam Junction–Nagercoil Junction Passenger (K1), Kanniyakumari–Bengaluru Superfast (S030)": 160,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Ernakulam Junction–Nagercoil Junction Passenger (K1), Kanniyakumari–Bengaluru Superfast (S030)": 180,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Ernakulam Junction–Nagercoil Junction Passenger (K1), Thiruvananthapuram Central–Shoranur Mail / Express (M008), Kanniyakumari–Bengaluru Superfast (S030)": 66,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Shoranur Mail / Express (M008), Ernakulam Junction–Nagercoil Junction Passenger (K1), Kanniyakumari–Bengaluru Superfast (S030)": 36,
+          "Single line MAKM_single is locked for opposing traffic · Nagercoil Junction–Guruvayur Mail / Express (M044)": 252,
+          "Single line MAKM_single is locked for opposing traffic · Nagercoil Junction–Guruvayur Mail / Express (M044), Tirunelveli–Mangaluru Mail / Express (M064)": 326,
+          "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Alappuzha Passenger (L014), Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 28,
+          "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 378,
+          "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Kozhikode Mail / Express (M006), Thiruvananthapuram Central–Alappuzha Passenger (L014)": 150,
+          "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 10,
+          "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002), Nagercoil Junction–Guruvayur Mail / Express (M044)": 24,
+          "Single line MAKM_single is locked for opposing traffic · Tirunelveli–Mangaluru Mail / Express (M064)": 264,
+          "Single line MAKM_single is locked for opposing traffic · Tirunelveli–Mangaluru Mail / Express (M064), Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 42
+        },
+        "seconds": 2454,
+        "signal_id": "",
+        "station": "MAKM"
+      },
+      {
+        "call": 11,
+        "id": "K1",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Block ALLP_RLEAD_U occupied by L014 · Thiruvananthapuram Central–Alappuzha Passenger (L014)": 22,
+          "Block ALLP_RLEAD_U occupied by S030 · Kanniyakumari–Bengaluru Superfast (S030)": 20,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Kanniyakumari–Bengaluru Superfast (S030)": 24,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Thiruvananthapuram Central–Alappuzha Passenger (L014)": 4,
+          "Single line ALLP_single is locked for opposing traffic · Kanniyakumari–Bengaluru Superfast (S030)": 212,
+          "Single line ALLP_single is locked for opposing traffic · Nagercoil Junction–Guruvayur Mail / Express (M044), Tirunelveli–Mangaluru Mail / Express (M064)": 266,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Alappuzha Passenger (L014)": 428,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Alappuzha Passenger (L014), Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 186,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Alappuzha Passenger (L014), Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 18,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 268,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Kozhikode Mail / Express (M006), Thiruvananthapuram Central–Alappuzha Passenger (L014)": 110,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Shoranur Mail / Express (M008)": 222,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Shoranur Mail / Express (M008), Kanniyakumari–Bengaluru Superfast (S030)": 368,
+          "Single line ALLP_single is locked for opposing traffic · Tirunelveli–Mangaluru Mail / Express (M064)": 248,
+          "Single line ALLP_single is locked for opposing traffic · Tirunelveli–Mangaluru Mail / Express (M064), Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 46
+        },
+        "seconds": 2446,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 17,
+        "id": "L006",
+        "reasons": {
+          "Authority to VAY_SRTL_M5-NA": 4,
+          "Block VAY_SRTL_M5 occupied by S026 · Kanniyakumari–Mumbai Superfast (S026)": 56,
+          "Conflicts with route from VAY_SRTL_M5-SH · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 22,
+          "Expect a wait at SRTL until Kanniyakumari–Mumbai Superfast (S026) overtakes": 330,
+          "Expect a wait before Turavur: preserve a crossing platform for opposing services at Kumbalam · Ernakulam Junction–Kollam Junction Passenger (L007)": 342,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Ernakulam Junction–Kollam Junction Passenger (L005), Ernakulam Junction–Nagercoil Junction Passenger (K1)": 148,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 146,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Ernakulam Junction–Nagercoil Junction Passenger (K1), Ernakulam Junction–Kollam Junction Passenger (L005)": 54,
+          "Single line TUVR_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L005)": 410,
+          "Single line TUVR_single is locked for opposing traffic · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 636
+        },
+        "seconds": 2148,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 10,
+        "id": "M012",
+        "reasons": {
+          "Authority to TMPY_ALLP_M2-NA": 4,
+          "Block TMPY_ALLP_M2 occupied by S026 · Kanniyakumari–Mumbai Superfast (S026)": 10,
+          "Conflicts with route from TMPY_ALLP_M2-SH · Mangaluru–Tirunelveli Mail / Express (M063)": 14,
+          "Conflicts with route from TMPY_ALLP_M2-SH · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 22,
+          "Expect a wait before Mararikulam: preserve a crossing platform for opposing services at Cherthala · Bengaluru–Kanniyakumari Superfast (S029), Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 12,
+          "Expect a wait before Mararikulam: preserve a crossing platform for opposing services at Cherthala · Thrissur–Thiruvananthapuram Central Mail / Express (M009), Bengaluru–Kanniyakumari Superfast (S029)": 444,
+          "Expect a wait before Mararikulam: the remaining platforms are reserved for approaching services · Kanniyakumari–Mumbai Superfast (S026), Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 142,
+          "Expect a wait before Mararikulam: the remaining platforms are reserved for approaching services · Kanniyakumari–Mumbai Superfast (S026), Thrissur–Thiruvananthapuram Central Mail / Express (M009), Bengaluru–Kanniyakumari Superfast (S029)": 2,
+          "Expect a wait before Mararikulam: the remaining platforms are reserved for approaching services · Kollam Junction–Ernakulam Junction Passenger (L006), Mangaluru–Tirunelveli Mail / Express (M063), Kanniyakumari–Mumbai Superfast (S026)": 10,
+          "Single line MAKM_single is locked for opposing traffic · Bengaluru–Kanniyakumari Superfast (S029)": 250,
+          "Single line MAKM_single is locked for opposing traffic · Bengaluru–Kanniyakumari Superfast (S029), Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 90,
+          "Single line MAKM_single is locked for opposing traffic · Mangaluru–Tirunelveli Mail / Express (M063)": 598,
+          "Single line MAKM_single is locked for opposing traffic · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 138,
+          "Single line MAKM_single is locked for opposing traffic · Thrissur–Thiruvananthapuram Central Mail / Express (M009), Bengaluru–Kanniyakumari Superfast (S029)": 372
+        },
+        "seconds": 2108,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 17,
+        "id": "M070",
+        "reasons": {
+          "Authority to VAY_SRTL_M5-NA": 4,
+          "Block SRTL_LLEAD_D occupied by S021 · Nagpur–Thiruvananthapuram Central Superfast (S021)": 14,
+          "Conflicts with route from VAY_SRTL_M5-SH · Ernakulam Junction–Kollam Junction Passenger (L011)": 12,
+          "Conflicts with route from VAY_SRTL_M5-SH · Nagpur–Thiruvananthapuram Central Superfast (S021)": 18,
+          "Expect a wait at SRTL until Ernakulam Junction–Kollam Junction Passenger (L009) clears the escape approach": 778,
+          "Expect a wait before Turavur: preserve a crossing platform for opposing services at Kumbalam · Indore–Thiruvananthapuram Central Mail / Express (M027), Ernakulam Junction–Kollam Junction Passenger (L009), Guwahati–Thiruvananthapuram Central Mail / Express (M031)": 158,
+          "Expect a wait before Turavur: preserve a crossing platform for opposing services at Kumbalam · Indore–Thiruvananthapuram Central Mail / Express (M027), Guwahati–Thiruvananthapuram Central Mail / Express (M031), Ernakulam Junction–Kollam Junction Passenger (L009)": 86,
+          "Expect a wait before Turavur: preserve a crossing platform for opposing services at Kumbalam · Patna–Thiruvananthapuram Central Mail / Express (M029), Guwahati–Thiruvananthapuram Central Mail / Express (M031), Tatanagar–Thiruvananthapuram Central Superfast (S023)": 262,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Nagercoil Junction–Ernakulam Junction Passenger (L004), Ernakulam Junction–Kollam Junction Passenger (L009)": 124,
+          "Single line TUVR_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L011)": 146,
+          "Single line TUVR_single is locked for opposing traffic · Nagpur–Thiruvananthapuram Central Superfast (S021)": 496
+        },
+        "seconds": 2098,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 3,
+        "id": "M011",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Block ALLP_DEPOT_RM_ACCESS occupied by S031 · New Delhi–Kanniyakumari Superfast (S031)": 26,
+          "Block ALLP_PUPR_M0 occupied by S031 · New Delhi–Kanniyakumari Superfast (S031)": 44,
+          "Expect a wait at ALLP until New Delhi–Kanniyakumari Superfast (S031) overtakes": 544,
+          "Expect a wait at ALLP until Patna–Thiruvananthapuram Central Superfast (S013) overtakes": 312,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · New Delhi–Kanniyakumari Superfast (S031), Thiruvananthapuram Central–Alappuzha Passenger (L016)": 34,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Thiruvananthapuram Central–Alappuzha Passenger (L016)": 200,
+          "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Alappuzha Passenger (L016), New Delhi–Kanniyakumari Superfast (S031)": 184,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Alappuzha Passenger (L016)": 456
+        },
+        "seconds": 1804,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 8,
+        "id": "L033",
+        "reasons": {
+          "Authority to KZT_PYD_M0-SA": 4,
+          "Block KZT_PYD_M0 occupied by M095 · Kollam Junction–Kanniyakumari Mail / Express (M095)": 56,
+          "Block KZT_PYD_M0 occupied by V005 · Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005)": 50,
+          "Expect a wait at KZT until Kollam Junction–Kanniyakumari Mail / Express (M095) overtakes": 454,
+          "Expect a wait at KZT until Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005) overtakes": 312,
+          "Expect a wait before Eraniel: no free platform suitable for this service": 254,
+          "Expect a wait before Eraniel: no free platform suitable for this service · Kollam Junction–Kanniyakumari Mail / Express (M095)": 222,
+          "Expect a wait before Eraniel: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L021)": 272,
+          "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Kollam Junction–Kanniyakumari Mail / Express (M095)": 86,
+          "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Kollam Junction–Nagercoil Junction Passenger (L021)": 54,
+          "Route set to KZT_PYD_M0-SA": 2
+        },
+        "seconds": 1766,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 14,
+        "id": "M044",
+        "reasons": {
+          "Authority to PUPR_AMPA_M3-NA": 4,
+          "Block AMPA_LLEAD_U occupied by V002 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 36,
+          "Block PUPR_AMPA_M3 occupied by V002 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 42,
+          "Conflicts with route from AMPA-N2 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 32,
+          "Conflicts with route from PUPR_AMPA_M3-SH · Alappuzha–Thiruvananthapuram Central Passenger (L013)": 12,
+          "Conflicts with route from PUPR_AMPA_M3-SH · Ernakulam Junction–Kollam Junction Passenger (L005)": 12,
+          "Expect a wait at AMPA until Alappuzha–Thiruvananthapuram Central Passenger (L013) crosses": 240,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Ernakulam Junction–Kollam Junction Passenger (L005), Ernakulam Junction–Nagercoil Junction Passenger (K1)": 182,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Ernakulam Junction–Kollam Junction Passenger (L005), Ernakulam Junction–Nagercoil Junction Passenger (K1), Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 224,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Ernakulam Junction–Kollam Junction Passenger (L005), Thiruvananthapuram Central–Mangaluru Vande Bharat (V002), Ernakulam Junction–Nagercoil Junction Passenger (K1)": 62,
+          "Single line ALLP_single is locked for opposing traffic · Alappuzha–Thiruvananthapuram Central Passenger (L013)": 16,
+          "Single line ALLP_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L005)": 704
+        },
+        "seconds": 1566,
+        "signal_id": "",
+        "station": "AMPA"
+      },
+      {
+        "call": 15,
+        "id": "M045",
+        "reasons": {
+          "Authority to PASA_KZTW_M0-SA": 4,
+          "Conflicts with route from PASA_KZTW_M0-NH · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 12,
+          "Conflicts with route from PASA_KZTW_M0-NH · Tirunelveli–Mangaluru Mail / Express (M064)": 12,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Nagercoil Junction–Ernakulam Junction Passenger (L002)": 200,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Rameswaram–Thiruvananthapuram Central Superfast (S046), Nagercoil Junction–Ernakulam Junction Passenger (L002)": 144,
+          "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Nagercoil Junction–Ernakulam Junction Passenger (L002), Rameswaram–Thiruvananthapuram Central Superfast (S046)": 114,
+          "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Tirunelveli–Mangaluru Mail / Express (M064), Nagercoil Junction–Ernakulam Junction Passenger (L002)": 268,
+          "Single line PASA_single is locked for opposing traffic · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 406,
+          "Single line PASA_single is locked for opposing traffic · Tirunelveli–Mangaluru Mail / Express (M064)": 398
+        },
+        "seconds": 1558,
+        "signal_id": "",
+        "station": "PASA"
+      },
+      {
+        "call": 47,
+        "id": "L002",
+        "reasons": {
+          "Authority to EZP_TUVR_M3-NA": 4,
+          "Conflicts with route from EZP_TUVR_M3-SH · New Delhi–Kanniyakumari Superfast (S031)": 22,
+          "Expect a wait at TUVR until Mumbai–Thiruvananthapuram Central Mail / Express (M017) crosses": 388,
+          "Single line KUMM_single is locked for opposing traffic · Guruvayur–Thiruvananthapuram Central Mail / Express (M011)": 344,
+          "Single line KUMM_single is locked for opposing traffic · Guruvayur–Thiruvananthapuram Central Mail / Express (M011), Mumbai–Thiruvananthapuram Central Mail / Express (M017)": 12,
+          "Single line KUMM_single is locked for opposing traffic · Guruvayur–Thiruvananthapuram Central Mail / Express (M011), New Delhi–Kanniyakumari Superfast (S031)": 108,
+          "Single line KUMM_single is locked for opposing traffic · Mumbai–Thiruvananthapuram Central Mail / Express (M017), Guruvayur–Thiruvananthapuram Central Mail / Express (M011)": 20,
+          "Single line KUMM_single is locked for opposing traffic · New Delhi–Kanniyakumari Superfast (S031)": 638
+        },
+        "seconds": 1536,
+        "signal_id": "",
+        "station": "TUVR"
+      },
+      {
+        "call": 8,
+        "id": "L035",
+        "reasons": {
+          "Authority to KZT_PYD_M0-SA": 4,
+          "Block KZT_PYD_M0 occupied by M075 · Thiruvananthapuram Central–Chennai Mail / Express (M075)": 56,
+          "Expect a wait at KZT until Thiruvananthapuram Central–Chennai Mail / Express (M075) overtakes": 542,
+          "Expect a wait before Eraniel: no free platform suitable for this service": 198,
+          "Expect a wait before Eraniel: no free platform suitable for this service · Thiruvananthapuram Central–Chennai Mail / Express (M075)": 226,
+          "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Chennai Mail / Express (M075)": 304,
+          "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033)": 160,
+          "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005), Thiruvananthapuram Central–Nagercoil Junction Passenger (L033)": 44
+        },
+        "seconds": 1534,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 0,
+        "id": "L009",
+        "reasons": {
+          "Approach reserved for M033 to enter KUMM_P3": 1190,
+          "Authority to ERS_TNU_M0-SA": 4,
+          "Block ERS_DEPOT_RM_ACCESS occupied by M027 · Indore–Thiruvananthapuram Central Mail / Express (M027)": 14,
+          "Block ERS_RLEAD_D occupied by M027 · Indore–Thiruvananthapuram Central Mail / Express (M027)": 44,
+          "Block ERS_TNU_M0 occupied by M027 · Indore–Thiruvananthapuram Central Mail / Express (M027)": 36,
+          "Conflicts with route from ERS-S1 · Indore–Thiruvananthapuram Central Mail / Express (M027)": 66,
+          "Expect a wait at ERS until Guwahati–Thiruvananthapuram Central Mail / Express (M031) overtakes": 6,
+          "Expect a wait before Kumbalam: preserve a crossing platform for opposing services at Turavur · Nagercoil Junction–Ernakulam Junction Passenger (L004)": 2,
+          "Route set to ERS_TNU_M0-SA": 2
+        },
+        "seconds": 1364,
+        "signal_id": "",
+        "station": "ERS"
+      },
+      {
+        "call": 1,
+        "id": "M058",
+        "reasons": {
+          "Authority to PYD_ERL_M7-NA": 4,
+          "Conflicts with route from PYD_ERL_M7-SH · Kollam Junction–Nagercoil Junction Passenger (L029)": 12,
+          "Expect a wait before Kulitturai: no free platform suitable for this service": 142,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L029), Tirunelveli–Thiruvananthapuram Central Mail / Express (M088)": 144,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Tirunelveli–Thiruvananthapuram Central Mail / Express (M088)": 8,
+          "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Kollam Junction–Nagercoil Junction Passenger (L029)": 56,
+          "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Kollam Junction–Nagercoil Junction Passenger (L029), Tirunelveli–Thiruvananthapuram Central Mail / Express (M088)": 170,
+          "Single line KZT_single is locked for opposing traffic · Kollam Junction–Nagercoil Junction Passenger (L029)": 814
+        },
+        "seconds": 1350,
+        "signal_id": "",
+        "station": "ERL"
+      },
+      {
+        "call": 16,
+        "id": "M061",
+        "reasons": {
+          "Authority to KZT_PYD_M0-SA": 4,
+          "Block KZT_PYD_M0 occupied by M047 · Chennai–Nagercoil Junction Mail / Express (M047)": 78,
+          "Block KZT_PYD_M0 occupied by S029 · Bengaluru–Kanniyakumari Superfast (S029)": 56,
+          "Conflicts with route from KZT-S1 · Chennai–Nagercoil Junction Mail / Express (M047)": 68,
+          "Expect a wait at KZT until Bengaluru–Kanniyakumari Superfast (S029) overtakes": 658,
+          "Expect a wait before Eraniel: no free platform suitable for this service": 110,
+          "Expect a wait before Eraniel: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L023)": 216,
+          "Expect a wait before Eraniel: no free platform suitable for this service · Thiruvananthapuram Central–Rameswaram Superfast (S045)": 64,
+          "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Tirunelveli–Thiruvananthapuram Central Vande Bharat (V006), Chennai–Nagercoil Junction Mail / Express (M047)": 90
+        },
+        "seconds": 1344,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 15,
+        "id": "M063",
+        "reasons": {
+          "Authority to PASA_KZTW_M0-SA": 4,
+          "Block PASA_KZTW_M0 occupied by S029 · Bengaluru–Kanniyakumari Superfast (S029)": 54,
+          "Block PASA_KZTW_M0 occupied by S047 · Thiruvananthapuram Central–Velankanni Superfast (S047)": 56,
+          "Expect a wait at PASA until Bengaluru–Kanniyakumari Superfast (S029) overtakes": 452,
+          "Expect a wait at PASA until Thiruvananthapuram Central–Velankanni Superfast (S047) overtakes": 488,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Bengaluru–Kanniyakumari Superfast (S029), Mumbai–Kanniyakumari Mail / Express (M061)": 20,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061)": 198,
+          "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Mumbai–Kanniyakumari Mail / Express (M061), Bengaluru–Kanniyakumari Superfast (S029)": 44,
+          "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Mumbai–Kanniyakumari Mail / Express (M061), Thiruvananthapuram Central–Velankanni Superfast (S047)": 8
+        },
+        "seconds": 1324,
+        "signal_id": "",
+        "station": "PASA"
+      },
+      {
+        "call": 25,
+        "id": "L023",
+        "reasons": {
+          "Authority to KZT_PYD_M0-SA": 4,
+          "Block KZT_PYD_M0 occupied by L035 · Thiruvananthapuram Central–Nagercoil Junction Passenger (L035)": 70,
+          "Block KZT_PYD_M0 occupied by S045 · Thiruvananthapuram Central–Rameswaram Superfast (S045)": 56,
+          "Conflicts with route from KZT-S2 · Thiruvananthapuram Central–Nagercoil Junction Passenger (L035)": 62,
+          "Expect a wait at KZT until Thiruvananthapuram Central–Rameswaram Superfast (S045) overtakes": 494,
+          "Expect a wait before Eraniel: no free platform suitable for this service": 50,
+          "Expect a wait before Eraniel: no free platform suitable for this service · Thiruvananthapuram Central–Chennai Mail / Express (M075)": 106,
+          "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Nagercoil Junction Passenger (L035)": 464
+        },
+        "seconds": 1306,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 0,
+        "id": "L013",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Block ALLP_DEPOT_RM_ACCESS occupied by M009 · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 70,
+          "Block ALLP_PUPR_M0 occupied by M009 · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 48,
+          "Conflicts with route from ALLP-S3 · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 74,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service": 400,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Bengaluru–Kanniyakumari Superfast (S029)": 84,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 236,
+          "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Bengaluru–Kanniyakumari Superfast (S029)": 182,
+          "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Thrissur–Thiruvananthapuram Central Mail / Express (M009)": 184
+        },
+        "seconds": 1282,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 11,
+        "id": "M018",
+        "reasons": {
+          "Authority to VAY_SRTL_M5-NA": 4,
+          "Block SRTL_LLEAD_D occupied by S015 · Guwahati–Thiruvananthapuram Central Superfast (S015)": 22,
+          "Block VAY_SRTL_M5 occupied by S032 · Kanniyakumari–New Delhi Superfast (S032)": 58,
+          "Conflicts with route from VAY_SRTL_M5-SH · Guwahati–Thiruvananthapuram Central Superfast (S015)": 22,
+          "Expect a wait at SRTL until Kanniyakumari–New Delhi Superfast (S032) overtakes": 252,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Hyderabad–Thiruvananthapuram Central Superfast (S007)": 176,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Hyderabad–Thiruvananthapuram Central Superfast (S007), Guwahati–Thiruvananthapuram Central Superfast (S015)": 8,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Hyderabad–Thiruvananthapuram Central Superfast (S007), Guwahati–Thiruvananthapuram Central Superfast (S015), Kanniyakumari–New Delhi Superfast (S032)": 116,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Hyderabad–Thiruvananthapuram Central Superfast (S007), Kanniyakumari–New Delhi Superfast (S032)": 8,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Kanniyakumari–New Delhi Superfast (S032), Guwahati–Thiruvananthapuram Central Superfast (S015), Hyderabad–Thiruvananthapuram Central Superfast (S007)": 22,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Kanniyakumari–New Delhi Superfast (S032), Hyderabad–Thiruvananthapuram Central Superfast (S007), Guwahati–Thiruvananthapuram Central Superfast (S015)": 12,
+          "Single line TUVR_single is locked for opposing traffic · Guwahati–Thiruvananthapuram Central Superfast (S015)": 568
+        },
+        "seconds": 1268,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 12,
+        "id": "L008",
+        "reasons": {
+          "Authority to TMPY_ALLP_M2-NA": 4,
+          "Conflicts with route from TMPY_ALLP_M2-SH · New Delhi–Kanniyakumari Superfast (S031)": 14,
+          "Expect a wait at ALLP until Mumbai–Thiruvananthapuram Central Mail / Express (M017) crosses": 98,
+          "Single line MAKM_single is locked for opposing traffic · Guruvayur–Thiruvananthapuram Central Mail / Express (M011)": 532,
+          "Single line MAKM_single is locked for opposing traffic · Guruvayur–Thiruvananthapuram Central Mail / Express (M011), Mumbai–Thiruvananthapuram Central Mail / Express (M017)": 2,
+          "Single line MAKM_single is locked for opposing traffic · Guruvayur–Thiruvananthapuram Central Mail / Express (M011), New Delhi–Kanniyakumari Superfast (S031)": 44,
+          "Single line MAKM_single is locked for opposing traffic · Mumbai–Thiruvananthapuram Central Mail / Express (M017), Guruvayur–Thiruvananthapuram Central Mail / Express (M011)": 32,
+          "Single line MAKM_single is locked for opposing traffic · New Delhi–Kanniyakumari Superfast (S031)": 536
+        },
+        "seconds": 1262,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 6,
+        "id": "L034",
+        "reasons": {
+          "Authority to DAVM_PASA_M5-NA": 4,
+          "Conflicts with route from DAVM_PASA_M5-SH · Mumbai–Kanniyakumari Superfast (S025)": 12,
+          "Expect a wait before Neyyattinkara: no free platform suitable for this service · Mumbai–Kanniyakumari Superfast (S025)": 614,
+          "Expect a wait before Neyyattinkara: no free platform suitable for this service · Nagercoil Junction–Ernakulam Junction Passenger (L002), Thiruvananthapuram Central–Kanniyakumari Mail / Express (M077)": 40,
+          "Route set to DAVM_PASA_M5-NA": 2,
+          "Single line NYY_single is locked for opposing traffic · Mumbai–Kanniyakumari Superfast (S025)": 570
+        },
+        "seconds": 1242,
+        "signal_id": "",
+        "station": "PASA"
+      },
+      {
+        "call": 2,
+        "id": "M086",
+        "reasons": {
+          "Authority to PYD_ERL_M7-NA": 4,
+          "Conflicts with route from PYD_ERL_M7-SH · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 12,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 200,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Tirunelveli–Thiruvananthapuram Central Superfast (S050), Ernakulam Junction–Nagercoil Junction Passenger (K1)": 34,
+          "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Ernakulam Junction–Nagercoil Junction Passenger (K1), Tirunelveli–Thiruvananthapuram Central Superfast (S050)": 172,
+          "Route set to PYD_ERL_M7-NA": 2,
+          "Single line KZT_single is locked for opposing traffic · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 802
+        },
+        "seconds": 1226,
+        "signal_id": "",
+        "station": "ERL"
+      },
+      {
+        "call": 0,
+        "id": "M101",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Thiruvananthapuram Central–Guwahati Superfast (S016)": 20,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Nagercoil Junction–Mumbai Mail / Express (M050)": 198,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Pune–Thiruvananthapuram Central Mail / Express (M019), Nagercoil Junction–Mumbai Mail / Express (M050)": 32,
+          "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Nagercoil Junction–Mumbai Mail / Express (M050), Pune–Thiruvananthapuram Central Mail / Express (M019)": 174,
+          "Route set to ALLP_PUPR_M0-SA": 2,
+          "Single line ALLP_single is locked for opposing traffic · Nagercoil Junction–Mumbai Mail / Express (M050)": 182,
+          "Single line ALLP_single is locked for opposing traffic · Nagercoil Junction–Mumbai Mail / Express (M050), Thiruvananthapuram Central–Guwahati Superfast (S016)": 428,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Guwahati Superfast (S016)": 152
+        },
+        "seconds": 1192,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 11,
+        "id": "M020",
+        "reasons": {
+          "Authority to VAY_SRTL_M5-NA": 4,
+          "Block SRTL_LLEAD_D occupied by S018 · Thiruvananthapuram Central–Jaipur Superfast (S018)": 52,
+          "Block SRTL_LLEAD_D occupied by S034 · Tirunelveli–Pune Superfast (S034)": 14,
+          "Block VAY_SRTL_M5 occupied by S018 · Thiruvananthapuram Central–Jaipur Superfast (S018)": 44,
+          "Block VAY_SRTL_M5 occupied by S034 · Tirunelveli–Pune Superfast (S034)": 44,
+          "Conflicts with route from SRTL-N1 · Thiruvananthapuram Central–Jaipur Superfast (S018)": 44,
+          "Conflicts with route from VAY_SRTL_M5-SH · Kannur–Thiruvananthapuram Central Vande Bharat (V003)": 12,
+          "Expect a wait at SRTL until Tirunelveli–Pune Superfast (S034) overtakes": 324,
+          "Expect a wait before Turavur: no free platform suitable for this service · Pune–Tirunelveli Superfast (S033)": 184,
+          "Expect a wait before Turavur: no free platform suitable for this service · Pune–Tirunelveli Superfast (S033), Chennai–Thiruvananthapuram Central Mail / Express (M015)": 16,
+          "Expect a wait before Turavur: no free platform suitable for this service · Thiruvananthapuram Central–Jaipur Superfast (S018), Pune–Tirunelveli Superfast (S033), Chennai–Thiruvananthapuram Central Mail / Express (M015)": 34,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Pune–Tirunelveli Superfast (S033), Chennai–Thiruvananthapuram Central Mail / Express (M015), Thiruvananthapuram Central–Jaipur Superfast (S018)": 86,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Pune–Tirunelveli Superfast (S033), Thiruvananthapuram Central–Jaipur Superfast (S018)": 22,
+          "Single line TUVR_single is locked for opposing traffic · Kannur–Thiruvananthapuram Central Vande Bharat (V003)": 8,
+          "Single line TUVR_single is locked for opposing traffic · Pune–Tirunelveli Superfast (S033)": 296
+        },
+        "seconds": 1184,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 4,
+        "id": "L002",
+        "reasons": {
+          "Authority to KZTW_KZT_M1-NA": 4,
+          "Block KZTW_KZT_M1 occupied by S046 · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 60,
+          "Conflicts with route from KZTW_KZT_M1-SH · Bengaluru–Nagercoil Junction Mail / Express (M045)": 12,
+          "Expect a wait at KZT until Rameswaram–Thiruvananthapuram Central Superfast (S046) overtakes": 416,
+          "Expect a wait before Parassala: no free platform suitable for this service · Bengaluru–Nagercoil Junction Mail / Express (M045)": 198,
+          "Expect a wait before Parassala: no free platform suitable for this service · Rameswaram–Thiruvananthapuram Central Superfast (S046), Bengaluru–Nagercoil Junction Mail / Express (M045)": 34,
+          "Expect a wait before Parassala: the remaining platforms are reserved for approaching services · Bengaluru–Nagercoil Junction Mail / Express (M045), Rameswaram–Thiruvananthapuram Central Superfast (S046)": 38,
+          "Route set to KZTW_KZT_M1-NA": 2,
+          "Single line PASA_single is locked for opposing traffic · Bengaluru–Nagercoil Junction Mail / Express (M045)": 406
+        },
+        "seconds": 1170,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 1,
+        "id": "L035",
+        "reasons": {
+          "Authority to NEM_BRAM_M0-SA": 4,
+          "Block NEM_BRAM_M0 occupied by L033 · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033)": 70,
+          "Conflicts with route from NEM-S2 · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033)": 10,
+          "Expect a wait at NEM until Nagercoil Junction–Kollam Junction Passenger (L022) clears the escape approach": 528,
+          "Expect a wait before Neyyattinkara: no free platform suitable for this service · Nagercoil Junction–Kollam Junction Passenger (L022)": 134,
+          "Expect a wait before Neyyattinkara: no free platform suitable for this service · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033), Nagercoil Junction–Kollam Junction Passenger (L022)": 28,
+          "Expect a wait before Neyyattinkara: the remaining platforms are reserved for approaching services · Nagercoil Junction–Kollam Junction Passenger (L022), Thiruvananthapuram Central–Nagercoil Junction Passenger (L033)": 316,
+          "Single line NEM_single is locked for opposing traffic · Nagercoil Junction–Kollam Junction Passenger (L022)": 80
+        },
+        "seconds": 1170,
+        "signal_id": "",
+        "station": "NEM"
+      },
+      {
+        "call": 10,
+        "id": "M008",
+        "reasons": {
+          "Authority to TMPY_ALLP_M2-NA": 4,
+          "Block ALLP_DEPOT_LM_ACCESS occupied by S030 · Kanniyakumari–Bengaluru Superfast (S030)": 34,
+          "Block TMPY_ALLP_M2 occupied by S030 · Kanniyakumari–Bengaluru Superfast (S030)": 42,
+          "Expect a wait at ALLP until Kanniyakumari–Bengaluru Superfast (S030) overtakes": 1056,
+          "Route set to TMPY_ALLP_M2-NA": 2
+        },
+        "seconds": 1138,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 16,
+        "id": "M065",
+        "reasons": {
+          "Authority to KZT_PYD_M0-SA": 4,
+          "Conflicts with route from KZT_PYD_M0-NH · Madurai–Thiruvananthapuram Central Vande Bharat (V008)": 12,
+          "Expect a wait before Eraniel: no free platform suitable for this service · Madurai–Thiruvananthapuram Central Vande Bharat (V008)": 198,
+          "Expect a wait before Eraniel: no free platform suitable for this service · Mumbai–Nagercoil Junction Mail / Express (M049), Madurai–Thiruvananthapuram Central Vande Bharat (V008)": 34,
+          "Expect a wait before Eraniel: the remaining platforms are reserved for approaching services · Madurai–Thiruvananthapuram Central Vande Bharat (V008), Mumbai–Nagercoil Junction Mail / Express (M049)": 234,
+          "Route set to KZT_PYD_M0-SA": 2,
+          "Single line KZT_single is locked for opposing traffic · Madurai–Thiruvananthapuram Central Vande Bharat (V008)": 620
+        },
+        "seconds": 1104,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 8,
+        "id": "L011",
+        "reasons": {
+          "Conflicts with route from MAKM_KAVR_M0-NH · Thiruvananthapuram Central–Guwahati Mail / Express (M032)": 10,
+          "Conflicts with route from MAKM_KAVR_M0-NH · Thiruvananthapuram Central–Nagpur Superfast (S022)": 12,
+          "Expect a wait at MAKM until Thiruvananthapuram Central–Nagpur Superfast (S022) crosses": 68,
+          "Expect a wait before Alappuzha: no free platform suitable for this service · Ernakulam Junction–Nagercoil Junction Passenger (L003), Thiruvananthapuram Central–Guwahati Mail / Express (M032)": 96,
+          "Expect a wait before Alappuzha: no free platform suitable for this service · Thiruvananthapuram Central–Jaipur Mail / Express (M034), Ernakulam Junction–Nagercoil Junction Passenger (L003), Thiruvananthapuram Central–Guwahati Mail / Express (M032)": 46,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Ernakulam Junction–Nagercoil Junction Passenger (L003), Thiruvananthapuram Central–Guwahati Mail / Express (M032), Thiruvananthapuram Central–Jaipur Mail / Express (M034)": 116,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Ernakulam Junction–Nagercoil Junction Passenger (L003), Thiruvananthapuram Central–Jaipur Mail / Express (M034)": 100,
+          "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Guwahati Mail / Express (M032)": 620,
+          "Single line MAKM_single is locked for opposing traffic · Thiruvananthapuram Central–Nagpur Superfast (S022)": 22
+        },
+        "seconds": 1090,
+        "signal_id": "",
+        "station": "MAKM"
+      },
+      {
+        "call": 1,
+        "id": "M056",
+        "reasons": {
+          "Authority to PYD_ERL_M7-NA": 4,
+          "Conflicts with route from PYD_ERL_M7-SH · Pune–Tirunelveli Superfast (S033)": 12,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Nagercoil Junction–Ahmedabad Mail / Express (M058), Pune–Tirunelveli Superfast (S033)": 34,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Pune–Tirunelveli Superfast (S033)": 198,
+          "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Pune–Tirunelveli Superfast (S033), Nagercoil Junction–Ahmedabad Mail / Express (M058)": 172,
+          "Single line KZT_single is locked for opposing traffic · Pune–Tirunelveli Superfast (S033)": 668
+        },
+        "seconds": 1088,
+        "signal_id": "",
+        "station": "ERL"
+      },
+      {
+        "call": 9,
+        "id": "M018",
+        "reasons": {
+          "Authority to PUPR_AMPA_M3-NA": 4,
+          "Conflicts with route from PUPR_AMPA_M3-SH · Hyderabad–Thiruvananthapuram Central Mail / Express (M023)": 14,
+          "Conflicts with route from PUPR_AMPA_M3-SH · Pune–Nagercoil Junction Mail / Express (M051)": 12,
+          "Expect a wait at AMPA until Pune–Nagercoil Junction Mail / Express (M051) crosses": 222,
+          "Expect a wait before Alappuzha: no free platform suitable for this service · Pune–Thiruvananthapuram Central Mail / Express (M019), Thiruvananthapuram Central–Bengaluru Mail / Express (M014), Hyderabad–Thiruvananthapuram Central Mail / Express (M023)": 62,
+          "Expect a wait before Alappuzha: no free platform suitable for this service · Thiruvananthapuram Central–Bengaluru Mail / Express (M014), Hyderabad–Thiruvananthapuram Central Mail / Express (M023)": 130,
+          "Single line ALLP_single is locked for opposing traffic · Hyderabad–Thiruvananthapuram Central Mail / Express (M023)": 596,
+          "Single line ALLP_single is locked for opposing traffic · Pune–Nagercoil Junction Mail / Express (M051)": 18
+        },
+        "seconds": 1058,
+        "signal_id": "",
+        "station": "AMPA"
+      },
+      {
+        "call": 9,
+        "id": "M032",
+        "reasons": {
+          "Authority to PUPR_AMPA_M3-NA": 4,
+          "Conflicts with route from PUPR_AMPA_M3-SH · Indore–Nagercoil Junction Mail / Express (M059)": 12,
+          "Expect a wait at AMPA until Kanniyakumari–Indore Superfast (S038) overtakes": 170,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Indore–Nagercoil Junction Mail / Express (M059), Ernakulam Junction–Nagercoil Junction Passenger (L003)": 100,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Indore–Nagercoil Junction Mail / Express (M059), Ernakulam Junction–Nagercoil Junction Passenger (L003), Thiruvananthapuram Central–Nagpur Superfast (S022)": 186,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Indore–Nagercoil Junction Mail / Express (M059), Thiruvananthapuram Central–Nagpur Superfast (S022), Ernakulam Junction–Nagercoil Junction Passenger (L003)": 26,
+          "Single line ALLP_single is locked for opposing traffic · Indore–Nagercoil Junction Mail / Express (M059)": 556
+        },
+        "seconds": 1054,
+        "signal_id": "",
+        "station": "AMPA"
+      },
+      {
+        "call": 10,
+        "id": "M024",
+        "reasons": {
+          "Approach reserved for M049 to enter ALLP_P1": 1050,
+          "Authority to TMPY_ALLP_M2-NA": 4
+        },
+        "seconds": 1054,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 3,
+        "id": "M049",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Thiruvananthapuram Central–Patna Superfast (S014)": 14,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service": 220,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Alappuzha–Tiruchirappalli Mail / Express (M103)": 152,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Patna Superfast (S014)": 662
+        },
+        "seconds": 1052,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 9,
+        "id": "L022",
+        "reasons": {
+          "Authority to BRAM_NYY_M2-NA": 4,
+          "Conflicts with route from BRAM_NYY_M2-SH · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033)": 12,
+          "Expect a wait at NYY until Kollam Junction–Nagercoil Junction Passenger (L021) enters NYY_P1 after M079 leaves": 136,
+          "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033)": 142,
+          "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Thiruvananthapuram Central–Nagercoil Junction Passenger (L035), Thiruvananthapuram Central–Nagercoil Junction Passenger (L033)": 98,
+          "Expect a wait before Thiruvananthapuram South: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033), Thiruvananthapuram Central–Nagercoil Junction Passenger (L035)": 46,
+          "Expect a wait before Thiruvananthapuram South: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Nagercoil Junction Passenger (L035)": 14,
+          "Route set to BRAM_NYY_M2-NA": 2,
+          "Single line NEM_single is locked for opposing traffic · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033)": 598
+        },
+        "seconds": 1052,
+        "signal_id": "",
+        "station": "NYY"
+      },
+      {
+        "call": 3,
+        "id": "M019",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Kanniyakumari–New Delhi Superfast (S032)": 20,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Hyderabad–Thiruvananthapuram Central Mail / Express (M023), Kanniyakumari–New Delhi Superfast (S032), Thiruvananthapuram Central–Mumbai Mail / Express (M018)": 34,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Kanniyakumari–New Delhi Superfast (S032), Thiruvananthapuram Central–Mumbai Mail / Express (M018)": 174,
+          "Single line ALLP_single is locked for opposing traffic · Kanniyakumari–New Delhi Superfast (S032)": 154,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Mumbai Mail / Express (M018)": 182,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Mumbai Mail / Express (M018), Kanniyakumari–New Delhi Superfast (S032)": 426
+        },
+        "seconds": 994,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 40,
+        "id": "L002",
+        "reasons": {
+          "Authority to TMPY_ALLP_M2-NA": 4,
+          "Conflicts with route from TMPY_ALLP_M2-SH · Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 22,
+          "Expect a wait before Mararikulam: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–New Delhi Superfast (S006), Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 156,
+          "Single line MAKM_single is locked for opposing traffic · Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 210,
+          "Single line MAKM_single is locked for opposing traffic · Ahmedabad–Thiruvananthapuram Central Superfast (S009), Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 294,
+          "Single line MAKM_single is locked for opposing traffic · Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 176,
+          "Single line MAKM_single is locked for opposing traffic · Mangaluru–Thiruvananthapuram Central Vande Bharat (V001), Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 126
+        },
+        "seconds": 988,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 0,
+        "id": "L015",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Block ALLP_DEPOT_RM_ACCESS occupied by M013 · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 26,
+          "Block ALLP_PUPR_M0 occupied by M013 · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 44,
+          "Expect a wait at ALLP until Bengaluru–Thiruvananthapuram Central Mail / Express (M013) overtakes": 290,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service": 198,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 236,
+          "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Bengaluru–Thiruvananthapuram Central Mail / Express (M013)": 186
+        },
+        "seconds": 984,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 18,
+        "id": "L029",
+        "reasons": {
+          "Authority to NEM_BRAM_M0-SA": 4,
+          "Block NEM_BRAM_M0 occupied by S051 · Thiruvananthapuram Central–Madurai Superfast (S051)": 6,
+          "Escape section protected for M072 at NYY": 830,
+          "Expect a wait at NEM until Thiruvananthapuram Central–Madurai Superfast (S051) overtakes": 132
+        },
+        "seconds": 972,
+        "signal_id": "",
+        "station": "NEM"
+      },
+      {
+        "call": 0,
+        "id": "V005",
+        "reasons": {
+          "Approach reserved for M095 to enter NEM_P1": 958,
+          "Authority to TVC_NEM_M0-SA": 4
+        },
+        "seconds": 962,
+        "signal_id": "",
+        "station": "TVC"
+      },
+      {
+        "call": 0,
+        "id": "M079",
+        "reasons": {
+          "Authority to TVC_NEM_M0-SA": 4,
+          "Conflicts with route from TVC_NEM_M0-NH · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 28,
+          "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Mangaluru–Tirunelveli Superfast (S027)": 172,
+          "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034), Mangaluru–Tirunelveli Superfast (S027)": 112,
+          "Expect a wait before Thiruvananthapuram South: preserve a crossing platform for opposing services at Neyyattinkara · Kanniyakumari–Bengaluru Superfast (S030)": 30,
+          "Expect a wait before Thiruvananthapuram South: the remaining platforms are reserved for approaching services · Mangaluru–Tirunelveli Superfast (S027), Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 34,
+          "Expect a wait before Thiruvananthapuram South: the remaining platforms are reserved for approaching services · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 158,
+          "Expect a wait before Thiruvananthapuram South: the remaining platforms are reserved for approaching services · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034), Mangaluru–Tirunelveli Superfast (S027)": 16,
+          "Route set to TVC_NEM_M0-SA": 2,
+          "Single line TVC_single is locked for opposing traffic · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 390
+        },
+        "seconds": 946,
+        "signal_id": "",
+        "station": "TVC"
+      },
+      {
+        "call": 2,
+        "id": "S030",
+        "reasons": {
+          "Authority to KZTW_KZT_M1-NA": 4,
+          "Conflicts with route from KZTW_KZT_M1-SH · Mumbai–Kanniyakumari Superfast (S025)": 12,
+          "Expect a wait before Parassala: no free platform suitable for this service · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 182,
+          "Expect a wait before Parassala: preserve a crossing platform for opposing services at Neyyattinkara · Thiruvananthapuram Central–Kanniyakumari Mail / Express (M077)": 266,
+          "Expect a wait before Parassala: the remaining platforms are reserved for approaching services · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034), Mumbai–Kanniyakumari Superfast (S025)": 42,
+          "Route set to KZTW_KZT_M1-NA": 2,
+          "Single line PASA_single is locked for opposing traffic · Mumbai–Kanniyakumari Superfast (S025)": 428
+        },
+        "seconds": 936,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 18,
+        "id": "L027",
+        "reasons": {
+          "Authority to NEM_BRAM_M0-SA": 4,
+          "Conflicts with route from NEM_BRAM_M0-NH · Kanniyakumari–Alappuzha Mail / Express (M102)": 12,
+          "Conflicts with route from NEM_BRAM_M0-NH · Tirunelveli–Ahmedabad Superfast (S036)": 12,
+          "Expect a wait at NEM until Kanniyakumari–Alappuzha Mail / Express (M102) crosses": 248,
+          "Expect a wait before Neyyattinkara: no free platform suitable for this service · Kollam Junction–Tiruchirappalli Mail / Express (M097)": 154,
+          "Single line NEM_single is locked for opposing traffic · Kanniyakumari–Alappuzha Mail / Express (M102)": 22,
+          "Single line NEM_single is locked for opposing traffic · Tirunelveli–Ahmedabad Superfast (S036)": 476
+        },
+        "seconds": 928,
+        "signal_id": "",
+        "station": "NEM"
+      },
+      {
+        "call": 3,
+        "id": "M061",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Thiruvananthapuram Central–Guruvayur Mail / Express (M012)": 12,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Chennai–Nagercoil Junction Mail / Express (M047), Thiruvananthapuram Central–Guruvayur Mail / Express (M012), Kanniyakumari–Mumbai Superfast (S026)": 32,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Thiruvananthapuram Central–Guruvayur Mail / Express (M012), Kanniyakumari–Mumbai Superfast (S026)": 118,
+          "Route set to ALLP_PUPR_M0-SA": 2,
+          "Single line ALLP_single is locked for opposing traffic · Kanniyakumari–Mumbai Superfast (S026)": 176,
+          "Single line ALLP_single is locked for opposing traffic · Kanniyakumari–Mumbai Superfast (S026), Thiruvananthapuram Central–Guruvayur Mail / Express (M012)": 182,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Guruvayur Mail / Express (M012)": 108,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Guruvayur Mail / Express (M012), Kanniyakumari–Mumbai Superfast (S026)": 264
+        },
+        "seconds": 898,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 7,
+        "id": "S030",
+        "reasons": {
+          "Authority to TMPY_ALLP_M2-NA": 4,
+          "Block ALLP_LLEAD_U occupied by L007 · Ernakulam Junction–Kollam Junction Passenger (L007)": 12,
+          "Conflicts with route from TMPY_ALLP_M2-SH · Ernakulam Junction–Kollam Junction Passenger (L007)": 16,
+          "Route set to TMPY_ALLP_M2-NA": 2,
+          "Single line MAKM_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L007)": 848
+        },
+        "seconds": 882,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 15,
+        "id": "M047",
+        "reasons": {
+          "Authority to PASA_KZTW_M0-SA": 4,
+          "Block PASA_KZTW_M0 occupied by S045 · Thiruvananthapuram Central–Rameswaram Superfast (S045)": 56,
+          "Expect a wait at PASA until Thiruvananthapuram Central–Rameswaram Superfast (S045) overtakes": 288,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L023)": 200,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L023), Thiruvananthapuram Central–Rameswaram Superfast (S045)": 262,
+          "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Kollam Junction–Nagercoil Junction Passenger (L023), Thiruvananthapuram Central–Rameswaram Superfast (S045)": 42,
+          "Route set to PASA_KZTW_M0-SA": 2
+        },
+        "seconds": 854,
+        "signal_id": "",
+        "station": "PASA"
+      },
+      {
+        "call": 1,
+        "id": "M077",
+        "reasons": {
+          "Authority to NYY_AMVA_M0-SA": 4,
+          "Conflicts with route from NYY_AMVA_M0-NH · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 12,
+          "Single line NYY_single is locked for opposing traffic · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 834
+        },
+        "seconds": 850,
+        "signal_id": "",
+        "station": "NYY"
+      },
+      {
+        "call": 19,
+        "id": "L010",
+        "reasons": {
+          "Authority to EZP_TUVR_M3-NA": 4,
+          "Conflicts with route from EZP_TUVR_M3-SH · Ahmedabad–Tirunelveli Superfast (S035)": 12,
+          "Single line KUMM_single is locked for opposing traffic · Ahmedabad–Tirunelveli Superfast (S035)": 244,
+          "Single line KUMM_single is locked for opposing traffic · Vadodara–Thiruvananthapuram Central Superfast (S019)": 10,
+          "Single line KUMM_single is locked for opposing traffic · Vadodara–Thiruvananthapuram Central Superfast (S019), Ahmedabad–Tirunelveli Superfast (S035)": 572
+        },
+        "seconds": 842,
+        "signal_id": "",
+        "station": "TUVR"
+      },
+      {
+        "call": 3,
+        "id": "M059",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Block ALLP_RLEAD_U occupied by S022 · Thiruvananthapuram Central–Nagpur Superfast (S022)": 22,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Thiruvananthapuram Central–Nagpur Superfast (S022)": 22,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service": 36,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Hyderabad–Nagercoil Junction Mail / Express (M055), Thiruvananthapuram Central–Nagpur Superfast (S022)": 34,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Thiruvananthapuram Central–Nagpur Superfast (S022)": 110,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Nagpur Superfast (S022)": 612
+        },
+        "seconds": 840,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 45,
+        "id": "L004",
+        "reasons": {
+          "Authority to VAY_SRTL_M5-NA": 4,
+          "Conflicts with route from VAY_SRTL_M5-SH · Ernakulam Junction–Nagercoil Junction Passenger (L003)": 22,
+          "Single line TUVR_single is locked for opposing traffic · Ernakulam Junction–Nagercoil Junction Passenger (L003)": 428,
+          "Single line TUVR_single is locked for opposing traffic · Ernakulam Junction–Nagercoil Junction Passenger (L003), Indore–Nagercoil Junction Mail / Express (M059)": 118,
+          "Single line TUVR_single is locked for opposing traffic · Indore–Nagercoil Junction Mail / Express (M059)": 114,
+          "Single line TUVR_single is locked for opposing traffic · Indore–Nagercoil Junction Mail / Express (M059), Ernakulam Junction–Nagercoil Junction Passenger (L003)": 144
+        },
+        "seconds": 830,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 11,
+        "id": "L005",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Block ALLP_RLEAD_U occupied by V002 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 20,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 22,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Alappuzha–Thiruvananthapuram Central Passenger (L013), Nagercoil Junction–Guruvayur Mail / Express (M044)": 6,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Alappuzha–Thiruvananthapuram Central Passenger (L013), Thiruvananthapuram Central–Mangaluru Vande Bharat (V002), Nagercoil Junction–Guruvayur Mail / Express (M044)": 22,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Nagercoil Junction–Guruvayur Mail / Express (M044)": 162,
+          "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Nagercoil Junction–Guruvayur Mail / Express (M044), Alappuzha–Thiruvananthapuram Central Passenger (L013)": 54,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 536
+        },
+        "seconds": 826,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 2,
+        "id": "S033",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Thiruvananthapuram Central–Kannur Vande Bharat (V004)": 12,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Alappuzha–Thiruvananthapuram Central Passenger (L019)": 180,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Kannur Vande Bharat (V004)": 628
+        },
+        "seconds": 824,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 16,
+        "id": "L014",
+        "reasons": {
+          "Authority to PRND_QLN_U6-A": 4,
+          "Block PRND_QLN_U6 occupied by M006 · Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 36,
+          "Block PRND_QLN_U6 occupied by V002 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 38,
+          "Block QLN_DEPOT_LU_ACCESS occupied by M006 · Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 32,
+          "Block QLN_DEPOT_LU_ACCESS occupied by V002 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 20,
+          "Block QLN_LADDER_LU0 occupied by V002 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 96,
+          "Conflicts with route from QLN-N2 · Thiruvananthapuram Central–Kozhikode Mail / Express (M006)": 114,
+          "Conflicts with route from QLN-N4 · Thiruvananthapuram Central–Mangaluru Vande Bharat (V002)": 56,
+          "Expect a wait at QLN until Thiruvananthapuram Central–Mangaluru Vande Bharat (V002) overtakes": 414
+        },
+        "seconds": 810,
+        "signal_id": "",
+        "station": "QLN"
+      },
+      {
+        "call": 11,
+        "id": "M002",
+        "reasons": {
+          "Authority to VAY_SRTL_M5-NA": 4,
+          "Conflicts with route from VAY_SRTL_M5-SH · Chennai–Nagercoil Junction Mail / Express (M047)": 22,
+          "Expect a wait before Turavur: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061)": 172,
+          "Expect a wait before Turavur: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061), Chennai–Nagercoil Junction Mail / Express (M047)": 34,
+          "Expect a wait before Turavur: no free platform suitable for this service · Mumbai–Kanniyakumari Mail / Express (M061), Chennai–Nagercoil Junction Mail / Express (M047), Thiruvananthapuram Central–Tatanagar Mail / Express (M040)": 58,
+          "Expect a wait before Turavur: the remaining platforms are reserved for approaching services · Mumbai–Kanniyakumari Mail / Express (M061), Thiruvananthapuram Central–Tatanagar Mail / Express (M040)": 18,
+          "Single line TUVR_single is locked for opposing traffic · Chennai–Nagercoil Junction Mail / Express (M047)": 490
+        },
+        "seconds": 798,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 16,
+        "id": "M045",
+        "reasons": {
+          "Authority to KZT_PYD_M0-SA": 4,
+          "Conflicts with route from KZT_PYD_M0-NH · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 12,
+          "Single line KZT_single is locked for opposing traffic · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 778
+        },
+        "seconds": 794,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 6,
+        "id": "L002",
+        "reasons": {
+          "Authority to DAVM_PASA_M5-NA": 4,
+          "Expect a wait at PASA until Ahmedabad–Tirunelveli Mail / Express (M071) clears the escape approach": 578,
+          "Expect a wait before Neyyattinkara: no free platform suitable for this service · Rameswaram–Thiruvananthapuram Central Superfast (S046)": 14,
+          "Expect a wait before Neyyattinkara: no free platform suitable for this service · Rameswaram–Thiruvananthapuram Central Superfast (S046), Ahmedabad–Tirunelveli Mail / Express (M071)": 114,
+          "Expect a wait before Neyyattinkara: preserve a crossing platform for opposing services at Thiruvananthapuram South · Mumbai–Kanniyakumari Superfast (S025)": 68,
+          "Route set to DAVM_PASA_M5-NA": 2
+        },
+        "seconds": 780,
+        "signal_id": "",
+        "station": "PASA"
+      },
+      {
+        "call": 6,
+        "id": "S027",
+        "reasons": {
+          "Authority to TVC_NEM_M0-SA": 4,
+          "Conflicts with route from TVC_NEM_M0-NH · Nagercoil Junction–Ernakulam Junction Passenger (L002)": 12,
+          "Expect a wait before Thiruvananthapuram South: preserve a crossing platform for opposing services at Neyyattinkara · Nagercoil Junction–Thiruvananthapuram Central Passenger (L034)": 394,
+          "Route set to TVC_NEM_M0-SA": 2,
+          "Single line TVC_single is locked for opposing traffic · Nagercoil Junction–Ernakulam Junction Passenger (L002)": 352
+        },
+        "seconds": 764,
+        "signal_id": "",
+        "station": "TVC"
+      },
+      {
+        "call": 11,
+        "id": "L003",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Thiruvananthapuram Central–Jaipur Mail / Express (M034)": 14,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Guwahati Mail / Express (M032)": 150,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Guwahati Mail / Express (M032), Thiruvananthapuram Central–Jaipur Mail / Express (M034)": 480,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Jaipur Mail / Express (M034)": 116
+        },
+        "seconds": 764,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 1,
+        "id": "L011",
+        "reasons": {
+          "Authority to KUMM_AROR_M0-SA": 4,
+          "Conflicts with route from KUMM_AROR_M0-NH · Tirunelveli–Ahmedabad Superfast (S036)": 18,
+          "Expect a wait at KUMM until Nagpur–Thiruvananthapuram Central Superfast (S021) overtakes": 248,
+          "Expect a wait at KUMM until Tirunelveli–Ahmedabad Superfast (S036) clears the escape approach": 274,
+          "Expect a wait before Turavur: no free platform suitable for this service · Indore–Nagercoil Junction Mail / Express (M059), Tirunelveli–Ahmedabad Superfast (S036), Ernakulam Junction–Nagercoil Junction Passenger (L003)": 12,
+          "Single line KUMM_single is locked for opposing traffic · Tirunelveli–Ahmedabad Superfast (S036)": 188
+        },
+        "seconds": 744,
+        "signal_id": "",
+        "station": "KUMM"
+      },
+      {
+        "call": 15,
+        "id": "M064",
+        "reasons": {
+          "Authority to PUPR_AMPA_M3-NA": 4,
+          "Block AMPA_LLEAD_U occupied by M044 · Nagercoil Junction–Guruvayur Mail / Express (M044)": 72,
+          "Block PUPR_AMPA_M3 occupied by M044 · Nagercoil Junction–Guruvayur Mail / Express (M044)": 50,
+          "Conflicts with route from AMPA-N3 · Nagercoil Junction–Guruvayur Mail / Express (M044)": 50,
+          "Conflicts with route from PUPR_AMPA_M3-SH · Ernakulam Junction–Kollam Junction Passenger (L005)": 12,
+          "Expect a wait before Alappuzha: the remaining platforms are reserved for approaching services · Ernakulam Junction–Nagercoil Junction Passenger (K1), Thiruvananthapuram Central–Mangaluru Vande Bharat (V002), Nagercoil Junction–Guruvayur Mail / Express (M044)": 100,
+          "Single line ALLP_single is locked for opposing traffic · Ernakulam Junction–Kollam Junction Passenger (L005)": 456
+        },
+        "seconds": 744,
+        "signal_id": "",
+        "station": "AMPA"
+      },
+      {
+        "call": 4,
+        "id": "M054",
+        "reasons": {
+          "Authority to BRAM_NYY_M2-NA": 4,
+          "Conflicts with route from BRAM_NYY_M2-SH · Kollam Junction–Nagercoil Junction Passenger (L029)": 12,
+          "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L029)": 126,
+          "Single line NEM_single is locked for opposing traffic · Kollam Junction–Nagercoil Junction Passenger (L029)": 600
+        },
+        "seconds": 742,
+        "signal_id": "",
+        "station": "NYY"
+      },
+      {
+        "call": 2,
+        "id": "M072",
+        "reasons": {
+          "Authority to PYD_ERL_M7-NA": 4,
+          "Conflicts with route from PYD_ERL_M7-SH · Bengaluru–Kanniyakumari Mail / Express (M065)": 14,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Bengaluru–Kanniyakumari Mail / Express (M065)": 20,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Bengaluru–Kanniyakumari Mail / Express (M065), Madurai–Thiruvananthapuram Central Vande Bharat (V008)": 22,
+          "Single line KZT_single is locked for opposing traffic · Bengaluru–Kanniyakumari Mail / Express (M065)": 668
+        },
+        "seconds": 728,
+        "signal_id": "",
+        "station": "ERL"
+      },
+      {
+        "call": 14,
+        "id": "M061",
+        "reasons": {
+          "Authority to NYY_AMVA_M0-SA": 4,
+          "Block NYY_AMVA_M0 occupied by S045 · Thiruvananthapuram Central–Rameswaram Superfast (S045)": 48,
+          "Expect a wait at NYY until Thiruvananthapuram Central–Rameswaram Superfast (S045) overtakes": 136,
+          "Expect a wait before Parassala: no free platform suitable for this service · Chennai–Nagercoil Junction Mail / Express (M047)": 198,
+          "Expect a wait before Parassala: no free platform suitable for this service · Chennai–Nagercoil Junction Mail / Express (M047), Thiruvananthapuram Central–Rameswaram Superfast (S045)": 96,
+          "Expect a wait before Parassala: the remaining platforms are reserved for approaching services · Chennai–Nagercoil Junction Mail / Express (M047), Thiruvananthapuram Central–Rameswaram Superfast (S045)": 218
+        },
+        "seconds": 700,
+        "signal_id": "",
+        "station": "NYY"
+      },
+      {
+        "call": 2,
+        "id": "V002",
+        "reasons": {
+          "Authority to TMPY_ALLP_M2-NA": 4,
+          "Block ALLP_LLEAD_U occupied by K1 · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 12,
+          "Conflicts with route from TMPY_ALLP_M2-SH · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 18,
+          "Expect a wait at ALLP until Ernakulam Junction–Nagercoil Junction Passenger (K1) crosses": 648,
+          "Single line MAKM_single is locked for opposing traffic · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 16
+        },
+        "seconds": 698,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 3,
+        "id": "M096",
+        "reasons": {
+          "Authority to KZTW_KZT_M1-NA": 4,
+          "Conflicts with route from KZTW_KZT_M1-SH · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 12,
+          "Expect a wait before Parassala: no free platform suitable for this service · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 130,
+          "Route set to KZTW_KZT_M1-NA": 2,
+          "Single line PASA_single is locked for opposing traffic · Ernakulam Junction–Nagercoil Junction Passenger (K1)": 540
+        },
+        "seconds": 688,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 1,
+        "id": "M035",
+        "reasons": {
+          "Expect a wait before Kumbalam: no free platform suitable for this service · Patna–Thiruvananthapuram Central Mail / Express (M029), Guwahati–Thiruvananthapuram Central Mail / Express (M031), Tatanagar–Thiruvananthapuram Central Superfast (S023)": 682
+        },
+        "seconds": 682,
+        "signal_id": "",
+        "station": "ERS"
+      },
+      {
+        "call": 49,
+        "id": "K1",
+        "reasons": {
+          "Authority to KZT_PYD_M0-SA": 4,
+          "Conflicts with route from KZT_PYD_M0-NH · Tirunelveli–Thiruvananthapuram Central Superfast (S050)": 12,
+          "Expect a wait before Eraniel: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L025), Tirunelveli–Thiruvananthapuram Central Superfast (S050)": 2,
+          "Single line KZT_single is locked for opposing traffic · Tirunelveli–Thiruvananthapuram Central Superfast (S050)": 662
+        },
+        "seconds": 680,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 11,
+        "id": "M008",
+        "reasons": {
+          "Authority to VAY_SRTL_M5-NA": 4,
+          "Conflicts with route from VAY_SRTL_M5-SH · Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 12,
+          "Expect a wait before Turavur: no free platform suitable for this service · Kanniyakumari–Bengaluru Superfast (S030), Mangaluru–Thiruvananthapuram Central Vande Bharat (V001), Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 34,
+          "Expect a wait before Turavur: no free platform suitable for this service · Mangaluru–Thiruvananthapuram Central Vande Bharat (V001), Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 30,
+          "Route set to VAY_SRTL_M5-NA": 2,
+          "Single line TUVR_single is locked for opposing traffic · Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 148,
+          "Single line TUVR_single is locked for opposing traffic · Ahmedabad–Thiruvananthapuram Central Superfast (S009), Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 196,
+          "Single line TUVR_single is locked for opposing traffic · Mangaluru–Thiruvananthapuram Central Vande Bharat (V001)": 100,
+          "Single line TUVR_single is locked for opposing traffic · Mangaluru–Thiruvananthapuram Central Vande Bharat (V001), Ahmedabad–Thiruvananthapuram Central Superfast (S009)": 154
+        },
+        "seconds": 680,
+        "signal_id": "",
+        "station": "SRTL"
+      },
+      {
+        "call": 0,
+        "id": "M103",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Expect a wait at ALLP until Kanniyakumari–New Delhi Mail / Express (M068) clears the escape approach": 674
+        },
+        "seconds": 678,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 1,
+        "id": "L007",
+        "reasons": {
+          "Authority to KUMM_AROR_M0-SA": 4,
+          "Block KUMM_RLEAD_D occupied by S026 · Kanniyakumari–Mumbai Superfast (S026)": 12,
+          "Conflicts with route from KUMM_AROR_M0-NH · Kanniyakumari–Mumbai Superfast (S026)": 10,
+          "Expect a wait before Turavur: preserve a crossing platform for opposing services at Cherthala · Kollam Junction–Ernakulam Junction Passenger (L006), Thiruvananthapuram Central–Guruvayur Mail / Express (M012)": 38,
+          "Single line KUMM_single is locked for opposing traffic · Kanniyakumari–Mumbai Superfast (S026)": 614
+        },
+        "seconds": 678,
+        "signal_id": "",
+        "station": "KUMM"
+      },
+      {
+        "call": 0,
+        "id": "L005",
+        "reasons": {
+          "Authority to ERS_TNU_M0-SA": 4,
+          "Conflicts with route from ERS_TNU_M0-NH · Tirunelveli–Mangaluru Superfast (S028)": 30,
+          "Expect a wait before Kumbalam: no free platform suitable for this service · Thrissur–Thiruvananthapuram Central Mail / Express (M009), Bengaluru–Kanniyakumari Superfast (S029)": 188,
+          "Route set to ERS_TNU_M0-SA": 2,
+          "Single line ERS_single is locked for opposing traffic · Tirunelveli–Mangaluru Superfast (S028)": 436
+        },
+        "seconds": 660,
+        "signal_id": "",
+        "station": "ERS"
+      },
+      {
+        "call": 3,
+        "id": "M047",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Kollam Junction–Ernakulam Junction Passenger (L006)": 12,
+          "Single line ALLP_single is locked for opposing traffic · Kollam Junction–Ernakulam Junction Passenger (L006)": 630
+        },
+        "seconds": 646,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 3,
+        "id": "M051",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Conflicts with route from ALLP_PUPR_M0-NH · Thiruvananthapuram Central–Bengaluru Mail / Express (M014)": 14,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Patna–Thiruvananthapuram Central Superfast (S013), Thiruvananthapuram Central–Bengaluru Mail / Express (M014)": 30,
+          "Single line ALLP_single is locked for opposing traffic · Thiruvananthapuram Central–Bengaluru Mail / Express (M014)": 596
+        },
+        "seconds": 644,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 1,
+        "id": "M079",
+        "reasons": {
+          "Authority to NYY_AMVA_M0-SA": 4,
+          "Expect a wait at NYY until Nagercoil Junction–Kollam Junction Passenger (L022) clears the escape approach": 464,
+          "Single line NYY_single is locked for opposing traffic · Nagercoil Junction–Kollam Junction Passenger (L022)": 158
+        },
+        "seconds": 626,
+        "signal_id": "",
+        "station": "NYY"
+      },
+      {
+        "call": 6,
+        "id": "S033",
+        "reasons": {
+          "Authority to TVC_NEM_M0-SA": 4,
+          "Conflicts with route from TVC_NEM_M0-NH · Tirunelveli–Ahmedabad Mail / Express (M072)": 12,
+          "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Kollam Junction–Nagercoil Junction Passenger (L029)": 220,
+          "Single line TVC_single is locked for opposing traffic · Tirunelveli–Ahmedabad Mail / Express (M072)": 384
+        },
+        "seconds": 620,
+        "signal_id": "",
+        "station": "TVC"
+      },
+      {
+        "call": 6,
+        "id": "L035",
+        "reasons": {
+          "Authority to PASA_KZTW_M0-SA": 4,
+          "Block PASA_KZTW_M0 occupied by V005 · Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005)": 48,
+          "Expect a wait at PASA until Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005) overtakes": 236,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033)": 200,
+          "Expect a wait before Kulitturai: no free platform suitable for this service · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033), Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005)": 80,
+          "Expect a wait before Kulitturai: the remaining platforms are reserved for approaching services · Thiruvananthapuram Central–Nagercoil Junction Passenger (L033), Thiruvananthapuram Central–Tirunelveli Vande Bharat (V005)": 48,
+          "Route set to PASA_KZTW_M0-SA": 2
+        },
+        "seconds": 618,
+        "signal_id": "",
+        "station": "PASA"
+      },
+      {
+        "call": 10,
+        "id": "M101",
+        "reasons": {
+          "Authority to TVC_NEM_M0-SA": 4,
+          "Conflicts with route from TVC_NEM_M0-NH · Madurai–Thiruvananthapuram Central Superfast (S052)": 30,
+          "Expect a wait before Thiruvananthapuram South: no free platform suitable for this service · Thiruvananthapuram Central–Madurai Vande Bharat (V007)": 146,
+          "Single line TVC_single is locked for opposing traffic · Madurai–Thiruvananthapuram Central Superfast (S052)": 434
+        },
+        "seconds": 614,
+        "signal_id": "",
+        "station": "TVC"
+      },
+      {
+        "call": 0,
+        "id": "L017",
+        "reasons": {
+          "Authority to ALLP_PUPR_M0-SA": 4,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service": 200,
+          "Expect a wait before Ambalappuzha: no free platform suitable for this service · Bengaluru–Kanniyakumari Mail / Express (M065)": 234,
+          "Expect a wait before Ambalappuzha: the remaining platforms are reserved for approaching services · Bengaluru–Kanniyakumari Mail / Express (M065)": 174
+        },
+        "seconds": 612,
+        "signal_id": "",
+        "station": "ALLP"
+      },
+      {
+        "call": 3,
+        "id": "M068",
+        "reasons": {
+          "Authority to KZTW_KZT_M1-NA": 4,
+          "Expect a wait at KZT until Kollam Junction–Nagercoil Junction Passenger (L025) clears the escape approach": 606
+        },
+        "seconds": 610,
+        "signal_id": "",
+        "station": "KZT"
+      },
+      {
+        "call": 9,
+        "id": "M034",
+        "reasons": {
+          "Authority to PUPR_AMPA_M3-NA": 4,
+          "Block AMPA_LLEAD_U occupied by M032 · Thiruvananthapuram Central–Guwahati Mail / Express (M032)": 42,
+          "Block PUPR_AMPA_M3 occupied by M032 · Thiruvananthapuram Central–Guwahati Mail / Express (M032)": 48,
+          "Conflicts with route from AMPA-N2 · Thiruvananthapuram Central–Guwahati Mail / Express (M032)": 52,
+          "Conflicts with route from PUPR_AMPA_M3-SH · Indore–Nagercoil Junction Mail / Express (M059)": 12,
+          "Expect a wait at AMPA until Kanniyakumari–Indore Superfast (S038) overtakes": 8,
+          "Single line ALLP_single is locked for opposing traffic · Indore–Nagercoil Junction Mail / Express (M059)": 438
+        },
+        "seconds": 604,
+        "signal_id": "",
+        "station": "AMPA"
+      }
+    ],
+    "pack_sha256": "f27e4d92e33254dc44e0a5bebf6f206695dd566c4dac7975db6ee03fa600671d",
+    "peak_active": 38,
+    "report": "Wait exceeded 45 minutes: L004",
+    "station_wait_quality": {
+      "bins": [
+        202,
+        59,
+        15,
+        6,
+        1
+      ],
+      "brief_count": 1665,
+      "count": 283,
+      "cumulative": [
+        {
+          "count": 202,
+          "fraction": 0.713780918727915,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 261,
+          "fraction": 0.92226148409894,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 276,
+          "fraction": 0.975265017667845,
+          "met": false,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 282,
+          "fraction": 0.996466431095406,
+          "met": false,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 2702,
+      "minimum_seconds": 30,
+      "ok": false
+    },
+    "total": 200,
+    "wait_quality": {
+      "bins": [
+        395,
+        87,
+        28,
+        10,
+        1
+      ],
+      "brief_count": 3415,
+      "count": 521,
+      "cumulative": [
+        {
+          "count": 395,
+          "fraction": 0.758157389635317,
+          "met": true,
+          "required": 0.7,
+          "under_seconds": 600
+        },
+        {
+          "count": 482,
+          "fraction": 0.925143953934741,
+          "met": true,
+          "required": 0.9,
+          "under_seconds": 1200
+        },
+        {
+          "count": 510,
+          "fraction": 0.978886756238004,
+          "met": false,
+          "required": 0.98,
+          "under_seconds": 1800
+        },
+        {
+          "count": 520,
+          "fraction": 0.998080614203455,
+          "met": false,
+          "required": 1,
+          "under_seconds": 2700
+        }
+      ],
+      "maximum": 2702,
+      "minimum_seconds": 30,
+      "ok": false
+    },
+    "wall_seconds": 5837.066
+  },
+  "punctuality": {
+    "30": {
+      "services": 27,
+      "mean_delay_seconds": 1317.1777781996361,
+      "p90_delay_seconds": 3161.40000057653,
+      "maximum_delay_seconds": 4103.05000013577
+    },
+    "55": {
+      "services": 60,
+      "mean_delay_seconds": 567.4308336967988,
+      "p90_delay_seconds": 1642.30000001872,
+      "maximum_delay_seconds": 2663.04999987453
+    },
+    "75": {
+      "services": 38,
+      "mean_delay_seconds": 383.07236894547856,
+      "p90_delay_seconds": 1092.29999975922,
+      "maximum_delay_seconds": 1721.35000124254
+    },
+    "95": {
+      "services": 8,
+      "mean_delay_seconds": 575.5937504100152,
+      "p90_delay_seconds": 2439.79999997504,
+      "maximum_delay_seconds": 2439.79999997504
+    }
+  }
+}

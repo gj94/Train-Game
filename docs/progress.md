@@ -2,6 +2,70 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 02:12 — candidate34 original V2 delayed run rejected; baseline continues.
+
+The original delayed wrapper5648/child2636 ended naturally at21:48:28 with L004
+at its booked Turavur/TUVR call,133/200 complete,peak38,maximum2702s in BOTH wait
+populations. Zero safety events and empty run,summary and four inspection errors
+after the configured600s K1 hold at07:30. At02:11:25 original baseline22164/21660
+reaches18:20,113/200,peak34,maxwait41.0m with empty errors and no final audit.
+Its original command/parent identities match launchda4ff140. Runtime/routes/packs,
+six original observers and five acceptance/selection inputs remain frozen.
+
+Evidence in network-candidate-thirty-four/failed-predictive-delayed preserves24
+exact raw files,lossless audit/traffic/failure,exact V2 pack,actual final summary
+and four byte-immutable inspections: KUMM,TUVR,SRTL,then MAKM including newly
+identified S022/M032 dependencies. All4836 distinct source hashes match current-
+at-run candidate655e46bb. Original outputs remain. Never rerun this rejected test
+unchanged,install it or relabel these fingerprints after a later source change.
+
+All-location cumulative395/521,482/521,510/521,520/521 and station-only202/283,
+261/283,276/283,282/283 fail the30/45-minute gates.510/521 and276/283 are below98%;
+never round up. Passing fractions apply only to this failed prefix. No complete-
+population comparison,recovery certificate or installation.
+
+L004 arrivedTUVR21:02:15.10 with no departure,current signalTUVR-N3. Its2702s
+comprises1742s opposing traffic,948s compatible KUMM receiving and12s M027 route
+conflict. Opposing buckets:50L009,716combinedL009/M027,108combinedL009/S021,
+258M027,432S021,178combinedS021/L009. Receiving buckets:166combinedM027/S021,
+46combinedM027/S021/L009,544combinedM029/M031/S023,and approaching48combined
+M027/S021/L009,128combinedS021/L009,16combinedS021/L009/M027. Preserve combined
+buckets without individual attribution. KUMM stopping services still requireP3.
+
+Actual KUMM claims M029P1/M031P2/S023P3; all wait for compatible TUVR receiving.
+TUVR claims incomingM070P1/M027P2/L004P3. M027 protects M070's SRTL escape.
+M070 leftSRTL21:47:20.75 and moves9.3222m/s with authority toward TUVR; its tail
+still claimsSRTL_P3. Actual SRTL claims S021P1/L009P2/M070P3 plus incomingS022
+P1/P2/P3 alternatives,not three simultaneous reservations. L009 arrivedSRTL
+21:48:00.95 and dwells until21:49:11. S021 protects S022's approach; S022 waits
+for M070 to clearP3. One actual future plan atSRTL: incomingS022P3/opponentL009P2,
+vacaterM070/escapeTUVR_P1,received=false,opponent_received=true,escaped=false.
+All four inspections preserve that same plan and identical before/after captures.
+MAKM claims M032P1/L011P2/M033P3. M032 approachesMAKM-N1 at14.8618m/s while its
+next departure decision protects S022; L011 awaits M032's conflicting route and
+M033 its occupied block. This is not permanent-deadlock or runtime-defect proof.
+
+M054 now leavesQLN21:42:14.75 and moves north; M104 moves north beyondKZK after
+21:34:56.30 departure. M088 is inTVCdepot after21:31:24.30 arrival. These local
+movements are NOT whole-day improvement,capacity or recovery proof. M058/M056
+move north; L028 waitsERL for movingS049,with L030/L038 behind. L031 moves toward
+NEM afterTVC21:42:56.75; M099 dwellsTVC until21:49:51. S053/M081/M085 await a
+clearTVC origin; laterM087/M083/L037 are not due. L032 awaits itsNCJ origin.
+L029 is inNCJdepot after21:30:35.65 arrival. S017/S019 are now stabled inTVC,
+S035 moves south and S033 moves toward its southern portal but has not cleared.
+S036 remains beyond the northern boundary; M102,K1,L025 remain in their depots.
+
+Eleven K1 minute samples show27.4545764399m braking by07:31 then unchanged
+recorded extents through07:40,not exact controller frames or recovery proof.
+The actual final summary records one V001 overtake ofK1 atTVCN,not completed
+multiple-location evidence. Wait for the ORIGINAL baseline final report before
+coordinated replanning from BOTH actual queues,opposing groups,compatible roads
+and full-tail clearance. No duplicate,restart,Classic Network,full-suite or native
+job launched. The unchanged runtime/tests retain the1004-test suite and candidate34
+five passing authoring guards. Network200V2 remains unaccepted/uninstalled;
+feasibility and ETA remain unproven. No gameplay playtest until passing V2 install.
+
+
 28 October 01:58 — both original34 V2 tests continue with frozen inputs.
 
 At01:58:16 baseline22164/21660 reports 15:30:00 complete=92/200 peak=34 max_wait=41.0m wall=5626.1s.
