@@ -2,6 +2,16 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 02:59 — both original35 V2 runs continue with frozen inputs.
+
+At02:59:17 baseline14568/15696 reports 03:10:00 complete=2/200 peak=23 max_wait=6.1m wall=716.0s.
+Delayed6764/4340 reports 04:10:00 complete=6/200 peak=29 max_wait=8.9m wall=728.1s.
+All four original command/parent identities match launch968f3301. Both have empty
+errors and no final audit. All4836 input hashes,six original observers and five
+acceptance/selection hashes remain unchanged. No new job,restart,source edit or
+installation. Both original results remain pending; partial progress is not
+acceptance,capacity or recovery proof. No gameplay playtest before passing V2 install.
+
 28 October 02:49 — both original35 V2 runs continue with frozen inputs.
 
 At02:49:18 baseline14568/15696 reports 01:00:00 complete=0/200 peak=10 max_wait=0.1m wall=163.7s.
