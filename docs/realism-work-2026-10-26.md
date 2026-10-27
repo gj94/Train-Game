@@ -5760,3 +5760,37 @@ run in a new generation, verify actual identities/options/source hashes and
 freeze all inputs until both originals end. No Classic Network/full-suite/native
 job. Network200V2 remains unaccepted/uninstalled; feasibility and ETA unproven.
 No gameplay playtest until passing V2 installation.
+
+28 October 00:24 — candidate34 V2 launch verified; frozen inputs.
+
+Candidate655e46bb was committed/pushed after exact normal author reproduction,
+--check,five headless authoring guards and staged verification of thirteen raw
+proofs,both pack hashes and override JSON. Exactly two V2 runs launched ONCE at
+00:23:25 in rehearsals-v34: baseline wrapper22164/child21660 with --network
+--snapshots; delayed wrapper5648/child2636 with --network --delay=600
+--delay-at=27000. All four actual commands/options,unique outputs,the ORIGINAL
+predictive baseline catalogue,4836 distinct input hashes,six original observers
+and five acceptance/selection hashes were verified. The catalogue existed before
+verification; no failed verification attempt,duplicate or restart. Five exact
+launch files plus their hash manifest are preserved in candidate34/launch-proof.
+
+At00:23:55 the baseline has no first progress line and delayed reaches00:20,
+0/200. Both original process identities match,errors are empty and neither final
+audit exists. Partial clocks are not acceptance. Runtime/routes/packs/six
+observers/five acceptance inputs remain frozen while either original34 run lives.
+No Classic Network,full-suite,native,search or diagnostic job remains. The
+completed1004-test runtime/tests suite is unchanged; five authoring guards cover
+this departure-only candidate. inspect-current-replays.py selects34 first.
+Do not execute launch-network-v34.ps1 again.
+
+Both original33 runs ended naturally and failed M054 bookedNYY21:14:24,127/200,
+peak39,max2702s BOTH populations,zero safety and failed30/45 wait gates. Baseline
+f9aa1305 and delayed7f5d44ad preserve21+21 exact raw files,4836 hashes each,
+lossless reports,exact packs,actual summaries and six immutable inspections.
+All33 fingerprints are HISTORICAL after34; never relabel,rerun unchanged or
+install. Matching failure clocks/counts do not equate populations. No complete
+population comparison,recovery certificate or installation.
+Next: inspect both ORIGINAL34 final reports against every completion,safety,
+wait,physical and recovery gate. Network200V2 remains unaccepted/uninstalled;
+no gameplay playtest until passing V2 installation. Continuation stays active;
+feasibility and completion ETA remain unproven.
