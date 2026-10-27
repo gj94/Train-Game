@@ -5451,3 +5451,13 @@ acceptance/selection hashes remain unchanged. These early partial clocks are not
 acceptance. No duplicate, restart, Classic, suite or native job was launched.
 Continue the two original runs with inputs frozen. Network200V2 remains unaccepted
 and uninstalled; no gameplay playtest until a passing installation.
+
+27 October 22:17 — original33 V2 runs continue; inputs remain frozen.
+
+At22:17:32 baseline14144/5236 reaches03:40 simulated,2/200 complete,peak27,
+maxwait7.4m; delayed15508/24420 reaches04:40,13/200,peak29,maxwait18.6m.
+Both original command/parent identities match, errors are empty and neither
+final audit exists. All4836 source hashes, six original observers and five
+acceptance/selection hashes match launch. No new job or source edit. These are
+partial results only; Network200V2 remains unaccepted/uninstalled. Wait for both
+original runs; no gameplay playtest until passing V2 installation.
