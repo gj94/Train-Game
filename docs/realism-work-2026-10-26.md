@@ -5619,3 +5619,14 @@ selection hashes remain unchanged. Delayed33 remains rejected in7f5d44ad; its
 source change, restart or installation. Continue the original baseline with
 inputs frozen; these partial results are not acceptance or recovery proof.
 Network200V2 remains unaccepted/uninstalled; no gameplay playtest until passing install.
+
+27 October 23:57 — original33 V2 baseline continues.
+
+At23:57:18 the original14144/5236 pair reaches19:50 simulated,121/200 complete,
+peak34,maxwait41.0m. Exact command/parent identity matches, stderr is empty and
+no final audit exists. All4836 source hashes,six observers and five acceptance/
+selection hashes remain unchanged. Delayed33 remains rejected in7f5d44ad; its
+21 exact raw files and three immutable inspections are preserved. No new job,
+source change, restart or installation. Continue the original baseline with
+inputs frozen; these partial results are not acceptance or recovery proof.
+Network200V2 remains unaccepted/uninstalled; no gameplay playtest until passing install.
