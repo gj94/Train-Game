@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 164,
+    "started": "2026-10-27T12:02:18.8747254+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v29/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "01be15f8d80c3ba6128950155ec7065b850d4ca7",
+    "status": "running",
+    "reason": "User limits Network208 to V2. Candidate twenty-nine changes twenty northern departures after both actual28 M068 TUVR failures. Retain M05315:40, leave an origin gap, then V00316:35/S03316:45 ahead of M01516:55/M02117:10/M02517:25/S01717:40; move following northern fast/mail/local groups together through21:30. All southern timings retained. Actual queues and full-rake geometric intervals are planning evidence only, not guaranteed compatible receiving, clearance, crossing order, escape or capacity. All actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "53e6fc5d44b89930330ac97eb0e342c60877bfa49c47b0bd70eae580f006e9da",
+    "child_pid": 7484
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 832,
+    "started": "2026-10-27T12:02:18.9374670+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v29/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "01be15f8d80c3ba6128950155ec7065b850d4ca7",
+    "status": "running",
+    "reason": "User limits Network208 to V2. Candidate twenty-nine changes twenty northern departures after both actual28 M068 TUVR failures. Retain M05315:40, leave an origin gap, then V00316:35/S03316:45 ahead of M01516:55/M02117:10/M02517:25/S01717:40; move following northern fast/mail/local groups together through21:30. All southern timings retained. Actual queues and full-rake geometric intervals are planning evidence only, not guaranteed compatible receiving, clearance, crossing order, escape or capacity. All actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "53e6fc5d44b89930330ac97eb0e342c60877bfa49c47b0bd70eae580f006e9da",
+    "child_pid": 25904
+  }
+]

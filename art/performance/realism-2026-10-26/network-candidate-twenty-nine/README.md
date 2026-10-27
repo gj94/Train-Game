@@ -60,3 +60,32 @@ recovery gate remains unchanged. Network208V2 remains unaccepted/uninstalled.
 Legacy choices, runtime, approved sound, gangways/portals, R47 and pending
 UI/category helpers remain unchanged. No gameplay playtest until a passing V2
 installation. Feasibility and completion ETA remain unproven.
+
+27 October 12:03 — candidate29 V2 launch verified; frozen inputs.
+
+Candidate01be15f8 was committed/pushed after exact normal author reproduction,
+--check, all four headless authoring guards and staged verification of twelve
+raw proofs, both pack hashes and override JSON. Exactly two new V2 runs launched
+once at12:02:18 in rehearsals-v29: baseline wrapper164/child7484 with
+--network --snapshots; delayed wrapper832/child25904 with --network --delay=600
+--delay-at=27000. All four actual commands/options, unique outputs, the ORIGINAL
+predictive baseline catalogue,4836 distinct source hashes and six observer
+hashes were verified. Verification waited for the original catalogue and passed
+without a failed attempt, duplicate or restart. Five exact staged launch files
+plus their hash manifest preserve the process/source evidence.
+
+At12:02:51 the baseline has no first progress line; delayed reaches00:20.
+Both original process pairs match, errors are empty and neither final audit
+exists. These partial clocks are not acceptance. Runtime, routes, packs and six
+observers remain frozen while either original run lives. No Classic208, full
+suite, native, search or diagnostic job exists. The completed1003-test source
+suite is unchanged; four authoring guards cover this departure-only candidate.
+
+Both original28 results remain rejected: baseline f12eba19 M068TUVR-N1 at
+16:56:04,104/208 and delayed3ed49c30 at16:58:22,106/208, both zero safety but
+failed wait gates. Their17+17 exact raw files,4836 hashes each and four immutable
+inspections are historical after candidate29. Never rerun unchanged or install.
+Next: inspect the original29 final reports against every completion, safety,
+wait, physical and recovery gate. Network208V2 remains unaccepted/uninstalled;
+no gameplay playtest until a passing V2 installation. Continuation remains
+active; feasibility and completion ETA remain unproven.
