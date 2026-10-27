@@ -2,6 +2,20 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 12:36 — original candidate29 V2 runs continue with frozen inputs.
+
+At 12:36:53, baseline 164/7484 reaches 06:40, 25/208 complete, peak 31,
+maximum wait 31.9 minutes; delayed 832/25904 reaches 08:50, 40/208 complete,
+peak 31, maximum wait 40.9 minutes. Both original command/parent identities
+match launch 55cace53. Errors are empty and neither run has a final audit.
+The V2 pack, all six observer hashes and frozen Git paths match the launch
+inputs. No duplicate or Classic208 run was launched. These partial clocks,
+counts and wait maxima do not establish full-day acceptance or recovery.
+Keep both original runs unchanged and inspect their actual final reports
+against every completion, safety, wait, physical and recovery gate.
+Network208V2 remains unaccepted and uninstalled; continuation remains active.
+No gameplay change or playtest is due.
+
 27 October 12:25 — original candidate29 V2 runs continue with frozen inputs.
 
 At12:25:14 baseline164/7484 reaches05:00,16/208,peak29,maxwait26.0m;
