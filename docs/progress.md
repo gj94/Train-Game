@@ -2,6 +2,17 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 18:39 — original candidate32 V2 runs remain live.
+
+At18:39:38 baseline27304/14984 reaches03:40,2/208,peak27,maxwait7.4m;
+delayed26020/26688 reaches04:50,16/208,peak29,maxwait26.0m. Both original
+command/parent identities match launch2a53f9ed,errors are empty,and neither
+final audit exists. These are partial observations only. Runtime/routes/packs
+remain unchanged from ddbeedb5 and all six observer hashes match their launch.
+No duplicate,restart,Classic208,full-suite,native or diagnostic job was launched.
+Continue waiting for both original final reports with inputs frozen; no acceptance,
+installation or gameplay playtest. Network208V2 feasibility and ETA remain unproven.
+
 27 October 18:29 — original candidate32 V2 runs continue; inputs unchanged.
 
 At18:29:35 the original baseline27304/14984 reaches01:40,1/208,peak14,maxwait6.1m;
