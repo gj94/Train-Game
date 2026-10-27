@@ -5630,3 +5630,59 @@ selection hashes remain unchanged. Delayed33 remains rejected in7f5d44ad; its
 source change, restart or installation. Continue the original baseline with
 inputs frozen; these partial results are not acceptance or recovery proof.
 Network200V2 remains unaccepted/uninstalled; no gameplay playtest until passing install.
+
+28 October 00:10 — candidate33 original V2 baseline rejected; both originals ended.
+
+The original baseline wrapper14144/child5236 ended naturally at21:14:24 simulated
+with M054 at its booked Neyyattinkara/NYY call,127/200 complete,peak39 and maximum
+2702s in BOTH wait populations. Zero safety events, empty run/summary/three
+inspection errors and no manual hold. Original delayed15508/24420 is rejected
+in7f5d44ad. No original33 process remains and neither run was restarted. All
+runtime, routes, packs, six original observers and five acceptance inputs stayed
+unchanged throughout both runs. Network200V2 remains unaccepted/uninstalled.
+
+Baseline evidence in network-candidate-thirty-three/failed-predictive-baseline
+preserves21 exact raw files, lossless audit/traffic/failure, exact V2 pack, actual
+final summary and three byte-immutable NEM/KZT/NYY inspections. All4836 distinct
+source hashes and eleven observer/acceptance hashes match current-at-run
+f5c5d999. Original outputs remain. Never rerun unchanged, relabel fingerprints
+after a later source change, or install failed results.
+
+All-location388/512,471/512,497/512,511/512 and station203/286,262/286,279/286,
+285/286 FAIL under30/45 minutes. Passing fractions apply only to this failed
+prefix. Baseline and delayed have different wait populations despite the same
+failure clock/count; no complete-population comparison or recovery certificate.
+M054 arrivedNYY20:28:09.15 without departure,NYY-N1:2702s=1764s opposing
+(S049394,S033448,S053446,M081476)+890s compatible NEM receiving+48s conflicts.
+Receiving176L031,488combinedL031/M099,96combinedL031/S053,22S033,
+68approachingL031/M081,40approachingS033/L031; preserve combined buckets.
+
+Actual NEM L031P1/M099P2 await NYY M054P1/M081P2; M054 awaits NEM receiving.
+NEM claim S019 has no road and refers to empty stock moving at TVC, not a NEM
+road reservation. M081 awaits PASA S053/M104; M104 moves14.513m/s toward PASA
+after KZT21:07:40.25 departure, while S053 awaits its conflicting route.
+M088 has2676s booked ERL wait (2260opposing+396receiving+20conflicts), waiting
+for S033 inKZT_single. KZT has no current claims; S033 moves24.6m/s south after
+KZT21:09:29.80 departure. M058/M056/L028 queue behind M088; L030 moves north.
+All three inspections retain identical before/after captures and no future
+clearance plans. These observations do not prove permanent deadlock or a runtime
+fault. The matching M054/M088 waits are local records, not population equality.
+
+S036 has cleared the northern boundary21:02:29.75; M102 is in ALLP depot after
+19:56:57.80 arrival. L004 waitsTUVR forS021 and M070 waitsSRTL forL011. S021/L003/
+L011/M031/M069/M055/M072 move; S038 also moves at19.998m/s towardAMPA. L009 waits
+for M031's overtake, M027 protects L004's onward crossing and M033/M059 await
+S022. S035 waits behind S019's TVC block; S017/S019 move empty stock but are not
+yet stabled. M015/V003/V008 are in TVC depots after20:44:02.65/19:42:25.10/19:54:29.05
+passenger arrivals. M065 cleared the southern boundary19:47:13.30. K1/L025 remain
+in NCJ depots after12:46:12.65/13:14:56.65 arrivals. Local movements are not
+whole-day improvement/capacity/recovery proof; actual baseline summary has no
+K1 overtakes. Delayed has one atTVCN, not completed multiple-location evidence.
+
+Both original33 results are rejected. Next: coordinated evening departure-group
+planning using both actual queues, opposing groups, compatible receiving roads
+and full-tail clearance; preserve200 services and all retained non-departure
+fields,K1,selection and acceptance gates. No Classic Network, duplicate, full
+suite or native job launched. Unchanged1004-test suite and five authoring guards
+remain current. No gameplay playtest until passing V2 install. Feasibility and
+completion ETA remain unproven.

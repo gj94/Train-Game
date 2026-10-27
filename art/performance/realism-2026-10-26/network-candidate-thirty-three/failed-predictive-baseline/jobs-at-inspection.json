@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 14144,
+    "started": "2026-10-27T22:02:38.3400847+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v33/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "f5c5d99952c8823d7499423aee8e15d747877d13",
+    "status": "finished-rejected",
+    "reason": "User authorizes modest trimming after PC restart. Candidate33 selects200 by excluding eight evening mails M021/M025/M052/M057/M066/M067/M090/M098, preserving every retained service record, K1 and all safety/wait/physical/recovery gates. Normal and delayed V2 only; prior32 baseline interrupted, delayed rejected. Finite compatible receiving roads, opposing groups and full-tail clearance remain unproven until complete tests",
+    "pack_sha256": "be42428170c7bbd8388c1c2bdfae0d33dab51f39390c8fc3fa3a06e8c2784ddf",
+    "child_pid": 5236
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 15508,
+    "started": "2026-10-27T22:02:38.4141248+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v33/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "f5c5d99952c8823d7499423aee8e15d747877d13",
+    "status": "finished-rejected",
+    "reason": "User authorizes modest trimming after PC restart. Candidate33 selects200 by excluding eight evening mails M021/M025/M052/M057/M066/M067/M090/M098, preserving every retained service record, K1 and all safety/wait/physical/recovery gates. Normal and delayed V2 only; prior32 baseline interrupted, delayed rejected. Finite compatible receiving roads, opposing groups and full-tail clearance remain unproven until complete tests",
+    "pack_sha256": "be42428170c7bbd8388c1c2bdfae0d33dab51f39390c8fc3fa3a06e8c2784ddf",
+    "child_pid": 24420
+  }
+]
