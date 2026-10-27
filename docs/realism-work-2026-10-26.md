@@ -4802,3 +4802,19 @@ the actual final reports against all gates. No replay was duplicated or restarte
 no Classic208, native or unchanged suite was launched. Network208V2 remains
 unaccepted/uninstalled. No gameplay playtest until accepted V2 installation;
 feasibility and completion ETA remain unproven. Continuation remains active.
+
+27 October 16:43 — original candidate31 V2 runs continue with frozen inputs.
+
+At 16:43:29, baseline 2108/24676 reaches 06:30, 25/208 complete, peak31,
+maximum wait31.1m; delayed 13884/3528 reaches 08:30, 36/208 complete, peak31,
+maximum wait40.9m. All four original process IDs, parent IDs and complete commands
+match launch a01417ed. Both error logs remain empty and neither final audit exists.
+The delayed clock has passed its configured 07:30 hold interval; actual final
+reports are still required to establish the disturbance and recovery outcome.
+
+Runtime/tests/routes/packs and six observers remain unchanged since candidate
+91969531. The V2 pack and all six observer hashes match launch. No replay was
+duplicated or restarted; no Classic208, native or unchanged suite was launched.
+Keep inputs frozen until both original31 runs end naturally. Partial progress is
+not acceptance. Network208V2 remains unaccepted/uninstalled, with no gameplay
+playtest until a passing V2 installation. Feasibility and ETA remain unproven.
