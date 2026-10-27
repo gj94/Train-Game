@@ -6498,3 +6498,15 @@ were launched or restarted and no simulation input or installed data changed.
 Await both original final reports before replanning. Partial progress is not
 acceptance; Network 200 V2 remains unaccepted/uninstalled, with full-day
 feasibility unproven, no reliable readiness ETA and no gameplay playtest.
+
+28 October 05:59 — original candidate36 pair remains active.
+
+At 05:59:22, baseline 18424/6760 reports 09:40 simulated, 49/200 complete,
+peak 31, maximum wait 35.8 minutes; delayed 18356/23568 reports 12:50,
+69/200 complete, peak 32, maximum wait 40.9 minutes. Both error logs are empty;
+no final audit exists. All four original identities, 4836 source hashes and 11
+observer/acceptance hashes match. No other Godot job is present. Inputs remain
+frozen; no launch, restart, source change, installation or gameplay playtest.
+Existing tests are retained. Await both original final reports before replanning.
+Partial results are not acceptance; Network 200 V2 remains unaccepted/uninstalled,
+with full-day feasibility unproven and no reliable readiness ETA.
