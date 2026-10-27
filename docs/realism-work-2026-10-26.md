@@ -6445,3 +6445,17 @@ Await both original final reports before coordinated departure-only replanning.
 Network 200 V2 remains unaccepted and uninstalled; no gameplay playtest or
 reliable readiness ETA. Existing source and authoring test results are retained;
 this checkpoint changes documentation only.
+
+28 October 05:19 — original candidate36 runs continue; final audits pending.
+
+At 05:19:32, baseline 18424/6760 reports 03:30 simulated, 2/200 complete,
+peak 25 and maximum wait 7.4 minutes. Delayed 18356/23568 reports 04:30,
+10/200 complete, peak 29 and maximum wait 9.3 minutes. Both error logs remain
+empty, with no final audits. All four original process/parent/command identities,
+4836 source hashes and 11 observer/acceptance hashes match launch records.
+No additional Godot job is present. All simulation inputs remain frozen.
+
+No launch, restart, source change or installation occurred. Retain the existing
+1004-test source suite and five authoring guards. Await both original final
+reports; partial progress is not acceptance. Network 200 V2 remains unaccepted
+and uninstalled, with no gameplay playtest or reliable readiness ETA.
