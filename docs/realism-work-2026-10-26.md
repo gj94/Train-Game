@@ -6459,3 +6459,16 @@ No launch, restart, source change or installation occurred. Retain the existing
 1004-test source suite and five authoring guards. Await both original final
 reports; partial progress is not acceptance. Network 200 V2 remains unaccepted
 and uninstalled, with no gameplay playtest or reliable readiness ETA.
+
+28 October 05:29 — candidate36 original runs remain active.
+
+At 05:29:20, baseline 18424/6760 reports 05:00 simulated, 16/200 complete,
+peak 29 and maximum wait 26.0 minutes; delayed 18356/23568 reports 06:30,
+25/200 complete, peak 31 and maximum wait 31.1 minutes. Both error logs are
+empty and final audits are absent. All four process/parent/command identities
+match launch records; 4836 source hashes and all 11 observer/acceptance hashes
+remain unchanged. No other Godot job is present. Inputs remain frozen, with
+no launch, restart, source edit or installation. Existing source/authoring test
+results remain applicable. Await both original final reports; partial clocks
+and waits are not acceptance. Network 200 V2 remains unaccepted/uninstalled;
+full-day feasibility and readiness ETA remain unproven. No gameplay playtest.
