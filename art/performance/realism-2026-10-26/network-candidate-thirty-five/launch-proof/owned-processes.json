@@ -1,0 +1,26 @@
+[
+  {
+    "ProcessId": 14568,
+    "ParentProcessId": 1156,
+    "Name": "Godot_v4.7.2-stable_win64_console.exe",
+    "CommandLine": "\"D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64_console.exe\" --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v35/predictive-network --pack=res://art/timetables/kerala-coast-network-v2.json --network --snapshots"
+  },
+  {
+    "ProcessId": 15696,
+    "ParentProcessId": 14568,
+    "Name": "Godot_v4.7.2-stable_win64.exe",
+    "CommandLine": "D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64.exe --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v35/predictive-network --pack=res://art/timetables/kerala-coast-network-v2.json --network --snapshots"
+  },
+  {
+    "ProcessId": 6764,
+    "ParentProcessId": 1156,
+    "Name": "Godot_v4.7.2-stable_win64_console.exe",
+    "CommandLine": "\"D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64_console.exe\" --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v35/predictive-network-delayed --pack=res://art/timetables/kerala-coast-network-v2.json --network --delay=600 --delay-at=27000"
+  },
+  {
+    "ProcessId": 4340,
+    "ParentProcessId": 6764,
+    "Name": "Godot_v4.7.2-stable_win64.exe",
+    "CommandLine": "D:\\ClaudeWS\\train-game\\.local\\godot\\Godot_v4.7.2-stable_win64.exe --headless --path D:/ClaudeWS/train-game --script res://tools/prepare_timetable_variant.gd -- --output=res://.local/realism-2026-10-26/rehearsals-v35/predictive-network-delayed --pack=res://art/timetables/kerala-coast-network-v2.json --network --delay=600 --delay-at=27000"
+  }
+]

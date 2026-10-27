@@ -2,6 +2,44 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 02:47 — candidate35 V2 launch verified; frozen inputs.
+
+Author5de392dc73c0f1411396dff0381faf1f5ab2f48f was committed/pushed after normal
+reproduction,exact--check,five headless authoring guards and exact staged proofs.
+Exactly two new V2 runs launched ONCE at02:46:30 in rehearsals-v35:
+baseline wrapper14568/child15696 with --network --snapshots; delayed wrapper6764/
+child4340 with --network --delay=600 --delay-at=27000. All four actual commands,
+options,unique outputs,the ORIGINALbaselinecatalogue,4836distinct input hashes,
+six original observers and five acceptance/selection hashes were verified. The
+original catalogue existed before verification; no failed verification,duplicate
+or restart. Five exact launch files plus manifest are retained in candidate35/
+launch-proof. inspect-current-replays.py selects35first. Do not execute
+launch-network-v35.ps1 again. Runtime/routes/packs/11observers remain frozen
+while either original35run lives.
+
+At02:46:44 baseline has no first progress line; delayed reaches00:10,0/200,
+peak3,max0.1m. Both original identities match launch,errors are empty,no final
+audits. Partial progress is not acceptance. No Classic Network,source suite,
+native,search or diagnostic job remains. Completed1004source tests are retained;
+unchanged legacy certificates remain. Pending UI/category helpers remain pending.
+
+Both original34 runs ended naturally and failed before35: baseline2618efbd
+134/200,delayedcdade7d7 133/200,eachL004bookedTUVR21:48:28,peak38,max2702s BOTH,
+zero safety. Baselineallfails30/45,stationpasses30butfails45;delayedbothfail30/45.
+24+24 exact raw files,4836current-at-run hashes each,eight immutable station
+inspections and original outputs retained. ALL34fingerprints are HISTORICAL
+after35; never relabel,rerun unchanged or install. Matching clocks and local
+queues do not equate populations; no complete-population comparison or recovery
+certificate. S033 completed the southern boundary only in the baseline prefix.
+
+Candidate35 has seven departure-only northern changes,retains all200selected
+services and allnondeparturefields,K106:00; no lower population or relaxed gate.
+Its later22:00 hour has18starts across origins,descriptive only. Both full-day
+results remain unproven. Next: inspect both ORIGINAL35finalreports,preserve
+failures and actual queues before any new source change. Network200V2 remains
+unaccepted/uninstalled; no gameplay playtest until passing V2 install. No reliable
+completion ETA. The continuation remains active until all V2readiness is done.
+
 28 October 02:46 — candidate35 authored; original34 failures preserved before departure changes.
 
 Candidate35 changes only seven northern departure strings from34:
