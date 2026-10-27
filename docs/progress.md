@@ -2,6 +2,19 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 09:45 — original v27 baseline remains active.
+
+At 09:45:26 baseline11952/20024 reaches14:50 with85/208 complete, peak34 and
+maximum wait41.0m. Its original commands and parents match; errors are empty
+and no final audit exists. The V2 pack and all six observer hashes match using
+the launch verifier's text normalization. An initial raw-byte observer check
+was corrected to that recorded normalization; no source file was changed.
+The delayed run remains rejected with its exact evidence preserved in7f49205e;
+its processes have ended. Only the original baseline pair remains live.
+Continue with frozen inputs; partial progress is not acceptance. Network208V2
+remains unaccepted/uninstalled. No duplicate, Classic208, repeated suite, native
+or diagnostic job was launched. No new gameplay playtest.
+
 27 October 09:38 — candidate27 V2 delayed run rejected; original baseline continues.
 
 The original delayed wrapper20640/child27164 finished naturally with M097 at
