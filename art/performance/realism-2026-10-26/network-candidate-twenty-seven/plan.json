@@ -1,0 +1,90 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "1fd5ede1c4b6c05b896d3d42db8cfb725c50421bfd668b1e3ef7d8c069bebbd8",
+    "kerala-coast-network-v2.json": "99f96b7a22920f58de52ca4567a354d0e367fe4422f0bf800ea8cf76bfee12bc",
+    "kerala-coast-network-departure-overrides.json": "5e0643b688c96a57dcd6f4ea14392a36c976e55b6a6ce00fb36e2f406da85d14"
+  },
+  "changes": [
+    {
+      "service": "S051",
+      "before": "14:45",
+      "after": "15:40",
+      "reason": "Delay S051/S049 to15:40/16:10, retaining V00715:30 and S05316:10, then M08117:10,M08517:30,M08718:00,M08319:00,L03719:20. Actual26 baseline S051/S049 occupy both NEM roads while M082/M051 occupy both NYY roads; M082 waits2218s for compatible NEM receiving. Actual26 delayed M082 NEM full-rake envelope is15:08:22-15:14:46 and TVC15:15:40-15:21:22. Shift the opposing TVC group behind this observed interval, spreading later mail/local departures across available origin hours; these observations are not predictions and origin gaps do not guarantee clearance or crossing order."
+    },
+    {
+      "service": "S049",
+      "before": "15:05",
+      "after": "16:10",
+      "reason": "Delay S051/S049 to15:40/16:10, retaining V00715:30 and S05316:10, then M08117:10,M08517:30,M08718:00,M08319:00,L03719:20. Actual26 baseline S051/S049 occupy both NEM roads while M082/M051 occupy both NYY roads; M082 waits2218s for compatible NEM receiving. Actual26 delayed M082 NEM full-rake envelope is15:08:22-15:14:46 and TVC15:15:40-15:21:22. Shift the opposing TVC group behind this observed interval, spreading later mail/local departures across available origin hours; these observations are not predictions and origin gaps do not guarantee clearance or crossing order."
+    },
+    {
+      "service": "M081",
+      "before": "15:40",
+      "after": "17:10",
+      "reason": "Delay S051/S049 to15:40/16:10, retaining V00715:30 and S05316:10, then M08117:10,M08517:30,M08718:00,M08319:00,L03719:20. Actual26 baseline S051/S049 occupy both NEM roads while M082/M051 occupy both NYY roads; M082 waits2218s for compatible NEM receiving. Actual26 delayed M082 NEM full-rake envelope is15:08:22-15:14:46 and TVC15:15:40-15:21:22. Shift the opposing TVC group behind this observed interval, spreading later mail/local departures across available origin hours; these observations are not predictions and origin gaps do not guarantee clearance or crossing order."
+    },
+    {
+      "service": "M085",
+      "before": "16:20",
+      "after": "17:30",
+      "reason": "Delay S051/S049 to15:40/16:10, retaining V00715:30 and S05316:10, then M08117:10,M08517:30,M08718:00,M08319:00,L03719:20. Actual26 baseline S051/S049 occupy both NEM roads while M082/M051 occupy both NYY roads; M082 waits2218s for compatible NEM receiving. Actual26 delayed M082 NEM full-rake envelope is15:08:22-15:14:46 and TVC15:15:40-15:21:22. Shift the opposing TVC group behind this observed interval, spreading later mail/local departures across available origin hours; these observations are not predictions and origin gaps do not guarantee clearance or crossing order."
+    },
+    {
+      "service": "M087",
+      "before": "16:35",
+      "after": "18:00",
+      "reason": "Delay S051/S049 to15:40/16:10, retaining V00715:30 and S05316:10, then M08117:10,M08517:30,M08718:00,M08319:00,L03719:20. Actual26 baseline S051/S049 occupy both NEM roads while M082/M051 occupy both NYY roads; M082 waits2218s for compatible NEM receiving. Actual26 delayed M082 NEM full-rake envelope is15:08:22-15:14:46 and TVC15:15:40-15:21:22. Shift the opposing TVC group behind this observed interval, spreading later mail/local departures across available origin hours; these observations are not predictions and origin gaps do not guarantee clearance or crossing order."
+    },
+    {
+      "service": "M083",
+      "before": "17:15",
+      "after": "19:00",
+      "reason": "Delay S051/S049 to15:40/16:10, retaining V00715:30 and S05316:10, then M08117:10,M08517:30,M08718:00,M08319:00,L03719:20. Actual26 baseline S051/S049 occupy both NEM roads while M082/M051 occupy both NYY roads; M082 waits2218s for compatible NEM receiving. Actual26 delayed M082 NEM full-rake envelope is15:08:22-15:14:46 and TVC15:15:40-15:21:22. Shift the opposing TVC group behind this observed interval, spreading later mail/local departures across available origin hours; these observations are not predictions and origin gaps do not guarantee clearance or crossing order."
+    },
+    {
+      "service": "L037",
+      "before": "17:30",
+      "after": "19:20",
+      "reason": "Delay S051/S049 to15:40/16:10, retaining V00715:30 and S05316:10, then M08117:10,M08517:30,M08718:00,M08319:00,L03719:20. Actual26 baseline S051/S049 occupy both NEM roads while M082/M051 occupy both NYY roads; M082 waits2218s for compatible NEM receiving. Actual26 delayed M082 NEM full-rake envelope is15:08:22-15:14:46 and TVC15:15:40-15:21:22. Shift the opposing TVC group behind this observed interval, spreading later mail/local departures across available origin hours; these observations are not predictions and origin gaps do not guarantee clearance or crossing order."
+    },
+    {
+      "service": "S054",
+      "before": "15:00",
+      "after": "15:20",
+      "reason": "Delay S05415:20,M05215:35,M06615:45,M10216:00,M05417:00 and L02817:20 to interrupt repeated northbound KZT/PASA receiving pressure around M051. Actual26 baseline L028/M052 occupy both KZT roads and protect M051 NYY crossing; delayed M051 waits1354s opposing L028/M052/M066 and1312s receiving, eventually against L004/approachingM102. Retain S05214:30 and L00414:55; the later M102 aims to reduce its close-following overtake hold. Retained L004 and later S03616:10,M07016:30,M07216:55,S03817:10,L03017:25,L03817:35 can still constrain receiving, opposing traffic and overtakes. No guaranteed gap, legal berth or full-tail escape follows from these departure times."
+    },
+    {
+      "service": "M052",
+      "before": "14:40",
+      "after": "15:35",
+      "reason": "Delay S05415:20,M05215:35,M06615:45,M10216:00,M05417:00 and L02817:20 to interrupt repeated northbound KZT/PASA receiving pressure around M051. Actual26 baseline L028/M052 occupy both KZT roads and protect M051 NYY crossing; delayed M051 waits1354s opposing L028/M052/M066 and1312s receiving, eventually against L004/approachingM102. Retain S05214:30 and L00414:55; the later M102 aims to reduce its close-following overtake hold. Retained L004 and later S03616:10,M07016:30,M07216:55,S03817:10,L03017:25,L03817:35 can still constrain receiving, opposing traffic and overtakes. No guaranteed gap, legal berth or full-tail escape follows from these departure times."
+    },
+    {
+      "service": "M066",
+      "before": "14:45",
+      "after": "15:45",
+      "reason": "Delay S05415:20,M05215:35,M06615:45,M10216:00,M05417:00 and L02817:20 to interrupt repeated northbound KZT/PASA receiving pressure around M051. Actual26 baseline L028/M052 occupy both KZT roads and protect M051 NYY crossing; delayed M051 waits1354s opposing L028/M052/M066 and1312s receiving, eventually against L004/approachingM102. Retain S05214:30 and L00414:55; the later M102 aims to reduce its close-following overtake hold. Retained L004 and later S03616:10,M07016:30,M07216:55,S03817:10,L03017:25,L03817:35 can still constrain receiving, opposing traffic and overtakes. No guaranteed gap, legal berth or full-tail escape follows from these departure times."
+    },
+    {
+      "service": "M102",
+      "before": "14:55",
+      "after": "16:00",
+      "reason": "Delay S05415:20,M05215:35,M06615:45,M10216:00,M05417:00 and L02817:20 to interrupt repeated northbound KZT/PASA receiving pressure around M051. Actual26 baseline L028/M052 occupy both KZT roads and protect M051 NYY crossing; delayed M051 waits1354s opposing L028/M052/M066 and1312s receiving, eventually against L004/approachingM102. Retain S05214:30 and L00414:55; the later M102 aims to reduce its close-following overtake hold. Retained L004 and later S03616:10,M07016:30,M07216:55,S03817:10,L03017:25,L03817:35 can still constrain receiving, opposing traffic and overtakes. No guaranteed gap, legal berth or full-tail escape follows from these departure times."
+    },
+    {
+      "service": "M054",
+      "before": "15:40",
+      "after": "17:00",
+      "reason": "Delay S05415:20,M05215:35,M06615:45,M10216:00,M05417:00 and L02817:20 to interrupt repeated northbound KZT/PASA receiving pressure around M051. Actual26 baseline L028/M052 occupy both KZT roads and protect M051 NYY crossing; delayed M051 waits1354s opposing L028/M052/M066 and1312s receiving, eventually against L004/approachingM102. Retain S05214:30 and L00414:55; the later M102 aims to reduce its close-following overtake hold. Retained L004 and later S03616:10,M07016:30,M07216:55,S03817:10,L03017:25,L03817:35 can still constrain receiving, opposing traffic and overtakes. No guaranteed gap, legal berth or full-tail escape follows from these departure times."
+    },
+    {
+      "service": "L028",
+      "before": "14:20",
+      "after": "17:20",
+      "reason": "Delay S05415:20,M05215:35,M06615:45,M10216:00,M05417:00 and L02817:20 to interrupt repeated northbound KZT/PASA receiving pressure around M051. Actual26 baseline L028/M052 occupy both KZT roads and protect M051 NYY crossing; delayed M051 waits1354s opposing L028/M052/M066 and1312s receiving, eventually against L004/approachingM102. Retain S05214:30 and L00414:55; the later M102 aims to reduce its close-following overtake hold. Retained L004 and later S03616:10,M07016:30,M07216:55,S03817:10,L03017:25,L03817:35 can still constrain receiving, opposing traffic and overtakes. No guaranteed gap, legal berth or full-tail escape follows from these departure times."
+    }
+  ],
+  "evidence_commit": "cc621f55 baseline; delayed da75521d",
+  "scope": "Network208 V2 only; thirteen southern group departure timings, no Classic replay or readiness requirement.",
+  "status": "Departure-only hypothesis; no acceptance"
+}

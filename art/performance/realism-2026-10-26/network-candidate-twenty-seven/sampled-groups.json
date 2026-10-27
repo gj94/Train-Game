@@ -1,0 +1,4837 @@
+{
+  "kind": "Sampled full-rake axis-envelope overlaps with static section envelopes; planning inputs, not exact interlocking ownership, assigned receiving roads, guaranteed future gaps, escape or capacity proof",
+  "bounds": {
+    "ERS_single": {
+      "start": 1736.50451150103,
+      "finish": 7711.894
+    },
+    "KUMM_single": {
+      "start": 9151.894,
+      "finish": 23303.556
+    },
+    "MAKM_single": {
+      "start": 45641.441,
+      "finish": 56943.413
+    },
+    "SRTL_single": {
+      "start": 34738.662,
+      "finish": 44201.441
+    },
+    "TUVR_single": {
+      "start": 24743.556,
+      "finish": 33298.662
+    },
+    "ALLP_axis_envelope": {
+      "start": 58383.413,
+      "finish": 69131.934
+    },
+    "TVC_single": {
+      "start": 207262.301,
+      "finish": 213179.189
+    },
+    "NEM_single": {
+      "start": 214619.189,
+      "finish": 222664.721
+    },
+    "NYY_single": {
+      "start": 224104.721,
+      "finish": 235129.035
+    },
+    "PASA_single": {
+      "start": 236569.035,
+      "finish": 243434.63
+    },
+    "KZT_single": {
+      "start": 244874.63,
+      "finish": 258186.23
+    }
+  },
+  "additional_bound_basis": "ALLP to AMPA: report station centers, each half-width plus200m exclusion. Geometric planning envelope only. Other bounds retained from candidate23 planning record. Southern static bounds retained from candidate23 sampled-groups.json; geometric envelopes, not legal ownership.",
+  "source_candidate": "5e7379de",
+  "source_evidence": "cc621f55 baseline;da75521d delayed",
+  "formula": "At each actual traffic sample, overlap iff max(front,tail)>=bound.start and min(front,tail)<=bound.finish. Each continuous observed overlap is retained separately. Times are first/last overlapping samples, not exact ownership or clearance times.",
+  "runs": [
+    {
+      "run": "predictive-network",
+      "window_start": 39600,
+      "first_sample": 39600.0000000611,
+      "last_clock": 56546.0000010475,
+      "max_sample_interval_seconds": 2.000000000203727,
+      "traffic_sha256": "05bcab2736853efdcfe58e2d833c788b223a583a95b174c1ef1389447b640e46",
+      "audit_sha256": "c1d1f6e649d6da23746fe023c0941a5dd46c589d95d09d7b64fd625ac04443ca",
+      "intervals": [
+        {
+          "id": "L002",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 39774.0000000712,
+          "samples": 88,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "L024",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 40110.0000000908,
+          "samples": 256,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "M011",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 39932.0000000804,
+          "samples": 167,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "M017",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 39634.0000000631,
+          "samples": 18,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 39706.0000000673,
+          "samples": 54,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "S008",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 39798.0000000726,
+          "samples": 100,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 39772.0000000711,
+          "samples": 87,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 39630.0000000628,
+          "last_sample": 39918.0000000796,
+          "samples": 145,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M084",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 39704.0000000671,
+          "last_sample": 40084.0000000893,
+          "samples": 191,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L008",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 39712.0000000676,
+          "last_sample": 40530.0000001152,
+          "samples": 410,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 39832.0000000746,
+          "last_sample": 40132.000000092,
+          "samples": 151,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S008",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 39852.0000000758,
+          "last_sample": 40486.0000001127,
+          "samples": 318,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 39988.0000000837,
+          "last_sample": 40494.0000001131,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M017",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 40124.0000000916,
+          "last_sample": 40618.0000001203,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M084",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 40140.0000000925,
+          "last_sample": 40474.000000112,
+          "samples": 168,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L002",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 40220.0000000972,
+          "last_sample": 40566.0000001173,
+          "samples": 174,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L024",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 40300.0000001018,
+          "last_sample": 40826.0000001324,
+          "samples": 264,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S008",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 40540.0000001158,
+          "last_sample": 40884.0000001358,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 40560.000000117,
+          "last_sample": 41192.0000001537,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 40606.0000001196,
+          "last_sample": 41122.0000001497,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M011",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 40740.0000001274,
+          "last_sample": 41274.0000001585,
+          "samples": 268,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L008",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 40768.0000001291,
+          "last_sample": 41452.0000001689,
+          "samples": 343,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "NEM_single",
+          "direction": 1,
+          "first_sample": 40902.0000001369,
+          "last_sample": 41440.0000001682,
+          "samples": 270,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L024",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 41014.0000001434,
+          "last_sample": 41302.0000001602,
+          "samples": 145,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 41018.0000001436,
+          "last_sample": 41336.0000001621,
+          "samples": 160,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 41248.000000157,
+          "last_sample": 41652.0000001805,
+          "samples": 203,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L016",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 41326.0000001615,
+          "last_sample": 42062.0000002044,
+          "samples": 369,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 41392.0000001654,
+          "last_sample": 42020.0000002019,
+          "samples": 315,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 41522.000000173,
+          "last_sample": 41908.0000001954,
+          "samples": 194,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L025",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 41576.0000001761,
+          "last_sample": 41864.0000001929,
+          "samples": 145,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "NYY_single",
+          "direction": 1,
+          "first_sample": 41628.0000001791,
+          "last_sample": 42422.0000002253,
+          "samples": 398,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 41630.0000001792,
+          "last_sample": 41930.0000001967,
+          "samples": 151,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L008",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 41760.0000001868,
+          "last_sample": 42384.0000002231,
+          "samples": 313,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 41984.0000001998,
+          "last_sample": 42616.0000002366,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 41986.0000002,
+          "last_sample": 42282.0000002172,
+          "samples": 149,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 42124.000000208,
+          "last_sample": 42568.0000002338,
+          "samples": 223,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 42152.0000002096,
+          "last_sample": 42646.0000002384,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L025",
+          "group": "NEM_single",
+          "direction": 1,
+          "first_sample": 42154.0000002097,
+          "last_sample": 42768.0000002455,
+          "samples": 308,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 42462.0000002277,
+          "last_sample": 42862.000000251,
+          "samples": 201,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 42508.0000002304,
+          "last_sample": 42802.0000002475,
+          "samples": 148,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "PASA_single",
+          "direction": 1,
+          "first_sample": 42604.0000002359,
+          "last_sample": 43082.0000002638,
+          "samples": 240,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 42622.000000237,
+          "last_sample": 43138.000000267,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 42670.0000002398,
+          "last_sample": 43098.0000002647,
+          "samples": 215,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L008",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 42716.0000002425,
+          "last_sample": 43744.0000003023,
+          "samples": 515,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M011",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 42776.0000002459,
+          "last_sample": 43266.0000002745,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L025",
+          "group": "NYY_single",
+          "direction": 1,
+          "first_sample": 43024.0000002604,
+          "last_sample": 43946.0000003141,
+          "samples": 462,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 43052.000000262,
+          "last_sample": 43490.0000002875,
+          "samples": 220,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 43256.0000002739,
+          "last_sample": 43854.0000003087,
+          "samples": 300,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 43346.0000002791,
+          "last_sample": 43890.0000003108,
+          "samples": 273,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 43546.0000002908,
+          "last_sample": 44058.0000003206,
+          "samples": 257,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 43844.0000003081,
+          "last_sample": 44472.0000003447,
+          "samples": 315,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "KZT_single",
+          "direction": 1,
+          "first_sample": 43932.0000003132,
+          "last_sample": 44670.0000003562,
+          "samples": 370,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 43964.0000003151,
+          "last_sample": 44456.0000003437,
+          "samples": 247,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 44002.0000003173,
+          "last_sample": 44498.0000003462,
+          "samples": 249,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L008",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 44006.0000003175,
+          "last_sample": 44354.0000003378,
+          "samples": 175,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 44152.000000326,
+          "last_sample": 44694.0000003576,
+          "samples": 272,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L025",
+          "group": "PASA_single",
+          "direction": 1,
+          "first_sample": 44230.0000003306,
+          "last_sample": 44796.0000003635,
+          "samples": 284,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 44528.0000003479,
+          "last_sample": 44950.0000003725,
+          "samples": 212,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 44578.0000003508,
+          "last_sample": 45074.0000003797,
+          "samples": 249,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 44750.0000003609,
+          "last_sample": 45192.0000003866,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 44786.0000003629,
+          "last_sample": 45352.0000003959,
+          "samples": 284,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 44876.0000003682,
+          "last_sample": 45214.0000003879,
+          "samples": 170,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M096",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 44962.0000003732,
+          "last_sample": 45556.0000004078,
+          "samples": 298,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 45152.0000003843,
+          "last_sample": 45642.0000004128,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 45246.0000003897,
+          "last_sample": 45650.0000004132,
+          "samples": 203,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 45290.0000003923,
+          "last_sample": 45770.0000004202,
+          "samples": 241,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 45406.000000399,
+          "last_sample": 45912.0000004285,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 45466.0000004025,
+          "last_sample": 45982.0000004326,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L025",
+          "group": "KZT_single",
+          "direction": 1,
+          "first_sample": 45632.0000004122,
+          "last_sample": 46376.0000004555,
+          "samples": 373,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 45706.0000004165,
+          "last_sample": 46338.0000004533,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 45716.0000004171,
+          "last_sample": 46210.0000004458,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M096",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 45744.0000004187,
+          "last_sample": 46076.000000438,
+          "samples": 167,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 46038.0000004358,
+          "last_sample": 46480.0000004616,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 46104.0000004397,
+          "last_sample": 46488.000000462,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M096",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 46266.0000004491,
+          "last_sample": 46766.0000004782,
+          "samples": 251,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M101",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 46292.0000004506,
+          "last_sample": 46788.0000004795,
+          "samples": 249,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 46378.0000004556,
+          "last_sample": 46912.0000004867,
+          "samples": 268,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 46392.0000004564,
+          "last_sample": 46736.0000004765,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S050",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 46450.0000004598,
+          "last_sample": 47050.0000004947,
+          "samples": 301,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 46542.0000004652,
+          "last_sample": 46840.0000004825,
+          "samples": 150,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 46672.0000004727,
+          "last_sample": 47078.0000004964,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M086",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 46724.0000004758,
+          "last_sample": 47322.0000005106,
+          "samples": 300,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 46852.0000004832,
+          "last_sample": 47152.0000005007,
+          "samples": 151,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M096",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 46954.0000004891,
+          "last_sample": 47334.0000005113,
+          "samples": 191,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 46994.0000004915,
+          "last_sample": 47512.0000005216,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 47048.0000004946,
+          "last_sample": 47396.0000005149,
+          "samples": 175,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 47076.0000004962,
+          "last_sample": 47596.0000005265,
+          "samples": 261,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 47132.0000004995,
+          "last_sample": 47764.0000005363,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S050",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 47244.000000506,
+          "last_sample": 47582.0000005257,
+          "samples": 170,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L036",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 47330.000000511,
+          "last_sample": 48076.0000005545,
+          "samples": 374,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M096",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 47390.0000005145,
+          "last_sample": 47682.0000005315,
+          "samples": 147,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M086",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 47514.0000005217,
+          "last_sample": 47850.0000005413,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 47566.0000005248,
+          "last_sample": 48008.0000005505,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L026",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 47598.0000005266,
+          "last_sample": 48358.0000005709,
+          "samples": 381,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S050",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 47636.0000005288,
+          "last_sample": 48142.0000005583,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 47686.0000005317,
+          "last_sample": 48206.000000562,
+          "samples": 261,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 47818.0000005394,
+          "last_sample": 48164.0000005596,
+          "samples": 174,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 47838.0000005406,
+          "last_sample": 48472.0000005775,
+          "samples": 318,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 47862.000000542,
+          "last_sample": 48378.000000572,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 47988.0000005493,
+          "last_sample": 48668.0000005889,
+          "samples": 341,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M086",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 48044.0000005526,
+          "last_sample": 48550.000000582,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 48062.0000005536,
+          "last_sample": 48468.0000005773,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S050",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 48196.0000005614,
+          "last_sample": 48580.0000005838,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L036",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 48266.0000005655,
+          "last_sample": 48748.0000005936,
+          "samples": 242,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 48280.0000005663,
+          "last_sample": 48602.0000005851,
+          "samples": 162,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 48452.0000005763,
+          "last_sample": 48968.0000006064,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 48464.000000577,
+          "last_sample": 48954.0000006056,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 48528.0000005808,
+          "last_sample": 48932.0000006043,
+          "samples": 203,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L026",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 48548.0000005819,
+          "last_sample": 49036.0000006103,
+          "samples": 245,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S050",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 48634.0000005869,
+          "last_sample": 48976.0000006068,
+          "samples": 172,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 48640.0000005873,
+          "last_sample": 49206.0000006202,
+          "samples": 284,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 48700.0000005908,
+          "last_sample": 49358.0000006291,
+          "samples": 330,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M086",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 48740.0000005931,
+          "last_sample": 49124.0000006155,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 48766.0000005946,
+          "last_sample": 49220.000000621,
+          "samples": 228,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L036",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 48936.0000006045,
+          "last_sample": 49742.0000006514,
+          "samples": 404,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 48986.0000006074,
+          "last_sample": 49428.0000006331,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 49034.0000006102,
+          "last_sample": 49556.0000006406,
+          "samples": 262,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M086",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 49178.0000006186,
+          "last_sample": 49520.0000006385,
+          "samples": 172,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 49206.0000006202,
+          "last_sample": 49716.0000006499,
+          "samples": 256,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L026",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 49232.0000006217,
+          "last_sample": 50038.0000006687,
+          "samples": 404,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 49412.0000006322,
+          "last_sample": 49818.0000006558,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 49432.0000006334,
+          "last_sample": 50066.0000006703,
+          "samples": 318,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 49484.0000006364,
+          "last_sample": 50000.0000006664,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 49502.0000006375,
+          "last_sample": 49946.0000006633,
+          "samples": 223,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 49638.0000006454,
+          "last_sample": 49936.0000006627,
+          "samples": 150,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S048",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 49646.0000006458,
+          "last_sample": 50246.0000006808,
+          "samples": 301,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L036",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 49932.0000006625,
+          "last_sample": 50462.0000006933,
+          "samples": 266,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 50022.0000006677,
+          "last_sample": 50464.0000006935,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 50082.0000006712,
+          "last_sample": 50598.0000007013,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 50120.0000006734,
+          "last_sample": 50464.0000006935,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 50136.0000006744,
+          "last_sample": 50542.000000698,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 50244.0000006806,
+          "last_sample": 50738.0000007094,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S034",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 50246.0000006808,
+          "last_sample": 50846.0000007157,
+          "samples": 301,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "NEM_single",
+          "direction": 1,
+          "first_sample": 50540.0000006979,
+          "last_sample": 50926.0000007203,
+          "samples": 194,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 50544.0000006981,
+          "last_sample": 51012.0000007253,
+          "samples": 235,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 50596.0000007011,
+          "last_sample": 51228.0000007379,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 50654.0000007045,
+          "last_sample": 51210.0000007369,
+          "samples": 279,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S048",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 50672.0000007056,
+          "last_sample": 51008.0000007251,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L036",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 50676.0000007058,
+          "last_sample": 51002.0000007248,
+          "samples": 164,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 50710.0000007078,
+          "last_sample": 51152.0000007335,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 50814.0000007138,
+          "last_sample": 51308.0000007426,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 50970.0000007229,
+          "last_sample": 51514.0000007546,
+          "samples": 273,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "NYY_single",
+          "direction": 1,
+          "first_sample": 50980.0000007235,
+          "last_sample": 51486.0000007529,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L026",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 51002.0000007248,
+          "last_sample": 51530.0000007555,
+          "samples": 265,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 51208.0000007368,
+          "last_sample": 51612.0000007603,
+          "samples": 203,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 51244.0000007389,
+          "last_sample": 51712.0000007661,
+          "samples": 235,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 51282.0000007411,
+          "last_sample": 51628.0000007612,
+          "samples": 174,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 51292.0000007416,
+          "last_sample": 51810.0000007718,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 51352.0000007451,
+          "last_sample": 51758.0000007688,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "PASA_single",
+          "direction": 1,
+          "first_sample": 51540.0000007561,
+          "last_sample": 51876.0000007756,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M082",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 51636.0000007617,
+          "last_sample": 52236.0000007966,
+          "samples": 301,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 51666.0000007634,
+          "last_sample": 52298.0000008002,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S048",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 51668.0000007635,
+          "last_sample": 52174.000000793,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L026",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 51718.0000007664,
+          "last_sample": 52006.0000007832,
+          "samples": 145,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 51790.0000007706,
+          "last_sample": 52250.0000007974,
+          "samples": 231,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 51812.0000007719,
+          "last_sample": 52444.0000008087,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 51848.000000774,
+          "last_sample": 52196.0000007943,
+          "samples": 175,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 51892.0000007766,
+          "last_sample": 52410.0000008067,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S034",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 51958.0000007804,
+          "last_sample": 52294.0000008,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 52052.0000007859,
+          "last_sample": 52618.0000008188,
+          "samples": 284,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 52056.0000007861,
+          "last_sample": 52550.0000008149,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S048",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 52228.0000007961,
+          "last_sample": 52614.0000008186,
+          "samples": 194,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "KZT_single",
+          "direction": 1,
+          "first_sample": 52318.0000008014,
+          "last_sample": 52916.0000008362,
+          "samples": 300,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S034",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 52350.0000008032,
+          "last_sample": 52854.0000008326,
+          "samples": 253,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 52354.0000008035,
+          "last_sample": 52698.0000008235,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M082",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 52426.0000008077,
+          "last_sample": 52764.0000008273,
+          "samples": 170,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 52440.0000008085,
+          "last_sample": 52840.0000008318,
+          "samples": 201,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 52464.0000008099,
+          "last_sample": 52906.0000008356,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 52498.0000008118,
+          "last_sample": 52926.0000008368,
+          "samples": 215,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 52524.0000008134,
+          "last_sample": 53204.0000008529,
+          "samples": 341,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 52632.0000008196,
+          "last_sample": 53126.0000008484,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S048",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 52668.0000008217,
+          "last_sample": 53010.0000008416,
+          "samples": 172,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 52702.0000008237,
+          "last_sample": 53242.0000008552,
+          "samples": 271,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 52716.0000008245,
+          "last_sample": 53206.0000008531,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M026",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 52788.0000008287,
+          "last_sample": 53308.000000859,
+          "samples": 261,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S034",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 52910.0000008358,
+          "last_sample": 53294.0000008582,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 52960.0000008387,
+          "last_sample": 53366.0000008624,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L028",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 52992.0000008406,
+          "last_sample": 53738.000000884,
+          "samples": 374,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M082",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 53024.0000008425,
+          "last_sample": 53530.0000008719,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M065",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 53060.0000008446,
+          "last_sample": 53410.0000008649,
+          "samples": 176,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 53284.0000008576,
+          "last_sample": 53912.0000008942,
+          "samples": 315,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S034",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 53348.0000008613,
+          "last_sample": 53646.0000008787,
+          "samples": 150,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 53370.0000008626,
+          "last_sample": 53888.0000008928,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 53420.0000008655,
+          "last_sample": 53852.0000008907,
+          "samples": 217,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 53420.0000008655,
+          "last_sample": 54052.0000009023,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 53504.0000008704,
+          "last_sample": 54024.0000009007,
+          "samples": 261,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S052",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 53546.0000008728,
+          "last_sample": 54146.0000009078,
+          "samples": 301,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M026",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 53554.0000008733,
+          "last_sample": 54092.0000009046,
+          "samples": 270,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 53740.0000008841,
+          "last_sample": 54032.0000009011,
+          "samples": 147,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S051",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 53924.0000008948,
+          "last_sample": 54222.0000009122,
+          "samples": 150,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 53932.0000008953,
+          "last_sample": 54386.0000009217,
+          "samples": 228,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 53942.0000008959,
+          "last_sample": 54384.0000009216,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 53968.0000008974,
+          "last_sample": 54304.000000917,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 54048.0000009021,
+          "last_sample": 54680.0000009389,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "NEM_single",
+          "direction": 1,
+          "first_sample": 54090.0000009045,
+          "last_sample": 54468.0000009265,
+          "samples": 190,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M022",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 54106.0000009054,
+          "last_sample": 54600.0000009342,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 54106.0000009054,
+          "last_sample": 54532.0000009302,
+          "samples": 214,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M026",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 54190.0000009103,
+          "last_sample": 54658.0000009376,
+          "samples": 235,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S049",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 54386.0000009217,
+          "last_sample": 54684.0000009391,
+          "samples": 150,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M024",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 54530.0000009301,
+          "last_sample": 55052.0000009605,
+          "samples": 262,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S052",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 54572.0000009326,
+          "last_sample": 54908.0000009521,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 54574.0000009327,
+          "last_sample": 54980.0000009563,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M052",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 54658.0000009376,
+          "last_sample": 55252.0000009721,
+          "samples": 298,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M053",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 54666.000000938,
+          "last_sample": 54994.0000009571,
+          "samples": 165,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 54746.0000009427,
+          "last_sample": 55238.0000009713,
+          "samples": 247,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M065",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 54762.0000009436,
+          "last_sample": 55420.0000009819,
+          "samples": 330,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M022",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 54846.0000009485,
+          "last_sample": 55362.0000009786,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M026",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 54866.0000009497,
+          "last_sample": 55294.0000009746,
+          "samples": 215,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 55068.0000009614,
+          "last_sample": 55414.0000009816,
+          "samples": 174,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M103",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 55264.0000009728,
+          "last_sample": 55754.0000010014,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M022",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 55418.0000009818,
+          "last_sample": 55882.0000010088,
+          "samples": 233,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 55454.0000009839,
+          "last_sample": 56020.0000010169,
+          "samples": 284,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M065",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 55474.0000009851,
+          "last_sample": 55880.0000010087,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 55494.0000009862,
+          "last_sample": 56128.0000010231,
+          "samples": 318,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M015",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 55548.0000009894,
+          "last_sample": 55898.0000010098,
+          "samples": 176,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 55836.0000010061,
+          "last_sample": 56330.0000010349,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M065",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 56070.0000010198,
+          "last_sample": 56534.0000010468,
+          "samples": 233,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M022",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 56090.0000010209,
+          "last_sample": 56522.0000010461,
+          "samples": 217,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M024",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 56134.0000010235,
+          "last_sample": 56546.0000010475,
+          "samples": 207,
+          "left_censored": false,
+          "right_censored": true
+        },
+        {
+          "id": "M048",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 56182.0000010263,
+          "last_sample": 56526.0000010463,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M053",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 56202.0000010274,
+          "last_sample": 56546.0000010475,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": true
+        },
+        {
+          "id": "M049",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 56418.00000104,
+          "last_sample": 56546.0000010475,
+          "samples": 65,
+          "left_censored": false,
+          "right_censored": true
+        }
+      ]
+    },
+    {
+      "run": "predictive-network-delayed",
+      "window_start": 39600,
+      "first_sample": 39600.0000000611,
+      "last_clock": 57974.0000011306,
+      "max_sample_interval_seconds": 2.000000000203727,
+      "traffic_sha256": "174fbdd0e065619f2632352e2e2bdaeb2e14eef92b394fd6a35d9599785ec13e",
+      "audit_sha256": "67c38c7702b1cb582f295bf9df232a74c1d07fbae33b3148743ecf2818ead982",
+      "intervals": [
+        {
+          "id": "L002",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 39766.0000000707,
+          "samples": 84,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "L024",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 40110.0000000908,
+          "samples": 256,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 39706.0000000673,
+          "samples": 54,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "S008",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 39600.0000000611,
+          "last_sample": 39912.0000000792,
+          "samples": 157,
+          "left_censored": true,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 39602.0000000612,
+          "last_sample": 40044.0000000869,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M011",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 39612.0000000618,
+          "last_sample": 40144.0000000927,
+          "samples": 267,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M084",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 39704.0000000671,
+          "last_sample": 40084.0000000893,
+          "samples": 191,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 39830.0000000745,
+          "last_sample": 40130.0000000919,
+          "samples": 151,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 39896.0000000783,
+          "last_sample": 40402.0000001078,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M017",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 40124.0000000916,
+          "last_sample": 40618.0000001203,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M084",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 40140.0000000925,
+          "last_sample": 40474.000000112,
+          "samples": 168,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 40184.0000000951,
+          "last_sample": 40816.0000001319,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S008",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 40204.0000000962,
+          "last_sample": 40550.0000001164,
+          "samples": 174,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 40206.0000000964,
+          "last_sample": 40724.0000001265,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L002",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 40362.0000001054,
+          "last_sample": 40752.0000001281,
+          "samples": 196,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 40596.0000001191,
+          "last_sample": 40980.0000001414,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L024",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 40740.0000001274,
+          "last_sample": 41266.0000001581,
+          "samples": 264,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L008",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 40802.000000131,
+          "last_sample": 41638.0000001797,
+          "samples": 419,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 40870.000000135,
+          "last_sample": 41276.0000001586,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 40884.0000001358,
+          "last_sample": 41202.0000001543,
+          "samples": 160,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 41036.0000001447,
+          "last_sample": 41334.000000162,
+          "samples": 150,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 41126.0000001499,
+          "last_sample": 41620.0000001787,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 41260.0000001577,
+          "last_sample": 41886.0000001941,
+          "samples": 314,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 41330.0000001618,
+          "last_sample": 41772.0000001875,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L024",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 41454.000000169,
+          "last_sample": 41780.000000188,
+          "samples": 164,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 41630.0000001792,
+          "last_sample": 41930.0000001967,
+          "samples": 151,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L016",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 41708.0000001838,
+          "last_sample": 42366.0000002221,
+          "samples": 330,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 41826.0000001907,
+          "last_sample": 42344.0000002208,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L008",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 41872.0000001933,
+          "last_sample": 42484.000000229,
+          "samples": 307,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L025",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 41890.0000001944,
+          "last_sample": 42178.0000002111,
+          "samples": 145,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 41942.0000001974,
+          "last_sample": 42364.000000222,
+          "samples": 212,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 41984.0000001998,
+          "last_sample": 42616.0000002366,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L025",
+          "group": "NEM_single",
+          "direction": 1,
+          "first_sample": 42366.0000002221,
+          "last_sample": 42898.0000002531,
+          "samples": 267,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M011",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 42476.0000002285,
+          "last_sample": 42988.0000002583,
+          "samples": 257,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 42508.0000002304,
+          "last_sample": 42802.0000002475,
+          "samples": 148,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 42564.0000002336,
+          "last_sample": 42852.0000002504,
+          "samples": 145,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L008",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 42676.0000002401,
+          "last_sample": 43226.0000002721,
+          "samples": 276,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 42754.0000002447,
+          "last_sample": 43214.0000002714,
+          "samples": 231,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 42858.0000002507,
+          "last_sample": 43508.0000002886,
+          "samples": 326,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "NEM_single",
+          "direction": 1,
+          "first_sample": 43038.0000002612,
+          "last_sample": 43576.0000002925,
+          "samples": 270,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 43068.0000002629,
+          "last_sample": 43612.0000002946,
+          "samples": 273,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L025",
+          "group": "NYY_single",
+          "direction": 1,
+          "first_sample": 43092.0000002643,
+          "last_sample": 43946.0000003141,
+          "samples": 428,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 43256.0000002739,
+          "last_sample": 43854.0000003087,
+          "samples": 300,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 43270.0000002747,
+          "last_sample": 43782.0000003045,
+          "samples": 257,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 43300.0000002765,
+          "last_sample": 43706.0000003001,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L008",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 43592.0000002934,
+          "last_sample": 44542.0000003487,
+          "samples": 476,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 43608.0000002944,
+          "last_sample": 44052.0000003202,
+          "samples": 223,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S013",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 43724.0000003011,
+          "last_sample": 44220.00000033,
+          "samples": 249,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "NYY_single",
+          "direction": 1,
+          "first_sample": 43762.0000003033,
+          "last_sample": 44558.0000003497,
+          "samples": 399,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 43898.0000003113,
+          "last_sample": 44362.0000003383,
+          "samples": 233,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M096",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 43982.0000003161,
+          "last_sample": 44968.0000003735,
+          "samples": 494,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 44018.0000003182,
+          "last_sample": 44562.0000003499,
+          "samples": 273,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L025",
+          "group": "PASA_single",
+          "direction": 1,
+          "first_sample": 44230.0000003306,
+          "last_sample": 44796.0000003635,
+          "samples": 284,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 44306.000000335,
+          "last_sample": 44828.0000003654,
+          "samples": 262,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 44528.0000003479,
+          "last_sample": 44988.0000003747,
+          "samples": 231,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 44642.0000003546,
+          "last_sample": 45208.0000003875,
+          "samples": 284,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L008",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 44756.0000003612,
+          "last_sample": 45104.0000003815,
+          "samples": 175,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 44878.0000003683,
+          "last_sample": 45214.0000003879,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 44906.0000003699,
+          "last_sample": 45396.0000003985,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 45044.000000378,
+          "last_sample": 45556.0000004078,
+          "samples": 257,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L025",
+          "group": "KZT_single",
+          "direction": 1,
+          "first_sample": 45048.0000003782,
+          "last_sample": 45878.0000004265,
+          "samples": 416,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 45062.000000379,
+          "last_sample": 45504.0000004047,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "PASA_single",
+          "direction": 1,
+          "first_sample": 45292.0000003924,
+          "last_sample": 45768.0000004201,
+          "samples": 239,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 45406.000000399,
+          "last_sample": 45912.0000004285,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 45560.000000408,
+          "last_sample": 45964.0000004315,
+          "samples": 203,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 45638.0000004125,
+          "last_sample": 46154.0000004426,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M023",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 45676.0000004148,
+          "last_sample": 46196.000000445,
+          "samples": 261,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M096",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 45846.0000004246,
+          "last_sample": 46178.000000444,
+          "samples": 167,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S050",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 45952.0000004308,
+          "last_sample": 46552.0000004657,
+          "samples": 301,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 46018.0000004347,
+          "last_sample": 46650.0000004714,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 46104.0000004397,
+          "last_sample": 46488.000000462,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 46210.0000004458,
+          "last_sample": 46652.0000004716,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 46284.0000004501,
+          "last_sample": 46806.0000004805,
+          "samples": 262,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M096",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 46366.0000004549,
+          "last_sample": 46868.0000004841,
+          "samples": 252,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 46430.0000004586,
+          "last_sample": 46730.0000004761,
+          "samples": 151,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 46454.00000046,
+          "last_sample": 46970.0000004901,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 46544.0000004653,
+          "last_sample": 46840.0000004825,
+          "samples": 149,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "K1",
+          "group": "KZT_single",
+          "direction": 1,
+          "first_sample": 46628.0000004702,
+          "last_sample": 47366.0000005131,
+          "samples": 370,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S050",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 46746.000000477,
+          "last_sample": 47084.0000004967,
+          "samples": 170,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 46784.0000004792,
+          "last_sample": 47416.000000516,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S010",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 46804.0000004804,
+          "last_sample": 47150.0000005006,
+          "samples": 174,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 46844.0000004827,
+          "last_sample": 47250.0000005064,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 47050.0000004947,
+          "last_sample": 47568.0000005249,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M096",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 47054.000000495,
+          "last_sample": 47434.0000005171,
+          "samples": 191,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M019",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 47058.0000004952,
+          "last_sample": 47548.0000005237,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S050",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 47138.0000004999,
+          "last_sample": 47644.0000005293,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 47234.0000005054,
+          "last_sample": 47798.0000005383,
+          "samples": 283,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 47284.0000005083,
+          "last_sample": 47632.0000005286,
+          "samples": 175,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M086",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 47448.0000005179,
+          "last_sample": 48046.0000005527,
+          "samples": 300,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 47470.0000005192,
+          "last_sample": 47898.0000005441,
+          "samples": 215,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 47490.0000005203,
+          "last_sample": 48124.0000005572,
+          "samples": 318,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M096",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 47490.0000005203,
+          "last_sample": 47784.0000005375,
+          "samples": 148,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 47622.000000528,
+          "last_sample": 48064.0000005538,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 47630.0000005285,
+          "last_sample": 47930.000000546,
+          "samples": 151,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 47634.0000005287,
+          "last_sample": 48156.0000005591,
+          "samples": 262,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S050",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 47698.0000005324,
+          "last_sample": 48082.0000005548,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L036",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 47710.0000005331,
+          "last_sample": 48456.0000005766,
+          "samples": 374,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 47804.0000005386,
+          "last_sample": 48322.0000005688,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 47896.000000544,
+          "last_sample": 48364.0000005712,
+          "samples": 235,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S050",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 48136.0000005579,
+          "last_sample": 48478.0000005778,
+          "samples": 172,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M014",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 48178.0000005604,
+          "last_sample": 48522.0000005804,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 48198.0000005616,
+          "last_sample": 48854.0000005997,
+          "samples": 329,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M086",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 48238.0000005639,
+          "last_sample": 48574.0000005834,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L026",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 48322.0000005688,
+          "last_sample": 49068.0000006122,
+          "samples": 374,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 48348.0000005703,
+          "last_sample": 49006.0000006086,
+          "samples": 330,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 48400.0000005733,
+          "last_sample": 48918.0000006035,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M101",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 48412.000000574,
+          "last_sample": 48906.0000006028,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 48420.0000005745,
+          "last_sample": 48824.000000598,
+          "samples": 203,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 48444.0000005759,
+          "last_sample": 48936.0000006045,
+          "samples": 247,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L036",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 48646.0000005876,
+          "last_sample": 49128.0000006157,
+          "samples": 242,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M086",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 48770.0000005948,
+          "last_sample": 49276.0000006243,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 48818.0000005976,
+          "last_sample": 49362.0000006293,
+          "samples": 273,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 48952.0000006054,
+          "last_sample": 49406.0000006319,
+          "samples": 228,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 48994.0000006079,
+          "last_sample": 49506.0000006377,
+          "samples": 257,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 49050.0000006111,
+          "last_sample": 49492.0000006369,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 49082.000000613,
+          "last_sample": 49714.0000006498,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 49142.0000006165,
+          "last_sample": 49440.0000006338,
+          "samples": 150,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 49162.0000006177,
+          "last_sample": 49678.0000006477,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L026",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 49258.0000006233,
+          "last_sample": 49746.0000006517,
+          "samples": 245,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L036",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 49318.0000006267,
+          "last_sample": 50126.0000006738,
+          "samples": 405,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 49462.0000006351,
+          "last_sample": 50004.0000006667,
+          "samples": 272,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M086",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 49510.0000006379,
+          "last_sample": 49894.0000006603,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 49518.0000006384,
+          "last_sample": 49924.000000662,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 49600.0000006432,
+          "last_sample": 50044.000000669,
+          "samples": 223,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S048",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 49646.0000006458,
+          "last_sample": 50246.0000006808,
+          "samples": 301,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 49688.0000006483,
+          "last_sample": 50116.0000006732,
+          "samples": 215,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S032",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 49768.0000006529,
+          "last_sample": 50114.0000006731,
+          "samples": 174,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L026",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 49942.0000006631,
+          "last_sample": 50748.00000071,
+          "samples": 404,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M086",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 49950.0000006635,
+          "last_sample": 50292.0000006834,
+          "samples": 172,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 49978.0000006652,
+          "last_sample": 50610.0000007019,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 50084.0000006713,
+          "last_sample": 50596.0000007011,
+          "samples": 257,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 50098.0000006721,
+          "last_sample": 50504.0000006958,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 50124.0000006737,
+          "last_sample": 50614.0000007022,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 50214.0000006789,
+          "last_sample": 50874.0000007173,
+          "samples": 331,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 50240.0000006804,
+          "last_sample": 50782.000000712,
+          "samples": 272,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S034",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 50246.0000006808,
+          "last_sample": 50846.0000007157,
+          "samples": 301,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S011",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 50250.000000681,
+          "last_sample": 50744.0000007097,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L036",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 50316.0000006848,
+          "last_sample": 50844.0000007156,
+          "samples": 265,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 50558.0000006989,
+          "last_sample": 51190.0000007357,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 50578.0000007001,
+          "last_sample": 51006.000000725,
+          "samples": 215,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M018",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 50664.0000007051,
+          "last_sample": 51010.0000007252,
+          "samples": 174,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S048",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 50672.0000007056,
+          "last_sample": 51008.0000007251,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 50716.0000007081,
+          "last_sample": 51152.0000007335,
+          "samples": 219,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 50818.0000007141,
+          "last_sample": 51314.0000007429,
+          "samples": 249,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 50840.0000007153,
+          "last_sample": 51284.0000007412,
+          "samples": 223,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 50864.0000007167,
+          "last_sample": 51428.0000007496,
+          "samples": 283,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "NEM_single",
+          "direction": 1,
+          "first_sample": 50920.00000072,
+          "last_sample": 51304.0000007423,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M050",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 50928.0000007205,
+          "last_sample": 51272.0000007405,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 50976.0000007233,
+          "last_sample": 51496.0000007535,
+          "samples": 261,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L036",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 51052.0000007277,
+          "last_sample": 51378.0000007467,
+          "samples": 164,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S048",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 51064.0000007284,
+          "last_sample": 51568.0000007577,
+          "samples": 253,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S016",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 51244.0000007389,
+          "last_sample": 51588.0000007589,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S034",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 51272.0000007405,
+          "last_sample": 51608.00000076,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 51342.0000007446,
+          "last_sample": 51744.000000768,
+          "samples": 202,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M082",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 51356.0000007454,
+          "last_sample": 51954.0000007802,
+          "samples": 300,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L026",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 51382.0000007469,
+          "last_sample": 51910.0000007776,
+          "samples": 265,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 51438.0000007501,
+          "last_sample": 51928.0000007787,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 51484.0000007528,
+          "last_sample": 51890.0000007765,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 51558.0000007571,
+          "last_sample": 52076.0000007873,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S048",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 51626.0000007611,
+          "last_sample": 52040.0000007852,
+          "samples": 208,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "NYY_single",
+          "direction": 1,
+          "first_sample": 51650.0000007625,
+          "last_sample": 52156.0000007919,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S015",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 51692.0000007649,
+          "last_sample": 52212.0000007952,
+          "samples": 261,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 51742.0000007678,
+          "last_sample": 52258.0000007979,
+          "samples": 259,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 51800.0000007712,
+          "last_sample": 52428.0000008078,
+          "samples": 315,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 51848.000000774,
+          "last_sample": 52196.0000007943,
+          "samples": 175,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 51944.0000007796,
+          "last_sample": 52576.0000008164,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S048",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 52096.0000007884,
+          "last_sample": 52438.0000008084,
+          "samples": 172,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 52130.0000007904,
+          "last_sample": 52572.0000008162,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "PASA_single",
+          "direction": 1,
+          "first_sample": 52210.0000007951,
+          "last_sample": 52546.0000008146,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S034",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 52230.0000007962,
+          "last_sample": 52736.0000008257,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L026",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 52240.0000007968,
+          "last_sample": 52614.0000008186,
+          "samples": 188,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M026",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 52294.0000008,
+          "last_sample": 52788.0000008287,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 52312.000000801,
+          "last_sample": 52778.0000008281,
+          "samples": 234,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 52338.0000008025,
+          "last_sample": 52882.0000008342,
+          "samples": 273,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M028",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 52484.000000811,
+          "last_sample": 52820.0000008306,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 52626.0000008193,
+          "last_sample": 53032.0000008429,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M082",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 52628.0000008194,
+          "last_sample": 52966.0000008391,
+          "samples": 170,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M048",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 52630.0000008195,
+          "last_sample": 53048.0000008439,
+          "samples": 210,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 52656.000000821,
+          "last_sample": 53338.0000008607,
+          "samples": 342,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S031",
+          "group": "KZT_single",
+          "direction": 1,
+          "first_sample": 52738.0000008258,
+          "last_sample": 53336.0000008606,
+          "samples": 300,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S034",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 52790.0000008288,
+          "last_sample": 53176.0000008513,
+          "samples": 194,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M026",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 53032.0000008429,
+          "last_sample": 53550.0000008731,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 53086.0000008461,
+          "last_sample": 53518.0000008712,
+          "samples": 217,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S007",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 53126.0000008484,
+          "last_sample": 53620.0000008772,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M082",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 53156.0000008501,
+          "last_sample": 53662.0000008796,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M065",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 53182.0000008517,
+          "last_sample": 53532.000000872,
+          "samples": 176,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S034",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 53230.0000008545,
+          "last_sample": 53528.0000008718,
+          "samples": 150,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L028",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 53414.0000008652,
+          "last_sample": 54160.0000009086,
+          "samples": 374,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 53420.0000008655,
+          "last_sample": 54054.0000009024,
+          "samples": 318,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S052",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 53548.000000873,
+          "last_sample": 54318.0000009178,
+          "samples": 386,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 53572.0000008744,
+          "last_sample": 54204.0000009111,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M026",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 53604.0000008762,
+          "last_sample": 54046.000000902,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 53610.0000008766,
+          "last_sample": 54064.000000903,
+          "samples": 228,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 53622.0000008773,
+          "last_sample": 53914.0000008943,
+          "samples": 147,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M022",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 53708.0000008823,
+          "last_sample": 54230.0000009127,
+          "samples": 262,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S051",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 53806.000000888,
+          "last_sample": 54104.0000009053,
+          "samples": 150,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "NEM_single",
+          "direction": 1,
+          "first_sample": 53972.0000008976,
+          "last_sample": 54350.0000009196,
+          "samples": 190,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S012",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 54108.0000009056,
+          "last_sample": 54452.0000009256,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M016",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 54258.0000009143,
+          "last_sample": 54680.0000009389,
+          "samples": 212,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M026",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 54266.0000009148,
+          "last_sample": 54672.0000009384,
+          "samples": 204,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 54274.0000009152,
+          "last_sample": 54764.0000009437,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M065",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 54284.0000009158,
+          "last_sample": 54944.0000009542,
+          "samples": 331,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M082",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 54502.0000009285,
+          "last_sample": 54886.0000009508,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M024",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 54524.0000009298,
+          "last_sample": 55018.0000009585,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M051",
+          "group": "NYY_single",
+          "direction": 1,
+          "first_sample": 54540.0000009307,
+          "last_sample": 55040.0000009598,
+          "samples": 251,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M022",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 54560.0000009319,
+          "last_sample": 55078.000000962,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S052",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 54572.0000009326,
+          "last_sample": 54908.0000009521,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M053",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 54816.0000009468,
+          "last_sample": 55164.000000967,
+          "samples": 175,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M082",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 54940.000000954,
+          "last_sample": 55282.0000009739,
+          "samples": 172,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S051",
+          "group": "NEM_single",
+          "direction": 1,
+          "first_sample": 54960.0000009552,
+          "last_sample": 55346.0000009776,
+          "samples": 194,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M065",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 54998.0000009574,
+          "last_sample": 55424.0000009822,
+          "samples": 214,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M026",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 55018.0000009585,
+          "last_sample": 55650.0000009953,
+          "samples": 317,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M052",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 55106.0000009637,
+          "last_sample": 55700.0000009982,
+          "samples": 298,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S052",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 55116.0000009642,
+          "last_sample": 55622.0000009937,
+          "samples": 254,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M022",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 55132.0000009652,
+          "last_sample": 55574.0000009909,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 55168.0000009673,
+          "last_sample": 56044.0000010182,
+          "samples": 439,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 55334.0000009769,
+          "last_sample": 55852.0000010071,
+          "samples": 260,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L028",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 55426.0000009823,
+          "last_sample": 55912.0000010106,
+          "samples": 244,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M015",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 55430.0000009825,
+          "last_sample": 55730.000001,
+          "samples": 151,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M066",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 55578.0000009911,
+          "last_sample": 56176.0000010259,
+          "samples": 300,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S052",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 55676.0000009968,
+          "last_sample": 56060.0000010192,
+          "samples": 193,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M065",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 55682.0000009972,
+          "last_sample": 56174.0000010258,
+          "samples": 247,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M053",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 55732.0000010001,
+          "last_sample": 56390.0000010384,
+          "samples": 330,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S049",
+          "group": "TVC_single",
+          "direction": 1,
+          "first_sample": 55800.000001004,
+          "last_sample": 56098.0000010214,
+          "samples": 150,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M026",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 55804.0000010043,
+          "last_sample": 56150.0000010244,
+          "samples": 174,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M015",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 55900.0000010099,
+          "last_sample": 56534.0000010468,
+          "samples": 318,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M103",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 55938.0000010121,
+          "last_sample": 56428.0000010406,
+          "samples": 246,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M022",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 56066.0000010195,
+          "last_sample": 56494.0000010444,
+          "samples": 215,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L028",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 56162.0000010251,
+          "last_sample": 56966.0000010719,
+          "samples": 403,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S052",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 56170.0000010256,
+          "last_sample": 56512.0000010455,
+          "samples": 172,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M052",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 56242.0000010298,
+          "last_sample": 56574.0000010491,
+          "samples": 167,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 56276.0000010318,
+          "last_sample": 56820.0000010634,
+          "samples": 273,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L004",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 56324.0000010345,
+          "last_sample": 57072.0000010781,
+          "samples": 375,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M021",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 56348.0000010359,
+          "last_sample": 56696.0000010562,
+          "samples": 175,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M024",
+          "group": "MAKM_single",
+          "direction": -1,
+          "first_sample": 56510.0000010454,
+          "last_sample": 57146.0000010824,
+          "samples": 319,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M053",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 56578.0000010493,
+          "last_sample": 57006.0000010742,
+          "samples": 215,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M022",
+          "group": "KUMM_single",
+          "direction": -1,
+          "first_sample": 56632.0000010525,
+          "last_sample": 57292.0000010909,
+          "samples": 331,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M015",
+          "group": "TUVR_single",
+          "direction": 1,
+          "first_sample": 56714.0000010572,
+          "last_sample": 57122.000001081,
+          "samples": 205,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "S014",
+          "group": "ALLP_axis_envelope",
+          "direction": -1,
+          "first_sample": 56736.0000010585,
+          "last_sample": 57256.0000010888,
+          "samples": 261,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M068",
+          "group": "SRTL_single",
+          "direction": -1,
+          "first_sample": 56874.0000010666,
+          "last_sample": 57316.0000010923,
+          "samples": 222,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "L028",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 57154.0000010829,
+          "last_sample": 57686.0000011138,
+          "samples": 267,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M052",
+          "group": "NYY_single",
+          "direction": -1,
+          "first_sample": 57234.0000010875,
+          "last_sample": 57736.0000011167,
+          "samples": 252,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M065",
+          "group": "MAKM_single",
+          "direction": 1,
+          "first_sample": 57246.0000010882,
+          "last_sample": 57810.000001121,
+          "samples": 283,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M066",
+          "group": "PASA_single",
+          "direction": -1,
+          "first_sample": 57322.0000010926,
+          "last_sample": 57658.0000011122,
+          "samples": 169,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M049",
+          "group": "ALLP_axis_envelope",
+          "direction": 1,
+          "first_sample": 57338.0000010936,
+          "last_sample": 57832.0000011223,
+          "samples": 248,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M022",
+          "group": "ERS_single",
+          "direction": -1,
+          "first_sample": 57346.000001094,
+          "last_sample": 57690.0000011141,
+          "samples": 173,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M021",
+          "group": "KUMM_single",
+          "direction": 1,
+          "first_sample": 57384.0000010962,
+          "last_sample": 57974.0000011306,
+          "samples": 296,
+          "left_censored": false,
+          "right_censored": true
+        },
+        {
+          "id": "M102",
+          "group": "KZT_single",
+          "direction": -1,
+          "first_sample": 57410.0000010978,
+          "last_sample": 57974.0000011306,
+          "samples": 283,
+          "left_censored": false,
+          "right_censored": true
+        },
+        {
+          "id": "M053",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 57424.0000010986,
+          "last_sample": 57916.0000011272,
+          "samples": 247,
+          "left_censored": false,
+          "right_censored": false
+        },
+        {
+          "id": "M015",
+          "group": "SRTL_single",
+          "direction": 1,
+          "first_sample": 57598.0000011087,
+          "last_sample": 57974.0000011306,
+          "samples": 189,
+          "left_censored": false,
+          "right_censored": true
+        },
+        {
+          "id": "M068",
+          "group": "TUVR_single",
+          "direction": -1,
+          "first_sample": 57776.0000011191,
+          "last_sample": 57974.0000011306,
+          "samples": 100,
+          "left_censored": false,
+          "right_censored": true
+        },
+        {
+          "id": "V003",
+          "group": "ERS_single",
+          "direction": 1,
+          "first_sample": 57788.0000011198,
+          "last_sample": 57974.0000011306,
+          "samples": 94,
+          "left_censored": false,
+          "right_censored": true
+        },
+        {
+          "id": "L028",
+          "group": "TVC_single",
+          "direction": -1,
+          "first_sample": 57878.000001125,
+          "last_sample": 57974.0000011306,
+          "samples": 49,
+          "left_censored": false,
+          "right_censored": true
+        },
+        {
+          "id": "M052",
+          "group": "NEM_single",
+          "direction": -1,
+          "first_sample": 57956.0000011295,
+          "last_sample": 57974.0000011306,
+          "samples": 10,
+          "left_censored": false,
+          "right_censored": true
+        }
+      ]
+    }
+  ]
+}
