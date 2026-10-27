@@ -5341,3 +5341,26 @@ No duplicate,restart,Classic208,full-suite or native job was launched. Unchanged
 runtime/tests retain the completed1003-test suite and candidate32's four passing
 authoring guards. Network208V2 remains unaccepted/uninstalled; feasibility and
 ETA remain unproven. No gameplay playtest until an accepted V2 installation.
+
+27 October 21:44 — reboot interruption preserved; user authorizes modest service trimming.
+
+The user restarted the PC for unrelated reasons and asked to resume overnight
+until the timetable is done, trimming a few services if needed. The observed boot
+is 20:09:08+08. No Godot process survived. Original32 baseline27304/14984 last
+logged17:20 simulated,109/208 complete,peak34,maxwait41.0m,empty stderr and NO
+final audit. This is interrupted, neither passed nor naturally failed. Its six
+exact raw files include lossless traffic and original catalogue; all346 surviving
+files, including342 snapshots retained in the original local folder, have exact
+hashes in interrupted-predictive-baseline/provenance.json. All4836 source hashes
+were verified against current-at-run candidate32 before any source change.
+Do not execute launch-network-v32.ps1 again or treat the prefix as completion.
+
+Original32 delayed failure bc0118b1 remains rejected: S035 bookedALLP19:52:26,
+122/208,2702s in both wait populations,zero safety,failed30/45 gates. Its17 raw
+files and two immutable inspections remain. The next candidate targets200
+services by removing eight evening mails from both authored source packs while
+retaining every remaining service object, K1 and all gates. Raw208 template,
+runtime and six original observers remain unchanged to preserve legacy evidence.
+No new replay has launched. Full-day feasibility and ETA remain unproven.
+Active work resumed21:34:58+08; the idle/reboot gap is excluded from the ledger.
+Historical running statements below describe their recorded checkpoints only.
