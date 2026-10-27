@@ -2,6 +2,18 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 00:28 — both original34 V2 tests continue with frozen inputs.
+
+At00:28:18 baseline22164/21660 reports 01:30:00 complete=1/200 peak=14 max_wait=6.1m wall=263.6s.
+Delayed5648/2636 reports 02:20:00 complete=1/200 peak=19 max_wait=6.1m wall=279.0s.
+All four exact command/parent identities match launchda4ff140; errors are empty
+and neither final audit exists. All4836 source hashes,six original observers
+and five acceptance/selection hashes remain unchanged. No new job,restart,
+source edit or installation. Continue both original tests; these partial clocks
+are not completion,capacity or recovery proof. Network200V2 remains unaccepted/
+uninstalled; no gameplay playtest until a passing V2 installation.
+
+
 28 October 00:24 — candidate34 V2 launch verified; frozen inputs.
 
 Candidate655e46bb was committed/pushed after exact normal author reproduction,
