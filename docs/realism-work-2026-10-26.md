@@ -5967,3 +5967,15 @@ and full-tail clearance. No duplicate,restart,Classic Network,full-suite or nati
 job launched. The unchanged runtime/tests retain the1004-test suite and candidate34
 five passing authoring guards. Network200V2 remains unaccepted/uninstalled;
 feasibility and ETA remain unproven. No gameplay playtest until passing V2 install.
+
+28 October 02:18 — original34 V2 baseline continues with frozen inputs.
+
+At02:18:15 original baseline22164/21660 reports 19:40:00 complete=120/200 peak=34 max_wait=41.0m wall=6846.7s.
+Both exact command/parent identities match launchda4ff140; errors are empty and
+no final audit exists. All4836 source hashes,six original observers and five
+acceptance/selection hashes remain unchanged. Original delayed5648/2636 is
+already rejected and preserved in cdade7d7; no delayed process remains.
+No new job,restart,source edit or installation. Wait for the original baseline
+final report before coordinated replanning using both results. Partial progress
+is not completion,capacity or recovery proof. Network200V2 remains unaccepted/
+uninstalled; no gameplay playtest until a passing V2 installation.
