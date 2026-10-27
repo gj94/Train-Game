@@ -4110,3 +4110,16 @@ Keep both original runs unchanged and inspect their actual final reports
 against every completion, safety, wait, physical and recovery gate.
 Network208V2 remains unaccepted and uninstalled; continuation remains active.
 No gameplay change or playtest is due.
+
+27 October 12:45 — original candidate29 V2 runs remain active.
+
+At 12:45:10, baseline 164/7484 reaches 08:00, 33/208 complete, peak 31,
+maximum wait 35.8 minutes; delayed 832/25904 reaches 10:40, 59/208 complete,
+peak 31, maximum wait 40.9 minutes. Both original command/parent identities
+match launch 55cace53. Errors are empty and neither run has a final audit.
+The V2 pack, six observer hashes and frozen Git paths remain unchanged.
+No duplicate, Classic208, suite or native run was launched. Partial clocks,
+counts and wait maxima are not full-day acceptance or recovery evidence.
+Continue both originals unchanged; evaluate actual final reports against all
+completion, safety, wait, physical and recovery gates. Network208V2 remains
+unaccepted and uninstalled. No gameplay change or playtest is due.
