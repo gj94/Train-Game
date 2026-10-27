@@ -2,6 +2,19 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 19:49 — original candidate32 V2 runs remain active.
+
+At 19:49:22 baseline 27304/14984 reaches 14:20, 80/208, peak 34, maximum wait
+41.0m; delayed 26020/26688 reaches 19:20, 117/208, peak 34, maximum wait 40.9m.
+Both original command/parent identities match launch 2a53f9ed, errors remain
+empty, and neither final audit exists. No additional Godot process is present.
+Runtime/routes/packs remain unchanged from ddbeedb5 and all six observer hashes
+match launch. Keep inputs frozen until both original runs end. These partial
+observations do not establish acceptance, whole-day improvement or recovery.
+No duplicate, restart, Classic208, unchanged full suite or native check was
+launched. Network208V2 remains unaccepted/uninstalled; feasibility and ETA remain
+unproven.
+
 27 October 19:39 — original candidate32 V2 runs remain live.
 
 At 19:39:20 baseline 27304/14984 reaches 13:00, 70/208, peak 33, maximum wait
