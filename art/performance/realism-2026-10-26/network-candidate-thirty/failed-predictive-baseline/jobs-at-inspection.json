@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 21528,
+    "started": "2026-10-27T14:04:54.6383986+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v30/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "d82d37ed8232fd245c529ed45c8da195cfc81bbb",
+    "status": "finished-rejected",
+    "reason": "User limits Network208 to V2. Candidate30 changes22 southern departures after both original29 bookedPASA M097 failures. Retain M07016:30 then S03817:50,M07218:05,M05418:20,V00818:35 and mails through20:05, followed by locals20:20-21:20. Shift TVC southbound S05118:30/S04918:50/S05319:10 and following group19:40-21:00. All northern origins retained. Actual queues/full-rake axis intervals are planning evidence only, not guaranteed receiving, crossing order, full-tail clearance, escape or capacity. Every actual V2 baseline and disturbance acceptance gate remains required",
+    "pack_sha256": "b8d52a1686c311dc67a06c6b5388f695b97fda57c572858b8b659bd0ada70b49",
+    "child_pid": 21596
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 21816,
+    "started": "2026-10-27T14:04:54.7010957+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v30/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "d82d37ed8232fd245c529ed45c8da195cfc81bbb",
+    "status": "finished-rejected",
+    "reason": "User limits Network208 to V2. Candidate30 changes22 southern departures after both original29 bookedPASA M097 failures. Retain M07016:30 then S03817:50,M07218:05,M05418:20,V00818:35 and mails through20:05, followed by locals20:20-21:20. Shift TVC southbound S05118:30/S04918:50/S05319:10 and following group19:40-21:00. All northern origins retained. Actual queues/full-rake axis intervals are planning evidence only, not guaranteed receiving, crossing order, full-tail clearance, escape or capacity. Every actual V2 baseline and disturbance acceptance gate remains required",
+    "pack_sha256": "b8d52a1686c311dc67a06c6b5388f695b97fda57c572858b8b659bd0ada70b49",
+    "child_pid": 8612
+  }
+]
