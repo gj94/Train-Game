@@ -4577,3 +4577,17 @@ full suite or native job was launched. Unchanged runtime/tests retain the
 completed 1003-test suite and candidate 30's four passing authoring guards.
 Network208V2 remains unaccepted/uninstalled; feasibility within all gates and
 ETA remain unproven. No new gameplay playtest until an accepted V2 installation.
+
+27 October 15:47 — original candidate 30 V2 baseline continues.
+
+At 15:47:33, baseline 21528/21596 reaches 18:10, 111/208 complete,
+peak 34 and maximum wait 41.0m, with empty errors and no final audit.
+Its original command and parent identities match launch 59bdb842. Both source
+packs, six observers and frozen Git paths remain unchanged. Original delayed
+21816/8612 remains rejected in feb07f44: M072 at its booked ERL call, 19:14:14,
+116/208, zero safety events and failed 30/45-minute gates in both wait populations.
+Its exact evidence is preserved; no replay was restarted. Wait for the original
+baseline before departure-only replanning. No Classic208, duplicate replay,
+full suite or native job was launched. This partial baseline is not acceptance,
+capacity or recovery proof. Network208V2 remains unaccepted/uninstalled.
+No gameplay change or new playtest is due; continuation remains active.
