@@ -2,6 +2,21 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 17:33 — original candidate31 V2 runs continue with frozen inputs.
+
+At 17:33:24, baseline 2108/24676 reaches 14:10, 78/208 complete, peak34,
+maximum wait41.0m; delayed 13884/3528 reaches 19:00, 113/208 complete, peak34,
+maximum wait40.9m. All four original process IDs, parents and complete commands
+match launch a01417ed. Both error logs are empty and neither final audit exists.
+Runtime/tests/routes/packs/six observers remain unchanged since candidate91969531.
+
+Keep inputs frozen until both original31 runs end naturally. Inspect every final
+completion, safety, wait, physical and recovery gate when reports are available;
+these partial runs establish no acceptance. No replay was duplicated or restarted,
+and no Classic208, native or unchanged suite job was launched. Network208V2
+remains unaccepted/uninstalled, with no gameplay playtest until a passing V2
+installation. Continuation remains active; feasibility and ETA remain unproven.
+
 27 October 17:23 — both original candidate31 V2 runs remain active.
 
 At 17:23:31, baseline 2108/24676 reaches 12:50, 69/208 complete, peak33,
