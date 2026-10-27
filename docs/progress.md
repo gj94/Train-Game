@@ -2,6 +2,17 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 23:27 — original33 V2 runs continue; frozen inputs verified.
+
+At23:27:19 baseline14144/5236 reaches14:10 simulated,78/200 complete,peak34,
+maxwait41.0m; delayed15508/24420 reaches19:40,120/200,peak34,maxwait40.9m.
+Both original command/parent identities match, stderr is empty and neither final
+audit exists. All4836 source hashes, six original observers and five acceptance/
+selection hashes match launch. No new job, duplicate, restart or source edit.
+These partial results are not acceptance or recovery proof. Continue both
+original runs with frozen inputs; Network200V2 remains unaccepted/uninstalled.
+No gameplay playtest until a passing V2 installation.
+
 27 October 23:17 — original33 V2 runs continue; frozen inputs verified.
 
 At23:17:28 baseline14144/5236 reaches12:50 simulated,69/200 complete,peak33,
