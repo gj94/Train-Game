@@ -2,6 +2,78 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 23:42 — candidate33 original V2 delayed run rejected; baseline continues.
+
+The original delayed wrapper15508/child24420 ended naturally at21:14:24 simulated
+with M054 at its booked Neyyattinkara/NYY call,127/200 complete,peak39 and maximum
+2702s in BOTH wait populations. Zero safety events and empty run, summary and
+all three inspection errors follow the configured600s K1 hold at07:30. At23:42:34
+the original baseline14144/5236 remains running: 16:40:00 complete=103/200 peak=34 max_wait=41.0m wall=5960.0s.
+Its command/parent identity matches launch99a1d769. Runtime, routes, packs, six
+original observers and five acceptance/selection inputs remain frozen. No restart.
+
+Evidence in network-candidate-thirty-three/failed-predictive-delayed preserves21
+exact raw files, lossless audit/traffic/failure, exact V2 pack, actual final
+summary and three byte-immutable inspections at NEM,KZT,NYY. All4836 distinct
+source hashes match current-at-run f5c5d999, with all eleven observer/acceptance
+hashes unchanged. Original outputs remain. Never rerun this rejected test
+unchanged, relabel these fingerprints after a later source change, or install it.
+
+All-location cumulative385/496,458/496,482/496,495/496 fails under30/45 minutes;
+station-only195/270,247/270,261/270,269/270 also fails under30/45. Passing fractions
+apply only to this failed prefix. M054 arrived NYY20:28:09.15 with no departure,
+current signal NYY-N1; this IS a booked station wait. Its2702s comprises1764s
+opposing traffic (S049394,S033448,S053446,M081476),890s compatible NEM receiving
+and48s conflicts (12 each S049/S033/S053/M081). Receiving buckets are176L031,
+488combinedL031/M099,96combinedL031/S053,22S033,68approachingL031/M081 and
+40approachingS033/L031. Preserve combined buckets without individual attribution.
+
+Actual NEM claims L031P1/M099P2, both waiting for NYY receiving reported against
+M054/M081. S019 appears in NEM claims with NO road, while moving empty stock at
+TVC; it must not be described as a reserved NEM road. Actual NYY claims M054P1/
+M081P2. M081 arrivedNYY21:07:00.10 and awaits PASA receiving for S053/M104.
+S053 waits at PASA-S1 for M104's conflicting route; M104 moves14.513m/s toward
+PASA after KZT departure21:07:40.25. L031 arrivedNEM20:41:20.70 with no departure;
+M099 leftTVC21:00:05.25. All three inspections have identical before/after
+captures and no future clearance plans. This is not permanent-deadlock or
+runtime-defect proof. A local reporting print stopped after the saved NEM
+inspection by calling the integer st_size; it was corrected without repeating
+that inspection or any replay. KZT and NYY inspections then completed normally.
+
+M088's booked ERL wait is2676s after arrival20:27:37.85, no departure, signalERL-N2:
+2260s opposing traffic,396s compatible KZT receiving and20s S051 conflicts.
+Opposing buckets are660L029,260combinedL029/S051,430S051,610S049,230S033,
+2combinedS033/S049 and68combinedS049/S033; receiving190combinedL029/M104,
+114combinedS049/M104 and92M104. KZT has no current claims, but S033 moves24.6m/s
+south through KZT_single after KZT departure21:09:29.80. M058 waits for M088's
+ERL block; M056/L028 wait behind it, L030 moves north and L038/L032 are not due.
+S049 moves south beyondERL; S051 heads toward its southern portal afterNCJ
+21:13:35.25 departure, not yet recorded cleared. M085 awaits a clear TVC origin;
+M087/M083/L037 are not due. L029 moves afterNJT21:14:21.25 departure.
+
+S036 has continued beyond the northern boundary at21:02:29.75; M102 is in ALLP
+depot after19:58:04.70 arrival. L004 now waitsTUVR for opposingS021; M070 waits
+SRTL for L011. S021/L003/L011/M031/M069/M055/M072/S038 move. L009 waitsKUMM for
+M031's overtake; M027 preserves L004's onward crossing; M033 waitsSRTL for S022's
+crossing and M059 waitsALLP for S022. M029/M035/S023 are not yet due. S035 waits
+behind S019's TVC block. S017/S019 are moving empty to TVC depots after passenger
+arrivals21:05:39.90/21:12:05.45, not yet stabled. M015 is in TVC depot after20:44:02.65
+arrival; V003/V008 are there after19:43:55.60/19:55:59.55. M065 is beyond the southern
+boundary at19:47:13.30. K1/L025 remain in NCJ depot after13:31:09.15/13:11:10.65
+passenger arrivals. These local movements are not whole-day improvement,
+capacity or recovery proof.
+
+Eleven K1 minute samples show27.4545764399m braking by07:31, then unchanged
+recorded extents through07:40; these are not exact controller frames or recovery
+proof. The actual final summary records one V001 overtake of K1 at TVCN, not
+completed multiple-location evidence. No complete-population comparison,
+recovery certificate or installation. Wait for the original baseline before
+coordinated planning using both actual queues, opposing groups, compatible
+receiving roads and full-tail clearance. No Classic Network, duplicate, source
+suite or native job launched. The completed1004-test source suite and five
+authoring guards remain current. Network200V2 remains unaccepted/uninstalled;
+feasibility and ETA remain unproven. No gameplay playtest until passing V2 install.
+
 27 October 23:27 — original33 V2 runs continue; frozen inputs verified.
 
 At23:27:19 baseline14144/5236 reaches14:10 simulated,78/200 complete,peak34,
