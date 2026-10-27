@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 11952,
+    "started": "2026-10-27T08:21:22.6047939+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v27/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "899a8292e8bad0845b52fd9e2b79ceb63703058c",
+    "status": "finished-rejected",
+    "reason": "User limits Network208 to V2. Candidate twenty-seven changes thirteen southern departures from candidate twenty-six: later opposing TVC groups to leave NEM receiving space for M082, and later northbound KZT/PASA groups around M051 while retaining L00414:55 and moving M102 farther behind. Based on both actual V2 queues and sampled full-rake envelopes; origin spacing is not guaranteed clearance. Actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "ccd57ce978ce77335291c58ebf721fbf8e7ae64176edbf1824aace00ab9fad76",
+    "child_pid": 20024
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 20640,
+    "started": "2026-10-27T08:21:22.6694794+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v27/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "899a8292e8bad0845b52fd9e2b79ceb63703058c",
+    "status": "finished-rejected",
+    "reason": "User limits Network208 to V2. Candidate twenty-seven changes thirteen southern departures from candidate twenty-six: later opposing TVC groups to leave NEM receiving space for M082, and later northbound KZT/PASA groups around M051 while retaining L00414:55 and moving M102 farther behind. Based on both actual V2 queues and sampled full-rake envelopes; origin spacing is not guaranteed clearance. Actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "ccd57ce978ce77335291c58ebf721fbf8e7ae64176edbf1824aace00ab9fad76",
+    "child_pid": 27164
+  }
+]
