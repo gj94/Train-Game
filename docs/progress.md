@@ -2,6 +2,21 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 05:09 — both original candidate36 V2 runs remain active.
+
+At 05:09:18, baseline 18424/6760 reports 01:10 simulated, 0/200 complete,
+peak 12 and maximum wait 0.1 minutes. Delayed 18356/23568 reports 01:50,
+1/200 complete, peak 16 and maximum wait 6.1 minutes. Both error logs are
+empty and neither final audit exists. All four process/parent/command records
+match the original launch; all 4836 distinct source hashes, six observer hashes
+and five acceptance/selection hashes remain unchanged. Inputs remain frozen;
+no job was launched or restarted. Partial progress is not acceptance.
+
+Await both original final reports before coordinated departure-only replanning.
+Network 200 V2 remains unaccepted and uninstalled; no gameplay playtest or
+reliable readiness ETA. Existing source and authoring test results are retained;
+this checkpoint changes documentation only.
+
 28 October 05:06 — original candidate36 V2 pair launched once and verified.
 
 Author3b3ac4ba6b952ecf7b7527bc0aea65646a3e0862 was committed/pushed before launch.
