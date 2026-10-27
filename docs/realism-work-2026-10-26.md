@@ -4220,3 +4220,17 @@ suite or native job was launched. Unchanged runtime/tests retain the completed
 1003-test suite and candidate 29's four passing authoring guards. Network 208V2
 remains unaccepted/uninstalled; feasibility within all gates and ETA remain
 unproven. No new gameplay playtest until an accepted V2 installation.
+
+27 October 13:35 — original candidate29 V2 baseline remains active.
+
+At 13:35:11, original baseline 164/7484 reaches 16:10, 98/208 complete,
+peak 34 and maximum wait 41.0 minutes. Its commands and parent identities
+match launch55cace53; errors are empty and no final audit exists. The V2 pack,
+six observer hashes and frozen Git paths remain unchanged. Original delayed
+832/25904 remains ended and rejected, with exact evidence in53cbc1c4; it was
+not rerun. No duplicate, Classic208, suite or native job was launched.
+Continue the original baseline unchanged and inspect its actual final report
+before departure-only replanning. Partial clocks and completion counts are
+not acceptance, whole-day improvement, capacity or recovery proof.
+Network208V2 remains unaccepted/uninstalled. No gameplay change or playtest
+is due; continuation remains active.
