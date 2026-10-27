@@ -6306,3 +6306,14 @@ is already preserved in71357fb7; no replay or completed inspection repeated.
 No source edit,new job,restart or installation. Wait for the original baseline
 before coordinated replanning from both outcomes. Partial progress is not
 acceptance,capacity or recovery proof; no gameplay playtest before passing V2 install.
+
+28 October 04:49 — original35 baseline continues with frozen inputs.
+
+At04:49:19 original baseline14568/15696 reports 21:00:00 complete=127/200 peak=34 max_wait=41.0m wall=7360.5s.
+Its exact process/parent/command identities match launch968f3301; errors remain
+empty and no final audit exists. All4836 source hashes,six original observers
+and five acceptance/selection hashes remain unchanged. Original35 delayed failure
+is already preserved in71357fb7; no replay or completed inspection repeated.
+No source edit,new job,restart or installation. Wait for the original baseline
+before coordinated replanning from both outcomes. Partial progress is not
+acceptance,capacity or recovery proof; no gameplay playtest before passing V2 install.
