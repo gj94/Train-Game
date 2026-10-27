@@ -3756,3 +3756,17 @@ search or diagnostic job was launched. Continue the same original runs, then
 inspect their actual final reports. Network208V2 remains unaccepted/uninstalled;
 no new gameplay playtest is available. Historical evidence and certified legacy
 choices remain preserved.
+
+27 October 10:33 — original candidate28 runs continue.
+
+At 10:33:14, baseline 26840/26252 reaches 05:00 with 16/208 complete, peak 29
+and maximum wait 26.0 minutes. Delayed 8232/6576 reaches 06:20 with 23/208
+complete, peak 31 and maximum wait 31.1 minutes. All four original commands
+and parents match the launch proof. Error logs are empty; final audits are absent.
+The V2 pack, six observers and frozen source paths remain unchanged.
+
+These partial results do not establish acceptance or a complete-population
+comparison. Continue the same original runs and inspect their actual final reports.
+No duplicate, Classic208, suite, native, search or diagnostic job was launched.
+Network208V2 remains unaccepted/uninstalled. No new gameplay playtest is available;
+historical evidence and certified legacy choices remain preserved.
