@@ -6185,3 +6185,13 @@ errors and no final audit. All4836 source hashes,six original observers and five
 acceptance/selection hashes remain unchanged. No source edit,new job,restart or
 installation. Both original results remain pending; partial progress is not
 acceptance,capacity or recovery proof. No gameplay playtest before passing V2 install.
+
+28 October 03:39 — both original35 V2 runs continue with frozen inputs.
+
+At03:39:16 baseline14568/15696 reports 09:20:00 complete=45/200 peak=31 max_wait=35.8m wall=3126.4s.
+Delayed6764/4340 reports 12:30:00 complete=67/200 peak=31 max_wait=40.9m wall=3119.4s.
+All four original command/parent identities match launch968f3301. Both have empty
+errors and no final audit. All4836 source hashes,six original observers and five
+acceptance/selection hashes remain unchanged. No source edit,new job,restart or
+installation. Both original results remain pending; partial progress is not
+acceptance,capacity or recovery proof. No gameplay playtest before passing V2 install.
