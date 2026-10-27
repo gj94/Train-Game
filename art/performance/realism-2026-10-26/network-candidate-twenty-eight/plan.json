@@ -1,0 +1,108 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "88d860fa1680a8b34ab4320e19720dcdbe9785ea0c1f451a507acd1ae57e6534",
+    "kerala-coast-network-v2.json": "ccd57ce978ce77335291c58ebf721fbf8e7ae64176edbf1824aace00ab9fad76",
+    "kerala-coast-network-departure-overrides.json": "7e8bd2657f0b35bb860274f10dd8a72f225be400c81660cf3142adbb2d939ec3"
+  },
+  "changes": [
+    {
+      "service": "M053",
+      "before": "15:00",
+      "after": "15:40",
+      "reason": "Move M053/M015/M021 to15:40/15:50/16:00 and M025/L003/L011/L009 to16:25/16:50/16:55/17:15. Retain M04914:15,M06514:30,V00315:50,S03316:00,S01716:35. Actual27 baseline M026 waits1228s opposingM065/M053/M021 and1128s compatibleKUMM receiving; M015 occupiesKUMMP3 whileM024/M026 occupyTUVRP2/P3 andM021 approachesP1. M048 KUMM envelope15:24:54-15:35:28 is followed byM05315:36:42-15:47:16, thenM02215:48:30-15:59:02 andM02116:00:18-failure. Delay the replenishing southern-direction mail group to create an opportunity for M026 and following northbound trains; move following mails/locals together. These observed envelopes are not future crossing or clearance predictions. Fast departures retained nearby may change overtakes and receiving order."
+    },
+    {
+      "service": "M015",
+      "before": "15:15",
+      "after": "15:50",
+      "reason": "Move M053/M015/M021 to15:40/15:50/16:00 and M025/L003/L011/L009 to16:25/16:50/16:55/17:15. Retain M04914:15,M06514:30,V00315:50,S03316:00,S01716:35. Actual27 baseline M026 waits1228s opposingM065/M053/M021 and1128s compatibleKUMM receiving; M015 occupiesKUMMP3 whileM024/M026 occupyTUVRP2/P3 andM021 approachesP1. M048 KUMM envelope15:24:54-15:35:28 is followed byM05315:36:42-15:47:16, thenM02215:48:30-15:59:02 andM02116:00:18-failure. Delay the replenishing southern-direction mail group to create an opportunity for M026 and following northbound trains; move following mails/locals together. These observed envelopes are not future crossing or clearance predictions. Fast departures retained nearby may change overtakes and receiving order."
+    },
+    {
+      "service": "M021",
+      "before": "15:30",
+      "after": "16:00",
+      "reason": "Move M053/M015/M021 to15:40/15:50/16:00 and M025/L003/L011/L009 to16:25/16:50/16:55/17:15. Retain M04914:15,M06514:30,V00315:50,S03316:00,S01716:35. Actual27 baseline M026 waits1228s opposingM065/M053/M021 and1128s compatibleKUMM receiving; M015 occupiesKUMMP3 whileM024/M026 occupyTUVRP2/P3 andM021 approachesP1. M048 KUMM envelope15:24:54-15:35:28 is followed byM05315:36:42-15:47:16, thenM02215:48:30-15:59:02 andM02116:00:18-failure. Delay the replenishing southern-direction mail group to create an opportunity for M026 and following northbound trains; move following mails/locals together. These observed envelopes are not future crossing or clearance predictions. Fast departures retained nearby may change overtakes and receiving order."
+    },
+    {
+      "service": "M025",
+      "before": "16:05",
+      "after": "16:25",
+      "reason": "Move M053/M015/M021 to15:40/15:50/16:00 and M025/L003/L011/L009 to16:25/16:50/16:55/17:15. Retain M04914:15,M06514:30,V00315:50,S03316:00,S01716:35. Actual27 baseline M026 waits1228s opposingM065/M053/M021 and1128s compatibleKUMM receiving; M015 occupiesKUMMP3 whileM024/M026 occupyTUVRP2/P3 andM021 approachesP1. M048 KUMM envelope15:24:54-15:35:28 is followed byM05315:36:42-15:47:16, thenM02215:48:30-15:59:02 andM02116:00:18-failure. Delay the replenishing southern-direction mail group to create an opportunity for M026 and following northbound trains; move following mails/locals together. These observed envelopes are not future crossing or clearance predictions. Fast departures retained nearby may change overtakes and receiving order."
+    },
+    {
+      "service": "L003",
+      "before": "16:20",
+      "after": "16:50",
+      "reason": "Move M053/M015/M021 to15:40/15:50/16:00 and M025/L003/L011/L009 to16:25/16:50/16:55/17:15. Retain M04914:15,M06514:30,V00315:50,S03316:00,S01716:35. Actual27 baseline M026 waits1228s opposingM065/M053/M021 and1128s compatibleKUMM receiving; M015 occupiesKUMMP3 whileM024/M026 occupyTUVRP2/P3 andM021 approachesP1. M048 KUMM envelope15:24:54-15:35:28 is followed byM05315:36:42-15:47:16, thenM02215:48:30-15:59:02 andM02116:00:18-failure. Delay the replenishing southern-direction mail group to create an opportunity for M026 and following northbound trains; move following mails/locals together. These observed envelopes are not future crossing or clearance predictions. Fast departures retained nearby may change overtakes and receiving order."
+    },
+    {
+      "service": "L011",
+      "before": "16:45",
+      "after": "16:55",
+      "reason": "Move M053/M015/M021 to15:40/15:50/16:00 and M025/L003/L011/L009 to16:25/16:50/16:55/17:15. Retain M04914:15,M06514:30,V00315:50,S03316:00,S01716:35. Actual27 baseline M026 waits1228s opposingM065/M053/M021 and1128s compatibleKUMM receiving; M015 occupiesKUMMP3 whileM024/M026 occupyTUVRP2/P3 andM021 approachesP1. M048 KUMM envelope15:24:54-15:35:28 is followed byM05315:36:42-15:47:16, thenM02215:48:30-15:59:02 andM02116:00:18-failure. Delay the replenishing southern-direction mail group to create an opportunity for M026 and following northbound trains; move following mails/locals together. These observed envelopes are not future crossing or clearance predictions. Fast departures retained nearby may change overtakes and receiving order."
+    },
+    {
+      "service": "L009",
+      "before": "17:00",
+      "after": "17:15",
+      "reason": "Move M053/M015/M021 to15:40/15:50/16:00 and M025/L003/L011/L009 to16:25/16:50/16:55/17:15. Retain M04914:15,M06514:30,V00315:50,S03316:00,S01716:35. Actual27 baseline M026 waits1228s opposingM065/M053/M021 and1128s compatibleKUMM receiving; M015 occupiesKUMMP3 whileM024/M026 occupyTUVRP2/P3 andM021 approachesP1. M048 KUMM envelope15:24:54-15:35:28 is followed byM05315:36:42-15:47:16, thenM02215:48:30-15:59:02 andM02116:00:18-failure. Delay the replenishing southern-direction mail group to create an opportunity for M026 and following northbound trains; move following mails/locals together. These observed envelopes are not future crossing or clearance predictions. Fast departures retained nearby may change overtakes and receiving order."
+    },
+    {
+      "service": "M097",
+      "before": "14:45",
+      "after": "15:30",
+      "reason": "Move M097 from14:45 to15:30, followed by later TVC southbound group S05117:20,S04917:40,S05318:00,M08119:00,M08519:20,M08719:40,M08320:00,L03720:20. Retain M10112:45,V00715:30,L00414:55 and the candidate27 northbound group. Actual27 delayed M097 TVCdeparture15:55:19.25 precedes2702s NEM-S1 wait:1486s opposingL004/S054/M052,998s NYYreceiving,182s crossing and36s conflicts. Actual L004/S054/M052 NEM envelopes end16:23:42/16:34:34/16:47:26. Later M097 and a gap before following TVC departures aim to avoid that observed queue without filling both NEM receiving roads; M066/M102/S036 and later groups remain constraints. These observations are not candidate28 predictions; later source times do not guarantee compatible roads, crossing order, full-tail clearance or escape."
+    },
+    {
+      "service": "S051",
+      "before": "15:40",
+      "after": "17:20",
+      "reason": "Move M097 from14:45 to15:30, followed by later TVC southbound group S05117:20,S04917:40,S05318:00,M08119:00,M08519:20,M08719:40,M08320:00,L03720:20. Retain M10112:45,V00715:30,L00414:55 and the candidate27 northbound group. Actual27 delayed M097 TVCdeparture15:55:19.25 precedes2702s NEM-S1 wait:1486s opposingL004/S054/M052,998s NYYreceiving,182s crossing and36s conflicts. Actual L004/S054/M052 NEM envelopes end16:23:42/16:34:34/16:47:26. Later M097 and a gap before following TVC departures aim to avoid that observed queue without filling both NEM receiving roads; M066/M102/S036 and later groups remain constraints. These observations are not candidate28 predictions; later source times do not guarantee compatible roads, crossing order, full-tail clearance or escape."
+    },
+    {
+      "service": "S049",
+      "before": "16:10",
+      "after": "17:40",
+      "reason": "Move M097 from14:45 to15:30, followed by later TVC southbound group S05117:20,S04917:40,S05318:00,M08119:00,M08519:20,M08719:40,M08320:00,L03720:20. Retain M10112:45,V00715:30,L00414:55 and the candidate27 northbound group. Actual27 delayed M097 TVCdeparture15:55:19.25 precedes2702s NEM-S1 wait:1486s opposingL004/S054/M052,998s NYYreceiving,182s crossing and36s conflicts. Actual L004/S054/M052 NEM envelopes end16:23:42/16:34:34/16:47:26. Later M097 and a gap before following TVC departures aim to avoid that observed queue without filling both NEM receiving roads; M066/M102/S036 and later groups remain constraints. These observations are not candidate28 predictions; later source times do not guarantee compatible roads, crossing order, full-tail clearance or escape."
+    },
+    {
+      "service": "S053",
+      "before": "16:10",
+      "after": "18:00",
+      "reason": "Move M097 from14:45 to15:30, followed by later TVC southbound group S05117:20,S04917:40,S05318:00,M08119:00,M08519:20,M08719:40,M08320:00,L03720:20. Retain M10112:45,V00715:30,L00414:55 and the candidate27 northbound group. Actual27 delayed M097 TVCdeparture15:55:19.25 precedes2702s NEM-S1 wait:1486s opposingL004/S054/M052,998s NYYreceiving,182s crossing and36s conflicts. Actual L004/S054/M052 NEM envelopes end16:23:42/16:34:34/16:47:26. Later M097 and a gap before following TVC departures aim to avoid that observed queue without filling both NEM receiving roads; M066/M102/S036 and later groups remain constraints. These observations are not candidate28 predictions; later source times do not guarantee compatible roads, crossing order, full-tail clearance or escape."
+    },
+    {
+      "service": "M081",
+      "before": "17:10",
+      "after": "19:00",
+      "reason": "Move M097 from14:45 to15:30, followed by later TVC southbound group S05117:20,S04917:40,S05318:00,M08119:00,M08519:20,M08719:40,M08320:00,L03720:20. Retain M10112:45,V00715:30,L00414:55 and the candidate27 northbound group. Actual27 delayed M097 TVCdeparture15:55:19.25 precedes2702s NEM-S1 wait:1486s opposingL004/S054/M052,998s NYYreceiving,182s crossing and36s conflicts. Actual L004/S054/M052 NEM envelopes end16:23:42/16:34:34/16:47:26. Later M097 and a gap before following TVC departures aim to avoid that observed queue without filling both NEM receiving roads; M066/M102/S036 and later groups remain constraints. These observations are not candidate28 predictions; later source times do not guarantee compatible roads, crossing order, full-tail clearance or escape."
+    },
+    {
+      "service": "M085",
+      "before": "17:30",
+      "after": "19:20",
+      "reason": "Move M097 from14:45 to15:30, followed by later TVC southbound group S05117:20,S04917:40,S05318:00,M08119:00,M08519:20,M08719:40,M08320:00,L03720:20. Retain M10112:45,V00715:30,L00414:55 and the candidate27 northbound group. Actual27 delayed M097 TVCdeparture15:55:19.25 precedes2702s NEM-S1 wait:1486s opposingL004/S054/M052,998s NYYreceiving,182s crossing and36s conflicts. Actual L004/S054/M052 NEM envelopes end16:23:42/16:34:34/16:47:26. Later M097 and a gap before following TVC departures aim to avoid that observed queue without filling both NEM receiving roads; M066/M102/S036 and later groups remain constraints. These observations are not candidate28 predictions; later source times do not guarantee compatible roads, crossing order, full-tail clearance or escape."
+    },
+    {
+      "service": "M087",
+      "before": "18:00",
+      "after": "19:40",
+      "reason": "Move M097 from14:45 to15:30, followed by later TVC southbound group S05117:20,S04917:40,S05318:00,M08119:00,M08519:20,M08719:40,M08320:00,L03720:20. Retain M10112:45,V00715:30,L00414:55 and the candidate27 northbound group. Actual27 delayed M097 TVCdeparture15:55:19.25 precedes2702s NEM-S1 wait:1486s opposingL004/S054/M052,998s NYYreceiving,182s crossing and36s conflicts. Actual L004/S054/M052 NEM envelopes end16:23:42/16:34:34/16:47:26. Later M097 and a gap before following TVC departures aim to avoid that observed queue without filling both NEM receiving roads; M066/M102/S036 and later groups remain constraints. These observations are not candidate28 predictions; later source times do not guarantee compatible roads, crossing order, full-tail clearance or escape."
+    },
+    {
+      "service": "M083",
+      "before": "19:00",
+      "after": "20:00",
+      "reason": "Move M097 from14:45 to15:30, followed by later TVC southbound group S05117:20,S04917:40,S05318:00,M08119:00,M08519:20,M08719:40,M08320:00,L03720:20. Retain M10112:45,V00715:30,L00414:55 and the candidate27 northbound group. Actual27 delayed M097 TVCdeparture15:55:19.25 precedes2702s NEM-S1 wait:1486s opposingL004/S054/M052,998s NYYreceiving,182s crossing and36s conflicts. Actual L004/S054/M052 NEM envelopes end16:23:42/16:34:34/16:47:26. Later M097 and a gap before following TVC departures aim to avoid that observed queue without filling both NEM receiving roads; M066/M102/S036 and later groups remain constraints. These observations are not candidate28 predictions; later source times do not guarantee compatible roads, crossing order, full-tail clearance or escape."
+    },
+    {
+      "service": "L037",
+      "before": "19:20",
+      "after": "20:20",
+      "reason": "Move M097 from14:45 to15:30, followed by later TVC southbound group S05117:20,S04917:40,S05318:00,M08119:00,M08519:20,M08719:40,M08320:00,L03720:20. Retain M10112:45,V00715:30,L00414:55 and the candidate27 northbound group. Actual27 delayed M097 TVCdeparture15:55:19.25 precedes2702s NEM-S1 wait:1486s opposingL004/S054/M052,998s NYYreceiving,182s crossing and36s conflicts. Actual L004/S054/M052 NEM envelopes end16:23:42/16:34:34/16:47:26. Later M097 and a gap before following TVC departures aim to avoid that observed queue without filling both NEM receiving roads; M066/M102/S036 and later groups remain constraints. These observations are not candidate28 predictions; later source times do not guarantee compatible roads, crossing order, full-tail clearance or escape."
+    }
+  ],
+  "evidence_commit": "7fc287b1 baseline; delayed7f49205e",
+  "scope": "Network208 V2 only; sixteen northern and southern group departure timings, no Classic replay or readiness requirement.",
+  "status": "Departure-only hypothesis; no acceptance"
+}
