@@ -2,6 +2,18 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 15:27 — original candidate30 V2 runs remain active.
+
+At 15:27:26, baseline 21528/21596 reaches 14:00, 77/208, peak 34,
+maximum wait 41.0m; delayed 21816/8612 reaches 18:50, 113/208, peak 36,
+maximum wait 40.9m. Both original commands and parent identities match
+launch59bdb842; errors are empty and neither final audit exists. Both source
+packs, six observers and frozen Git paths remain unchanged. Continue the
+original runs without restart. No Classic208, duplicate replay, full suite
+or native job was launched. Partial clocks and wait maxima are not acceptance,
+capacity or recovery proof. Network208V2 remains unaccepted/uninstalled.
+No gameplay change or new playtest is due; continuation remains active.
+
 27 October 15:17 — original candidate30 V2 runs remain active.
 
 At 15:17:22, baseline 21528/21596 reaches 12:40, 69/208, peak 31,
