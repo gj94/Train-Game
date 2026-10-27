@@ -3442,3 +3442,13 @@ V2 pack and six observer hashes still match. Keep inputs frozen and inspect
 these original final reports when ready; partial clocks are not acceptance.
 Network208V2 remains unaccepted/uninstalled. No duplicate, Classic208, repeated
 suite, native or diagnostic job was launched. No new gameplay playtest.
+
+27 October 08:35 — original v27 replays remain active.
+
+At 08:35:18 baseline 11952/20024 reaches 03:30 with 2/208 complete; delayed
+20640/27164 reaches 04:30 with 10/208 complete. Both original pairs and exact
+commands match, errors are empty and neither final audit exists. The V2 pack
+and six observer hashes remain unchanged. Continue these original runs with
+frozen inputs; partial clocks are not acceptance. Network208V2 remains
+unaccepted/uninstalled. No duplicate, Classic208, repeated suite, native or
+diagnostic job was launched. No new gameplay playtest.
