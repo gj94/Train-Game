@@ -11,8 +11,8 @@ const DAYS := [
 		starts="res://data/timetables/intensive_v2/starts",times="res://data/timetables/intensive_v2/times",count=140,dispatcher="predictive"},
 	{id="network",name="Classic · Coastal Network 208",description="A representative 24-hour railway: locals, long-distance mail/express, superfast and Vande Bharat. Through services enter and leave beyond ERS and NCJ; times and extra workings are authored for the game.",
 		starts="res://data/timetables/network/starts",times="res://data/timetables/network/times",count=208,dispatcher="classic"},
-	{id="network_v2",name="Predictive V2 · Coastal Network 208",description="The same 208 departures and calls with predictive dispatch. Day and overnight traffic; passing follows actual calls, rolling-stock performance and signal authority.",
-		starts="res://data/timetables/network_v2/starts",times="res://data/timetables/network_v2/times",count=208,dispatcher="predictive"}]
+	{id="network_v2",name="Predictive V2 · Coastal Network 200",description="A representative 200-service day with predictive dispatch. Day and overnight traffic; passing follows actual calls, rolling-stock performance and signal authority.",
+		starts="res://data/timetables/network_v2/starts",times="res://data/timetables/network_v2/times",count=200,dispatcher="predictive"}]
 
 static func index_of(id: String) -> int:
 	for i in DAYS.size():

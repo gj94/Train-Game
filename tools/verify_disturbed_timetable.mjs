@@ -1,3 +1,4 @@
+import {loadNetworkPopulation,assertSelectedNetworkReport} from './lib/network-population.mjs';
 // Independently validate a completed 600-second K1 disturbance audit.
 // This exports evidence only; it must never install departure or time states.
 import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises';
@@ -10,9 +11,12 @@ import assert from 'node:assert/strict';
 import {assertWaitQuality} from './lib/wait-quality.mjs';
 const [folder,output,mode]=process.argv.slice(2);
 const network=process.argv.includes('--network');
-const count=network?208:140,day=network?'network':'intensive',delayAt=network?27000:11000;
+const population=network?await loadNetworkPopulation():null;
+if(network)assert.equal(mode,'predictive','Network readiness is V2 only');
+const count=network?population.count:140,day=network?'network':'intensive',delayAt=network?27000:11000;
 assert.ok(folder&&output&&['classic','predictive'].includes(mode));
 const bytes=await readFile(folder+'/audit.json'),report=JSON.parse(bytes),audit=report.audit;
+if(network)assertSelectedNetworkReport(report,population);
 
 assert.equal(audit.ok,true);assert.equal(audit.finished,count);assert.equal(audit.total,count);
 assert.equal(audit.delay,600);assert.equal(audit.delay_at,delayAt);assert.equal(audit.delay_service,'K1');
@@ -57,6 +61,10 @@ for await(const line of createInterface({input:stream,crlfDelay:Infinity})){
 }
 assert.ok(Math.abs(detector.clock-audit.clock)<.001,'Traffic ends before audit');
 assert.equal(samples,Math.round((detector.clock-first)/2)+1,'Traffic has missing samples');
+if(network){
+ const passes=detector.events.filter(e=>e.kind==='overtake').map(e=>({...e,...locationAt(e.chainage_m,report.stations)}));
+ assert.ok(passes.length>=2&&new Set(passes.map(e=>e.station||e.location)).size>=2,'Network disturbance requires actual overtakes at multiple locations');
+}
 const events=detector.events.filter(e=>e.kind==='overtake'&&[e.a,e.b].includes('K1')&&e.overtaker!=='K1')
  .sort((a,b)=>a.time-b.time).map(e=>({...e,...locationAt(e.chainage_m,report.stations)}));
 const by_station={};for(const e of events)(by_station[e.station||e.location]??=[]).push({train:e.overtaker,time:e.time});

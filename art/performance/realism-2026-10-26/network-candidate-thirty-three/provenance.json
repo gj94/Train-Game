@@ -1,0 +1,129 @@
+{
+  "recorded_at": "2026-10-27T21:56:29.993810+08:00",
+  "population": 200,
+  "removed": [
+    "M021",
+    "M025",
+    "M052",
+    "M057",
+    "M066",
+    "M067",
+    "M090",
+    "M098"
+  ],
+  "retained_objects_unchanged": true,
+  "source_suite": {
+    "passed": 1004,
+    "failed": 0
+  },
+  "authoring_guards": {
+    "passed": 5,
+    "failed": 0
+  },
+  "population_contract": {
+    "positive": 2,
+    "negative": 17
+  },
+  "unchanged_railway_sources_except_network_pack": 4835,
+  "original_observer_hashes": {
+    "tools/prepare_timetable_variant.gd": "9063a48993646fffabca830babd26f3a41c983f927f08d81f14a7069815c25f0",
+    "tools/wait_quality.gd": "cb1a8f82cb1cea9d16255ff825ac633489ce08a6bcb47d758cdfea27e68389af",
+    "tools/lib/wait-quality.mjs": "091fe042f0842c092602cfa24d1ec5ec6ddbfec4fec74bbeeaea00a634847136",
+    "tools/record_service_traffic.gd": "30947f698bb1715f1ea6c5026d924a54dd8dcfdea5d8e21c5dbee42f9086e251",
+    "tools/lib/traffic-encounters.mjs": "7b1a74bd27398cd150d080ba87333f47ab3fdac593d4866142392c938661a858",
+    "tools/finalize_timetable_variant.mjs": "7c35cf72798e69418003716a1e925cd30d9ca8c4a33c3faeae9b8595469019b7"
+  },
+  "files": [
+    {
+      "path": "candidate33-author.log",
+      "source": ".local/realism-2026-10-26/candidate33-author.log",
+      "raw_sha256": "ac0a3199f7da949296083b63bea581ce68e60f3f5f18bd0e21ad0884c8b04f10",
+      "raw_bytes": 218
+    },
+    {
+      "path": "candidate33-author.err",
+      "source": ".local/realism-2026-10-26/candidate33-author.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "candidate33-author-check.log",
+      "source": ".local/realism-2026-10-26/candidate33-author-check.log",
+      "raw_sha256": "92dbd1ed37ca9d3558e24e3f2d85eb91cda92088f6499843e4daaa21c75853a2",
+      "raw_bytes": 222
+    },
+    {
+      "path": "candidate33-author-check.err",
+      "source": ".local/realism-2026-10-26/candidate33-author-check.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "candidate33-authoring-guards.log",
+      "source": ".local/realism-2026-10-26/candidate33-authoring-guards.log",
+      "raw_sha256": "e53d177c2670667261919d63725a07b3cb0ce356857139d060399bbee9bbad42",
+      "raw_bytes": 328
+    },
+    {
+      "path": "candidate33-authoring-guards.err",
+      "source": ".local/realism-2026-10-26/candidate33-authoring-guards.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "candidate33-authoring-verification.json",
+      "source": ".local/realism-2026-10-26/candidate33-authoring-verification.json",
+      "raw_sha256": "a3de4ef2b30c06b56fb7227c5935a49bef5bec21b52f9dbff86e3351ca57a652",
+      "raw_bytes": 1186
+    },
+    {
+      "path": "candidate33-full-tests.log",
+      "source": ".local/realism-2026-10-26/candidate33-full-tests.log",
+      "raw_sha256": "f96d880a76cd4a241fe7184ad87378e555c7a7e21c884f1a9d23d9a954e04447",
+      "raw_bytes": 5923
+    },
+    {
+      "path": "candidate33-full-tests.err",
+      "source": ".local/realism-2026-10-26/candidate33-full-tests.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "candidate33-full-tests-timings.json",
+      "source": ".local/realism-2026-10-26/candidate33-full-tests-timings.json",
+      "raw_sha256": "b064ef055c0fac610e1f86b47acd5798898ed5d58cc36535ad66188f7dbafc71",
+      "raw_bytes": 126048
+    },
+    {
+      "path": "candidate33-population-contract-check.mjs",
+      "source": ".local/realism-2026-10-26/candidate33-population-contract-check.mjs",
+      "raw_sha256": "5ab878087ffa08d96c160204ddab7ce79f68d646998d4eb1a33a4ab8429d646c",
+      "raw_bytes": 1977
+    },
+    {
+      "path": "candidate33-population-contract.log",
+      "source": ".local/realism-2026-10-26/candidate33-population-contract.log",
+      "raw_sha256": "6b0449e491b656873af29267b3858b7511c0b1ae207955f92de815ba6e400e52",
+      "raw_bytes": 166
+    },
+    {
+      "path": "candidate33-population-contract.err",
+      "source": ".local/realism-2026-10-26/candidate33-population-contract.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "candidate33-input-hashes.json",
+      "source": ".local/realism-2026-10-26/candidate33-input-hashes.json",
+      "raw_sha256": "1e0f5ed0ba2024869ef8a275001b6696b436449a69d35bbb45231c9e1747385a",
+      "raw_bytes": 1128
+    },
+    {
+      "path": "candidate33-suite-job.json",
+      "source": ".local/realism-2026-10-26/candidate33-suite-job.json",
+      "raw_sha256": "6b094f53eb681440949bda5eec7881ccb0a97ff22e7cf50f946b1b4410d898dc",
+      "raw_bytes": 417
+    }
+  ],
+  "limitations": "Authoring and source tests only. No full-day Network200 completion, wait, safety, physical or recovery acceptance and no installation. Candidate32 interrupted baseline and rejected delayed evidence is now historical. Network-only finalizer and count-aware verification have syntax/population-contract checks, not a passing full-day acceptance exercise."
+}

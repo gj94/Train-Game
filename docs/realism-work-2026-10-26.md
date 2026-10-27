@@ -5364,3 +5364,52 @@ runtime and six original observers remain unchanged to preserve legacy evidence.
 No new replay has launched. Full-day feasibility and ETA remain unproven.
 Active work resumed21:34:58+08; the idle/reboot gap is excluded from the ledger.
 Historical running statements below describe their recorded checkpoints only.
+
+27 October 21:57 — candidate33 selects200 services; complete source suite passes.
+
+Following the user's overnight continuation and modest-trimming authorization,
+exactly eight evening mails are removed from candidate32: M02117:10,M02518:15,
+M05719:10,M06718:55 southbound and M05215:35,M06615:45,M09019:35,M09819:20 northbound.
+All200 retained service JSON objects are identical to32: no departure, call,
+dwell, stock, priority, speed or route edit; K1 remains06:00. Both common-author
+packs have identical service records. The explicit selection is separate from
+the unchanged raw208 template. Common-author equality is not Classic readiness.
+There are40local/96mail/56superfast/8VB,160 boundary journeys,75 overnight origins
+and3–13 starts each hour. No reduction below the original200-service minimum.
+
+The hypothesis reduces successive northern evening block/receiving pressure
+(M021/M025), removes an opposing pair M052/M066 and their later northern conflict
+partners M067/M057, and reduces southern replenishment M090/M098. Actual32 delayed
+S035 waited1252s for compatible AMPA receiving and1122s opposing traffic; M021/M025
+accounted for recorded blocks, while M052/M067 constrained the next crossing and
+M057 followed. S035, S036, M102, L004 and all locals/fast trains remain. Removing
+these whole workings may change crossing/overtaking order and is NOT proof of
+full-day capacity, shorter waits or recovery. Finite compatible roads, opposing
+groups and full-tail clearance remain mandatory. No isolated-model score claimed.
+
+Normal authoring and exact --check pass. All five Network authoring guards pass;
+the single source suite22324/18976 launched21:46:24 ended naturally with1004 passed,
+0 failed and empty stderr. Fifteen exact raw proofs and their hashes are retained
+in network-candidate-thirty-three. All4835 railway inputs other than the changed
+Network pack and the six original observers are unchanged. Runtime9ec3530 and
+legacy certification remain; no unchanged legacy/native checks were repeated.
+V2 pack SHA256 be42428170c7bbd8388c1c2bdfae0d33dab51f39390c8fc3fa3a06e8c2784ddf.
+
+Network-only population checks bind exact200 IDs and the pack hash, with2 positive
+and17 rejection fixtures plus JavaScript syntax checks. The dedicated
+finalize_network_timetable.mjs --network --predictive preserves the old finalizer
+bytes and every existing wait/safety/call/clearance gate; it additionally checks
+source inventory and exact service IDs. Network disturbance verification retains
+all gates and checks actual overtakes at multiple locations. These are code/guard
+checks, NOT positive full-day acceptance. Native UI/category helper200-count
+support remains pending until a passing V2 installation; those helpers remain
+outside this commit. NetworkV2 metadata now names200; legacy and Classic choices
+remain unchanged. No installation or gameplay playtest yet.
+
+Candidate32 baseline interruption is preserved in3a34ed00 (109/208 at17:20,no final
+audit); delayed failure inbc0118b1 (S03519:52:26,122/208,failed30/45,zero safety).
+Their hashes are HISTORICAL after33; never relabel, rerun unchanged or install.
+Next: commit/push the verified candidate, launch one fresh V2 baseline and one
+600s-delayed V2 run in generation33, verify actual identities/options/catalogue
+and hashes, then freeze inputs and acceptance tools while either run lives.
+Full-day feasibility and completion ETA remain unproven. No Classic Network job.
