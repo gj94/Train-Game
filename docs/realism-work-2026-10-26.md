@@ -6235,3 +6235,63 @@ errors and no final audit. All4836 source hashes,six original observers and five
 acceptance/selection hashes remain unchanged. No source edit,new job,restart or
 installation. Both original results remain pending; partial progress is not
 acceptance,capacity or recovery proof. No gameplay playtest before passing V2 install.
+
+28 October 04:32 — original35 delayed run failed naturally; baseline still running.
+
+Original delayed wrapper6764/child4340 ended at22:10:34 simulated with M033
+waiting at MAKM-S3:136/200 complete,peak34,maximum all-location wait2702s,
+maximum station wait2454s,zero safety events. Run,actual-summary and three
+inspection error files are empty. All-location cumulative396/516,478/516,
+507/516,515/516 passes10/20/30 but FAILS45. Station-only205/285,264/285,
+280/285,285/285 passes all four gates for this incomplete prefix. No rounding,
+complete-population comparison,recovery certificate,acceptance or installation.
+
+Preserved21 exact raw files under network-candidate-thirty-five/failed-predictive-delayed,
+including lossless audit/traffic/failure,exact pack,actual summary and three
+byte-immutable MAKM/ALLP/AMPA inspections. All4836 current-at-run source hashes,
+six original observers and five acceptance/selection hashes verified unchanged.
+Original outputs remain. Never rerun unchanged,install failed data or relabel
+these fingerprints after a future source change. The unchanged1004-test source
+suite and five candidate35 authoring guards remain the existing validation;
+no duplicate suite or Classic/native run was launched.
+
+M033 departed booked SRTL21:14:59.25; MAKM is a signal wait,not a booked call.
+Its2702s=1374 opposing+1166 ALLP receiving+88 occupied-block+74 route-conflict.
+Opposing buckets preserve618 M032,376 S022,154 S038,66 combinedS038/M034,
+160 combinedM034/S038. Receiving buckets preserve no-free96 combinedL003/M032,
+48 combinedM034/L003/M032,150 combinedM034/S038,72 combinedM034/S038/L011;
+approaching116 combinedL003/M032/M034,88 combinedL003/M034,180 combinedM034/L011,
+304 combinedM034/L011/S038,112 combinedM034/S038/L011. Do not attribute combined
+buckets to individual trains. Occupied blocks:64 L011,12 M032,12 S022;
+conflicts:50 L011,12 combinedM032/L011,12 S022.
+
+Actual MAKM claims M033P3,S038P1,incomingM034 P1/P2/P3 alternatives. M033 awaits
+opposingM034/S038. Both move north24.6m/s after ALLP departures22:06:52.75 and
+22:04:18.75 respectively. Actual ALLP claims L011P3,incomingL012 P1/P2/P3
+alternatives,not three simultaneous reservations. L011 arrived22:04:42 with no
+departure and awaits ALLP_single held by L012. L012 leftAMPA22:05:48.25 and
+moves14.5083m/s toward bookedPunnapra,occupyingPUPR_AMPA_M0. AMPA has no claims.
+All three inspections have no future plans and byte-identical before/after
+captures. Moving opponents and these snapshots do not prove permanent deadlock
+or a runtime defect. Final full-rake axis samples are preserved in provenance;
+geometric envelopes alone do not identify shared occupied interlocking resources.
+
+L004 reachedERS21:30:25 and is stabled; M070 cleared the northern boundary
+21:50:41.75; S022 reachedERS22:08:38.55 and dwellsuntil22:14:12. M032 leftSRTL
+21:58:41.75 and waitsTUVR for movingS021. These are local observations,not
+whole-day improvement/capacity/recovery. M054/M104/M058/M056/L028/L031 move;
+M088/K1 are in depots. S033 clearedsouth21:49:33.80; S049 stillapproaches.
+L030 awaits movingS035 atERL,L038 follows,L032 awaits automatic clearance.
+M099 awaitsM056 atNEM;S053 awaitsM099'sNEMreceivingroad;M081/M085 awaitTVCorigin;
+M087/M083/L037 are not yet due. L009/M043 move fromnorth,S037 dwellsERS and
+M027/M031/M029/S023/M035 are not due. Later-wave and midnight results unproven.
+Eleven K1 minute samples preserve braking27.4545764399m by07:31 then unchanged
+extents through07:40 after600s hold07:30; not exact controller/recovery proof.
+Actual summary has one V001 overtake of K1 atTVCN,not completed multiple-location proof.
+
+At04:31:49 original baseline14568/15696 reports17:30:00,109/200,peak34,
+maxwait41.0m,emptyerrors,noaudit. Its command/parent identities still match the
+original launch. All runtime/routes/packs/observers/acceptance inputs stay frozen.
+Next: wait for this original baseline's final report,preserve its actual queues,
+then coordinate departure-only changes from BOTH outcomes. Network200V2 remains
+unaccepted/uninstalled; no gameplay playtest and no reliable readiness ETA.
