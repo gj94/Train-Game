@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 3728,
+    "started": "2026-10-27T06:37:37.8460367+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v26/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "5e7379dec7b26c0e57aff2c2468d734f4eb997e5",
+    "status": "finished-rejected",
+    "reason": "User limits Network208 to V2. Candidate twenty-six changes twelve southern departures from candidate twenty-five: fast S034 ahead of M082, later M066/M102/M054, and opposing TVC fast/mail/local groups spread to preserve receiving capacity around the actual PASA/KZT/NEM queues. Based on both actual V2 queues and sampled full-rake envelopes; origin spacing is not guaranteed clearance. Actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "99f96b7a22920f58de52ca4567a354d0e367fe4422f0bf800ea8cf76bfee12bc",
+    "child_pid": 12192
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 16324,
+    "started": "2026-10-27T06:37:37.9117344+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v26/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "5e7379dec7b26c0e57aff2c2468d734f4eb997e5",
+    "status": "finished-rejected",
+    "reason": "User limits Network208 to V2. Candidate twenty-six changes twelve southern departures from candidate twenty-five: fast S034 ahead of M082, later M066/M102/M054, and opposing TVC fast/mail/local groups spread to preserve receiving capacity around the actual PASA/KZT/NEM queues. Based on both actual V2 queues and sampled full-rake envelopes; origin spacing is not guaranteed clearance. Actual V2 baseline and disturbance gates remain required",
+    "pack_sha256": "99f96b7a22920f58de52ca4567a354d0e367fe4422f0bf800ea8cf76bfee12bc",
+    "child_pid": 14784
+  }
+]
