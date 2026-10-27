@@ -2,6 +2,27 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 07:39 — both original candidate37 V2 runs launched once and verified; inputs frozen.
+
+Author2f4a9c35787b34031f91b44c91ee13df91745f06 is pushed. The new isolated
+baseline23304/6112 and delayed11576/1016 launched once at07:39:06. Baseline
+uses --network --snapshots; delayed uses --network --delay=600 --delay-at=27000.
+Their original baseline catalogue existed before verification. All four actual
+commands, parent identities and options, two unique outputs,4836distinct source
+hashes, six original observers and five acceptance/selection inputs were verified.
+Five exact launch files plus their raw manifest are preserved in
+network-candidate-thirty-seven/launch-proof and verified against staged bytes.
+Do not execute launch-network-v37.ps1 or verify-launch-v37.py again.
+
+At07:39:23 baseline has no first progress line; delayed00:10 simulated,0/200,
+peak3,maxwait0.1minutes. Both error logs are empty and neither final audit exists.
+inspect-current-replays.py now selects37 first. No Classic, full suite, native,
+search or diagnostic job remains. Freeze runtime/routes/packs and all11 inputs
+while either original37 run lives. Wait both actual final reports before any
+further departure-only replan. All36 fingerprints are historical; both failed
+archives65a46d28/1773eafe remain intact. Partial progress is not acceptance.
+Network200V2 remains unaccepted/uninstalled; no gameplay playtest or reliable ETA.
+
 28 October 07:38 — candidate37 disperses seven evening TVC mails; authoring proof passes, full runs pending.
 
 Both original36 runs ended naturally and their exact failed evidence is pushed:
