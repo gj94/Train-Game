@@ -6134,3 +6134,14 @@ results remain unproven. Next: inspect both ORIGINAL35finalreports,preserve
 failures and actual queues before any new source change. Network200V2 remains
 unaccepted/uninstalled; no gameplay playtest until passing V2 install. No reliable
 completion ETA. The continuation remains active until all V2readiness is done.
+
+28 October 02:49 — both original35 V2 runs continue with frozen inputs.
+
+At02:49:18 baseline14568/15696 reports 01:00:00 complete=0/200 peak=10 max_wait=0.1m wall=163.7s.
+Delayed6764/4340 reports 01:30:00 complete=1/200 peak=14 max_wait=6.1m wall=146.8s.
+All four exact command/parent identities match launch968f3301. Both have empty
+errors and no final audit. All4836 source hashes,six original observers and five
+acceptance/selection hashes remain unchanged. No source edit,new job,restart or
+installation. Wait for both original final reports before coordinated replanning.
+Partial progress is not completion,capacity or recovery proof. Network200V2
+remains unaccepted/uninstalled; no gameplay playtest until passing V2 install.
