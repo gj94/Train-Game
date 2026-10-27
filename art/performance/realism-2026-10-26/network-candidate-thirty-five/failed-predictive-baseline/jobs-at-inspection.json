@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 14568,
+    "started": "2026-10-28T02:46:30.5410217+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v35/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "5de392dc73c0f1411396dff0381faf1f5ab2f48f",
+    "status": "finished-rejected",
+    "reason": "Candidate35 changes only seven coordinated northern departures after both original34 V2 wait failures. Exact selected200 retained, all non-departure fields and K1 unchanged. Retain L011/M033 and move S021/L009/M027/M031/M029/S023/M035 later to seek compatible KUMM P3 receiving and full-tail clearance for L004/M070/S022/M032. All safety/wait/physical/recovery gates remain; no whole-day claim. Normal and delayed V2 only",
+    "pack_sha256": "1bedbdb8ff9fa5fb7ae9a720c015de13aa87551591e64e7b4e283fe64d8a6e27",
+    "child_pid": 15696
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 6764,
+    "started": "2026-10-28T02:46:30.5974027+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v35/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "5de392dc73c0f1411396dff0381faf1f5ab2f48f",
+    "status": "finished-rejected",
+    "reason": "Candidate35 changes only seven coordinated northern departures after both original34 V2 wait failures. Exact selected200 retained, all non-departure fields and K1 unchanged. Retain L011/M033 and move S021/L009/M027/M031/M029/S023/M035 later to seek compatible KUMM P3 receiving and full-tail clearance for L004/M070/S022/M032. All safety/wait/physical/recovery gates remain; no whole-day claim. Normal and delayed V2 only",
+    "pack_sha256": "1bedbdb8ff9fa5fb7ae9a720c015de13aa87551591e64e7b4e283fe64d8a6e27",
+    "child_pid": 4340
+  }
+]

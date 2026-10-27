@@ -6317,3 +6317,38 @@ is already preserved in71357fb7; no replay or completed inspection repeated.
 No source edit,new job,restart or installation. Wait for the original baseline
 before coordinated replanning from both outcomes. Partial progress is not
 acceptance,capacity or recovery proof; no gameplay playtest before passing V2 install.
+
+28 October 05:01 — both original35 runs have ended naturally; baseline evidence preserved.
+
+Original baseline14568/15696 failed at22:10:34 simulated with M033 signalMAKM-S3,
+136/200 complete,peak34,all-location maximum2702s,station maximum2458s,zero safety
+events,empty run/summary/three inspection errors. All-location404/535,495/535,
+525/535,534/535 passes10/20/30 but FAILS45. Station215/302,280/302,299/302,302/302
+passes all four gates for the incomplete prefix. Delayed remains396/516,478/516,
+507/516,515/516 and205/285,264/285,280/285,285/285 with station maximum2454s.
+Matching clocks,finished counts and M033 buckets do not equate populations.
+
+Preserved21 exact raw baseline files under network-candidate-thirty-five/failed-predictive-baseline:
+lossless audit/traffic/failure,exact pack,actual summary and three byte-immutable
+MAKM/ALLP/AMPA inspections. All4836 current-at-run source hashes and all11
+observer/acceptance hashes verified. Baseline original catalogue and final source
+hashes match. Three inspection claims match the delayed local queue: MAKM M033P3,
+S038P1,incomingM034 P1/P2/P3 alternatives; ALLP L011P3,incomingL012 P1/P2/P3
+alternatives; AMPA empty. No future plans in any inspection; alternative road
+lists are not simultaneous reservations. Full before/after snapshot bytes match.
+
+Baseline M033 signal-wait records are identical to the delayed records:
+2702s=1374 opposing+1166 ALLP receiving+88 occupied-block+74 route-conflict,
+with every combined reason bucket preserved separately. M034/S038 move north;
+L011 awaits movingL012 on ALLP_single. No permanent-deadlock/runtime-defect proof.
+Selected northern paths/calls/speeds match for M033/M034/M032/S022/L011/L003/L004;
+small numerical and call-time differences elsewhere remain in the exact reports.
+Do not turn local matches into a complete-population or recovery comparison.
+Baseline actual summary has no K1 overtakes; delayed has one V001 atTVCN.
+Neither is completed multiple-location overtake proof. No acceptance or install.
+
+Both original jobs are absent; no Classic,suite,native,search or diagnostic job
+remains. Delayed evidence was already pushed71357fb7; originals remain untouched.
+Next: coordinate departure-only candidate36 from BOTH actual failed queues and
+full-rake movement records. Retain200 selected services,all non-departure fields,
+K1 and all safety/wait/physical/recovery gates. No unchanged rerun or gameplay playtest.
