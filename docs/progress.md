@@ -2,6 +2,19 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 06:49 — original candidate36 pair remains active; no final audits.
+
+At 06:49:20, baseline 18424/6760 reports 17:00 simulated, 108/200 complete,
+peak 34, maximum wait 41.0 minutes; delayed 18356/23568 reports 23:00,
+140/200 complete, peak 37, maximum wait 40.9 minutes. Both error logs are empty.
+All four original process/parent/command identities, 4836 source hashes and 11
+observer/acceptance hashes match; no other Godot job is present. Inputs remain
+frozen, existing tests retained, and no launch, restart, source edit, installation
+or gameplay playtest occurred. Await both original final reports before replanning.
+Partial clocks and counts do not establish acceptance, recovery or whole-day
+improvement. Network 200 V2 remains unaccepted/uninstalled; full-day feasibility
+is unproven and there is no reliable readiness ETA.
+
 28 October 06:39 — original candidate36 runs remain active.
 
 At 06:39:20, baseline 18424/6760 reports 15:30 simulated, 92/200 complete,
