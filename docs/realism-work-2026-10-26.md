@@ -3732,3 +3732,15 @@ Network208V2 is unaccepted/uninstalled. Next: inspect these original final repor
 against every completion, safety, wait, physical and recovery gate. No new
 gameplay playtest until a passing V2 installation. Feasibility and ETA remain
 unproven; the continuation automation stays active.
+
+27 October 10:13 — original candidate28 runs continue.
+
+At10:13:12, baseline26840/26252 reaches01:00,0/208,peak10,maxwait0.1m;
+delayed8232/6576 reaches01:40,1/208,peak14,maxwait6.1m. Both original command
+lines and parents match the launch proof; errors are empty and final audits are
+absent. The V2 pack, six observers and all frozen source paths remain unchanged.
+These partial clocks are not acceptance. No duplicate, Classic208, suite, native,
+search or diagnostic job was launched. Next: continue the same original runs,
+then inspect their actual final reports. Network208V2 remains unaccepted and
+uninstalled; no new gameplay playtest is available. Historical v27 failures and
+all certified legacy choices remain preserved.
