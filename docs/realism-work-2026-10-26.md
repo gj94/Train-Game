@@ -5882,3 +5882,14 @@ and five acceptance/selection hashes remain unchanged. No new job,restart,
 source edit or installation. Continue both original tests; these partial clocks
 are not completion,capacity or recovery proof. Network200V2 remains unaccepted/
 uninstalled; no gameplay playtest until a passing V2 installation.
+
+28 October 01:48 — both original34 V2 tests continue with frozen inputs.
+
+At01:48:17 baseline22164/21660 reports 14:10:00 complete=78/200 peak=34 max_wait=41.0m wall=5067.1s.
+Delayed5648/2636 reports 19:40:00 complete=120/200 peak=34 max_wait=40.9m wall=5066.1s.
+All four exact command/parent identities match launchda4ff140; errors are empty
+and neither final audit exists. All4836 source hashes,six original observers
+and five acceptance/selection hashes remain unchanged. No new job,restart,
+source edit or installation. Continue both original tests; these partial clocks
+are not completion,capacity or recovery proof. Network200V2 remains unaccepted/
+uninstalled; no gameplay playtest until a passing V2 installation.
