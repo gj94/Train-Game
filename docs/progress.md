@@ -2,6 +2,40 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 18:25 — candidate32 V2 launch verified; frozen inputs.
+
+Candidate ddbeedb5 was committed/pushed after exact normal author reproduction,
+--check,all four headless authoring guards and staged verification of twelve raw
+proofs,both pack hashes and override JSON. Exactly two new V2 runs launched once
+at18:24:21 in rehearsals-v32: baseline wrapper27304/child14984 with --network
+--snapshots; delayed wrapper26020/child26688 with --network --delay=600
+--delay-at=27000. All four actual commands/options,unique outputs,the ORIGINAL
+predictive baseline catalogue,4836 distinct source hashes and six observer hashes
+were verified. The original catalogue existed before verification; no failed
+verification attempt,duplicate or restart. Five exact staged launch files plus
+their hash manifest preserve process/source evidence.
+
+At18:24:44 the baseline has no first progress line and delayed reaches00:20,0/208.
+Both original process pairs match,errors are empty and neither final audit exists.
+These partial clocks are not acceptance. Runtime/routes/packs/six observers remain
+frozen while either original32 run lives. No Classic208,full-suite,native,search
+or diagnostic job remains. The completed1003-test source suite is unchanged;
+four passing authoring guards cover this departure-only candidate.
+
+Both original31 runs ended naturally and failed: baseline e90c8ede M102 booked
+AMPA20:31:58,123/208,peak41; delayed f4fc8b9d M025 bookedALLP19:35:06,118/208,
+peak36. Both have2702s maxima in BOTH wait populations,zero safety,empty errors
+and failed30/45 wait gates. Their20+17 exact raw files,4836 current-at-run hashes
+each,lossless reports/exact packs/actual summaries and five immutable inspections
+are HISTORICAL after candidate32. Never relabel,rerun unchanged or install.
+Passing fractions apply only to failed prefixes. No complete-population
+comparison,recovery certificate or installation.
+
+Next: inspect both original32 final reports against every completion,safety,wait,
+physical and recovery gate. Network208V2 remains unaccepted/uninstalled; no gameplay
+playtest until a passing V2 installation. Continuation remains active; feasibility
+and ETA are unproven. Do not execute launch-network-v32.ps1 again.
+
 27 October 18:23 — candidate32 authors ten northern departures after both original31 V2 failures.
 
 Only these departure strings change from candidate31:

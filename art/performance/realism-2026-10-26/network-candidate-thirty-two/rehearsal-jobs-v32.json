@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 27304,
+    "started": "2026-10-27T18:24:21.1224451+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v32/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "ddbeedb5ac0843bca870d783c2739bf9e666cad5",
+    "status": "running",
+    "reason": "User limits Network208 to V2. Candidate32 changes10 coordinated northern departures after original31 delayedM025 bookedALLP and baselineM102 bookedAMPA failures. S01917:50 leads M02518:15 with retainedS01717:40/S03518; M06718:55/M05719:10/M06919:25/M05519:45/M05919:55 precede locals20:00/20:20/20:40. All southern origins retained. Actual queues/full-rake axis intervals are planning evidence only, not guaranteed receiving, crossing order, full-tail clearance, escape or capacity. Every V2 baseline and disturbance gate remains required",
+    "pack_sha256": "466098a33f256b8a3bcc5a057b927780793137dd69e5456fbe586a57a3a32b2a",
+    "child_pid": 14984
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 26020,
+    "started": "2026-10-27T18:24:21.1846118+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v32/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "ddbeedb5ac0843bca870d783c2739bf9e666cad5",
+    "status": "running",
+    "reason": "User limits Network208 to V2. Candidate32 changes10 coordinated northern departures after original31 delayedM025 bookedALLP and baselineM102 bookedAMPA failures. S01917:50 leads M02518:15 with retainedS01717:40/S03518; M06718:55/M05719:10/M06919:25/M05519:45/M05919:55 precede locals20:00/20:20/20:40. All southern origins retained. Actual queues/full-rake axis intervals are planning evidence only, not guaranteed receiving, crossing order, full-tail clearance, escape or capacity. Every V2 baseline and disturbance gate remains required",
+    "pack_sha256": "466098a33f256b8a3bcc5a057b927780793137dd69e5456fbe586a57a3a32b2a",
+    "child_pid": 26688
+  }
+]
