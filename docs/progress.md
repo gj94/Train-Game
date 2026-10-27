@@ -2,6 +2,17 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 22:08 — original33 V2 runs continue; frozen inputs verified.
+
+At22:08:13 baseline14144/5236 reaches01:40 simulated,1/200 complete,peak14,
+maxwait6.1m; delayed15508/24420 reaches02:30,1/200,peak21,maxwait6.1m. Both original
+command/parent identities match; stderr is empty and neither final audit exists.
+All4836 railway input hashes, six original observer hashes and five additional
+acceptance/selection hashes remain unchanged. These early partial clocks are not
+acceptance. No duplicate, restart, Classic, suite or native job was launched.
+Continue the two original runs with inputs frozen. Network200V2 remains unaccepted
+and uninstalled; no gameplay playtest until a passing installation.
+
 27 October 22:03 — candidate33 V2 runs launched once; inputs frozen.
 
 Candidate f5c5d999 was committed/pushed after the1004-test source suite, five
