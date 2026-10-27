@@ -1,0 +1,172 @@
+{
+  "identical_modes": true,
+  "K1": "06:00",
+  "unchanged_selection": true,
+  "maximum_hourly_is_descriptive_not_acceptance_gate": true,
+  "packs": [
+    {
+      "pack": "kerala-coast-network.json",
+      "sha256": "54fc4f1faba2d52a12c9661284a4b19967b4a4a2a22e831ebc8e7de346c51026",
+      "predecessor_sha256": "d337e5a4f6840855f81310c04c5be745f2e28150afff9fe8a81a2b733dfe9d67",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "L031",
+          "before": "18:31",
+          "after": "19:35"
+        },
+        {
+          "id": "M081",
+          "before": "20:40",
+          "after": "21:30"
+        },
+        {
+          "id": "M083",
+          "before": "21:40",
+          "after": "22:35"
+        },
+        {
+          "id": "M085",
+          "before": "21:00",
+          "after": "21:45"
+        },
+        {
+          "id": "M087",
+          "before": "21:20",
+          "after": "22:20"
+        },
+        {
+          "id": "M099",
+          "before": "19:35",
+          "after": "20:35"
+        },
+        {
+          "id": "S049",
+          "before": "19:50",
+          "after": "20:50"
+        },
+        {
+          "id": "S053",
+          "before": "20:10",
+          "after": "21:10"
+        }
+      ],
+      "services": 200,
+      "categories": {
+        "local": 40,
+        "mail": 96,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 77,
+      "hourly": [
+        10,
+        8,
+        6,
+        7,
+        9,
+        10,
+        6,
+        3,
+        9,
+        8,
+        7,
+        9,
+        10,
+        5,
+        6,
+        8,
+        8,
+        5,
+        4,
+        9,
+        13,
+        13,
+        14,
+        13
+      ]
+    },
+    {
+      "pack": "kerala-coast-network-v2.json",
+      "sha256": "f27e4d92e33254dc44e0a5bebf6f206695dd566c4dac7975db6ee03fa600671d",
+      "predecessor_sha256": "be42428170c7bbd8388c1c2bdfae0d33dab51f39390c8fc3fa3a06e8c2784ddf",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "L031",
+          "before": "18:31",
+          "after": "19:35"
+        },
+        {
+          "id": "M081",
+          "before": "20:40",
+          "after": "21:30"
+        },
+        {
+          "id": "M083",
+          "before": "21:40",
+          "after": "22:35"
+        },
+        {
+          "id": "M085",
+          "before": "21:00",
+          "after": "21:45"
+        },
+        {
+          "id": "M087",
+          "before": "21:20",
+          "after": "22:20"
+        },
+        {
+          "id": "M099",
+          "before": "19:35",
+          "after": "20:35"
+        },
+        {
+          "id": "S049",
+          "before": "19:50",
+          "after": "20:50"
+        },
+        {
+          "id": "S053",
+          "before": "20:10",
+          "after": "21:10"
+        }
+      ],
+      "services": 200,
+      "categories": {
+        "local": 40,
+        "mail": 96,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 77,
+      "hourly": [
+        10,
+        8,
+        6,
+        7,
+        9,
+        10,
+        6,
+        3,
+        9,
+        8,
+        7,
+        9,
+        10,
+        5,
+        6,
+        8,
+        8,
+        5,
+        4,
+        9,
+        13,
+        13,
+        14,
+        13
+      ]
+    }
+  ]
+}

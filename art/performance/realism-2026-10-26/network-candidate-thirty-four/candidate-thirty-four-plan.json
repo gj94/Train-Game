@@ -1,0 +1,65 @@
+{
+  "recorded_at": "2026-10-28T00:19:49.208680+08:00",
+  "candidate": 34,
+  "predecessor": "f5c5d99952c8823d7499423aee8e15d747877d13",
+  "evidence_commit": "f9aa1305 baseline;7f5d44ad delayed",
+  "changes": [
+    {
+      "service": "S049",
+      "before": "19:50",
+      "after": "20:50",
+      "reason": "Move the following TVC southbound group after the actual33 M054/M104/M088 northbound queue; retain S051 and through S033, whose crossing still constrains the opening. Later S055/M091/M073/M089 and through services remain constraints."
+    },
+    {
+      "service": "S053",
+      "before": "20:10",
+      "after": "21:10",
+      "reason": "Move the following TVC southbound group after the actual33 M054/M104/M088 northbound queue; retain S051 and through S033, whose crossing still constrains the opening. Later S055/M091/M073/M089 and through services remain constraints."
+    },
+    {
+      "service": "M081",
+      "before": "20:40",
+      "after": "21:30",
+      "reason": "Move the following TVC southbound group after the actual33 M054/M104/M088 northbound queue; retain S051 and through S033, whose crossing still constrains the opening. Later S055/M091/M073/M089 and through services remain constraints."
+    },
+    {
+      "service": "M085",
+      "before": "21:00",
+      "after": "21:45",
+      "reason": "Move the following TVC southbound group after the actual33 M054/M104/M088 northbound queue; retain S051 and through S033, whose crossing still constrains the opening. Later S055/M091/M073/M089 and through services remain constraints."
+    },
+    {
+      "service": "M087",
+      "before": "21:20",
+      "after": "22:20",
+      "reason": "Move the following TVC southbound group after the actual33 M054/M104/M088 northbound queue; retain S051 and through S033, whose crossing still constrains the opening. Later S055/M091/M073/M089 and through services remain constraints."
+    },
+    {
+      "service": "M083",
+      "before": "21:40",
+      "after": "22:35",
+      "reason": "Move the following TVC southbound group after the actual33 M054/M104/M088 northbound queue; retain S051 and through S033, whose crossing still constrains the opening. Later S055/M091/M073/M089 and through services remain constraints."
+    },
+    {
+      "service": "L031",
+      "before": "18:31",
+      "after": "19:35",
+      "reason": "Move the QLN local origin64 minutes later to avoid its actual33 NEM_P1 receiving-road claim while M054 is trapped at NYY; coordinate with the later southbound group, without changing calls, dwell or stock."
+    },
+    {
+      "service": "M099",
+      "before": "19:35",
+      "after": "20:35",
+      "reason": "Move the QLN mail origin60 minutes later to avoid its actual33 NEM_P2 receiving-road claim paired with L031; later through traffic and receiving-road availability remain unproven."
+    }
+  ],
+  "scope": "Network200 V2 only; eight coordinated southern departure changes. Same exact selected200 population; all northern and southern northbound departures unchanged; K1 remains06:00.",
+  "hypothesis": "Interrupt the repeated NEM and KZT southbound replenishment after retained S051, leaving an opportunity around retained through S033 for M054/M104/M088 and following northbound trains. Move both actual NEM receiving-road claimants L031/M099 with the later southbound group. Observed overlap intervals are not predictions or exact interlocking ownership. Origin gaps never guarantee compatible receiving roads, crossing order, full-tail clearance or escape.",
+  "limits": "Later southbound mails join retained S05522:05, M09122:15, M07322:30 and M08922:45; opposing services, local overtakes, origin queues and midnight completion remain unproven. Aggregate hourly maximum rises13 to14 at22 across different origins; the authoritative density guard requires at least3/hour, with no maximum. This is descriptive only, not a relaxation of any completion/safety/wait/physical/recovery gate. No full-day improvement claim.",
+  "predecessors": {
+    "kerala-coast-network.json": "d337e5a4f6840855f81310c04c5be745f2e28150afff9fe8a81a2b733dfe9d67",
+    "kerala-coast-network-v2.json": "be42428170c7bbd8388c1c2bdfae0d33dab51f39390c8fc3fa3a06e8c2784ddf",
+    "kerala-coast-network-departure-overrides.json": "19ceab9ab8c3a27a27d33e4daf76b16d387f2bf5038f562e889e5ac3ea26936c",
+    "kerala-coast-network-service-selection.json": "f0a08c91b25f32af30ff093e2872958b18a4d900ba326b9c1f88a7b10fde4d7c"
+  }
+}

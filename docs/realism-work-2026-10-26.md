@@ -5686,3 +5686,77 @@ fields,K1,selection and acceptance gates. No Classic Network, duplicate, full
 suite or native job launched. Unchanged1004-test suite and five authoring guards
 remain current. No gameplay playtest until passing V2 install. Feasibility and
 completion ETA remain unproven.
+
+28 October 00:22 — candidate34 authors eight coordinated southern departures after both original33 failures.
+
+Only these departure strings change from candidate33:
+S04919:50 ->20:50; S05320:10 ->21:10; M08120:40 ->21:30;
+M08521:00 ->21:45; M08721:20 ->22:20; M08321:40 ->22:35;
+L03118:31 ->19:35; M09919:35 ->20:35.
+Restoring them recovers each entire predecessor JSON object. The selected200 IDs,
+eight excluded mails, every non-departure field and K1 at06:00 are unchanged.
+Both common-author packs have identical service records; this is not Classic
+Network readiness. All northern and southern northbound origins remain at33.
+Retain S05119:30, L02917:55, M05419:05, M10419:50, M08820:05 and through S03316:45.
+
+Both actual33 runs fail M054 at bookedNYY21:14:24,127/200,peak39,max2702s in BOTH
+wait populations,zero safety. M054 waits1764s opposing S049/S033/S053/M081,
+890s compatible NEM receiving and48s conflicts. Actual NEM L031P1/M099P2 fill
+both roads opposite NYY M054P1/M081P2. M088 has2676s at bookedERL,including2260s
+opposing and396s compatible KZT receiving; M058/M056/L028 queue behind it.
+Actual NEM full-rake envelopes in both: M07220:03:16–20:09:36,
+S05120:10:50–20:17:14,S04920:29:32–20:35:56,S03320:38:12–20:44:38,
+S05320:47:26–20:53:52,M08120:59:40–21:06:04. Actual KZT envelopes include
+L02920:35:34–20:49:38,S05120:46:38–20:57:00,S04921:00:22–21:10:20,
+then S03321:10:34 to failure,right-censored. Overlap at a common axis interval
+is not proof of a shared occupied interlocking resource. These are actual33
+observations, not candidate34 predictions or guaranteed clearance times.
+
+The hypothesis delays S049/S053 and their following TVC mails to interrupt the
+repeated opposing refill after retained S051, leaving an opportunity around
+retained through S033 for M054/M104/M088 and following northbound traffic.
+L031 moves64 origin minutes later and M09960 to avoid their actual33 paired NEM
+receiving-road claims during that queue. Later M087/M083 join retained S05522:05,
+M09122:15,M07322:30,M08922:45; through services and locals remain constraints.
+Origin gaps do not guarantee crossing order, compatible roads, full-tail
+clearance, escape or capacity. Later southbound waits, overtakes, origin queues
+and midnight completion remain unproven; no whole-day improvement claim.
+
+200 services retain40local/96mail/56superfast/8VB and160 boundary journeys.
+There are77 overnight origins(previously75),3–14 starts/hour. The aggregate
+maximum rises13 to14 at22 across different origins. The authoritative density
+guard requires at least3/hour and has no maximum; the old local13 assertion
+was descriptive, not a capacity or acceptance gate. Every completion,safety,
+wait,physical and recovery gate is unchanged. All205 overrides reproduce both
+packs normally and with exact --check. Five headless authoring guards pass,
+errors empty. Runtime/tests retain the completed1004-test candidate33 suite;
+no unchanged full-suite rerun. All4835 prior railway inputs except the Network
+pack and all eleven observer/acceptance inputs remain unchanged.
+V2 pack SHA256 f27e4d92e33254dc44e0a5bebf6f206695dd566c4dac7975db6ee03fa600671d.
+Thirteen exact raw authoring proofs and hashes are retained in
+network-candidate-thirty-four; exact predecessors remain locally in
+candidate-thirty-four-before. Verify staged raw bytes, both pack hashes and
+override JSON before commit/push. In-memory timing alternatives were discarded
+before authoring; no rejected source draft or replay exists.
+
+candidate-thirty-four-sampled-groups.json and sample-v33-groups-for34.py preserve
+actual33 continuous full-rake axis overlaps from11:00 to each failure, static
+bounds, source/report hashes, formula, about2s sampling and censoring. Southern
+bounds are retained from23; ALLP–AMPA uses report centers plus half-width+200m
+exclusion. Planning inputs only, not exact interlocking ownership, assigned
+roads, guaranteed gaps, escape or full-day proof. No isolated-model score.
+
+Both original33 runs ended naturally before source changes. Baseline f9aa1305
+and delayed7f5d44ad preserve21+21 exact raw files,4836 current-at-run source
+hashes each,lossless reports,exact packs,actual summaries and six immutable
+inspections. Their fingerprints are now HISTORICAL after34; never relabel,
+rerun unchanged or install. Baseline all388/512,471/512,497/512,511/512 and station
+203/286,262/286,279/286,285/286 fail30/45; delayed all385/496,458/496,482/496,495/496
+and station195/270,247/270,261/270,269/270 fail30/45. Passing fractions apply only
+to failed prefixes. Equal failure clock/count does not equate populations.
+No complete-population comparison,recovery certificate or installation.
+Next: commit/push verified34, launch exactly one V2 baseline and one V2 delayed
+run in a new generation, verify actual identities/options/source hashes and
+freeze all inputs until both originals end. No Classic Network/full-suite/native
+job. Network200V2 remains unaccepted/uninstalled; feasibility and ETA unproven.
+No gameplay playtest until passing V2 installation.
