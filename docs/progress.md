@@ -2,6 +2,21 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 16:37 — original candidate31 V2 runs remain active.
+
+At16:37:05 baseline2108/24676 reaches05:40,18/208,peak29,maxwait31.1m;
+delayed13884/3528 reaches07:10,28/208,peak31,maxwait35.8m. All four original
+process IDs, parents and complete commands match launcha01417ed. Both error logs
+are empty and neither final audit exists. Runtime/tests/routes/packs/six observers
+remain unchanged since candidate91969531. These partial clocks do not establish
+acceptance; the delayed run has not yet reached its configured07:30 K1 hold.
+
+Keep inputs frozen until both original31 runs finish naturally, then inspect
+the actual final reports against all gates. No replay was duplicated or restarted;
+no Classic208, native or unchanged suite was launched. Network208V2 remains
+unaccepted/uninstalled. No gameplay playtest until accepted V2 installation;
+feasibility and completion ETA remain unproven. Continuation remains active.
+
 27 October 16:24 — original candidate31 runs continue without errors.
 
 At16:23:54 baseline2108/24676 reaches03:30,2/208,peak25,maxwait7.4m;
