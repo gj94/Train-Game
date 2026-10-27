@@ -2,6 +2,57 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 02:43 — candidate34 original V2 baseline rejected; both original runs ended.
+
+The original baseline wrapper22164/child21660 ended naturally at21:48:28 with
+L004 at booked TUVR,134/200 complete,peak38,maximum2702s in BOTH wait populations,
+zero safety events and empty run/summary/four inspection errors. No intervention.
+No Godot replay remains. Delayed5648/2636 already failed133/200 at the same clock
+and is preserved in cdade7d7. Matching failure clocks/local queues do not equate
+populations. Neither run is accepted or installed; no gameplay playtest.
+
+Baseline all-location cumulative401/538,497/538,526/538,537/538 FAIL30/45 minutes.
+Station-only211/299,276/299,294/299,298/299 PASSES10/20/30 but FAILS45. The delayed
+station30 gate failed; do not copy that outcome onto the baseline. Passing
+fractions apply only to failed prefixes; no complete-population comparison.
+
+Baseline evidence in network-candidate-thirty-four/failed-predictive-baseline
+preserves24 exact raw files,lossless audit/traffic/failure,exact source pack,
+actual summary and four byte-immutable KUMM/TUVR/SRTL/MAKM inspections. All4836
+source hashes and six original plus five acceptance/selection hashes match the
+current-at-run candidate655e46bb. Originals remain. No rerun or relabeling after
+future source changes. No full-day safety/wait/completion/recovery certificate.
+
+Actual baseline L004 arrivedTUVR21:02:15.10 and has no departure; TUVR-N3 wait
+2702s comprises1742opposing+948compatibleKUMMreceiving+12M027conflict. Opposing:
+50L009,716combinedL009/M027,108combinedL009/S021,258M027,432S021,
+178combinedS021/L009. Receiving:166combinedM027/S021,46combinedM027/S021/L009,
+544combinedM029/M031/S023; approaching48combinedM027/S021/L009,
+128combinedS021/L009,16combinedS021/L009/M027. Combined buckets are not individual
+attributions. KUMM stopping road remains P3 only in both directions.
+
+All four actual baseline inspections confirm KUMM M029P1/M031P2/S023P3 waiting
+for TUVR M027/L004; TUVR incomingM070P1/M027P2/L004P3. M027 protects M070's SRTL
+escape. M070 departedSRTL21:47:20.75,moves9.322222m/s with authority towardTUVR,
+and its tail still claimsSRTL_P3. SRTL S021P1/L009P2/M070P3 plus incomingS022
+P1/P2/P3 alternatives,not three simultaneous reservations. L009 arrived21:48:00.95
+and dwells until21:49:11. One unchanged actual future plan: incomingS022P3,
+opponentL009P2,vacaterM070,escapeTUVR_P1;received=false,opponent_received=true,
+escaped=false. MAKM M032P1/L011P2/M033P3;M032 moves14.861818m/s towardMAKM-N1
+while its next departure decision protectsS022,L011 awaitsM032conflict andM033
+itsblock. These observations do not establish permanent deadlock/runtime defect.
+
+Baseline S033 has cleared the southern boundary at21:48:21.30 and is stabled;
+delayed S033 was still approaching at failure. Baseline M054 leftQLN21:41:02.25,
+M104 leftKZK21:34:56.30,M088 arrivedTVCdepot21:31:24.30. Other trains still move,
+while later TVC/NCJ origins remain queued or not due. These are local movements,
+not whole-day improvement/capacity/recovery. Baseline summary has noK1overtakes;
+delayed has oneV001atTVCN,not completed multiple-location proof.
+
+Next: coordinated departure-only replanning from BOTH actual queues and full-rake
+movements,with the same200selected services,unchanged non-departure fields,K1,
+runtime and acceptance gates. Full-day feasibility remains unproven; no reliable ETA.
+
 28 October 02:28 — original34 V2 baseline continues with frozen inputs.
 
 At02:28:17 original baseline22164/21660 reports 21:20:00 complete=129/200 peak=37 max_wait=41.0m wall=7476.1s.
