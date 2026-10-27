@@ -2,6 +2,24 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 18:03 — original candidate31 V2 baseline remains active.
+
+At 18:03:19, original baseline 2108/24676 reaches 19:50, 121/208 complete,
+peak 36 and maximum wait 42.5m. Both original process IDs, parents and full
+commands match launch a01417ed; the error log is empty and no final audit exists.
+The V2 pack and six observer hashes match launch, and frozen Git inputs remain
+unchanged. Passing the delayed run's failure clock does not establish acceptance,
+whole-day improvement, equal populations or recovery.
+
+Original delayed 13884/3528 remains rejected in f4fc8b9d: M025 booked ALLP at
+19:35:06, 118/208, zero safety events, with both wait populations failing 30/45
+minutes. Its 17 exact raw files, 4836 current-at-run source hashes and two
+immutable inspections remain preserved; never rerun unchanged or install.
+Wait for the original baseline before coordinated departure-only replanning.
+No duplicate, restart, Classic208, native or unchanged suite job was launched.
+Network208V2 remains unaccepted/uninstalled; no gameplay playtest until a passing
+V2 installation. Continuation stays active; feasibility and ETA remain unproven.
+
 27 October 17:53 — original candidate31 V2 baseline continues with frozen inputs.
 
 At 17:53:32, original baseline 2108/24676 reaches 18:10, 111/208 complete,
