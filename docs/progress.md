@@ -2,6 +2,60 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 02:46 — candidate35 authored; original34 failures preserved before departure changes.
+
+Candidate35 changes only seven northern departure strings from34:
+S02120:20->21:45;L00920:40->22:00;M02720:45->22:15;M03121:00->22:30;
+M02921:15->22:45;S02321:20->23:00;M03521:30->23:15.
+Restoring those strings recovers the entire predecessor JSON in both common-author
+packs. All other fields/services,K1at06:00,selection and raw208template unchanged.
+Both common-author packs have identical service records; this is not Classic readiness.
+All southern and northbound departures remain; L01120:20/M03320:30 and preceding
+L003/M059/M055/M069 are retained. Same200=40local96mail56superfast8VB,160boundary
+journeys;83overnight origins(previously77),3–18starts/hour. The aggregate maximum
+18 at22 is descriptive; the authoritative density guard requires at least3/hour
+with no maximum. Safety/wait/physical/recovery/completion gates remain unchanged.
+
+Both actual34 runs show L004 atTUVR21:02:15.10. Retained L011/M033 geometric
+KUMM envelopes end20:59:38/21:02:22; S021 follows21:11:12,L00921:18:38,
+M02721:23:56,then actual receiving claimantsM031/M029/S023. The hypothesis moves
+these followers plusM035 later to seek KUMM stoppingP3 forL004 and full-tail
+progress forM070/S022/M032. Retained later S03722:05,M04322:10,M00322:25,
+M04122:55,S03922:55 constrain the new group. Origin queues,opposing through trains,
+compatible roads,overtakes and completion beyond midnight remain unproven.
+No origin gap guarantees crossing order,escape,capacity or whole-day improvement.
+
+candidate-thirty-five-sampled-groups.json/sample-v34-groups-for35.py preserve BOTH
+actual34 full-rake geometric overlaps from11:00 tofailure,static bounds,source
+and report hashes,formula,approximately2s samples and censoring. Northern KUMM,
+TUVR,SRTL and MAKM samples informed this revision. They are planning inputs,
+not exact interlocking ownership,assigned roads or guaranteed clearance intervals.
+Overlapping geometric envelopes do not prove shared occupied interlocking resources.
+
+Normal author and exact--check reproduce both packs from205overrides and the
+unchanged8-mail exclusion. Five headless authoring guards PASS with empty errors.
+All4835 previous railway inputs exceptNetworkpack and all11 observer/acceptance
+inputs are unchanged. Retain the completed1004-test candidate33 source suite;
+do not repeat unchanged full-suite/legacy checks. Thirteen exact raw authoring
+proofs are preserved in network-candidate-thirty-five. V2 raw SHA256:
+1bedbdb8ff9fa5fb7ae9a720c015de13aa87551591e64e7b4e283fe64d8a6e27.
+Exact predecessor files remain in candidate-thirty-five-before.
+
+Both original34 runs ended naturally and FAILED before source35. Baseline2618efbd
+preserves24raw/four immutable inspections,134/200;delayedcdade7d7 preserves24raw/
+four immutable inspections,133/200. Each failedL004at21:48:28,peak38,max2702s both,
+zero safety. Baselineall401/538,497/538,526/538,537/538 fail30/45;station211/299,
+276/299,294/299,298/299 pass10/20/30 butfail45. Delayedbothfail30/45. All34source
+fingerprints are now HISTORICAL; never relabel,rerun unchanged or install them.
+Matching clocks/localqueues do not equate populations. No complete-population
+comparison,recovery certificate or installation. Earlier evidence remains intact.
+
+Next: commit/push this verified authoring increment,then launch exactly one new
+V2normal--network--snapshots and one delayed--network--delay=600--delay-at=27000
+in isolated rehearsals-v35. Verify actual identities/options/originalcatalogue/
+4836distinctsources/11observers and freeze while either original35run lives.
+Network200V2 remains unaccepted/uninstalled; no gameplay playtest. No reliable ETA.
+
 28 October 02:43 — candidate34 original V2 baseline rejected; both original runs ended.
 
 The original baseline wrapper22164/child21660 ended naturally at21:48:28 with

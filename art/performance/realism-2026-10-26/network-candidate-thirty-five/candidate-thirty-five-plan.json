@@ -1,0 +1,59 @@
+{
+  "recorded_at": "2026-10-28T02:44:53.204414+08:00",
+  "candidate": 35,
+  "predecessor": "655e46bb4aee62e7d76a5f3a879a438e1b30c6af",
+  "evidence_commit": "2618efbd baseline;cdade7d7 delayed",
+  "changes": [
+    {
+      "service": "S021",
+      "before": "20:20",
+      "after": "21:45",
+      "reason": "Delay the following northern southbound replenishment after retained L011/M033 to seek a KUMM P3 receiving opportunity for L004 and onward full-tail clearance for M070/S022/M032. Later retained S037/M043/M003/M041/S039 traffic and origin queues remain constraints."
+    },
+    {
+      "service": "L009",
+      "before": "20:40",
+      "after": "22:00",
+      "reason": "Delay the following northern southbound replenishment after retained L011/M033 to seek a KUMM P3 receiving opportunity for L004 and onward full-tail clearance for M070/S022/M032. Later retained S037/M043/M003/M041/S039 traffic and origin queues remain constraints."
+    },
+    {
+      "service": "M027",
+      "before": "20:45",
+      "after": "22:15",
+      "reason": "Delay the following northern southbound replenishment after retained L011/M033 to seek a KUMM P3 receiving opportunity for L004 and onward full-tail clearance for M070/S022/M032. Later retained S037/M043/M003/M041/S039 traffic and origin queues remain constraints."
+    },
+    {
+      "service": "M031",
+      "before": "21:00",
+      "after": "22:30",
+      "reason": "Delay the following northern southbound replenishment after retained L011/M033 to seek a KUMM P3 receiving opportunity for L004 and onward full-tail clearance for M070/S022/M032. Later retained S037/M043/M003/M041/S039 traffic and origin queues remain constraints."
+    },
+    {
+      "service": "M029",
+      "before": "21:15",
+      "after": "22:45",
+      "reason": "Delay the following northern southbound replenishment after retained L011/M033 to seek a KUMM P3 receiving opportunity for L004 and onward full-tail clearance for M070/S022/M032. Later retained S037/M043/M003/M041/S039 traffic and origin queues remain constraints."
+    },
+    {
+      "service": "S023",
+      "before": "21:20",
+      "after": "23:00",
+      "reason": "Delay the following northern southbound replenishment after retained L011/M033 to seek a KUMM P3 receiving opportunity for L004 and onward full-tail clearance for M070/S022/M032. Later retained S037/M043/M003/M041/S039 traffic and origin queues remain constraints."
+    },
+    {
+      "service": "M035",
+      "before": "21:30",
+      "after": "23:15",
+      "reason": "Delay the following northern southbound replenishment after retained L011/M033 to seek a KUMM P3 receiving opportunity for L004 and onward full-tail clearance for M070/S022/M032. Later retained S037/M043/M003/M041/S039 traffic and origin queues remain constraints."
+    }
+  ],
+  "scope": "Network200 V2 only; seven coordinated northern departures. Exact selected200 population, all non-departure fields, K1 at06:00 and all southern departures retained.",
+  "hypothesis": "Both actual34 runs show L004 at TUVR at21:02:15 and the retained L011/M033 KUMM geometric envelopes ending20:59:38/21:02:22, followed by S02121:11:12,L00921:18:38,M02721:23:56 and receiving claimants M031/M029/S023. Move these followers and M035 later, retaining L011/M033 and the preceding L003/M059/M055/M069. This seeks time for L004 to reach compatible KUMM P3 and M070/S022/M032 to advance before another southbound wave. Actual sampled envelopes are not exact interlocking ownership or predictions.",
+  "limits": "Later southbound services meet retained S03722:05,M04322:10,M00322:25,M04122:55,S03922:55 and subsequent overnight traffic. Northbound through services, compatible roads, origin queues, overtakes and full-tail completion beyond midnight remain unproven. Aggregate hourly density is descriptive; preserve minimum3/hour and all safety/wait/physical/recovery/completion gates. No whole-day improvement claim; origin gaps do not guarantee crossing order or escape.",
+  "predecessors": {
+    "kerala-coast-network.json": "54fc4f1faba2d52a12c9661284a4b19967b4a4a2a22e831ebc8e7de346c51026",
+    "kerala-coast-network-v2.json": "f27e4d92e33254dc44e0a5bebf6f206695dd566c4dac7975db6ee03fa600671d",
+    "kerala-coast-network-departure-overrides.json": "ce2bba9ae154c77bf253fdff8039541d08a1607649366a5fdd9f24defc642403",
+    "kerala-coast-network-service-selection.json": "f0a08c91b25f32af30ff093e2872958b18a4d900ba326b9c1f88a7b10fde4d7c"
+  }
+}
