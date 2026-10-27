@@ -4072,3 +4072,15 @@ proof. No other Godot job exists; no duplicate, Classic208, suite or native run
 was launched. Keep original29 running with frozen inputs. Next inspect their
 actual final reports against all gates; Network208V2 remains unaccepted and
 uninstalled. No gameplay playtest is due. Continuation remains active.
+
+27 October 12:15 — original candidate29 V2 runs remain active.
+
+At12:15:17 baseline164/7484 reaches03:20,2/208,peak23,maxwait6.1m;
+delayed832/25904 reaches04:20,7/208,peak29,maxwait9.3m. Both original
+commands/parents match launch55cace53; empty errors, no final audits. The V2
+pack/six observer hashes and frozen Git paths match. No other Godot job exists.
+No duplicate, Classic208, suite or native run was launched. Partial clocks and
+populations are not acceptance, recovery or complete-population comparison.
+Keep the original runs and frozen inputs; inspect their actual final reports
+against all gates when available. Network208V2 remains unaccepted/uninstalled.
+No gameplay playtest is due; continuation remains active.

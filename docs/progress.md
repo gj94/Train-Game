@@ -2,6 +2,18 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 12:15 — original candidate29 V2 runs remain active.
+
+At12:15:17 baseline164/7484 reaches03:20,2/208,peak23,maxwait6.1m;
+delayed832/25904 reaches04:20,7/208,peak29,maxwait9.3m. Both original
+commands/parents match launch55cace53; empty errors, no final audits. The V2
+pack/six observer hashes and frozen Git paths match. No other Godot job exists.
+No duplicate, Classic208, suite or native run was launched. Partial clocks and
+populations are not acceptance, recovery or complete-population comparison.
+Keep the original runs and frozen inputs; inspect their actual final reports
+against all gates when available. Network208V2 remains unaccepted/uninstalled.
+No gameplay playtest is due; continuation remains active.
+
 27 October 12:05 — original candidate29 runs continue; no final result.
 
 At12:05:18 baseline164/7484 reaches01:00,0/208,peak10,maxwait0.1m;
