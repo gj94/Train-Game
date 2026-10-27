@@ -6676,3 +6676,64 @@ existing tests are retained. Await the original baseline's actual final report
 before preserving its queues and replanning from both outcomes. Partial progress
 is not acceptance; Network200V2 remains unaccepted/uninstalled, full-day
 feasibility unproven and readiness ETA unavailable.
+
+28 October 07:32 — both original candidate36 runs ended naturally and failed; baseline evidence preserved.
+
+Original baseline18424/6760 failed at23:17:16 simulated on S055's booked TVC
+origin(call0), with142/200 complete,peak40,max2702seconds in both wait
+populations and zero safety events. Its delay/delay_at are0/0; actual summary has
+no K1 overtakes. Run/summary/four inspection errors are empty. Baseline final
+clock differs from delayed23:17:32; matching completion counts and local claims
+do not equate wait populations or complete operating days.
+
+Baseline all-location420/580,519/580,556/580,579/580 pass10 but fail20/30/45;
+station223/321,292/321,312/321,320/321 fail10/30/45 and pass20. No rounding:
+519/580 is below90%,223/321 below70%,312/321 below98%. Delayed remains
+413/563,504/563,539/563,562/563 and213/305,277/305,293/305,304/305,
+respectively. All fractions describe incomplete failed prefixes. No acceptance,
+complete-population comparison, recovery certificate or installation.
+
+The baseline archive preserves24 exact raw files, including lossless audit,
+traffic/failure/receiving state, actual summary, four byte-immutable NEM/NYY/PASA/
+KZT inspections, exact pack, original logs, tool and jobs record, at
+`art/performance/realism-2026-10-26/network-candidate-thirty-six/failed-predictive-baseline`.
+All4836 current-at-run source hashes, six observers and five acceptance/selection
+hashes match unchanged inputs and the original baseline catalogue. Original
+files remain. The delayed archive is already pushed in1773eafe; no summary,
+inspection or original rehearsal was repeated. Both original pairs are absent;
+no other Godot job remains. Source edits have not yet begun.
+
+Baseline S055 has not departed:2702seconds=152M081 NEM receiving+2530combined
+M081/M085 receiving+20combinedM081/M085 approaching capacity. Preserve those
+combined buckets without individual attribution. NEMclaimsM081P1/M085P2;
+NYYclaimsS053P1/L028P2; PASAclaimsM099P1 with incomingL030 P1/P2 alternatives,
+not two simultaneous reservations; KZTclaimL038P2. All eight baseline/delayed
+inspections have no future-clearance plans and identical before/after captures.
+
+Baseline M081/M085 departed TVC22:26:01.75/22:29:09.25, now stopped at NEM
+awaiting S053/L028 at NYY. Audited signal-extra waits2636/2448 each preserve
+1980combined receiving plus656/468 reserved S053 approach. Dispatcher continuous
+ages2731.5/2544 are distinct measures. S053 leftTVC22:18:23.75 and waits at
+NYY-S1 for PASA M099/incomingL030; audited2344=1980combined+364L030 alone.
+L028 arrivedNYY22:35:13.75,nodeparture,now awaitsNEMM081/M085;
+2456=2392combined receiving+64earlier S053 future arrival afterM099.
+M099 arrivedPASA22:44:58.75,nodeparture,1868seconds for L030 holdingPASA_single.
+L030 stopped beforePASA_KZTW_M0-NH, preserving a NYY crossing road forS053;
+its P1alternative is occupied byM099. Its2068audited signal seconds preserve
+1980combinedS053/M099+88S053. L038 waitsKZT for that NYY crossing capacity;
+S040 waitsERL for L038's onward route withM099 exit constraint;L032 follows.
+These actual stopped dependencies do not prove permanent deadlock/runtime defect.
+
+Baseline M033 leftALLP23:09:25.75 and moves24.6m/s towardAMPA. S037 moves
+9.322222m/s towardSRTL-S3 with authoritysouth whileM072 awaits its point/route
+clearance;M054 waits forS037 atMAKM. M104 moves20.479109m/s north. L031 is
+stabledNCJdepot. All selected services, waits, claims and the final31two-second
+full-rake samples are preserved. Geometry alone is not shared-resource ownership
+proof; local movements are not whole-day improvement/capacity/recovery claims.
+
+Next: use BOTH actual36 outcomes for coordinated departure-only replanning,
+retaining selected200IDs, all non-departure fields and all acceptance gates.
+The completed1004-test candidate33 suite and five candidate36 authoring guards
+remain valid for their unchanged inputs. No Classic work, installation or gameplay
+playtest; Network200V2 is still unaccepted/uninstalled, full-day feasibility
+unproven and readiness ETA unavailable.

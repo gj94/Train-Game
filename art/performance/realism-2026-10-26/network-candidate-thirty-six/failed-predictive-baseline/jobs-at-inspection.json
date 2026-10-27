@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 18424,
+    "started": "2026-10-28T05:05:47.8392317+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v36/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "3b3ac4ba6b952ecf7b7527bc0aea65646a3e0862",
+    "status": "finished-rejected",
+    "reason": "Candidate36 changes only M033 departure20:30 to21:25 after both original35 V2 signal-wait failures. Exact selected200, all non-departure fields and K1 retained. Seek later MAKM/ALLP approach after actual opposing S022/M032/S038/M034 and L011 receiving occupation, while retaining L011, all opponents, southern departures and candidate35 northern shifts. Origin gaps are not crossing/capacity proof; both full V2 tests remain required",
+    "pack_sha256": "1e21a45136b74cffae499192ef3e2bbb4d9fcdb83e576ae6f0e160410284dd45",
+    "child_pid": 6760
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 18356,
+    "started": "2026-10-28T05:05:47.8897248+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v36/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "3b3ac4ba6b952ecf7b7527bc0aea65646a3e0862",
+    "status": "finished-rejected",
+    "reason": "Candidate36 changes only M033 departure20:30 to21:25 after both original35 V2 signal-wait failures. Exact selected200, all non-departure fields and K1 retained. Seek later MAKM/ALLP approach after actual opposing S022/M032/S038/M034 and L011 receiving occupation, while retaining L011, all opponents, southern departures and candidate35 northern shifts. Origin gaps are not crossing/capacity proof; both full V2 tests remain required",
+    "pack_sha256": "1e21a45136b74cffae499192ef3e2bbb4d9fcdb83e576ae6f0e160410284dd45",
+    "child_pid": 23568
+  }
+]
