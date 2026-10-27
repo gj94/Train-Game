@@ -4060,3 +4060,15 @@ Next: inspect the original29 final reports against every completion, safety,
 wait, physical and recovery gate. Network208V2 remains unaccepted/uninstalled;
 no gameplay playtest until a passing V2 installation. Continuation remains
 active; feasibility and completion ETA remain unproven.
+
+27 October 12:05 — original candidate29 runs continue; no final result.
+
+At12:05:18 baseline164/7484 reaches01:00,0/208,peak10,maxwait0.1m;
+delayed832/25904 reaches01:40,1/208,peak14,maxwait6.1m. Both original
+commands/parents match launch55cace53; errors are empty and final audits absent.
+The V2 pack and six observer hashes match, and frozen runtime/tests/routes/packs
+have no Git changes. These partial populations are not acceptance or comparison
+proof. No other Godot job exists; no duplicate, Classic208, suite or native run
+was launched. Keep original29 running with frozen inputs. Next inspect their
+actual final reports against all gates; Network208V2 remains unaccepted and
+uninstalled. No gameplay playtest is due. Continuation remains active.
