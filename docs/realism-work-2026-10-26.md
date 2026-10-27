@@ -6295,3 +6295,14 @@ original launch. All runtime/routes/packs/observers/acceptance inputs stay froze
 Next: wait for this original baseline's final report,preserve its actual queues,
 then coordinate departure-only changes from BOTH outcomes. Network200V2 remains
 unaccepted/uninstalled; no gameplay playtest and no reliable readiness ETA.
+
+28 October 04:39 — original35 baseline continues with frozen inputs.
+
+At04:39:20 original baseline14568/15696 reports 19:10:00 complete=116/200 peak=34 max_wait=41.0m wall=6759.6s.
+Its exact process/parent/command identities match launch968f3301; errors remain
+empty and no final audit exists. All4836 source hashes,six original observers
+and five acceptance/selection hashes remain unchanged. Original35 delayed failure
+is already preserved in71357fb7; no replay or completed inspection repeated.
+No source edit,new job,restart or installation. Wait for the original baseline
+before coordinated replanning from both outcomes. Partial progress is not
+acceptance,capacity or recovery proof; no gameplay playtest before passing V2 install.
