@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-10-28T05:04:02.900923+08:00",
+  "candidate": 36,
+  "predecessor": "5de392dc73c0f1411396dff0381faf1f5ab2f48f",
+  "evidence_commit": "a496f8d5 baseline;71357fb7 delayed",
+  "changes": [
+    {
+      "service": "M033",
+      "before": "20:30",
+      "after": "21:25",
+      "reason": "Move the failed M033 from the earlier L011-following slot to a later northern departure coordinated with retained northbound M070/S022/M032 and the later S021 group. Seek a later MAKM/ALLP approach after the observed opposing wave and L011 receiving occupation, without delaying opposing departures or changing any non-departure field."
+    }
+  ],
+  "scope": "Network200 V2 only; one departure string, chosen from both actual35 queues. Retain L01120:20, all northbound and southern departures, and the seven northern shifts from35.",
+  "hypothesis": "Both35 runs have M033 wait2702s at MAKM-S3 after bookedSRTL21:14:59.25. MAKM sampled envelopes show S02221:22:44-21:31:48,M03221:39:14-21:48:18,L01121:49:34-22:03:30,then S03822:05:22 and M03422:07:56 still moving at failure. M03321:25 instead of20:30 seeks a later approach while keeping L01120:20 and all opponents unchanged; the northbound KUMM samples for M070 end21:34:32,S022 ends21:59:10 and retained S021 begins22:00:50. These actual35 samples are planning evidence, not candidate36 timing predictions.",
+  "limits": "M033 now departs20 minutes before retained S02121:45 and meets later L00922:00/S03722:05/M04322:10/M02722:15 and northbound through traffic. Origin gaps do not guarantee crossing order, compatible receiving roads, full-tail clearance, escape or capacity. The change can alter the observed northern sequence. Later-wave congestion, overtakes and midnight completion remain unproven; no whole-day improvement claim or relaxed gate. Preserve at least3 starts/hour; aggregate maximum is descriptive only.",
+  "predecessors": {
+    "kerala-coast-network.json": "6cec7577b3c9577374dd0b164528b8c47fb3efe62987d725f754580255c3f0f4",
+    "kerala-coast-network-v2.json": "1bedbdb8ff9fa5fb7ae9a720c015de13aa87551591e64e7b4e283fe64d8a6e27",
+    "kerala-coast-network-departure-overrides.json": "1a86d092e5ebf4d70431d6d016e21085ed3846d74cbda6797bb8e5b6cc0efa93",
+    "kerala-coast-network-service-selection.json": "f0a08c91b25f32af30ff093e2872958b18a4d900ba326b9c1f88a7b10fde4d7c"
+  }
+}

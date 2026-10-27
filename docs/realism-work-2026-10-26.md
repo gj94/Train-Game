@@ -6352,3 +6352,57 @@ remains. Delayed evidence was already pushed71357fb7; originals remain untouched
 Next: coordinate departure-only candidate36 from BOTH actual failed queues and
 full-rake movement records. Retain200 selected services,all non-departure fields,
 K1 and all safety/wait/physical/recovery gates. No unchanged rerun or gameplay playtest.
+
+28 October 05:06 — candidate36 authored after both original35 failures were preserved.
+
+Candidate36 changes only M033 departure20:30->21:25. Restoring that one string
+recovers each entire predecessor JSON. All other services and non-departure
+fields,K1at06:00,raw208template and exact selected200 IDs remain unchanged.
+Both common-author packs have identical service records; no Classic readiness claim.
+Retain L01120:20,L00320:00,M05919:55,M05519:45,M06919:25,all northbound/southern
+departures and candidate35's seven northern shifts. Same200=40local96mail56superfast
+8VB,160boundary journeys,83overnight origins,3–18starts/hour. The aggregate maximum
+18 at22 is descriptive; authoritative minimum3/hour and all acceptance gates remain.
+
+Both actual35 runs show M033's2702s MAKM-S3 signal wait after bookedSRTL21:14:59.25.
+Actual MAKM geometric envelopes include S02221:22:44–21:31:48,M03221:39:14–21:48:18,
+L01121:49:34–22:03:30,then S03822:05:22 and M03422:07:56,still moving at failure.
+Moving M03355minutes later seeks a later MAKM/ALLP approach after that opposing
+flow and L011 receiving occupation,while retaining all opposing departures.
+Actual KUMM northbound M070 ends21:34:32,S022 ends21:59:10; retained S021's
+southbound envelope begins22:00:50. Those are observations of35,not predictions
+for36. M033 now departs20minutes before retainedS02121:45 and meets laterL00922:00,
+S03722:05,M04322:10,M02722:15 and northbound through trains. Its changed approach
+can alter the crossing order. Compatible roads,full-tail clearance,origin queues,
+overtakes,later waves and midnight completion remain unproven. No gap guarantees
+crossing order,escape or capacity; no whole-day improvement claim.
+
+candidate-thirty-six-sampled-groups.json/sample-v35-groups-for36.py preserve BOTH
+actual35 full-rake axis overlaps11:00–failure,source/report hashes,static bounds,
+formula,approximately2s samples and censoring. ALLP–AMPA bounds are station centres
+with half-width+200m exclusion; southern bounds retained from23. These are planning
+inputs,not exact interlocking ownership,assigned roads or guaranteed clearance.
+Overlapping envelopes do not prove shared occupied interlocking resources.
+
+Normal author and exact--check reproduce both packs from205overrides and unchanged
+selection. Five headless authoring guards PASS,emptyerrors. All4835 previous
+railway inputs exceptNetworkpack and all11 observer/acceptance hashes unchanged.
+Retain the completed1004-test candidate33 source suite; no unchanged full-suite or
+legacy checks repeated. Thirteen exact raw authoring proofs are preserved under
+network-candidate-thirty-six; exact predecessors in candidate-thirty-six-before.
+V2 raw SHA256:1e21a45136b74cffae499192ef3e2bbb4d9fcdb83e576ae6f0e160410284dd45.
+
+Original35 baselinea496f8d5 and delayed71357fb7 preserve21+21 exact raw files,
+4836 source hashes each and six immutable MAKM/ALLP/AMPA inspections. Both failed
+M03322:10:34,136/200,peak34,all-location2702s,zero safety. Baseline station2458s,
+delayed2454s; each station population passes all gates only for its failed prefix,
+all-location fails45. All35 fingerprints are now HISTORICAL after36; never relabel,
+rerun unchanged or install. Equal clocks/local wait records do not equate complete
+populations; no recovery certificate. Older evidence remains intact.
+
+Next: commit/push this verified authoring increment,then launch exactly one new
+normal V2 --network --snapshots and one delayed --network --delay=600 --delay-at=27000
+in isolated rehearsals-v36. Verify actual identities/options,original baseline
+catalogue,4836 distinct sources and11 observer/acceptance hashes; freeze inputs
+while either original36run lives. Network200V2 remains unaccepted/uninstalled.
+No gameplay playtest and no reliable readiness ETA.

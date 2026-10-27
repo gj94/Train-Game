@@ -1,0 +1,102 @@
+{
+  "identical_modes": true,
+  "K1": "06:00",
+  "unchanged_selection": true,
+  "maximum_hourly_is_descriptive_not_acceptance_gate": true,
+  "packs": [
+    {
+      "pack": "kerala-coast-network.json",
+      "sha256": "32a899175f28cae717e12cafe8f1680562cc92c5ef5e33e45422a9aee14d8f65",
+      "predecessor_sha256": "6cec7577b3c9577374dd0b164528b8c47fb3efe62987d725f754580255c3f0f4",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "M033",
+          "before": "20:30",
+          "after": "21:25"
+        }
+      ],
+      "services": 200,
+      "categories": {
+        "local": 40,
+        "mail": 96,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 83,
+      "hourly": [
+        10,
+        8,
+        6,
+        7,
+        9,
+        10,
+        6,
+        3,
+        9,
+        8,
+        7,
+        9,
+        10,
+        5,
+        6,
+        8,
+        8,
+        5,
+        4,
+        9,
+        9,
+        11,
+        18,
+        15
+      ]
+    },
+    {
+      "pack": "kerala-coast-network-v2.json",
+      "sha256": "1e21a45136b74cffae499192ef3e2bbb4d9fcdb83e576ae6f0e160410284dd45",
+      "predecessor_sha256": "1bedbdb8ff9fa5fb7ae9a720c015de13aa87551591e64e7b4e283fe64d8a6e27",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "M033",
+          "before": "20:30",
+          "after": "21:25"
+        }
+      ],
+      "services": 200,
+      "categories": {
+        "local": 40,
+        "mail": 96,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 83,
+      "hourly": [
+        10,
+        8,
+        6,
+        7,
+        9,
+        10,
+        6,
+        3,
+        9,
+        8,
+        7,
+        9,
+        10,
+        5,
+        6,
+        8,
+        8,
+        5,
+        4,
+        9,
+        9,
+        11,
+        18,
+        15
+      ]
+    }
+  ]
+}
