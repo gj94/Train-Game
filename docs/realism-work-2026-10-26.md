@@ -4420,3 +4420,15 @@ paths are unchanged. Continue these original runs without restarting; no
 Classic208, duplicate replay, suite or native job was launched. Partial clocks
 are not acceptance or recovery proof. Network208V2 remains unaccepted/uninstalled.
 No gameplay change or new playtest is due; continuation remains active.
+
+27 October 14:19 — original candidate30 V2 runs remain active.
+
+At14:19:34 the original baseline21528/21596 reaches03:40,2/208,peak27,
+maxwait7.4m; delayed21816/8612 reaches04:40,13/208,peak29,maxwait18.6m.
+Both original commands and parent identities match launch59bdb842; errors are
+empty and no final audits exist. Both source packs, six observers and frozen
+Git paths remain unchanged. Continue these original runs without restarting;
+no Classic208, duplicate replay, suite or native job was launched. Partial
+clocks are not acceptance, capacity or recovery proof. Network208V2 remains
+unaccepted/uninstalled. No gameplay change or new playtest is due;
+continuation remains active.
