@@ -1,0 +1,72 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "30ef4addd4894c9e2b0e252837b1dbf701b95d2d99f739cf2e92d115b2a29092",
+    "kerala-coast-network-v2.json": "65f9f73256c87db2f42713fad50d2ff16e89607d08b135bc00beb43cf6e07089",
+    "kerala-coast-network-departure-overrides.json": "28d9d440ad480534364b583b4b3fa608b804bdd80fff09678577a765eb7d5415"
+  },
+  "changes": [
+    {
+      "service": "S019",
+      "before": "19:00",
+      "after": "17:50",
+      "reason": "Lead M025 with S01717:40/S01917:50/S03518:00 to remove the later actual31 S019 opposing refill of ALLP-AMPA and reduce a repeated fast-over-slower sequence"
+    },
+    {
+      "service": "M025",
+      "before": "17:25",
+      "after": "18:15",
+      "reason": "Start after the S017/S019/S035 fast group to reduce the two actual31 ALLP overtakes; northbound M052 receiving and full-tail clearance still constrain crossing order"
+    },
+    {
+      "service": "M067",
+      "before": "18:15",
+      "after": "18:55",
+      "reason": "Move the following ERS mail group after the earlier fast group and M025, with a40-minute origin gap after M025, to reduce repeated ALLP-AMPA opposing occupancy while M052/M066/S036/M102 seek compatible northbound receiving roads"
+    },
+    {
+      "service": "M057",
+      "before": "18:30",
+      "after": "19:10",
+      "reason": "Move the following ERS mail group after the earlier fast group and M025, with a40-minute origin gap after M025, to reduce repeated ALLP-AMPA opposing occupancy while M052/M066/S036/M102 seek compatible northbound receiving roads"
+    },
+    {
+      "service": "M069",
+      "before": "18:45",
+      "after": "19:25",
+      "reason": "Move the following ERS mail group after the earlier fast group and M025, with a40-minute origin gap after M025, to reduce repeated ALLP-AMPA opposing occupancy while M052/M066/S036/M102 seek compatible northbound receiving roads"
+    },
+    {
+      "service": "M055",
+      "before": "20:15",
+      "after": "19:45",
+      "reason": "Move the following ERS mail group after the earlier fast group and M025, with a40-minute origin gap after M025, to reduce repeated ALLP-AMPA opposing occupancy while M052/M066/S036/M102 seek compatible northbound receiving roads"
+    },
+    {
+      "service": "M059",
+      "before": "20:25",
+      "after": "19:55",
+      "reason": "Move the following ERS mail group after the earlier fast group and M025, with a40-minute origin gap after M025, to reduce repeated ALLP-AMPA opposing occupancy while M052/M066/S036/M102 seek compatible northbound receiving roads"
+    },
+    {
+      "service": "L003",
+      "before": "19:20",
+      "after": "20:00",
+      "reason": "Move the three ERS locals together behind the revised mail group to reduce the actual31 L003/L011 opposing approach at MAKM while M066 and S036 seek northbound clearance; later mails and overtakes remain constraints"
+    },
+    {
+      "service": "L011",
+      "before": "19:40",
+      "after": "20:20",
+      "reason": "Move the three ERS locals together behind the revised mail group to reduce the actual31 L003/L011 opposing approach at MAKM while M066 and S036 seek northbound clearance; later mails and overtakes remain constraints"
+    },
+    {
+      "service": "L009",
+      "before": "20:00",
+      "after": "20:40",
+      "reason": "Move the three ERS locals together behind the revised mail group to reduce the actual31 L003/L011 opposing approach at MAKM while M066 and S036 seek northbound clearance; later mails and overtakes remain constraints"
+    }
+  ],
+  "evidence_commit": "e90c8ede baseline;f4fc8b9d delayed",
+  "scope": "Network208 V2 only; ten coordinated northern group departure timings, no Classic replay or readiness requirement.",
+  "status": "Departure-only hypothesis; no acceptance"
+}
