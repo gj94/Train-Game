@@ -2,6 +2,30 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 05:06 — original candidate36 V2 pair launched once and verified.
+
+Author3b3ac4ba6b952ecf7b7527bc0aea65646a3e0862 was committed/pushed before launch.
+Both original jobs launched once05:05:47 in fresh isolated rehearsals-v36:
+normal wrapper18424/child6760 with --network --snapshots;
+delayed wrapper18356/child23568 with --network --delay=600 --delay-at=27000.
+All four actual command/parent identities,options and unique output paths verified.
+The original baseline catalogue existed before verification;4836 distinct source
+hashes,six original observers and five acceptance/selection hashes verified.
+Five exact launch files plus manifest are preserved under
+network-candidate-thirty-six/launch-proof. inspect-current-replays.py selects36first.
+
+At05:06:24 baseline reports 00:10:00 complete=0/200 peak=3 max_wait=0.1m wall=31.8s.
+Delayed reports 00:30:00 complete=0/200 peak=4 max_wait=0.1m wall=28.0s.
+Both have empty errors and no final audit. Partial clocks are not acceptance.
+DO NOT execute launch-network-v36.ps1 or verify-launch-v36.py again,duplicate or
+restart. Freeze runtime/routes/packs,the six original observers and five acceptance/
+selection files while either original36run lives. No Classic,suite,native,search or
+diagnostic job remains. Both35 failures are historical and preserved separately
+in baselinea496f8d5/delayed71357fb7; no failed/partial/disturbed data was installed.
+Next: inspect BOTH original36 final reports,preserve actual queues before further
+coordinated departure-only replanning. Network200V2 remains unaccepted/uninstalled;
+no gameplay playtest and no reliable readiness ETA.
+
 28 October 05:06 — candidate36 authored after both original35 failures were preserved.
 
 Candidate36 changes only M033 departure20:30->21:25. Restoring that one string
