@@ -2,6 +2,18 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 10:23 — original candidate28 runs continue.
+
+At10:23:12, baseline26840/26252 reaches03:20,2/208,peak23,maxwait6.1m;
+delayed8232/6576 reaches04:20,7/208,peak29,maxwait9.3m. All four original
+commands and parents match the launch proof; errors are empty and final audits
+are absent. The V2 pack, six observers and frozen source paths remain unchanged.
+Partial progress is not acceptance. No duplicate, Classic208, suite, native,
+search or diagnostic job was launched. Continue the same original runs, then
+inspect their actual final reports. Network208V2 remains unaccepted/uninstalled;
+no new gameplay playtest is available. Historical evidence and certified legacy
+choices remain preserved.
+
 27 October 10:13 — original candidate28 runs continue.
 
 At10:13:12, baseline26840/26252 reaches01:00,0/208,peak10,maxwait0.1m;
