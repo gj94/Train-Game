@@ -2,6 +2,22 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 18:29 — original candidate32 V2 runs continue; inputs unchanged.
+
+At18:29:35 the original baseline27304/14984 reaches01:40,1/208,peak14,maxwait6.1m;
+the original delayed26020/26688 reaches02:30,1/208,peak21,maxwait6.1m. Both process
+pairs retain their original launch identities,errors are empty and neither final
+audit exists. These are partial clocks,not acceptance or a population comparison.
+All4836 source hashes match the original candidate32 baseline catalogue; all six
+observer hashes match launch2a53f9ed. Runtime/routes/packs/observers remain frozen.
+No duplicate,restart,Classic208,full-suite,native or diagnostic job was launched.
+
+Both candidate31 failures remain rejected and historical after candidate32;
+their evidence and fingerprints are unchanged. Wait for the original32 final
+reports before evaluating every completion,safety,wait,physical and recovery gate.
+Network208V2 remains unaccepted/uninstalled. No gameplay playtest until accepted
+V2 installation; feasibility and ETA remain unproven. Continuation remains active.
+
 27 October 18:25 — candidate32 V2 launch verified; frozen inputs.
 
 Candidate ddbeedb5 was committed/pushed after exact normal author reproduction,
