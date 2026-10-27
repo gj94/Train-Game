@@ -4409,3 +4409,14 @@ reports against every completion, safety, wait, physical and recovery gate.
 Network208V2 remains unaccepted/uninstalled; no gameplay playtest until a passing
 V2 installation. Continuation remains active; feasibility and completion ETA
 remain unproven.
+
+27 October 14:07 — original candidate30 V2 runs remain active.
+
+At14:07:12 the original baseline21528/21596 reaches00:50,0/208,peak8,
+maxwait0.1m; delayed21816/8612 reaches01:20,0/208,peak13,maxwait2.4m.
+Both original commands and parent identities match launch59bdb842; errors are
+empty and no final audits exist. The V2 pack, six observers and frozen Git
+paths are unchanged. Continue these original runs without restarting; no
+Classic208, duplicate replay, suite or native job was launched. Partial clocks
+are not acceptance or recovery proof. Network208V2 remains unaccepted/uninstalled.
+No gameplay change or new playtest is due; continuation remains active.
