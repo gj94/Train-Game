@@ -2,6 +2,22 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 16:13 — original candidate31 V2 runs continue; inputs remain frozen.
+
+At16:13:31 baseline2108/24676 reaches01:10,0/208,peak12,maxwait0.1m;
+delayed13884/3528 reaches01:50,1/208,peak16,maxwait6.1m. Both original process
+pairs and commands match launcha01417ed, errors are empty and neither final audit
+exists. Current V2 pack and all six observer hashes match their launch proof.
+These are partial clocks, not acceptance or recovery evidence. No source change,
+new replay, Classic208, native or unchanged full-suite job was launched.
+
+Next: inspect the original31 final reports when they finish naturally; keep
+runtime/routes/packs/six observers frozen meanwhile. Preserve historical30 failures
+8b0c7c47/feb07f44 without relabelling their hashes. Network208V2 remains unaccepted
+and uninstalled. No gameplay playtest until accepted V2 installation. Continuation
+remains active, with feasibility and completion ETA unproven.
+
+
 27 October 16:11 — candidate31 V2 launch verified; frozen inputs.
 
 Candidate91969531 was committed/pushed after exact normal author reproduction,
