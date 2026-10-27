@@ -2,6 +2,33 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 22:03 — candidate33 V2 runs launched once; inputs frozen.
+
+Candidate f5c5d999 was committed/pushed after the1004-test source suite, five
+headless authoring guards, exact author reproduction and staged verification of
+fifteen raw proofs, both pack hashes, selection and unchanged override JSON.
+Exactly two new V2 runs launched at22:02:38 in rehearsals-v33: normal baseline
+wrapper14144/child5236 with --network --snapshots, delayed wrapper15508/child24420
+with --network --delay=600 --delay-at=27000. All four actual commands/options,
+unique outputs, ORIGINAL baseline catalogue and4836 distinct source hashes were
+verified. The six original observer hashes equal32; five additional acceptance/
+selection hashes are recorded. Five exact launch files plus their hash manifest
+are preserved in network-candidate-thirty-three/launch-proof. No failed launch,
+duplicate or restart. Do not execute launch-network-v33.ps1 again.
+
+At22:03:00 the baseline has no first progress line; delayed reaches00:10,0/200.
+Both original process pairs match, errors are empty and neither final audit
+exists. Partial clocks are not acceptance. Runtime/routes/packs/six original
+observers plus new Network acceptance tools and selection remain frozen while
+either original33 run lives. No Classic, suite, native or diagnostic job remains.
+Network200V2 remains unaccepted/uninstalled; no gameplay playtest until passing
+installation. Actual full-day completion, waits, safety, clearance, overtakes and
+recovery remain required. Continued overnight work is active; no reliable ETA.
+
+Candidate32 interruption3a34ed00 and delayed failurebc0118b1 remain historical,
+with exact evidence preserved; never relabel, rerun unchanged or install them.
+The original start/deadline remain historical and idle/reboot gaps are excluded.
+
 27 October 21:57 — candidate33 selects200 services; complete source suite passes.
 
 Following the user's overnight continuation and modest-trimming authorization,
