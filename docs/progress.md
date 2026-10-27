@@ -2,6 +2,43 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 16:11 — candidate31 V2 launch verified; frozen inputs.
+
+Candidate91969531 was committed/pushed after exact normal author reproduction,
+--check, all four headless authoring guards and staged verification of twelve raw
+proofs, both pack hashes and override JSON. Exactly two V2 runs launched once at
+16:10:11/16:10:12 in rehearsals-v31: baseline wrapper2108/child24676 with
+--network --snapshots; delayed wrapper13884/child3528 with --network --delay=600
+--delay-at=27000. All four actual commands/options, unique outputs, the ORIGINAL
+predictive baseline catalogue,4836 distinct source hashes and six observer hashes
+were verified. The original catalogue existed before verification; no failed
+verification attempt, duplicate or restart. Five exact staged launch files plus
+their hash manifest preserve process/source evidence.
+
+At16:10:50 baseline reaches00:10 and delayed00:30, both0/208; original process
+pairs match, errors are empty and neither final audit exists. Partial clocks
+are not acceptance. Runtime/routes/packs/six observers remain frozen while either
+original run lives. No Classic208, full-suite, native, search or diagnostic job
+remains. The unchanged completed1003-test source suite and candidate31's four
+passing authoring guards remain; no unchanged full-suite rerun.
+
+Both original30 runs ended naturally and failed M072 bookedERL19:14:14,116/208,
+peak41,max2702s both wait populations,zero safety. Baseline8b0c7c47 and delayed
+feb07f44 preserve17+17 exact raw files,4836 current-at-run hashes each,lossless
+reports/exact packs/actual summaries and four immutable inspections. These hashes
+are HISTORICAL after candidate31; never relabel, rerun unchanged or install.
+Baseline all348/468,427/468,456/468,467/468 fails30/45; station186/264,240/264,
+259/264,263/264 fails45. Delayed all347/452,414/452,441/452,451/452 fails30/45;
+station172/245,221/245,238/245,244/245 fails30/45. Passing fractions apply only to
+failed prefixes. Matching clocks/counts do not equate populations. No complete
+population comparison, recovery certificate or installation.
+
+Next: inspect the two original31 final reports against every completion, safety,
+wait, physical and recovery gate. Network208V2 remains unaccepted/uninstalled;
+no gameplay playtest until a passing V2 installation. Continuation remains active;
+feasibility and completion ETA remain unproven. Do not rerun launch-network-v31.ps1.
+
+
 27 October 16:09 — candidate31 authors twenty-three southern departures after both original30 V2 failures.
 
 Only these departure strings change from candidate30:

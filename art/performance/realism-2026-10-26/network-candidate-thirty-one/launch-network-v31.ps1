@@ -1,0 +1,29 @@
+$ErrorActionPreference = 'Stop'
+Set-Location -LiteralPath 'D:\ClaudeWS\train-game'
+$activeReplay = @(Get-CimInstance Win32_Process | Where-Object { $_.Name -like 'Godot*' -and $_.CommandLine -like '*--script res://tools/prepare_timetable_variant.gd*' -and $_.CommandLine -like '*--network*' })
+if ($activeReplay.Count -gt 0) { throw 'A Network preparation replay is active; inspect it rather than duplicating it.' }
+$activeSuite = @(Get-CimInstance Win32_Process | Where-Object { $_.Name -like 'Godot*' -and $_.CommandLine -like '*--script res://tests/run_tests.gd*' })
+if ($activeSuite.Count -gt 0) { throw 'Wait for the existing source suite.' }
+$baseFolder = '.local/realism-2026-10-26/rehearsals-v31'
+if (Test-Path -LiteralPath $baseFolder) { throw 'v31 outputs already exist; inspect their records.' }
+$sourceRevision = (git -c safe.directory=D:/ClaudeWS/train-game rev-parse HEAD).Trim()
+$sourceChanges = @(git -c safe.directory=D:/ClaudeWS/train-game diff HEAD --name-only -- sim data/routes art/timetables tools/prepare_timetable_variant.gd tools/wait_quality.gd tools/lib/wait-quality.mjs tools/record_service_traffic.gd tools/lib/traffic-encounters.mjs tools/finalize_timetable_variant.mjs)
+if ($sourceChanges.Count -gt 0) { throw 'Commit tested frozen inputs before launch.' }
+$jobs = @(
+ @{ day='predictive-network'; pack='art/timetables/kerala-coast-network-v2.json'; options=@('--network','--snapshots') },
+ @{ day='predictive-network-delayed'; pack='art/timetables/kerala-coast-network-v2.json'; options=@('--network','--delay=600','--delay-at=27000') }
+)
+$records = @()
+foreach ($job in $jobs) {
+ $outputFolder = "$baseFolder/$($job.day)"
+ New-Item -ItemType Directory -Path $outputFolder -Force | Out-Null
+ $options = $job.options
+ if ($job.pack) { $options = @("--pack=res://$($job.pack)") + $options }
+ $arguments = @('--headless','--path','D:/ClaudeWS/train-game','--script','res://tools/prepare_timetable_variant.gd','--',"--output=res://$outputFolder") + $options
+ $process = Start-Process -FilePath '.local/godot/Godot_v4.7.2-stable_win64_console.exe' -ArgumentList $arguments -WindowStyle Hidden -PassThru -RedirectStandardOutput "$outputFolder/run.log" -RedirectStandardError "$outputFolder/run.err"
+ $record = [ordered]@{ day=$job.day; pid=$process.Id; started=$process.StartTime.ToString('o'); output=$outputFolder; options=$options; source_commit=$sourceRevision; status='running'; reason='User limits Network208 to V2. Candidate31 changes23 coordinated southern departures after both original30 M072 bookedERL failures. Retain V00818:35 ahead of M07218:50/M05419:05 and mails through20:35; locals20:50-21:50. Shift TVC S05119:30/S04919:50/S05320:10, mails20:40-21:40 then22:15-22:45 and localL03723:15. All northern origins retained. Actual queues/full-rake axis intervals are planning evidence only, not guaranteed receiving, crossing order, full-tail clearance, escape or capacity. Every actual V2 baseline and disturbance gate remains required' }
+ if ($job.pack) { $record.pack_sha256 = (Get-FileHash -LiteralPath $job.pack -Algorithm SHA256).Hash.ToLowerInvariant() }
+ $records += $record
+ $records | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath '.local/realism-2026-10-26/rehearsal-jobs-v31.json' -Encoding utf8
+ Write-Output "$($job.day): wrapper $($process.Id) -> $outputFolder"
+}
