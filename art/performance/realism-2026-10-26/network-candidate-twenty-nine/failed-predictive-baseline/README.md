@@ -1,6 +1,6 @@
 # Original candidate29 V2 baseline rejected
 
-27 October 14:01 — candidate 29 original V2 baseline rejected; both original runs ended.
+27 October 13:59 — candidate 29 original V2 baseline rejected; both original runs ended.
 
 The original baseline wrapper164/child7484 finished naturally with M097 at its
 booked Parassala/PASA call at 18:07:58, 110/208 complete, peak37, maximum2702s in
