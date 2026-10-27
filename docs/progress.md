@@ -2,6 +2,17 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 09:05 — original v27 replays remain active.
+
+At 09:05:17 baseline 11952/20024 reaches 08:10 with 33/208 complete; delayed
+20640/27164 reaches 11:00 with 61/208 complete. All four original identities,
+parent relationships and exact commands match; errors are empty and neither
+final audit exists. The V2 pack and six observer hashes remain unchanged.
+Continue these original runs with frozen inputs; partial clocks are not
+acceptance. Network208V2 remains unaccepted/uninstalled. No duplicate,
+Classic208, repeated suite, native or diagnostic job was launched. No new
+gameplay playtest.
+
 27 October 08:55 — original v27 replays remain active.
 
 At 08:55:15 baseline 11952/20024 reaches 06:40 with 25/208 complete; delayed
