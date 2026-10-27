@@ -2,6 +2,18 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 07:09 — original candidate36 baseline continues; no final audit.
+
+At07:09:32, baseline18424/6760 reports21:00 simulated,128/200 complete,
+peak34,maxwait41.0minutes,empty errors. Exact process/parent/command identities,
+all4836 source hashes and11 observer/acceptance hashes remain unchanged; no
+additional Godot job is present. The delayed failure remains preserved in1773eafe;
+its summary and four station inspections were not repeated. Inputs stay frozen,
+existing tests retained, with no launch, restart, source edit or installation.
+Await the original baseline final audit and preserve its actual queues before
+replanning from both outcomes. Partial progress is not acceptance. Network200V2
+remains unaccepted/uninstalled; no gameplay playtest or reliable readiness ETA.
+
 28 October 07:07 — candidate36 delayed failed naturally at S055's TVC origin; original baseline remains running.
 
 The original delayed wrapper18356/child23568 ended at 23:17:32 simulated after
