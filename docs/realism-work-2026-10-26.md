@@ -6510,3 +6510,15 @@ frozen; no launch, restart, source change, installation or gameplay playtest.
 Existing tests are retained. Await both original final reports before replanning.
 Partial results are not acceptance; Network 200 V2 remains unaccepted/uninstalled,
 with full-day feasibility unproven and no reliable readiness ETA.
+
+28 October 06:09 — original candidate36 runs continue; final audits pending.
+
+At 06:09:21, baseline 18424/6760 reports 11:20 simulated, 61/200 complete,
+peak 31, maximum wait 40.1 minutes; delayed 18356/23568 reports 14:40,
+86/200 complete, peak 34, maximum wait 40.9 minutes. Both error logs are empty
+and neither final audit exists. All four original identities, 4836 source hashes
+and 11 observer/acceptance hashes remain unchanged; no other Godot job is present.
+Inputs remain frozen, existing tests retained, and no launch, restart, source edit
+or installation occurred. Await both original final reports before replanning.
+Partial results are not acceptance; Network 200 V2 remains unaccepted/uninstalled,
+with no gameplay playtest, proven full-day feasibility or reliable readiness ETA.
