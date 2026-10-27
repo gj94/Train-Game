@@ -64,3 +64,26 @@ recovery gate remains unchanged. Network208V2 is unaccepted/uninstalled. Runtime
 approved sound, gangways/portals, certified legacy choices, R47 and pending
 UI/category files are unchanged. No new gameplay playtest until passing
 installation. Feasibility and completion ETA remain unproven.
+
+27 October 08:22 — candidate27 V2 launch verified, inputs frozen.
+
+Candidate899a8292 was committed/pushed after exact author reproduction, all four
+headless authoring guards and staged-byte verification. Exactly two new V2 runs
+were launched once at 08:21:22 in rehearsals-v27: baseline wrapper11952/child20024
+with --network --snapshots, and delayed wrapper20640/child27164 with --network
+--delay=600 --delay-at=27000. All four actual commands/options, unique outputs,
+the original predictive baseline catalogue, 4836 distinct source hashes and six
+observer hashes are verified. Verification waited for the original catalogue
+and succeeded without a failed attempt or restart. Five exact launch files plus
+their hash manifest are preserved in network-candidate-twenty-seven.
+
+At 08:21:51 the baseline has no first progress line yet; delayed reaches 00:20.
+Both original process pairs match; errors are empty and neither final audit
+exists. These partial clocks do not establish acceptance. Freeze runtime, routes,
+packs and all six observers while either original run lives. No duplicate,
+Classic208, full suite, native, search or diagnostic job was launched. Source
+suite remains the completed 1003-test candidate10 result; four authoring guards
+cover this departure-only change. Both v26 failures remain rejected and their
+source fingerprints are historical. Network208V2 is unaccepted/uninstalled.
+Next: inspect these original final reports against every completion, safety,
+wait, physical and recovery gate. No new gameplay playtest until installation.
