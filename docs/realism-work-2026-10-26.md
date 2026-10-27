@@ -4949,3 +4949,20 @@ clearance. No duplicate,restart,Classic208,full-suite or native job was launched
 Unchanged runtime/tests retain the completed1003-test suite and candidate31's
 four passing authoring guards. Network208V2 remains unaccepted/uninstalled;
 feasibility and ETA remain unproven. No gameplay playtest until accepted V2 install.
+
+27 October 17:53 — original candidate31 V2 baseline continues with frozen inputs.
+
+At 17:53:32, original baseline 2108/24676 reaches 18:10, 111/208 complete,
+peak 34 and maximum wait 41.0m. Both original process IDs, parents and full
+commands match launch a01417ed; the error log is empty and no final audit exists.
+The V2 pack and six observer hashes match launch, and frozen Git inputs remain
+unchanged. This partial progress is not acceptance or recovery proof.
+
+Original delayed 13884/3528 remains rejected in f4fc8b9d: M025 booked ALLP at
+19:35:06, 118/208, zero safety events, with both wait populations failing 30/45
+minutes. Its 17 exact raw files, 4836 current-at-run source hashes and two
+immutable inspections remain preserved; never rerun unchanged or install.
+Wait for the original baseline before coordinated departure-only replanning.
+No duplicate, restart, Classic208, native or unchanged suite job was launched.
+Network208V2 remains unaccepted/uninstalled; no gameplay playtest until a passing
+V2 installation. Continuation stays active; feasibility and ETA remain unproven.
