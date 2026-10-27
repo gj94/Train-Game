@@ -2,6 +2,60 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 07:38 — candidate37 disperses seven evening TVC mails; authoring proof passes, full runs pending.
+
+Both original36 runs ended naturally and their exact failed evidence is pushed:
+baseline65a46d28 and delayed1773eafe. Source37 changes only seven departure
+strings: M08121:30->12:05,M08521:45->12:20,M09122:15->13:05,
+M08722:20->14:35,M07322:30->16:25,M08322:35->17:10,M08922:45->18:10.
+Undoing those strings recovers each entire predecessor JSON. Same selected200
+IDs, exact eight-mail exclusion, all retained non-departure fields, K106:00,
+and identical common-author services. Equality does not establish Classic readiness.
+All northbound and northern-origin departures remain unchanged, including36's
+M03321:25 and35's seven northern shifts. RetainM09920:35,S05321:10,S05522:05,
+L03922:50,S04123:00,L03723:15,S04323:55 and all other superfast/local/VB services.
+
+The coordinated hypothesis addresses both36's actual evening chain: M081/M085
+hold both NEM roads; L028 cannot leave NYY; S053 waits for PASA M099/incomingL030;
+M099 waits for L030's single line and L030 preserves a NYY crossing road.
+Moving only the first two mails later would let the following mails replace them.
+This candidate instead spreads those seven mails across daytime origin slots,
+retaining the evening superfast/local group and every opponent. It is not a claim
+that removing those seven evening origins guarantees the remaining trains' escape.
+
+Both actual36 traffic streams were sampled11:00 through each distinct failure;
+`sample-v36-groups-for37.py` and `candidate-thirty-seven-sampled-groups.json`
+preserve the static bounds, formula, source/report hashes, two-second sampling,
+censoring and full-rake overlaps. The12:05/12:20 choices follow observed L025/K1
+NEM envelope endings11:52/12:06 before northboundM06812:48; NYY's southbound
+samples extend to12:12/12:22 before M06812:36. These are36 observations, not37
+passage predictions. M096/S050/M086/L036/L026/S048/S034/M082 and retained
+S031/M051/M101/V007 constrain13-15; L004/S054/M102/S036/M070 withM097/L027/
+M103 constrain16-18; M049/M065,S038/V008 constrain18:10. All remain retained.
+Geometric bounds are not exact interlocking ownership, assigned roads, guaranteed
+gaps, capacity, onward escape or full-tail clearance. No isolated-model score.
+Earlier changes can alter the entire later railway and cause new waits.
+
+205 overrides reproduce both packs normally and with exact --check; five
+headless Network authoring guards pass with empty errors. Preserve the completed
+1004-test candidate33 suite: runtime/tests and4835 railway inputs other than the
+Network pack, plus all11 observer/acceptance inputs, remain unchanged. Thirteen
+exact authoring proof files are archived in network-candidate-thirty-seven;
+predecessor copies remain in candidate-thirty-seven-before. V2 raw SHA256
+`ef937c228e5e1c617529b65e160634b08ba5512353230d3b25a3329b28964c94`.
+Population remains40local/96mail/56superfast/8VB,160boundary journeys;
+overnight origins78(previously83),hourly starts3-15. Maximum15at23 is descriptive,
+not an acceptance cap; the authoritative density minimum remains3/hour.
+All36 fingerprints are now historical; never relabel them as source37 evidence.
+
+Next: exactly one new isolated V2 baseline --network --snapshots and one delayed
+--network --delay=600 --delay-at=27000. Verify originals/options/unique outputs,
+original baseline catalogue,4836distinct hashes and11 frozen inputs, then freeze
+until both original37 runs end. No Classic work, changed runtime, weakened gate,
+installation or gameplay playtest. Network200V2 remains unaccepted/uninstalled;
+full-day feasibility, multiple-location overtake/recovery and midnight completion
+remain unproven, with no reliable readiness ETA.
+
 28 October 07:32 — both original candidate36 runs ended naturally and failed; baseline evidence preserved.
 
 Original baseline18424/6760 failed at23:17:16 simulated on S055's booked TVC

@@ -1,0 +1,60 @@
+{
+  "recorded_at": "2026-10-28T07:36:48.323470+08:00",
+  "candidate": 37,
+  "predecessor": "3b3ac4ba6b952ecf7b7527bc0aea65646a3e0862",
+  "evidence_commit": "65a46d28 baseline;1773eafe delayed",
+  "changes": [
+    {
+      "service": "M081",
+      "before": "21:30",
+      "after": "12:05",
+      "reason": "Redistribute this TVC southbound mail from the concentrated late-evening origin group into a daytime slot considered against both actual36 southern flows. Remove two NEM claimants and the following mail replacements while retaining the evening superfast/local services and every opponent; no non-departure change."
+    },
+    {
+      "service": "M085",
+      "before": "21:45",
+      "after": "12:20",
+      "reason": "Redistribute this TVC southbound mail from the concentrated late-evening origin group into a daytime slot considered against both actual36 southern flows. Remove two NEM claimants and the following mail replacements while retaining the evening superfast/local services and every opponent; no non-departure change."
+    },
+    {
+      "service": "M091",
+      "before": "22:15",
+      "after": "13:05",
+      "reason": "Redistribute this TVC southbound mail from the concentrated late-evening origin group into a daytime slot considered against both actual36 southern flows. Remove two NEM claimants and the following mail replacements while retaining the evening superfast/local services and every opponent; no non-departure change."
+    },
+    {
+      "service": "M087",
+      "before": "22:20",
+      "after": "14:35",
+      "reason": "Redistribute this TVC southbound mail from the concentrated late-evening origin group into a daytime slot considered against both actual36 southern flows. Remove two NEM claimants and the following mail replacements while retaining the evening superfast/local services and every opponent; no non-departure change."
+    },
+    {
+      "service": "M073",
+      "before": "22:30",
+      "after": "16:25",
+      "reason": "Redistribute this TVC southbound mail from the concentrated late-evening origin group into a daytime slot considered against both actual36 southern flows. Remove two NEM claimants and the following mail replacements while retaining the evening superfast/local services and every opponent; no non-departure change."
+    },
+    {
+      "service": "M083",
+      "before": "22:35",
+      "after": "17:10",
+      "reason": "Redistribute this TVC southbound mail from the concentrated late-evening origin group into a daytime slot considered against both actual36 southern flows. Remove two NEM claimants and the following mail replacements while retaining the evening superfast/local services and every opponent; no non-departure change."
+    },
+    {
+      "service": "M089",
+      "before": "22:45",
+      "after": "18:10",
+      "reason": "Redistribute this TVC southbound mail from the concentrated late-evening origin group into a daytime slot considered against both actual36 southern flows. Remove two NEM claimants and the following mail replacements while retaining the evening superfast/local services and every opponent; no non-departure change."
+    }
+  ],
+  "scope": "Network200 V2 only; seven departure strings. Keep M099/S053/S055, all locals/superfast/VB, all northbound and all northern-origin departures unchanged, including36 M03321:25 and35 northern changes.",
+  "hypothesis": "Both actual36 runs fail S055 at TVC after M081/M085 occupy both NEM roads, L028 cannot leave NYY, S053 cannot enter PASA, M099 awaits L030 and L030 preserves NYY crossing capacity. Merely delaying M081/M085 lets following mails replace them. Disperse M081/M085/M091/M087/M073/M083/M089 into12:05/12:20/13:05/14:35/16:25/17:10/18:10 to reduce that particular evening mail group without removing services or opponents. Keep S05522:05 then L03922:50/S04123:00/L03723:15/S04323:55; their actual arrival/order still needs testing.",
+  "daytime_basis": "Both actual36 full-rake samples are preserved from11:00 through failure. NEM envelopes after L025/K1 end11:52/12:06 precede M06812:48; NYY K1/L025 extend to12:12 baseline/12:22 delayed before M06812:36. The proposed12:05/12:20 origins are planning choices, not inferred guaranteed passage times. At13-15, opposing M096/S050/M086/L036/L026/S048/S034/M082 constrain the proposed mails and retained S031/M051/M101/V007. At16-18, opposing L004/S054/M102/S036/M070 and southbound M097/L027/M103 constrain16:25/17:10; southbound M049/M065 and opposing S038/V008 constrain18:10. All those departures are retained. Both actual station claims and complete raw traffic, not an isolated-model score, inform the coordinated trial.",
+  "limits": "No guarantee of crossing order, compatible receiving roads, full-tail clearance, onward escape or capacity. Earlier departures can change the whole later railway and create new waits; the observed36 groups are not37 predictions. Earlier K1 delayed history up to07:40 remains observational, not a recovery certificate. Later-wave congestion, overtakes, midnight completion and full-day feasibility remain unproven. No whole-day improvement claim or relaxed gate. Preserve at least3 starts/hour; aggregate maximum is descriptive only.",
+  "predecessors": {
+    "kerala-coast-network.json": "32a899175f28cae717e12cafe8f1680562cc92c5ef5e33e45422a9aee14d8f65",
+    "kerala-coast-network-v2.json": "1e21a45136b74cffae499192ef3e2bbb4d9fcdb83e576ae6f0e160410284dd45",
+    "kerala-coast-network-departure-overrides.json": "b0f777cd30fb96c0ceb0e0d21b3b4398fd0f1f5f9923357016b6846c7c051d90",
+    "kerala-coast-network-service-selection.json": "f0a08c91b25f32af30ff093e2872958b18a4d900ba326b9c1f88a7b10fde4d7c"
+  }
+}
