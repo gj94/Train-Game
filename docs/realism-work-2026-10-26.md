@@ -4861,3 +4861,18 @@ final gate. These partial clocks and counts are not acceptance or recovery proof
 No duplicate, restart, Classic208, native or unchanged suite job was launched.
 Network208V2 remains unaccepted/uninstalled; no gameplay playtest until a passing
 V2 installation. Continuation remains active; feasibility and ETA are unproven.
+
+27 October 17:23 — both original candidate31 V2 runs remain active.
+
+At 17:23:31, baseline 2108/24676 reaches 12:50, 69/208 complete, peak33,
+maximum wait40.1m; delayed 13884/3528 reaches 17:10, 108/208 complete, peak34,
+maximum wait40.9m. All four original process IDs, parents and complete commands
+match launch a01417ed. Both error logs are empty and neither final audit exists.
+Runtime/tests/routes/packs/six observers remain unchanged since candidate91969531.
+
+Inputs remain frozen until both original31 runs end naturally. Final completion,
+safety, both wait populations, physical clearance and recovery still require
+inspection; partial progress is not acceptance. No duplicate, restart, Classic208,
+native or unchanged suite job was launched. Network208V2 remains unaccepted and
+uninstalled, with no gameplay playtest until a passing V2 installation.
+Continuation remains active; feasibility and completion ETA remain unproven.
