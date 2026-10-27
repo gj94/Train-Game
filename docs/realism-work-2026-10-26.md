@@ -5205,3 +5205,15 @@ match launch. These partial observations do not establish any acceptance gate.
 Continue awaiting both original final reports with inputs frozen. No duplicate,
 restart, Classic208, unchanged full suite, native check or installation was run.
 Network208V2 remains unaccepted/uninstalled; feasibility and ETA remain unproven.
+
+27 October 19:09 — original candidate32 V2 runs remain live.
+
+At 19:09:24 baseline 27304/14984 reaches 08:20, 34/208, peak 31, maximum wait
+35.8m; delayed 26020/26688 reaches 11:20, 61/208, peak 31, maximum wait 40.9m.
+Original command/parent identities match launch 2a53f9ed, both error logs remain
+empty, and neither final audit exists. No additional Godot process is present.
+Runtime/routes/packs remain unchanged from ddbeedb5 and six observer hashes match
+launch. Keep inputs frozen until both original runs end; no duplicate, restart,
+Classic208, unchanged full suite or native check was launched. Partial progress
+is not acceptance, a complete-population comparison or recovery certification.
+Network208V2 remains unaccepted/uninstalled; feasibility and ETA remain unproven.
