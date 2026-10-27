@@ -2,6 +2,32 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 10:10 — candidate28 V2 launch verified, inputs frozen.
+
+Candidate22078135 was committed/pushed after exact author reproduction, all four
+headless authoring guards and verification of twelve staged raw proofs, both pack
+hashes and override JSON. Exactly two new V2 runs were launched once at10:10:13
+in rehearsals-v28: baseline wrapper26840/child26252 with --network --snapshots,
+and delayed wrapper8232/child6576 with --network --delay=600 --delay-at=27000.
+All four actual commands/options, unique outputs, the original predictive
+baseline catalogue,4836 distinct source hashes and six observer hashes are
+verified. Verification waited for the original catalogue and succeeded without
+a failed attempt or restart. Five exact launch files plus their hash manifest
+are preserved in network-candidate-twenty-eight.
+
+At10:10:34 the baseline has no first progress line yet; delayed reaches00:10.
+Both original process pairs match; errors are empty and neither final audit
+exists. These partial clocks do not establish acceptance. Freeze runtime, routes,
+packs and all six observers while either original run lives. No duplicate,
+Classic208, full suite, native, search or diagnostic job was launched. The source
+suite remains the completed1003-test candidate10 result; four authoring guards
+cover this departure-only change. Both v27 failures remain rejected and their
+source fingerprints are historical: baseline7fc287b1 and delayed7f49205e.
+Network208V2 is unaccepted/uninstalled. Next: inspect these original final reports
+against every completion, safety, wait, physical and recovery gate. No new
+gameplay playtest until a passing V2 installation. Feasibility and ETA remain
+unproven; the continuation automation stays active.
+
 27 October 10:07 — candidate28 departure groups authored and guarded; not yet replayed.
 
 Exactly sixteen departures change from candidate27:
