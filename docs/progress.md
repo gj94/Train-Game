@@ -2,6 +2,19 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 07:19 — original candidate36 baseline remains running.
+
+At07:19:26, baseline18424/6760 reports22:30 simulated,138/200 complete,
+peak35,maxwait41.0minutes,empty errors,no final audit. Both original process/
+parent/command identities,4836 source hashes and11 observer/acceptance inputs
+match the launch; no additional Godot job is present. Delayed failure1773eafe
+and its completed summary/four inspections remain preserved without repetition.
+All inputs stay frozen. No launch, restart, source edit, installation or playtest;
+existing tests are retained. Await the original baseline's actual final report
+before preserving its queues and replanning from both outcomes. Partial progress
+is not acceptance; Network200V2 remains unaccepted/uninstalled, full-day
+feasibility unproven and readiness ETA unavailable.
+
 28 October 07:09 — original candidate36 baseline continues; no final audit.
 
 At07:09:32, baseline18424/6760 reports21:00 simulated,128/200 complete,
