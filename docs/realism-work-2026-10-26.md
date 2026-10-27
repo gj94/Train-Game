@@ -3903,3 +3903,18 @@ roads and full-tail clearance. No duplicate replay, Classic208, full suite or
 native job was launched; unchanged runtime/tests retain the completed1003-test
 suite and candidate28's four passing authoring guards. Network208V2 remains
 unaccepted/uninstalled. No new gameplay playtest until an accepted V2 installation.
+
+27 October 11:43 — original candidate28 baseline continues.
+
+At11:43:16, baseline26840/26252 reaches16:30 with101/208 complete, peak34 and
+maximum wait41.0 minutes. Both original commands and parents match the launch
+proof. Its error log is empty and no final audit exists. V2 pack, six observers
+and frozen source paths remain unchanged. The delayed run remains rejected;
+its final evidence is committed/pushed3ed49c30 and was not rerun.
+
+These partial baseline results do not establish acceptance, recovery or a
+complete-population comparison. Continue the original run and inspect its final
+report before departure-only replanning. No duplicate, Classic208, suite, native,
+search or diagnostic job was launched. Network208V2 remains unaccepted/uninstalled.
+Historical evidence and certified legacy choices are preserved. No new gameplay
+playtest is available until an accepted V2 installation.
