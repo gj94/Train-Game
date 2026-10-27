@@ -4773,3 +4773,17 @@ runtime/routes/packs/six observers frozen meanwhile. Preserve historical30 failu
 8b0c7c47/feb07f44 without relabelling their hashes. Network208V2 remains unaccepted
 and uninstalled. No gameplay playtest until accepted V2 installation. Continuation
 remains active, with feasibility and completion ETA unproven.
+
+27 October 16:24 — original candidate31 runs continue without errors.
+
+At16:23:54 baseline2108/24676 reaches03:30,2/208,peak25,maxwait7.4m;
+delayed13884/3528 reaches04:30,10/208,peak29,maxwait9.3m. All four original
+process IDs, parents and complete commands match launcha01417ed. Both error logs
+are empty and no final audit exists. Runtime/tests/routes/packs/six observers
+remain unchanged since candidate91969531. Partial progress is not acceptance;
+the delayed run has not yet reached its configured07:30 K1 hold.
+
+No replay was duplicated or restarted; no Classic208, native or unchanged test
+suite was launched. Continue inspecting the original31 final reports when ready,
+keeping frozen inputs unchanged. Network208V2 remains unaccepted/uninstalled,
+with no gameplay playtest until a passing V2 installation and no reliable ETA.
