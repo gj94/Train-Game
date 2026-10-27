@@ -2,6 +2,16 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+27 October 08:00 — original v26 baseline remains active.
+
+At 08:00:11 baseline 3728/12192 reaches 14:40 with 84/208 complete, empty
+stderr and no final audit. The two original process identities, exact commands,
+V2 pack and six observer hashes still match the launch. Continue this original
+baseline with frozen inputs. Its partial clock is not acceptance. The delayed
+M051/Parassala failure remains rejected and preserved in da75521d; no unchanged
+rerun or installation. Network208V2 remains unaccepted/uninstalled. No duplicate,
+Classic208, suite, native or diagnostic job was launched. No new gameplay playtest.
+
 27 October 07:50 — candidate26 V2 delayed run rejected; baseline still live.
 
 The original delayed run 16324/14784 finished naturally at 16:06:14 after the

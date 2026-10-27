@@ -3291,3 +3291,13 @@ original Godot processes remain after the completed inspections. Keep all frozen
 inputs unchanged until the baseline finishes; then plan coordinated opposing
 groups using both actual queues, compatible roads and full-tail clearance.
 No new gameplay playtest is ready.
+
+27 October 08:00 — original v26 baseline remains active.
+
+At 08:00:11 baseline 3728/12192 reaches 14:40 with 84/208 complete, empty
+stderr and no final audit. The two original process identities, exact commands,
+V2 pack and six observer hashes still match the launch. Continue this original
+baseline with frozen inputs. Its partial clock is not acceptance. The delayed
+M051/Parassala failure remains rejected and preserved in da75521d; no unchanged
+rerun or installation. Network208V2 remains unaccepted/uninstalled. No duplicate,
+Classic208, suite, native or diagnostic job was launched. No new gameplay playtest.
