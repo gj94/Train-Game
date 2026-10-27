@@ -1,0 +1,150 @@
+{
+  "predecessors": {
+    "kerala-coast-network.json": "1d30e0b865097d283924e5760731d15eee2eab5fbd5caa3f136f93bec319cdd2",
+    "kerala-coast-network-v2.json": "b8d52a1686c311dc67a06c6b5388f695b97fda57c572858b8b659bd0ada70b49",
+    "kerala-coast-network-departure-overrides.json": "d2ff2aae8a60a145d4389095835ac7837a93d9389bf6437e3bb0f7b97fe9ad88"
+  },
+  "changes": [
+    {
+      "service": "M072",
+      "before": "18:05",
+      "after": "18:50",
+      "reason": "Retain faster V00818:35 ahead of the later northbound mail group after actual30 L027/M103/M049 southern occupancy; preserve a possible M065 clearance interval without the earlier S051 overtake"
+    },
+    {
+      "service": "M054",
+      "before": "18:20",
+      "after": "19:05",
+      "reason": "Retain faster V00818:35 ahead of the later northbound mail group after actual30 L027/M103/M049 southern occupancy; preserve a possible M065 clearance interval without the earlier S051 overtake"
+    },
+    {
+      "service": "M098",
+      "before": "18:50",
+      "after": "19:20",
+      "reason": "Retain faster V00818:35 ahead of the later northbound mail group after actual30 L027/M103/M049 southern occupancy; preserve a possible M065 clearance interval without the earlier S051 overtake"
+    },
+    {
+      "service": "M090",
+      "before": "19:05",
+      "after": "19:35",
+      "reason": "Retain faster V00818:35 ahead of the later northbound mail group after actual30 L027/M103/M049 southern occupancy; preserve a possible M065 clearance interval without the earlier S051 overtake"
+    },
+    {
+      "service": "M104",
+      "before": "19:20",
+      "after": "19:50",
+      "reason": "Retain faster V00818:35 ahead of the later northbound mail group after actual30 L027/M103/M049 southern occupancy; preserve a possible M065 clearance interval without the earlier S051 overtake"
+    },
+    {
+      "service": "M088",
+      "before": "19:35",
+      "after": "20:05",
+      "reason": "Retain faster V00818:35 ahead of the later northbound mail group after actual30 L027/M103/M049 southern occupancy; preserve a possible M065 clearance interval without the earlier S051 overtake"
+    },
+    {
+      "service": "M058",
+      "before": "19:50",
+      "after": "20:20",
+      "reason": "Retain faster V00818:35 ahead of the later northbound mail group after actual30 L027/M103/M049 southern occupancy; preserve a possible M065 clearance interval without the earlier S051 overtake"
+    },
+    {
+      "service": "M056",
+      "before": "20:05",
+      "after": "20:35",
+      "reason": "Retain faster V00818:35 ahead of the later northbound mail group after actual30 L027/M103/M049 southern occupancy; preserve a possible M065 clearance interval without the earlier S051 overtake"
+    },
+    {
+      "service": "L028",
+      "before": "20:20",
+      "after": "20:50",
+      "reason": "Move the following northern local group together after the later northbound mails to reduce renewed overtaking pressure on finite receiving roads"
+    },
+    {
+      "service": "L030",
+      "before": "20:40",
+      "after": "21:10",
+      "reason": "Move the following northern local group together after the later northbound mails to reduce renewed overtaking pressure on finite receiving roads"
+    },
+    {
+      "service": "L038",
+      "before": "21:00",
+      "after": "21:30",
+      "reason": "Move the following northern local group together after the later northbound mails to reduce renewed overtaking pressure on finite receiving roads"
+    },
+    {
+      "service": "L032",
+      "before": "21:20",
+      "after": "21:50",
+      "reason": "Move the following northern local group together after the later northbound mails to reduce renewed overtaking pressure on finite receiving roads"
+    },
+    {
+      "service": "S051",
+      "before": "18:30",
+      "after": "19:30",
+      "reason": "Delay the TVC southbound fast group so M065 can seek KZT clearance without the actual30 S051 planned overtake while V008 and following northbound mails approach"
+    },
+    {
+      "service": "S049",
+      "before": "18:50",
+      "after": "19:50",
+      "reason": "Delay the TVC southbound fast group so M065 can seek KZT clearance without the actual30 S051 planned overtake while V008 and following northbound mails approach"
+    },
+    {
+      "service": "S053",
+      "before": "19:10",
+      "after": "20:10",
+      "reason": "Delay the TVC southbound fast group so M065 can seek KZT clearance without the actual30 S051 planned overtake while V008 and following northbound mails approach"
+    },
+    {
+      "service": "M081",
+      "before": "19:40",
+      "after": "20:40",
+      "reason": "Move the following TVC southbound mail group together behind the delayed fast group, retaining S05522:05 ahead of M091/M073/M089 to reduce renewed overtake and receiving pressure"
+    },
+    {
+      "service": "M085",
+      "before": "20:00",
+      "after": "21:00",
+      "reason": "Move the following TVC southbound mail group together behind the delayed fast group, retaining S05522:05 ahead of M091/M073/M089 to reduce renewed overtake and receiving pressure"
+    },
+    {
+      "service": "M087",
+      "before": "20:20",
+      "after": "21:20",
+      "reason": "Move the following TVC southbound mail group together behind the delayed fast group, retaining S05522:05 ahead of M091/M073/M089 to reduce renewed overtake and receiving pressure"
+    },
+    {
+      "service": "M083",
+      "before": "20:40",
+      "after": "21:40",
+      "reason": "Move the following TVC southbound mail group together behind the delayed fast group, retaining S05522:05 ahead of M091/M073/M089 to reduce renewed overtake and receiving pressure"
+    },
+    {
+      "service": "M091",
+      "before": "21:00",
+      "after": "22:15",
+      "reason": "Move the following TVC southbound mail group together behind the delayed fast group, retaining S05522:05 ahead of M091/M073/M089 to reduce renewed overtake and receiving pressure"
+    },
+    {
+      "service": "M073",
+      "before": "21:10",
+      "after": "22:30",
+      "reason": "Move the following TVC southbound mail group together behind the delayed fast group, retaining S05522:05 ahead of M091/M073/M089 to reduce renewed overtake and receiving pressure"
+    },
+    {
+      "service": "M089",
+      "before": "21:20",
+      "after": "22:45",
+      "reason": "Move the following TVC southbound mail group together behind the delayed fast group, retaining S05522:05 ahead of M091/M073/M089 to reduce renewed overtake and receiving pressure"
+    },
+    {
+      "service": "L037",
+      "before": "21:00",
+      "after": "23:15",
+      "reason": "Place the TVC southbound local after the extended mail group and retained S05522:05/S04123:00 fast departures; later opposing traffic and overtakes remain unproven"
+    }
+  ],
+  "evidence_commit": "8b0c7c47 baseline;feb07f44 delayed",
+  "scope": "Network208 V2 only; twenty-three coordinated southern group departure timings, no Classic replay or readiness requirement.",
+  "status": "Departure-only hypothesis; no acceptance"
+}
