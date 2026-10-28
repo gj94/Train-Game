@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 14748,
+    "started": "2026-10-28T12:52:51.7009576+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v40/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "4df7cc15895185ce41b7d6e1dbb7232a8c8d7feb",
+    "status": "finished-rejected",
+    "reason": "Candidate40 changes only S01513:05 to13:45, M08919:45 to21:45 and M08720:05 to22:40 after both original39 failures were preserved in b3f5b3eb. Exact selected200, S03111:00, all other departures and non-departure fields retained. Both actual MAKM and NEM queues and full-rake samples informed this hypothesis, not guaranteed receiving roads, full-tail clearance, escape or capacity. Both full V2 runs remain required",
+    "pack_sha256": "8e6e02d73950b3b668fe03b9bf6f01e27b21e1e05a00663f9236dc6d1ebd72a2",
+    "child_pid": 21172
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 16404,
+    "started": "2026-10-28T12:52:51.7506002+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v40/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "4df7cc15895185ce41b7d6e1dbb7232a8c8d7feb",
+    "status": "finished-rejected",
+    "reason": "Candidate40 changes only S01513:05 to13:45, M08919:45 to21:45 and M08720:05 to22:40 after both original39 failures were preserved in b3f5b3eb. Exact selected200, S03111:00, all other departures and non-departure fields retained. Both actual MAKM and NEM queues and full-rake samples informed this hypothesis, not guaranteed receiving roads, full-tail clearance, escape or capacity. Both full V2 runs remain required",
+    "pack_sha256": "8e6e02d73950b3b668fe03b9bf6f01e27b21e1e05a00663f9236dc6d1ebd72a2",
+    "child_pid": 20992
+  }
+]
