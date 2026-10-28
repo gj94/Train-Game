@@ -6960,3 +6960,62 @@ baseline lives. Await its actual final report and preserve its queues before any
 coordinated departure-only replan from BOTH37 outcomes. No repeated summary or
 completed inspections; no Classic work, installation or gameplay playtest.
 Network200V2 remains unaccepted/uninstalled; full-day feasibility and ETA unproven.
+
+28 October 09:09 — both original candidate37 V2 runs failed; baseline Parassala evidence preserved.
+
+Original baseline23304/6112 ended naturally at14:23:20 simulated, failing M091's
+booked Parassala call2, not a signal-wait entry. It reachedPASA13:34:10.70 and
+never departed.82/200 complete,peak37,maximum2702seconds in BOTH wait
+populations,zero safety events,delay0/delay_at0. Run, actual-summary and all five
+inspection error logs are empty. All-location231/331,297/331,320/331,330/331
+and station-only124/186,165/186,181/186,185/186 FAIL all four cumulative gates.
+231/331 is below70%,297/331 below90%; never round failures up. This failed
+prefix differs from delayed98/200, whose all-location10-minute gate passed.
+Neither population is complete; no complete-population comparison or recovery proof.
+
+27 exact raw files are preserved in
+`art/performance/realism-2026-10-26/network-candidate-thirty-seven/failed-predictive-baseline`:
+lossless audit/traffic/failure/receiving state, original logs, actual summary,
+five NEM/NYY/PASA/KZT/ERL inspections, exact pack, inspection tool and jobs.
+All4836 current-at-run source hashes match the original baseline catalogue;
+all11 observer/acceptance hashes remain unchanged. Every inspection has identical
+before/after captures and no future clearance plans. Originals remain.
+
+M091's2702extra seconds comprise1356opposing (L036546,M086406,S048404),
+1308Kulitturai receiving and38route conflicts (L03612,M08612,S04814).
+Receiving no-free: L026240,L036188,combinedL036/L0264,combinedS048/L026198.
+Receiving approaching: combinedL026/S034112,L036130,combinedL036/L026276,
+combinedL036/M08616,combinedM086/L036144. Preserve combined buckets without
+individual attribution. Dispatcher continuous age2701.5 differs from audited2702.
+
+Claims: NEM empty;NYY L036P1/S031P2;PASA M091P1/S048P2;
+KZT L026P2/S034P1;ERL M082P2. M091 currently awaitsL026 KZT_P2.
+L026 reachedKZT13:59:04.50,never departed,1386audited extra seconds versus1387
+continuous age,now awaitsS034 overtake. S034 moves24.6m/s under authority
+north towardKZT,occupyingKZT_PYD_M2/M3; its KZT claim is an approach.
+S048 leftKZT14:13:14.25,now stoppedPASA-N2 awaitingNYY L036/S031,
+146audited signal extra seconds versus241.5continuous age. S031 passesNYY,
+next bookedKZT,awaitsL036 NYY_single:1466audited signal extra versus1562.5
+continuous age. L036 moves16.266745m/s arrivingNYY,occupyingNYY_AMVA_M0,
+NYY_P1/NYY_RLEAD_D after leavingAmaravila14:21:11.10.
+M082 reachedERL14:17:58.15,never departed,256extra seconds versus255.5
+continuous age,awaitsL026 KZT. These actual moving opponents and snapshots
+are not permanent-deadlock, runtime-defect, available-escape or capacity proof.
+
+M081/M085 are stabled beyond the southern portal after13:28:46.80/13:50:43.80;
+K1/L025/M080/V006/S050 are in depots. M086 reachedTVC14:22:00.15 and unloads.
+M051/M101/M096/M050/M068/M049 move. M087 and later relocated mails and
+northern/evening services are not yet due. Final31two-second full-rake samples
+are preserved; geometric extents alone do not identify shared occupied resources.
+Baseline summary has no K1 overtakes. Delayed's oneV001 atTVCN does not prove
+completed multiple-location overtakes or recovery. Local completions and the
+later delayed failure clock do not establish whole-day improvement.
+
+Both original37 jobs are now absent and finished-rejected. Delayed evidence is
+already pushed06a0f06ea907eeaa580cd1ee8a95779b00458050; do not repeat its
+summary or four inspections. No Classic, suite, native, search or diagnostic job
+remains. Next: coordinated departure-only replanning from BOTH37 actual queues
+and full-rake movements, retaining all200 and every gate. Source37 fingerprints
+become historical only after the next source change. Retain the unchanged1004-test
+candidate33 suite and five passing candidate37 authoring guards. No installation
+or gameplay playtest; Network200V2 feasibility and ETA remain unproven.

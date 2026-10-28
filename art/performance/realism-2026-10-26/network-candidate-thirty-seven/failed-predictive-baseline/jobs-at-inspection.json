@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 23304,
+    "started": "2026-10-28T07:39:06.7458373+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v37/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "2f4a9c35787b34031f91b44c91ee13df91745f06",
+    "status": "finished-rejected",
+    "reason": "Candidate37 redistributes seven TVC southbound mails from the late-evening queue into daytime departures after both original36 S055 TVC-origin failures. Exact selected200, all non-departure fields and K1 retained; all northbound/northern-origin and other departures unchanged. Both actual queues and full-rake geometric samples informed the plan, not guaranteed roads, gaps, escape or capacity. Both full V2 runs remain required",
+    "pack_sha256": "ef937c228e5e1c617529b65e160634b08ba5512353230d3b25a3329b28964c94",
+    "child_pid": 6112
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 11576,
+    "started": "2026-10-28T07:39:06.7946733+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v37/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "2f4a9c35787b34031f91b44c91ee13df91745f06",
+    "status": "finished-rejected",
+    "reason": "Candidate37 redistributes seven TVC southbound mails from the late-evening queue into daytime departures after both original36 S055 TVC-origin failures. Exact selected200, all non-departure fields and K1 retained; all northbound/northern-origin and other departures unchanged. Both actual queues and full-rake geometric samples informed the plan, not guaranteed roads, gaps, escape or capacity. Both full V2 runs remain required",
+    "pack_sha256": "ef937c228e5e1c617529b65e160634b08ba5512353230d3b25a3329b28964c94",
+    "child_pid": 1016
+  }
+]
