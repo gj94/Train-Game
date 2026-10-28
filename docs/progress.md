@@ -2,6 +2,89 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October 10:57 — both original candidate38 V2 runs failed; exact evidence preserved.
+
+Original baseline5852/23404 and delayed24424/16440 both ended naturally.
+Baseline failed14:41:24 simulated at S031 signal NYY-S2:84/200,peak36,
+maximum all-location2702seconds,station maximum2458seconds,zero safety events,
+delay0/delay_at0. Neyyattinkara is NOT a booked S031 call; its next booked
+call7 is Kulitturai. Delayed failed19:13:26 at S038 booked Kulitturai call2,
+not a signal-wait entry:121/200,peak37,maximum2702seconds BOTH populations,
+zero safety events,600seconds K1 hold at07:30. S038 reachedKZT18:23:21.45
+and never departed. Both run/actual-summary/five-inspection error logs are empty.
+
+Baseline all-location235/334,301/334,323/334,333/334 PASS10/20 butFAIL30/45.
+Station128/189,169/189,185/189,189/189 FAIL10/20/30 butPASS45.
+Delayed all-location339/455,417/455,445/455,454/455 PASS10/20 butFAIL30/45.
+Station182/264,238/264,258/264,263/264 FAIL10/30/45 butPASS20.
+185/189 and445/455 are below98%;169/189 is below90%; never round up.
+These unequal incomplete prefixes are not complete-population comparisons,
+recovery certificates, acceptance or installation.
+
+Each failure archive contains27 exact raw files in
+art/performance/realism-2026-10-26/network-candidate-thirty-eight/failed-predictive-{baseline,delayed}:
+lossless audit/traffic/failure/receiving state, exact pack, logs, actual summary,
+five NEM/NYY/PASA/KZT/ERL inspections, inspector and jobs. Both final reports
+bind all4836 unchanged current-at-run source hashes and all11 unchanged
+observer/acceptance inputs. AllTEN inspections have identical before/after
+captures and no future plans. Originals remain. Do not repeat these summaries,
+inspections or unchanged replays; fingerprints become historical after source edits.
+
+Baseline S031's2702 signal extra seconds comprise1922opposing (L036870,
+M08622,S048568,S034462),290planned M086 crossing,452PASA receiving,
+and38conflicts (L03614,M08612,S04812). Receiving:62combinedL026/S034,
+192combinedL026/S048 no-free and198combinedL026/S048 preserving a KZT
+crossing platform. Preserve combined buckets without individual attribution.
+S031 leftTVC13:41:43.75; now stoppedNYY_P2 awaiting movingS034 NYY_single.
+Its2799dispatcher continuous seconds differ from2702audited extra seconds.
+Claims:NEMempty,NYY S031P2/S034P1,PASA L026P1/M082P2,KZTempty,ERLempty.
+S034 moves24.6m/s north atAmaravila under authority towardNYY; its claim
+is an approach. L026 reachedPASA14:17:18.40,never departed,1370extra versus
+1371continuous seconds,awaitsM082 overtake. M082 leftKZT14:35:10.75 and
+moves16.269757m/s intoPASA,occupyingPASA_KZTW_M0/PASA_RLEAD_U.
+S048 moves17.881748m/s north onTVC_NEM_M5;L036 moves6.544444m/s
+arrivingTVC_P4 with tailTVC_LADDER_RU1. M086 is stabled inTVCdepot.
+M081/M085 cleared the southern portal13:28:46.80/13:50:43.80 and are
+stabled;K1/L025depots. M051/M101/M096 and other services move. Later
+relocated mails and the evening wave remain untested in this baseline.
+
+Delayed S038's2702extra seconds comprise1014opposing (M103398,M049404,
+M089212),1662PASA receiving,and26conflicts (M10312,M04914).
+Receiving no-free:M103186,M049198,M089200,combinedM065/M089234,
+combinedM049/M103564,combinedM049/M089228; approaching combinedM049/M08928
+andcombinedM089/M06524. Preserve combined buckets. Dispatcher continuous
+2701.5seconds differs from audited2702. S038 now awaitsM089 PASA_single.
+Claims:NEMempty,NYYempty,PASA M065P1 plus incomingM087 P1/P2 alternatives,
+not simultaneous reservations;KZT S038P2/M089P1;ERL V008P2/M049P1.
+M089 leftPASA19:09:59.75,moves24.6m/s south onPASA_KZTW_M3 towardKZT.
+M065 reachedPASA19:07:17.30,never departed,waitsS038's KZT receiving road;
+M087 leftNYY19:11:28.75,moves19.594418m/s south,full rake onNYY_AMVA_M0/M1.
+M049 leftKZT19:08:30.25,moves24.6m/s south with full rake onPYD_P1/KZT_PYD_M5.
+V008 waitsERL-N2 forM049 KZT_single,1036audited extra versus1113.5continuous
+seconds;M072 follows,waitingERL_P2 occupiedV008. M103 moves26.361363m/s
+south afterERL19:07:09.25. No assertion that these moving opponents guarantee
+available escape, capacity, permanent deadlock or a runtime defect.
+
+DelayedM091/M073/M083 are stabled beyond the southern portal after17:30:24.50,
+17:55:00.30/19:11:12.50;S031 cleared15:08:25.80. M081/M085 cleared13:56:05.30/
+14:21:08.30. K1/L025/L026/L027/L036/M082 depots;S034 beyondnorthportal.
+M032/M054/M070/M102/S022/S033/S036 move;M034 awaitsS022 blockclearance.
+These local completions/movements do not prove whole-day improvement or capacity.
+
+Each archive preserves final31two-second full-rake samples and11K1minute
+samples. DelayedK1 brakes27.4545764399m by07:31,then extents remain unchanged
+through07:40; this is not exact controller/recovery proof. Baseline summary has
+noK1overtakes; delayed has oneV001 atTVCN,not completed multiple-location proof.
+Geometric axis envelopes alone do not identify shared occupied interlocking resources.
+
+No original38 job remains, nor any Classic/suite/native/search/diagnostic job.
+Retain1004-test candidate33 suite and five passing38authoring guards; unchanged
+full suite/legacy checks are not repeated. Next: coordinated departure-only
+replanning from BOTH38 actual queues/full-tail movements, preserving exact200,
+all non-departure fields, physical constraints and every acceptance gate.
+Network200V2 remains unaccepted/uninstalled; no gameplay playtest, full-day
+feasibility claim or reliable ETA.
+
 28 October09:16 — both original candidate38 V2 runs launched once and verified; freeze inputs.
 
 Author d0a58daa3a534ee3543becd67c9ebb4a18e89e82 is pushed. Exactly one normal
