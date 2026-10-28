@@ -1,5 +1,11 @@
 # Progress
 
+**29 October04:25 — both original candidate46 V2 runs launched once and verified; all inputs frozen.**
+
+- Tested departure-only authoring is LOCAL98b56906cffd3f0223f0a26651c3059f781c26cb. At04:24:37 the one normal --network --snapshots run started as wrapper3536/child2336; the one --network --delay=600 --delay-at=27000 run started as wrapper21592/child12568, each in its own rehearsals-v46 output. Exactly four Godot commands matched original identities, parents and option lists. No Classic, suite, native or diagnostic job exists.
+- The ORIGINAL normal catalogue was created04:24:49 and observed04:24:50 BEFORE the first successful launch verification. Its4836 distinct railway source hashes matched current inputs; all six original observers and five tested acceptance/selection hashes matched. Eight exact raw launch files plus manifest are preserved in network-candidate-forty-six/launch-proof and verified against originals. Catalogue digests may grow with snapshots; source hashes must remain fixed. Empty errors and no final audits at launch are not acceptance.
+- Freeze runtime/routes/both packs/six observers/five acceptance inputs while either ORIGINAL46 lives. Never execute launch-network-v46.ps1 or completed verify-launch-v46.py again, restart or duplicate these runs. inspect-current-replays.py selects46 first. Wait for BOTH actual outcomes and preserve/inspect each before any further departure planning or selection changes. Do not repeat any completed45 or older summary, inspection or archive. Network187V2 remains unaccepted/uninstalled; every selected service/call/full-tail completion, safety, both wait distributions and multiple-location ALLNetwork overtaking gates remain required. No reliable ETA, installation, gameplay or public push. Latest pushed remains8a56676d; the earlier public-release approval is still pending.
+
 **29 October 04:23 — candidate46 retains187 services and tests two earlier departures after both original45 failures were fully preserved.**
 
 - Original45 normal and delayed outcomes are complete in LOCAL7182542750e62a44602dc6869beefa29a9f90089 and LOCALaa01d80ff5a66d2123cd6bc613a2fc0a2cbc0684 respectively:52 exact raw files and13 immutable inspections each. Neither passes. Never repeat their summaries,26 inspections or completed archive scripts. No Godot job remained before authoring.
