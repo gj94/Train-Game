@@ -7019,3 +7019,59 @@ and full-rake movements, retaining all200 and every gate. Source37 fingerprints
 become historical only after the next source change. Retain the unchanged1004-test
 candidate33 suite and five passing candidate37 authoring guards. No installation
 or gameplay playtest; Network200V2 feasibility and ETA remain unproven.
+
+28 October 09:14 — candidate38 authored and guarded; exactly two departure changes.
+
+Both original37 runs ended naturally and failed before this source change.
+Baseline evidence e47798d6 preserves82/200, M091 bookedPASA14:23:20;
+delayed06a0f06e preserves98/200, M051 bookedNYY16:04:44. All37 source
+fingerprints are now HISTORICAL, including the exact original summaries and
+nine byte-immutable station inspections. No unchanged replay or repeated inspection.
+
+Candidate38 changes ONLY M09113:05 to15:55 and M08714:35 to18:50.
+Restoring these two departure strings recovers the ENTIRE predecessor JSON in
+both common-author packs. Preserve all other departures, exact selected200 and
+eight-mail exclusion, all non-departure fields, and K106:00. M08112:05,
+M08512:20,M07316:25,M08317:10,M08918:10 remain; all local/superfast/VB,
+northbound/northern-origin and other departures remain, includingM03321:25,
+M09920:35,S05321:10,S05522:05 and35's seven northern shifts.
+Common-author equality is required and is not Classic readiness.
+
+Hypothesis: remove the baseline M091 Parassala occupation across the early
+northbound group and the delayed M087 Parassala occupation that held M051
+atNYY. Retiming both avoids substituting one for the other in those observed
+queues. Baseline M091 encountered L036/M086/S048 opposing flow and Kulitturai
+L026 awaiting movingS034; delayed M087 awaited movingS054 while M051 awaited
+its receiving road. Both actual37 full-rake samples11:00 to each failure,
+source/report hashes, static bounds, formula, ~2-second sample interval and
+censoring are retained in candidate-thirty-eight-sampled-groups.json and its
+sample-v37-groups-for38.py. Southern bounds remain from23; ALLP-AMPA bounds
+remain from25. Axis overlap does not prove shared interlocking occupation.
+
+M09115:55 follows V00715:30 and precedes retained M07316:25; M101 through
+traffic and L004/S054 then M102/S036/M070 north still constrain onward passage.
+M08718:50 follows M08918:10, shares the TVC origin time with northboundM032,
+and meets the retained M034/S022 origin wave plus S038/V008 and M072/M054
+north, M053/S051 south. Candidate36 later samples remain HISTORICAL planning
+inputs, not37/38 passage predictions. Earlier changes can alter the entire later
+railway. Origin gaps do not guarantee crossing order, compatible receiving roads,
+full-tail clearance, onward escape or capacity. No isolated-model score or
+whole-day improvement claim; origin queues, later waves and midnight remain unproven.
+
+200services:40local96mail56superfast8VB,160boundary journeys,78overnight
+origins unchanged;3-15starts/hour. Aggregate maximum15at23 is descriptive;
+authoritative density guard requires at least3/hour and has no maximum.
+205overrides reproduce both packs normally and with exact--check. Five headless
+authoring guards PASS, empty errors. Retain unchanged1004-test candidate33 suite;
+no repeat of full suite or legacy checks. All4835 prior railway inputs except
+Networkpack and all11 observers/acceptance inputs are unchanged.
+13 exact raw authoring proofs, both pack hashes and override bytes are preserved
+in network-candidate-thirty-eight; exact predecessors in candidate-thirty-eight-before.
+V2 rawSHA256:373749dcdcc40ef97f66b8b1d10f4887c37560c5de2118b4faaaef0b9c9932e8.
+
+Next: launch exactly one normal V2 --network --snapshots and one delayed V2
+--network --delay=600 --delay-at=27000 in fresh generation38. Verify actual
+processes/options, unique outputs, ORIGINAL baseline catalogue,4836distinct
+input hashes and all11 frozen inputs, then freeze while either lives. No Classic,
+installation or gameplay playtest. All completion, safety, wait, physical and
+recovery gates remain unchanged. Network200V2 unaccepted; no reliable ETA.

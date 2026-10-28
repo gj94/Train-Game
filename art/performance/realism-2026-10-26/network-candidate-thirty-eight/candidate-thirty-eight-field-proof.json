@@ -1,0 +1,112 @@
+{
+  "identical_modes": true,
+  "K1": "06:00",
+  "unchanged_selection": true,
+  "maximum_hourly_is_descriptive_not_acceptance_gate": true,
+  "packs": [
+    {
+      "pack": "kerala-coast-network.json",
+      "sha256": "9eb260882e40f54d8d51434e93971d8aa1d35a28f1f745c5edafb181876dba49",
+      "predecessor_sha256": "9d97f5dcbaa43f22ff3af70f45da61d165a3212d47852ac254d7abcaf7672d96",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "M087",
+          "before": "14:35",
+          "after": "18:50"
+        },
+        {
+          "id": "M091",
+          "before": "13:05",
+          "after": "15:55"
+        }
+      ],
+      "services": 200,
+      "categories": {
+        "local": 40,
+        "mail": 96,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 78,
+      "hourly": [
+        10,
+        8,
+        6,
+        7,
+        9,
+        10,
+        6,
+        3,
+        9,
+        8,
+        7,
+        9,
+        12,
+        5,
+        6,
+        9,
+        9,
+        6,
+        6,
+        9,
+        9,
+        9,
+        13,
+        15
+      ]
+    },
+    {
+      "pack": "kerala-coast-network-v2.json",
+      "sha256": "373749dcdcc40ef97f66b8b1d10f4887c37560c5de2118b4faaaef0b9c9932e8",
+      "predecessor_sha256": "ef937c228e5e1c617529b65e160634b08ba5512353230d3b25a3329b28964c94",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "M087",
+          "before": "14:35",
+          "after": "18:50"
+        },
+        {
+          "id": "M091",
+          "before": "13:05",
+          "after": "15:55"
+        }
+      ],
+      "services": 200,
+      "categories": {
+        "local": 40,
+        "mail": 96,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 78,
+      "hourly": [
+        10,
+        8,
+        6,
+        7,
+        9,
+        10,
+        6,
+        3,
+        9,
+        8,
+        7,
+        9,
+        12,
+        5,
+        6,
+        9,
+        9,
+        6,
+        6,
+        9,
+        9,
+        9,
+        13,
+        15
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "recorded_at": "2026-10-28T09:13:08.580658+08:00",
+  "candidate": 38,
+  "predecessor": "2f4a9c35787b34031f91b44c91ee13df91745f06",
+  "evidence_commit": "e47798d6 baseline;06a0f06e delayed",
+  "changes": [
+    {
+      "service": "M091",
+      "before": "13:05",
+      "after": "15:55",
+      "reason": "Move this southbound TVC mail beyond its observed baseline Parassala queue, which accumulates L036/M086/S048 opposing movement and L026 Kulitturai receiving occupation. Retain every opponent, M081/M085 and through services. The later departure seeks a changed approach after the early-afternoon northern group, not a guaranteed passage."
+    },
+    {
+      "service": "M087",
+      "before": "14:35",
+      "after": "18:50",
+      "reason": "Move this southbound TVC mail beyond the delayed-run Parassala occupation that contributes to M051 Neyyattinkara receiving waits. Disperse it from the revised M091 and retained16:25/17:10 origins; retain all northbound and through trains. Later S038/V008/M072/M054 flows still constrain this choice."
+    }
+  ],
+  "scope": "Network200 V2 only; exactly two departure strings. Preserve every other departure, K106:00, selected IDs and all non-departure fields. All local/superfast/VB, opponents and northern-origin departures unchanged.",
+  "hypothesis": "Both37 actual outcomes constrain this change: baseline M091 fails bookedPASA with L026 atKZT awaiting movingS034; delayed M051 fails bookedNYY while M087 occupiesPASA and awaits movingS054. Retiming both implicated mails removes those particular early-afternoon occupations without replacing them with each other. This is a departure-only empirical hypothesis, not a capacity or escape certificate.",
+  "daytime_basis": "Both actual37 full-rake samples retained11:00 through each failure. Baseline PASA north M09613:05-13:11,S05013:21-13:27,M08613:44-13:49,L03613:58-14:07,S04814:14-14:19; KZT L02613:45-13:58 and S03414:15-failure. Delayed PASA north S03414:58-15:04,S05215:27-15:32,M08215:43-15:49,S05415:59-failure, with M087P1 and M051 waitingNYY. Later candidate36 historical samples remain only planning inputs: L004/S054 north constrain V007/M101 around16; M102/S036/M070 north constrain M097/L027 around17. Proposed M09115:55 is after V00715:30 and before retained M07316:25, but actual route order and receiving space are unknown. M08718:50 follows retained M08918:10 and coexists with northern TVC M03218:50/M03419:00/S02219:05; S038/V008 and M072/M054 north plus M053/S051 south constrain onward passage. Both candidate36 source/report hashes and raw samples remain in the prior committed authoring archive; these are historical36 observations, not37 or38 predictions.",
+  "limits": "Origin gaps and geometric envelopes do not guarantee order, compatible receiving roads, full-tail clearance, onward escape or finite capacity. Changing M091 can alter all later queues; the shifted mails may produce new waits including origin queues. Earlier partial completions do not establish improvement. Later waves, multiple-location overtakes, midnight completion and full-day feasibility remain unproven. No isolated-model score or relaxed gate. At least3 starts/hour; maximum is descriptive only.",
+  "predecessors": {
+    "kerala-coast-network.json": "9d97f5dcbaa43f22ff3af70f45da61d165a3212d47852ac254d7abcaf7672d96",
+    "kerala-coast-network-v2.json": "ef937c228e5e1c617529b65e160634b08ba5512353230d3b25a3329b28964c94",
+    "kerala-coast-network-departure-overrides.json": "705297bfd52dc0f3e03274a6d6775761c00c125490e8d586ddd0568b70cab04e",
+    "kerala-coast-network-service-selection.json": "f0a08c91b25f32af30ff093e2872958b18a4d900ba326b9c1f88a7b10fde4d7c"
+  }
+}
