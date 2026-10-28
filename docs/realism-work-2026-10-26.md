@@ -6849,3 +6849,15 @@ Only the original pair is running. Inputs remain frozen; no new rehearsal,
 source edit, repeated suite, installation or gameplay playtest. Partial progress
 is not acceptance. Await both original37 final reports; Network200V2 remains
 unaccepted/uninstalled and full-day feasibility has no reliable ETA.
+
+28 October 08:14 — original candidate37 pair active; inputs remain frozen.
+
+At08:14:29 original baseline23304/6112 reports06:40 simulated,25/200 complete,
+peak31,maxwait31.9minutes; original delayed11576/1016 reports08:40,38/200,
+peak31,maxwait40.9minutes. Error logs remain empty and neither final audit exists.
+The four exact process/parent/command identities match the original launch;
+all4836 source hashes, six observers and five acceptance/selection hashes remain
+unchanged. Only the original pair is running. No source edit, duplicate, restart,
+repeated suite, installation or gameplay playtest. Await both original37 finals.
+Partial progress is not acceptance; Network200V2 remains unaccepted/uninstalled.
+Full-day feasibility remains unproven and no reliable readiness ETA is available.
