@@ -2,6 +2,16 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+**28 October 12:52 — candidate40 authored from both actual39 failures; V2 full-day tests pending.**
+
+- Both original39 failures are preserved in `b3f5b3eb96042390ebe6ad32e47d6baa8d596fa3`:57 exact raw files,4836 source hashes per run and11 immutable inspections. All39 fingerprints are historical after this authoring; never rerun unchanged39 or repeat its completed summary/inspections.
+- Candidate40 changes ONLY S01513:05→13:45, M08919:45→21:45 and M08720:05→22:40. Undoing these three departure strings recovers the entire predecessor JSON in both common-author packs. All200 selected IDs and exact8-mail exclusion, K106:00, S03111:00, every other departure and all non-departure fields remain. Common-author equality is not Classic readiness.
+- The baseline hypothesis separates S015 from S007's approach after actual39 M050 at signalMAKM-N2 encountered both opposing S007/S015 with S016 approaching from the south. Keep S00712:55, M05009:15, S01611:20 and M04914:15. The delayed hypothesis removes both M089/M087 from the observed NEM two-road occupation that blocked M054's northbound NYY exit while S033 awaited PASA L029/M104. M089 now follows S04920:50/S05321:10 and precedes S05522:05; M087 follows55minutes later, after S055 and before L03922:50. All opponents and through services remain. Later departure slots exceed the failed prefix and are unproven; origin spacing is not a receiving-road, full-tail clearance, escape or capacity certificate.
+- `sample-v39-groups-for40.py` and `candidate-forty-sampled-groups.json` preserve BOTH actual39 full-rake axis overlaps from00:00 through each failure, static bounds, source/report hashes, exact formula, approximately two-second sampling and censoring. Early hours show dense opposing groups, not a free corridor. Actual39 movement times are not40 predictions. No isolated-model score or improvement claim.
+- 205overrides reproduce both200 packs normally and exact`--check`; five affected headless authoring guards PASS, empty errors. Retain the unchanged candidate33 1004-test suite without repeating legacy/full-suite checks. All4835 prior railway inputs except the Networkpack and all11 observer/acceptance inputs remain unchanged.
+- Thirteen exact raw authoring proofs are preserved in `art/performance/realism-2026-10-26/network-candidate-forty`; exact predecessors remain in `candidate-forty-before`. Population remains40local/96mail/56superfast/8VB,160boundary journeys, now79overnight origins,3–15starts/hour. At least3/hour is the authoritative density guard; maximum15at23 is descriptive. V2 raw SHA256 `8e6e02d73950b3b668fe03b9bf6f01e27b21e1e05a00663f9236dc6d1ebd72a2`.
+- Network200V2 remains unaccepted/uninstalled. Next: exactly one fresh normalV2`--network --snapshots` and one delayedV2`--network --delay=600 --delay-at=27000`, verify actual identities/options/original baseline catalogue/4836sources/11frozen inputs, then freeze until both end. No Classic job, gameplay playtest, full-day feasibility claim or reliable ETA.
+
 **28 October 12:47 — both original candidate39 V2 runs failed naturally; exact evidence preserved.**
 
 Original baseline16952/19840 failed14:38:40 simulated at M050 signal MAKM-N2,

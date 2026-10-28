@@ -1,0 +1,36 @@
+{
+  "recorded_at": "2026-10-28T12:51:11.176026+08:00",
+  "candidate": 40,
+  "predecessor": "782997ea1e3abf3f6e0f27de3f08c49388b33671",
+  "evidence_commit": "b3f5b3eb96042390ebe6ad32e47d6baa8d596fa3 both original39 failures",
+  "changes": [
+    {
+      "service": "S015",
+      "before": "13:05",
+      "after": "13:45",
+      "reason": "Separate the second southbound MAKM approach from S007 after original39 baseline M050 MAKM-N2 encountered S007/S015 plus incoming S016. Keep S00712:55, M05009:15, S01611:20 and M04914:15 unchanged; fewer simultaneous approaches is a hypothesis, not guaranteed receiving or clearance."
+    },
+    {
+      "service": "M089",
+      "before": "19:45",
+      "after": "21:45",
+      "reason": "Remove this TVC-origin mail from the actual39 NEM two-road queue that blocked northbound M054 at NYY while S033 awaited PASA L029/M104. Place after S04920:50/S05321:10 and before S05522:05; those waves remain constraints, and later21:45 operation is beyond the failed prefix."
+    },
+    {
+      "service": "M087",
+      "before": "20:05",
+      "after": "22:40",
+      "reason": "Move the other relocated mail out of the same NEM occupancy so it does not replace M089 during M054 onward receiving demand. Separate it55minutes after M089, after S05522:05 and before L03922:50, keeping all other local/mail/superfast/VB departures unchanged. Later full-day tail clearance is unproven."
+    }
+  ],
+  "scope": "Network200 V2 only. Exactly three departure strings; selected200 IDs, eight excluded mails, K106:00, S03111:00, every other departure and all non-departure fields retained. Common-author equality is not Classic readiness.",
+  "hypothesis": "Use BOTH actual39 queues: baseline M050 signal MAKM-N2 is opposed by S007/S015 with S016 approaching from the south; delayed M089 signal NEM-S2 and M087 occupy both NEM roads while M054 cannot leave NYY and S033 cannot leave toward PASA. Space S01540minutes later, and relocate M089/M087 beyond that observed evening queue with55minutes between their new origins. No opponent is removed.",
+  "daytime_basis": "Both original39 full-rake intervals from00:00 through each failure, static bounds, hashes, formula, two-second sampling and censoring are preserved. Baseline S007/S015 entered SRTL geometric envelope14:00:22/14:03:08 and remain at failure; S016 entered MAKM envelope14:03:52 and remains. M050 stopped on MAKM_P2. Delayed M050/S016 cleared northern portal and S007/S015 depots locally, but delayed NEM failed21:16:14 after M089/M087 TVC actualdepartures20:23:53.25/20:28:49.25. M054 NYY arrival20:36:30.30 and M104 PASA20:41:19 remain binding actual observations. Retained later S049/S053/S055, M099 and all northbound services can create new queues. Early-hours samples show dense opposing northbound groups, not an alternative free corridor.",
+  "limits": "Origin gaps and full-rake axis envelopes do not guarantee approach order, compatible roads, full-tail clearance, onward escape or finite capacity. Original39 timings are not40 predictions. Later evening changes lie beyond both failed prefixes and cannot be certified from them. No isolated-model score, whole-day improvement, permanent-deadlock or runtime-defect claim. Both original full V2 runs and all completion/safety/wait/physical/recovery gates remain required. At least3starts/hour; maximum descriptive. No Classic readiness or gameplay playtest.",
+  "predecessors": {
+    "kerala-coast-network.json": "82852b54ed6abd74be2b4869c2b59fff15139d21450cecd56b85be8e1dccbda4",
+    "kerala-coast-network-v2.json": "0db8dd44e1f6bc8dd9150780da8f8f139370d401a0c3698089a2eb0648c05eaf",
+    "kerala-coast-network-departure-overrides.json": "526b448395ef9d1dbfb2cfd9defe35ea57a483417e99a272d39e68fea6a86b16",
+    "kerala-coast-network-service-selection.json": "f0a08c91b25f32af30ff093e2872958b18a4d900ba326b9c1f88a7b10fde4d7c"
+  }
+}
