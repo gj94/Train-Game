@@ -1,0 +1,41 @@
+{
+  "candidate": 42,
+  "predecessor": 41,
+  "before_commit": "f0264cbc4c135bf8f9d9645bf2f0ff059a4af18e",
+  "authorization": "Cut a few more services later if needed;28October13:11. Three modest further mail cuts, no fixed future target.",
+  "selected_count": 193,
+  "removed_only": [
+    "M043",
+    "M089",
+    "M099"
+  ],
+  "retained_departures_unchanged": true,
+  "retained_non_departure_fields_unchanged": true,
+  "reasons": {
+    "M043": "Candidate42 modest cut informed by both original41 outcomes: baseline L009 waited348seconds for M043 overtake,84seconds in its occupied blocks and178seconds in combinedM043/S037 receiving; delayed M043 waited1688seconds atERS including1360 for M027 KUMM approach. Reduce northern evening mail density while retaining L009, M027 and all superfast/local/VB services. No capacity or improvement guarantee.",
+    "M089": "Candidate42 modest cut informed by both original41 outcomes: delayed M089 occupiedNEM_P2 alongsideS053, constraining L028 atNYY and the following PASA/KZT queue; baseline M089 accumulated1386signal seconds before proceeding towardNYY. Retain all other service records and all acceptance gates; no guaranteed recovery or escape.",
+    "M099": "Candidate42 modest cut informed by both original41 outcomes: delayed M099 occupiedNYY_P2 constraining L030 atPASA; baseline L031 waited938seconds for its overtake and L030/L038 were constrained by its KZT approach. Reduce the southern southbound mail group without changing locals, superfast, VB or runtime."
+  },
+  "both_actual_reports": [
+    {
+      "path": ".local\\realism-2026-10-26\\rehearsals-v41\\predictive-network\\audit.json",
+      "raw_sha256": "9e35319eb1039ac12ef18a194a8488cf9d6cb5fa12a75d3783251f462f2bacb2"
+    },
+    {
+      "path": ".local\\realism-2026-10-26\\rehearsals-v41\\predictive-network-delayed\\audit.json",
+      "raw_sha256": "3549175bcdd4a1bed96e4b79fb39df8e41e100bf218ce2a131f29593e5b1f916"
+    }
+  ],
+  "raw_predecessors": {
+    "art/timetables/kerala-coast-network.json": "1b8cf5b5ce081e368d6236c34e9a5d358b6b51c1be4848baa197c6c864e1494b",
+    "art/timetables/kerala-coast-network-v2.json": "e1448c474a8db393ffa8367d607661bfd287a4e6379c2b37f77bec1e7d8179f9",
+    "art/timetables/kerala-coast-network-departure-overrides.json": "b0dd872d22d829f85fe3645b42b5b2e3a874aa1cbb5ef7e453d9e7ccad913a2c",
+    "art/timetables/kerala-coast-network-service-selection.json": "c59dd31331f34d8de2b47851e34b66d21d0b227515f212753482795cbb70ad39",
+    "tools/author_network_timetable.gd": "986612432917cc8c2ad2d9183e041db1b7d97e0640a5a80da69abb199e3d61a9",
+    "tests/test_network_timetable.gd": "82b307a32d55a9222cdff94a61c519f8b0bce59368b7d3f26a75a695a9cb28bf",
+    "tools/lib/network-population.mjs": "b76f18cc5a717ba592f3e80881355328d57da170275152f3396e7f340ee322c8",
+    "tools/verify-timetable-variants.mjs": "cff6f1826dde56df93d9e82f00ae2112db98dc346e0777f7c7ca6aeae64f2086",
+    "sim/timetables/kerala_network.gd": "42f0c35c04adb618f8b58e80d7fe05e3209c3db2ed91b7e285bd12f8b5cb683a"
+  },
+  "limits": "Actual41 failed-prefix observations are not42 predictions. No capacity, compatible receiving road, full-tail clearance, escape, recovery or improvement guarantee. No isolated-model score. Changed selected populations cannot support complete matched-population comparisons. All full-day, wait, safety and multiple-location overtake gates remain required."
+}

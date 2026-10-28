@@ -2,7 +2,7 @@
   "format": "train-game-network-service-selection",
   "version": 1,
   "source_count": 208,
-  "selected_count": 196,
+  "selected_count": 193,
   "excluded": [
     {
       "service": "M021",
@@ -51,6 +51,18 @@
     {
       "service": "M058",
       "reason": "Reduce the same northbound mail wave: baseline M058 accumulated2066seconds atERL ahead ofM056/local followers and approachedPASA at failure; delayed M058 accumulated814seconds atERL plus2034signal-wait seconds on its approach before following northbound locals. Retain every local, superfast andVB service."
+    },
+    {
+      "service": "M043",
+      "reason": "Candidate42 modest cut informed by both original41 outcomes: baseline L009 waited348seconds for M043 overtake,84seconds in its occupied blocks and178seconds in combinedM043/S037 receiving; delayed M043 waited1688seconds atERS including1360 for M027 KUMM approach. Reduce northern evening mail density while retaining L009, M027 and all superfast/local/VB services. No capacity or improvement guarantee."
+    },
+    {
+      "service": "M089",
+      "reason": "Candidate42 modest cut informed by both original41 outcomes: delayed M089 occupiedNEM_P2 alongsideS053, constraining L028 atNYY and the following PASA/KZT queue; baseline M089 accumulated1386signal seconds before proceeding towardNYY. Retain all other service records and all acceptance gates; no guaranteed recovery or escape."
+    },
+    {
+      "service": "M099",
+      "reason": "Candidate42 modest cut informed by both original41 outcomes: delayed M099 occupiedNYY_P2 constraining L030 atPASA; baseline L031 waited938seconds for its overtake and L030/L038 were constrained by its KZT approach. Reduce the southern southbound mail group without changing locals, superfast, VB or runtime."
     }
   ]
 }

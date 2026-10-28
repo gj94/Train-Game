@@ -1,0 +1,147 @@
+{
+  "recorded_at": "2026-10-28T17:56:02.992562+08:00",
+  "candidate": 42,
+  "population": 193,
+  "removed_only": [
+    "M043",
+    "M089",
+    "M099"
+  ],
+  "retained_all_fields_unchanged": true,
+  "authoring_guards": {
+    "passed": 5,
+    "failed": 0
+  },
+  "population_fixtures": {
+    "positive": 2,
+    "negative": 26,
+    "synthetic_only": true
+  },
+  "retained_runtime_suite": {
+    "passed": 1004,
+    "failed": 0,
+    "candidate": 33,
+    "not_rerun": true
+  },
+  "unchanged_railway_sources_except_network_pack": 4835,
+  "observer_hashes": {
+    "tools/prepare_timetable_variant.gd": "9063a48993646fffabca830babd26f3a41c983f927f08d81f14a7069815c25f0",
+    "tools/wait_quality.gd": "cb1a8f82cb1cea9d16255ff825ac633489ce08a6bcb47d758cdfea27e68389af",
+    "tools/lib/wait-quality.mjs": "091fe042f0842c092602cfa24d1ec5ec6ddbfec4fec74bbeeaea00a634847136",
+    "tools/record_service_traffic.gd": "30947f698bb1715f1ea6c5026d924a54dd8dcfdea5d8e21c5dbee42f9086e251",
+    "tools/lib/traffic-encounters.mjs": "7b1a74bd27398cd150d080ba87333f47ab3fdac593d4866142392c938661a858",
+    "tools/finalize_timetable_variant.mjs": "7c35cf72798e69418003716a1e925cd30d9ca8c4a33c3faeae9b8595469019b7"
+  },
+  "acceptance_hashes": {
+    "tools/finalize_network_timetable.mjs": "aaf3ef1729cb777e38fb3438001b5f1b54c0ead989da083d1f11e3560b7c3e89",
+    "tools/lib/network-population.mjs": "a3163dcd9b844e9844e650d923552c39e0389d48bc1d91286f8d14cdfea848e2",
+    "tools/verify_disturbed_timetable.mjs": "0ee663f3e2235777d940dcd67badea0907a7a56d69b4c49ffe9668fdb008cde7",
+    "tools/verify-timetable-variants.mjs": "4fb4572a9874a84bfe529b36bdff3a1e841ffbcd4a3ed39687f21b83f4e02a05",
+    "art/timetables/kerala-coast-network-service-selection.json": "2801679e437e7c771b8b21644249931bd9494f56d87462ffae3d2c111c487100"
+  },
+  "files": [
+    {
+      "path": "candidate42-author.log",
+      "source": ".local/realism-2026-10-26/candidate42-author.log",
+      "raw_sha256": "029c34aeecb5f73ecb46333e7b5cd05ca4c883ad7b0376f9fc41cff3c8c9b9ed",
+      "raw_bytes": 218
+    },
+    {
+      "path": "candidate42-author.err",
+      "source": ".local/realism-2026-10-26/candidate42-author.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "candidate42-author-check.log",
+      "source": ".local/realism-2026-10-26/candidate42-author-check.log",
+      "raw_sha256": "7cdc5e9ce960081d711eac5a34d0223623d7d6c7af666df7fa160634cf4369b1",
+      "raw_bytes": 222
+    },
+    {
+      "path": "candidate42-author-check.err",
+      "source": ".local/realism-2026-10-26/candidate42-author-check.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "candidate42-authoring-guards.log",
+      "source": ".local/realism-2026-10-26/candidate42-authoring-guards.log",
+      "raw_sha256": "ed983a6ca768bf3ee28db4355e79da6957240e1c5be35ba4ba9b934295789ea5",
+      "raw_bytes": 436
+    },
+    {
+      "path": "candidate42-authoring-guards.err",
+      "source": ".local/realism-2026-10-26/candidate42-authoring-guards.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "candidate42-population-contract-check.mjs",
+      "source": ".local/realism-2026-10-26/candidate42-population-contract-check.mjs",
+      "raw_sha256": "4f7aed43d172ee9fbb2a129500250de6b5cc0a848b7efb1ebc7266e95c9c6afb",
+      "raw_bytes": 2329
+    },
+    {
+      "path": "candidate42-population-contract.log",
+      "source": ".local/realism-2026-10-26/candidate42-population-contract.log",
+      "raw_sha256": "30aed7722703dc9a42ef97bd5303f38f99795a347ef6f6e0e2fa43a789ba99c3",
+      "raw_bytes": 166
+    },
+    {
+      "path": "candidate42-population-contract.err",
+      "source": ".local/realism-2026-10-26/candidate42-population-contract.err",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0
+    },
+    {
+      "path": "candidate42-js-syntax.json",
+      "source": ".local/realism-2026-10-26/candidate42-js-syntax.json",
+      "raw_sha256": "755dd0b1507d177055cd46cf8a07def8082c3047df4383a8174015ad53c6265e",
+      "raw_bytes": 325
+    },
+    {
+      "path": "candidate-forty-two-plan.json",
+      "source": ".local/realism-2026-10-26/candidate-forty-two-plan.json",
+      "raw_sha256": "de9261a35cd3805c38108c66e64f3cd1fb48fa6fd75d7c812094067aa570c649",
+      "raw_bytes": 3429
+    },
+    {
+      "path": "candidate-forty-two-field-proof.json",
+      "source": ".local/realism-2026-10-26/candidate-forty-two-field-proof.json",
+      "raw_sha256": "36d799c67a017863df0f70c9c7a20cdbe1238f2969fe8ce9fc07611567ad4c97",
+      "raw_bytes": 3351
+    },
+    {
+      "path": "candidate42-input-hashes.json",
+      "source": ".local/realism-2026-10-26/candidate42-input-hashes.json",
+      "raw_sha256": "542258f17914c374f01ac53e7ef751a542435be99f0757fd6a3472520910bd65",
+      "raw_bytes": 2000
+    },
+    {
+      "path": "author_network_timetable.gd.txt",
+      "source": "tools/author_network_timetable.gd",
+      "raw_sha256": "5f95e59485087922d6a38ac40a9bc3776ce37572f1c25299c119c2a3567763e8",
+      "raw_bytes": 3883
+    },
+    {
+      "path": "test_network_timetable.gd.txt",
+      "source": "tests/test_network_timetable.gd",
+      "raw_sha256": "dc9ce22ba76167e333e039ebd5e47bc8f6557abd698ea190101bb9b9e0514c10",
+      "raw_bytes": 5068
+    },
+    {
+      "path": "network-population.mjs.txt",
+      "source": "tools/lib/network-population.mjs",
+      "raw_sha256": "a3163dcd9b844e9844e650d923552c39e0389d48bc1d91286f8d14cdfea848e2",
+      "raw_bytes": 2713
+    },
+    {
+      "path": "verify-timetable-variants.mjs.txt",
+      "source": "tools/verify-timetable-variants.mjs",
+      "raw_sha256": "4fb4572a9874a84bfe529b36bdff3a1e841ffbcd4a3ed39687f21b83f4e02a05",
+      "raw_bytes": 6992
+    }
+  ],
+  "limitations": "Actual41 failed-prefix observations are not42 predictions. No capacity, compatible receiving road, full-tail clearance, escape, recovery or improvement guarantee. No isolated-model score. Changed selected populations cannot support complete matched-population comparisons. All full-day, wait, safety and multiple-location overtake gates remain required. Both41 failures are now historical; no full-day acceptance or installation."
+}
