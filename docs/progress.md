@@ -2,6 +2,12 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+**28 October 11:05 — original candidate39 V2 pair launched once and verified; all inputs frozen.**
+
+- Author `782997ea1e3abf3f6e0f27de3f08c49388b33671` is pushed. Both original39 runs launched ONCE at11:04:00+08: normal wrapper16952/child19840 with `--network --snapshots`; delayed wrapper23728/child9884 with `--network --delay=600 --delay-at=27000`. Four actual commands/parent identities, exact options and distinct outputs match. The ORIGINAL baseline `starts/catalogue.json` existed before launch verification; all4836 distinct current source hashes and six original observers plus five acceptance/selection hashes verified unchanged. No Classic/suite/native/search/diagnostic job remains.
+- At11:04:39 baseline00:10sim/0of200/peak3/max0.1m; delayed00:30sim/0of200/peak4/max0.1m, both error streams empty and no final audits. These are partial progress only. Five exact raw launch files plus manifest are preserved under `network-candidate-thirty-nine/launch-proof`.
+- Read `rehearsal-jobs-v39.json`, `launch-v39-verification.json`, `rehearsals-v39`, `latest-job-status.json` and `owned-processes.json`. `inspect-current-replays.py` selects39 first. DO NOT execute `launch-network-v39.ps1` or `verify-launch-v39.py` again, duplicate or restart. Freeze all inputs while either original39 lives and await both actual outcomes before coordinated replanning. Both38 failures are preserved in5facebaa and historical after39; do not repeat their summaries or ten completed immutable inspections. Network200V2 remains unaccepted/uninstalled, no gameplay playtest; full-day feasibility and reliable ETA remain unproven.
+
 **28 October 11:03 — candidate 39 authored from both actual 38 failures; V2 full-day tests pending.**
 
 - Both original38 runs failed naturally and their exact evidence is committed/pushed in `5facebaaacd69b385eda38cd4e811f81da23ed9b`; all38 fingerprints are historical after this authoring. Candidate39 changes ONLY S03110:20→11:00, M08918:10→19:45 and M08718:50→20:05. Undoing these three departure strings recovers the entire predecessor JSON in both common-author packs. Selected200 IDs, exact8-mail exclusion, every other departure, K106:00 and all non-departure fields are unchanged. Common-author equality is not Classic readiness.

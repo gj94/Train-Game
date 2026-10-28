@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-10-28T11:05:14.503525+08:00",
+  "candidate": 39,
+  "source_commit": "782997ea1e3abf3f6e0f27de3f08c49388b33671",
+  "population": 200,
+  "files": [
+    {
+      "path": "launch-network-v39.ps1",
+      "source": ".local/realism-2026-10-26/launch-network-v39.ps1",
+      "raw_sha256": "f32d1a726705db0b2b7e56c70f109847b37b0cda752e2c3584375f6b54ce4b80",
+      "raw_bytes": 4294
+    },
+    {
+      "path": "verify-launch-v39.py",
+      "source": ".local/realism-2026-10-26/verify-launch-v39.py",
+      "raw_sha256": "26ed3443e868bef4be780b3239a4f290ba10fb83b5b01505e0f7544de69c6b72",
+      "raw_bytes": 4575
+    },
+    {
+      "path": "rehearsal-jobs-v39.json",
+      "source": ".local/realism-2026-10-26/rehearsal-jobs-v39.json",
+      "raw_sha256": "0827d1b37292e1132d14d7f5b89c42d9555493d068bc3a6108f35671e4d4bbe1",
+      "raw_bytes": 1903
+    },
+    {
+      "path": "launch-v39-verification.json",
+      "source": ".local/realism-2026-10-26/launch-v39-verification.json",
+      "raw_sha256": "3f0be97cff705798e254f36b39d54b045914e7dbf09765faccc644a346bb41e3",
+      "raw_bytes": 3495
+    },
+    {
+      "path": "owned-processes.json",
+      "source": ".local/realism-2026-10-26/owned-processes.json",
+      "raw_sha256": "53e363227ed3bba1f7d1b2d734b82a7843f2ef38d226cbd1dc077f8f1c1dd856",
+      "raw_bytes": 1910
+    }
+  ],
+  "original_baseline_catalogue": {
+    "path": ".local/realism-2026-10-26/rehearsals-v39/predictive-network/starts/catalogue.json",
+    "raw_sha256": "e37a70e98c2a52a476aeda043b23ac5822868aefd9bda958ce6e2ccee892f45a",
+    "sources": 4836,
+    "existed_before_verification": true
+  },
+  "limitations": "Launch proof only. Both original39 V2 jobs are running; no final audits, acceptance or installation. All railway inputs and11 observer/acceptance files are frozen while either original lives. Do not execute launch or verifier again."
+}
