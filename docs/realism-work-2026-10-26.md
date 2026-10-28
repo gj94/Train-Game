@@ -6861,3 +6861,16 @@ unchanged. Only the original pair is running. No source edit, duplicate, restart
 repeated suite, installation or gameplay playtest. Await both original37 finals.
 Partial progress is not acceptance; Network200V2 remains unaccepted/uninstalled.
 Full-day feasibility remains unproven and no reliable readiness ETA is available.
+
+28 October 08:24 — original candidate37 pair continues with unchanged inputs.
+
+At08:24:26 original baseline23304/6112 reports08:10 simulated,33/200 complete,
+peak31,maxwait35.8minutes; original delayed11576/1016 reports10:50,60/200,
+peak31,maxwait40.9minutes. Both error logs are empty and final audits absent.
+All four exact process/parent/command identities still match the original launch;
+4836 source hashes, six observers and five acceptance/selection hashes are unchanged.
+No other Godot job exists. Inputs remain frozen while either original37 lives;
+no restart, duplicate, source change, repeated suite, installation or playtest.
+Await both original final reports before replanning. These partial prefixes do not
+establish acceptance, recovery or whole-day improvement. Network200V2 remains
+unaccepted/uninstalled; full-day feasibility and a reliable ETA remain unproven.
