@@ -9,11 +9,15 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **28 Oct 2026 additional trimming authorization:** the user said, "Cut a few
+  more services later if needed." Modest further cuts below200 are authorized
+  for future V2 candidates based on actual outcomes. This supersedes the former
+  200-service floor; retain every acceptance gate and all retained service fields.
 - **27 Oct 2026 overnight continuation:** after an unrelated PC restart, the user
   asks to continue overnight until ready and permits trimming a few services.
   Target200 by removing eight evening mails from208; preserve all remaining
   service records, K1, V2-only scope and every safety/wait/physical/recovery gate.
-  The original at-least200 design remains; no reduction below200 is authorized.
+  The original at-least200 floor was subsequently superseded on28October.
 - **26 Oct 2026 Network208 scope correction:** the user explicitly says not to
   bother with Classic dispatcher for208. Validate, prepare and install Network208
   for V2 only: normal baseline plus the delayed-driver recovery run. Preserve

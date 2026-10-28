@@ -7,16 +7,18 @@ export const NETWORK_SELECTION='art/timetables/kerala-coast-network-service-sele
 export const NETWORK_OBSERVERS=['tools/finalize_network_timetable.mjs','tools/lib/network-population.mjs',NETWORK_SELECTION];
 export function validateNetworkSelection(pack,selection){
   assert.equal(selection.format,'train-game-network-service-selection');assert.equal(selection.version,1);
-  assert.equal(selection.source_count,208);assert.equal(selection.selected_count,200);
+  assert.equal(selection.source_count,208);assert.equal(selection.selected_count,196);
   const removed=selection.excluded.map(e=>e.service);
-  assert.deepEqual([...removed].sort(),['M021','M025','M052','M057','M066','M067','M090','M098']);
-  assert.equal(pack.dispatcher,'predictive');assert.equal(pack.services.length,200);
-  const ids=pack.services.map(s=>s.id).sort();assert.equal(new Set(ids).size,200);
+  assert.deepEqual([...removed].sort(),['M021','M025','M032','M052','M055','M056','M057','M058','M066','M067','M090','M098']);
+  assert.equal(pack.dispatcher,'predictive');assert.equal(pack.services.length,196);
+  const ids=pack.services.map(s=>s.id).sort();assert.equal(new Set(ids).size,196);
+  const rawIds=['K1',...Array.from({length:39},(_,i)=>'L'+String(i+2).padStart(3,'0')),...Array.from({length:104},(_,i)=>'M'+String(i+1).padStart(3,'0')),...Array.from({length:56},(_,i)=>'S'+String(i+1).padStart(3,'0')),...Array.from({length:8},(_,i)=>'V'+String(i+1).padStart(3,'0'))];
+  assert.deepEqual(ids,rawIds.filter(id=>!removed.includes(id)).sort(),'Wrong exact selected Network IDs');
   assert.ok(removed.every(id=>!ids.includes(id)));assert.equal(pack.services.find(s=>s.id==='K1')?.departure,'06:00');
   const categories={};for(const s of pack.services)categories[s.journey.category]=(categories[s.journey.category]??0)+1;
-  assert.deepEqual(categories,{local:40,mail:96,superfast:56,vb:8});
-  assert.equal(pack.services.filter(s=>s.stops.some(c=>c.boundary)).length,160);
-  return {count:200,ids};
+  assert.deepEqual(categories,{local:40,mail:92,superfast:56,vb:8});
+  assert.equal(pack.services.filter(s=>s.stops.some(c=>c.boundary)).length,156);
+  return {count:196,ids};
 }
 export async function loadNetworkPopulation(){
   const bytes=await readFile(NETWORK_PACK),pack=JSON.parse(bytes),selection=JSON.parse(await readFile(NETWORK_SELECTION));

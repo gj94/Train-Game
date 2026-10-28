@@ -10,7 +10,7 @@ const variants=[
   {id:'standard_v2',folder:'data/timetables/standard_v2',count:100,mode:'predictive',pack:null},
   {id:'intensive_v2',folder:'data/timetables/intensive_v2',count:140,mode:'predictive',pack:'art/timetables/kerala-coast-intensive-v2.json'},
   {id:'network',folder:'data/timetables/network',count:208,mode:'classic',pack:'art/timetables/kerala-coast-network.json'},
-  {id:'network_v2',folder:'data/timetables/network_v2',count:200,mode:'predictive',pack:'art/timetables/kerala-coast-network-v2.json'},
+  {id:'network_v2',folder:'data/timetables/network_v2',count:196,mode:'predictive',pack:'art/timetables/kerala-coast-network-v2.json'},
 ];
 const requested=process.argv.find(a=>a.startsWith('--day='))?.slice(6);
 if(requested)assert.ok(variants.some(v=>v.id===requested),'Unknown alternate operating day');

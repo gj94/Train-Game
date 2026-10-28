@@ -11,7 +11,7 @@ func run() -> void:
 	if not overrides is Dictionary or overrides.get("format")!="train-game-authored-departure-overrides" or overrides.get("version")!=1 or not overrides.get("changes") is Array:
 		printerr("Invalid authored departure overrides");quit(1);return
 	var selection=JSON.parse_string(FileAccess.get_file_as_string(SELECTION))
-	if not selection is Dictionary or selection.get("format")!="train-game-network-service-selection" or selection.get("version")!=1 or selection.get("source_count")!=208 or selection.get("selected_count")!=200 or not selection.get("excluded") is Array or selection.excluded.size()!=8:
+	if not selection is Dictionary or selection.get("format")!="train-game-network-service-selection" or selection.get("version")!=1 or selection.get("source_count")!=208 or selection.get("selected_count")!=196 or not selection.get("excluded") is Array or selection.excluded.size()!=12:
 		printerr("Invalid explicit Network service selection");quit(1);return
 	for mode in [false,true]:
 		var data: Dictionary=network.pack(w,mode)
@@ -37,7 +37,7 @@ func run() -> void:
 		data.services=data.services.filter(func(service):return not excluded.has(service.id))
 		if data.services.size()!=selection.selected_count:
 			printerr("Wrong selected Network population");quit(1);return
-		data.name="Coastal Network 200 · "+("Predictive V2" if mode else "Classic")
+		data.name="Coastal Network 196 · "+("Predictive V2" if mode else "Classic")
 		var checked: Dictionary=load("res://sim/service_pack.gd").build(data)
 		if not checked.ok:printerr(checked.reason);quit(1);return
 		var path:="res://art/timetables/kerala-coast-network"+("-v2" if mode else "")+".json"
