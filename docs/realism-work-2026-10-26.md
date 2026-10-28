@@ -6887,3 +6887,16 @@ No source edit, duplicate, restart, repeated suite, installation or gameplay
 playtest. Partial progress is not acceptance or proof of whole-day improvement.
 Network200V2 remains unaccepted/uninstalled; full-day feasibility remains
 unproven and no reliable readiness ETA is available.
+
+28 October 08:44 — original candidate37 pair remains active; no final audit.
+
+At08:44:25 original baseline23304/6112 reports11:20 simulated,61/200 complete,
+peak31,maxwait40.1minutes; original delayed11576/1016 reports14:30,85/200,
+peak37,maxwait40.9minutes. Both error logs are empty and final audits absent.
+All four exact process/parent/command identities match the original launch;
+4836 source hashes, six observers and five acceptance/selection hashes remain
+unchanged. Only the original pair is running. Inputs remain frozen until both
+original37 runs end. No restart, duplicate, source edit, repeated suite,
+installation or gameplay playtest. Partial progress is not acceptance or
+whole-day capacity/recovery proof. Network200V2 remains unaccepted/uninstalled;
+full-day feasibility remains unproven and readiness ETA is unavailable.
