@@ -7197,3 +7197,92 @@ feasibility claim or reliable ETA.
 - Author `782997ea1e3abf3f6e0f27de3f08c49388b33671` is pushed. Both original39 runs launched ONCE at11:04:00+08: normal wrapper16952/child19840 with `--network --snapshots`; delayed wrapper23728/child9884 with `--network --delay=600 --delay-at=27000`. Four actual commands/parent identities, exact options and distinct outputs match. The ORIGINAL baseline `starts/catalogue.json` existed before launch verification; all4836 distinct current source hashes and six original observers plus five acceptance/selection hashes verified unchanged. No Classic/suite/native/search/diagnostic job remains.
 - At11:04:39 baseline00:10sim/0of200/peak3/max0.1m; delayed00:30sim/0of200/peak4/max0.1m, both error streams empty and no final audits. These are partial progress only. Five exact raw launch files plus manifest are preserved under `network-candidate-thirty-nine/launch-proof`.
 - Read `rehearsal-jobs-v39.json`, `launch-v39-verification.json`, `rehearsals-v39`, `latest-job-status.json` and `owned-processes.json`. `inspect-current-replays.py` selects39 first. DO NOT execute `launch-network-v39.ps1` or `verify-launch-v39.py` again, duplicate or restart. Freeze all inputs while either original39 lives and await both actual outcomes before coordinated replanning. Both38 failures are preserved in5facebaa and historical after39; do not repeat their summaries or ten completed immutable inspections. Network200V2 remains unaccepted/uninstalled, no gameplay playtest; full-day feasibility and reliable ETA remain unproven.
+
+**28 October 12:47 — both original candidate39 V2 runs failed naturally; exact evidence preserved.**
+
+Original baseline16952/19840 failed14:38:40 simulated at M050 signal MAKM-N2,
+not a booked Mararikulam call; next booked call16 is Cherthala. It completed
+84/200, peak36, all-location maximum2702seconds, station maximum2148seconds,
+zero safety events, delay0/delay_at0. Original delayed23728/9884 failed21:16:14
+at M089 signal NEM-S2, not a booked Nemom call; next booked call1 is Neyyattinkara.
+It completed134/200, peak38, all-location maximum2702seconds, station maximum
+2676seconds, zero safety events after600seconds K1 hold at07:30. Both run and
+actual-summary error logs are empty. Neither failed prefix is accepted or installed.
+
+Baseline all-location221/326,287/326,314/326,325/326 FAIL all four10/20/30/45
+minute gates. Station124/188,167/188,184/188,188/188 FAIL10/20/30 and PASS45.
+Delayed all-location401/560,506/560,538/560,559/560 PASS10/20, FAIL30/45.
+Station209/316,283/316,304/316,316/316 FAIL10/20/30 and PASS45.
+184/188 is below98%;283/316 is below90%; never round failures up. Unequal
+incomplete populations do not support complete-population comparisons or recovery.
+
+The baseline archive contains30 exact raw files; delayed contains27, under
+`art/performance/realism-2026-10-26/network-candidate-thirty-nine/failed-predictive-{baseline,delayed}`.
+Each binds4836 distinct current-at-run source hashes, the exact pack, six original
+observers and five acceptance/selection inputs. Lossless audit/traffic/failure,
+logs, actual summary, inspection source and jobs record are preserved; originals
+remain. Six baseline MAKM/SRTL/ALLP/AMPA/NEM/TUVR and five delayed NEM/NYY/PASA/
+KZT/ERL inspections each preserve identical before/after captures and empty errors.
+No original39 or diagnostic process remains. Do not repeat either summary or these
+11 inspections, relabel fingerprints after later source edits, or rerun unchanged39.
+
+Baseline M0502702seconds =2366 opposing (172 S007 alone +2194 combined S007/S015)
++336 Cherthala receiving (no-free200 combined S015/S007,78 combined S032/S015/S007;
+approaching58 combined S015/S007/S032). Preserve combined buckets without individual
+attribution. M050 left ALLP13:42:24.25, is stopped on MAKM_P2, dispatcher continuous
+age2798 differs from audited2702. S007 is stopped TRVZ_MAKM_M3 before its entry
+signal, S015 behind on M2, S016 northbound stopped MAKM_KAVR_M0. S007/S015/S016
+MAKM P1/P2/P3 are incoming alternatives, not three simultaneous reservations each.
+S007 and S016 both await MAKM capacity with M050 and the other admitted services;
+S015 awaits S007's block. SRTL has no claims; TUVR has incoming M049 P1/P2/P3 alternatives.
+ALLP M016P1/S012P2/M028P3 all await MAKM; M028 arrived14:02:40.95, no departure,
+2038 audited extra /2038.5 continuous. AMPA M026P2/M048P3 both await those ALLP roads.
+Their continuous waits are275.5/990.5; S0121181 and M01628 at ALLP.
+
+The baseline has ONE NEM future plan: incomingS034 futureNEM_P2, opponentS031
+NEM_P1, vacaterL036, escapeTVC_P2; received/opponent_received/escaped all false.
+NEM claims S031P1/L036P2 plus incomingS034 P1/P2 alternatives. S031 leftTVC14:34:59.75,
+moves24.6m/s south on TVC_NEM_M2 under NEM-S1 authority. L036 stopped NEM_P2,
+237 continuous seconds awaiting S031 to clear the escape approach. S034 moves
+24.6m/s north on BRAM_P1. L026 moves0.870705m/s arriving Amaravila after PASA
+14:27:55.75; M082 moves13.844155m/s arriving PASA with tail on PASA_RLEAD_D.
+M081/M085 stabled south after13:28:46.80/13:50:43.80; S032 stabled north14:33:32.75.
+K1/L025/S013 depots. M051/M101/M019/S011/M096 move; later relocated mails are not due.
+Local movement/completion is not whole-day improvement, capacity or escape proof.
+
+Delayed M0892702seconds =1156 S033 reserved NYY_P1 approach +1546 combined
+S033/M054 no-free NYY receiving. M0872406=860 reserved approach+1546 same combined
+receiving. They leftTVC20:23:53.25/20:28:49.25 and occupy NEM_P2/P1, both stopped.
+Dispatcher continuous ages2798/2502 differ from audited2702/2406. NYY claims
+S033P1/M054P2; S033 passes NYY (next booked KZT), stopped awaiting PASA L029/M104.
+M054 arrivedNYY20:36:30.30, never departed,2312 extra =50 earlier S033 admission
+following L029 +2262 combined M087/M089 receiving; continuous2311.5.
+S033 NYY-S1 extra2214=42 no-free unnamed +626 M104 +1546 combined L029/M104;
+continuous2337.5. PASA L029P1/M104P2, KZT M088P1/M058P2, ERL M056P2.
+L029 PASA arrived20:51:13.95, awaits KZT M088/M058; M104 PASA arrived20:41:19,
+awaits NYY S033/M054,2024 extra=478 protected L029 escape+1546 combined receiving.
+M088/M058 KZT arrived21:00:45.40/21:03:37.05, await PASA L029/M104; M056 ERL
+arrived21:00:21.15, awaits KZT M088/M058; L028 waits behind M056. No future plans
+remain. Actual fixed road claims and stopped queues do not prove a permanent
+deadlock, runtime defect or candidate infeasibility.
+
+Delayed S031 stabled south16:06:31.80; M050/S016 stabled north15:16:11.25/
+14:51:21.75; S007/S015 depots. M091/M073/M083 stabled south17:37:45.50/18:00:47.30/
+18:54:20.00; M103/M065 south19:25:43.50/19:47:55.80; M049/V008 depots.
+M099 moves25.163322m/s south MQU_KXP_D2, M07227.377778m/s north IRP_MYY_U1/U2.
+S038 awaits AMPA M032/M034, L030 dwells at NJT, S053 awaits TVC origin berth,
+S055/L038 are not due. These are local outcomes only; later waves/midnight unproven.
+
+Each archive retains31 final two-second full-rake samples,11 K1 minute samples
+and last sampled changes above1mm for the failed queue. Baseline M050/S007/S015/
+S016 last changed at13:53:40/14:08:14/14:09:56/14:12:34; delayed M089/M087 at
+20:31:14/20:36:10. Sampling is not exact stop timing or shared interlocking-resource
+ownership. Delayed K1 intervention samples remain raw; braking extents are not
+an exact controller/recovery certificate. Actual baseline summary has no K1
+overtakes; delayed has one V001 at TVCN, not completed multiple-location proof.
+
+The unchanged1004-test candidate33 suite and five passing39 authoring guards are
+retained; no repeated legacy/full suite. Next: coordinated departure-only replanning
+from BOTH actual39 queues and full tails, retaining selected200, all non-departure
+fields and every acceptance gate. Network200V2 remains unaccepted/uninstalled;
+no gameplay playtest, full-day feasibility claim or reliable ETA.
