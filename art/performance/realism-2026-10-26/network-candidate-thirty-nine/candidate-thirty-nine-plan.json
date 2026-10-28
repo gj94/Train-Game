@@ -1,0 +1,36 @@
+{
+  "recorded_at": "2026-10-28T10:58:14.539216+08:00",
+  "candidate": 39,
+  "predecessor": "d0a58daa3a534ee3543becd67c9ebb4a18e89e82",
+  "evidence_commit": "5facebaaacd69b385eda38cd4e811f81da23ed9b both original38 failures",
+  "changes": [
+    {
+      "service": "S031",
+      "before": "10:20",
+      "after": "11:00",
+      "reason": "Move this southbound northern-origin superfast behind its observed baseline NYY opposing group L036/M086/S048/S034 and L026/M082 Parassala receiving occupation. Retain every opponent. It now follows S01310:55 and precedes M05111:10 at the northern origin, but altered actual order and onward receiving roads remain unproven."
+    },
+    {
+      "service": "M089",
+      "before": "18:10",
+      "after": "19:45",
+      "reason": "Remove this relocated TVC southbound mail from the delayed S038 Kulitturai wait across M103/M049 and M089 Parassala occupations. Retain M103/M049/M065 and all northbound services. Move after S05119:30; later opposing queues remain constraints."
+    },
+    {
+      "service": "M087",
+      "before": "18:50",
+      "after": "20:05",
+      "reason": "Move this following relocated TVC mail with M089 so it does not replace M089 in the observed delayed Parassala receiving queue; actual38 has incoming M087 P1/P2 alternatives while M065 occupies P1. Retain M09920:35/S05321:10 and all other evening trains. No guarantee of a free receiving road or later escape."
+    }
+  ],
+  "scope": "Network200 V2 only. Exactly three departure strings; all other departures, selected200 IDs, exact8-mail exclusion, K106:00 and all non-departure fields retained. Every local/VB and other superfast/mail retained.",
+  "hypothesis": "Both actual38 outcomes constrain coordinated timing: S031 baseline fails signal NYY-S2 amid moving northbound groups, while S038 delayed fails booked KZT call2 amid southbound through and relocated mail groups. Delay S031 by40minutes; move both M089/M087 after the observed S038 queue to avoid direct replacement. This changes approach times only and may create other failures.",
+  "daytime_basis": "Both actual38 full-rake samples11:00 through each failure are preserved with static bounds, hashes, formula and ~2second sample interval. Baseline NYY north L03614:06-14:19,S04814:24-14:32,S03414:34-failure14:41, with L026PASA P1 awaiting incomingM082P2. Delayed NYY S031 south14:17-14:26, S034north14:48-14:56,L026north14:50-15:04,M051south15:14-15:23; those are actual38 interactions, not39 predictions. Delayed PASA south M10318:42-18:47,M04918:56-19:02,M08919:11-failure19:13; NYY M06518:57-19:06,M08719:12-failure. S038 KZT stop18:23 and V008ERL wait remain actual opposing constraints. Retained M053/S051 and M099/S053 plus later northbound locals/mails constrain the new evening departures. All unchanged and unproven beyond actual38 failure.",
+  "limits": "Origin gaps and geometric envelopes do not guarantee order, compatible receiving roads, full-tail clearance, onward escape or finite capacity. Earlier S031 changes can alter the entire later railway; do not treat delayed38 timing as candidate39 predictions. No isolated-model score, whole-day improvement or permanent-deadlock claim. Both exact original V2 full-day tests with all completion/safety/wait/physical/recovery gates remain required. At least3 starts/hour; maximum descriptive only. No Classic readiness or gameplay playtest.",
+  "predecessors": {
+    "kerala-coast-network.json": "9eb260882e40f54d8d51434e93971d8aa1d35a28f1f745c5edafb181876dba49",
+    "kerala-coast-network-v2.json": "373749dcdcc40ef97f66b8b1d10f4887c37560c5de2118b4faaaef0b9c9932e8",
+    "kerala-coast-network-departure-overrides.json": "fdaeecf931ba1789e563f8ca9dbf3e1be4c655db7afcc87474f5098fe49e0c4e",
+    "kerala-coast-network-service-selection.json": "f0a08c91b25f32af30ff093e2872958b18a4d900ba326b9c1f88a7b10fde4d7c"
+  }
+}

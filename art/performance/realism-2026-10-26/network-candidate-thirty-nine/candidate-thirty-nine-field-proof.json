@@ -1,0 +1,122 @@
+{
+  "identical_modes": true,
+  "K1": "06:00",
+  "unchanged_selection": true,
+  "maximum_hourly_is_descriptive_not_acceptance_gate": true,
+  "packs": [
+    {
+      "pack": "kerala-coast-network.json",
+      "sha256": "82852b54ed6abd74be2b4869c2b59fff15139d21450cecd56b85be8e1dccbda4",
+      "predecessor_sha256": "9eb260882e40f54d8d51434e93971d8aa1d35a28f1f745c5edafb181876dba49",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "M087",
+          "before": "18:50",
+          "after": "20:05"
+        },
+        {
+          "id": "M089",
+          "before": "18:10",
+          "after": "19:45"
+        },
+        {
+          "id": "S031",
+          "before": "10:20",
+          "after": "11:00"
+        }
+      ],
+      "services": 200,
+      "categories": {
+        "local": 40,
+        "mail": 96,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 78,
+      "hourly": [
+        10,
+        8,
+        6,
+        7,
+        9,
+        10,
+        6,
+        3,
+        9,
+        8,
+        6,
+        10,
+        12,
+        5,
+        6,
+        9,
+        9,
+        6,
+        4,
+        10,
+        10,
+        9,
+        13,
+        15
+      ]
+    },
+    {
+      "pack": "kerala-coast-network-v2.json",
+      "sha256": "0db8dd44e1f6bc8dd9150780da8f8f139370d401a0c3698089a2eb0648c05eaf",
+      "predecessor_sha256": "373749dcdcc40ef97f66b8b1d10f4887c37560c5de2118b4faaaef0b9c9932e8",
+      "only_departures_changed": true,
+      "changes": [
+        {
+          "id": "M087",
+          "before": "18:50",
+          "after": "20:05"
+        },
+        {
+          "id": "M089",
+          "before": "18:10",
+          "after": "19:45"
+        },
+        {
+          "id": "S031",
+          "before": "10:20",
+          "after": "11:00"
+        }
+      ],
+      "services": 200,
+      "categories": {
+        "local": 40,
+        "mail": 96,
+        "superfast": 56,
+        "vb": 8
+      },
+      "overnight": 78,
+      "hourly": [
+        10,
+        8,
+        6,
+        7,
+        9,
+        10,
+        6,
+        3,
+        9,
+        8,
+        6,
+        10,
+        12,
+        5,
+        6,
+        9,
+        9,
+        6,
+        4,
+        10,
+        10,
+        9,
+        13,
+        15
+      ]
+    }
+  ]
+}
