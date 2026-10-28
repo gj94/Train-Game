@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 23588,
+    "started": "2026-10-28T15:25:55.1270114+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v41/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "6193fa805c0269384481215455f324cb44e77d1b",
+    "status": "finished-rejected",
+    "reason": "Candidate41 removes only M032/M055/M056/M058 after both original40 failures were preserved in49747e9e/908ab779. Exact196 retained service records and all205 departure overrides remain unchanged. Explicit authorization permits these four modest cuts below200. Both actual opposing groups and full-rake claims informed the hypothesis, not guaranteed receiving roads, full-tail clearance, escape, capacity or improvement. Every V2 acceptance gate remains required",
+    "pack_sha256": "e1448c474a8db393ffa8367d607661bfd287a4e6379c2b37f77bec1e7d8179f9",
+    "child_pid": 10024
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 24452,
+    "started": "2026-10-28T15:25:55.1765358+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v41/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "6193fa805c0269384481215455f324cb44e77d1b",
+    "status": "finished-rejected",
+    "reason": "Candidate41 removes only M032/M055/M056/M058 after both original40 failures were preserved in49747e9e/908ab779. Exact196 retained service records and all205 departure overrides remain unchanged. Explicit authorization permits these four modest cuts below200. Both actual opposing groups and full-rake claims informed the hypothesis, not guaranteed receiving roads, full-tail clearance, escape, capacity or improvement. Every V2 acceptance gate remains required",
+    "pack_sha256": "e1448c474a8db393ffa8367d607661bfd287a4e6379c2b37f77bec1e7d8179f9",
+    "child_pid": 1160
+  }
+]
