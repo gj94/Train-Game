@@ -11,7 +11,7 @@ func run() -> void:
 	if not overrides is Dictionary or overrides.get("format")!="train-game-authored-departure-overrides" or overrides.get("version")!=1 or not overrides.get("changes") is Array:
 		printerr("Invalid authored departure overrides");quit(1);return
 	var selection=JSON.parse_string(FileAccess.get_file_as_string(SELECTION))
-	if not selection is Dictionary or selection.get("format")!="train-game-network-service-selection" or selection.get("version")!=1 or selection.get("source_count")!=208 or selection.get("selected_count")!=187 or not selection.get("excluded") is Array or selection.excluded.size()!=21:
+	if not selection is Dictionary or selection.get("format")!="train-game-network-service-selection" or selection.get("version")!=1 or selection.get("source_count")!=208 or selection.get("selected_count")!=185 or not selection.get("excluded") is Array or selection.excluded.size()!=23:
 		printerr("Invalid explicit Network service selection");quit(1);return
 	for mode in [false,true]:
 		var data: Dictionary=network.pack(w,mode)
@@ -31,13 +31,13 @@ func run() -> void:
 			if not edit is Dictionary or edit.size()!=2 or not edit.has_all(["service","reason"]) or not edit.service is String or excluded.has(edit.service) or edit.service=="K1" or str(edit.reason).is_empty():
 				printerr("Malformed or repeated Network exclusion");quit(1);return
 			var matching: Array=data.services.filter(func(service):return service.id==edit.service)
-			if matching.size()!=1 or matching[0].journey.category!=("superfast" if edit.service in ["S021","S055"] else "mail"):
+			if matching.size()!=1 or matching[0].journey.category!=("superfast" if edit.service in ["S021","S041","S055"] else "mail"):
 				printerr("Network exclusion is not a unique permitted mail/superfast service: ",edit.service);quit(1);return
 			excluded[edit.service]=true
 		data.services=data.services.filter(func(service):return not excluded.has(service.id))
 		if data.services.size()!=selection.selected_count:
 			printerr("Wrong selected Network population");quit(1);return
-		data.name="Coastal Network 187 · "+("Predictive V2" if mode else "Classic")
+		data.name="Coastal Network 185 · "+("Predictive V2" if mode else "Classic")
 		var checked: Dictionary=load("res://sim/service_pack.gd").build(data)
 		if not checked.ok:printerr(checked.reason);quit(1);return
 		var path:="res://art/timetables/kerala-coast-network"+("-v2" if mode else "")+".json"
