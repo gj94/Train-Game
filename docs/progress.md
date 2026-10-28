@@ -2,6 +2,12 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+**28 October 13:11 — user authorized a few more service cuts if needed.**
+
+- The user said, "Cut a few more services later if needed." This supersedes the previous 200-service minimum for future V2 candidates. Modest additional cuts are authorized when warranted by both actual run outcomes; no fixed new target count is assumed.
+- Candidate40 remains the selected200 timetable. Keep its packs, runtime, routes, six observers and five acceptance/selection inputs frozen while either original40 run lives. Wait for both original outcomes, preserve exact evidence and inspect actual queues/full-tail movements before any coordinated departure changes or additional cuts. Do not duplicate or restart either run.
+- Preserve the raw208 template and every retained service's non-departure fields. If a future selection changes, update and test authoring/population contracts against its exact selected IDs, count and pack hash while retaining every completion, safety, wait-quality and overtaking gate. Installation and later V2 UI/category checks must use the accepted population. No trimming or railway-input change is made by this authorization checkpoint.
+
 **28 October 12:55 — original candidate40 V2 pair launched once and verified; all inputs frozen.**
 
 - Author `4df7cc15895185ce41b7d6e1dbb7232a8c8d7feb` is pushed. Both original40 runs launched ONCE at12:52:51+08: normal wrapper14748/child21172 with `--network --snapshots`; delayed wrapper16404/child20992 with `--network --delay=600 --delay-at=27000`. All four actual commands/parent identities, exact user-option lists and two distinct outputs verified. The ORIGINAL baseline `starts/catalogue.json` existed before verification; all4836 distinct source hashes, six original observers and five acceptance/selection hashes verified unchanged. The catalogue grows as service snapshots are added; its changing raw output digest is not a source change. No Classic/suite/native/search/diagnostic job remains.
