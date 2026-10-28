@@ -6900,3 +6900,63 @@ original37 runs end. No restart, duplicate, source edit, repeated suite,
 installation or gameplay playtest. Partial progress is not acceptance or
 whole-day capacity/recovery proof. Network200V2 remains unaccepted/uninstalled;
 full-day feasibility remains unproven and readiness ETA is unavailable.
+
+28 October 08:57 — original candidate37 delayed failed at booked NYY; baseline remains frozen and running.
+
+Original delayed11576/1016 ended naturally at16:04:44 simulated, failing M051's
+booked Neyyattinkara call14, not a signal-wait entry. It completed98/200,peak37,
+maximum2702seconds in both wait populations,zero safety events, after600seconds
+K1 hold at07:30. Run, actual-summary and four inspection error logs are empty.
+All-location272/377,333/377,363/377,376/377 pass10 but fail20/30/45minutes;
+station-only135/207,181/207,198/207,206/207 fail all four gates. No rounding,
+complete-population comparison, recovery certificate, acceptance or installation.
+
+24 exact raw files are preserved in
+`art/performance/realism-2026-10-26/network-candidate-thirty-seven/failed-predictive-delayed`:
+lossless audit/traffic/failure and receiving state, exact pack, original logs,
+actual summary, four NEM/NYY/PASA/KZT inspections, inspection tool and jobs record.
+Provenance verifies all4836 current-at-run source hashes against the original
+baseline catalogue and all11 observer/acceptance inputs. Every inspection has
+identical before/after captures and no future clearance plans. Originals remain;
+never rerun unchanged, install failed data or relabel these hashes after source edits.
+
+M051 reachedNYY15:18:33.80 and never departed. Its2702audited extra seconds are
+1710opposing (S052568,S034568,M082574),956PASA receiving (M087178,
+combinedM087/S052408,combinedM087/M08262,S034308),and36route conflicts
+(12eachS052/S034/M082). Preserve combined buckets without individual attribution.
+Its current next-signal decision NYY-S1 awaits M087 onPASA_P1; the recorded
+2702.5dispatcher continuous age differs from2702audited extra seconds.
+
+Actual claims: NEM V007P2 plus incomingM082 P1/P2 alternatives, not simultaneous
+reservations; NYY M051P1/M082P2; PASA M087P1/S054P2; KZT L004P2.
+M087 reachedPASA15:25:32.25,never departed,2286extra seconds:1166opposing,
+1096receiving and24conflicts. It now awaits movingS054 inPASA_single.
+S054 leftKZT15:58:28.75 and moves16.267826m/s towardPASA-N2,occupying
+PASA_KZTW_M0/PASA_RLEAD_U; its next decision awaitsNYY M051/M082.
+M082 leftNYY16:03:40.75 and moves14.664539m/s north under authority while
+its tail still occupiesNYY_P2/NYY_LLEAD_U. V007 waitsNEM-S2 forM082,
+with1336audited signal extra seconds versus1433dispatcher continuous age.
+L004 reachedKZT15:42:11.90,never departed,1286audited extra seconds and
+1287dispatcher age,now awaitsM087 atPASA. Moving opponents and these snapshots
+are not proof of permanent deadlock, available escape or a runtime defect.
+
+M081/M085/M091 are stabled beyond the southern portal after13:56:05.30,
+14:10:42.80 and14:35:21.00; S031 cleared14:58:05.30. K1/L025/L036 are
+in depots. These local completions do not prove whole-day improvement/capacity.
+M101 awaits movingS052's point/route clearance atTVC;S052 moves6.544444m/s.
+L026,M097,M103,M102 andS034 move;L027 dwellsuntil16:04:54. M049approaches
+AMPA,M065waitsitsreceivingroad. M073/M083/M089 and the later northern/evening
+wave are not due. Final31two-second full-rake samples are preserved; geometric
+axis envelopes alone do not identify shared occupied interlocking resources.
+Eleven K1 minute samples show27.4545764399m braking movement by07:31, then
+unchanged extents through07:40; these do not prove exact controller/recovery
+behavior. The actual summary has oneV001 overtake atTVCN, not completed
+multiple-location/recovery proof.
+
+At08:57:13 original baseline23304/6112 reports13:10 simulated,70/200 complete,
+peak37,maxwait40.1minutes,empty errors,no final audit. Exact original identities
+match; no other job remains. Freeze runtime/routes/packs and all11 inputs while
+baseline lives. Await its actual final report and preserve its queues before any
+coordinated departure-only replan from BOTH37 outcomes. No repeated summary or
+completed inspections; no Classic work, installation or gameplay playtest.
+Network200V2 remains unaccepted/uninstalled; full-day feasibility and ETA unproven.
