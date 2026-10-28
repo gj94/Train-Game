@@ -2,6 +2,12 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+**28 October 12:55 — original candidate40 V2 pair launched once and verified; all inputs frozen.**
+
+- Author `4df7cc15895185ce41b7d6e1dbb7232a8c8d7feb` is pushed. Both original40 runs launched ONCE at12:52:51+08: normal wrapper14748/child21172 with `--network --snapshots`; delayed wrapper16404/child20992 with `--network --delay=600 --delay-at=27000`. All four actual commands/parent identities, exact user-option lists and two distinct outputs verified. The ORIGINAL baseline `starts/catalogue.json` existed before verification; all4836 distinct source hashes, six original observers and five acceptance/selection hashes verified unchanged. The catalogue grows as service snapshots are added; its changing raw output digest is not a source change. No Classic/suite/native/search/diagnostic job remains.
+- At12:54:19+08, predictive-network: 00:30:00 complete=0/200 peak=4 max_wait=0.1m wall=70.3s; predictive-network-delayed: 01:00:00 complete=0/200 peak=10 max_wait=0.1m wall=75.0s. Both error streams are empty and neither has a final audit. Partial clocks are not acceptance. Five exact raw launch files plus manifest are preserved under `network-candidate-forty/launch-proof`.
+- Read `rehearsal-jobs-v40.json`, `launch-v40-verification.json`, `rehearsals-v40`, `latest-job-status.json` and `owned-processes.json`. `inspect-current-replays.py` selects40 first. DO NOT execute `launch-network-v40.ps1` or `verify-launch-v40.py` again, duplicate or restart. Freeze all inputs while either original40 lives; await both outcomes before coordinated departure-only replanning. Both39 failures are preserved in b3f5b3eb and historical after40; do not repeat their summaries or11 immutable inspections. Network200V2 remains unaccepted/uninstalled, with no gameplay playtest, full-day feasibility claim or reliable ETA.
+
 **28 October 12:52 — candidate40 authored from both actual39 failures; V2 full-day tests pending.**
 
 - Both original39 failures are preserved in `b3f5b3eb96042390ebe6ad32e47d6baa8d596fa3`:57 exact raw files,4836 source hashes per run and11 immutable inspections. All39 fingerprints are historical after this authoring; never rerun unchanged39 or repeat its completed summary/inspections.

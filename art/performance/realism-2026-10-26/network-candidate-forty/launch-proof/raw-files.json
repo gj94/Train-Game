@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-10-28T12:55:14.938655+08:00",
+  "candidate": 40,
+  "source_commit": "4df7cc15895185ce41b7d6e1dbb7232a8c8d7feb",
+  "population": 200,
+  "files": [
+    {
+      "path": "launch-network-v40.ps1",
+      "source": ".local/realism-2026-10-26/launch-network-v40.ps1",
+      "raw_sha256": "a613fcdc793a96badfc537039e080ea60a3cdd06e05199bc5f5e0ac53a7f64de",
+      "raw_bytes": 4333
+    },
+    {
+      "path": "verify-launch-v40.py",
+      "source": ".local/realism-2026-10-26/verify-launch-v40.py",
+      "raw_sha256": "c87694eedf9e7e44df748327e440da551557a954e640c885cd653b58303b8452",
+      "raw_bytes": 4653
+    },
+    {
+      "path": "rehearsal-jobs-v40.json",
+      "source": ".local/realism-2026-10-26/rehearsal-jobs-v40.json",
+      "raw_sha256": "d1b52034323a1a04105c58c2d8f378218675cfe0c25b36942f06a0bea077b7bf",
+      "raw_bytes": 1982
+    },
+    {
+      "path": "launch-v40-verification.json",
+      "source": ".local/realism-2026-10-26/launch-v40-verification.json",
+      "raw_sha256": "3bffa0e5eff8511ebbb581b47eaf5553011fdd0d473b1baec9f1160435e09a6c",
+      "raw_bytes": 3496
+    },
+    {
+      "path": "owned-processes.json",
+      "source": ".local/realism-2026-10-26/owned-processes.json",
+      "raw_sha256": "12086fd7fb83b5985945956a839b2f9224dc7216de6d6c8bcee86ef06416ecb3",
+      "raw_bytes": 1911
+    }
+  ],
+  "original_baseline_catalogue": {
+    "path": ".local/realism-2026-10-26/rehearsals-v40/predictive-network/starts/catalogue.json",
+    "observed_raw_sha256_before_verification": "a29e8bbc686ec89cd67b9c4c750bbd8085d20983fe35194dfe2ed3c479b186e9",
+    "raw_sha256_at_archive": "e7f67b9da69c214667616fa57b19da61cbebc690dc1bea9d12a76abc4999b0aa",
+    "sources": 4836,
+    "existed_before_verification": true,
+    "note": "Original catalogue is a growing output: service snapshots are added during replay. It was observed before verification, not reconstructed. Its4836 input hashes were verified again at archive time; its evolving raw digest is not an immutable input hash."
+  },
+  "limitations": "Launch proof only. Both original40 V2 jobs running; no final audits, acceptance or installation. All railway inputs and11 observer/acceptance files frozen while either original lives. Do not execute launch or verifier again."
+}
