@@ -2,6 +2,12 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+**28 October 17:59 — original candidate42 V2 pair launched once and verified; all193 inputs frozen.**
+
+- Candidate42 author8556aed62386e46c73124b54ee22eed3f908168a is pushed. Exactly one normal original42 launched17:57:45+08 with wrapper9484/child13224 and`--network --snapshots`; one delayed original42 with wrapper13708/child3640 and`--network --delay=600 --delay-at=27000`. Four actual commands/parent identities/exact option lists, two unique outputs and the ORIGINAL baseline catalogue were verified. All4836 distinct source hashes, six original observers and five tested acceptance/selection hashes match. Five exact raw launch files plus manifest are in`network-candidate-forty-two/launch-proof`. Catalogue growth is output growth, not a source change.
+- At17:58:37, baseline00:20sim0/193,peak3,max0.1m; delayed00:40sim0/193,peak6,max0.1m. Both error streams are empty; neither has a final audit. Partial observations are not acceptance. No Classic/suite/native/search/diagnostic job remains. Read`rehearsal-jobs-v42.json`,`launch-v42-verification.json`,`rehearsals-v42`,`latest-job-status.json`,`owned-processes.json`;`inspect-current-replays.py` selects42 first.
+- DO NOT execute`launch-network-v42.ps1` or`verify-launch-v42.py` again, restart or duplicate. Freeze runtime/routes/packs, six observers and five acceptance/selection inputs while either original42 lives. Await BOTH outcomes before any coordinated change. Both41 failures are preserved f0264cbc/dd3657e5 and historical after42; do not repeat either actual summary or13 completed immutable inspections. Network193V2 remains unaccepted/uninstalled. No gameplay playtest, reliable ETA or full-day feasibility claim.
+
 **28 October 17:57 — candidate42 removes three further mails; all193 retained service records unchanged.**
 
 - Both original41 failures ended naturally and were preserved before this change: baseline f0264cbc (36raw/eight immutable inspections) and delayed dd3657e5 (27raw/five). All41 fingerprints are now historical. Do not repeat either summary or13 completed inspections, relabel, rerun unchanged or install either result. User authorization permits a few further cuts when warranted by actual outcomes; no fixed next target or unbounded reductions.

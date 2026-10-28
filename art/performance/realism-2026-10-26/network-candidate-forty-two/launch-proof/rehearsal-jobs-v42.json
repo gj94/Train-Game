@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 9484,
+    "started": "2026-10-28T17:57:45.6037729+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v42/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "8556aed62386e46c73124b54ee22eed3f908168a",
+    "status": "running",
+    "reason": "Candidate42 removes only M043/M089/M099 after both original41 failures were preserved in f0264cbc/dd3657e5. All193 retained service records and205 departure overrides remain unchanged. User explicitly authorized modest further cuts. Both actual northern and southern queues informed this hypothesis; no guaranteed compatible receiving roads, full-tail clearance, capacity, escape, recovery or improvement. All V2 acceptance gates remain required",
+    "pack_sha256": "962c61803f60e469ad54f6218dd0a18e3d1a7c794a69a3bb5917eed624cbecbf",
+    "child_pid": 13224
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 13708,
+    "started": "2026-10-28T17:57:45.6561536+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v42/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "8556aed62386e46c73124b54ee22eed3f908168a",
+    "status": "running",
+    "reason": "Candidate42 removes only M043/M089/M099 after both original41 failures were preserved in f0264cbc/dd3657e5. All193 retained service records and205 departure overrides remain unchanged. User explicitly authorized modest further cuts. Both actual northern and southern queues informed this hypothesis; no guaranteed compatible receiving roads, full-tail clearance, capacity, escape, recovery or improvement. All V2 acceptance gates remain required",
+    "pack_sha256": "962c61803f60e469ad54f6218dd0a18e3d1a7c794a69a3bb5917eed624cbecbf",
+    "child_pid": 3640
+  }
+]
