@@ -2,6 +2,31 @@
 
 ## 26 October 2026 — user resumed work until ready
 
+28 October09:16 — both original candidate38 V2 runs launched once and verified; freeze inputs.
+
+Author d0a58daa3a534ee3543becd67c9ebb4a18e89e82 is pushed. Exactly one normal
+V2 baseline5852/23404 and one delayed24424/16440 launched09:15:48.
+Normal has --network --snapshots; delayed has --network --delay=600
+--delay-at=27000; both use the current V2 pack and unique generation38 folders.
+The ORIGINAL baseline starts/catalogue.json existed before launch verification.
+All four actual command lines, parent identities and exact mode options are
+verified; only these four Godot processes remain. All4836 distinct source hashes,
+six original observers and five acceptance/selection inputs match. Five exact
+raw launch files plus manifest are preserved in network-candidate-thirty-eight/launch-proof.
+Never execute launch-network-v38.ps1 or verify-launch-v38.py again.
+
+At09:16:33 baseline00:10 simulated,0/200,peak3,maxwait0.1minute; delayed00:40,
+0/200,peak6,maxwait0.1minute. Both error logs empty, neither has a final audit.
+These partial clocks are not acceptance. inspect-current-replays.py selects38
+first; rehearsal-jobs-v38.json,launch-v38-verification.json,latest-job-status.json
+and owned-processes.json track these originals. Freeze runtime/routes/packs and
+all11 observer/acceptance inputs while either lives. No Classic,suite,native,
+search or diagnostic job remains. Await BOTH original final reports before any
+further coordinated departure-only replanning; summarize actual finals and
+preserve exact failures and queues. Prior37 evidence remains historical in
+e47798d6 baseline/06a0f06e delayed, with no repeated inspections.
+Network200V2 remains unaccepted/uninstalled; no gameplay playtest or reliable ETA.
+
 28 October 09:14 — candidate38 authored and guarded; exactly two departure changes.
 
 Both original37 runs ended naturally and failed before this source change.

@@ -1,0 +1,35 @@
+[
+  {
+    "day": "predictive-network",
+    "pid": 5852,
+    "started": "2026-10-28T09:15:48.3046943+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v38/predictive-network",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--snapshots"
+    ],
+    "source_commit": "d0a58daa3a534ee3543becd67c9ebb4a18e89e82",
+    "status": "running",
+    "reason": "Candidate38 changes only M09113:05 to15:55 and M08714:35 to18:50 after both original37 failures were preserved. Exact selected200, all other departures and non-departure fields retained. Actual baseline PASA and delayed NYY queues and full-rake samples informed the hypothesis, not guaranteed roads, gaps, escape or capacity. Both full V2 runs remain required",
+    "pack_sha256": "373749dcdcc40ef97f66b8b1d10f4887c37560c5de2118b4faaaef0b9c9932e8",
+    "child_pid": 23404
+  },
+  {
+    "day": "predictive-network-delayed",
+    "pid": 24424,
+    "started": "2026-10-28T09:15:48.3546430+08:00",
+    "output": ".local/realism-2026-10-26/rehearsals-v38/predictive-network-delayed",
+    "options": [
+      "--pack=res://art/timetables/kerala-coast-network-v2.json",
+      "--network",
+      "--delay=600",
+      "--delay-at=27000"
+    ],
+    "source_commit": "d0a58daa3a534ee3543becd67c9ebb4a18e89e82",
+    "status": "running",
+    "reason": "Candidate38 changes only M09113:05 to15:55 and M08714:35 to18:50 after both original37 failures were preserved. Exact selected200, all other departures and non-departure fields retained. Actual baseline PASA and delayed NYY queues and full-rake samples informed the hypothesis, not guaranteed roads, gaps, escape or capacity. Both full V2 runs remain required",
+    "pack_sha256": "373749dcdcc40ef97f66b8b1d10f4887c37560c5de2118b4faaaef0b9c9932e8",
+    "child_pid": 16440
+  }
+]
