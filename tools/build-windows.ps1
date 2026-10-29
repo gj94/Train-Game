@@ -131,8 +131,11 @@ try {
     foreach ($guide in @('kerala-coast.md', 'kerala-station-audit.md', 'kerala-station-browser-audit.md', 'dispatcher-overhaul.md', 'ride-dynamics.md', 'rakes.md', 'coach-detail.md', 'walking.md', 'controllers.md', 'dispatching.md', 'timetables.md', 'services.md', 'lhb.md', 'wap7.md', 'wap7-detail.md', 'stations.md', 'visual-fidelity.md', 'imported-fleet.md', 'track.md', 'body-v2-audio.md', 'enhanced-audio.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
-    $revision = & git -c "safe.directory=$projectRoot" rev-parse --short HEAD
-    $dirty = & git -c "safe.directory=$projectRoot" status --porcelain --untracked-files=no
+    $gitRoot = $projectRoot.Replace("\", "/")
+    $revision = & git -c safe.directory=D:/ClaudeWS/train-game -c "safe.directory=$gitRoot" rev-parse --short HEAD
+    if ($LASTEXITCODE -ne 0 -or !$revision) { throw "Cannot identify release source revision." }
+    $dirty = & git -c safe.directory=D:/ClaudeWS/train-game -c "safe.directory=$gitRoot" status --porcelain --untracked-files=no
+    if ($LASTEXITCODE -ne 0) { throw "Cannot verify release source status." }
     @("Build: $BuildName", "Built: $(Get-Date -Format o)", "Godot: 4.7.2 stable; Windows x86-64 release", "Source base: $revision", "Uncommitted tracked changes included: $([bool]$dirty)") |
         Set-Content -LiteralPath (Join-Path $buildRoot 'BUILD.txt') -Encoding utf8
     $hashNames = @('TrainGame.exe', 'TrainGame.pck') + @(Get-ChildItem -LiteralPath (Join-Path $buildRoot 'packs') -File | Sort-Object Name | ForEach-Object { 'packs/' + $_.Name })
