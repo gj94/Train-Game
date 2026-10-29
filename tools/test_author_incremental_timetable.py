@@ -1,7 +1,10 @@
 import copy
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
-from author_incremental_timetable import author, running_schedule
+from author_incremental_timetable import author, running_schedule, validate_increment, validate_previous, digest
 
 
 class IncrementalAuthorTests(unittest.TestCase):
@@ -52,6 +55,40 @@ class IncrementalAuthorTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "positive"):
             author(self.source, [{"id": "K1", "departure": "06:00"},
                 {"id": "FAST", "follows": "K1", "at": "ERS", "gap_seconds": 0}], self.profiles, self.inputs)
+
+    def test_only_one_train_added_or_one_placement_revised(self):
+        first = [{"id": "K1", "departure": "06:00"}]
+        pair = first + [{"id": "FAST", "departure": "06:15"}]
+        self.assertEqual(validate_increment(first, pair)["service"], "FAST")
+        revised = first + [{"id": "FAST", "departure": "06:10"}]
+        self.assertEqual(validate_increment(pair, revised)["kind"], "one placement revised")
+        for invalid in [pair, first, pair + [{"id": "A"}, {"id": "B"}],
+                        [{"id": "K1", "departure": "06:01"}] + revised[1:]]:
+            with self.assertRaises(ValueError):
+                validate_increment(pair, invalid)
+
+    def test_previous_outcomes_must_be_preserved_complete_safe_and_matching(self):
+        previous = [{"id": "K1", "departure": "06:00"}]
+        current = previous + [{"id": "FAST", "departure": "06:15"}]
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            (directory / "construction.json").write_text(json.dumps({"services": previous}), encoding="utf-8")
+            (directory / "pack.json").write_text("original candidate", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "Preserve"):
+                validate_previous(directory, current)
+            (directory / "preservation.json").write_text("{}", encoding="utf-8")
+            valid = {"pack_sha256": digest(directory / "pack.json"),
+                     "all_calls_and_terminals_complete": True, "audit": {"events": []}}
+            for name in ["normal", "delayed"]:
+                (directory / name).mkdir()
+                (directory / name / "assessment.json").write_text(json.dumps(valid), encoding="utf-8")
+            self.assertEqual(validate_previous(directory, current)["service"], "FAST")
+            for invalid in [{**valid, "pack_sha256": "stale"},
+                            {**valid, "all_calls_and_terminals_complete": False},
+                            {**valid, "audit": {"events": [{"kind": "unsafe"}]}}]:
+                (directory / "delayed/assessment.json").write_text(json.dumps(invalid), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "safely complete"):
+                    validate_previous(directory, current)
 
 
 if __name__ == "__main__":

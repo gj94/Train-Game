@@ -1,5 +1,10 @@
 # Incremental timetable construction — 30 October 2026
 
+Current checkpoint02:06: all44 physical workings and all179 individual timing
+calculations are complete. Shared construction has reached four categories.
+Both004 outcomes are preserved; the one-Mail-placement revision004b is running.
+The complete179-service shared timetable is not yet built or installed.
+
 The user asks for a new timetable built one train at a time: calculate achievable
 arrival times at every call, place the next train against that working, and
 continue. VB has the fewest calls and its actual acceleration advantage;
@@ -114,3 +119,62 @@ original jobs live. No current179 installed source or runtime change is needed.
 The published R48 files and all five installed choices remain unchanged. No
 new timetable is installed or published yet. The prior continuation automation
 remains deleted; this is a newly requested construction task.
+
+## Refined third placement and fourth train
+
+Both original003 trials complete3/3 with64 arrivals and64 departures, zero
+safety events and strict wait audits passing. Both nevertheless hold S007 at
+ALLP for966seconds. Their exact outcomes are preserved under
+`three-train-first-slot`; no replay or summary was repeated.
+
+Revision003b changes only V001: ERS departure420seconds after K1, ahead ofS007.
+Both003b runs complete3/3 safely with all64 arrivals/departures and all strict
+wait gates passing. V001 clears K1 at Turavur06:29:46; S007 clears K1 there06:35.
+S007's ALLP extra wait falls from966 to216seconds. K1's TUVR extra wait is456s;
+VB separately has68s and96s automatic-block signal waits while catching K1.
+These are genuine costs of the three-train path, not omitted from the audit.
+Both outcomes are preserved under `three-train-revised-slot`.
+
+Increment004 then adds only M013 Mail, ERS departure900seconds after S007.
+Its13 passenger calls onERS–TVC compare with6 superfast and4 VB calls, while
+K1 serves all open compatible stations. Original004 normal13056/1812 and
+delayed6944/18316 launched once01:53:54+08. Both original runs are still
+being evaluated; no result is claimed yet.
+
+Subsequent construction trials inherit the original preparation tool but omit
+redundant five-minute snapshots of the empty hours before depot activation.
+They retain the midnight state, service starts, active-period snapshots, every
+simulation tick, the two-second traffic stream, disturbance and original wait
+and safety calculations. One headless snapshot-policy test and the derived
+script parse check pass. The full playable-day recorder remains unchanged.
+Both added construction files are separately hashed and frozen along with the
+six original observers and five acceptance/selection inputs. This is a
+construction-output saving, not a different physics or acceptance policy.
+
+The author now rejects bulk insertion, cuts, simultaneous add-and-retime, and
+unpreserved preceding outcomes. It retains its own source and a fixed copy of
+the measurement index in each future generation. Five authoring tests and three
+launch-guard tests pass, including unchanged candidate bytes in a new folder,
+partial launch intents, and post-authoring edits. The first checkpoint is LOCAL
+`e400afa6`; no public Git push occurred.
+
+## Complete physical basis and fourth placement revision
+
+All44 physical profiles, every179 per-ID arrival calculation and57 exact source/
+result files are retained under `physical-measurements`. No profile was rerun.
+The first preservation command's final console-size expression failed after all
+files/provenance were written; subsequent read-only hash verification confirmed
+the archive. This was not a simulation or calculation failure.
+
+Both004 runs completed4/4,77 arrivals/departures and depot workings, with zero
+safety events. M013 passed K1 atALLP07:21:15.976, fully clear07:24:28. Normal
+K1's ALLP extra wait is936seconds:242overtake,620receiving/reserved,70occupied
+block and4authority. Station-under10 passes2/3, so the70% gate fails. Delayed
+extra wait is566seconds, excluding the manual disturbance; its gates pass.
+Both exact outcomes are preserved under `four-train-first-slot`.
+
+004b revises only M013 toERS06:20, five minutes behind S007. The bounded
+hypothesis is an earlier pass north ofALLP and earlier release of AMPA receiving
+capacity. No saving is presumed. Original normal15640/3344 and delayed24200/21764
+launched once02:05:31+08. Do not rerun or restart either. Current177 experiments,
+old179 summaries and released R48 outputs are not involved in this new task.

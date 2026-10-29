@@ -85,6 +85,35 @@ def call_index(service, station):
     return matches[0]
 
 
+def validate_increment(previous, current):
+    """Add exactly one service, or revise one existing placement explicitly."""
+    old_ids = [row["id"] for row in previous]
+    new_ids = [row["id"] for row in current]
+    if len(set(new_ids)) != len(new_ids):
+        raise ValueError("Duplicate service in construction order")
+    if new_ids == old_ids:
+        changed = [new["id"] for old, new in zip(previous, current) if old != new]
+        if len(changed) != 1:
+            raise ValueError("A revision must change exactly one placement")
+        return {"kind": "one placement revised", "service": changed[0]}
+    if new_ids[:-1] != old_ids or current[:-1] != previous:
+        raise ValueError("Add one train without cutting or also retiming earlier placements")
+    return {"kind": "one service added", "service": new_ids[-1]}
+
+
+def validate_previous(directory, current):
+    previous = read_json(directory / "construction.json")["services"]
+    change = validate_increment(previous, current)
+    expected = digest(directory / "pack.json")
+    if not (directory / "preservation.json").exists():
+        raise ValueError("Preserve and inspect both previous outcomes before the next increment")
+    for name in ["normal", "delayed"]:
+        result = read_json(directory / name / "assessment.json")
+        if result["pack_sha256"] != expected or not result["all_calls_and_terminals_complete"] or result["audit"]["events"]:
+            raise ValueError("Previous increment did not safely complete every call and terminal working")
+    return {**change, "previous_pack_sha256": expected, "previous": str(directory)}
+
+
 def author(source, plan, profiles, inputs):
     by_id = {s["id"]: s for s in source["services"]}
     result = copy.deepcopy(source)
@@ -139,15 +168,25 @@ def main():
     parser.add_argument("--inputs", type=Path, required=True)
     parser.add_argument("--plan", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--previous", type=Path, help="Completed, preserved preceding increment")
     args = parser.parse_args()
     if args.output.exists():
         parser.error("Output exists; preserve it and use a new generation")
     source = read_json(args.source)
     inputs = read_json(args.inputs)
-    index = read_json(args.physics / "index.json")
+    index_bytes = (args.physics / "index.json").read_bytes()
+    index = json.loads(index_bytes)
     source_hash = digest(args.source)
     if source_hash != inputs["source_sha256"] or source_hash != index["source_sha256"]:
         parser.error("Source roster differs from measured planning inputs")
+    for name, expected in index["sources"].items():
+        data = (ROOT / name).read_bytes()
+        # Runtime source fingerprints normalize CRLF; the two measurement
+        # tools are separately recorded as exact raw file hashes.
+        if not name.startswith("tools/") and not name.endswith(".bin"):
+            data = data.replace(b"\r\n", b"\n")
+        if hashlib.sha256(data).hexdigest() != expected:
+            parser.error("Physical measurement source changed: " + name)
     profiles = {}
     for row in index["profiles"]:
         path = args.physics / row["file"]
@@ -158,13 +197,26 @@ def main():
             parser.error("Physical measurement did not safely complete")
         profiles[row["key"]] = profile
     plan = read_json(args.plan)
+    if args.previous:
+        increment = validate_previous(args.previous, plan["services"])
+    elif len(plan["services"]) != 1:
+        parser.error("A multi-train increment requires its completed, preserved --previous output")
+    else:
+        increment = {"kind": "first service", "service": plan["services"][0]["id"]}
     pack, timings = author(source, plan["services"], profiles, inputs["services"])
     args.output.mkdir(parents=True)
     for name, data in [("pack.json", pack), ("timings.json", timings), ("construction.json", plan)]:
         (args.output / name).write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # Retain the exact author and measurement index used for this generation.
+    # The shared measurement index may acquire new, independent profiles later.
+    author_bytes = Path(__file__).read_bytes()
+    (args.output / "author-source.py").write_bytes(author_bytes)
+    (args.output / "measurement-index.json").write_bytes(index_bytes)
     receipt = {"source_sha256": source_hash, "pack_sha256": digest(args.output / "pack.json"),
-               "physics_index_sha256": digest(args.physics / "index.json"), "inputs_sha256": digest(args.inputs),
-               "services": list(timings), "status": "authored; not yet validated in shared traffic"}
+               "physics_index_sha256": hashlib.sha256(index_bytes).hexdigest(), "inputs_sha256": digest(args.inputs),
+               "services": list(timings), "increment": increment,
+               "author_sha256": hashlib.sha256(author_bytes).hexdigest(),
+               "status": "authored; not yet validated in shared traffic"}
     (args.output / "authoring.json").write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(receipt))
 
