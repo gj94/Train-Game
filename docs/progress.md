@@ -1,8 +1,16 @@
 # Progress
 
 <!-- network-v2-live-checkpoint:start -->
-**29 October 20:25 - candidate52 authored, not launched.** The bounded S029/M050 cuts leave177 services and at least3 origins per hour. Both51 rejected full-day outcomes were preserved first. Retained fields and all acceptance gates are unchanged; five headless guards and2positive77negative fixtures pass. Network177V2 remains unaccepted/uninstalled. New work is LOCAL; no gameplay changes or playtest.
+**29 October 20:28 - original candidate52 pair running.** Normal7220/6540 and delayed12560/6208 launched once with exact V2 options, isolated outputs and original4836-source catalogue verified. All inputs frozen while either lives; preserve/inspect both outcomes before planning. Network177V2 remains unaccepted/uninstalled. New work LOCAL; no gameplay changes or playtest.
 <!-- network-v2-live-checkpoint:end -->
+
+**29 October 20:28 - candidate52 original V2 pair launched once and verified.**
+
+- Candidate52 authoring is LOCAL903eea58. The original normal wrapper7220/child6540 and delayed wrapper12560/child6208 launched once at 2026-10-29T20:27:04.5410894+08:00 and 2026-10-29T20:27:04.5949233+08:00, respectively. Normal uses`--network --snapshots`; delayed uses`--network --delay=600 --delay-at=27000`. Outputs are isolated under`rehearsals-v52/predictive-network` and`rehearsals-v52/predictive-network-delayed`. Both use the exact tested177-service V2 pack. No Classic, suite, search, diagnostic or native job was launched.
+- Original normal`starts/catalogue.json` was created20:27:15.920+08 and observed20:27:20.173350 before the first and only successful launch verification at 2026-10-29T20:27:29.816509+08:00. All four actual commands, parent relationships, exact options, two unique outputs,4836 distinct source hashes, six observers and five acceptance/selection hashes match. The original source map is retained; later catalogue digest growth reflects snapshots. Verification tool result e3d3f9 returned exit0 explicitly; a redirected log is not being treated as an exit receipt.
+- Eight exact launch files plus their raw manifest are retained under`network-candidate-fifty-two/launch-proof`. Authoring evidence was verified before the local author commit:18 exact archive/meta files,8 LF-normalized source/doc files and16 raw manifest entries at20:25:56.612055, explicit tool4d0735 exit0 before commit toolb96053 exit0.
+- Both original52 runs are active with empty errors and no final audits at this checkpoint. Partial clocks are not acceptance. **Freeze runtime, routes, both packs, six observers and five acceptance/selection inputs while either original52 lives.** Never restart or rerun unchanged52, its launcher or completed launch verifier. Preserve and inspect both actual outcomes before further departure planning or selection changes. No fixed future population or reliable ETA.
+- Network177V2 remains unaccepted/uninstalled. Both51 outcomes are fully preserved and inspected; no historical summary, verifier, inspection, final analysis or archive was repeated. No gameplay change or playtest. All new work stays LOCAL; latestPUSHED remains8a56676d and the existing payload-specific public-release approval remains pending.
 
 **29 October 20:25 - candidate52 removes S029 and M050 after both candidate51 outcomes were preserved and inspected.**
 
