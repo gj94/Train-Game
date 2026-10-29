@@ -106,7 +106,12 @@ try {
         $mapGuide = Join-Path $buildRoot "guides/$guideName"
         [IO.File]::WriteAllText($mapGuide, [IO.File]::ReadAllText($mapGuide).Replace('../art/performance/map-2026-10-11/', 'map-evidence/'))
     }
-    Copy-Item -LiteralPath (Join-Path $projectRoot 'art/timetables') -Destination (Join-Path $buildRoot 'guides/timetables') -Recurse -Force
+    # Portable guides contain playable packs, not development selection evidence.
+    $timetableCopies = Join-Path $buildRoot 'guides/timetables'
+    New-Item -ItemType Directory -Path $timetableCopies -Force | Out-Null
+    Get-ChildItem -LiteralPath (Join-Path $projectRoot 'art/timetables') -File |
+        Where-Object { $_.Name -notin @('kerala-coast-network-service-selection.json', 'kerala-coast-network-departure-overrides.json', 'kerala-coast-network.json') } |
+        Copy-Item -Destination $timetableCopies
     [IO.File]::WriteAllText($timetableGuide, [IO.File]::ReadAllText($timetableGuide).Replace('../art/performance/timetable-through-2026-10-10/', 'timetable-through-evidence/').Replace('../art/timetables/', 'timetables/'))
     Copy-Item -LiteralPath (Join-Path $projectRoot 'art/performance/crowded-2026-10-10') -Destination (Join-Path $buildRoot 'guides/crowded-benchmark-evidence') -Recurse -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/train-fidelity.md') -Destination (Join-Path $buildRoot 'guides/train-fidelity.md')
