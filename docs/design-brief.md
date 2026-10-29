@@ -9,6 +9,13 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **30 Oct 2026 incremental timetable rebuild:** construct a separate new day
+  one train at a time, calculating achievable arrivals at every call before
+  fitting the next working against shared capacity. VB has fewest calls and
+  actual fast acceleration; superfast has more calls, mail/express more again,
+  and passengers call throughout their route. Preserve physical constraints,
+  plan crossings and overtakes explicitly, and check individual journeys.
+  See `incremental-timetable-2026-10-30.md`; R48 remains available during this work.
 - **29 Oct 2026 optional timetable release:** the user explicitly asked to publish
   despite excess waits because other timetables remain selectable. R48 ships the
   fully completed179-service V2 day with a visible long-wait disclosure. Keep
