@@ -9,6 +9,13 @@ _Prepared 27 Sep 2026 for continuing on a Windows PC session with Claude (Claude
 A **3D train game** where I can be either a **dispatcher** or a **driver**, and switch between them at will.
 
 ### Core requirements
+- **29 Oct 2026 optional timetable release:** the user explicitly asked to publish
+  despite excess waits because other timetables remain selectable. R48 ships the
+  fully completed179-service V2 day with a visible long-wait disclosure. Keep
+  all safety, complete-call/departure, terminal-clearance and population checks;
+  retain the original failed wait audits and an explicit release exception.
+  Both later177 experiments are archived; do not continue cutting or optimizing
+  to meet the waived wait gates. Publication and primary-source integration are complete.
 - **28 Oct 2026 additional trimming authorization:** the user said, "Cut a few
   more services later if needed." Modest further cuts below200 are authorized
   for future V2 candidates based on actual outcomes. This supersedes the former

@@ -1,3 +1,4 @@
+import {assertInstalledRelease,RELEASE_POLICY,RELEASE_OBSERVERS} from './lib/network-release.mjs';
 import {loadNetworkPopulation,assertSelectedNetworkReport,NETWORK_OBSERVERS} from './lib/network-population.mjs';
 import {assertWaitQuality} from './lib/wait-quality.mjs';
 import {ceilFiveMinute} from './lib/time-grid.mjs';
@@ -16,17 +17,21 @@ const requested=process.argv.find(a=>a.startsWith('--day='))?.slice(6);
 if(requested)assert.ok(variants.some(v=>v.id===requested),'Unknown alternate operating day');
 assert.notEqual(requested,'network','Classic Network readiness is outside the requested scope');
 for(const variant of variants.filter(v=>v.id!=='network'&&(!requested||v.id===requested))){
-const {folder,count,mode,pack}=variant;
+const {folder,mode,pack}=variant;
+let count=variant.count;
 const network=variant.id==='network_v2';
 const population=network?await loadNetworkPopulation():null;
-if(network)assert.equal(count,population.count);
+if(network)count=population.count;
 const bytes=await readFile(folder+'/starts/catalogue.json');
 const timeBytes=await readFile(folder+'/times/catalogue.json');
 const starts=JSON.parse(bytes),times=JSON.parse(timeBytes);
 const traffic=JSON.parse(await readFile(folder+'/starts/traffic.json'));
-assert.ok(starts.complete&&starts.audit.ok&&times.complete&&times.audit.ok&&traffic.complete&&traffic.audit.ok);
+const released=network&&starts.release_policy===RELEASE_POLICY;
+assert.ok(starts.complete&&times.complete&&traffic.complete&&traffic.audit.ok);
+if(!released)assert.ok(starts.audit.ok&&times.audit.ok);
+else assert.equal(times.release_policy,RELEASE_POLICY);
 assert.equal(starts.services.length,count);assert.equal(starts.audit.finished,count);
-assert.deepEqual(starts.audit.events,[]);const fullAudit=JSON.parse(await readFile(folder+'/audit.json','utf8'));assertWaitQuality(fullAudit);if(network)assertSelectedNetworkReport(fullAudit,population);assert.deepEqual(starts.audit,fullAudit.audit);
+assert.deepEqual(starts.audit.events,[]);const fullAudit=JSON.parse(await readFile(folder+'/audit.json','utf8'));if(released)await assertInstalledRelease(folder,fullAudit,population);else assertWaitQuality(fullAudit);if(network)assertSelectedNetworkReport(fullAudit,population);assert.deepEqual(starts.audit,fullAudit.audit);
 assert.equal(starts.dispatcher??'classic',mode);assert.equal(times.dispatcher??'classic',mode);
 assert.equal(starts.audit.dispatcher??'classic',mode);assert.equal(traffic.dispatcher??'classic',mode);
 assert.equal(starts.audit.operating_day,network?'network':(count===100?'standard':'intensive'));assert.equal(starts.audit.delay,0);
@@ -51,7 +56,7 @@ for(const [path,digest]of Object.entries(starts.sources)){
   const value=await readFile(path);
   assert.equal(sha(path.endsWith('.bin')?value:value.toString('utf8').replaceAll('\r\n','\n')),digest,'Stale alternate day: '+path);
 }
-const observers=['tools/prepare_timetable_variant.gd','tools/wait_quality.gd','tools/lib/wait-quality.mjs','tools/record_service_traffic.gd','tools/lib/traffic-encounters.mjs','tools/finalize_timetable_variant.mjs',...(network?NETWORK_OBSERVERS:[])];
+const observers=['tools/prepare_timetable_variant.gd','tools/wait_quality.gd','tools/lib/wait-quality.mjs','tools/record_service_traffic.gd','tools/lib/traffic-encounters.mjs','tools/finalize_timetable_variant.mjs',...(network?NETWORK_OBSERVERS:[]),...(released?RELEASE_OBSERVERS:[])];
 assert.deepEqual(Object.keys(traffic.observer_sources).sort(),observers.sort());
 for(const [path,digest]of Object.entries(traffic.observer_sources)){
   assert.equal(sha((await readFile(path,'utf8')).replaceAll('\r\n','\n')),digest,'Stale alternate preview: '+path);

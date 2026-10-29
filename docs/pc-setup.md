@@ -54,11 +54,14 @@ The default is the 100-service Kerala timetable; see `docs/busy-timetable.md`.
 To make a standalone Windows copy for another PC, run
 `powershell -ExecutionPolicy Bypass -File tools/build-windows.ps1`.
 Matching SHA-512-verified 4.7.2 templates are in `.local/export-templates/`.
-The current ZIP is `export/TrainGame-Kerala-Coast-R47-Windows.zip`; see `docs/builds.md`.
-R47 supports full downloads and incremental updates. Replace older launchers once
+The current R48 ZIP and LAN server are in the isolated
+`C:/Users/Gokul/.codex/tmp/train-game-r48-release` workspace; see `docs/builds.md`.
+Restart that workspace's `tools/share-build.ps1 -Action Start -BindAddress 192.168.8.183`
+with Node_v24 on PATH. Do not restart the main D: checkout's stale R47 share.
+R47 files remain preserved in D: `export/`. R48 supports full and incremental updates. Replace older launchers once
 with the small v4 updater ZIP for faster LAN transfers; v3 remains compatible.
 The complete `packs/` folder is required. Publish subsequent releases with
-a new `-BuildName` and increasing `-UpdateSequence` (50+); include the full ZIP
+a new `-BuildName` and increasing `-UpdateSequence` (51+); include the full ZIP
 and omit both `-SkipZip` and `-FullDownloadOnly` so the launcher can select the
 smaller transfer. See `docs/incremental-updates.md`. Preserve the
 private `.local/update-signing-private.pem` when migrating this build PC.

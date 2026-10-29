@@ -6,13 +6,13 @@ The optional **Predictive V2 · Coastal Network 179 (long waits)** adds day/over
 
 The ZIP is **6,593,499,897 bytes**, SHA-256 **9425d3cf8e6fc08d546e66535bacaea1c8dd3e5bb3ecd4fa754f3fc1602b23cf**. All 518 ZIP entries pass CRC; all 516 managed files were checked against the signed catalogue. The 192 exported packs pass all **1,935 prepared-snapshot hashes** across five timetables. Nine affected headless tests, 37 native Network menu/noon/midnight/save-load checks and 13 negative release-policy fixtures pass. The native host fell back to dummy audio because WASAPI was unavailable; no new audio-output or universal gameplay/FPS claim is made. Live ZIP/PCK ranges, checksum, signed latest catalogue and compressed payload decoding pass. Estimated unique compressed R47→R48 blocks total **5,056,991,546 bytes**; this is an estimate, not a measured transfer.
 
-Publication runs from `C:/Users/Gokul/.codex/tmp/train-game-r48-release`, because D: has limited space. Its `tools/share-build.ps1 -Action Start -BindAddress 192.168.8.183` restarts the LAN service; add `C:/Users/Gokul/Documents/Node_v24` to PATH. The current verified server PID is **656**, started 21:54:50 +08. R47's files in the main D: checkout are intact. Do not restart the main checkout's stale R47 server. The main checkout remains frozen for the original candidate52 normal run; release work is isolated.
+Publication runs from `C:/Users/Gokul/.codex/tmp/train-game-r48-release`, because D: has limited space. Its `tools/share-build.ps1 -Action Start -BindAddress 192.168.8.183` restarts the LAN service; add `C:/Users/Gokul/Documents/Node_v24` to PATH. The current verified server PID is **656**, started 21:54:50 +08. R47's files in the main D: checkout are intact. Do not restart the main checkout's stale R47 server. Both original candidate52 failures are archived, and the main checkout now integrates the shipped179 source. The C: publication workspace and its immutable release files remain available.
 
 Playtest steps are in `docs/r48-release-notes.md`: select Coastal Network179, drive/ride a service, browse day-two midnight, save/reload, then switch to Standard/Intensive. Full completion is not a wait-quality pass; longer waits are disclosed in the selector and release notes.
 
 # Windows portable build
 
-Current release: **R47 — optional predictive dispatch and four prepared days**.
+Previous release: **R47 — optional predictive dispatch and four prepared days**.
 Published 25 October 2026 from clean source **3856008**, signed sequence **49**,
 at http://192.168.8.183:8765/.
 Full ZIP: **5,227,700,484 bytes**; SHA-256
@@ -37,8 +37,7 @@ Use **Update & Play v4**. R46→R47 reuses 2,410,115,905 bytes;
 changed target blocks total 3,683,412,647 bytes, estimated unique
 compressed payload 3,300,389,442 bytes
 plus catalogue. These are calculated sizes, not measured transfer speeds.
-Only R47 is advertised; R46 full files remain locally available.
-Next release requires a fresh name and sequence **50+**.
+R47 publication details above are historical; R48 is now advertised. Older full files remain locally available. The next release after R48 requires a fresh name and sequence **51+**.
 
 Previous release: **R46 — countryside and map consistency**.
 Published 24 October 2026 from clean runtime **bfcd8aa**, signed sequence **48**,
