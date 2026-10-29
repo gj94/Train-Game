@@ -88,3 +88,7 @@ func test_predictive_intensive_changes_departures_without_padding_k1_or_forcing_
 		if a!=b:return "Changed formation, calls or slow schedule: "+str(a.id)
 	var decoded:=Pack.decode(JSON.stringify(v2))
 	return decoded.ok and decoded.world.dispatcher().predictive.enabled
+
+func test_optional_network_release_keeps_existing_choices_and_discloses_waits():
+	var network:=Days.definition("network_v2")
+	return network.count==179 and network.description.contains("Long waits") and Days.definition("standard").count==100 and Days.definition("intensive").count==140 and Days.definition("standard_v2").count==100 and Days.definition("intensive_v2").count==140

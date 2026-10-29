@@ -1,4 +1,10 @@
-TRAIN GAME - KERALA COAST R47
+TRAIN GAME - KERALA COAST R48
+
+R48 adds optional Predictive V2 Coastal Network 179 with day and overnight
+services. Long waits can occur; the usual wait targets are waived for this
+optional day. Both full-day safety/completion tests passed. Existing four
+Standard/Intensive choices remain. See guides/r48-release-notes.md.
+R48 supports full downloads and incremental updates through Update & Play v4.
 
 R47: Optional Predictive V2 dispatch and four fully prepared operating days.
 Choose Classic or Predictive V2 in the Home operating-day selector, with

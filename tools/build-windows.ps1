@@ -90,7 +90,7 @@ try {
     Copy-Item -LiteralPath (Join-Path $projectRoot 'docs/map-refinement.md') -Destination (Join-Path $buildRoot 'guides/map-refinement.md')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/ported/station-notices') -Destination $buildRoot -Recurse -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/models/trackside/notices') -Destination (Join-Path $buildRoot 'guides/trackside-notices') -Recurse -Force
-    foreach ($guide in @('r47-release-notes.md', 'predictive-dispatcher.md', 'menu-qol.md', 'event-skip.md', 'journey-audio-and-comfort.md', 'service-selection.md', 'intensive-timetable.md', 'day-night.md', 'busy-timetable.md', 'map-corrections.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'extreme-visuals.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
+    foreach ($guide in @('r48-release-notes.md', 'r47-release-notes.md', 'predictive-dispatcher.md', 'menu-qol.md', 'event-skip.md', 'journey-audio-and-comfort.md', 'service-selection.md', 'intensive-timetable.md', 'day-night.md', 'busy-timetable.md', 'map-corrections.md', 'dispatcher-capacity.md', 'graphics-settings.md', 'extreme-visuals.md', 'performance.md', 'corridor-rendering-2026-10-10.md', 'crowded-benchmark-2026-10-10.md', 'save-load.md', 'passengers.md', 'depot-workings.md', 'station-model-port.md', 'station-surroundings.md', 'speed-boards.md', 'kerala-scenery.md', 'trackside-collection.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
     # Keep the portable operator guide's evidence links usable without copying
@@ -126,8 +126,8 @@ try {
     foreach ($guide in @('kerala-coast.md', 'kerala-station-audit.md', 'kerala-station-browser-audit.md', 'dispatcher-overhaul.md', 'ride-dynamics.md', 'rakes.md', 'coach-detail.md', 'walking.md', 'controllers.md', 'dispatching.md', 'timetables.md', 'services.md', 'lhb.md', 'wap7.md', 'wap7-detail.md', 'stations.md', 'visual-fidelity.md', 'imported-fleet.md', 'track.md', 'body-v2-audio.md', 'enhanced-audio.md')) {
         Copy-Item -LiteralPath (Join-Path $projectRoot "docs/$guide") -Destination (Join-Path $buildRoot "guides/$guide")
     }
-    $revision = & git -c safe.directory=D:/ClaudeWS/train-game rev-parse --short HEAD
-    $dirty = & git -c safe.directory=D:/ClaudeWS/train-game status --porcelain --untracked-files=no
+    $revision = & git -c "safe.directory=$projectRoot" rev-parse --short HEAD
+    $dirty = & git -c "safe.directory=$projectRoot" status --porcelain --untracked-files=no
     @("Build: $BuildName", "Built: $(Get-Date -Format o)", "Godot: 4.7.2 stable; Windows x86-64 release", "Source base: $revision", "Uncommitted tracked changes included: $([bool]$dirty)") |
         Set-Content -LiteralPath (Join-Path $buildRoot 'BUILD.txt') -Encoding utf8
     $hashNames = @('TrainGame.exe', 'TrainGame.pck') + @(Get-ChildItem -LiteralPath (Join-Path $buildRoot 'packs') -File | Sort-Object Name | ForEach-Object { 'packs/' + $_.Name })

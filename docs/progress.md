@@ -1,3 +1,11 @@
+## 29 October — R48 optional Network release preparation
+
+The user explicitly approved publishing the new optional timetable despite excess waits. The release uses completed candidate51: 179 services, all 2,443 arrivals/departures, 84 full-tail boundary exits and 95 depot completions in both normal and delayed tests, zero safety events, and distributed actual overtakes. The original failed wait audits are retained unchanged. A separate release policy permits these wait failures; all completion, safety, exact-population, fingerprint, prepared-state and traffic requirements remain checked. The normal prepared data is installed with 179 departures and 344 five-minute states. Four legacy choices remain intact; Classic Network is not installed or tested.
+
+The dedicated release-policy checks accept both actual reports and reject 13 corrupted safety/completion/identity/accounting/disturbance fixtures. Nine affected headless operating-day tests pass. The actual Network menu, through-service calls/portal restore, overnight filtering, noon/midnight timeline and complete midnight save/load pass 37 native UI checks. The host's WASAPI device was unavailable and Godot fell back to dummy audio; this is not a new audio-output validation. Matched corridor category comparison uses the completed installed baseline and retained traffic events; it makes no universal performance claim. See `art/performance/r48-release/source-validation.json` and `docs/r48-release-notes.md`.
+
+R48 full ZIP and signed incremental build preparation follows these checks. The active candidate52 runs in the main checkout remain separate and frozen. Public Git publication of historical diagnostic archives is still unapproved; the user's new instruction authorizes the playable build. Playtest: select Coastal Network 179 (long waits), drive/ride a service, browse day-two midnight, save and reload, then switch to Standard/Intensive.
+
 # Progress
 
 <!-- network-v2-live-checkpoint:start -->
