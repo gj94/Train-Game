@@ -1,3 +1,15 @@
+## R48 — optional Coastal Network 179 (published 29 October 2026)
+
+R48 is available at **http://192.168.8.183:8765/** as a full Windows ZIP and signed incremental update, sequence **50**. Build: `TrainGame-Kerala-Coast-R48-Windows`; local source **9c2c8204b19d7dd68781f027b2fc7e705f65109b**. Source and historical diagnostic archives have not been pushed to GitHub.
+
+The optional **Predictive V2 · Coastal Network 179 (long waits)** adds day/overnight local, mail, superfast and Vande Bharat services. All four Standard/Intensive choices remain. Both completed candidate51 tests cleared every service, call, departure and terminal working with zero safety events. The user explicitly accepted excess waits; the original failed wait-quality audits remain unchanged. The 177-service candidate52 experiment is separate and is not shipped.
+
+The ZIP is **6,593,499,897 bytes**, SHA-256 **9425d3cf8e6fc08d546e66535bacaea1c8dd3e5bb3ecd4fa754f3fc1602b23cf**. All 518 ZIP entries pass CRC; all 516 managed files were checked against the signed catalogue. The 192 exported packs pass all **1,935 prepared-snapshot hashes** across five timetables. Nine affected headless tests, 37 native Network menu/noon/midnight/save-load checks and 13 negative release-policy fixtures pass. The native host fell back to dummy audio because WASAPI was unavailable; no new audio-output or universal gameplay/FPS claim is made. Live ZIP/PCK ranges, checksum, signed latest catalogue and compressed payload decoding pass. Estimated unique compressed R47→R48 blocks total **5,056,991,546 bytes**; this is an estimate, not a measured transfer.
+
+Publication runs from `C:/Users/Gokul/.codex/tmp/train-game-r48-release`, because D: has limited space. Its `tools/share-build.ps1 -Action Start -BindAddress 192.168.8.183` restarts the LAN service; add `C:/Users/Gokul/Documents/Node_v24` to PATH. The current verified server PID is **656**, started 21:54:50 +08. R47's files in the main D: checkout are intact. Do not restart the main checkout's stale R47 server. The main checkout remains frozen for the original candidate52 normal run; release work is isolated.
+
+Playtest steps are in `docs/r48-release-notes.md`: select Coastal Network179, drive/ride a service, browse day-two midnight, save/reload, then switch to Standard/Intensive. Full completion is not a wait-quality pass; longer waits are disclosed in the selector and release notes.
+
 # Windows portable build
 
 Current release: **R47 — optional predictive dispatch and four prepared days**.
